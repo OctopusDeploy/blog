@@ -19,7 +19,7 @@ For this post, I chose the [Pitstop](https://github.com/EdwinVW/pitstop) applica
 - Databases
 - References third-party docker containers
 
-The original version of this application embedded the database and table creation within the C# code itself.  To make a more useful demonstration, I extracted the database activities and placed them into the deployment process.  In addition, the APIs and Web front end were all dockerized.  Again, I modified this so they could be deployed to Azure instead of containers.  The modified version can be found [here](https://github.com/OctopusSamples/PitStop).
+The original version of this application embedded the database and table creation within the C# code itself.  To make a more useful demonstration, I extracted the database activities and placed them into the deployment process.  In addition, the APIs and Web front end were all dockerized.  Again, I modified this so they could be deployed to Azure instead of containers.  Here's the [modified version](https://github.com/OctopusSamples/PitStop).
 
 ## Monolithic deployment process
 The modifications to the Pitstop application were to add more pieces to the deployment process.  Deploying the Pitstop application consists of the following steps:
