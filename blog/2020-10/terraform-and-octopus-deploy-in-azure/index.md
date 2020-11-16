@@ -29,7 +29,7 @@ Terraform is an open-source [Infrastructure-as-Code](https://docs.microsoft.com/
 
 You can deploy Terraform resources to:
 
-- In Azure
+- Azure
 - In AWS
 - On-prem (hardware and virtualized environments)
 
