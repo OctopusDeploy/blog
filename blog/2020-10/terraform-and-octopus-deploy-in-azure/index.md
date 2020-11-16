@@ -154,7 +154,7 @@ Since you're deploying a service in Azure and not code for an application, the m
 2. Click **ADD RUNBOOK**.
 3. Create a runbook and name it **ResourceGroup**.
 
-## Adding Steps to the Runbook
+## Add steps to the runbook
 
 1. Under the Runbook, go to Process and click **ADD STEP.**
 2. Click on the Terraform category.
