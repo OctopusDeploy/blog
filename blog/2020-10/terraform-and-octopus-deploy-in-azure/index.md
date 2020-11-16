@@ -12,13 +12,7 @@ tags:
  - Azure
 ---
 
-When you think of continuous deployment and continuous delivery, the first thing that typically comes to mind is application code. For example, perhaps you have a web API that you want to deploy to a serverless platform.
-
-When it comes to Octopus Deploy, we focus on software deployments, but there's also the infrastructure side. It's not only about the software developers, but the infrastructure developers. The idea of wanting to help both sides of the fence for automated deployments is why [Runbooks](https://octopus.com/docs/runbooks) exist.
-
-As an infrastructure developer, you need to write code to automate the process of configuring cloud and on-prem infrastructure, but you also need a way to automatically deploy it.
-
-In this blog post, you'll learn about how to use Terraform and Octopus Deploy together to deploy services into Azure.
+Infrastructure developers write code to automate the process of configuring cloud and on-premises infrastructure, in this post, I should your how to use Terraform and Octopus Deploy to deploy services to Azure.
 
 ## Prerequisites
 
