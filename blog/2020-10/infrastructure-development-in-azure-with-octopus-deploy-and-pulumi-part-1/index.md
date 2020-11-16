@@ -61,17 +61,17 @@ Pulumi is free forever for individual use, so any authentication method will wor
 
 Once you are signed in, you'll see a screen similar to the screenshot below.
 
-![](images/1.png)
+![](images/pulumiproject.png)
 
 1. Click the blue **+ NEW PROJECT** button.
 
       Once you create a new project, you'll see that there are a few different options. Pulumi not only supports multiple programming languages but multiple clouds as well.
 
-![](images/2.png)
+![](images/newpulumiproject.png)
 
   2. For the cloud, choose **Azure**. For the language, choose **Go**. Once you choose the options, click the blue **NEXT** button.
 
-![](images/3.png)
+![](images/azureandgo.png)
 
   3. Add in some details about the project. You can either keep them default or add in custom metadata.
 
@@ -86,7 +86,7 @@ Once you are signed in, you'll see a screen similar to the screenshot below.
 
 For a dev environment, as long as you don't have any regulations, keeping it as `public` will be fine. Once complete, click the blue **CREATE PROJECT** button.
 
-![](images/4.png)
+![](images/createproject.png)
 
   4. Next, you'll be presented with the **STACK** window. The stack window helps you get started for MacOS, Windows, and Linux. The first place to start is to confirm that you have Pulumi installed.
 
