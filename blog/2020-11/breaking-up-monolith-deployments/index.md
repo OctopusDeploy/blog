@@ -7,9 +7,10 @@ published: 2021-11-03
 metaImage: 
 bannerImage: 
 tags:
+	- DevOps
 ---
 
-The term `monolithic deployment` often carries a negetive connotation, however, monolithic deployments are the natural progression of an application that has grown over time.  In this post, I'll demonstrate breaking apart a monolithic process into smaller deployable components.
+The term *monolithic deployment* often carries a negative connotation, however, monolithic deployments are the natural progression of an application that has grown over time.  In this post, I'll demonstrate breaking apart a monolithic process into smaller deployable components.
 
 ## Pitstop
 For this post, I chose the [Pitstop](https://github.com/EdwinVW/pitstop) application to use as an example.  The reason I chose this application was that it contained multiple moving parts:
