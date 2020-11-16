@@ -169,7 +169,7 @@ Since you're deploying a service in Azure and not code for an application, the m
 
 Depending on the environment you're running in, these steps could be different. For example, you could use a different Worker Pool than the default. These are the key steps to include for Terraform:
 
-1. Under **Managed Accounts**, choose **Azure Account** and add in the Azure account you created in the previous section **Authentication to Octopus Deploy from Azure**.
+1. Under **Managed Accounts**, choose **Azure Account** and add the Azure account you created in the **Authentication to Octopus Deploy from Azure** section.
 2. Under **Template**, choose **Template Source** and use the Source code option. Then, paste in the following code.
 
 ```
