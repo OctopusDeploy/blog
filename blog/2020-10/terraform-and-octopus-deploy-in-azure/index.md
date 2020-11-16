@@ -16,7 +16,7 @@ Infrastructure developers write code to automate the process of configuring clou
 
 ## Prerequisites
 
-To follow along with this blog post, you should have the following:
+To follow along with this blog post, you need the following:
 
 - An Octopus Deploy server, either [on-premises](https://octopus.com/start/server) or a [cloud instance](https://octopus.com/start/cloud)
 - An Azure subscription. If you don't already have one, you can sign up for a [30-day free trial](https://azure.microsoft.com/en-us/free/).
