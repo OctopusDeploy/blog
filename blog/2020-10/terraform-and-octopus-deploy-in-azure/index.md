@@ -190,7 +190,7 @@ resource "azurerm_resource_group" "myterraformgroup" {
 
 As you can see, it uses the variables you created in the **Setting up Variables** section.
 
-## Running the Terraform Code
+## Run the Terraform code
 
 The configuration of the project, authentication, steps, and code is all complete. Now, it's time to see the code in action! 
 
