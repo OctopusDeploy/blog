@@ -107,7 +107,7 @@ For a dev environment, as long as you don't have any regulations, keeping it as 
 
  8. Now you can open up the new project in an editor or IDE, for example, VS Code.
 
-## The Code
+## Writing Code with Pulumi
 
 The Pulumi project is created and pulled down on localhost. You now have everything you need to start interacting with Pulumi using Go.
 
@@ -115,7 +115,7 @@ The first thing you'll see is that there is already a `go.mod` file, which speci
 
 One other file you'll see is the `main.go`, which already has Go code inside of it. With every Pulumi project, you'll see starter code by default that shows you what SDKs and packages are used.
 
-### Writing the Code
+### Azure Example
 
 Instead of using the default code in the `main.go`, let's create something from scratch.
 
