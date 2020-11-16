@@ -1,6 +1,6 @@
 ---
 title: Infrastructure as Code in Azure with Terraform and Octopus Deploy
-description:  In this blog post, you take a look at combining the power of Infrastructure-as-code using Terraform and Octopus Deploy to create resources and services in Azure
+description:  In this blog post, we take a look at combining the power of Infrastructure-as-code using Terraform and Octopus Deploy to create resources and services in Azure.
 author: michael.levan@octopus.com
 visibility: private
 published: 2199-10-10 
@@ -16,32 +16,32 @@ Infrastructure developers write code to automate the process of configuring clou
 
 ## Prerequisites
 
-To follow along with this blog post, you should have the following:
+To follow along with this blog post, you need the following:
 
-- An Octopus Deploy server, either [on-prem](https://octopus.com/start/server) or in the [cloud](https://octopus.com/start/cloud)
-- An Azure subscription. If you don't already have one, you can sign up for a 30-day free trial [here](https://azure.microsoft.com/en-us/free/).
-- An Azure Service Principal (app registration) that has access to create resource in the Azure subscription you're using.
+- An Octopus Deploy server, either [on-premises](https://octopus.com/start/server) or a [cloud instance](https://octopus.com/start/cloud)
+- An Azure subscription. If you don't already have one, you can sign up for a [30-day free trial](https://azure.microsoft.com/en-us/free/).
+- An Azure Service Principal (app registration) that has access to create resources in your Azure subscription.
 - Knowledge of [Terraform](https://www.terraform.io/intro/index.html) at a beginner-to-intermediate level.
 
 ## Why Use Octopus and Terraform Together
 
-Terraform, an open-source [Infrastructure-as-Code](https://docs.microsoft.com/en-us/azure/devops/learn/what-is-infrastructure-as-code) platform created by [Hashicorp](https://www.hashicorp.com/), is very much supported by default in Octopus Deploy. 
+Terraform is an open-source [Infrastructure-as-Code](https://docs.microsoft.com/en-us/azure/devops/learn/what-is-infrastructure-as-code) platform created by [Hashicorp](https://www.hashicorp.com/) that is supported by default in Octopus Deploy. 
 
 You can deploy Terraform resources to:
 
-- In Azure
-- In AWS
-- On-prem (hardware and virtualized environments)
+- Azure
+- AWS
+- On-premises (hardware and virtualized environments)
 
-One of the major benefits about using Terraform in a continuous delivery and deployment tool is that you only have to focus on writing the code, not manually deploying it. Combining Octopus and Terraform allows you to automate the entire lifecycle.
+One of the major benefits of using Terraform in a continuous delivery and deployment tool is that you can focus on writing the code, not manually deploying it. Combining Octopus and Terraform allows you to automate the entire lifecycle.
 
 ## The Terraform Code
 
-To create a resource or service in Azure, you need to write the HCL code. In this section, you'll take a look at the HCL code to create a Resource Group in Azure using Terraform.
+To create a resource or service in Azure, you need to write the HCL code. In this section, I show you the HCL code to create a Resource Group in Azure using Terraform.
 
 ### The Azure Terraform Provider
 
-As with any time you interact with a Terraform provider, you need to specify some inputs and authentication into the code block. To provider that is used to interact with Azure is the `azurerm` provider, which you can find out more about [here](https://www.terraform.io/docs/providers/azurerm/index.html).
+Whenever you interact with a Terraform provider, you need to specify some inputs and authentication in the code block. The provider that is used to interact with Azure is the [`azurerm` provider](https://www.terraform.io/docs/providers/azurerm/index.html).
 
 There are four ways to authenticate to the `azurerm` Terraform provider:
 
@@ -50,18 +50,18 @@ There are four ways to authenticate to the `azurerm` Terraform provider:
 - [Authenticating to Azure using a Service Principal and a Client Certificate](https://www.terraform.io/docs/providers/azurerm/guides/service_principal_client_certificate.html)
 - [Authenticating to Azure using a Service Principal and a Client Secret](https://www.terraform.io/docs/providers/azurerm/guides/service_principal_client_secret.html)
 
-For the purposes of this blog post, you'll be using an Azure Service Principal.
+For the purposes of this blog post, we're using an Azure Service Principal.
 
-The provider will need the following information:
+The provider needs the following information:
 
-- Azure subscription ID
+- Azure Subscription ID
 - Client ID
 - Client Secret
 - Tenant ID
 
-There is also a `features` parameter that is needed, but it can be left blank.
+There is also a `features` parameter, but it can be left blank.
 
-The provider config block should look like the below code.
+The provider config block looks like the below code:
 
 ```
 provider "azurerm" {
@@ -144,31 +144,31 @@ Under the variables section of the project, you'll want to add in Project Variab
 
 ![](images/4.png)
 
-## Configuring the Runbook
+## Configure the Runbook
 
 Since you're deploying a service in Azure and not code for an application, the most efficient action is to use a Runbook. The Runbook will give you the ability to use the Terraform step template and create the Resource Group.
 
 ## Creating a Runbook
 
 1. Under the Project, go to **Operations** —> **Runbooks**.
-2. Click the green **ADD RUNBOOK** button.
-3. Create a Runbook and name it **ResourceGroup**.
+2. Click **ADD RUNBOOK**.
+3. Create a runbook and name it **ResourceGroup**.
 
-## Adding Steps to the Runbook
+## Add steps to the runbook
 
-1. Under the Runbook, go to Process and click **ADD STEP.**
+1. Navigate to the runbook, select **Process**, and click **ADD STEP.**
 2. Click on the Terraform category.
 
 3. Choose the **Apply a Terraform template** step.
 
 ![](images/6.png)
 
-### Configuring the Terraform Step
+### Configure the Terraform Step
 
-Depending on the environment you're running in, these steps could be different. For example, you could use a different Worker Pool than the standard default. Because of that, this blog post will go over the key steps to add in for Terraform specifically.
+Depending on the environment you're running in, these steps could be different. For example, you could use a different Worker Pool than the default. These are the key steps to include for Terraform:
 
-1. Under **Managed Accounts**, choose **Azure Account** and add in the Azure account you created in the previous section **Authentication to Octopus Deploy from Azure**.
-2. Under **Template**, choose **Template Source** and use the Source code option. Then, paste in the following code.
+1. Under **Managed Accounts**, choose **Azure Account** and add the Azure account you created in the **Authentication to Octopus Deploy from Azure** section.
+2. Under **Template**, choose **Template Source** and use the **Source code** option. Then, paste in the following code:
 
 ```
 provider "azurerm" {
@@ -186,18 +186,22 @@ resource "azurerm_resource_group" "myterraformgroup" {
 }
 ```
 
-As you can see, it utilizes the variables you created in the previous section **Setting up Variables**.
+As you can see, it uses the variables you created in the **Setting up Variables** section.
 
+<<<<<<< HEAD
 ## Executing the Runbook
+=======
+## Run the Terraform code
+>>>>>>> 8f7ff736c91f00a407ecb4a3d37e0307df257892
 
 The configuration of the project, authentication, steps, and code is all complete. Now, it's time to see the code in action! 
 
-1. Under **Runbooks**, you'll see the **ResourceGroup** Runbook. Click the **RUN** button.
-2. Select the environment that you'd like to run the Runbook under and click the green **RUN** button.
+1. Under **Runbooks**, you'll see the **ResourceGroup** runbook. Click **RUN**.
+2. Select the environment that you'd like to run the runbook under and click **RUN**.
 
 ![](images/7.png)
 
-Congrats! You have successfully created a Resource Group in Azure using Octopus Deploy and Terraform.
+You have successfully created a Resource Group in Azure using Octopus Deploy and Terraform.
 
 ## Conclusion
 
