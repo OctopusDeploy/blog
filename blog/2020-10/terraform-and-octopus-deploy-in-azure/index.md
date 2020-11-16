@@ -156,7 +156,7 @@ Since you're deploying a service in Azure and not code for an application, the m
 
 ## Add steps to the runbook
 
-1. Under the Runbook, go to Process and click **ADD STEP.**
+1. Navigate to the runbook, select **Process**, and click **ADD STEP.**
 2. Click on the Terraform category.
 
 ![](images/5.png)
