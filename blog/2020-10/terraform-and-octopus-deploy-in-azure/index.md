@@ -41,7 +41,7 @@ To create a resource or service in Azure, you need to write the HCL code. In thi
 
 ### The Azure Terraform Provider
 
-As with any time you interact with a Terraform provider, you need to specify some inputs and authentication into the code block. To provider that is used to interact with Azure is the `azurerm` provider, which you can find out more about [here](https://www.terraform.io/docs/providers/azurerm/index.html).
+Whenever you interact with a Terraform provider, you need to specify some inputs and authentication in the code block. The provider that is used to interact with Azure is the [`azurerm` provider](https://www.terraform.io/docs/providers/azurerm/index.html).
 
 There are four ways to authenticate to the `azurerm` Terraform provider:
 
