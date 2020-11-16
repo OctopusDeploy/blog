@@ -95,15 +95,15 @@ For a dev environment, as long as you don't have any regulations, keeping it as 
 
  5. After you install Pulumi, you'll want to create a new directory where the project will live and then change directory (`cd`) into the newly created project directory.
 
-![](images/5.png)
+`mkdir azure-go-new-resource-group && cd azure-go-new-resource-group`
 
 6. Once the directory where the Pulumi project will reside is created, you can pull down the project from Pulumi into that directory. You'll need to authenticate, which you'll see how in the terminal output. 
 
-![](images/6.png)
+`pulumi new azure-go -s AdminTurnedDevOps/azure-go-new-resource-group/dev`
 
 7. Once the project is pulled down from Pulumi, it's time to deploy it!
 
-![](images/7.png)
+`pulumi up`
 
  8. Now you can open up the new project in an editor or IDE, for example, VS Code.
 

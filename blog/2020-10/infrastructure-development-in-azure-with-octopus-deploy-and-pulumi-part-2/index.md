@@ -99,9 +99,12 @@ In the process, there will be two deployment steps used:
 In the project you created, go to Process to start adding in the steps.
 
 1. The first step will be Deploy a Package. Under the Deploy a Package step, specify the name, target roles for the deployment target, and package details. Ensure that the package details are pointing to the GitHub feed and the repo where you stored the Pulumi Azure project.
-  - For all of the .NET configurations, ensure you uncheck them. Otherwise, the step template will assume a .NET configuration.
-  - Under .NET Configuration Transforms, click the **CONFIGURE FEATURES** button.
-  - Uncheck the .NET configurations and choose Custom Installation Directory.
+
+Customize the features used by the step:
+
+- Scroll to the top of the step and click the **CONFIGURE FEATURES** button.
+- Select the Custom Installation Directory option.
+- Uncheck the .NET Configuration Variables and .NET Configuration Transforms options.
 2. For the custom installation directory, choose where you want the Pulumi Azure code to reside. This is also where the Pulumi step will look to create the Azure resource group.
 3. Save the step.
 4. The second step will be Run Pulumi (Linux). Under Run Pulumi (Linux), specify the name and target roles for the deployment target. 
