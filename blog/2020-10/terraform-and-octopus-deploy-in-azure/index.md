@@ -30,7 +30,7 @@ Terraform is an open-source [Infrastructure-as-Code](https://docs.microsoft.com/
 You can deploy Terraform resources to:
 
 - Azure
-- In AWS
+- AWS
 - On-prem (hardware and virtualized environments)
 
 One of the major benefits about using Terraform in a continuous delivery and deployment tool is that you only have to focus on writing the code, not manually deploying it. Combining Octopus and Terraform allows you to automate the entire lifecycle.
