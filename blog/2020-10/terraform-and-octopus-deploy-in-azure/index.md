@@ -196,7 +196,7 @@ resource "azurerm_resource_group" "myterraformgroup" {
 
 As you can see, it utilizes the variables you created in the previous section **Setting up Variables**.
 
-## Running the Terraform Code
+## Executing the Runbook
 
 The configuration of the project, authentication, steps, and code is all complete. Now, it's time to see the code in action! 
 
