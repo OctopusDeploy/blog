@@ -151,7 +151,7 @@ Since you're deploying a service in Azure and not code for an application, the m
 ## Creating a Runbook
 
 1. Under the Project, go to **Operations** —> **Runbooks**.
-2. Click the green **ADD RUNBOOK** button.
+2. Click **ADD RUNBOOK**.
 3. Create a Runbook and name it **ResourceGroup**.
 
 ## Adding Steps to the Runbook
