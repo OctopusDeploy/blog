@@ -59,7 +59,7 @@ The provider needs the following information:
 - Client Secret
 - Tenant ID
 
-There is also a `features` parameter that is needed, but it can be left blank.
+There is also a `features` parameter, but it can be left blank.
 
 The provider config block should look like the below code.
 
