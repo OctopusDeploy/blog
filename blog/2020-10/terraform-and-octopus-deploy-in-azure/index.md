@@ -188,7 +188,7 @@ resource "azurerm_resource_group" "myterraformgroup" {
 }
 ```
 
-As you can see, it utilizes the variables you created in the previous section **Setting up Variables**.
+As you can see, it uses the variables you created in the **Setting up Variables** section.
 
 ## Running the Terraform Code
 
