@@ -144,7 +144,7 @@ Under the variables section of the project, you'll want to add in Project Variab
 
 ![](images/4.png)
 
-## Configuring the Runbook
+## Configure the Runbook
 
 Since you're deploying a service in Azure and not code for an application, the most efficient action is to use a Runbook. The Runbook will give you the ability to use the Terraform step template and create the Resource Group.
 
