@@ -159,9 +159,7 @@ Since you're deploying a service in Azure and not code for an application, the m
 1. Under the Runbook, go to Process and click **ADD STEP.**
 2. Click on the Terraform category.
 
-![](images/5.png)
-
-  3. Choose the **Apply a Terraform template** step.
+3. Choose the **Apply a Terraform template** step.
 
 ![](images/6.png)
 
