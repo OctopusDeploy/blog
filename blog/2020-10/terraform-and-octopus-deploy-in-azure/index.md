@@ -194,7 +194,7 @@ As you can see, it uses the variables you created in the **Setting up Variables*
 
 The configuration of the project, authentication, steps, and code is all complete. Now, it's time to see the code in action! 
 
-1. Under **Runbooks**, you'll see the **ResourceGroup** Runbook. Click the **RUN** button.
+1. Under **Runbooks**, you'll see the **ResourceGroup** runbook. Click **RUN**.
 2. Select the environment that you'd like to run the Runbook under and click the green **RUN** button.
 
 ![](images/7.png)
