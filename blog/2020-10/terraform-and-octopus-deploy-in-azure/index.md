@@ -165,7 +165,7 @@ Since you're deploying a service in Azure and not code for an application, the m
 
 ![](images/6.png)
 
-### Configuring the Terraform Step
+### Configure the Terraform Step
 
 Depending on the environment you're running in, these steps could be different. For example, you could use a different Worker Pool than the standard default. Because of that, this blog post will go over the key steps to add in for Terraform specifically.
 
