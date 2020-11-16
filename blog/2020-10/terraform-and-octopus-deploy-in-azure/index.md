@@ -140,7 +140,17 @@ Once the project is created, it's time to create the runbook.
 
 ### Creating Octopus Deploy Variables
 
-Under the variables section of the project, you'll want to add in Project Variables. Because these values can differ based on the environment you're in, below is a screenshot of a sample. The `Name` of the variables should match the screenshot below because you will use them in the code later, but the values will be different for your environment.
+Under the variables section of the project, you'll want to add in Project Variables. Because these values can differ based on the environment you're in, below is a code sample. The `Name` of the variables should match the value below because you will use them in the code later, but the values will be different for your environment.
+
+```
+AzureAuth         = AzureAuth Account
+clientID          = guid_client_id
+clientSecret      = client_secret
+location          = eastus
+resourceGroupName = your_resource_group_name
+subscriptionID    = your_subscription_id
+tenantID          = guid_tenant_id
+```
 
 ![](images/4.png)
 
