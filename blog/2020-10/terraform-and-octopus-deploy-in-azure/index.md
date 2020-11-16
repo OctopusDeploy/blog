@@ -61,7 +61,7 @@ The provider needs the following information:
 
 There is also a `features` parameter, but it can be left blank.
 
-The provider config block should look like the below code.
+The provider config block looks like the below code:
 
 ```
 provider "azurerm" {
