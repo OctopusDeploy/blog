@@ -1,6 +1,6 @@
 ---
 title: Infrastructure as Code in Azure with Terraform and Octopus Deploy
-description:  In this blog post, you take a look at combining the power of Infrastructure-as-code using Terraform and Octopus Deploy to create resources and services in Azure
+description:  In this blog post, we take a look at combining the power of Infrastructure-as-code using Terraform and Octopus Deploy to create resources and services in Azure.
 author: michael.levan@octopus.com
 visibility: private
 published: 2199-10-10 
