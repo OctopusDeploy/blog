@@ -52,7 +52,7 @@ There are four ways to authenticate to the `azurerm` Terraform provider:
 
 For the purposes of this blog post, we're using an Azure Service Principal.
 
-The provider will need the following information:
+The provider needs the following information:
 
 - Azure subscription ID
 - Client ID
