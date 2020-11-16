@@ -19,7 +19,7 @@ Infrastructure developers write code to automate the process of configuring clou
 To follow along with this blog post, you should have the following:
 
 - An Octopus Deploy server, either [on-premises](https://octopus.com/start/server) or a [cloud instance](https://octopus.com/start/cloud)
-- An Azure subscription. If you don't already have one, you can sign up for a 30-day free trial [here](https://azure.microsoft.com/en-us/free/).
+- An Azure subscription. If you don't already have one, you can sign up for a [30-day free trial](https://azure.microsoft.com/en-us/free/).
 - An Azure Service Principal (app registration) that has access to create resource in the Azure subscription you're using.
 - Knowledge of [Terraform](https://www.terraform.io/intro/index.html) at a beginner-to-intermediate level.
 
