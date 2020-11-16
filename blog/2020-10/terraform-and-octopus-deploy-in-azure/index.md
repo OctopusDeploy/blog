@@ -37,7 +37,7 @@ One of the major benefits of using Terraform in a continuous delivery and deploy
 
 ## The Terraform Code
 
-To create a resource or service in Azure, you need to write the HCL code. In this section, you'll take a look at the HCL code to create a Resource Group in Azure using Terraform.
+To create a resource or service in Azure, you need to write the HCL code. In this section, I show you the HCL code to create a Resource Group in Azure using Terraform.
 
 ### The Azure Terraform Provider
 
