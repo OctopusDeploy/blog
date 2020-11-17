@@ -16,6 +16,8 @@ In this post and screencast I'll show you how to install the Grafana plugin, imp
 
 ## Screencast
 
+<iframe width="900" height="506" src="https://www.youtube.com/embed/bPmjJkkEa3g" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Installing the plugin
 
 The plugin is made available through the project's [GitHub releases page](https://github.com/OctopusDeploy/OctopusGrafanaDataSource/releases).
