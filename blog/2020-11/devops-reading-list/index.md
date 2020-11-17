@@ -124,10 +124,6 @@ After you’ve checked out the materials for your chosen books, carry on to the 
 
 ### 1. The Goal (Goldratt: 1984) {#goal}
 
-![The_Goal](the_goal.jpg "width=500")
-
-Test One
-
 <div class="row">
   <div class="col-sm-6">The fact that this is by far the oldest book in my selection is testament to how well its aged and how important and timeless it is.
 </div>
