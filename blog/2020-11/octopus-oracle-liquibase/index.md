@@ -706,8 +706,8 @@ FROM customer cu JOIN address a ON cu.address_id = a.address_id JOIN city ON a.c
         <addForeignKeyConstraint baseColumnNames="MANAGER_STAFF_ID" baseTableName="STORE" constraintName="FK_STORE_STAFF" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="STAFF_ID" referencedTableName="STAFF" validate="true"/>
     </changeSet>
 </databaseChangeLog>
-
 ```
+
 </details>
 
 ## Octopus Deploy
