@@ -88,12 +88,12 @@ A number of metrics are exposed by the plugin:
 * **Failure**, set to  1 for failed deployments, and 0 otherwise.
 * **Cancelled**, set to 1 for cancelled deployments, and 0 otherwise.
 * **Timed Out**, set to 1 for timed out deployments, and 0 otherwise.
-* **Total Duration**, which is the total time deployments took for the given time bucket.
-* **Average Duration**, which is the average time deployments took for the given time bucket.
-* **Total Time to Recovery**, which is the total time between a failed deployment and the next successful deployment for a given time bucket.
-* **Average Time to Recovery**, which is the average time between a failed deployment and the next successful deployment for a given time bucket.
-* **Total Deployment Lead Time**, which is the total time between the creation of a release and the completed deployment for a given time bucket.
-* **Average Deployment Lead Time**, which is the average time between the creation of a release and the completed deployment for a given time bucket.
+* **Total Duration**, which is the total time deployments took within the given time bucket.
+* **Average Duration**, which is the average time deployments took within the given time bucket.
+* **Total Time to Recovery**, which is the total time between a failed deployment and the next successful deployment within a given time bucket.
+* **Average Time to Recovery**, which is the average time between a failed deployment and the next successful deployment within a given time bucket.
+* **Total Deployment Lead Time**, which is the total time between the creation of a release and the completed deployment within a given time bucket.
+* **Average Deployment Lead Time**, which is the average time between the creation of a release and the completed deployment within a given time bucket.
 
 :::hint
 Calculating the **Total Deployment Lead Time** and **Average Deployment Lead Time** values requires additional calls to the Octopus API, and so if these values are not needed they should not be selected.
@@ -102,3 +102,5 @@ Calculating the **Total Deployment Lead Time** and **Average Deployment Lead Tim
 ## Conclusion
 
 We hope the Grafana plugin provides insights into how well your deployments are progressing. This is an EAP release, so we do expect bugs and functionality gaps, and it is only recommended for testing at this stage, but if you have any suggestions or issues please reach out to us via the [usual support channels](https://octopus.com/support).
+
+Happy deployments!
