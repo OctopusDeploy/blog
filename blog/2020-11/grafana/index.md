@@ -10,17 +10,17 @@ tags:
  - Octopus
 ---
 
-Octopus has long exposed data on deployments through the `/api/reporting/deployments/xml` API endpoint, and with the EAP release of the Grafana datasource for Octopus, this information can be easily visualized and customized to allow teams to track their deployment success and rate.
+Octopus has long exposed data on deployments through the `/api/reporting/deployments/xml` API endpoint, and with the EAP release of the Grafana datasource for Octopus, this information can be easily visualized allowing teams to track their deployment success and frequency.
 
-In this post and screencast I'll show you how to install the Grafana plugin, import the sample dashboard, and customize the charts to show the information that is important to you.
+In this post and screencast I'll show you how to install the Grafana plugin, import the sample dashboard, and customize the charts to show information important to you.
 
 ## Screencast
 
 ## Installing the plugin
 
-The plugin is made available through the project's [GitHub releases pages](https://github.com/OctopusDeploy/OctopusGrafanaDataSource/releases).
+The plugin is made available through the project's [GitHub releases page](https://github.com/OctopusDeploy/OctopusGrafanaDataSource/releases).
 
-The ZIP file needs to be extracted to a subdirectory under the Grafana plugin directory. On Linux this directory is typically `/var/lib/grafana/plugins`, and for Windows the directory is `INSTALL_DIR\data\plugins`.
+The ZIP file needs to be extracted to a subdirectory under the Grafana plugin directory. On Linux this directory is typically `/var/lib/grafana/plugins`, and for Windows the default directory is `INSTALL_DIR\data\plugins`.
 
 For this example I am deploying to Ubuntu 20.04, and so will extract the zip file with the command:
 
@@ -43,7 +43,7 @@ Grafana must be restarted to load the new configuration, and to then also load t
 
 ## Configuring the datasource
 
-The Octopus datasource takes two values:
+The Octopus datasource has two properties:
 
 * The Octopus server 
 * The Octopus API key
@@ -54,7 +54,7 @@ The Octopus datasource takes two values:
 
 ## Importing the sample dashboard
 
-We have provided a sample dashboard that shows some common deployment metrics. This dashboard is available from the [Grafana dashboard gallery](https://grafana.com/grafana/dashboards/13413). To import it, click the **Dashboards** icon on the left hand panel, click **Manage**, and then click **Import**. The sample dashboard URL of https://grafana.com/grafana/dashboards/13413 can be loaded under the **Import via grafana.com** option:
+We have provided a sample dashboard that shows common deployment metrics. This dashboard is available from the [Grafana dashboard gallery](https://grafana.com/grafana/dashboards/13413). To import it, click the **Dashboards** icon on the left hand panel, click **Manage**, and then click **Import**. The sample dashboard URL of https://grafana.com/grafana/dashboards/13413 can be loaded under the **Import via grafana.com** option:
 
 ![](import.png "width=500")
 
@@ -68,7 +68,7 @@ Once you select the datasource created above and complete the import, the follow
 
 ## Dashboard variables
 
-The plugin exposes the spaces, environments, projects, channels and tenants as dashboard query variables: 
+The plugin exposes the spaces, environments, projects, channels and tenants as dashboard [query variables](https://grafana.com/docs/grafana/latest/variables/variable-types/add-query-variable/): 
 
 ![](variables.png "width=500")
 
