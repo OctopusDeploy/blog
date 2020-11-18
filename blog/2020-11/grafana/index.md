@@ -7,7 +7,8 @@ published: 2020-11-24
 metaImage: 
 bannerImage: 
 tags:
- - Octopus
+ - Product
+ - Reporting
 ---
 
 Octopus has long exposed data on deployments through the `/api/reporting/deployments/xml` API endpoint. With the EAP release of the Grafana datasource for Octopus, this information can be easily visualized, allowing teams to track their deployment success and frequency.
