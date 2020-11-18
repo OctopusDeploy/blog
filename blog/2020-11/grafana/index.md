@@ -2,7 +2,7 @@
 title: Integrating Octopus and Grafana
 description: Learn how to use the Octopus Grafana datasource plugin to visualize your deployments
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2020-11-24
 metaImage: 
 bannerImage: 
