@@ -3,7 +3,7 @@ title: Shaping Configuration-as-Code
 description:  We have been busy recently building _configuration-as-code_ support for Octopus Deploy.  In this post, we’ll talk about some of the factors that affected the shaping of this feature.
 author: michael.richardson@octopus.com
 visibility: private
-published: 2199-10-10 
+published: 2020-11-25 
 metaImage: 
 bannerImage: 
 tags:
