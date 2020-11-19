@@ -4,14 +4,14 @@ description:  We have been busy recently building _configuration-as-code_ suppor
 author: michael.richardson@octopus.com
 visibility: public
 published: 2020-11-25 
-metaImage: blogimage-config-as-code-explanation_2020.png
-bannerImage: blogimage-config-as-code-explanation_2020.png
+metaImage: blogimage-shaping-config-as-code_2020.png
+bannerImage: blogimage-shaping-config-as-code_2020.png
 tags:
  - Product 
  - Config as Code
 ---
 
-![Shaping Configuration-as-Code](blogimage-config-as-code-explanation_2020.png)
+![Shaping Configuration-as-Code](blogimage-shaping-config-as-code_2020.png)
 
 We’ve been busy recently building _configuration-as-code_ support for Octopus Deploy.  In this post, we’ll look at some of the factors that have affected the shaping of this feature: 
 
