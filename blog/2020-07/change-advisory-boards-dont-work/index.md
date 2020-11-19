@@ -153,3 +153,9 @@ Perhaps you could ask them a few of the following questions:
 - What architectural changes could you invest in to decouple systems from each other? This could reduce the risk of one failure affecting multiple systems. Hence, fewer people might be required to review each change.
 - What investments could you make to improve MTTR or otherwise de-risk your deployments? If the consequences of failed deployments were reduced significantly, would that enable the CAB to allow changes to flow to production more freely?
 - How could you report on the success/failure of any changes that you make to the CAB process? Can you track the four key metrics, or any other key performance metrics, as you iterate on your CAB processes to ensure that your changes are having a positive effect?
+
+---
+
+Alex Yates has been helping organisations to apply DevOps principles to their data since 2010. He’s most proud of helping Skyscanner develop the ability to deploy 95 times a day. Originally for [Redgate](https://www.red-gate.com/), later for [DLM Consultants](http://dlmconsultants.com/), Alex has worked with clients on every continent except Antarctica – so he’s keen to meet anyone who researches penguins. 
+
+A keen community member, he co-organises [Data Relay](https://datarelay.co.uk), is the founder of [www.SpeakingMentors.com](http://www.speakingmentors.com) and has been recognised as a Microsoft Data Platform MVP since 2017.

@@ -149,3 +149,9 @@ A well-trained kraken makes a powerful ally.
 
 To learn more about DLM Consultants’ DLM Health Check: [http://dlmconsultants.com/dlm-health-check/](http://dlmconsultants.com/dlm-health-check/)
 To learn more about security in Octopus Deploy: [https://octopus.com/docs/security](https://octopus.com/docs/security)
+
+---
+
+Alex Yates has been helping organisations to apply DevOps principles to their data since 2010. He’s most proud of helping Skyscanner develop the ability to deploy 95 times a day. Originally for [Redgate](https://www.red-gate.com/), later for [DLM Consultants](http://dlmconsultants.com/), Alex has worked with clients on every continent except Antarctica – so he’s keen to meet anyone who researches penguins. 
+
+A keen community member, he co-organises Data Relay, is the founder of www.SpeakingMentors.com and has been recognised as a Microsoft Data Platform MVP since 2017.

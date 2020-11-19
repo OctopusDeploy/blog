@@ -154,3 +154,9 @@ There’s also the unintuitiveness problem. Since this is a slightly unusual and
 However, the real problem here is that the databases are tightly coupled with circular dependencies. That’s a more difficult and more expensive problem to solve, and I’m not sure I can solve that problem with a single blog post.
 
 Then again, I don’t believe that anyone reading this works with a perfect system. For the majority of us it’s trade-offs, mistakes and “this seemed like a good idea at the time” all the way down. For all those who are just trying to keep the servers running, without the support or investment you need to “do it properly”, I salute you, and I hope this was useful.
+
+---
+
+Alex Yates has been helping organisations to apply DevOps principles to their data since 2010. He’s most proud of helping Skyscanner develop the ability to deploy 95 times a day. Originally for [Redgate](https://www.red-gate.com/), later for [DLM Consultants](http://dlmconsultants.com/), Alex has worked with clients on every continent except Antarctica – so he’s keen to meet anyone who researches penguins. 
+
+A keen community member, he co-organises [Data Relay](https://datarelay.co.uk), is the founder of [www.SpeakingMentors.com](http://www.speakingmentors.com) and has been recognised as a Microsoft Data Platform MVP since 2017.

@@ -287,3 +287,9 @@ Since I created the SQL Clone step templates, I’m keen for you to tell me if y
 If you want any advice about DevOps and Data, we offer consulting, coaching, and mentoring services. Alternatively, both Redgate and Octopus have great documentation, community forums, and tech support teams.
 
 Good luck!
+
+---
+
+Alex Yates has been helping organisations to apply DevOps principles to their data since 2010. He’s most proud of helping Skyscanner develop the ability to deploy 95 times a day. Originally for [Redgate](https://www.red-gate.com/), later for [DLM Consultants](http://dlmconsultants.com/), Alex has worked with clients on every continent except Antarctica – so he’s keen to meet anyone who researches penguins. 
+
+A keen community member, he co-organises [Data Relay](https://datarelay.co.uk), is the founder of [www.SpeakingMentors.com](http://www.speakingmentors.com) and has been recognised as a Microsoft Data Platform MVP since 2017.

@@ -576,14 +576,8 @@ But more importantly, if you like books, I encourage you to choose one, buy a co
 
 Deploy often, keep learning, and stay safe, folks.
 
-***
-
-If you’d like to work with me (virtually) as a DevOps mentor, coach, consultant, or trainer: [www.dlmconsultants.com](http://www.dlmconsultants.com)
-
-If you are looking for an amazing deployment orchestration tool: [www.octopus.com](https://www.octopus.com)
-
 ---
 
 Alex Yates has been helping organisations to apply DevOps principles to their data since 2010. He’s most proud of helping Skyscanner develop the ability to deploy 95 times a day. Originally for [Redgate](https://www.red-gate.com/), later for [DLM Consultants](http://dlmconsultants.com/), Alex has worked with clients on every continent except Antarctica – so he’s keen to meet anyone who researches penguins. 
 
-A keen community member, he co-organises Data Relay, is the founder of www.SpeakingMentors.com and has been recognised as a Microsoft Data Platform MVP since 2017.
+A keen community member, he co-organises [Data Relay](https://datarelay.co.uk), is the founder of [www.SpeakingMentors.com](http://www.speakingmentors.com) and has been recognised as a Microsoft Data Platform MVP since 2017.
