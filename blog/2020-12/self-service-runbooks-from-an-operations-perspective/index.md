@@ -1,9 +1,9 @@
 ---
 title: Self-service runbooks for Operations Teams
-description: Learn how to use the Octopus Grafana datasource plugin to visualize your deployments
-author: matthew.casperson@octopus.com
+description: Learn about self-service runbooks and how they benefit operations teams
+author: adrian.howchin@octopus.com
 visibility: public
-published: 2020-11-24
+published: 2020-12-24
 metaImage: blogimage-integrating-octopus-and-grafana.png
 bannerImage: blogimage-integrating-octopus-and-grafana.png
 tags:
@@ -12,99 +12,34 @@ tags:
 
 ![Self-service runbooks for Operations Teams](blogimage-integrating-octopus-and-grafana.png)
 
-Octopus has long exposed data on deployments through the `/api/reporting/deployments/xml` API endpoint. With the EAP release of the Grafana datasource for Octopus, this information can be easily visualized, allowing teams to track their deployment success and frequency.
+In this post, we will look from an Operations Team perspective at what a runbook is, what we mean by self-service runbooks, why you would want to use self-service runbooks, and how they help both you and your users.
 
-In this post and screencast, I'll show you how to install the Grafana plugin, import the sample dashboard, and customize the charts to show information important to you.
+## What are runbooks?
 
-## Screencast
+A runbook is simply a process that you follow for a task. You can have runbooks for almost anything - restarting a web server, cleaning up old log files, or even swapping which environment a load balancer points to.They are a way to standardize work that typically happens often, ensuring that the work gets done the same way each time.
 
-<iframe width="900" height="506" src="https://www.youtube.com/embed/bPmjJkkEa3g" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+## What do we mean by self-service runbooks?
 
-## Installing the plugin
+With a runbook, you are typically executing a task in response to a request from a user. For example, a user may raise a help ticket with you, asking you to refresh the data in their testing database. You have to spend the time reading the ticket, making sure you understand exactly what the user wants, and then execute the task. 
 
-The plugin is made available through the project's [GitHub releases page](https://github.com/OctopusDeploy/OctopusGrafanaDataSource/releases).
+By making the runbook self-service, we mean that you are taking that same runbook you would use to refresh the test database, and making it available to the user who wants to run it. The user can now run that runbook whenever they like, without needing to raise a ticket, and without taking up your valuable time.
 
-The ZIP file needs to be extracted to a subdirectory under the Grafana plugin directory. On Linux this directory is typically `/var/lib/grafana/plugins`, and for Windows the default directory is `INSTALL_DIR\data\plugins`.
+## How do self-service runbooks benefit Operations Teams?
 
-For this example I am deploying to Ubuntu 20.04, and I will extract the zip file with the command:
+By making runbooks available to your users, you save the time you would have spent performing the task, freeing you up for more valuable and interesting work. Additionally, because the user inputs all the required information directly into the runbook, you save time going back-and-forth on a ticket trying to gather all the correct information (and reducing the chance of mistakes in the process). 
 
-```
-unzip octopus_grafana_datasource.zip -d /var/lib/grafana/plugins/octopus
-```
+You can also bake “guard-rails” into your self-service runbooks, ensuring that users only go down the correct path when executing a runbook. For example, if you had a runbook that returned log files from production, you could hard-code which files are returned, ensuring that the runbook cannot be abused to gain unauthorised access (and that you don’t have to give out access to production!). This can make life much easier when it comes to audit time, as you know that the production system has only been accessed in a safe and compliant manner.
 
-## Allowing the unsigned plugin to be loaded
+You can also create self-service runbooks that allow users to do very complex and time consuming tasks, such as creating a new AWS account. By doing this, your users have their needs met very quickly, and you can rest easy knowing that the AWS account was created with all the correct VPC settings, password policy, and IAM roles for your users. 
 
-Grafana makes a distinction between signed and unsigned plugins. The Octopus plugin is unsigned and must be explicitly permitted in Grafana. This is done by editing the `grafana.ini` file. On my Ubuntu VM this is found at `/etc/grafana/grafana.ini`.
+Finally, self-service runbooks also help reduce shadow IT, as users are more likely to follow the right path when they can do so quickly and easily.
 
-The setting we need to configure is `allow_loading_unsigned_plugins` under the `[plugins]` section. This setting must list the ID of the Octopus plugin:
+## Can a runbook help me during an outage?
 
-```
-[plugins]
-allow_loading_unsigned_plugins = octopus-deploy-xmlfeed
-```
-
-Grafana must be restarted to load the new configuration and to then load the Octopus plugin.
-
-## Configuring the datasource
-
-The Octopus datasource has two properties:
-
-* The Octopus server 
-* The Octopus API key
-
-![](datasource.png "width=500")
-
-*The Octopus datasource configuration.*
-
-## Importing the sample dashboard
-
-We have provided a sample dashboard that shows common deployment metrics. This dashboard is available from the [Grafana dashboard gallery](https://grafana.com/grafana/dashboards/13413). To import it, click the **Dashboards** icon on the left hand panel, click **Manage**, and then click **Import**. The sample dashboard URL of https://grafana.com/grafana/dashboards/13413 can be loaded under the **Import via grafana.com** option:
-
-![](import.png "width=500")
-
-*Importing the sample dashboard.*
-
-After you select the datasource created above and complete the import, the following dashboard is displayed:
-
-![](dashboard.png "width=500")
-
-*The sample dashboard.*
-
-## Dashboard variables
-
-The plugin exposes the spaces, environments, projects, channels and tenants as dashboard [query variables](https://grafana.com/docs/grafana/latest/variables/variable-types/add-query-variable/): 
-
-![](variables.png "width=500")
-
-*An example of the environments configured as a query variable.*
-
-These variables are then presented at the top of the dashboard to customize which deployments are presented in the graphs. The variables can be referenced in the queries through the **Space Name Filter**, **Project Name Filter**, **Environment Name Filter**, **Channel Name Filter**, and **Tenant Name Filter** fields:
-
-![](query.png "width=500")
-
-*Variables used in a query.*
-
-## Available metrics
-
-A number of metrics are exposed by the plugin:
-
-* **Success**: set to 1 for successful deployments, and 0 otherwise.
-* **Failure**: set to  1 for failed deployments, and 0 otherwise.
-* **Cancelled**: set to 1 for cancelled deployments, and 0 otherwise.
-* **Timed Out**: set to 1 for timed out deployments, and 0 otherwise.
-* **Total Duration**: which is the total time deployments took within the given time bucket.
-* **Average Duration**: which is the average time deployments took within the given time bucket.
-* **Total Time to Recovery**: which is the total time between a failed deployment and the next successful deployment within a given time bucket.
-* **Average Time to Recovery**: which is the average time between a failed deployment and the next successful deployment within a given time bucket.
-* **Total Deployment Lead Time**: which is the total time between the creation of a release and the completed deployment within a given time bucket.
-* **Average Deployment Lead Time**: which is the average time between the creation of a release and the completed deployment within a given time bucket.
-
-:::hint
-Calculating the **Total Deployment Lead Time** and **Average Deployment Lead Time** values requires additional calls to the Octopus API, and so if these values are not needed they should not be selected.
-:::
+Absolutely! By combining your monitoring and logging system with your runbooks, you can have your systems automatically trigger a runbook to respond to an outage. For example, your monitoring system may trigger a runbook when a HTTP server response time goes over a certain threshold, causing it to automatically gather logs and artifacts into a centralised place, then restarting the web service.
 
 ## Conclusion
 
-We hope the Grafana plugin provides insights into how well your deployments are progressing. This is an EAP release, so we do expect bugs and functionality gaps, and it is only recommended for testing at this stage, but if you have any suggestions or issues please reach out to us via the [usual support channels](https://octopus.com/support).
+Not only do self-service runbooks save you time, but they also reduce the likelihood of errors, create happier users, and allow you to get on with doing more important and interesting work.
 
 Happy deployments!
