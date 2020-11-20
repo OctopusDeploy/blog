@@ -4,11 +4,13 @@ description: Your guide to selecting your first/next DevOps book.
 author: alex.yates@dlmconsultants.com
 visibility: public
 published: 2020-11-23
-metaImage: 
-bannerImage: 
+metaImage: blogimage-devops-reading-list.png
+bannerImage: blogimage-devops-reading-list.png
 tags:
  - DevOps
 ---
+
+![The DevOps Reading List: Choosing your next DevOps book](blogimage-devops-reading-list.png)
 
 ![bookshelf](bookshelf.jpg "width=500")
  
