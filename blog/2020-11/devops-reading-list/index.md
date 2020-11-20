@@ -11,8 +11,6 @@ tags:
 ---
 
 ![The DevOps Reading List: Choosing your next DevOps book](blogimage-devops-reading-list.png)
-
-![bookshelf](bookshelf.jpg "width=500")
  
 You like books. You want to learn more about DevOps. Either you are new to the topic, or you are looking to expand your knowledge, but you’re overwhelmed by the options. It seems like everyone has an opinion, and you don't know where to start or what to read first/next.
 
@@ -23,6 +21,8 @@ This blog post is for you.
 What follows is a list of some of the most widely respected DevOps books and my personal recommendation about which one you (yes, you, specifically you) should read first.
 
 ## How to read this blog post
+
+![bookshelf](bookshelf.jpg "width=500")
 
 This blog post is too long for you to read end-to-end. It’s not intended to be read that way. Instead, treat this like a “choose your own adventure” storybook, and I’ll chaperone you to the most appropriate parts you.
 
