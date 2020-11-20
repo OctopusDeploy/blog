@@ -4,12 +4,14 @@ description: Learn how to use the Octopus Grafana datasource plugin to visualize
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2020-11-24
-metaImage: 
-bannerImage: 
+metaImage: blogimage-integrating-octopus-and-grafana.png
+bannerImage: blogimage-integrating-octopus-and-grafana.png
 tags:
  - Product
  - Reporting
 ---
+
+![Integrating Octopus and Grafana](blogimage-integrating-octopus-and-grafana.png)
 
 Octopus has long exposed data on deployments through the `/api/reporting/deployments/xml` API endpoint. With the EAP release of the Grafana datasource for Octopus, this information can be easily visualized, allowing teams to track their deployment success and frequency.
 
