@@ -152,12 +152,13 @@ Back: [Book Index](#book-index) / Next: [Honorable Mentions](#hon_mentions)
 
 ### 2. Lean Software Development: An Agile Toolkit (Poppendieck, Poppendieck: 2003) {#lean}
 
-<div class="row">
-  <div class="col-sm-6"><p>A book that’s stood up to the test of time.</p>
-  <p>I wouldn’t like to guess how many software books have “Agile” in the title. Arguably, “Agile” was the original marketing buzzword for software. That’s probably got something to do with a drunken ski trip where a bunch of dudes created <a href="https://agilemanifesto.org/">a pithy website</a>.</p>
-</div>
-  <div class="col-sm-6"><img src="https://octopus.com/images/blog/devops-reading-list/lean_software_devlopment.jpg"></div>
- </div>
+<img alt="Lean Software Development: An Agile Toolkit (Poppendieck, Poppendieck: 2003)" style="float: right; margin: 10px;" src="https://octopus.com/images/blog/devops-reading-list/lean_software_devlopment_big.jpg">
+
+![](lean_software_devlopment_big.jpg)
+
+A book that’s stood up to the test of time.
+  
+I wouldn’t like to guess how many software books have “Agile” in the title. Arguably, “Agile” was the original marketing buzzword for software. That’s probably got something to do with a drunken ski trip where a bunch of dudes created <a href="https://agilemanifesto.org/">a pithy website</a>.
 
 However, skepticism aside, I believe these buzzwords work so well for selling software, training, and certifications because there is a fundamental truth behind them. These ideas make a lot of technical and commercial sense.
 
@@ -185,13 +186,11 @@ Back: [Book Index](#book-index) / Next: [Honorable Mentions](#hon_mentions)
 
 ### 3. Domain-Driven Design Distilled (Vernon: 2016)  {#ddd}
 
-<div class="row">
-  <div class="col-sm-6">
+<img alt="Domain-Driven Design Distilled (Vernon: 2016)" style="float: right; margin: 10px;" src="https://octopus.com/images/blog/devops-reading-list/domain-driven_design_distilled_big.jpg">
+
+![](domain-driven_design_distilled_big.jpg)
+
 Domain-Driven Design (DDD) is an approach that enables folks to create loosely coupled architectures and avoid creating a “big ball of mud” monolithic system, which is painful to develop, deploy, or maintain. <a href="https://martinfowler.com/bliki/DomainDrivenDesign.html">Martin Fowler does a better job of describing it on his blog</a> than I can reasonably expect to achieve in a few paragraphs here.
-</div>
-  <div class="col-sm-6"><img src="https://octopus.com/images/blog/devops-reading-list/domain-driven_design_distilled.jpg"></div>
- </div>
-<br />
 
 Central to DDD is the idea of “Bounded Contexts”, which can be used to define the scope of any one part of the system. Team members acknowledge that the language used within any one context is consistent but that it might also vary between different contexts. This allows teams to focus on solving the right problems in the right places and establishing appropriate interfaces between different contexts to avoid complicated dependencies and introducing mistakes due to subtle contextual differences. [Again, Fowler does a great job of explaining Bounded Contexts in more detail here.](https://martinfowler.com/bliki/BoundedContext.html)
 
@@ -219,11 +218,11 @@ Back: [Book Index](#book-index) / Next: [Honorable Mentions](#hon_mentions)
 
 ### 4. Continuous Delivery (Humble, Farley: 2011)  {#cd}
 
-<div class="row">
-  <div class="col-sm-6">The first time I attended the London Continuous Delivery (CD) Meetup group, shortly after this book was published, half the attendees were holding a copy. They called it “The Bible.” While the DevOps movement had already started by 2011, I don’t think I’d heard of it yet. Our community had something very similar called CD instead.
-</div>
-  <div class="col-sm-6"><img src="https://octopus.com/images/blog/devops-reading-list/continuous_delivery.jpg"></div>
- </div>
+<img alt="Continuous Delivery (Humble, Farley: 2011)" style="float: right; margin: 10px;" src="https://octopus.com/images/blog/devops-reading-list/continuous_delivery_big.jpg">
+
+![](continuous_delivery_big.jpg)
+
+The first time I attended the London Continuous Delivery (CD) Meetup group, shortly after this book was published, half the attendees were holding a copy. They called it “The Bible.” While the DevOps movement had already started by 2011, I don’t think I’d heard of it yet. Our community had something very similar called CD instead.
 
 This book formalized many of the ideas about deployment pipelines that have since become ubiquitous. It goes into some technical detail about configuration as code, build and deployment automation, and effective testing strategies.
 
@@ -245,12 +244,11 @@ Back: [Book Index](#book-index) / Next: [Honorable Mentions](#hon_mentions)
 
 ### 5. The Five Dysfunctions of a Team (Lencioni: 2002) {#dysfunc}
 
-<div class="row">
-  <div class="col-sm-6">Andrew Clay Shafer’s “wall of confusion” slide at Velocity in 2009 struck a chord because it was such a great articulation of the “core chronic conflict” between dev and ops. It resonated. Painfully.
+<img alt="The Five Dysfunctions of a Team (Lencioni: 2002)" style="float: right; margin: 10px;" src="https://octopus.com/images/blog/devops-reading-list/five_dysfunctions_big.jpg">
 
-</div>
-  <div class="col-sm-6"><img src="https://octopus.com/images/blog/devops-reading-list/five_dysfunctions.jpg"></div>
- </div>
+![](five_dysfunctions_big.jpg)
+
+Andrew Clay Shafer’s “wall of confusion” slide at Velocity in 2009 struck a chord because it was such a great articulation of the “core chronic conflict” between dev and ops. It resonated. Painfully.
 
 Most large organizations have more complex political structures than simply “dev” and “ops”, and it’s a struggle to get all functions working in alignment – yet this is precisely what’s required in order to achieve short lead times, frequent releases, and “flow”.
 
@@ -272,14 +270,13 @@ Back: [Book Index](#book-index) / Next: [Honorable Mentions](#hon_mentions)
 
 ### 6. The Phoenix Project (Kim, Behr, Spafford: 2013)  {#phoenix}
 
-<div class="row">
-  <div class="col-sm-6"><p>Earlier I mentioned that one of these books changed the course of my career. This was it.</p>
-  <p>
-  	The Phoenix Project is a satire of every company you’ve ever worked for. It’s full of the larger than life characters that you’ve often worked with in the past. There’s the grumpy DBA, the lone engineer who understands how all the most critical systems work, and the senior leadership characters who don’t understand tech, as well as many others. You’ll read this book and recognize your colleagues. One by one, you’ll giggle to yourself. There’s Dave. That’s Susan. Oh, wait – that’s me.
-  </p>
-</div>
-  <div class="col-sm-6"><img src="https://octopus.com/images/blog/devops-reading-list/phoenix_project.jpg"></div>
- </div>
+<img alt="The Phoenix Project (Kim, Behr, Spafford: 2013)" style="float: right; margin: 10px;" src="https://octopus.com/images/blog/devops-reading-list/phoenix_project_big.jpg">
+
+![](phoenix_project_big.jpg)
+
+Earlier I mentioned that one of these books changed the course of my career. This was it.
+
+The Phoenix Project is a satire of every company you’ve ever worked for. It’s full of the larger than life characters that you’ve often worked with in the past. There’s the grumpy DBA, the lone engineer who understands how all the most critical systems work, and the senior leadership characters who don’t understand tech, as well as many others. You’ll read this book and recognize your colleagues. One by one, you’ll giggle to yourself. There’s Dave. That’s Susan. Oh, wait – that’s me.
 
 Gene Kim was so inspired when he read [The Goal](#goal) that he wanted to retell it within the context of software development. The Phoenix Project is an homage. Alex Rogo is replaced by Bill Palmer, a middle manager who’s just been _unwittingly_ promoted into a senior leadership role after his predecessor was fired. He works for Parts Unlimited, another auto-parts manufacturing company, and business is going badly. Sound familiar?
 
@@ -301,16 +298,11 @@ Back: [Book Index](#book-index) / Next: [Honorable Mentions](#hon_mentions)
 
 ### 7. The Unicorn Project (Kim: 2019)  {#unicorn}
 
-<div class="row">
-  <div class="col-sm-6">
-  
-  The Unicorn Project is a retelling of [The Phoenix Project](#phoenix). It’s neither a prequel nor a sequel. It’s the same story, on the same time-line, but told from a different perspective.
+<img alt="The Unicorn Project (Kim: 2019)" style="float: right; margin: 10px;" src="https://octopus.com/images/blog/devops-reading-list/unicorn_project_big.jpg">
 
-  </div>
+![](unicorn_project_big.jpg)
 
-  <div class="col-sm-6"><img src="https://octopus.com/images/blog/devops-reading-list/unicorn_project.jpg">
-  </div>
-</div>
+The Unicorn Project is a retelling of [The Phoenix Project](#phoenix). It’s neither a prequel nor a sequel. It’s the same story, on the same time-line, but told from a different perspective.
 
 The Phoenix Project is told from Bill Palmer’s perspective, as a senior manager with a background in the operations side of the business. Phoenix talks a lot about lean principles and collaboration and all that’s valuable, but Bill has been promoted far enough that he rarely plays with the code any more, and he lacks development experience. This can make The Phoenix Project an unsatisfying read for developers, sometimes giving them the impression that unless you are in senior management, you can’t do much about the underlying problems.
 
@@ -336,11 +328,11 @@ Back: [Book Index](#book-index) / Next: [Honorable Mentions](#hon_mentions)
 
 ### 8. The DevOps Handbook (Kim, Humble, Debois, Willis: 2016) {#handbook}
 
-<div class="row">
-  <div class="col-sm-6">This book is perhaps the best articulation of what DevOps is. It’s intended as a companion to <a href="https://www.octopus.com/blog/devops-reading-list#phoenix">The Phoenix Project</a>, and it aims to codify the thoughts and patterns of Phoenix into a more formal and actionable pocket handbook. (Although you’d need pretty big pockets.)
-</div>
-  <div class="col-sm-6"><img src="https://octopus.com/images/blog/devops-reading-list/devops_handbook.jpg"></div>
- </div>
+<img alt="The DevOps Handbook (Kim, Humble, Debois, Willis: 2016)" style="float: right; margin: 10px;" src="https://octopus.com/images/blog/devops-reading-list/devops_handbook_big.jpg">
+
+![](devops_handbook_big.jpg)
+
+This book is perhaps the best articulation of what DevOps is. It’s intended as a companion to <a href="https://www.octopus.com/blog/devops-reading-list#phoenix">The Phoenix Project</a>, and it aims to codify the thoughts and patterns of Phoenix into a more formal and actionable pocket handbook. (Although you’d need pretty big pockets.)
 
 Before reviewing the contents, it’s worth taking a moment to consider the authors.
 
@@ -379,11 +371,11 @@ Back: [Book Index](#book-index) / Next: [Honorable Mentions](#hon_mentions)
 
 ### 9. Accelerate (Forsgren, Humble, Kim: 2018) {#accelerate}
 
-<div class="row">
-  <div class="col-sm-6">If <a href="https://www.octopus.com/blog/devops-reading-list#handbook">The DevOps Handbook</a> explains “how” to embrace DevOps, Accelerate explains “why”. This is the slam dunk argument for anyone who is either skeptical of DevOps or interested in understanding the relationship between various DevOps practices and business success. It’s a great tool for selling DevOps to senior management.
-</div>
-  <div class="col-sm-6"><img src="https://octopus.com/images/blog/devops-reading-list/accelerate.jpg"></div>
- </div>
+<img alt="Accelerate (Forsgren, Humble, Kim: 2018)" style="float: right; margin: 10px;" src="https://octopus.com/images/blog/devops-reading-list/accelerate_big.jpg">
+
+![](accelerate_big.jpg)
+
+If <a href="https://www.octopus.com/blog/devops-reading-list#handbook">The DevOps Handbook</a> explains “how” to embrace DevOps, Accelerate explains “why”. This is the slam dunk argument for anyone who is either skeptical of DevOps or interested in understanding the relationship between various DevOps practices and business success. It’s a great tool for selling DevOps to senior management.
 
 In many ways, the book is a response to the critique that “DevOps” is a buzzword or a cult, full of warm and fluffy ideas that might sound nice and make sense for a small business or start-up, but which do not practically scale for large organizations or which are not compatible with tightly regulated industries like healthcare or finance.
 
@@ -432,11 +424,11 @@ Back: [Book Index](#book-index) / Next: [Honorable Mentions](#hon_mentions)
 
 ### 10. Team Topologies (Skelton, Pais: 2019) {#tt}
 
-<div class="row">
-  <div class="col-sm-6">Team Topologies uses <a href="https://en.wikipedia.org/wiki/Conway%27s_law">Conway’s Law</a> to bridge the divide between books about designing effective software architectures (e.g. <a href="https://www.octopus.com/blog/devops-reading-list#ddd">Domain-Driven Design: Distilled</a>) and books about creating effective teams (e.g. <a href="https://www.octopus.com/blog/devops-reading-list#dysfunc">The Five Dysfunctions of a Team</a>), while optimizing for the rapid “flow” of value to end users.
-</div>
-  <div class="col-sm-6"><img src="https://octopus.com/images/blog/devops-reading-list/team_topologies.jpg"></div>
- </div>
+<img alt="Team Topologies (Skelton, Pais: 2019)" style="float: right; margin: 10px;" src="https://octopus.com/images/blog/devops-reading-list/team_topologies_big.jpg">
+
+![](team_topologies_big.jpg)
+
+Team Topologies uses <a href="https://en.wikipedia.org/wiki/Conway%27s_law">Conway’s Law</a> to bridge the divide between books about designing effective software architectures (e.g. <a href="https://www.octopus.com/blog/devops-reading-list#ddd">Domain-Driven Design: Distilled</a>) and books about creating effective teams (e.g. <a href="https://www.octopus.com/blog/devops-reading-list#dysfunc">The Five Dysfunctions of a Team</a>), while optimizing for the rapid “flow” of value to end users.
 
 Matthew Skelton is deeply influenced by the Continuous Delivery movement in the UK, and this influence shines through. I know this personally because, for about a year back in 2017, I co-organized the [London Continuous Delivery Meetup Group](https://www.meetup.com/London-Continuous-Delivery/) with him. Attendees would sometimes come with their copy of [Continuous Delivery](#cd) tucked under their arm - and they called it “the Bible”. The spin-off [Pipeline Conferences](https://pipelineconf.info/), which Skelton ran, were some of the most welcoming, diverse, and intellectually stimulating tech conferences I’ve ever attended/supported.
 
@@ -450,20 +442,11 @@ Back: [Book Index](#book-index) / Next: [Honorable Mentions](#hon_mentions)
 
 ### 11. Database Reliability Engineering (Campbell, Majors : 2018) {#dre}
 
-<div class="row">
-  <div class="col-sm-6">
-  
-  <blockquote class="blockquote">
+<img alt="Database Reliability Engineering (Campbell, Majors : 2018)" style="float: right; margin: 10px;" src="https://octopus.com/images/blog/devops-reading-list/database_reliability_engineering_big.jpg">
 
-  <p>"The book absolutely delivers: it’s a 250-page version of the concepts in Google’s <a href="https://octopus.com/blog/devops-reading-list#sre">Site Reliability Engineering</a> book (which I love) targeted at people who might currently call themselves database administrators but want to go to work in fast-paced, high-scale companies."
-  </p>
+![](database_reliability_engineering_big.jpg)
 
-  </blockquote>
-
-  </div>
-  <div class="col-sm-6"><img src="https://octopus.com/images/blog/devops-reading-list/database_reliability_engineering.jpg">
-  </div>
-</div>
+> "The book absolutely delivers: it’s a 250-page version of the concepts in Google’s [Site Reliability Engineering](https://octopus.com/blog/devops-reading-list#sre) book (which I love) targeted at people who might currently call themselves database administrators but want to go to work in fast-paced, high-scale companies."
 
 Those are not my words; they were written by Brent Ozar in [his own review of “DRE”](https://www.brentozar.com/archive/2017/11/book-review-database-reliability-engineering-campbell-majors/).
 
@@ -491,12 +474,13 @@ Back: [Book Index](#book-index) / Next: [Honorable Mentions](#hon_mentions)
 
 ### 12. Site Reliability Engineering (Beyer, Jones, Petoff, Murphy: 2016) {#sre}
 
-<div class="row">
-  <div class="col-sm-6"><p>You’ve arrived at the heaviest book in this list.</p>
-  	<p>Site Reliability Engineering (SRE) details the way that Google approaches the continuous delivery and maintenance of its enormous portfolio. It’s been so popular and influential within the DevOps community that there is now a growing sub-community who embrace “SRE” as a distinct thing either as well as, or within, “DevOps”.</p>
-</div>
-  <div class="col-sm-6"><img src="https://octopus.com/images/blog/devops-reading-list/site_reliability_engineering.jpg"></div>
- </div>
+<img alt="The Phoenix Project (Kim, Behr, Spafford: 2013)" style="float: right; margin: 10px;" src="https://octopus.com/images/blog/devops-reading-list/site_reliability_engineering_big.jpg">
+
+![](site_reliability_engineering_big.jpg)
+
+You’ve arrived at the heaviest book in this list.
+
+Site Reliability Engineering (SRE) details the way that Google approaches the continuous delivery and maintenance of its enormous portfolio. It’s been so popular and influential within the DevOps community that there is now a growing sub-community who embrace “SRE” as a distinct thing either as well as, or within, “DevOps”.
 
 Reading this book is a reasonable time investment, so for those who are new to SRE, I recommend that before you buy it, you explore the following links:
 
