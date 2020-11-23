@@ -469,9 +469,9 @@ Personally, my favorite take-aways from DRE were the focus on “resilience over
 
 Brent signs off with:
 
-*“It’s the kind of book that’s easy to read, and hard to implement. Seriously, just implementing the SLOs described in chapter 2 takes most traditional companies months to agree on and monitor.*
+> “It’s the kind of book that’s easy to read, and hard to implement. Seriously, just implementing the SLOs described in chapter 2 takes most traditional companies months to agree on and monitor.
 
-*“Over time, the brand names and open source tools will change, but the concepts are going to be rock solid for at least a decade. This book is a great waypoint marker set about 5-10 years in the future for most of us, but it’ll be one you’ll be excited to work towards.”*
+> “Over time, the brand names and open source tools will change, but the concepts are going to be rock solid for at least a decade. This book is a great waypoint marker set about 5-10 years in the future for most of us, but it’ll be one you’ll be excited to work towards.”
 
 [Check out Brent’s full review here](https://www.brentozar.com/archive/2017/11/book-review-database-reliability-engineering-campbell-majors/) (but please come back when you are finished):
 
