@@ -136,7 +136,7 @@ The fact that this is by far the oldest book in my selection is testament to how
 
 The Goal is a novel about Alex Rogo, a senior manager at UniCo, an auto-parts manufacturing company. Business is going badly. In order to avoid a massive restructuring program and many job losses, Rogo needs to simultaneously improve performance, quality, and profitability before a seemingly impossible deadline.
 
-![The Goal (Goldratt: 1984)](the_goal_big.jpg "float: right;")
+<img alt="The Goal (Goldratt: 1984)" style="float: right; margin: 10px;" src="https://i.octopus.com/blog/2020-11/devops-reading-list/the_goal_big.jpg">
 
 His initial efforts don’t go well. He falls into various traps of old-fashioned plant management, focusing on local optimizations and cost-efficiencies. Fortunately, he bumps into Jonah, an eccentric old friend, who gives him some curious advice that seems counter to everything he believed about effective plant management.
 
