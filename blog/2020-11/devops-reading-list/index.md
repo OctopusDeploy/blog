@@ -49,8 +49,8 @@ I cannot stress this enough. Many of the books below overlap. Some of the questi
 Also, this is not an exhaustive list of titles. I’ve sought as much feedback as I could get while compiling this list, but ultimately there are so many great books, and I can’t include them all. Some readers will say I should include this or exclude that, but I hope that the vast majority will agree that all the texts below are all widely respected.
 
 Caveats aside, now it’s time for you to answer the questions for yourself and see where you end up.
-{#decision_tree}
-![decision_tree](decisiontree.png "width=500")
+
+![decision_tree](decisiontree.png "width=500") {#decision_tree}
 
 <p style="text-align: center;">
     <em>(Click to enlarge.)</em>
