@@ -51,11 +51,11 @@ Also, this is not an exhaustive list of titles. I’ve sought as much feedback a
 Caveats aside, now it’s time for you to answer the questions for yourself and see where you end up.
 
 <div id="decision_tree">
-  <p style="text-align: center;">
 
 ![decision_tree](decisiontree.png "width=500")
 
-  <em>(Click diagram to enlarge.)</em>
+  <p style="text-align: center;">
+    <em>(Click diagram to enlarge.)</em>
   </p>
 </div>
 
