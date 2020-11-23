@@ -36,7 +36,7 @@ I’ve concluded this post with a couple of additional honorable mentions that d
 
 It is my hope that by the time you finish reading, you'll feel ready to buy a copy of your preferred book, block out a few hours in your schedule, and start reading. I can say without a hint of exaggeration that when I did that, one of these books changed my professional career for the better.
 
-To find out which book set me on my path, as well as which one I discovered while writing this blog post, you’ll have to read on.
+To find out which book set me on my path, as well as which one I discovered while researching for this blog post, you’ll have to read on.
 
 ## Choose your own adventure! A decision tree
 
@@ -52,7 +52,11 @@ Caveats aside, now it’s time for you to answer the questions for yourself and 
 {#decision_tree}
 ![decision_tree](decisiontree.png "width=500")
 
-If you want clarification on any of the questions in the decision tree above, you’ll find more guidance below. If you do not need any clarification, skip to my summaries of [The Books](#the-books).
+<p>
+    <em>(Click to enlarge.)</em>
+</p>
+
+If you want clarification on the highlighted the questions in the decision tree above, you’ll find more guidance below. If you do not need any clarification, skip to my summaries of [The Books](#the-books).
 
 ## Clarifications on the loaded questions
 
