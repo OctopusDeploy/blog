@@ -320,16 +320,7 @@ Back: [Book Index](#book-index) / Next: [Honorable Mentions](#hon_mentions)
 
 This book is perhaps the best articulation of what DevOps is. It’s intended as a companion to <a href="https://www.octopus.com/blog/devops-reading-list#phoenix">The Phoenix Project</a>, and it aims to codify the thoughts and patterns of Phoenix into a more formal and actionable pocket handbook. (Although you’d need pretty big pockets.)
 
-Before reviewing the contents, it’s worth taking a moment to consider the authors.
-
--	Patrick Debois is affectionately referred to as “the godfather of DevOps”. It was Patrick and Andrew Clay Shafer who started the Agile System Administrators group back in 2008, and in 2009 Debois organized the inaugural “DevOps Days” event, accidentally naming the movement in the process. Love or hate the name “DevOps”, Patrick is responsible for it.
--	John Willis co-organized the first US DevOps Days in 2010, and in the early days of the movement, as the community was struggling to define what DevOps was, he came up with the acronym CAMS: Culture, Automation, Measurements, and Sharing. It’s still used regularly to this day.
--	Jez Humble co-authored [Continuous Delivery](#cd) and went on to co-author [Accelerate](#accelerate). As well as contributing to the formalization and normalization of the ideas and common architectures of the modern software deployment pipeline, he also extended CAMS to create CALMS, paying tribute to the Lean heritage of the DevOps movement.
--	Gene Kim is a CTO, researcher, and author who studies high performing software organizations. He has a background in ITIL, a love for DevOps, and a deep understanding of the relationship between IT performance and business success. Among other titles, he co-authored or authored [The Phoenix Project](#phoenix), [The Unicorn Project](#unicorn), and [Accelerate](#accelerate), three of the most well-known and popular DevOps books. He is also the founder and organizer of [DevOps Enterprise Summit](https://events.itrevolution.com/).
-
-I struggle to think of any other book with authors that possess equivalent combined DevOps credentials. These folks have all been at the heart of the movement since the very early days.
-
-The DevOps Handbook starts with an account by John Willis called “The Convergence of DevOps”. This is a short and excellent read, describing how various interrelated movements (Lean, Agile Manifesto, Agile Infrastructure, Continuous Delivery, Toyota Kata) all seemed to reach similar conclusions at roughly the same time and how they converged under the banner of DevOps.
+It opens with an account by John Willis called “The Convergence of DevOps”. This is a short and excellent read, describing how various interrelated movements (Lean, Agile Manifesto, Agile Infrastructure, Continuous Delivery, Toyota Kata) all seemed to reach similar conclusions at roughly the same time and how they converged under the banner of DevOps.
 
 The handbook then uses Kim’s “three ways” from the Phoenix Project as a logical structure through which it articulates many of the key ideas and practices at the heart of DevOps, including value stream mapping, deployment practices, testing, telemetry, experimentation/learning. There’s also a section dedicated to security and compliance.
 
@@ -503,11 +494,11 @@ There are also a few more reads that aren’t traditional books. Hence, they did
 
 ### The Annual State of DevOps Reports
 
-Since 2014 DORA, with the support of various sponsors, has been polling thousands of IT professionals and analyzing the results. This research program has provided the DevOps movement with more data-driven, evidence-based foundations than would be possible by any individual author or speaker sharing their own personal experiences.
+Since 2012, a team of researchers from Puppet and DORA, with the support of various sponsors, have been polling thousands of IT professionals and analyzing the results. [Initially lead by Alanna Brown, and later by Nicole Forsgren](https://twitter.com/nicolefv/status/1328049610439360515), this research program has provided the DevOps movement with more data-driven, evidence-based foundations than would be possible by any individual author or speaker sharing their own personal experiences.
 
-The data from these reports (2014-2017) were used by Forsgren, Humble, and Kim to produce [Accelerate](#accelerate) in 2018, which I believe remains the best evidence our industry possesses for the value of DevOps.
+The data from the 2014-2017 reports were used by Forsgren, Humble, and Kim to produce [Accelerate](#accelerate) in 2018, which I believe remains the best evidence our industry possesses for the value of DevOps.
 
-[You can review all the State of DevOps Reports](https://www.devops-research.com/research.html).
+[You can review all the DORA State of DevOps Reports (2014-2019 at the time of writing) here.](https://www.devops-research.com/research.html).
 
 ### Beyond The Phoenix Project
 
