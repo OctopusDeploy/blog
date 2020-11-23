@@ -454,11 +454,12 @@ Back: [Book Index](#book-index) / Next: [Honorable Mentions](#hon_mentions)
 <div class="row">
   <div class="col-sm-6">
   
-  > The book absolutely delivers: it’s a 250-page version of the concepts in Google’s <a href="https://octopus.com/blog/devops-reading-list#sre">Site Reliability Engineering</a> book (which I love) targeted at people who might currently call themselves database administrators but want to go to work in fast-paced, high-scale companies.
+> "The book absolutely delivers: it’s a 250-page version of the concepts in Google’s <a href="https://octopus.com/blog/devops-reading-list#sre">Site Reliability Engineering</a> book (which I love) targeted at people who might currently call themselves database administrators but want to go to work in fast-paced, high-scale companies."
 
+  </div>
+  <div class="col-sm-6"><img src="https://octopus.com/images/blog/devops-reading-list/database_reliability_engineering.jpg">
+  </div>
 </div>
-  <div class="col-sm-6"><img src="https://octopus.com/images/blog/devops-reading-list/database_reliability_engineering.jpg"></div>
- </div>
 
 Those are not my words; they were written by Brent Ozar in [his own review of “DRE”](https://www.brentozar.com/archive/2017/11/book-review-database-reliability-engineering-campbell-majors/).
 
