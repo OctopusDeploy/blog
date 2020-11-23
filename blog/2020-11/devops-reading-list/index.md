@@ -55,7 +55,7 @@ Caveats aside, now it’s time for you to answer the questions for yourself and 
 
 ![decision_tree](decisiontree.png "width=500")
 
-    <em>(Click diagram to enlarge.)</em>
+  <em>(Click diagram to enlarge.)</em>
   </p>
 </div>
 
