@@ -449,7 +449,7 @@ For more reviews, as well as procurement options: [Check out this book on GoodRe
 
 Back: [Book Index](#book-index) / Next: [Honorable Mentions](#hon_mentions)
 
-### 11. Database Reliability Engineering (Majors, Campbell: 2018) {#dre}
+### 11. Database Reliability Engineering (Campbell, Majors : 2018) {#dre}
 
 <div class="row">
   <div class="col-sm-6">
@@ -473,7 +473,7 @@ Brent signs off with:
 
 > “Over time, the brand names and open source tools will change, but the concepts are going to be rock solid for at least a decade. This book is a great waypoint marker set about 5-10 years in the future for most of us, but it’ll be one you’ll be excited to work towards.”
 
-[Check out Brent’s full review here](https://www.brentozar.com/archive/2017/11/book-review-database-reliability-engineering-campbell-majors/) (but please come back when you are finished):
+[Check out Brent’s full review here](https://www.brentozar.com/archive/2017/11/book-review-database-reliability-engineering-campbell-majors/) (but please come back when you are finished).
 
 That pretty much sums it up for “DRE”. Thanks, Brent, for saving me a little time!
 
