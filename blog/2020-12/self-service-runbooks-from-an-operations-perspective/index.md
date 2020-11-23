@@ -22,17 +22,31 @@ A runbook is simply a process that you follow for a task. You can have runbooks 
 
 With a runbook, you are typically executing a task in response to a request from a user. For example, a user may raise a help ticket with you, asking you to refresh the data in their testing database. You have to spend the time reading the ticket, making sure you understand exactly what the user wants, and then execute the task. 
 
-By making the runbook self-service, we mean that you are taking that same runbook you would use to refresh the test database, and making it available to the user who wants to run it. The user can now run that runbook whenever they like, without needing to raise a ticket, and without taking up your valuable time.
+By making the runbook self-service, you are taking that same runbook you would use to refresh the test database, and making it available to the user who wants to run it. The user can now run that runbook whenever they like, without needing to raise a ticket, and without taking up your valuable time.
 
 ## How do self-service runbooks benefit Operations Teams?
 
-By making runbooks available to your users, you save the time you would have spent performing the task, freeing you up for more valuable and interesting work. Additionally, because the user inputs all the required information directly into the runbook, you save time going back-and-forth on a ticket trying to gather all the correct information (and reducing the chance of mistakes in the process). 
+By making runbooks available to your users, you save the time you would have spent performing the task. This frees you up for more important and interesting work. Additionally, because the user inputs all the required information directly into the runbook, you save time going back-and-forth on a ticket trying to gather all the correct information (and reducing the chance of mistakes in the process). 
 
-You can also bake “guard-rails” into your self-service runbooks, ensuring that users only go down the correct path when executing a runbook. For example, if you had a runbook that returned log files from production, you could hard-code which files are returned, ensuring that the runbook cannot be abused to gain unauthorised access (and that you don’t have to give out access to production!). This can make life much easier when it comes to audit time, as you know that the production system has only been accessed in a safe and compliant manner.
+You can also bake “guard-rails” into your self-service runbooks, ensuring that users can only go down the "safe path" when executing a runbook. For example, if you had a runbook that returned log files from production, you could hard-code which files are returned, ensuring that the runbook cannot be abused to gain unauthorised access (and that you don’t have to give out access to production). This can make life much easier when it comes to audit time, as you know that the production system has only been accessed in a safe and compliant manner.
 
 You can also create self-service runbooks that allow users to do very complex and time consuming tasks, such as creating a new AWS account. By doing this, your users have their needs met very quickly, and you can rest easy knowing that the AWS account was created with all the correct VPC settings, password policy, and IAM roles for your users. 
 
-Finally, self-service runbooks also help reduce shadow IT, as users are more likely to follow the right path when they can do so quickly and easily.
+## Self-service runbooks can help to reduce shadow IT
+"Shadow IT" is the unapproved use of IT systems and applications within an organisations. Self-service runbooks can help to reduce shadow IT, as users are more likely to follow the right path when they can do so quickly and easily. From MRC:
+
+```
+One more thing: The goal of this step is controlled, self-service solutions. Any software you provide must meet two important criteria:
+
+- Self-service: Users must use the solution without bothering IT.
+- Control: IT must still be able to control data and user access.
+
+When you deliver controlled, self-service options, your business gets the best of both worlds. Users get the solutions they need quickly, and IT can still secure the data and applications."
+```
+
+[Taken from https://www.mrc-productivity.com/blog/2016/07/6-ways-to-reduce-shadow-it-security-risks/]
+
+By using self-service runbooks, users can solve their own problem without bothering IT, while Operations Teams can maintain control over the data and user access.
 
 ## Can a runbook help me during an outage?
 
