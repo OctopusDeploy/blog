@@ -89,7 +89,7 @@ Some of the key components of SRE include the separation of the SRE (reimagined 
 
 However, some folks from the DevOps community are uncomfortable with this. They feel that in almost all cases, it’s much healthier for product teams, made up of a healthy mix of dev and ops folks, to run their own services. Hence, there is no need for a centralized Ops or SRE team. Some DevOps folks feel that SRE normalizes the separation of traditional dev and ops concerns. They sometimes argue that this inevitably leads to the familiar silos and functional stand-offs that DevOps attempts to avoid.
 
-Ask yourself if you feel it’s more realistic for development and operations concerns for a specific product or service to belong to a separate team (SRE), or do you feel that a small, cross-functional team should own the entire lifecycle, end-to-end (DevOps).
+Ask yourself if you feel it’s more realistic for development and operations concerns for a specific product or service to belong to separate teams (SRE), or do you feel that a small, cross-functional team should own the entire lifecycle, end-to-end (DevOps).
 
 [Back to decision tree](#decision_tree)
 
@@ -134,7 +134,7 @@ After you’ve checked out the materials for your chosen books, carry on to the 
 
 <div class="row">
   <div class="col-sm-6"><p>The fact that this is by far the oldest book in my selection is testament to how well its aged and how important and timeless it is.</p>
-  <p>The Goal is a Novel about Alex Rogo, a senior manager at UniCo, an auto-parts manufacturing company. Business is going badly. In order to avoid a massive restructuring program and many job losses, Rogo needs to simultaneously improve performance, quality, and profitability before a seemingly impossible deadline.</p>	
+  <p>The Goal is a novel about Alex Rogo, a senior manager at UniCo, an auto-parts manufacturing company. Business is going badly. In order to avoid a massive restructuring program and many job losses, Rogo needs to simultaneously improve performance, quality, and profitability before a seemingly impossible deadline.</p>	
 </div>
   <div class="col-sm-6"><img src="https://octopus.com/images/blog/devops-reading-list/the_goal.jpg"></div>
  </div>
@@ -208,11 +208,11 @@ Since this was to be my first book about DDD, I purchased a copy of Vernon’s �
 
 The Vernon book is a great primer on DDD, and it’s relatively easy to digest by anyone with a little software development experience. It’s especially relevant for anyone who is either struggling with a monolithic system at the moment or who would like to avoid their stuff gradually turning into one.
 
-After reading Domain-Driven Design Distilled, you might well like to go deeper on DDD with the Evans book mentioned above. Alternatively, you might like to read more about how loosely coupled architectures are so much easier to work with. This is covered to some extent in both [Accelerate](#accelerate) and [The DevOps Handbook](#handbook). 
+After reading Domain-Driven Design Distilled, you might like to go deeper on DDD with the Evans book mentioned above. Alternatively, you might like to read more about how loosely coupled architectures are so much easier to work with. This is covered to some extent in both [Accelerate](#accelerate) and [The DevOps Handbook](#handbook). 
 
 You might also like to take a look at [Sam Newman’s Building Microservices](https://www.goodreads.com/book/show/22512931-building-microservices) (which narrowly missed a spot in this blog post), and in [Site Reliability Engineering](#sre) you’ll learn how Google maintains a large, complicated environment with many loosely coupled services.
 
-Finally, I encourage you to take a look at Team Topologies. Software architecture starts with team architecture, and [Team Topologies](#tt) uses Conway’s Law to apply the ideas of bounded contexts and loosely coupled systems to the way we architect the teams in our IT departments. 
+Finally, I encourage you to take a look at [Team Topologies](#tt). Software architecture starts with team architecture, and Team Topologies uses Conway’s Law to apply the ideas of bounded contexts and loosely coupled systems to the way we architect the teams in our IT departments. 
 
 For more reviews, as well as a preview and procurement options: [Check out this book on GoodReads](https://www.goodreads.com/book/show/28602719-domain-driven-design-distilled)
 
@@ -238,7 +238,7 @@ For example, the two authors now seem to be on opposite sides of this debate. Je
 
 Personally, I tire of this debate. CD and DevOps grew up alongside each other and are derived from similar Lean, XP, and Agile ideas. Through a mixture of independent thought and borrowed ideas, they came to similar conclusions. I encourage you to celebrate the way these two movements support each other rather than to get hung up on the relationship between them. (And I expect that both Jez and Dave would agree.)
 
-If you enjoyed Continuous Delivery, you might also enjoy [Site Reliability Engineering](#sre). It’s a similar technical book that covers many additional topics from a more production/operations/maintenance perspective. On the other hand, if you found CD a little dry and would like something more accessible, try [The DevOps Handbook](#handbook) or [Accelerate](#accelerate) instead.
+If you enjoyed Continuous Delivery, you might also enjoy [Site Reliability Engineering](#sre). It’s a similar technical book, designed for very large IT departments, that covers many additional topics from a more production/operations/maintenance. On the other hand, if you found CD a little dry and would like something more accessible, try [The DevOps Handbook](#handbook) or [Accelerate](#accelerate) instead.
 
 For more reviews, as well as procurement options: [Check out this book on GoodReads](https://www.goodreads.com/book/show/8686650-continuous-delivery)
 
