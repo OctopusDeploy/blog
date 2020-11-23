@@ -33,7 +33,7 @@ You can also bake “guard-rails” into your self-service runbooks, ensuring th
 You can also create self-service runbooks that allow users to do very complex and time consuming tasks, such as creating a new AWS account. By doing this, your users have their needs met very quickly, and you can rest easy knowing that the AWS account was created with all the correct VPC settings, password policy, and IAM roles for your users. 
 
 ## Self-service runbooks can help to reduce shadow IT
-"Shadow IT" is the unapproved use of IT systems and applications within an organisations. Self-service runbooks can help to reduce shadow IT, as users are more likely to follow the right path when they can do so quickly and easily. From MRC:
+"Shadow IT" is the unapproved use of IT systems and applications within an organisations, and it is a big issue for many companies. Self-service runbooks can help to reduce shadow IT, as users are more likely to follow the right path when they can do so quickly and easily. From MRC:
 
 ```
 One more thing: The goal of this step is controlled, self-service solutions. Any software you provide must meet two important criteria:
