@@ -434,7 +434,7 @@ Back: [Book Index](#book-index) / Next: [Honorable Mentions](#hon_mentions)
 ### 10. Team Topologies (Skelton, Pais: 2019) {#tt}
 
 <div class="row">
-  <div class="col-sm-6">Team Topologies uses <a href="https://en.wikipedia.org/wiki/Conway%27s_law">Conway’s Law</a> to bridge the divide between books about designing effective software architectures (e.g. <a href="https://www.octopus.com/blog/devops-reading-list#ddd">Domain-Driven Design: Distilled</a>) and books about creating effective teams (e.g. <a href="<a href="https://www.octopus.com/blog/devops-reading-list#dysfunc">The Five Dysfunctions of a Team</a>), while optimizing for the rapid “flow” of value to end users.
+  <div class="col-sm-6">Team Topologies uses <a href="https://en.wikipedia.org/wiki/Conway%27s_law">Conway’s Law</a> to bridge the divide between books about designing effective software architectures (e.g. <a href="https://www.octopus.com/blog/devops-reading-list#ddd">Domain-Driven Design: Distilled</a>) and books about creating effective teams (e.g. <a href="https://www.octopus.com/blog/devops-reading-list#dysfunc">The Five Dysfunctions of a Team</a>), while optimizing for the rapid “flow” of value to end users.
 </div>
   <div class="col-sm-6"><img src="https://octopus.com/images/blog/devops-reading-list/team_topologies.jpg"></div>
  </div>
