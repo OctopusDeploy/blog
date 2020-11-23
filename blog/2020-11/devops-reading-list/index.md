@@ -140,7 +140,7 @@ After you’ve checked out the materials for your chosen books, carry on to the 
   </p>	
   </div>
   <div class="col-sm-6">
-  <img class="img-responsive img-rounded center-block" src="https://octopus.com/images/blog/devops-reading-list/the_goal.jpg">
+  <img class="img-responsive center-block" src="https://octopus.com/images/blog/devops-reading-list/the_goal-big.jpg">
   </div>
  </div>
 
