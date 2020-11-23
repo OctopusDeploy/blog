@@ -50,11 +50,14 @@ Also, this is not an exhaustive list of titles. I’ve sought as much feedback a
 
 Caveats aside, now it’s time for you to answer the questions for yourself and see where you end up.
 
-![decision_tree](decisiontree.png "width=500") {#decision_tree}
+<div id="decision_tree">
+
+![decision_tree](decisiontree.png "width=500")
 
 <p style="text-align: center;">
     <em>(Click to enlarge.)</em>
 </p>
+</div>
 
 If you want clarification on the highlighted the questions in the decision tree above, you’ll find more guidance below. If you do not need any clarification, skip to my summaries of [The Books](#the-books).
 
