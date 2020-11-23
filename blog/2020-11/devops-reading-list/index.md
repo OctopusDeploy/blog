@@ -338,7 +338,7 @@ Back: [Book Index](#book-index) / Next: [Honorable Mentions](#hon_mentions)
 ### 8. The DevOps Handbook (Kim, Humble, Debois, Willis: 2016) {#handbook}
 
 <div class="row">
-  <div class="col-sm-6">This book is perhaps the best articulation of what DevOps is. It’s intended as a companion to <a href="https://www.octopus.com/blog/devops-reading-list#phoenix">The Phoenix Project, and it aims to codify the thoughts and patterns of Phoenix into a more formal and actionable pocket handbook. (Although you’d need pretty big pockets.)
+  <div class="col-sm-6">This book is perhaps the best articulation of what DevOps is. It’s intended as a companion to <a href="https://www.octopus.com/blog/devops-reading-list#phoenix">The Phoenix Project</a>, and it aims to codify the thoughts and patterns of Phoenix into a more formal and actionable pocket handbook. (Although you’d need pretty big pockets.)
 </div>
   <div class="col-sm-6"><img src="https://octopus.com/images/blog/devops-reading-list/devops_handbook.jpg"></div>
  </div>
