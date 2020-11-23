@@ -41,9 +41,9 @@ In order to contribute to the safe implementation of Octopus Deploy, it’s impo
 Octopus Deploy gets its name because its architecture resembles that of an octopus, with a “Server” at the center, which sends packages and deployment scripts to various targets where files are deployed and commands are executed.
 
 Octopus users can interact with the server through the Octopus Web Portal or with scripts, typically using PowerShell, a [REST API](https://octopus.com/blog/change-advisory-boards-dont-work) or the [Octopus CLI](https://octopus.com/docs/octopus-rest-api/octopus-cli).
-
-![Octopus Diagram](octopusdiagram.png "width=500")
  
+![Octopus Diagram](octopusdiagram.png "width=500")
+
 There are various types of [deployment targets](https://octopus.com/docs/infrastructure/deployment-targets). The most common is an Octopus “Tentacle” (or Agent), which is a service that runs on a target Machine. For example, on a server, VM, or container, etc. Tentacles can run on [Windows](https://octopus.com/docs/infrastructure/deployment-targets/windows-targets) or [Linux](https://octopus.com/docs/infrastructure/deployment-targets/linux/tentacle) on your own infrastructure or your preferred cloud provider.
 
 The communication between the Octopus Server and Tentacle uses a secure TLS connection on a specific port, using public-key cryptography. [More detail available here](https://octopus.com/docs/security/octopus-tentacle-communication). This avoids the need to use passwords. As long as the private keys are kept safe, it should be impossible for another system to impersonate either the Server or Tentacle.
@@ -149,3 +149,13 @@ A well-trained kraken makes a powerful ally.
 
 To learn more about DLM Consultants’ DLM Health Check: [http://dlmconsultants.com/dlm-health-check/](http://dlmconsultants.com/dlm-health-check/)
 To learn more about security in Octopus Deploy: [https://octopus.com/docs/security](https://octopus.com/docs/security)
+
+---
+
+Alex Yates has been helping organisations to apply DevOps principles to their data since 2010. He’s most proud of helping Skyscanner develop the ability to  [deploy 95 times a day](https://www.youtube.com/watch?v=sNsPnCv7hHo) and for supporting the United Nations Office for Project Services with their release processes. Alex has worked with clients on every continent except Antarctica – so he’s keen to meet anyone who researches penguins.
+ 
+A keen community member, he co-organises [Data Relay](https://datarelay.co.uk/), is the founder of [www.SpeakingMentors.com](http://www.speakingmentors.com/) and has been recognised as a  [Microsoft Data Platform MVP](https://mvp.microsoft.com/en-us/PublicProfile/5002655?fullName=Alex%20Yates) since 2017.
+ 
+Alex is the founder of [DLM Consultants](http://dlmconsultants.com/), an official Octopus Deploy partner. He enjoys mentoring, coaching, training and consulting with customers who want to achieve better business outcomes through improved IT and database delivery practices.
+ 
+If you would like to work with Alex, email: [enquiries@dlmconsultants.com](mailto:enquiries@dlmconsultants.com) 

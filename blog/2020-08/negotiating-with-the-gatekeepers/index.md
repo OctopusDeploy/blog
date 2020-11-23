@@ -106,3 +106,13 @@ Sinek jokes about how Martin Luther King Jnr never gave the “I have a plan” 
 If you want to build a bridge across the “[wall of confusion](https://levelup.gitconnected.com/the-wall-of-confusion-623057a4dd26)” between development and operations, forget about your current petty disputes. Try to meet with the gatekeepers somewhere off the record and less formal than the boardroom and talk to them about the bigger issues that really concern them. You’ll probably find you have more in common than you thought.
 
 After all, you are both in the business of getting stuff done, without breaking things. And neither of you want to get fired - especially not just before Christmas.
+
+---
+
+Alex Yates has been helping organisations to apply DevOps principles to their data since 2010. He’s most proud of helping Skyscanner develop the ability to  [deploy 95 times a day](https://www.youtube.com/watch?v=sNsPnCv7hHo) and for supporting the United Nations Office for Project Services with their release processes. Alex has worked with clients on every continent except Antarctica – so he’s keen to meet anyone who researches penguins.
+ 
+A keen community member, he co-organises [Data Relay](https://datarelay.co.uk/), is the founder of [www.SpeakingMentors.com](http://www.speakingmentors.com/) and has been recognised as a  [Microsoft Data Platform MVP](https://mvp.microsoft.com/en-us/PublicProfile/5002655?fullName=Alex%20Yates) since 2017.
+ 
+Alex is the founder of [DLM Consultants](http://dlmconsultants.com/), an official Octopus Deploy partner. He enjoys mentoring, coaching, training and consulting with customers who want to achieve better business outcomes through improved IT and database delivery practices.
+ 
+If you would like to work with Alex, email: [enquiries@dlmconsultants.com](mailto:enquiries@dlmconsultants.com) 
