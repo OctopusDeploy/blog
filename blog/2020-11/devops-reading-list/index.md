@@ -506,11 +506,11 @@ Reading this book is a reasonable time investment, so for those who are new to S
 
 That 10 minute read / 45 minute watch should give you a great primer on Google’s approach, covering important topics, including the difference between DevOps and SRE, as well as some of the core components of SRE, including SLOs, error budgets, and Customer Reliability Engineering.
 
-Then you’ve got 560 pages covering 34 chapters, detailing all the incredible technical and cultural practices that Google employs to manage the reliability of its services at scale. There is so much in it that I’m not even going to attempt to go further than that about any specific techniques.
+Then you’ve got 560 pages covering 34 chapters, detailing all the technical and cultural practices that Google employs to manage the reliability of its services at scale. There is so much in it that I’m not even going to attempt to go further than that about any specific techniques.
 
 While SRE is a fascinating read, it’s worth remembering that most of us do not work for organizations that are anywhere near close to “Google-scale”. With that in mind, SRE is most relevant to folks who work at very large organizations. 
 
-One of the criticisms of SRE is the way it effectively normalizes and advocates for the existence of a separate SRE (Ops) team. My personal view is that the majority of the DevOps community believe that in the vast majority of cases, and certainly in most small/medium-sized companies, it’s better for a team to own the end to end lifecycle of their product or service rather than to hand “Ops” concerns over to a separate silo.
+One of the criticisms of SRE is the way it effectively normalizes and advocates for the existence of a separate SRE (Ops/DevOps) team. My personal view is that the majority of the DevOps community believe that in the vast majority of cases, and certainly in most small/medium-sized companies, it’s better for a team to own the end to end lifecycle of their product or service rather than to hand “Ops” concerns over to a separate silo.
 
 This concern aside, many of the practices in the book are likely to be broadly applicable and relevant. It may well give you a few ideas about how to solve some of your own challenges.
 
