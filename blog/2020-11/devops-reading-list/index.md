@@ -52,7 +52,7 @@ Caveats aside, now it’s time for you to answer the questions for yourself and 
 {#decision_tree}
 ![decision_tree](decisiontree.png "width=500")
 
-<p>
+<p style="text-align: center;">
     <em>(Click to enlarge.)</em>
 </p>
 
