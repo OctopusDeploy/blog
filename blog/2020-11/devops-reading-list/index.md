@@ -454,7 +454,12 @@ Back: [Book Index](#book-index) / Next: [Honorable Mentions](#hon_mentions)
 <div class="row">
   <div class="col-sm-6">
   
-> "The book absolutely delivers: it’s a 250-page version of the concepts in Google’s <a href="https://octopus.com/blog/devops-reading-list#sre">Site Reliability Engineering</a> book (which I love) targeted at people who might currently call themselves database administrators but want to go to work in fast-paced, high-scale companies."
+  <blockquote class="blockquote">
+
+  <p>"The book absolutely delivers: it’s a 250-page version of the concepts in Google’s <a href="https://octopus.com/blog/devops-reading-list#sre">Site Reliability Engineering</a> book (which I love) targeted at people who might currently call themselves database administrators but want to go to work in fast-paced, high-scale companies."
+  </p>
+
+  </blockquote>
 
   </div>
   <div class="col-sm-6"><img src="https://octopus.com/images/blog/devops-reading-list/database_reliability_engineering.jpg">
