@@ -259,7 +259,7 @@ Alignment is only possible with teamwork, and teamwork is not possible without w
 
 This is why the DevOps community has always been deeply focused on people and culture. However, tech folks are generally far more comfortable talking about software or automation than they are talking about emotions, trust, or personal vulnerabilities. This leads to one of DevOps’ problems: Too often, it’s boiled down to simply automated deployments, infrastructure as code, or the latest vendor tool. These over-simplifications completely miss the point.
 
-The Five Dysfunctions of a Team provides a logical framework for addressing “the people problem”. The first 180 pages tell a “Leadership Fable”, similar to [The Goal](#goal), [The Phoenix Project](#phoenix), or [The Unicorn Project](#unicorn). DecisionTech is a start-up with all the raw ingredients for success, but the senior leadership team is a dysfunctional mess. Kathryn Peterson, the new CEO, is tasked with uniting these talented and opinionated individuals and turning the company’s fortunes around.
+The Five Dysfunctions of a Team provides a logical framework for addressing “the people problem”. The first 180 pages tell a “Leadership Fable”, similar to [The Goal](#goal), [The Phoenix Project](#phoenix), or [The Unicorn Project](#unicorn). DecisionTech is a start-up with all the raw ingredients for success, but the senior leadership team is a dysfunctional mess. Kathryn Peterson, the new CEO, is tasked with uniting these individually brilliant but wily and guarded individuals in order to turn the company’s fortunes around.
 
 The final 40 pages formally review the framework Kathryn uses to create an effective team. One could skip the fable and just read these 40 pages and be done in an hour, but that would be like reading sheet music in silence or learning to use some new tech by reading the documentation without ever installing it. In order to be truly appreciated, it’s valuable to read the fable and observe the framework in action.
 
@@ -282,7 +282,7 @@ Back: [Book Index](#book-index) / Next: [Honorable Mentions](#hon_mentions)
   <div class="col-sm-6"><img src="https://octopus.com/images/blog/devops-reading-list/phoenix_project.jpg"></div>
  </div>
 
-Gene Kim was so inspired when he read [The Goal](#goal) that he wanted to retell it within the context of software development. The Phoenix Project is an homage. Alex Rogo is replaced by Bill Palmer, a middle manager who’s just been promoted into a senior leadership role after his predecessor was fired. He works for Parts Unlimited, another auto-parts manufacturing company, and business is going badly. Sound familiar?
+Gene Kim was so inspired when he read [The Goal](#goal) that he wanted to retell it within the context of software development. The Phoenix Project is an homage. Alex Rogo is replaced by Bill Palmer, a middle manager who’s just been _unwittingly_ promoted into a senior leadership role after his predecessor was fired. He works for Parts Unlimited, another auto-parts manufacturing company, and business is going badly. Sound familiar?
 
 Parts Unlimited has bet the shop on The Phoenix Project, a giant new software release designed to turn the company’s fortunes around. They’ve promised investors that it will be delivered in a few weeks, but the team is hopelessly behind schedule, and the marketing department keep adding to the workload through various unofficial back-channels. At the same time, frequent firefighting is pulling resources away from Phoenix and causing more delays. It’s a vicious cycle from which escape appears to be impossible.
 
@@ -303,16 +303,21 @@ Back: [Book Index](#book-index) / Next: [Honorable Mentions](#hon_mentions)
 ### 7. The Unicorn Project (Kim: 2019)  {#unicorn}
 
 <div class="row">
-  <div class="col-sm-6">The Unicorn Project is a retelling of The Phoenix Project. It’s neither a prequel nor a sequel. It’s the same story, on the same time-line, but told from a different perspective.
+  <div class="col-sm-6">
+  
+  The Unicorn Project is a retelling of [The Phoenix Project](#phoenix). It’s neither a prequel nor a sequel. It’s the same story, on the same time-line, but told from a different perspective.
+
+  </div>
+
+  <div class="col-sm-6"><img src="https://octopus.com/images/blog/devops-reading-list/unicorn_project.jpg">
+  </div>
 </div>
-  <div class="col-sm-6"><img src="https://octopus.com/images/blog/devops-reading-list/unicorn_project.jpg"></div>
- </div>
 
 The Phoenix Project is told from Bill Palmer’s perspective, as a senior manager with a background in the operations side of the business. Phoenix talks a lot about lean principles and collaboration and all that’s valuable, but Bill has been promoted far enough that he rarely plays with the code any more, and he lacks development experience. This can make The Phoenix Project an unsatisfying read for developers, sometimes giving them the impression that unless you are in senior management, you can’t do much about the underlying problems.
 
-In contrast, The Unicorn Project tells the story of Maxine Chambers. She’s a senior developer who’s just been relegated to The Phoenix Project after getting the blame for a disaster that wasn’t her fault. Well respected by her team, she’s a strong leader who shuns formal management positions because she loves to code.
+In contrast, The Unicorn Project tells the story of Maxine Chambers. She’s a senior developer who’s just been relegated to the phoenix project after getting the blame for a disaster that wasn’t her fault. Well respected by her team, she’s a strong leader who shuns formal management positions because she loves to code.
 
-Alongside some of the organizational themes, such as corporate bureaucracy, blame culture, and lengthy approval processes, Unicorn covers more technical topics, including continuous integration, data management, and functional programming. (Yeah, I admit I was a little surprised by that last one!)
+Alongside some of the organizational themes, such as corporate bureaucracy, blame culture, and lengthy approval processes, “Unicorn” covers more technical topics, including continuous integration, data management, and functional programming. (Yeah, I admit I was a little surprised by that last one!)
 
 The primary focus of Unicorn is “The Five Ideals”:
 
