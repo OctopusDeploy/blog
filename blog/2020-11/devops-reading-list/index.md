@@ -140,7 +140,9 @@ After you’ve checked out the materials for your chosen books, carry on to the 
   </p>	
   </div>
   <div class="col-sm-6">
-  <img class="img-responsive center-block" src="https://octopus.com/images/blog/devops-reading-list/the_goal_big.jpg">
+
+![The Goal (Goldratt: 1984)](the_goal_big.jpg)
+
   </div>
  </div>
 
