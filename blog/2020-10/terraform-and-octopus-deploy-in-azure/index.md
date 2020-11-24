@@ -80,8 +80,8 @@ Notice of the subscription ID, client ID, client secret, and tenant ID have vari
 
 The `resource` create operation will call upon the `azurerm_resource_group` resource type. The resource type contains two parameters needed in the config block:
 
-- name - The name of the resource group you're creating
-- location - The location where the resource group will reside (`eastus`, for example)
+- **name**: The name of the resource group you're creating.
+- **location**: The location where the resource group will reside, for example, `eastus`.
 
 ```
 resource "azurerm_resource_group" "resourceGroup" {
