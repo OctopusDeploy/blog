@@ -160,7 +160,7 @@ Since you're deploying a service in Azure and not code for an application, the m
 
 ## Creating a Runbook
 
-1. Under the Project, go to **Operations** —> **Runbooks**.
+1. Navigate to **Project** and select **{{Operations, Runbooks}}**.
 2. Click **ADD RUNBOOK**.
 3. Create a runbook and name it **ResourceGroup**.
 
