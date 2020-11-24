@@ -437,7 +437,7 @@ That pretty much sums it up for “DRE”. Thanks, Brent, for saving me a little
 
 If you enjoyed “DRE”, it’s likely that you’ll also enjoy its big sister, [Site Reliability Engineering](#sre), which is bigger in size and broader in scope. However, if you fancy something a little lighter, you might enjoy [The Phoenix Project](#phoenix), in which an operations team learn to work more effectively with developers and the rest of the business to avoid repeated data-centric disasters. You might also like Phoenix’s sister novel, [The Unicorn Project](#unicorn), which tells the same story from the perspective of a senior developer who inherits a monolithic database and is effectively tasked with creating and maintaining a data lake.
 
-If you are struggling to break out a monolithic database into a set of smaller, more loosely coupled databases, you may also benefit from reading [Domain-Driven Design: Distilled](#ddd). Finally, if you are an old-school DBA, and you remain skeptical about [Accelerate](#accelerate), I encourage you to take a look at Accelerate.
+If you are struggling to break out a monolithic database into a set of smaller, more loosely coupled databases, you may also benefit from reading [Domain-Driven Design: Distilled](#ddd). Finally, if you are an old-school DBA, and you remain skeptical about DevOps, I encourage you to take a look at [Accelerate](#accelerate).
 
 For more reviews, as well as a preview and procurement options: [Check out this book on GoodReads](https://www.goodreads.com/book/show/36523657-database-reliability-engineering)
 
