@@ -458,7 +458,7 @@ Reading this book is a reasonable time investment, so for those who are new to S
 
 That 10 minute read / 45 minute watch should give you a great primer on Google’s approach, covering important topics, including the difference between DevOps and SRE, as well as some of the core components of SRE, including SLOs, error budgets, and Customer Reliability Engineering.
 
-Then you’ve got 560 pages covering 34 chapters, detailing all the technical and cultural practices that Google employs to manage the reliability of its services at scale. There is so much in it that I’m not even going to attempt to go further than that about any specific techniques.
+Then you’ve got 560 pages covering 34 chapters, detailing some of the technical and cultural practices that Google employs to manage the reliability of its services at scale. There is so much in it that I’m not even going to attempt to go further than that about any specific techniques.
 
 While SRE is a fascinating read, it’s worth remembering that most of us do not work for organizations that are anywhere near close to “Google-scale”. With that in mind, SRE is most relevant to folks who work at very large organizations. 
 
