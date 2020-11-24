@@ -1,13 +1,12 @@
 ---
 title: Infrastructure as Code in Azure with Terraform and Octopus Deploy
-description:  In this blog post, we take a look at combining the power of Infrastructure-as-code using Terraform and Octopus Deploy to create resources and services in Azure.
+description:  In this blog post, I demonstrate using Infrastructure-as-code from Terraform and Octopus Deploy to create resources and services in Azure.
 author: michael.levan@octopus.com
 visibility: private
 published: 2199-10-10 
 metaImage: 
 bannerImage: 
 tags:
- - Automation
  - DevOps
  - Azure
 ---
@@ -23,7 +22,7 @@ To follow along with this blog post, you need the following:
 - An Azure Service Principal (app registration) that has access to create resources in your Azure subscription.
 - Knowledge of [Terraform](https://www.terraform.io/intro/index.html) at a beginner-to-intermediate level.
 
-## Why Use Octopus and Terraform Together
+## Why use Octopus and Terraform together
 
 Terraform is an open-source [Infrastructure-as-Code](https://docs.microsoft.com/en-us/azure/devops/learn/what-is-infrastructure-as-code) platform created by [Hashicorp](https://www.hashicorp.com/) that is supported by default in Octopus Deploy. 
 
@@ -35,13 +34,13 @@ You can deploy Terraform resources to:
 
 One of the major benefits of using Terraform in a continuous delivery and deployment tool is that you can focus on writing the code, not manually deploying it. Combining Octopus and Terraform allows you to automate the entire lifecycle.
 
-## The Terraform Code
+## The Terraform code
 
 To create a resource or service in Azure, you need to write the HCL code. In this section, I show you the HCL code to create a Resource Group in Azure using Terraform.
 
-### The Azure Terraform Provider
+### The Azure Terraform provider
 
-Whenever you interact with a Terraform provider, you need to specify some inputs and authentication in the code block. The provider that is used to interact with Azure is the [`azurerm` provider](https://www.terraform.io/docs/providers/azurerm/index.html).
+Whenever you interact with a Terraform provider, you need to specify some inputs and authentication in a code block. The provider that is used to interact with Azure is the [`azurerm` provider](https://www.terraform.io/docs/providers/azurerm/index.html).
 
 There are four ways to authenticate to the `azurerm` Terraform provider:
 
@@ -61,7 +60,7 @@ The provider needs the following information:
 
 There is also a `features` parameter, but it can be left blank.
 
-The provider config block looks like the below code:
+The provider config block looks like the following code:
 
 ```
 provider "azurerm" {
@@ -74,11 +73,11 @@ provider "azurerm" {
 }
 ```
 
-Notice of the subscription ID, client ID, client secret, and tenant ID have variables associated for the values. You'll go over setting up the variables in an upcoming section. 
+Notice, the subscription ID, client ID, client secret, and tenant ID have variables for their values. I'll go over configuring these variables in a later section. 
 
-## Creating the Azure Resource
+## Creating the Azure resource
 
-The `resource` create operation will call upon the `azurerm_resource_group` resource type. The resource type contains two parameters needed in the config block:
+The resource create operation will call upon the `azurerm_resource_group` resource type. The resource type contains two parameters in the config block:
 
 - **name**: The name of the resource group you're creating.
 - **location**: The location where the resource group will reside, for example, `eastus`.
@@ -90,7 +89,7 @@ resource "azurerm_resource_group" "resourceGroup" {
 }
 ```
 
-Once you have the provider and resource code, it should look like the below code snippet.
+After you have the provider and resource code, it should look like the following code snippet:
 
 ```
 provider "azurerm" {
@@ -108,39 +107,32 @@ resource "azurerm_resource_group" "myterraformgroup" {
 }
 ```
 
-## Authentication From Octopus Deploy to Azure
+## Authentication from Octopus Deploy to Azure
 
 Next, you need a way to authenticate from Octopus Deploy to Azure. Octopus Deploy has a way to create accounts for authentication to cloud and on-premises environments.
 
 ### Create an Azure account
 
-Log into the Octopus Deploy portal and go to **Infrastructure** —> **Accounts**
+1. Log into the Octopus Deploy portal and go to **{{Infrastructure, Accounts}}**
+2. Click **ADD ACCOUNT** button and choose the **Azure Subscription** option.
+3. Add in the associated information for the Azure Service Principal you are using to create resources in the Azure Portal. 
+4. To confirm that the Azure Service Principal works, click **SAVE AND TEST**.
 
-![](images/1.png)
+## Creating a new project in Octopus Deploy
 
-Click the green **ADD ACCOUNT** button and choose the **Azure Subscription** option.
+After the authentication is complete from Octopus Deploy to Azure, you can start thinking about how and where you want the Terraform runbook to exist. To ensure that the runbook is in its own project, you can create the project with the Octopus Web Portal.
 
-![](images/2.png)
-
-Add in all associated information for the Azure Service Principal you have that has permission to create resources in the Azure portal. To confirm that the Azure Service Principal works, click the **SAVE AND TEST** button.
-
-![](images/3.png)
-
-## Setting up a New Project in Octopus Deploy
-
-Once the authentication is complete from Octopus Deploy to Azure, you can start thinking about how and where you want the Terraform runbook to exist. To ensure that the runbook is in it's own project, you can create the project with the Octopus Deploy UI.
-
-### Creating a Project in Octopus Deploy
+### Create a project in Octopus Deploy
 
 1. Log into the Azure portal and go to **Projects**.
-2. Choose which project group you'd like to store the Project in and click the green **ADD PROJECT** button.
+2. Choose which project group you'd like to store the project in and click the green **ADD PROJECT** button.
 3. Create a new project and name it **TerraformAzure**.
 
-Once the project is created, it's time to create the runbook.
+When the project is created, it's time to create the runbook.
 
-### Creating Octopus Deploy Variables
+### Creating the Octopus variables
 
-Under the variables section of the project, you'll want to add in Project Variables. Because these values can differ based on the environment you're in, below is a code sample. The `Name` of the variables should match the value below because you will use them in the code later, but the values will be different for your environment.
+Navigate to the variables section of the project to add your project variables:
 
 ```
 AzureAuth         = AzureAuth Account
@@ -152,13 +144,15 @@ subscriptionID    = your_subscription_id
 tenantID          = guid_tenant_id
 ```
 
+These values will differ based on the environment you're using. The `Name` of the variables should match the example below, but the values will be different for your environment.
+
 ![](images/4.png)
 
-## Configure the Runbook
+## Configure the runbook
 
-Since you're deploying a service in Azure and not code for an application, the most efficient action is to use a Runbook. The Runbook will give you the ability to use the Terraform step template and create the Resource Group.
+Because you're deploying a service in Azure and not code for an application, using a runbook is the most efficient method. The runbook will give you the ability to use the Terraform step template and create the Resource Group.
 
-## Creating a Runbook
+## Create a runbook
 
 1. Navigate to **Project** and select **{{Operations, Runbooks}}**.
 2. Click **ADD RUNBOOK**.
@@ -168,17 +162,16 @@ Since you're deploying a service in Azure and not code for an application, the m
 
 1. Navigate to the runbook, select **Process**, and click **ADD STEP.**
 2. Click on the Terraform category.
-
 3. Choose the **Apply a Terraform template** step.
 
 ![](images/6.png)
 
-### Configure the Terraform Step
+### Configuring the Terraform step
 
 Depending on the environment you're running in, these steps could be different. For example, you could use a different Worker Pool than the default. These are the key steps to include for Terraform:
 
 1. Under **Managed Accounts**, choose **Azure Account** and add the Azure account you created in the **Authentication to Octopus Deploy from Azure** section.
-2. Under **Template**, choose **Template Source** and use the **Source code** option. Then, paste in the following code:
+2. Under **Template**, choose **Template Source** and use the **Source code** option. Then paste in the following code:
 
 ```
 provider "azurerm" {
@@ -196,22 +189,16 @@ resource "azurerm_resource_group" "myterraformgroup" {
 }
 ```
 
-As you can see, it uses the variables you created in the **Setting up Variables** section.
+As you can see, this uses the variables you created in the **Creating the Octopus variables** section.
 
-<<<<<<< HEAD
-## Executing the Runbook
-=======
-## Run the Terraform code
->>>>>>> 8f7ff736c91f00a407ecb4a3d37e0307df257892
+## Executing the runbook
 
-The configuration of the project, authentication, steps, and code is all complete. Now, it's time to see the code in action! 
+The configuration of the project, authentication, steps, and code is all complete. Now, it's time to see the code in action.
 
 1. Under **Runbooks**, you'll see the **ResourceGroup** runbook. Click **RUN**.
 2. Select the environment that you'd like to run the runbook under and click **RUN**.
 
-![](images/7.png)
-
-You have successfully created a Resource Group in Azure using Octopus Deploy and Terraform.
+After the runbook has executed, the task summary will show you have successfully created a Resource Group in Azure using Octopus Deploy and Terraform.
 
 ## Conclusion
 
