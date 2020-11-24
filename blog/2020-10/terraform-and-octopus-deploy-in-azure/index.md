@@ -112,7 +112,7 @@ resource "azurerm_resource_group" "myterraformgroup" {
 
 Next, you need a way to authenticate from Octopus Deploy to Azure. Octopus Deploy has a way to create accounts for authentication to cloud and on-premises environments.
 
-To create an Azure account..
+### Create an Azure account
 
 Log into the Octopus Deploy portal and go to **Infrastructure** —> **Accounts**
 
