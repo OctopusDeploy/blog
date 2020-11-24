@@ -514,6 +514,8 @@ It’s a fascinating listen from start to finish, and one that many people go ba
 
 [You can purchase Beyond the Phoenix Project from Audible here.](https://www.audible.co.uk/pd/Beyond-the-Phoenix-Project-Audiobook/B07B7CH7FQ)
 
+EDIT: Since this blog post was first published, I've learned that [you can buy a transcript of the conversation here](https://itrevolution.com/book/beyond-phoenix-project/).
+
 ### How Complex Systems Fail
 
 When exploring the historical foundations of DevOps, most folks (including myself) immediately jump to Lean Manufacturing, and that’s well justified. However, many folks fail to recognize that DevOps owes much to the “Safety Culture” or “Safety 2.0” movement as well, which has a totally independent and very different history. Arguably, ideas such as agile infrastructure, chaos engineering, resilience over robustness, observability, and blame-free cultures owe more to Safety Culture than they do to Lean Manufacturing.
