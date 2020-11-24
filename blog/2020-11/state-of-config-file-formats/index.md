@@ -101,3 +101,7 @@ Simple applications and environments will benefit from a structured configuratio
 As configuration itself becomes a first-class citizen within the DevOps environment and cloud computing, the importance of choosing the right language for your application becomes critical to ensuring success. Although any of these configuration languages will work well, weighing the advantages and disadvantages of each will ultimately lead to a successful configuration framework.
 
 Happy deployments!
+
+---
+
+Adam Bertram is a 20+ year veteran of IT and an experienced online business professional. He’s a consultant, Microsoft MVP, blogger, trainer, published author and content marketer for multiple technology companies. Catch up on Adam’s articles at [adamtheautomator.com](http://adamtheautomator.com/), connect on [LinkedIn](https://www.linkedin.com/in/adbertram), or follow him on Twitter at [@adbertram](https://twitter.com/adbertram).
