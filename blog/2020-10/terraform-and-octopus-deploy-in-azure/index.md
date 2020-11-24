@@ -110,7 +110,7 @@ resource "azurerm_resource_group" "myterraformgroup" {
 
 ## Authentication From Octopus Deploy to Azure
 
-Now that the code is written that will be used to create a new Resource Group in Azure, you need a way to authenticate from Octopus Deploy to Azure. Luckily, Octopus Deploy has a way to create accounts for authentication to cloud and on-prem environments.
+Next, you need a way to authenticate from Octopus Deploy to Azure. Octopus Deploy has a way to create accounts for authentication to cloud and on-premises environments.
 
 To create an Azure account..
 
