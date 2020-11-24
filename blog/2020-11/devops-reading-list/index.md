@@ -498,7 +498,7 @@ Since 2012, a team of researchers from Puppet and DORA, with the support of vari
 
 The data from the 2014-2017 reports were used by Forsgren, Humble, and Kim to produce [Accelerate](#accelerate) in 2018, which I believe remains the best evidence our industry possesses for the value of DevOps.
 
-[You can review all the DORA State of DevOps Reports (2014-2019 at the time of writing) here.](https://www.devops-research.com/research.html).
+[You can review all the DORA State of DevOps Reports (2014-2019 at the time of writing) here](https://www.devops-research.com/research.html).
 
 ### Beyond The Phoenix Project
 
