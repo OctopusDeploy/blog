@@ -437,7 +437,7 @@ That pretty much sums it up for “DRE”. Thanks, Brent, for saving me a little
 
 If you enjoyed “DRE”, it’s likely that you’ll also enjoy its big sister, [Site Reliability Engineering](#sre), which is bigger in size and broader in scope. However, if you fancy something a little lighter, you might enjoy [The Phoenix Project](#phoenix), in which an operations team learn to work more effectively with developers and the rest of the business to avoid repeated data-centric disasters. You might also like Phoenix’s sister novel, [The Unicorn Project](#unicorn), which tells the same story from the perspective of a senior developer who inherits a monolithic database and is effectively tasked with creating and maintaining a data lake.
 
-If you are struggling to break out a monolithic database into a set of smaller, more loosely coupled databases, you may also benefit from reading [Domain-Driven Design: Distilled](#ddd). Finally, if you are an old-school DBA, and you remain skeptical about [Accelerate](#accelerate), I encourage you to take a look at Accelerate.
+If you are struggling to break out a monolithic database into a set of smaller, more loosely coupled databases, you may also benefit from reading [Domain-Driven Design: Distilled](#ddd). Finally, if you are an old-school DBA, and you remain skeptical about DevOps, I encourage you to take a look at [Accelerate](#accelerate).
 
 For more reviews, as well as a preview and procurement options: [Check out this book on GoodReads](https://www.goodreads.com/book/show/36523657-database-reliability-engineering)
 
@@ -458,7 +458,7 @@ Reading this book is a reasonable time investment, so for those who are new to S
 
 That 10 minute read / 45 minute watch should give you a great primer on Google’s approach, covering important topics, including the difference between DevOps and SRE, as well as some of the core components of SRE, including SLOs, error budgets, and Customer Reliability Engineering.
 
-Then you’ve got 560 pages covering 34 chapters, detailing all the technical and cultural practices that Google employs to manage the reliability of its services at scale. There is so much in it that I’m not even going to attempt to go further than that about any specific techniques.
+Then you’ve got 560 pages covering 34 chapters, detailing some of the technical and cultural practices that Google employs to manage the reliability of its services at scale. There is so much in it that I’m not even going to attempt to go further than that about any specific techniques.
 
 While SRE is a fascinating read, it’s worth remembering that most of us do not work for organizations that are anywhere near close to “Google-scale”. With that in mind, SRE is most relevant to folks who work at very large organizations. 
 
@@ -498,7 +498,7 @@ Since 2012, a team of researchers from Puppet and DORA, with the support of vari
 
 The data from the 2014-2017 reports were used by Forsgren, Humble, and Kim to produce [Accelerate](#accelerate) in 2018, which I believe remains the best evidence our industry possesses for the value of DevOps.
 
-[You can review all the DORA State of DevOps Reports (2014-2019 at the time of writing) here.](https://www.devops-research.com/research.html).
+[You can review all the DORA State of DevOps Reports (2014-2019 at the time of writing) here](https://www.devops-research.com/research.html).
 
 ### Beyond The Phoenix Project
 
@@ -513,6 +513,8 @@ They finish with a recording from a session at a DevOps Enterprise Summit event 
 It’s a fascinating listen from start to finish, and one that many people go back to and repeat over and over.
 
 [You can purchase Beyond the Phoenix Project from Audible here.](https://www.audible.co.uk/pd/Beyond-the-Phoenix-Project-Audiobook/B07B7CH7FQ)
+
+EDIT: Since this blog post was first published, I've learned that [you can buy a transcript of the conversation here](https://itrevolution.com/book/beyond-phoenix-project/).
 
 ### How Complex Systems Fail
 
