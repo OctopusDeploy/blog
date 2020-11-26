@@ -1,5 +1,5 @@
 ---
-title: "Octopus 2020.5 - K8s improvements and Config as Code update"
+title: "Octopus 2020.5 - Small improvements and Config as Code update"
 description: "Octopus 2020.5 introduces TODO"
 author: rob.pearson@octopus.com
 visibility: public
