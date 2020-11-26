@@ -35,9 +35,7 @@ Creating a self-signed certificate for development and testing purposes isn't di
 
 ## GitHub container registry support 
 
-Technically Octopus already supported GHCR, though you would never guess it from the experience of trying to configure it.
-
-GHCR has not (yet) implemented the Docker catalog API which allows search for repositories.
+Octopus now supports [GitHub container registry (GHCR)](https://docs.github.com/en/free-pro-team@latest/packages/getting-started-with-github-container-registry/about-github-container-registry) as a package source for automated deployment and runbook processes. Octopus technically already supported GHCR however it was difficult to configure. GHCR has not (yet) implemented the Docker catalog API which allows search for repositories.
 
 This is resulting in the UI not behaving nicely when:
 
