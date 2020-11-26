@@ -12,9 +12,9 @@ tags:
 
 ![Octopus 2020.5](release-2020.5.png)
 
-I'm pleased to share that Octopus 2020.5 is now available. This is a quieter release as we're doing a lot of behind-the-scenes work but it's still has some solid improvements.
+I'm pleased to share that Octopus 2020.5 is now available. This release has some solid improvements; however, it's a quieter release as we're doing a lot of behind-the-scenes work for our Config as Code feature.
 
-This release is the [fifth of six in 2020](/blog/2020-03/releases-and-lts/index.md), and it includes six months of long-term support. The following table shows our current versions with long-term support:
+Octopus 2020.5 is the [fifth of six in 2020](/blog/2020-03/releases-and-lts/index.md), and it includes six months of long-term support. The following table shows our current versions with long-term support:
 
 | Release               | Long-term support  | LTS end date |
 | --------------------- | ------------------ | ------------ |
@@ -24,20 +24,17 @@ This release is the [fifth of six in 2020](/blog/2020-03/releases-and-lts/index.
 | Octopus 2020.2        | Expired            | 2020-09-30   |
 | Octopus 2020.1        | Expired            | 2020-08-24   |
 
-
 ## Create self-signed certificates in the certificate library 
 
 ![Create self-signed certificates in the certificate library ](self-signed-certificates.png)
 
-Creating a self-signed certificate for development and testing purposes isn't difficult but Octopus now makes this faster and simpler. You can create a self-signed certificate in the Certificate library (**{{ infrastructure,Deployment Targets }}**) and take advantage of it in your automation processes. This is very handy testing the deployment of new or updated services. You can also download it if you need to use it with command line interfaces (CLI), desktop applications or other tasks.
+Creating a self-signed certificate for development and testing purposes isn't tricky, but Octopus now makes this faster and simpler. You can now create a self-signed certificate in the certificate library (**{{ Library,Certificates }}**) and take advantage of it in your automation processes. This update makes it more convenient to test the execution of new or updated deployments and runbooks involving certificates. You can also download it if you need to use it with command-line interfaces (CLI), desktop applications or other tasks.
 
 [Learn more](https://octopus.com/docs/deployment-examples/certificates)
 
 ## GitHub container registry support 
 
-Octopus now supports [GitHub container registry (GHCR)](https://docs.github.com/en/free-pro-team@latest/packages/getting-started-with-github-container-registry/about-github-container-registry) as a package source for automated deployment and runbook processes. Octopus technically already supported GHCR however it was difficult to configure. GHCR has not (yet) implemented the Docker catalog API which allows search for repositories.
-
-This is resulting in the UI not behaving nicely when:
+Octopus now supports [GitHub container registry (GHCR)](https://docs.github.com/en/free-pro-team@latest/packages/getting-started-with-github-container-registry/about-github-container-registry) as a package source for automated deployments and runbook processes. We technically already supported GHCR however, GitHub has not implemented the Docker catalog API to allows search for repositories which produced confusing errors. We now handle these inconsistencies more gracefully so you can take advantage of GHCR feed without any issues.
 
 [Learn more](https://github.com/octopusdeploy/issues/issues/6567)
 
@@ -53,13 +50,13 @@ Kubernetes 1.16 exposed the envFrom property to allow the contents of a secret o
   
 **Allow `Daemonsets` and `Statefulsets` to be created and deployed**
 
-The Deploy Kubernetes containers step allows K8s deployments to be created and in a cluster. `DaemonSets` and `StatefulSets` are very similar in the fields the accept (the container definitions are the same for example). We have updated the Octopus Web Portal to provider an interface for these additional resources.
+The Deploy Kubernetes containers step allows Octopus to create  Kubernetes deployments in a cluster. We have updated this step in the Octopus Web Portal to support `DaemonSets` and `StatefulSets` to make it more useful, and their inputs were very similar.
 
 [Learn more](https://github.com/octopusdeploy/issues/issues/6551)
 
 ## Terraform update
 
-Octopus now supports support HCL2 and Terraform 0.12+ for inline scripts. This means you get rich syntax highlighting for modern Terraform scripts in the Octopus Web Portal.
+Octopus now supports support HCL2 and Terraform 0.12+ for inline scripts. This update means you get rich syntax highlighting for modern Terraform scripts in the Octopus Web Portal.
 
 [Learn more](https://github.com/octopusdeploy/issues/issues/6562)
 
@@ -67,9 +64,9 @@ Octopus now supports support HCL2 and Terraform 0.12+ for inline scripts. This m
 
 ![Add markdown notes to automation steps](automation-step-notes.png)
 
-You can now annotate your DevOps automation processes with markdown notes. Add text-based notes, with markdown formatting support, to any deployment or runbook step and it will be displayed in the process summary.
+You can now annotate your DevOps automation processes with markdown notes. Add text-based notes, with markdown formatting support, to any deployment or runbook step, and the process summary will display it.
 
-This is a useful to help future-self or other team meber to understand complex automated processes at a glance.
+This change is useful to help your future-self, or other team members, to understand complex automated processes at a glance.
 
 ![Add markdown notes to automation steps](https://github.com/octopusdeploy/issues/issues/6608)
 
@@ -77,18 +74,18 @@ This is a useful to help future-self or other team meber to understand complex a
 
 ![Config as Code Update](branch-switcher.png)
 
-We originally wanted to launch the early access preview of our Config as Code feature this month (November 2020), but unfortuantely we're not ready for this. We underestimated how long some key components would take to build, but also because this feature is an especially tricky one to ship incrementally.
+We wanted to share a preview of our Config as Code feature in November 2020, but it’s not ready yet. We underestimated how long some of the core components would take to build, and this feature is an especially tricky one to ship incrementally.
 
-That said, we're making very good progress and we've completed some major parts of the overall feature set.
-* Projects can be configured with a git repository.
+Fortunately, we’re making excellent progress, and we’ve completed some significant parts of the overall feature.
+* You can configure projects to use a git repository.
 * You can switch branches in the Octopus Web Portal, viewing and editing the deployment process on different branches.
 * Changes can be committed, including adding a commit message.
-* The result is stored in git in a format based on HCL.
+* The resulting configuration is stored in git in a format based on HCL.
 * The branch can be specified when creating releases, selecting the version of the deployment process to use. This will eventually support selecting tags or commits also.
 
-So what’s left, you may ask? The short answer is “all the small things”. It turns out that relocating a chunk of Octopus from the database (where there’s a single version, indexes, foreign-keys, etc) and dropping it into a git repository (with text files and limitless branches), leaves a bunch of loose ends. Who would have guessed? 
+What's outstanding? The short answer is a lot of small things. Shifting a chunk of Octopus from the database, which has a single version, indexes, foreign keys etc., to a git repository with text files and limitless branches, leaves a bunch of loose ends.
 
-Click the learn more link below to read more about the factors that have gone into designing and building our config as code support. We explicility call out several anti-patterns that we have intentionally avoided which contribute to the complexity of our implementation. 
+Click the learn more link below to read more about the factors that have gone into designing and building our config as code support. We explicitly call out several anti-patterns that we have intentionally avoided. 
 
 [Learn more](/blog/2020-11/shaping-config-as-code/index.md)
 
@@ -104,7 +101,7 @@ As usual, the [steps for upgrading Octopus Deploy](https://octopus.com/docs/admi
 
 ## What’s coming in Octopus 2020.6?
 
-Check out our [public roadmap](https://octopus.com/roadmap) to see what’s coming next and register for updates. TODO
+Check out our [public roadmap](https://octopus.com/roadmap) to see what’s coming next and register for updates.
 
 ## Conclusion
 
