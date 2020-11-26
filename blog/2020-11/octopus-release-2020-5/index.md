@@ -37,6 +37,8 @@ Creating a self-signed certificate for development and testing purposes isn't di
 
 
 
+[Learn more](https://github.com/octopusdeploy/issues/issues/6567)
+
 ## Kubernetes Updates
 
 This release includes two small updates to improve our Kubernetes support driven by customer feedback.
@@ -67,11 +69,24 @@ You can now annotate your DevOps automation processes with markdown notes. Add t
 
 This is a useful to help future-self or other team meber to understand complex automated processes at a glance.
 
+![Add markdown notes to automation steps](https://github.com/octopusdeploy/issues/issues/6608)
+
 ## Config as Code Update
 
-TODO: Steal a single screenshot from Michael's blog post.Screenshot
+![Config as Code Update](branch-switcher.png)
 
-Keep reading to learn more about the updates.
+We originally wanted to launch the early access preview of our Config as Code feature this month (November 2020), but unfortuantely we're not ready for this. We underestimated how long some key components would take to build, but also because this feature is an especially tricky one to ship incrementally.
+
+That said, we're making very good progress and we've completed some major parts of the overall feature set.
+* Projects can be configured with a git repository.
+* You can switch branches in the Octopus Web Portal, viewing and editing the deployment process on different branches.
+* Changes can be committed, including adding a commit message.
+* The result is stored in git in a format based on HCL.
+* The branch can be specified when creating releases, selecting the version of the deployment process to use. This will eventually support selecting tags or commits also.
+
+So what’s left, you may ask? The short answer is “all the small things”. It turns out that relocating a chunk of Octopus from the database (where there’s a single version, indexes, foreign-keys, etc) and dropping it into a git repository (with text files and limitless branches), leaves a bunch of loose ends. Who would have guessed? 
+
+Click the learn more link below to read more about the factors that have gone into designing and building our config as code support. We explicility call out several anti-patterns that we have intentionally avoided which contribute to the complexity of our implementation. 
 
 [Learn more](/blog/2020-11/shaping-config-as-code/index.md)
 
