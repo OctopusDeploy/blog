@@ -35,7 +35,11 @@ Creating a self-signed certificate for development and testing purposes isn't di
 
 ## GitHub container registry support 
 
+Technically Octopus already supported GHCR, though you would never guess it from the experience of trying to configure it.
 
+GHCR has not (yet) implemented the Docker catalog API which allows search for repositories.
+
+This is resulting in the UI not behaving nicely when:
 
 [Learn more](https://github.com/octopusdeploy/issues/issues/6567)
 
@@ -106,14 +110,14 @@ Check out our [public roadmap](https://octopus.com/roadmap) to see what’s comi
 
 ## Conclusion
 
-Octopus 2020.5 is now generally available, and it includes 
+Octopus 2020.5 is now generally available, and it includes a collection of improvements to support self-signed certficates, Terraform updates, Kubernetes updates, automation step notes and a ton of behind-the-scenes changes to support our upcoming config as code feature.
 
 
 Feel free to leave a comment, and let us know what you think! Happy deployments!
 
 ## Related posts
 
-* [title](/blog/2020-12/title/index.md)
-* [title](/blog/2020-12/title/index.md)
-* [title](/blog/2020-12/title/index.md)
-* [title](/blog/2020-12/title/index.md)
+* [Deconstructing blue/green deployments in Kubernetes](/blog/2020-10/deconstructing-blue-green-deployments/index.md)
+* [Creating multi-environment Kubernetes deployments](/blog/2020-12/multi-environment-k8s-deployments/index.md)
+* [Exposing Octopus variables to a Kubernetes container](/blog/2020-10/k8s-envfrom/index.md)
+* [Shaping Configuration-as-Code](/blog/2020-11/shaping-config-as-code/index.md)
