@@ -28,13 +28,13 @@ Octopus 2020.5 is the [fifth of six releases in 2020](/blog/2020-03/releases-and
 
 ![Create self-signed certificates in the certificate library ](self-signed-certificates.png)
 
-Creating a self-signed certificate for development and testing purposes isn't tricky, but Octopus now makes this faster and simple. You can now create a self-signed certificate in the certificate library (**{{ Library,Certificates }}**) and take advantage of it in your automation processes. This update makes it more convenient to test the execution of new or updated deployments and runbooks involving certificates. You can also download it if you need to use it with command-line interfaces (CLI), desktop applications or other tasks.
+Creating a self-signed certificate for development and testing purposes isn't tricky, but Octopus now makes this fast and simple. You can now create a self-signed certificate in the certificate library (**{{ Library,Certificates }}**) and take advantage of it in your automation processes. This update makes it more convenient to test the execution of new or updated deployments and runbooks involving certificates. You can also download the certificate if you need to use it with command-line interfaces (CLI), desktop applications or other tasks.
 
 [Learn more](https://octopus.com/docs/deployment-examples/certificates)
 
 ## GitHub container registry support 
 
-Octopus now supports [GitHub container registry (GHCR)](https://docs.github.com/en/free-pro-team@latest/packages/getting-started-with-github-container-registry/about-github-container-registry) as a package source for automated deployments and runbook processes. We technically already supported GHCR, however, GitHub has not implemented the Docker catalog API to allows search for repositories which produced confusing errors. We now handle these inconsistencies more gracefully so you can take advantage of GHCR feeds without any issues.
+Octopus now supports [GitHub container registry (GHCR)](https://docs.github.com/en/free-pro-team@latest/packages/getting-started-with-github-container-registry/about-github-container-registry) as a package source for automated deployments and runbook processes. We technically already supported GHCR, however, GitHub has not implemented the Docker catalog API to allow searching for repositories which produced confusing errors. We now handle these inconsistencies more gracefully so you can take advantage of GHCR feeds without any issues.
 
 [Learn more](https://github.com/octopusdeploy/issues/issues/6567)
 
