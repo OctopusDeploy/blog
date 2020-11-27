@@ -34,7 +34,7 @@ Creating a self-signed certificate for development and testing purposes isn't tr
 
 ## GitHub container registry support 
 
-Octopus now supports [GitHub container registry (GHCR)](https://docs.github.com/en/free-pro-team@latest/packages/getting-started-with-github-container-registry/about-github-container-registry) as a package source for automated deployments and runbook processes. We technically already supported GHCR, however, GitHub has not implemented the Docker catalog API to allow searching for repositories which produced confusing errors. We now handle these inconsistencies more gracefully so you can take advantage of GHCR feeds without any issues.
+Octopus now supports [GitHub container registry (GHCR)](https://docs.github.com/en/free-pro-team@latest/packages/getting-started-with-github-container-registry/about-github-container-registry) as a package source for automated deployment and runbook processes. We technically already supported GHCR, however, GitHub has not implemented the Docker catalog API to allow searching for repositories which produced confusing errors. We now handle these inconsistencies more gracefully so you can take advantage of GHCR feeds without any issues.
 
 [Learn more](https://github.com/octopusdeploy/issues/issues/6567)
 
@@ -42,13 +42,13 @@ Octopus now supports [GitHub container registry (GHCR)](https://docs.github.com/
 
 This release includes two small updates to improve our Kubernetes support driven by customer feedback.
 
-**Expose `envFrom` fields in Deploy Kubernetes containers step**
+**Expose envFrom fields in Deploy Kubernetes containers step**
 
-Kubernetes 1.16 exposed the envFrom property to allow the contents of a secret or configmap to be created as environment variables. Octopus now supports `envFrom` fields to provide a way for multiple values to be included in a deployment.
+Kubernetes 1.16 exposed the `envFrom` property to allow the contents of a secret or configmap to be created as environment variables. Octopus now supports `envFrom` fields to provide a way for multiple values to be included in a deployment.
 
 [Learn more](/blog/2020-12/k8s-envfrom/index.md)  
   
-**Allow `DaemonSets` and `StatefulSets` to be created and deployed**
+**Allow DaemonSets and StatefulSets to be created and deployed**
 
 The Deploy Kubernetes containers step allows Octopus to create Kubernetes deployments in a cluster. We have updated this step in the Octopus Web Portal to support `DaemonSets` and `StatefulSets` to make it more useful.
 
@@ -68,7 +68,7 @@ You can now annotate your DevOps automation processes with markdown notes. Add t
 
 This change is useful to help your future-self, and other team members, to understand complex automated processes at a glance.
 
-![Add markdown notes to automation steps](https://github.com/octopusdeploy/issues/issues/6608)
+[Learn more](https://github.com/octopusdeploy/issues/issues/6608)
 
 ## Config as Code Update
 
