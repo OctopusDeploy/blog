@@ -2,13 +2,16 @@
 title: Exposing Octopus variables to a Kubernetes container
 description: Learn how to use the envFrom feature in Kubernetes to pass groups of variables to a container.
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
-metaImage: 
-bannerImage: 
+visibility: public
+published: 2020-12-03
+metaImage: blogimage-exposing-octopus-variables-kubernetes-container-2020.png
+bannerImage: blogimage-exposing-octopus-variables-kubernetes-container-2020.png
 tags:
- - Octopus
+ - DevOps
+ - Kubernetes
 ---
+
+![Exposing Octopus variables to a Kubernetes container](blogimage-exposing-octopus-variables-kubernetes-container-2020.png)
 
 If you follow best practice guides like [The Twelve-Factor App](https://12factor.net/), your Kubernetes applications will likely externalize configuration values with environment variables. There are many ways to define these environment variables in pods, but until recently, they all involved explicitly defining each environment variable one by one.
 
