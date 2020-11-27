@@ -7,7 +7,8 @@ published: 2020-12-02
 metaImage: blogimage-creating-multi-environment-kubernetes-deployments-2020.png
 bannerImage: blogimage-creating-multi-environment-kubernetes-deployments-2020.png
 tags:
- - Octopus
+ - DevOps
+ - Kubernetes
 ---
 
 ![Creating multi-environment Kubernetes deployments](blogimage-creating-multi-environment-kubernetes-deployments-2020.png)
