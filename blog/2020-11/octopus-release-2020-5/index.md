@@ -1,5 +1,5 @@
 ---
-title: "Octopus 2020.5 - Small improvements and Config as Code update"
+title: "Octopus 2020.5 - Solid improvements and Config as Code update"
 description: "Octopus 2020.5 introduces support for self-signed certificates, GitHub container registry support, Kubernetes and Terraform improvements and more."
 author: rob.pearson@octopus.com
 visibility: public
