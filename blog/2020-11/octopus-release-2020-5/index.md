@@ -14,7 +14,7 @@ tags:
 
 I'm pleased to share that Octopus 2020.5 is now available. This release has some solid improvements; however, it's a quieter release as we're doing a lot of behind-the-scenes work for our Config as Code feature.
 
-Octopus 2020.5 is the [fifth of six in 2020](/blog/2020-03/releases-and-lts/index.md), and it includes six months of long-term support. The following table shows our current versions with long-term support:
+Octopus 2020.5 is the [fifth of six releases in 2020](/blog/2020-03/releases-and-lts/index.md), and it includes six months of long-term support. The following table shows our current versions with long-term support:
 
 | Release               | Long-term support  | LTS end date |
 | --------------------- | ------------------ | ------------ |
