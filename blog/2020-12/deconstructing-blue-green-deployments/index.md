@@ -21,7 +21,7 @@ In this blog post and associated screencast, I’ll show you how to recreate a b
 
 ## Screencast
 
-<iframe width="1280" height="720" src="https://www.youtube.com/embed/BiaDsKAPSdU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="900" height="506" src="https://www.youtube.com/embed/BiaDsKAPSdU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Create the initial deployment
 

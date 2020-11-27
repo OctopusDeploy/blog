@@ -23,7 +23,7 @@ In this blog post and screencast, we look at how Kubernetes deployments can be p
 
 The video below demonstrates the process of deploying a web application to multiple environments within a Kubernetes cluster. The remainder of the blog post provides links to additional resources and copies of the scripts used in this demo:
 
-<iframe width="1280" height="720" src="https://www.youtube.com/embed/WexwK4ro9Bs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="900" height="506" src="https://www.youtube.com/embed/WexwK4ro9Bs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## The feeds
 
