@@ -1,5 +1,5 @@
 ---
-title: "Octopus 2020.5 - Solid improvements and Config as Code update"
+title: "Octopus 2020.5: Solid improvements and Config as Code update"
 description: "Octopus 2020.5 introduces support for self-signed certificates, GitHub container registry support, Kubernetes and Terraform improvements and more."
 author: rob.pearson@octopus.com
 visibility: public
@@ -28,29 +28,29 @@ Octopus 2020.5 is the [fifth of six in 2020](/blog/2020-03/releases-and-lts/inde
 
 ![Create self-signed certificates in the certificate library ](self-signed-certificates.png)
 
-Creating a self-signed certificate for development and testing purposes isn't tricky, but Octopus now makes this faster and simpler. You can now create a self-signed certificate in the certificate library (**{{ Library,Certificates }}**) and take advantage of it in your automation processes. This update makes it more convenient to test the execution of new or updated deployments and runbooks involving certificates. You can also download it if you need to use it with command-line interfaces (CLI), desktop applications or other tasks.
+Creating a self-signed certificate for development and testing purposes isn't tricky, but Octopus now makes this faster and simple. You can now create a self-signed certificate in the certificate library (**{{ Library,Certificates }}**) and take advantage of it in your automation processes. This update makes it more convenient to test the execution of new or updated deployments and runbooks involving certificates. You can also download it if you need to use it with command-line interfaces (CLI), desktop applications or other tasks.
 
 [Learn more](https://octopus.com/docs/deployment-examples/certificates)
 
 ## GitHub container registry support 
 
-Octopus now supports [GitHub container registry (GHCR)](https://docs.github.com/en/free-pro-team@latest/packages/getting-started-with-github-container-registry/about-github-container-registry) as a package source for automated deployments and runbook processes. We technically already supported GHCR however, GitHub has not implemented the Docker catalog API to allows search for repositories which produced confusing errors. We now handle these inconsistencies more gracefully so you can take advantage of GHCR feed without any issues.
+Octopus now supports [GitHub container registry (GHCR)](https://docs.github.com/en/free-pro-team@latest/packages/getting-started-with-github-container-registry/about-github-container-registry) as a package source for automated deployments and runbook processes. We technically already supported GHCR, however, GitHub has not implemented the Docker catalog API to allows search for repositories which produced confusing errors. We now handle these inconsistencies more gracefully so you can take advantage of GHCR feeds without any issues.
 
 [Learn more](https://github.com/octopusdeploy/issues/issues/6567)
 
-## Kubernetes Updates
+## Kubernetes updates
 
 This release includes two small updates to improve our Kubernetes support driven by customer feedback.
 
 **Expose `envFrom` fields in Deploy Kubernetes containers step**
 
-Kubernetes 1.16 exposed the envFrom property to allow the contents of a secret or configmap to be created as environment variables. Octopus now supports `envFrom` fields to provides a way for multiple values to be included in a deployment.
+Kubernetes 1.16 exposed the envFrom property to allow the contents of a secret or configmap to be created as environment variables. Octopus now supports `envFrom` fields to provide a way for multiple values to be included in a deployment.
 
 [Learn more](/blog/2020-12/k8s-envfrom/index.md)  
   
-**Allow `Daemonsets` and `Statefulsets` to be created and deployed**
+**Allow `DaemonSets` and `StatefulSets` to be created and deployed**
 
-The Deploy Kubernetes containers step allows Octopus to create  Kubernetes deployments in a cluster. We have updated this step in the Octopus Web Portal to support `DaemonSets` and `StatefulSets` to make it more useful, and their inputs were very similar.
+The Deploy Kubernetes containers step allows Octopus to create Kubernetes deployments in a cluster. We have updated this step in the Octopus Web Portal to support `DaemonSets` and `StatefulSets` to make it more useful.
 
 [Learn more](https://github.com/octopusdeploy/issues/issues/6551)
 
@@ -64,9 +64,9 @@ Octopus now supports support HCL2 and Terraform 0.12+ for inline scripts. This u
 
 ![Add markdown notes to automation steps](automation-step-notes.png)
 
-You can now annotate your DevOps automation processes with markdown notes. Add text-based notes, with markdown formatting support, to any deployment or runbook step, and the process summary will display it.
+You can now annotate your DevOps automation processes with markdown notes. Add text-based notes, with markdown formatting support to any deployment or runbook step, and the process summary will display it.
 
-This change is useful to help your future-self, or other team members, to understand complex automated processes at a glance.
+This change is useful to help your future-self, and other team members, to understand complex automated processes at a glance.
 
 ![Add markdown notes to automation steps](https://github.com/octopusdeploy/issues/issues/6608)
 
@@ -77,13 +77,13 @@ This change is useful to help your future-self, or other team members, to unders
 We wanted to share a preview of our Config as Code feature in November 2020, but it’s not ready yet. We underestimated how long some of the core components would take to build, and this feature is an especially tricky one to ship incrementally.
 
 Fortunately, we’re making excellent progress, and we’ve completed some significant parts of the overall feature.
-* You can configure projects to use a git repository.
-* You can switch branches in the Octopus Web Portal, viewing and editing the deployment process on different branches.
+* Configuring projects to use a git repository.
+* Switching branches in the Octopus Web Portal, viewing and editing the deployment process on different branches.
 * Changes can be committed, including adding a commit message.
 * The resulting configuration is stored in git in a format based on HCL.
 * The branch can be specified when creating releases, selecting the version of the deployment process to use. This will eventually support selecting tags or commits also.
 
-What's outstanding? The short answer is a lot of small things. Shifting a chunk of Octopus from the database, which has a single version, indexes, foreign keys etc., to a git repository with text files and limitless branches, leaves a bunch of loose ends.
+What's outstanding? The short answer is a lot of small things. Moving a chunk of Octopus from the database, which has a single version, indexes, foreign keys, etc., to a git repository with text files and limitless branches, leaves a lot of loose ends.
 
 Click the learn more link below to read more about the factors that have gone into designing and building our config as code support. We explicitly call out several anti-patterns that we have intentionally avoided. 
 
@@ -105,8 +105,7 @@ Check out our [public roadmap](https://octopus.com/roadmap) to see what’s comi
 
 ## Conclusion
 
-Octopus 2020.5 is now generally available, and it includes a collection of improvements to support self-signed certficates, Terraform updates, Kubernetes updates, automation step notes and a ton of behind-the-scenes changes to support our upcoming config as code feature.
-
+Octopus 2020.5 is now generally available, and it includes a collection of improvements to support self-signed certificates, Terraform updates, Kubernetes updates, automation step notes, and a ton of behind-the-scenes changes to support our upcoming Config as Code feature.
 
 Feel free to leave a comment, and let us know what you think! Happy deployments!
 
