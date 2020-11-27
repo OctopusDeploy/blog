@@ -2,13 +2,15 @@
 title: Creating multi-environment Kubernetes deployments
 description: Learn how to securely deploy across multiple environments in a single Kubernetes cluster
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
-metaImage: 
-bannerImage: 
+visibility: public
+published: 2020-12-02
+metaImage: blogimage-creating-multi-environment-kubernetes-deployments-2020.png
+bannerImage: blogimage-creating-multi-environment-kubernetes-deployments-2020.png
 tags:
  - Octopus
 ---
+
+![Creating multi-environment Kubernetes deployments](blogimage-creating-multi-environment-kubernetes-deployments-2020.png)
 
 The declarative nature of Kubernetes resources provides a convenient way to describe the desired state of your cluster. However, Kubernetes has no native concept of environments. While namespaces provide a natural mechanism for partitioning your cluster, it is difficult to get a sense of what has been deployed where just by running `kubectl` or looking at traditional Kubernetes dashboards.
 
