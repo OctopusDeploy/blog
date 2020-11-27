@@ -2,13 +2,16 @@
 title: Deconstructing blue/green deployments in Kubernetes
 description: Learn how to manually implement blue/green deployments in Kubernetes and Octopus.
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
-metaImage: 
-bannerImage: 
+visibility: public
+published: 2020-12-01
+metaImage: blogimage-blue-green-deployments-in-kubernetes_2020.png
+bannerImage: blogimage-blue-green-deployments-in-kubernetes_2020.png
 tags:
- - Octopus
+ - DevOps
+ - Kubernetes
 ---
+
+![Deconstructing blue/green deployments in Kubernetes](blogimage-blue-green-deployments-in-kubernetes_2020.png)
 
 In addition to the recreate and rolling deployment strategies that are supported natively in Kubernetes, Octopus gives you the ability to perform blue/green deployments. This tick box option allows individual Kubernetes deployments to be deployed in a blue/green fashion, complete with service cut over and a cleanup of old resources.
 
