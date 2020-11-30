@@ -24,7 +24,7 @@ With a runbook, you are typically executing a task in response to a request from
 
 By making the runbook self-service, you are taking that same runbook you would use to refresh the test database, and making it available to the user who wants to run it. The user can now run that runbook whenever they need, without having to raise a ticket, and without taking up your valuable time.
 
-## How do self-service runbooks benefit Operations Teams?
+## Why do self-service runbooks benefit Operations Teams?
 
 By making runbooks available to your users, you save the time you would have spent performing the task. This frees you up for more important and interesting work. Additionally, because the user inputs all the required information directly into the runbook, you save time going back-and-forth on a ticket trying to gather all the correct information (and reducing the chance of mistakes in the process). 
 
