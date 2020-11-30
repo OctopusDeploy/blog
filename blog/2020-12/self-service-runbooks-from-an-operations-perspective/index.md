@@ -16,7 +16,7 @@ In this post, we will look from an Operations Team perspective at what a runbook
 
 ## What are runbooks?
 
-A runbook is simply a process that you follow to accomplish a task. You can have runbooks for almost anything - restarting a web server, cleaning up old log files, or even swapping which environment a load balancer points to. They are a way to standardize work that typically happens often, ensuring that the work gets done in a reliable, repeatable way. Because of the repeated nature of the work, runbooks are often automated.
+A runbook is simply a process that you follow to accomplish a task. You can have runbooks for almost anything - restarting a web server, cleaning up old log files, or even swapping which environment a load balancer points to. They are a way to standardize work that typically happens often, ensuring that the work gets done in a reliable, repeatable way. Because of the repeated nature of the work, runbooks are usually automated, allowing you to "bake into the code" the complex knowledge required to get the task done.
 
 ## What do we mean by self-service runbooks?
 
