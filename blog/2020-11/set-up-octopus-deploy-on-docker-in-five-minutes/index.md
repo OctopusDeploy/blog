@@ -145,4 +145,4 @@ Log in using the Octopus deploy username and password specified in the `.env` co
 
 You are now successfully logged into Octopus Deploy and can start using it.
 
-The code in this post is available in [GitHub](https://github.com/AdminTurnedDevOps/OctopusDeploy-Local-Docker-Env)
+The code in this post is available in [GitHub](https://github.com/OctopusSamples/OctopusDeploy-Local-Docker-Env)
