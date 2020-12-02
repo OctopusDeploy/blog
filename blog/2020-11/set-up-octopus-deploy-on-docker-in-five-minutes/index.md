@@ -1,6 +1,6 @@
 ---
 title: Octopus Deploy on Docker quickstart
-description: Learn how to configure Octopus Deploy on Docker via localhost
+description: Learn how to configure Octopus Deploy to run on Docker on your local computer.
 author: michael.levan@octopus.com
 visibility: private
 published: 2050-11-18
@@ -13,18 +13,18 @@ tags:
 
 You can run Octopus on-premises, with an Octopus Cloud instance, or even in Docker. You can run Octopus Deploy in a Docker container for both testing and production environments.
 
-In this blog post, you'll learn how to get a Docker container up and running in five minutes on localhost.
+In this blog post, you'll learn how to get a Docker container up and running in five minutes on your local computer.
 
 ## Prerequisites
 
 To follow along with this blog post, you need the following:
 
 - Pre-existing knowledge of Octopus Deploy
-- Windows or MacOS where you can access localhost
+- A local computer running Windows or MacOS
 - Docker [desktop](https://www.docker.com/products/docker-desktop).
 - A code editor like VS Code
 
-## The environment configuration
+## Configure your Environment
 
 The first step in creating a local containerized Octopus Deploy environment is to set up a `.env` configuration file. The `.env` allows you to save environment variables for certain values of the Docker Compose configuration. That way, you can set variables instead of hardcoding values.
 
@@ -41,9 +41,9 @@ OCTOPUS_ADMIN_PASSWORD=SecreTP@assw0rd
 
 After the values are added to the `.env` file, you can create the Docker Compose file.
 
-## The Docker Compose file
+## Configure Docker Compose to run Octopus Containers
 
-The Docker Compose file creates a running container for the Octopus Deploy environment to run on localhost. The Compose file consists of two configurations:
+The next step is to create a Docker Compose file, which stores the configuration for two containers. The Docker Compose file creates a running container for the Octopus Deploy environment to run on your local computer. The Compose file consists of two configurations:
 
 - The SQL Docker image used for the Octopus Deploy backend
 - The Octopus Deploy Docker image
@@ -144,5 +144,7 @@ You will now see the Octopus Deploy login page:
 Log in using the Octopus deploy username and password specified in the `.env` configuration file.
 
 You are now successfully logged into Octopus Deploy and can start using it.
+
+If you'd like to take this journey even further, you can learn how to run an Octopus Deploy Linux container on Kubernetes using a blog post by Matthew Casperson, which you can find [here](https://octopus.com/blog/introducing-linux-docker-image)
 
 The code in this post is available in [GitHub](https://github.com/OctopusSamples/OctopusDeploy-Local-Docker-Env)
