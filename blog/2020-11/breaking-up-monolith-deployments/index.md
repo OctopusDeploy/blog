@@ -1,5 +1,5 @@
 ---
-title: Break up monolithic deployments
+title: Breaking up monolithic deployments
 description: Learn how to break up a large process into smaller deployable components
 author: shawn.sesna@octopus.com
 visibility: private
@@ -21,7 +21,7 @@ For this post, I'm using the [Pitstop](https://github.com/EdwinVW/pitstop) appli
 - Databases
 - References third-party docker containers
 
-The original version of this application embedded the database and table creation within the C# code itself.  To make a more useful demonstration, I extracted the database activities and placed them into the deployment process.  In addition, the APIs and Web front end were all dockerized.  Again, I modified this so they could be deployed to Azure instead of containers.  Here's the [modified version](https://github.com/OctopusSamples/PitStop).
+The original version of this application embedded the database and table creation within the C# code itself.  To make a more useful demonstration, I extracted the database activities and placed them into the deployment process.  In addition, the APIs and web front end were all dockerized.  Again, I modified this so they could be deployed to Azure instead of containers.  Here's the [modified version](https://github.com/OctopusSamples/PitStop).
 
 ## Monolithic deployment process
 
@@ -45,9 +45,9 @@ The modifications to the Pitstop application were to add more pieces to the depl
 - Deploy Workshop management database
 - Deploy Workshop management eventstore database
 - Deploy Pistop web app
-- Deploy Customer management api
-- Deploy Vehicle management api
-- Deploy Workshop management api
+- Deploy Customer management API
+- Deploy Vehicle management API
+- Deploy Workshop management API
 - Slack notification - deployment complete
 - Slack notification - deployment failed (only in failure)
 
@@ -68,7 +68,7 @@ Looking at our deployment process, we can identify some of the steps that are re
 
 ![](octopus-project-invoice.png)
 
-Deployment of the Invoice components now takes only 1 minute versus the 15 minutes in the monolith.  This is a significant time saving, especially in cases where the invoice components are the only pieces that need updating.
+Deployment of the Invoice components now takes only 1 minute versus the 15 minutes in the monolith.  This is a significant time saving, especially in cases where the invoice components are the only pieces that need to be updated.
 
 Breaking out the entire process into different projects would yield something similar to this:
 
@@ -86,10 +86,10 @@ Octopus Deploy contains a built-in step template called [Deploy a Release](https
 
 ![](octopus-project-orchestration.png)
 
-Using the **Deploy a Release** template does come with a couple caveats:
+Using the **Deploy a Release** template does come with a couple of caveats:
 - The child project release must be created prior to the orchestration project release creation.  This can be done with our build server plugins to create the release from the build or using the CLI.
-- it is unable to choose specific release version of child projects.
+- It is unable to choose specific release version of child projects.
 
 ## Conclusion
 
-Automating the deployment of an application is a critical step in your DevOps journey.  Once your deployment process has reached monolithic proportions, the next step is to identify which components can be deployed individually, which is often easier said than done.  A side-effect of this exercise is that the same components that can be deployed individually can usually be built individually, which can drastically cut down on build duration and result in lower lead times.  With build duration and deployment time lowered, you have the capability to deploy your application faster and more often.
+Automating the deployment of an application is a critical step in your DevOps journey.  If your deployment process has reached monolithic proportions, the next step is to identify which components can be deployed individually, which is often easier said than done.  A side-effect of this exercise is that the same components that can be deployed individually can usually be built individually, which can drastically cut down on build duration and result in lower lead times.  With build duration and deployment time lowered, you have the capability to deploy your application faster and more often.
