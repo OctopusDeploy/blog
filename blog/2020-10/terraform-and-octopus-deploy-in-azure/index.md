@@ -1,6 +1,6 @@
 ---
-title: Infrastructure as Code in Azure with Terraform and Octopus Deploy
-description:  In this blog post, I demonstrate using Infrastructure-as-code from Terraform and Octopus Deploy to create resources and services in Azure.
+title: Infrastructure as code in Azure with Terraform and Octopus Deploy
+description:  In this blog post, I demonstrate using Infrastructure as code from Terraform and Octopus Deploy to create resources and services in Azure.
 author: michael.levan@octopus.com
 visibility: private
 published: 2199-10-10 
@@ -22,9 +22,9 @@ To follow along with this blog post, you need the following:
 - An Azure Service Principal (app registration) that has access to create resources in your Azure subscription.
 - Knowledge of [Terraform](https://www.terraform.io/intro/index.html) at a beginner-to-intermediate level.
 
-## Why use Octopus and Terraform together
+## Using Octopus and Terraform together
 
-Terraform is an open-source [Infrastructure-as-Code](https://docs.microsoft.com/en-us/azure/devops/learn/what-is-infrastructure-as-code) platform created by [Hashicorp](https://www.hashicorp.com/) that is supported by default in Octopus Deploy. 
+Terraform is an open-source [Infrastructure as code](https://docs.microsoft.com/en-us/azure/devops/learn/what-is-infrastructure-as-code) platform created by [Hashicorp](https://www.hashicorp.com/) that is supported by default in Octopus Deploy. 
 
 You can deploy Terraform resources to:
 
@@ -113,19 +113,19 @@ Next, you need a way to authenticate from Octopus Deploy to Azure. Octopus Deplo
 
 ### Create an Azure account
 
-1. Log into the Octopus Deploy portal and go to **{{Infrastructure, Accounts}}**
-2. Click **ADD ACCOUNT** button and choose the **Azure Subscription** option.
-3. Add in the associated information for the Azure Service Principal you are using to create resources in the Azure Portal. 
+1. Log into the Octopus Deploy web portal and go to **{{Infrastructure, Accounts}}**
+2. Click **ADD ACCOUNT** and choose the **Azure Subscription** option.
+3. Add the associated information for the Azure Service Principal you are using to create resources in the Azure Portal. 
 4. To confirm that the Azure Service Principal works, click **SAVE AND TEST**.
 
 ## Creating a new project in Octopus Deploy
 
-After the authentication is complete from Octopus Deploy to Azure, you can start thinking about how and where you want the Terraform runbook to exist. To ensure that the runbook is in its own project, you can create the project with the Octopus Web Portal.
+After the authentication is complete from Octopus Deploy to Azure, you can start thinking about how and where you want the Terraform runbook to exist. To ensure that the runbook is in its own project, you can create the project in the Octopus Web Portal.
 
 ### Create a project in Octopus Deploy
 
 1. Log into the Azure portal and go to **Projects**.
-2. Choose which project group you'd like to store the project in and click the green **ADD PROJECT** button.
+2. Choose which project group you'd like to store the project in and click **ADD PROJECT**.
 3. Create a new project and name it **TerraformAzure**.
 
 When the project is created, it's time to create the runbook.
@@ -202,4 +202,4 @@ After the runbook has executed, the task summary will show you have successfully
 
 ## Conclusion
 
-Combining the power of continuous deployment and infrastructure-as-code is key to any automated environment. Not only does it give you automation, but a place for fellow team members to collaborate, see what's happening, and understand the process instead of manually doing it yourself.
+Combining the power of continuous deployment and infrastructure as code is key to any automated environment. Not only does it give you automation, but a place for fellow team members to collaborate, see what's happening, and understand the process instead of manually doing it yourself.
