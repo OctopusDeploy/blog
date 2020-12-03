@@ -2,13 +2,15 @@
 title: Breaking up monolithic deployments
 description: Learn how to break up a large process into smaller deployable components
 author: shawn.sesna@octopus.com
-visibility: private
+visibility: public
 published: 2020-12-08
-metaImage: 
-bannerImage: 
+metaImage: blogimage-breaking-up-monoliths-2020.png
+bannerImage: blogimage-breaking-up-monoliths-2020.png
 tags:
   - DevOps
 ---
+
+![Breaking up monolithic deployments](blogimage-breaking-up-monoliths-2020.png)
 
 The term *monolithic deployment* often carries a negative connotation, however, monolithic deployments are the natural progression of an application that has grown over time.  In this post, I demonstrate breaking apart a monolithic process into smaller deployable components.
 
