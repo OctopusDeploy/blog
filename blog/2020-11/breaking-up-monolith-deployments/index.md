@@ -3,7 +3,7 @@ title: Breaking up monolithic deployments
 description: Learn how to break up a large process into smaller deployable components
 author: shawn.sesna@octopus.com
 visibility: private
-published: 2021-11-03
+published: 2020-12-08
 metaImage: 
 bannerImage: 
 tags:
