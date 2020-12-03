@@ -7,7 +7,7 @@ published: 2021-11-03
 metaImage: 
 bannerImage: 
 tags:
-	- DevOps
+  - DevOps
 ---
 
 The term *monolithic deployment* often carries a negative connotation, however, monolithic deployments are the natural progression of an application that has grown over time.  In this post, I demonstrate breaking apart a monolithic process into smaller deployable components.
