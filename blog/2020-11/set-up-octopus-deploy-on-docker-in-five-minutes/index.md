@@ -1,6 +1,6 @@
 ---
 title: Octopus Deploy on Docker quickstart
-description: Learn how to configure Octopus Deploy to run on Docker on your local computer.
+description: Learn how to configure Octopus Deploy to run on Docker on your local computer in just five minutes.
 author: michael.levan@octopus.com
 visibility: private
 published: 2050-11-18
@@ -19,7 +19,7 @@ In this blog post, you'll learn how to get a Docker container up and running in 
 
 To follow along with this blog post, you need the following:
 
-- Pre-existing knowledge of Octopus Deploy
+- Knowledge of Octopus Deploy
 - A local computer running Windows or MacOS
 - Docker [desktop](https://www.docker.com/products/docker-desktop).
 - A code editor like VS Code
@@ -28,8 +28,8 @@ To follow along with this blog post, you need the following:
 
 The first step in creating a local containerized Octopus Deploy environment is to set up a `.env` configuration file. The `.env` allows you to save environment variables for certain values of the Docker Compose configuration. That way, you can set variables instead of hardcoding values.
 
-1. Open up a text editor and create a new file called `.env`
-2. Add in the following code to the `.env` file.
+1. Open a text editor and create a new file called `.env`
+2. Add the following code to the `.env` file.
 
 This containerized environment is supposed to be for testing/development purposes only, which is why you will see the passwords in the `.env` configuration file. This is not recommended for production-based deployments.
 
@@ -67,7 +67,7 @@ services:
       retries: 10
 ```
 
-  3. The second part of the Docker Compose file configures Octopus Deploy. The official Octopus Deploy image is used and the environment is set up to accept the EULA, configure the Octopus Deploy username, password, and the database connection string to the SQL DB container that was configured earlier. The ports are then specified for Octopus Deploy, and there is a `depends_on` switch to ensure that the database is configured prior to the Octopus Deploy container running. The condition is to ensure that the database service is healthy:
+3. The second part of the Docker Compose file configures Octopus Deploy. The official Octopus Deploy image is used, and the environment is set up to accept the EULA, configure the Octopus Deploy username, password, and the database connection string to the SQL DB container that was configured earlier. The ports are then specified for Octopus Deploy, and there is a `depends_on` switch to ensure that the database is configured prior to the Octopus Deploy container running. The condition is to ensure that the database service is healthy:
 
 ```bash
 octopus:
@@ -145,6 +145,6 @@ Log in using the Octopus deploy username and password specified in the `.env` co
 
 You are now successfully logged into Octopus Deploy and can start using it.
 
-If you'd like to take this journey even further, you can learn how to run an Octopus Deploy Linux container on Kubernetes using a blog post by Matthew Casperson, which you can find [here](https://octopus.com/blog/introducing-linux-docker-image)
+If you'd like to take this journey even further, you can learn how to run an Octopus Deploy Linux container on Kubernetes using a [blog post by Matthew Casperson](https://octopus.com/blog/introducing-linux-docker-image).
 
 The code in this post is available in [GitHub](https://github.com/OctopusSamples/OctopusDeploy-Local-Docker-Env)
