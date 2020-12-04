@@ -4,11 +4,13 @@ description: Learn about self-service runbooks and how they benefit operations t
 author: adrian.howchin@octopus.com
 visibility: public
 published: 2020-12-07
-metaImage: 
-bannerImage: 
+metaImage: blogimage-self-service-runbooks-for-ops-teams-2020.png
+bannerImage: blogimage-self-service-runbooks-for-ops-teams-2020.png
 tags:
- - Product
+ - DevOps
 ---
+
+![](blogimage-self-service-runbooks-for-ops-teams-2020.png)
 
 I this post, I talk about runbooks from an operations team perspective, what they are, what we mean by self-service runbooks, and how they help you and your users.
 
