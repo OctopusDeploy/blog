@@ -8,11 +8,12 @@ metaImage: blogimage-self-service-runbooks-for-ops-teams-2020.png
 bannerImage: blogimage-self-service-runbooks-for-ops-teams-2020.png
 tags:
  - DevOps
+ - Runbooks
 ---
 
 ![](blogimage-self-service-runbooks-for-ops-teams-2020.png)
 
-I this post, I talk about runbooks from an operations team perspective, what they are, what we mean by self-service runbooks, and how they help you and your users.
+In this post, I talk about runbooks from an operations team perspective, what they are, what we mean by self-service runbooks, and how they help you and your users.
 
 ## What are runbooks?
 
