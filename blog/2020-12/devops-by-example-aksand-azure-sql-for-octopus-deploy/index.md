@@ -1,3 +1,16 @@
+---
+title: DevOps by Example - AKS and Azure SQL for Octopus Deploy
+description: Learn how to createa a fully containerized Octopus Deploy environment using AKS
+author: michael.levan@octopus.com
+visibility: private
+published: 2050-12-02
+metaImage:
+bannerImage:
+tags:
+ - DevOps
+ - Kubernetes
+---
+
 In the first blog post for the Multi-Cloud Kubernetes Deployments blog post series. This series is about how to use Octopus Deploy Linux containers in many different Kubernetes deployment scenarios.
 
 You're going to learn how to not only deploy the needed cloud infrastructure and services for deploying Octopus Deploy as a container, but you'll also learn how to do it in a cloud development and automated fashion.
