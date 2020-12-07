@@ -134,20 +134,19 @@ Next, you need to create a resource group function that contains three parameter
 
 ```go
 func newResourceGroup(ctx *pulumi.Context, resourceGroupName string, location string) {
-	if ctx == nil {
-		log.Println("Pulumi CTX is not working as expected... please check issues on the SDK: github.com/pulumi/pulumi/sdk/v2/go/pulumi")
-	} else {
-		pulumi.Run(func(ctx *pulumi.Context) error {
-			resourceGroup, err := core.NewResourceGroup(ctx, resourceGroupName, &core.ResourceGroupArgs{Location: pulumi.String(location)})
-			if err != nil {
-				log.Println(err)
-			}
+    if ctx == nil {
+        log.Println("Pulumi CTX is not working as expected... please check issues on the SDK: github.com/pulumi/pulumi/sdk/v2/go/pulumi")
+    } else {
+        pulumi.Run(func(ctx *pulumi.Context) error {
+            resourceGroup, err := core.NewResourceGroup(ctx, resourceGroupName, &core.ResourceGroupArgs{Location: pulumi.String(location)})
+            if err != nil {
+                log.Println(err)
+            }
 
-			fmt.Println(resourceGroup)
-			return nil
-		})
-	}
-}
+            fmt.Println(resourceGroup)
+            return nil
+        })
+    }
 ```
 
 The `if` statement checks to see if ctx is nil, and allows us to see if there's an issue with the SDK around the context.
