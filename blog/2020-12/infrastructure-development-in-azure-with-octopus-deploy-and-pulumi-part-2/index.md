@@ -13,7 +13,7 @@ tags:
 
 In [part one](/blog/2020-12/infrastructure-development-in-azure-with-octopus-deploy-and-pulumi-part-1/index.md) of this infrastructure development with Pulumi and Octopus Deploy series, I showed you how to configure Pulumi with a new project and write code with the Pulumi SDK that specifies Azure using Go.
 
-In this post, I go over the deployment aspects: packaging and deploying the Go code from part one with Octopus Deploy.
+In this post, I go over the deployment aspects and show you how to package and deploy the Go code from part one with Octopus Deploy.
 
 ## Using a GitHub repo
 
@@ -35,8 +35,6 @@ First, create a new GitHub repo.
 3. Give the repository a name, for example, this blog post will use the name `pulumi-azure-resource-group`.
 4. Because this repository doesn't have any sensitive information, it's okay to keep it `public`.
 5. Once complete, click **Create repository**:
-
-![](images/1.png)
 
 ### Pulling down the repo locally and pushing the code
 
@@ -63,7 +61,7 @@ The code is now written, pushed to GitHub, and it is ready to be packaged for de
 
 ### Creating an external feed
 
-1. Open a web browser and log into the Octopus Deploy portal.
+1. Open a web browser and log into the Octopus Deploy Web Portal.
 2. Go to **{{Library, External Feeds}}**.
 3. Click **ADD FEED**.
 4. Under **Feed Type**, choose **GitHub Repository Feed.**
@@ -73,7 +71,7 @@ You don't have to add any credentials as the repo is public.
 
 ### Creating a new project and project group
 
-1. In the Octopus Deploy web portal, go to **Projects**.
+1. Navigate to **Projects**.
 2. Click **ADD GROUP**.
 3. Name the group **Pulumi**.
 4. Within the new group, add a new project called **Golang-Pulumi**.
@@ -83,7 +81,7 @@ You don't have to add any credentials as the repo is public.
 For the Pulumi step template to deploy to Azure, it needs authentication for Azure. You can satisfy this requirement by using a project variable of type Azure account.
 
 1. Navigate to the project you created and under **Variables**, click **Project**.
-2. Create a new variable of account type **Azure Account.** Ensure that the variable name is **Azure**. The step template searches the project variables for a variable name of **Azure**.
+2. Create a new variable of account type **Azure Account.** Ensure that the variable name is **Azure** because the step template searches the project variables for a variable name of **Azure**.
 3. Select the Azure account that has access to deploy resources.
 4. Save the variable.
 
@@ -96,25 +94,25 @@ In the process, there are two deployment steps we will use:
 
 In the project you created, go to **Process** to start adding in the steps.
 
-1. The first step will be Deploy a Package. Under the Deploy a Package step, specify the name, target roles for the deployment target, and package details. Ensure that the package details are pointing to the GitHub feed and the repo where you stored the Pulumi Azure project.
+1. The first step is Deploy a Package. Under the Deploy a Package step, specify the name, target roles for the deployment target, and package details. Ensure that the package details are pointing to the GitHub feed and the repo where you stored the Pulumi Azure project.
 
 	Customize the features used by the step:
 
 	- Scroll to the top of the step and click the **CONFIGURE FEATURES** button.
-	- Select the Custom Installation Directory option.
-	- Uncheck the .NET Configuration Variables and .NET Configuration Transforms options.
+	- Select the **Custom Installation Directory** option.
+	- Uncheck the **.NET Configuration Variables** and **.NET Configuration Transforms** options.
 
 2. For the custom installation directory, choose where you want the Pulumi Azure code to reside. This is also where the Pulumi step will look to create the Azure resource group.
 3. Save the step.
 4. The second step is Run Pulumi (Linux). Under Run Pulumi (Linux), specify the name and target roles for the deployment target. 
 5. There are a few parameters under the Run Pulumi (Linux) step template that are specific to the step. Let's go over them:
     - **Stack Name**: The stack name is the full name of the project in Pulumi. It's `OrganizationName/ProjectName/StackName`. For example, mine is `AdminTurnedDevOps/azure-go-new-resource-group/dev`. You can find this information for your stack name in the Pulumi portal.
-    - **Create Stack**: This option is only if you crate a stack. Because a stack already exists, you don't have to worry about using this option.
+    - **Create Stack**: This option is only needed if you create a stack. Because a stack already exists, you don't have to worry about using this option.
     - **Command**: Pulumi has several commands, but the one you're interested in is `pulumi up`. As you can see, you don't have to type the full command, just type `up`
-    - **Command Args**: The command arg `--yes` ir required. When you run Pulumi, say, from the command line, there's an option that you need to choose to create a resource. The two options are `yes` or `no`. Because we don't have those pop-ups in the step template, we use the `--yes` flag.
+    - **Command Args**: The command arg `--yes` is required. When you run Pulumi, say, from the command-line, there's an option that you need to choose to create a resource. The two options are `yes` or `no`. Because we don't have those pop-ups in the step template, we use the `--yes` flag.
     - **Pulumi Access Token**: This is an API key that you can generate in the Pulumi portal under settings.
     - **Pulumi Working Directory**: The working directory is where you copied the code over to from the **Deploy a Package** step.
-    - **Restore Dependencies**: This step is for use with NodeJS to restore dependencies. Because you aren't using NodeJS you can uncheck the box.
+    - **Restore Dependencies**: This step is for use with NodeJS to restore dependencies. Because you aren't using NodeJS, you can uncheck the box.
 
 6. When complete, save the step.
 
@@ -124,10 +122,8 @@ Now it's time to create a new release and run the continuous deployment process 
 
 1. In the Octopus Deploy project, click **CREATE RELEASE**.
 2. Click **SAVE**.
-3. Deploy to the environment of your choosing. To do this, choose the **DEPLOY TO** option and select the environment. 
+3. Deploy to the environment of your choosing, by clicking **DEPLOY TO** and selecting the environment. 
 4. Click **DEPLOY**.
-
-![](images/5.png)
 
 You have successfully created an Azure Resource Group using Octopus Deploy and Pulumi.
 
