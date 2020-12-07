@@ -11,7 +11,7 @@ tags:
  - DevOps
 ---
 
-In [part one](add-link) of this infrastructure development with Pulumi and Octopus Deploy series, I showed you how to configure Pulumi with a new project and write code with the Pulumi SDK that specifies Azure using Go.
+In [part one](/blog/2020-12/infrastructure-development-in-azure-with-octopus-deploy-and-pulumi-part-1/index.md) of this infrastructure development with Pulumi and Octopus Deploy series, I showed you how to configure Pulumi with a new project and write code with the Pulumi SDK that specifies Azure using Go.
 
 In this post, I go over the deployment aspects: packaging and deploying the Go code from part one with Octopus Deploy.
 

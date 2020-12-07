@@ -210,4 +210,4 @@ func newResourceGroup(ctx *pulumi.Context, resourceGroupName string, location st
 
 There are a lot of initial steps to configuring Pulumi, but as you can see, it's super powerful. You can take a programming language that you enjoy using and create the infrastructure or services you need in an environment.
 
-In [part two](add-link), I'll show you how to package the Go code and deploy it with Octopus Deploy.
+In [part two](/blog/2020-12/infrastructure-development-in-azure-with-octopus-deploy-and-pulumi-part-2/index.md), I'll show you how to package the Go code and deploy it with Octopus Deploy.
