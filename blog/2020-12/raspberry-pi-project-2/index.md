@@ -17,7 +17,7 @@ In a previous post, [lessons learned building a Raspberry Pi cluster](https://oc
 
 In the last post, the cluster consisted of five Raspberry Pi machines, which was due to the 8-port switch I had available.  I have since upgraded to a 24-port switch which allowed me to fill the case completely with an additional three Pi machines.  With a total of eight machines, I could evenly split them between Docker Swarm and Kubernetes (K8s).
 
-If you're interested, I switched my entire network gear to [Unifi](https://www.ui.com).  This post isn't about networking equipment, but if you've ever considered Unifi, I highly recommend it.  It gives you the control of enterprise equipment at a more affordable price.  A word of caution, they give you just enough freedom that it's possible to spiral out of control: 
+If you're interested, I switched my entire network gear to [Unifi](https://www.ui.com).  This post isn't about networking equipment, but if you've ever considered Unifi, I highly recommend it.  It gives you the control of enterprise equipment at a more affordable price.  A word of caution, they give you just enough freedom with the configuration to get yourself in trouble that it's possible to spiral out of control: 
 
 > If I added just one more access point between the kids room and the dining room, I could maintain full 5Ghz signal strength all the way down the hall
 
