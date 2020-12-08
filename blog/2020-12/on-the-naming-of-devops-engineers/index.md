@@ -24,7 +24,7 @@ If you are a “DevOps Engineer”, I salute you. And I would love you to have a
 
 A job title normally defines the task(s) a person is required to perform. A “Software Developer” develops software, a “Systems Administrator” administrates systems, and a “Team Lead” leads teams. The quality with which they perform that task can be used to assess their performance.
 
-DevOps is different. DevOps is the way a group of people, who typically hold different roles, skills and responsibilities, work together to achieve some goal. It’s a collaboration protocol, and asking one person or one team to “do all the collaborating” makes no sense. Put another way, if you adopted DevOps because you had a silo problem, creating a new “DevOps” silo is unlikely to be an effective solution.
+DevOps is different. DevOps is the way a group of people, who typically hold different roles, skills, and responsibilities, work together to achieve some goal. It’s a collaboration protocol, and asking one person or one team to “do all the collaborating” makes no sense. Put another way, if you adopted DevOps because you had a silo problem, creating a new “DevOps” silo is unlikely to be an effective solution.
 
 **What does a “DevOps Engineer” actually do?**
 
@@ -64,13 +64,13 @@ Since squads are aligned to business objectives, rather than specific services o
 
 > “At Spotify there is a separate operations team, but their job is not to make releases for the squads – their job is to give the squads the support they need to release code themselves.”
 
-So would you call that operations team a “Spotify Model Team”? Is it made up of “Spotify Model Engineers”? Hmmm, that doesn’t sound right, does it?
+So, would you call that operations team a “Spotify Model Team”? Is it made up of “Spotify Model Engineers”? Hmmm, that doesn’t sound right, does it?
 
 It doesn’t sound right because the Spotify Model is primarily a management/collaboration structure that effects everyone, and the work that is required to maintain the deployment platform is only one capability that is required to make it work.
 
-The same is true of DevOps. Build and release pipelines are the tip of the ice-berg… And it’s a big ice-berg.
+The same is true of DevOps. Build and release pipelines are the tip of the iceberg… And it’s a big iceberg.
 
-**So what is “DevOps” anyway?**
+**So, what is “DevOps” anyway?**
 
 Let’s look at a few of the most widely accepted definitions of DevOps:
 
@@ -91,7 +91,7 @@ While deployment pipelines are certainly important, even critical, they are just
 
 **Signalling the wrong ideas**
 
-The assignment “DevOps Engineer” or “DevOps Team” is harmful because it promotes two problematic ideas to the majority of the people in the organisation:
+The assignment “DevOps Engineer” or “DevOps Team” is harmful because it promotes two problematic ideas to most of the people in the organisation:
 
 1.	DevOps is someone else’s job, and not their primary concern
 2.	DevOps is just deployment pipelines and/or infrastructure as code
@@ -116,7 +116,7 @@ Team Topologies refers to these teams as “[Platform Teams](https://www.atlassi
 
 More simply, for an engineer who specialises in looking after a build/release pipelines, why not “Build/Release Engineer”. For someone who looks after some cloud infrastructure, how about “Infrastructure Engineer”, or plain old “Systems Administrator”?
 
-If a person is expected to build multiple internal tools for other software teams, why not plain old “Software Developer”? Before you raise any eyebrows, consider the titles given to the folks who build, maintain or administrate your CRM, HR and accounting systems? You might have a “CRM Developer”, but I’m guessing these folks aren’t called “Sales Engineers”, “HR Administrators” or “Accountants”. Those job titles all mean something else entirely.
+If a person is expected to build multiple internal tools for other software teams, why not plain old “Software Developer”? Before you raise any eyebrows, consider the titles given to the folks who build, maintain, or administrate your CRM, HR, and accounting systems? You might have a “CRM Developer”, but I’m guessing these folks aren’t called “Sales Engineers”, “HR Administrators” or “Accountants”. Those job titles all mean something else entirely.
 
 After all, while most software developers are learning to work in new ways, not many people are seriously suggesting that they need a new job title just because we are moving away from waterfall project management styles towards DevOps.
 
