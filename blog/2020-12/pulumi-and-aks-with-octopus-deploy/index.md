@@ -8,44 +8,40 @@ metaImage:
 bannerImage:
 tags:
  - DevOps
- - Automation
- - Development
 ---
 
 Creating software-defined infrastructure comes in many different shapes and sizes, including popular IaC tools like Terraform and configuration management tools like Ansible. One thing holds true with any tool, you want the ability to write the code in a language that you prefer.
 
-That's where [Pulumi](https://www.pulumi.com/) helps.
-
-Pulumi combines the power of Infrastructure-as-code and general-purpose programming to make Infrastructure-as-software. It's a way to write code as you normally would in Go, Python, JavaScript, etc, to create infrastructure-as-code.
+[Pulumi](https://www.pulumi.com/) combines the power of infrastructure as code and general purpose programming to make infrastructure as software, and it lets you write the code as you normally would in Go, Python, JavaScript, etc.
 
 In this blog post, I explain how to create an Azure Kubernetes Cluster (AKS) using Pulumi, Python, and Octopus Deploy.
 
 ## Prerequisites
 
-When you create Infrastructure-as-software with Pulumi, there are a few hard prerequisites you need to consider. As soon as you create a new project, you're asked which cloud and programming language you're using, because of this, it's best to pick specific technologies.
+When you create infrastructure as software with Pulumi, there are a few hard prerequisites you need to consider. As soon as you create a new project, you're asked which cloud and programming language you're using, because of this, it's best to pick specific technologies.
 
 To follow along with this blog post, you need the following:
 
-- A Pulumi project already created with specifications to point to Azure and Python.
+- A Pulumi project already defined to use Azure and Python.
 - An Azure account. If you don't already have one, you sign can up for a [30-day free trial](https://azure.microsoft.com/en-us/free/).
 - An Azure app registration. If you don't know how to create one, you can follow these [instructions](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal).
 - Intermediate level knowledge of Python.
 - A GitHub account where you can start the Python code.
 - An external GitHub feed. If you don't have one set up, you can follow these [instructions](https://octopus.com/docs/packaging-applications/package-repositories/github-feeds).
 
-## Creating the Python Code
+## Creating the Python code
 
 The following sections show you how to write the code in Python.
 
-### Writing Python Constants
+### Writing Python constants
 
 When you're using Pulumi, you have a few options to pass in arguments at runtime:
 
 - A config file
-- From the command line
+- From the command-line
 - Hard-coded in the code.
 
-I prefer to create a constants file. Think of it like a *parameters at runtime* file. It allows you to avoid hard-coding the values into the code, and it gives you one location where you can change the values.
+I prefer to create a constants file. Think of it like a *parameters at runtime* file. It allows you to avoid hard-coding the values and gives you one location where you can change the values.
 
 In your Pulumi project, create a new file called `aksParamConstants.py`.
 
@@ -63,13 +59,13 @@ auto_scaling = (True)
 clientID = ("azure_app_registration_client_id")
 ```
 
-### Writing Python Functions
+### Writing Python functions
 
 The Python code will use the Pulumi Azure Python SDK.
 
 First, you need to import the packages that you'll use to create an AKS cluster.
 
-The first library is for logging, which will be used to output any errors that occur. The second import is the Pulumi SDK itself. The third is the `[aksParamConstants.py](http://aksparamconstants.py)` file you created in the previous section, Finally, you're importing the core components from the `pulumi_azure` library to manage containers in Azure:
+The first library is for logging and will be used to output any errors that occur. The second import is the Pulumi SDK itself. The third is the `[aksParamConstants.py](http://aksparamconstants.py)` file you created in the previous section, Finally, you're importing the core components from the `pulumi_azure` library to manage containers in Azure:
 
 ```python
 import logging
@@ -154,7 +150,7 @@ def createAKSCluster():
 createAKSCluster()
 ```
 
-### Storing the Code in GitHub
+### Storing the code in GitHub
 
 Because Octopus Deploy needs to retrieve and pull the Pulumi project from a feed and eventually push that code to a deployment target, you can push the Pulumi project to a GitHub repo.
 
@@ -162,35 +158,32 @@ For example, below is a screenshot of my GitHub repo that stores the Pulumi proj
 
 ![Python Code in GitHub](images/1.png)
 
-*Python Code in GitHub*
-
 After you add the Pulumi package to GitHub, you should create a new release of the code in GitHub. Octopus Deploy looks for specific release versions when using external feeds to pull in code.
 
-## Setting up the deployment in Octopus Deploy
+## Configure the deployment in Octopus Deploy
 
 Now that the code is written and stored in GitHub via the Pulumi package, it's time to deploy the package via Octopus Deploy.
 
 ### Authentication in Octopus Deploy
 
-The Pulumi step relies on having either an Azure account or an AWS account in the project variables for authentication to either cloud platform. Because of that, you'll need to add in a project variable of type Azure account.
+The Pulumi step relies on having either an Azure account or an AWS account in the project variables for authentication to either cloud platform. Because of that, you'll need to add in a project variable in Octopus Deploy of type Azure account.
 
-If you don't already have an Azure account added in Octopus Deploy, you can learn about how from the [documentation](https://octopus.com/docs/infrastructure/deployment-targets/azure).
-
-1. Go to the project variables.
-2. Create a new variable and name is Azure.
-3. Under value, go to **{{ CHANGE TYPE, Azure Account}}**.
-4. Choose the Azure account that you want to use for authentication.
+1. In the Octopus Web Portal navigate to the project.
+1. Select project variables.
+1. Create a new variable called Azure.
+1. Under value, go to **{{ CHANGE TYPE, Azure Account}}**.
+1. Choose the Azure account that you want to use for authentication.
 
 ## Pulumi password and secret variable
 
-When you authenticate to Azure from the Pulumi code, one of the mandatory parameters you need to pass in for AKS is an Azure app registration and client secret. Because the client secret is sensitive, you should store it where the password will be safe.
+When you authenticate to Azure from the Pulumi code, one of the mandatory parameters you need to pass in for AKS is an Azure app registration and client secret. Because the client secret is sensitive, you should store it somewhere safe.
 
 1. Go to **{{Project,Variables}}**.
 2. Create a new variable called `clientSecret`.
 3. Ensure that the type is Sensitive.
-4. Add in the value of the Azure app registration client secret. 
+4. Add the value of the Azure app registration client secret. 
 
-### The Code Package Step
+### The Code package step
 
 1. Open a web browser and go to the Octopus Deploy portal.
 2. Create a new project that you want to use to deploy the Pulumi package.
@@ -205,16 +198,16 @@ The first step you need to add is the **DEPLOY A PACKAGE** step. This lets you s
 
 ### Installing the Pulumi SDK
 
-Before running any Pulumi package, you need to ensure that the Pulumi SDK exists. The Pulumi SDK is what will also contain the Azure for Pulumi SDK
+Before running any Pulumi package, you need to ensure that the Pulumi SDK exists. The Pulumi SDK is what will also contain the Azure for Pulumi SDK.
 
-1. Create a new step to run an install. The step you need to use is **Run a Script**.
-2. Under the **Inline Source Code** section, add in the following code under Bash: `pip install pulumi`
+1. Add a **Run a Script** step.
+2. Under the **Inline Source Code** section, add the following code under Bash: `pip install pulumi`
 
 ### The Pulumi Step
 
-Next, it's time to add in the first Pulumi step. The Pulumi step is what will be used to create a secret and the AKS cluster. Instead of using a third-party step template, you're going to use the **RUN A SCRIPT** template to use the Pulumi commands in Bash.
+Next, it's time to add in the first Pulumi step. The Pulumi step will create a secret and the AKS cluster. Instead of using a third-party step template, you're going to use the **RUN A SCRIPT** template to use the Pulumi commands in Bash.
 
-For the **RUN A SCRIPT** step, add the following code to the **Inline Source Code** section under **Script**.
+For the **RUN A SCRIPT** step, add the following code to the **Inline Source Code** section under **Script**:
 
 ```bash
 cd /home/mike/pulumiaks/AKS-Create
@@ -223,19 +216,19 @@ sudo /root/.pulumi/bin/pulumi config set --secret clientSecret $secret
 sudo /root/.pulumi/bin/pulumi up --yes
 ```
 
-### Running the Pulumi Deployment
+### Running the Pulumi deployment
 
 It's now time to run the deployment:
 
-1. Click the green **SAVE** button.
+1. Click **SAVE**.
 2. Create a new release.
 3. Save the release.
 4. Choose a lifecycle and deployment where you would like to deploy the Pulumi package to.
 5. Click **DEPLOY TO some_environment**.
 6. Click **DEPLOY**.
 
-Congrats! You have successfully created an AKS cluster using infrastructure-as-software.
+Congrats! You have successfully created an AKS cluster using infrastructure as software.
 
 ## Conclusion
 
-With the power of Pulumi allowing you to not only define infrastructure and services with general-purpose programming language, but also giving you the ability to store state and the power of deployments with Octopus Deploy, we're slowly moving into a new age of infrastructure development.
+With the power of Pulumi allowing you to not only define infrastructure and services with general purpose programming language, but also giving you the ability to store state and the power of deployments with Octopus Deploy, we're slowly moving into a new age of infrastructure development.
