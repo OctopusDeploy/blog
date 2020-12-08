@@ -52,9 +52,9 @@ The “Spotify Model” is a form of matrix-management structure that’s popula
 
 ![A diagram of the "Spotify Model", from Kniberg and Iversson's whitepaper.](spotify_model.png)
 
-Under this model, the primary software team structure is a “squad”, and multiple squads are grouped into “Tribes”, which contain no more than 150 people. A squad has a specific business objective and is made up of everyone that’s required to design, develop, test and release whatever software is required to meet that objective. To use [Team Topologies](https://octopus.com/blog/devops-reading-list#tt) vocabulary, a “squad” would probably be a “[stream-aligned](https://www.atlassian.com/devops/frameworks/team-topologies#:~:text=the%20best%20approach.-,Stream%2Daligned%20team,or%20a%20single%20user%20persona.)” team.
+Under this model, the primary software team structure is a “squad”, and multiple squads are grouped into “tribes”, which contain no more than 150 people. A squad has a specific business objective and is made up of everyone that’s required to design, develop, test and release whatever software is required to meet that objective. To use [Team Topologies](https://octopus.com/blog/devops-reading-list#tt) vocabulary, a “squad” would probably be a “[stream-aligned](https://www.atlassian.com/devops/frameworks/team-topologies#:~:text=the%20best%20approach.-,Stream%2Daligned%20team,or%20a%20single%20user%20persona.)” team.
 
-There are various other communication, collaboration, and management structures that connect the squads in the tribe, but I’m not going to get distracted by those here. If you are interested, read the whitepaper. (It’s very good.)
+There are various other communication, collaboration, and management structures that connect the squads and tribes, but I’m not going to get distracted by those here. If you are interested, read the whitepaper. (It’s very good.)
 
 The important point is that, like DevOps, if an organization uses the “Spotify Model” it implies that everyone in IT will need to embrace it. Regardless of their role, everyone in a tribe is going to be affected by the specific team and communication structures.
 
