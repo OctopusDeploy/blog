@@ -17,7 +17,7 @@ The problem is, that's not the case. Kubernetes isn't dropping support for Docke
 
 ## Don't panic
 
-I promise you that this is not as crazy or insane as it sounds. In fact, this entire thing has been planned for years now. If you're a user of Kubernetes, for example, you're using Azure Kubernetes Service (AKS) or Elastic Kubernetes Service (EKS), not a lot is changing for you. It's pretty much going to continue to be the same. For example, if you upgrade the Kubernetes API version in AKS to 1.19, then you're already running containerd (we'll get into containerd in a second), which is a runtime, like the Docker runtime.
+I promise you that this is not as crazy or insane as it sounds. In fact, this entire thing has been planned for years now. If you're a user of Kubernetes, for example, you're using Azure Kubernetes Service (AKS) or AWS Elastic Kubernetes Service (EKS), not a lot is changing for you. It's pretty much going to continue to be the same. For example, if you upgrade the Kubernetes API version in AKS to 1.19, then you're already running containerd (we'll get into containerd in a second), which is a runtime, like the Docker runtime.
 
 All of the things that you're currently using to build containers and images will still work, including:
 
