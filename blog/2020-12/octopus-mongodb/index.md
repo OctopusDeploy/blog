@@ -10,10 +10,10 @@ tags:
  
 ---
 
-When you think of databases, what immediately comes to mind are massive datastores with 1:N relationships between tables and complex T-SQL statements to bring related information together.  This, however, is the only type of database technology that exists.  Though not a new concept, NoSQL databases have been gaining popularity in recent years.  One of the more recognizable names in the NoSQL world is MongoDB.  In this post, I'll demonstrate how to deploy to a MongoDB database using Octopus Deploy and Liquibase.
+Though not a new technology, NoSQL databases have been gaining popularity in recent years.  One of the more recognizable names in the NoSQL world is MongoDB.  In this post, I'll demonstrate how to automate deployments to MongoDB using Octopus Deploy and Liquibase.
 
 ## Liquibase
-I [previously](https://octopus.com/blog/octopus-oracle-liquibase) demonstrated how to deploy to Oracle using the Liquabase product.  However, our friends over at Liquibase do not operate strictly in the relational database space, they also have solutions for deploying to NoSQL as well, including MongoDB.
+I [previously](https://octopus.com/blog/octopus-oracle-liquibase) demonstrated how to deploy to Oracle using the Liquabase product.  However, our friends over at Liquibase do not operate strictly in the relational database space, they also have solutions for deploying to NoSQL, including MongoDB.
 
 ### Change log
 As you might expect, the change log for MongoDB differs quite significantly than its relational counter parts.  For example, where you would create a Table in a relational database, you create a Collection in MongoDB:
@@ -353,7 +353,7 @@ For this post, my dbchangelog.xml file consisted of the following which is a cop
 
 
 ## Octopus Deploy
-Deploying to MongoDB is very similar to the Oracle method I demonstrated previously.  If you've read the Oracle post, you'll note that the Liquibase template has been updated to include MongoDB as a `Database type`.
+The step template used to deploy to MongoDB is the same template I used for  Oracle.  If you've read the Oracle post, you'll note that the Liquibase template has been updated to include MongoDB as a `Database type`.
 
 My deployment project consists of the following steps:
 
@@ -397,7 +397,12 @@ My deployment project consists of the following steps:
 
 ![](InsertMeHere.png)
 
-Unlike the Oracle post, MongoDB requires the `Connection query string parameters` to be set to `?authSource=admin`.  The value of `admin` can of course be changed to whatever database is the [authorization database](https://docs.mongodb.com/manual/reference/connection-string/).
+MongoDB requires the `Connection query string parameters` parameter to be set to whatever database is providing [authentication](https://docs.mongodb.com/manual/reference/connection-string/) such as `?authSource=admin` shown above.
 
-Using MongoDB Compass, we can verify that our database, collection, and data have been added.
+### Deployment
+Once the deployment has completed, we can use MongoDB Compass, to verify that our database, collection, and data have been added.
 
+![](mongodb-compass-database.png)
+
+## Conclusion
+In this post I demonstrated how easy it is to automate deployments to MongoDB with Octopus Deploy and Liquibase.  Happy deployments!
