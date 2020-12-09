@@ -91,6 +91,10 @@ Accelerate goes on to define [24 capabilities](https://itrevolution.com/24-key-c
 
 While deployment pipelines are certainly important, even critical, they are just one detail. It’s important not to get lost in that specific detail at the expense of the big picture.
 
+To put it another way:
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Defining <a href="https://twitter.com/hashtag/DevOps?src=hash&amp;ref_src=twsrc%5Etfw">#DevOps</a> as &quot;auto-deploys&quot; is like defining football (soccer) as &quot;can score from the halfway line&quot;.<br><br>You might have a few star strikers, but if your players can&#39;t work as a team, and if they can&#39;t tackle, pass or dribble the ball, you aren&#39;t going to win any trophies. <a href="https://t.co/yoqegJvfoB">pic.twitter.com/yoqegJvfoB</a></p>&mdash; Alex Yates (@_AlexYates_) <a href="https://twitter.com/_AlexYates_/status/1336627550655754243?ref_src=twsrc%5Etfw">December 9, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 **Signalling the wrong ideas**
 
 The assignment “DevOps Engineer” or “DevOps Team” is harmful because it promotes two problematic ideas to most of the people in the organisation:
