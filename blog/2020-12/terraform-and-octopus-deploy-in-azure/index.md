@@ -14,7 +14,7 @@ tags:
 
 ![Infrastructure as code in Azure with Terraform and Octopus Deploy](infrastructure-as-code-terraform.png)
 
-Infrastructure developers write code to automate the process of configuring cloud and on-premises infrastructure, in this post, I should your how to use Terraform and Octopus Deploy to deploy services to Azure.
+Infrastructure developers write code to automate the process of configuring cloud and on-premises infrastructure, in this post, I show you how to use Terraform and Octopus Deploy to deploy services to Azure.
 
 ## Prerequisites
 
