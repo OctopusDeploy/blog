@@ -34,7 +34,7 @@ Docker in itself was a monolith and that's how it was built. Because they wanted
 
 Dockershim implements a container runtime interface for Docker integration using Kubernetes. However, it was always a goal to move away from Dockershim (hence, the "shim" in the name). It was created at first to help implement integration with Kubernetes, but it ended up just creating an extra hop. Because of that, Docker started working on Containerd.
 
-Containerd, much like [CRI-O](https://www.redhat.com/en/blog/introducing-cri-o-10#:~:text=CRI%2DO%3A%20A%20Lightweight%20Container%20Runtime%20for%20Kubernetes&text=The%20name%20derives%20from%20CRI,support%20any%20OCI%2Dconformant%20runtime.), is a container runtime that is part of the Open Container Iniaitive ([OCI](https://opencontainers.org/)). 
+Containerd, much like [CRI-O](https://www.redhat.com/en/blog/introducing-cri-o-10#:~:text=CRI%2DO%3A%20A%20Lightweight%20Container%20Runtime%20for%20Kubernetes&text=The%20name%20derives%20from%20CRI,support%20any%20OCI%2Dconformant%20runtime.), is a container runtime that is part of the Open Container Initiative ([OCI](https://opencontainers.org/)). 
 
 Kubernetes maintaining Dockershim was becoming a huge weight on their shoulders because Dockershim was an extra/added hop to get to the runtime in Kubernetes. Because of that, Kubernetes decided to go towards using CRI, which allows for a very smooth transition for interoperability for container runtimes. That means, no more "hop" is needed.
 
