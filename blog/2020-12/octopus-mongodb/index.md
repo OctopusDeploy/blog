@@ -379,6 +379,8 @@ My deployment project consists of the following steps:
   - Admin Username: Username of an account that can create users.
   - Admin Password: Password for the Admin Username
   - Roles: Comma-delimited list of Roles to assign
+- DBA Approval
+  - Scoped to production
 - Liquibase - Apply changeset
   - Pro license key: Empty
   - Database type: MongoDB
@@ -396,7 +398,7 @@ My deployment project consists of the following steps:
   - Liquibase Version: Empty
   - Changeset package: Package containing dbchangelog.xml
 
-![](InsertMeHere.png)
+![](octopus-mongodb-project.png)
 
 :::hint
 MongoDB requires the `Connection query string parameters` parameter to be set to whatever database is providing [authentication](https://docs.mongodb.com/manual/reference/connection-string/) such as `?authSource=admin` shown above. 
