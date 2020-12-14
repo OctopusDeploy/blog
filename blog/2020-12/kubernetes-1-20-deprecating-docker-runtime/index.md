@@ -2,14 +2,16 @@
 title: "Kubernetes 1.20 is deprecating Docker Runtime: What does this mean?"
 description: With the news that Kubernetes 1.20 is deprecating Docker, there has been a lot of panic. This blog post explains what's happening and what you can do to solve the problem.
 author: michael.levan@octopus.com
-visibility: private
-published: 2050-12-01
-metaImage:
-bannerImage:
+visibility: public
+published: 2020-12-14
+metaImage: kubernetes-1-20-deprecating-docker-runtime.png
+bannerImage: kubernetes-1-20-deprecating-docker-runtime.png
 tags:
  - DevOps
  - Kubernetes
 ---
+
+![Kubernetes 1.20 is deprecating Docker Runtime: What does this mean?](kubernetes-1-20-deprecating-docker-runtime.png)
 
 Over the course of the week between November 11th and December 4th, there were a lot of questions and concerns about Kubernetes dropping support for Docker.
 
