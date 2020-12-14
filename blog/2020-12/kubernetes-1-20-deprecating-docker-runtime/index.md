@@ -30,7 +30,7 @@ All of the things that you're currently using to build containers and images wil
 
 Let's get into what's happening and why it's happening.
 
-Docker in itself was a monolith and that's how it was built. Because they wanted to move into a modern application approach, various things were changed. The one component you're most likely interested in is, as you may think, the runtime. Instead, it's actually [Dockershim](https://godoc.org/k8s.io/kubernetes/pkg/kubelet/dockershim).
+Docker was a monolith because that's how it was built, but that's changing because they want to move to a modern application approach. The runtime is provided by [Dockershim](https://godoc.org/k8s.io/kubernetes/pkg/kubelet/dockershim) and that's one of the things that's changing and is causing a lot of the confusion.
 
 Dockershim implements a container runtime interface for Docker integration using Kubernetes. However, it was always a goal to move away from Dockershim (hence, the "shim" in the name). It was created at first to help implement integration with Kubernetes, but it ended up just creating an extra hop. Because of that, Docker started working on Containerd.
 
