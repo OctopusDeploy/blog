@@ -2,14 +2,16 @@
 title: Octopus Deploy on Docker quickstart
 description: Learn how to configure Octopus Deploy to run on Docker on your local computer in just five minutes.
 author: michael.levan@octopus.com
-visibility: private
-published: 2050-11-18
-metaImage:
-bannerImage:
+visibility: public
+published: 2020-12-15
+metaImage: octopus-docker.png
+bannerImage: octopus-docker.png
 tags:
  - DevOps
  - Docker
 ---
+
+![Octopus Deploy on Docker quickstart](octopus-docker.png)
 
 You can run Octopus on-premises, with an Octopus Cloud instance, or even in Docker. You can run Octopus Deploy in a Docker container for both testing and production environments.
 
