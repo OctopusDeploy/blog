@@ -19,7 +19,7 @@ In a previous post, [lessons learned building a Raspberry Pi cluster](https://oc
 
 In the last post, the cluster consisted of five Raspberry Pi machines, which was due to the 8-port switch I had available.  I have since upgraded to a 24-port switch which allowed me to fill the case completely with an additional three Pi machines.  With a total of eight machines, I could evenly split them between Docker Swarm and Kubernetes (K8s).
 
-If you're interested, I switched my entire network gear to [Unifi](https://www.ui.com).  This post isn't about networking equipment, but if you've ever considered Unifi, I highly recommend it.  It gives you the control of enterprise equipment at a more affordable price.  A word of caution, they give you just enough freedom with the configuration to get yourself in trouble that it's possible to spiral out of control: 
+If you're interested, I switched my entire network gear to [Unifi](https://www.ui.com).  This post isn't about networking equipment, but if you've ever considered Unifi, I highly recommend it.  It gives you the control of enterprise equipment at a more affordable price.  A word of caution, they give you just enough freedom with the configuration to get yourself in trouble, making it possible to spiral out of control:
 
 > If I added just one more access point between the kids room and the dining room, I could maintain full 5Ghz signal strength all the way down the hall
 
@@ -27,13 +27,13 @@ You've been warned :)
 
 ## Lesson 5: Raspberry Pi 4 has a 64-bit processor, but Raspberry Pi OS is still 32-bit
 
-As I stated in the last post, not all containers will run in the ARM architecture.  However, I did find that there are a number of containers that will run on ARM64.  With my original project, I had attempted to run these ARM64 compatible containers, but they all failed claiming incompatible architecture.  This was something that confused me as I read the processor in the Raspberry Pi 4 is 64-bit chip.  What I failed to realize was that the Raspberry Pi OS is still only 32-bit, which makes sense because it wasn't until recently they offered a model with greater than 4GB of RAM.  With an 8GB model now available, Raspberry Pi OS does have a 64-bit version, but it's still in Beta.
+As I stated in the last post, not all containers will run on the ARM architecture.  However, I did find that there are a number of containers that will run on ARM64.  With my original project, I had attempted to run these ARM64 compatible containers, but they all failed claiming incompatible architecture.  That confused me as I read the processor in the Raspberry Pi 4 is 64-bit chip.  What I didn't realize was that the Raspberry Pi OS is still only 32-bit, which makes sense because it wasn't until recently they offered a model with greater than 4GB of RAM.  With 8GB models now available, Raspberry Pi OS does have a 64-bit version, but it's still in beta.
 
 I did some more research and found [Ubuntu has a 64-bit, ARM compatible version](https://ubuntu.com/download/raspberry-pi) available.  Being somewhat familiar with Ubuntu, I loaded this OS on to 4 of my Raspberry Pi machines.
 
 ## Lesson 6: ARM64 compatible containers
 
-Other than learning about cluster computing, the other goal of my Raspberry Pi project was to reduce the load on my Hypervisor by using containers instead of VMs. One of the VMs I wanted to replace was running MySQL.  The only containers I could find on [Docker Hub](https://hub.docker.com) than ran on ARM were unofficial, old, and sparsely updated ports of MySQL for Raspberry Pi.  Unfortunately, the database deployment technologies I used would complain they were too old and would require me to purchase new licenses ... boo!  As luck would have it, the [MySQL-Server](https://hub.docker.com/r/mysql/mysql-server) container happened to be ARM64 compatible!  With a couple of YAML files, I quickly spun up MySQL containers running in my K8s cluster:
+Other than learning about cluster computing, the other goal of my Raspberry Pi project was to reduce the load on my Hypervisor by using containers instead of VMs. One of the VMs I wanted to replace was running MySQL.  The only containers I could find on [Docker Hub](https://hub.docker.com) than ran on ARM were unofficial, old, and sparsely updated ports of MySQL for Raspberry Pi.  Unfortunately, the database deployment technologies I used would complain they were too old and required me to purchase new licenses ... boo!  As luck would have it, the [MySQL-Server](https://hub.docker.com/r/mysql/mysql-server) container happened to be ARM64 compatible!  With a couple of YAML files, I quickly spun up MySQL containers running in my K8s cluster:
 
 ```yaml mysql-deployment.yaml
 apiVersion: apps/v1
