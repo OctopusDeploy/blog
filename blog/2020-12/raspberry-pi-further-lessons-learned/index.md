@@ -2,14 +2,16 @@
 title: Further lessons learned building a Raspberry Pi cluster
 description: More lessons learned from experimenting with Raspberry Pi cluster computing.
 author: shawn.sesna@octopus.com
-visibility: private
-published: 2022-11-04
-metaImage: 
-bannerImage: 
+visibility: public
+published: 2020-12-16
+metaImage: raspberry-pi-cluster.png
+bannerImage: raspberry-pi-cluster.png
 tags:
- - Octopus
+ - DevOps
  - Kubernetes
 ---
+
+![Further lessons learned building a Raspberry Pi cluster](raspberry-pi-cluster.png)
 
 In a previous post, [lessons learned building a Raspberry Pi cluster](https://octopus.com/blog/raspberry-pi-cluster-lessons-learned), I shared some of the things I learned using Raspberry Pi machines in a Docker Swarm. Here are some more lessons I've since learned (if you want to see the first four lessons, take a look at that [previous post](https://octopus.com/blog/raspberry-pi-cluster-lessons-learned)).
 
