@@ -1,102 +1,69 @@
 ---
 title: "Infrastructure as code in Azure with Octopus Deploy and Pulumi: Part one"
-description:  Infrastructure as code and software-defined infrastructure is shaping the way we think about cloud infrastructure and services. In this blog post, Michael goes into one of the newest ways to define infrastructure as software with Pulumi.
+description: Learn how to define infrastructure as software with Pulumi.
 author: michael.levan@octopus.com
 visibility: private
 published: 2020-12-21 
 metaImage: 
 bannerImage: 
 tags:
- - Automation
  - DevOps
 ---
 
 [Pulumi](https://www.pulumi.com/) is an infrastructure as code solution that lets you define your infrastructure in a language you're already familiar with, for instance, Go, Python, or JavaScript.
 
-In this blog post, I'll show you how to create an Azure resource group using a Pulumi project written in Go (Golang) and deploy it with Octopus Deploy.
+In this post, I show you how to create an Azure resource group using a Pulumi project written in Go (Golang), and then how to deploy it with Octopus Deploy.
 
 ## Prerequisites
 
-To follow along with this blog post, you should have the following:
+To follow along with this post, you should have the following:
 
 - A [GitHub account](https://www.github.com).
 - At least one Linux deployment target.
 - An Azure subscription.
-- An Azure Account set up in Octopus Deploy.
+- An Azure account configured in Octopus.
+- A free [Pulumi](https://app.pulumi.com/signup) account.
 
 ## Why Pulumi and Octopus Deploy?
 
-Pulumi is a multi-language cloud development platform that lets you use programming languages (Go, C#, Python, TypeScript, JavaScript, F#, VB) to build cloud services. Whether you want to build virtual machines, networks, or serverless implementations, and literally anything else, Pulumi has you covered. 
+Pulumi is a multi-language cloud development platform that lets you use programming languages (Go, C#, Python, TypeScript, JavaScript, F#, VB) to build cloud services. Whether you want to build virtual machines, networks, or serverless implementations, or anything else, Pulumi can help.
 
-For each language that Pulumi supports, there's an SDK available that you can use to interact with different cloud services. For example, the Azure SDK will allow you to create a resource group.
+For each language that Pulumi supports, there's an SDK available that you can use to interact with different cloud services. For example, you can use the Azure SDK to create a resource group.
 
-With Pulumi you can write the code to create the infrastructure, and then use Octopus to deploy the code.
-
-Octopus Deploy has community steps that you can use to run Pulumi projects on both Windows and Linux servers, which should cover any environment you need to work in.
-
-## Configuring a Pulumi project
-
-Before diving into writing and deploying the code, there are a few preliminary steps you need to take to start working with Pulumi.
-
-### Account Setup
-
-To use Pulumi, you need to set up a free account and authenticate to the account. There are several different ways to authenticate, including:
-
-- GitHub
-- GitLab
-- Atlassian
-- Email/password
-- SSO
+With Octopus Deploy you can use community steps to run Pulumi projects on both Windows and Linux servers, which should cover any environment you need to work with.
 
 ### Creating a Pulumi Project
 
-After you have signed in, you need to create a new project:
-
+1. Sign into Pulumi.
 1. Click **+ NEW PROJECT**.
+1. Choose **Azure** for the cloud.
+1. Choose **Go** for the lanuage and click **NEXT**.
+1. Add the details about your project. You can either keep the defaults or add custom metadata.
 
-    After you create a new project, you'll see there are a few options.
+   - **Project name**: The name of the project being created.
+   - **Project description**: The description of the project being created.
+   - **Stack**: The stack name (dev, prod, etc.)
+   - **Configuration**: For configuration, you'll see a few different types that you can use:
+      - Public
+      - usgovernment
+      - german
+      - china
 
-![](images/newpulumiproject.png)
+   For a dev environment, as long as you don't have any regulations, keeping it `public` will be fine. When complete, click **CREATE PROJECT**.
 
-2. For the cloud, choose **Azure**. For the language, choose **Go**, and then click **NEXT**.
-
-![](images/azureandgo.png)
-
-3. Add the details about your project. You can either keep the defaults or add custom metadata.
-
-- **Project name**: The name of the project being created.
-- **Project description**: The description of the project being created.
-- **Stack**: The stack name (dev, prod, etc.)
-- **Configuration**: For configuration, you'll see a few different types that you can use:
-    - Public
-    - usgovernment
-    - german
-    - china
-
-For a dev environment, as long as you don't have any regulations, keeping it `public` will be fine. When complete, click **CREATE PROJECT**.
-
-4. Next, you'll be presented with the **STACK** window. The stack window helps you get started for MacOS, Windows, and Linux. The first place to start is to confirm that you have Pulumi installed.
-
-- For Windows, you can use the [Chocolatey](https://chocolatey.org/) package manager to install Pulumi.
-- For MacOS, you can use [Homebrew](https://brew.sh/) to install Pulumi.
-
-5. After you install Pulumi, you need to create a new directory where the project will live, and then change directory (`cd`) into the newly created project directory.
-
-`mkdir azure-go-new-resource-group && cd azure-go-new-resource-group`
-
-6. Next, pull the project from Pulumi into the directory you just created. Run the following command and follow the instructions:
+6. If you haven't already installed Pulumi locally, you should install it now. You can use [Chocolatey](https://chocolatey.org/) on Windows, or [Homebrew](https://brew.sh/) on MacOs. 
+7. Create a new directory for your project, and then change directory (`cd`) into the newly created project directory.
+8. Next, pull the project from Pulumi into the directory you just created. Run the following command and follow the instructions:
 
 `pulumi new azure-go -s AdminTurnedDevOps/azure-go-new-resource-group/dev`
 
-7. After you've pulled the project from Pulumi, it's time to deploy it:
+9. After you've pulled the project from Pulumi, it's time to deploy it:
 
 `pulumi up`
 
- 8. Now you can open up the new project in an editor or IDE.
-
 ## Writing code with Pulumi
 
-The Pulumi project is created and available on your local machine. You now have everything you need to start interacting with Pulumi using Go.
+Now that you've create the Pulumi project and it is available on your local machine, you have everything you need to start interacting with Pulumi using Go.
 
 The project includes:
 
@@ -128,7 +95,7 @@ import (
 
 Next, you need to create a resource group function that contains three parameters:
 
-- The context from Pulumi
+- Context from Pulumi
 - Resource group name
 - Location
 
@@ -151,7 +118,7 @@ func newResourceGroup(ctx *pulumi.Context, resourceGroupName string, location st
 
 The `if` statement checks to see if ctx is nil, and allows us to see if there's an issue with the SDK around the context.
 
-The `else` statement, includes the `Run()` function which is used to execute the body of the Pulumi program. As you can see in the SDK on [GitHub](https://github.com/pulumi/pulumi/blob/master/sdk/go/pulumi/run.go), it does appear to require an anonymous function, specifically to pass in the context.
+The `else` statement, includes the `Run()` function which is used to execute the body of the Pulumi program. As you can see in the SDK on [GitHub](https://github.com/pulumi/pulumi/blob/master/sdk/go/pulumi/run.go), it requires an anonymous function, specifically to pass in the context.
 
 The core of the code is in `core.NewResourceGroup`, which creates the resource group. There is also the ability to add in some error handling.
 
@@ -210,4 +177,4 @@ func newResourceGroup(ctx *pulumi.Context, resourceGroupName string, location st
 
 There are a lot of initial steps to configuring Pulumi, but as you can see, it's very powerful. You can take a programming language that you enjoy using and create the infrastructure or services you need in an environment.
 
-In [part two](/blog/2020-12/infrastructure-development-in-azure-with-octopus-deploy-and-pulumi-part-2/index.md), I'll show you how to package the Go code and deploy it with Octopus Deploy.
+In [part two](/blog/2020-12/iac-azure-octopus-pulumi-part-2/index.md), I'll show you how to package the Go code and deploy it with Octopus Deploy.
