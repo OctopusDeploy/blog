@@ -3,7 +3,7 @@ title: "Infrastructure as code in Azure with Octopus Deploy and Pulumi: Part two
 description: In part one of the blog post series for Pulumi and Octopus Deploy, you learned how to configure Pulumi. In this post, you learn how to tie it together with Octopus Deploy.
 author: michael.levan@octopus.com
 visibility: private
-published: 2199-10-10 
+published: 2020-12-22 
 metaImage: 
 bannerImage: 
 tags:

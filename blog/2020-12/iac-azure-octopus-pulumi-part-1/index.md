@@ -3,7 +3,7 @@ title: "Infrastructure as code in Azure with Octopus Deploy and Pulumi: Part one
 description:  Infrastructure as code and software-defined infrastructure is shaping the way we think about cloud infrastructure and services. In this blog post, Michael goes into one of the newest ways to define infrastructure as software with Pulumi.
 author: michael.levan@octopus.com
 visibility: private
-published: 2199-10-10 
+published: 2020-12-21 
 metaImage: 
 bannerImage: 
 tags:
