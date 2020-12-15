@@ -53,7 +53,7 @@ The next step is to create a Docker Compose file, which stores the configuration
 1. Create a new file called `docker-compose.yml`. Ensure that it's saved in the same directory as the `.env` configuration file. This tells Docker you're using a Compose file to create an environment.
 2. The first section of the Docker Compose file sets up the configuration for the database. The database configuration uses the Linux SQL image, accepts the EULA and provides the SA password. After that, you specify the port that you want to use and the health check to confirm that the database comes up successfully:
 
-```bash
+```yaml
 version: '3'
 services:
    db:
@@ -71,13 +71,13 @@ services:
 
 3. The second part of the Docker Compose file configures Octopus Deploy. It uses the official Octopus Deploy image, the environment is set up to accept the EULA, configure the Octopus Deploy username, password, and the database connection string to the SQL DB container that was configured earlier. The ports are then specified for Octopus Deploy, and there is a `depends_on` switch to ensure that the database is configured prior to the Octopus Deploy container running. The condition is to ensure that the database service is healthy:
 
-```bash
+```yaml
 octopus:
     image: octopusdeploy/octopusdeploy:latest
     environment:
        ACCEPT_EULA: "Y"
-       OctopusAdminUsername: ${OCTOPUS_ADMIN_USERNAME
-       OctopusAdminPassword: ${OCTOPUS_ADMIN_PASSWORD}"
+       OctopusAdminUsername: "${OCTOPUS_ADMIN_USERNAME"
+       OctopusAdminPassword: "${OCTOPUS_ADMIN_PASSWORD}"
        DB_CONNECTION_STRING: "Server=db,1433;Initial Catalog=Octopus;Persist Security Info=False;User=sa;Password=${SA_PASSWORD};MultipleActiveResultSets=False;Connection Timeout=30;"
     ports:
     - 1322:8080
@@ -90,7 +90,7 @@ octopus:
 
 The entire `docker-compose.yml` file should look like this:
 
-```bash
+```yaml
 version: '3'
 services:
    db:
@@ -109,8 +109,8 @@ services:
     image: octopusdeploy/octopusdeploy:latest
     environment:
        ACCEPT_EULA: "Y"
-       ADMIN_USERNAME: ${OCTOPUS_ADMIN_USERNAME
-       ADMIN_PASSWORD: ${OCTOPUS_ADMIN_PASSWORD}"
+       ADMIN_USERNAME: "${OCTOPUS_ADMIN_USERNAME"
+       ADMIN_PASSWORD: "${OCTOPUS_ADMIN_PASSWORD}"
        DB_CONNECTION_STRING: "Server=db,1433;Initial Catalog=Octopus;Persist Security Info=False;User=sa;Password=${SA_PASSWORD};MultipleActiveResultSets=False;Connection Timeout=30;"
     ports:
     - 1322:8080
