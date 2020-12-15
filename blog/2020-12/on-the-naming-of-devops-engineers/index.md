@@ -3,14 +3,14 @@ title: On the naming of “DevOps Engineers”
 description: Why is this job title so controversial? What's a better option? 
 author: alex.yates@dlmconsultants.com
 visibility: public
-published: 2020-12-18
+published: 2021-01-04
 metaImage: 
 bannerImage: 
 tags:
  - DevOps
 ---
 
-Last month [I shared my DevOps Reading List](https://octopus.com/blog/devops-reading-list). The post went a little wild on social media and for a few days I got lost in the discussions on [Twitter](https://twitter.com/_AlexYates_/status/1330763347281780736) and [LinkedIn](https://www.linkedin.com/feed/update/urn:li:activity:6736600404013985792/). One person shared the link with a comment that my blog post was a “must read” for anyone who wanted to build a career as a “DevOps Engineer”.
+Back in November, [I shared my DevOps Reading List](https://octopus.com/blog/devops-reading-list). The post went a little wild on social media and for a few days I got lost in the discussions on [Twitter](https://twitter.com/_AlexYates_/status/1330763347281780736) and [LinkedIn](https://www.linkedin.com/feed/update/urn:li:activity:6736600404013985792/). One person shared the link with a comment that my blog post was a “must read” for anyone who wanted to build a career as a “DevOps Engineer”.
 
 While I was grateful for the endorsement, I felt uncomfortable about my words being used in that context. You see, I don’t like the title “DevOps Engineer”.
 
@@ -131,11 +131,3 @@ The one place where I support using "DevOps" in a job title is for a "DevOps Coa
 Fundamentally, it makes a lot more sense if job titles reflect what a person is required to do, rather than the development philosophy of the wider organisation. 
 
 (Even if what they are required to do is solely to manage an Octopus Deploy server.)
-
-That’s it from me for 2020.
-
-For many of us it’s been a rough year. Happy holidays to all my readers. Enjoy a well-deserved rest - and raise a glass for me to the health workers, key workers and scientists who’ll be busy keeping us safe and rolling out the vaccines.
-
-Most of all, stay safe folks - the end is in sight.
-
-See you in 2021. 😊
