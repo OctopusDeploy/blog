@@ -3,7 +3,7 @@ title: "Create an AKS Cluster with Pulumi and Octopus Deploy"
 description: Learn how to create an Azure Kubernetes Cluster (AKS) using Pulumi, Python, and Octopus Deploy
 author: michael.levan@octopus.com
 visibility: public
-published: 2050-10-09
+published: 2020-12-23
 metaImage:
 bannerImage:
 tags:
