@@ -1,5 +1,5 @@
 ---
-title: "How to Create an AKS Cluster with Pulumi and Octopus Deploy"
+title: "Create an AKS Cluster with Pulumi and Octopus Deploy"
 description: Learn how to create an Azure Kubernetes Cluster (AKS) using Pulumi, Python, and Octopus Deploy
 author: michael.levan@octopus.com
 visibility: public
@@ -27,7 +27,7 @@ To follow along with this blog post, you need the following:
 - An Azure app registration. If you don't know how to create one, you can follow these [instructions](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal).
 - Intermediate level knowledge of Python.
 - A GitHub account where you can start the Python code.
-- An external GitHub feed. If you don't have one set up, you can follow these [instructions](https://octopus.com/docs/packaging-applications/package-repositories/github-feeds).
+- An external [GitHub feed](https://octopus.com/docs/packaging-applications/package-repositories/github-feeds).
 
 ## Creating the Python code
 
@@ -39,13 +39,13 @@ When you're using Pulumi, you have a few options to pass in arguments at runtime
 
 - A config file
 - From the command-line
-- Hard-coded in the code.
+- Hard-coded in the code
 
-I prefer to create a constants file. Think of it like a *parameters at runtime* file. It allows you to avoid hard-coding the values and gives you one location where you can change the values.
+I prefer to create a constants file because it lets me avoid hard-coding the values and gives me one location where I can change the values.
 
-In your Pulumi project, create a new file called `aksParamConstants.py`.
+If you decide to take this approach, in your Pulumi project, create a new file called `aksParamConstants.py`.
 
-After you create the constants file, you can add the constants. Keep the `keys` the same, but the `values` should change based on the environment you're working in:
+Add the following constants to the your file. Keep the `keys` the same, but the `values` should change based on the environment you're working in:
 
 ```python
 name = ('octoaks92')
@@ -110,7 +110,7 @@ def createAKSCluster():
 
 For a pull list of the properties that you can use, take a look at the SDK itself under the `KubernetesCluster` [class](https://github.com/pulumi/pulumi-azure/blob/master/sdk/python/pulumi_azure/containerservice/kubernetes_cluster.py).
 
-The `__main__.py` in the Pulumi project should look like the following:
+The `__main__.py` file in the Pulumi project should look like this:
 
 ```python
 import logging
@@ -154,19 +154,15 @@ createAKSCluster()
 
 Because Octopus Deploy needs to retrieve and pull the Pulumi project from a feed and eventually push that code to a deployment target, you can push the Pulumi project to a GitHub repo.
 
-For example, below is a screenshot of my GitHub repo that stores the Pulumi project.
-
-![Python Code in GitHub](images/1.png)
-
-After you add the Pulumi package to GitHub, you should create a new release of the code in GitHub. Octopus Deploy looks for specific release versions when using external feeds to pull in code.
+Next, you can create a new release of the code in GitHub. Octopus Deploy looks for specific release versions when using external feeds to pull in code.
 
 ## Configure the deployment in Octopus Deploy
 
-Now that the code is written and stored in GitHub via the Pulumi package, it's time to deploy the package via Octopus Deploy.
+Now that the code is written and stored in GitHub, it's time to deploy the package with Octopus Deploy.
 
 ### Authentication in Octopus Deploy
 
-The Pulumi step relies on having either an Azure account or an AWS account in the project variables for authentication to either cloud platform. Because of that, you'll need to add in a project variable in Octopus Deploy of type Azure account.
+For the Pulumi step you need an Azure account configured as a variable in the project variables for authentication.
 
 1. In the Octopus Web Portal navigate to the project.
 1. Select project variables.
@@ -176,29 +172,28 @@ The Pulumi step relies on having either an Azure account or an AWS account in th
 
 ## Pulumi password and secret variable
 
-When you authenticate to Azure from the Pulumi code, one of the mandatory parameters you need to pass in for AKS is an Azure app registration and client secret. Because the client secret is sensitive, you should store it somewhere safe.
+When you authenticate to Azure from the Pulumi code, you need to provide an Azure app registration and client secret. The client secret is sensitive, so you should store it somewhere safe:
 
 1. Go to **{{Project,Variables}}**.
 2. Create a new variable called `clientSecret`.
-3. Ensure that the type is Sensitive.
+3. Ensure  the type is Sensitive.
 4. Add the value of the Azure app registration client secret. 
 
 ### The Code package step
 
-1. Open a web browser and go to the Octopus Deploy portal.
-2. Create a new project that you want to use to deploy the Pulumi package.
-3. Go to **{{Deployments,Process}}**.
-4. Click the **ADD STEP** button.
+1. In the Octopus Deploy portal, create a new project to use to deploy the Pulumi package.
+2. Go to **{{Deployments,Process}}**.
+3. Click the **ADD STEP** button.
 
 The first step you need to add is the **DEPLOY A PACKAGE** step. This lets you specify the external GitHub feed, point to the GitHub repo that the Pulumi package exists in, and push it to the deployment target.
 
-5. Under `.NET Configuration Transforms`, click the **CONFIGURE FEATURES** button.
-6. Uncheck all of the .NET options and check/select **Custom Installation Directory.** The Custom Installation Directory is where the Pulumi package will be pushed to and stored so the next step in the process can use it.
-7. Save the step.
+4. Under `.NET Configuration Transforms`, click the **CONFIGURE FEATURES** button.
+5. Uncheck all of the .NET options and check/select **Custom Installation Directory.** The custom installation directory is where the Pulumi package will be pushed to and stored so the next step in the process can use it.
+6. Save the step.
 
 ### Installing the Pulumi SDK
 
-Before running any Pulumi package, you need to ensure that the Pulumi SDK exists. The Pulumi SDK is what will also contain the Azure for Pulumi SDK.
+Before running any Pulumi package, you need to ensure that the Pulumi SDK exists. The Pulumi SDK also contains the Azure for Pulumi SDK.
 
 1. Add a **Run a Script** step.
 2. Under the **Inline Source Code** section, add the following code under Bash: `pip install pulumi`
