@@ -10,6 +10,7 @@ AWS
 Azure
 AWS
 Continuous Integration
+Config as Code
 Deployment Patterns
 Docker
 Java
