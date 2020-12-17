@@ -91,9 +91,10 @@ Click the learn more link below to read more about the factors that have gone in
 
 ## Breaking changes
 
-This release includes one breaking change.
+This release includes two breaking changes.
 
-Importing an Action Template with a package reference will now validate the Feed Id. This means that [Feed View permission is required](https://github.com/OctopusDeploy/issues/issues/6582) to import an Action Template with a package reference.
+* Importing an Action Template with a package reference will now validate the Feed Id. This change means that [Feed View permission is required](https://github.com/OctopusDeploy/issues/issues/6582) to import an Action Template with a package reference.
+* Octopus Cloud added the ability to record some metrics so we could do performance tuning. This functionality is no longer used, and we have removed this support. We have updated [Octopus DSC](https://github.com/OctopusDeploy/OctopusDSC/pull/266) to deprecate the `LogTaskMetrics` and `LogRequestMetrics` properties to reflect this.
 
 ## Upgrading
 
