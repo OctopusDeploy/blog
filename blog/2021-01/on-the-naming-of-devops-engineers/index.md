@@ -3,7 +3,7 @@ title: On the naming of “DevOps Engineers”
 description: Why is this job title so controversial? What's a better option? 
 author: alex.yates@dlmconsultants.com
 visibility: public
-published: 2021-01-04
+published: 2021-01-11
 metaImage: 
 bannerImage: 
 tags:
