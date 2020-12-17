@@ -91,7 +91,9 @@ Click the learn more link below to read more about the factors that have gone in
 
 ## Breaking changes
 
-This release doesn’t include any breaking changes.
+This release includes one breaking change.
+
+Importing an Action Template with a package reference will now validate the Feed Id. This means that [Feed View permission is required](https://github.com/OctopusDeploy/issues/issues/6582) to import an Action Template with a package reference.
 
 ## Upgrading
 
