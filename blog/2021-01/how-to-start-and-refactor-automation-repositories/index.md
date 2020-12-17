@@ -1,9 +1,9 @@
 ---
-title: How to Start and  Refactor Automation Repositories 
+title: How to Start and Refactor Automation Repositories 
 description: In this blog you'll learn how to start storing your automation in Git and how to know refactor when the time comes. 
 author: josh@duffney.io 
-visibility: 
-published: 
+visibility: private
+published: 2025-01-01
 metaImage: 
 bannerImage: 
 tags:
@@ -12,8 +12,7 @@ tags:
  - Git
 ---
 
-
-In the aftermath of “Automation all the things!” there are scattered repositories everywhere. A few are extremely bloated, holding one-liners, scripts, functions, modules, and configurations. While many others are stale with broken CI\CD pipelines and have gone untouched for months or years. Yet, more exist. These are from the failed enforcement of a naming convention that was supposed to clean up everything.
+In the aftermath of “Automation all the things!” there are scattered repositories everywhere. A few are extremely bloated, holding one-liners, scripts, functions, modules, and configurations. While many others are stale with broken CI/CD pipelines and have gone untouched for months or years. Yet, more exist. These are from the failed enforcement of a naming convention that was supposed to clean up everything.
 
 Repository design was an afterthought, but for good reason. You can’t know how to structure something when you don't know what your building. But, it doesn’t have to stay a mess. Nor do you have to frontload years worth of future work into a decision that can’t be made today.
 
@@ -21,8 +20,9 @@ As a contributing member of many hot mess code bases and ring leader of “let�
 
 ## Start Simple and Centralized
 
-One repository to rule them all. Having a single central repository is the best way to start. It is equivalent to a monolithic application. Everything is tightly coupled. Ad-hoc scripts, orchestrated automation, and infrastructure as code documents all live in the same repository. Name the repository after your team’s name and let it become the source of truth for all the code developed by your team.
+<!-- TODO: Request a nice graphic from the UX team to visualise this. -->
 
+One repository to rule them all. Having a single central repository is the best way to start. It is equivalent to a monolithic application. Everything is tightly coupled. Ad-hoc scripts, orchestrated automation, and infrastructure as code documents all live in the same repository. Name the repository after your team’s name and let it become the source of truth for all the code developed by your team.
 
 Keep the repository layout simple. Create general purpose directories to separate the different types of automation within the repository. Such as a scripts directory for ad-hoc scripts. Add other directories for automation that defines a process like patching. At this stage don’t put too much thought into the structure and naming of directories. Your primary goal at this point is to make it as simple and easy to use as possible.
 
@@ -30,7 +30,7 @@ A centralized design works best when the execution of the code is still manual. 
 
 Comparing a centralized repository design to a monolithic app probably makes you think you shouldn’t use it. But, it’s exactly where you should start if your team or organization is new to automation and or infrastructure as code in general. It’s something you’ll grow out of over time, but jumping ahead to a more mature design will only add complexity, confusion, and reduce your rate of adoption.
 
-Having everything in one place keeps things simple. It’s clear where code should be committed. It’s easy to track changes and there is a single CI\CD pipeline to troubleshoot.
+Having everything in one place keeps things simple. It’s clear where code should be committed. It’s easy to track changes and there is a single CI/CD pipeline to troubleshoot.
 
 ## When is it Time to Refactor?
 
@@ -45,6 +45,8 @@ It’s at that point that the latest version of the entire code base becomes pro
 In short, there are two indicators that it’s time to redesign: development has slowed and or risk increases by removing the manual execution of the code. One solution is to create a repository for everything, while that’s an easy solution, it’s not the best solution.
 
 ## Follow the Change
+
+<!-- TODO: Request a nice graphic from the UX team to visualise this. -->
 
 Everything and everyone gets a repository! Is normally the first instinct when a centralized repository becomes problematic. However, that brings with it it’s own set of challenges. Instead, I’d recommend that you follow the change.
 
