@@ -76,7 +76,7 @@ octopus:
     image: octopusdeploy/octopusdeploy:latest
     environment:
        ACCEPT_EULA: "Y"
-       OctopusAdminUsername: "${OCTOPUS_ADMIN_USERNAME"
+       OctopusAdminUsername: "${OCTOPUS_ADMIN_USERNAME}"
        OctopusAdminPassword: "${OCTOPUS_ADMIN_PASSWORD}"
        DB_CONNECTION_STRING: "Server=db,1433;Initial Catalog=Octopus;Persist Security Info=False;User=sa;Password=${SA_PASSWORD};MultipleActiveResultSets=False;Connection Timeout=30;"
     ports:
