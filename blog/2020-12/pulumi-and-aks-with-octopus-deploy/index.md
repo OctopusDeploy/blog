@@ -4,8 +4,8 @@ description: Learn how to create an Azure Kubernetes Cluster (AKS) using Pulumi,
 author: michael.levan@octopus.com
 visibility: public
 published: 2020-12-23
-metaImage: blogimage-infrastructure-development-k8-pulumi
-bannerImage: blogimage-infrastructure-development-k8-pulumi
+metaImage: blogimage-infrastructure-development-k8-pulumi.png
+bannerImage: blogimage-infrastructure-development-k8-pulumi.png
 tags:
  - DevOps
  - Pulumi
