@@ -25,26 +25,26 @@ tags:
 
 ![Webinar of the year](webinar.png)
 
-Webinars is something [Octopus Deploy](https://octopus.com) have been running now for a while. My first one was back in November 2018 and it was on [Spaces](https://octopus.com/docs/administration/spaces) and [Workers](https://octopus.com/docs/infrastructure/workers) with [Bob Walker](https://twitter.com/DevOpsWalker) and [Ryan Rousseau](https://twitter.com/RyanRousseau).
+Webinars is something [Octopus Deploy](https://octopus.com) have been running now for a while. My first one was back in November 2018, and it was on [Spaces](https://octopus.com/docs/administration/spaces) and [Workers](https://octopus.com/docs/infrastructure/workers) with [Bob Walker](https://twitter.com/DevOpsWalker) and [Ryan Rousseau](https://twitter.com/RyanRousseau).
 
 ## Webinars in 2020
 
-This year, I took over the running of the Octopus webinars and we've had some exceptional webinars delivered by members of our Advisory team, members in our Engineering and Product teams and in this blog, I'm going to take you through our favourites that can keep you company over the festive break, if like me, you're working through it.
+This year, I took over the running of the Octopus webinars, and we've had some exceptional webinars delivered by members of our Advisory team, members in our Engineering and Product teams and in this blog, I'm going to take you through our favorites that can keep you company over the festive break, if like me, you're working through it.
 
 This year, we had:
 
 - 29 Webinars
 - Over 2000 attendees
 - Over 5000 registrations
-- World class feedback
+- World-class feedback
 
 This year, we added:
 
 - YouTube, Twitch & Facebook streaming
-- Bought new kit to polish our webinars
+- Purchased new webinar equipment for improved webinars
 - Added OBS and Restream.io into our webinars
 
-Plans are already in place for webinars in 2021 and we'll be doing:
+Plans are already in place for webinars in 2021, and we'll be doing:
 
 - Octo 101 webinars more often on a Tuesday
 - Config as Code
@@ -56,7 +56,7 @@ Plans are already in place for webinars in 2021 and we'll be doing:
 
 ## Deploying Microservice containers to Kubernetes
 
-Kubernetes is a hot topic in DevOps and in this webinar, Shawn Sesna gives you a 101 of Kubernetes and what's involved, and how you can use Octopus Deploy to manage your Containers, Pods, Deployments & Variable management. We cover the following topics:
+Kubernetes is a hot topic in DevOps. In this webinar, Shawn Sesna gives you a 101 of Kubernetes and what's involved, and how you can use Octopus Deploy to manage your Containers, Pods, Deployments & Variable management. We cover the following topics:
 
 - The basic concepts of Kubernetes.
 - Take an existing application and deploy it as a container using Octopus Deploy.
@@ -66,7 +66,7 @@ Kubernetes is a hot topic in DevOps and in this webinar, Shawn Sesna gives you a
 
 ## Server Provisioning with AWS and Runbooks
 
-When starting out with Cloudformation and Octopus Runbooks on AWS, there is a lot to get your head around. CloudFormation is a powerful technology that makes it easy to provision and destroy infrastructure on-demand in AWS. We cover the following topics:
+When starting with Cloudformation and Octopus Runbooks on AWS, there is a lot to get your head around. CloudFormation is a powerful technology that makes it easy to provision and destroy infrastructure on-demand in AWS. We cover the following topics:
 
 - How to provision and tear down Linux servers with Runbook Automation
 - How to save cloud computing costs with runbook scheduling
@@ -77,11 +77,13 @@ When starting out with Cloudformation and Octopus Runbooks on AWS, there is a lo
 
 ## Practical self-service DevOps with Runbook Automation
 
-DevOps is about bringing teams together to collaborate. In real life, this is easier said than done as development and operations teams often have different priorities. Development teams want to ship code fast and fix problems quickly, whereas operations teams want to provide stable and reliable IT services. There's no single source of truth, and the tooling often gets in the way and reinforces the silos.
+DevOps is about bringing teams together to collaborate. This is easier said in real life than done as development and operations teams often have different priorities.
 
-Runbook Automation in Octopus allows development and operations teams to work together to automate routine maintenance and self-service without sacrificing control over production.
+Development teams want to ship code fast and fix problems quickly, whereas operations teams want to provide stable and reliable IT services. There's no single source of truth, and the tooling often gets in the way and reinforces the silos.
 
-What you’ll learn:
+Runbook Automation in Octopus allows development and operations teams to work together to automate routine maintenance and self-service without sacrificing production control.
+
+What you'll learn:
 
 - How DevOps automation can break down the silos between Dev and Ops.
 - Introduction to runbook automation and self-service operations.
@@ -107,15 +109,15 @@ In this webinar, we discuss:
 
 ## Shaping up Octopus Engineering
 
-Octopus has grown considerably over the last few years, as we have gone from 10 Australians in 2015 to almost 100 in 2020 across the world as we’ve brought a European and a US team on-board. This growth was not without its problems.
+Octopus has grown considerably over the last few years, as we have gone from 10 Australians in 2015 to almost 100 in 2020 across the world as we've brought a European and a US team on-board. This growth was not without its problems.
 
-As our engineering team grew, we expected that our output and new features would increase along with the team. The reality was that as we added engineers and released more complex features it was actually the opposite of what we expected.
+As our engineering team grew, we expected that our output and new features would increase along with the team. The reality was that as we added engineers and released more complex features, it was the opposite of what we expected.
 
-We are not the first technology company to experience these problems and they have been observed at Facebook, Google, Twitter, and many other large Technical companies. As teams and the complexity of features grow over time, the output slowed down.
+We are not the first technology company to experience these problems, and they have been observed at Facebook, Google, Twitter, and many other large Technical companies. As teams and the complexity of features grow over time, the output slowed down.
 
-In the middle of 2019, not long after we released Spaces we started looking at and adopting the [Basecamp Shape-Up](https://basecamp.com/shapeup) model, and this helped give us more focussed development time, removing interruptions, giving us more time to scope features upfront, and increasing our feature releases considerably.
+In the middle of 2019, not long after we released Spaces, we started looking at and adopting the [Basecamp Shape-Up](https://basecamp.com/shapeup) model, and this helped give us more focussed development time, removing interruptions, giving us more time to scope features upfront, and increasing our feature releases considerably.
 
-In this webinar, join our product, engineering, and customer advisory leads as they discuss the problems we experienced, what we did to overcome them, and how development and releases are managed at Octopus Deploy.
+In this webinar, join our product, engineering, and customer advisory leads. They discuss the problems we experienced, what we did to overcome them, and how development and releases are managed at Octopus Deploy.
 
 What we covered:
 
@@ -127,4 +129,4 @@ What we covered:
 
 ## Summary
 
-We've ran some world class webinars in 2020, and I'm really excited about what we're going to do in 2021 with some great new features landing and we're going to be focussing on these new features in our 2021 webinars. Our pipeline for the first quarter of 2020 is already looking full, and if you have an idea for a webinar that you'd like to see then please email us on [Advice@Octopus.com](Advice@Octopus.com).
+We've run some world class webinars in 2020, and I'm excited about what we're going to do in 2021 with some great new features landing; and we're going to be focussing on these new features in our 2021 webinars. Our pipeline for the first quarter of 2020 is already looking full, and if you have an idea for a webinar that you'd like to see, please email us on [Advice@Octopus.com](Advice@Octopus.com).
