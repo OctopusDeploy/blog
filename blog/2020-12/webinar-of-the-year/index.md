@@ -81,9 +81,7 @@ DevOps is about bringing teams together to collaborate. This is easier said in r
 
 Development teams want to ship code fast and fix problems quickly, whereas operations teams want to provide stable and reliable IT services. There's no single source of truth, and the tooling often gets in the way and reinforces the silos.
 
-Runbook Automation in Octopus allows development and operations teams to work together to automate routine maintenance and self-service without sacrificing production control.
-
-What you'll learn:
+Runbook Automation in Octopus allows development and operations teams to work together to automate routine maintenance and self-service without sacrificing production control. We cover the following topics:
 
 - How DevOps automation can break down the silos between Dev and Ops.
 - Introduction to runbook automation and self-service operations.
@@ -94,9 +92,7 @@ What you'll learn:
 
 ## 2020: A Year of Octopus
 
-2020 has been a year with unique challenges globally. While the world has been turned upside down, we've been working hard to improve Octopus with some great new features as well as smaller improvements based on customer feedback.
-
-In this webinar, we discuss:
+2020 has been a year with unique challenges globally. While the world has been turned upside down, we've been working hard to improve Octopus with some great new features as well as smaller improvements based on customer feedback. We cover the following topics:
 
 - Unique technical challenges of 2020
 - Key features released in 2020
@@ -115,11 +111,7 @@ As our engineering team grew, we expected that our output and new features would
 
 We are not the first technology company to experience these problems, and they have been observed at Facebook, Google, Twitter, and many other large Technical companies. As teams and the complexity of features grow over time, the output slowed down.
 
-In the middle of 2019, not long after we released Spaces, we started looking at and adopting the [Basecamp Shape-Up](https://basecamp.com/shapeup) model, and this helped give us more focussed development time, removing interruptions, giving us more time to scope features upfront, and increasing our feature releases considerably.
-
-In this webinar, join our product, engineering, and customer advisory leads. They discuss the problems we experienced, what we did to overcome them, and how development and releases are managed at Octopus Deploy.
-
-What we covered:
+In the middle of 2019, not long after we released Spaces, we started looking at and adopting the [Basecamp Shape-Up](https://basecamp.com/shapeup) model, and this helped give us more focussed development time, removing interruptions, giving us more time to scope features upfront, and increasing our feature releases considerably. We cover the following topics:
 
 - The problems our engineering team faced as we grew.
 - How we adopted Basecamp's Shape-up development methodology to improve how development and releases are managed at Octopus.
