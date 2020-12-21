@@ -2,13 +2,16 @@
 title: "Infrastructure as code in Azure with Octopus Deploy and Pulumi: Part one"
 description: Learn how to define infrastructure as software with Pulumi.
 author: michael.levan@octopus.com
-visibility: private
+visibility: public
 published: 2020-12-21 
-metaImage: 
-bannerImage: 
+metaImage: blogimage-infrastructure-development-azure-pulumi-1.png
+bannerImage: blogimage-infrastructure-development-azure-pulumi-1.png
 tags:
  - DevOps
+ - Pulumi
 ---
+
+![Infrastructure as code in Azure with Octopus Deploy and Pulumi: Part one](blogimage-infrastructure-development-azure-pulumi-1.png)
 
 [Pulumi](https://www.pulumi.com/) is an infrastructure as code solution that lets you define your infrastructure in a language you're already familiar with, for instance, Go, Python, or JavaScript.
 

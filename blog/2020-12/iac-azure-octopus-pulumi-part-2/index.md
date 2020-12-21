@@ -2,13 +2,15 @@
 title: "Infrastructure as code in Azure with Octopus Deploy and Pulumi: Part two"
 description: In part one of the blog post series for Pulumi and Octopus Deploy, I showed you how to configure Pulumi. In this post, I show you how to tie it together with Octopus Deploy.
 author: michael.levan@octopus.com
-visibility: private
+visibility: public
 published: 2020-12-22 
-metaImage: 
-bannerImage: 
+metaImage: blogimage-infrastructure-development-azure-pulumi-2.png
+bannerImage: blogimage-infrastructure-development-azure-pulumi-2.png
 tags:
  - DevOps
 ---
+
+![Infrastructure as code in Azure with Octopus Deploy and Pulumi: Part two](blogimage-infrastructure-development-azure-pulumi-2.png)
 
 In [part one](/blog/2020-12/iac-azure-octopus-pulumi-part-1/index.md) of this infrastructure development with Pulumi and Octopus Deploy series, I showed you how to configure Pulumi with a new project and write code with the Pulumi SDK that specifies Azure using Go.
 

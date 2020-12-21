@@ -4,11 +4,14 @@ description: Learn how to create an Azure Kubernetes Cluster (AKS) using Pulumi,
 author: michael.levan@octopus.com
 visibility: public
 published: 2020-12-23
-metaImage:
-bannerImage:
+metaImage: blogimage-infrastructure-development-k8-pulumi
+bannerImage: blogimage-infrastructure-development-k8-pulumi
 tags:
  - DevOps
+ - Pulumi
 ---
+
+![Create an AKS Cluster with Pulumi and Octopus Deploy](blogimage-infrastructure-development-k8-pulumi.png)
 
 Creating software-defined infrastructure comes in many different shapes and sizes, including popular IaC tools like Terraform and configuration management tools like Ansible. One thing holds true with any tool, you want the ability to write the code in a language that you prefer.
 
