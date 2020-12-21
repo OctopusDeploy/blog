@@ -121,4 +121,4 @@ In the middle of 2019, not long after we released Spaces, we started looking at 
 
 ## Summary
 
-We've run some world class webinars in 2020, and I'm excited about what we're going to do in 2021 with some great new features landing; and we're going to be focussing on these new features in our 2021 webinars. Our pipeline for the first quarter of 2020 is already looking full, and if you have an idea for a webinar that you'd like to see, please email us on [Advice@Octopus.com](Advice@Octopus.com).
+We've run some world class webinars in 2020, and I'm excited about what we're going to do in 2021 with some great new features landing; and we're going to be focussing on these new features in our 2021 webinars. Our pipeline for the first quarter of 2020 is already looking full, and if you have an idea for a webinar that you'd like to see, or even an improvement we can make on webinars then please email us on <Advice@Octopus.com>.
