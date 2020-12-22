@@ -30,7 +30,7 @@ In 2020, we had:
 
 This year, we added:
 
-- [YouTube](https://www.youtube.com/watch?v=AjQhW5lC4Qs&list=PLAGskdGvlaw2ph_YPvMquJlzgYd7bEDba), [Twitch](twitch.tv/octopusdeploy) & [Facebook](https://www.facebook.com/OctopusDeploy/) streaming.
+- [YouTube](https://www.youtube.com/watch?v=AjQhW5lC4Qs&list=PLAGskdGvlaw2ph_YPvMquJlzgYd7bEDba), [Twitch](https://twitch.tv/octopusdeploy) & [Facebook](https://www.facebook.com/OctopusDeploy/) streaming.
 - Improved our webinars' technical quality and polish with better cameras, lighting, green screens, and more.
 - Better presentation-quality using [OBS](https://obsproject.com/) and [Restream.io](https://restream.io/).
 
