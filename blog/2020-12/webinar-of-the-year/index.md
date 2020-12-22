@@ -1,60 +1,44 @@
 ---
-title: Octopus webinars of the year
-description: Learn how to configure Octopus Deploy to run on Docker on your local computer in just five minutes.
+title: Our most popular webinars in 2020
+description: List of some our best webinars of 2020
 author: derek.campbell@octopus.com
 visibility: public
-published: 2020-12-27
+published: 2020-12-30
 metaImage: webinar.png
 bannerImage: webinar.png
 tags:
  - Webinar
- - Runbooks
- - Kubernetes
- - AWS
- - Microservices
- - Engineering
- - Containers
- - Config as Code
- - 2021
- - 2020
- - Execution Containers
- - Azure
- - Cloudformation
- - ARM
+ - Company
 ---
 
 ![Webinar of the year](webinar.png)
 
-Webinars is something [Octopus Deploy](https://octopus.com) have been running now for a while. My first one was back in November 2018, and it was on [Spaces](https://octopus.com/docs/administration/spaces) and [Workers](https://octopus.com/docs/infrastructure/workers) with [Bob Walker](https://twitter.com/DevOpsWalker) and [Ryan Rousseau](https://twitter.com/RyanRousseau).
+Webinars are a way for us to share and deep dive into a specific topic for our customers as well as the broader DevOps community and in this post, I'll be looking at how we run our webinars, how we improved them in 2020 and our top recommendations if you're working through the holiday period and some company.
 
-## Webinars in 2020
+## Octopus Webinars in 2020 - the numbers
 
 This year, I took over the running of the Octopus webinars, and we've had some exceptional webinars delivered by members of our Advisory team, members in our Engineering and Product teams and in this blog, I'm going to take you through our favorites that can keep you company over the festive break, if like me, you're working through it.
 
-This year, we had:
+In 2020, we had:
 
 - 29 Webinars
 - Over 2000 attendees
 - Over 5000 registrations
+- 5000+ hours of webinar content played
+- 30000+ views
 - World-class feedback
 
 This year, we added:
 
-- YouTube, Twitch & Facebook streaming
-- Purchased new webinar equipment for improved webinars
-- Added OBS and Restream.io into our webinars
+- YouTube, Twitch & Facebook streaming.
+- Improved the technical quality and polish of our webinars with better cameras, lighting, green screens and more.
+- Better presentation quality using [OBS](https://obsproject.com/) and [Restream.io](restream.io/).
 
-Plans are already in place for webinars in 2021, and we'll be doing:
+## Top webinars of 2020
 
-- Octo 101 webinars more often on a Tuesday
-- Config as Code
-- Launching our Terraform provider live on a webinar
-- Database DevOps with [Alex Yates](https://twitter.com/_AlexYates_) and [Bob Walker](https://twitter.com/DevOpsWalker)
-- Release Management with Octopus Deploy
-- Containerizing Octopus with [Michael Levan](https://twitter.com/TheNJDevOpsGuy)
-- Kubernetes with Matt Casperson and Shawn Sesna
+In this section, I'll list out some of my personal favourites and others that Octopods have voted on as their favourites of 2020.
 
-## Deploying Microservice containers to Kubernetes
+### Deploying Microservice containers to Kubernetes
 
 Kubernetes is a hot topic in DevOps. In this webinar, Shawn Sesna gives you a 101 of Kubernetes and what's involved, and how you can use Octopus Deploy to manage your Containers, Pods, Deployments & Variable management. We cover the following topics:
 
@@ -64,7 +48,7 @@ Kubernetes is a hot topic in DevOps. In this webinar, Shawn Sesna gives you a 10
 
 <iframe width="560" height="315" src="https://www.youtube.com/watch?v=mj2oNBIYetc" frameborder="0" allowfullscreen></iframe>
 
-## Server Provisioning with AWS and Runbooks
+### Server Provisioning with AWS and Runbooks
 
 When starting with Cloudformation and Octopus Runbooks on AWS, there is a lot to get your head around. CloudFormation is a powerful technology that makes it easy to provision and destroy infrastructure on-demand in AWS. We cover the following topics:
 
@@ -75,7 +59,7 @@ When starting with Cloudformation and Octopus Runbooks on AWS, there is a lot to
 
 <iframe width="560" height="315" src="https://www.youtube.com/watch?v=6cKhypLE11I" frameborder="0" allowfullscreen></iframe>
 
-## Practical self-service DevOps with Runbook Automation
+### Practical self-service DevOps with Runbook Automation
 
 DevOps is about bringing teams together to collaborate. This is easier said in real life than done as development and operations teams often have different priorities.
 
@@ -90,7 +74,7 @@ Runbook Automation in Octopus allows development and operations teams to work to
 
 <iframe width="560" height="315" src="https://www.youtube.com/watch?v=HjXl_Vz6uu0" frameborder="0" allowfullscreen></iframe>
 
-## 2020: A Year of Octopus
+### 2020: A Year of Octopus
 
 2020 has been a year with unique challenges globally. While the world has been turned upside down, we've been working hard to improve Octopus with some great new features as well as smaller improvements based on customer feedback. We cover the following topics:
 
@@ -103,7 +87,7 @@ Runbook Automation in Octopus allows development and operations teams to work to
 
 <iframe width="560" height="315" src="https://www.youtube.com/watch?v=apxzK-rDHIc" frameborder="0" allowfullscreen></iframe>
 
-## Shaping up Octopus Engineering
+### Shaping up Octopus Engineering
 
 Octopus has grown considerably over the last few years, as we have gone from 10 Australians in 2015 to almost 100 in 2020 across the world as we've brought a European and a US team on-board. This growth was not without its problems.
 
