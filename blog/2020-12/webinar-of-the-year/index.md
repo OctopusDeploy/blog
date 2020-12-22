@@ -32,7 +32,7 @@ This year, we added:
 
 - YouTube, Twitch & Facebook streaming.
 - Improved our webinars' technical quality and polish with better cameras, lighting, green screens, and more.
-- Better presentation-quality using [OBS](https://obsproject.com/) and [Restream.io](restream.io/).
+- Better presentation-quality using [OBS](https://obsproject.com/) and [Restream.io](https://restream.io/).
 
 ## Top webinars of 2020
 
