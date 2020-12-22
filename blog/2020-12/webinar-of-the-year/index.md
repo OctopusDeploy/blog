@@ -1,6 +1,6 @@
 ---
 title: Our most popular webinars in 2020
-description: List of some our best webinars of 2020
+description: Join us as we list out our favorite webinars of 2020. 
 author: derek.campbell@octopus.com
 visibility: public
 published: 2020-12-30
@@ -13,11 +13,11 @@ tags:
 
 ![Webinar of the year](webinar.png)
 
-Webinars are a way for us to share and deep dive into a specific topic for our customers as well as the broader DevOps community and in this post, I'll be looking at how we run our webinars, how we improved them in 2020 and our top recommendations if you're working through the holiday period and some company.
+Webinars are a way for us to share and deep dive into a specific topic for our customers and the broader DevOps community. In this post, I'll be looking at how we run our webinars, how we improved them in 2020, and our top recommendations if you're working through the holiday period and some company.
 
 ## Octopus Webinars in 2020 - the numbers
 
-This year, I took over the running of the Octopus webinars, and we've had some exceptional webinars delivered by members of our Advisory team, members in our Engineering and Product teams and in this blog, I'm going to take you through our favorites that can keep you company over the festive break, if like me, you're working through it.
+This year, I took over the running of the Octopus webinars. We've had some exceptional webinars delivered by members of our Advisory team, members in our Engineering and Product teams, and in this blog, I'm going to take you through our favorites that can keep you company over the festive break, if like me, you're working through it.
 
 In 2020, we had:
 
@@ -31,12 +31,12 @@ In 2020, we had:
 This year, we added:
 
 - YouTube, Twitch & Facebook streaming.
-- Improved the technical quality and polish of our webinars with better cameras, lighting, green screens and more.
-- Better presentation quality using [OBS](https://obsproject.com/) and [Restream.io](restream.io/).
+- Improved our webinars' technical quality and polish with better cameras, lighting, green screens, and more.
+- Better presentation-quality using [OBS](https://obsproject.com/) and [Restream.io](restream.io/).
 
 ## Top webinars of 2020
 
-In this section, I'll list out some of my personal favourites and others that Octopods have voted on as their favourites of 2020.
+In this section, I'll list some of my personal favorites and others that Octopods have voted on as their favorites of 2020.
 
 ### Deploying Microservice containers to Kubernetes
 
@@ -105,4 +105,4 @@ In the middle of 2019, not long after we released Spaces, we started looking at 
 
 ## Summary
 
-We've run some world class webinars in 2020, and I'm excited about what we're going to do in 2021 with some great new features landing; and we're going to be focussing on these new features in our 2021 webinars. Our pipeline for the first quarter of 2020 is already looking full, and if you have an idea for a webinar that you'd like to see, or even an improvement we can make on webinars then please email us on <Advice@Octopus.com>.
+We've run some world-class webinars in 2020, and I'm excited about what we're going to do in 2021 with some great new features landing, and we're going to be focussing on these new features in our 2021 webinars. Our pipeline for the first quarter of 2020 is already looking full, and if you have an idea for a webinar that you'd like to see or even an improvement we can make on webinars, please email us at <Advice@Octopus.com>.
