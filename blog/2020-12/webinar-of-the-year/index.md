@@ -13,24 +13,24 @@ tags:
 
 ![Webinar of the year](webinar.png)
 
-Webinars are a way for us to share and deep dive into a specific topic for our customers and the broader DevOps community. In this post, I'll be looking at how we run our webinars, how we improved them in 2020, and our top recommendations if you're working through the holiday period and some company.
+Webinars are a way for us to share and deep dive into a specific topic for our customers and the broader DevOps community. In this post, I'll be looking at how we run our webinars, how we improved them in 2020, and our top recommendations if you're working through the holiday period and looking for some company.
 
 ## Octopus Webinars in 2020 - the numbers
 
-This year, I took over the running of the Octopus webinars. We've had some exceptional webinars delivered by members of our Advisory team, members in our Engineering and Product teams, and in this blog, I'm going to take you through our favorites that can keep you company over the festive break, if like me, you're working through it.
+This year, I took over the running of the Octopus webinars. We've had some exceptional webinars delivered by members of our Advisory team, members in our Engineering and Product teams.
 
 In 2020, we had:
 
-- 29 Webinars
+- [29 Webinars](https://www.youtube.com/watch?v=AjQhW5lC4Qs&list=PLAGskdGvlaw2ph_YPvMquJlzgYd7bEDba)
 - Over 2000 attendees
 - Over 5000 registrations
 - 5000+ hours of webinar content played
-- 30000+ views
+- 20000+ views
 - World-class feedback
 
 This year, we added:
 
-- YouTube, Twitch & Facebook streaming.
+- [YouTube](https://www.youtube.com/watch?v=AjQhW5lC4Qs&list=PLAGskdGvlaw2ph_YPvMquJlzgYd7bEDba), [Twitch](twitch.tv/octopusdeploy) & [Facebook](https://www.facebook.com/OctopusDeploy/) streaming.
 - Improved our webinars' technical quality and polish with better cameras, lighting, green screens, and more.
 - Better presentation-quality using [OBS](https://obsproject.com/) and [Restream.io](https://restream.io/).
 
@@ -42,7 +42,7 @@ In this section, I'll list some of my personal favorites and others that Octopod
 
 Kubernetes is a hot topic in DevOps. In this webinar, Shawn Sesna gives you a 101 of Kubernetes and what's involved, and how you can use Octopus Deploy to manage your Containers, Pods, Deployments & Variable management. We cover the following topics:
 
-- The basic concepts of Kubernetes.
+- The basic concepts of [Kubernetes](https://octopus.com/docs/deployment-examples/kubernetes-deployments/deploy-container).
 - Take an existing application and deploy it as a container using Octopus Deploy.
 - See how Octopus can automatically update your web application configuration as you deploy from Dev to Test to Production environments.
 
@@ -50,7 +50,7 @@ Kubernetes is a hot topic in DevOps. In this webinar, Shawn Sesna gives you a 10
 
 ### Server Provisioning with AWS and Runbooks
 
-When starting with Cloudformation and Octopus Runbooks on AWS, there is a lot to get your head around. CloudFormation is a powerful technology that makes it easy to provision and destroy infrastructure on-demand in AWS. We cover the following topics:
+When starting with [Cloudformation](https://aws.amazon.com/cloudformation/) and [Octopus Runbooks](https://octopus.com/docs/runbooks) on [AWS](https://aws.amazon.com), there is a lot to get your head around. CloudFormation is a powerful technology that makes it easy to provision and destroy infrastructure on-demand in AWS. We cover the following topics:
 
 - How to provision and tear down Linux servers with Runbook Automation
 - How to save cloud computing costs with runbook scheduling
