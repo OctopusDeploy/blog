@@ -15,24 +15,8 @@ tags:
 
 Webinars are a way for us to share and deep dive into a specific topic for our customers and the broader DevOps community. In this post, I'll be looking at how we run our webinars, how we improved them in 2020, and our top recommendations if you're working through the holiday period and looking for some company.
 
-## Octopus Webinars in 2020 - the numbers
 
-This year, I took over the running of the Octopus webinars. We've had some exceptional webinars delivered by members of our Advisory team, members in our Engineering and Product teams.
-
-In 2020, we had:
-
-- [29 Webinars](https://www.youtube.com/watch?v=AjQhW5lC4Qs&list=PLAGskdGvlaw2ph_YPvMquJlzgYd7bEDba)
-- Over 2000 attendees
-- Over 5000 registrations
-- 5000+ hours of webinar content played
-- 20000+ views
-- World-class feedback
-
-This year, we added:
-
-- [YouTube](https://www.youtube.com/watch?v=AjQhW5lC4Qs&list=PLAGskdGvlaw2ph_YPvMquJlzgYd7bEDba), [Twitch](https://twitch.tv/octopusdeploy) & [Facebook](https://www.facebook.com/OctopusDeploy/) streaming.
-- Improved our webinars' technical quality and polish with better cameras, lighting, green screens, and more.
-- Better presentation-quality using [OBS](https://obsproject.com/) and [Restream.io](https://restream.io/).
+You can find all 29 of our webinars on the YouTube [Webinar playlist](https://www.youtube.com/watch?v=AjQhW5lC4Qs&list=PLAGskdGvlaw2ph_YPvMquJlzgYd7bEDba).
 
 ## Top webinars of 2020
 
