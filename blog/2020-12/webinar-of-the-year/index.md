@@ -15,7 +15,6 @@ tags:
 
 Webinars are a way for us to share and deep dive into a specific topic for our customers and the broader DevOps community. In this post, I'll be looking at how we run our webinars, how we improved them in 2020, and our top recommendations if you're working through the holiday period and looking for some company.
 
-
 You can find all 29 of our webinars on the YouTube [Webinar playlist](https://www.youtube.com/watch?v=AjQhW5lC4Qs&list=PLAGskdGvlaw2ph_YPvMquJlzgYd7bEDba).
 
 ## Top webinars of 2020
@@ -30,7 +29,7 @@ Kubernetes is a hot topic in DevOps. In this webinar, Shawn Sesna gives you a 10
 - Take an existing application and deploy it as a container using Octopus Deploy.
 - See how Octopus can automatically update your web application configuration as you deploy from dev to test to production environments.
 
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=mj2oNBIYetc" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/mj2oNBIYetc" frameborder="0" allowfullscreen></iframe>
 
 ### Server provisioning with AWS and runbooks
 
@@ -41,7 +40,7 @@ When starting with [Cloudformation](https://aws.amazon.com/cloudformation/) and 
 - How to deploy CloudFormation templates to AWS
 - How to deploy a Java web application to Tomcat on your new Infrastructure
 
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=6cKhypLE11I" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/6cKhypLE11I" frameborder="0" allowfullscreen></iframe>
 
 ### Practical self-service DevOps with runbook automation
 
@@ -56,7 +55,7 @@ Runbook Automation in Octopus allows development and operations teams to work to
 - How to provision cloud infrastructure with Azure Resource Manager templates
 - How to manage your database maintenance with Octopus Runbooks
 
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=HjXl_Vz6uu0" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/HjXl_Vz6uu0" frameborder="0" allowfullscreen></iframe>
 
 ### 2020: A year of Octopus
 
@@ -69,7 +68,7 @@ Runbook Automation in Octopus allows development and operations teams to work to
 - Increased integration and cross-platform support
 - Better dependency management
 
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=apxzK-rDHIc" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/apxzK-rDHIc" frameborder="0" allowfullscreen></iframe>
 
 ### Shaping up Octopus engineering
 
@@ -83,7 +82,7 @@ In the middle of 2019, not long after we released Spaces, we started looking at 
 - How we adopted Basecamp's Shape-up development methodology to improve how development and releases are managed at Octopus
 - Lessons learned as we tried to improve how we shipped software
 
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=AjQhW5lC4Qs" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/AjQhW5lC4Qs" frameborder="0" allowfullscreen></iframe>
 
 ## Summary
 
