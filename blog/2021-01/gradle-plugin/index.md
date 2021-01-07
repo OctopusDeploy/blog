@@ -34,7 +34,7 @@ It must be a Gradle project and the language must use Kotlin here to generate th
 
 The Spring Web and Spring Boot Actuator dependency must be added as well. This adds a minimal web service and a health endpoint which we can open to verify the project runs successful.
 
-![Spring Initializer](spring-initilizer.ping)
+![Spring Initializer](spring-initilizer.png)
 
 After unzipping the demo project, we can build and run it to verify it works as expected:
 
