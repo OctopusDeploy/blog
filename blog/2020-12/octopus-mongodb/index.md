@@ -7,7 +7,7 @@ published: 2021-06-29
 metaImage: 
 bannerImage: 
 tags:
- 
+ - Databases
 ---
 
 The use of NoSQL as a database back end has been gaining in popularity in recent years. Usage has been so great so that Amazon, Microsoft, and Google have all created their own cloud-based offerings.  One of the more recognizable names in the NoSQL world is MongoDB.  In this post, I'll demonstrate how to automate deployments to MongoDB using Octopus Deploy and Liquibase.
