@@ -1,7 +1,7 @@
 ---
 title: Octopus Deploy Gradle plugin
-description: 
-author: 
+description: Learn how to use the Octopus Deploy Gradle plugin
+author: Marcel Kesselring
 visibility: public
 published: 2021-12-31
 metaImage: 
@@ -134,7 +134,7 @@ The complete feature set of the octopus-deploy-plugin is documented in the proje
 
 ---
 
-Marcel Kesselring
+
 Liftric GmbH
 
 
