@@ -1,7 +1,7 @@
 ---
 title: Octopus Deploy Gradle plugin
 description: Learn how to use the Octopus Deploy Gradle plugin
-author: Marcel Kesselring
+author: Marcel Kesselring (Liftric GmbH)
 visibility: public
 published: 2021-12-31
 metaImage: 
@@ -9,30 +9,24 @@ bannerImage:
 tags:
 ---
 
-For package uploads to Octopus, if you’re running a build server that is not supported natively you can use the Octopus Command Line (CLI) or the REST API of octopus instead. For Gradle projects we created a small Gradle plugin to help us get a similar, hassle-free experience as the officially supported CI-Servers: octopus-deploy-plugin
+For package uploads to Octopus, if you’re running a build server that isn't supported natively you can use the Octopus Command Line (CLI) or the Octopus's REST API instead. For Gradle projects, we created a small Gradle plugin to help us get a similar, hassle-free experience as the officially supported CI-Servers: octopus-deploy-plugin.
 
-Currently it supports the following use-cases:
+Currently, it supports the following use-cases:
 
 - Create and upload package build-information 
 - Upload packages
-- Generate build-information Commits from git history. 
-- Progress Octopus Deploy Releases
-
-Create and upload package build-information Upload packages
-Generate build-information Commits from git history. Progress Octopus Deploy Releases
-
-Let’s look at a small example to get going:
+- Generate build-information commits from git history
+- Progress Octopus Deploy releases
 
 ## Setup example project
 
+Let’s generate a Spring Boot starter project to get a quick example project going: 
 
-Let’s generate a Spring Boot starter project to get a quick example project going: start.spring.io
-
+start.spring.io
 
 It must be a Gradle project and the language must use Kotlin here to generate the Gradle build files in Kotlin (instead of Groovy). The octopus- deploy-plugin can be used with Groovy build files as well, but all examples are using the Gradle Kotlin DSL.
 
-
-The Spring Web and Spring Boot Actuator dependency must be added as well. This adds a minimal web service and a health endpoint which we can open to verify the project runs successful.
+The Spring Web and Spring Boot Actuator dependency must be added as well. This adds a minimal web service and a health endpoint which we can open to verify the project runs successful:
 
 ![Spring Initializer](spring-initializer.png)
 
@@ -47,9 +41,9 @@ Now we can verify this by calling the health endpoint at http://localhost:8080/a
 
 ## Configure the Octopus Deploy plugin
 
-Next we’ll add the Gradle plugin and add basic configuration. The complete configuration uses the Gradle Lazy Configuration approach (aka. Provider API) which enables us to depend on other providers/tasks for configuration without hardcoding the values at Gradle configuration time. Checkout the Build Lifecycle docs for details why the Lazy Configuration approach is the preferable one.
+Next we’ll add the Gradle plugin and add basic configuration. The complete configuration uses the Gradle Lazy Configuration approach (Provider API) which lets us to depend on other providers/tasks for configuration without hardcoding the values at Gradle configuration time. Checkout the Build Lifecycle docs for details why the Lazy Configuration approach is the preferable one.
 
-com.liftric.octopus-deploy-plugin is the plugin ID, the current version is 1.6.0:
+`com.liftric.octopus-deploy-plugin` is the plugin ID, the current version is `1.6.0`:
 
 ```
 plugins {
@@ -61,7 +55,7 @@ plugins {
 }
 ```
 
-If we call ./gradlew tasks we’ll see the tasks added by the plugin:
+If we call `./gradlew` tasks, we’ll see the tasks added by the plugin:
 
 ```
 Octopus tasks
@@ -91,33 +85,33 @@ octopus {
 }
 ```
 
-For the name (packageName) and version we’re reusing the project values set by the start.spring.io generator (version under the plugins block, the name is in settings.gradle.kts configured). For automatic versioning something like the researchgate/gradle-release plugin might be used, the static values are alright for our example though.
+For the name ( `packageName`) and `version`, we’re reusing the project values set by the start.spring.io generator (version under the plugins block, the name is in settings.gradle.kts configured). For automatic versioning, something like the `researchgate/gradle-release` plugin might be used, the static values are fine for our example though.
 
-serverUrl needs the base URL of your Octopus Deploy instance, the example uses the cloud instance naming pattern. See the How to Create an API Key docs for how to create the API key.
+`serverUrl` needs the base URL of your Octopus Deploy instance, the example uses the cloud instance naming pattern. Learn how to [create an API key](https://octopus.com/docs/octopus-rest-api/how-to-create-an-api-key).
 
-In a non-prototype project it’s recommend for security reasons to not store secrets inside the build-script / repository itself. We at Liftric are using Hashicorp Vault as our secrets management tool of choice and even provide a small Gradle Plugin for accessing it: https://github.com/Liftric/vault-client-plugin. Reading a secured / secret environment variable (like Gitlab’s masked variables), or from a repo-external file (e.g. \~/.octopus) might be an alternative to a fully-fledged secrets management solution.
+In a non-prototype project, it’s recommend for security reasons to not store secrets inside the build-script/repository itself. At Liftric, we use Hashicorp Vault as our secrets management tool of choice and even provide a small Gradle Plugin for accessing it: https://github.com/Liftric/vault-client-plugin. Reading a secured/secret environment variable (like Gitlab’s masked variables), or from a repo-external file (e.g. \~/.octopus) might be an alternative to a fully-fledged secrets management solution.
 
-Finally we’re importing the bootJar task provider and binding the archiveFile file property to the pushPackage property so that the plugin knowns which file to upload.
+Finally, we’re importing the `bootJar` task provider and binding the `archiveFile` file property to the `pushPackage` property so that the plugin knowns which file to upload.
 
 ## Push build information
 
-The uploadBuildInformation task builds and upload the build-information for the package+version combination.
+The `uploadBuildInformation` task builds and uploads the `build-information` for the `package` `version` combination:
 
 ```
 ./gradlew uploadBuildInformation
 ```
 
-If you want to debug the generated build-information, calling ./gradlew createBuildInformation only builds it without uploading. The content will be printed but can also be viewed at build/octopus/build-information.json.
+If you want to debug the generated build-information, calling `./gradlew createBuildInformation` only builds it without uploading. The content will be printed but can also be viewed at `build/octopus/build-information.json`.
 
 ## Push packages
 
-The uploadPackage task uploads the target pushPackage file:
+The `uploadPackage` task uploads the target `pushPackage` file:
 
 ```
 ./gradlew uploadPackage
 ```
 
-Octopus Deploy has one quirk during the package upload: it expects the file in the format <name>.<version>.<extension>. In the Maven and Gradle world, the default naming is <name>-<version>.extension. If we leave the default naming of our boot jar, the default name is de mo-0.0.1-SNAPSHOT.jar which will upload the package demo-0 with the version 0.1-SNAPSHOT, meaning we have to adapt the naming of our boot jar artifact:
+Octopus Deploy has one quirk during the package upload: it expects the file in the format <name>.<version>.<extension>. In the Maven and Gradle world, the default naming is <name>-<version>.extension. If we leave the default naming of our boot jar, the default name is `demo-0.0.1-SNAPSHOT.jar` which will upload the package `demo-0` with the version `0.1-SNAPSHOT`, meaning we have to adapt the naming of our boot jar artifact:
 
 ```
 tasks.withType<Jar> {
@@ -126,23 +120,8 @@ tasks.withType<Jar> {
 }
 ```
 
-Now the correct jar filename is created: demo.0.0.1-SNAPSHOT.jar matching our generated build-information.
+Now the correct jar filename is created: `demo.0.0.1-SNAPSHOT.jar` which matches our generated build information.
 
 ## Learn more
 
-The complete feature set of the octopus-deploy-plugin is documented in the project’s repo, take a look!
-
----
-
-
-Liftric GmbH
-
-
-
-
-
-
-
-
-
-
+The complete feature set of the octopus-deploy-plugin is documented in the project’s [repo](https://github.com/Liftric/octopus-deploy-plugin).
