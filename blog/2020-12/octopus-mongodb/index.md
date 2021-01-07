@@ -1,6 +1,6 @@
 ---
 title: Deploying to MongoDB with Octopus Deploy and Liquibase
-description: Use Octopus Deploy to deploy to MongoDB using Liquibase
+description: Learn how to use Octopus Deploy to deploy to MongoDB using Liquibase
 author: shawn.sesna@octopus.com
 visibility: private
 published: 2021-06-29
@@ -10,13 +10,15 @@ tags:
  - Databases
 ---
 
-The use of NoSQL as a database back end has been gaining in popularity in recent years. Usage has been so great so that Amazon, Microsoft, and Google have all created their own cloud-based offerings.  One of the more recognizable names in the NoSQL world is MongoDB.  In this post, I'll demonstrate how to automate deployments to MongoDB using Octopus Deploy and Liquibase.
+The use of NoSQL as a database backend has been gaining in popularity in recent years. Usage has been so great so that Amazon, Microsoft, and Google have all created their own cloud-based offerings.  One of the more recognizable names in the NoSQL world is MongoDB.  In this post, I demonstrate how to automate deployments to MongoDB using Octopus Deploy and Liquibase.
 
 ## Liquibase
+
 I [previously](https://octopus.com/blog/octopus-oracle-liquibase) demonstrated how to deploy to Oracle using the Liquabase product.  However, our friends over at Liquibase do not operate strictly in the relational database space, they also have solutions for deploying to NoSQL, including MongoDB.
 
 ### Change log
-Working with MongoDB differs significantly than its relational counter parts.  For example, where you would create a Table in a relational database, you create a Collection in MongoDB.  Since they differ so greatly, the Liquibase changelog for MongoDB also differs quit a bit.  The following contains examples of how to create Collections in MongoDB:
+
+Working with MongoDB differs significantly than its relational counter parts.  For example, where you would create a table in a relational database, you create a collection in MongoDB.  Since they differ so greatly, the Liquibase changelog for MongoDB also differs quit a bit.  The following contains examples of how to create collections in MongoDB:
 
 ```xml
 <databaseChangeLog
@@ -60,7 +62,7 @@ Working with MongoDB differs significantly than its relational counter parts.  F
 </databaseChangeLog>
 ```
 
-Similarly, inserting data into a Collection has entirely different syntax than SQL.  Rather than inserting rows into a table, you insert Documents in to a collection.  The biggest difference between a row and a document is that a document doesn't have to follow the same structure (aka schema in the relational world), the exception being if there is a validator on the collection as shown above.  This example inserts two documents with two different structures into the same collection:
+Similarly, inserting data into a collection has entirely different syntax than SQL.  Rather than inserting rows into a table, you insert documents in to a collection.  The biggest difference between a row and a document is that a document doesn't have to follow the same structure (or schema in the relational world), the exception being if there is a validator on the collection as shown above.  This example inserts two documents with two different structures into the same collection:
 
 ```xml
 <databaseChangeLog
@@ -86,10 +88,10 @@ Similarly, inserting data into a Collection has entirely different syntax than S
 ```
 
 :::hint
-More examples of MongoDB operations with Liquibase can be found [here](https://github.com/liquibase/liquibase-mongodb/tree/main/src/test/resources/liquibase/ext).
+More examples of MongoDB operations with Liquibase can be found in this [GitHub repo](https://github.com/liquibase/liquibase-mongodb/tree/main/src/test/resources/liquibase/ext).
 :::
 
-For this post, I chose the [AirBnB](https://docs.atlas.mongodb.com/sample-data/sample-airbnb) example from the MongoDB samples documentation.  My deployment example inserts some data into the Listings collection as well as creates an additional collection called Bookings.  (The Listings collection is created during my deployment process explained later in this post.)
+For this post, I chose the [AirBnB](https://docs.atlas.mongodb.com/sample-data/sample-airbnb) example from the MongoDB samples documentation.  My deployment example inserts some data into the Listings collection as well as creates an additional collection called Bookings. The Listings collection is created during my deployment process explained later in this post.
 
 <details>
 	<summary>dbchangelog.xml</summary>
@@ -354,7 +356,8 @@ For this post, I chose the [AirBnB](https://docs.atlas.mongodb.com/sample-data/s
 
 
 ## Octopus Deploy
-The step template used to deploy to MongoDB is the same template I used for  Oracle, [Liquibase - Apply changeset](https://library.octopus.com/step-templates/6a276a58-d082-425f-a77a-ff7b3979ce2e/actiontemplate-liquibase-apply-changeset).  This template has been updated to include MongoDB as a selectable Database type.
+
+The step template used to deploy to MongoDB is the same template I used for  Oracle, [Liquibase - Apply changeset](https://library.octopus.com/step-templates/6a276a58-d082-425f-a77a-ff7b3979ce2e/actiontemplate-liquibase-apply-changeset).  This template has been updated to include MongoDB as a selectable database type.
 
 My deployment project consists of the following steps:
 
@@ -404,12 +407,14 @@ My deployment project consists of the following steps:
 MongoDB requires the `Connection query string parameters` parameter to be set to whatever database is providing [authentication](https://docs.mongodb.com/manual/reference/connection-string/) such as `?authSource=admin` shown above. 
 :::
 
-It is entirely possible to create the database, collection, and user as well as assign roles to the user within the Liquibase changelog, MongoDB will simply create the objects on the fly if they don't already exist.  Separating the steps is meant to make it easier to follow for those who aren't familiar with how MongoDB works.
+It is entirely possible to create the database, collection, and user as well as assign roles to the user within the Liquibase changelog. MongoDB will simply create the objects on the fly if they don't already exist.  Separating the steps is meant to make it easier to follow for those who aren't familiar with how MongoDB works.
 
 ### Deployment
-Once the deployment has completed, we can use MongoDB Compass, to verify that our database, collection, and data have been added.
+
+After the deployment has completed, we can use MongoDB Compass, to verify that our database, collection, and data have been added.
 
 ![](mongodb-compass-database.png)
 
 ## Conclusion
-In this post I demonstrated just how easy you can deploy to MongoDB using Liquibase and Octopus Deploy.  Happy Deployments!
+
+In this post, I demonstrated just how easy it is to deploy to MongoDB using Liquibase and Octopus Deploy.  Happy Deployments!
