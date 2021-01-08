@@ -10,7 +10,7 @@ tags:
  - Continuous Integration
 ---
 
-For package uploads to Octopus, if you’re running a build server that isn't supported natively you can use the Octopus Command Line (CLI) or the Octopus's REST API instead. For Gradle projects, we created a small Gradle plugin to help us get a similar, hassle-free experience as the officially supported CI-Servers: octopus-deploy-plugin.
+For package uploads to Octopus, if you’re running a build server that isn't supported natively you can use the Octopus Command Line (CLI) or the Octopus REST API instead. For Gradle projects, we ([Liftric](liftric.com)) have created a small Gradle plugin to help us get a similar, hassle-free experience as the officially supported CI-Servers: octopus-deploy-plugin.
 
 Currently, it supports the following use-cases:
 
@@ -25,7 +25,7 @@ Let’s generate a Spring Boot starter project to get a quick example project go
 
 start.spring.io
 
-It must be a Gradle project and the language must use Kotlin here to generate the Gradle build files in Kotlin (instead of Groovy). The octopus- deploy-plugin can be used with Groovy build files as well, but all examples are using the Gradle Kotlin DSL.
+The example project must be a Gradle project and the language must use Kotlin to generate the Gradle build files in Kotlin (instead of Groovy). The octopus- deploy-plugin can be used with Groovy build files as well, but all examples are using the Gradle Kotlin DSL.
 
 The Spring Web and Spring Boot Actuator dependency must be added as well. This adds a minimal web service and a health endpoint which we can open to verify the project runs successful:
 
@@ -38,11 +38,11 @@ After unzipping the demo project, we can build and run it to verify it works as 
 java -jar build/libs/demo-0.0.1-SNAPSHOT.jar
 ```
 
-Now we can verify this by calling the health endpoint at http://localhost:8080/actuator/health
+Now we can verify this by calling the health endpoint at `http://localhost:8080/actuator/health`.
 
 ## Configure the Octopus Deploy plugin
 
-Next we’ll add the Gradle plugin and add basic configuration. The complete configuration uses the Gradle Lazy Configuration approach (Provider API) which lets us to depend on other providers/tasks for configuration without hardcoding the values at Gradle configuration time. Checkout the Build Lifecycle docs for details why the Lazy Configuration approach is the preferable one.
+Next, we’ll add the Gradle plugin and add basic configuration. The complete configuration uses the Gradle Lazy Configuration approach (Provider API) which lets us to depend on other providers/tasks for configuration without hardcoding the values at Gradle configuration time. Checkout the Build Lifecycle docs for details why the Lazy Configuration approach is the preferable one.
 
 `com.liftric.octopus-deploy-plugin` is the plugin ID, the current version is `1.6.0`:
 
@@ -86,11 +86,11 @@ octopus {
 }
 ```
 
-For the name ( `packageName`) and `version`, we’re reusing the project values set by the start.spring.io generator (version under the plugins block, the name is in settings.gradle.kts configured). For automatic versioning, something like the `researchgate/gradle-release` plugin might be used, the static values are fine for our example though.
+For the name ( `packageName`) and `version`, we’re reusing the project values set by the `start.spring.io` generator (version under the plugins block, the name is in `settings.gradle.kts` configured). For automatic versioning, something like the `researchgate/gradle-release` plugin might be used, the static values are fine for our example though.
 
 `serverUrl` needs the base URL of your Octopus Deploy instance, the example uses the cloud instance naming pattern. Learn how to [create an API key](https://octopus.com/docs/octopus-rest-api/how-to-create-an-api-key).
 
-In a non-prototype project, it’s recommend for security reasons to not store secrets inside the build-script/repository itself. At Liftric, we use Hashicorp Vault as our secrets management tool of choice and even provide a small Gradle Plugin for accessing it: https://github.com/Liftric/vault-client-plugin. Reading a secured/secret environment variable (like Gitlab’s masked variables), or from a repo-external file (e.g. \~/.octopus) might be an alternative to a fully-fledged secrets management solution.
+In a non-prototype project, it’s recommend for security reasons not to store secrets inside the build-script/repository itself. At Liftric, we use Hashicorp Vault as our secrets management tool of choice and even provide a small Gradle Plugin for accessing it: https://github.com/Liftric/vault-client-plugin. Reading a secured/secret environment variable (like Gitlab’s masked variables), or from a repo-external file (e.g. \~/.octopus) might be an alternative to a fully-fledged secrets management solution.
 
 Finally, we’re importing the `bootJar` task provider and binding the `archiveFile` file property to the `pushPackage` property so that the plugin knowns which file to upload.
 
