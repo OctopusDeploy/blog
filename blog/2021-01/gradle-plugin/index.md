@@ -7,6 +7,7 @@ published: 2021-12-31
 metaImage: 
 bannerImage: 
 tags:
+ - Continuous Integration
 ---
 
 For package uploads to Octopus, if you’re running a build server that isn't supported natively you can use the Octopus Command Line (CLI) or the Octopus's REST API instead. For Gradle projects, we created a small Gradle plugin to help us get a similar, hassle-free experience as the officially supported CI-Servers: octopus-deploy-plugin.
