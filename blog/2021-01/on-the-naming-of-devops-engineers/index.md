@@ -4,11 +4,13 @@ description: Why is this job title so controversial? What's a better option?
 author: alex.yates@dlmconsultants.com
 visibility: public
 published: 2021-01-11
-metaImage: 
-bannerImage: 
+metaImage: blog-image-naming-of-devops-engineers_2021.png
+bannerImage: blog-image-naming-of-devops-engineers_2021.png
 tags:
  - DevOps
 ---
+
+![On the naming of “DevOps Engineers”](blog-image-naming-of-devops-engineers_2021.png)
 
 Back in November, I shared my [DevOps Reading List](https://octopus.com/blog/devops-reading-list). The post went a little wild on social media and for a few days I got lost in the discussions on [Twitter](https://twitter.com/_AlexYates_/status/1330763347281780736) and [LinkedIn](https://www.linkedin.com/feed/update/urn:li:activity:6736600404013985792/). One person shared the link with a comment that my blog post was a “must read” for anyone who wanted to build a career as a “DevOps Engineer”.
 
