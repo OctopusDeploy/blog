@@ -3,12 +3,15 @@ title: Octopus Deploy Gradle plugin
 description: Learn how to use the Octopus Deploy Gradle plugin
 author: info@kesselring.io
 visibility: public
-published: 2021-12-31
-metaImage: 
-bannerImage: 
+published: 2021-01-18
+metaImage: gradle-octopus.png
+bannerImage: gradle-octopus.png
 tags:
  - Continuous Integration
+ - DevOps
 ---
+
+![Octopus Deploy Gradle plugin](gradle-octopus.png)
 
 For package uploads to Octopus, if you’re running a build server that isn't supported natively you can use the Octopus Command Line (CLI) or the Octopus REST API instead. For Gradle projects, we ([Liftric](https://www.liftric.com)) have created a small Gradle plugin to help us get a similar, hassle-free experience as the officially supported CI-Servers: octopus-deploy-plugin.
 
