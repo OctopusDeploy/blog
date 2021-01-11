@@ -10,7 +10,7 @@ tags:
  - Databases
 ---
 
-!(Deploying to MongoDB with Octopus Deploy and Liquibase)[mongodb-octopus.png]
+![Deploying to MongoDB with Octopus Deploy and Liquibase](mongodb-octopus.png)
 
 The use of NoSQL as a database backend has been gaining in popularity in recent years. Usage has been so great so that Amazon, Microsoft, and Google have all created their own cloud-based offerings.  One of the more recognizable names in the NoSQL world is MongoDB.  In this post, I demonstrate how to automate deployments to MongoDB using Octopus Deploy and Liquibase.
 
