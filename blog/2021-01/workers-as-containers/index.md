@@ -10,10 +10,7 @@ tags:
  - 
 ---
 
-I recently had the need to create some additional, temporary workers on our [Samples](https://samples.octopus.app) cloud instance of Octopus Deploy that could be shared with other spaces.  As these workers were to be short lived, containers seemed like the perfect solution!  Spin up, do some work, tear them down.  Beautiful!  In this post, I'll demonstrate how to create workers in a container hosted in Azure, perform a health check, and install some additional software components.  Once we're done with the workers, tear them down and deregister from Octopus.
-
-## The problem
-The goal of this project was to provide additional workers to our Samples instance during the time when all of the Spaces were spinning up their respective infrastructure.  When the workers were no longer needed, tear them down.
+I recently had the need to create some additional, temporary workers on our [Samples](https://samples.octopus.app) cloud instance of Octopus Deploy.  As these workers were to be short lived, containers seemed like the perfect solution!  Spin up, do some work, tear them down.  Beautiful!  In this post, I'll demonstrate how to create workers in a container hosted in Azure, perform a health check, and install some additional software components.  
 
 ## Spin up the workers
 The first step we'll need to do is to create a Runbook.  This post assumes that you have some familiarity with the [Runbook](https://octopus.com/docs/runbooks) feature, so I'll not be going into great detail in creating one.  My Runbook consists of the following steps:
@@ -21,10 +18,9 @@ The first step we'll need to do is to create a Runbook.  This post assumes that 
 - Run an ARM template to create the Octopus Deploy Tentacle container
 - Run a health check
 - Install additional software
-- Register to any Space with a Setup worker pool
 
 ### Create Azure Resource Group
-For ease of removal, the first step creates an Azure Resource Group using the Run an Azure Script step:
+For ease of removal and overall tidyness, the first step creates an Azure Resource Group using the Run an Azure Script step:
 
 ```PowerShell
 $resourceGroupName = $OctopusParameters["Azure.Network.ResourceGroup.Name"]
@@ -152,10 +148,10 @@ The template requires some parameters to be entered:
 
 This template will spin up an Azure Container Instance of the Octopus Deploy Tentacle.  
 
-For speed, I chose the Linux variant as it is much smaller than the Windows container (254.39 MB versus 2.27 GB).
+I chose the Linux variant as it is much smaller than the Windows container (254.39 MB versus 2.27 GB).
 
 ### Run a health check
-The built-in health check template only works for deployment targets, however, there is a Community step that was developed specifically for workers; [Worker - Health Check](https://library.octopus.com/step-templates/c6c23c7b-876d-4758-a908-511f066156d7/actiontemplate-worker-health-check).
+The built-in health check template only works for deployment targets, however, there is a Community step that was developed specifically for workers; [Worker - Health Check](https://library.octopus.com/step-templates/c6c23c7b-876d-4758-a908-511f066156d7/actiontemplate-worker-health-check).  Running this step ensures that our worker is healthy and ready for the next step.
 
 ### Install addtional software
 The workers were going to need to interact with both Azure and AWS.  The Tentacle image has the bare minimum software required to run, so I needed to install the following:
@@ -163,7 +159,7 @@ The workers were going to need to interact with both Azure and AWS.  The Tentacl
 - Azure CLI
 - AWS CLI
 
-With Deployment Targets, you can execute steps against all targets with the same role.  Since workers don't have roles, I needed to find an alternative.  I found the Script Console had the ability to execute the same code against all workers within a pool.  With Octopus written API-first, I was able to duplicate the functionality of the Script Console to run the code to install the additional software against the whole pool!
+With Deployment Targets, you can execute steps against all targets with the same role.  Since workers don't have roles, I needed to find an alternative.  I found the Script Console had the ability to execute the same code against all workers within a pool.  With Octopus written API-first, I was able to duplicate the functionality of the Script Console to run the code to install the additional software against the whole pool via the API!
 
 ```PowerShell
 # Define parameters
@@ -240,79 +236,14 @@ while ($scriptTask.IsCompleted -eq $false)
 
 Write-Output "Installation complete!"
 ```
-
-### Add to other spaces
-This step iterates through all of the spaces on the instance and adds the workers to the space if it has a worker pool called Setup
-
-```PowerShell
-# Define parameters
-$baseUrl = $OctopusParameters['Global.Base.Url'] 
-$apiKey = $OctopusParameters['Global.Api.Key'] 
-$spaceId = $OctopusParameters['Octopus.Space.Id']
-$spaceName = $OctopusParameters['Octopus.Space.Name']
-$workerPoolName = $OctopusParameters['Project.WorkerPool.Name']
-
-if ($baseUrl.EndsWith("/"))
-{
-	$baseUrl = $baseUrl.SubString(0, $baseUrl.LastIndexOf("/"))
-}
-
-# Get worker pool
-$workerPool = ((Invoke-RestMethod -Method Get -Uri "$baseUrl/api/$spaceId/workerpools/all" -Headers @{"X-Octopus-ApiKey"="$apiKey"}) | Where-Object {$_.Name -eq $workerPoolName})
-
-# Get all workers
-$workers = (Invoke-RestMethod -Method Get -Uri "$baseUrl/api/$spaceId/workerpools/$($workerPool.Id)/workers" -Headers @{"X-Octopus-ApiKey"="$apiKey"})
-
-# Get all spaces
-$spaces = ((Invoke-RestMethod -Method Get -Uri "$baseUrl/api/spaces/all" -Headers @{"X-Octopus-ApiKey"="$apiKey"}) | Where-Object {$_.Name -ne $spaceName})
-
-# Loop through all spaces
-foreach ($space in $spaces)
-{
-	# Get worker pool
-    $workerPool = ((Invoke-RestMethod -Method Get -Uri "$baseUrl/api/$($space.Id)/workerpools/all" -Headers @{"X-Octopus-ApiKey"="$apiKey"}) | Where-Object {$_.Name -eq $workerPoolName})
-    
-    # Check worker pool
-    if ($null -ne $workerPool)
-    {
-    	# Get default machine policy
-        $machinePolicy = ((Invoke-RestMethod -Method Get -Uri "$baseUrl/api/$($space.Id)/machinepolicies/all" -Headers @{"X-Octopus-ApiKey"="$apiKey"}) | Where-Object {$_.Name -eq "Default Machine Policy"})
-        
-        # Loop through workers
-        foreach ($worker in $workers.Items)
-        {
-        	# Build JSON payload
-            $jsonPayload = @{
-                Name = $worker.Name
-                MachinePolicyId = $machinePolicy.Id
-                IsDisabled = $worker.IsDisabled
-                HealthStatus = $worker.HealthStatus
-                HasLatestCalamari = $worker.HasLatestCalamari
-                IsInProcess = $true
-                EndPoint = $worker.Endpoint
-                WorkerPoolIds = @($workerPool.Id)
-            }
-            
-            # Add worker
-            Write-Output "Adding $($worker.Name) to $($space.Name)"
-            Invoke-RestMethod -Method Post -Uri "$baseUrl/api/$($space.Id)/workers" -Body ($jsonPayload | ConvertTo-Json -Depth 10) -Headers @{"X-Octopus-ApiKey"="$apiKey"}
-        }
-    }
-}
-```
-
 I needed to create more than just one worker, so steps 2 and 3 from above were created multiple times in my process
 
 ![](octopus-project-process.png)
 
 ## Containerized workers
-When configured in Listening mode, the Octopus Depoloy container is coded to automatically connect to your Octopus Server and register itself to the specified worker pool, which is Setup in this case
+When configured in Listening mode, the Tentacle container is coded to automatically connect to your Octopus Server and register itself to the specified worker pool.  Once the runbook completed, I had three, healthy workers.
 
 ![](octopus-worker-pool.png)
 
-## Tear down workers
-As stated in the beginning of this post, these workers are meant to only stick around for a little while before being torn down.  I created another runbook to take care of the tear down process:
-- Remove workers from others spaces
-- Remove workers from this space
-- Delete resource group
-
+## Conclusion
+In this post I demonstrated how to create workers running as containers.  This gives you the flexibility of creating workers without having to manage a VM!
