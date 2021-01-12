@@ -1,18 +1,21 @@
 ---
 title: Using Runbooks To Provision Infrastructure
-description: How to use Runbooks to provision/destory infrastructure and give self service access to teams in the organisation.
+description: How to use Runbooks to provision and destory infrastructure and give self-service access to teams in your organisation.
 author: Adam Close
 visibility: private
 published: 3020-01-01
 metaImage: 
 bannerImage: 
 tags:
-  - runbooks
+  - Runbooks
+  - DevOps
 ---
 
-In this blog post, I'll show you how to use Runbooks to create & destroy application servers. Control cloud expenditure and give your organizations teams the ability to safely spin up infrastructure on-demand in a controlled and gated process. 
+Automating your server provisioning with runbooks is a great way to manage IT infrastructure. This approach gives you better control over your cloud service expenditure and it allows you to  safely spin up infrastructure on-demand in a controlled, gated and auditable process. 
 
-We will be configuring Octopus Runbooks to spin up infrastructure in AWS using CloudFormation steps. We will also be creating another Runbook to tear down the infrascture and adding a scheduled trigger to run the Tear Down Runbook on a schedule.
+In this blog post, we will create serveral automated runbook processes to spin-up and tear down infrastructure in [Amazon Web Services (AWS)](https://aws.amazon.com). We'll also look at how to configure a schedule to automatically execute our runbooks to create or destory our infrastucture.
+
+NOTE: This blog post is focused on infrastructure provisioning with AWS but the concepts are easily applied to [Microsoft's Azure platform](https://azure.microsoft.com/) or [Google's Cloud Platform](https://cloud.google.com).
 
 ## Create Octopus Resources
 
@@ -405,4 +408,4 @@ You can then custimize the trigger to run your Runbook.
 
 ## Conclusion 
 
-In this blog, I showed you how to use Octopus Runbooks to provision and tear down infrascture in AWS. We added addtional 
+In this blog post, I showed you how to use runbook automation in Octopus to provision and tear down infrastructure in AWS. We added addtional 
