@@ -1,45 +1,51 @@
 ---
 title: "Octopus Tentacle on ARM/ARM64"
-description: "Tentacle now supports ARM/ARM64 TODO"
+description: "Tentacle now supports ARM/ARM64 hardware"
 author: ben.pearce@octopus.com
 visibility: private
-bannerImage: 
-metaImage: 
-published: 2021-12-31
+metaImage: metaimage-raspberrypi.png
+bannerImage: blogimage-raspberrypi.png
+published: 2021-01-15
 tags:
 - Product
 ---
 
 TODO: Find a graphic.
 
-We're pleased to share that our Tentacle agent now supports ARM and ARM64 hardware. This update makes it possible to deploy your apps and services to Raspberry Pi 3 & 4, AWS A1 EC2 instances, or any ARM hardware that can run [.NET Core 3.0+](https://devblogs.microsoft.com/dotnet/announcing-net-core-3-0/#platform-support). 
+We're pleased to share that our Tentacle agent now supports ARM and ARM64 hardware. This update makes it possible to deploy your apps and services to Raspberry Pi 3 & 4, AWS A1 EC2 instances, or any ARM hardware that can run [.NET Core 3.0 or later](https://devblogs.microsoft.com/dotnet/announcing-net-core-3-0/#platform-support). 
 
-In this post, I'll explain why it's valuable to run Tentacle on ARM servers, I'll show you how to get started plus I'll share additional resources so you can do bigger and better things. 
+In this post, I'll explain why it's valuable to run Tentacle on ARM servers and how to get started.
 
 ## Why Tentacle on ARM/ARM64? 
 
 Back in late 2019, we introduced support for ARM-based deployment targets and workers as an SSH connection option.* The [Linux Tentacle](https://octopus.com/downloads/tentacle#linux) has been around for a while now, but only supported `x86_64/amd64` based machines, leaving ARM adopters stuck with SSH.
 
-Connecting over SSH is fine, but doesn't work for everyone, such as highly secure environments where port 22 is a no-no. By installing a Polling Tentacle on your ARM device you can avoid having to open a firewall port for an SSH connection, which is especially important if you are using the Octopus Hosted service. 
-Please see our [previous blog post](https://octopus.com/blog/tentacle-on-linux) which goes into further detail about the benefits of using a Linux Tentacle for deployments rather than SSH.
+Connecting over SSH is fine, but doesn't work for everyone, such as highly secure environments where port 22 is a no-no. It will also require a direct connection, possibly through a firewall, between the Octopus Server and the SSH server. 
+
+By installing a Polling Tentacle on your ARM device you can avoid having to open a firewall port for an SSH connection, which is especially important if you are using the Octopus Cloud service. 
+
+Feel free to check out our [previous blog post](https://octopus.com/blog/tentacle-on-linux) which goes into further detail about the benefits of using a Linux Tentacle for deployments rather than SSH.
 
 Running your workloads on ARM hardware has some benefits:
 - Lower running cost
 - Low-cost replaceable units in the case of the small form-factor manufacturers such as Raspberry Pi.
 - Faster compute compared to x86 servers.
 
-*** insert link here to back up some of these claims
+[Comparison between ARM and x86](https://www.section.io/engineering-education/arm-x86/)
 
 \* _Technically, it was available earlier than this but there were some awkward hoops you had to jump through._
 
 ## Getting Started
 
-All the instructions for getting Tentacle running on Linux are available in our [docs](https://octopus.com/docs/infrastructure/deployment-targets/linux/tentacle) but I will provide a walkthrough of the steps. At the end, we will have a Raspberry Pi inside a private network, connected to an Octopus Hosted instance.
+All the instructions for getting Tentacle running on Linux are available in our [docs](https://octopus.com/docs/infrastructure/deployment-targets/linux/tentacle) but I will provide a walkthrough of the steps. At the end, we will have a Raspberry Pi inside a private network, connected to an Octopus Cloud instance.
 
-For this example, I am running [Fedora 33 Server](https://getfedora.org/en/server/download/) on a Raspberry Pi 3B+ and have signed up for a [hosted Octopus instance](https://octopus.com/start/cloud).
+For this example, I am running [Fedora 33 Server](https://getfedora.org/en/server/download/) on a [Raspberry Pi 3B+](https://www.raspberrypi.org/products/) and have signed up for a [Octopus Cloud instance](https://octopus.com/start/cloud).
 
-Before we install the Tentacle application, you will need the Octopus Server URL and an API key for authentication.
-* If you are using an on-prem Octopus Server instance, you can use **Username / Password** for authentication.
+:::info
+You can also run the Linux Tentacle agent on a Raspberry Pi with Ubuntu 18.04 or later, or Raspbian Buster.
+:::
+
+Before we install the Tentacle application, you will need the **Octopus Server URL** and an **API Key** for authentication. If you are using an on-prem Octopus Server instance, you can use **Username / Password** for authentication.
 
 Installing the Tentacle package is straightforward:
 
@@ -59,7 +65,7 @@ There are sample scripts available on the [Linux Tentacle documentation](https:/
 For this example, it is important to select **Polling** (2) for the kind of Tentacle. The [Polling Tentacle](https://octopus.com/docs/infrastructure/deployment-targets/windows-targets/tentacle-communication#polling-tentacles) will make a connection out to the Octopus Server so we don't need to open up any additional ports in the firewall.
 
 ```bash
-[root@fedora ~]# /opt/octopus/tentacle/configure-tentacle.sh
+[user@fedora ~]# sudo /opt/octopus/tentacle/configure-tentacle.sh
 
 Name of Tentacle instance (default Tentacle):
 Invalid characters will be ignored, the instance name will be: 'Tentacle'
@@ -111,7 +117,7 @@ After the script has finished configuring the tentacle, you will be able to see 
 ![Deployment target](deployment-target.png "width=200")
 
 The next thing will be to run something against our new Tentacle.
-For this step, I am going to setup a new project and configure a runbook to install the latest package updates.
+For this step, I am going to set up a new project and configure a runbook to install the latest package updates.
 
 In your instance create a new _Project_, I called mine **Pi 🥧**
 
@@ -126,12 +132,10 @@ The step is configured to run a _bash_ script against the role **pi**, which is 
 
 ![Script step](script-step.png)
 
-The beauty of running against a role, is you could have many targets with the same role and the execution will run against each of these. Hook up a schedule trigger and you have yourself a real DevOps process.
+The beauty of running against a role is you could have many targets with the same role and the execution will run against each of these. Hook up a schedule trigger and you have yourself a real DevOps process.
 
-## Next steps
-
-*** need to fill this in a bit more.
+This is a simple example, this could also be a Runbook that updates PiHole (`pi-hole -up`) on a Raspberry Pi or cleans up Docker images (`docker images prune --force`), or a Deployment project that deploys the latest version of an in-house Python application to remotely located IoT monitoring devices.
 
 ## Conclusion
 
-There are many reasons that you might be using ARM hardware from cost savings to performance or remote IoT devices. Being able to connect them to an Octopus instance via Tentacle allows you to deploy application updates to them or manage them using our [Runbooks](https://octopus.com/docs/runbooks) feature to centralise management of the operating system and applications.
+There are many reasons that you might be using ARM hardware from cost savings to performance or remote IoT devices. Being able to connect them to an Octopus instance via Tentacle allows you to deploy application updates to them or manage them using our [Runbooks](https://octopus.com/docs/runbooks) feature to centralise management of the operating system and applications. The Polling Tentacle has the added benefit of avoiding complex firewall configurations and exposing SSH ports across the public internet.
