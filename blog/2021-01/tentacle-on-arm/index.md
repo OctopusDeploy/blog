@@ -35,7 +35,7 @@ Running your workloads on ARM hardware has some benefits:
 
 \* _Technically, it was available earlier than this but there were some awkward hoops you had to jump through._
 
-## Getting Started
+## Getting started
 
 All the instructions for getting Tentacle running on Linux are available in our [docs](https://octopus.com/docs/infrastructure/deployment-targets/linux/tentacle) but I will provide a walkthrough of the steps. At the end, we will have a Raspberry Pi inside a private network, connected to an Octopus Cloud instance.
 
@@ -46,6 +46,8 @@ You can also run the Linux Tentacle agent on a Raspberry Pi with Ubuntu 18.04 or
 :::
 
 Before we install the Tentacle application, you will need the **Octopus Server URL** and an **API Key** for authentication. If you are using an on-prem Octopus Server instance, you can use **Username / Password** for authentication.
+
+### Installation
 
 Installing the Tentacle package is straightforward:
 
@@ -115,6 +117,8 @@ Tentacle instance 'Tentacle' is now installed
 After the script has finished configuring the tentacle, you will be able to see the Linux Tentacle in the Deployment Targets page on your instance.
 
 ![Deployment target](deployment-target.png "width=200")
+
+### Using it
 
 The next thing will be to run something against our new Tentacle.
 For this step, I am going to set up a new project and configure a runbook to install the latest package updates.
