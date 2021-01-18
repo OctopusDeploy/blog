@@ -10,89 +10,102 @@ tags:
  - Engineering
 ---
 
-Before I worked at Octopus Deploy I was an Octopus Deploy user.  When I started using Octopus Deploy my team had a decision to make, should we have one Octopus Deploy project per application, or an Octopus Deploy project per component (WebUI, API, Database, etc)?  Someone in that discussion pointed out it is common to deploy a single component; typically it was to fix a small bug.  The majority of the time, it was smooth sailing.  That is until we had a major release requiring all the components to be deployed.  It worked, but it was tedious and time consuming.  In this post I am going to walk through how to use a new step template [Deploy Child Octopus Deploy Project](https://library.octopus.com/step-templates/0dac2fe6-91d5-4c05-bdfb-1b97adf1e12e/actiontemplate-deploy-child-octopus-deploy-project) to make release management in Octopus Deploy much easier.
+It is common to ask, should we have one Octopus Deploy project per application, or an Octopus Deploy project per component (WebUI, API, Database, etc)?  I've seen and been a part of projects where it was far more common to deploy one or two components, perhaps to fix a small bug than it was to deploy all the components.  Having an Octopus Deploy project per component solves a lot of problems; the trade-off is it makes it more complex to deploy the entire application stack.  In this post I am going to walk through how to use a new step template [Deploy Child Octopus Deploy Project](https://library.octopus.com/step-templates/0dac2fe6-91d5-4c05-bdfb-1b97adf1e12e/actiontemplate-deploy-child-octopus-deploy-project) to make release management in Octopus Deploy much easier.
 
 ## The Sample Application
 
-The sample application for this article has four components, a database, a scheduling service, a web api, and a web ui.  You can be find it on our [samples instance](https://samples.octopus.app/app#/Spaces-603) (log in as guest).
+For this article I will be using a sample application with four components, a database, a scheduling service, a web api, and a web ui.  You can be find it on our [samples instance](https://samples.octopus.app/app#/Spaces-603) (log in as guest).
 
 ![Sample application overview](release-management-sample-application-overview.png)
 
-Each project is designed to be deployed independently of one another. This meant each project has the required manual interventions.
+Each project is designed to be deployed independently of one another; so much so each project has its own manual interventions.
 
 ![Sample application process](release-management-sample-project-steps.png)
 
-In general this setup is very similar to the application I worked on when I first started using Octopus Deploy. In my application's case all the code was in a single GIT repository.  This way a new developer only had to pull down one repo, go through the read me file, and they'd be up and running.  For the build server, each component had a dedicated build, with each build configured to monitor specific folders.  
+This example will use a modified version of [SemVer](https://semver.org/) for the components, `Year.Minor.Patch.Build`, or `2021.1.0.1`.  The orchestration project will use standard [SemVer](https://semver.org), `Year.Minor.Patch` or `2021.1.0`.  
 
-For this exmaple, we will use a modified form of [SemVer](https://semver.org/) for the components `Year.Minor.Patch.Build`, or `2021.1.0.1`.  The build server will create the release with the version number, and automatically deploy the code to the **Development** environment.  When that deployment is complete, it will run a batch of integration tests, and if those passed, promote the release to **Test**.  The first batch of work for 2021, would look like this.
+I'm not going to spend to much time discussing how the code is stored in source control nor the build server configuration.  It is possible to have a single GIT repo for the entire application, with the build server configured to trigger component builds based on a watch folder.  It is also possible to have a GIT repo per component.  This example should be flexible enough to account for both configurations.  Assume the build server will build each component, create a release for that component's project, and automatically deploy the code to the **Development** environment.  When that deployment is complete, it will run a batch of integration tests, and if those passed, promote the release to **Test**.  
+
+The first batch of work for 2021 will look like this.
 
 ![Sample deployment](release-management-first-yearly-release-to-test.png)
 
 ## The roadblocks
 
-The `2021.1.0.x` release has been tested by QA and is ready to be promoted to **Staging**.  Which means going into each project and clicking the deploy button.  With four components that is tolerable if it doesn't happen every day.  
+Typically a change will sit in the **Test** environment for 1 to N days while it goes through the QA process.  Bugs are found and squashed, and chances are each component will have a different build number.
 
-![Promote to staging](release-management-promote-to-staging.png)
+![Release management ready for staging](release-management-ready-for-staging.png)
 
-Promoting all the components to **Production** is when this pattern starts to run into issues.  
+It is now time to deploy to promote the `2021.1.0` release to **Staging**, which means promoting each release for each project one by one.  A person will have to click on the project to get to the dashboard, click the deploy button next for the correct `2021.1.0.x` release, and click the deploy button again.  Repeat that four times.  It's not great, but it is tolerable.  Promoting all the components to **Production** is when this pattern starts to run into issues.  
 
+- If a components has multiple fixes pushed to **Test** chances are it will need at least one more fix pushed to **Staging**.
 - All the projects require approval from QA.
 - Multiple projects require approval from the web admins and business owners.
 - All the projects will send out an email notification.
 - Typically applications need to be deployed in a specific order.  Deploy the database first, then the API, then scheduling service, then the UI.  Any issues should stop everything.
 
-What is needed is a release orchestration project to coordinate the components.  That project has a unique lifecycle, only **Staging** and **Production**.  The release wouldn't be created until all the testing is complete in **Test**.
+## Deploy Child Octopus Deploy Project
+What is needed is a release orchestration project to coordinate the components.  That project has a unique lifecycle, only **Staging** and **Production**.  The release for this project won't be created until all the testing is complete in **Test**.
 
 ![Release Orchestration Dashboard](release-management-release-orchestration-dashboard.png)
 
-Prior to the new [Deploy Child Octopus Deploy Project](https://library.octopus.com/step-templates/0dac2fe6-91d5-4c05-bdfb-1b97adf1e12e/actiontemplate-deploy-child-octopus-deploy-project) step template, the options were:
+That release orchestration project will leverage the new [Deploy Child Octopus Deploy Project](https://library.octopus.com/step-templates/0dac2fe6-91d5-4c05-bdfb-1b97adf1e12e/actiontemplate-deploy-child-octopus-deploy-project) step template.  This new step template was written for a number of common use cases found in release orchestration projects.  It's features include:
 
-- [Deploy a release step](https://octopus.com/docs/projects/coordinating-multiple-projects/deploy-release-step)
-- [Chain Deploy step template](https://library.octopus.com/step-templates/18392835-d50e-4ce9-9065-8e15a3c30954/actiontemplate-chain-deployment)
+### Intelligent Release Picking
 
-The chain deployment step template was created before the deploy a release step.  Functionally, there are a lot of overlap between the two steps.  When used for their designed use cases, both steps work great.  But they didn't support the following use cases:
+One of the more common roadblocks users run into with pre-existing steps is how difficult it is to get them to pick the correct release.  The new step template aims to solve that by a new approach in picking releases to promote.
 
-- Provide a release number pattern, for example `2021.1.0.*`, and deploy the latest release in the source environment.  This enables a user to create a single release and deploy the latest `2021.1.0.x` release to **Staging** or **Production**.
-- Deploy the last successful release matching a pattern.  Not the most recently created release, the last successful release.
-- If there is no release matching `2021.1.0.x` for a component then skip that component.
-- Have the approvals from the release orchestration project flow into the component projects.
-- Be able to review all the release notes from all the components in a single place.
+To start with, you supply a pattern, for example `2021.1.0.*` and a destination environment, for example **Staging**, and optionally a channel.  If the channel is not provided it will use the component project's default channel.  The step template will then:
 
-The first two use cases are related to the same issue.  With the Deploy a Release step and Chain Deployment step, you had to specify a specific release number and/or use the latest release created.  Working under the assumption no bugs are found in **Staging**, that works fine.  But imagine this scenario:
+- Calculate the previous environment(s) based the channel and destination environment.  For example, if you entered **Staging** it would pick **Test** because that is the prior to **Staging** in the channel's lifecycle.
+- Look for all the releases matching the supplied pattern for that channel.  
+- Find the release that was last successfully deployed to the previous environments.  Not the most recently created release deployed to the previous environment.  The last successfully deployed release.  For example, you deploy `2021.1.0.15` to **Test**, realize that shouldn't have been pushed, and redeploy `2021.1.0.14` to **Test**.  The step template will pick `2021.1.0.14` when it promotes to **Staging** because that was the last release deployed to **Test**.
 
-- The `2021.1.0` release is promoted to **Staging**
-- The business owner realizes the verbiage is incorrect on one of the new pages created in the `2021.1.0.1` build.  
-- A developer makes the fix in `2021.1.0.2`.  It gets automatically promoted to **Dev** and **Test**.  The business owner approves the change and it is pushed up to **Staging**.
-- If we were using the Deploy A Release Step a new release for the Orchestration project would need to get created.
-- Everything checks out on **Staging** and it is time to deploy to **Production**.  However, an external service isn't ready for **Production** yet.  The deployment to **Production** is delayed a week.
-- In the meantime, work on `2021.2.0` has started.  
-- Right before it is time to deploy to **Production** the business owner comes back and says the verbiage in the `2021.1.0.1` is fine.  Go back to that.
+If no release is found it will exit out of the step.  For example, shortly after promoting `2021.1.0` to **Production** a bug is found requiring a fix to the Web API and Web UI projects.  You'd create the `2021.1.1` and supply the `2021.1.1.*` pattern.  The Database and Scheduling service projects don't have a matching release, because they weren't touched, so they are skipped.  You can configure the step to throw an error if no release is found.
 
-The developer looks at the Octopus Dashboard.
+The step template will also check to see if the selected release has been deployed to the destination environment.  If the release has been deployed to the destination environment it will skip it.  You can configure it to always redeploy.
 
-![release management rollback dashboard](release-management-rollback-dashboard.png)
+![How step template picks releases](release-management-how-releases-are-picked.png)
 
-They think, "you know I don't want to mess anything up in Dev and Test, and it is such a small change, I'll make it in the 2021.2.0 branch and redeploy 2021.1.0.1."
+### Easier Approvals
 
-Some permentation of that example happens all the time.  If we were using the deploy a release step, we'd have to tell the admins to delete the new release.  If we were using the chain deployment step, we'd have to hardcode in 2021.1.0.1 into that step, create the release, then remove that hardcoded value.  
+Approvals seems to be a major tripping point when it comes to release orchestration.  It is common to want to approve a deployment prior to actually deploying it.  But only approve that release once, not have to reapprove each child component's deployment.  When approving a release, it'd be nice to pull in all the pertinant release informaton into one place to approve.
 
-The manual intervention flowing to the child projects and release notes use cases are interesting.  Essentially, it is a chicken / egg scenario.  We want to approve a release, but in order to approve the release we need to be able to see all the release notes.
+The step template makes approvals much easier by providing a what-if flag, which will exit the step right before doing the deployment.  In addition, when that flag is set, the step template will populate the output variable `ReleaseToPromote`, which can be used in manual interventions steps.
 
-In addition to those common use cases, I've also heard from our customers, or ran into other less common use cases myself.
+The step template will always gather the release notes for each child component and populates the output variable `ReleaseNotes`.  If you are using the build information and issue tracker feature in Octopus, the step template will also gather the commit and issue information calculated for the release.  You can save release notes as an artifact making it easier for approvers and later auditors to review the deployment in one place.
 
-- Don't deploy a release if it has already deployed to an environment.
-- However, when a new machine is added, have a trigger for fire in the orchestration project.  That release will run for that single machine and if the component project is tied to that machine, then redeploy the release but only for that machine.
-- I want to have a single release orchestration deployment process for my tenanted application.  If the component is tied to a specific tenant, then skip that tenant.
-- The build server only deploys to the **Dev** environment.  Every day at noon and 7 pm a scheduled trigger should promote latest release from **Dev** to **Test** for all the components.  Setting up a scheduled trigger for each component is tedious at best.
-- When picking a release to promote to **Staging** it should use a specific channel.  No hotfix or branch channels should be considered.  Setting up channel version rules is tedious.
-- Each development team has their own space.  But there is only one web admin team, one DBA team, and one QA team.  Having to go across multiple spaces is tedious.
-- Deployments can get stuck, it'd be nice to be able to cancel anything long running.
+![Release management easier approvals](release-management-easier-approvals.png)
 
-## Deploy Child Octopus Deploy Project Step Template
+If you recall, each component project has its own approval step.  This is to handle the use case when a single component needs to be promoted to **Production** to fix a bug.
 
-The new step template is designed to address all of those use cases.  It uses the [Octopus Deploy REST API](https://octopus.com/docs/octopus-rest-api) and a ton of PowerShell.
+![Sample application process](release-management-sample-project-steps.png)
 
-Because it is using the Octopus Deploy API, we will need to create a [service account](https://octopus.com/docs/security/users-and-teams/service-accounts) and assign them to a team.  I recommend naming the service account "Release Conductor."  Create an API key for the user and save it in a safe location.
+The QA team has to approve each component prior to deploying to **Production**.  When deploying a single component, it is not a big deal.  When deploying 2 to N components, that gets real tedious real fast.  The good news is step template will use the approvals from the release orchestration project.  You can even have the step template look in an different environment for approvals.  
+
+How it works:
+
+- The step template finds the deployment you want to pull the approvers from.  By default it will use the current deployment, but you can supply a different environment, for example **Staging** or **Prod Approval** to get the approvers from.
+- It stores the approver, along with what teams they are members of.
+- When the step template is waiting for a deployment to finish it will look for manual interventions.
+- When a manual intervention is found it will look at which team the approval has to come from.  
+- It will compare that component project's team with the list it created earlier, if a match is found, the step template will submit the approval.
+
+**Important** this step template uses the Octopus Deploy API and requires an API key.  It is submitting the approval based on the user attached to the API key.  What it will do is populate all the necessary information to track the approval back to who actually approved it.
+
+![manual approval message](approval-message.png)
+
+### Controlled Scaling Out
+
+
+
+## Using the Deploy Child Octopus Deploy Project Step Template
+
+This section will walk through adding the new step template to the release orchestration project.
+
+Before we do that, we have to create a [service account](https://octopus.com/docs/security/users-and-teams/service-accounts) and assign that account to a team.  That is because the step template uses the Octopus Deploy API.
+
+I recommend naming the service account "Release Conductor."  Create an API key for the user and save it in a safe location.
 
 ![release conductor service account](release-conductor-service-account.png)
 
@@ -111,8 +124,6 @@ Finally, for each manual intervention in the component projects add the release 
 Now go into set up the release orchestration project.  First, we will want to add all the manual interventions.  
 
 ![Release orchestration manual interventions](release-orchestration-manual-intervention.png) 
-
-You'll notice the first three are run in parallel.  That is to gather all the approvals required.  Once the web admin approves it, it will kick off the deployments.
 
 Next, we need to add the API key as a sensitive variable and the release pattern.
 
@@ -153,13 +164,37 @@ Now it is time to populate the parameters.  There are a lot of parameters, I'll 
 
 ![release orchestration fourth parameters](deploy-child-project-fourth-parameters.png)
 
-The manual intervention in the child projects is a bit tricky.  This step is going to use the user attached to the API key to do the actual approvals.  What it will do is populate the approval message with all the details of who did the approval in the release orchestration project.
-
-![manual approval message](approval-message.png)
-
 Add a step for each of the components.  Remember to set the what if parameter to `Yes`.  We are doing this because these steps are going to get the specific release to deploy along with the release notes for the manual intervention steps.  Next, reorder the steps so they come before the manual interventions steps.
 
 ![release orchestartion with manual intervention and what if steps](release-orchestration-manual-intervention-with-what-if.png)
+
+These steps are going to populate output parameters, perfect for manual intervention instructions.  I'm not a fan of duplicating effort.  Create a new variable `Project.ManualIntervention.Instructions`, open up the editor and create a multi-line instruction.
+
+![manual intervention instructions](manual-intervention-instructions.png)
+
+This is the text of that screenshot:
+
+```
+Please approve releases for:
+
+**Database: #{Octopus.Action[Get Database Release].Output.ReleaseToPromote}**
+#{Octopus.Action[Get Database Release].Output.ReleaseNotes}
+
+**Web API: #{Octopus.Action[Get Web API Release].Output.ReleaseToPromote}**
+#{Octopus.Action[Get Web API Release].Output.ReleaseNotes}
+
+**Scheduling Service: #{Octopus.Action[Get Scheduling Service Release].Output.ReleaseToPromote}**
+#{Octopus.Action[Get Scheduling Service Release].Output.ReleaseNotes}
+
+**Web UI: #{Octopus.Action[Get Web UI Release].Output.ReleaseToPromote}**
+#{Octopus.Action[Get Web UI Release].Output.ReleaseNotes}
+```
+
+Now add those manual intervention instructions variable to each manual intervention.
+
+![manual intervention instructions](manual-intervention-instructions-variable.png)
+
+Okay, now it is time for a test release.  Because everything is set to what if, nothing should be deployed.
 
 ## Alternative configuration
 Before going further, I want to take a step back and explain the goals for this setup.  They are:
