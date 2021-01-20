@@ -392,11 +392,11 @@ Now, let's see this in action.  For the sample application, let's pretend a bug 
 
 ![dashboard after child project bug fix](release-management-bugs.png)
 
-Let's assume everything successfully passes QA and it is time to promote those two components to ** Staging**.  First, we want to update the release pattern to be `2021.1.*`. You'll notice that it isn't `2021.1.1.*`.  To be honest, in thinking about this more, it makes sense only to update that when a new minor release is created, not for every patch release.  And don't worry about it trying to redeploy existing code; remember, the step template will skip already deployed releases.
+Let's assume everything successfully passes QA, and it is time to promote those two components to ** Staging**.  First, we want to update the release pattern to be `2021.1.*`. You'll notice that it isn't `2021.1.1.*`.  To be honest, in thinking about this more, it makes sense only to update that when a new minor release is created, not for every patch release.  And don't worry about it trying to redeploy existing code; remember, the step template will skip already deployed releases.
 
 ![update release pattern](release-management-update-release-pattern.png)
 
-Create a new release for the release orchestration project and deploy it to ** Staging**.  
+Please create a new release for the release orchestration project and deploy it to ** Staging**.  
 
 ![dashboard after deployment to Staging](release-management-prod-approval-post-staging.png)
 
@@ -404,19 +404,19 @@ Promote that release to **Prod Approval** and go through each of the approval st
 
 ![releases already deployed messages](approval-message-with-release-already-in-environment.png)
 
-Now it is time to schedule the release to deploy to ** Production**.  Using the built-in tool we can schedule it to run at 7 PM tonight.
+Now it is time to schedule the release to deploy to ** Production**.  Using the built-in tool, we can schedule it to run at 7 PM tonight.
 
 ![schedule release to deploy to Production](schedule-release-to-production.png)
 
-When the release is deployed it will pull the approvals from the **Prod Approval** environment.
+When the release is deployed, it will pull the approvals from the **Prod Approval** environment.
 
 ![the approval came from an earlier environment](release-management-approval-from-prod-approval.png)
 
 ### Scenario: Scaling out infrastructure
 
-I'll admit this is one scenario I didn't think of until a user asked.  In a nutshell, the user has a deployment target trigger on the parent project.  When a new deployment is added they want to redeploy all the current releases, but only for that specific machine.
+I'll admit this is one scenario I didn't think of until a user asked.  In a nutshell, the user has a deployment target trigger on the parent project.  When a new deployment is added, they want to redeploy all the current releases, but only for that specific machine.
 
-With the new step template, that can be accomplished.  The first step is to update all the steps **Force Redeployment** parameter to be `When deploying to specific machines`.
+With the new step template, scaling out infrastructure can be accomplished via the parent project.  The first step is to update all the steps **Force Redeployment** parameter to be `When deploying to specific machines`.
 
 ![redeploy when deploying to specific machines](release-management-redeploy-when-deploying-to-specific-machines)
 
@@ -425,38 +425,40 @@ After that, add a step to the top of the deployment process to run a simple scri
 ![run a script step](release-management-add-script-step.png)
 
 :::success
-For the trigger to work on this project the run a script step is needed.  It uses the machines in that step to know when a new machine is added.
+For the trigger to work on this project, the "Run a Script" step is needed.  It uses the machines in that step to keep track of the machine list.
 :::
 
 Finally, add a deployment target trigger for ** Staging** and ** Production** and have it monitor the roles for that script step.
 
 ![deployment target trigger](release-management-new-machine-added.png)
 
-For this to work, you'll need to create a release and deploy it through the environments.  Otherwise the trigger won't pick up anything.
+To test this change out, you'll need to create a new release and deploy it through the environments.  Otherwise, the trigger won't pick up anything.
 
-Now add a new deployment target.  When the trigger fires you should see the deployment kick off, and logs such as these.
+Now add a new deployment target.  When the trigger fires, you should see the deployment kick-off, and logs such as these.
 
 ![](release-management-redeploy-targeting-machines.png)
 
-When you go into the deployment of the child project you should see the deployment targeting a single machine.
+When you go into the child project's deployment, you should see the deployment targeting a single machine.
 
 ![](release-management-child-project-release-single-machine.png)
 
 ## Alternative configuration
-If you made it this far, you might be thinking wow, this is all very complex.  Is this really needed?  I think it is. Let's rexamine why a person wants to have a project per component.
+If you made it this far, you might be thinking, wow, this is all very complex.  Is this needed?  I think it is. Let's reexamine why a person wants to have a project per component.
 
 - Minimize downtime by only deploying what has changed.
 - Minimize build time by only building what has changed.
 - Minimize the number of decisions a person has to make.
 - Single responsibility principle, each project deploys one thing to the best of its ability.
 
-There are alternatives to a project per component.  It is important to walk through those to understand why the project per component is eventually chosen.
+At this time, an Octopus Project per component is the best solution to these requirements.
+
+There are alternatives to a project per component.  This section will walk through those alternatives to better understand why an Octopus Project per component solves the problem in the most efficient manner.
 
 ### Single Project with multiple channels
 
-It is possible to have a single project and use [Octopus Deploy channels](https://octopus.com/docs/releases/channels) feature.  Steps can be scoped to run on specific channels.  When a release is created something (most likely the build server) would determine which channel to select.  
+It is possible to have a single project and use [Octopus Deploy channels](https://octopus.com/docs/releases/channels) feature.  Steps can be scoped to run on specific channels.  The channel is selected when creating a release.  Typically releases are created by a build server and automatically deploy to a **Development** environment.
 
-The first problem is all the possible component combinations.  For four components there are 14 channels.  Imagine adding a fifth component!
+The first problem is all the possible component combinations.  For four components, there are 14 channels.  Imagine adding a fifth component!
 
 - WebUI
 - WebAPI
@@ -473,7 +475,7 @@ The first problem is all the possible component combinations.  For four componen
 - WebAPI Service Database
 - WebUI WebAPI Database Service
 
-The second problem is a release is tied to a specific channel.  When a release is created something or someone has to make the decision as to which channel to use.  Making the wrong decision could result in the wrong component being deployed.  That opens the door to human error.
+The second problem is when a release is created, something or someone has to decide which channel to use—making the wrong decision could result in the wrong component being deployed.  That opens the door to human error.
 
 ### Single project with disabling steps at deployment time
 
@@ -481,23 +483,23 @@ Another alternative is to have a single project, but instead of using channels, 
 
 ![disable steps during deployments](release-management-disable-steps-during-deployment.png)
 
-The main problem with this option is the manual process this involves.  A person has to pick which steps to disable.  The more steps the greater chance of error.  And the steps have to be disabled during each deployment, which further increases the chance of error.
+The main problem with this option is the manual process this involves.  A person has to pick which steps to disable.  The more steps, the greater chance of error.  And the steps have to be disabled during each deployment, which further increases the chance of error.
 
 ### Leverage the project package redeployment setting
 
-In the project settings page there is a [package redeployment option](https://octopus.com/docs/projects#deployment-settings) in the project settings.  You could set that to `Skip any package that is already installed`.
+There is a [package redeployment option](https://octopus.com/docs/projects#deployment-settings) in the project settings pages.  You could set that to `Skip any package that is already installed`.
 
 There are several roadblocks with this setting:
 
-- Quite often a deployment is more than just pushing out a package.  There are other steps to configure the database or the web server.  Along with running sanity check tests after the deployment.  That setting only applied to the deployment package steps.
-- That setting applied to _all_ the packages in the deployment process.  You can't pick and choose which ones to apply the setting to.  
+- Quite often, deployments are more involved than just pushing out a package.  There are other steps to configure the database or the webserver.  Maybe there are steps to run sanity checks tests after the deployment.  That setting only applied to the deployment package steps, not to any script steps.
+- That setting applied to _all_ the packages in the deployment process.  You can't pick and choose the packages the setting applies to.  
 - That setting didn't work very well with rollbacks or redeployments.  It would cause a package to get skipped at the wrong time.
 
 ## Conclusion
 
-As I wrote this article I couldn't help ask myself, am I making this too complex?  Is it worth it? I've come to this conclusion that yes, this effort is worth it.
+As I wrote this article, I couldn't help ask myself, am I making this too complex?  Is it worth it? I've come to a conclusion that, yes, this effort is worth it.
 
-No matter what a deployment will take time.  Even if Octopus Deploy and the target VMs are running on 100 gigabit connection with dual 64-core/128-thread AMD Epyc CPUs and 1 TB of RAM.  The amount of time a deployment takes varies from application to application. I've seen applications where a deployment of all components can take over 12 hours with one or two components taking the vast majority of the time. I've been part of deployments that had to occur at 2 AM Saturday morning because they took at least one hour to complete and that was the only time a downtime of that length of was permitted.  Unless we can find ways to minimize that downtime by skipping components that have not changed, then the chance of doing more frequent deployments diminishes.
+No matter what, a deployment will take time.  Even if Octopus Deploy and the target VMs are running on servers with dual 64-core/128-thread AMD Epyc CPUs and 1 TB of RAM and a 100-gigabit connection between them.  The amount of time a deployment takes varies from application to application. I've seen applications where a deployment of all components can take over 12 hours, with one or two components taking the vast majority of the time. I've been part of deployments that had to occur at 2 AM Saturday because they took at least one hour to complete, and that was the only time a downtime of that length was permitted.  Unless we can find ways to minimize that downtime by skipping components that have not changed, then the chance of doing more frequent deployments diminishes.
 
 With this new step template, my hope is it solves some of those release management issues you have run into in the past.  
 
