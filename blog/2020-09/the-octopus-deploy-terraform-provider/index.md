@@ -38,20 +38,95 @@ Our Terraform provider allows teams to provision and configure Octopus instances
 We use this Terraform provider internally to provision and configure Octopus instances including Octopus Cloud. It's a valuable tool and we're excited to see it used in teams in the community.
 :::
 
-This provider is powered by a new cross-platform [Octopus client](https://github.com/OctopusDeploy/go-octopusdeploy) written in [Go](https://golang.org). This client is valuable as it allows teams to easily interact with Octopus without direct calls to the Octopus REST API with. It complements the [Octopus CLI](TODO) and other [Octopus clients](TODO)..
+This provider is powered by a new cross-platform [Octopus client](https://github.com/OctopusDeploy/go-octopusdeploy) written in [Go](https://golang.org). This client is valuable as it allows teams to easily interact with Octopus without direct calls to the Octopus REST API with. It complements the [Octopus CLI](TODO) and other [Octopus clients](TODO).
 
 ### Prerequisites
 
 * Octopus Deploy 2019.1 or newer.
+* Go 1.15.7
 * Terraform 0.13.0 or newer.
 
-### Creating a new Octopus instance
+### Installing the Octopus Terraform Provider
 
-TODO
+TODO: It looks like we're not on the Terraform Registry yet so we'll need to provide the manual instructions which are on GitHub. 
 
-### Example: Adding variables to a project
+### Creating your first Terraform script
 
-TODO
+To get started, we will walk through a simple example that shows you how to add a new variable set. 
+
+1. Create configuration files
+
+* `main.tf` - This is the main configuration file that configures the provider and specifies resources to create/update. 
+* `variables.tf` - This file defines the variables used in the `main.tf` configuration file.
+* `terraform.tfvars` - This file contains the values for the variables defined in `variables.tf`.
+
+2. Configure the main Terraform configuration file. Open the `main.tf` file and copy/paste the following. The first block configures the Octopus Deploy provider and the second one defines a new variable set resource. 
+
+``` json
+provider "octopusdeploy" {
+  address  = var.serverURL
+  apikey   = var.apiKey
+  space_id = var.space
+}
+
+resource "octopusdeploy_library_variable_set" "newaccount" {
+  description = var.description
+  name        = var.variableSetName
+}
+```
+
+3. Add variable definitions and values. Open the `variables.tf` file and copy/paste the following variable definitions. The content of this file are straightforward. We are defining variable names and the type of data they will store. In this case, everything is a simple string.
+
+```json
+variable "apiKey" {
+    type = string
+}
+
+variable "space" {
+    type = string
+}
+
+variable "serverURL" {
+    type = string
+}
+
+variable "variableSetName" {
+    type = string
+}
+
+variable "description" {
+    type = string
+}
+```
+
+4. Set your variable values which Terraform passes to your configuration file when the configuration is applied at runtime. Add variable definitions and values. Open the `terraform.tfvars` file and copy/paste the following.  and update the values with your Octopus Server details and a random variable set name and description. 
+
+```json
+serverURL       = "https://mytestoctopuscloud.octopus.app"
+space           = "Spaces-1"
+variableSetName = "AWS configuration values"
+description     = "Collection of common AWS configuration values for multiple automated deployment and runbook processes."
+```
+
+5. Create our new Octopus Variable set resource by applying the Terraform configuration file to our Octopus instance. This is done by running the following commands at a terminal or command prompt.
+
+* `terraform init`
+* `terraform plan`
+* `terraform apply`
+
+NOTE: This is not an exhaustive Terraform tutorial. I highly recommend you read the excellent Terraform documentation to learn more about Terraform itself.
+
+TODO: Screenshot
+
+Congrats! You have using Terraform and the Octopus Deploy provider to configure your Octopus instance. If you navigate to the Library variable sets within your configured space, you will now see your new variable set! 
+
+### Next steps
+
+Checkout the `Examples` folder in the GitHub repo for more examples. 
+
+## Open source and contributing
+
+The [project repository](https://github.com/OctopusDeploy/go-octopusdeploy) is available on GitHub with a Mozilla Public License Version 2.0 license. We accept pull requests and we'd love to see community contributions.
 
 ## Configuration as Code vs Infrastructure as Code with the Terraform provider
 
@@ -59,12 +134,12 @@ We're currently building support for [Configuration as Code](https://octopus.com
 
 Both technologies are valuable and they are complementary. You can choose to use one or both features depending on your team's needs. The biggest difference between the two technologies is scope. Infrastructure as code focuses on provisioning and configuring a whole Octopus instance whereas Configuration as Code focuses on automated processes in a project.
 
-With Configuration as Code, you get a human-readable version of an automated process (deployment and runbook) in Git source-control. This brings numerous benefits including capturing history, enabling changes with branches, having a single source of truth and improving the ability to create template configurations than can be cloned. This is focused on automated processes in a project. It does not allow you to configure other areas of Octopus.
+With **Configuration as Code**, you get a human-readable version of an automated process (deployment and runbook) in Git source-control. This brings numerous benefits including capturing history, enabling changes with branches, having a single source of truth and improving the ability to create template configurations than can be cloned. This is focused on automated processes in a project. It does not allow you to configure other areas of Octopus.
 
-With Infrastructure as Code, you can provision new Octopus instances as well as configuring existing ones. This covers most of the Octopus system from infrastructure create and manage. You also gain numerous benefits from the Terraform ecosystem including consistent for configuring infrastructure as well as apply changes and detecting drift.
+With **Infrastructure as Code**, you can provision new Octopus instances as well as configuring existing ones. This covers most of the Octopus system from infrastructure create and manage. You also gain numerous benefits from the Terraform ecosystem including consistent for configuring infrastructure as well as apply changes and detecting drift.
+
+
 
 ## Conclusion
 
-Infrastructure as code using Terraform and the power of a fully functional-based programming language under the hood is an ideal scenario for software-defined infrastructure. It gives you the ability to not only automate the work you're doing, but ensure quality and value for everyone using the code.
-
-We're thrilled to share our Terraform provider and we hope it helps teams manage their Octopus instances in a declarative "Infrastructure as Code" way. 
+We're thrilled to share our Terraform provider and we hope it helps teams manage their Octopus instances with a declarative "Infrastructure as Code" approach. 
