@@ -15,7 +15,7 @@ tags:
 
 Infrastructure as code ([IaC](https://searchitoperations.techtarget.com/definition/Infrastructure-as-Code-IAC#:~:text=Infrastructure%20as%20code%2C%20also%20referred,hardware%20devices%20and%20operating%20systems.)) allows teams to create infrastructure resources (i.e. virtual machines, storage, network resources etc) without tons of mouse clicks. Hashicorp's [Terraform](https://www.terraform.io) is one of the most popular infrastructure as code solutions. Terraform is an open-source IaC solution that allows you to define your infrastructure using a functional-based programming language called [Hashicorp Configuration Language (HCL)](https://github.com/hashicorp/hcl). 
 
-Octopus is proud to introduce our official [Terraform provider](TODO: Find the official home). This project started as a [community initiative](https://github.com/MattHodge) by [Matthew Hodgkins](https://github.com/MattHodge/) who built it to suit the needs of the company he worked for. Down the track, [Mark Henderson](https://github.com/mhenderson-so) contributed to the project for the needs of StackExchange. We’re indebted to Matt and Mark for their efforts since the project started in 2018. Making this an official supported provider brings significant advantages, as we can keep the plugin up-to-date and add great new features.
+Octopus is proud to introduce our official [Terraform provider](https://github.com/OctopusDeploy/terraform-provider-octopusdeploy). This project started as a [community initiative](https://github.com/MattHodge/terraform-provider-octopusdeploy) by [Matthew Hodgkins](https://github.com/MattHodge/) who built it to suit the needs of the company he worked for. Down the track, [Mark Henderson](https://github.com/mhenderson-so) contributed to the project for the needs of StackExchange. We’re indebted to Matt and Mark for their efforts since the project started in 2018. Making this an official supported provider brings significant advantages, as we can keep the plugin up-to-date and add great new features.
 
 In this blog post, I'll introduce the Terraform provider for Octopus Deploy, and share practical examples of how to get started with it. 
 
@@ -44,21 +44,23 @@ Our Terraform provider allows teams to provision and configure Octopus instances
 We use this Terraform provider internally to provision and configure Octopus instances including Octopus Cloud. It's a valuable tool and we're excited to see it used in teams in the community.
 :::
 
-This provider is powered by a new cross-platform [Octopus client](https://github.com/OctopusDeploy/go-octopusdeploy) written in [Go](https://golang.org). This client is valuable as it allows teams to easily interact with Octopus without direct calls to the Octopus REST API with. It complements the [Octopus CLI](TODO) and other [Octopus clients](TODO).
+This provider is powered by a new cross-platform [Octopus client](https://github.com/OctopusDeploy/go-octopusdeploy) written in [Go](https://golang.org). This client is valuable as it allows teams to easily interact with Octopus without direct calls to the Octopus REST API with. It complements the [Octopus CLI](https://octopus.com/docs/octopus-rest-api/octopus-cli) and other [Octopus clients](https://octopus.com/docs/octopus-rest-api).
 
 ### Prerequisites
 
-* Octopus Deploy 2019.1 or newer.
+You need the following to use the Octopus Terraform provider.
+
+* Octopus Deploy 2019.1 or newer
 * Go 1.15.7
-* Terraform 0.13.0 or newer.
+* Terraform 0.13.0 or newer
 
 ### Installing the Octopus Terraform Provider
 
-TODO: It looks like we're not on the Terraform Registry yet so we'll need to provide the manual instructions which are on GitHub. 
+The Octopus Terraform provider is published in the Terraform Registry so you simply need to delare it in your configuration files to install it.
 
 ### Creating your first Terraform script
 
-To get started, we will walk through a simple example that shows you how to add a new variable set. 
+To get started, I will walk through a simple example that shows you how to add a new variable set to an Octopus instance.
 
 1. Create configuration files
 
