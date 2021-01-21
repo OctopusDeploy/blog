@@ -1,16 +1,17 @@
 ---
-title: The Octopus Deploy Terraform Provider
-description: Learn all about the new beta Octopus Deploy Terraform provider
+title: "Octopus Deploy Terraform provider: Getting started with the Beta"
+description: Introducing the official Terraform provider for Octopus Deploy. Learn how to 
 author: michael.levan@octopus.com
-visibility: private
-published: 2030-09-10
-metaImage:
-bannerImage:
+visibility: public
+published: 2011-01-25
+metaImage: blogimage-terraform-provider-and-go-client-2021.png
+bannerImage: blogimage-terraform-provider-and-go-client-2021.png
 tags:
  - DevOps
  - Terraform
 ---
 
+![Octopus Deploy Terraform provider: Getting started with the Beta](blogimage-terraform-provider-and-go-client-2021.png)
 
 Infrastructure-as-code ([IaC](https://searchitoperations.techtarget.com/definition/Infrastructure-as-Code-IAC#:~:text=Infrastructure%20as%20code%2C%20also%20referred,hardware%20devices%20and%20operating%20systems.)) has made it possible to move past *manually clicking a bunch of buttons to create infrastructure resources*.
 
