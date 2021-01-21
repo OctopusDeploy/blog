@@ -1,6 +1,6 @@
 ---
-title: "Octopus Deploy Terraform provider: Getting started with the Beta"
-description: Introducing the official Terraform provider for Octopus Deploy. Learn how to 
+title: "Getting started with the Terraform provider for Octopus Deploy"
+description: Introducing the official Terraform provider for Octopus Deploy. Learn how to use it to provision Octopus 
 author: michael.levan@octopus.com
 visibility: public
 published: 2011-01-25
@@ -17,7 +17,7 @@ Infrastructure as code ([IaC](https://searchitoperations.techtarget.com/definiti
 
 Octopus is proud to announce our official [Terraform provider](TODO: Find the official home). This project started as a [community initiative](https://github.com/MattHodge) by [Matthew Hodgkins](https://github.com/MattHodge/) who built it to suit the needs of the company he worked for. Down the track, [Mark Henderson](https://github.com/mhenderson-so) contributed to the project for the needs of StackExchange. We’re indebted to Matt and Mark for their efforts since the project started in 2018. Making this an official supported provider brings significant advantages, as we can keep the plugin up-to-date and add great new features.
 
-In this blog post, I'll introduce the Terraform provider for Octopus Deploy, and share a practical example of how to get started with it. 
+In this blog post, I'll introduce the Terraform provider for Octopus Deploy, and share practical examples of how to get started with it. 
 
 ## Why Infrastructure as Code?
 
@@ -32,36 +32,36 @@ When it comes to IaC, mistakes can still be made in code, but they're much less.
 
 ## Getting started with the Terraform provider for Octopus Deploy
 
-Our Terraform provider allows teams to provision and configure Octopus instances via the Octopus REST API. It does this via an intermediate Octopus client written in [Go](https://golang.org). The provider is near feature complete which means you can define and configure most resources in Octopus. 
+Our Terraform provider allows teams to provision and configure Octopus instances. This applies to both on-prem Octopus servers as well as [Octopus Cloud](https://octopus.com/pricing/cloud) instances. 
 
-## Octopus Deploy Go Client
-You can find the client SDK [here](https://github.com/OctopusDeploy/go-octopusdeploy).
+:::hint
+We use this Terraform provider internally to provision and configure Octopus instances including Octopus Cloud. It's a valuable tool and we're excited to see it used in teams in the community.
+:::
 
-We've also done extensive testing so 
-
-TODO: Talk about how it powers Octopus Cloud.
+This provider is powered by a new cross-platform [Octopus client](https://github.com/OctopusDeploy/go-octopusdeploy) written in [Go](https://golang.org). This client is valuable as it allows teams to easily interact with Octopus without direct calls to the Octopus REST API with. It complements the [Octopus CLI](TODO) and other [Octopus clients](TODO)..
 
 ### Prerequisites
 
-Our Terraform provider requires:
+* Octopus Deploy 2019.1 or newer.
+* Terraform 0.13.0 or newer.
 
-* Terraform v
-
-### Useful Example 1
-
-TODO
-
-### Useful Example 2
+### Creating a new Octopus instance
 
 TODO
 
-## How is this different to Config as Code?
+### Example: Adding variables to a project
 
-A big push this year for Octopus Deploy has of course been config as code, so what happens to that since there is a Terraform provider? Well, nothing. Config as Code is still 100% needed. The Terraform provider handles everything before getting to the project.
+TODO
 
-Config as Code picks up where the Terraform provider leaves off and gives you the ability to manage the Project with code. 
+## Configuration as Code vs Infrastructure as Code with the Terraform provider
 
-The idea of the Terraform provider is to fill the part of the automated deployments before reaching the project.
+We're currently building support for [Configuration as Code](https://octopus.com/blog/shaping-config-as-code) to enables teams to have a version-controlled text representation of an Octopus project. This brings numerous benefits but it also raises several questions. What is the difference between Configuration as Code and Infrastructure as Code with our Terraform Provider? When should I use Configuration as Code? When should I use the Terraform provider?
+
+Both technologies are valuable and they are complementary. You can choose to use one or both features depending on your team's needs. The biggest difference between the two technologies is scope. Infrastructure as code focuses on provisioning and configuring a whole Octopus instance whereas Configuration as Code focuses on automated processes in a project.
+
+With Configuration as Code, you get a human-readable version of an automated process (deployment and runbook) in Git source-control. This brings numerous benefits including capturing history, enabling changes with branches, having a single source of truth and improving the ability to create template configurations than can be cloned. This is focused on automated processes in a project. It does not allow you to configure other areas of Octopus.
+
+With Infrastructure as Code, you can provision new Octopus instances as well as configuring existing ones. This covers most of the Octopus system from infrastructure create and manage. You also gain numerous benefits from the Terraform ecosystem including consistent for configuring infrastructure as well as apply changes and detecting drift.
 
 ## Conclusion
 
