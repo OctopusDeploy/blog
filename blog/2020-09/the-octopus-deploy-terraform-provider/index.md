@@ -13,9 +13,9 @@ tags:
 
 ![Octopus Deploy Terraform provider: Getting started with the Beta](blogimage-terraform-provider-and-go-client-2021.png)
 
-Infrastructure as code ([IaC](https://searchitoperations.techtarget.com/definition/Infrastructure-as-Code-IAC#:~:text=Infrastructure%20as%20code%2C%20also%20referred,hardware%20devices%20and%20operating%20systems.)) allows teams to create infrastructure resources (i.e. virtual machines, storage, network resources etc) without repeated mouse clicks.  Hashicorp's [Terraform](https://www.terraform.io) is quickly becoming the go to infrastructure as code solution. Terraform is an open-source IaC solution that allows you to define your infrastructure using a functional-based programming language called [Hashicorp Configuration Language (HCL)](https://github.com/hashicorp/hcl). 
+Infrastructure as code ([IaC](https://searchitoperations.techtarget.com/definition/Infrastructure-as-Code-IAC#:~:text=Infrastructure%20as%20code%2C%20also%20referred,hardware%20devices%20and%20operating%20systems.)) allows teams to create infrastructure resources (i.e. virtual machines, storage, network resources etc) without tons of mouse clicks. Hashicorp's [Terraform](https://www.terraform.io) is one of the most popular infrastructure as code solutions. Terraform is an open-source IaC solution that allows you to define your infrastructure using a functional-based programming language called [Hashicorp Configuration Language (HCL)](https://github.com/hashicorp/hcl). 
 
-Octopus is proud to announce our official [Terraform provider](TODO: Find the official home). This project started as a [community initiative](https://github.com/MattHodge) by [Matthew Hodgkins](https://github.com/MattHodge/) who built it to suit the needs of the company he worked for. Down the track, [Mark Henderson](https://github.com/mhenderson-so) contributed to the project for the needs of StackExchange. We’re indebted to Matt and Mark for their efforts since the project started in 2018. Making this an official supported provider brings significant advantages, as we can keep the plugin up-to-date and add great new features.
+Octopus is proud to introduce our official [Terraform provider](TODO: Find the official home). This project started as a [community initiative](https://github.com/MattHodge) by [Matthew Hodgkins](https://github.com/MattHodge/) who built it to suit the needs of the company he worked for. Down the track, [Mark Henderson](https://github.com/mhenderson-so) contributed to the project for the needs of StackExchange. We’re indebted to Matt and Mark for their efforts since the project started in 2018. Making this an official supported provider brings significant advantages, as we can keep the plugin up-to-date and add great new features.
 
 In this blog post, I'll introduce the Terraform provider for Octopus Deploy, and share practical examples of how to get started with it. 
 
@@ -29,6 +29,12 @@ When it comes to IaC, mistakes can still be made in code, but they're much less.
 - Automated testing to ensure the code works as expected
 - A secure place to store the desired state
 - A place where everyone can see what's being worked on and collaboration can take place
+
+## What is a Terraform Provider? 
+
+Terraform is an open source tool that enables teams to provision and update infrastructure using a declarative configuration files following an infrastructure as code approach. You describe the state of the resources in configuration files and Terraform applies this to your infrascture. It can create, destroy and even detect drift between the desiged state and the actual infrastructure. 
+
+Terraform is platform agnostic tool and it supports a wide variety of technologies via plugins called providers. The Octopus Deploy Terraform provider allows you to interact with an Octopus instance and manage it's configuration.
 
 ## Getting started with the Terraform provider for Octopus Deploy
 
