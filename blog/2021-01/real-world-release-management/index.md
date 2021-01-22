@@ -147,24 +147,6 @@ You can leverage [prompted variables](https://octopus.com/docs/projects/variable
 
 This example is not the only scenario in which you can approve a release and then schedule it to deploy later.  Please see the section "Scenario: Approve Today Deploy Tomorrow" later in this article on how to leverage a "Prod Approval" environment.  
 
-### Scaling out with deployment target triggers
-
-Adding a new VM to your infrastructure is rarely a matter of spinning up a VM and installing the Octopus Deploy tentacle.  You often need to install tooling and frameworks (node.js, .NET Core, Java, etc.) before installing your software.  Octopus Deploy can automatically kick off deployments when new VMs are added using [deployment target triggers](https://octopus.com/docs/projects/project-triggers/deployment-target-triggers).  
-
-Having a deployment target trigger per child project is far from ideal.  The projects can run in any order; tooling and framework might be installed _after_ your software.  Besides, there are multiple triggers to manage and add.  
-
-The step template can be configured to work with deployment target triggers in the parent project.  
-
-How it works:
-
-- You add a step to the release orchestration project to run a script on all the servers across all the child projects.
-- You add a deployment target trigger to monitor all the roles associated with your project.
-- You add a new server with targeting 1 to N roles in your application.
-- When a new target is detected, the deployment will be triggered, but only targeting the new machine.
-- The step template will look at each child's project's target list.  If the new machine appears in the list, it will trigger a deployment.  If it does not, then it will skip that project.
-
-![](release-management-redeploy-targeting-machines.png)
-
 ### Parameters
 
 When designing this step template, one of the design decisions was to make it easy for users to tweak to match their use cases.  Some users will find the auto-approval feature useful and implement it right away, while other users have business rules disallowing that functionality.  All of that is entirely understandable.  I have tried to add as many parameters as possible to tweak the step template to make your use case(s).  As you can imagine, there are a lot of parameters in this step template.
@@ -412,37 +394,7 @@ When the release is deployed, it will pull the approvals from the **Prod Approva
 
 ![the approval came from an earlier environment](release-management-approval-from-prod-approval.png)
 
-### Scenario: Scaling out infrastructure
-
-I'll admit this is one scenario I didn't think of until a user asked.  In a nutshell, the user has a deployment target trigger on the parent project.  When a new deployment is added, they want to redeploy all the current releases, but only for that specific machine.
-
-With the new step template, scaling out infrastructure can be accomplished via the parent project.  The first step is to update all the steps **Force Redeployment** parameter to be `When deploying to specific machines`.
-
-![redeploy when deploying to specific machines](release-management-redeploy-when-deploying-to-specific-machines)
-
-After that, add a step to the top of the deployment process to run a simple script across all the deployment targets the child projects deploy to. Don't forget to tell it to skip the **Prod Approval** environment!
-
-![run a script step](release-management-add-script-step.png)
-
-:::success
-For the trigger to work on this project, the "Run a Script" step is needed.  It uses the machines in that step to keep track of the machine list.
-:::
-
-Finally, add a deployment target trigger for ** Staging** and ** Production** and have it monitor the roles for that script step.
-
-![deployment target trigger](release-management-new-machine-added.png)
-
-To test this change out, you'll need to create a new release and deploy it through the environments.  Otherwise, the trigger won't pick up anything.
-
-Now add a new deployment target.  When the trigger fires, you should see the deployment kick-off, and logs such as these.
-
-![](release-management-redeploy-targeting-machines.png)
-
-When you go into the child project's deployment, you should see the deployment targeting a single machine.
-
-![](release-management-child-project-release-single-machine.png)
-
-## Alternative configuration
+## Alternatives
 If you made it this far, you might be thinking, wow, this is all very complex.  Is this needed?  I think it is. Let's reexamine why a person wants to have a project per component.
 
 - Minimize downtime by only deploying what has changed.
