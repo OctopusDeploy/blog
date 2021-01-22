@@ -22,7 +22,7 @@ In this blog post we'll dive into how multi-environment serverless deployments c
 
 We'll deploy two very simple Lambda applications in this example.
 
-The first is written in Go and can be found at https://github.com/OctopusSamples/GoLambdaExample.
+The first is written in Go and can be found at https://github.com/OctopusSamples/GoLambdaExample. The second is written in Node.js and can be found at https://github.com/OctopusSamples/NodeLambdaExample.
 
 ## Self-contained and decoupled deployments
 
