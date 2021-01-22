@@ -1,36 +1,36 @@
 ---
-title: How to Start and Refactor Automation Repositories 
-description: In this blog you'll learn how to start storing your automation in Git and how to know refactor when the time comes. 
+title: How to structure your Git repository for DevOps automation
+description: Learn how to structure your Git repositories to store your scripts, infrastructure as code configuration files, application configuration files, docs and more. 
 author: josh@duffney.io 
-visibility: private
-published: 2025-01-01
-metaImage: 
-bannerImage: 
+visibility: public
+published: 2021-01-27
+metaImage: blogimage-how-to-start-and-refactor-automation-repositories-2021.png
+bannerImage: blogimage-how-to-start-and-refactor-automation-repositories-2021.png
 tags:
  - DevOps
  - Automation
  - Git
 ---
 
-In the aftermath of “Automation all the things!” there are scattered repositories everywhere. A few are extremely bloated, holding one-liners, scripts, functions, modules, and configurations. While many others are stale with broken CI/CD pipelines and have gone untouched for months or years. Yet, more exist. These are from the failed enforcement of a naming convention that was supposed to clean up everything.
+In the aftermath of "automate all the things!", there are Git repositories scattered everywhere. Some repos are extremely bloated, holding one-liners, scripts, functions, modules, and configurations. While many others are stale with broken CI/CD pipelines that have gone untouched for months or years. Yet, more exist. This problem results from a failure to create and enforce a naming convention to clean up everything.
 
-Repository design was an afterthought, but for good reason. You can’t know how to structure something when you don't know what your building. But, it doesn’t have to stay a mess. Nor do you have to frontload years worth of future work into a decision that can’t be made today.
+Repository design is often an afterthought, but for good reason. It's difficult to know how to structure something when you don't know what your building. It doesn't have to stay a mess, nor do you have to frontload years worth of future work into a decision that can't make today.
 
-As a contributing member of many hot mess code bases and ring leader of “let’s over engineer this”, I’ll share with you what’s worked best for the teams I’ve been a member of when starting down the automation road and how to refactor a centralized repository.
+As a contributing member of many hot mess code bases and ring leader of "let's over engineer this", I'll share with you what's worked best for the teams I've been a member of when starting down the automation road and how to refactor a centralized repository.
 
-## Start Simple and Centralized
+## Start Simple and Centralize
 
-<!-- TODO: Request a nice graphic from the UX team to visualise this. -->
+![Simple repository design](simple-repo-structure.png)
 
-One repository to rule them all. Having a single central repository is the best way to start. It is equivalent to a monolithic application. Everything is tightly coupled. Ad-hoc scripts, orchestrated automation, and infrastructure as code documents all live in the same repository. Name the repository after your team’s name and let it become the source of truth for all the code developed by your team.
+Get started with one repository to rule them all! Creating a single central repository is the best way to start, which is roughly equivalent to a monolithic application. Everything is tightly coupled. Ad-hoc scripts, orchestrated automation, and infrastructure as code documents all live in the same repository. Name the repository after your team's name and let it become the source of truth for all the code developed by your team.
 
-Keep the repository layout simple. Create general purpose directories to separate the different types of automation within the repository. Such as a scripts directory for ad-hoc scripts. Add other directories for automation that defines a process like patching. At this stage don’t put too much thought into the structure and naming of directories. Your primary goal at this point is to make it as simple and easy to use as possible.
+Keep the repository layout simple. Create general purpose directories to separate the different types of automation within the repository. For example, create a scripts directory for ad-hoc scripts, another for Terraform configuration files and so on. Add additional directories for automation that defines a process like patching. At this stage don't put too much thought into the structure and naming of directories. Your primary goal at this point is to make it as simple and easy to use as possible.
 
 A centralized design works best when the execution of the code is still manual. Infrastructure as Code configurations, scripts, and orchestrated automation are all pulled down and run from the command line.
 
-Comparing a centralized repository design to a monolithic app probably makes you think you shouldn’t use it. But, it’s exactly where you should start if your team or organization is new to automation and or infrastructure as code in general. It’s something you’ll grow out of over time, but jumping ahead to a more mature design will only add complexity, confusion, and reduce your rate of adoption.
+Comparing a centralized repository design to a monolithic app might make you think you shouldn't use it. But it's an excellent place to start if your team or organization is new to automation or infrastructure as code in general. It's something you'll grow out of eventually, but it's far better than jumping ahead to a more mature design will only add complexity, confusion, and reduce your rate of adoption.
 
-Having everything in one place keeps things simple. It’s clear where code should be committed. It’s easy to track changes and there is a single CI/CD pipeline to troubleshoot.
+Having everything in one place keeps things simple. It's clear how to organize files and where you should commit your code. It's easy to track changes, and there is a single CI/CD pipeline to troubleshoot.
 
 ## When is it Time to Refactor?
 
