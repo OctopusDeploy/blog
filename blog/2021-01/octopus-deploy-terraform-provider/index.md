@@ -2,8 +2,8 @@
 title: "Getting started with the Terraform provider for Octopus Deploy"
 description: Introducing the official Terraform provider for Octopus Deploy. Learn how to manage Octopus instances with Terraform.
 author: rob.pearson@octopus.com
-visibility: private
-published: 2021-01-25
+visibility: public
+published: 2021-01-26
 metaImage: blogimage-terraform-provider-2021.png
 bannerImage: blogimage-terraform-provider-2021.png
 tags:
