@@ -58,8 +58,10 @@ A self-contained deployments involves creating a single CloudFormation template 
 
 The `AWS::ApiGateway::RestApi` resource creates a REST API. API Gateway offers multiple kinds of APIs. [REST APIs](https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-rest-api.html) were the first, and are the most configurable. [HTTP APIs](https://docs.aws.amazon.com/apigateway/latest/developerguide/http-api.html) are another option, but we won't use HTTP APIs here.
 
+The snippet below creates the REST API resource:
+
 ```json
-"RestApi": {
+    "RestApi": {
       "Type": "AWS::ApiGateway::RestApi",
       "Properties": {
         "Description": "My API Gateway",
@@ -69,6 +71,105 @@ The `AWS::ApiGateway::RestApi` resource creates a REST API. API Gateway offers m
             "REGIONAL"
           ]
         }
+      }
+    }
+```
+
+## The AWS::Logs::LogGroup resource
+
+To help debug and monitor or Lambda function, we create a CloudWatch log group.
+
+The name of the log group is based on the name of the Lambda. [This name is not configurable](https://stackoverflow.com/a/39233203/157605), and so we build the log group name from the name of the environment and the name of the service, which combine to create the name of the Lambda:
+
+```JSON
+    "AppLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": { "Fn::Sub": "/aws/lambda/${EnvironmentName}-${ServiceName}" }
+      }
+    }
+```
+
+## The AWS::IAM::Role resource
+
+In order for our Lambda to have permission to interact with the log group, we need an IAM role to grant access.
+
+```JSON
+    "IamRoleLambdaExecution": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": { "Fn::Sub": "${EnvironmentName}-${ServiceName}-policy" },
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:CreateLogStream",
+                    "logs:CreateLogGroup",
+                    "logs:PutLogEvents"
+                  ],
+                  "Resource": [
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${EnvironmentName}-${ServiceName}*:*"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "Path": "/",
+        "RoleName": { "Fn::Sub": "${EnvironmentName}-${ServiceName}-role" },
+      }
+    }
+```
+
+## The AWS::Lambda::Function resource
+
+This is where we create the Lambda itself
+
+```JSON
+    "Lambda": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "bamboo-support",
+          "S3Key": "app.zip"
+        },
+        "Environment": {
+          "Variables": {}
+        },
+        "FunctionName": { "Fn::Sub": "${EnvironmentName}-${ServiceName}" },
+        "Handler": "index.handler",
+        "MemorySize": 128,
+        "PackageType": "Zip",
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs12.x",
+        "Timeout": 20
       }
     }
 ```
