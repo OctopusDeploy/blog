@@ -18,6 +18,12 @@ Deploying serverless application is trivial these days. CLI tools and IDE plugin
 
 In this blog post we'll dive into how multi-environment serverless deployments can be expressed in CloudFormation and progressed in a reliable manner.
 
+## The sample application
+
+We'll deploy two very simple Lambda applications in this example.
+
+The first is written in Go and can be found at https://github.com/OctopusSamples/GoLambdaExample.
+
 ## Self-contained and decoupled deployments
 
 For this post we'll consider two styles of serverless deployments.
