@@ -49,7 +49,7 @@ Typically a change will sit in the **Test** environment for 1 to N days while it
 
 ![Release management ready for staging](release-management-ready-for-staging.png)
 
-After QA completes its testing of all the component projects for the `2021.1.0.x` release, the promotion to  ** Staging** can start.  With the current configuration, that means promoting each release for each project one by one.  I've done this promotion hundreds of times, and while doing it, my mood fluctuates between this isn't great, but it is tolerable and ugh this again.  
+After QA completes its testing of all the component projects for the `2021.1.0.x` release, the promotion to  **Staging** can start.  With the current configuration, that means promoting each release for each project one by one.  I've done this promotion hundreds of times, and while doing it, my mood fluctuates between this isn't great, but it is tolerable and ugh this again.  
 
 Promoting all the component projects to **Production** is when this pattern starts to run into issues.  
 
@@ -59,15 +59,15 @@ Promoting all the component projects to **Production** is when this pattern star
 - Typically, applications need to be deployed in a specific order.  Deploy the database first, followed by the API, then the scheduling service, and finally the UI.  Any issues during the deployment should stop everything.
 - How and when changes are approved vary from company to company.  It is not uncommon for a release's approval to occur on Tuesday for a Thursday night deployment.
 
-To solve these issues, we need a "parent project" to coordinate all these "child projects." Unlike the child projects, the parent project only needs to deploy to ** Staging** and ** Production**.
+To solve these issues, we need a "parent project" to coordinate all these "child projects." Unlike the child projects, the parent project only needs to deploy to **Staging** and **Proudction**.
 
 ## Introducing the Deploy Child Octopus Deploy Project Step Template
 
-In this example, the parent project will be called "Release Orchestration." Other names for the parent project could be "Traffic Cop," the name of the application, or if you want to be cheeky, Voltron.
+The parent project will need a way to invoke the child project's deployments.  That will be handled by the new [Deploy Child Octopus Deploy Project](https://library.octopus.com/step-templates/0dac2fe6-91d5-4c05-bdfb-1b97adf1e12e/actiontemplate-deploy-child-octopus-deploy-project) step template.  In this example, the parent project will be called "Release Orchestration" and will use that step template multiple times.  You don't have to call your project that, other names for the parent project could be "Traffic Cop," the name of the application, or if you want to be cheeky, Voltron.
 
 ![Release Orchestration Dashboard](release-management-release-orchestration-dashboard.png)
 
-That parent project will leverage the new [Deploy Child Octopus Deploy Project](https://library.octopus.com/step-templates/0dac2fe6-91d5-4c05-bdfb-1b97adf1e12e/actiontemplate-deploy-child-octopus-deploy-project) step template.  Before providing examples on how to use the step template, I want to take a minute to walk through how the step template works.
+Before providing examples on how to use the step template, I want to take a minute to walk through how the step template works.
 
 ### How Releases Are Chosen
 
@@ -85,11 +85,11 @@ You supply:
 
 With those three points of data, the step template will:
 
-- Calculate the previous environment(s) based on the channel and destination environment.  For example, if you entered ** Staging** as the destination environment, it would pick **Test** because that is the prior environment to ** Staging** in the channel's lifecycle.
+- Calculate the previous environment(s) based on the channel and destination environment.  For example, if you entered **Staging** as the destination environment, it would pick **Test** because that is the prior environment to **Staging** in the channel's lifecycle.
 - Look for all the releases matching the supplied pattern for that channel.  
-- Find the release that was last successfully deployed to the previous environments.  Not the most recently created release deployed to the previous environment.  The last successfully deployed release.  For example, you deploy `2021.1.0.15` to **Test**, then realize that release shouldn't have been pushed, and redeploy `2021.1.0.14` to **Test**.  The step template will pick `2021.1.0.14` when it promotes to ** Staging** because that was the last release deployed to **Test**.
+- Find the release that was last successfully deployed to the previous environments.  Not the most recently created release deployed to the previous environment.  The last successfully deployed release.  For example, you deploy `2021.1.0.15` to **Test**, then realize that release shouldn't have been pushed, and redeploy `2021.1.0.14` to **Test**.  The step template will pick `2021.1.0.14` when it promotes to **Staging** because that was the last release deployed to **Test**.
 
-If no release is found, it will exit the step and move onto the next step in the deployment process.  For example, shortly after promoting `2021.1.0` to ** Production**, a bug is reported requiring a fix to the Web API and Web UI projects. You'd create the `2021.1.1` release with the `2021.1.1.*` pattern for the child projects.  The Database and Scheduling service projects don't have a matching release because they weren't updated, so they are skipped.  
+If no release is found, it will exit the step and move onto the next step in the deployment process.  For example, shortly after promoting `2021.1.0` to **Proudction**, a bug is reported requiring a fix to the Web API and Web UI projects. You'd create the `2021.1.1` release with the `2021.1.1.*` pattern for the child projects.  The Database and Scheduling service projects don't have a matching release because they weren't updated, so they are skipped.  
 
 :::success
 One of the basic design rules of this step template is customization.  For example, you can configure the step to throw an error if no release is found rather than exiting out of the step and proceeding.
@@ -141,7 +141,7 @@ The step template supports that use case by allowing you to send in a future tim
 - `MM/DD/YYYY HH:mm:ss` or `06/25/2021 19:00:00` will deploy at 7 PM on the 25th of June, 2021
 - `DD MMM YYYY HH:mm:ss` or '01 Jan 2021 18:00:00` will deploy at 6 PM on the 1st of January, 2021
 
-You can leverage [prompted variables](https://octopus.com/docs/projects/variables/prompted-variables) to let a user send in a date/time when deploying to ** Production**.
+You can leverage [prompted variables](https://octopus.com/docs/projects/variables/prompted-variables) to let a user send in a date/time when deploying to **Proudction**.
 
 ![schedule the release](release-mangement-deploy-scheduled-release.png)
 
@@ -151,13 +151,13 @@ This example is not the only scenario in which you can approve a release and the
 
 When designing this step template, one of the design decisions was to make it easy for users to tweak to match their use cases.  Some users will find the auto-approval feature useful and implement it right away, while other users have business rules disallowing that functionality.  All of that is entirely understandable.  I have tried to add as many parameters as possible to tweak the step template to make your use case(s).  As you can imagine, there are a lot of parameters in this step template.
 
-**Octopus API Key**: the API Key of a user with permissions to deploy and approve manual interventions when using the automated approval functionality.
+- **Octopus API Key**: the API Key of a user with permissions to deploy and approve manual interventions when using the automated approval functionality.
 - **Octopus Child Space**: the name of the space where the child project is located.  The default is the current space.  Unless there is a compelling reason, leave this as is.
 - **Child Project Name**: The name of the child project.
 - **Child Project Channel**: The name of a specific channel.  If you leave it blank, it will pick the default channel on the child project.  
 - **Child Project Release Number**: the release number to deploy.  The default is empty; it will pull the latest release in the source environment.  Can supply a specific number, `2021.1.0.14`, or a pattern, `2021.1.1.*`.  The `.*` is important.  If the period `.` isn't supplied, you could end up with releases from `2021.1.10.x` or `2021.1.15.x`.  
 - **Child Project Release Not Found Error Handle**: what the step should do if the child project doesn't have a matching release number.  By default, it will skip the step and log a warning.  You can change that to stop a deployment with an error or not log a warning.  Recommend leaving it as a warning.
-- **Destination Environment Name**: the name of the environment being deployed to, with the default set to the current environment name.  Recommend leaving as-is unless you are implementing an "Approval Only" environment between ** Staging** and ** Production** (more on that later).
+- **Destination Environment Name**: the name of the environment being deployed to, with the default set to the current environment name.  Recommend leaving as-is unless you are implementing an "Approval Only" environment between **Staging** and **Proudction** (more on that later).
 - **Source Environment Name**: the name of the source environment.  When left blank, the step template will look at the channel's lifecycle, determine what phase the destination environment is in, then look for the environment(s) before that.  The kicker is Octopus Deploy [lifecycles](https://octopus.com/docs/releases/lifecycles) can have 1 to N environments in a phase.  Enter a specific environment if the release has to come from a specific source environment.  Recommend you leave blank.
 - **Child Project Prompted Variables**:  where you supply prompted variables values for the child project.  
 - **Force Redeployment**: tells the step template to either redeploy a release or skip it if it has already been deployed.  In the event you have a deployment target trigger configured for the release orchestration project, you'd want to change the value to `When deploying to specific machines`.  Otherwise leave it as is.
@@ -200,7 +200,7 @@ If you want to leverage the auto-approval functionality, go to each manual inter
 
 #### Create a unique lifecycle
 
-The release orchestration project only needs to deploy to ** Staging** and ** Production**.  We don't want to use the default lifecycle that has all four environments in it.  Create a new lifecycle that only has ** Staging** and ** Production** in it.
+The release orchestration project only needs to deploy to **Staging** and **Proudction**.  We don't want to use the default lifecycle that has all four environments in it.  Create a new lifecycle that only has **Staging** and **Proudction** in it.
 
 :::success
 The parent project and child project's lifecycles and channels _do not_ have to match.  The step template will determine if the selected release from the child project can be promoted to the destination environment
@@ -220,7 +220,7 @@ Once the project is created, head over to the variables screen and add in the AP
 
 ### Scenario: Deploying the latest release from Test to Staging
 
-In this scenario, we are going back to the sample application.  If you recall, release `2021.1.0` is ready to be deployed from **Test** to ** Staging**.
+In this scenario, we are going back to the sample application.  If you recall, release `2021.1.0` is ready to be deployed from **Test** to **Staging**.
 
 ![Release management ready for staging](release-management-ready-for-staging.png)
 
@@ -259,7 +259,7 @@ Wait for the deployment to finish deploying all the child projects.
 
 ### Scenario: Approvals in parent project only
 
-Deploying to ** Staging** is straight forward as there are no approvals to contend.  Deploying to **Production** is a different story.  One of the key features of this new step template is using approvals from the parent project to auto-approve child projects.
+Deploying to **Staging** is straight forward as there are no approvals to contend.  Deploying to **Production** is a different story.  One of the key features of this new step template is using approvals from the parent project to auto-approve child projects.
 
 To configure that, you will want to clone the four steps.  Cloning is accomplished by clicking the `...` next to each step and clicking the **Clone** button.
 
@@ -308,7 +308,7 @@ Reorder the deployment process once again; the new steps are between the "what-i
 
 ![manual intervention in approvals](release-orchestration-with-manual-interventions.png)
 
-Please create a new release and deploy it to ** Staging**.
+Please create a new release and deploy it to **Staging**.
 
 ![release management second release](release-mangement-second-release.png)
 
@@ -316,7 +316,7 @@ When you deploy to **Staging** you will see this message a lot.  That is expecte
 
 ![release management second deployment](release-management-skip-already-installed-release.png)
 
-Promote that release to ** Production**.  During this deployment, you'll see the manual interventions and auto-approvals in action.  First up, the manual intervention should have the version being deployed along with the release notes.
+Promote that release to **Proudction**.  During this deployment, you'll see the manual interventions and auto-approvals in action.  First up, the manual intervention should have the version being deployed along with the release notes.
 
 ![manual intervention with rendered release notes](manual-intervention-rendered-release-notes.png)
 
@@ -328,15 +328,15 @@ But once that is fixed, you should see a message similar to this in the child pr
 
 ![manual intervention auto-approval message](release-management-auto-approval-message.png)
 
-And with that, the release to ** Production** is complete!
+And with that, the release to **Proudction** is complete!
 
 ![release management deploy to Production](release-orchestration-release-to-production.png)
 
 ### Scenario: Approve today deploy tomorrow
 
-For a large chunk of our users, deployments are done off-hours.  It seems odd to require approvers to be online during deployment if they have nothing to do.  In a perfect world, the deployment should run automatically without user intervention and page the appropriate people if something goes wrong.  We can accomplish that functionality by adding in a **Prod Approval** environment to sit between ** Staging** and ** Production**.  This environment will _only_ be used for release orchestration projects.
+For a large chunk of our users, deployments are done off-hours.  It seems odd to require approvers to be online during deployment if they have nothing to do.  In a perfect world, the deployment should run automatically without user intervention and page the appropriate people if something goes wrong.  We can accomplish that functionality by adding in a **Prod Approval** environment to sit between **Staging** and **Proudction**.  This environment will _only_ be used for release orchestration projects.
 
-Add the **Prod Approval** environment.  You will notice this environment sits between ** Staging** and ** Production** on this page.  I clicked the `...` to reorder the environments on this page.
+Add the **Prod Approval** environment.  You will notice this environment sits between **Staging** and **Proudction** on this page.  I clicked the `...` to reorder the environments on this page.
 
 ![add prod approval](release-management-add-prod-approval.png)
 
@@ -355,7 +355,7 @@ Next, update the approval steps to only run in the **Prod Approval** environment
 Next, head over to the variables screen and add in two new variables:
 
 - **Project.ChildProject.Approval.Environment.Name**: stores the **Prod Approval** environment name.
-- **Project.ChildProject.Deployment.Environment.Name**: stores the name of the environment the child project should be deployed to.  For all environments except **Prod Approval**, the name will match the current environment.  When running this on the **Prod Approval** environment, the deployment environment name is ** Production**.
+- **Project.ChildProject.Deployment.Environment.Name**: stores the name of the environment the child project should be deployed to.  For all environments except **Prod Approval**, the name will match the current environment.  When running this on the **Prod Approval** environment, the deployment environment name is **Proudction**.
 
 ![prod approval new variables](release-management-new-variables.png)
 
@@ -374,11 +374,11 @@ Now, let's see this in action.  For the sample application, let's pretend a bug 
 
 ![dashboard after child project bug fix](release-management-bugs.png)
 
-Let's assume everything successfully passes QA, and it is time to promote those two components to ** Staging**.  First, we want to update the release pattern to be `2021.1.*`. You'll notice that it isn't `2021.1.1.*`.  To be honest, in thinking about this more, it makes sense only to update that when a new minor release is created, not for every patch release.  And don't worry about it trying to redeploy existing code; remember, the step template will skip already deployed releases.
+Let's assume everything successfully passes QA, and it is time to promote those two components to **Staging**.  First, we want to update the release pattern to be `2021.1.*`. You'll notice that it isn't `2021.1.1.*`.  To be honest, in thinking about this more, it makes sense only to update that when a new minor release is created, not for every patch release.  And don't worry about it trying to redeploy existing code; remember, the step template will skip already deployed releases.
 
 ![update release pattern](release-management-update-release-pattern.png)
 
-Please create a new release for the release orchestration project and deploy it to ** Staging**.  
+Please create a new release for the release orchestration project and deploy it to **Staging**.  
 
 ![dashboard after deployment to Staging](release-management-prod-approval-post-staging.png)
 
@@ -386,7 +386,7 @@ Promote that release to **Prod Approval** and go through each of the approval st
 
 ![releases already deployed messages](approval-message-with-release-already-in-environment.png)
 
-Now it is time to schedule the release to deploy to ** Production**.  Using the built-in tool, we can schedule it to run at 7 PM tonight.
+Now it is time to schedule the release to deploy to **Proudction**.  Using the built-in tool, we can schedule it to run at 7 PM tonight.
 
 ![schedule release to deploy to Production](schedule-release-to-production.png)
 
