@@ -36,10 +36,10 @@ Terraform providers are plugins which allow Terraform to interact with a wide va
 Our Terraform provider allows teams to provision and configure Octopus instances. This applies to both on-prem Octopus servers as well as [Octopus Cloud](https://octopus.com/pricing/cloud) instances. 
 
 :::hint
-We use this Terraform provider internally to provision and configure Octopus instances including Octopus Cloud. It's a valuable tool and we're excited to see it used in teams in the community.
+We use this Terraform provider internally to provision and configure Octopus instances including Octopus Cloud. It's a fantastic tool and we're excited to see it used in teams in the community.
 :::
 
-This provider is powered by a new cross-platform [Octopus client](https://github.com/OctopusDeploy/go-octopusdeploy) written in [Go](https://golang.org). This client is valuable as it allows teams to easily interact with Octopus without direct calls to the Octopus REST API with. It complements the [Octopus CLI](https://octopus.com/docs/octopus-rest-api/octopus-cli) and other [Octopus clients](https://octopus.com/docs/octopus-rest-api).
+This provider is powered by a new cross-platform [Octopus client](https://github.com/OctopusDeploy/go-octopusdeploy) written in [Go](https://golang.org). This client is useful as it allows teams to easily interact with Octopus without direct calls to the Octopus REST API with. It complements the [Octopus CLI](https://octopus.com/docs/octopus-rest-api/octopus-cli) and other Octopus [API clients](https://octopus.com/docs/octopus-rest-api).
 
 ### Prerequisites
 
@@ -55,15 +55,15 @@ The Octopus Terraform provider is published in the Terraform Registry so you sim
 
 ### Creating your first Terraform script
 
-To get started, I will walk through a simple example that shows you how to add a new variable set to an Octopus instance.
+To get started, I will walk through a simple example that shows you how to add a new variable set to an existing Octopus instance and Space. 
 
-1. Create configuration files
+1. **Create Terraform configuration files**
 
-* `main.tf` - This is the main configuration file that configures the provider and specifies resources to create/update. 
+* `main.tf` - This is the main configuration file that configures the provider and specifies resources to create or update. 
 * `variables.tf` - This file defines the variables used in the `main.tf` configuration file.
 * `terraform.tfvars` - This file contains the values for the variables defined in `variables.tf`.
 
-2. Configure the main Terraform configuration file. Open the `main.tf` file and copy/paste the following. The first block configures the Octopus Deploy provider and the second one defines a new variable set resource. 
+2. **Configure the main Terraform configuration file.** Open the `main.tf` file and copy/paste the following. The first block configures the Octopus Deploy provider and the second one defines a new variable set resource. 
 
 ``` json
 provider "octopusdeploy" {
@@ -78,7 +78,7 @@ resource "octopusdeploy_library_variable_set" "newaccount" {
 }
 ```
 
-3. Add variable definitions and values. Open the `variables.tf` file and copy/paste the following variable definitions. The content of this file are straightforward. We are defining variable names and the type of data they will store. In this case, everything is a simple string.
+3. **Add variable definitions.** Open the `variables.tf` file and copy/paste the following variable definitions. The content of this file are straightforward. We are defining variable names and the type of data they will store. In this case, everything is a simple string.
 
 ```json
 variable "apiKey" {
@@ -111,7 +111,7 @@ variableSetName = "AWS configuration values"
 description     = "Collection of common AWS configuration values for multiple automated deployment and runbook processes."
 ```
 
-5. Create our new Octopus Variable set resource by applying the Terraform configuration file to our Octopus instance. This is done by running the following commands at a terminal or command prompt.
+5. Create our new Octopus Variable set resource by applying the Terraform configuration file to our Octopus instance. This is done by running the following commands at a terminal or command prompt to initialize, verify and apply your changes.
 
 * `terraform init`
 * `terraform plan`
