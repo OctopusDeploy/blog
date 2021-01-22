@@ -27,7 +27,7 @@ Infrastructure as Code lets you declaratively describe your infrastructure, and 
 
 ## What is a Terraform Provider? 
 
-Terraform is an open-source tool that enables teams to provision and update infrastructure using declarative configuration files following an infrastructure as code approach. You describe the state of the resources in configuration files and Terraform applies this to your infrastructure. It can create, destroy and detect drift between the desired state and the actual infrastructure.
+Terraform is an open-source tool you can use to provision and update infrastructure using declarative configuration files following an infrastructure as code approach. You describe the state of the resources in configuration files and Terraform applies this to your infrastructure. It can create, destroy and detect drift between the desired state and the actual infrastructure.
 
 Terraform providers are plugins that allow Terraform to interact with a wide variety of technologies. The Octopus Deploy Terraform provider will enable you to interact with an Octopus instance and manage its configuration.
 
