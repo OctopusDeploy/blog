@@ -72,7 +72,7 @@ provider "octopusdeploy" {
   space_id = var.space
 }
 
-resource "octopusdeploy_library_variable_set" "newaccount" {
+resource "octopusdeploy_library_variable_set" "newvariableset" {
   description = var.description
   name        = var.variableSetName
 }
