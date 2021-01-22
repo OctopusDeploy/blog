@@ -51,7 +51,7 @@ The following tooling is required to use the Octopus Terraform provider.
 
 ### Installing the Octopus Terraform Provider
 
-We are publishing the Octopus provider to the official [Terraform Registry](https://registry.terraform.io), and Terraform will install it automatically.
+We are publishing the Octopus provider to the official [Terraform Registry](https://registry.terraform.io), and Terraform automatically detects which providers you need and installs them.
 
 ### Creating your first Terraform script
 
