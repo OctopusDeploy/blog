@@ -51,8 +51,8 @@ This provider is powered by a new cross-platform [Octopus client](https://github
 You need the following to use the Octopus Terraform provider.
 
 * Octopus Deploy 2019.1 or newer
-* Go 1.15.7
-* Terraform 0.13.0 or newer
+* Go 1.12 or newer
+* Terraform 0.12 or newer
 
 ### Installing the Octopus Terraform Provider
 
