@@ -4,14 +4,14 @@ description: Introducing the official Terraform provider for Octopus Deploy. Lea
 author: michael.levan@octopus.com
 visibility: public
 published: 2011-01-25
-metaImage: blogimage-terraform-provider-and-go-client-2021.png
-bannerImage: blogimage-terraform-provider-and-go-client-2021.png
+metaImage: blogimage-terraform-provider-2021.png
+bannerImage: blogimage-terraform-provider-2021.png
 tags:
  - DevOps
  - Terraform
 ---
 
-![Octopus Deploy Terraform provider: Getting started with the Beta](blogimage-terraform-provider-and-go-client-2021.png)
+![Octopus Deploy Terraform provider: Getting started with the Beta](blogimage-terraform-provider-2021.png)
 
 Infrastructure as code ([IaC](https://searchitoperations.techtarget.com/definition/Infrastructure-as-Code-IAC#:~:text=Infrastructure%20as%20code%2C%20also%20referred,hardware%20devices%20and%20operating%20systems.)) allows teams to create infrastructure resources (i.e. virtual machines, storage, network resources etc) without walking through wizards or numerous mouse clicks. [Hashicorp's](https://www.hashicorp.com) [Terraform](https://www.terraform.io) is one of the most popular infrastructure as code solutions. Terraform is an open-source IaC solution that allows you to define your infrastructure using a functional-based programming language called [Hashicorp Configuration Language (HCL)](https://github.com/hashicorp/hcl). 
 
