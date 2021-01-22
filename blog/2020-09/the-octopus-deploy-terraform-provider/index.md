@@ -102,7 +102,7 @@ variable "description" {
 }
 ```
 
-4. Set your variable values which Terraform passes to your configuration file when the configuration is applied at runtime. Add variable definitions and values. Open the `terraform.tfvars` file and copy/paste the following.  and update the values with your Octopus Server details and a random variable set name and description. 
+4. **Set your variable values**. Terraform will pass these values to your configuration file when it is applied at runtime. Add variable definitions and values. Open the `terraform.tfvars` file and copy/paste the following.  and update the values with your Octopus Server details and a random variable set name and description. 
 
 ```json
 serverURL       = "https://mytestoctopuscloud.octopus.app"
@@ -111,7 +111,7 @@ variableSetName = "AWS configuration values"
 description     = "Collection of common AWS configuration values for multiple automated deployment and runbook processes."
 ```
 
-5. Create our new Octopus Variable set resource by applying the Terraform configuration file to our Octopus instance. This is done by running the following commands at a terminal or command prompt to initialize, verify and apply your changes.
+5. **Apply the changes in your configuration file.** Create our new Octopus variable set resource by applying the Terraform configuration file to our Octopus instance. This is done by running the following commands at a terminal or command prompt to initialize, verify and apply your changes.
 
 * `terraform init`
 * `terraform plan`
