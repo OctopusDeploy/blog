@@ -172,7 +172,7 @@ This is where we create the Lambda itself. It will execute using the IAM role cr
         "PackageType": "Zip",
         "Role": {
           "Fn::GetAtt": [
-            "IamRoleLambdaExecution",
+            "IamRoleLambdaOneExecution",
             "Arn"
           ]
         },
@@ -248,7 +248,7 @@ The template below creates two resources that combine to match the path `/nodefu
       "Properties": {
         "RestApiId": {"Ref": "RestApi"},
         "ParentId": {
-          "Ref": "Resource0"
+          "Ref": "ResourceOne"
         },
         "PathPart": "{proxy+}"
       }
@@ -312,7 +312,7 @@ Below are the two methods, with proxy integration, referencing Lambdas via the s
           }
         },        
         "ResourceId": {
-          "Ref": "Resource0"
+          "Ref": "ResourceOne"
         },
         "RestApiId": {"Ref": "RestApi"}
       }
@@ -403,4 +403,466 @@ The final step in this journey is to create a stage. It is here that we create t
         }
       }
     }
+```
+
+## The complete template
+
+Deploying the second Go Lambda is very similar to the Node Lambda we deployed above, and so we won't cover all the resources again. So the template below is the complete copy of the self-contained CloudFormation template:
+
+```JSON
+{
+  "Parameters" : {
+    "EnvironmentName" : {
+      "Type" : "String",
+      "Default" : "#{Octopus.Environment.Name}"
+    }
+  },
+  "Resources": {
+    "AppLogGroupOne": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": { "Fn::Sub": "/aws/lambda/${EnvironmentName}-NodeLambda" }
+      }
+    },
+    "IamRoleLambdaOneExecution": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": { "Fn::Sub": "${EnvironmentName}-NodeLambda-policy" },
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:CreateLogStream",
+                    "logs:CreateLogGroup",
+                    "logs:PutLogEvents"
+                  ],
+                  "Resource": [
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${EnvironmentName}-NodeLambda*:*"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "Path": "/",
+        "RoleName": { "Fn::Sub": "${EnvironmentName}-NodeLambda-role" },
+      }
+    },
+    "LambdaOne": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "deploy-lambda-blog",
+          "S3Key": "nodelambdaexample.zip"
+        },
+        "Environment": {
+          "Variables": {}
+        },
+        "FunctionName": { "Fn::Sub": "${EnvironmentName}-NodeLambda" },
+        "Handler": "index.handler",
+        "MemorySize": 128,
+        "PackageType": "Zip",
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaOneExecution",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs12.x",
+        "Timeout": 20
+      }
+    },
+    "LambdaOnePermissions": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "LambdaOne",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {"Ref": "RestApi"},
+              "/*/*"
+            ]
+          ]
+        }
+      }
+    },
+    "ResourceOne": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "RestApiId": {"Ref": "RestApi"},
+        "ParentId": { "Fn::GetAtt": ["RestApi", "RootResourceId"] },
+        "PathPart": "nodefunc"
+      }
+    },
+    "ResourceTwo": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "RestApiId": {"Ref": "RestApi"},
+        "ParentId": {
+          "Ref": "ResourceOne"
+        },
+        "PathPart": "{proxy+}"
+      }
+    },
+    "LambdaOneMethodOne": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {        
+        "HttpMethod": "ANY",
+        "Integration": {          
+          "IntegrationHttpMethod": "POST",          
+          "TimeoutInMillis": 20000,
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                "arn:aws:lambda:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":",
+                {
+                  "Ref": "AWS::AccountId"
+                },
+                ":function:${stageVariables.StageName}-NodeLambda",
+                "/invocations"
+              ]
+            ]
+          }
+        },        
+        "ResourceId": {
+          "Ref": "ResourceOne"
+        },
+        "RestApiId": {"Ref": "RestApi"}
+      }
+    },
+    "LambdaOneMethodTwo": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {        
+        "HttpMethod": "ANY",
+        "Integration": {          
+          "IntegrationHttpMethod": "POST",          
+          "TimeoutInMillis": 20000,
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                "arn:aws:lambda:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":",
+                {
+                  "Ref": "AWS::AccountId"
+                },
+                ":function:${stageVariables.StageName}-NodeLambda",
+                "/invocations"
+              ]
+            ]
+          }
+        },        
+        "ResourceId": {
+          "Ref": "ResourceTwo"
+        },
+        "RestApiId": {"Ref": "RestApi"}
+      }
+    },
+    "AppLogGroupTwo": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": { "Fn::Sub": "/aws/lambda/${EnvironmentName}-GoLambda" }
+      }
+    },
+    "IamRoleLambdaTwoExecution": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": { "Fn::Sub": "${EnvironmentName}-GoLambda-policy" },
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:CreateLogStream",
+                    "logs:CreateLogGroup",
+                    "logs:PutLogEvents"
+                  ],
+                  "Resource": [
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${EnvironmentName}-GoLambda*:*"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "Path": "/",
+        "RoleName": { "Fn::Sub": "${EnvironmentName}-GoLambda-role" },
+      }
+    },
+    "LambdaTwo": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "deploy-lambda-blog",
+          "S3Key": "golambdaexample.zip"
+        },
+        "Environment": {
+          "Variables": {}
+        },
+        "FunctionName": { "Fn::Sub": "${EnvironmentName}-NodeLambda" },
+        "Handler": "index.handler",
+        "MemorySize": 128,
+        "PackageType": "Zip",
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaTwoExecution",
+            "Arn"
+          ]
+        },
+        "Runtime": "go1.x",
+        "Timeout": 20
+      }
+    },
+    "LambdaTwoPermissions": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "LambdaTwo",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {"Ref": "RestApi"},
+              "/*/*"
+            ]
+          ]
+        }
+      }
+    },
+    "ResourceThree": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "RestApiId": {"Ref": "RestApi"},
+        "ParentId": { "Fn::GetAtt": ["RestApi", "RootResourceId"] },
+        "PathPart": "gofunc"
+      }
+    },
+    "ResourceFour": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "RestApiId": {"Ref": "RestApi"},
+        "ParentId": {
+          "Ref": "ResourceThree"
+        },
+        "PathPart": "{proxy+}"
+      }
+    },
+    "LambdaTwoMethodOne": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {        
+        "HttpMethod": "ANY",
+        "Integration": {          
+          "IntegrationHttpMethod": "POST",          
+          "TimeoutInMillis": 20000,
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                "arn:aws:lambda:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":",
+                {
+                  "Ref": "AWS::AccountId"
+                },
+                ":function:${stageVariables.StageName}-GoLambda",
+                "/invocations"
+              ]
+            ]
+          }
+        },        
+        "ResourceId": {
+          "Ref": "ResourceThree"
+        },
+        "RestApiId": {"Ref": "RestApi"}
+      }
+    },
+    "LambdaTwoMethodTwo": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {        
+        "HttpMethod": "ANY",
+        "Integration": {          
+          "IntegrationHttpMethod": "POST",          
+          "TimeoutInMillis": 20000,
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                "arn:aws:lambda:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":",
+                {
+                  "Ref": "AWS::AccountId"
+                },
+                ":function:${stageVariables.StageName}-GoLambda",
+                "/invocations"
+              ]
+            ]
+          }
+        },        
+        "ResourceId": {
+          "Ref": "ResourceFour"
+        },
+        "RestApiId": {"Ref": "RestApi"}
+      }
+    }
+  },
+  "Outputs": {
+    "StageURL": {
+      "Description": "The url of the stage",
+      "Value": {
+        "Fn::Join": [
+          "",
+          [
+            "https://",
+            {"Ref": "RestApi"},
+            ".execute-api.",
+            {
+              "Ref": "AWS::Region"
+            },
+            ".amazonaws.com/",
+            {
+              "Ref": "Stage"
+            },
+            "/"
+          ]
+        ]
+      }
+    }
+  }
+}
 ```
