@@ -278,7 +278,8 @@ Below are the two methods, with proxy integration, referencing Lambdas via the s
 ```JSON
     "LambdaOneMethodOne": {
       "Type": "AWS::ApiGateway::Method",
-      "Properties": {        
+      "Properties": {       
+        "AuthorizationType": "NONE", 
         "HttpMethod": "ANY",
         "Integration": {          
           "IntegrationHttpMethod": "POST",          
@@ -320,6 +321,7 @@ Below are the two methods, with proxy integration, referencing Lambdas via the s
     "LambdaOneMethodTwo": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {        
+        "AuthorizationType": "NONE",
         "HttpMethod": "ANY",
         "Integration": {          
           "IntegrationHttpMethod": "POST",          
@@ -397,9 +399,9 @@ The final step in this journey is to create a stage. It is here that we create t
         },
         "DeploymentId": {"Ref": "Deployment93b7b8be299846a5b609121f6fca4952"},
         "RestApiId": {"Ref": "RestApi"},
-        "StageName": {"Ref": "${EnvironmentName}"},
+        "StageName": {"Fn::Sub": "${EnvironmentName}"},
         "Variables": {
-          "StageName": {"Ref": "${EnvironmentName}"}
+          "StageName": {"Fn::Sub": "${EnvironmentName}"}
         }
       }
     }
@@ -418,6 +420,18 @@ Deploying the second Go Lambda is very similar to the Node Lambda we deployed ab
     }
   },
   "Resources": {
+    "RestApi": {
+      "Type": "AWS::ApiGateway::RestApi",
+      "Properties": {
+        "Description": "My API Gateway",
+        "Name": "Self-contained deployment",
+        "EndpointConfiguration": {
+          "Types": [
+            "REGIONAL"
+          ]
+        }
+      }
+    },
     "AppLogGroupOne": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
@@ -549,7 +563,8 @@ Deploying the second Go Lambda is very similar to the Node Lambda we deployed ab
     },
     "LambdaOneMethodOne": {
       "Type": "AWS::ApiGateway::Method",
-      "Properties": {        
+      "Properties": {      
+        "AuthorizationType": "NONE",  
         "HttpMethod": "ANY",
         "Integration": {          
           "IntegrationHttpMethod": "POST",          
@@ -590,7 +605,8 @@ Deploying the second Go Lambda is very similar to the Node Lambda we deployed ab
     },
     "LambdaOneMethodTwo": {
       "Type": "AWS::ApiGateway::Method",
-      "Properties": {        
+      "Properties": {      
+        "AuthorizationType": "NONE",  
         "HttpMethod": "ANY",
         "Integration": {          
           "IntegrationHttpMethod": "POST",          
@@ -691,7 +707,7 @@ Deploying the second Go Lambda is very similar to the Node Lambda we deployed ab
         "Environment": {
           "Variables": {}
         },
-        "FunctionName": { "Fn::Sub": "${EnvironmentName}-NodeLambda" },
+        "FunctionName": { "Fn::Sub": "${EnvironmentName}-GoLambda" },
         "Handler": "index.handler",
         "MemorySize": 128,
         "PackageType": "Zip",
@@ -760,7 +776,8 @@ Deploying the second Go Lambda is very similar to the Node Lambda we deployed ab
     },
     "LambdaTwoMethodOne": {
       "Type": "AWS::ApiGateway::Method",
-      "Properties": {        
+      "Properties": {     
+        "AuthorizationType": "NONE",   
         "HttpMethod": "ANY",
         "Integration": {          
           "IntegrationHttpMethod": "POST",          
@@ -801,7 +818,8 @@ Deploying the second Go Lambda is very similar to the Node Lambda we deployed ab
     },
     "LambdaTwoMethodTwo": {
       "Type": "AWS::ApiGateway::Method",
-      "Properties": {        
+      "Properties": {      
+        "AuthorizationType": "NONE",  
         "HttpMethod": "ANY",
         "Integration": {          
           "IntegrationHttpMethod": "POST",          
@@ -838,6 +856,32 @@ Deploying the second Go Lambda is very similar to the Node Lambda we deployed ab
           "Ref": "ResourceFour"
         },
         "RestApiId": {"Ref": "RestApi"}
+      }
+    },
+    "Deployment93b7b8be299846a5b609121f6fca4952": {
+      "Type": "AWS::ApiGateway::Deployment",
+      "Properties": {
+        "RestApiId": {"Ref": "RestApi"},
+        "Description": "Octopus Release #{Octopus.Release.Number}"
+      },
+      "DependsOn": [
+        "LambdaOneMethodOne",
+        "LambdaOneMethodTwo"
+      ]
+    },
+    "Stage": {
+      "Type": "AWS::ApiGateway::Stage",
+      "Properties": {
+        "CanarySetting": {
+          "DeploymentId": {"Ref": "Deployment93b7b8be299846a5b609121f6fca4952"},
+          "PercentTraffic": 0
+        },
+        "DeploymentId": {"Ref": "Deployment93b7b8be299846a5b609121f6fca4952"},
+        "RestApiId": {"Ref": "RestApi"},
+        "StageName": {"Fn::Sub": "${EnvironmentName}"},
+        "Variables": {
+          "StageName": {"Fn::Sub": "${EnvironmentName}"}
+        }
       }
     }
   },
