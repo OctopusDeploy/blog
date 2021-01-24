@@ -953,4 +953,286 @@ Another approach is to have each Lambda deploy into a shared API Gateway instanc
 
 ## Creating a decoupled deployment
 
+A decoupled deployment differs from a self-contained deployment in the following ways:
 
+* The API Gateway is considered a shared resource, and created outside of the deployment of the Lambdas.
+* API Gateway resources (i.e. the path elements in the URLs) are also considered to be shared resources. For example, you may have a two Lambdas responding to the path **/cars**. One Lambda will respond to a HTTP POST method, and the second responds to a HTTP DELETE method. Neither Lambda can claim exclusive ownership of the resources in this case.
+* The API Gateway will host multiple stages, each representing a new environment.
+* The stages are considered shared reosurces.
+
+Let's see how this works in practice. We start with an existing API Gateway REST API. We need the API ID and the ID of the root resource:
+
+![](common-api-gateway.png "width=500")
+
+We need to build up the resources that make up our URL paths. Because there is no longer a central owner of these resources, we don't need to represent them in a CloudFormation template. Below I have create the resources exposing the Node Lambda via the CLI:
+
+```
+RESULT=`aws apigateway create-resource --rest-api-id d0oyqaa3l6 --parent-id 6fpwrle83e --path-part nodefunc`
+ID=`jq -r  '.id' <<< "${RESULT}"`
+aws apigateway create-resource --rest-api-id d0oyqaa3l6 --parent-id $ID --path-part {proxy+}
+```
+
+We can then deploy the Lambda and create the methods attached to the resources created above. The code here is very similar to the self-contained deployment, except that we now define the API Gateway ID and resource IDs as parameters:
+
+```JSON
+{
+  "Parameters" : {
+    "EnvironmentName" : {
+      "Type" : "String",
+      "Default" : "#{Octopus.Environment.Name}"
+    },
+    "ResourceOne" : {
+      "Type" : "String"
+    },
+    "ResourceTwo" : {
+      "Type" : "String"
+    },
+    "ApiGatewayId" : {
+      "Type" : "String"
+    }
+  },  
+  "Resources": {
+    "AppLogGroupOne": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": { "Fn::Sub": "/aws/lambda/${EnvironmentName}-NodeLambdaDecoupled" }
+      }
+    },
+    "IamRoleLambdaOneExecution": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": [
+                  "lambda.amazonaws.com"
+                ]
+              },
+              "Action": [
+                "sts:AssumeRole"
+              ]
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": { "Fn::Sub": "${EnvironmentName}-NodeLambdaDecoupled-policy" },
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:CreateLogStream",
+                    "logs:CreateLogGroup",
+                    "logs:PutLogEvents"
+                  ],
+                  "Resource": [
+                    {
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${EnvironmentName}-NodeLambdaDecoupled*:*"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ],
+        "Path": "/",
+        "RoleName": { "Fn::Sub": "${EnvironmentName}-NodeLambdaDecoupled-role" }
+      }
+    },
+    "Lambda": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "deploy-lambda-blog",
+          "S3Key": "nodelambdaexample.zip"
+        },
+        "Environment": {
+          "Variables": {}
+        },
+        "FunctionName": { "Fn::Sub": "${EnvironmentName}-NodeLambdaDecoupled" },
+        "Handler": "index.handler",
+        "MemorySize": 128,
+        "PackageType": "Zip",
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaOneExecution",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs12.x",
+        "Timeout": 20
+      }
+    },
+    "LambdaPermissions": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "Lambda",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Fn::Sub": "${ApiGatewayId}"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      }
+    },    
+    "LambdaMethodOne": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {      
+        "AuthorizationType": "NONE",  
+        "HttpMethod": "ANY",
+        "Integration": {          
+          "IntegrationHttpMethod": "POST",          
+          "TimeoutInMillis": 20000,
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                "arn:aws:lambda:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":",
+                {
+                  "Ref": "AWS::AccountId"
+                },
+                ":function:${stageVariables.StageName}-NodeLambdaDecoupled:",
+                { "Fn::GetAtt" : [ "LambdaVersion", "Version" ] },
+                "/invocations"
+              ]
+            ]
+          }
+        },        
+        "ResourceId": {
+          "Fn::Sub": "${ResourceOne}"
+        },
+        "RestApiId": {
+          "Fn::Sub": "${ApiGatewayId}"
+        }
+      },
+      "DependsOn": [
+        "LambdaVersion"
+      ]
+    },
+    "LambdaMethodTwo": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {      
+        "AuthorizationType": "NONE",  
+        "HttpMethod": "ANY",
+        "Integration": {          
+          "IntegrationHttpMethod": "POST",          
+          "TimeoutInMillis": 20000,
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                "arn:aws:lambda:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":",
+                {
+                  "Ref": "AWS::AccountId"
+                },
+                ":function:${stageVariables.StageName}-NodeLambdaDecoupled:",
+                { "Fn::GetAtt" : [ "LambdaVersion", "Version" ] },
+                "/invocations"
+              ]
+            ]
+          }
+        },        
+        "ResourceId": {
+          "Fn::Sub": "${ResourceTwo}"
+        },
+        "RestApiId": {
+          "Fn::Sub": "${ApiGatewayId}"
+        }
+      },
+      "DependsOn": [
+        "LambdaVersion"
+      ]
+    },
+    "LambdaVersion" : {
+      "Type" : "AWS::Lambda::Version",
+      "Properties" : {
+          "FunctionName" : {
+            "Ref": "Lambda"
+          }
+        }
+    },
+    "Deploymented479fe95fb94b6c89fb86f412be60d2": {
+      "Type": "AWS::ApiGateway::Deployment",
+      "Properties": {
+        "RestApiId": {
+          "Fn::Sub": "${ApiGatewayId}"
+        },
+        "Description": "Octopus Release #{Octopus.Release.Number}"
+      },
+      "DependsOn": [
+        "LambdaMethodOne",
+        "LambdaMethodTwo"
+      ]
+    },
+  },
+  "Outputs": {
+    "LambdaVersion": {
+      "Description": "The Lambda Version",
+      "Value": {
+        "Fn::GetAtt": [
+          "LambdaVersion",
+          "Version"
+        ]
+      }
+    }
+  }
+}
+```
