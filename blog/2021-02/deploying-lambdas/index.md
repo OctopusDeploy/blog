@@ -265,8 +265,6 @@ Prior to the proxy integration option, calling a Lambda from API Gateway involve
 
 Proxy integrations were created to provide a tick-box solution for this common problem. With proxy integration enabled, API Gateway marshalls the incoming HTTP request into a [standard object to be consumed by the Lambda](https://docs.amazonaws.cn/en_us/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-input-format), and expects an [object of a certain shape to be returned](https://docs.amazonaws.cn/en_us/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-output-format), from which the HTTP response is generated.
 
-Another common issue with API Gateway is the distinction between calling a URL with the trailing slash and without. In our example, calling `/nodefunc` will call methods attached to the first resources, and `/nodefunc/` calls the methods attached to the second resource. 
-
 Finally note that we reference the build the Lambda URL from a stage variable. This allows us to call a distinct Lambda from each API Gateway stage.
 
 The more "traditional" approach is to match an API Gateway stage to a Lambda alias, with both stages and aliases representing a progression through environments. However, Lambda aliases have significant limitation which I believe make them fundamentally unsuitable to solve the common use cases for environmental progression. You can read more about this in the blog post [Why you should not use Lambda aliases to define environments](https://octopus.com/blog/multi-environment-lambda-deployments).
@@ -409,7 +407,7 @@ The final step in this journey is to create a stage. It is here that we create t
 
 ## The complete template
 
-Deploying the second Go Lambda is very similar to the Node Lambda we deployed above, and so we won't cover all the resources again. So the template below is the complete copy of the self-contained CloudFormation template:
+Deploying the second Go Lambda is very similar to the Node Lambda we deployed above, and so we won't cover all the resources again. So the template below is the complete copy of the self-contained CloudFormation template, with a parameter defining the environment name, and output variables building up the stage URL:
 
 ```JSON
 {
@@ -708,7 +706,7 @@ Deploying the second Go Lambda is very similar to the Node Lambda we deployed ab
           "Variables": {}
         },
         "FunctionName": { "Fn::Sub": "${EnvironmentName}-GoLambda" },
-        "Handler": "index.handler",
+        "Handler": "GoLambdaExample",
         "MemorySize": 128,
         "PackageType": "Zip",
         "Role": {
@@ -910,3 +908,49 @@ Deploying the second Go Lambda is very similar to the Node Lambda we deployed ab
   }
 }
 ```
+
+## Deploying self-contained Lambdas
+
+Deploying the template above through Octopus to an environment called **Development** creates an API Gateway with a stage called **Development** with a resource hierarchy creating the paths `/gofunc/*` and `nodefunc/*`:
+
+![](api-gateway-development-shared.png "width=500")
+
+We also have the two Lambdas called **Development-GoLambda** and **Development-NodeLambda**:
+
+![](lambda-development-shared.png "width=500")
+
+The Lambdas have been written to return the object that API gateway passed as input in the response body. This allows us to inspect the details of the object that API Gateway built with its proxy integration:
+
+![](gofunc-return.png "width=500")
+
+If we promote this self-contained Lambda deployment to a new environment, we will get a second API Gateway with its own stage, and two more Lambdas. Each environment is defined by its own Cloudformation stack, and none of the resources we create are shared between environments. 
+
+One nice feature we get as a result of deploying our Lambda stack via a CloudFormation template is that it is considered to be an [application](https://docs.aws.amazon.com/lambda/latest/dg/deploying-lambda-apps.html):
+
+![](lambda-application.png "width=500")
+
+The application dashboard provides a centralized view of the individual resources that make up the stack:
+
+![](lamda-application-dashboard.png "width=500")
+
+To clean up an environment, we simply delete the cloudformation stack:
+
+![](delete-stack.png "width=500")
+
+At the begining of this post we noted the following benefits of self-contained deployments:
+
+* Everything is created, and destroyed, as a group.
+* A deployment is progressed to the next environment as a group.
+* It is easy to reason about the state of a deployed application, even when the application has multiple Lambdas.
+
+We can now see how defining a deployment stack as a single, self-contained CloudFormation template provides those benefits.
+
+However, one significant downside to self contained deployments is that the lifecycle of all the Lambdas are tightky coupled to one another. In our example, you cannot deploy the Node Lmabda independantly of the Go Lambda. This becomes a problem once your stack grows in complexity, and individual teams begin taking responsibility for each Lambda.
+
+As you stack evolves into a true microservice architecture, you need to decouple the deployment of each Lambda. One approach would be to split each Lambda into its own self-contained deployment. Scaling multiple self-contained deployments would almost certainly require a service discovery layer to cope with the explosion of unique URLs exposed by each API Gateway instance though.
+
+Another approach is to have each Lambda deploy into a shared API Gateway instance. That way each Lambda can use relative URLs to access sibling Lambdas. This is what we will call a decoupled deployment.
+
+## Creating a decoupled deployment
+
+
