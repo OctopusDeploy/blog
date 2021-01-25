@@ -47,7 +47,7 @@ The following tooling is required to use the Octopus Terraform provider.
 
 * Go 1.12 or newer
 * Terraform 0.12 or newer
-* Octopus Deploy 2019.1 or newer <!-- TODO: Confirm if this is correct or not. -->
+* Octopus Deploy 2019.1 or newer
 
 ### Installing the Octopus Terraform Provider
 
@@ -128,7 +128,9 @@ description     = "Collection of common AWS config values for automated deployme
 
 NOTE: This is not a complete Terraform tutorial. I highly recommend you read the excellent [Terraform documentation](https://www.terraform.io/docs/) to learn more about Terraform itself.
 
-TODO: Screenshot
+![Terraform Provider example Terminal screenshot](terraform-provider-example-terminal.png "width=500")
+
+![Terraform Provider example Octopus screenshot](terraform-provider-example-octopus.png "width=500")
 
 Congrats! You have using Terraform and the Octopus Deploy provider to configure your Octopus instance. Navigate to your Octopus instance and you should see the newly created variable set in the selected Space!
 
