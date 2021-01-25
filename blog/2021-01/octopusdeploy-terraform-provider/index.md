@@ -140,7 +140,7 @@ Read the [Terraform provider docs](https://registry.terraform.io/providers/Octop
 
 ## Open source and contributing
 
-The [project repository](https://github.com/OctopusDeploy/go-octopusdeploy) is available on GitHub with the Mozilla Public License Version 2.0 license. We accept pull requests, and we’d love to see community contributions.
+The [project repository](https://github.com/OctopusDeployLabs/terraform-provider-octopusdeploy) is available on GitHub with the Mozilla Public License Version 2.0 license. We accept pull requests, and we’d love to see community contributions.
 
 ## Infrastructure as Code with the Terraform provider vs Configuration as Code
 
