@@ -67,7 +67,7 @@ This is a good start, but now we need some way to create new version numbers to 
 
 #### Tagging with semantic-release
 
-The version numbers assigned to packages in Octopus'es built-in repository must be valid [semantic versions](https://octopus.com/docs/packaging-applications/create-packages/versioning#semver). Automatically generating new, valid semantic versions would be difficult to do manually. Luckily, there is an excellent open source project called [semantic-release](https://semantic-release.gitbook.io/) that can help us do just that.
+The version numbers assigned to packages in Octopus'es built-in repository must be valid [semantic versions](https://octopus.com/docs/packaging-applications/create-packages/versioning#semver). Attempting to home-roll a solution to automatically generate new, valid semantic versions sounds challenging. Luckily, there is an excellent open source project called [semantic-release](https://semantic-release.gitbook.io/) that can help us do just that.
 
 semantic-release works by evaluating my commit messages based on some pre-defined convention. Depending on the format of my recent commit messages, the library will generate the next appropriate semantic version after finding the most recent version and updating either the major, minor, or patch version accordingly. The details of this library are out of scope for this blog post, but definitely check this project out if you've never used it before.
 
