@@ -1145,10 +1145,7 @@ We can then deploy the Lambda and create the methods attached to the resources c
         "RestApiId": {
           "Fn::Sub": "${ApiGatewayId}"
         }
-      },
-      "DependsOn": [
-        "LambdaVersion479fe95fb94b6c89fb86f412be60d8"
-      ]
+      }
     },
     "LambdaMethodTwo": {
       "Type": "AWS::ApiGateway::Method",
