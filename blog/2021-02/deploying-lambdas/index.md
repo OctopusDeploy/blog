@@ -265,13 +265,10 @@ Prior to the proxy integration option, calling a Lambda from API Gateway involve
 
 Proxy integrations were created to provide a tick-box solution for this common problem. With proxy integration enabled, API Gateway marshalls the incoming HTTP request into a [standard object to be consumed by the Lambda](https://docs.amazonaws.cn/en_us/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-input-format), and expects an [object of a certain shape to be returned](https://docs.amazonaws.cn/en_us/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-output-format), from which the HTTP response is generated.
 
-Finally note that we reference the build the Lambda URL from a stage variable. This allows us to call a distinct Lambda from each API Gateway stage.
 
 The more "traditional" approach is to match an API Gateway stage to a Lambda alias, with both stages and aliases representing a progression through environments. However, Lambda aliases have significant limitation which I believe make them fundamentally unsuitable to solve the common use cases for environmental progression. You can read more about this in the blog post [Why you should not use Lambda aliases to define environments](https://octopus.com/blog/multi-environment-lambda-deployments).
 
-So this methods here are configured to allow different Lambdas per environment. This will set us up later as we split this self-contained deployment into a decoupled deployment.
-
-Below are the two methods, with proxy integration, referencing Lambdas via the stage variable `StageName`:
+Below are the two methods with proxy integration:
 
 ```JSON
     "LambdaOneMethodOne": {
@@ -304,7 +301,8 @@ Below are the two methods, with proxy integration, referencing Lambdas via the s
                 {
                   "Ref": "AWS::AccountId"
                 },
-                ":function:${stageVariables.StageName}-NodeLambda",
+                ":function:",
+                { "Fn::Sub": "${EnvironmentName}-NodeLambda" },
                 "/invocations"
               ]
             ]
@@ -346,7 +344,8 @@ Below are the two methods, with proxy integration, referencing Lambdas via the s
                 {
                   "Ref": "AWS::AccountId"
                 },
-                ":function:${stageVariables.StageName}-NodeLambda",
+                ":function:",
+                { "Fn::Sub": "${EnvironmentName}-NodeLambda" },
                 "/invocations"
               ]
             ]
@@ -384,7 +383,7 @@ Note that we attach a random string to the resource name. Deployments are immuta
 
 ## The AWS::ApiGateway::Stage resource
 
-The final step in this journey is to create a stage. It is here that we create the stage variable `StageName` that the methods referenced, and "promote" the working stage by referencing the deployment resource:
+The final step in this journey is to create a stage, and "promote" the working stage by referencing the deployment resource:
 
 
 ```json
@@ -397,10 +396,7 @@ The final step in this journey is to create a stage. It is here that we create t
         },
         "DeploymentId": {"Ref": "Deployment93b7b8be299846a5b609121f6fca4952"},
         "RestApiId": {"Ref": "RestApi"},
-        "StageName": {"Fn::Sub": "${EnvironmentName}"},
-        "Variables": {
-          "StageName": {"Fn::Sub": "${EnvironmentName}"}
-        }
+        "StageName": {"Fn::Sub": "${EnvironmentName}"}
       }
     }
 ```
@@ -589,7 +585,8 @@ Deploying the second Go Lambda is very similar to the Node Lambda we deployed ab
                 {
                   "Ref": "AWS::AccountId"
                 },
-                ":function:${stageVariables.StageName}-NodeLambda",
+                ":function:",
+                { "Fn::Sub": "${EnvironmentName}-NodeLambda" },
                 "/invocations"
               ]
             ]
@@ -631,7 +628,8 @@ Deploying the second Go Lambda is very similar to the Node Lambda we deployed ab
                 {
                   "Ref": "AWS::AccountId"
                 },
-                ":function:${stageVariables.StageName}-NodeLambda",
+                ":function:",
+                { "Fn::Sub": "${EnvironmentName}-NodeLambda" },
                 "/invocations"
               ]
             ]
@@ -802,7 +800,8 @@ Deploying the second Go Lambda is very similar to the Node Lambda we deployed ab
                 {
                   "Ref": "AWS::AccountId"
                 },
-                ":function:${stageVariables.StageName}-GoLambda",
+                ":function:",
+                { "Fn::Sub": "${EnvironmentName}-GoLambda" },
                 "/invocations"
               ]
             ]
@@ -844,7 +843,8 @@ Deploying the second Go Lambda is very similar to the Node Lambda we deployed ab
                 {
                   "Ref": "AWS::AccountId"
                 },
-                ":function:${stageVariables.StageName}-GoLambda",
+                ":function:",
+                { "Fn::Sub": "${EnvironmentName}-NodeLambda" },
                 "/invocations"
               ]
             ]
@@ -876,10 +876,7 @@ Deploying the second Go Lambda is very similar to the Node Lambda we deployed ab
         },
         "DeploymentId": {"Ref": "Deployment93b7b8be299846a5b609121f6fca4952"},
         "RestApiId": {"Ref": "RestApi"},
-        "StageName": {"Fn::Sub": "${EnvironmentName}"},
-        "Variables": {
-          "StageName": {"Fn::Sub": "${EnvironmentName}"}
-        }
+        "StageName": {"Fn::Sub": "${EnvironmentName}"}
       }
     }
   },
@@ -957,8 +954,7 @@ A decoupled deployment differs from a self-contained deployment in the following
 
 * The API Gateway is considered a shared resource, and created outside of the deployment of the Lambdas.
 * API Gateway resources (i.e. the path elements in the URLs) are also considered to be shared resources. For example, you may have a two Lambdas responding to the path **/cars**. One Lambda will respond to a HTTP POST method, and the second responds to a HTTP DELETE method. Neither Lambda can claim exclusive ownership of the resources in this case.
-* The API Gateway will host multiple stages, each representing a new environment.
-* The stages are considered shared reosurces.
+* The stages are considered shared resources.
 
 Let's see how this works in practice. We start with an existing API Gateway REST API. We need the API ID and the ID of the root resource:
 
@@ -1111,7 +1107,7 @@ We can then deploy the Lambda and create the methods attached to the resources c
         }
       }
     },
-    "LambdaVersionPermissions479fe95fb94b6c89fb86f412be60d7": {
+    "LambdaVersionPermissions479fe95fb94b6c89fb86f412be60d8": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
         "FunctionName": {
@@ -1125,7 +1121,7 @@ We can then deploy the Lambda and create the methods attached to the resources c
                 ]
               },
               ":",
-              { "Fn::GetAtt" : [ "LambdaVersion479fe95fb94b6c89fb86f412be60d7", "Version" ] },
+              { "Fn::GetAtt" : [ "LambdaVersion479fe95fb94b6c89fb86f412be60d8", "Version" ] },
             ]
           ]
         },
@@ -1157,7 +1153,7 @@ We can then deploy the Lambda and create the methods attached to the resources c
         }
       },
       "DependsOn": [
-        "LambdaVersion479fe95fb94b6c89fb86f412be60d7",
+        "LambdaVersion479fe95fb94b6c89fb86f412be60d8",
       ]
     },
     "LambdaMethodOne": {
@@ -1190,8 +1186,10 @@ We can then deploy the Lambda and create the methods attached to the resources c
                 {
                   "Ref": "AWS::AccountId"
                 },
-                ":function:${stageVariables.StageName}-NodeLambdaDecoupled:",
-                { "Fn::GetAtt" : [ "LambdaVersion479fe95fb94b6c89fb86f412be60d7", "Version" ] },
+                ":function:",
+                { "Fn::Sub": "${EnvironmentName}-NodeLambdaDecoupled" },
+                ":",
+                { "Fn::GetAtt" : [ "LambdaVersion479fe95fb94b6c89fb86f412be60d8", "Version" ] },
                 "/invocations"
               ]
             ]
@@ -1205,7 +1203,7 @@ We can then deploy the Lambda and create the methods attached to the resources c
         }
       },
       "DependsOn": [
-        "LambdaVersion479fe95fb94b6c89fb86f412be60d7"
+        "LambdaVersion479fe95fb94b6c89fb86f412be60d8"
       ]
     },
     "LambdaMethodTwo": {
@@ -1238,8 +1236,10 @@ We can then deploy the Lambda and create the methods attached to the resources c
                 {
                   "Ref": "AWS::AccountId"
                 },
-                ":function:${stageVariables.StageName}-NodeLambdaDecoupled:",
-                { "Fn::GetAtt" : [ "LambdaVersion479fe95fb94b6c89fb86f412be60d7", "Version" ] },
+                ":function:",
+                { "Fn::Sub": "${EnvironmentName}-NodeLambdaDecoupled" },
+                ":",
+                { "Fn::GetAtt" : [ "LambdaVersion479fe95fb94b6c89fb86f412be60d8", "Version" ] },
                 "/invocations"
               ]
             ]
@@ -1253,10 +1253,10 @@ We can then deploy the Lambda and create the methods attached to the resources c
         }
       },
       "DependsOn": [
-        "LambdaVersion479fe95fb94b6c89fb86f412be60d7"
+        "LambdaVersion479fe95fb94b6c89fb86f412be60d8"
       ]
     },
-    "LambdaVersion479fe95fb94b6c89fb86f412be60d7" : {
+    "LambdaVersion479fe95fb94b6c89fb86f412be60d8" : {
       "Type" : "AWS::Lambda::Version",
       "Properties" : {
           "FunctionName" : {
@@ -1264,7 +1264,7 @@ We can then deploy the Lambda and create the methods attached to the resources c
           }
         }
     },
-    "Deploymented479fe95fb94b6c89fb86f412be60d7": {
+    "Deploymented479fe95fb94b6c89fb86f412be60d8": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -1283,7 +1283,7 @@ We can then deploy the Lambda and create the methods attached to the resources c
       "Description": "The Lambda Version",
       "Value": {
         "Fn::GetAtt": [
-          "LambdaVersion479fe95fb94b6c89fb86f412be60d7",
+          "LambdaVersion479fe95fb94b6c89fb86f412be60d8",
           "Version"
         ]
       }
@@ -1291,27 +1291,16 @@ We can then deploy the Lambda and create the methods attached to the resources c
     "DeploymentId": {
       "Description": "The Deployment ID",
       "Value": {
-        "Ref": "Deploymented479fe95fb94b6c89fb86f412be60d7"
+        "Ref": "Deploymented479fe95fb94b6c89fb86f412be60d8"
       }
     }
   }
 }
 ```
 
-As before, we need to create a stage to expose the API Gateway configuration. But instead of always creating a new deployment and passing that to the stage `DeploymentId` field, we will instead check to see if a deployment has already been created for the current Octopus release. For example, we can query existing deployments based on their description like so:
+As before, we need to create a stage to expose the API Gateway configuration. Each Lambda deployment that contributes to a shared API Gateway will deploy an updated template defining the stage with a new `DeploymentId` property. This means that the CloudFormation stack name must be able to be recreated from the API Gateway ID and the stage name. For example, you may create a stack with the name `APIG-d0oyqaa3l6-Development` to define the stage called **Development** for the API Gateway with the ID of **d0oyqaa3l6**.
 
-```bash
-aws apigateway get-deployments  --rest-api-id d0oyqaa3l6 | jq -r -c '.items[] | select(.description=="Octopus Release 0.0.21") | .id'
-```
-
-Or, more generally in an Octopus AWS Script step, we could run something like this:
-
-```bash
-DEPLOYMENTID=aws apigateway get-deployments --rest-api-id d0oyqaa3l6 | jq -r -c '.items[] | select(.description=="Octopus Release #{Octopus.Release.Number}") | .id'
-set_octopusvariable "DeploymentId" "${DEPLOYMENTID}"
-```
-
-Each Lambda deployment that contributes to a shared API Gateway will deploy an updated template defining the stage with a new `DeploymentId` property. This means that the CloudFormation stack name must be able to be recreated from the API Gateway ID and the stage name. For example, you may create a stack with the name `APIG-d0oyqaa3l6-Development` to define the stage called **Development** for the API Gateway with the ID of **d0oyqaa3l6**.
+Here is the CloudFormation template for the stage:
 
 ```JSON
 {
@@ -1334,12 +1323,46 @@ Each Lambda deployment that contributes to a shared API Gateway will deploy an u
       "Properties": {
         "DeploymentId": {"Fn::Sub": "${DeploymentId}"},
         "RestApiId": {"Fn::Sub": "${ApiGatewayId}"},
-        "StageName": {"Fn::Sub": "${EnvironmentName}"},
-        "Variables": {
-          "StageName": {"Fn::Sub": "${EnvironmentName}"}
-        }
+        "StageName": {"Fn::Sub": "${EnvironmentName}"}
       }
     }
   }
 }
 ```
+
+## Deploying decoupled Lambdas
+
+Before we look at how a decoupled deployment works, lets consider one very important consideration which is that we expect a single API Gateway and stage per environment. This is a similar [design decision taken by tools like serverless.io](https://github.com/serverless/serverless/issues/2445#issuecomment-257479953).
+
+### Why limit ourselves to one stage per environment?
+
+The working stage (which is what I am calling the **Resources** view in the API Gateway console) accumulates changes, and the current state of the working stage is essentially captured as a snapshot by an immutable `AWS::ApiGateway::Deployment` resource.
+
+When you have multiple stages representing multiple environments, progressing a deployment from a test to a production environment means updating the production stage with the ID of the `AWS::ApiGateway::Deployment` resource that was assigned to the test stage.
+
+Importantly, there is no concept in API Gateway of reseting the working stage to the state of a previous deployment, making an isolated change, and then promoting that isolated change back to a stage. This means when you have multiple stages representing multiple environments, you have to assume that every change to the working stage may be captured in a deployment and promoted to production.
+
+In practise this also means that promoting a deployment to a new stage means knowing what the previous stage or environment is, inspecting the previous stage to find the deployment that was assigned to it, and then updating the next stage with the previous stage's deployment ID.
+
+This complicates common deployment scenarios. For example, how would you roll back a single Lambda in production? 
+
+What we would like to do is reset the working stage with the state of the production stage, deploy an old Lambda version in the working stage, snapshot the working stage with a new `AWS::ApiGateway::Deployment` resource, and promote that `AWS::ApiGateway::Deployment` resource to the production stage. This is the kind of workflow developers take for granted with source control tools like GIT.
+
+However, because we cannot reset the working stage with the state of the production stage, we first must deploy the old Lambda version to whatever the current state of the working stage is, snapshot the working stage with a new `AWS::ApiGateway::Deployment` resource, and then promote that change through the dev, test, and production stages. Which, in effect, means we just promoted every development Lambda version in the working stage to production as we attempted to role a single Lambda back.
+
+It is tempting to think that we could simply assign an old `AWS::ApiGateway::Deployment` resource to the production stage. But what if several other teams promoted their Lambda version to production before you realized you needed to roll your Lambda back? There is now no `AWS::ApiGateway::Deployment` resource with the correct combination of Lambda versions and API Gateway settings that we can roll back to.
+
+Feature branch deployments also complicate the progression of `AWS::ApiGateway::Deployment` resources through to production. It would be nice to create temporary URLs to test feature branch Lambda deployments side by side with the mainline Lambdas. But because anything in the working state may be snapshotted in a `AWS::ApiGateway::Deployment` resource and promoted to production, you may well find your temporary feature branch deployments exposed publically.
+
+The inability to revert the API Gateway working stage to a previous known good state, make an isolated change, and promote that change to a stage makes common deployment patterns like rollbacks or hot fixes practically impossible with multiple stages. In addition, the fact that every change to the working stage is a candidate for a production deployment means feature branching becomes dangerous.
+
+By ensuring that each environment is represented by a single API Gateway with a single stage, we can assume that the working stage contains the last known state of the associated public stage. This means we can roll back single Lambdas, perform hot fix deployments, and ensure that feature branch deployments don't appear in production simply by not deploying feature branch Lambdas into the production working stage.
+
+### Demonstrating decoupled deployments
+
+At the begining of this post we noted the following advantages of decoupled deployments:
+
+* Each Lambda manages its own deployment lifecycle.
+* A single, shared API gateway allows Lambdas to interact via relative URLs.
+* A shared hostname makes it easier to manage HTTPS certificates.
+
