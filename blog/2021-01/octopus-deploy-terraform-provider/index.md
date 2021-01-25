@@ -113,7 +113,7 @@ variable "description" {
 4. **Set your variable values**. Terraform will pass these values to your configuration file at runtime. Open the `terraform.tfvars` file and copy and paste the following text. You will need to update the values with your Octopus Server details and a variable set name and description:
 
 ```json
-serverURL       = "https://mytestoctopuscloud.octopus.app"
+serverURL       = "https://mytestoctopusname.octopus.app"
 space           = "Spaces-1"
 apiKey          = "API-XXXXXXXXXXXXX"
 variableSetName = "AWS configuration values"
