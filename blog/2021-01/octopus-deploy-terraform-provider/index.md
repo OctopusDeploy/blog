@@ -66,9 +66,17 @@ To get started, I walk through a simple example that shows you how to add a new 
 2. **Configure the main Terraform configuration file.** Open the `main.tf` file and copy and paste the following. The first block configures the Octopus Deploy provider and the second one defines a new variable set resource.:
 
 ``` json
+terraform {
+  required_providers {
+    octopusdeploy = {
+      source  = "OctopusDeployLabs/octopusdeploy"
+    }
+  }
+}
+
 provider "octopusdeploy" {
   address  = var.serverURL
-  apikey   = var.apiKey
+  api_key   = var.apiKey
   space_id = var.space
 }
 
@@ -108,7 +116,7 @@ variable "description" {
 serverURL       = "https://mytestoctopuscloud.octopus.app"
 space           = "Spaces-1"
 variableSetName = "AWS configuration values"
-description     = "Collection of common AWS configuration values for multiple automated deployment and runbook processes."
+description     = "Collection of common AWS config values for automated deployment and runbook processes."
 ```
 
 5. **Apply the changes in your configuration file.** Create our new Octopus variable set resource by applying the Terraform configuration file to our Octopus instance. Run the following commands at a terminal or command prompt to initialize, verify and apply your changes:
