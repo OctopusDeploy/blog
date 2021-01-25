@@ -1111,7 +1111,7 @@ We can then deploy the Lambda and create the methods attached to the resources c
         }
       }
     },
-    "LambdaVersionPermissions479fe95fb94b6c89fb86f412be60d6": {
+    "LambdaVersionPermissions479fe95fb94b6c89fb86f412be60d7": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
         "FunctionName": {
@@ -1125,7 +1125,7 @@ We can then deploy the Lambda and create the methods attached to the resources c
                 ]
               },
               ":",
-              { "Fn::GetAtt" : [ "LambdaVersion479fe95fb94b6c89fb86f412be60d6", "Version" ] },
+              { "Fn::GetAtt" : [ "LambdaVersion479fe95fb94b6c89fb86f412be60d7", "Version" ] },
             ]
           ]
         },
@@ -1157,7 +1157,7 @@ We can then deploy the Lambda and create the methods attached to the resources c
         }
       },
       "DependsOn": [
-        "LambdaVersion479fe95fb94b6c89fb86f412be60d6",
+        "LambdaVersion479fe95fb94b6c89fb86f412be60d7",
       ]
     },
     "LambdaMethodOne": {
@@ -1191,7 +1191,7 @@ We can then deploy the Lambda and create the methods attached to the resources c
                   "Ref": "AWS::AccountId"
                 },
                 ":function:${stageVariables.StageName}-NodeLambdaDecoupled:",
-                { "Fn::GetAtt" : [ "LambdaVersion479fe95fb94b6c89fb86f412be60d6", "Version" ] },
+                { "Fn::GetAtt" : [ "LambdaVersion479fe95fb94b6c89fb86f412be60d7", "Version" ] },
                 "/invocations"
               ]
             ]
@@ -1205,7 +1205,7 @@ We can then deploy the Lambda and create the methods attached to the resources c
         }
       },
       "DependsOn": [
-        "LambdaVersion479fe95fb94b6c89fb86f412be60d6"
+        "LambdaVersion479fe95fb94b6c89fb86f412be60d7"
       ]
     },
     "LambdaMethodTwo": {
@@ -1239,7 +1239,7 @@ We can then deploy the Lambda and create the methods attached to the resources c
                   "Ref": "AWS::AccountId"
                 },
                 ":function:${stageVariables.StageName}-NodeLambdaDecoupled:",
-                { "Fn::GetAtt" : [ "LambdaVersion479fe95fb94b6c89fb86f412be60d6", "Version" ] },
+                { "Fn::GetAtt" : [ "LambdaVersion479fe95fb94b6c89fb86f412be60d7", "Version" ] },
                 "/invocations"
               ]
             ]
@@ -1253,10 +1253,10 @@ We can then deploy the Lambda and create the methods attached to the resources c
         }
       },
       "DependsOn": [
-        "LambdaVersion479fe95fb94b6c89fb86f412be60d6"
+        "LambdaVersion479fe95fb94b6c89fb86f412be60d7"
       ]
     },
-    "LambdaVersion479fe95fb94b6c89fb86f412be60d6" : {
+    "LambdaVersion479fe95fb94b6c89fb86f412be60d7" : {
       "Type" : "AWS::Lambda::Version",
       "Properties" : {
           "FunctionName" : {
@@ -1264,7 +1264,7 @@ We can then deploy the Lambda and create the methods attached to the resources c
           }
         }
     },
-    "Deploymented479fe95fb94b6c89fb86f412be60d6": {
+    "Deploymented479fe95fb94b6c89fb86f412be60d7": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -1283,7 +1283,7 @@ We can then deploy the Lambda and create the methods attached to the resources c
       "Description": "The Lambda Version",
       "Value": {
         "Fn::GetAtt": [
-          "LambdaVersion479fe95fb94b6c89fb86f412be60d6",
+          "LambdaVersion479fe95fb94b6c89fb86f412be60d7",
           "Version"
         ]
       }
@@ -1291,14 +1291,27 @@ We can then deploy the Lambda and create the methods attached to the resources c
     "DeploymentId": {
       "Description": "The Deployment ID",
       "Value": {
-        "Ref": "Deploymented479fe95fb94b6c89fb86f412be60d6"
+        "Ref": "Deploymented479fe95fb94b6c89fb86f412be60d7"
       }
     }
   }
 }
 ```
 
-As before, we need to create a stage to expose the API Gateway configuration.
+As before, we need to create a stage to expose the API Gateway configuration. But instead of always creating a new deployment and passing that to the stage `DeploymentId` field, we will instead check to see if a deployment has already been created for the current Octopus release. For example, we can query existing deployments based on their description like so:
+
+```bash
+aws apigateway get-deployments  --rest-api-id d0oyqaa3l6 | jq -r -c '.items[] | select(.description=="Octopus Release 0.0.21") | .id'
+```
+
+Or, more generally in an Octopus AWS Script step, we could run something like this:
+
+```bash
+DEPLOYMENTID=aws apigateway get-deployments --rest-api-id d0oyqaa3l6 | jq -r -c '.items[] | select(.description=="Octopus Release #{Octopus.Release.Number}") | .id'
+set_octopusvariable "DeploymentId" "${DEPLOYMENTID}"
+```
+
+Each Lambda deployment that contributes to a shared API Gateway will deploy an updated template defining the stage with a new `DeploymentId` property. This means that the CloudFormation stack name must be able to be recreated from the API Gateway ID and the stage name. For example, you may create a stack with the name `APIG-d0oyqaa3l6-Development` to define the stage called **Development** for the API Gateway with the ID of **d0oyqaa3l6**.
 
 ```JSON
 {
