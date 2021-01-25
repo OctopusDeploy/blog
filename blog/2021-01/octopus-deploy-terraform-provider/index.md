@@ -15,7 +15,7 @@ tags:
 
 Infrastructure as Code ([IaC](https://searchitoperations.techtarget.com/definition/Infrastructure-as-Code-IAC#:~:text=Infrastructure%20as%20code%2C%20also%20referred,hardware%20devices%20and%20operating%20systems.)) allows teams to create infrastructure resources (i.e. virtual machines, storage, network resources, etc.) without walking through wizards or numerous mouse clicks. [Hashicorp's](https://www.hashicorp.com) [Terraform](https://www.terraform.io) is one of the most popular infrastructure as code solutions. Terraform is an open-source IaC solution that lets you to define your infrastructure using a functional-based programming language called [Hashicorp Configuration Language (HCL)](https://github.com/hashicorp/hcl). 
 
-Octopus is proud to introduce our official [Terraform provider](https://github.com/OctopusDeploy/terraform-provider-octopusdeploy). This project started as a [community initiative](https://github.com/MattHodge/terraform-provider-octopusdeploy) by [Matthew Hodgkins](https://github.com/MattHodge/), who built it to suit his needs. Down the track, [Mark Henderson](https://github.com/mhenderson-so) contributed to the project for the needs of StackExchange. We’re indebted to Matt and Mark for their efforts since the project started in 2018. Making this an official, supported provider brings significant advantages, as we can keep the plugin up-to-date, improve its testing and add new features.
+Octopus is proud to introduce our official [Terraform provider](https://github.com/OctopusDeployLabs/terraform-provider-octopusdeploy). This project started as a [community initiative](https://github.com/MattHodge/terraform-provider-octopusdeploy) by [Matthew Hodgkins](https://github.com/MattHodge/), who built it to suit his needs. Down the track, [Mark Henderson](https://github.com/mhenderson-so) contributed to the project for the needs of StackExchange. We’re indebted to Matt and Mark for their efforts since the project started in 2018. Making this an official, supported provider brings significant advantages, as we can keep the plugin up-to-date, improve its testing and add new features.
 
 In this blog post, I introduce the Terraform provider for Octopus Deploy, and share practical examples of how to get started with it. 
 
@@ -134,7 +134,7 @@ Congrats! You have using Terraform and the Octopus Deploy provider to configure 
 
 ### Next steps
 
-Checkout the [`examples` folder](https://github.com/OctopusDeploy/terraform-provider-octopusdeploy/tree/master/examples) in the GitHub repository for more examples. 
+Read the [Terraform Provider docs](https://registry.terraform.io/providers/OctopusDeployLabs/octopusdeploy/latest/docs) and review the [`examples` folder](https://github.com/OctopusDeployLabs/terraform-provider-octopusdeploy/tree/master/examples) in the GitHub repository for more examples. 
 
 ## Open source and contributing
 
