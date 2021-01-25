@@ -115,6 +115,7 @@ variable "description" {
 ```json
 serverURL       = "https://mytestoctopuscloud.octopus.app"
 space           = "Spaces-1"
+apiKey          = "API-XXXXXXXXXXXXX"
 variableSetName = "AWS configuration values"
 description     = "Collection of common AWS config values for automated deployment and runbook processes."
 ```
