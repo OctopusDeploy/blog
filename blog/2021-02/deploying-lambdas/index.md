@@ -972,7 +972,12 @@ ID=`jq -r  '.id' <<< "${RESULT}"`
 aws apigateway create-resource --rest-api-id d0oyqaa3l6 --parent-id $ID --path-part {proxy+}
 ```
 
-We can then deploy the Lambda and create the methods attached to the resources created above. The code here is very similar to the self-contained deployment, except that we now define the API Gateway ID and resource IDs as parameters:
+We can then deploy the Lambda and create the methods attached to the resources created above. The code here is similar to the self-contained deployment, but does have some notable changes:
+
+* We create an `AWS::Lambda::Version` resource to snapshot the current Lambda deployment version.
+* The `AWS::ApiGateway::Method` resources point to the version of the Lambda that was just deployed. 
+* We have two `AWS::Lambda::Permission` resources. The first allows access to the `$LATEST` version, and the second allows access to the newly deployed Lambda.
+* The API Gateway and resource IDs are supplied via parameters now, as these resources were created outside of the CloudFormation template.
 
 ```JSON
 {
@@ -1047,9 +1052,10 @@ We can then deploy the Lambda and create the methods attached to the resources c
     "Lambda": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
+        "Description": "Octopus Release #{Octopus.Release.Number}",
         "Code": {
           "S3Bucket": "deploy-lambda-blog",
-          "S3Key": "nodelambdaexample.zip"
+          "S3Key": "nodelambdaexample.zip"          
         },
         "Environment": {
           "Variables": {}
@@ -1104,7 +1110,56 @@ We can then deploy the Lambda and create the methods attached to the resources c
           ]
         }
       }
-    },    
+    },
+    "LambdaVersionPermissions479fe95fb94b6c89fb86f412be60d6": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::Join": [
+            "",
+            [
+              {
+                "Fn::GetAtt": [
+                  "Lambda",
+                  "Arn"
+                ]
+              },
+              ":",
+              { "Fn::GetAtt" : [ "LambdaVersion479fe95fb94b6c89fb86f412be60d6", "Version" ] },
+            ]
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:",
+              {
+                "Ref": "AWS::Partition"
+              },
+              ":execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Fn::Sub": "${ApiGatewayId}"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      },
+      "DependsOn": [
+        "LambdaVersion479fe95fb94b6c89fb86f412be60d6",
+      ]
+    },
     "LambdaMethodOne": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {      
@@ -1136,7 +1191,7 @@ We can then deploy the Lambda and create the methods attached to the resources c
                   "Ref": "AWS::AccountId"
                 },
                 ":function:${stageVariables.StageName}-NodeLambdaDecoupled:",
-                { "Fn::GetAtt" : [ "LambdaVersion", "Version" ] },
+                { "Fn::GetAtt" : [ "LambdaVersion479fe95fb94b6c89fb86f412be60d6", "Version" ] },
                 "/invocations"
               ]
             ]
@@ -1150,7 +1205,7 @@ We can then deploy the Lambda and create the methods attached to the resources c
         }
       },
       "DependsOn": [
-        "LambdaVersion"
+        "LambdaVersion479fe95fb94b6c89fb86f412be60d6"
       ]
     },
     "LambdaMethodTwo": {
@@ -1184,7 +1239,7 @@ We can then deploy the Lambda and create the methods attached to the resources c
                   "Ref": "AWS::AccountId"
                 },
                 ":function:${stageVariables.StageName}-NodeLambdaDecoupled:",
-                { "Fn::GetAtt" : [ "LambdaVersion", "Version" ] },
+                { "Fn::GetAtt" : [ "LambdaVersion479fe95fb94b6c89fb86f412be60d6", "Version" ] },
                 "/invocations"
               ]
             ]
@@ -1198,10 +1253,10 @@ We can then deploy the Lambda and create the methods attached to the resources c
         }
       },
       "DependsOn": [
-        "LambdaVersion"
+        "LambdaVersion479fe95fb94b6c89fb86f412be60d6"
       ]
     },
-    "LambdaVersion" : {
+    "LambdaVersion479fe95fb94b6c89fb86f412be60d6" : {
       "Type" : "AWS::Lambda::Version",
       "Properties" : {
           "FunctionName" : {
@@ -1209,7 +1264,7 @@ We can then deploy the Lambda and create the methods attached to the resources c
           }
         }
     },
-    "Deploymented479fe95fb94b6c89fb86f412be60d2": {
+    "Deploymented479fe95fb94b6c89fb86f412be60d6": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -1228,9 +1283,48 @@ We can then deploy the Lambda and create the methods attached to the resources c
       "Description": "The Lambda Version",
       "Value": {
         "Fn::GetAtt": [
-          "LambdaVersion",
+          "LambdaVersion479fe95fb94b6c89fb86f412be60d6",
           "Version"
         ]
+      }
+    },
+    "DeploymentId": {
+      "Description": "The Deployment ID",
+      "Value": {
+        "Ref": "Deploymented479fe95fb94b6c89fb86f412be60d6"
+      }
+    }
+  }
+}
+```
+
+As before, we need to create a stage to expose the API Gateway configuration.
+
+```JSON
+{
+  "Parameters" : {
+    "EnvironmentName" : {
+      "Type" : "String",
+      "Default" : "#{Octopus.Environment.Name}"
+    },
+    "DeploymentId" : {
+      "Type" : "String",
+      "Default" : "#{Octopus.Action[Deploy Lambda].Output.AwsOutputs[DeploymentId]}"
+    },
+    "ApiGatewayId" : {
+      "Type" : "String"
+    }
+  },
+  "Resources": {
+    "Stage": {
+      "Type": "AWS::ApiGateway::Stage",
+      "Properties": {
+        "DeploymentId": {"Fn::Sub": "${DeploymentId}"},
+        "RestApiId": {"Fn::Sub": "${ApiGatewayId}"},
+        "StageName": {"Fn::Sub": "${EnvironmentName}"},
+        "Variables": {
+          "StageName": {"Fn::Sub": "${EnvironmentName}"}
+        }
       }
     }
   }
