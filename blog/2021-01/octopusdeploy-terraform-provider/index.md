@@ -63,7 +63,7 @@ To get started, here’s a simple example that shows you how to add a new variab
 * `variables.tf`: This file defines the variables used in the `main.tf` configuration file.
 * `terraform.tfvars`: This file contains the values for the variables defined in `variables.tf`.
 
-2. **Configure the main Terraform configuration file.** Open the `main.tf` file and copy and paste the following. The first block configures the Octopus Deploy provider and the second one defines a new variable set resource.:
+2. **Configure the main Terraform configuration file.** Open the `main.tf` file and copy and paste the following. The first two blocks configures the Octopus Deploy provider and the last one defines a new variable set resource:
 
 ``` json
 terraform {
@@ -114,8 +114,8 @@ variable "description" {
 
 ```json
 serverURL       = "https://mytestoctopusname.octopus.app"
-space           = "Spaces-1"
 apiKey          = "API-XXXXXXXXXXXXX"
+space           = "Spaces-1"
 variableSetName = "AWS configuration values"
 description     = "Collection of common AWS config values for automated deployment and runbook processes."
 ```
@@ -130,13 +130,13 @@ description     = "Collection of common AWS config values for automated deployme
 
 ![Terraform Provider example Terminal screenshot](terraform-provider-example-terminal.png "width=500")
 
-![Terraform Provider example Octopus screenshot](terraform-provider-example-octopus.png "width=500")
-
 Congratulations! You have used Terraform and the Octopus Deploy provider to configure your Octopus instance. Navigate to your Octopus instance, and you will see the newly created variable set in the selected Space!
+
+![Terraform Provider example Octopus screenshot](terraform-provider-example-octopus.png "width=500")
 
 ### Next steps
 
-Read the [Terraform Provider docs](https://registry.terraform.io/providers/OctopusDeployLabs/octopusdeploy/latest/docs) and review the [`examples` folder](https://github.com/OctopusDeployLabs/terraform-provider-octopusdeploy/tree/master/examples) in the GitHub repository for more examples. 
+Read the [Terraform provider docs](https://registry.terraform.io/providers/OctopusDeployLabs/octopusdeploy/latest/docs) and review the [`examples` folder](https://github.com/OctopusDeployLabs/terraform-provider-octopusdeploy/tree/master/examples) in the GitHub repository for more examples. 
 
 ## Open source and contributing
 
@@ -150,7 +150,7 @@ We’re currently building support for [Configuration as Code](https://octopus.c
 
 Both features are valuable, and they complement each other. You can choose to use them independently or together if it suits your needs. The most significant difference between the two technologies is scope. Infrastructure as code focuses on provisioning and configuring a whole Octopus instance, whereas Configuration as Code focuses on automated processes in a project.
 
-With **Configuration as Code**, you get a human-readable version of an automated process (deployment and runbook) in Git source control. This brings numerous benefits including capturing history, enabling changes with branches, having a single source of truth, and improving the ability to create template configurations than can be cloned. Config as code focuses on automated processes within a project. It does not allow you to configure other areas of Octopus.
+With **Configuration as Code**, you get a human-readable version of an automated process (deployment and runbook) in Git source control. This brings numerous benefits including capturing history, enabling changes with branches, having a single source of truth, and improving the ability to create template configurations than can be cloned. Config as Code focuses on automated processes within a project. It does not allow you to configure other areas of Octopus.
 
 With **Infrastructure as Code**, you can provision new Octopus instances and configure existing ones. This covers most of the Octopus surface area from infrastructure, to projects, to the library, to system configuration. You also gain numerous benefits from the Terraform ecosystem, including a consistent approach for configuring infrastructure, managing changes, and detecting drift.
 
