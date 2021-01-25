@@ -968,12 +968,7 @@ ID=`jq -r  '.id' <<< "${RESULT}"`
 aws apigateway create-resource --rest-api-id d0oyqaa3l6 --parent-id $ID --path-part {proxy+}
 ```
 
-We can then deploy the Lambda and create the methods attached to the resources created above. The code here is similar to the self-contained deployment, but does have some notable changes:
-
-* We create an `AWS::Lambda::Version` resource to snapshot the current Lambda deployment version.
-* The `AWS::ApiGateway::Method` resources point to the version of the Lambda that was just deployed. 
-* We have two `AWS::Lambda::Permission` resources. The first allows access to the `$LATEST` version, and the second allows access to the newly deployed Lambda.
-* The API Gateway and resource IDs are supplied via parameters now, as these resources were created outside of the CloudFormation template.
+We can then deploy the Lambda and create the methods attached to the resources created above. The code here is similar to the self-contained deployment, but with the API Gateway and resource IDs are supplied via parameters, as these resources were created outside of the CloudFormation template.
 
 ```JSON
 {
@@ -1107,55 +1102,6 @@ We can then deploy the Lambda and create the methods attached to the resources c
         }
       }
     },
-    "LambdaVersionPermissions479fe95fb94b6c89fb86f412be60d8": {
-      "Type": "AWS::Lambda::Permission",
-      "Properties": {
-        "FunctionName": {
-          "Fn::Join": [
-            "",
-            [
-              {
-                "Fn::GetAtt": [
-                  "Lambda",
-                  "Arn"
-                ]
-              },
-              ":",
-              { "Fn::GetAtt" : [ "LambdaVersion479fe95fb94b6c89fb86f412be60d8", "Version" ] },
-            ]
-          ]
-        },
-        "Action": "lambda:InvokeFunction",
-        "Principal": "apigateway.amazonaws.com",
-        "SourceArn": {
-          "Fn::Join": [
-            "",
-            [
-              "arn:",
-              {
-                "Ref": "AWS::Partition"
-              },
-              ":execute-api:",
-              {
-                "Ref": "AWS::Region"
-              },
-              ":",
-              {
-                "Ref": "AWS::AccountId"
-              },
-              ":",
-              {
-                "Fn::Sub": "${ApiGatewayId}"
-              },
-              "/*/*"
-            ]
-          ]
-        }
-      },
-      "DependsOn": [
-        "LambdaVersion479fe95fb94b6c89fb86f412be60d8",
-      ]
-    },
     "LambdaMethodOne": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {      
@@ -1188,8 +1134,6 @@ We can then deploy the Lambda and create the methods attached to the resources c
                 },
                 ":function:",
                 { "Fn::Sub": "${EnvironmentName}-NodeLambdaDecoupled" },
-                ":",
-                { "Fn::GetAtt" : [ "LambdaVersion479fe95fb94b6c89fb86f412be60d8", "Version" ] },
                 "/invocations"
               ]
             ]
@@ -1238,8 +1182,6 @@ We can then deploy the Lambda and create the methods attached to the resources c
                 },
                 ":function:",
                 { "Fn::Sub": "${EnvironmentName}-NodeLambdaDecoupled" },
-                ":",
-                { "Fn::GetAtt" : [ "LambdaVersion479fe95fb94b6c89fb86f412be60d8", "Version" ] },
                 "/invocations"
               ]
             ]
@@ -1256,14 +1198,6 @@ We can then deploy the Lambda and create the methods attached to the resources c
         "LambdaVersion479fe95fb94b6c89fb86f412be60d8"
       ]
     },
-    "LambdaVersion479fe95fb94b6c89fb86f412be60d8" : {
-      "Type" : "AWS::Lambda::Version",
-      "Properties" : {
-          "FunctionName" : {
-            "Ref": "Lambda"
-          }
-        }
-    },
     "Deploymented479fe95fb94b6c89fb86f412be60d8": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
@@ -1279,15 +1213,6 @@ We can then deploy the Lambda and create the methods attached to the resources c
     },
   },
   "Outputs": {
-    "LambdaVersion": {
-      "Description": "The Lambda Version",
-      "Value": {
-        "Fn::GetAtt": [
-          "LambdaVersion479fe95fb94b6c89fb86f412be60d8",
-          "Version"
-        ]
-      }
-    },
     "DeploymentId": {
       "Description": "The Deployment ID",
       "Value": {
@@ -1356,9 +1281,21 @@ Feature branch deployments also complicate the progression of `AWS::ApiGateway::
 
 The inability to revert the API Gateway working stage to a previous known good state, make an isolated change, and promote that change to a stage makes common deployment patterns like rollbacks or hot fixes practically impossible with multiple stages. In addition, the fact that every change to the working stage is a candidate for a production deployment means feature branching becomes dangerous.
 
-By ensuring that each environment is represented by a single API Gateway with a single stage, we can assume that the working stage contains the last known state of the associated public stage. This means we can roll back single Lambdas, perform hot fix deployments, and ensure that feature branch deployments don't appear in production simply by not deploying feature branch Lambdas into the production working stage.
+By ensuring that each environment is represented by a single API Gateway with a single stage, we can assume that the working stage contains the last known state of the associated public stage. This means we can roll back single Lambdas by deploying an old version of a single Lambda, perform hot fix deployments by skipping the API Gateways and stages that represent earlier environments, and ensure that feature branch deployments don't appear in production simply by not deploying feature branch Lambdas into the production working stage.
 
 ### Demonstrating decoupled deployments
+
+Each individual Lambda deployment stack now inserts itself into a shared API Gateway. The end result is indistinguishable from a self-contained deployment, which is what we want as end users should not see any difference between self-contained or decoupled deployments. This also means that decoupled deployments are sharing a single domain with common settings for things like certificates:
+
+![](decoupled-gateway.png "width=500")
+
+As with the self-contained deployments, AWS recognizes the resources created via a CloudFormation template as an application. With a decoupled deployment deploy though we only see the individual Lambda resources, and not the API Gateway itself:
+
+![](decoupled-application-dashboard.png "width=500")
+
+We can also clean up any resources by deleting the associated CloudFormation stack:
+
+![](decoupled-stack.png "width=500")
 
 At the begining of this post we noted the following advantages of decoupled deployments:
 
@@ -1366,3 +1303,4 @@ At the begining of this post we noted the following advantages of decoupled depl
 * A single, shared API gateway allows Lambdas to interact via relative URLs.
 * A shared hostname makes it easier to manage HTTPS certificates.
 
+We can now see how decoupled deployments can contribute to a shared API Gateway, giving each Lambda its own deployment lifecycle, while still retaining a shared domain name. We now have a deployment stragety that allows microservices to be deployed independenatly, without any change to what is presented to the end user.
