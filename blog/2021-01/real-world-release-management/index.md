@@ -59,7 +59,7 @@ Promoting all the component projects to **Production** is when this pattern star
 - Typically, applications need to be deployed in a specific order.  Deploy the database first, followed by the API, then the scheduling service, and finally the UI.  Any issues during the deployment should stop everything.
 - How and when changes are approved vary from company to company.  It is not uncommon for a release's approval to occur on Tuesday for a Thursday night deployment.
 
-To solve these issues, we need a "parent project" to coordinate all these "child projects." Unlike the child projects, the parent project only needs to deploy to **Staging** and **Proudction**.
+To solve these issues, we need a "parent project" to coordinate all these "child projects." Unlike the child projects, the parent project only needs to deploy to **Staging** and **Production**.
 
 ## Introducing the Deploy Child Octopus Deploy Project Step Template
 
@@ -89,15 +89,15 @@ With those three points of data, the step template will:
 - Look for all the releases matching the supplied pattern for that channel.  
 - Find the release that was last successfully deployed to the previous environments.  Not the most recently created release deployed to the previous environment.  The last successfully deployed release.  For example, you deploy `2021.1.0.15` to **Test**, then realize that release shouldn't have been pushed, and redeploy `2021.1.0.14` to **Test**.  The step template will pick `2021.1.0.14` when it promotes to **Staging** because that was the last release deployed to **Test**.
 
-If no release is found, it will exit the step and move onto the next step in the deployment process.  For example, shortly after promoting `2021.1.0` to **Proudction**, a bug is reported requiring a fix to the Web API and Web UI projects. You'd create the `2021.1.1` release with the `2021.1.1.*` pattern for the child projects.  The Database and Scheduling service projects don't have a matching release because they weren't updated, so they are skipped.  
+If no release is found, it will exit the step and move onto the next step in the deployment process.  For example, shortly after promoting `2021.1.0` to **Production**, a bug is reported requiring a fix to the Web API and Web UI projects. You'd create the `2021.1.1` release with the `2021.1.1.*` pattern for the child projects.  The Database and Scheduling service projects don't have a matching release because they weren't updated, so they are skipped.  
+
+![How step template picks releases](release-management-how-releases-are-picked.png)
 
 :::success
 One of the basic design rules of this step template is customization.  For example, you can configure the step to throw an error if no release is found rather than exiting out of the step and proceeding.
 :::
 
 The step template will also check to see if the selected release has been deployed to the destination environment and skip it if it already has.  You can configure it always to redeploy.
-
-![How step template picks releases](release-management-how-releases-are-picked.png)
 
 ### Easier Approvals
 
@@ -141,7 +141,7 @@ The step template supports that use case by allowing you to send in a future tim
 - `MM/DD/YYYY HH:mm:ss` or `06/25/2021 19:00:00` will deploy at 7 PM on the 25th of June, 2021
 - `DD MMM YYYY HH:mm:ss` or '01 Jan 2021 18:00:00` will deploy at 6 PM on the 1st of January, 2021
 
-You can leverage [prompted variables](https://octopus.com/docs/projects/variables/prompted-variables) to let a user send in a date/time when deploying to **Proudction**.
+You can leverage [prompted variables](https://octopus.com/docs/projects/variables/prompted-variables) to let a user send in a date/time when deploying to **Production**.
 
 ![schedule the release](release-mangement-deploy-scheduled-release.png)
 
@@ -157,18 +157,19 @@ When designing this step template, one of the design decisions was to make it ea
 - **Child Project Channel**: The name of a specific channel.  If you leave it blank, it will pick the default channel on the child project.  
 - **Child Project Release Number**: the release number to deploy.  The default is empty; it will pull the latest release in the source environment.  Can supply a specific number, `2021.1.0.14`, or a pattern, `2021.1.1.*`.  The `.*` is important.  If the period `.` isn't supplied, you could end up with releases from `2021.1.10.x` or `2021.1.15.x`.  
 - **Child Project Release Not Found Error Handle**: what the step should do if the child project doesn't have a matching release number.  By default, it will skip the step and log a warning.  You can change that to stop a deployment with an error or not log a warning.  Recommend leaving it as a warning.
-- **Destination Environment Name**: the name of the environment being deployed to, with the default set to the current environment name.  Recommend leaving as-is unless you are implementing an "Approval Only" environment between **Staging** and **Proudction** (more on that later).
+- **Destination Environment Name**: the name of the environment being deployed to, with the default set to the current environment name.  Recommend leaving as-is unless you are implementing an "Approval Only" environment between **Staging** and **Production** (more on that later).
 - **Source Environment Name**: the name of the source environment.  When left blank, the step template will look at the channel's lifecycle, determine what phase the destination environment is in, then look for the environment(s) before that.  The kicker is Octopus Deploy [lifecycles](https://octopus.com/docs/releases/lifecycles) can have 1 to N environments in a phase.  Enter a specific environment if the release has to come from a specific source environment.  Recommend you leave blank.
 - **Child Project Prompted Variables**:  where you supply prompted variables values for the child project.  
-- **Force Redeployment**: tells the step template to either redeploy a release or skip it if it has already been deployed.  In the event you have a deployment target trigger configured for the release orchestration project, you'd want to change the value to `When deploying to specific machines`.  Otherwise leave it as is.
+- **Force Redeployment**: tells the step template to either redeploy a release or skip it if it has already been deployed.  In the event you have a deployment target trigger configured for the parent project, you'd want to change the value to `When deploying to specific machines`.  Otherwise leave it as is.
 - **Ignore Specific Machine Mismatch**: this only comes into account if you deploy to specific machine(s), which happens with a deployment target trigger.  This step will determine if the child project is associated with any of those machines and exit when it cannot find a match.  Recommend leaving as-is unless there is a particular reason.
 - **Save Release Notes as Artifacts**: the step template will pull all the release notes and build information from the child project and save it in an output variable `ReleaseNotes`.  Output variables are not easily accessible after a deployment.  If you want to persist the gathered release notes in the parent project, then set this to `Yes`.
 - **What If**: tells the step template to do everything except the deployment.  Set to `Yes` if you'd like to approve a release before actually deploying.
 - **Wait for finish**: wait for the deployment to finish before moving on.  Setting the what if parameter set to `Yes` will cause this parameter to be ignored.
 - **Wait for Deployment**: how long the step template waits for the deployment to finish.  Once the timeout is exceeded, the child project's deployment is canceled.  This parameter is the MAX time it will wait.  If a deployment finishes before the limit, it will stop waiting.  Leave at 1800 seconds (30 minutes) unless there is a compelling reason.
 - **Scheduling**: Allows you to schedule a deployment in the future.  Uses [DateTime.TryParse](https://docs.microsoft.com/en-us/dotnet/api/system.datetime.tryparse) to parse the date.  Recommend using this with a prompted variable.
-- **Use Manual Intervention Approvals in Child Project**: will use the parent project's approvals in the child project. 
-- **Environment name to pull approvals from**: the environment's name to pull the parent project's approvals.  The default is the current environment.  Change if you are implementing a "Prod Approval" environment.
+- **Auto-Approve Child Project Manual Interventions**: will use the parent project's manual intervention approvals for the child project's manual intervention. 
+- **Approval Environment**: the environment's name where the parent project's manual interventions are located.  The default is the current environment.  Change if you are implementing a "Prod Approval" environment.
+- **Approval Tenant**: the name of the tenant where the parent project's manual interventions are located.  The default is the current tenant.  Change if you are implementing a "Prod Approval" environment for a single tenant.
 
 ## Using the Deploy Child Octopus Deploy Project Step Template
 
@@ -200,7 +201,7 @@ If you want to leverage the auto-approval functionality, go to each manual inter
 
 #### Create a unique lifecycle
 
-The release orchestration project only needs to deploy to **Staging** and **Proudction**.  We don't want to use the default lifecycle that has all four environments in it.  Create a new lifecycle that only has **Staging** and **Proudction** in it.
+The parent project only needs to deploy to **Staging** and **Production**.  We don't want to use the default lifecycle that has all four environments in it.  Create a new lifecycle that only has **Staging** and **Production** in it.
 
 :::success
 The parent project and child project's lifecycles and channels _do not_ have to match.  The step template will determine if the selected release from the child project can be promoted to the destination environment
@@ -216,7 +217,7 @@ Next up is to create the project.  When you are creating the project, remember t
 
 Once the project is created, head over to the variables screen and add in the API key and the release pattern.
 
-![release orchestration variables](release-orchestration-variables.png)
+![parent project variables](release-orchestration-variables.png)
 
 ### Scenario: Deploying the latest release from Test to Staging
 
@@ -226,12 +227,12 @@ In this scenario, we are going back to the sample application.  If you recall, r
 
 Go to the deployment process in the newly created **Release Orchestration** project and add a `Deploy Child Octopus Deploy Project` step for each child project.
 
-![release orchestration deploy child octopus deploy project steps added](release-management-deploy-release-steps-added.png)
+![parent project deploy child octopus deploy project steps added](release-management-deploy-release-steps-added.png)
 
 Here are the values for each parameter.
 
 - **Octopus API Key**: the API key variable, `#{Project.ChildProjects.ReleaseAPIKey}`.
-- **Octopus Child Space**: leave the default value as-is; this example isn't creating a release orchestration project in another space.
+- **Octopus Child Space**: leave the default value as-is; this example isn't creating a parent project in another space from the child projects.
 - **Child Project Name**: the name of the child project.
 - **Child Project Channel**: leave the default (empty) value as-is; the child project only has one channel.
 - **Child Project Release Number**: The release pattern variable, `#{Project.ChildProjects.ReleasePattern}`
@@ -246,8 +247,9 @@ Here are the values for each parameter.
 - **Wait for finish**: leave the default value as-is; this example will wait for the deployment to finish.
 - **Wait for Deployment**: leave the default value as-is; 30 minutes should be more than enough.
 - **Scheduling**: leave the default value as-is, this example requires a specific order for child projects.
-- **Use Manual Intervention Approvals in Child Project**: leave the default value as-is; this setting is moot right now as the example hasn't added child projects.
-- **Environment name to pull approvals from**: leave the default value as-is; this setting is moot right now as the example hasn't added child projects.
+- **Auto-Approve Child Project Manual Interventions**: leave the default value as-is; this setting is moot right now as we aren't concerned with approvals at the moment.
+- **Approval Environment**: leave the default value as-is; this setting is moot right now as we aren't concerned with approvals at the moment.
+- **Approval Tenant**: leave the default value as-is; this setting is moot right now as we aren't concerned with multi-tenant deployments for this article.
 
 After adding and configuring the steps, it is time to create a release.  I will be making many changes to the parent project in this article; you might see `2021.1.0-RCx` for the release numbers.  
 
@@ -312,11 +314,11 @@ Please create a new release and deploy it to **Staging**.
 
 ![release management second release](release-mangement-second-release.png)
 
-When you deploy to **Staging** you will see this message a lot.  That is expected, especially for this sample project.  The redeployment parameter is set to `No`, and we haven't created any new releases.
+When you deploy to **Staging** you will see this message.  That is expected, especially for this sample project.  The redeployment parameter is set to `No`, and we haven't created any new releases.
 
 ![release management second deployment](release-management-skip-already-installed-release.png)
 
-Promote that release to **Proudction**.  During this deployment, you'll see the manual interventions and auto-approvals in action.  First up, the manual intervention should have the version being deployed along with the release notes.
+Promote that release to **Production**.  During this deployment, you'll see the manual interventions and auto-approvals in action.  First up, the manual intervention should have the version being deployed along with the release notes.
 
 ![manual intervention with rendered release notes](manual-intervention-rendered-release-notes.png)
 
@@ -328,21 +330,21 @@ But once that is fixed, you should see a message similar to this in the child pr
 
 ![manual intervention auto-approval message](release-management-auto-approval-message.png)
 
-And with that, the release to **Proudction** is complete!
+And with that, the release to **Production** is complete!
 
 ![release management deploy to Production](release-orchestration-release-to-production.png)
 
 ### Scenario: Approve today deploy tomorrow
 
-For a large chunk of our users, deployments are done off-hours.  It seems odd to require approvers to be online during deployment if they have nothing to do.  In a perfect world, the deployment should run automatically without user intervention and page the appropriate people if something goes wrong.  We can accomplish that functionality by adding in a **Prod Approval** environment to sit between **Staging** and **Proudction**.  This environment will _only_ be used for release orchestration projects.
+For a large chunk of our users, deployments are done off-hours.  It seems odd to require approvers to be online during deployment if their only task is to approve a deploy.  In a perfect world, the deployment should run automatically off-hours without user intervention and page the appropriate people if something goes wrong.  We can accomplish that functionality by adding in a **Prod Approval** environment to sit between **Staging** and **Production**.  This environment will _only_ be used for parent projects.
 
-Add the **Prod Approval** environment.  You will notice this environment sits between **Staging** and **Proudction** on this page.  I clicked the `...` to reorder the environments on this page.
+First, add the **Prod Approval** environment.  You will notice this environment sits between **Staging** and **Production** on this page.  I clicked the `...` to reorder the environments on this page.
 
 ![add prod approval](release-management-add-prod-approval.png)
 
-Now that the new environment has been added, update the lifecycle used by this release orchestration project.
+Now that the new environment has been added, update the lifecycle used by this parent project.
 
-![prod approval in the release orchestration lifecycle](release-management-updated-lifecycles.png)
+![prod approval in the parent project lifecycle](release-management-updated-lifecycles.png)
 
 :::success
 Keep an eye on the **Default Lifecycle.**  By default, that lifecycle doesn't have explicit phases defined.  Instead, it auto-generates the phases using the entire environment list.  To remove **Prod Approval** from the **Default Lifecycle**, you will need to add explicit phases.
@@ -350,19 +352,19 @@ Keep an eye on the **Default Lifecycle.**  By default, that lifecycle doesn't ha
 
 Next, update the approval steps to only run in the **Prod Approval** environment.  At the same time, configure the non-what-if steps to skip the **Prod Approval** environment.
 
-![prod approval added to the release orchestration project](release-management-deployment-process-with-prod-approval.png)
+![prod approval added to the parent project project](release-management-deployment-process-with-prod-approval.png)
 
 Next, head over to the variables screen and add in two new variables:
 
 - **Project.ChildProject.Approval.Environment.Name**: stores the **Prod Approval** environment name.
-- **Project.ChildProject.Deployment.Environment.Name**: stores the name of the environment the child project should be deployed to.  For all environments except **Prod Approval**, the name will match the current environment.  When running this on the **Prod Approval** environment, the deployment environment name is **Proudction**.
+- **Project.ChildProject.Deployment.Environment.Name**: stores the name of the environment the child project should be deployed to.  For all environments except **Prod Approval**, the name will match the current environment.  When running this on the **Prod Approval** environment, the deployment environment name is **Production**.
 
 ![prod approval new variables](release-management-new-variables.png)
 
 Go into each step implementing the `Deploy Child Octopus Deploy Project` and update the following parameters:
 
 - **Destination Environment Name**: update to `#{Project.ChildProject.Deployment.Environment.Name}`
-- **Environment name to pull approvals from**: update to `#{Project.ChildProject.Approval.Environment.Name}`.
+- **Approval Environment**: update to `#{Project.ChildProject.Approval.Environment.Name}`.
 
 ![using the new variables in the new steps](release-mangement-using-the-new-variables.png)
 
@@ -378,7 +380,7 @@ Let's assume everything successfully passes QA, and it is time to promote those 
 
 ![update release pattern](release-management-update-release-pattern.png)
 
-Please create a new release for the release orchestration project and deploy it to **Staging**.  
+Please create a new release for the **Release Orchestration** project and deploy it to **Staging**.  
 
 ![dashboard after deployment to Staging](release-management-prod-approval-post-staging.png)
 
@@ -386,13 +388,45 @@ Promote that release to **Prod Approval** and go through each of the approval st
 
 ![releases already deployed messages](approval-message-with-release-already-in-environment.png)
 
-Now it is time to schedule the release to deploy to **Proudction**.  Using the built-in tool, we can schedule it to run at 7 PM tonight.
+Now it is time to schedule the release to deploy to **Production**.  Using the built-in tool, we can schedule it to run at 7 PM tonight.
 
 ![schedule release to deploy to Production](schedule-release-to-production.png)
 
 When the release is deployed, it will pull the approvals from the **Prod Approval** environment.
 
 ![the approval came from an earlier environment](release-management-approval-from-prod-approval.png)
+
+### Scenario: Redeploy on demand
+
+By default, the step template will skip any release already deployed to the target environment.  For a significant number of use cases that is the preferred behavior.  However, there are several use cases where a redeployment is desired.
+
+- Environment refresh: the **Staging** environment is refreshed from **Production**.  It makes sense to redeploy the latest code to **Staging** to get the latest bits out there for testing.
+- Server reset: one of the servers is acting funny, perhaps the easiest solution is to redeploy to make sure all the code and configuration values are up to date.
+- New server: a new server is added to the web farm, redeploy everything to make sure the web farm has the same code and configuration across all nodes.
+
+To accomplish this we will use [Octopus Deploy's prompted variable functionality](https://octopus.com/docs/projects/variables/prompted-variables).  First, we will add a new variable to the project.
+
+- Name: **Project.ChildProject.ForceRedeployment**
+- Default Value: No
+- Label: Force Redeployment
+- Control Type: Drop Down List
+- Options: Yes and No
+
+![variable to allow for forcing redeployment](force-redeployment-prompted-variables.png)
+
+Next, update the **Force Redeployment** parameter to use this new variable.  
+
+![updating the step to force redeployment](force-redeployment-update-step.png)
+
+Now when you do a deployment you will be prompted to force a redeployment.  The default is `No`, if a user leaves everything as is the default functionality will be used.
+
+![seeing the force redeployment prompted variable](force-redeployment-when-deploying-release.png)
+
+And when it is set to `Yes` you will see all the child projects redeploy.
+
+![seeing the redeploy in action](release-management-redeploy-inaction.png)
+
+At the moment the prompted variable makes redeployment an all or nothing.  It might make sense to have a unique variable per component project, or group them together in a logical fashion.  
 
 ## Alternatives
 If you made it this far, you might be thinking, wow, this is all very complex.  Is this needed?  I think it is. Let's reexamine why a person wants to have a project per component.
@@ -402,7 +436,7 @@ If you made it this far, you might be thinking, wow, this is all very complex.  
 - Minimize the number of decisions a person has to make.
 - Single responsibility principle, each project deploys one thing to the best of its ability.
 
-At this time, an Octopus Project per component is the best solution to these requirements.
+At this time, an Octopus Project per component is the best solution to meet these requirements.
 
 There are alternatives to a project per component.  This section will walk through those alternatives to better understand why an Octopus Project per component solves the problem in the most efficient manner.
 
@@ -410,7 +444,7 @@ There are alternatives to a project per component.  This section will walk throu
 
 It is possible to have a single project and use [Octopus Deploy channels](https://octopus.com/docs/releases/channels) feature.  Steps can be scoped to run on specific channels.  The channel is selected when creating a release.  Typically releases are created by a build server and automatically deploy to a **Development** environment.
 
-The first problem is all the possible component combinations.  For four components, there are 14 channels.  Imagine adding a fifth component!
+The first problem is all the possible component combinations.  For four components, there would be 15 channels.
 
 - WebUI
 - WebAPI
@@ -425,7 +459,10 @@ The first problem is all the possible component combinations.  For four componen
 - WebUI WebAPI Database
 - WebUI WebAPI Service
 - WebAPI Service Database
+- WebUI Service Database
 - WebUI WebAPI Database Service
+
+Adding a fifth component would mean 36 channels.  A sixth component would mean 63 channels!  As you can see, channels per component combination doesn't scale.
 
 The second problem is when a release is created, something or someone has to decide which channel to use—making the wrong decision could result in the wrong component being deployed.  That opens the door to human error.
 
