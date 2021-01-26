@@ -232,7 +232,7 @@ There are two ways to grant API Gateway access to a Lambda: [IAM roles or resour
     }
 ```
 
-# The AWS::ApiGateway::Resource resources
+## The AWS::ApiGateway::Resource resources
 
 The elements in a path exposed by an API Gateway are called resources. For example, the URL path of `/vehicles/cars/car1` is made up of three resources: `vehicles`, `cars`, and `car1`.
 
@@ -261,7 +261,7 @@ The template below creates two resources that combine to match the path `/nodefu
     }
 ```
 
-# The AWS::ApiGateway::Method resources
+## The AWS::ApiGateway::Method resources
 
 We need to expose a method in order to respond to a HTTP request on a resource.
 
