@@ -938,7 +938,7 @@ To clean up an environment, we simply delete the cloudformation stack:
 
 ![](delete-stack.png "width=500")
 
-At the begining of this post we noted the following benefits of self-contained deployments:
+At the beginning of this post we noted the following benefits of self-contained deployments:
 
 * Everything is created, and destroyed, as a group.
 * A deployment is progressed to the next environment as a group.
@@ -1268,9 +1268,9 @@ The working stage (which is what I am calling the **Resources** view in the API 
 
 When you have multiple stages representing multiple environments, progressing a deployment from a test to a production environment means updating the production stage with the ID of the `AWS::ApiGateway::Deployment` resource that was assigned to the test stage.
 
-Importantly, there is no concept in API Gateway of reseting the working stage to the state of a previous deployment, making an isolated change, and then promoting that isolated change back to a stage. This means when you have multiple stages representing multiple environments, you have to assume that every change to the working stage may be captured in a deployment and promoted to production.
+Importantly, there is no concept in API Gateway of resting the working stage to the state of a previous deployment, making an isolated change, and then promoting that isolated change back to a stage. This means when you have multiple stages representing multiple environments, you have to assume that every change to the working stage may be captured in a deployment and promoted to production.
 
-In practise this also means that promoting a deployment to a new stage means knowing what the previous stage or environment is, inspecting the previous stage to find the deployment that was assigned to it, and then updating the next stage with the previous stage's deployment ID.
+In practice this also means that promoting a deployment to a new stage means knowing what the previous stage or environment is, inspecting the previous stage to find the deployment that was assigned to it, and then updating the next stage with the previous stage's deployment ID.
 
 This complicates common deployment scenarios. For example, how would you roll back a single Lambda in production? 
 
@@ -1294,7 +1294,7 @@ Each individual Lambda deployment stack now inserts itself into a shared API Gat
 
 ![](decoupled-gateway.png "width=500")
 
-As with the self-contained deployments, AWS recognizes the resources created via a CloudFormation template as an application. With a decoupled deployment deploy though we only see the individual Lambda resources, and not the API Gateway itself:
+As with the self-contained deployments, AWS recognizes the resources created via a CloudFormation template as an application. With a decoupled deployment deploy though we only see the individual Lambda resources, and not the API Gateway:
 
 ![](decoupled-application-dashboard.png "width=500")
 
@@ -1302,10 +1302,24 @@ We can also clean up any resources by deleting the associated CloudFormation sta
 
 ![](decoupled-stack.png "width=500")
 
-At the begining of this post we noted the following advantages of decoupled deployments:
+At the beginning of this post we noted the following advantages of decoupled deployments:
 
 * Each Lambda manages its own deployment lifecycle.
 * A single, shared API gateway allows Lambdas to interact via relative URLs.
 * A shared hostname makes it easier to manage HTTPS certificates.
 
-We can now see how decoupled deployments can contribute to a shared API Gateway, giving each Lambda its own deployment lifecycle, while still retaining a shared domain name. We now have a deployment stragety that allows microservices to be deployed independenatly, without any change to what is presented to the end user.
+We can now see how decoupled deployments can contribute to a shared API Gateway, giving each Lambda its own deployment lifecycle, while still retaining a shared domain name. We now have a deployment strategy that allows microservices to be deployed independently, without any change to what is presented to the end user.
+
+## Conclusion
+
+The promise of serverless platforms is that you no longer need to worry about what servers or operating systems are running your applications. This makes it incredibly easy to get your first few Lambdas up and running in a highly scalable and secure environment.
+
+As your Lambdas grow in number and complexity though, common deployment issues like environments, hot fixes, feature branches, and independent microservice lifecycles become critical.
+
+Unfortunately, the solutions put in place by AWS, specifically Lambda aliases and API Gateway stages, don't quite solve these patterns. The post [Why you should not use Lambda aliases to define environments](https://octopus.com/blog/multi-environment-lambda-deployments) describes how aliases fail to separate concerns like security, performance, and logging, while this post explained why API Gateway stages don't facilitate hot fixes and feature branches.
+
+However, with a one to one relationship between an environment and an API Gateway and stage, and a one to many relationship between an environment and Lambdas, we can design a serverless deployment process that scales across many environments while supporting common deployment patterns.
+
+In this post we demonstrated self-contained and decoupled serverless deployments, and highlighted many of the benefits of crafting these deployments with CloudFormation. The sample templates provide a foundation for anyone looking to architect serverless deployments that are manageable at scale.
+
+Happy deployments!
