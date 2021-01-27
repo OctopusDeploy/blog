@@ -3,12 +3,14 @@ title: Deploying AWS Lambdas across environments
 description: Learn how to progress Lambda deployments across environments using CloudFormation
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2021-01-27
-metaImage: 
-bannerImage: 
+published: 2021-01-28
+metaImage: deploy-lambdas-multiple-environments.png
+bannerImage: deploy-lambdas-multiple-environments.png
 tags:
- - Octopus
+ - DevOps
 ---
+
+![Deploying AWS Lambdas across environments](deploy-lambdas-multiple-environments.png)
 
 Serverless is the latest iteration in a steady shift away from managing physical or virtual machines. The term "serverless" is a little misleading, because there are still servers running code. But the promise of serverless is that you don't have to think about servers any more. Serverless platforms like AWS Lambda handle creating, destroying, updating and exposing these servers for you, allowing you to focus on running your code.
 
