@@ -83,11 +83,11 @@ There is even a community contributed [GitHub Action for Semantic Release](https
 
 Note that since our primary git branch is named `main`, we needed a small piece of configuration in our `package.json` to tell semantic-release to evaluate commits only on pushes to the `main` branch:
 ```json
-  "release": {
-    "branches": [
-      "main"
-    ]
-  }
+"release": {
+  "branches": [
+    "main"
+  ]
+}
 ```
 
 Now that we've built and tagged our new release, it's time to create our package and publish it to Octopus.
