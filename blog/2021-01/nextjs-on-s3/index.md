@@ -15,7 +15,7 @@ Static content websites deserve proper automation just as much as the rest of yo
 
 Our project's source code can be found [here](https://github.com/OctopusSamples/nextjs-blog) on GitHub.
 
-### Build and Package
+## Build and Package
 
 Before we can deploy our blog using Octopus, we'll need to package the site and push it to a package repository. Packaging our site is useful for many reasons and you can read more about why packaging Node.js apps is important in [this previous blog post](https://octopus.com/blog/deploying-nodejs) by my colleague Matt Casperson.
 
@@ -64,7 +64,7 @@ See [next.js documentation](https://nextjs.org/docs/advanced-features/static-htm
 
 This is a good start, but now we need some way to create new version numbers to give to our package. How do we automate that?
 
-#### Tagging with semantic-release
+### Tagging with semantic-release
 
 The version numbers assigned to packages in Octopus'es built-in repository must be valid [semantic versions](https://octopus.com/docs/packaging-applications/create-packages/versioning#semver). Attempting to home-roll a solution to automatically generate new, valid semantic versions sounds challenging. Luckily, there is an excellent open source project called [semantic-release](https://semantic-release.gitbook.io/) that can help us do just that.
 
@@ -92,7 +92,7 @@ Note that since our primary git branch is named `main`, we needed a small piece 
 
 Now that we've built and tagged our new release, it's time to create our package and publish it to Octopus.
 
-#### Pack and Publish with octopackjs
+### Pack and Publish with octopackjs
 
 If you've ever tried creating packages with plain ol' npm, it can be quite frustrating.
 - The `npm pack` [command](https://docs.npmjs.com/cli/v6/commands/npm-pack) exposes very few cli parameters.
@@ -157,11 +157,11 @@ Now that we've set up our Action, let's make a commit, push and watch it go!
 In this example, we're *pushing* our package from GitHub Actions to our Octopus Cloud instances at https://samples.octopus.app. If you're running an Octopus Server that is not publicly accessible from github.com, you might instead consider pushing to a third-party package repository and have your Octopus Server pull your packages from an external feed.
 :::
 
-### Deploy
+## Deploy
 
 Now that we've setup our continuous integration process, it's time to deploy our website! We'll use Octopus Deploy to upload our package to AWS S3. For static content sites like the one we've built here, S3 buckets are a great choice because they require very little configuration (no need to install and configure a web server), are inexpensive, and of course you benefit from the reliability of AWS as a platform. Plus, Octopus Deploy has a [built in step template for uploading packages to an S3 bucket](https://octopus.com/docs/deployment-examples/aws-deployments/s3).
 
-#### AWS S3
+### AWS S3
 
 Setting up an S3 bucket is pretty simple and there are many tutorials out there to help with that so we won't walk through it here step by step. I would recommend following along with the AWS documentation specifically for [Hosting a static website using Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html).
 
@@ -171,7 +171,7 @@ Octopus will need an [AWS AccessKey](https://docs.aws.amazon.com/general/latest/
 Save your Access Key ID and Key Secret somewhere safe and accessible to you later on. We'll need those two values to set up our AWS account in Octopus Deploy
 :::
 
-#### Octopus Deploy
+### Octopus Deploy
 
 In the Octopus Accounts section, create a new [AWS Account](https://octopus.com/docs/infrastructure/deployment-targets/aws). I like the name of my account to match or reference in some way the name of the AWS IAM user:
 
@@ -212,7 +212,7 @@ If all goes well, we should be to see our website here: http://octopus-nextjs-sa
 
 ![Next.js blog screenshot](nextjs-blog.png)
 
-### What else?
+## What else?
 
 Want to serve your website using an SSL certificate? Checkout the [AWS CDN product CloudFront](https://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-cloudfront-walkthrough.html).
 
