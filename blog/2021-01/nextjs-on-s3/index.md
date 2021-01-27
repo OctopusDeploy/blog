@@ -55,7 +55,6 @@ jobs:
 `npm run export` runs the following [npm script](https://docs.npmjs.com/cli/v6/using-npm/scripts) in our package.json file:
 ```json
 "scripts": {
-  ...
   "build": "next build",
   "export": "next build && next export"
 },
@@ -74,12 +73,12 @@ semantic-release works by evaluating my commit messages based on some pre-define
 There is even a community contributed [GitHub Action for Semantic Release](https://github.com/marketplace/actions/action-for-semantic-release). Let's use this project to generate our new version automatically and tag our commit:
 
 ```yaml
-      ...
-      - name: Tag and Create Release
-        id: semantic
-        uses: cycjimmy/semantic-release-action@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+...
+  - name: Tag and Create Release
+    id: semantic
+    uses: cycjimmy/semantic-release-action@v2
+    env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 Note that since our primary git branch is named `main`, we needed a small piece of configuration in our `package.json` to tell semantic-release to evaluate commits only on pushes to the `main` branch:
