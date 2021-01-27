@@ -108,20 +108,19 @@ It just seems as if npm was designed exclusively for the bundling of your packag
 
 ```js
 // publish.js - https://github.com/OctopusSamples/nextjs-blog/blob/main/publish.js
-var octo = require('@octopusdeploy/octopackjs');
+const octo = require('@octopusdeploy/octopackjs');
+const octopusUrl = 'https://samples.octopus.app';
 octo.pack()
     .appendSubDir('out', true)
-    .toFile('.', function (err, data) {
+    .toFile('.', (err, data) => {
         console.log('Package Saved: ' + data.name);
         octo.push(data.name, {
-            host: 'https://samples.octopus.app',
+            host: octopusUrl,
             apikey: 'MY-API-KEY',
+            spaceId: 'Spaces-604',
             replace: true
-        }, function(err, result) {
-            if (!err) {
-                console.log(result);
-            }
-        });
+        },
+        err => err ? console.error(err.body) : console.log('Package Pushed to ' + octopusUrl));
     });
 ```
 
@@ -157,4 +156,63 @@ In this example, we're *pushing* our package from GitHub Actions to our Octopus 
 
 ### Deploy
 
-To do...
+Now that we've setup our continuous integration process, it's time to deploy our website! We'll use Octopus Deploy to upload our package to AWS S3. For static content sites like the one we've built here, S3 buckets are a great choice because they require very little configuration (no need to install and configure a web server), are inexpensive, and of course you benefit from the reliability of AWS as a platform. Plus, Octopus Deploy has a [built in step template for uploading packages to an S3 bucket](https://octopus.com/docs/deployment-examples/aws-deployments/s3).
+
+#### AWS S3
+
+Setting up an S3 bucket is pretty simple and there are many tutorials out there to help with that so we won't walk through it here step by step. I would recommend following along with the AWS documentation specifically for [Hosting a static website using Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html).
+
+Octopus will need an [AWS AccessKey](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys) to upload packages to your S3 bucket. It's a good idea (although not mandatory) to set up a separate [IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html) with explicit permissions to your new S3 bucket. See [this page](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) for help with managing access keys for IAM users.
+
+:::hint
+Save your Access Key ID and Key Secret somewhere safe and accessible to you later on. We'll need those two values to set up our AWS account in Octopus Deploy
+:::
+
+#### Octopus Deploy
+
+In the Octopus Accounts section, create a new [AWS Account](https://octopus.com/docs/infrastructure/deployment-targets/aws). I like the name of my account to match or reference in some way the name of the AWS IAM user:
+
+![New Octopus AWS Account screenshot](new-aws-account-screenshot.png "width=500")
+
+Next, let's create a new Octopus project called `nextjs-blog`:
+
+![New Octopus Project nextjs-blog screenshot](new-octopus-project-screenshot.png "width=500")
+
+To use our AWS Account in our `nextjs-blog` project, we'll need to create an AWS Account variable in the variables section in our project:
+
+![AWS Account variable screenshot](aws-account-variable.png "width=500")
+
+:::hint
+See [this page](https://octopus.com/docs/projects/variables/aws-account-variables) for more info on AWS Account variables in Octopus
+:::
+
+Finally, we can create our one and only step in our project by adding the Upload a package to an AWS S3 bucket step:
+
+![Upload to S3 bucket step template screenshot](upload-to-s3-step-template-screenshot.png "width=500")
+
+Configuring this step is straightforward. You can follow along with [our documentation](https://octopus.com/docs/deployment-examples/aws-deployments/s3) that explains what each option means and has links for more information.
+
+The one section I want to point out here is the Package Target options. By default, the step is setup to just deploy the entire package file without extracting it. Our asset files though are inside the package and we need them extracted and placed at the root of the bucket for S3 to serve them. To accomplish this, follow these steps:
+1. Select the `Specific file(s) within the package` option.
+2. Click `ADD A FILE SELECTION`
+3. Select `Multiple Files` (as opposed to `Single File`)
+
+![Select Multiple Files option screenshot](multiple-file-selection-screenshot.png "width=500")
+
+The default file pattern `**/*` will select all files in our package, which is exactly what we want.
+
+4. Lastly, enter a `Canned Acl`. Read more about these [here](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl). For my set up, I used `bucket-owner-full-control`
+
+Finally, create a release, cross your fingers, and deploy! :tada:
+
+If all goes well, we should be to see our website here: http://octopus-nextjs-sample.s3-website-us-west-2.amazonaws.com/
+
+![Next.js blog screenshot](nextjs-blog.png)
+
+### What else?
+
+Want to serve your website using an SSL certificate? Checkout the [AWS CDN product CloudFront](https://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-cloudfront-walkthrough.html).
+
+Do you have a much larger Next.js site that takes too long to generate static assets? Next.js also supports serving your app with a [dynamic backend with Node.js](https://nextjs.org/docs/deployment#nodejs-server). See this [great Digital Ocean tutorial](https://www.digitalocean.com/community/tutorials/how-to-deploy-a-next-js-app-to-app-platform) for setting up that kind of deployment for your Next.js app.
+
+Thanks for reading, and happy deployments!
