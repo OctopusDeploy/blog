@@ -2,8 +2,8 @@
 title: Deploying AWS Lambdas across environments
 description: Learn how to progress Lambda deployments across environments using CloudFormation
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
+visibility: public
+published: 2021-01-27
 metaImage: 
 bannerImage: 
 tags:
@@ -16,7 +16,7 @@ The serverless model is very compelling for certain types of workloads. Infreque
 
 Deploying serverless application is trivial these days. CLI tools and IDE plugins allow you to go from code to production with just a single command or click. Eventually though such deployments will need a more robust process to allow changes to be batched together and verified by teams who don't write the code. The traditional solution to these requirements is to have multiple environments, and progress deployments through internal testing environments before they reach production.
 
-In this blog post we'll dive into how multi-environment serverless deployments can be expressed in CloudFormation and progressed in a reliable manner.
+In this blog post, we'll dive into how multi-environment serverless deployments can be expressed in CloudFormation and progressed in a reliable manner.
 
 ## The sample applications
 
@@ -52,15 +52,15 @@ Decoupled deployments have the following benefits:
 
 A self-contained deployment involves creating a single CloudFormation template with the following resources:
 
-* [AWS::ApiGateway::RestApi](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-restapi.html) - The API Gateway REST API.
-* [AWS::Logs::LogGroup](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-loggroup.html) - The CloudWatch log group for the Lambda logs.
-* [AWS::IAM::Role](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html) - The permissions for the Lambda to access the log group.
-* [AWS::Lambda::Function](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html) - The Lambda function.
-* [AWS::Lambda::Permission](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html) - A permission that grants API Gateway the ability to execute a Lambda.
-* [AWS::ApiGateway::Resource](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-resource.html) - A resource is a component of the URL path that exposed the Lambda.
-* [AWS::ApiGateway::Method](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-method.html) - Methods expose HTTP methods like GET, POST etc on resources.
-* [AWS::ApiGateway::Stage](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-stage.html) - A stage exposes the URLs defined in the REST API.
-* [AWS::ApiGateway::Deployment](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-deployment.html) - A deployment captures the state of the REST API configuration as an immutable resource. A deployment is configured as part of a stage to expose the API.
+* [AWS::ApiGateway::RestApi](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-restapi.html): The API Gateway REST API.
+* [AWS::Logs::LogGroup](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-loggroup.html): The CloudWatch log group for the Lambda logs.
+* [AWS::IAM::Role](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html): The permissions for the Lambda to access the log group.
+* [AWS::Lambda::Function](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html): The Lambda function.
+* [AWS::Lambda::Permission](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html): A permission that grants API Gateway the ability to execute a Lambda.
+* [AWS::ApiGateway::Resource](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-resource.html): A resource is a component of the URL path that exposed the Lambda.
+* [AWS::ApiGateway::Method](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-method.html): Methods expose HTTP methods like GET, POST, etc., on resources.
+* [AWS::ApiGateway::Stage](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-stage.html): A stage exposes the URLs defined in the REST API.
+* [AWS::ApiGateway::Deployment](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-deployment.html): A deployment captures the state of the REST API configuration as an immutable resource. A deployment is configured as part of a stage to expose the API.
 
 ### The AWS::ApiGateway::RestApi resource
 
@@ -190,7 +190,7 @@ This Lambda will execute using the IAM role created above:
 
 ## The AWS::Lambda::Permission resource
 
-In order for the REST API to be able to execute the Lambda, it needs to be granted access.
+In order for the REST API to execute the Lambda, it needs to be granted access.
 
 There are two ways to grant API Gateway access to a Lambda: [IAM roles or resource-based policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_compare-resource-policies.html). We have chosen to use resource-based policies here, as this is how the API Gateway console grants itself access to a Lambda if you integrate the two systems manually:
 
@@ -263,7 +263,7 @@ The template below creates two resources that combine to match the path `/nodefu
 
 ## The AWS::ApiGateway::Method resources
 
-We need to expose a method in order to respond to a HTTP request on a resource.
+We need to expose a method in order to respond to an HTTP request on a resource.
 
 When calling a Lambda, API gateway has the option of using [proxy integration](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-set-up-simple-proxy.html).
 
