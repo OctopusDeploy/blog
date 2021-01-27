@@ -3,11 +3,12 @@ title: Deploying AWS Lambdas across environments
 description: Learn how to progress Lambda deployments across environments using CloudFormation
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2021-01-28
+published: 2021-01-27
 metaImage: deploy-lambdas-multiple-environments.png
 bannerImage: deploy-lambdas-multiple-environments.png
 tags:
  - DevOps
+ - AWS 
 ---
 
 ![Deploying AWS Lambdas across environments](deploy-lambdas-multiple-environments.png)
