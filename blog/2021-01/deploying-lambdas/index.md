@@ -267,12 +267,11 @@ The template below creates two resources that combine to match the path `/nodefu
 
 We need to expose a method in order to respond to an HTTP request on a resource.
 
-When calling a Lambda, API gateway has the option of using [proxy integration](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-set-up-simple-proxy.html).
+When calling a Lambda, API Gateway has the option of using [proxy integration](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-set-up-simple-proxy.html).
 
-Prior to the proxy integration option, calling a Lambda from API Gateway involved a significant amount of boilerplate configuration to bridge the world of HTTP requests and Lambda executions. HTTP requests expose a range of information in the requested URL, query strings, headers, and HTTP body. A HTTP response can then include a status code, headers, and a body. On the other side we have a Lambda, which accepts a single object as input and returns a single object as output. This means that API Gateway had to be configured to marshall the various inputs in a HTTP call into a single object when calling a Lambda, and unmarshall the Lambda's response into the HTTP response. In practice, this same configuration was done for every method, resulting in a lot of duplicated effort.
+Prior to the proxy integration option, calling a Lambda from API Gateway involved a significant amount of boilerplate configuration to bridge the world of HTTP requests and Lambda executions. HTTP requests expose a range of information in the requested URL, query strings, headers, and HTTP body. An HTTP response can then include a status code, headers, and a body. On the other side we have a Lambda, which accepts a single object as input and returns a single object as output. This means that API Gateway had to be configured to marshal the various inputs in an HTTP call into a single object when calling a Lambda, and unmarshal the Lambda's response into the HTTP response. In practice, this same configuration was done for every method, resulting in a lot of duplicated effort.
 
-Proxy integrations were created to provide a tick-box solution for this common problem. With proxy integration enabled, API Gateway marshalls the incoming HTTP request into a [standard object to be consumed by the Lambda](https://docs.amazonaws.cn/en_us/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-input-format), and expects an [object of a certain shape to be returned](https://docs.amazonaws.cn/en_us/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-output-format), from which the HTTP response is generated.
-
+Proxy integrations were created to provide a tick-box solution for this common problem. With proxy integration enabled, API Gateway marshals the incoming HTTP request into a [standard object to be consumed by the Lambda](https://docs.amazonaws.cn/en_us/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-input-format), and expects an [object of a certain shape to be returned](https://docs.amazonaws.cn/en_us/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-output-format), from which the HTTP response is generated.
 
 The more "traditional" approach is to match an API Gateway stage to a Lambda alias, with both stages and aliases representing a progression through environments. However, Lambda aliases have significant limitations which I believe make them fundamentally unsuitable to solve the common use cases for environmental progression. You can read more about this in the blog post [Why you should not use Lambda aliases to define environments](https://octopus.com/blog/multi-environment-lambda-deployments). So we avoid using aliases, and deploy a new Lambda for each environment.
 
@@ -410,7 +409,7 @@ The final step in this journey is to create a stage, and "promote" the working s
 
 Deploying the second Go Lambda is very similar to the Node Lambda we deployed above, and so we won't cover all the resources again.
 
-The template below is the complete copy of the self-contained CloudFormation template, with a parameter defining the environment name, and output variables building up the stage URL. 
+The template below is the complete copy of the self-contained CloudFormation template, with a parameter defining the environment name and output variables building up the stage URL. 
 
 The default value for the environment name has been configured with an Octopus system variable containing the name of the current environment. This means the template is easy to deploy as part of a **Deploy an AWS CloudFormation template** step in Octopus:
 
@@ -928,7 +927,7 @@ The Lambdas have been written to return the object that API Gateway passed as in
 
 ![](gofunc-return.png "width=500")
 
-If we promote this self-contained Lambda deployment to a new environment, we will create a second API Gateway with its own stage, and two more Lambdas. Each environment is defined by its own Cloudformation stack, and none of the resources we create are shared between environments. 
+If we promote this self-contained Lambda deployment to a new environment, we will create a second API Gateway with its own stage and two more Lambdas. Each environment is defined by its own CloudFormation stack, and none of the resources we create are shared between environments. 
 
 One nice feature we get as a result of deploying our Lambda stack via a CloudFormation template is that it is considered to be an [application](https://docs.aws.amazon.com/lambda/latest/dg/deploying-lambda-apps.html):
 
@@ -938,21 +937,21 @@ The application dashboard provides a centralized view of the individual resource
 
 ![](lamda-application-dashboard.png "width=500")
 
-To clean up an environment, we simply delete the CloudFormation stack:
+To clean up an environment, we delete the CloudFormation stack:
 
 ![](delete-stack.png "width=500")
 
 At the beginning of this post we noted the following benefits of self-contained deployments:
 
-* Everything is created, and destroyed, as a group.
+* Everything is created and destroyed as a group.
 * A deployment is progressed to the next environment as a group.
 * It is easy to reason about the state of a deployed application, even when the application has multiple Lambdas.
 
 We can now see how defining a deployment stack as a single, self-contained CloudFormation template provides those benefits.
 
-However, one significant downside to self contained deployments is that the lifecycle of all the Lambdas are tightly coupled to one another. In our example, you cannot deploy the Node Lambda independently of the Go Lambda. This becomes a problem once your stack grows in complexity, and individual teams begin taking responsibility for each Lambda.
+However, one significant downside to self-contained deployments is that the lifecycle of all the Lambdas are tightly coupled to one another. In our example, you cannot deploy the Node Lambda independently of the Go Lambda. This becomes a problem when your stack grows in complexity, and individual teams begin taking responsibility for each Lambda.
 
-As your stack evolves into a true microservice architecture, you need to decouple the deployment of each Lambda. One approach would be to split each Lambda into its own self-contained deployment. Scaling multiple self-contained deployments would almost certainly require a service discovery layer to cope with the explosion of unique URLs exposed by each API Gateway instance though.
+As your stack evolves into a true microservice architecture, you need to decouple the deployment of each Lambda. One approach would be to split each Lambda into its own self-contained deployment. Scaling multiple self-contained deployments would almost certainly require a service discovery layer to cope with the explosion of unique URLs exposed by each API Gateway instance, though.
 
 Another approach is to have each Lambda deploy into a shared API Gateway instance. That way each Lambda can use relative URLs to access sibling Lambdas. This is what we will call a decoupled deployment.
 
@@ -960,15 +959,15 @@ Another approach is to have each Lambda deploy into a shared API Gateway instanc
 
 A decoupled deployment differs from a self-contained deployment in the following ways:
 
-* The API Gateway is considered to be a shared resource, and created outside of the deployment of the Lambdas.
-* API Gateway resources (i.e. the path elements in the URLs) are considered to be shared resources. For example, you may have two Lambdas responding to the path **/cars**. One Lambda will respond to a HTTP POST method, and the second responds to a HTTP DELETE method. Neither Lambda can claim exclusive ownership of the resources in this case.
+* The API Gateway is considered to be a shared resource, and is created outside of the deployment of the Lambdas.
+* API Gateway resources (i.e. the path elements in the URLs) are considered to be shared resources. For example, you may have two Lambdas responding to the path **/cars**. One Lambda will respond to an HTTP POST method, and the second responds to an HTTP DELETE method. Neither Lambda can claim exclusive ownership of the resources in this case.
 * The stages are considered shared resources.
 
 Let's see how this works in practice. We start with an existing API Gateway REST API. We need the API ID and the ID of the root resource:
 
 ![](common-api-gateway.png "width=500")
 
-We need to build up the resources that make up our URL paths. Because there is no longer a single owner of these resources, we don't need to represent them in a CloudFormation template. Below we create the resources exposing the Node Lambda via the CLI:
+We need to build up the resources that make up our URL paths. Because there is no longer a single owner of these resources, we don't need to represent them in a CloudFormation template. Below we create the resources, exposing the Node Lambda via the CLI:
 
 ```bash
 RESULT=`aws apigateway create-resource --rest-api-id d0oyqaa3l6 --parent-id 6fpwrle83e --path-part nodefunc`
@@ -976,7 +975,7 @@ ID=`jq -r  '.id' <<< "${RESULT}"`
 aws apigateway create-resource --rest-api-id d0oyqaa3l6 --parent-id $ID --path-part {proxy+}
 ```
 
-We can then deploy the Lambda and create the methods attached to the resources created above. The code here is similar to the self-contained deployment, but with the API Gateway and resource IDs supplied via parameters, as these resources were created outside of the CloudFormation template:
+We can then deploy the Lambda and create the methods attached to the resources created above. The code here is similar to the self-contained deployment but with the API Gateway and resource IDs supplied via parameters, as these resources were created outside of the CloudFormation template:
 
 ```JSON
 {
@@ -1230,7 +1229,7 @@ We can then deploy the Lambda and create the methods attached to the resources c
 
 As before, we need to create a stage to expose the API Gateway configuration. However, this time the stage is created in a separate CloudFormation template.
 
-Each Lambda deployment that contributes to a shared API Gateway will deploy an updated template defining the stage with a new `DeploymentId` property. This means that the CloudFormation stack name must be able to be recreated from the API Gateway ID and the stage name. For example, you may create a stack with the name **APIG-d0oyqaa3l6-Development** to define the stage called **Development** for the API Gateway with the ID of **d0oyqaa3l6**.
+Each Lambda deployment that contributes to a shared API Gateway will deploy an updated template, defining the stage with a new `DeploymentId` property. This means that the CloudFormation stack name must be able to be recreated from the API Gateway ID and the stage name. For example, you may create a stack with the name **APIG-d0oyqaa3l6-Development** to define the stage called **Development** for the API Gateway with the ID of **d0oyqaa3l6**.
 
 Here is the CloudFormation template for the stage:
 
@@ -1278,7 +1277,7 @@ In practice this also means that promoting a deployment to a new stage means kno
 
 This complicates common deployment scenarios. For example, how would you roll back a single Lambda in production? 
 
-What we would like to do is reset the working stage with the state of the production stage, deploy an old Lambda version in the working stage, snapshot the working stage with a new `AWS::ApiGateway::Deployment` resource, and promote that `AWS::ApiGateway::Deployment` resource to the production stage. This is the kind of workflow developers take for granted with source control tools like GIT.
+What we would like to do is reset the working stage with the state of the production stage, deploy an old Lambda version in the working stage, snapshot the working stage with a new `AWS::ApiGateway::Deployment` resource and promote that `AWS::ApiGateway::Deployment` resource to the production stage. This is the kind of workflow developers take for granted with source control tools like GIT.
 
 However, because we cannot reset the working stage with the state of the production stage, we first must deploy the old Lambda version to whatever the current state of the working stage is, snapshot the working stage with a new `AWS::ApiGateway::Deployment` resource, and then promote that change through the development, test, and production stages. Which, in effect, means we just promoted every development Lambda version in the working stage to production as we attempted to role a single Lambda back.
 
@@ -1286,7 +1285,7 @@ It is tempting to think that we could simply assign an old `AWS::ApiGateway::Dep
 
 ![](hotfix.png "width=500")
 
-Feature branch deployments also complicate the progression of `AWS::ApiGateway::Deployment` resources through to production. It would be nice to create temporary URLs to test feature branch Lambda deployments side by side with the mainline Lambdas. But because anything in the working state may be snapshotted in a `AWS::ApiGateway::Deployment` resource and promoted to production, you may well find your temporary feature branch deployments exposed publically.
+Feature branch deployments also complicate the progression of `AWS::ApiGateway::Deployment` resources through to production. It would be nice to create temporary URLs to test feature branch Lambda deployments side by side with the mainline Lambdas. But because anything in the working state may be snapshotted in a `AWS::ApiGateway::Deployment` resource and promoted to production, you may well find your temporary feature branch deployments exposed publicly.
 
 The inability to revert the API Gateway working stage to a previous known good state, make an isolated change, and promote that change to a stage makes common deployment patterns like rollbacks or hot fixes practically impossible with multiple stages. In addition, the fact that every change to the working stage is a candidate for a production deployment means feature branching becomes dangerous.
 
