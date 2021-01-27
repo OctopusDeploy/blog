@@ -17,11 +17,10 @@ Our project's source code can be found [here](https://github.com/OctopusSamples/
 
 ## Build and Package
 
-Before we can deploy our blog using Octopus, we'll need to package the site and push it to a package repository. Packaging our site is useful for many reasons and you can read more about why packaging Node.js apps is important in [this previous blog post](https://octopus.com/blog/deploying-nodejs) by my colleague Matt Casperson.
+Before we can deploy our blog using Octopus, we'll need to package the site and push it to a package repository. Packaging our site is useful for many reasons and you can read more about why it's important in [this previous blog post](https://octopus.com/blog/deploying-nodejs) by my colleague Matt Casperson.
 
-For simplicity, we'll use Octopus'es [built in package repository](https://octopus.com/docs/packaging-applications/package-repositories/built-in-repository) to store our packages. Each package in the built in feed requires an **ID** and a **version**, such that the name of the file is `ID.version.ext` or for example: `nextjs-blog.0.1.0.zip`.
+For simplicity, we'll use Octopus'es [built in repository](https://octopus.com/docs/packaging-applications/package-repositories/built-in-repository). And since our project is already hosted on GitHub, let's setup a GitHub Action that helps us create our package. Our workflow should look something like this:
 
-Since our project is already hosted on GitHub, let's setup a GitHub Action that helps us create our package. Our workflow will something like this:
 For each push to our `main` branch, we'll
 - Checkout the source code
 - Run `npm ci` to get our `node_modules` dependencies (implicit in this step is having node.js setup in our Actions environment)
@@ -62,13 +61,13 @@ jobs:
 
 See [next.js documentation](https://nextjs.org/docs/advanced-features/static-html-export) for more info on `next export`.
 
-This is a good start, but now we need some way to create new version numbers to give to our package. How do we automate that?
+This is a good start, but now we need some way to create new version numbers to give to our package.
 
 ### Tagging with semantic-release
 
-The version numbers assigned to packages in Octopus'es built-in repository must be valid [semantic versions](https://octopus.com/docs/packaging-applications/create-packages/versioning#semver). Attempting to home-roll a solution to automatically generate new, valid semantic versions sounds challenging. Luckily, there is an excellent open source project called [semantic-release](https://semantic-release.gitbook.io/) that can help us do just that.
+Each package in the Octopus built in feed requires an **ID** and a **version**, such that the name of the file is `ID.version.ext`. For example: `nextjs-blog.0.1.0.zip`. The version numbers must be valid [semantic versions](https://octopus.com/docs/packaging-applications/create-packages/versioning#semver). You could just tag your releases manually each time you want to release, but that's time consuming and requires a human. Where's the fun in that? What if wanted to automate this process? Building logic with a home-rolled solution to generate new, valid semantic versions sounds challenging. Luckily, there is an excellent open source project called [semantic-release](https://semantic-release.gitbook.io/) that does just that.
 
-semantic-release works by evaluating my commit messages based on some pre-defined convention. Depending on the format of my recent commit messages, the library will generate the next appropriate semantic version after finding the most recent version and updating either the major, minor, or patch version accordingly. The details of this library are out of scope for this blog post, but definitely check this project out if you've never used it before.
+semantic-release works by evaluating our commit messages based on some pre-defined convention. Depending on the format of our recent commit messages, the library will generate the next appropriate semantic version after finding the most recent version and updating either the major, minor, or patch version accordingly. The details of this library are out of scope for this blog post, but definitely check this project out if you've never used it before.
 
 There is even a community contributed [GitHub Action for Semantic Release](https://github.com/marketplace/actions/action-for-semantic-release). Let's use this project to generate our new version automatically and tag our commit:
 
@@ -81,7 +80,7 @@ There is even a community contributed [GitHub Action for Semantic Release](https
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
 
-Note that since our primary git branch is named `main`, we needed a small piece of configuration in our `package.json` to tell semantic-release to evaluate commits only on pushes to the `main` branch:
+Because our primary git branch is named `main`, we needed a small piece of configuration in our `package.json` to tell semantic-release to evaluate commits only on pushes to the `main` branch:
 ```json
 "release": {
   "branches": [
@@ -103,7 +102,7 @@ If you've ever tried creating packages with plain ol' npm, it can be quite frust
 
 It just seems as if npm was designed exclusively for the bundling of your packages for consumption by... other npm projects - not for deployment.
 
-[octopackjs](https://github.com/OctopusDeploy/octopackjs) is an open source project maintained by Octopus that is uniquely designed for bundling and pushing your packages to an Octopus server. After running `npm run export`, Next.js places our static asset files in a directory `out`. Let's write a small node script using octopackjs to package that directory and push it to our Octopus server:
+[octopackjs](https://github.com/OctopusDeploy/octopackjs) is an open source project maintained by Octopus that is uniquely designed for bundling and pushing your packages to an Octopus server. After running `npm run export`, Next.js places our static asset files in a directory named `out`. Let's write a small node script using octopackjs to package that directory and push it to our Octopus server:
 
 ```js
 // publish.js - https://github.com/OctopusSamples/nextjs-blog/blob/main/publish.js
@@ -154,18 +153,18 @@ Now that we've set up our Action, let's make a commit, push and watch it go!
 ![GitHub Action screenshot](github-action-screenshot.png "width=500")
 
 :::hint
-In this example, we're *pushing* our package from GitHub Actions to our Octopus Cloud instances at https://samples.octopus.app. If you're running an Octopus Server that is not publicly accessible from github.com, you might instead consider pushing to a third-party package repository and have your Octopus Server pull your packages from an external feed.
+In this example, we're *pushing* our package from GitHub Actions to our Octopus Cloud instances at https://samples.octopus.app. If you're running an Octopus Server that is not publicly accessible from github.com, you might instead consider pushing to a third-party package repository (e.g. Artifactory, Nexus) and have your Octopus Server pull from that repository by setting it up as an [external feed](https://octopus.com/docs/packaging-applications/package-repositories).
 :::
 
 ## Deploy
 
-Now that we've setup our continuous integration process, it's time to deploy our website! We'll use Octopus Deploy to upload our package to AWS S3. For static content sites like the one we've built here, S3 buckets are a great choice because they require very little configuration (no need to install and configure a web server), are inexpensive, and of course you benefit from the reliability of AWS as a platform. Plus, Octopus Deploy has a [built in step template for uploading packages to an S3 bucket](https://octopus.com/docs/deployment-examples/aws-deployments/s3).
+Now that we've setup our continuous integration process, it's time to deploy our website! We'll use Octopus Deploy to upload our package to AWS S3. Conveniently, it already has a [built in step template](https://octopus.com/docs/deployment-examples/aws-deployments/s3) designed for this. For static content sites like the one we've built here, S3 buckets are a great choice because they require very little configuration (no need to install and configure a web server), are inexpensive, and of course you benefit from the reliability of the AWS cloud platform.
 
 ### AWS S3
 
 Setting up an S3 bucket is pretty simple and there are many tutorials out there to help with that so we won't walk through it here step by step. I would recommend following along with the AWS documentation specifically for [Hosting a static website using Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/WebsiteHosting.html).
 
-Octopus will need an [AWS AccessKey](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys) to upload packages to your S3 bucket. It's a good idea (although not mandatory) to set up a separate [IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html) with explicit permissions to your new S3 bucket. See [this page](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) for help with managing access keys for IAM users.
+Octopus will need an [AWS AccessKey](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys) to upload packages to your S3 bucket. It's a good idea (although not mandatory) to set up a separate [IAM user](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users.html) with explicit permissions to your new bucket. See [this page](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) for help with managing access keys for IAM users.
 
 :::hint
 Save your Access Key ID and Key Secret somewhere safe and accessible to you later on. We'll need those two values to set up our AWS account in Octopus Deploy
@@ -189,7 +188,7 @@ To use our AWS Account in our `nextjs-blog` project, we'll need to create an AWS
 See [this page](https://octopus.com/docs/projects/variables/aws-account-variables) for more info on AWS Account variables in Octopus
 :::
 
-Finally, we can create our one and only step in our project by adding the Upload a package to an AWS S3 bucket step:
+Lastly, let's create our one and only step in our project by adding the Upload a package to an AWS S3 bucket step:
 
 ![Upload to S3 bucket step template screenshot](upload-to-s3-step-template-screenshot.png "width=500")
 
@@ -202,7 +201,7 @@ The one section I want to point out here is the Package Target options. By defau
 
 ![Select Multiple Files option screenshot](multiple-file-selection-screenshot.png "width=500")
 
-The default file pattern `**/*` will select all files in our package, which is exactly what we want.
+The default file pattern `**/*` will select all files and directories in our package, which is exactly what we want.
 
 4. Lastly, enter a `Canned Acl`. Read more about these [here](https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html#canned-acl). For my set up, I used `bucket-owner-full-control`
 
@@ -214,8 +213,10 @@ If all goes well, we should be to see our website here: http://octopus-nextjs-sa
 
 ## What else?
 
+Did you get stuck anywhere trying to follow along? Check out the project's source code on GitHub [here](https://github.com/OctopusSamples/nextjs-blog) and you can also see the deploy project set up in our Octopus Deploy Samples space at https://samples.octopus.app/app#/Spaces-604/projects/nextjs-blog.
+
 Want to serve your website using an SSL certificate? Checkout the [AWS CDN product CloudFront](https://docs.aws.amazon.com/AmazonS3/latest/dev/website-hosting-cloudfront-walkthrough.html).
 
-Do you have a much larger Next.js site that takes too long to generate static assets? Next.js also supports serving your app with a [dynamic backend with Node.js](https://nextjs.org/docs/deployment#nodejs-server). See this [great Digital Ocean tutorial](https://www.digitalocean.com/community/tutorials/how-to-deploy-a-next-js-app-to-app-platform) for setting up that kind of deployment for your Next.js app.
+If you have a much larger Next.js site and it's impractical to generate static assets, Next.js also supports serving your app with a [dynamic backend with Node.js](https://nextjs.org/docs/deployment#nodejs-server). See this [great Digital Ocean tutorial](https://www.digitalocean.com/community/tutorials/how-to-deploy-a-next-js-app-to-app-platform) for setting up that kind of deployment for your Next.js app.
 
 Thanks for reading, and happy deployments!
