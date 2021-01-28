@@ -30,12 +30,12 @@ In this blog post we'll look at how to manage an ECS canary deployment with Octo
 
 Our ECS deployment will be created and managed via CloudFormation, and will make use of the following resources:
 
-* [AWS::ECS::TaskDefinition](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskdefinition.html) - Task definitions configure the containers to be executed by ECS.
-* [AWS::ECS::Service](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html) - A service keeps one or more instances of a task definition (or many task definitions, when using task sets) running in the ECS cluster.
-* [AWS::ECS::TaskSet](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskset.html) - A service can contain many task sets, with each task set configured with its own task definition. Multiple task sets allow a single service to manage tasks created from multiple task definitions.
-* [AWS::ElasticLoadBalancingV2::Listener](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listener.html) - A listener defines the port and protocol that it will receive load balancer traffic on.
-* [AWS::ElasticLoadBalancingV2::ListenerRule](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenerrule.html) - A listener rule defines the high level rules, such as path, query string, header matching etc, that must be satisfied to deliver traffic to a target group.
-* [AWS::ElasticLoadBalancingV2::TargetGroup](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-targetgroup.html) - A target group binds downstream services, like ECS clusters, to a load balancer listener rule.
+* [`AWS::ECS::TaskDefinition`](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskdefinition.html) - Task definitions configure the containers to be executed by ECS.
+* [`AWS::ECS::Service`](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html) - A service keeps one or more instances of a task definition (or many task definitions, when using task sets) running in the ECS cluster.
+* [`AWS::ECS::TaskSet`](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskset.html) - A service can contain many task sets, with each task set configured with its own task definition. Multiple task sets allow a single service to manage tasks created from multiple task definitions.
+* [`AWS::ElasticLoadBalancingV2::Listener`](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listener.html) - A listener defines the port and protocol that it will receive load balancer traffic on.
+* [`AWS::ElasticLoadBalancingV2::ListenerRule`](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenerrule.html) - A listener rule defines the high level rules, such as path, query string, header matching etc, that must be satisfied to deliver traffic to a target group.
+* [`AWS::ElasticLoadBalancingV2::TargetGroup`](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-targetgroup.html) - A target group binds downstream services, like ECS clusters, to a load balancer listener rule.
 
 The resulting architecture looks like this:
 
@@ -51,10 +51,10 @@ The task definition configures the sample application to listen to traffic on po
 
 We'll update the `APPVERSION` environment variable as a way of simulating new application versions being deployed.
 
-Here is the first task definition:
+Here is the first task definition. Note the resource name has a random string appended to it. Each time this template is deployed, the task definition will have a distinct name. This means CloudFormation will create a new task definition, but not delete any previously deployed task definition:
 
 ```json
-    "MyTask1": {
+    "MyTask19a1ac4cbba79425494fdc2a7a9498783": {
       "Type": "AWS::ECS::TaskDefinition",
       "Properties": {
         "ContainerDefinitions": [
@@ -87,46 +87,6 @@ Here is the first task definition:
         ],
         "NetworkMode": "awsvpc"
       }
-    }
-```
-
-Here is the second task definition. It is the same as above, but with the `APPVERSION` value incremented:
-
-```json
-    "MyTask2": {
-      "Type": "AWS::ECS::TaskDefinition",
-      "Properties": {
-        "ContainerDefinitions": [
-          {
-            "Cpu": 256,
-            "Image": "octopussamples/helloworldwithversion",
-            "Memory": 512,
-            "MemoryReservation": 128,
-            "Name": "mycontainer",
-            "Environment": [
-              {
-                "Name": "APPVERSION",
-                "Value": "1.0.1"
-              }
-            ],
-            "PortMappings": [
-              {
-                "ContainerPort": 4000,
-                "HostPort": 4000,
-                "Protocol": "tcp"
-              }
-            ]
-          }
-        ],
-        "Cpu": "256",
-        "Family": "mytask",
-        "Memory": "512",
-        "RequiresCompatibilities": [
-          "FARGATE"
-        ],
-        "NetworkMode": "awsvpc"
-      },
-      "DependsOn": "MyTask1"
     }
 ```
 
@@ -190,6 +150,8 @@ With a standard rolling deployment, an ECS service would reference only one task
 
 Task sets provide a more flexible method of defining task definitions in a service. When task sets are used, [the service resource defines very few settings](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-external.html#deployment-type-external-workflow), and exists mostly as a parent resource for its child task sets.
 
+In this example, each task set points to the same task definition. This means for the initial deployment, the blue and green half of the stacks will be the same. Later in the post we'll look at how this template is updated with a new task definition for the green stack to perform a canary or blue/green deployment:
+
 ```json
     "GreenTaskSet": {
       "Type": "AWS::ECS::TaskSet",
@@ -224,7 +186,7 @@ Task sets provide a more flexible method of defining task definitions in a servi
           "Value": 100
         },
         "Service": "myservice",
-        "TaskDefinition": {"Ref": "MyTask2"}
+        "TaskDefinition": {"Ref": "MyTask19a1ac4cbba79425494fdc2a7a9498783"}
       },
       "DependsOn": [
         "MyService",
@@ -267,7 +229,7 @@ Task sets provide a more flexible method of defining task definitions in a servi
           "Value": 100
         },
         "Service": "myservice",
-        "TaskDefinition": {"Ref": "MyTask1"}
+        "TaskDefinition": {"Ref": "MyTask19a1ac4cbba79425494fdc2a7a9498783"}
       },
       "DependsOn": [
         "MyService",
@@ -295,7 +257,9 @@ The service will ensure the desired number of tasks are run, and continue to run
 
 ## The `AWS::ElasticLoadBalancingV2::Listener` resource
 
-Listeners are attached to load balancers, and define the rules used to direct traffic to a target group. The listener below is configured to receive HTTP traffic on port 80, and has a default rule to respond with a HTTP 404 status code if no other custom rule matches the incoming request:
+Listeners are attached to load balancers, and define the rules used to direct traffic to a target group. The listener below is configured to receive HTTP traffic on port 80, and has a default rule to respond with a HTTP 404 status code if no other custom rule matches the incoming request.
+
+Note here that we have hard coded the ARN of an existing [ALB](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html) or [NLB](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/introduction.html). The requirement here is that the existing load balancer does not already have a listener configured to use port 80:
 
 ```json
     "MyListener": {
@@ -379,7 +343,7 @@ Here is the complete CloudFormation template:
 ```json
 {
   "Resources": {
-    "MyTask1": {
+    "MyTask19a1ac4cbba79425494fdc2a7a9498783": {
       "Type": "AWS::ECS::TaskDefinition",
       "Properties": {
         "ContainerDefinitions": [
@@ -412,42 +376,7 @@ Here is the complete CloudFormation template:
         ],
         "NetworkMode": "awsvpc"
       }
-    },
-    "MyTask2": {
-      "Type": "AWS::ECS::TaskDefinition",
-      "Properties": {
-        "ContainerDefinitions": [
-          {
-            "Cpu": 256,
-            "Image": "octopussamples/helloworldwithversion",
-            "Memory": 512,
-            "MemoryReservation": 128,
-            "Name": "mycontainer",
-            "Environment": [
-              {
-                "Name": "APPVERSION",
-                "Value": "1.0.1"
-              }
-            ],
-            "PortMappings": [
-              {
-                "ContainerPort": 4000,
-                "HostPort": 4000,
-                "Protocol": "tcp"
-              }
-            ]
-          }
-        ],
-        "Cpu": "256",
-        "Family": "mytask",
-        "Memory": "512",
-        "RequiresCompatibilities": [
-          "FARGATE"
-        ],
-        "NetworkMode": "awsvpc"
-      },
-      "DependsOn": "MyTask1"
-    },
+    },   
     "GreenTargetGroup": {
       "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
       "Properties": {
@@ -523,7 +452,7 @@ Here is the complete CloudFormation template:
           "Value": 100
         },
         "Service": "myservice",
-        "TaskDefinition": {"Ref": "MyTask2"}
+        "TaskDefinition": {"Ref": "MyTask19a1ac4cbba79425494fdc2a7a9498783"}
       },
       "DependsOn": [
         "MyService",
@@ -563,7 +492,7 @@ Here is the complete CloudFormation template:
           "Value": 100
         },
         "Service": "myservice",
-        "TaskDefinition": {"Ref": "MyTask1"}
+        "TaskDefinition": {"Ref": "MyTask19a1ac4cbba79425494fdc2a7a9498783"}
       },
       "DependsOn": [
         "MyService",
@@ -646,3 +575,26 @@ Here is the complete CloudFormation template:
   }
 }
 ```
+
+Deploying this stack results in a new service in ECS. 
+
+The report of `2/1 Tasks running` might seem a little odd, but this value is the result of having two task sets each configured to run 100% of their parent service's desired task count, which is 1. This means we have two task sets, each running one task, resulting in two tasks running for the one desired task defined in the service:
+
+![](service.png "width=500")
+
+The two tasks show the tasks configured in the blue and green task sets. Note that task sets are not displayed in the console, and we have to infer the task set a task belongs to:
+
+![](tasks.png "width=500")
+
+Our load balancer listener has been configured to direct traffic to the two target groups:
+
+![](listener.png "width=500")
+
+The target groups have had the tasks added to them by ECS:
+
+![](targetgroup.png "width=500")
+
+As this was our first deployment, the task sets both point to the same task definition, and there is nothing to switch between as part of a blue/green or canary deployment.
+
+We will assume at this point that this initial deployment is complete. This means that the blue stack represents the currently deployed and publicly available version of the application receiving 100% of the traffic, and that the green stack is unused.
+
