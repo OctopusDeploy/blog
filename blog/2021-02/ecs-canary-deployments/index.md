@@ -51,10 +51,10 @@ The task definition configures the sample application to listen to traffic on po
 
 We'll update the `APPVERSION` environment variable as a way of simulating new application versions being deployed.
 
-Here is the first task definition. Note the `UpdateReplacePolicy` property is set to `Retain`. This means CloudFormation will create a new task definition, but not delete any previously deployed task definition:
+Here is the first task definition. Note the `UpdateReplacePolicy` property is set to `Retain`, and the resource name has a random string appended to it. This means CloudFormation will create a new task definition, but not delete any previously deployed task definition:
 
 ```json
-    "MyTask": {
+    "MyTask10d4f29d4aa0474dbd4b0435922cd032": {
       "Type": "AWS::ECS::TaskDefinition",
       "UpdateReplacePolicy": "Retain",
       "Properties": {
@@ -106,7 +106,7 @@ The two target groups below will hold the blue (or existing deployment) tasks, a
         "HealthCheckPath": "/",
         "HealthCheckPort": "4000",
         "HealthCheckProtocol": "HTTP",
-        "HealthCheckTimeoutSeconds": 10,
+        "HealthCheckTimeoutSeconds": 2,
         "HealthyThresholdCount": 2,
         "Matcher": {
           "HttpCode": "200"
@@ -130,7 +130,7 @@ The two target groups below will hold the blue (or existing deployment) tasks, a
         "HealthCheckPath": "/",
         "HealthCheckPort": "4000",
         "HealthCheckProtocol": "HTTP",
-        "HealthCheckTimeoutSeconds": 10,
+        "HealthCheckTimeoutSeconds": 2,
         "HealthyThresholdCount": 2,
         "Matcher": {
           "HttpCode": "200"
@@ -187,7 +187,7 @@ In this example, each task set points to the same task definition. This means fo
           "Value": 100
         },
         "Service": "myservice",
-        "TaskDefinition": {"Ref": "MyTask"}
+        "TaskDefinition": {"Ref": "MyTask10d4f29d4aa0474dbd4b0435922cd032"}
       },
       "DependsOn": [
         "MyService",
@@ -230,7 +230,7 @@ In this example, each task set points to the same task definition. This means fo
           "Value": 100
         },
         "Service": "myservice",
-        "TaskDefinition": {"Ref": "MyTask"}
+        "TaskDefinition": {"Ref": "MyTask10d4f29d4aa0474dbd4b0435922cd032"}
       },
       "DependsOn": [
         "MyService",
@@ -344,7 +344,7 @@ Here is the complete CloudFormation template:
 ```json
 {
   "Resources": {
-    "MyTask10d4f29d4aa0474dbd4b0435922cd039": {
+    "MyTask10d4f29d4aa0474dbd4b0435922cd032": {
       "Type": "AWS::ECS::TaskDefinition",
       "UpdateReplacePolicy": "Retain",
       "Properties": {
@@ -387,7 +387,7 @@ Here is the complete CloudFormation template:
         "HealthCheckPath": "/",
         "HealthCheckPort": "4000",
         "HealthCheckProtocol": "HTTP",
-        "HealthCheckTimeoutSeconds": 10,
+        "HealthCheckTimeoutSeconds": 2,
         "HealthyThresholdCount": 2,
         "Matcher": {
           "HttpCode": "200"
@@ -408,7 +408,7 @@ Here is the complete CloudFormation template:
         "HealthCheckPath": "/",
         "HealthCheckPort": "4000",
         "HealthCheckProtocol": "HTTP",
-        "HealthCheckTimeoutSeconds": 10,
+        "HealthCheckTimeoutSeconds": 2,
         "HealthyThresholdCount": 2,
         "Matcher": {
           "HttpCode": "200"
@@ -454,7 +454,7 @@ Here is the complete CloudFormation template:
           "Value": 100
         },
         "Service": "myservice",
-        "TaskDefinition": {"Ref": "MyTask10d4f29d4aa0474dbd4b0435922cd039"}
+        "TaskDefinition": {"Ref": "MyTask10d4f29d4aa0474dbd4b0435922cd032"}
       },
       "DependsOn": [
         "MyService",
@@ -494,7 +494,7 @@ Here is the complete CloudFormation template:
           "Value": 100
         },
         "Service": "myservice",
-        "TaskDefinition": {"Ref": "MyTask10d4f29d4aa0474dbd4b0435922cd039"}
+        "TaskDefinition": {"Ref": "MyTask10d4f29d4aa0474dbd4b0435922cd032"}
       },
       "DependsOn": [
         "MyService",
@@ -620,7 +620,7 @@ We will assume at this point that this initial deployment is complete. This mean
 
 ## Query the current blue task set
 
-To get the state of current blue task set, we can use the following call to the AWS CLI. The `--task-sets` parameter is set to the `GreenTaskSet` output value returned by the CloudFormation stack:
+To get the state of current blue task set, we can use the following call to the AWS CLI. The `--task-sets` parameter is set to the `BlueTaskSet` output value returned by the CloudFormation stack:
 
 ```
 aws ecs describe-task-sets --cluster "arn:aws:ecs:us-east-1:968802670493:cluster/mattctest" --service myservice --task-sets "ecs-svc/8260773081660460393"
@@ -638,7 +638,7 @@ This will return the configuration of the blue task set:
             "clusterArn": "arn:aws:ecs:us-east-1:968802670493:cluster/mattctest",
             "externalId": "OctopusBlueStack",
             "status": "ACTIVE",
-            "taskDefinition": "arn:aws:ecs:us-east-1:968802670493:task-definition/mytask:22",
+            "taskDefinition": "arn:aws:ecs:us-east-1:968802670493:task-definition/mytask:26",
             "computedDesiredCount": 1,
             "pendingCount": 0,
             "runningCount": 1,
@@ -720,7 +720,7 @@ Below we update the `TaskDefinition` property to reference the fixed task defini
           "Value": 100
         },
         "Service": "myservice",
-        "TaskDefinition": "arn:aws:ecs:us-east-1:968802670493:task-definition/mytask:22"
+        "TaskDefinition": "arn:aws:ecs:us-east-1:968802670493:task-definition/mytask:26"
       },
       "DependsOn": [
         "MyService",
@@ -729,10 +729,10 @@ Below we update the `TaskDefinition` property to reference the fixed task defini
     }
 ```
 
-Let's now configure a new version of our task definition. We'll demonstrate this new version by updating the `APPVERSION` environment variable:
+Let's now configure a new version of our task definition. We'll demonstrate this new version by updating the `APPVERSION` environment variable. Note that we have a new random string appended to the resource name:
 
 ```json
-  "MyTask": {
+  "MyTask3cc1c6eefc0643e9b225a0bf871ab389": {
       "Type": "AWS::ECS::TaskDefinition",
       "UpdateReplacePolicy": "Retain",
       "Properties": {
@@ -817,7 +817,7 @@ Here is the complete template for the new deployment:
         "HealthCheckPath": "/",
         "HealthCheckPort": "4000",
         "HealthCheckProtocol": "HTTP",
-        "HealthCheckTimeoutSeconds": 10,
+        "HealthCheckTimeoutSeconds": 2,
         "HealthyThresholdCount": 2,
         "Matcher": {
           "HttpCode": "200"
@@ -838,7 +838,7 @@ Here is the complete template for the new deployment:
         "HealthCheckPath": "/",
         "HealthCheckPort": "4000",
         "HealthCheckProtocol": "HTTP",
-        "HealthCheckTimeoutSeconds": 10,
+        "HealthCheckTimeoutSeconds": 2,
         "HealthyThresholdCount": 2,
         "Matcher": {
           "HttpCode": "200"
@@ -884,7 +884,7 @@ Here is the complete template for the new deployment:
           "Value": 100
         },
         "Service": "myservice",
-        "TaskDefinition": {"Ref": "MyTask"}
+        "TaskDefinition": {"Ref": "MyTask3cc1c6eefc0643e9b225a0bf871ab389"}
       },
       "DependsOn": [
         "MyService",
