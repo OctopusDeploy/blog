@@ -102,12 +102,12 @@ The two target groups below will hold the blue (or existing deployment) tasks, a
       "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
       "Properties": {
         "HealthCheckEnabled": true,
-        "HealthCheckIntervalSeconds": 30,
+        "HealthCheckIntervalSeconds": 5,
         "HealthCheckPath": "/",
         "HealthCheckPort": "4000",
         "HealthCheckProtocol": "HTTP",
         "HealthCheckTimeoutSeconds": 10,
-        "HealthyThresholdCount": 5,
+        "HealthyThresholdCount": 2,
         "Matcher": {
           "HttpCode": "200"
         },
@@ -126,12 +126,12 @@ The two target groups below will hold the blue (or existing deployment) tasks, a
       "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
       "Properties": {
         "HealthCheckEnabled": true,
-        "HealthCheckIntervalSeconds": 30,
+        "HealthCheckIntervalSeconds": 5,
         "HealthCheckPath": "/",
         "HealthCheckPort": "4000",
         "HealthCheckProtocol": "HTTP",
         "HealthCheckTimeoutSeconds": 10,
-        "HealthyThresholdCount": 5,
+        "HealthyThresholdCount": 2,
         "Matcher": {
           "HttpCode": "200"
         },
@@ -344,7 +344,7 @@ Here is the complete CloudFormation template:
 ```json
 {
   "Resources": {
-    "MyTask": {
+    "MyTask10d4f29d4aa0474dbd4b0435922cd039": {
       "Type": "AWS::ECS::TaskDefinition",
       "UpdateReplacePolicy": "Retain",
       "Properties": {
@@ -383,12 +383,12 @@ Here is the complete CloudFormation template:
       "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
       "Properties": {
         "HealthCheckEnabled": true,
-        "HealthCheckIntervalSeconds": 30,
+        "HealthCheckIntervalSeconds": 5,
         "HealthCheckPath": "/",
         "HealthCheckPort": "4000",
         "HealthCheckProtocol": "HTTP",
         "HealthCheckTimeoutSeconds": 10,
-        "HealthyThresholdCount": 5,
+        "HealthyThresholdCount": 2,
         "Matcher": {
           "HttpCode": "200"
         },
@@ -404,12 +404,12 @@ Here is the complete CloudFormation template:
       "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
       "Properties": {
         "HealthCheckEnabled": true,
-        "HealthCheckIntervalSeconds": 30,
+        "HealthCheckIntervalSeconds": 5,
         "HealthCheckPath": "/",
         "HealthCheckPort": "4000",
         "HealthCheckProtocol": "HTTP",
         "HealthCheckTimeoutSeconds": 10,
-        "HealthyThresholdCount": 5,
+        "HealthyThresholdCount": 2,
         "Matcher": {
           "HttpCode": "200"
         },
@@ -454,7 +454,7 @@ Here is the complete CloudFormation template:
           "Value": 100
         },
         "Service": "myservice",
-        "TaskDefinition": {"Ref": "MyTask"}
+        "TaskDefinition": {"Ref": "MyTask10d4f29d4aa0474dbd4b0435922cd039"}
       },
       "DependsOn": [
         "MyService",
@@ -494,7 +494,7 @@ Here is the complete CloudFormation template:
           "Value": 100
         },
         "Service": "myservice",
-        "TaskDefinition": {"Ref": "MyTask"}
+        "TaskDefinition": {"Ref": "MyTask10d4f29d4aa0474dbd4b0435922cd039"}
       },
       "DependsOn": [
         "MyService",
@@ -620,7 +620,7 @@ We will assume at this point that this initial deployment is complete. This mean
 
 ## Query the current blue task set
 
-To get the state of current blue task set, we can use the following call to the AWS CLI. The `--task-sets` parameter is set to the `BlueTaskSet` output value returned by the CLoudFormation stack:
+To get the state of current blue task set, we can use the following call to the AWS CLI. The `--task-sets` parameter is set to the `GreenTaskSet` output value returned by the CloudFormation stack:
 
 ```
 aws ecs describe-task-sets --cluster "arn:aws:ecs:us-east-1:968802670493:cluster/mattctest" --service myservice --task-sets "ecs-svc/8260773081660460393"
@@ -813,12 +813,12 @@ Here is the complete template for the new deployment:
       "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
       "Properties": {
         "HealthCheckEnabled": true,
-        "HealthCheckIntervalSeconds": 30,
+        "HealthCheckIntervalSeconds": 5,
         "HealthCheckPath": "/",
         "HealthCheckPort": "4000",
         "HealthCheckProtocol": "HTTP",
         "HealthCheckTimeoutSeconds": 10,
-        "HealthyThresholdCount": 5,
+        "HealthyThresholdCount": 2,
         "Matcher": {
           "HttpCode": "200"
         },
@@ -834,12 +834,12 @@ Here is the complete template for the new deployment:
       "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
       "Properties": {
         "HealthCheckEnabled": true,
-        "HealthCheckIntervalSeconds": 30,
+        "HealthCheckIntervalSeconds": 5,
         "HealthCheckPath": "/",
         "HealthCheckPort": "4000",
         "HealthCheckProtocol": "HTTP",
         "HealthCheckTimeoutSeconds": 10,
-        "HealthyThresholdCount": 5,
+        "HealthyThresholdCount": 2,
         "Matcher": {
           "HttpCode": "200"
         },
@@ -1026,3 +1026,4 @@ Here is the complete template for the new deployment:
 }
 ```
 
+After deploying this second template, we now have a service with tasks referencing two task definitions. The blue task set is pointing to the previous deployment, while the green task set is pointing to the new deployment.
