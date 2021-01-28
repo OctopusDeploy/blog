@@ -45,7 +45,7 @@ The resulting architecture looks like this:
 
 To demonstrate a canary deployment, we'll use the Docker image created from the code at https://github.com/OctopusSamples/DockerHelloWorldWithVersion. This is a simple "hello world" Node.js application that also prints the value of the `APPVERSION` environment variable in response to a HTTP request.
 
-## The AWS::ECS::TaskDefinition resource
+## The `AWS::ECS::TaskDefinition` resource
 
 The task definition configures the sample application to listen to traffic on port 4000. It also defines an environment variable called `APPVERSION`, which will be displayed in the response.
 
@@ -130,24 +130,11 @@ Here is the second task definition. It is the same as above, but with the `APPVE
     }
 ```
 
-## The AWS::ECS::Service resource
+## The `AWS::ElasticLoadBalancingV2::TargetGroup` resources
 
-The service will ensure the desired number of tasks are run, and continue to run. Typically we would configure the service to reference a task definition directly, but in our case we will use task sets to link a service to a task definition. This means our service is quite sparse:
+Target groups define the downstream services that respond to a network request. We don't define any services here as ECS itself will place tasks into target groups as they are created and remove tasks as they are destroyed.
 
-```json
-"MyService": {
-      "Type": "AWS::ECS::Service",
-      "Properties": {
-        "Cluster": "arn:aws:ecs:us-east-1:968802670493:cluster/mattctest",
-        "ServiceName": "myservice",
-        "DeploymentController": {
-          "Type": "EXTERNAL"
-        }
-      }
-    }
-```
-
-## The AWS::ElasticLoadBalancingV2::TargetGroup resources
+The two target groups below will hold the blue (or existing deployment) tasks, and the green (or new deployment) tasks:
 
 ```json
     "GreenTargetGroup": {
@@ -197,7 +184,11 @@ The service will ensure the desired number of tasks are run, and continue to run
     }
 ```
 
-## The AWS::ECS::TaskSet resources
+## The `AWS::ECS::TaskSet` resources
+
+With a standard rolling deployment, an ECS service would reference only one task definition, and the service resource would define all the associated settings like networking and task counts. 
+
+Task sets provide a more flexible method of defining task definitions in a service. When task sets are used, [the service resource defines very few settings](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-external.html#deployment-type-external-workflow), and exists mostly as a parent resource for its child task sets.
 
 ```json
     "GreenTaskSet": {
@@ -285,7 +276,26 @@ The service will ensure the desired number of tasks are run, and continue to run
     }
 ```
 
-## The AWS::ElasticLoadBalancingV2::Listener resource
+## The `AWS::ECS::Service` resource
+
+The service will ensure the desired number of tasks are run, and continue to run. Typically we would configure the service to reference a task definition directly, but in our case we will use task sets to link a service to a task definition. This means our service is quite sparse:
+
+```json
+"MyService": {
+      "Type": "AWS::ECS::Service",
+      "Properties": {
+        "Cluster": "arn:aws:ecs:us-east-1:968802670493:cluster/mattctest",
+        "ServiceName": "myservice",
+        "DeploymentController": {
+          "Type": "EXTERNAL"
+        }
+      }
+    }
+```
+
+## The `AWS::ElasticLoadBalancingV2::Listener` resource
+
+Listeners are attached to load balancers, and define the rules used to direct traffic to a target group. The listener below is configured to receive HTTP traffic on port 80, and has a default rule to respond with a HTTP 404 status code if no other custom rule matches the incoming request:
 
 ```json
     "MyListener": {
@@ -307,7 +317,11 @@ The service will ensure the desired number of tasks are run, and continue to run
     }
 ```
 
-## The AWS::ElasticLoadBalancingV2::ListenerRule resource
+## The `AWS::ElasticLoadBalancingV2::ListenerRule` resource
+
+A listener rule is attached to a listener, and provides fine grained control over how an incoming requests is matched, and how it is forwarded to a target group. The listener rule below matches all request paths (essentially matching all requests), and splits traffic between the blue and green target groups.
+
+Modifying the weights assigned to the blue and green target groups is how we achieve a blue/green or canary deployment. A hard cut over from the blue to the blue to the green stack achieves a traditional blue/green deployment, while gradually increasing the traffic to the green stack achieves a canary deployment:
 
 ```json
     "MyListenerRule": {
@@ -321,13 +335,13 @@ The service will ensure the desired number of tasks are run, and continue to run
                   "TargetGroupArn": {
                     "Ref": "GreenTargetGroup"
                   },
-                  "Weight": 100
+                  "Weight": 0
                 },
                 {
                   "TargetGroupArn": {
                     "Ref": "BlueTargetGroup"
                   },
-                  "Weight": 0
+                  "Weight": 100
                 }
               ]
             },

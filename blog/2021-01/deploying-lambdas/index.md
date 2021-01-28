@@ -65,7 +65,7 @@ A self-contained deployment involves creating a single CloudFormation template w
 * [AWS::ApiGateway::Stage](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-stage.html): A stage exposes the URLs defined in the REST API.
 * [AWS::ApiGateway::Deployment](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-deployment.html): A deployment captures the state of the REST API configuration as an immutable resource. A deployment is configured as part of a stage to expose the API.
 
-### The AWS::ApiGateway::RestApi resource
+### The `AWS::ApiGateway::RestApi` resource
 
 The `AWS::ApiGateway::RestApi` resource creates a REST API. 
 
@@ -88,7 +88,7 @@ The snippet below creates the REST API resource:
     }
 ```
 
-## The AWS::Logs::LogGroup resource
+## The `AWS::Logs::LogGroup` resource
 
 To help debug and monitor our Lambda function, we create a CloudWatch log group.
 
@@ -103,7 +103,7 @@ The name of the log group is based on the name of the Lambda. [This name is not 
     }
 ```
 
-## The AWS::IAM::Role resource
+## The `AWS::IAM::Role` resource
 
 In order for our Lambda to have permission to interact with the log group, we need an IAM role to grant access:
 
@@ -156,7 +156,7 @@ In order for our Lambda to have permission to interact with the log group, we ne
     }
 ```
 
-## The AWS::Lambda::Function resource
+## The `AWS::Lambda::Function` resource
 
 This is where we create the Lambda itself. 
 
@@ -191,7 +191,7 @@ This Lambda will execute using the IAM role created above:
     }
 ```
 
-## The AWS::Lambda::Permission resource
+## The `AWS::Lambda::Permission` resource
 
 In order for the REST API to execute the Lambda, it needs to be granted access.
 
@@ -235,7 +235,7 @@ There are two ways to grant API Gateway access to a Lambda: [IAM roles or resour
     }
 ```
 
-## The AWS::ApiGateway::Resource resources
+## The `AWS::ApiGateway::Resource` resources
 
 The elements in a path exposed by an API Gateway are called resources. For example, the URL path of `/vehicles/cars/car1` is made up of three resources: `vehicles`, `cars`, and `car1`.
 
@@ -264,7 +264,7 @@ The template below creates two resources that combine to match the path `/nodefu
     }
 ```
 
-## The AWS::ApiGateway::Method resources
+## The `AWS::ApiGateway::Method` resources
 
 We need to expose a method in order to respond to an HTTP request on a resource.
 
@@ -367,7 +367,7 @@ Below are the two methods with proxy integration:
     }
 ```
 
-## The AWS::ApiGateway::Deployment resource
+## The `AWS::ApiGateway::Deployment` resource
 
 The resources and methods described above have been configured in a kind of working stage. This configuration is not exposed to traffic until it is captured in a deployment, and promoted to a stage.
 
@@ -386,7 +386,7 @@ Note that we attach a random string to the resource name. Deployments are immuta
     }
 ```
 
-## The AWS::ApiGateway::Stage resource
+## The `AWS::ApiGateway::Stage` resource
 
 The final step in this journey is to create a stage, and "promote" the working stage by referencing the deployment resource:
 
