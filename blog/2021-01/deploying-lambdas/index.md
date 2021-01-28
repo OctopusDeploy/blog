@@ -55,15 +55,15 @@ Decoupled deployments have the following benefits:
 
 A self-contained deployment involves creating a single CloudFormation template with the following resources:
 
-* [AWS::ApiGateway::RestApi](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-restapi.html): The API Gateway REST API.
-* [AWS::Logs::LogGroup](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-loggroup.html): The CloudWatch log group for the Lambda logs.
-* [AWS::IAM::Role](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html): The permissions for the Lambda to access the log group.
-* [AWS::Lambda::Function](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html): The Lambda function.
-* [AWS::Lambda::Permission](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html): A permission that grants API Gateway the ability to execute a Lambda.
-* [AWS::ApiGateway::Resource](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-resource.html): A resource is a component of the URL path that exposed the Lambda.
-* [AWS::ApiGateway::Method](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-method.html): Methods expose HTTP methods like GET, POST, etc., on resources.
-* [AWS::ApiGateway::Stage](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-stage.html): A stage exposes the URLs defined in the REST API.
-* [AWS::ApiGateway::Deployment](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-deployment.html): A deployment captures the state of the REST API configuration as an immutable resource. A deployment is configured as part of a stage to expose the API.
+* [`AWS::ApiGateway::RestApi`](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-restapi.html): The API Gateway REST API.
+* [`AWS::Logs::LogGroup`](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-logs-loggroup.html): The CloudWatch log group for the Lambda logs.
+* [`AWS::IAM::Role`](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-iam-role.html): The permissions for the Lambda to access the log group.
+* [`AWS::Lambda::Function`](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html): The Lambda function.
+* [`AWS::Lambda::Permission`](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-permission.html): A permission that grants API Gateway the ability to execute a Lambda.
+* [`AWS::ApiGateway::Resource`](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-resource.html): A resource is a component of the URL path that exposed the Lambda.
+* [`AWS::ApiGateway::Method`](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-method.html): Methods expose HTTP methods like GET, POST, etc., on resources.
+* [`AWS::ApiGateway::Stage`](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-stage.html): A stage exposes the URLs defined in the REST API.
+* [`AWS::ApiGateway::Deployment`](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-apigateway-deployment.html): A deployment captures the state of the REST API configuration as an immutable resource. A deployment is configured as part of a stage to expose the API.
 
 ### The `AWS::ApiGateway::RestApi` resource
 

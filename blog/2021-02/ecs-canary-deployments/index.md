@@ -281,7 +281,7 @@ Task sets provide a more flexible method of defining task definitions in a servi
 The service will ensure the desired number of tasks are run, and continue to run. Typically we would configure the service to reference a task definition directly, but in our case we will use task sets to link a service to a task definition. This means our service is quite sparse:
 
 ```json
-"MyService": {
+  "MyService": {
       "Type": "AWS::ECS::Service",
       "Properties": {
         "Cluster": "arn:aws:ecs:us-east-1:968802670493:cluster/mattctest",
@@ -370,4 +370,279 @@ Modifying the weights assigned to the blue and green target groups is how we ach
         "BlueTargetGroup"
       ]
     }
+```
+
+## The complete template
+
+Here is the complete CloudFormation template:
+
+```json
+{
+  "Resources": {
+    "MyTask1": {
+      "Type": "AWS::ECS::TaskDefinition",
+      "Properties": {
+        "ContainerDefinitions": [
+          {
+            "Cpu": 256,
+            "Image": "octopussamples/helloworldwithversion",
+            "Memory": 512,
+            "MemoryReservation": 128,
+            "Name": "mycontainer",
+            "Environment": [
+              {
+                "Name": "APPVERSION",
+                "Value": "1.0.0"
+              }
+            ],
+            "PortMappings": [
+              {
+                "ContainerPort": 4000,
+                "HostPort": 4000,
+                "Protocol": "tcp"
+              }
+            ]
+          }
+        ],
+        "Cpu": "256",
+        "Family": "mytask",
+        "Memory": "512",
+        "RequiresCompatibilities": [
+          "FARGATE"
+        ],
+        "NetworkMode": "awsvpc"
+      }
+    },
+    "MyTask2": {
+      "Type": "AWS::ECS::TaskDefinition",
+      "Properties": {
+        "ContainerDefinitions": [
+          {
+            "Cpu": 256,
+            "Image": "octopussamples/helloworldwithversion",
+            "Memory": 512,
+            "MemoryReservation": 128,
+            "Name": "mycontainer",
+            "Environment": [
+              {
+                "Name": "APPVERSION",
+                "Value": "1.0.1"
+              }
+            ],
+            "PortMappings": [
+              {
+                "ContainerPort": 4000,
+                "HostPort": 4000,
+                "Protocol": "tcp"
+              }
+            ]
+          }
+        ],
+        "Cpu": "256",
+        "Family": "mytask",
+        "Memory": "512",
+        "RequiresCompatibilities": [
+          "FARGATE"
+        ],
+        "NetworkMode": "awsvpc"
+      },
+      "DependsOn": "MyTask1"
+    },
+    "GreenTargetGroup": {
+      "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+      "Properties": {
+        "HealthCheckEnabled": true,
+        "HealthCheckIntervalSeconds": 30,
+        "HealthCheckPath": "/",
+        "HealthCheckPort": "4000",
+        "HealthCheckProtocol": "HTTP",
+        "HealthCheckTimeoutSeconds": 10,
+        "HealthyThresholdCount": 5,
+        "Matcher": {
+          "HttpCode": "200"
+        },
+        "Name": "OctopusGreenTargetGroup",
+        "Port": 4000,
+        "Protocol": "HTTP",
+        "TargetType": "ip",
+        "UnhealthyThresholdCount": 5,
+        "VpcId": "vpc-04fb5b2e72c17ca68"
+      }
+    },
+    "BlueTargetGroup": {
+      "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+      "Properties": {
+        "HealthCheckEnabled": true,
+        "HealthCheckIntervalSeconds": 30,
+        "HealthCheckPath": "/",
+        "HealthCheckPort": "4000",
+        "HealthCheckProtocol": "HTTP",
+        "HealthCheckTimeoutSeconds": 10,
+        "HealthyThresholdCount": 5,
+        "Matcher": {
+          "HttpCode": "200"
+        },
+        "Name": "OctopusBlueTargetGroup",
+        "Port": 4000,
+        "Protocol": "HTTP",
+        "TargetType": "ip",
+        "UnhealthyThresholdCount": 5,
+        "VpcId": "vpc-04fb5b2e72c17ca68"
+      }
+    },
+    "GreenTaskSet": {
+      "Type": "AWS::ECS::TaskSet",
+      "Properties": {
+        "Cluster": "arn:aws:ecs:us-east-1:968802670493:cluster/mattctest",
+        "ExternalId": "OctopusGreenStack",
+        "LaunchType": "FARGATE",
+        "NetworkConfiguration": {
+          "AwsvpcConfiguration": {
+            "AssignPublicIp": "ENABLED",
+            "SecurityGroups": [
+              "sg-043789abf52c12d9a"
+            ],
+            "Subnets": [
+              "subnet-0af41f8e0404d7b23",
+              "subnet-0c2515119bdf77d4c",
+              "subnet-09d1a3362fac596a9"
+            ]
+          }
+        },
+        "LoadBalancers": [
+          {
+            "ContainerName": "mycontainer",
+            "ContainerPort": 4000,
+            "TargetGroupArn": {
+              "Ref": "GreenTargetGroup"
+            }
+          }
+        ],
+        "Scale": {
+          "Unit": "PERCENT",
+          "Value": 100
+        },
+        "Service": "myservice",
+        "TaskDefinition": {"Ref": "MyTask2"}
+      },
+      "DependsOn": [
+        "MyService",
+        "GreenTargetGroup"
+      ]
+    },
+    "BlueTaskSet": {
+      "Type": "AWS::ECS::TaskSet",
+      "Properties": {
+        "Cluster": "arn:aws:ecs:us-east-1:968802670493:cluster/mattctest",
+        "ExternalId": "OctopusBlueStack",
+        "LaunchType": "FARGATE",
+        "NetworkConfiguration": {
+          "AwsvpcConfiguration": {
+            "AssignPublicIp": "ENABLED",
+            "SecurityGroups": [
+              "sg-043789abf52c12d9a"
+            ],
+            "Subnets": [
+              "subnet-0af41f8e0404d7b23",
+              "subnet-0c2515119bdf77d4c",
+              "subnet-09d1a3362fac596a9"
+            ]
+          }
+        },
+        "LoadBalancers": [
+          {
+            "ContainerName": "mycontainer",
+            "ContainerPort": 4000,
+            "TargetGroupArn": {
+              "Ref": "BlueTargetGroup"
+            }
+          }
+        ],
+        "Scale": {
+          "Unit": "PERCENT",
+          "Value": 100
+        },
+        "Service": "myservice",
+        "TaskDefinition": {"Ref": "MyTask1"}
+      },
+      "DependsOn": [
+        "MyService",
+        "BlueTargetGroup"
+      ]
+    },
+    "MyService": {
+      "Type": "AWS::ECS::Service",
+      "Properties": {
+        "Cluster": "arn:aws:ecs:us-east-1:968802670493:cluster/mattctest",
+        "ServiceName": "myservice",
+        "DeploymentController": {
+          "Type": "EXTERNAL"
+        }
+      }
+    },
+    "MyListener": {
+      "Type": "AWS::ElasticLoadBalancingV2::Listener",
+      "Properties": {
+        "DefaultActions": [
+          {
+            "FixedResponseConfig": {
+              "StatusCode": "404"
+            },
+            "Order": 1,
+            "Type": "fixed-response"
+          }
+        ],
+        "LoadBalancerArn": "arn:aws:elasticloadbalancing:us-east-1:968802670493:loadbalancer/app/mattctest/3a1496378bd20439",
+        "Port": 80,
+        "Protocol": "HTTP"
+      }
+    },
+    "MyListenerRule": {
+      "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+      "Properties": {
+        "Actions": [
+          {
+            "ForwardConfig": {
+              "TargetGroups": [
+                {
+                  "TargetGroupArn": {
+                    "Ref": "GreenTargetGroup"
+                  },
+                  "Weight": 0
+                },
+                {
+                  "TargetGroupArn": {
+                    "Ref": "BlueTargetGroup"
+                  },
+                  "Weight": 100
+                }
+              ]
+            },
+            "Order": 1,
+            "Type": "forward"
+          }
+        ],
+        "Conditions": [
+          {
+            "Field": "path-pattern",
+            "PathPatternConfig": {
+              "Values": [
+                "/*"
+              ]
+            }
+          }
+        ],
+        "ListenerArn": {
+          "Ref": "MyListener"
+        },
+        "Priority": 10
+      },
+      "DependsOn": [
+        "MyListener",
+        "GreenTargetGroup",
+        "BlueTargetGroup"
+      ]
+    }
+  }
+}
 ```
