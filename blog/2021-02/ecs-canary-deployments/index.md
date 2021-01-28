@@ -51,11 +51,12 @@ The task definition configures the sample application to listen to traffic on po
 
 We'll update the `APPVERSION` environment variable as a way of simulating new application versions being deployed.
 
-Here is the first task definition. Note the resource name has a random string appended to it. Each time this template is deployed, the task definition will have a distinct name. This means CloudFormation will create a new task definition, but not delete any previously deployed task definition:
+Here is the first task definition. Note the `UpdateReplacePolicy` property is set to `Retain`. This means CloudFormation will create a new task definition, but not delete any previously deployed task definition:
 
 ```json
-    "MyTask19a1ac4cbba79425494fdc2a7a9498783": {
+    "MyTask": {
       "Type": "AWS::ECS::TaskDefinition",
+      "UpdateReplacePolicy": "Retain",
       "Properties": {
         "ContainerDefinitions": [
           {
@@ -186,7 +187,7 @@ In this example, each task set points to the same task definition. This means fo
           "Value": 100
         },
         "Service": "myservice",
-        "TaskDefinition": {"Ref": "MyTask19a1ac4cbba79425494fdc2a7a9498783"}
+        "TaskDefinition": {"Ref": "MyTask"}
       },
       "DependsOn": [
         "MyService",
@@ -229,7 +230,7 @@ In this example, each task set points to the same task definition. This means fo
           "Value": 100
         },
         "Service": "myservice",
-        "TaskDefinition": {"Ref": "MyTask19a1ac4cbba79425494fdc2a7a9498783"}
+        "TaskDefinition": {"Ref": "MyTask"}
       },
       "DependsOn": [
         "MyService",
@@ -343,8 +344,9 @@ Here is the complete CloudFormation template:
 ```json
 {
   "Resources": {
-    "MyTask19a1ac4cbba79425494fdc2a7a9498783": {
+    "MyTask": {
       "Type": "AWS::ECS::TaskDefinition",
+      "UpdateReplacePolicy": "Retain",
       "Properties": {
         "ContainerDefinitions": [
           {
@@ -452,7 +454,7 @@ Here is the complete CloudFormation template:
           "Value": 100
         },
         "Service": "myservice",
-        "TaskDefinition": {"Ref": "MyTask19a1ac4cbba79425494fdc2a7a9498783"}
+        "TaskDefinition": {"Ref": "MyTask"}
       },
       "DependsOn": [
         "MyService",
@@ -492,7 +494,7 @@ Here is the complete CloudFormation template:
           "Value": 100
         },
         "Service": "myservice",
-        "TaskDefinition": {"Ref": "MyTask19a1ac4cbba79425494fdc2a7a9498783"}
+        "TaskDefinition": {"Ref": "MyTask"}
       },
       "DependsOn": [
         "MyService",
@@ -572,6 +574,24 @@ Here is the complete CloudFormation template:
         "BlueTargetGroup"
       ]
     }
+  },
+  "Outputs": {
+    "BlueTaskSet": {
+      "Description": "The blue service task set",
+      "Value": {"Fn::GetAtt": ["BlueTaskSet", "Id"]}
+    },
+    "GreenTaskSet": {
+      "Description": "The green service task set",
+      "Value": {"Fn::GetAtt": ["GreenTaskSet", "Id"]}
+    },
+    "BlueTargetGroup": {
+      "Description": "The blue target group",
+      "Value": {"Ref": "BlueTargetGroup"}
+    },
+    "GreenTargetGroup": {
+      "Description": "The green target group",
+      "Value": {"Ref": "GreenTargetGroup"}
+    }
   }
 }
 ```
@@ -597,4 +617,412 @@ The target groups have had the tasks added to them by ECS:
 As this was our first deployment, the task sets both point to the same task definition, and there is nothing to switch between as part of a blue/green or canary deployment.
 
 We will assume at this point that this initial deployment is complete. This means that the blue stack represents the currently deployed and publicly available version of the application receiving 100% of the traffic, and that the green stack is unused.
+
+## Query the current blue task set
+
+To get the state of current blue task set, we can use the following call to the AWS CLI. The `--task-sets` parameter is set to the `BlueTaskSet` output value returned by the CLoudFormation stack:
+
+```
+aws ecs describe-task-sets --cluster "arn:aws:ecs:us-east-1:968802670493:cluster/mattctest" --service myservice --task-sets "ecs-svc/8260773081660460393"
+```
+
+This will return the configuration of the blue task set:
+
+```json
+{
+    "taskSets": [
+        {
+            "id": "ecs-svc/8260773081660460393",
+            "taskSetArn": "arn:aws:ecs:us-east-1:968802670493:task-set/mattctest/myservice/ecs-svc/8260773081660460393",
+            "serviceArn": "arn:aws:ecs:us-east-1:968802670493:service/myservice",
+            "clusterArn": "arn:aws:ecs:us-east-1:968802670493:cluster/mattctest",
+            "externalId": "OctopusBlueStack",
+            "status": "ACTIVE",
+            "taskDefinition": "arn:aws:ecs:us-east-1:968802670493:task-definition/mytask:22",
+            "computedDesiredCount": 1,
+            "pendingCount": 0,
+            "runningCount": 1,
+            "createdAt": 1611869109.157,
+            "updatedAt": 1611869219.178,
+            "launchType": "FARGATE",
+            "platformVersion": "1.3.0",
+            "networkConfiguration": {
+                "awsvpcConfiguration": {
+                    "subnets": [
+                        "subnet-0af41f8e0404d7b23",
+                        "subnet-0c2515119bdf77d4c",
+                        "subnet-09d1a3362fac596a9"
+                    ],
+                    "securityGroups": [
+                        "sg-043789abf52c12d9a"
+                    ],
+                    "assignPublicIp": "ENABLED"
+                }
+            },
+            "loadBalancers": [
+                {
+                    "targetGroupArn": "arn:aws:elasticloadbalancing:us-east-1:968802670493:targetgroup/OctopusBlueTargetGroup/52d9822ce6afb1fd",
+                    "containerName": "mycontainer",
+                    "containerPort": 4000
+                }
+            ],
+            "serviceRegistries": [],
+            "scale": {
+                "value": 100.0,
+                "unit": "PERCENT"
+            },
+            "stabilityStatus": "STEADY_STATE",
+            "stabilityStatusAt": 1611869219.178,
+            "tags": []
+        }
+    ],
+    "failures": []
+}
+```
+
+We need to copy out any relevant values from the current state returned above into the blue task set resource defined in our own CloudFormation template. In particular, we want to retain the task definition that the task set is currently configured with.
+
+It would also be worth considering if other details, like the container name or port, needed to be updated. However, in our case we know the only property we need to copy is the `TaskDefinition`.
+
+Below we update the `TaskDefinition` property to reference the fixed task definition version:
+
+```json
+    "BlueTaskSet": {
+      "Type": "AWS::ECS::TaskSet",
+      "Properties": {
+        "Cluster": "arn:aws:ecs:us-east-1:968802670493:cluster/mattctest",
+        "ExternalId": "OctopusBlueStack",
+        "LaunchType": "FARGATE",
+        "NetworkConfiguration": {
+          "AwsvpcConfiguration": {
+            "AssignPublicIp": "ENABLED",
+            "SecurityGroups": [
+              "sg-043789abf52c12d9a"
+            ],
+            "Subnets": [
+              "subnet-0af41f8e0404d7b23",
+              "subnet-0c2515119bdf77d4c",
+              "subnet-09d1a3362fac596a9"
+            ]
+          }
+        },
+        "LoadBalancers": [
+          {
+            "ContainerName": "mycontainer",
+            "ContainerPort": 4000,
+            "TargetGroupArn": {
+              "Ref": "BlueTargetGroup"
+            }
+          }
+        ],
+        "Scale": {
+          "Unit": "PERCENT",
+          "Value": 100
+        },
+        "Service": "myservice",
+        "TaskDefinition": "arn:aws:ecs:us-east-1:968802670493:task-definition/mytask:22"
+      },
+      "DependsOn": [
+        "MyService",
+        "BlueTargetGroup"
+      ]
+    }
+```
+
+Let's now configure a new version of our task definition. We'll demonstrate this new version by updating the `APPVERSION` environment variable:
+
+```json
+  "MyTask": {
+      "Type": "AWS::ECS::TaskDefinition",
+      "UpdateReplacePolicy": "Retain",
+      "Properties": {
+        "ContainerDefinitions": [
+          {
+            "Cpu": 256,
+            "Image": "octopussamples/helloworldwithversion",
+            "Memory": 512,
+            "MemoryReservation": 128,
+            "Name": "mycontainer",
+            "Environment": [
+              {
+                "Name": "APPVERSION",
+                "Value": "1.0.1"
+              }
+            ],
+            "PortMappings": [
+              {
+                "ContainerPort": 4000,
+                "HostPort": 4000,
+                "Protocol": "tcp"
+              }
+            ]
+          }
+        ],
+        "Cpu": "256",
+        "Family": "mytask",
+        "Memory": "512",
+        "RequiresCompatibilities": [
+          "FARGATE"
+        ],
+        "NetworkMode": "awsvpc"
+      }
+    }
+```
+
+Here is the complete template for the new deployment:
+
+```json
+{
+  "Resources": {
+    "MyTask": {
+      "Type": "AWS::ECS::TaskDefinition",
+      "UpdateReplacePolicy": "Retain",
+      "Properties": {
+        "ContainerDefinitions": [
+          {
+            "Cpu": 256,
+            "Image": "octopussamples/helloworldwithversion",
+            "Memory": 512,
+            "MemoryReservation": 128,
+            "Name": "mycontainer",
+            "Environment": [
+              {
+                "Name": "APPVERSION",
+                "Value": "1.0.1"
+              }
+            ],
+            "PortMappings": [
+              {
+                "ContainerPort": 4000,
+                "HostPort": 4000,
+                "Protocol": "tcp"
+              }
+            ]
+          }
+        ],
+        "Cpu": "256",
+        "Family": "mytask",
+        "Memory": "512",
+        "RequiresCompatibilities": [
+          "FARGATE"
+        ],
+        "NetworkMode": "awsvpc"
+      }
+    },   
+    "GreenTargetGroup": {
+      "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+      "Properties": {
+        "HealthCheckEnabled": true,
+        "HealthCheckIntervalSeconds": 30,
+        "HealthCheckPath": "/",
+        "HealthCheckPort": "4000",
+        "HealthCheckProtocol": "HTTP",
+        "HealthCheckTimeoutSeconds": 10,
+        "HealthyThresholdCount": 5,
+        "Matcher": {
+          "HttpCode": "200"
+        },
+        "Name": "OctopusGreenTargetGroup",
+        "Port": 4000,
+        "Protocol": "HTTP",
+        "TargetType": "ip",
+        "UnhealthyThresholdCount": 5,
+        "VpcId": "vpc-04fb5b2e72c17ca68"
+      }
+    },
+    "BlueTargetGroup": {
+      "Type": "AWS::ElasticLoadBalancingV2::TargetGroup",
+      "Properties": {
+        "HealthCheckEnabled": true,
+        "HealthCheckIntervalSeconds": 30,
+        "HealthCheckPath": "/",
+        "HealthCheckPort": "4000",
+        "HealthCheckProtocol": "HTTP",
+        "HealthCheckTimeoutSeconds": 10,
+        "HealthyThresholdCount": 5,
+        "Matcher": {
+          "HttpCode": "200"
+        },
+        "Name": "OctopusBlueTargetGroup",
+        "Port": 4000,
+        "Protocol": "HTTP",
+        "TargetType": "ip",
+        "UnhealthyThresholdCount": 5,
+        "VpcId": "vpc-04fb5b2e72c17ca68"
+      }
+    },
+    "GreenTaskSet": {
+      "Type": "AWS::ECS::TaskSet",
+      "Properties": {
+        "Cluster": "arn:aws:ecs:us-east-1:968802670493:cluster/mattctest",
+        "ExternalId": "OctopusGreenStack",
+        "LaunchType": "FARGATE",
+        "NetworkConfiguration": {
+          "AwsvpcConfiguration": {
+            "AssignPublicIp": "ENABLED",
+            "SecurityGroups": [
+              "sg-043789abf52c12d9a"
+            ],
+            "Subnets": [
+              "subnet-0af41f8e0404d7b23",
+              "subnet-0c2515119bdf77d4c",
+              "subnet-09d1a3362fac596a9"
+            ]
+          }
+        },
+        "LoadBalancers": [
+          {
+            "ContainerName": "mycontainer",
+            "ContainerPort": 4000,
+            "TargetGroupArn": {
+              "Ref": "GreenTargetGroup"
+            }
+          }
+        ],
+        "Scale": {
+          "Unit": "PERCENT",
+          "Value": 100
+        },
+        "Service": "myservice",
+        "TaskDefinition": {"Ref": "MyTask"}
+      },
+      "DependsOn": [
+        "MyService",
+        "GreenTargetGroup"
+      ]
+    },
+    "BlueTaskSet": {
+      "Type": "AWS::ECS::TaskSet",
+      "Properties": {
+        "Cluster": "arn:aws:ecs:us-east-1:968802670493:cluster/mattctest",
+        "ExternalId": "OctopusBlueStack",
+        "LaunchType": "FARGATE",
+        "NetworkConfiguration": {
+          "AwsvpcConfiguration": {
+            "AssignPublicIp": "ENABLED",
+            "SecurityGroups": [
+              "sg-043789abf52c12d9a"
+            ],
+            "Subnets": [
+              "subnet-0af41f8e0404d7b23",
+              "subnet-0c2515119bdf77d4c",
+              "subnet-09d1a3362fac596a9"
+            ]
+          }
+        },
+        "LoadBalancers": [
+          {
+            "ContainerName": "mycontainer",
+            "ContainerPort": 4000,
+            "TargetGroupArn": {
+              "Ref": "BlueTargetGroup"
+            }
+          }
+        ],
+        "Scale": {
+          "Unit": "PERCENT",
+          "Value": 100
+        },
+        "Service": "myservice",
+        "TaskDefinition": "arn:aws:ecs:us-east-1:968802670493:task-definition/mytask:22"
+      },
+      "DependsOn": [
+        "MyService",
+        "BlueTargetGroup"
+      ]
+    },
+    "MyService": {
+      "Type": "AWS::ECS::Service",
+      "Properties": {
+        "Cluster": "arn:aws:ecs:us-east-1:968802670493:cluster/mattctest",
+        "ServiceName": "myservice",
+        "DeploymentController": {
+          "Type": "EXTERNAL"
+        }
+      }
+    },
+    "MyListener": {
+      "Type": "AWS::ElasticLoadBalancingV2::Listener",
+      "Properties": {
+        "DefaultActions": [
+          {
+            "FixedResponseConfig": {
+              "StatusCode": "404"
+            },
+            "Order": 1,
+            "Type": "fixed-response"
+          }
+        ],
+        "LoadBalancerArn": "arn:aws:elasticloadbalancing:us-east-1:968802670493:loadbalancer/app/mattctest/3a1496378bd20439",
+        "Port": 80,
+        "Protocol": "HTTP"
+      }
+    },
+    "MyListenerRule": {
+      "Type": "AWS::ElasticLoadBalancingV2::ListenerRule",
+      "Properties": {
+        "Actions": [
+          {
+            "ForwardConfig": {
+              "TargetGroups": [
+                {
+                  "TargetGroupArn": {
+                    "Ref": "GreenTargetGroup"
+                  },
+                  "Weight": 0
+                },
+                {
+                  "TargetGroupArn": {
+                    "Ref": "BlueTargetGroup"
+                  },
+                  "Weight": 100
+                }
+              ]
+            },
+            "Order": 1,
+            "Type": "forward"
+          }
+        ],
+        "Conditions": [
+          {
+            "Field": "path-pattern",
+            "PathPatternConfig": {
+              "Values": [
+                "/*"
+              ]
+            }
+          }
+        ],
+        "ListenerArn": {
+          "Ref": "MyListener"
+        },
+        "Priority": 10
+      },
+      "DependsOn": [
+        "MyListener",
+        "GreenTargetGroup",
+        "BlueTargetGroup"
+      ]
+    }
+  },
+  "Outputs": {
+    "BlueTaskSet": {
+      "Description": "The blue service task set",
+      "Value": {"Fn::GetAtt": ["BlueTaskSet", "Id"]}
+    },
+    "GreenTaskSet": {
+      "Description": "The green service task set",
+      "Value": {"Fn::GetAtt": ["GreenTaskSet", "Id"]}
+    },
+    "BlueTargetGroup": {
+      "Description": "The blue target group",
+      "Value": {"Ref": "BlueTargetGroup"}
+    },
+    "GreenTargetGroup": {
+      "Description": "The green target group",
+      "Value": {"Ref": "GreenTargetGroup"}
+    }
+  }
+}
+```
 
