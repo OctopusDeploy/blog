@@ -162,7 +162,7 @@ $ProjectName = "#{Project.SSISDB.Project.Name}"
 
 
 # fix the problem
-Clear-Parameter -ParameterName "CM.WWI_DW_Destination_DB.ConnectByProxy"
+Clear-Parameter -ParameterName "CM.WWI_Source_DB.ConnectByProxy"
 ```
 
 With this script, you can call Clear-Parameter for whatever parameters that need to be set to `Use default value from package` on.
