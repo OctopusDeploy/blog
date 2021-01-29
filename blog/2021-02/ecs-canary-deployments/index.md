@@ -51,10 +51,10 @@ The task definition configures the sample application to listen to traffic on po
 
 We'll update the `APPVERSION` environment variable as a way of simulating new application versions being deployed.
 
-Here is the first task definition. Note the `UpdateReplacePolicy` property is set to `Retain`, and the resource name has a random string appended to it. This means CloudFormation will create a new task definition, but not delete any previously deployed task definition:
+Here is the first task definition. Note the `UpdateReplacePolicy` property is set to `Retain`. This means CloudFormation will create a new task definition, but not delete any previously deployed task definition:
 
 ```json
-    "MyTask10d4f29d4aa0474dbd4b0435922cd032": {
+    "MyTask": {
       "Type": "AWS::ECS::TaskDefinition",
       "UpdateReplacePolicy": "Retain",
       "Properties": {
@@ -344,7 +344,7 @@ Here is the complete CloudFormation template:
 ```json
 {
   "Resources": {
-    "MyTask10d4f29d4aa0474dbd4b0435922cd032": {
+    "MyTask": {
       "Type": "AWS::ECS::TaskDefinition",
       "UpdateReplacePolicy": "Retain",
       "Properties": {
@@ -454,7 +454,7 @@ Here is the complete CloudFormation template:
           "Value": 100
         },
         "Service": "myservice",
-        "TaskDefinition": {"Ref": "MyTask10d4f29d4aa0474dbd4b0435922cd032"}
+        "TaskDefinition": {"Ref": "MyTask"}
       },
       "DependsOn": [
         "MyService",
@@ -494,7 +494,7 @@ Here is the complete CloudFormation template:
           "Value": 100
         },
         "Service": "myservice",
-        "TaskDefinition": {"Ref": "MyTask10d4f29d4aa0474dbd4b0435922cd032"}
+        "TaskDefinition": {"Ref": "MyTask"}
       },
       "DependsOn": [
         "MyService",
@@ -729,10 +729,10 @@ Below we update the `TaskDefinition` property to reference the fixed task defini
     }
 ```
 
-Let's now configure a new version of our task definition. We'll demonstrate this new version by updating the `APPVERSION` environment variable. Note that we have a new random string appended to the resource name:
+Let's now configure a new version of our task definition. We'll demonstrate this new version by updating the `APPVERSION` environment variable:
 
 ```json
-  "MyTask3cc1c6eefc0643e9b225a0bf871ab389": {
+  "MyTask": {
       "Type": "AWS::ECS::TaskDefinition",
       "UpdateReplacePolicy": "Retain",
       "Properties": {
@@ -884,7 +884,7 @@ Here is the complete template for the new deployment:
           "Value": 100
         },
         "Service": "myservice",
-        "TaskDefinition": {"Ref": "MyTask3cc1c6eefc0643e9b225a0bf871ab389"}
+        "TaskDefinition": {"Ref": "MyTask"}
       },
       "DependsOn": [
         "MyService",
@@ -924,7 +924,7 @@ Here is the complete template for the new deployment:
           "Value": 100
         },
         "Service": "myservice",
-        "TaskDefinition": "arn:aws:ecs:us-east-1:968802670493:task-definition/mytask:22"
+        "TaskDefinition": "arn:aws:ecs:us-east-1:968802670493:task-definition/mytask:26"
       },
       "DependsOn": [
         "MyService",
@@ -1026,4 +1026,31 @@ Here is the complete template for the new deployment:
 }
 ```
 
-After deploying this second template, we now have a service with tasks referencing two task definitions. The blue task set is pointing to the previous deployment, while the green task set is pointing to the new deployment.
+After deploying this second template, we now have a service with tasks referencing two task definitions. The blue task set is pointing to the previous deployment, while the green task set is pointing to the new deployment:
+
+![](task1.png "width=500")
+
+![](task2.png "width=500")
+
+End users still don't have access to the new deployment though, as the listener rule is directing 100% of traffic to the blue stack.
+
+```bash
+aws elbv2 modify-rule \
+  --rule-arn "arn:aws:elasticloadbalancing:us-east-1:968802670493:listener-rule/app/mattctest/3a1496378bd20439/b934cb81e0365dab/945df85599ee2912" \
+  --actions '[{
+    "Type": "forward",
+    "Order": 10, 
+    "ForwardConfig": {
+      "TargetGroups": [
+        { 
+          "Weight": 100, 
+          "TargetGroupArn": "arn:aws:elasticloadbalancing:us-east-1:968802670493:targetgroup/OctopusBlueTargetGroup/52d9822ce6afb1fd" 
+        },
+        { 
+          "Weight": 30, 
+          "TargetGroupArn": "arn:aws:elasticloadbalancing:us-east-1:968802670493:targetgroup/OctopusGreenTargetGroup/f52cb2839cc063d9" 
+        }
+      ]
+    }
+  }]'
+```
