@@ -241,17 +241,25 @@ In this example, each task set points to the same task definition. This means fo
 
 ## The `AWS::ECS::Service` resource
 
-The service will ensure the desired number of tasks are run, and continue to run. Typically we would configure the service to reference a task definition directly, but in our case we will use task sets to link a service to a task definition. This means our service is quite sparse:
+The service will ensure the desired number of tasks are run, and continue to run. Typically we would configure the service to reference a task definition directly, but in our case we will use task sets to link a service to a task definition. This means our service is quite sparse.
+
+We do add a tag to the service to indicate the stack that holds the previous, stable deployment. When deploying this template, we always consider the blue stack to the be previous deployment, and the green stack to be the new deployment. However, the cut over from blue to green will involve updating this tag to indicate that the green stack passed testing and is the new stable stack:
 
 ```json
-  "MyService": {
+    "MyService": {
       "Type": "AWS::ECS::Service",
       "Properties": {
         "Cluster": "arn:aws:ecs:us-east-1:968802670493:cluster/mattctest",
         "ServiceName": "myservice",
         "DeploymentController": {
           "Type": "EXTERNAL"
-        }
+        },
+        "Tags": [
+          {
+            "Key": "StableStack",
+            "Value": "Blue"
+          }
+        ]
       }
     }
 ```
@@ -508,7 +516,13 @@ Here is the complete CloudFormation template:
         "ServiceName": "myservice",
         "DeploymentController": {
           "Type": "EXTERNAL"
-        }
+        },
+        "Tags": [
+          {
+            "Key": "StableStack",
+            "Value": "Blue"
+          }
+        ]
       }
     },
     "MyListener": {
@@ -618,12 +632,26 @@ As this was our first deployment, the task sets both point to the same task defi
 
 We will assume at this point that this initial deployment is complete. This means that the blue stack represents the currently deployed and publicly available version of the application receiving 100% of the traffic, and that the green stack is unused.
 
-## Query the current blue task set
+## Deploying a new version to the green task set
 
-To get the state of current blue task set, we can use the following call to the AWS CLI. The `--task-sets` parameter is set to the `BlueTaskSet` output value returned by the CloudFormation stack:
+If you recall from earlier, we added a tag to the service to indicate which stack, blue or green, was the stable stack. We now want to find the details of the stable stack and copy them back into the blue stack as we start a new deployment.
 
+We know this tag is currently set to `Blue`, because that is what we set it to, and nothing has changed it. But we can extract the value of the tag with the command:
+
+```bash
+STACK=`aws ecs list-tags-for-resource --resource-arn arn:aws:ecs:us-east-1:968802670493:service/mattctest/myservice | jq -r '.tags[] | select(.key == "StableStack") | .value'`
 ```
-aws ecs describe-task-sets --cluster "arn:aws:ecs:us-east-1:968802670493:cluster/mattctest" --service myservice --task-sets "ecs-svc/8260773081660460393"
+
+We can then get the task set ID of the active stack from the CloudFormation template output with the command:
+
+```bash
+TASKSET=`aws cloudformation describe-stacks --stack-name ecs-task-test-2 --query "Stacks[0].Outputs[?OutputKey=='${STACK}TaskSet'].OutputValue" --output text`
+```
+
+Finally, we can inspect the state of the stable task set with the command:
+
+```bash
+aws ecs describe-task-sets --cluster "arn:aws:ecs:us-east-1:968802670493:cluster/mattctest" --service myservice --task-sets "${TASKSET}"
 ```
 
 This will return the configuration of the blue task set:
@@ -680,7 +708,7 @@ This will return the configuration of the blue task set:
 }
 ```
 
-We need to copy out any relevant values from the current state returned above into the blue task set resource defined in our own CloudFormation template. In particular, we want to retain the task definition that the task set is currently configured with.
+To perform the second deployment, we need to copy out any relevant values from the state of the stable task set into the blue task set resource defined in our own CloudFormation template. In particular, we want to retain the task definition that the task set is currently configured with.
 
 It would also be worth considering if other details, like the container name or port, needed to be updated. However, in our case we know the only property we need to copy is the `TaskDefinition`.
 
@@ -729,6 +757,8 @@ Below we update the `TaskDefinition` property to reference the fixed task defini
     }
 ```
 
+So far all we have done is recreated the blue task set with a fixed `TaskDefinition`. This may seem redundant, but the process of finding the stable task set and configuring the new blue stack based on its value will allow us to cycle back and forth between the blue and green stacks as we perform blue/green or canary deployments.
+
 Let's now configure a new version of our task definition. We'll demonstrate this new version by updating the `APPVERSION` environment variable:
 
 ```json
@@ -769,7 +799,7 @@ Let's now configure a new version of our task definition. We'll demonstrate this
     }
 ```
 
-Here is the complete template for the new deployment:
+This new task definition will be configured in the green task set. Here is the complete template for the new deployment:
 
 ```json
 {
@@ -938,7 +968,13 @@ Here is the complete template for the new deployment:
         "ServiceName": "myservice",
         "DeploymentController": {
           "Type": "EXTERNAL"
-        }
+        },
+        "Tags": [
+          {
+            "Key": "StableStack",
+            "Value": "Blue"
+          }
+        ]
       }
     },
     "MyListener": {
@@ -1026,13 +1062,13 @@ Here is the complete template for the new deployment:
 }
 ```
 
-After deploying this second template, we now have a service with tasks referencing two task definitions. The blue task set is pointing to the previous deployment, while the green task set is pointing to the new deployment:
+After deploying this second template, we now have a service with tasks referencing two task definitions. The blue task set is pointing to the previous stable deployment, while the green task set is pointing to the new deployment:
 
 ![](task1.png "width=500")
 
 ![](task2.png "width=500")
 
-End users still don't have access to the new deployment though, as the listener rule is directing 100% of traffic to the blue stack, which exposes the previous deployment. 
+End users still don't have access to the new deployment though, as the listener rule is directing 100% of traffic to the blue stable stack.
 
 To progress our canary deployment towards the green stack we can run the following AWS CLI command, which will update the weights to direct 10% of traffic to the new deployment in the green stack:
 
@@ -1059,5 +1095,24 @@ aws elbv2 modify-rule \
 
 ![](canary-traffic.png "width=500")
 
-The weights can be incrementally updated to drive more traffic to the green stack, eventually reaching a point where the green stack is receiving 100% of the traffic.
+With traffic split between the stable blue task set and the new green task set, we can now run whatever tests we need to validate that the new deployment is working as expected. Unlike with the blue/green deployment driven by CodeDeploy, there is no automatic progression from blue to green, and we are in complete control as to how much traffic is split between the stacks, and when.
+
+The weights can be incrementally updated to drive more traffic to the green stack, eventually reaching a point where the green stack is receiving 100% of the traffic. At this point the green stack represents the stable stack. We reflect this change in the tag assigned to the service with the command:
+
+```bash
+aws ecs tag-resource --resource-arn arn:aws:ecs:us-east-1:968802670493:service/mattctest/myservice --tags key=StableStack,value=Green
+```
+
+Had we found an error with the new green stack, we would simply return all traffic to the blue stack. The **StableStack** tag remains set to **Blue**, and we can run through the process again. As long as each time we create the CloudFormation template we recreate the new blue stack with the details of the old stable stack, it doesn't matter if the last deployment successfully transitioned all the way to the green stack, because the **StableStack** tag will point us to what is considered the last stable stack color.
+
+At this point we can go back and run through the process again:
+
+1. Find the value assigned to the **StableStack** tag.
+2. Get the ID of the stable task set from the CloudFormation outputs.
+3. Query the current state of the stable task set.
+4. Update the CloudFormation template with a new task definition, and the blue task set configured to match the current green task set.
+5. Direct traffic from the blue target group to the green target group.
+6. If all goes well, direct 100% of traffic to the green stack and set the **StableStack** tag to **Green**.
+7. If problems were found, direct 100% of traffic to the blue stack, and leave the **StableStack** tag to **Blue**.
+8. Go to step 1.
 
