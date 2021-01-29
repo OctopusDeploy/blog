@@ -1032,7 +1032,9 @@ After deploying this second template, we now have a service with tasks referenci
 
 ![](task2.png "width=500")
 
-End users still don't have access to the new deployment though, as the listener rule is directing 100% of traffic to the blue stack.
+End users still don't have access to the new deployment though, as the listener rule is directing 100% of traffic to the blue stack, which exposes the previous deployment. 
+
+To progress our canary deployment towards the green stack we can run the following AWS CLI command, which will update the weights to direct 10% of traffic to the new deployment in the green stack:
 
 ```bash
 aws elbv2 modify-rule \
@@ -1043,14 +1045,19 @@ aws elbv2 modify-rule \
     "ForwardConfig": {
       "TargetGroups": [
         { 
-          "Weight": 100, 
+          "Weight": 90, 
           "TargetGroupArn": "arn:aws:elasticloadbalancing:us-east-1:968802670493:targetgroup/OctopusBlueTargetGroup/52d9822ce6afb1fd" 
         },
         { 
-          "Weight": 30, 
+          "Weight": 10, 
           "TargetGroupArn": "arn:aws:elasticloadbalancing:us-east-1:968802670493:targetgroup/OctopusGreenTargetGroup/f52cb2839cc063d9" 
         }
       ]
     }
   }]'
 ```
+
+![](canary-traffic.png "width=500")
+
+The weights can be incrementally updated to drive more traffic to the green stack, eventually reaching a point where the green stack is receiving 100% of the traffic.
+
