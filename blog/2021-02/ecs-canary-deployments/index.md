@@ -51,7 +51,7 @@ The task definition configures the sample application to listen to traffic on po
 
 We'll update the `APPVERSION` environment variable as a way of simulating new application versions being deployed.
 
-Here is the first task definition. Note the `UpdateReplacePolicy` property is set to `Retain`. This means CloudFormation will create a new task definition, but not delete any previously deployed task definition:
+Here is the first task definition. Note the `UpdateReplacePolicy` property is set to `Retain`. This means CloudFormation will create a new task definition, but not delete (or, more technically, mark as inactive) any previously deployed task definition:
 
 ```json
     "MyTask": {
@@ -636,7 +636,9 @@ We will assume at this point that this initial deployment is complete. This mean
 
 If you recall from earlier, we added a tag to the service to indicate which stack, blue or green, was the stable stack. We now want to find the details of the stable stack and copy them back into the blue stack as we start a new deployment.
 
-We know this tag is currently set to `Blue`, because that is what we set it to, and nothing has changed it. But we can extract the value of the tag with the command:
+We know this tag is currently set to `Blue`, because that is what we set it to, and nothing has changed it. However we still want to run through the process of extracting the tag value in a repeatable way because the next deployment can't assume the tag has a known value.
+
+The command below will extract the value of the tag:
 
 ```bash
 STACK=`aws ecs list-tags-for-resource --resource-arn arn:aws:ecs:us-east-1:968802670493:service/mattctest/myservice | jq -r '.tags[] | select(.key == "StableStack") | .value'`
@@ -708,9 +710,13 @@ This will return the configuration of the blue task set:
 }
 ```
 
+This task set defines the state of the stable task set.
+
 To perform the second deployment, we need to copy out any relevant values from the state of the stable task set into the blue task set resource defined in our own CloudFormation template. In particular, we want to retain the task definition that the task set is currently configured with.
 
 It would also be worth considering if other details, like the container name or port, needed to be updated. However, in our case we know the only property we need to copy is the `TaskDefinition`.
+
+Copying the state of the stable task set into our new blue task set resets our deployment to the canonical blue/green model, where blue is the stable deployment, and green is the new deployment.
 
 Below we update the `TaskDefinition` property to reference the fixed task definition version:
 
@@ -757,7 +763,7 @@ Below we update the `TaskDefinition` property to reference the fixed task defini
     }
 ```
 
-So far all we have done is recreated the blue task set with a fixed `TaskDefinition`. This may seem redundant, but the process of finding the stable task set and configuring the new blue stack based on its value will allow us to cycle back and forth between the blue and green stacks as we perform blue/green or canary deployments.
+So far all we have done is recreated the blue task set with a fixed `TaskDefinition`. This may seem redundant, but the process of finding the stable task set and configuring the new blue stack based on its values will allow us to cycle back and forth between the blue and green stacks as we perform (and possibly fail) blue/green or canary deployments.
 
 Let's now configure a new version of our task definition. We'll demonstrate this new version by updating the `APPVERSION` environment variable:
 
@@ -1103,16 +1109,58 @@ The weights can be incrementally updated to drive more traffic to the green stac
 aws ecs tag-resource --resource-arn arn:aws:ecs:us-east-1:968802670493:service/mattctest/myservice --tags key=StableStack,value=Green
 ```
 
-Had we found an error with the new green stack, we would simply return all traffic to the blue stack. The **StableStack** tag remains set to **Blue**, and we can run through the process again. As long as each time we create the CloudFormation template we recreate the new blue stack with the details of the old stable stack, it doesn't matter if the last deployment successfully transitioned all the way to the green stack, because the **StableStack** tag will point us to what is considered the last stable stack color.
+Had we found an error with the new green stack, we would simply return all traffic to the blue stack. The **StableStack** tag remains set to **Blue**, and we can run through the process again. As long as each time we create the CloudFormation template we recreate the new blue stack with the details of the old stable stack identified by the **StableStack** tag, it doesn't matter if the last deployment successfully transitioned all the way to the green stack, because the **StableStack** tag will point us to what is considered the last stable stack color.
 
 At this point we can go back and run through the process again:
 
 1. Find the value assigned to the **StableStack** tag.
 2. Get the ID of the stable task set from the CloudFormation outputs.
 3. Query the current state of the stable task set.
-4. Update the CloudFormation template with a new task definition, and the blue task set configured to match the current green task set.
+4. Update the CloudFormation template with a new task definition, and the blue task set configured to match the current stable task set.
 5. Direct traffic from the blue target group to the green target group.
 6. If all goes well, direct 100% of traffic to the green stack and set the **StableStack** tag to **Green**.
 7. If problems were found, direct 100% of traffic to the blue stack, and leave the **StableStack** tag to **Blue**.
 8. Go to step 1.
 
+## Advanced testing of the green stack
+
+If you look closely at the listener rule created to split traffic between the blue and green stacks, you will see that we have defined its priority at `10`. These priority numbers are a bit like the command numbers in an old BASIC application, where you always incremented in steps of 10 to give yourself room to add steps in-between at a later time.
+
+In our example, it may be useful to direct a small amount of the main traffic to the green stack, but also allow the green stack to be accessed with a URL that only testers are aware of. For example, you might add a rule that directed traffic to the green stack only when a special query string is supplied.
+
+The command below creates a new rule to direct traffic to the green stack if the query string **test** is supplied with the value of **true**:
+
+```bash
+aws elbv2 create-rule \
+  --listener-arn "arn:aws:elasticloadbalancing:us-east-1:968802670493:listener/app/mattctest/3a1496378bd20439/b934cb81e0365dab" \
+  --priority 5 \
+  --conditions '[{
+    "Field": "query-string",
+    "QueryStringConfig": {
+      "Values": [
+        {
+          "Key": "test",
+          "Value": "true"
+        }
+      ]
+    }
+  }]' \
+  --actions '[{
+    "Type": "forward",
+    "Order": 10, 
+    "ForwardConfig": {
+      "TargetGroups": [
+        { 
+          "Weight": 100, 
+          "TargetGroupArn": "arn:aws:elasticloadbalancing:us-east-1:968802670493:targetgroup/OctopusGreenTargetGroup/f52cb2839cc063d9" 
+        }
+      ]
+    }
+  }]'
+```
+
+Note that in the UI rules are shown with concurrent priorities, so even though we created rules with priorities of 5 and 10, they are shown in the UI as rules 1 and 2:
+
+![](new-rule.png "width=500")
+
+We can now test the green stack with a URL like http://mattctest-314950320.us-east-1.elb.amazonaws.com/?test=true. Regardless of the traffic splitting in the rule defined by our CloudFormation template, we will always be directed to the green stack for testing.
