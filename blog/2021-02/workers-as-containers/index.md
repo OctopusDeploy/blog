@@ -25,7 +25,9 @@ My runbook consists of the following steps:
 - Run a health check
 - Install additional software
 
-NOTE: I'm using Microsoft's Azure platform in this example but it's also possible to use any other cloud including AWS and Google Cloud. Our [Creating EC2 instance in AWS with CloudFormation](/blog/2020-08/aws-cloudformation-ec2-examples/index.md) blog post covers a similar scenario in AWS with a detailed example.
+:::success
+I'm using Microsoft's Azure platform in this example but it's also possible to use any other cloud including AWS and Google Cloud. Our [Creating EC2 instance in AWS with CloudFormation](/blog/2020-08/aws-cloudformation-ec2-examples/index.md) blog post covers a similar scenario in AWS with a detailed example.
+:::
 
 ### Create Azure Resource Group
 
