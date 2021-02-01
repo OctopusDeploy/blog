@@ -18,7 +18,7 @@ He thought Starship SN8 (Serial Number 8) would make a clean landing. I gambled 
 
 Despite all the crashing and burning, this is not a story about failure.
 
-I’m a fan of data, so let’s look at the stats. Tim Dodd, The Everyday Astronaut has produced the following slide. You can read about it in more detail in his epic SLS vs Starship post – which is an excellent read for anyone else who’s fascinated with space exploration. 
+I’m a fan of data, so let’s look at the stats. Tim Dodd, [The Everyday Astronaut](https://www.youtube.com/everydayastronaut) has produced the following slide. You can read about it in more detail in his epic [SLS vs Starship](https://everydayastronaut.com/sls-vs-starship/) post – which is an excellent read for anyone else who’s fascinated with space exploration. 
 
 This slide compares four HLSs (Heavy Launch Systems / really big rockets): one existing, one historical, and two under development:
 
@@ -33,7 +33,7 @@ There’s plenty to drill into here.
 
 Let’s start by comparing the Saturn V to the SLS. You might think it’s a bit disappointing that in 2021 we are still designing a new rocket that’s barely an improvement on 50-year-old tech… And you’d be right. Why haven’t we improved?
 
-Omitted from the slide above is the infamous Space Shuttle, another HLS with its own special-kind-of-crazy design. While there’s a good argument that the SLS is a significant improvement on the Space Shuttle, the truth is that they are re-using a lot of the old tech. For example, those engines on the bottom of the SLS are the same Space Shuttle engines that were originally designed (at huge expense) to be re-usable, back in the 1970s.
+Omitted from the slide above is the infamous Space Shuttle, another HLS with its own [special-kind-of-crazy design](https://www.youtube.com/watch?v=Ja4ZlswGvpE). While there’s a good argument that the SLS is a significant improvement on the Space Shuttle, the truth is that they are re-using a lot of the old tech. For example, those engines on the bottom of the SLS are the same Space Shuttle engines that were originally designed (at huge expense) to be re-usable, back in the 1970s.
 
 (The *literal* same RS-25 engines. Not the same design. The same actual, antique engines. Physically removed from old space shuttles, reconfigured, and attached to new single-use rockets. After all that investment to make them re-usable, each engine will be used for a single mission, and then abandoned to burn up on re-entry.)
 
@@ -45,7 +45,7 @@ I just spent more than that on a new TV.
 
 So how have SpaceX been able to outperform NASA/Boeing so comprehensively?
 
-As I often do, I’m going to try and articulate it through the lens of Simon Sinek’s Start with Why.
+As I often do, I’m going to try and articulate it through the lens of [Simon Sinek’s Start with Why](https://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action).
 
 # Why: Self-sustaining civilization on Mars
 
@@ -55,11 +55,11 @@ Love or hate Elon Musk, there’s no doubt that he inspires passion.
 
 (Often not for the right reasons. I want it to be on record that I consider it horrific to use Twitter to manipulate the stock market, spread covid-19 misinformation, or to slander a man who risked his own life to save a group of children. I could go on.)
 
-At the same time, despite his (glaring) flaws, I recognise that he’s inspired a lot of significant cultural changes – some of them good. PayPal enabled online retail, Tesla made environmentalism and electric cars S3XY, and SpaceX wants to make humankind an interplanetary species. Those are some inspirational, even humanity-defining, achievements/aspirations.
+At the same time, despite his (glaring) flaws, I recognise that he’s inspired a lot of significant cultural changes – some of them good. PayPal enabled online retail, Tesla made environmentalism and electric cars [S3XY](https://www.reddit.com/r/TeslaLounge/comments/e35qu1/s3xy_cars/), and SpaceX wants to make humankind an interplanetary species. Those are some inspirational, even humanity-defining, achievements/aspirations.
 
 Everything that SpaceX does, is about creating a self-sustaining civilization on Mars. That goal won’t seem important to everyone, but to a lot of people, it’s incredibly exciting. I imagine that the folks who work for SpaceX are pretty darned engaged.
 
-Having a clear mission is a fantastic way to focus the mind. It encourages folks to direct all their energies with “The Goal” in mind, which lends itself perfectly to Lean development ideas.
+Having a clear mission is a fantastic way to focus the mind. It encourages folks to direct all their energies with “The Goal” in mind, which lends itself perfectly to [Lean development ideas](https://octopus.com/blog/devops-reading-list#goal).
 
 # How: Solving the transportation problem
 
@@ -81,13 +81,13 @@ Before SpaceX, the Space Shuttle had also aimed for reusability. Unfortunately, 
 
 The big orange fuel-tank wasn’t reusable. The white side boosters parachuted back to earth and were fished out of the ocean. However, preparing them for re-use after they’d been swimming in salt-water was terribly inefficient. For the SLS, they’ve taken those side-boosters and “upgraded” them to be single use rockets, saving the “expense” of re-using them. As for the “space plane”, the astronomical cost of renovating the shuttle between launches, coupled with the maddeningly inefficient design, rendered the whole process more expensive than most single-use rockets.
 
-In contrast, Starship is designed to be fully and efficiently reusable – including the “Super Heavy” first-stage rocket. All the rockets can land themselves on pads or drone ships. SpaceX is even aiming to land Starships directly on the launchpad, ready to relaunch just 1 hour later. For comparison, on average it takes 1½ to 2 hours to turn around a 747, and it took over a year to turn around a Space Shuttle.
+In contrast, Starship is designed to be fully and efficiently reusable – including the “Super Heavy” first-stage rocket. All the rockets can land themselves on pads or drone ships. [SpaceX is even aiming to land Starships directly on the launchpad, ready to relaunch just 1 hour later](https://www.independent.co.uk/life-style/gadgets-and-tech/space/elon-musk-spacex-falcon-heavy-rocket-b1780793.html). For comparison, on average it takes 1½ to 2 hours to turn around a 747, and it took over a year to turn around a Space Shuttle.
 
 Engine/Fuel: 
 
 Starship is powered by Raptor engines. These engines are powered by oxygen and methane. 
 
-(If the use of methane concerns you, remember that it’s unburnt methane (cow farts) that’s especially horrible for the environment. The act of burning methane actually *reduces* its greenhouse effect. Burning methane contributes less to global warming than burning traditional fossil fuels. While there are no truly green rocket fuels, methane is one of the least bad. More detail here.)
+(If the use of methane concerns you, remember that it’s unburnt methane (cow farts) that’s especially horrible for the environment. The act of burning methane actually *reduces* its greenhouse effect. Burning methane contributes less to global warming than burning traditional fossil fuels. While there are no truly green rocket fuels, methane is one of the least bad. [More detail here](https://everydayastronaut.com/rocket-pollution/).)
 
 Methane burns cleanly, which is a significant help with the reusability goal. However, the really clever thing about using oxygen/methane is that both can be harvested on Mars. The oxygen (80% of the fuel mass) exists in the thin Martian atmosphere and the Methane could (in theory) either be generated from ice (if they can mine for it) or from a smaller batch of hydrogen that they could take with them (more realistic in the early days).
 
@@ -105,9 +105,9 @@ Once a moon/Mars-bound Starship has made it into orbit, it would rendezvous with
 
 Combine those three key features, and you can begin to appreciate how SpaceX is able to deliver a rocket that is such a giant leap, compared to the Saturn V, Space Shuttle or SLS. 
 
-As a demonstration of the sort of leap SpaceX has taken, NASA recently selected three potential lunar landers for its upcoming moon program. Two of them (Blue Origin and Dynetics) have proposed small, light, bungalow-sized, spidery-looking vehicles that would probably travel on an SLS, Starship or Blue Origin’s New Glenn rocket. These new landers look a bit like the Apollo landers.  
+As a demonstration of the sort of leap SpaceX has taken, [NASA recently selected three potential lunar landers](https://www.nasa.gov/feature/nasa-selects-blue-origin-dynetics-spacex-for-artemis-human-landers) for its upcoming moon program. Two of them (Blue Origin and Dynetics) have proposed small, light, bungalow-sized, spidery-looking vehicles that would probably travel on an SLS, Starship or Blue Origin’s New Glenn rocket. These new landers look a bit like the Apollo landers.  
 
-(A brief side note on Blue Origin, another SpaceX competitor, headed by Jeff Bezos: There was a time when folks dismissed SpaceX. Blue Origin was better funded. Musk was successful, but Bezos was in a different league. Blue Origin actually managed to land it’s New Shepard rocket in Nov 2015, a month before SpaceX managed to land a Falcon 9, although the Falcon 9 was a much bigger rocket so landing it was a more impressive feat. Since then, Blue Origin simply hasn’t kept up. Like the SLS, the New Glenn is less powerful than a Starship, further behind in development, and improving less quickly. For me, comparing SpaceX to Blue Origin is like comparing the Wright brothers to Samuel Pierpont Langley. If you’ve never heard of Samuel Pierpont Langley, fast-forward that Simon Sinek TED Talk to 7:50.)
+(A brief side note on Blue Origin, another SpaceX competitor, headed by Jeff Bezos: There was a time when folks dismissed SpaceX. Blue Origin was better funded. Musk was successful, but Bezos was in a different league. [Blue Origin actually managed to land it’s New Shepard rocket in Nov 2015](https://web.archive.org/web/20151125051400/https:/www.blueorigin.com/news/news/blue-origin-makes-historic-rocket-landing), a month before [SpaceX landed a Falcon 9](https://www.theverge.com/2015/12/21/10640306/spacex-elon-musk-rocket-landing-success), although the Falcon 9 was a much bigger rocket so landing it was a significantly more impressive feat. Since then, Blue Origin simply hasn’t kept up. Like the SLS, the New Glenn is less powerful than a Starship, further behind in development, and improving less quickly. For me, comparing SpaceX to Blue Origin is like comparing the Wright brothers to Samuel Pierpont Langley. If you’ve never heard of Samuel Pierpont Langley, fast-forward [that Simon Sinek TED Talk](https://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action) to 7:50.)
 
 Anyway: moon landers. The third “lander” option was a full-blown, skyscraper-sized, Starship. Imagine how many more people and how much more equipment something that size could ferry to the moon. If your intention is to set up a moon base, it’s easy to imagine how much more effective Starship could be.
 
@@ -129,7 +129,7 @@ The principle that practice beats theory is hardly rocket science. The best way 
 
 However, rocket launches are expensive. When they go wrong, they make excellent clickbait. If it’s framed unkindly, all those “deployment failures” could create some bad PR. A short-sighted, but widespread, response to this PR problem is to exert far too much energy into avoiding failures and not enough energy into minimizing their consequences.
 
-A common red flag is seeing people make their primary focus some sort of MTBF (Mean Time Between Failure) metric. It may well be desirable that rockets blow up less frequently but making MTBF the goal is counterproductive. I talked about this phenomenon in more detail last summer in my aggressively titled post, Change Advisory Boards Don’t Work.
+A common red flag is seeing people make their primary focus some sort of MTBF (Mean Time Between Failure) metric. It may well be desirable that rockets blow up less frequently but making MTBF the goal is counterproductive. I talked about this phenomenon in more detail last summer in my aggressively titled post, [Change Advisory Boards Don’t Work](https://octopus.com/blog/change-advisory-boards-dont-work).
 
 As with Agile and DevOps, so with rocketry. The best way to create a safe rocket is to truly put it through it’s paces over and over again. In the early days, there will probably be a lot of RUDs, and they’ll make good TV. However, through those RUDs, SpaceX will learn about the tolerances and limits of their systems and become skilled at staying within those limits.
 
@@ -155,9 +155,9 @@ It’s also become clear to observers, that since SpaceX has learned so much fro
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">The current status of SpaceX&#39;s Starship &amp; Superheavy prototypes. 30th January 2021 <a href="https://t.co/C60oOcFlg6">pic.twitter.com/C60oOcFlg6</a></p>&mdash; Brendan (@brendan2908) <a href="https://twitter.com/brendan2908/status/1355246058905825282?ref_src=twsrc%5Etfw">January 29, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-They are pushing “disposable infrastructure” to the limit.
+They are pushing “[disposable infrastructure](https://martinfowler.com/bliki/ImmutableServer.html)” to the limit.
 
-Like SpaceX, the most successful IT organisations have learned to treat their hardware like cattle, instead of pets. The servers are given numbers instead of names and when they are poorly, they are shot in the head.
+Like SpaceX, the most successful IT organisations have learned to [treat their hardware like cattle, instead of pets](http://cloudscaling.com/blog/cloud-computing/the-history-of-pets-vs-cattle/). The servers are given numbers instead of names and when they are poorly, they are shot in the head.
 
 This is possible because the servers, and all their config, are defined in source code. Fresh, healthy servers can be spun up a quickly and cheaply. Issues can be resolved fast by swapping poorly servers out. Investigation and learning can happen later, in a calm manner, without some stakeholder standing over the engineers’ shoulders complaining about downtime, lost revenue, or PR.
 
@@ -192,7 +192,7 @@ This hype has many great consequences for SpaceX. It helps them to set expectati
 
 If this is how open SpaceX are externally, one can only imagine how freely folks share designs and ideas internally. Innovation is far more likely when more smart people have an opportunity to mull over a problem, and when the people who are ultimately responsible for solving it are given the autonomy to freely adopt the best ideas.
 
-Some readers might be confused about the apparent lack of effort to protect SpaceX’s IP. However, I suspect they are comfortable enough in their ability to innovate faster than any competitor piggybacking on their designs. And if you find that unlikely, Elon has a track record for sharing his patents, further demonstrating his devotion to the causes he’s devoted his life to.
+Some readers might be confused about the apparent lack of effort to protect SpaceX’s IP. However, I suspect they are comfortable enough in their ability to innovate faster than any competitor piggybacking on their designs. And if you find that unlikely, [Elon has a track record for sharing his patents](https://www.bbc.co.uk/news/business-27824698), further demonstrating his devotion to the causes he’s devoted his life to.
 
 # Starship SN9, SN10, SN15 and beyond…
 
@@ -208,16 +208,16 @@ Well, this depends a bit on what we mean by MTTR. If we mean “is it OK for a S
 
 The SLS, in contrast, is designed to have just 4 RS-25 shuttle engines. I’m no rocket scientist, but I imagine that if one or two of them fail during a launch, it would be a riskier situation for the passengers.
 
-Perhaps the best indication of SpaceX’s ability to pull this off is to look at their track record. Since 2017, they’ve launched 81 Falcon 9 rockets with a 100% success rate, averaging about 20 launches per year. The earlier launches were tests, but the later ones were carrying commercial cargo. A couple of them even carried humans.
+Perhaps the best indication of SpaceX’s ability to pull this off is to look at their track record. Since 2017, [they’ve launched 81 Falcon 9 rockets](https://en.wikipedia.org/wiki/List_of_Falcon_9_and_Falcon_Heavy_launches) with a 100% success rate, averaging about 20 launches per year. The earlier launches were tests, but the later ones were carrying commercial cargo. A couple of them even carried humans.
 
 Compare that record to the Space Shuttle. In total the Space Shuttle launched 135 times between 1977 and 2011 (plus 5 test missions). That’s only ~20% of the launch frequency that SpaceX is delivering. In that time, the Space Shuttle suffered two tragic failures. 788 people have flown in a Space Shuttle and 14 people were killed in either Challenger or Columbia. That’s a 1/56 fatality rate, which is awful.
 
-I’d like to finish on a positive note. As a child I watched cartoons like Wallace and Gromit, Looney Tunes and Mickey Mouse, where full-sized pointy rockets landed on the moon. As an adult, I learned to think of those cartoons as silly science-fiction. Then, on February 6th 2018, I watched this:
+I’d like to finish on a positive note. As a child I watched cartoons like [Wallace and Gromit](https://www.youtube.com/watch?v=T0qagA4_eVQ&t=4s), [Looney Tunes](https://www.youtube.com/watch?v=vXB9823Qg9E) and [Mickey Mouse](https://youtu.be/urn936F_Ez4?t=179), where full-sized pointy rockets landed on the moon. As an adult, I learned to think of those cartoons as silly science-fiction. Then, on February 6th 2018, I watched this:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/l5I8jaMsHYk?start=85" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Seriously, compare the link to the Mickey Mouse carton above to this view of Starship SN8 landing attempt. SpaceX fans call that the “Crazy Elon”.
+Seriously, compare the link to the Mickey Mouse carton above to [this view of Starship SN8 landing attempt](https://youtu.be/h74DxVtpcqk?t=64). SpaceX fans call that the “Crazy Elon”.
 
-SpaceX’s innovative approach to rocket engineering has redefined what’s possible with space exploration. It’s done so using many of the same techniques that the DevOps community has embraced with demonstrably effective results.
+SpaceX’s innovative approach to rocket engineering has redefined what’s possible with space exploration. It’s done so using many of the same techniques that the DevOps community has embraced with [demonstrably effective results](https://octopus.com/blog/devops-reading-list#accelerate).
 
 SpaceX’s next launch attempt is likely to go ahead any day now. When it does, I’ll be watching, and so will my bother. This time, I’m betting on a successful landing. That said, whether they land the thing, isn’t important. What matters is that they keep learning, iterating, and improving.
