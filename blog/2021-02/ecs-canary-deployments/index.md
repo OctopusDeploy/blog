@@ -10,9 +10,9 @@ tags:
  - Octopus
 ---
 
-Canary deployments are a popular pattern that allow you to progressively roll out a new version of your application to an increasing number of end users. By watching for errors or undesirable effects from the new version during the rollout, it is possible to catch and revert production errors before they impact the majority of your users.
+Canary deployments are a popular pattern allowing you to progressively roll out a new version of your application to an increasing number of end users. By watching for errors or undesirable effects from the new version during the rollout, it is possible to catch and revert production errors before they impact the majority of your users.
 
-ECS has native support for [rolling updates](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-ecs.html), where tasks in a service are progressively, but automatically, updated with a new version of the application. By integrating with CodeDeploy, it is possible to perform what ECS refers to as a [Blue/Green deployment](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-bluegreen.html), although this deployment option can be configured to perform a Canary deployments that shifts the traffic to the new version. You can even [create your own deployment strategy](https://docs.aws.amazon.com/cli/latest/reference/deploy/create-deployment-config.html), but you are limited to a time based canary rule, which is:
+ECS has native support for [rolling updates](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-ecs.html), where tasks in a service are progressively, but automatically, updated with a new version of the application. By integrating with CodeDeploy, it is possible to perform what ECS refers to as a [Blue/Green deployment](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-bluegreen.html), although this deployment option can be configured to perform Canary deployments that shifts the traffic to the new version. You can even [create your own deployment strategy](https://docs.aws.amazon.com/cli/latest/reference/deploy/create-deployment-config.html), but you are limited to a time based canary rule, which is:
 
 > A configuration that shifts traffic from one version of a Lambda function or ECS task set to another in two increments.
 
@@ -20,11 +20,11 @@ Or a time based linear rule, which is:
 
 > A configuration that shifts traffic from one version of a Lambda function or ECS task set to another in equal increments, with an equal number of minutes between each increment.
 
-There are times though when the decision to shift more traffic to the canary deployment is not something you can easily determine over a fixed period of time. For example, you may need to have a person make the decision to move forward with a canary deployment based on a range of inputs like support requests, errors in logs, resource usage. This kind of manual intervention in the deployment requires more flexibility than the Blue/Green strategy exposed by ECS.
+There are times though when the decision to shift more traffic to the canary deployment is not something you can easily determine over a fixed period of time. For example, you may need to have a person make the decision to move forward with a canary deployment based on a range of inputs like support requests, errors in logs, or resource usage. This kind of manual intervention in the deployment requires more flexibility than the Blue/Green strategy exposed by ECS.
 
 Fortunately, [ECS can defer the decision to progress a deployment to an external system](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-external.html). It requires some work to set up, but is incredibly flexible.
 
-In this blog post we'll look at how to manage an ECS canary deployment with Octopus.
+In this blog post we'll look at how to manage an ECS canary deployment with CloudFormation.
 
 ## ECS CloudFormation resources
 
@@ -35,7 +35,7 @@ Our ECS deployment will be created and managed via CloudFormation, and will make
 * [`AWS::ECS::TaskSet`](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskset.html) - A service can contain many task sets, with each task set configured with its own task definition. Multiple task sets allow a single service to manage tasks created from multiple task definitions.
 * [`AWS::ElasticLoadBalancingV2::Listener`](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listener.html) - A listener defines the port and protocol that it will receive load balancer traffic on.
 * [`AWS::ElasticLoadBalancingV2::ListenerRule`](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenerrule.html) - A listener rule defines the high level rules, such as path, query string, header matching etc, that must be satisfied to deliver traffic to a target group.
-* [`AWS::ElasticLoadBalancingV2::TargetGroup`](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-targetgroup.html) - A target group binds downstream services, like ECS clusters, to a load balancer listener rule.
+* [`AWS::ElasticLoadBalancingV2::TargetGroup`](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-targetgroup.html) - A target group binds downstream services, like ECS tasks, to a load balancer listener rule.
 
 The resulting architecture looks like this:
 
@@ -49,7 +49,7 @@ To demonstrate a canary deployment, we'll use the Docker image created from the 
 
 The task definition configures the sample application to listen to traffic on port 4000. It also defines an environment variable called `APPVERSION`, which will be displayed in the response.
 
-We'll update the `APPVERSION` environment variable as a way of simulating new application versions being deployed.
+We'll update the `APPVERSION` environment variable as a way of simulating new application versions deployments later in the post.
 
 Here is the first task definition. Note the `UpdateReplacePolicy` property is set to `Retain`. This means CloudFormation will create a new task definition, but not delete (or, more technically, mark as inactive) any previously deployed task definition:
 
@@ -241,9 +241,9 @@ In this example, each task set points to the same task definition. This means fo
 
 ## The `AWS::ECS::Service` resource
 
-The service will ensure the desired number of tasks are run, and continue to run. Typically we would configure the service to reference a task definition directly, but in our case we will use task sets to link a service to a task definition. This means our service is quite sparse.
+The service will ensure the desired number of tasks are run, and continue to run. Typically we would configure the service to reference a task definition directly, but in our case we will use task sets above to link a service to a task definition. This means our service is quite sparse.
 
-We do add a tag to the service to indicate the stack that holds the previous, stable deployment. When deploying this template, we always consider the blue stack to the be previous deployment, and the green stack to be the new deployment. However, the cut over from blue to green will involve updating this tag to indicate that the green stack passed testing and is the new stable stack:
+We do add a tag to the service to indicate the stack that holds the previous, stable deployment. When deploying this template, we always consider the blue stack to be previous stable deployment, and the green stack to be the new deployment. However, the cut over from blue to green will involve updating this tag to indicate that the green stack passed testing and is the new stable stack:
 
 ```json
     "MyService": {
@@ -266,7 +266,7 @@ We do add a tag to the service to indicate the stack that holds the previous, st
 
 ## The `AWS::ElasticLoadBalancingV2::Listener` resource
 
-Listeners are attached to load balancers, and define the rules used to direct traffic to a target group. The listener below is configured to receive HTTP traffic on port 80, and has a default rule to respond with a HTTP 404 status code if no other custom rule matches the incoming request.
+Listeners are attached to load balancers, and define the protocol and port rules used to direct traffic to a target group. The listener below is configured to receive HTTP traffic on port 80, and has a default rule to respond with a HTTP 404 status code if no other custom rule matches the incoming request.
 
 Note here that we have hard coded the ARN of an existing [ALB](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html) or [NLB](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/introduction.html). The requirement here is that the existing load balancer does not already have a listener configured to use port 80:
 
@@ -292,9 +292,9 @@ Note here that we have hard coded the ARN of an existing [ALB](https://docs.aws.
 
 ## The `AWS::ElasticLoadBalancingV2::ListenerRule` resource
 
-A listener rule is attached to a listener, and provides fine grained control over how an incoming requests is matched, and how it is forwarded to a target group. The listener rule below matches all request paths (essentially matching all requests), and splits traffic between the blue and green target groups.
+A listener rule is attached to a listener, and provides fine grained control over how an incoming request is matched, and how it is forwarded to a target group. The listener rule below matches all request paths (essentially matching all requests), and splits traffic between the blue and green target groups.
 
-Modifying the weights assigned to the blue and green target groups is how we achieve a blue/green or canary deployment. A hard cut over from the blue to the blue to the green stack achieves a traditional blue/green deployment, while gradually increasing the traffic to the green stack achieves a canary deployment:
+Modifying the weights assigned to the blue and green target groups is how we achieve a blue/green or canary deployment. A hard cut over from the blue to the green stack achieves a traditional blue/green deployment, while gradually increasing the traffic to the green stack achieves a canary deployment:
 
 ```json
     "MyListenerRule": {
@@ -612,11 +612,11 @@ Here is the complete CloudFormation template:
 
 Deploying this stack results in a new service in ECS. 
 
-The report of `2/1 Tasks running` might seem a little odd, but this value is the result of having two task sets each configured to run 100% of their parent service's desired task count, which is 1. This means we have two task sets, each running one task, resulting in two tasks running for the one desired task defined in the service:
+The report of **2/1 Tasks running** might seem a little odd, but this value is the result of having two task sets each configured to run 100% of their parent service's desired task count, which is 1. This means we have two task sets, each running one task, resulting in two tasks running for the one desired task defined in the service:
 
 ![](service.png "width=500")
 
-The two tasks show the tasks configured in the blue and green task sets. Note that task sets are not displayed in the console, and we have to infer the task set a task belongs to:
+The two tasks are those configured in the blue and green task sets. Note that task sets are not displayed in the console, and we have to infer the task set a task belongs to:
 
 ![](tasks.png "width=500")
 
@@ -636,7 +636,7 @@ We will assume at this point that this initial deployment is complete. This mean
 
 If you recall from earlier, we added a tag to the service to indicate which stack, blue or green, was the stable stack. We now want to find the details of the stable stack and copy them back into the blue stack as we start a new deployment.
 
-We know this tag is currently set to `Blue`, because that is what we set it to, and nothing has changed it. However we still want to run through the process of extracting the tag value in a repeatable way because the next deployment can't assume the tag has a known value.
+We know this tag is currently set to **Blue**, because that is what we set it to, and nothing has changed it. However, we still want to run through the process of extracting the tag value in a repeatable way because the next deployment can't assume the tag has a known value.
 
 The command below will extract the value of the tag:
 
@@ -656,7 +656,7 @@ Finally, we can inspect the state of the stable task set with the command:
 aws ecs describe-task-sets --cluster "arn:aws:ecs:us-east-1:968802670493:cluster/mattctest" --service myservice --task-sets "${TASKSET}"
 ```
 
-This will return the configuration of the blue task set:
+This will return the configuration of the blue task set. This task set defines the state of the stable task set:
 
 ```json
 {
@@ -710,13 +710,11 @@ This will return the configuration of the blue task set:
 }
 ```
 
-This task set defines the state of the stable task set.
-
 To perform the second deployment, we need to copy out any relevant values from the state of the stable task set into the blue task set resource defined in our own CloudFormation template. In particular, we want to retain the task definition that the task set is currently configured with.
 
-It would also be worth considering if other details, like the container name or port, needed to be updated. However, in our case we know the only property we need to copy is the `TaskDefinition`.
+It would also be worth considering if other details, like the container name or port, need to be updated. However, in our case we know the only property we need to copy is the `TaskDefinition`.
 
-Copying the state of the stable task set into our new blue task set resets our deployment to the canonical blue/green model, where blue is the stable deployment, and green is the new deployment.
+Copying the state of the stable task set into our new blue task set resets our deployment to the canonical blue/green state, where blue is the stable deployment, and green is the new deployment.
 
 Below we update the `TaskDefinition` property to reference the fixed task definition version:
 
@@ -805,7 +803,7 @@ Let's now configure a new version of our task definition. We'll demonstrate this
     }
 ```
 
-This new task definition will be configured in the green task set. Here is the complete template for the new deployment:
+This new task definition is configured in the green task set. Here is the complete template for the new deployment:
 
 ```json
 {
@@ -1101,7 +1099,7 @@ aws elbv2 modify-rule \
 
 ![](canary-traffic.png "width=500")
 
-With traffic split between the stable blue task set and the new green task set, we can now run whatever tests we need to validate that the new deployment is working as expected. Unlike with the blue/green deployment driven by CodeDeploy, there is no automatic progression from blue to green, and we are in complete control as to how much traffic is split between the stacks, and when.
+With traffic split between the stable blue task set and the new green task set, we can now run whatever tests we need to validate that the new deployment is working as expected. Unlike the blue/green deployment driven by CodeDeploy, there is no automatic progression from blue to green, and we are in complete control as to how much traffic is split between the stacks, and when.
 
 The weights can be incrementally updated to drive more traffic to the green stack, eventually reaching a point where the green stack is receiving 100% of the traffic. At this point the green stack represents the stable stack. We reflect this change in the tag assigned to the service with the command:
 
@@ -1119,12 +1117,12 @@ At this point we can go back and run through the process again:
 4. Update the CloudFormation template with a new task definition, and the blue task set configured to match the current stable task set.
 5. Direct traffic from the blue target group to the green target group.
 6. If all goes well, direct 100% of traffic to the green stack and set the **StableStack** tag to **Green**.
-7. If problems were found, direct 100% of traffic to the blue stack, and leave the **StableStack** tag to **Blue**.
+7. If problems were found, direct 100% of traffic to the blue stack, and leave the **StableStack** tag as **Blue**.
 8. Go to step 1.
 
 ## Advanced testing of the green stack
 
-If you look closely at the listener rule created to split traffic between the blue and green stacks, you will see that we have defined its priority at `10`. These priority numbers are a bit like the command numbers in an old BASIC application, where you always incremented in steps of 10 to give yourself room to add steps in-between at a later time.
+If you look closely at the listener rule created to split traffic between the blue and green stacks, you will see that we have defined its priority at `10`. These priority numbers are somewhat like the command numbers in an old BASIC application, where you always incremented in steps of 10 to give yourself room to add steps in-between at a later time.
 
 In our example, it may be useful to direct a small amount of the main traffic to the green stack, but also allow the green stack to be accessed with a URL that only testers are aware of. For example, you might add a rule that directed traffic to the green stack only when a special query string is supplied.
 
@@ -1164,3 +1162,15 @@ Note that in the UI rules are shown with concurrent priorities, so even though w
 ![](new-rule.png "width=500")
 
 We can now test the green stack with a URL like http://mattctest-314950320.us-east-1.elb.amazonaws.com/?test=true. Regardless of the traffic splitting in the rule defined by our CloudFormation template, we will always be directed to the green stack for testing.
+
+## Conclusion
+
+ECS supports many useful deployment options out of the box via CodeDeploy. However, the progress of the canary deployments follows a model where it is assumed that all traffic will cut over from the old to the new deployment unless you explicitly interupt it.
+
+By making use of the external deployment stratgey in ECS, it is possible to build task sets that allow a manual progression to the new deployment. This is useful when the decision to cut traffic over is explicitly made by a human who may have to review the state of the new deployment or obtain permission to direct more traffic to the new deployment.
+
+In this post we looked at a sample ECS CloudFormation template defining an external deployment and delivering a custom split of traffic via a locabalancer, and decribed a process that allowed new deployments to be rolled out progressivly and manually.
+
+The end result was a repeatable deployment process that support both blue/green and canary deployments, supporting manual testing and explicit traffic cut over.
+
+Happy deployments!
