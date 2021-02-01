@@ -1165,11 +1165,11 @@ We can now test the green stack with a URL like http://mattctest-314950320.us-ea
 
 ## Conclusion
 
-ECS supports many useful deployment options out of the box via CodeDeploy. However, the progress of the canary deployments follows a model where it is assumed that all traffic will cut over from the old to the new deployment unless you explicitly interupt it.
+ECS supports many useful deployment options out of the box via CodeDeploy. However, the progress of the canary deployments follows a model where it is assumed that all traffic will cut over from the old to the new deployment unless you explicitly interrupt it.
 
-By making use of the external deployment stratgey in ECS, it is possible to build task sets that allow a manual progression to the new deployment. This is useful when the decision to cut traffic over is explicitly made by a human who may have to review the state of the new deployment or obtain permission to direct more traffic to the new deployment.
+By making use of the external deployment strategy in ECS, it is possible to build task sets that allow a manual progression to the new deployment. This is useful when the decision to cut traffic over is explicitly made by a human who may have to review the state of the new deployment or obtain permission to direct more traffic to the new deployment.
 
-In this post we looked at a sample ECS CloudFormation template defining an external deployment and delivering a custom split of traffic via a locabalancer, and decribed a process that allowed new deployments to be rolled out progressivly and manually.
+In this post we looked at a sample ECS CloudFormation template defining an external deployment and delivering a custom split of traffic via a load balancer, and described a process that allowed new deployments to be rolled out progressively and manually.
 
 The end result was a repeatable deployment process that support both blue/green and canary deployments, supporting manual testing and explicit traffic cut over.
 
