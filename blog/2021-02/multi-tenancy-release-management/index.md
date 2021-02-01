@@ -377,22 +377,28 @@ Let's see this all in action.  First, let's deploy the **Internal** through **St
 
 ![prod approval environment for internal tenant](release-orchestartion-production-approval-environment.png)
 
-Now promote that release to **Production** for **Internal**.  The approvals are picked up from the **Prod Approval** environment.
+Now promote that release to **Production** for **Internal**.  The approvals are picked up from the **Prod Approval** environment for the **Internal** tenant.
 
 ![prod approval for internal tenant message](prod-approval-internal-tenant-message.png)
 
-Now that **Internal** has been promoted through **Prod Approval**, we can move onto **Ford** and **Starbucks**.  Promoting the release through **Staging** and onto **Production** will show the approvals will be picked up from the **Internal** tenant.
+Now that **Internal** has been promoted through **Prod Approval**, we can move onto **Ford** and **Starbucks**.  Promoting the release through **Staging** and onto **Production** will show the approvals will be picked up from the **Internal** tenant as well.
 
-Insert image here!
+![prod approval for ford tenant using the internal tenant](ford-deploy-to-prod-for-internal-tenant-approval.png)
 
 When the same release is deployed through the environments for **Coke**, we will see the approvals will come from the **Coke** tenant.
 
-Insert image here!
+![automatic for coke using approvals from coke](coca-cola-tenant-approval-from-coca-cola.png)
+
+:::success
+The step template looks for approvals for the current release only.  Creating a new release will require another round of approvals.  Even for a patch release, such as `2021.1.1`.  
+:::
+
+Approvals in a real-world setting are complex.  Hopefully with this functionality that process can be a bit smoother.  
 
 ## Conclusion
 
 This article covered some of the multi-tenancy scenarios for the [Deploy Child Octopus Deploy Project](https://library.octopus.com/step-templates/0dac2fe6-91d5-4c05-bdfb-1b97adf1e12e/actiontemplate-deploy-child-octopus-deploy-project) step template.  If you want to see more scenarios, please see [my previous article](LINK).  
 
-Multi-tenancy and all its weird and wonderful quirks when used in the real-world, was one of the primary drivers in creating this step template.  It is too much to ask anyone to keep track of which tenants require approval, what software packages they purchased, what environments they can deploy to.  Especially when dozens or 100s of tenants are involved, the deployment process should manage that complexity.  It reduces the number of manual errors a person will make.  Reducing errors makes customers happy, and in turn, makes them trust you more, which should hopefully make them more likely to want the latest release sooner.   
+Octopus Deploy's multi-tenancy feature was designed to make life easier for companies who install software on distinct infrastructure.  I see and hear about all the various quirks customers run into with that model.  The more customizations offerred, the harder it is to manage a deployment.  Those quirks was a primary driver in writing this step template.  A person shouldn't need to consult a spreadsheet to know what releases to deploy to what customers.  Something like that introduces the potential for errors because of a manual process.  That is the goal of this step template, to remove as much psycholocial weight from multi-tenant deployments as possible.
 
 I hope you find this step template useful for your multi-tenancy projects.  Until next time, Happy Deployments!
