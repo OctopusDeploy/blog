@@ -1,26 +1,31 @@
 ---
-title: Creating workers using the Tentacle docker image
-description: Learn how to use the Tentacle docker image to create workers using Azure container services
+title: Creating workers with the Tentacle Docker image
+description: Learn how to use the Tentacle Docker image to create workers using Azure container services
 author: shawn.sesna@octopus.com
 visibility: private
 published: 2022-01-13
 metaImage: 
 bannerImage: 
 tags:
- - 
+ - Product
 ---
 
-I recently had the need to create some additional, temporary workers on our [Samples](https://samples.octopus.app) cloud instance of Octopus Deploy.  As these workers were to be short lived, containers seemed like the perfect solution!  Spin up, do some work, tear them down.  Beautiful!  In this post, I'll demonstrate how to create workers in a container hosted in Azure, perform a health check, and install some additional software components.  
+I recently needed to create some additional, temporary workers on our [Samples](https://samples.octopus.app) cloud instance of Octopus Deploy.  As I only needed short-lived workers, containers seemed like the perfect solution. I'd spin up, they'd do some work, and I'd tear them down. In this post, I demonstrate how to create workers in a container hosted in Azure, perform a health check, and install additional software components.  
 
 ## Spin up the workers
-The first step we'll need to do is to create a Runbook.  This post assumes that you have some familiarity with the [Runbook](https://octopus.com/docs/runbooks) feature, so I'll not be going into great detail in creating one.  My Runbook consists of the following steps:
+
+The first step we need to perform, is to create a runbook.  This post assumes you have some familiarity with our [runbooks](https://octopus.com/docs/runbooks) feature.  
+
+My runbook consists of the following steps:
+
 - Create a Azure Resource Group
 - Run an ARM template to create the Octopus Deploy Tentacle container
 - Run a health check
 - Install additional software
 
 ### Create Azure Resource Group
-For ease of removal and overall tidyness, the first step creates an Azure Resource Group using the Run an Azure Script step:
+
+For ease of removal and overall tidiness, the first step creates an Azure Resource Group using the **Run an Azure Script** step:
 
 ```PowerShell
 $resourceGroupName = $OctopusParameters["Azure.Network.ResourceGroup.Name"]
@@ -34,7 +39,8 @@ if ((az group exists --name $resourceGroupName) -eq $false)
 ```
 
 ### Run an ARM template 
-Azure Container instances are a quick and easy way to spin up a worker container.  Using a small Azure Resource Managemer (ARM) template, we can automate the creation of the [Octopus Tentacle](https://hub.docker.com/r/octopusdeploy/tentacle) container.
+
+Azure Container instances are a quick and easy way to spin up a worker container.  Using a small Azure Resource Manager (ARM) template, we can automate the creation of the [Octopus Tentacle](https://hub.docker.com/r/octopusdeploy/tentacle) container.
 
 <details>
 	<summary>Template code</summary>
@@ -133,33 +139,36 @@ Azure Container instances are a quick and easy way to spin up a worker container
 </details>
 
 The template requires some parameters to be entered:
-- location: Location code in Azure, i.e. centralus
-- containerName: The name of the container
-- imageType: Public|Private
-- imageName: octopusdeploy/tentacle
-- osType: Linux|Windows
-- numberCpuCores: Number of cores to use
-- memory: Number (in GB) to use for the container
-- restartPolicy: [See docker documentation for options](https://docs.docker.com/config/containers/start-containers-automatically/)
-- ipAddressType: Public|Private
-- ports: Array of ports to expose
-- dnsNameLabel: DNS prefix for DNS entry - i.e. [dnsNameLabel].[AzureRegion].azurecontainer.io
-- environmentVariables: Array of environment variables to pass to container
 
-This template will spin up an Azure Container Instance of the Octopus Deploy Tentacle.  
+- **location**: Location code in Azure, i.e. centralus
+- **containerName**: The name of the container
+- **imageType**: Public | Private
+- **imageName**: `octopusdeploy/tentacle`
+- **osType**: Linux | Windows
+- **numberCpuCores**: Number of cores to use
+- **memory**: Number (in GB) to use for the container
+- **restartPolicy**: See Docker [documentation for options](https://docs.docker.com/config/containers/start-containers-automatically/)
+- **ipAddressType**: Public | Private
+- **ports**: Array of ports to expose
+- **dnsNameLabel**: DNS prefix for DNS entry - i.e. [dnsNameLabel].[AzureRegion].azurecontainer.io
+- **environmentVariables**: Array of environment variables to pass to container
+
+This template will spin up an Azure Container instance of the Octopus Deploy Tentacle.
 
 I chose the Linux variant as it is much smaller than the Windows container (254.39 MB versus 2.27 GB).
 
 ### Run a health check
-The built-in health check template only works for deployment targets, however, there is a Community step that was developed specifically for workers; [Worker - Health Check](https://library.octopus.com/step-templates/c6c23c7b-876d-4758-a908-511f066156d7/actiontemplate-worker-health-check).  Running this step ensures that our worker is healthy and ready for the next step.
 
-### Install addtional software
+The built-in health check template only works for deployment targets, however, there is a community step that was developed specifically for workers: [Worker - Health Check](https://library.octopus.com/step-templates/c6c23c7b-876d-4758-a908-511f066156d7/actiontemplate-worker-health-check).  Running this step ensures our worker is healthy and ready for the next step.
+
+### Install additional software
+
 The workers were going to need to interact with both Azure and AWS.  The Tentacle image has the bare minimum software required to run, so I needed to install the following:
 - PowerShell Core
 - Azure CLI
 - AWS CLI
 
-With Deployment Targets, you can execute steps against all targets with the same role.  Since workers don't have roles, I needed to find an alternative.  I found the Script Console had the ability to execute the same code against all workers within a pool.  With Octopus written API-first, I was able to duplicate the functionality of the Script Console to run the code to install the additional software against the whole pool via the API!
+With deployment targets, you execute steps against all targets with a specific role.  Since workers don't have roles, I needed to find an alternative. The Script Console lets you execute the same code against all workers within a pool. Because Octopus is written API-first, I was able to duplicate the functionality of the Script Console to run the code to install the additional software against the whole pool via the API:
 
 ```PowerShell
 # Define parameters
@@ -236,14 +245,15 @@ while ($scriptTask.IsCompleted -eq $false)
 
 Write-Output "Installation complete!"
 ```
-I needed to create more than just one worker, so steps 2 and 3 from above were created multiple times in my process
+Because I needed to create more than one worker, steps 2 and 3 were created multiple times in my process
 
 ![](octopus-project-process.png)
 
 ## Containerized workers
-When configured in Listening mode, the Tentacle container is coded to automatically connect to your Octopus Server and register itself to the specified worker pool.  Once the runbook completed, I had three, healthy workers.
+When configured in Listening mode, the Tentacle container is coded to automatically connect to your Octopus Server and register itself to the specified worker pool.  After the runbook completed, I had three, healthy workers.
 
 ![](octopus-worker-pool.png)
 
 ## Conclusion
+
 In this post I demonstrated how to create workers running as containers.  This gives you the flexibility of creating workers without having to manage a VM!
