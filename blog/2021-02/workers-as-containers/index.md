@@ -3,7 +3,7 @@ title: Creating workers with the Tentacle Docker image
 description: Learn how to use the Tentacle Docker image to create workers using Azure container services
 author: shawn.sesna@octopus.com
 visibility: public
-published: 2022-02-01
+published: 2021-02-01
 metaImage: blogimage-worker-as-containers.png
 bannerImage: blogimage-worker-as-containers.png
 tags:
