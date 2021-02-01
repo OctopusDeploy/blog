@@ -14,7 +14,7 @@ Back in December, I made a bet with my big brother.
 
 He thought Starship SN8 (Serial Number 8) would make a clean landing. I gambled on a “RUD”, and I watched the live stream with a rather nice single malt. The “Rapid Unscheduled Disassembly” on the landing pad made for a pretty explosive climax. The following morning my brother dutifully performed his 100 sit ups.
 
-https://www.youtube.com/watch?v=h74DxVtpcqk 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/h74DxVtpcqk?start=12" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Despite all the crashing and burning, this is not a story about failure.
 
@@ -145,15 +145,15 @@ However, the fact that SN9 is already on the pad is not the real story. SN10 is 
 
 I think this photo best demonstrates the way SpaceX is approaching rocket design and testing like a conveyor belt.
 
-https://twitter.com/RGVaerialphotos/status/1352996328805175296 
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Starship SN9, SN7.2 &amp; SN10(background)! 🚀🚀 <a href="https://t.co/NLMotW9wM5">pic.twitter.com/NLMotW9wM5</a></p>&mdash; RGVAerialPhotography (@RGVaerialphotos) <a href="https://twitter.com/RGVaerialphotos/status/1352996328805175296?ref_src=twsrc%5Etfw">January 23, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 EDIT: Between drafts, SN10 has been wheeled out to the pad.
 
-https://twitter.com/johnkrausphotos/status/1355309250462019593 
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Sunset lift of Starship SN10 as Starship SN9 awaits flight <a href="https://t.co/EOW6H8AX1B">pic.twitter.com/EOW6H8AX1B</a></p>&mdash; John Kraus 📷🚀 (@johnkrausphotos) <a href="https://twitter.com/johnkrausphotos/status/1355309250462019593?ref_src=twsrc%5Etfw">January 30, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 It’s also become clear to observers, that since SpaceX has learned so much from SN8, they’ve scrapped the partially built SN12-14 models and have begun focussing their efforts on SN15, which will be a significant upgrade:
 
-https://twitter.com/brendan2908/status/1355246058905825282 
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">The current status of SpaceX&#39;s Starship &amp; Superheavy prototypes. 30th January 2021 <a href="https://t.co/C60oOcFlg6">pic.twitter.com/C60oOcFlg6</a></p>&mdash; Brendan (@brendan2908) <a href="https://twitter.com/brendan2908/status/1355246058905825282?ref_src=twsrc%5Etfw">January 29, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 They are pushing “disposable infrastructure” to the limit.
 
@@ -176,11 +176,11 @@ There is no doubt that cultural change is the hardest part of any transformation
 
 Elon Musk is a perfect example. In the hours before the launch, he publicly acknowledged the risk, and reassured his employees that they should focus on reaching for the stars, rather than covering their backs: 
 
-https://twitter.com/elonmusk/status/1336141388379873282
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Probably 1/3 chance of completing all mission objectives</p>&mdash; Elon Musk (@elonmusk) <a href="https://twitter.com/elonmusk/status/1336141388379873282?ref_src=twsrc%5Etfw">December 8, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 Immediately afterwards, despite the fireball, he congratulated his team on the success of the mission. He reinforced the message that the objective was to learn and iterate, and that this was achieved.
 
-https://twitter.com/elonmusk/status/1336809767574982658
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Fuel header tank pressure was low during landing burn, causing touchdown velocity to be high &amp; RUD, but we got all the data we needed! Congrats SpaceX team hell yeah!!</p>&mdash; Elon Musk (@elonmusk) <a href="https://twitter.com/elonmusk/status/1336809767574982658?ref_src=twsrc%5Etfw">December 9, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 # Sharing over secrecy
 
@@ -214,7 +214,7 @@ Compare that record to the Space Shuttle. In total the Space Shuttle launched 13
 
 I’d like to finish on a positive note. As a child I watched cartoons like Wallace and Gromit, Looney Tunes and Mickey Mouse, where full-sized pointy rockets landed on the moon. As an adult, I learned to think of those cartoons as silly science-fiction. Then, on February 6th 2018, I watched this:
 
-https://www.youtube.com/watch?v=l5I8jaMsHYk
+<iframe width="560" height="315" src="https://www.youtube.com/embed/l5I8jaMsHYk?start=85" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Seriously, compare the link to the Mickey Mouse carton above to this view of Starship SN8 landing attempt. SpaceX fans call that the “Crazy Elon”.
 
