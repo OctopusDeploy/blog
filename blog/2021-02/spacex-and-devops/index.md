@@ -107,12 +107,16 @@ Combine those three key features, and you can begin to appreciate how SpaceX is 
 
 As a demonstration of the sort of leap SpaceX has taken, [NASA recently selected three potential lunar landers](https://www.nasa.gov/feature/nasa-selects-blue-origin-dynetics-spacex-for-artemis-human-landers) for its upcoming moon program. Two of them (Blue Origin and Dynetics) have proposed small, light, bungalow-sized, spidery-looking vehicles that would probably travel on an SLS, Starship or Blue Origin’s New Glenn rocket. These new landers look a bit like the Apollo landers.  
 
+![Left: The Blue Origin ILV, Right: The Dynetics Human Landing System. Source: https://www.nasa.gov/feature/nasa-selects-blue-origin-dynetics-spacex-for-artemis-human-landers](ilv_and_dhls.png)
+
 (A brief side note on Blue Origin, another SpaceX competitor, headed by Jeff Bezos: There was a time when folks dismissed SpaceX. Blue Origin was better funded. Musk was successful, but Bezos was in a different league. [Blue Origin actually managed to land it’s New Shepard rocket in Nov 2015](https://web.archive.org/web/20151125051400/https:/www.blueorigin.com/news/news/blue-origin-makes-historic-rocket-landing), a month before [SpaceX landed a Falcon 9](https://www.theverge.com/2015/12/21/10640306/spacex-elon-musk-rocket-landing-success), although the Falcon 9 was a much bigger rocket so landing it was a significantly more impressive feat. Since then, Blue Origin simply hasn’t kept up. Like the SLS, the New Glenn is less powerful than a Starship, further behind in development, and improving less quickly. For me, comparing SpaceX to Blue Origin is like comparing the Wright brothers to Samuel Pierpont Langley. If you’ve never heard of Samuel Pierpont Langley, fast-forward [that Simon Sinek TED Talk](https://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action) to 7:50.)
 
 Anyway: moon landers. The third “lander” option was a full-blown, skyscraper-sized, Starship. Imagine how many more people and how much more equipment something that size could ferry to the moon. If your intention is to set up a moon base, it’s easy to imagine how much more effective Starship could be.
 
 Of course, if NASA does select Starship, that would make the SLS redundant for any such moon mission. (And the SLS was specifically designed for these are the sorts of missions.)
- 
+
+![A Starship on the Moon. Source: https://www.nasa.gov/feature/nasa-selects-blue-origin-dynetics-spacex-for-artemis-human-landers](starship_on_the_moon.jpg)
+
 # Fun story, but what’s this got to do with DevOps?
 
 It’s time to look at the “how” part in more detail.
