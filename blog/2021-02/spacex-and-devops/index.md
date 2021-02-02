@@ -37,7 +37,7 @@ Omitted from the slide above is the infamous Space Shuttle, another HLS with its
 
 (The *literal* same RS-25 engines. Not the same design. The same actual, antique engines. Physically removed from old space shuttles, reconfigured, and attached to new single-use rockets. After all that investment to make them re-usable, each engine will be used for a single mission, and then abandoned to burn up on re-entry.)
 
-To quote Rear Admiral Grace Hopper: The most dangerous phrase in the language is ‘We’ve always done it this way’. Despite all the genuinely challenging engineering efforts, and 50 years of progress, the SLS strategy has been to rely on tried and tested tech where possible. This, combined with the fact that each new political administration has tended to move the goalposts and throw out the accomplishments of the prior administration, has resulted in an incomplete rocket that’s hardly an improvement on the 1960s Apollo rocket, both in terms of performance and cost. It’s basically doing the same thing.
+To quote Rear Admiral Grace Hopper: *"The most dangerous phrase in the language is ‘We’ve always done it this way’"*. Despite all the genuinely challenging engineering efforts, and 50 years of progress, the SLS strategy has been to rely on tried and tested tech where possible. This, combined with the fact that each new political administration has tended to move the goalposts and throw out the accomplishments of the prior administration, has resulted in an incomplete rocket that’s hardly an improvement on the 1960s Apollo rocket, both in terms of performance and cost. It’s basically doing the same thing.
 
 Now look at Starship. Using either max payload to low-earth orbit or trans-lunar injection as the measure of performance, it’s not even close. Starship is a much more capable rocket, but the real kicker is the price. Starship will be able to take a kilo of cargo to the dark side of the moon for just $2,000 USD.
 
@@ -53,7 +53,7 @@ SpaceX started with a well-defined goal and a blank sheet of paper, rather than 
 
 Love or hate Elon Musk, there’s no doubt that he inspires passion.
 
-(Often not for the right reasons. I want it to be on record that I consider it horrific to use Twitter to manipulate the stock market, spread covid-19 misinformation, or to slander a man who risked his own life to save a group of children. I could go on.)
+*(Often not for the right reasons. I want it to be on record that I consider it horrific to use Twitter to manipulate the stock market, spread covid-19 misinformation, or to slander a man who risked his own life to save a group of children. I could go on.)*
 
 At the same time, despite his (glaring) flaws, I recognise that he’s inspired a lot of significant cultural changes – some of them good. PayPal enabled online retail, Tesla made environmentalism and electric cars [S3XY](https://www.reddit.com/r/TeslaLounge/comments/e35qu1/s3xy_cars/), and SpaceX wants to make humankind an interplanetary species. Those are some inspirational, even humanity-defining, achievements/aspirations.
 
@@ -73,7 +73,7 @@ Imagine if the Apollo program had the option of buying a ticket on a Starship. S
 
 A commercially viable Mars or Moon rocket, that’s capable of supporting a base/city, would need to be significantly cheaper than the current models. It would also need to be capable of transporting significantly greater payloads over much bigger distances. There are a few key features about Starship that make this possible:
 
-Reusability: 
+**Reusability:** 
 
 As Elon Musk often says, “imagine, if you built a new 747 for every flight”. How much do you think the average ticket from Heathrow to JFK would set you back? Reusability is the holy grail of affordable spaceflight.
 
@@ -83,11 +83,11 @@ The big orange fuel-tank wasn’t reusable. The white side boosters parachuted b
 
 In contrast, Starship is designed to be fully and efficiently reusable – including the “Super Heavy” first-stage rocket. All the rockets can land themselves on pads or drone ships. [SpaceX is even aiming to land Starships directly on the launchpad, ready to relaunch just 1 hour later](https://www.independent.co.uk/life-style/gadgets-and-tech/space/elon-musk-spacex-falcon-heavy-rocket-b1780793.html). For comparison, on average it takes 1½ to 2 hours to turn around a 747, and it took over a year to turn around a Space Shuttle.
 
-Engine/Fuel: 
+**Engine/Fuel:** 
 
 Starship is powered by Raptor engines. These engines are powered by oxygen and methane. 
 
-(If the use of methane concerns you, remember that it’s unburnt methane (cow farts) that’s especially horrible for the environment. The act of burning methane actually *reduces* its greenhouse effect. Burning methane contributes less to global warming than burning traditional fossil fuels. While there are no truly green rocket fuels, methane is one of the least bad. [More detail here](https://everydayastronaut.com/rocket-pollution/).)
+*(If the use of methane concerns you, remember that it’s unburnt methane (cow farts) that’s especially horrible for the environment. The act of burning methane actually reduces its greenhouse effect. Burning methane contributes less to global warming than burning traditional fossil fuels. While there are no truly green rocket fuels, methane is one of the least bad. [More detail here](https://everydayastronaut.com/rocket-pollution/).)*
 
 Methane burns cleanly, which is a significant help with the reusability goal. However, the really clever thing about using oxygen/methane is that both can be harvested on Mars. The oxygen (80% of the fuel mass) exists in the thin Martian atmosphere and the Methane could (in theory) either be generated from ice (if they can mine for it) or from a smaller batch of hydrogen that they could take with them (more realistic in the early days).
 
@@ -95,13 +95,13 @@ In theory, SpaceX could set up an automated propellent factory on Mars with a sm
 
 More fundamentally, the ability to harvest the return fuel on Mars makes the entire operation significantly more practical. If each rocket needed to take carry the return fuel on the outbound trip, the challenge would be orders of magnitude more difficult. We would be talking about sending a couple of astronauts in a tiny lander and returning a few small rocks. By generating the return fuel on Mars, SpaceX is able to realistically talk about sending hundreds of settlers at a time to build self-sustaining cities.
 
-Refuelling in orbit: 
+**Refuelling in orbit:** 
 
 Starships are designed for refuelling in orbit. Most of the fuel needed to launch a rocket to the moon/Mars will be used up in the first few minutes just to reach Earth orbit. (Just look at a Saturn V rocket and think about how much of the rocket was discarded during the initial launch sequence.)
 
 Once a moon/Mars-bound Starship has made it into orbit, it would rendezvous with one or two more Starships to refuel, before plotting its course across the solar system. That makes it possible to carry much less fuel (and hence, much more payload) during the initial launch sequence.
 
-# Putting it all together:
+**Putting it all together:**
 
 Combine those three key features, and you can begin to appreciate how SpaceX is able to deliver a rocket that is such a giant leap, compared to the Saturn V, Space Shuttle or SLS. 
 
@@ -109,7 +109,7 @@ As a demonstration of the sort of leap SpaceX has taken, [NASA recently selected
 
 ![Left: The Blue Origin ILV, Right: The Dynetics Human Landing System. Source: https://www.nasa.gov/feature/nasa-selects-blue-origin-dynetics-spacex-for-artemis-human-landers](ilv_and_dhls.png)
 
-(A brief side note on Blue Origin, another SpaceX competitor, headed by Jeff Bezos: There was a time when folks dismissed SpaceX. Blue Origin was better funded. Musk was successful, but Bezos was in a different league. [Blue Origin actually managed to land it’s New Shepard rocket in Nov 2015](https://web.archive.org/web/20151125051400/https:/www.blueorigin.com/news/news/blue-origin-makes-historic-rocket-landing), a month before [SpaceX landed a Falcon 9](https://www.theverge.com/2015/12/21/10640306/spacex-elon-musk-rocket-landing-success), although the Falcon 9 was a much bigger rocket so landing it was a significantly more impressive feat. Since then, Blue Origin simply hasn’t kept up. Like the SLS, the New Glenn is less powerful than a Starship, further behind in development, and improving less quickly. For me, comparing SpaceX to Blue Origin is like comparing the Wright brothers to Samuel Pierpont Langley. If you’ve never heard of Samuel Pierpont Langley, fast-forward [that Simon Sinek TED Talk](https://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action) to 7:50.)
+*(A brief side note on Blue Origin, another SpaceX competitor, headed by Jeff Bezos: There was a time when folks dismissed SpaceX. Blue Origin was better funded. Musk was successful, but Bezos was in a different league. [Blue Origin actually managed to land it’s New Shepard rocket in Nov 2015](https://web.archive.org/web/20151125051400/https:/www.blueorigin.com/news/news/blue-origin-makes-historic-rocket-landing), a month before [SpaceX landed a Falcon 9](https://www.theverge.com/2015/12/21/10640306/spacex-elon-musk-rocket-landing-success), although the Falcon 9 was a much bigger rocket so landing it was a significantly more impressive feat. Since then, Blue Origin simply hasn’t kept up. Like the SLS, the New Glenn is less powerful than a Starship, further behind in development, and improving less quickly. For me, comparing SpaceX to Blue Origin is like comparing the Wright brothers to Samuel Pierpont Langley. If you’ve never heard of Samuel Pierpont Langley, fast-forward [that Simon Sinek TED Talk](https://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action) to 7:50.)*
 
 Anyway: moon landers. The third “lander” option was a full-blown, skyscraper-sized, Starship. Imagine how many more people and how much more equipment something that size could ferry to the moon. If your intention is to set up a moon base, it’s easy to imagine how much more effective Starship could be.
 
@@ -127,7 +127,7 @@ SpaceX is embracing many DevOps ideas and patterns to deliver the features it ne
 
 Fundamentally, it comes down to having a mature relationship with risk. (And for the time being, I’m talking about uncrewed/prototype rockets, rather than crewed or commercial missions.)
 
-# Iterative development rocks. MTBF metrics suck.
+**Iterative development rocks. MTBF metrics suck.**
 
 The principle that practice beats theory is hardly rocket science. The best way to learn is to do. The best way to build a successful rocket is to build a cheap prototype, see if it works, and iterate. Spending years to design a rocket on paper, in the hope that it will launch successfully at the first attempt, is unlikely to be as effective.
 
@@ -139,7 +139,7 @@ As with Agile and DevOps, so with rocketry. The best way to create a safe rocket
 
 The key to this, in the early days, is to put more effort into learning than MTBF. And that’s what SpaceX is doing right now with Starship.
 
-# Focus on MTTR. Make it safe to fail.
+**Focus on MTTR. Make it safe to fail.**
 
 Of course, if each launch is prohibitively expensive, then regardless of the management mentality, a company will likely go bust if it suffers too many failures. The trick is to accept risk as normal part of doing business. The focus then turns to minimising the consequences of failure (perfectly practical), rather than eradicating the possibility of failure (impossible). 
 
@@ -151,7 +151,7 @@ I think this photo best demonstrates the way SpaceX is approaching rocket design
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Starship SN9, SN7.2 &amp; SN10(background)! 🚀🚀 <a href="https://t.co/NLMotW9wM5">pic.twitter.com/NLMotW9wM5</a></p>&mdash; RGVAerialPhotography (@RGVaerialphotos) <a href="https://twitter.com/RGVaerialphotos/status/1352996328805175296?ref_src=twsrc%5Etfw">January 23, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-EDIT: Between drafts, SN10 has been wheeled out to the pad.
+***EDIT:*** *Between drafts, SN10 has been wheeled out to the pad.*
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Sunset lift of Starship SN10 as Starship SN9 awaits flight <a href="https://t.co/EOW6H8AX1B">pic.twitter.com/EOW6H8AX1B</a></p>&mdash; John Kraus 📷🚀 (@johnkrausphotos) <a href="https://twitter.com/johnkrausphotos/status/1355309250462019593?ref_src=twsrc%5Etfw">January 30, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
@@ -172,7 +172,7 @@ At SpaceX they’ve invested in the ability to rapidly throw together a prototyp
 The SLS? They have a starting inventory of 15 antique RS-25 shuttle engines, and they plan to discard 4 engines per flight. So far, they haven’t started manufacturing any replacements, so each engine in their current inventory has a lot riding on it. If any of those engines were to become poorly, I expect NASA would face an expensive bill from the rocket vet.
 Frankly, my money is on NASA cancelling the SLS before they need to build more RS-25s.
 
-# Psychological Safety
+**Psychological Safety**
 
 This switch from an MTTR to an MTBF mindset is only possible when employees know they will be supported if stuff goes bang. Blame, scapegoating and job losses are not compatible with innovation. When folks cling to the safety of old deployment patterns, damaging bureaucracy and politics, it’s hard for them to accept failure as an option.
 
@@ -186,7 +186,7 @@ Immediately afterwards, despite the fireball, he congratulated his team on the s
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Fuel header tank pressure was low during landing burn, causing touchdown velocity to be high &amp; RUD, but we got all the data we needed! Congrats SpaceX team hell yeah!!</p>&mdash; Elon Musk (@elonmusk) <a href="https://twitter.com/elonmusk/status/1336809767574982658?ref_src=twsrc%5Etfw">December 9, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-# Sharing over secrecy
+**Sharing over secrecy**
 
 In the early days of DevOps, John Willis and Jez Humble defined the movement with the acronym Calms: Culture, automation, lean, measurements, sharing. The tweets above are a great demonstration of several of those attributes. However, the fact that the tweets exist at all is testament to the value of sharing.
 
