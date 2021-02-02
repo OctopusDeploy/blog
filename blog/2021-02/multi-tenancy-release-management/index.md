@@ -1,6 +1,6 @@
 ---
-title: Better Release Management with Octopus Deploy
-description: Introducing a new step template to make release management a bit easier.
+title: Multi-Tenancy Release Management with Octopus Deploy
+description: Leveraging the new Deploy Child Octopus Deploy Project step template for multi-tenancy scenarios.
 author: bob.walker@octopus.com
 visibility: public
 published: 2021-12-31
@@ -10,7 +10,7 @@ tags:
  - Engineering
 ---
 
-My [previous article](link) did a deep dive into the new [Deploy Child Octopus Deploy Project](https://library.octopus.com/step-templates/0dac2fe6-91d5-4c05-bdfb-1b97adf1e12e/actiontemplate-deploy-child-octopus-deploy-project).  The article covered a variety of scenarios except for multi-tenancy.  In this article, I will do a deep dive into the multi-tenancy functionality of the [Deploy Child Octopus Deploy Project](https://library.octopus.com/step-templates/0dac2fe6-91d5-4c05-bdfb-1b97adf1e12e/actiontemplate-deploy-child-octopus-deploy-project).
+One of my favorite features in Octopus Deploy is [Multi-Tenancy](https://octopus.com/docs/deployments/patterns/multi-tenant-deployments).  When working on applications where each customer gets their own "world" either by hosting the software themselves or by spinning up unique infrastructure per customer, the Multi-Tenancy feature in Octopus Deploy solves many problems.  My [previous article](link) did a deep dive into the new [Deploy Child Octopus Deploy Project](https://library.octopus.com/step-templates/0dac2fe6-91d5-4c05-bdfb-1b97adf1e12e/actiontemplate-deploy-child-octopus-deploy-project) and covered a variety of scenarios except for multi-tenancy.  In this article, I will do a deep dive into the multi-tenancy functionality of the [Deploy Child Octopus Deploy Project](https://library.octopus.com/step-templates/0dac2fe6-91d5-4c05-bdfb-1b97adf1e12e/actiontemplate-deploy-child-octopus-deploy-project) and how you can use it to manage your multi-tenancy releases better.
 
 :::success
 This article assumes you read the previous article.  It will touch on some similar topics, but it isn't a full rehash.  
@@ -88,7 +88,7 @@ One of the step templates' core business rules is to pick the last successfully 
 - **Coke**: has an older release, `2021.1.0.1` ready to go to **Staging**.
 - **Ford**, **Nike**, and **Starbucks** aren't assigned to the **Test** environment.
 
-When the step template is told to promote the latest `2021.1.0.x` release to **Staging**, which release will be picked?  The answer
+What release will be picked by step template when it promotes the latest `2021.1.0.x` release to **Staging**?  The answer:
 
 - **Internal**, **Ford**, **Nike**, and **Starbucks**: 2021.1.0.15
 - **Coke**: 2021.1.0.1
@@ -101,16 +101,16 @@ How the step template works is you provide it a destination environment (**Stagi
 
 Multi-tenancy adds a bit of complexity to that.
 
-- Not all tenants are assigned to the **Test** environment; only **Coke** and **Internal**.
+- Only **Coke** and **Internal** are assigned to the **Test** environment.
 - Tenants can have different releases.
 
 The excellent news is Octopus already figures this out for us.  If were to pick the `2021.1.0.15` release from the **Filter by release** drop-down menu, the dashboard would change to this:
 
 ![filtering the dashboard by a release](multi-tenant-release-complex-release-chosen.png)
 
-The step template hooks into that logic already provided by Octopus Deploy.  Internally the logic looks at `2021.1.0.15` for **Coke** and determines this cannot be deployed to **Staging** because the tenant is tied to the **Test** environment and that release hasn't been deployed to that environment.  Whereas with **Internal**, that release has been deployed to **Test** so it can be deployed to **Staging**.
+The step template hooks into that logic already provided by Octopus Deploy.  Internally the logic looks at `2021.1.0.15` for **Coke** and determines that is not the correct release to promote to **Staging**.  **Coke** is assigned to the **Test** environment, and that release hasn't been deployed to that environment.  Whereas with **Internal**, that release has been deployed to **Test** so it can be deployed to **Staging**.
 
-When the step template looks at **Ford**, it sees that tenant isn't tied to the **Test** environment.  It will then pick the latest release from the **Test** environment, regardless of the tenant.  
+When the step template looks at **Ford**, it sees that tenant isn't assigned to the **Test** environment.  It will then pick the latest release from the **Test** environment, regardless of the tenant.  
 
 ## Using the Deploy Child Octopus Deploy Project Step Template
 
@@ -120,7 +120,7 @@ This section will walk through configuring some common parent project scenarios.
 
 There is some scaffolding to configure for users and lifecycles.  Please see the scaffolding section in the [Previous Article](LINK TO PREVIOUS ARTICLE HERE).  
 
-Once you are finished configuring the users and lifecycles, it is time to create a project.  When you are creating the project, remember to select the new lifecycle created above.
+Once finished configuring the users and lifecycles, it is time to create a project.  When you are creating the project, remember to select the new lifecycle created above.
 
 ![release management create project](release-management-create-project.png)
 
@@ -128,7 +128,7 @@ Ensure the project is configured to require a tenant for all deployments.
 
 ![configuring a project for multi-tenant](project-multi-tenant-setting.png)
 
-After that, head over to the variables screen and add in the API key and the release pattern.
+After that, head over to the variables screen and add the API key and the release pattern.
 
 ![release orchestration variables](release-orchestration-variables.png)
 
@@ -197,8 +197,8 @@ Now let's see when the tenant is _not_ assigned to **Test**, such as the case wi
 
 A couple of things will happen when deploying the parent project to **Staging** for **Ford**  
 
-- Release `2021.1.0.15` for the Web API project will be selected as that is the most recent successful release to **Test**.
-- The scheduling service, data conversion service, and the single sign-on projects will be skipped.
+- Release `2021.1.0.15` for the Web API project will be selected as it is the most recent successful release to **Test**.
+- The scheduling service, data conversion service, and single sign-on projects will be skipped.
 
 ![ford deploying all the child components it has to staging](ford-deployment-to-staging.png)
 
@@ -208,9 +208,9 @@ So far, we've configured the parent project to do deployments only.  If we stop 
 
 It is common to have manual interventions in child projects.  In this example application's case, each component project has two or three manual interventions.  That means we are looking at 8 to 18 approvals, depending on the tenant, to submit.  That is very, very tedious.
 
-In an ideal configuration, all the approvals are in the parent project and flow down to the child project.
+All the approvals are in the parent project and flow down to the child project in an ideal configuration.
 
-The step template was designed with this scenario in mind.  But then there is the question, what is the person exactly approving?  With Octopus Deploy, all manual interventions occur as part of a deployment.  It is a chicken/egg scenario.  The step template provides "what-if" functionality, which will do everything up to the point of doing the deployment when set.  The step template gathers all the release notes to aid in approvals.
+What is the person exactly approving, though?  With Octopus Deploy, all manual interventions occur as part of a deployment.  It is a chicken/egg scenario.  To solve the chicken/egg scenario, the step template provides "what-if" functionality, which will do everything up to the point of kicking off a deployment.  Also, the step template gathers all the release notes to aid in approvals.
 
 The flow of the parent project will be:
 
@@ -222,7 +222,7 @@ When running in what-if mode, the following output parameters are set to be used
 
 - **ReleaseToPromote**: the release number that meets all the requirements.  When no release is found, this is set to N/A.  When the release has already been deployed to the target environment, it will indicate that.
 - **ReleaseNotes**: the release notes of the child project.  Includes the commit history and issues associated with the project when using build information.
-- **ChildReleaseToDeploy**: indicates if there is a child release to deploy.  It will either be True or False.  Can be used for variable run conditions.
+- **ChildReleaseToDeploy**: indicates if there is a child release to deploy.  It will either be True or False.  Use this variable in variable run conditions.
 
 #### Create the what if steps
 
@@ -279,7 +279,7 @@ After the deployment, approvals don't make sense, reorder the steps by clicking 
 
 ![reorder release orchestration steps](reorder-release-orchestration-steps.png)
 
-Move all the steps you set to do a "what if" to be above the "non-whatif" steps.  When you are finished, your process should look something similar to this. 
+Move all the steps you set to do a "what if" to be above the "non-what if" steps.  When finished, your process should look something similar to this. 
 
 ![release orchestration project post sort](release-orchestration-post-sort.png)
 
@@ -381,11 +381,11 @@ Now promote that release to **Production** for **Internal**.  The approvals are 
 
 ![prod approval for internal tenant message](prod-approval-internal-tenant-message.png)
 
-Now that **Internal** has been promoted through **Prod Approval**, we can move onto **Ford** and **Starbucks**.  Promoting the release through **Staging** and onto **Production** will show the approvals will be picked up from the **Internal** tenant as well.
+Now that **Internal** has been promoted through **Prod Approval**, we can move onto **Ford** and **Starbucks**.  Promoting the release through **Staging** and onto **Production** will show the **Internal** tenant's approval.
 
 ![prod approval for ford tenant using the internal tenant](ford-deploy-to-prod-for-internal-tenant-approval.png)
 
-When the same release is deployed through the environments for **Coke**, we will see the approvals will come from the **Coke** tenant.
+When the same release is deployed to **Production** for **Coke**, we will see the approvals will come from the **Coke** tenant.
 
 ![automatic for coke using approvals from coke](coca-cola-tenant-approval-from-coca-cola.png)
 
@@ -393,12 +393,12 @@ When the same release is deployed through the environments for **Coke**, we will
 The step template looks for approvals for the current release only.  Creating a new release will require another round of approvals.  Even for a patch release, such as `2021.1.1`.  
 :::
 
-Approvals in a real-world setting are complex.  Hopefully with this functionality that process can be a bit smoother.  
+Approvals in a real-world setting are complex.  Hopefully, with this functionality, that process can be a bit smoother.  
 
 ## Conclusion
 
 This article covered some of the multi-tenancy scenarios for the [Deploy Child Octopus Deploy Project](https://library.octopus.com/step-templates/0dac2fe6-91d5-4c05-bdfb-1b97adf1e12e/actiontemplate-deploy-child-octopus-deploy-project) step template.  If you want to see more scenarios, please see [my previous article](LINK).  
 
-Octopus Deploy's multi-tenancy feature was designed to make life easier for companies who install software on distinct infrastructure.  I see and hear about all the various quirks customers run into with that model.  The more customizations offerred, the harder it is to manage a deployment.  Those quirks was a primary driver in writing this step template.  A person shouldn't need to consult a spreadsheet to know what releases to deploy to what customers.  Something like that introduces the potential for errors because of a manual process.  That is the goal of this step template, to remove as much psycholocial weight from multi-tenant deployments as possible.
+Octopus Deploy's multi-tenancy feature was designed to make life easier for companies who install software on distinct infrastructure.  I see and hear about all the various quirks customers run into with that model.  The more customizations offered, the harder it is to manage deployment.  Those quirks were a primary driver in writing this step template.  A person shouldn't need to consult a spreadsheet to know what releases to deploy to what customers.  Something like that introduces the potential for errors because of a manual process.  That is the goal of this step template, to remove as much psychological weight from multi-tenant deployments as possible.
 
 I hope you find this step template useful for your multi-tenancy projects.  Until next time, Happy Deployments!
