@@ -47,7 +47,7 @@ So how have SpaceX been able to outperform NASA/Boeing so comprehensively?
 
 As I often do, I’m going to try and articulate it through the lens of [Simon Sinek’s Start with Why](https://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action).
 
-# Why: Self-sustaining civilization on Mars
+## Why: Self-sustaining civilization on Mars
 
 SpaceX started with a well-defined goal and a blank sheet of paper, rather than complicated contractual obligations and an instinct to re-use what they already had.
 
@@ -61,7 +61,7 @@ Everything that SpaceX does, is about creating a self-sustaining civilization on
 
 Having a clear mission is a fantastic way to focus the mind. It encourages folks to direct all their energies with “The Goal” in mind, which lends itself perfectly to [Lean development ideas](https://octopus.com/blog/devops-reading-list#goal).
 
-# How: Solving the transportation problem
+## How: Solving the transportation problem
 
 From SpaceX’s goal it’s possible to extrapolate the biggest constraint: Mars is pretty hard to get to.
 
@@ -69,7 +69,7 @@ If any scientific, commercial or government entity is considering doing anything
 
 Imagine if the Apollo program had the option of buying a ticket on a Starship. Sure, they would still have needed to figure out how their astronauts were going to survive on the lunar surface – but the Saturn V would not have been necessary, saving the US taxpayer a fortune.
 
-# What: Cheap, powerful rockets
+## What: Cheap, powerful rockets
 
 A commercially viable Mars or Moon rocket, that’s capable of supporting a base/city, would need to be significantly cheaper than the current models. It would also need to be capable of transporting significantly greater payloads over much bigger distances. There are a few key features about Starship that make this possible:
 
@@ -117,7 +117,7 @@ Of course, if NASA does select Starship, that would make the SLS redundant for a
 
 ![A Starship on the Moon. Source: https://www.nasa.gov/feature/nasa-selects-blue-origin-dynetics-spacex-for-artemis-human-landers](starship_on_the_moon.jpg)
 
-# Fun story, but what’s this got to do with DevOps?
+## Fun story, but what’s this got to do with DevOps?
 
 It’s time to look at the “how” part in more detail.
 
@@ -198,7 +198,7 @@ If this is how open SpaceX are externally, one can only imagine how freely folks
 
 Some readers might be confused about the apparent lack of effort to protect SpaceX’s IP. However, I suspect they are comfortable enough in their ability to innovate faster than any competitor piggybacking on their designs. And if you find that unlikely, [Elon has a track record for sharing his patents](https://www.bbc.co.uk/news/business-27824698), further demonstrating his devotion to the causes he’s devoted his life to.
 
-# Starship SN9, SN10, SN15 and beyond…
+## Starship SN9, SN10, SN15 and beyond…
 
 SpaceX is invigorating. Their approach is reminiscent of the Apollo program, led by a fascination with learning and achieving inspirational things. You could see the development from one launch to the next. It was exciting.
 
