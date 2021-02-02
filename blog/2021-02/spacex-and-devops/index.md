@@ -3,7 +3,7 @@ title: How SpaceX obliterates its competitors, and redefines space travel
 description: A story about rocket science, and DevOps 
 author: alex.yates@dlmconsultants.com
 visibility: public
-published: 2021-01-11
+published: 2021-02-11
 metaImage: 
 bannerImage: 
 tags:
