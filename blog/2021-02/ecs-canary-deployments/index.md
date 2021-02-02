@@ -3,14 +3,14 @@ title: Canary deployments with ECS
 description: Learn how to use an external deployment controller to perform Canary deployments in ECS
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2999-01-01
+published: 2021-02-03
 metaImage: 
 bannerImage: 
 tags:
- - Octopus
+ - Deployment Patterns
 ---
 
-Canary deployments are a popular pattern allowing you to progressively roll out a new version of your application to an increasing number of end users. By watching for errors or undesirable effects from the new version during the rollout, it is possible to catch and revert production errors before they impact the majority of your users.
+Canary deployments are a popular pattern that allow you to progressively roll out a new version of your application to an increasing number of end users. By watching for errors or undesirable effects from the new version during the rollout, it is possible to catch and revert production errors before they impact the majority of your users.
 
 ECS has native support for [rolling updates](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-ecs.html), where tasks in a service are progressively, but automatically, updated with a new version of the application. By integrating with CodeDeploy, it is possible to perform what ECS refers to as a [Blue/Green deployment](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-bluegreen.html), although this deployment option can be configured to perform Canary deployments that shifts the traffic to the new version. You can even [create your own deployment strategy](https://docs.aws.amazon.com/cli/latest/reference/deploy/create-deployment-config.html), but you are limited to a time based canary rule, which is:
 
@@ -20,22 +20,22 @@ Or a time based linear rule, which is:
 
 > A configuration that shifts traffic from one version of a Lambda function or ECS task set to another in equal increments, with an equal number of minutes between each increment.
 
-There are times though when the decision to shift more traffic to the canary deployment is not something you can easily determine over a fixed period of time. For example, you may need to have a person make the decision to move forward with a canary deployment based on a range of inputs like support requests, errors in logs, or resource usage. This kind of manual intervention in the deployment requires more flexibility than the Blue/Green strategy exposed by ECS.
+There are times though, when the decision to shift more traffic to the canary deployment is not something you can easily determine over a fixed period of time. For example, you may need a person to make the decision to move forward with a canary deployment based on a range of inputs like support requests, errors in logs, or resource usage. This kind of manual intervention in the deployment requires more flexibility than the Blue/Green strategy exposed by ECS.
 
 Fortunately, [ECS can defer the decision to progress a deployment to an external system](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-external.html). It requires some work to set up, but is incredibly flexible.
 
-In this blog post we'll look at how to manage an ECS canary deployment with CloudFormation.
+In this blog post, we'll look at how to manage an ECS canary deployment with CloudFormation.
 
 ## ECS CloudFormation resources
 
 Our ECS deployment will be created and managed via CloudFormation, and will make use of the following resources:
 
-* [`AWS::ECS::TaskDefinition`](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskdefinition.html) - Task definitions configure the containers to be executed by ECS.
-* [`AWS::ECS::Service`](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html) - A service keeps one or more instances of a task definition (or many task definitions, when using task sets) running in the ECS cluster.
-* [`AWS::ECS::TaskSet`](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskset.html) - A service can contain many task sets, with each task set configured with its own task definition. Multiple task sets allow a single service to manage tasks created from multiple task definitions.
-* [`AWS::ElasticLoadBalancingV2::Listener`](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listener.html) - A listener defines the port and protocol that it will receive load balancer traffic on.
-* [`AWS::ElasticLoadBalancingV2::ListenerRule`](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenerrule.html) - A listener rule defines the high level rules, such as path, query string, header matching etc, that must be satisfied to deliver traffic to a target group.
-* [`AWS::ElasticLoadBalancingV2::TargetGroup`](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-targetgroup.html) - A target group binds downstream services, like ECS tasks, to a load balancer listener rule.
+* [`AWS::ECS::TaskDefinition`](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskdefinition.html): Task definitions configure the containers to be executed by ECS.
+* [`AWS::ECS::Service`](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-service.html): A service keeps one or more instances of a task definition (or many task definitions, when using task sets) running in the ECS cluster.
+* [`AWS::ECS::TaskSet`](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ecs-taskset.html): A service can contain many task sets, with each task set configured with its own task definition. Multiple task sets allow a single service to manage tasks created from multiple task definitions.
+* [`AWS::ElasticLoadBalancingV2::Listener`](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listener.html): A listener defines the port and protocol that it will receive load balancer traffic on.
+* [`AWS::ElasticLoadBalancingV2::ListenerRule`](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-listenerrule.html): A listener rule defines the high level rules, such as path, query string, header matching etc, that must be satisfied to deliver traffic to a target group.
+* [`AWS::ElasticLoadBalancingV2::TargetGroup`](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-elasticloadbalancingv2-targetgroup.html): A target group binds downstream services, like ECS tasks, to a load balancer listener rule.
 
 The resulting architecture looks like this:
 
@@ -43,7 +43,7 @@ The resulting architecture looks like this:
 
 ## The sample application
 
-To demonstrate a canary deployment, we'll use the Docker image created from the code at https://github.com/OctopusSamples/DockerHelloWorldWithVersion. This is a simple "hello world" Node.js application that also prints the value of the `APPVERSION` environment variable in response to a HTTP request.
+To demonstrate a canary deployment, we'll use the Docker image created from the code at https://github.com/OctopusSamples/DockerHelloWorldWithVersion. This is a simple "hello world" Node.js application that also prints the value of the `APPVERSION` environment variable in response to an HTTP request.
 
 ## The `AWS::ECS::TaskDefinition` resource
 
@@ -149,9 +149,9 @@ The two target groups below will hold the blue (or existing deployment) tasks, a
 
 With a standard rolling deployment, an ECS service would reference only one task definition, and the service resource would define all the associated settings like networking and task counts. 
 
-Task sets provide a more flexible method of defining task definitions in a service. When task sets are used, [the service resource defines very few settings](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-external.html#deployment-type-external-workflow), and exists mostly as a parent resource for its child task sets.
+Task sets provide a more flexible method of defining task definitions in a service. When task sets are used, [the service resource defines very few settings](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/deployment-type-external.html#deployment-type-external-workflow) and exists mostly as a parent resource for its child task sets.
 
-In this example, each task set points to the same task definition. This means for the initial deployment, the blue and green half of the stacks will be the same. Later in the post we'll look at how this template is updated with a new task definition for the green stack to perform a canary or blue/green deployment:
+In this example, each task set points to the same task definition. This means for the initial deployment, the blue and green half of the stacks will be the same. Later in the post, we'll look at how this template is updated with a new task definition for the green stack to perform a canary or blue/green deployment:
 
 ```json
     "GreenTaskSet": {
@@ -241,9 +241,9 @@ In this example, each task set points to the same task definition. This means fo
 
 ## The `AWS::ECS::Service` resource
 
-The service will ensure the desired number of tasks are run, and continue to run. Typically we would configure the service to reference a task definition directly, but in our case we will use task sets above to link a service to a task definition. This means our service is quite sparse.
+The service will ensure the desired number of tasks are run, and that they continue to run. Typically, we would configure the service to reference a task definition directly, but in our case we will use the task sets above to link a service to a task definition. This means our service is quite sparse.
 
-We do add a tag to the service to indicate the stack that holds the previous, stable deployment. When deploying this template, we always consider the blue stack to be previous stable deployment, and the green stack to be the new deployment. However, the cut over from blue to green will involve updating this tag to indicate that the green stack passed testing and is the new stable stack:
+We do add a tag to the service to indicate the stack that holds the previous stable deployment. When deploying this template, we always consider the blue stack to be previous stable deployment, and the green stack to be the new deployment. However, the cut over from blue to green will involve updating this tag to indicate that the green stack passed testing and is the new stable stack:
 
 ```json
     "MyService": {
@@ -266,7 +266,7 @@ We do add a tag to the service to indicate the stack that holds the previous, st
 
 ## The `AWS::ElasticLoadBalancingV2::Listener` resource
 
-Listeners are attached to load balancers, and define the protocol and port rules used to direct traffic to a target group. The listener below is configured to receive HTTP traffic on port 80, and has a default rule to respond with a HTTP 404 status code if no other custom rule matches the incoming request.
+Listeners are attached to load balancers, and define the protocol and port rules used to direct traffic to a target group. The listener below is configured to receive HTTP traffic on port 80, and has a default rule to respond with an HTTP 404 status code if no other custom rule matches the incoming request.
 
 Note here that we have hard coded the ARN of an existing [ALB](https://docs.aws.amazon.com/elasticloadbalancing/latest/application/introduction.html) or [NLB](https://docs.aws.amazon.com/elasticloadbalancing/latest/network/introduction.html). The requirement here is that the existing load balancer does not already have a listener configured to use port 80:
 
@@ -292,7 +292,7 @@ Note here that we have hard coded the ARN of an existing [ALB](https://docs.aws.
 
 ## The `AWS::ElasticLoadBalancingV2::ListenerRule` resource
 
-A listener rule is attached to a listener, and provides fine grained control over how an incoming request is matched, and how it is forwarded to a target group. The listener rule below matches all request paths (essentially matching all requests), and splits traffic between the blue and green target groups.
+A listener rule is attached to a listener and provides fine grained-control over how an incoming request is matched, and how the request is forwarded to a target group. The listener rule below matches all request paths (essentially matching all requests) and splits traffic between the blue and green target groups.
 
 Modifying the weights assigned to the blue and green target groups is how we achieve a blue/green or canary deployment. A hard cut over from the blue to the green stack achieves a traditional blue/green deployment, while gradually increasing the traffic to the green stack achieves a canary deployment:
 
@@ -636,7 +636,7 @@ We will assume at this point that this initial deployment is complete. This mean
 
 If you recall from earlier, we added a tag to the service to indicate which stack, blue or green, was the stable stack. We now want to find the details of the stable stack and copy them back into the blue stack as we start a new deployment.
 
-We know this tag is currently set to **Blue**, because that is what we set it to, and nothing has changed it. However, we still want to run through the process of extracting the tag value in a repeatable way because the next deployment can't assume the tag has a known value.
+We know this tag is currently set to **Blue** because that's what we set it to, and nothing has changed it. However, we still want to run through the process of extracting the tag value in a repeatable way because the next deployment can't assume the tag has a known value.
 
 The command below will extract the value of the tag:
 
@@ -1099,7 +1099,7 @@ aws elbv2 modify-rule \
 
 ![](canary-traffic.png "width=500")
 
-With traffic split between the stable blue task set and the new green task set, we can now run whatever tests we need to validate that the new deployment is working as expected. Unlike the blue/green deployment driven by CodeDeploy, there is no automatic progression from blue to green, and we are in complete control as to how much traffic is split between the stacks, and when.
+With traffic split between the stable blue task set and the new green task set, we can now run whatever tests we need to validate the new deployment is working as expected. Unlike the blue/green deployment driven by CodeDeploy, there is no automatic progression from blue to green, and we are in complete control as to how much traffic is split between the stacks and when.
 
 The weights can be incrementally updated to drive more traffic to the green stack, eventually reaching a point where the green stack is receiving 100% of the traffic. At this point the green stack represents the stable stack. We reflect this change in the tag assigned to the service with the command:
 
@@ -1122,7 +1122,7 @@ At this point we can go back and run through the process again:
 
 ## Advanced testing of the green stack
 
-If you look closely at the listener rule created to split traffic between the blue and green stacks, you will see that we have defined its priority at `10`. These priority numbers are somewhat like the command numbers in an old BASIC application, where you always incremented in steps of 10 to give yourself room to add steps in-between at a later time.
+If you look closely at the listener rule created to split traffic between the blue and green stacks, you will see that we have defined its priority at `10`. These priority numbers are somewhat like the command numbers in an old BASIC application where you always incremented in steps of 10 to give yourself room to add steps in-between at a later time.
 
 In our example, it may be useful to direct a small amount of the main traffic to the green stack, but also allow the green stack to be accessed with a URL that only testers are aware of. For example, you might add a rule that directed traffic to the green stack only when a special query string is supplied.
 
@@ -1169,8 +1169,8 @@ ECS supports many useful deployment options out of the box via CodeDeploy. Howev
 
 By making use of the external deployment strategy in ECS, it is possible to build task sets that allow a manual progression to the new deployment. This is useful when the decision to cut traffic over is explicitly made by a human who may have to review the state of the new deployment or obtain permission to direct more traffic to the new deployment.
 
-In this post we looked at a sample ECS CloudFormation template defining an external deployment and delivering a custom split of traffic via a load balancer, and described a process that allowed new deployments to be rolled out progressively and manually.
+In this post, we looked at a sample ECS CloudFormation template defining an external deployment and delivering a custom split of traffic via a load balancer, and described a process that allowed new deployments to be rolled out progressively and manually.
 
-The end result was a repeatable deployment process that support both blue/green and canary deployments, supporting manual testing and explicit traffic cut over.
+The end result is a repeatable deployment process that support both blue/green and canary deployments, supporting manual testing and explicit traffic cut over.
 
 Happy deployments!
