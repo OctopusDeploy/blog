@@ -2,13 +2,15 @@
 title: Canary deployments with ECS
 description: Learn how to use an external deployment controller to perform Canary deployments in ECS
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
-metaImage: 
-bannerImage: 
+visibility: public
+published: 2021-02-03
+metaImage: canary-deployments.png
+bannerImage: canary-deployments.png
 tags:
- - Octopus
+ - DevOps
 ---
+
+![Canary deployments with ECS](canary-deployments.png)
 
 Canary deployments are a popular pattern allowing you to progressively roll out a new version of your application to an increasing number of end users. By watching for errors or undesirable effects from the new version during the rollout, it is possible to catch and revert production errors before they impact the majority of your users.
 
