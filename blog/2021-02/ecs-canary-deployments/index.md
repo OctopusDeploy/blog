@@ -2,11 +2,12 @@
 title: Canary deployments with ECS
 description: Learn how to use an external deployment controller to perform Canary deployments in ECS
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2021-02-03
-metaImage: 
-bannerImage: 
+metaImage: canary-deployments.png
+bannerImage: canary-deployments.png
 tags:
+ - DevOps
  - Deployment Patterns
 ---
 
