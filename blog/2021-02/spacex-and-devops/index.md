@@ -29,6 +29,8 @@ This slide compares four HLSs (Heavy Launch Systems / really big rockets): one e
 
 For those readers who are not up on their space lingo, LEO means Low Earth Orbit, means TLI is Trans-Lunar Injection (a bigger orbit that gets you close to the moon).
  
+![Comparing 4 HLSs. Credit: Tim Dodd, The Everyday Astronaut](super_heavy_lift_launcher_capabilities.jpg)
+
 There’s plenty to drill into here.
 
 Let’s start by comparing the Saturn V to the SLS. You might think it’s a bit disappointing that in 2021 we are still designing a new rocket that’s barely an improvement on 50-year-old tech… And you’d be right. Why haven’t we improved?
@@ -225,3 +227,7 @@ Seriously, compare the link to the Mickey Mouse carton above to [this view of St
 SpaceX’s innovative approach to rocket engineering has redefined what’s possible with space exploration. It’s done so using many of the same techniques that the DevOps community has embraced with [demonstrably effective results](https://octopus.com/blog/devops-reading-list#accelerate).
 
 SpaceX’s next launch attempt is likely to go ahead any day now. When it does, I’ll be watching, and so will my bother. This time, I’m betting on a successful landing. That said, whether they land the thing, isn’t important. What matters is that they keep learning, iterating, and improving.
+
+***EDIT:*** *2nd Feb 2021: Wow, that was incredible! Check out the video below. I've already fast-forwarded to the landing on your behalf. Remember, with SN10 already sitting on the pad, the real story here is that SpaceX can iterate through giant space rockets more quickly than I can write a blog post. And I'm already pumped about SN10!*
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/l4-PwxnJimg?start=16246" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
