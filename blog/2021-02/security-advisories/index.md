@@ -3,11 +3,12 @@ title: Security advisories and Octopus Products
 description: Updating the way we keep our customers informed about product security
 author: kyle.jackson@octopus.com
 published: 3020-01-01
-metaImage: to-be-added-by-marketing
-bannerImage: to-be-added-by-marketing
+metaImage: blogimage-security.png
+bannerImage: blogimage-security.png
 tags:
   - Security
   - Product
+  - Advisories
 ---
 
 ![A stylized Octopus & Shield icon](blogimage-security.png)
