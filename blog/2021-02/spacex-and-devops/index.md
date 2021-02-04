@@ -53,12 +53,6 @@ As I often do, I’m going to try and articulate it through the lens of [Simon S
 
 SpaceX started with a well-defined goal and a blank sheet of paper, rather than complicated contractual obligations and an instinct to re-use what they already had.
 
-Love or hate Elon Musk, there’s no doubt that he inspires passion.
-
-*(Often not for the right reasons. I want it to be on record that I consider it horrific to use Twitter to manipulate the stock market, spread Covid-19 misinformation, or to slander a man who risked his own life to save a group of children. I could go on.)*
-
-At the same time, despite his (glaring) flaws, I recognize that he’s inspired a lot of significant cultural changes – some of them good. PayPal enabled online retail, Tesla made environmentalism and electric cars [S3XY](https://www.reddit.com/r/TeslaLounge/comments/e35qu1/s3xy_cars/), and SpaceX wants to make humankind an interplanetary species. Those are some inspirational, even humanity-defining, achievements/aspirations.
-
 Everything that SpaceX does, is about creating a self-sustaining civilization on Mars. That goal won’t seem important to everyone, but to a lot of people, it’s incredibly exciting. I imagine that the folks who work for SpaceX are pretty darned engaged.
 
 Having a clear mission is a fantastic way to focus the mind. It encourages folks to direct all their energies with “The Goal” in mind, which lends itself perfectly to [Lean development ideas](https://octopus.com/blog/devops-reading-list#goal).
