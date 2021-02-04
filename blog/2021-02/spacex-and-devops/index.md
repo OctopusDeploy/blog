@@ -1,6 +1,6 @@
 ---
 title: How SpaceX obliterates its competitors, and redefines space travel
-description: A story about rocket science, and DevOps 
+description: A story about rocket science and DevOps 
 author: alex.yates@dlmconsultants.com
 visibility: public
 published: 2021-02-11
@@ -23,11 +23,11 @@ I’m a fan of data, so let’s look at the stats. Tim Dodd, [The Everyday Astro
 This slide compares four HLSs (Heavy Launch Systems / really big rockets): one existing, one historical, and two under development:
 
 - Falcon Heavy, SpaceX’s currently operating rocket. 
-- Saturn V, which took Neil, Buzz and Michael to the moon in 1969.
+- Saturn V, which took Neil, Buzz, and Michael to the moon in 1969.
 - Space Launch System (SLS), under development by NASA and Boeing.
 - Starship Super Heavy, under development by SpaceX.
 
-For those readers who are not up on their space lingo, LEO means Low Earth Orbit, means TLI is Trans-Lunar Injection (a bigger orbit that gets you close to the moon).
+For those readers who are not up on their space lingo, LEO means Low Earth Orbit, and TLI is Trans-Lunar Injection (a bigger orbit that gets you close to the moon).
  
 ![Comparing 4 HLSs. Credit: Tim Dodd, The Everyday Astronaut](super_heavy_lift_launcher_capabilities.jpg)
 
@@ -55,9 +55,9 @@ SpaceX started with a well-defined goal and a blank sheet of paper, rather than 
 
 Love or hate Elon Musk, there’s no doubt that he inspires passion.
 
-*(Often not for the right reasons. I want it to be on record that I consider it horrific to use Twitter to manipulate the stock market, spread covid-19 misinformation, or to slander a man who risked his own life to save a group of children. I could go on.)*
+*(Often not for the right reasons. I want it to be on record that I consider it horrific to use Twitter to manipulate the stock market, spread Covid-19 misinformation, or to slander a man who risked his own life to save a group of children. I could go on.)*
 
-At the same time, despite his (glaring) flaws, I recognise that he’s inspired a lot of significant cultural changes – some of them good. PayPal enabled online retail, Tesla made environmentalism and electric cars [S3XY](https://www.reddit.com/r/TeslaLounge/comments/e35qu1/s3xy_cars/), and SpaceX wants to make humankind an interplanetary species. Those are some inspirational, even humanity-defining, achievements/aspirations.
+At the same time, despite his (glaring) flaws, I recognize that he’s inspired a lot of significant cultural changes – some of them good. PayPal enabled online retail, Tesla made environmentalism and electric cars [S3XY](https://www.reddit.com/r/TeslaLounge/comments/e35qu1/s3xy_cars/), and SpaceX wants to make humankind an interplanetary species. Those are some inspirational, even humanity-defining, achievements/aspirations.
 
 Everything that SpaceX does, is about creating a self-sustaining civilization on Mars. That goal won’t seem important to everyone, but to a lot of people, it’s incredibly exciting. I imagine that the folks who work for SpaceX are pretty darned engaged.
 
@@ -93,19 +93,19 @@ Starship is powered by Raptor engines. These engines are powered by oxygen and m
 
 Methane burns cleanly, which is a significant help with the reusability goal. However, the really clever thing about using oxygen/methane is that both can be harvested on Mars. The oxygen (80% of the fuel mass) exists in the thin Martian atmosphere and the Methane could (in theory) either be generated from ice (if they can mine for it) or from a smaller batch of hydrogen that they could take with them (more realistic in the early days).
 
-In theory, SpaceX could set up an automated propellent factory on Mars with a small quantity of nickel and roughly one Starship load of solar panels. This could give later crewed missions the confidence that their return fuel is already waiting for them before they even leave home. 
+In theory, SpaceX could set up an automated propellant factory on Mars with a small quantity of nickel and roughly one Starship load of solar panels. This could give later crewed missions the confidence that their return fuel is already waiting for them before they even leave home. 
 
-More fundamentally, the ability to harvest the return fuel on Mars makes the entire operation significantly more practical. If each rocket needed to take carry the return fuel on the outbound trip, the challenge would be orders of magnitude more difficult. We would be talking about sending a couple of astronauts in a tiny lander and returning a few small rocks. By generating the return fuel on Mars, SpaceX is able to realistically talk about sending hundreds of settlers at a time to build self-sustaining cities.
+More fundamentally, the ability to harvest the return fuel on Mars makes the entire operation significantly more practical. If each rocket needed to carry the return fuel on the outbound trip, the challenge would be orders of magnitude more difficult. We would be talking about sending a couple of astronauts in a tiny lander and returning a few small rocks. By generating the return fuel on Mars, SpaceX is able to realistically talk about sending hundreds of settlers at a time to build self-sustaining cities.
 
-**Refuelling in orbit:** 
+**Refueling in orbit:** 
 
-Starships are designed for refuelling in orbit. Most of the fuel needed to launch a rocket to the moon/Mars will be used up in the first few minutes just to reach Earth orbit. (Just look at a Saturn V rocket and think about how much of the rocket was discarded during the initial launch sequence.)
+Starships are designed for refueling in orbit. Most of the fuel needed to launch a rocket to the moon/Mars will be used up in the first few minutes just to reach Earth orbit. Just look at a Saturn V rocket and think about how much of the rocket was discarded during the initial launch sequence.
 
 Once a moon/Mars-bound Starship has made it into orbit, it would rendezvous with one or two more Starships to refuel, before plotting its course across the solar system. That makes it possible to carry much less fuel (and hence, much more payload) during the initial launch sequence.
 
 **Putting it all together:**
 
-Combine those three key features, and you can begin to appreciate how SpaceX is able to deliver a rocket that is such a giant leap, compared to the Saturn V, Space Shuttle or SLS. 
+Combine those three key features, and you can begin to appreciate how SpaceX is able to deliver a rocket that is such a giant leap, compared to the Saturn V, Space Shuttle, or SLS. 
 
 As a demonstration of the sort of leap SpaceX has taken, [NASA recently selected three potential lunar landers](https://www.nasa.gov/feature/nasa-selects-blue-origin-dynetics-spacex-for-artemis-human-landers) for its upcoming moon program. Two of them (Blue Origin and Dynetics) have proposed small, light, bungalow-sized, spidery-looking vehicles that would probably travel on an SLS, Starship or Blue Origin’s New Glenn rocket. These new landers look a bit like the Apollo landers.  
 
@@ -123,7 +123,7 @@ Of course, if NASA does select Starship, that would make the SLS redundant for a
 
 It’s time to look at the “how” part in more detail.
 
-When I talked about “how” above, I simply highlighted that SpaceX was going to achieve it’s “why” by solving the transportation problem, and then I jumped straight into the “what”, discussing some of the key features/benefits of Starship over the SLS. What I’d like to do now, is dig into SpaceX’s development philosophy, that’s delivering these revolutionary new features.
+When I talked about “how” above, I simply highlighted that SpaceX was going to achieve its “why” by solving the transportation problem, and then I jumped straight into the “what”, discussing some of the key features/benefits of Starship over the SLS. What I’d like to do now, is dig into SpaceX’s development philosophy, that’s delivering these revolutionary new features.
 
 SpaceX is embracing many DevOps ideas and patterns to deliver the features it needs to reach its goal. However, when your product is a space rocket, instead of some software package, the application of these ideas looks a bit different.
 
@@ -137,15 +137,15 @@ However, rocket launches are expensive. When they go wrong, they make excellent 
 
 A common red flag is seeing people make their primary focus some sort of MTBF (Mean Time Between Failure) metric. It may well be desirable that rockets blow up less frequently but making MTBF the goal is counterproductive. I talked about this phenomenon in more detail last summer in my aggressively titled post, [Change Advisory Boards Don’t Work](https://octopus.com/blog/change-advisory-boards-dont-work).
 
-As with Agile and DevOps, so with rocketry. The best way to create a safe rocket is to truly put it through it’s paces over and over again. In the early days, there will probably be a lot of RUDs, and they’ll make good TV. However, through those RUDs, SpaceX will learn about the tolerances and limits of their systems and become skilled at staying within those limits.
+As with Agile and DevOps, so with rocketry. The best way to create a safe rocket is to truly put it through its paces over and over again. In the early days, there will probably be a lot of RUDs, and they’ll make good TV. However, through those RUDs, SpaceX will learn about the tolerances and limits of their systems and become skilled at staying within those limits.
 
-The key to this, in the early days, is to put more effort into learning than MTBF. And that’s what SpaceX is doing right now with Starship.
+The key to this is, in the early days, put more effort into learning than MTBF. And that’s what SpaceX is doing right now with Starship.
 
 **Focus on MTTR. Make it safe to fail.**
 
-Of course, if each launch is prohibitively expensive, then regardless of the management mentality, a company will likely go bust if it suffers too many failures. The trick is to accept risk as normal part of doing business. The focus then turns to minimising the consequences of failure (perfectly practical), rather than eradicating the possibility of failure (impossible). 
+Of course, if each launch is prohibitively expensive, then regardless of the management mentality, a company will likely go bust if it suffers too many failures. The trick is to accept risk as a normal part of doing business. The focus then turns to minimizing the consequences of failure (perfectly practical), rather than eradicating the possibility of failure (impossible). 
 
-At SpaceX they are investing their efforts into building a steady stream of prototype rockets, rather than over-investing in any one specific rocket. As I write this blog post, Starship SN9 is sat on the launch pad in Boco Chica. It’s a refined version of SN8. Hopefully, it will fly before I finish writing this post.
+At SpaceX, they are investing their efforts into building a steady stream of prototype rockets, rather than over-investing in any one specific rocket. As I write this blog post, Starship SN9 is sat on the launch pad in Boco Chica. It’s a refined version of SN8. Hopefully, it will fly before I finish writing this post.
 
 However, the fact that SN9 is already on the pad is not the real story. SN10 is already about to be wheeled out of the hanger and SN7.2, (an updated version of one of the fuel tanks) is also hanging around following a successful pressure test earlier this week.
 
@@ -157,28 +157,28 @@ I think this photo best demonstrates the way SpaceX is approaching rocket design
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Sunset lift of Starship SN10 as Starship SN9 awaits flight <a href="https://t.co/EOW6H8AX1B">pic.twitter.com/EOW6H8AX1B</a></p>&mdash; John Kraus 📷🚀 (@johnkrausphotos) <a href="https://twitter.com/johnkrausphotos/status/1355309250462019593?ref_src=twsrc%5Etfw">January 30, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-It’s also become clear to observers, that since SpaceX has learned so much from SN8, they’ve scrapped the partially built SN12-14 models and have begun focussing their efforts on SN15, which will be a significant upgrade:
+It’s also become clear to observers, that since SpaceX has learned so much from SN8, they’ve scrapped the partially built SN12-14 models and have begun focusing their efforts on SN15, which will be a significant upgrade:
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">The current status of SpaceX&#39;s Starship &amp; Superheavy prototypes. 30th January 2021 <a href="https://t.co/C60oOcFlg6">pic.twitter.com/C60oOcFlg6</a></p>&mdash; Brendan (@brendan2908) <a href="https://twitter.com/brendan2908/status/1355246058905825282?ref_src=twsrc%5Etfw">January 29, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 They are pushing “[disposable infrastructure](https://martinfowler.com/bliki/ImmutableServer.html)” to the limit.
 
-Like SpaceX, the most successful IT organisations have learned to [treat their hardware like cattle, instead of pets](http://cloudscaling.com/blog/cloud-computing/the-history-of-pets-vs-cattle/). The servers are given numbers instead of names and when they are poorly, they are shot in the head.
+Like SpaceX, the most successful IT organizations have learned to [treat their hardware like cattle, instead of pets](http://cloudscaling.com/blog/cloud-computing/the-history-of-pets-vs-cattle/). The servers are given numbers instead of names and when they are sick, they are shot in the head.
 
-This is possible because the servers, and all their config, are defined in source code. Fresh, healthy servers can be spun up a quickly and cheaply. Issues can be resolved fast by swapping poorly servers out. Investigation and learning can happen later, in a calm manner, without some stakeholder standing over the engineers’ shoulders complaining about downtime, lost revenue, or PR.
+This is possible because the servers, and all their config, are defined in source code. Fresh, healthy servers can be spun up a quickly and cheaply. Issues can be resolved fast by swapping sick servers out. Investigation and learning can happen later, in a calm manner, without some stakeholder standing over the engineers’ shoulders complaining about downtime, lost revenue, or PR.
 
-These changes allow us to move away from MTBF metrics in favour of MTTR (Mean Time To Restore) metrics and promote a sane relationship with risk. Failures will happen. The mature response is to invest more energy into your ability to respond quickly, than into painful bureaucracy and red tape, in the vain hope of stopping the inevitable.
+These changes allow us to move away from MTBF metrics in favor of MTTR (Mean Time To Restore) metrics and promote a sane relationship with risk. Failures will happen. The mature response is to invest more energy into your ability to respond quickly, than into painful bureaucracy and red tape, in the vain hope of stopping the inevitable.
 
-At SpaceX they’ve invested in the ability to rapidly throw together a prototype, test it out, and iterate. In IT, we’ve moved from large, fragile servers, to the source code that defines them, and the ability to redeploy them at a moment’s notice.
+At SpaceX, they’ve invested in the ability to rapidly throw together a prototype, test it, and iterate. In IT, we’ve moved from large, fragile servers, to the source code that defines them, and the ability to redeploy them at a moment’s notice.
 
-The SLS? They have a starting inventory of 15 antique RS-25 shuttle engines, and they plan to discard 4 engines per flight. So far, they haven’t started manufacturing any replacements, so each engine in their current inventory has a lot riding on it. If any of those engines were to become poorly, I expect NASA would face an expensive bill from the rocket vet.
-Frankly, my money is on NASA cancelling the SLS before they need to build more RS-25s.
+The SLS? They have a starting inventory of 15 antique RS-25 shuttle engines, and they plan to discard 4 engines per flight. So far, they haven’t started manufacturing any replacements, so each engine in their current inventory has a lot riding on it. If any of those engines were to become sick, I expect NASA would face an expensive bill from the rocket vet.
+Frankly, my money is on NASA canceling the SLS before they need to build more RS-25s.
 
 **Psychological Safety**
 
-This switch from an MTTR to an MTBF mindset is only possible when employees know they will be supported if stuff goes bang. Blame, scapegoating and job losses are not compatible with innovation. When folks cling to the safety of old deployment patterns, damaging bureaucracy and politics, it’s hard for them to accept failure as an option.
+This switch from an MTTR to an MTBF mindset is only possible when employees know they will be supported if stuff goes bang. Blame, scapegoating, and job losses are not compatible with innovation. When folks cling to the safety of old deployment patterns, damaging bureaucracy and politics, it’s hard for them to accept failure as an option.
 
-There is no doubt that cultural change is the hardest part of any transformation. However, when senior leadership acknowledge the risk and signals that they will support their teams if things fail, the engineers are significantly more likely to take risks, experiment and learn.
+There is no doubt that cultural change is the hardest part of any transformation. However, when senior leadership acknowledge the risk and signals that they will support their teams if things fail, the engineers are significantly more likely to take risks, experiment. and learn.
 
 Elon Musk is a perfect example. In the hours before the launch, he publicly acknowledged the risk, and reassured his employees that they should focus on reaching for the stars, rather than covering their backs: 
 
@@ -194,7 +194,7 @@ In the early days of DevOps, John Willis and Jez Humble defined the movement wit
 
 In an era where many other government and commercial space programs are shrouded in secrecy, SpaceX is bucking the trend. For example, SpaceX habitually livestreams their launch attempts – even when they expect RUDs. As a result, they’ve gained a huge cult following, with thousands of rocket enthusiasts tuning in to watch their progress with each iteration.
 
-This hype has many great consequences for SpaceX. It helps them to set expectations and it’s great marketing. It also focusses more eyes on the challenges.
+This hype has many great consequences for SpaceX. It helps them to set expectations and it’s great marketing. It also focuses more eyes on the challenges.
 
 If this is how open SpaceX are externally, one can only imagine how freely folks share designs and ideas internally. Innovation is far more likely when more smart people have an opportunity to mull over a problem, and when the people who are ultimately responsible for solving it are given the autonomy to freely adopt the best ideas.
 
@@ -208,7 +208,7 @@ However, Starship is still in development. Perhaps it won’t work. All those gr
 
 Honestly, I don’t know.
 
-And would it be appropriate to still prioritise MTTR over MTBF once Starships start carrying commercial cargo – or even humans?
+And would it be appropriate to still prioritize MTTR over MTBF once Starships start carrying commercial cargo – or even humans?
 
 Well, this depends a bit on what we mean by MTTR. If we mean “is it OK for a Starship with human passengers to blow up”, clearly not. However, if the question is “is it OK for a Raptor engine to fail?”, well, I suspect there’s a reason SpaceX plans to strap about 40 of them to the bottom of each Starship. That’s a pretty effective HA/DR strategy.
 
