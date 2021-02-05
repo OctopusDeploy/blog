@@ -10,7 +10,9 @@ tags:
  - Engineering
 ---
 
-It is common to ask, should we have one Octopus Deploy project per application or an Octopus Deploy project per component (WebUI, API, Database, etc.)? I've seen and been a part of projects where it was far more common to deploy one or two pieces, perhaps to fix a small bug, than it was to deploy everything.  Having an Octopus Deploy project per component solves many problems; the trade-off makes it more complex to deploy the entire application stack.  In this post, I will walk through how to use a new step template [Deploy Child Octopus Deploy Project](https://library.octopus.com/step-templates/0dac2fe6-91d5-4c05-bdfb-1b97adf1e12e/actiontemplate-deploy-child-octopus-deploy-project) to make release management in Octopus Deploy much easier.
+We're often asked by customers if they should have one Octopus Deploy project per application or an Octopus Deploy project per component (WebUI, API, Database, etc.)? I've seen and been a part of projects where it was far more common to deploy one or two pieces, perhaps to fix a small bug, than it was to deploy everything.  Having an Octopus Deploy project per component solves many problems; the trade-off makes it more complex to deploy the entire application stack.  
+
+In this post, I walk through how to use a new step template [Deploy Child Octopus Deploy Project](https://library.octopus.com/step-templates/0dac2fe6-91d5-4c05-bdfb-1b97adf1e12e/actiontemplate-deploy-child-octopus-deploy-project) to make release management in Octopus Deploy much easier.
 
 ## Why a project per component
 
