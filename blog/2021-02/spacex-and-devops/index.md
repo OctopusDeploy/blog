@@ -1,5 +1,5 @@
 ---
-title: How SpaceX obliterates its competitors, and redefines space travel
+title: How SpaceX obliterates its competitors and redefines space travel
 description: A story about rocket science and DevOps 
 author: alex.yates@dlmconsultants.com
 visibility: public
@@ -109,7 +109,7 @@ As a demonstration of the sort of leap SpaceX has taken, [NASA recently selected
 
 Anyway: moon landers. The third “lander” option was a full-blown, skyscraper-sized, Starship. Imagine how many more people and how much more equipment something that size could ferry to the moon. If your intention is to set up a moon base, it’s easy to imagine how much more effective Starship could be.
 
-Of course, if NASA does select Starship, that would make the SLS redundant for any such moon mission. (And the SLS was specifically designed for these are the sorts of missions.)
+Of course, if NASA does select Starship, that would make the SLS redundant for any such moon mission. (And the SLS was specifically designed for these sorts of missions.)
 
 ![A Starship on the Moon. Source: https://www.nasa.gov/feature/nasa-selects-blue-origin-dynetics-spacex-for-artemis-human-landers](starship_on_the_moon.jpg)
 
@@ -157,7 +157,7 @@ It’s also become clear to observers, that since SpaceX has learned so much fro
 
 They are pushing “[disposable infrastructure](https://martinfowler.com/bliki/ImmutableServer.html)” to the limit.
 
-Like SpaceX, the most successful IT organizations have learned to [treat their hardware like cattle, instead of pets](http://cloudscaling.com/blog/cloud-computing/the-history-of-pets-vs-cattle/). The servers are given numbers instead of names and when they are sick, they are shot in the head.
+Like SpaceX, the most successful IT organizations have learned to [treat their hardware like cattle, instead of pets](http://cloudscaling.com/blog/cloud-computing/the-history-of-pets-vs-cattle/). The servers are given numbers instead of name, then when they're sick, nobody is tempted to nurse them back to health. 
 
 This is possible because the servers, and all their config, are defined in source code. Fresh, healthy servers can be spun up a quickly and cheaply. Issues can be resolved fast by swapping sick servers out. Investigation and learning can happen later, in a calm manner, without some stakeholder standing over the engineers’ shoulders complaining about downtime, lost revenue, or PR.
 
