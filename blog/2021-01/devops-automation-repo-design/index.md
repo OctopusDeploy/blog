@@ -18,7 +18,7 @@ Repository design is often an afterthought, but for good reason. It's difficult 
 
 As a contributing member of many hot mess code bases and ring leader of "let's over engineer this", I'll share with you what's worked best for the teams I've been a member of when starting down the automation road and how to refactor a centralized repository.
 
-## Start Simple and Centralize
+## Start simple and centralize your automation
 
 ![Simple repository design](simple-repo-structure.png)
 
@@ -32,7 +32,7 @@ Comparing a centralized repository design to a monolithic app might make you thi
 
 Having everything in one place keeps things simple. It's clear how to organize files and where you should commit your code. It's easy to track changes, and there is a single CI/CD pipeline to troubleshoot.
 
-## When is it Time to Refactor?
+## When is it time to refactor a repository?
 
 Friction is the best way to identify constraints. Over time your centralized repository’s codebase will start to get burdensome. And you’ll want to automate the execution of tasks and stop running everything by hand. That’s when a centralized repository starts to make things complicated.
 
@@ -48,7 +48,7 @@ In short, there are two indicators that it’s time to redesign:
 
 One solution is to create a repository for every individual workflow, and while that’s an easy solution, it’s not the best solution.
 
-## Follow the Change
+## How to split up a repository?
 
 <!-- TODO: Request a nice graphic from the UX team to visualise this. -->
 
