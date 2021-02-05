@@ -46,7 +46,7 @@ In short, there are two indicators that it’s time to redesign:
 * Development has slowed.
 * Risk increases by removing the manual execution of the code. 
 
-One solution is to create a repository for every individual workflow and while that’s an easy solution, it’s not the best solution.
+One solution is to create a repository for every individual workflow, and while that’s an easy solution, it’s not the best solution.
 
 ## Follow the Change
 
@@ -56,16 +56,16 @@ Everything and everyone gets a repository! Is normally the first instinct when a
 
 Automation is written to make a change, report a change, or to test a change. When it comes time to refactor your repository start by mapping those changes through the system. Using that data will inform your decision.
 
-Value stream mapping is a technique used to analyze the flow of information, people, and materials required to bring an end result to a customer. Normally in the form of a product or service. It is a concept that originated in Lean manufacturing methodologies, but is also prevalent in the DevOps literature.
+[Value stream mapping](https://www.atlassian.com/continuous-delivery/principles/value-stream-mapping) is a technique used to analyze the flow of information, people, and materials required to bring a result to a customer. Normally in the form of a product or service. It is a concept that originated in Lean manufacturing methodologies but is also prevalent in DevOps literature.
 
-It is as complicated as you make it. Keep it simple and stick to identifying the steps in the process rather than the waste and efficiencies. Your goal is to visualize the current process instead of optimizing it.
+This analysis can be as complicated as you make it. Keep it simple and stick to identifying the steps in the process rather than the waste and efficiencies. Your goal is to visualize the current process instead of optimizing it.
 
 For each different process in your central repository, go through a workflow exercise. For example, say there is an operating system patching process you’ve automated. The code lives within the central repository and is run on a monthly basis. You also have your infrastructure as code configuration within the same repository, but that is run on-demand without a schedule. Each of those processes has a different workflow and would be good candidates for separating them into their own repositories.
 
-Creating more repositories, creates more complexity. And for that reason there has to be a trade off. Moving code to another repository for the sake of organizing it isn’t going to motivate anyone. However, if moving code means a task can be fully automated and someone doesn’t have to wake up at 3:00 am to patch servers. Then it’s overwhelmingly worth it.
+Creating more repositories is helpful, but it also creates more complexity. There are tradeoffs, and you need to strike the right balance. Moving code to another repository for the sake of organizing it isn’t going to motivate anyone. However, if moving code means a task can be fully automated and someone doesn’t have to wake up at 3:00 am to patch servers. Then it’s overwhelmingly worth it.
 
-Use a simple workflow tool such as draw.io to draft the workflows. Share the workflows with your team to get feedback. After you’ve mapped the process, start to move all the code required for that process to a different repository. Again, only decouple the code if it adds value.
+Use a simple workflow tool such as [draw.io](https://draw.io] to draft the workflows. Share the workflows with your team to get feedback. After you’ve mapped the process, start to move all the code required for that process to a different repository. Again, only decouple the code if it adds value.
 
 ## Conclusion
 
-Simple is the best way to begin your automation journey. Avoid overengineering by using a centralized repository that holds all your automation processes. Refactor as soon as development slows down and friction increases. Use value stream mapping to identify the workflows that exist within your central repository. Decouple the code that has the highest ROI (return on investment) to your team and adds the most value.
+Starting simple is the best way to begin your automation journey. Avoid overengineering by using a centralized repository that holds all your automation processes. Refactor as soon as development slows down and friction increases. Use value stream mapping to identify the workflows that exist within your central repository. Decouple the code with the highest return on investment (ROI) to your team and add the most value
