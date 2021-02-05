@@ -12,15 +12,15 @@ tags:
  - Git
 ---
 
-In the aftermath of "automate all the things!", there are Git repositories scattered everywhere. Some repos are extremely bloated, holding one-liners, scripts, functions, modules, and configurations. While many others are stale with broken CI/CD pipelines that have gone untouched for months or years. Yet, more exist. This problem results from a failure to create and enforce a naming convention to clean up everything.
+In the aftermath of "automate all the things!", there are Git repositories scattered everywhere. Some repos are extremely bloated, holding one-liners, scripts, functions, modules, and configuration files. While many others are stale with broken CI/CD pipelines that have gone untouched for months or years. Yet, more exist. This problem results from a failure to create and enforce a naming convention to clean up everything.
 
-Repository design is often an afterthought, but for good reason. It's difficult to know how to structure something when you don't know what your building. It doesn't have to stay a mess, nor do you have to frontload years worth of future work into a decision that can't make today.
+Repository design is often an afterthought, but for good reason. It's hard to know how to structure something when you don't know what your building. It doesn't have to stay a mess, nor do you have to frontload years worth of future work into a decision that can't make today.
 
-As a contributing member of many hot mess code bases and ring leader of "let's over engineer this", I'll share with you what's worked best for the teams I've been a member of when starting down the automation road and how to refactor a centralized repository.
+As a contributing member of many "hot mess" codebases and ring leader of "lets over-engineer this", I'll share with you what's worked best for the teams I've been a member of when starting down the automation road and how to refactor a centralized repository.
 
 ## Start simple and centralize your automation
 
-![Simple repository design](simple-repo-structure.png)
+![Simple repository design](simple-repo-structure.png "width=500")
 
 Get started with one repository to rule them all! Creating a single central repository is the best way to start, which is roughly equivalent to a monolithic application. Everything is tightly coupled. Ad-hoc scripts, orchestrated automation, and infrastructure as code documents all live in the same repository. Name the repository after your team's name and let it become the source of truth for all the code developed by your team.
 
@@ -34,7 +34,7 @@ Having everything in one place keeps things simple. It's clear how to organize f
 
 ## When is it time to refactor a repository?
 
-Friction is the best way to identify constraints. Over time your centralized repository’s codebase will start to get burdensome. And you’ll want to automate the execution of tasks and stop running everything by hand. That’s when a centralized repository starts to make things complicated.
+Friction is the best way to identify constraints, and over time your centralized repository’s codebase will start to get burdensome. This happens as you shift to automating the execution of tasks and stop running everything by hand. That’s when a centralized repository starts to make things complicated.
 
 Over time the codebase starts to get heavy. It’s not the codebase that’s the problem, it’s the workflows. The most significant disadvantage of a centralized repository is the number of workflows it contains. There is a lot of [toil](https://cloud.google.com/blog/products/management-tools/identifying-and-tracking-toil-using-sre-principles) to automate, and not all of them run at the same time.
 
@@ -46,7 +46,7 @@ In short, there are two indicators that it’s time to redesign:
 * Development has slowed.
 * Risk increases by removing the manual execution of the code. 
 
-One solution is to create a repository for every individual workflow, and while that’s an easy solution, it’s not the best solution.
+One solution is to create a repository for every individual workflow, and while that’s an easy solution, it’s not the best one.
 
 ## How to split up a repository?
 
@@ -56,11 +56,11 @@ Everything and everyone gets a repository! Is normally the first instinct when a
 
 Automation is written to make a change, report a change, or to test a change. When it comes time to refactor your repository start by mapping those changes through the system. Using that data will inform your decision.
 
-[Value stream mapping](https://www.atlassian.com/continuous-delivery/principles/value-stream-mapping) is a technique used to analyze the flow of information, people, and materials required to bring a result to a customer. Normally in the form of a product or service. It is a concept that originated in Lean manufacturing methodologies but is also prevalent in DevOps literature.
+[Value stream mapping](https://www.atlassian.com/continuous-delivery/principles/value-stream-mapping) is a technique used to analyze the flow of information, people, and materials required to bring a result to a customer. Normally in the form of a product or service. It's a concept that originated in Lean manufacturing methodologies but is also prevalent in DevOps literature.
 
 This analysis can be as complicated as you make it. Keep it simple and stick to identifying the steps in the process rather than the waste and efficiencies. Your goal is to visualize the current process instead of optimizing it.
 
-For each different process in your central repository, go through a workflow exercise. For example, say there is an operating system patching process you’ve automated. The code lives within the central repository and is run on a monthly basis. You also have your infrastructure as code configuration within the same repository, but that is run on-demand without a schedule. Each of those processes has a different workflow and would be good candidates for separating them into their own repositories.
+For each different process in your central repository, go through this workflow exercise. For example, say there is an operating system patching process you’ve automated. The code lives within the central repository and runs every month. You also have your infrastructure as code configuration within the same repository, but that is run on-demand without a schedule. Each of those processes has a different workflow and would be good candidates for separating them into their own repositories.
 
 Creating more repositories is helpful, but it also creates more complexity. There are tradeoffs, and you need to strike the right balance. Moving code to another repository for the sake of organizing it isn’t going to motivate anyone. However, if moving code means a task can be fully automated and someone doesn’t have to wake up at 3:00 am to patch servers. Then it’s overwhelmingly worth it.
 
