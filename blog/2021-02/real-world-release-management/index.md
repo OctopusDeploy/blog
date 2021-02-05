@@ -10,13 +10,14 @@ tags:
  - Engineering
 ---
 
-We're often asked by customers if they should have one Octopus Deploy project per application or an Octopus Deploy project per component (WebUI, API, Database, etc.)? I've seen and been a part of projects where it was far more common to deploy one or two pieces, perhaps to fix a small bug, than it was to deploy everything.  Having an Octopus Deploy project per component solves many problems; the trade-off makes it more complex to deploy the entire application stack.  
+We're often asked by customers if they should have one Octopus Deploy project per application or an Octopus Deploy project per component (WebUI, API, Database, etc.)? I've seen and been a part of projects where it's more common to deploy one or two pieces, perhaps to fix a small bug, than it is to deploy everything.  
 
+Having an Octopus Deploy project per component solves many problems; the trade-off is, deploying the entire application stack is more complicated.  
 In this post, I walk through how to use a new step template [Deploy Child Octopus Deploy Project](https://library.octopus.com/step-templates/0dac2fe6-91d5-4c05-bdfb-1b97adf1e12e/actiontemplate-deploy-child-octopus-deploy-project) to make release management in Octopus Deploy much easier.
 
 ## Why a project per component
 
-The driving forces behind a project per component commonly are:
+The common driving forces behind using a project per component are:
 
 - Minimize downtime by only deploying what has changed.
 - Minimize build time by only building what has changed.
@@ -25,21 +26,21 @@ The driving forces behind a project per component commonly are:
 
 In other words, a project per component helps reduce the amount of time it takes to deploy the software.  But nothing in life is free; the cost of saving time makes it harder to coordinate releases.
 
-## The Sample Application
+## The sample application
 
-For this article, I will be using a sample application with four components, a Database, a Scheduling Service, a Web API, and a Web UI.  You can find it on our [samples instance](https://samples.octopus.app/app#/Spaces-603) (login as a guest).
+For this article, I'm using a sample application with four components, a Database, a Scheduling Service, a Web API, and a Web UI.  You can find it on our [samples instance](https://samples.octopus.app/app#/Spaces-603) (login as a guest).
 
 ![Sample application overview](release-management-sample-application-overview.png)
 
-Each project's design allows it to be deployed independently of one another; so much so each project has its manual interventions.
+Each project's design allows it to be deployed independently of the others; so much so, that each project has its own manual intervention.
 
 ![Sample application process](release-management-sample-project-steps.png)
 
-This example will use a modified version of [SemVer](https://semver.org/) for the components, `Year.Minor.Patch.Build`, or `2021.1.0.1`.  The orchestration project will be closer to standard [SemVer](https://semver.org), `Year.Minor.Patch` or `2021.1.0`.  
+This example uses a modified version of [SemVer](https://semver.org/) for the components, `Year.Minor.Patch.Build`, or `2021.1.0.1`.  The orchestration project will be closer to standard [SemVer](https://semver.org), `Year.Minor.Patch` or `2021.1.0`.  
 
-I'm not going to spend too much time discussing source control repository and build configuration.  This example should be flexible enough to account for various configurations, be it a single git repo/single build, single git repo/build per component, or a git repo/build per component.  There are pros and cons to each approach, but discussing that is very much out of this article's scope.
+I'm not going to spend too much time discussing source control repository and build configuration.  This example should be flexible enough to account for various configurations, be it a single git repo/single build, single git repo/build per component, or a git repo/build per component.  There are pros and cons to each approach, but discussing that is out of scope for this article.
 
-For this example, we will assume a build server will build each component, create a release for that component's project, and automatically deploy it to the **Development** environment.  When that deployment is complete, it will run a batch of integration tests, and if those passed, promote the release to **Test**.  
+For this example, we will assume a build server will build each component, create a release for that component's project, and automatically deploy it to the **Development** environment.  When that deployment is complete, it will run a batch of integration tests, and if those pass, promote the release to **Test**.  
 
 The first batch of work for 2021 will look like this.
 
@@ -47,11 +48,11 @@ The first batch of work for 2021 will look like this.
 
 ## The roadblocks
 
-Typically a change will sit in the **Test** environment for 1 to N days while it goes through the QA process.  Bugs are found and squashed, and chances are each component will have a different build number.
+Typically a change will sit in the **Test** environment for 1 to N days as it goes through the QA process.  Bugs are found and squashed, and chances are each component will have a different build number.
 
 ![Release management ready for staging](release-management-ready-for-staging.png)
 
-After QA completes its testing of all the component projects for the `2021.1.0.x` release, the promotion to  **Staging** can start.  With the current configuration, that means promoting each release for each project one by one.  I've done this promotion hundreds of times, and while doing it, my mood fluctuates between this isn't great, but it is tolerable and ugh this again.  
+After QA finishes testing the component projects for the `2021.1.0.x` release, the promotion to **Staging** can start.  With the current configuration, that means promoting each release for each project one by one.  I've done this promotion hundreds of times, and while doing it, my mood fluctuates between this isn't great, but it is tolerable and ugh this again.  
 
 Promoting all the component projects to **Production** is when this pattern starts to run into issues.  
 
@@ -61,29 +62,29 @@ Promoting all the component projects to **Production** is when this pattern star
 - Typically, applications need to be deployed in a specific order.  Deploy the database first, followed by the API, then the scheduling service, and finally the UI.  Any issues during the deployment should stop everything.
 - How and when changes are approved vary from company to company.  It is not uncommon for a release's approval to occur on Tuesday for a Thursday night deployment.
 
-To solve these issues, we need a "parent project" to coordinate all these "child projects." Unlike the child projects, the parent project only needs to deploy to **Staging** and **Production**.
+To solve these issues, we need a _parent project_ to coordinate all these _child projects_. Unlike the child projects, the parent project only needs to deploy to **Staging** and **Production**.
 
 ## Introducing the Deploy Child Octopus Deploy Project Step Template
 
-The parent project will need a way to invoke the child project's deployments.  That will be handled by the new [Deploy Child Octopus Deploy Project](https://library.octopus.com/step-templates/0dac2fe6-91d5-4c05-bdfb-1b97adf1e12e/actiontemplate-deploy-child-octopus-deploy-project) step template.  In this example, the parent project will be called "Release Orchestration" and will use that step template multiple times.  You don't have to call your project that, other names for the parent project could be "Traffic Cop," the name of the application, or if you want to be cheeky, Voltron.
+The parent project needs a way to invoke the child project's deployments.  This is handled by the new [Deploy Child Octopus Deploy Project](https://library.octopus.com/step-templates/0dac2fe6-91d5-4c05-bdfb-1b97adf1e12e/actiontemplate-deploy-child-octopus-deploy-project) step template.  In this example, the parent project is called "Release Orchestration" and uses that step template multiple times.  You can choose any name you like for the parent project,for instance, "Traffic Cop," the name of the application, or even Voltron.
 
 ![Release Orchestration Dashboard](release-management-release-orchestration-dashboard.png)
 
-Before providing examples on how to use the step template, I want to take a minute to walk through how the step template works.
+Before providing usage examples for the step template, I want to demonstrate how the step template works.
 
-### How Releases Are Chosen
+### How Releases are chosen
 
-I'd be remiss in forgetting to mention there are two other options for a parent project to deploy a child project.
+There are two other options for a parent project to deploy a child project.
 
-- [Deploy a release step](https://octopus.com/docs/projects/coordinating-multiple-projects/deploy-release-step): a step built into Octopus Deploy designed to solve particular use cases.
-- [Chain Deployment step template](https://library.octopus.com/step-templates/18392835-d50e-4ce9-9065-8e15a3c30954/actiontemplate-chain-deployment): a community step template that was a pre-cursor to the deploy a release step.
+- [Deploy a release step](https://octopus.com/docs/projects/coordinating-multiple-projects/deploy-release-step): A step built into Octopus Deploy designed to solve particular use cases.
+- [Chain Deployment step template](https://library.octopus.com/step-templates/18392835-d50e-4ce9-9065-8e15a3c30954/actiontemplate-chain-deployment): A community step template that was a pre-cursor to the deploy a release step.
 
-Those two steps choose the release to deploy the same way; use the most recently created release for a channel.  The Deploy Child Octopus Deploy Project step template chooses releases a different way.
+Those two steps choose the release to deploy by using the most recently created release for a channel.  The Deploy Child Octopus Deploy Project step template chooses releases a different way.
 
 You supply:
-- A channel name.  When no channel is provided, the default channel is chosen.
+- A channel name. When no channel is provided, the default channel is chosen.
 - A release number pattern (`2021.1.0.*`) or a specific release number (`2021.1.0.15`).  If no release number is provided, it will use the latest release it can find for the channel.
-- And a destination environment.
+- A destination environment.
 
 With those three points of data, the step template will:
 
