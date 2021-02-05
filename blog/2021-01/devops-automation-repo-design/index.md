@@ -34,15 +34,19 @@ Having everything in one place keeps things simple. It's clear how to organize f
 
 ## When is it Time to Refactor?
 
-Friction is the best way to identify constraints. Over time your centralized repository’s codebase will start to get heavy. And you’ll want to automate the execution of tasks and stop running everything by hand. That’s when a centralized repository starts to make things complicated.
+Friction is the best way to identify constraints. Over time your centralized repository’s codebase will start to get burdensome. And you’ll want to automate the execution of tasks and stop running everything by hand. That’s when a centralized repository starts to make things complicated.
 
-Over time the codebase starts to get heavy. But, it’s not the codebase that’s the problem, it’s the workflows. The biggest disadvantage of a centralized repository is the number of workflows it contains. Let’s be honest, there is a lot of toil to be automated. And not all of them run at the same time.
+Over time the codebase starts to get heavy. It’s not the codebase that’s the problem, it’s the workflows. The most significant disadvantage of a centralized repository is the number of workflows it contains. There is a lot of [toil](https://cloud.google.com/blog/products/management-tools/identifying-and-tracking-toil-using-sre-principles) to automate, and not all of them run at the same time.
 
-For example, say you have a script that is used to generate an audit report, a PowerShell module that is used to complete a failover and Terraform code that’s used to build the infrastructure all in a single repo. It’s not the single repo that’s the bottleneck, but the workflows. Each of these three different code bases will need changes made to them at different times.
+For example, say you have a script used to generate an audit report, a PowerShell module that is used to complete a failover and Terraform code used to build the infrastructure all in a single repo. It’s not the single repo that’s the bottleneck, but the workflows. Each of these three different code bases will change and evolve at different times.
 
-It’s at that point that the latest version of the entire code base becomes problematic. If a change to the audit script snuck in some Terraform changes bad things could happen. As a result, development slows. And that is exactly when you need to reevaluate  your repository design.
+It’s at that point that the latest version of the entire code base becomes problematic. If a change to the audit script snuck in some Terraform changes bad things could happen. As a result, development slows. And that is exactly when you need to reevaluate your repository design.
 
-In short, there are two indicators that it’s time to redesign: development has slowed and or risk increases by removing the manual execution of the code. One solution is to create a repository for everything, while that’s an easy solution, it’s not the best solution.
+In short, there are two indicators that it’s time to redesign: 
+* Development has slowed.
+* Risk increases by removing the manual execution of the code. 
+
+One solution is to create a repository for every individual workflow and while that’s an easy solution, it’s not the best solution.
 
 ## Follow the Change
 
