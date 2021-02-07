@@ -4,11 +4,13 @@ description: A story about rocket science and DevOps
 author: alex.yates@dlmconsultants.com
 visibility: public
 published: 2021-02-08
-metaImage: 
-bannerImage: 
+metaImage: blogimage-how-spacex-obliterates-its-competitors-2021.png
+bannerImage: blogimage-how-spacex-obliterates-its-competitors-2021.png
 tags:
  - DevOps
 ---
+
+![How SpaceX obliterates its competitors and redefines space travel](blogimage-how-spacex-obliterates-its-competitors-2021.png)
 
 Back in December, I made a bet with my big brother.
 
