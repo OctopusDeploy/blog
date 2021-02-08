@@ -3,12 +3,14 @@ title: Better Release Management with Octopus Deploy
 description: Introducing a new step template to make release management a bit easier.
 author: bob.walker@octopus.com
 visibility: public
-published: 2021-12-31
-metaImage: 
-bannerImage: 
+published: 2021-02-10
+metaImage: blogimage-deploy-release-step.png
+bannerImage: blogimage-deploy-release-step.png
 tags:
  - Engineering
 ---
+
+![Better Release Management with Octopus Deploy](blogimage-deploy-release-step.png)
 
 We're often asked by customers if they should have one Octopus Deploy project per application or an Octopus Deploy project per component (WebUI, API, Database, etc.)? I've seen and been a part of projects where it's more common to deploy one or two pieces, perhaps to fix a small bug, than it is to deploy everything.  
 
