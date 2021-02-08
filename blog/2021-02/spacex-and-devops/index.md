@@ -172,7 +172,7 @@ Frankly, my money is on NASA canceling the SLS before they need to build more RS
 
 **Psychological Safety**
 
-This switch from an MTTR to an MTBF mindset is only possible when employees know they will be supported if stuff goes bang. Blame, scapegoating, and job losses are not compatible with innovation. When folks cling to the safety of old deployment patterns, damaging bureaucracy and politics, it’s hard for them to accept failure as an option.
+This switch from an MTBF to an MTTR mindset is only possible when employees know they will be supported if stuff goes bang. Blame, scapegoating, and job losses are not compatible with innovation. When folks cling to the safety of old deployment patterns, damaging bureaucracy and politics, it’s hard for them to accept failure as an option.
 
 There is no doubt that cultural change is the hardest part of any transformation. However, when senior leadership acknowledge the risk and signals that they will support their teams if things fail, the engineers are significantly more likely to take risks, experiment. and learn.
 
