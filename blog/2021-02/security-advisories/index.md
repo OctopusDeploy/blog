@@ -6,7 +6,7 @@ published: 2021-02-11
 metaImage: blogimage-security.png
 bannerImage: blogimage-security.png
 tags:
-  - Security
+  - Trust & Security
   - Product
   - Advisories
 ---
@@ -25,18 +25,18 @@ In terms of notifying our customers of security vulnerabilities we have always a
 
 To address this we're introducing Octopus Security Advisories.
 
-## Octopus Security Advisories
+## Octopus security advisories
 
-Octopus Security Advisories are essentially the aggregation of the release notes, CVE details, and extra information we want to provide to our customers in one place so customers don't have to go hunting for information.
+Octopus security advisories are essentially the aggregation of the release notes, CVE details, and extra information we want to provide to our customers in one place so customers don't have to go hunting for information.
 
 Some of the information provided in the security advisories will be:
 - Vulnerability risk based on an Octopus assessment (more to come on this).
 - Details about the vulnerability, including affected versions, versions fixed, and other relevant information.
 - Whether there are any known exploits for the vulnerability that we are aware of.
 
-## When will Octopus post a Security Advisory?
+## When will Octopus post a security advisory?
 
-The Octopus Security Team will post a Security Advisory under the following circumstances:
+The Octopus Security Team will post a security advisory under the following circumstances:
 - Preliminary advisories will be posted in circumstances where there is a critical or high risk vulnerability that impacts multiple Octopus products.
 - With the release of a CVE and patch to fix a specific vulnerability in an Octopus product.
 - If we believe our customers could be targeted by bad actors, for example providing guidance on identifying fake Octopus Deploy emails.
