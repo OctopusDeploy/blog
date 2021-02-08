@@ -138,6 +138,10 @@ Congratulations! You have used Terraform and the Octopus Deploy provider to conf
 
 Read the [Terraform provider docs](https://registry.terraform.io/providers/OctopusDeployLabs/octopusdeploy/latest/docs) and review the [`examples` folder](https://github.com/OctopusDeployLabs/terraform-provider-octopusdeploy/tree/master/examples) in the GitHub repository for more examples. 
 
+Watch our Managing Octopus with Go and Terraform webinar to get an indepth overview and see numerous real-world examples live. 
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/lN78iPeqwsE" frameborder="0" allowfullscreen></iframe>
+
 ## Open source and contributing
 
 The [project repository](https://github.com/OctopusDeployLabs/terraform-provider-octopusdeploy) is available on GitHub with the Mozilla Public License Version 2.0 license. We accept pull requests, and we’d love to see community contributions.
