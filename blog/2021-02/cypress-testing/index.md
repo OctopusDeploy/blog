@@ -69,3 +69,177 @@ In my case, I created an image called `mcasperson/workerimage`. We can now use t
 ## Creating the sample Cypress test
 
 For this example we will create a simple introductory Cypress test that performs no real work, but allows us to simulate the process of running end-to-end tests. The code for this sample test can be found on [GitHub](https://github.com/OctopusSamples/simple-cypress-test).
+
+We start with the `package.json` file, which [installs the Mochawesome reporter](https://docs.cypress.io/guides/tooling/reporters.html#Examples) to generate HTML reports:
+
+```json
+{
+  "name": "cypress-test",
+  "version": "0.0.1",
+  "description": "A simple cypress test",
+  "dependencies": {
+    "mochawesome-merge": "^4.2.0",
+    "mochawesome": "^6.2.1",
+    "mocha": "^8.2.1"
+  }
+}
+```
+
+Next we have the `cypress.json` file, which configures the basic details of our tests. Note that we have enabled the HTML reports:
+
+```json
+{
+  "baseUrl": "https://google.com",
+  "reporter": "mochawesome",
+  "reporterOptions": {
+    "charts": true,
+    "overwrite": false,
+    "html": true,
+    "json": false,
+    "reportDir": "."
+  }
+}
+```
+
+Finally we have the test itself in the `sample_spec.js` file. This test always passes and doesn't interact with any web pages, but proves that Cypress is indeed running as expected:
+
+```javascript
+describe('My First Test', () => {
+  it('Does not do much!', () => {
+    expect(true).to.equal(true)
+  })
+})
+```
+
+After running `npm install` to download the Mocha reporting libraries, these files are bundled up in to a ZIP file which we can upload to the Octopus built-in feed. For convenience, the [GitHub releases page](https://github.com/OctopusSamples/simple-cypress-test/releases) has prepackaged ZIP files ready to use.
+
+Here is the Cypress test uploaded to the Octopus built-in feed:
+
+![](cypress-test-package.png "width=500")
+
+## Running the test
+
+We are now ready to run the test as part of our deployment. In a **Run a script** step, we configure the script to execute inside of our worker image under the **Container Image** section:
+
+![](worker-image.png "width=500")
+
+Next, we run the following Bash script:
+
+```bash
+cd cypresstest
+cypress run > output.txt
+RESULT=$?
+inline-assets mochawesome.html selfcontained.html
+new_octopusartifact "${PWD}/selfcontained.html" "selfcontained.html"
+exit ${RESULT}
+```
+
+The first lines enter the directory where our Cypress test package will be extracted, and runs `cypress`. The output is directed to a file called `output.txt`:
+
+```bash
+cd cypresstest
+cypress run > output.txt
+```
+
+We then capture Cypress' exit code, which will determine if the step succeeded or failed:
+
+```bash
+RESULT=$?
+```
+
+In order to allow the results of the test to be easily viewed in Octopus, we need to bundle all the individual files that make up the HTML report (the HTML, CSS and script files) into a single, self contained HTML file. This is where the `inline-assets` tool we installed in our worker image comes in. It will read the report HTML file, inline all the external scripts, and create a self contained HTML file called `selfcontained.html`:
+
+```bash
+inline-assets mochawesome.html selfcontained.html
+```
+
+We capture the report file as an Octopus artifact:
+
+```bash
+new_octopusartifact "${PWD}/selfcontained.html" "selfcontained.html"
+```
+
+The exit code of our script is then set to the exit code of Cypress:
+
+```bash
+exit ${RESULT}
+```
+
+We then need to configure the step to download and extract the package containing the Cypress script:
+
+![](script-package.png "width=500")
+
+When this script is run, our self contained HTML report file is captured as an artifact and exposed as a link in the **TASK SUMMARY**:
+
+![](results.png "width=500")
+
+We can click on open this report directly in the browser:
+
+![](report.png "width=500")
+
+With that we now have a way to run custom Cypress tests inside a the container created by a generic, shared Docker image. To update the tests we simply upload a new package to Octopus and they will be included in our next deployment.
+
+## Testing in Kubernetes
+
+One of the reasons why we went with the approach of using worker containers is that it allowed us to run the same tests inside a Kubernetes cluster. To verify this, we need to run a Octopus worker inside a Kubernetes cluster. The following deployment starts a Tentacle in a Kubernetes cluster:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: octopus-worker
+  labels:
+    app: tentacle
+spec:
+  selector:
+    matchLabels:
+      octopusexport: OctopusExport
+  revisionHistoryLimit: 1
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: tentacle
+        octopusexport: OctopusExport
+    spec:
+      containers:
+        - name: worker
+          image: index.docker.io/octopusdeploy/tentacle
+          env:
+            - name: Space
+              value: Test
+            - name: ACCEPT_EULA
+              value: 'Y'
+            - name: TargetWorkerPool
+              value: Testing
+            - name: ServerUrl
+              value: 'https://mattc.octopus.app'
+            - name: ServerApiKey
+              value: API-xxx
+            - name: ServerPort
+              value: '10943'
+          securityContext:
+            privileged: true
+```
+
+To run this worker in your own cluster, make sure to change the `ServerUrl`, `ServerApiKey`, `TargetWorkerPool`, and `Space` environment variables to match your server configuration.
+
+Importantly, the pods created by this deployment have the `privileged` flag set to `true`. This is required to support Docker-in-Docker, which is enabled in the Linux Tentacle image. Docker-in-Docker allows our Tentacle to execute worker containers in much the same way as a Tentacle on a VM would.
+
+Once this deployment is applied to the cluster, your Octopus instance will show a new polling worker something like this:
+
+![](worker.png "width=500")
+
+At this point we can run the same script step against this Kubernetes based worker in exactly the same way we would run tests on a VM based worker. Because Octopus is responsible for transferring the test scripts, we neatly work around the limitation of having to somehow mount scripts inside a pod.
+
+## Conclusion
+
+Just as testing code is now common practice, verifying a deployment via end-to-end tests is increasingly common to ensure this stage of an applications lifecycle is working as expected. We are spoiled for choice these days with high quality testing platforms like Cypress, and by laying a little groundwork with custom worker images it is easy to run end-to-end tests across multiple platforms.
+
+In this blog post we discussed why worker containers were such a useful tool for running tests, created a custom worker image to execute our tests in, looked at a simple Cypress test script, and wrote a simple bash script to run the test and collect the results. We then saw how to run a worker in a Kubernetes cluster configured to run the same tests using DOcker-in-Docker.
+
+The result was a reusable testing process that allows Cypress test scripts to be quickly developed, deployed, and executed across multiple platforms. With a few small tweaks it is possible to verify web application deployments with end-to-end tests, ensuring each stage of an application's lifecycle is tested and verified before it reaches end users.
+
+Happy deployments!
