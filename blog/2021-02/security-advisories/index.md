@@ -3,6 +3,7 @@ title: Introducing Octopus security advisories
 description: Updating the way we keep our customers informed about product security
 author: kyle.jackson@octopus.com
 published: 2021-02-11
+visibility: public
 metaImage: blogimage-security.png
 bannerImage: blogimage-security.png
 tags:
