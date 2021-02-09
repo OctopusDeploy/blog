@@ -50,4 +50,4 @@ Security advisories will be posted to [advisories.octopus.com](https://advisorie
 
 For more information about Octopus Deploy's security journey through 2021 you can see our [Trust & Security Roadmap](https://github.com/OctopusDeploy/Issues/issues/6523).
 
-If you need to report a vulnerability please contact us at security@octopus.com
+If you need to report a vulnerability please contact us at [security@octopus.com](mailto:security@octopus.com).
