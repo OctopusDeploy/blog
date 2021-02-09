@@ -240,8 +240,8 @@ At this point we can run the same script step against this Kubernetes based work
 
 Just as testing code is now common practice, verifying a deployment via end-to-end tests is increasingly common to ensure this stage of an applications lifecycle is working as expected. We are spoiled for choice these days with high quality testing platforms like Cypress, and by laying a little groundwork with custom worker images it is easy to run end-to-end tests across multiple platforms.
 
-In this blog post we discussed why worker containers were such a useful tool for running tests, created a custom worker image to execute our tests in, looked at a simple Cypress test script, and wrote a simple bash script to run the test and collect the results. We then saw how to run a worker in a Kubernetes cluster configured to run the same tests using DOcker-in-Docker.
+In this blog post we discussed why worker containers were such a useful tool for running tests, created a custom worker image to execute our tests in, looked at a simple Cypress test script, and wrote a simple bash script to run the test and collect the results. We then saw how to run a worker in a Kubernetes cluster configured to run the same tests using Docker-in-Docker.
 
-The result was a reusable testing process that allows Cypress test scripts to be quickly developed, deployed, and executed across multiple platforms. With a few small tweaks it is possible to verify web application deployments with end-to-end tests, ensuring each stage of an application's lifecycle is tested and verified before it reaches end users.
+The result is a reusable testing process that allows Cypress test scripts to be quickly developed, deployed, and executed across multiple platforms. With a few small tweaks it is possible to verify your web application deployments with end-to-end tests, ensuring each stage of an application's lifecycle is tested and verified before it reaches end users.
 
 Happy deployments!
