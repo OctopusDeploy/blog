@@ -3,7 +3,7 @@ title: Better Release Management with Octopus Deploy
 description: Introducing a new step template to make release management a bit easier.
 author: bob.walker@octopus.com
 visibility: public
-published: 2021-02-10
+published: 2021-02-15
 metaImage: blogimage-deploy-release-step.png
 bannerImage: blogimage-deploy-release-step.png
 tags:
