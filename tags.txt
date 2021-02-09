@@ -23,7 +23,7 @@ Octopus Cloud
 PowerShell
 Reporting
 Runbooks
-Security
 Testing
+Trust & Security
 Variables
 Workers
