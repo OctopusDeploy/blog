@@ -13,7 +13,7 @@ tags:
 
 ![A stylized Octopus & Shield icon](blogimage-security.png)
 
-It's no surprise that software products have security vulnerabilities, or that when they do occur, it's important for vendors to have effective communications strategies to ensure systems are secure and users aren't left vulnerable.
+It's no surprise that software products have security vulnerabilities, or that when they do occur, it's important for vendors to have effective communication strategies to ensure systems are secure and users aren't left vulnerable.
 
 Currently Octopus product security vulnerabilities are disclosed in CVE databases and in our product release notes, however, we believe we can enhance this communication to better protect our customers.
 
