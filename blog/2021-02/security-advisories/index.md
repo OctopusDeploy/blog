@@ -7,7 +7,7 @@ visibility: public
 metaImage: blogimage-security.png
 bannerImage: blogimage-security.png
 tags:
-  - Trust & Security
+  - Trust and Security
   - Product
   - Advisories
 ---

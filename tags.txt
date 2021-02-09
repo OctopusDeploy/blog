@@ -24,6 +24,6 @@ PowerShell
 Reporting
 Runbooks
 Testing
-Trust & Security
+Trust and Security
 Variables
 Workers
