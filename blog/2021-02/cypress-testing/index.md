@@ -10,7 +10,9 @@ tags:
  - Octopus
 ---
 
-The idea of testing your code as part of your development process has won almost universal adoption. The canonical example describing the testing patterns performed during an application's lifecycle is the testing pyramid (although there are many alternatives like [the testing honeycomb](https://engineering.atspotify.com/2018/01/11/testing-of-microservices/)) which describe certain strategies like end-to-end tests that often require a live instance of your application to be running in order for the tests to be performed.
+The idea of testing your code as part of your development process has won almost universal adoption. Unit tests are now a common feature of most complex code bases.
+
+Testing doesn't stop with unit tests though. The canonical example describing the testing patterns performed during an application's lifecycle is the testing pyramid (although there are many alternatives like [the testing honeycomb](https://engineering.atspotify.com/2018/01/11/testing-of-microservices/)) which describe certain strategies like end-to-end tests that often require a live instance of your application to be running in order for the tests to be performed.
 
 One such example of end-to-end testing is via tools like Cypress, which interact with a web page in much the same way a human would. These tests necessarily require the web application to be running, which make them an ideal candidate to be included in the final stages of your deployment process once your web application is deployed and running in a test environment. 
 
