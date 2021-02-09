@@ -30,7 +30,7 @@ To address this we're introducing Octopus Security Advisories.
 Octopus security advisories are essentially the aggregation of the release notes, CVE details, and extra information we want to provide to our customers in one place so customers don't have to go hunting for information.
 
 Some of the information provided in the security advisories will be:
-- Vulnerability risk based on an Octopus assessment (more to come on this).
+- Vulnerability severity based on an Octopus Deploy assessment.
 - Details about the vulnerability, including affected versions, versions fixed, and other relevant information.
 - Whether there are any known exploits for the vulnerability that we are aware of.
 
