@@ -41,11 +41,16 @@ In a nutshell, while we wish everything were simple, the real-world is messy.
 
 With that all in mind, let's meet our sample customers.
 
+Coke = All Pets
+Ford = Pet Life
+Nike = Pet World
+Starbucks = Dogs Only
+
 - **Internal**: this is an internal test customer used by everyone to test changes.  This customer exists across all four environments, **Development**, **Test**, **Staging**, and **Production**.
-- **Coca-Cola**: this customer has paid for all the extra components plus access to preview releases in the **Test** environment.
-- **Ford**: the bare-bones customer only has the four "core" components in the **Staging** and **Production** environments.
-- **Nike**: they have purchased the scheduling service and single sign-on app for use in the **Staging** and **Production** environments.
-- **Starbucks**: they have purchased the scheduling service and data conversion service for use in the **Staging** and **Production** environments.
+- **All Pets**: this customer has paid for all the extra components plus access to preview releases in the **Test** environment.
+- **Pet Life**: the bare-bones customer only has the four "core" components in the **Staging** and **Production** environments.
+- **Pet World**: they have purchased the scheduling service and single sign-on app for use in the **Staging** and **Production** environments.
+- **Dogs Only**: they have purchased the scheduling service and data conversion service for use in the **Staging** and **Production** environments.
 
 ## Multi-Tenancy and the Deploy Child Octopus Deploy Project Step Template
 
@@ -64,7 +69,7 @@ What is needed is each component in Octopus Deploy is assigned a unique project.
 - Applications have to be deployed to tenants in a specific order.
 - A customer might approve their change on Tuesday for a Thursday night deployment.
 
-The new [Deploy Child Octopus Deploy Project](https://library.octopus.com/step-templates/0dac2fe6-91d5-4c05-bdfb-1b97adf1e12e/actiontemplate-deploy-child-octopus-deploy-project) step template will help solve those use cases.  You will have a parent project for your application with a single deployment process.  You shouldn't have to worry about tenant and project assignments.  It has the necessary guard clauses to ensure the same process will work for the **Internal Customer** with all the bells and whistles _and_ **Ford** with only the core components.
+The new [Deploy Child Octopus Deploy Project](https://library.octopus.com/step-templates/0dac2fe6-91d5-4c05-bdfb-1b97adf1e12e/actiontemplate-deploy-child-octopus-deploy-project) step template will help solve those use cases.  You will have a parent project for your application with a single deployment process.  You shouldn't have to worry about tenant and project assignments.  It has the necessary guard clauses to ensure the same process will work for the **Internal Customer** with all the bells and whistles _and_ **Pet Life** with only the core components.
 
 ![release orchestration process multi-tenant application](multi-tenany-release-management-orchestration-process.png)
 
@@ -85,13 +90,13 @@ One of the step templates' core business rules is to pick the last successfully 
 ![multi-tenant child project with a complex release](multi-tenant-picking-release-complex.png)
 
 - **Internal**: has the latest bleeding-edge release, `2021.1.0.15` ready to go to **Staging**.
-- **Coke**: has an older release, `2021.1.0.1` ready to go to **Staging**.
-- **Ford**, **Nike**, and **Starbucks** aren't assigned to the **Test** environment.
+- **All Pets**: has an older release, `2021.1.0.1` ready to go to **Staging**.
+- **Pet Life**, **Pet World**, and **Dogs Only** aren't assigned to the **Test** environment.
 
 What release will be picked by step template when it promotes the latest `2021.1.0.x` release to **Staging**?  The answer:
 
-- **Internal**, **Ford**, **Nike**, and **Starbucks**: 2021.1.0.15
-- **Coke**: 2021.1.0.1
+- **Internal**, **Pet Life**, **Pet World**, and **Dogs Only**: 2021.1.0.15
+- **All Pets**: 2021.1.0.1
 
 How the step template works is you provide it a destination environment (**Staging**), a channel (**Default** if no channel is provided), and a release number pattern (`2021.1.0.*`).  It will:
 
@@ -101,16 +106,16 @@ How the step template works is you provide it a destination environment (**Stagi
 
 Multi-tenancy adds a bit of complexity to that.
 
-- Only **Coke** and **Internal** are assigned to the **Test** environment.
+- Only **All Pets** and **Internal** are assigned to the **Test** environment.
 - Tenants can have different releases.
 
 The excellent news is Octopus already figures this out for us.  If were to pick the `2021.1.0.15` release from the **Filter by release** drop-down menu, the dashboard would change to this:
 
 ![filtering the dashboard by a release](multi-tenant-release-complex-release-chosen.png)
 
-The step template hooks into that logic already provided by Octopus Deploy.  Internally the logic looks at `2021.1.0.15` for **Coke** and determines that is not the correct release to promote to **Staging**.  **Coke** is assigned to the **Test** environment, and that release hasn't been deployed to that environment.  Whereas with **Internal**, that release has been deployed to **Test** so it can be deployed to **Staging**.
+The step template hooks into that logic already provided by Octopus Deploy.  Internally the logic looks at `2021.1.0.15` for **All Pets** and determines that is not the correct release to promote to **Staging**.  **All Pets** is assigned to the **Test** environment, and that release hasn't been deployed to that environment.  Whereas with **Internal**, that release has been deployed to **Test** so it can be deployed to **Staging**.
 
-When the step template looks at **Ford**, it sees that tenant isn't assigned to the **Test** environment.  It will then pick the latest release from the **Test** environment, regardless of the tenant.  
+When the step template looks at **Pet Life**, it sees that tenant isn't assigned to the **Test** environment.  It will then pick the latest release from the **Test** environment, regardless of the tenant.  
 
 ## Using the Deploy Child Octopus Deploy Project Step Template
 
@@ -173,7 +178,7 @@ After adding and configuring the steps, it is time to create a release.  I will 
 
 ![](release-orchestration-create-release.png)
 
-First, deploy the release to the **Coke** tenant.  
+First, deploy the release to the **All Pets** tenant.  
 
 ![deploy to odd tenant first](release-management-deploy-to-odd-tenant.png)
 
@@ -187,20 +192,20 @@ For the other projects, we should see `2021.1.0.15` get picked up.
 
 #### Deploying the release for tenants not assigned to Test
 
-Now let's see when the tenant is _not_ assigned to **Test**, such as the case with **Ford**, **Nike**, and **Starbucks**.
+Now let's see when the tenant is _not_ assigned to **Test**, such as the case with **Pet Life**, **Pet World**, and **Dogs Only**.
 
-![which release should ford pick up](ford-not-assigned-to-test.png)
+![which release should Pet Life pick up](ford-not-assigned-to-test.png)
 
-**Ford** is also not assigned to the scheduling service, single sign-on, or data conversion service projects.
+**Pet Life** is also not assigned to the scheduling service, single sign-on, or data conversion service projects.
 
 ![ford assignments](ford-project-assignments.png)
 
-A couple of things will happen when deploying the parent project to **Staging** for **Ford**  
+A couple of things will happen when deploying the parent project to **Staging** for **Pet Life**  
 
 - Release `2021.1.0.15` for the Web API project will be selected as it is the most recent successful release to **Test**.
 - The scheduling service, data conversion service, and single sign-on projects will be skipped.
 
-![ford deploying all the child components it has to staging](ford-deployment-to-staging.png)
+![Pet Life deploying all the child components it has to staging](ford-deployment-to-staging.png)
 
 So far, we've configured the parent project to do deployments only.  If we stop here, we are in a better spot than before.  We can push out all the components assigned to a tenant in a specific order.  Also, the process will skip steps not assigned to the tenant automatically.  When managing multi-tenant applications, this alone is a win.  But we can take a step further.  Let's move to approvals.
 
@@ -299,9 +304,9 @@ And with that, the release to **Production** is complete!  Now you have a single
 
 I've worked places where specific customers are required to sign-off on a release before going to **Production**.  The chances of them approving a deployment _during_ the actual deployment is slim.  They will most likely approve on Tuesday for deployment on a Thursday (or *shudder* 3 AM Saturday).  For extra fun, let me remind you of this rule from earlier.
 
-> Certain Customers, such as **Coke** and **Nike** must give their consent before a release is deployed to the **Production** environment.
+> Certain Customers, such as **All Pets** and **Pet World** must give their consent before a release is deployed to the **Production** environment.
 
-**Coke** and **Nike** require specific approval.  All the other customers only require a single approval, which will occur for the **Internal** tenant.  
+**All Pets** and **Pet World** require specific approval.  All the other customers only require a single approval, which will occur for the **Internal** tenant.  
 
 It doesn't make sense to have a deployment sitting in **Production** awaiting manual intervention for days.  A **Prod Approval** environment that sits between **Staging** and **Production** can solve this problem.  
 
@@ -351,15 +356,15 @@ By doing this, we are telling the step template to pull approvals from the **Pro
 
 #### Set the tenant approvals
 
-Finally, we will want to set the approval tenant.  By default, the approval tenant is the current tenant's name.  That default will only apply to **Coke**, **Nike**, and **Internal**.  Everyone else will use **Internal**.  There are a few ways to accomplish this.  I am going to use a project variable template with the default set to Internal.
+Finally, we will want to set the approval tenant.  By default, the approval tenant is the current tenant's name.  That default will only apply to **All Pets**, **Pet World**, and **Internal**.  Everyone else will use **Internal**.  There are a few ways to accomplish this.  I am going to use a project variable template with the default set to Internal.
 
 ![project variable templates](project-variable-templates-approval-tenant.png)
 
-Go to **Internal**, **Coke**, and **Nike** and assign the **Prod Approval** environment for the Release Orchestration Project.
+Go to **Internal**, **All Pets**, and **Pet World** and assign the **Prod Approval** environment for the Release Orchestration Project.
 
 ![assigning the prod approval environment](linking-prod-approval-to-tenant.png)
 
-For **Coke** and **Nike**, we will change the approval tenant name to be `Octopus.Deployment.Tenant.Name` in the **Production** environment.  That is because the **Production** environment is where we need to pull the approvals.
+For **All Pets** and **Pet World**, we will change the approval tenant name to be `Octopus.Deployment.Tenant.Name` in the **Production** environment.  That is because the **Production** environment is where we need to pull the approvals.
 
 ![changing the approval tenant name](overwriting-default-approval-tenant.png)
 
@@ -367,7 +372,7 @@ For each of the "non-whatif" steps, set the approval tenant to the variable crea
 
 ![setting the approval tenant in the steps](setting-approval-tenant-deployment-step.png)
 
-Going back to the approval screen will show **Ford** and **Starbucks** don't run on the **Prod Approval** environment.  All the other tenants do.
+Going back to the approval screen will show **Pet Life** and **Dogs Only** don't run on the **Prod Approval** environment.  All the other tenants do.
 
 ![release orchestration approval overview](orchestration-project-overview-approval-rules.png)
 
@@ -381,13 +386,13 @@ Now promote that release to **Production** for **Internal**.  The approvals are 
 
 ![prod approval for internal tenant message](prod-approval-internal-tenant-message.png)
 
-Now that **Internal** has been promoted through **Prod Approval**, we can move onto **Ford** and **Starbucks**.  Promoting the release through **Staging** and onto **Production** will show the **Internal** tenant's approval.
+Now that **Internal** has been promoted through **Prod Approval**, we can move onto **Pet Life** and **Dogs Only**.  Promoting the release through **Staging** and onto **Production** will show the **Internal** tenant's approval.
 
-![prod approval for ford tenant using the internal tenant](ford-deploy-to-prod-for-internal-tenant-approval.png)
+![prod approval for Pet Life tenant using the internal tenant](ford-deploy-to-prod-for-internal-tenant-approval.png)
 
-When the same release is deployed to **Production** for **Coke**, we will see the approvals will come from the **Coke** tenant.
+When the same release is deployed to **Production** for **All Pets**, we will see the approvals will come from the **All Pets** tenant.
 
-![automatic for coke using approvals from coke](coca-cola-tenant-approval-from-coca-cola.png)
+![automatic for All Pets using approvals from All Pets](coca-cola-tenant-approval-from-coca-cola.png)
 
 :::success
 The step template looks for approvals for the current release only.  Creating a new release will require another round of approvals.  Even for a patch release, such as `2021.1.1`.  
