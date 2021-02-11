@@ -21,7 +21,7 @@ As a contributing member of many "hot mess" codebases, I'll share with you what'
 
 ## Start simple and centralize your automation
 
-![Simple repository design](simple-repo-structure.png "width=500")
+![Simple repository design](simple-repo-structure.png "width=300")
 
 Initially, creating a single central repository can be the best way to start. This is roughly the equivalent to a monolithic application, where everything is tightly coupled. Ad-hoc scripts, orchestrated automation, and infrastructure as code documents all live in the same repository. Name the repository after your team and let it become the source of truth for all the code developed by your team.
 
