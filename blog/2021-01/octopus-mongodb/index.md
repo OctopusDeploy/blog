@@ -7,7 +7,7 @@ published: 2021-01-13
 metaImage: mongodb-octopus.png
 bannerImage: mongodb-octopus.png
 tags:
- - Databases
+ - Database Deployments
 ---
 
 ![Deploying to MongoDB with Octopus Deploy and Liquibase](mongodb-octopus.png)

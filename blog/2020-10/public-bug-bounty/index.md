@@ -7,7 +7,7 @@ published: 2020-10-09
 metaImage: blogimage-security.png
 bannerImage: blogimage-security.png
 tags:
- - Security
+ - Trust and Security
 ---
 
 ![Bounty program](blogimage-security.png)
