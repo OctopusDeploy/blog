@@ -6,6 +6,7 @@ Events and Webinars
 Company
 
 # Optional tags to help with discoverability and internal links (Don't over do it with these, apply the one or two tags that are the best fit)
+Automation
 AWS
 Azure
 AWS

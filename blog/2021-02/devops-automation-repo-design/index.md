@@ -9,7 +9,6 @@ bannerImage: blogimage-how-to-start-and-refactor-automation-repositories-2021.pn
 tags:
  - DevOps
  - Automation
- - Git
 ---
 
 ![How to structure your Git repository for DevOps automation](blogimage-how-to-start-and-refactor-automation-repositories-2021.png)
