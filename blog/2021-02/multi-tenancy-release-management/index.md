@@ -182,9 +182,9 @@ First, deploy the release to the **All Pets** tenant.
 
 ![deploy to odd tenant first](release-management-deploy-to-odd-tenant.png)
 
-Wait for the release to finish.  For the Web API project, you should see release `2021.1.0.1` get picked up to deploy.
+Wait for the release to finish.  For the Web UI project, you should see release `2021.1.0.1` get picked up to deploy.
 
-![the correct release is picked up for the odd tenant](coke-tenant-selecting-correct-release.png)
+![the correct release is picked up for the odd tenant](odd-tenant-selecting-correct-release.png)
 
 For the other projects, we should see `2021.1.0.15` get picked up.
 
@@ -194,18 +194,18 @@ For the other projects, we should see `2021.1.0.15` get picked up.
 
 Now let's see when the tenant is _not_ assigned to **Test**, such as the case with **Pet Life**, **Pet World**, and **Dogs Only**.
 
-![which release should Pet Life pick up](ford-not-assigned-to-test.png)
+![which release should Pet Life pick up](tenants-not-assigned-to-test.png)
 
 **Pet Life** is also not assigned to the scheduling service, single sign-on, or data conversion service projects.
 
-![ford assignments](ford-project-assignments.png)
+![Pet Life assignments](pet-life-project-assignments.png)
 
 A couple of things will happen when deploying the parent project to **Staging** for **Pet Life**  
 
-- Release `2021.1.0.15` for the Web API project will be selected as it is the most recent successful release to **Test**.
+- Release `2021.1.0.15` for the Web UI project will be selected as it is the most recent successful release to **Test**.
 - The scheduling service, data conversion service, and single sign-on projects will be skipped.
 
-![Pet Life deploying all the child components it has to staging](ford-deployment-to-staging.png)
+![Pet Life deploying all the child components it has to staging](pet-life-deployment-to-staging.png)
 
 So far, we've configured the parent project to do deployments only.  If we stop here, we are in a better spot than before.  We can push out all the components assigned to a tenant in a specific order.  Also, the process will skip steps not assigned to the tenant automatically.  When managing multi-tenant applications, this alone is a win.  But we can take a step further.  Let's move to approvals.
 
@@ -388,11 +388,11 @@ Now promote that release to **Production** for **Internal**.  The approvals are 
 
 Now that **Internal** has been promoted through **Prod Approval**, we can move onto **Pet Life** and **Dogs Only**.  Promoting the release through **Staging** and onto **Production** will show the **Internal** tenant's approval.
 
-![prod approval for Pet Life tenant using the internal tenant](ford-deploy-to-prod-for-internal-tenant-approval.png)
+![prod approval for Pet Life tenant using the internal tenant](pet-life-deploy-to-prod-for-internal-tenant-approval.png)
 
 When the same release is deployed to **Production** for **All Pets**, we will see the approvals will come from the **All Pets** tenant.
 
-![automatic for All Pets using approvals from All Pets](coca-cola-tenant-approval-from-coca-cola.png)
+![automatic for All Pets using approvals from All Pets](all-pets-tenant-approval-from-coca-cola.png)
 
 :::success
 The step template looks for approvals for the current release only.  Creating a new release will require another round of approvals.  Even for a patch release, such as `2021.1.1`.  
