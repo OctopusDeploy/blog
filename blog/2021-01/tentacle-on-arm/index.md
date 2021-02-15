@@ -10,6 +10,8 @@ tags:
  - Product
 ---
 
+![Octopus Tentacle on ARM/ARM64](blogimage-raspberrypi.png)
+
 We're pleased to share that our Tentacle agent now supports ARM and ARM64 hardware. This update makes it possible to deploy your apps and services to Raspberry Pi 3 & 4, AWS A1 EC2 instances, or any ARM hardware that can run [.NET Core 3.0 or later](https://devblogs.microsoft.com/dotnet/announcing-net-core-3-0/#platform-support). 
 
 In this post, I'll explain why it's valuable to run Tentacle on ARM servers and how to get started.
