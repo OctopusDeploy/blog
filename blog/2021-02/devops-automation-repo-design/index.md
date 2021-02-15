@@ -21,7 +21,27 @@ As a contributing member of many "hot mess" codebases, I'll share with you what'
 
 ## Start simple and centralize your automation
 
-![Simple repository design](simple-repo-structure.png "width=300")
+```
+|-- docs/
+|   |-- failover-database.md
+|   |-- sre-local-setup.md
+|-- scripts/
+|   |-- windows/
+|   |-- linux/
+|   |-- load-balancer/
+|   |-- networking/
+|-- ansible/
+|   |-- group_vars/
+|   |-- roles/
+|   |-- site.yml
+|   |-- windows-patching.yml
+|   |-- inventory.yml
+|-- terraform/
+|   |-- main.tf
+|   |-- provider.tf
+|   |-- variables.tf
+|   |-- outputs.tf
+```
 
 Initially, creating a single central repository can be the best way to start. This is roughly the equivalent to a monolithic application, where everything is tightly coupled. Ad-hoc scripts, orchestrated automation, and infrastructure as code documents all live in the same repository. Name the repository after your team and let it become the source of truth for all the code developed by your team.
 
@@ -51,8 +71,6 @@ One solution is to create a repository for every individual workflow, and while 
 
 ## How to split up a repository?
 
-![](diskspace-automation.png)
-
 Everything and everyone gets a repository! Is normally the first instinct when a centralized repository becomes problematic. However, that comes with its own set of challenges. Instead, I recommend you follow the _change_.
 
 Automation is written to make a change, report a change, or to test a change. When it comes time to refactor your repository start by mapping those changes through the system. Using that data will inform your decision.
@@ -60,6 +78,8 @@ Automation is written to make a change, report a change, or to test a change. Wh
 [Value stream mapping](https://www.atlassian.com/continuous-delivery/principles/value-stream-mapping) is a technique used to analyze the flow of information, people, and materials required to bring a result to a customer. Normally in the form of a product or service. It's a concept that originated in Lean manufacturing methodologies but is also prevalent in DevOps literature.
 
 This analysis can be as complicated as you make it, but keep it simple and stick to identifying the steps in the process rather than the waste and efficiencies. Your goal is to visualize the current process instead of optimizing it.
+
+![](blogimage-disk-space-automation.png "width=400")
 
 For each different process in your central repository, go through this workflow exercise. For example, say there is an operating system patching process you’ve automated. The code lives within the central repository and runs every month. You also have your infrastructure as code configuration within the same repository, but that is run on-demand without a schedule. Each of those processes has a different workflow and are good candidates to be separated out into their own repositories.
 
