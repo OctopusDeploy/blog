@@ -67,7 +67,7 @@ Promoting all the component projects to **Production** is when this pattern star
 
 To solve these issues, we need a _parent project_ to coordinate all these _child projects_. Unlike the child projects, the parent project only needs to deploy to **Staging** and **Production**.
 
-## Introducing the Deploy Child Octopus Deploy Project Step Template
+## Introducing the Deploy Child Octopus Deploy Project step template
 
 The parent project needs a way to invoke the child project's deployments.  This is handled by the new [Deploy Child Octopus Deploy Project](https://library.octopus.com/step-templates/0dac2fe6-91d5-4c05-bdfb-1b97adf1e12e/actiontemplate-deploy-child-octopus-deploy-project) step template.  In this example, the parent project is called "Release Orchestration" and uses that step template multiple times.  You can choose any name you like for the parent project, for instance, "Traffic Cop," the name of the application, or even Voltron.
 
@@ -75,7 +75,7 @@ The parent project needs a way to invoke the child project's deployments.  This 
 
 Before providing usage examples for the step template, I want to demonstrate how the step template works.
 
-### How Releases are chosen
+### How releases are chosen
 
 There are two other options for a parent project to deploy a child project.
 
@@ -105,7 +105,7 @@ One of the basic design rules of this step template is customization.  For examp
 
 The step template will also check to see if the selected release has been deployed to the destination environment and skip deploying if it has. However, you can configure it to always redeploy.
 
-### Easier Approvals
+### Easier approvals
 
 Approvals seem to cause the most headaches when it comes to parent/child project relationships.  In Octopus Deploy, the [manual intervention step](https://octopus.com/docs/deployment-process/steps/manual-intervention-and-approvals) is responsible for approvals.  The kicker with that step is the deployment has to start for the approval to happen.  But often, the approval process occurs hours or days before the release.  
 
