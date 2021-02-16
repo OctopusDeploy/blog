@@ -50,11 +50,11 @@ With that all in mind, let's meet our sample customers:
 
 ## Multi-Tenancy and the Deploy Child Octopus Deploy Project step template
 
-I've worked with customers who went the route of a single massive project to handle everything.  It deployed the software in one go, but outage windows were quite large because unchanged components were redeployed.  
+I've worked with customers who went the route of a single massive project to handle everything.  They deployed the software in one go, but outage windows were quite large because unchanged components were also redeployed.  
 
 That often lead to the question, "How do I skip steps where the package hasn't changed?"  
 
-The concern with that approach is that a web deployment rarely "just" pushes out a server package.  Additional steps are needed to configure items such as branding or running integration tests.  
+The problem with that approach is that a web deployment rarely "just" pushes out a server package.  Additional steps are needed to configure items such as branding or running integration tests.  
 
 Each component in Octopus Deploy needs to be assigned to a unique project. A parent project will handle the orchestration. Up until this point, there hasn't been a step to solve several use cases seen in the real-world.
 
@@ -85,7 +85,7 @@ The step template will automatically detect if you are doing a deployment with a
 
 ### Choosing a release
 
-One of the step templates' core business rules is to pick the last successfully deployed release in the source environment.  Multi-tenancy makes this a bit more complicated.  Consider this scenario:
+One of the step template's core business rules is to pick the last successfully deployed release in the source environment.  Multi-tenancy makes this a bit more complicated.  Consider this scenario:
 
 ![A multi-tenant child project with a complex release](multi-tenant-picking-release-complex.png)
 
@@ -106,7 +106,7 @@ You must provide the step template with a destination environment (**Staging**),
 With this information the step template will:
 
 1. Use the channel's lifecycle to calculate the source environment, which is **Test**.
-2. Pull all the releases for that channel matching the `2021.1.0.*` pattern.
+2. Pull all the releases for the channel matching the `2021.1.0.*` pattern.
 3. Loop through those releases to find the last release successfully deployed **Test**.  Note, that not the newest release created, but the last one deployed to **Test**.
 
 Multi-tenancy adds some complexity.
