@@ -10,10 +10,10 @@ tags:
  - Engineering
 ---
 
-One of my favorite features in Octopus Deploy is [Multi-Tenancy](https://octopus.com/docs/deployments/patterns/multi-tenant-deployments).  When working on applications where each customer gets their own "world" either by hosting the software themselves or by spinning up unique infrastructure per customer, the Multi-Tenancy feature in Octopus Deploy solves many problems.  My [previous article](blog/2021-02/release-management-with-octopus) was a deep dive into the new [Deploy Child Octopus Deploy Project](https://library.octopus.com/step-templates/0dac2fe6-91d5-4c05-bdfb-1b97adf1e12e/actiontemplate-deploy-child-octopus-deploy-project) step template and covered a variety of scenarios, but it didn't include multi-tenancy.  In this article, I will do a deep dive into the multi-tenancy functionality of the new step template, and how you can use it to better manage your multi-tenancy releases.
+One of my favorite features in Octopus Deploy is [Multi-Tenancy](https://octopus.com/docs/deployments/patterns/multi-tenant-deployments).  When working on applications where each customer gets their own "world" either by hosting the software themselves or by spinning up unique infrastructure per customer, the Multi-Tenancy feature in Octopus Deploy solves many problems.  My [previous article](blog/2021-02/release-management-with-octopus/index.md) was a deep dive into the new [Deploy Child Octopus Deploy Project](https://library.octopus.com/step-templates/0dac2fe6-91d5-4c05-bdfb-1b97adf1e12e/actiontemplate-deploy-child-octopus-deploy-project) step template and covered a variety of scenarios, but it didn't include multi-tenancy.  In this article, I will do a deep dive into the multi-tenancy functionality of the new step template, and how you can use it to better manage your multi-tenancy releases.
 
 :::success
-This article assumes you read the [previous article](blog/2021-02/release-management-with-octopus). It will touch on similar topics, but it isn't a full rehash.
+This article assumes you read the [previous article](blog/2021-02/release-management-with-octopus/index.md). It will touch on similar topics, but it isn't a full rehash.
 :::
 
 ## Sample application
@@ -126,7 +126,7 @@ This section walks through configuring some common parent project scenarios.  Yo
 
 ### Scaffolding
 
-There is some scaffolding to configure for users and lifecycles.  Please see the scaffolding section in the [previous article](blog/2021-02/release-management-with-octopus#scaffolding).  
+There is some scaffolding to configure for users and lifecycles.  Please see the scaffolding section in the [previous article](blog/2021-02/release-management-with-octopus/index.md#scaffolding).  
 
 After you've configuring the users and lifecycles, it's time to create a project.  When you create the project, remember to select the new lifecycle created above.
 
@@ -406,7 +406,7 @@ Approvals in a real-world setting are complex.  Hopefully, with this functionali
 
 ## Conclusion
 
-This article covered some of the multi-tenancy scenarios for the [Deploy Child Octopus Deploy Project](https://library.octopus.com/step-templates/0dac2fe6-91d5-4c05-bdfb-1b97adf1e12e/actiontemplate-deploy-child-octopus-deploy-project) step template.  If you'd like to see more scenarios, please see my [previous article](blog/2021-02/release-management-with-octopus).
+This article covered some of the multi-tenancy scenarios for the [Deploy Child Octopus Deploy Project](https://library.octopus.com/step-templates/0dac2fe6-91d5-4c05-bdfb-1b97adf1e12e/actiontemplate-deploy-child-octopus-deploy-project) step template.  If you'd like to see more scenarios, please see my [previous article](blog/2021-02/release-management-with-octopus/index.md).
 
 Octopus Deploy's multi-tenancy feature was designed to make life easier for companies who install software on distinct infrastructure.  I see and hear about all the various quirks customers run into with that model.  The more customizations are offered, the harder it is to manage deployments.  Those quirks were a primary driver in writing this step template.  A person shouldn't need to consult a spreadsheet to know which releases to deploy to which customers.  Something like that introduces the potential for errors because of a manual process.  That is the goal of this step template, to remove as much psychological weight from multi-tenant deployments as possible.
 
