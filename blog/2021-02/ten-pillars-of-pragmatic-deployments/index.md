@@ -10,7 +10,7 @@ tags:
  - Deployments
 ---
 
-As you might imagine, at Octopus, we spend a great deal of time thinking about deployments. Octopus was born to manage real world deployment processes and continues to be shaped to this day through conversations with customers, support requests, our own internal deployment requirements, and many discussions around what we think good deployments look like.
+As you might imagine, at Octopus, we spend a great deal of time thinking about deployments. Octopus was born to manage real world deployment processes and continues to be shaped to this day through conversations with customers, support requests, our own internal deployment requirements, and many other discussions around what we think good deployments look like.
 
 This knowledge has been distilled into the 10 pillars of pragmatic deployments.
 
@@ -363,3 +363,9 @@ Deploying a package into an environment is just one small part of the deployment
 * Deployments can trigger external events.
 
 In practice a deployment process may be a single component in a wider ecosystem of business process management tools. The ability to orchestrate deployments from third party platforms and report results back allows teams to manage complex deployments as part of a broader business process.
+
+## Conclusion 
+
+Those are the ten pillars of pragmatic deployments that shape the [features](https://octopus.com/features) and philosophy of Octopus Deploy. I'm sure they will continue to evolve over time as new user cases emerge, but we believe they provide a solid foundation from which to keep building Octopus Deploy.
+
+Happy Deployments!
