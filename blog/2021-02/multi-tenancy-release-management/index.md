@@ -50,11 +50,11 @@ With that all in mind, let's meet our sample customers:
 
 ## Multi-Tenancy and the Deploy Child Octopus Deploy Project step template
 
-I've worked with customers who went the route of a single massive project to handle everything.  It deployed the software in one go, but outage windows were quite large because unchanged components were redeployed.  
+I've worked with customers who went the route of a single massive project to handle everything.  They deployed the software in one go, but outage windows were quite large because unchanged components were also redeployed.  
 
 That often lead to the question, "How do I skip steps where the package hasn't changed?"  
 
-The concern with that approach is that a web deployment rarely "just" pushes out a server package.  Additional steps are needed to configure items such as branding or running integration tests.  
+The problem with that approach is that a web deployment rarely "just" pushes out a server package.  Additional steps are needed to configure items such as branding or running integration tests.  
 
 Each component in Octopus Deploy needs to be assigned to a unique project. A parent project will handle the orchestration. Up until this point, there hasn't been a step to solve several use cases seen in the real-world.
 
@@ -85,7 +85,7 @@ The step template will automatically detect if you are doing a deployment with a
 
 ### Choosing a release
 
-One of the step templates' core business rules is to pick the last successfully deployed release in the source environment.  Multi-tenancy makes this a bit more complicated.  Consider this scenario:
+One of the step template's core business rules is to pick the last successfully deployed release in the source environment.  Multi-tenancy makes this a bit more complicated.  Consider this scenario:
 
 ![A multi-tenant child project with a complex release](multi-tenant-picking-release-complex.png)
 
@@ -106,21 +106,21 @@ You must provide the step template with a destination environment (**Staging**),
 With this information the step template will:
 
 1. Use the channel's lifecycle to calculate the source environment, which is **Test**.
-2. Pull all the releases for that channel matching the `2021.1.0.*` pattern.
-3. Loop through those releases to find the last release successfully deployed **Test**.  Note, that not the newest release created, but the last one deployed to **Test**.
+2. Pull all the releases for the channel matching the `2021.1.0.*` pattern.
+3. Loop through those releases to find the last release successfully deployed to **Test**.  Note, that is not the newest release created, but the last one deployed to **Test**.
 
 Multi-tenancy adds some complexity.
 
 - Only **All Pets** and **Internal** are assigned to the **Test** environment.
 - Tenants can have different releases.
 
-The excellent news is Octopus already figures this out for us.  If were to pick the `2021.1.0.15` release from the **Filter by release** drop-down menu, the dashboard would change to this:
+The excellent news is Octopus already figures this out for us.  If we were to pick the `2021.1.0.15` release from the **Filter by release** drop-down menu, the dashboard would change to this:
 
 ![Filtering the dashboard by a release](multi-tenant-release-complex-release-chosen.png)
 
 The step template hooks into that logic already provided by Octopus Deploy.  Internally, the logic looks at `2021.1.0.15` for **All Pets** and determines that is not the correct release to promote to **Staging**.  **All Pets** is assigned to the **Test** environment, and that release hasn't been deployed to that environment.  Whereas with **Internal**, that release has been deployed to **Test** so it can be deployed to **Staging**.
 
-When the step template looks at **Pet Life**, it sees that tenant isn't assigned to the **Test** environment.  It will then pick the latest release from the **Test** environment, regardless of the tenant.  
+When the step template looks at **Pet Life**, it sees that tenant isn't assigned to the **Test** environment.  It will then pick the latest release from the  **Test** environment, regardless of the tenant.  
 
 ## Using the Deploy Child Octopus Deploy Project step template
 
@@ -159,26 +159,26 @@ Go to the newly created project's deployment process and add a `Deploy Child Oct
 Here are the values for each parameter:
 
 - **Octopus API Key**: The API key variable, `#{Project.ChildProjects.ReleaseAPIKey}`.
-- **Octopus Child Space**: Leave the default value as-is; this example isn't creating a release orchestration project in another space.
+- **Octopus Child Space**: Accept the default value. This example isn't creating a release orchestration project in another space.
 - **Child Project Name**: The name of the child project.
-- **Child Project Channel**: Leave the default (empty) value as-is; the child project only has one channel.
+- **Child Project Channel**: Accept the default (empty) value The child project only has one channel.
 - **Child Project Release Number**: The release pattern variable, `#{Project.ChildProjects.ReleasePattern}`.
-- **Child Project Release Not Found Error Handle**: Leave the default value as-is, which says if the release doesn't exist, skip it.
-- **Destination Environment Name**: Leave the default value as-is; use the same environment as the parent project. 
-- **Source Environment Name**: Leave the default (empty) value as-is; this example will let the step template decide the source environment.
-- **Child Project Prompted Variables**: Leave the default (empty) value as-is; there are no prompted variables. 
-- **Force Redeployment**: Leave the default value as-is. The example won't be redeploying an existing release.
-- **Ignore Specific Machine Mismatch**: Leave the default value as-is. We're not adding deployment target triggers yet.
-- **Save Release Notes as Artifacts**: Leave the default value as-is.
-- **What If**: Leave the default value as-is. We're not adding the approvals yet.
-- **Wait for finish**: Leave the default value as-is. This example will wait for the deployment to finish.
-- **Wait for Deployment**: Leave the default value as-is. 30 minutes should be more than enough.
-- **Scheduling**: Leave the default value as-is. This example requires a specific order for child projects.
-- **Auto Approve Child Project Manual Interventions**: Leave the default value as-is. This setting isn't needed right now as the example doesn't deal with manual interventions.
-- **Approval Environment**: Leave the default value as-is. This setting isn't needed right now as the example doesn't deal with manual interventions.
-- **Approval Tenant**: Leave the default as-is. This setting isn't needed right now as the example don't deal with manual interventions. 
+- **Child Project Release Not Found Error Handle**: Accept the default value, which says if the release doesn't exist, skip it.
+- **Destination Environment Name**: Accept the default value. Use the same environment as the parent project. 
+- **Source Environment Name**: Accept the default (empty) value This example will let the step template decide the source environment.
+- **Child Project Prompted Variables**: Accept the default (empty) value. There are no prompted variables. 
+- **Force Redeployment**: Accept the default value. The example won't redeploy an existing release.
+- **Ignore Specific Machine Mismatch**: Accept the default value. We're not adding deployment target triggers yet.
+- **Save Release Notes as Artifacts**: Accept the default value.
+- **What If**: Accept the default value. We're not adding the approvals yet.
+- **Wait for finish**: Accept the default value. This example will wait for the deployment to finish.
+- **Wait for Deployment**: Accept the default value. 30 minutes should be more than enough.
+- **Scheduling**: Accept the default value. This example requires a specific order for child projects.
+- **Auto Approve Child Project Manual Interventions**: Accept the default value. This setting isn't needed right now as the example doesn't deal with manual interventions.
+- **Approval Environment**: Accept the default value. This setting isn't needed right now as the example doesn't deal with manual interventions.
+- **Approval Tenant**: Accept the default value. This setting isn't needed right now as the example don't deal with manual interventions. 
 
-#### Create release and deploy it
+#### Create the release and deploy it
 
 After adding and configuring the steps, it's time to create a release.  I will be making many changes to the parent project in this article; you might see `2021.1.0-RCx` for the release numbers.  
 
@@ -229,7 +229,7 @@ The flow of the parent project is:
 2. Do all the necessary manual interventions.
 3. Run Deploy Child Octopus Deploy Project step templates in normal mode.
 
-When running in what-if mode, the following output parameters are set to be used later in the process:
+When running in what-if mode, the following output parameters are set for use later in the process:
 
 - **ReleaseToPromote**: The release number that meets all the requirements.  When no release is found, this is set to N/A.  When the release has already been deployed to the target environment, it will indicate that.
 - **ReleaseNotes**: The release notes of the child project.  Includes the commit history and issues associated with the project when using build information.
@@ -308,7 +308,7 @@ And with that, the release to **Production** is complete!  Now you have a single
 
 ### Scenario: Approve today, deploy tomorrow
 
-I've worked places where specific customers are required to sign-off on a release before going to **Production**.  The chances of them approving a deployment _during_ the actual deployment is slim.  They will most likely approve on Tuesday for deployment on a Thursday (or *shudder* 3 AM Saturday).  For extra fun, let me remind you of this rule from earlier.
+I've worked places where specific customers are required to sign-off on a release before going to **Production**.  The chances of them approving a deployment _during_ the actual deployment is slim.  They will most likely approve on Tuesday for deployment on Thursday (or *shudder* 3 AM Saturday).  For extra fun, let me remind you of this rule from earlier.
 
 > Certain customers, such as **All Pets** and **Pet World** must give their consent before a release is deployed to the **Production** environment.
 
@@ -317,10 +317,10 @@ I've worked places where specific customers are required to sign-off on a releas
 It doesn't make sense to have a deployment sitting in **Production** awaiting manual intervention for days.  A **Prod Approval** environment that sits between **Staging** and **Production** can solve this problem.  
 
 :::success
-The **Prod Approval** environment will _only_ be used for parent projects.  Child project's lifecycles will remain as-is.
+The **Prod Approval** environment will _only_ be used for parent projects.  Child project's lifecycles will remain the same.
 :::
 
-This scenario will walk through the steps to add the **Prod Approval** environment to a multi-tenant application to meet those rules.
+This scenario walks through the steps to add the **Prod Approval** environment to a multi-tenant application to meet those rules.
 
 #### Add the new environment and configure the lifecycle
 
@@ -370,7 +370,7 @@ Go to **Internal**, **All Pets**, and **Pet World** and assign the **Prod Approv
 
 ![Assigning the prod approval environment](linking-prod-approval-to-tenant.png)
 
-For **All Pets** and **Pet World**, we will change the approval tenant name to be `Octopus.Deployment.Tenant.Name` in the **Production** environment.  That is because the **Production** environment is where we need to pull the approvals.
+For **All Pets** and **Pet World**, we will change the approval tenant name to `Octopus.Deployment.Tenant.Name` in the **Production** environment.  That is because the **Production** environment is where we need to pull the approvals.
 
 ![Changing the approval tenant name](overwriting-default-approval-tenant.png)
 
