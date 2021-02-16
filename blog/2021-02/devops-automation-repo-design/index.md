@@ -3,7 +3,7 @@ title: How to structure your Git repository for DevOps automation
 description: Learn how to structure your Git repositories to store your scripts, infrastructure as code configuration files, application configuration files, docs and more. 
 author: josh@duffney.io 
 visibility: public
-published: 2021-02-17
+published: 2021-02-17-1500
 metaImage: blogimage-how-to-start-and-refactor-automation-repositories-2021.png
 bannerImage: blogimage-how-to-start-and-refactor-automation-repositories-2021.png
 tags:
@@ -17,7 +17,7 @@ As an ops person, when you first start out with automation, you might find you h
 
 Repository design is often an afterthought, and for good reason. It can be hard to know how to structure something when you don't know exactly what you're building. It doesn't have to stay a mess, nor do you have to front-load years' worth of future work into a decision that can't be made today.
 
-As a contributing member of many "hot mess" codebases, I'll share with you what's worked best for the teams I've been a member of when starting down the automation road and how to refactor a centralized repository.
+As a contributing member of many "hot mess" codebases, I'll share with you what's worked best for the teams I've been a member of when starting down the automation road and how to refactor a centralized repository. 
 
 ## Start simple and centralize your automation
 
