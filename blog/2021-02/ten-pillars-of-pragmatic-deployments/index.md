@@ -1,6 +1,6 @@
 ---
 title: The ten pillars of pragmatic deployments
-description:  
+description:  The ten pillars of pragmatic deployments that shape how we develop the features and philosophy of Octopus Deploy.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2021-02-22
