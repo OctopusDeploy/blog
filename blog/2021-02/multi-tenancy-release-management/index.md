@@ -107,20 +107,20 @@ With this information the step template will:
 
 1. Use the channel's lifecycle to calculate the source environment, which is **Test**.
 2. Pull all the releases for the channel matching the `2021.1.0.*` pattern.
-3. Loop through those releases to find the last release successfully deployed **Test**.  Note, that not the newest release created, but the last one deployed to **Test**.
+3. Loop through those releases to find the last release successfully deployed to **Test**.  Note, that is not the newest release created, but the last one deployed to **Test**.
 
 Multi-tenancy adds some complexity.
 
 - Only **All Pets** and **Internal** are assigned to the **Test** environment.
 - Tenants can have different releases.
 
-The excellent news is Octopus already figures this out for us.  If were to pick the `2021.1.0.15` release from the **Filter by release** drop-down menu, the dashboard would change to this:
+The excellent news is Octopus already figures this out for us.  If we were to pick the `2021.1.0.15` release from the **Filter by release** drop-down menu, the dashboard would change to this:
 
 ![Filtering the dashboard by a release](multi-tenant-release-complex-release-chosen.png)
 
 The step template hooks into that logic already provided by Octopus Deploy.  Internally, the logic looks at `2021.1.0.15` for **All Pets** and determines that is not the correct release to promote to **Staging**.  **All Pets** is assigned to the **Test** environment, and that release hasn't been deployed to that environment.  Whereas with **Internal**, that release has been deployed to **Test** so it can be deployed to **Staging**.
 
-When the step template looks at **Pet Life**, it sees that tenant isn't assigned to the **Test** environment.  It will then pick the latest release from the **Test** environment, regardless of the tenant.  
+When the step template looks at **Pet Life**, it sees that tenant isn't assigned to the **Test** environment.  It will then pick the latest release from the  **Test** environment, regardless of the tenant.  
 
 ## Using the Deploy Child Octopus Deploy Project step template
 
