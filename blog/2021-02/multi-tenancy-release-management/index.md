@@ -3,7 +3,7 @@ title: Multi-Tenancy Release Management with Octopus Deploy
 description: How to use the new Deploy Child Octopus Deploy Project step template for multi-tenancy scenarios.
 author: bob.walker@octopus.com
 visibility: public
-published: 2021-02-24
+published: 2021-02-24-1400
 metaImage: blogimage-deploy-release-step.png
 bannerImage: blogimage-deploy-release-step.png
 tags:
