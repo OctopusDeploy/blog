@@ -53,15 +53,11 @@ Octopus Deploy provides first-class integration with many [build servers](https:
 - Jenkins
 - Bamboo
 
-In addition to the available plugins, Octopus Deploy also provides integration with online-only build servers:
+In addition to the available plugins, there are some community supported integrations with online-only build servers:
 - CircleCI
 - GitHub Actions
 - BitBucket Pipelines
 - Appveyor
-
-:::warning
-The online-only build servers listed above are considered experimental and are not officially supported by Octopus Deploy.
-:::
 
 For this demonstration, we're using TeamCity.  Add a new step to your build definition, choosing the `Octopus Deploy: Build Information` runner.  Fill in the required values:
 - Octopus URL: URL to your Octopus server
