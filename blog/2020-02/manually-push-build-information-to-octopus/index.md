@@ -102,5 +102,14 @@ With the build information pushed to Octopus Deploy, it now shows up in the rele
 
 ![](octopus-release-build-information.png)
 
+## Troubleshooting
+The plugins know exactly what needs to be passed for everything to work correctly.  This can sometimes obscure problems encountered when attempting to write it yourself.  Below are some common issues that customers have encountered while trying to construct the build information.
+
+### Commit links not showing up
+In the event that your commit links are not showing up or working, make sure you have set the VcsType to either `Git` or `TFSVC`.  If it is unknown, Octous Deploy won't know how to set it up properly.
+
+### Work items not working
+If you've provided work items in your file, but they do not show up in Octopus Deploy, check to make sure you have one of the Issue Tracker integrations configured.  Unfortunately, custom Issue Trackers are not supported.
+
 ## Conclusion
 In this post, I showed you how to use the API to submit Build Information to Octopus Deploy.
