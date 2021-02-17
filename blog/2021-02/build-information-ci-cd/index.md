@@ -125,7 +125,11 @@ Packages:
 #{/each}
 ```
 
-With a template defined, the release notes are acessible during a deployment via the `Octpous.Release.Notes` variable.  Using something like Slack, you can include the Build Information in the message.
+:::warning
+The Octopus.Release.Package variable is **only** available for use in release notes templates, it is not available during a deployment process such as a Run a script step.
+:::
+
+With a template defined, the release notes are acessible during a deployment via the `Octopus.Release.Notes` variable.  Using something like Slack, you can include the Build Information in the message.
 
 ![](octopus-process-slack.png)
 
