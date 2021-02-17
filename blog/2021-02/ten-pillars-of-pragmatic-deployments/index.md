@@ -10,11 +10,11 @@ tags:
  - Deployments
 ---
 
-As you might imagine, at Octopus, we spend a great deal of time thinking about deployments. Octopus was born to manage real world deployment processes and continues to be shaped to this day through conversations with customers, support requests, our own internal deployment requirements, and many other discussions around what we think good deployments look like.
+As you might imagine, at Octopus, we spend a great deal of time thinking about deployments. Octopus was born to manage real world deployment processes and continues to be shaped through conversations with customers, support requests, our own internal deployment requirements, and many other discussions about what we think good deployments look like.
 
 This knowledge has been distilled into the 10 pillars of pragmatic deployments.
 
-We use the phrase "pragmatic" quite deliberately. This list is not a score card, a pyramid, a checklist, or a fixed list of requirements. In many cases Octopus, both as a product and as a company, have not achieved these pillars. One of the primary goals of developing these pillars is to find the gaps in our own processes in order to shape the features and philosophy of our product, and to continue the ongoing discussion about what it means to deploy software.
+We use the phrase "pragmatic" quite deliberately. This list is not a score card, a pyramid, a checklist, or a fixed list of requirements. In many cases Octopus, both as a product and as a company, has not achieved these pillars. One of the primary goals of developing these pillars is to find the gaps in our own processes in order to shape the features and philosophy of our product, and to continue the ongoing discussion about what it means to deploy software.
 
 With that in mind, pillar number zero, and the prerequisite for all other pillars in this list, is *do what works for you*.
 
@@ -88,7 +88,7 @@ Although you are free to have any number of environments with any names, this se
 
 ### What is a deployment?
 
-We have talked about deploying "applications" to environments, which is typically how we describe deployments. But to appreciate how repeatable deployments are achieved, we first need to be specific about what we actually deploy.
+We've talked about deploying "applications" to environments, which is typically how we describe deployments. But to appreciate how repeatable deployments are achieved, we first need to be specific about what we actually deploy.
 
 There are three things that can be deployed to an environment:
 
@@ -209,7 +209,7 @@ In practice, the deployment of a new application version with flaggable features
 
 The feature branch strategy allows developers to deploy an application version with changes they are currently implementing, usually in a non-production environment, alongside the main deployment.
 
-It may not be necessary to maintain database backward and forward compatibility with feature branch deployments. Because feature branches are for testing and tend to be short lived, it may be acceptable that each feature branch deployment has access to its own test database.
+It may not be necessary to maintain database backward and forward compatibility with feature branch deployments. Because feature branches are for testing and tend to be short-lived, it may be acceptable that each feature branch deployment has access to its own test database.
 
 ## Pillar 4. Recoverable deployments {#recoverable-deployments}
 
