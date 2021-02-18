@@ -4,11 +4,13 @@ description:  The ten pillars of pragmatic deployments that shape how we develop
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2021-02-22-1400
-metaImage: 
-bannerImage:
+metaImage: blogimage-the-ten-pillars-of-pragmatic-deployments-2021.png
+bannerImage: blogimage-the-ten-pillars-of-pragmatic-deployments-2021.png
 tags:
  - Deployments
 ---
+
+![The ten pillars of pragmatic deployments](blogimage-the-ten-pillars-of-pragmatic-deployments-2021.png)
 
 As you might imagine, at Octopus, we spend a great deal of time thinking about deployments. Octopus was born to manage real world deployment processes and continues to be shaped through conversations with customers, support requests, our own internal deployment requirements, and many other discussions about what we think good deployments look like.
 
