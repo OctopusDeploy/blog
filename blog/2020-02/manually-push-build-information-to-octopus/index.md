@@ -23,7 +23,7 @@ Let’s use GitHub as an example of using the API to submit build information wh
 
 ### Use the API
 
-As previously mentioned, Octopus Deploy is written API-first, so I can use the `/api/build-information` API to push the build information into Octopus Deploy.  On the System Variables documentation page, there is a [section specifically for Build Information](https://octopus.com/docs/projects/variables/system-variables#release-package-build-information) which shows the basic information that can be included with the API call.  Additionally, the Swagger documentation shows us a little more information as to what the payload should look like:
+As previously mentioned, Octopus Deploy is written API-first, so I can use the `/api/build-information` API to push the build information into Octopus Deploy.  On the System Variables documentation page, there is a [section specifically for Build Information](https://octopus.com/docs/projects/variables/system-variables#release-package-build-information) which shows the basic information that can be included with the API call.  Additionally, the Swagger documentation displays the return JSON, which gives us a little more information as to what the payload should look like:
 
 ```
 {
@@ -109,7 +109,7 @@ The plugins know exactly what needs to be passed for everything to work correctl
 In the event that your commit links are not showing up or working, make sure you have set the VcsType to either `Git` or `TFSVC`.  If it is unknown, Octous Deploy won't know how to set it up properly.
 
 ### Work items not working
-If you've provided work items in your file, but they do not show up in Octopus Deploy, check to make sure you have one of the Issue Tracker integrations configured.  Unfortunately, custom Issue Trackers are not supported.
+Octopus Deploy dynamically determines what work items are associated with a build and or commits by use of a configured Issue Tracker integration.  The above Swagger reference shows a work items array in the return of a POST, however, the work items array is **NOT** part of the POST payload.  Even if it is supplied as part of the payload, Octopus ignores it.
 
 ## Conclusion
 In this post, I showed you how to use the API to submit Build Information to Octopus Deploy.
