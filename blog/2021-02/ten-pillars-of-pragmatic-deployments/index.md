@@ -44,11 +44,11 @@ However, you only gain this confidence if what you are deploying to production i
 
 By embracing repeatable deployments, you can be sure that what your end users use in production is what you have been testing, verifying, and gaining confidence in through your non-production environments.
 
-## General deployment concepts
+### General deployment concepts
 
 To understand repeatable deployments, we need to understand what a deployment is, and at what point in a typical build and deployment pipeline deployments take place.
 
-### Continuous Integration, Continuous Delivery and Continuous Deployment
+#### Continuous Integration, Continuous Delivery and Continuous Deployment
 
 The terms Continuous Integration and Continuous Delivery or Deployment (CI/CD) are frequently used to describe the progression from source code to publicly accessible application.
 
@@ -68,7 +68,7 @@ The production environment is the final destination of a deployment, and this is
 
 We have learned from most of our customers that continuous delivery *works for them*. So while the majority of the pillars apply equally well to continuous delivery and continuous deployment, we'll approach them from a continuous delivery point of view.
 
-### What is an environment?
+#### What is an environment?
 
 Environments represent the boundaries between copies of individual applications or entire application stacks combined with their supporting infrastructure. 
 
@@ -88,7 +88,7 @@ The canonical set of environments are called development, test, and production. 
 
 Although you are free to have any number of environments with any names, this set of environments will be used in the examples.
 
-### What is a deployment?
+#### What is a deployment?
 
 We've talked about deploying "applications" to environments, which is typically how we describe deployments. But to appreciate how repeatable deployments are achieved, we first need to be specific about what we actually deploy.
 
@@ -108,11 +108,11 @@ The repeatable deployments pillar describes how promoting releases through envir
 
 The pillar of verifiable deployments describes the various techniques that can be used to verify a deployment when it reaches a new environment.
 
-## General testing concepts
+### General testing concepts
 
 Testing is a nebulous term with often ill-defined subcategories. We will not attempt to provide authoritative definitions of testing categories here. Our goal is to offer a very high level description of common testing practices, and highlight those that can be performed during the deployment process.
 
-### What don't we test during deployments?
+#### What don't we test during deployments?
 
 Unit tests are considered part of the build pipeline. These tests are tightly coupled to the code being compiled, and they must succeed for the resulting application package to be built. 
 
@@ -120,7 +120,7 @@ Integration tests may also be run during the build process to verify that higher
 
 Unit and integration tests are run by the CI server, and any package that is made available for deployment is assumed to have passed all its associated unit and integration tests.
 
-### What can we test during deployment?
+#### What can we test during deployment?
 
 Tests that require a live application or application stack to be accessible are ideal candidates to be run as part of a deployment process.
 
@@ -155,7 +155,7 @@ Midnight deployments may not be glamorous, but if they *work for you*, this is a
 
 When downtime has to be kept to a minimum, or there is no good time for an outage window, some common deployment strategies can be used to seamlessly deploy new application versions.
 
-## Seamless database deployments
+### Seamless database deployments
 
 No discussion on seamless deployments can begin without first addressing the issue of database updates.
 
@@ -165,33 +165,33 @@ However, backward and forward compatibility is not trivial to implement. In the 
 
 Needless to say, seamless deployments involving databases require a great deal of planning, many small steps to roll out the changes, and tight coordination between the database and application code.
 
-## Deployment strategies
+### Deployment strategies
 
 There are multiple strategies to manage a cutover between an existing deployment and a new one.
 
-### Recreate
+#### Recreate
 
 The recreate strategy does not provide a seamless deployment, but is included here as it is the default option for most deployment processes. This strategy involves either removing the existing deployment and deploying the new version, or deploying the new version over the top of the existing deployment.
 
 Both options result in downtime during the period between the existing version being stopped or removed and the new version being started. However, because the existing and new versions are not run concurrently, database upgrades can be applied as needed with no backward and forward compatibility requirements.
 
-### Rolling updates
+#### Rolling updates
 
 The rolling update strategy involves incrementally updating instances of the current deployment with the new deployment. This strategy ensures there is always at least one instance of the current or new deployment available during the rollout. This requires that any shared database must maintain backward and forward compatibility.
 
-### Canary deployments
+#### Canary deployments
 
 The canary deployment strategy is similar to the rolling update strategy in that both incrementally expose more end users to the new deployment. The difference is that the decision to progress the rollout in a canary deployment is either made automatically by a system monitoring metrics and logs to ensure the new deployment is performing as expected, or manually by a human.
 
 Canary deployments also have the option to halt the rollout and revert back to the existing deployment if a problem is discovered.
 
-### Blue/green deployments
+#### Blue/green deployments
 
 The blue/green strategy involves deploying the new version (referred to as the green version) alongside the current version (referred to as the blue version), without exposing the green version to any traffic. Once the green version is deployed and verified, traffic is cutover from the blue to the green version. When the blue version is no longer used, it can be removed.
 
 Any database changes deployed by the green version must maintain backward and forward compatibility, because even if the green version is not serving traffic, the blue version will be exposed to the database changes.
 
-### Session draining
+#### Session draining
 
 The session draining strategy is used when applications maintain states tied to a particular application version.
 
@@ -201,13 +201,13 @@ After the old sessions have expired, the existing deployment can be deleted.
 
 Because the current and new deployments run side by side, any database changes must maintain backward and forward compatibility.
 
-### Feature flags
+#### Feature flags
 
 The feature flag strategy involves building functionality into a new application version, and then exposing or hiding the feature for select end users outside of the deployment process.
 
 In practice, the deployment of a new application version with flaggable features will be performed with one of the strategies above, so the feature flag strategy is a complement to those other strategies.
 
-### Feature branch
+#### Feature branch
 
 The feature branch strategy allows developers to deploy an application version with changes they are currently implementing, usually in a non-production environment, alongside the main deployment.
 
@@ -217,7 +217,7 @@ It may not be necessary to maintain database backward and forward compatibility 
 
 The aim of implementing repeatable and verifiable deployments, tested in non-production environments before being released to production, is to identify bugs before they can affect end users. However, some bugs will inevitably find their way to production. When they do, it is important to restore the production environment to a desirable state.
 
-## Rolling back or forward
+### Rolling back or forward
 
 Recovering from an undesirable deployment means rolling back to a previous good deployment, or rolling forward to a new version that returns the environment to a desirable state.
 
@@ -237,7 +237,7 @@ The blog post [Pitfalls with SQL rollbacks and automated database deployments](h
 
 When deployments involve database changes, I recommended that you roll forward to recover from an undesirable deployment.
 
-## Rolling back
+### Rolling back
 
 With repeatable deployments, rolling back can be achieved by rerunning a previous deployment. This is possible because the package versions, scripts, and variables are all defined by a repeatable deployment.
 
@@ -257,7 +257,7 @@ Rollbacks have the following disadvantages:
 * If a rollback fails, it is likely that you will need to resolve the issue by rolling forward.
 * Database rollbacks require special consideration to ensure data is not lost.
 
-## Rolling forward
+### Rolling forward
 
 Rolling forward is simply another way to describe performing a new deployment. In this case the new deployment will only contain the fixes required to restore an environment.
 
@@ -285,25 +285,25 @@ Being able to quickly view the current state of your environments is critical to
 
 Listed below are a number of details required to gain full visibility into the state of your deployments.
 
-## Commit messages
+### Commit messages
 
 Commit messages capture the intention of source code edits, describing what changes were made and who made them. These messages can be invaluable when trying to understand at a low level what changes made it into a particular version of a package.
 
-## Issue tracking
+### Issue tracking
 
 Often source code commits are made to resolve an issue documented in a dedicated issue tracker. These issues provide a space for bugs to be described, discussed, and tracked. Each issue is referenced by a unique identifier.
 
 Capturing the issue IDs that relate to changes in a package version, and any deployment that includes that package version, provides insight into the issues that were resolved in any given deployment.
 
-## CI build logs
+### CI build logs
 
 A typical CI/CD pipeline will have a CI server that builds, tests, and packages an application. The log files for these builds contain a wealth of information such as which tests passed, which tests were ignored, which dependencies were included, and what packages were created. A link to the CI build from the deployment allows these log files to be quickly reviewed.
 
-## Library dependencies
+### Library dependencies
 
 Almost every application deployed today is a combination of custom code and shared libraries, often provided by a third party. These libraries can be a source of bugs or security vulnerabilities, or provide new and useful features. Understanding the library dependencies that contributed to a deployment is important for auditing and debugging.
 
-## Deployment versions
+### Deployment versions
 
 A release captures all of the above information, along with package versions, variable values, and scripts, in a release version. This release is then deployed to an environment.
 
