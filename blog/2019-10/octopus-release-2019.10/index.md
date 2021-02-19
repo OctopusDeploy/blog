@@ -57,7 +57,7 @@ This feature-set gives teams better end-to-end visibility into their CI/CD pipel
 
 We previously shipped support to customize release notes templates in project settings. In this release, we’re introducing deployment change templates so you can get the same control over the structure of your deployment changes. This gives teams the ability to customize the display to suit their needs. 
 
-[Learn more](https://octopus.com/docs/packaging-applications/build-servers#build-information)
+[Learn more](https://octopus.com/docs/packaging-applications/build-servers/build-information)
 
 ## Simpler package-based step templates
 

@@ -90,7 +90,7 @@ Octopus 2019.4 introduced build information and work item tracking. This is a po
 
 We also added deployment change templates to complement the existing release notes templates, enabling teams to customize the display to suit their needs.
 
-[Learn more](https://octopus.com/docs/packaging-applications/build-servers#build-information)
+[Learn more](https://octopus.com/docs/packaging-applications/build-servers/build-information)
 
 ## Other improvements
 
