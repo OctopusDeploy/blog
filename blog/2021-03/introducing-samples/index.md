@@ -2,7 +2,7 @@
 title: Introducing Octopus Samples
 description: An introduction to the Octopus Samples instance and how you can access it to see sample projects in Octopus Deploy.
 author: shawn.sesna@octopus.com
-visibility: private
+visibility: public
 published: 2021-03-01-1400
 metaImage: blogimage-octopus-samples.png
 bannerImage: blogimage-octopus-samples.png
