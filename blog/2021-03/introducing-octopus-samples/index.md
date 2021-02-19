@@ -40,9 +40,10 @@ The examples in the Samples instance have been spread across multiple Spaces to 
 Spaces prefixed with _Pattern_ demonstrate different types of patterns you can implement.  Examples include:
 - [Blue/Green deployments](https://samples.octopus.app/app#/Spaces-302)
 - [Canary deployments](https://samples.octopus.app/app#/Spaces-542)
-- Multi-project deployment orchestration
-  - [Pattern - Voltron](https://samples.octopus.app/app#/Spaces-603)
-  - [Pattern - Monolith](https://samples.octopus.app/app#/Spaces-362)
+
+Multi-project deployment orchestration
+- [Pattern - Voltron](https://samples.octopus.app/app#/Spaces-603)
+- [Pattern - Monolith](https://samples.octopus.app/app#/Spaces-362)
 
 These are just a few of the pattern spaces that are available.
 
