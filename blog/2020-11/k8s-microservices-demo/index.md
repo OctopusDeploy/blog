@@ -4,11 +4,13 @@ description: Learn the features available in Octopus to streamline and manage Ku
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2999-01-01
-metaImage: 
-bannerImage: 
+metaImage: blogimage-kubernetes.png
+bannerImage: blogimage-kubernetes.png
 tags:
  - Octopus
 ---
+
+![Deploying a microservice to Kubernetes with Octopus](blogimage-kubernetes.png)
 
 Microservices can be a powerful design pattern allowing large teams of developers to deliver code to production without requiring code to be coordinated in a single codebase and released on a common schedule. Deploying these microservices can be a challenge though, as the cost of orchestrating Kubernetes resources and promoting between environments is paid by each individual microservice.
 
