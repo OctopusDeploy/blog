@@ -8,11 +8,12 @@ metaImage: blogimage-kubernetes.png
 bannerImage: blogimage-kubernetes.png
 tags:
  - Octopus
+ - Kubernetes
 ---
 
 ![Deploying a microservice to Kubernetes with Octopus](blogimage-kubernetes.png)
 
-Microservices can be a powerful design pattern allowing large teams of developers to deliver code to production without requiring code to be coordinated in a single codebase and released on a common schedule. Deploying these microservices can be a challenge though, as the cost of orchestrating Kubernetes resources and promoting between environments is paid by each individual microservice.
+Microservices can be a powerful design pattern that allow large teams of developers to deliver code to production without requiring code to be coordinated in a single codebase and released on a common schedule. Deploying these microservices can be a challenge though, as the cost of orchestrating Kubernetes resources and promoting between environments is paid by each individual microservice.
 
 Octopus has a number of useful features to help streamline and manage microservice deployments. In this post and screencast, we’ll run through the process of deploying the sample microservice application created by Google called [Online Boutique](https://github.com/GoogleCloudPlatform/microservices-demo).
 
@@ -160,6 +161,7 @@ The environment variables are then defined using the group syntax noted above:
 For those microservices that don’t follow the standard template (for example, the frontend app and the redis database), we can simply copy the deployment and service YAML into the appropriate **Edit YAML** section, which will populate the UI for us:
 
 ![Editing raw YAML allows unique resources to quickly populate an Octopus step](edit-yaml.png "width=500")
+
 *Editing raw YAML allows unique resources to quickly populate an Octopus step.*
 
 ## Channel rules
@@ -171,6 +173,7 @@ We want our deployments to ignore this hash and instead allow the selection of t
 The rule defines a version range of `[0.0,1.0]`, which includes all the zero based point releases published by Google, and ignores the image tagged with a hash:
 
 ![Channel rules to select the desired tags](channel-rules.png "width=500")
+
 *Channel rules to select the desired tags.*
 
 Docker images with plain text tags, like `redis:alpine`, can also take advantage of channel rules. The tag `alpine` is considered to be the version `0.0.0-alpine`, which can be matched with the version rule `(,0.0)` and a pre-release regular expression of `^alpine$`.
