@@ -85,7 +85,7 @@ $response = Invoke-WebRequest -Method Post `
     -SessionVariable 'session'
 ```
 
-A couple things to note here. We use the `Invoke-WebRequest` cmdlet here rather than `Invoke-RestRequest` because I need access to the response headers directly to get the cookies. Notice as well the `-SessionVariable` parameter. This option creates a variable `$session` and makes it very easy to get the cookies as we'll see next. The response body will also contain the `User ID` which we'll need for the next request. Let's store the variables we'll need:
+A couple things to note here. We use the `Invoke-WebRequest` cmdlet here rather than `Invoke-RestRequest` because I need access to the response headers directly to get the cookies. Notice as well the `-SessionVariable` parameter. This option creates a variable `$session` of type [WebRequestSession](https://docs.microsoft.com/en-us/dotnet/api/microsoft.powershell.commands.webrequestsession?view=powershellsdk-7.0.0) which makes it very easy to get the cookies as we'll see next. The response body will also contain the `User ID` which we'll need for the next request. Let's store the variables we'll need:
 
 ```pwsh
 $userId = ($response.Content | ConvertFrom-Json).Id
@@ -93,7 +93,7 @@ $csrfToken = $session.Cookies.GetCookies($loginPath) | Where-Object { $_.Name.St
 $sessionToken = $session.Cookies.GetCookies($loginPath) | Where-Object { $_.Name.StartsWith('OctopusIdentificationToken') }
 ```
 
-Now, you could just throw these two tokens into the `Cookie` header and hope it works, but since we're using Chrome DevTools already, why not actually record a request made to generate an API key and make sure we understand how the browser uses these values? Use the same method above to record a request to generate an API key. Let's look at the Request headers:
+Now, you could just throw these two tokens into the `Cookie` header and hope it works, but since we're using Chrome DevTools already, why not actually record a request made to generate an API key and make sure we understand how the browser uses these values? We'll navigate to our profile page and then the `My API Keys` page. With our DevTools still open and recording, let's create an API key and look for the `apikeys` POST request shown in the screenshot below. Also take a close look at the Request headers:
 
 ![API key generation headers screenshot](generate-apikey-recorded.png "width=500")
 
@@ -123,7 +123,6 @@ $loginPath = "$octopusUrl/api/users/login"
 $response = Invoke-WebRequest -Method Post `
     -Uri $loginPath `
     -Body (@{'Username' = $username;'Password' = $password} | ConvertTo-Json) `
-    -UseBasicParsing `
     -SessionVariable 'session'
 
 $userId = ($response.Content | ConvertFrom-Json).Id
@@ -145,8 +144,12 @@ Invoke-RestMethod -Method Post `
 
 ## Conclusion
 
-Automating the creation of API keys can also be useful for the creation of new service users, the provisioning of your Octopus instance, or use with the Octopus Terraform Provider.
+Automating the creation of API keys can also be useful for the new service users, the provisioning of your Octopus instance, or use with the Octopus Terraform Provider.
 
 Using Chrome DevTools (or Firefox, Edge, Safari equivalents) is a really useful way to see what's happening in the interactions between the Octopus front end Web Portal (a single page React app) and the Octopus REST api. Occasionally you may find that the Swagger documentation is just slightly off or doesn't have all the info you need and using the browser's tools can give you the definitive answer.
+
+Interested in learning more about the Octopus REST api? Check out our recent webinar by my colleagues Mark Harrison and Lianne Crocker:
+
+[Using the Octopus API to save time by automating repetitive tasks](https://octopus.zoom.us/webinar/register/6016118341944/WN_ykrzzdSvRZOMWFojvxNguw)
 
 Thanks for reading, and happy deployments!
