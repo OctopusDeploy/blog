@@ -9,7 +9,6 @@ Company
 Automation
 AWS
 Azure
-AWS
 Continuous Integration
 Config as Code
 Databases
