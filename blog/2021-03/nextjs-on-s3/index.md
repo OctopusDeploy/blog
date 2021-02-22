@@ -1,5 +1,5 @@
 ---
-title: "Automating Next.js static content site releases with GitHub Actions and Octopus Deploy"
+title: "CI/CD with Next.js, GitHub Actions, and Octopus Deploy"
 description: In this post we'll use GitHub Actions to bundle our Next.js assets and deploy them to AWS S3 using Octopus Deploy.
 author: phil.stephenson@octopus.com
 visibility: public
