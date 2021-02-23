@@ -4,13 +4,13 @@ description: How to use the new Deploy Child Octopus Deploy Project step templat
 author: bob.walker@octopus.com
 visibility: public
 published: 2021-02-24-1400
-metaImage: blogimage-deploy-release-step.png
-bannerImage: blogimage-deploy-release-step.png
+metaImage: blogimage-multi-tenancy-release-management-2021.png
+bannerImage: blogimage-multi-tenancy-release-management-2021.png
 tags:
  - Engineering
 ---
 
-![Better Release Management with Octopus Deploy](blogimage-deploy-release-step.png)
+![Multi-Tenancy Release Management with Octopus Deploy](blogimage-multi-tenancy-release-management-2021.png)
 
 One of my favorite features in Octopus Deploy is [Multi-Tenancy](https://octopus.com/docs/deployments/patterns/multi-tenant-deployments), where each customer gets their own version of an application, either hosted on unique infrastructure per customer, or hosted by the customer themselves. The multi-tenancy feature in Octopus Deploy solves many problems.  My [previous article](blog/2021-02/release-management-with-octopus/index.md) was a deep dive into the new [Deploy Child Octopus Deploy Project](https://library.octopus.com/step-templates/0dac2fe6-91d5-4c05-bdfb-1b97adf1e12e/actiontemplate-deploy-child-octopus-deploy-project) step template and covered a variety of scenarios, but it didn't include multi-tenancy.  In this article, I do a deep dive into the multi-tenancy functionality of the new step template, and how you can use it to better manage your multi-tenancy releases.
 
