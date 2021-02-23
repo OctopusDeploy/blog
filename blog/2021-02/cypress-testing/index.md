@@ -4,12 +4,14 @@ description: Learn how to run end to end tests as part of an Octopus deployment
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2999-01-01
-metaImage: 
-bannerImage: 
+metaImage: blogimage-testing.png
+bannerImage: blogimage-testing.png
 tags:
  - Octopus
  - Testing
 ---
+
+![Professor Octopus testing](blogimage-testing.png)
 
 The idea of testing your code as part of your development process has won almost universal adoption. Unit tests are now a common feature of most complex codebases.
 
