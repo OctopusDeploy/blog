@@ -3,12 +3,13 @@ title: "CI/CD with Next.js, GitHub Actions, and Octopus Deploy"
 description: In this post we'll use GitHub Actions to bundle our Next.js assets and deploy them to AWS S3 using Octopus Deploy.
 author: phil.stephenson@octopus.com
 visibility: public
-published: 2021-03-03
+published: 2021-03-03-1400
 tags:
  - DevOps
  - Next.js
  - GitHub Actions
  - AWS
+ - Product
 ---
 
 Popular frameworks like [Next.js](https://nextjs.org/) and [Create React App](https://github.com/facebook/create-react-app) support features to bundle your site's assets into files, but deploying those assets somewhere with a web server is up to you. In this post, I'll use [GitHub Actions](https://github.com/features/actions) to bundle a Next.js blog and deploy it to [AWS S3](https://aws.amazon.com/s3/) using Octopus Deploy.
