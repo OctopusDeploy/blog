@@ -9,7 +9,6 @@ tags:
  - Next.js
  - GitHub Actions
  - AWS
- - Product
 ---
 
 Popular frameworks like [Next.js](https://nextjs.org/) and [Create React App](https://github.com/facebook/create-react-app) support features to bundle your site's assets into files, but deploying those assets somewhere with a web server is up to you. In this post, I'll use [GitHub Actions](https://github.com/features/actions) to bundle a Next.js blog and deploy it to [AWS S3](https://aws.amazon.com/s3/) using Octopus Deploy.
