@@ -1,7 +1,7 @@
 ---
 title: Continuous Delivery of Octopus
 description: How we're delivering higher quality releases of Octopus Deploy in less time.
-author: Matt Richardson
+author: matt.richardson@octopus.com
 visibility: private
 published: 2021-03-02
 metaImage: blogimage-versions.png
@@ -15,14 +15,14 @@ tags:
 
 ## Nightly builds and continuous deployment
 
-We've been on a long-term mission for sometime to increase the flow of work and reduce time to feedback across all our teams. At the start of 2021, we still faced some key constraints:
+We've been on a long-term mission for sometime to increase the flow of work and reduce the time to feedback across all our teams. At the start of 2021, we still faced some key constraints:
 
 * Our deployment pipelines frequently suffered "bit rot".
 * Our code changes often sat on branches that lived longer than we wanted.
 
 As of this week, we've delivered some key changes to help us ship faster and better quality releases.
 
-### ⏩ We are now practicing [Continuous Deployment](https://en.wikipedia.org/wiki/Continuous_deployment) of Octopus Server, Tentacle and Octopus CLI to internal customer environments, and [Continuous Delivery](https://en.wikipedia.org/wiki/Continuous_delivery) to external customer environments. 
+### ⏩ We are now practicing [Continuous Deployment](https://en.wikipedia.org/wiki/Continuous_deployment) of Octopus Server, Tentacle, and Octopus CLI to internal customer environments, and [Continuous Delivery](https://en.wikipedia.org/wiki/Continuous_delivery) to external customer environments. 
 
 What does this mean for you?
 
@@ -40,15 +40,15 @@ Nightly builds did surface an interesting challenge for us, though. With our pri
 
 We now use a `major.minor.build` numbering strategy. This means the patch numbers are much larger than we're all used to but, effectively, it's just a number. As this is now a build number, there will be gaps between version numbers, but you'll almost always want to grab the latest build. 
 
-As a side note, our journey down this path means we've diverged quite far from what [GitVersion](https://github.com/GitTools/GitVersion) is designed to do, and we ended up writing our own version calculator, [OctoVersion](https://github.com/OctopusDeploy/OctoVersion). This handles our multiple release streams much better, and as it's laser focused on our use case, it's much faster too.
+As a side note, our journey down this path means we've diverged quite far from what [GitVersion](https://github.com/GitTools/GitVersion) is designed to do, and we ended up writing our own version calculator, [OctoVersion](https://github.com/OctopusDeploy/OctoVersion). This handles our multiple release streams much better, and as it's laser-focused on our use case, it's much faster too.
 
 ### 📝 More accurate calculation of release notes from version `X` to version `Y` using the Git revision graph instead of GitHub milestones
 
-Another interesting change in the mix here is around how we generate our release notes. We previously used GitHub milestones and assigned them before we built a release. Now, as we're building a release for every commit, we use the Git revision graph to calculate what fixes went into what release. This means more accurate release notes.
+Another interesting change is how we generate our release notes. We previously used GitHub milestones and assigned them before we built a release. Now, as we're building a release for every commit, we use the Git revision graph to calculate which fixes went into which release. This means more accurate release notes.
 
 ### 🚷 Better handling of valid/invalid upgrade path
 
-Now that we use the Git revision graph to calculate these release notes, we also get some good knowledge about viable upgrade paths. Previously, 2020.4.13 -> 2020.5.0 would appear to be a valid upgrade path, but would actually go back in time, as 2020.5.0 was branched before 2020.4.13 was created. This occasionally caused some bugs where the database had structural changes that weren't expected. Now, we show a warning that this isn't a viable upgrade path, meaning an entire class of bugs is avoided.
+Now that we use the Git revision graph to calculate these release notes, we also get some good knowledge about viable upgrade paths. Previously, **{{ 2020.4.13, 2020.5.0}}** would appear to be a valid upgrade path, but would actually go back in time, as 2020.5.0 was branched before 2020.4.13 was created. This occasionally caused some bugs where the database had structural changes that weren't expected. Now, we show a warning that this isn't a viable upgrade path, meaning an entire class of bugs is avoided.
 
 ## Conclusion
 
