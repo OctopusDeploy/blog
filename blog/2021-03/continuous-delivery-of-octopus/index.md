@@ -4,12 +4,14 @@ description: Delivering Octopus Deploy faster and with higher quality
 author: Matt Richardson
 visibility: private
 published: 2021-03-02
-metaImage: to-be-added-by-marketing
-bannerImage: to-be-added-by-marketing
+metaImage: blogimage-versions.png
+bannerImage: blogimage-versions.png
 tags:
   - Product
   - Engineering
 ---
+
+![Versions](blogimage-versions.png)
 
 ## Nightly builds and continuous deployment
 
