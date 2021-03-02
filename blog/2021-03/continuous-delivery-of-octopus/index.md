@@ -30,7 +30,7 @@ You can read more about how we see the differences between [continuous delivery 
 
 ### 🌃 Nightly builds
 
-For our older LTS releases, we found that "bit rot" was causing our pipelines to fail as we only exercised them when we needed to ship a patch to an older release. Now, we trigger a build every night to clean all the pipes, alerting us early when something goes wrong, which in turn makes the problem easier to diagnose and cheaper to fix.
+For our older LTS releases, we found that "bit rot" was causing our pipelines to fail as we only exercised them when we needed to ship a patch to an older release. Now, in addition to our commit-triggered builds, we trigger a build every night for every potentially-releasable branch to clean all the pipes, alerting us early when something goes wrong, which in turn makes the problem easier to diagnose and cheaper to fix.
 
 ### 🔢 major.minor.build versioning
 
