@@ -11,7 +11,7 @@ tags:
  - Kubernetes
 ---
 
-At Octopus Deploy, we are obsessed with automation.  As you might expect, this obsession goes beyond deployments, with many of us dabbling in the world of Home Automation, including myself.  In this post, I'll go over some lessons I learned while implenting Smart products around my houshold.
+At Octopus Deploy, we are obsessed with automation.  As you might expect, this obsession goes beyond deployments, with many of us dabbling in the world of Home Automation, including myself.  Home automation gives us the ability to do things like have our garage door open automatically when your car has entered the driveway, or unlock the door from phone when a family member locked themselves out.  While home automation can be a fun hobby, it does come with its own set of headaches as well.  In this post, I'll go over some lessons I learned while implenting Smart products around my houshold.
 
 ## Lesson 1: Z-Wave, and Zigbee, and WiFi, Oh My!
 Perhaps one of the most important lessons I learned was that not all "Smart" devices communicate the same way and may require special equipment to operate.  A smart device will fall into three distinct communication categories:
@@ -45,10 +45,10 @@ Coming from experience, my recommendation would be determine what it is you woul
 ## Lesson 4: Beware of app requirements
 I once came across a smart plug that was being advertised for a steal of a price.  Before committing to purchase, I read the reviews and found that the its app *required* access to your contacts.  Umm, no, hard pass.
 
-## Lesson 5: Google Home or Amazon Alexa compatibility
-The two most popular voice-control devices are Google Home and Amazon Alexa.  For the most part, the vast majority of WiFi enabled smart devices will with both technolgoies, however, there are some that do not, so make sure to double-check before purchasing.
+## Lesson 5: Google Home, Amazon Alexa, and Apple HomeKit compatibility
+The two most popular voice-control devices are Google Home and Amazon Alexa.  For the most part, the vast majority of WiFi enabled smart devices will with both technolgoies, however, there are some that do not, so make sure to double-check before purchasing.  Apple HomeKit has a smaller ecosystem, so if this is your automation platform, be sure to do your research on the device(s) you are considering.
 
-In terms of Zigbee or Z-Wave, just because your hub is compatible, doesn't mean that Google or Amazon work with the devices attached to them.  For example, I have a Samsung SmartThings hub to control my Z-Wave and Zigbee devices.  Connected to my hub are some door sensors for simple open/close detection.  While my SmartThings hub is connected to both Google Home and Amazon Alexa, only Alexa is able to use the open/close functionality.  Google shows the door sensors as devices, but doesn't know what to do with them.
+In terms of Zigbee or Z-Wave, just because your hub is compatible, doesn't mean that Google, Amazon, or Apple work with the devices attached to them.  For example, I have a Samsung SmartThings hub to control my Z-Wave and Zigbee devices.  Connected to my hub are some door sensors for simple open/close detection.  While my SmartThings hub is connected to both Google Home and Amazon Alexa, only Alexa is able to use the open/close functionality.  Google shows the door sensors as devices, but doesn't know what to do with them (without some more advanced configuration).
 
 ## Lesson 6: Basic Routine/automation
 There are multiple ways to perform basic automation (often referred to as `routines`) with smart devices
@@ -74,6 +74,8 @@ IFTTT stands for `If This Then That` and is one of the more well known advanced 
 
 ### Home Assisant
 Home Assistant is an application that runs in a Docker container with configurable storage options such as SQLLite, MySQL, or PostgreSQL (I've mine running in a Docker Swarm on a Raspberry Pi with a MySQL backend since SQLLite and CIFS don't get along.)  Considered among many as the holy grail of home automation, Home Assistant has a large following and adds more integrations with each iteration.  (As a side note, the bathroom scenario presented above is something a buddy of mine has working in his home.).  Home Assistant can control Z-Wave or Zigbee devices with the use of USB adapters instead of needing a hub.
+
+Troy Hunt recently wrote an [article](https://www.troyhunt.com/iot-unravelled-part-1-its-a-mess-but-then-theres-home-assistant/) about Home Assistant covering additional problems it can solve.
 
 ## Lesson 8: Co$t!
 As with most hobbies, home automation can get quite expensive.  Even the most basic smart device such as plug or bulb can range from $15 to $40 (prices often depend on communication type) a piece and hubs can be upwards of $100.
