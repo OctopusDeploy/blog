@@ -1,6 +1,6 @@
 ---
 title: Continuous Delivery of Octopus
-description: 
+description: Delivering Octopus Deploy faster and with higher quality
 author: Matt Richardson
 visibility: private
 published: 2021-03-02
