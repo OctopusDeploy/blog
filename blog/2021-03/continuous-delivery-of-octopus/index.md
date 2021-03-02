@@ -2,7 +2,7 @@
 title: Continuous Delivery of Octopus
 description: How we're delivering higher quality releases of Octopus Deploy in less time.
 author: matt.richardson@octopus.com
-visibility: private
+visibility: public
 published: 2021-03-02
 metaImage: blogimage-versions.png
 bannerImage: blogimage-versions.png
