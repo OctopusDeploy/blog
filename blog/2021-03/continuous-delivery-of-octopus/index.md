@@ -15,12 +15,12 @@ tags:
 
 ## Nightly builds and continuous deployment
 
-For a while now, we've been on a long-term missing to increase the flow of work and reduce time to feedback across all our teams. At the start of 2021, we were still facing some key constraints:
+For a while now, we've been on a long-term mission to increase the flow of work and reduce time to feedback across all our teams. At the start of 2021, we were still facing some key constraints:
 
-* Our deployment pipelines frequently suffered bit rot
-* Our code changes often sat on branches that lived longer than we wanted
+* Our deployment pipelines frequently suffered "bit rot".
+* Our code changes often sat on branches that lived longer than we wanted.
 
-As of this week, we've just delivered some key changes to help us ship faster and better quality releases.
+As of this week, we've delivered some key changes to help us ship faster and better quality releases.
 
 ### ⏩ We are now practicing [Continuous Deployment](https://en.wikipedia.org/wiki/Continuous_deployment) of Octopus Server, Tentacle and Octopus CLI to internal customer environments, and [Continuous Delivery](https://en.wikipedia.org/wiki/Continuous_delivery) to external customer environments. What does this mean you ask?
 
@@ -28,7 +28,7 @@ Well, instead of us having to make a deliberate decision to deploy a release, we
 
 ### 🌃 Nightly builds
 
-For our older LTS releases, we were finding that "bit rot" was causing our pipelines to fail as we were only exercising them when we needed to ship something. Now, we are triggering a build every night so that we know that when we need it, it's definitely working.
+For our older LTS releases, we were finding that "bit rot" was causing our pipelines to fail as we were only exercising them when we needed to ship a patch to an older release. Now, we are triggering a build every night to clean all the pipes, alerting us early when something goes wrong, which in turn makes the problem easier to diagnose and cheaper to fix.
 
 ### 🔢 major.minor.build versioning
 
@@ -42,8 +42,8 @@ Another interesting change in the mix here is around how we generate our release
 
 ### 🚷 Better handling of valid/invalid upgrade path
 
-Now that we're using the Git revision graph to calculate these release notes, we also get some good knowledge about viable upgrade paths. Previously, it 2020.4.13 -> 2020.5.0 would appear to be a valid upgrade path, but would actually be going back in time (as 2020.5.0 was branched before 2020.4.13 was created). This occaisionally caused some bugs where the database had structural changes that were not expected. Now, we show a warning saying that this is not a viable upgrade path, meaning an entire class of bugs gets avoided.
+Now that we're using the Git revision graph to calculate these release notes, we also get some good knowledge about viable upgrade paths. Previously, it 2020.4.13 -> 2020.5.0 would appear to be a valid upgrade path, but would actually be going back in time (as 2020.5.0 was branched before 2020.4.13 was created). This occasionally caused some bugs where the database had structural changes that were not expected. Now, we show a warning saying that this is not a viable upgrade path, meaning an entire class of bugs gets avoided.
 
 ## Conclusion
 
-We're pretty excited about these changes - they'll help us focus less on the process and more on shipping good stuff. 
+We're pretty excited about these changes! They will help us focus more energy on improving Octopus, getting those improvements in Octopus Cloud customer's hands sooner, and give our customers a better experience when upgrading their self-hosted installation.
