@@ -17,7 +17,7 @@ We’re delighted to ship Octopus 2020.3, our third release of the year. This re
 * [Runbooks improvements](blog/2020-08/octopus-release-2020-3/index.md#runbooks): This release includes a batch of customer-driven improvements, including runbook-only projects, Octopus CLI support, environment scoping, guided failure mode per runbook, and the addition of runbook retention policies.
 * [Jenkins Pipelines](blog/2020-08/octopus-release-2020-3/index.md#jenkins-pipelines) support enables you to integrate with Octopus from your `Jenkinsfile`.
 * [Streamlined process editor](blog/2020-08/octopus-release-2020-3/index.md#streamlined-process-editor) allows you to edit multiple steps at once and save your changes with a single update.
-* [Octopus Linux Docker image (Early access)](blog/2020-08/octopus-release-2020-3/index.md#octopus-linux-image) is now available, making it possible to run Octopus in a Linux Docker container. 
+* [Octopus Linux Docker image (Early access)](blog/2020-08/octopus-release-2020-3/index.md#octopus-linux-docker-image) is now available, making it possible to run Octopus in a Linux Docker container. 
 
 This release is the [third of six in 2020](/blog/2020-03/releases-and-lts/index.md), and it includes six months of long-term support. The following table shows our current versions with long-term support:
 
