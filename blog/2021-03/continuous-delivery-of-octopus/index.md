@@ -48,4 +48,4 @@ Now that we use the Git revision graph to calculate these release notes, we also
 
 ## Conclusion
 
-We're pretty excited about these changes! They will help us focus more energy on improving Octopus, getting those improvements in Octopus Cloud customer's hands sooner, and give our customers a better experience when upgrading their self-hosted installation.
+We're pretty excited about these changes! They will help us focus more energy on improving Octopus, getting those improvements in Octopus Cloud customers' hands sooner, and give our customers a better experience when upgrading their self-hosted installations.
