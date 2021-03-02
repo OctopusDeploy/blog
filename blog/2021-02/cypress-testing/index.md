@@ -3,7 +3,7 @@ title: End to end testing with Cypress
 description: Learn how to run end to end tests with Cypress as part of an Octopus deployment.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2021-03-08
+published: 2021-03-10
 metaImage: blogimage-testing.png
 bannerImage: blogimage-testing.png
 tags:
