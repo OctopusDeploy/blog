@@ -1,6 +1,6 @@
 ---
 title: Continuous Delivery of Octopus
-description: Delivering Octopus Deploy faster and with higher quality
+description: How we're delivering higher quality releases of Octopus Deploy in less time.
 author: Matt Richardson
 visibility: private
 published: 2021-03-02
@@ -22,7 +22,9 @@ We've been on a long-term mission for sometime to increase the flow of work and 
 
 As of this week, we've delivered some key changes to help us ship faster and better quality releases.
 
-### ⏩ We are now practicing [Continuous Deployment](https://en.wikipedia.org/wiki/Continuous_deployment) of Octopus Server, Tentacle and Octopus CLI to internal customer environments, and [Continuous Delivery](https://en.wikipedia.org/wiki/Continuous_delivery) to external customer environments. What does this mean you ask?
+### ⏩ We are now practicing [Continuous Deployment](https://en.wikipedia.org/wiki/Continuous_deployment) of Octopus Server, Tentacle and Octopus CLI to internal customer environments, and [Continuous Delivery](https://en.wikipedia.org/wiki/Continuous_delivery) to external customer environments. 
+
+What does this mean for you?
 
 Well, instead of us having to make a deliberate decision to deploy a release, we now automatically create a release from every commit to a releasable branch that passes all the tests. Successful builds roll out to our internal environments and then after a suitable "bake time", onto Octopus Cloud, and then to the website. This means we are constantly "drinking our own champagne" in the pursuit of delivering a quality product.
 
