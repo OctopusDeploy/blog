@@ -34,7 +34,9 @@ For our older LTS releases, we found that "bit rot" was causing our pipelines to
 
 ### 🔢 major.minor.build versioning
 
-Nightly builds did surface an interesting challenge for us though. With our prior numbering scheme, rebuilding every night would result in the same version number. Many downstream systems (e.g. nuget.org) don't like different packages with the same version number, which meant we needed a new plan. We now use a major.minor.build numbering strategy. This means the build number are much larger than we're all used to, but effectively, it's just a number. As this is now a build number, there will be gaps between version numbers, but you'll almost always want to grab the latest build. 
+Nightly builds did surface an interesting challenge for us, though. With our prior numbering scheme (`major.minor.patch`), rebuilding every night would result in multiple builds per Git commit, and our build numbers would only change if a commit had been made. This meant that we ended up with multiple builds with the same version number. Many downstream systems (e.g. nuget.org, registry.npmjs.org) don't like different packages with the same version number, which meant we needed a new plan.
+
+We now use a `major.minor.build` numbering strategy. This means the patch numbers are much larger than we're all used to but, effectively, it's just a number. As this is now a build number, there will be gaps between version numbers, but you'll almost always want to grab the latest build. 
 
 As a side note, our journey down this path means we've diverged quite far from what [GitVersion](https://github.com/GitTools/GitVersion) is designed to do, and we ended up writing our own version calculator, [OctoVersion](https://github.com/OctopusDeploy/OctoVersion). This handles our multiple release streams much better, and as it's laser focused on our use case, it's much faster too.
 
