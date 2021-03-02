@@ -11,7 +11,7 @@ tags:
  - Support
 ---
 
-At Octopus Deploy, how we support our customers has always been important to us. In the early days, the entire team, from our CEO down, answered support emails. As we grew, we added a dedicate team of support engineers who worked closely with our engineering teams to ensure we were giving our customer the best support we could.
+At Octopus Deploy, how we support our customers has always been important to us. In the early days, the entire team, from our CEO down, answered support emails. As we grew, we added a dedicated team of support engineers who worked closely with our engineering teams to ensure we were giving our customer the best support we could.
 
 In the last couple of years, we've added teams of support engineers in the UK and the US to cut down on the timezone lag that comes from working with a team that's based almost entirely in Australia.
 
@@ -26,7 +26,6 @@ From February this year, we're offering Priority Support. Priority Support is an
 The program is still an early-access offering as we iron out some of the details, if you'd like to learn more, see the [Priority Support](https://octopus.com/priority-support) page. 
 
 Priority support can be added to your account the next time you renew your license. If this is coming up soon for you and you’re interested in priority support, reach out to our sales team at sales@octopus.com.
-
 
 
 
