@@ -1,10 +1,10 @@
 ---
-title: "Octopus 2021.1: Octopus Server Linux containers RTW
-description: "Octopus 2021.1 introduces Octopus Linux Docker image RTW, Tentacle for ARM/ARM64, Export/Import Projects, Global Search and API key management improvements."
+title: "Octopus 2020.6: Octopus Server Linux containers RTW
+description: "Octopus 2020.6 introduces Octopus Linux Docker image RTW, Tentacle for ARM/ARM64, Export/Import Projects, Global Search and API key management improvements."
 author: kathryn.marks@octopus.com
 visibility: public
-bannerImage: release-2021.1.png
-metaImage: release-2021.1.png
+bannerImage: release-2020.6.png
+metaImage: release-2020.6.png
 published: 3021-03-15
 tags:
 - Product
@@ -13,20 +13,20 @@ tags:
 - Docker
 ---
 
-![Octopus 2021.1](TODO.png)
+![Octopus 2020.6](TODO.png)
 
-We're excited to ship Octopus 2021.1, our first release of the year. This release includes some powerful updates and benefits.
+We're excited to announce that Octopus 2020.6 is generally available. This release includes some powerful updates and benefits.
 
-* **[Octopus Linux Docker image RTW](blog/2021-03/octopus-release-2021-1/index.md#octopus-linux-docker-image)**. Our Linux containers feature is out of early access.
-* **[Tentacle for ARM/ARM64](blog/2021-03/octopus-release-2021-1/index.md#tentacle-for-arm-arm64)**. Octopus Tentacle now supports ARM and ARM64 hardware.
-* **[Global Search within a Space](blog/2021-03/octopus-release-2021-1/index.md#global-search)**. Navigate Octopus faster and find records and settings more easily.  
-* **[API keys](blog/2021-03/octopus-release-2021-1/index.md#api-key-management)**. We've added improvements to API key management including key expiration and improved audit log tracking.
+* **[Octopus Linux Docker image RTW](blog/2021-03/octopus-release-2020-6/index.md#octopus-linux-docker-image)**. Our Linux containers feature is out of early access.
+* **[Tentacle for ARM/ARM64](blog/2021-03/octopus-release-2020-6/index.md#tentacle-for-arm-arm64)**. Octopus Tentacle now supports ARM and ARM64 hardware.
+* **[Global Search within a Space](blog/2021-03/octopus-release-2020-6/index.md#global-search)**. Navigate Octopus faster and find records and settings more easily.  
+* **[API keys](blog/2021-03/octopus-release-2020-6/index.md#api-key-management)**. We've added improvements to API key management including key expiration and improved audit log tracking.
 
-This release is the first of four in 2021 and includes 6 months of long term support (critical patches). The following table shows our current releases with long term support. 
+This is the final 2020 release and includes 6 months of long term support (critical patches). The following table shows our current releases with long term support. 
 
 | Release               | Long term support           |
 | --------------------- | --------------------------- |
-| Octopus 2021.1        | Yes                         |
+| Octopus 2020.6        | Yes                         |
 | Octopus 2020.5        | Yes                         |
 | Octopus 2020.4        | Expired                     |
 
@@ -105,17 +105,17 @@ This release includes two breaking changes.
 
 ## Upgrading
 
-Octopus Cloud users are already running this release, and self-hosted Octopus customers can [download](https://octopus.com/downloads/2021.1.0) the latest version now.  
+Octopus Cloud users are already running this release, and self-hosted Octopus customers can [download](https://octopus.com/downloads/2020.6.0) the latest version now.  
 
-As usual, we encourage you to review the [steps for upgrading Octopus Deploy](https://octopus.com/docs/administration/upgrading). Please see the [release notes](https://octopus.com/downloads/compare?to=2020.1.0) for further information.
+As usual, we encourage you to review the [steps for upgrading Octopus Deploy](https://octopus.com/docs/administration/upgrading). Please see the [release notes](https://octopus.com/downloads/compare?to=2020.6.0) for further information.
 
-## What’s coming in Octopus 2021.2?
+## What’s coming in Octopus 2021.1?
 
 Check out our [public roadmap](https://octopus.com/roadmap) to see what’s coming next and register for updates.
 
 ## Conclusion
 
-Octopus 2021.1 offers Linux Docker images, Tentacle support for ARM/ARM64, Global Search and improvements to API key management. We look forward to shipping more great features in the next release.
+Octopus 2020.6 offers Linux Docker images, Tentacle support for ARM/ARM64, Global Search and improvements to API key management. We look forward to shipping more great features in the next release.
 
 Feel free to leave a comment, and let us know what you think! Happy deployments!
 
