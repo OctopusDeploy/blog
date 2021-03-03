@@ -17,12 +17,12 @@ tags:
 
 We're excited to ship Octopus 2021.1, our first release of the year. This release includes some powerful updates and benefits.
 
-* [Unmatched Azure App Service deployments](blog/2020-03/octopus-release-2020-1/index.md#azure-app-service-deployments): TODO.
-* [Octopus Linux Docker image RTW](blog/2021-03/octopus-release-2021-1/index.md#octopus-linux-docker-image). We're excited to announce that our Linux containers feature is out of early access.
-* [Tentacle for ARM/ARM64](blog/2021-03/octopus-release-2021-1/index.md#tentacle-for-arm-arm64). The Octopus Tentacle agent now supports ARM and ARM64 hardware.
-* [API keys](blog/2021-03/octopus-release-2021-1/index.md#api-key-management). We've added improvements to API key management including key expiration and improved audit log tracking.
-* [Export/Import Projects](blog/2021-03/octopus-release-2021-1/index.md#project-export-import). This new feature allows you to export and import Projects between Spaces, and between self-hosted and Octopus Cloud instances.
-* [Global Search within a Space](blog/2021-03/octopus-release-2021-1/index.md#global-search). Navigate Octopus faster and find records more easily.  
+* **[Unmatched Azure App Service deployments](blog/2020-03/octopus-release-2020-1/index.md#azure-app-service-deployments)**. TODO.
+* **[Octopus Linux Docker image RTW](blog/2021-03/octopus-release-2021-1/index.md#octopus-linux-docker-image)**. Our Linux containers feature is out of early access.
+* **[Tentacle for ARM/ARM64](blog/2021-03/octopus-release-2021-1/index.md#tentacle-for-arm-arm64)**. Octopus Tentacle now supports ARM and ARM64 hardware.
+* **[Export/Import Projects](blog/2021-03/octopus-release-2021-1/index.md#project-export-import)**. This new feature allows you to export and import Projects between Spaces, and between self-hosted and Octopus Cloud instances.
+* **[Global Search within a Space](blog/2021-03/octopus-release-2021-1/index.md#global-search)**. Navigate Octopus faster and find records and settings more easily.  
+* **[API keys](blog/2021-03/octopus-release-2021-1/index.md#api-key-management)**. We've added improvements to API key management including key expiration and improved audit log tracking.
 
 This release is the [first of four in 2021](/blog/2020-03/releases-and-lts/index.md), and includes 6 months of long term support. The following table shows our current releases with long term support. 
 
@@ -51,6 +51,28 @@ Check out our [DockerHub repository](https://hub.docker.com/r/octopusdeploy/octo
 The Octopus Tentacle agent now supports ARM and ARM64 hardware. This update makes it possible to deploy your apps and services to Raspberry Pi 3 and 4, AWS A1 EC2 instances, and any ARM hardware that can run [.NET Core 3.0 or later](https://devblogs.microsoft.com/dotnet/announcing-net-core-3-0/#platform-support).
 
 [Learn more](/blog/tentacle-on-arm)
+
+## Export/Import Projects {#project-export-import}
+
+Export/Import Projects is an exciting new feature for moving Projects between Spaces, and between self-hosted and Octopus Cloud instances. Project export runs as a task and generates a password-protected zip file to protect any sensitive variable values.
+
+Follow the **Learn More** link to read the documentation for this new feature, including considerations for moving projects to Octopus Cloud.
+
+[Learn more](https://octopus.com/docs/projects/export-import)
+
+## Global Search within a Space {#global-search}
+
+We've introduced a Search field to the Octopus UI to help you:
+
+* navigate Octopus faster,
+* find and invoke actions with a few keystrokes, and
+* quickly find server-side resources within a Space and go directly to them with ease. 
+
+Global Search will help first-time users to gain confidence with Octopus and find what they need, and allow advanced users to navigate even faster than before.
+
+Please let us know what you think of the new Global Search, and how we can improve it.
+
+[Learn more](https://github.com/OctopusDeploy/Issues/issues/6703)
 
 ## Improvements to API key management {#api-key-management}
 
@@ -82,40 +104,18 @@ Events are generated for service account API key expiration, much like certifica
 
 ### Display of API keys ###
 
-From now on the first four characters of the API key are displayed in Octopus, including audit logs and the list of API keys for a given user. For example, 'API-WXYZ'. This ensures API keys can be matched in the user interface.
+From now on the first four characters of the API key are displayed in Octopus, including audit logs and the list of API keys for a given user. For example, `API-WXYZ••••••••`. This ensures API keys can be matched in the user interface.
 
 Note that this change applies only to new keys. Existing keys are already hashed so the first four characters are not available.
 
 [Learn more](TODO URL)
-
-## Export/Import Projects {#project-export-import}
-
-Export/Import Projects is an exciting new feature for moving Projects between Spaces, and between self-hosted and Octopus Cloud instances. Project export runs as a task and generates a password-protected zip file to protect any sensitive variable values.
-
-Follow the **Learn More** link to read the documentation for this new feature, including considerations for moving projects to Octopus Cloud.
-
-[Learn more](https://octopus.com/docs/projects/export-import)
-
-## Global Search within a Space {#global-search}
-
-We've introduced a Search field to the Octopus UI to help you:
-
-* navigate Octopus faster,
-* find and invoke actions with a few keystrokes, and
-* quickly find server-side resources within a Space and go directly to them with ease. 
-
-Global Search will help first-time users to gain confidence with Octopus and find what they need, and allow advanced users to navigate even faster than before.
-
-Please let us know what you think of the new Global Search, and how we can improve it.
-
-[Learn more](https://github.com/OctopusDeploy/Issues/issues/6703)
 
 ## Breaking changes
 
 This release includes two breaking changes.
 
 1. **[Channels now require the `ProjectView` permission](https://github.com/OctopusDeploy/Issues/issues/6690)**. Performing operations on Channels requires the `ProjectView` permission in addition to the existing permissions. 
-2. **[Support for Windows Server 2008](https://octopus.com/docs/infrastructure/deployment-targets/windows-targets/requirements)**. Microsoft no longer supports Windows 2008. For this reason Octopus does not actively test against Windows 2008, and certain operating system specific issues may not be fixed.
+2. **[Change to support for Windows Server 2008](https://octopus.com/docs/infrastructure/deployment-targets/windows-targets/requirements)**. Microsoft no longer supports Windows 2008. For this reason Octopus does not actively test against Windows 2008, and certain operating system specific issues may not be fixed.
 
 ## Upgrading
 
@@ -129,7 +129,7 @@ Check out our [public roadmap](https://octopus.com/roadmap) to see what’s comi
 
 ## Conclusion
 
-Octopus 2021.1 offers unmatched Azure App Service deployments, Linux Docker images, Tentacle support for ARM/ARM64, Export/Import Projects, Global Search and improvements to API key management. We're looking forward to shipping more great features in the next release.
+Octopus 2021.1 offers unmatched Azure App Service deployments, Linux Docker images, Tentacle support for ARM/ARM64, Export/Import Projects, Global Search and improvements to API key management. We look forward to shipping more great features in the next release.
 
 Feel free to leave a comment, and let us know what you think! Happy deployments!
 
