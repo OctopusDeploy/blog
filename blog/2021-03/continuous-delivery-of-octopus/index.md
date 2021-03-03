@@ -22,7 +22,7 @@ We've been on a long-term mission for sometime to increase the flow of work and 
 
 As of this week, we've delivered some key changes to help us ship faster and better quality releases.
 
-## Continuous deployment and continuous deployment
+## Continuous deployment
 
 We are now practicing [Continuous Deployment](https://en.wikipedia.org/wiki/Continuous_deployment) of Octopus Server, Tentacle, and Octopus CLI to internal customer environments, and [Continuous Delivery](https://en.wikipedia.org/wiki/Continuous_delivery) to external customer environments. 
 
