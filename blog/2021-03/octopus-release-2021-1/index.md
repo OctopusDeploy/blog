@@ -1,6 +1,6 @@
 ---
-title: "Octopus 2021.1: Unmatched Azure App Service deployments
-description: "Octopus 2021.1 introduces unmatched Azure App Service deployments plus other features including Octopus Linux Docker image RTW, Tentacle for ARM/ARM64, API key management improvements, Export/Import Projects, and Global Search."
+title: "Octopus 2021.1: Octopus Server Linux containers RTW
+description: "Octopus 2021.1 introduces Octopus Linux Docker image RTW, Tentacle for ARM/ARM64, Export/Import Projects, Global Search and API key management improvements."
 author: kathryn.marks@octopus.com
 visibility: public
 bannerImage: release-2021.1.png
@@ -17,10 +17,8 @@ tags:
 
 We're excited to ship Octopus 2021.1, our first release of the year. This release includes some powerful updates and benefits.
 
-* **[Unmatched Azure App Service deployments](blog/2020-03/octopus-release-2020-1/index.md#azure-app-service-deployments)**. TODO.
 * **[Octopus Linux Docker image RTW](blog/2021-03/octopus-release-2021-1/index.md#octopus-linux-docker-image)**. Our Linux containers feature is out of early access.
 * **[Tentacle for ARM/ARM64](blog/2021-03/octopus-release-2021-1/index.md#tentacle-for-arm-arm64)**. Octopus Tentacle now supports ARM and ARM64 hardware.
-* **[Export/Import Projects](blog/2021-03/octopus-release-2021-1/index.md#project-export-import)**. This new feature allows you to export and import Projects between Spaces, and between self-hosted and Octopus Cloud instances.
 * **[Global Search within a Space](blog/2021-03/octopus-release-2021-1/index.md#global-search)**. Navigate Octopus faster and find records and settings more easily.  
 * **[API keys](blog/2021-03/octopus-release-2021-1/index.md#api-key-management)**. We've added improvements to API key management including key expiration and improved audit log tracking.
 
@@ -33,10 +31,6 @@ This release is the [first of four in 2021](/blog/2020-03/releases-and-lts/index
 | Octopus 2020.4        | Expired                     |
 
 Keep reading to learn more about the updates.
-
-## Unmatched Azure App Service deployments {#azure-app-service-deployments}
-
-[Learn more](TODO URL)
 
 ## Octopus Linux Docker image RTW {#octopus-linux-docker-image}
 
@@ -51,14 +45,6 @@ Check out our [DockerHub repository](https://hub.docker.com/r/octopusdeploy/octo
 The Octopus Tentacle agent now supports ARM and ARM64 hardware. This update makes it possible to deploy your apps and services to Raspberry Pi 3 and 4, AWS A1 EC2 instances, and any ARM hardware that can run [.NET Core 3.0 or later](https://devblogs.microsoft.com/dotnet/announcing-net-core-3-0/#platform-support).
 
 [Learn more](/blog/tentacle-on-arm)
-
-## Export/Import Projects {#project-export-import}
-
-Export/Import Projects is an exciting new feature for moving Projects between Spaces, and between self-hosted and Octopus Cloud instances. Project export runs as a task and generates a password-protected zip file to protect any sensitive variable values.
-
-Follow the **Learn More** link to read the documentation for this new feature, including considerations for moving projects to Octopus Cloud.
-
-[Learn more](https://octopus.com/docs/projects/export-import)
 
 ## Global Search within a Space {#global-search}
 
@@ -129,7 +115,7 @@ Check out our [public roadmap](https://octopus.com/roadmap) to see what’s comi
 
 ## Conclusion
 
-Octopus 2021.1 offers unmatched Azure App Service deployments, Linux Docker images, Tentacle support for ARM/ARM64, Export/Import Projects, Global Search and improvements to API key management. We look forward to shipping more great features in the next release.
+Octopus 2021.1 offers Linux Docker images, Tentacle support for ARM/ARM64, Global Search and improvements to API key management. We look forward to shipping more great features in the next release.
 
 Feel free to leave a comment, and let us know what you think! Happy deployments!
 
