@@ -83,5 +83,5 @@ Most of the examples in the Samples instance are backed by a build from a compat
 
 ## Conclusion
 
-Octopus Deploy does its very best to give its customers to tools they need to be successful.  Whether your learning style is reading, visual, or by example, Octopus has you covered.
+Octopus Deploy does its very best to give its customers the tools they need to be successful.  Whether your learning style is reading, visual, or by example, Octopus has you covered.
 
