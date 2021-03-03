@@ -22,7 +22,7 @@ We're excited to ship Octopus 2021.1, our first release of the year. This releas
 * **[Global Search within a Space](blog/2021-03/octopus-release-2021-1/index.md#global-search)**. Navigate Octopus faster and find records and settings more easily.  
 * **[API keys](blog/2021-03/octopus-release-2021-1/index.md#api-key-management)**. We've added improvements to API key management including key expiration and improved audit log tracking.
 
-This release is the [first of four in 2021](/blog/2020-03/releases-and-lts/index.md), and includes 6 months of long term support. The following table shows our current releases with long term support. 
+This release is the first of four in 2021 and includes 6 months of long term support (critical patches). The following table shows our current releases with long term support. 
 
 | Release               | Long term support           |
 | --------------------- | --------------------------- |
@@ -54,7 +54,7 @@ We've introduced a Search field to the Octopus UI to help you:
 * find and invoke actions with a few keystrokes, and
 * quickly find server-side resources within a Space and go directly to them with ease. 
 
-Global Search will help first-time users to gain confidence with Octopus and find what they need, and allow advanced users to navigate even faster than before.
+Global Search benefits all Octopus users. It helps first-time users to gain confidence with Octopus and find what they need without knowing where to look, and allows advanced users to navigate even faster than before.
 
 Please let us know what you think of the new Global Search, and how we can improve it.
 
