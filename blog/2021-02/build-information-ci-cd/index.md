@@ -1,5 +1,5 @@
 ---
-title: Use build information to get better visibility across your CI/CD pipeline from build to deployment
+title: Improve visibility across your CI/CD pipelines with build information
 description: Learn how to to include build information from your CI server in your CD processes. 
 author: shawn.sesna@octopus.com 
 visibility: private
