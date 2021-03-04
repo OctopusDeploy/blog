@@ -34,17 +34,17 @@ Keep reading to learn more about the updates.
 
 ## Octopus Linux Docker image RTW {#octopus-linux-docker-image}
 
-Octopus Deploy Docker images allow you to self-host Octopus on a Linux operating system of your choice. We're proud to announce that this feature has reached release to web (RTW) status after shipping to [early access](/blog/octopus-release-2020-3) in Octopus 2020.3. We've removed the early access feature toggle so it's available to all of our customers.
+Octopus Deploy Docker images allow you to self-host Octopus on a Linux operating system of your choice. We're proud to announce that this feature has reached release to web (RTW) status after shipping to [early access](https://octopus.com/blog/octopus-release-2020-3) in Octopus 2020.3. We've removed the early access feature toggle so it's available to all of our customers.
 
 Check out our [DockerHub repository](https://hub.docker.com/r/octopusdeploy/octopusdeploy) to get started, and follow the **Learn More** link for more detailed instructions and a thorough example.
 
-[Learn more](/blog/introducing-linux-docker-image)
+[Learn more](https://octopus.com/blog/introducing-linux-docker-image)
 
 ## Tentacle for ARM/ARM64 {#tentacle-for-arm-arm64}
 
 The Octopus Tentacle agent now supports ARM and ARM64 hardware. This update makes it possible to deploy your apps and services to Raspberry Pi 3 and 4, AWS A1 EC2 instances, and any ARM hardware that can run [.NET Core 3.0 or later](https://devblogs.microsoft.com/dotnet/announcing-net-core-3-0/#platform-support).
 
-[Learn more](/blog/tentacle-on-arm)
+[Learn more](https://octopus.com/blog/tentacle-on-arm)
 
 ## Global Search within a Space {#global-search}
 
@@ -121,6 +121,6 @@ Feel free to leave a comment, and let us know what you think! Happy deployments!
 
 ## Related posts
 
-* [Octopus Tentacle on ARM/ARM64](/blog/tentacle-on-arm)
-* [Introducing the Octopus Server Linux Docker image](/blog/introducing-linux-docker-image)
-* [Octopus 2020.3: Runbooks++, Jenkins Pipelines, and Octopus Linux Docker image](/blog/octopus-release-2020-3)
+* [Octopus Tentacle on ARM/ARM64](https://octopus.com/blog/tentacle-on-arm)
+* [Introducing the Octopus Server Linux Docker image](https://octopus.com/blog/introducing-linux-docker-image)
+* [Octopus 2020.3: Runbooks++, Jenkins Pipelines, and Octopus Linux Docker image](https://octopus.com/blog/octopus-release-2020-3)
