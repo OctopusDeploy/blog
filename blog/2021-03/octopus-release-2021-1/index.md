@@ -8,7 +8,6 @@ metaImage: release-2020.6.png
 published: 3021-03-15
 tags:
 - Product
-- Azure
 - Linux
 - Docker
 ---
@@ -33,6 +32,8 @@ This is the final 2020 release and includes 6 months of long term support (criti
 Keep reading to learn more about the updates.
 
 ## Octopus Linux Docker image RTW {#octopus-linux-docker-image}
+
+![Octopus Linux Docker image](octopus-linux-image.png "width=500")
 
 Octopus Deploy Docker images allow you to self-host Octopus on a Linux operating system of your choice. We're proud to announce that this feature has reached release to web (RTW) status after shipping to [early access](https://octopus.com/blog/octopus-release-2020-3) in Octopus 2020.3. We've removed the early access feature toggle so it's available to all of our customers.
 
