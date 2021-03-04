@@ -7,6 +7,7 @@ published: 2021-03-22-1400
 metaImage: 
 bannerImage: 
 tags:
+ - DevOps
 ---
 
 Continuous Integration (CI) typically involves three components: a source control server, issue tracking, and a build server.  Tools such as Azure DevOps combine all components into a single solution whereas other configurations have them separated such as using GitHub for source control, TeamCity for build, and Jira for issue tracking.  When it comes to Continuous Delivery (CD), commits and issue tracking are extremely important to ensure the correct version of software is deployed.  Octopus Deploy has a feature called [Build Information](https://octopus.com/docs/packaging-applications/build-servers#build-information) which allows you to include commits and issues as part of your release.  
