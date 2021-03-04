@@ -13,7 +13,7 @@ tags:
 - Docker
 ---
 
-![Octopus 2020.6](TODO.png)
+![Octopus 2020.6](release-2020-6.png)
 
 We're excited to announce that Octopus 2020.6 is generally available. This release includes some powerful updates and benefits.
 
