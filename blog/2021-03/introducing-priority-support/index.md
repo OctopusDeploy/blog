@@ -21,7 +21,7 @@ We're really proud of how these teams are supporting our customers in their own 
 
 From February this year, we're offering Priority Support. Priority Support is an optional service for customers who need peace-of-mind guarantees around response times and availability for support tickets.
 
-<!-- Priority support costs $800 per month paid annually at the same time as your license renews. -->Customers with Priority Support can expect a response within 1 hour to your first email, and then an average of 1 hour for all other emails until the support issue has been resolved. Priority Support is attached to your email domain, so as long as you email our support team from your registered email domain, your request will be flagged as a Priority Support request.
+Customers with Priority Support can expect a response within 1 hour to your first email, and then an average of 1 hour for all other emails until the support issue has been resolved. Priority Support is attached to your email domain, so as long as you email our support team from your registered email domain, your request will be flagged as a Priority Support request.
 
 The program is still an early-access offering as we iron out some of the details, if you'd like to learn more, see the [Priority Support](https://octopus.com/priority-support) page. 
 
