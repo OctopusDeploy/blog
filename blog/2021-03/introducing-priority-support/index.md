@@ -25,7 +25,7 @@ From February this year, we're offering Priority Support. Priority Support is an
 
 Customers with Priority Support can expect: 
 - A response within 1 hour to their first email.
-- An average of 1 hour for all other emails until the support issue has been resolved. 
+- An average response time of 1 hour for all other emails until the support issue has been resolved. 
 
 Priority Support is attached to your email domain, so as long as you email our support team from your registered email domain, your request will be flagged as a Priority Support request.
 
