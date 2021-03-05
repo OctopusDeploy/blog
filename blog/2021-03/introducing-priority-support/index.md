@@ -4,12 +4,14 @@ description: We're introducing Priority Support for customers who need guarantee
 author: alex.rolley@octopus.com
 visibility: public
 published: 2021-03-08-1400
-metaImage: 
-bannerImage: 
+metaImage: blogimage-introducing-priority-support.png
+bannerImage: blogimage-introducing-priority-support.png
 tags:
  - Product
  - Support
 ---
+
+![Introducing priority support](blogimage-introducing-priority-support.png)
 
 At Octopus Deploy, how we support our customers has always been important to us. In the early days, the entire team, from our CEO down, answered support emails. As we grew, we added a dedicated team of support engineers who worked closely with our product engineering teams to ensure we were giving our customers the best support we could.
 
