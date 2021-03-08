@@ -1,6 +1,6 @@
 ---
 title: "Use build information for visibility across your CI/CD pipelines"
-description: Learn how to to include build information from your CI server in your CD processes. 
+description: Learn how to include build information from your CI server in your CD processes. 
 author: shawn.sesna@octopus.com 
 visibility: public
 published: 2021-03-22-1400
@@ -18,32 +18,34 @@ Continuous Integration (CI) typically involves three components:
 1. Issue tracking.
 1. A build server.  
 
-Tools such as Azure DevOps combine all components into a single solution whereas other configurations have them separated, such as using GitHub for source control, TeamCity for build, and Jira for issue tracking. When it comes to Continuous Delivery (CD), commits and issue tracking are extremely important to ensure the correct version of software is deployed. Octopus Deploy has a feature called [Build Information](https://octopus.com/docs/packaging-applications/build-servers#build-information) which allows you to include commits and issues as part of your release.  
+Tools such as Azure DevOps combine all components into a single solution whereas other configurations separate them, for instance, they might use GitHub for source control, TeamCity for build, and Jira for issue tracking. When it comes to Continuous Delivery (CD), commits and issue tracking are important to ensure the correct version of the software is deployed. With Octopus Deploy, you can include [build information](https://octopus.com/docs/packaging-applications/build-servers#build-information), such as commit and issues, as part of your release.  
 
 :::hint
 It's important to note that while commits will work in all cases, issue tracking will only function if you have one of the following integrations configured in Octopus Deploy:
+
 - Azure DevOps Issue Tracking
 - GitHub Issue Tracking
 - Jira Integration
 :::
 
-In this post, I'll walk you through configuring TeamCity and Octopus Depoloy to include build information and how this can be used during the deployment process.
+In this post, I walk through configuring TeamCity and Octopus Deploy to include build information and how this can be used during the deployment process.
 
 ## Example scenario
-For this demonstration, I'll be using the second scenario described above: GitHub ([OctoPetShop](https://github.com/OctopusSamples/OctoPetShop)), TeamCity, and Jira. While I'll be addressing these specific technologies, the overall process will be similar regardless of which toolset you use.
+For this demonstration, I use the scenario described above: GitHub ([OctoPetShop](https://github.com/OctopusSamples/OctoPetShop)), TeamCity, and Jira. I address these specific technologies, but the overall process is similar regardless of which tools you use.
 
 ### Create an issue
 We'll start off by logging a bug in Jira for the OctoPetShop application. This post assumes you already know how to create a project within Jira.
 
-![](jira-issue.png)
+![The create an issue screen in Jira](jira-issue.png)
   
-Once the issue has been created, we'll need to take note of the `key` value, as we'll need this to correctly tag our commits.  In this case, the value is `OPS-1`.
+After the issue has been created, we need to take note of the `key` value, as we need this to correctly tag our commits.  In this case, the value is `OPS-1`.
 
-![](jira-issue-ops-1.png)
+![The Jira issue key](jira-issue-ops-1.png)
 
 
-### Tie commit to issue
-Tying a commit to an issue can vary depending on the issue tracker you are using. For Jira, your commit message needs to use the following format:
+### Connect a commit to issue
+
+Connecting a commit to an issue can vary depending on the issue tracker you are using. For Jira, your commit message needs to use the following format:
 
 ```
 git commit -m "[key-value] Commit message"
@@ -55,51 +57,55 @@ For our example, our commit message would look like this:
 git commit -m "[OPS-1] Fixed tax rate calculation.  Tax rate now pulled using new tax rate service"
 ```
 
-## Configure build to push build information
+## Configure the build to push build information
+
 Octopus Deploy provides first-class integration with many [build servers](https://octopus.com/docs/packaging-applications/build-servers) in the form of plugins:
+
 - Azure DevOps
 - TeamCity
 - Jenkins
 - Bamboo
 
 In addition to the available plugins, there are some community supported integrations with online-only build servers:
+
 - CircleCI
 - GitHub Actions
 - BitBucket Pipelines
-- Appveyor
+- AppVeyor
 
-For this demonstration, we're using TeamCity.  
-1. Add a new step to your build definition, choosing the `Octopus Deploy: Build Information` runner. 
+For this demonstration, we're using TeamCity. 
+
+1. Add a new step to your build definition by choosing the **Octopus Deploy: Build Information** runner. 
 1. Fill in the required values:
-- Octopus URL: URL to your Octopus server
-- API key: API key with permissions to push build information
-- Space name: Name of the space to push to (leave blank for default)
-- Package IDs: List of packages to apply the build information to
+- **Octopus URL**: URL to your Octopus server
+- **API key**: API key with permissions to push build information
+- **Space name**: Name of the space to push to (leave blank for default)
+- **Package IDs**: List of packages to apply the build information to
 
-![](teamcity-push-build-information.png)
+![TeamCity push build information step](teamcity-push-build-information.png)
 
-Issuing a build, we can see that our change has been picked up by the build server.
+Issuing a build, we can see our change has been picked up by the build server.
 
-![](teamcity-build-commit-message.png)
+![TeamCity commit message](teamcity-build-commit-message.png)
 
-## Configure Issue Tracking integration
+## Configure the Issue Tracking integration
+
 As stated previously, the issue tracking for build information will not work until you configure the corresponding integration in Octopus Deploy. For this demonstration, we need to configure the [Jira integration](https://octopus.com/docs/releases/issue-tracking/jira).  
 
-1. Navigate to the `Configuration` tab in Octopus Deploy and click on `Settings`.
-1. Click on `Jira` and fill in the required information:
-- Jira Instance Type: Cloud or Server
-- Jira Base Url: Url to Jira
-- Jira Connect App Password: Password for the connection
-- Octopus Installation Id: Id of your Octopus Installation from the Octopus Deploy plugin in Jira
-- Octopus Server Url: Url to your Octopus server
-- Is Enabled: Check box for enabling the integration
+1. Navigate to the **Configuration** tab in Octopus Deploy and click **Settings**.
+1. Click `Jira` and fill in the required information:
+- **Jira Instance Type**: Cloud or Server
+- **Jira Base URL**: URL to Jira
+- **Jira Connect App Password**: Password for the connection
+- **Octopus Installation ID**: ID of your Octopus Installation from the Octopus Deploy plugin in Jira
+- **Octopus Server URL**: URL to your Octopus server
+- **Is Enabled**: Check-box for enabling the integration
 
-![](octopus-settings-jira.png)
+With our integration configured, navigate to the **Library** tab and select **Build Information**.  
 
-With our integration configured, let's pop over to the `Library` tab and choose `Build Information`.  
 On this page, we can see the build information has been uploaded to Octopus Deploy for the packages for OctoPetShop. Clicking on one of these will show the commits and issues related to it.
 
-![](octopus-build-information.png)
+![OctoPetShop build information](octopus-build-information.png)
 
 The build information contains:
 - Links to the build it came from.
@@ -107,26 +113,29 @@ The build information contains:
 - The work items (issues) it was associated with.
 
 ### Release Note Prefix
-The keen eyed observer would have seen a feature we've yet to discuss, `Release Note Prefix`. The Release Note Prefix feature provides a method of overriding the title of the work item. Octopus Deploy will look through the comments of a work item, looking for the specified prefix which I've defined as `Release note:`. When it finds a comment with the prefix, it will override the title of the work item with whatever text comes after the prefix.
+
+You may have noticed, we haven't discussed the **Release Note Prefix**. The Release Note Prefix provides a method of overriding the title of the work item. Octopus Deploy will look through the comments of a work item for the specified prefix that I've defined as `Release note:`. When it finds a comment with the prefix, it will override the title of the work item with whatever text comes after the prefix.
 
 :::hint
 All of the Octopus Deploy issues integrations contain the `Release Note Prefix` feature.
 :::
 
-The title of our issue is "`Incorrect tax calculated`", which doesn't make for a terribly useful release note. Instead, we'd like it to show up as "`Improved tax rate calculation based on location.`"
+The title of our issue is `Incorrect tax calculated`, which doesn't make for a terribly useful release note. Instead, we'd like it to show up as `Improved tax rate calculation based on location.`
 
 To do this, we add a comment to the Jira issue using our defined prefix:
 
-![](jira-issue-comment.png)
+![Jira issue comment](jira-issue-comment.png)
 
-In Octopus, we can see that the title of the Work Item has been updated to the desired value.
+In Octopus, we can see that the title of the work item has been updated to the desired value.
 
-![](octopus-build-information-comment.png)
+![Work item with the comment](octopus-build-information-comment.png)
 
 ## Keeping everyone informed
-So far we've shown how the build information can be accessed via the Octopus Deploy UI. However, not everyone in an organization has access to Octopus Deploy, such as Quality Assurance (QA) teams. Octopus deploy has some built-in variables that can be utilized to disseminate the build information.
+
+So far we've shown how the build information can be accessed via the Octopus Deploy Web Portal. However, not everyone in an organization has access to Octopus Deploy, such as Quality Assurance (QA) teams. Octopus Deploy has some built-in variables that can be used to share the build information.
 
 ### Project release notes template
+
 In the settings of a project is a space where you can define a [release notes template](https://octopus.com/docs/releases/release-notes#Release-Notes-Templates). The template allows you to customize the display of the build information related to the packages. Here is an example template:
 
 ```
@@ -144,21 +153,21 @@ Packages:
 ```
 
 :::warning
-The Octopus.Release.Package variable is **only** available for use in release notes templates. It is not available during a deployment process such as a **Run a script** step.
+The `Octopus.Release.Package` variable is _only_ available for use in release notes templates. It is not available during a deployment process such as a **Run a script** step.
 :::
 
-With a template defined, the release notes are acessible during a deployment via the `Octopus.Release.Notes` variable. Using something like Slack, you can include the build information in the message.
+With a template defined, the release notes are accessible during a deployment via the `Octopus.Release.Notes` variable. Using something like Slack, you can include the build information in a notification message.
 
-![](octopus-process-slack.png)
+![Slack notification step](octopus-process-slack.png)
 
 Since each package was tagged with the build information, the resulting message would look like this:
 
-![](slack-message.png)
+![Slack message](slack-message.png)
 
 Without the Release Notes template (or manually entered release notes), the `Octopus.Release.Notes` variable is empty.
 
 ### Octopus.Deployment.Changes
-Another method of accessing the build information is the `Octopus.Deployment.Changes` variable. Using a `Run a script` step, you could iterate through the changes, constructing a message and set an [Output Variable](https://octopus.com/docs/projects/variables/output-variables)
+Another method of accessing the build information is the `Octopus.Deployment.Changes` variable. Using a `Run a script` step, you could iterate through the changes, constructing a message and set an [Output Variable](https://octopus.com/docs/projects/variables/output-variables):
 
 ```PowerShell
 $changeListRaw = $OctopusParameters["Octopus.Deployment.Changes"]
@@ -199,15 +208,16 @@ foreach ($change in $changeList)
 Set-OctopusVariable -name "EmailBody" -value $emailBody
 ```
 
-Using something like a `Send an email` template, you could set the `Body` of the email to the value of the output variable.
+Using something like a **Send an email** template, you could set the **Body** of the email to the value of the output variable.
 
-![](octopus-send-email.png)
+![An Octopus email step](octopus-send-email.png)
 
-This will allow you to send an email to stakeholders letting them know the progress of the deployment.
+This will allow you to send an email to stakeholders informing them of the progress of the deployment.
 
-![](email-message.png)
+![Email message](email-message.png)
 
 ## Conclusion
-The Build Information feature of Octopus Deploy is a incredibly powerful communication tool. I hope this post demonstrates the different ways it can be utilized in your CI/CD pipeline.  
+
+Including build information in Octopus Deploy can be an incredibly powerful communication tool. I hope this post demonstrates the different ways it can be used in your CI/CD pipeline.  
 
 Happy Deployments!
