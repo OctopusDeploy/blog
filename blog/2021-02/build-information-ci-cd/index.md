@@ -4,13 +4,16 @@ description: Learn how to to include build information from your CI server in yo
 author: shawn.sesna@octopus.com 
 visibility: private
 published: 2021-03-22-1400
-metaImage: 
-bannerImage: 
+metaImage: blogimage-build-info.png
+bannerImage: blogimage-build-info.png
 tags:
  - DevOps
 ---
 
+![Octopus with build information](blogimage-build-info.png)
+
 Continuous Integration (CI) typically involves three components: 
+
 1. A source control server.
 1. Issue tracking.
 1. A build server.  
