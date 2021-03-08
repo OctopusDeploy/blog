@@ -160,7 +160,7 @@ Now that we've set up our Action, let's make a commit, push, and watch it go!
 ![GitHub Action screenshot](github-action-screenshot.png "width=500")
 
 :::hint
-In this example, we're *pushing* our package from GitHub Actions to our Octopus Cloud instances at https://samples.octopus.app. If you're running an Octopus Server that is not publicly accessible from github.com, you might instead consider pushing to a third-party package repository (e.g., Artifactory, Nexus) and have your Octopus Server pull from that repository by setting it up as an [external feed](https://octopus.com/docs/packaging-applications/package-repositories).
+In this example, we're *pushing* our package from GitHub Actions to our Octopus Cloud instances at https://samples.octopus.app. If you're running an Octopus Server that is not publicly accessible from github.com, you might instead consider pushing to a third-party package repository (e.g., Artifactory, Nexus) and have your Octopus Server pull from that repository by setting it up as an [external feed](https://octopus.com/docs/packaging-applications/package-repositories) or use a local GitHub Actions runner as explained in this [post](https://octopus.com/blog/gitub-actions-local-runner).
 :::
 
 ## Deploy
