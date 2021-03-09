@@ -1,5 +1,5 @@
 ---
-title: "Octopus 2020.6: Octopus Server Linux containers RTW"
+title: "Octopus 2020.6: Octopus Server Linux container RTW"
 description: "Octopus 2020.6 introduces Octopus Server Linux Docker image Release to Web (RTW), Tentacle for ARM/ARM64, Global Search and API key management improvements."
 author: kathryn.marks@octopus.com
 visibility: public
@@ -14,11 +14,11 @@ tags:
 
 ![Octopus 2020.6](release-2020-6.png)
 
-We're excited to announce that Octopus 2020.6 is generally available. This release includes some powerful updates and benefits.
+We're excited to announce that Octopus 2020.6 is generally available. This release includes several useful updates.
 
-* **[Octopus Linux Docker image RTW](blog/2021-03/octopus-release-2020-6/index.md#octopus-linux-docker-image)**. Our Linux containers feature is out of early access.
+* **[Octopus Server Linux Docker image RTW](blog/2021-03/octopus-release-2020-6/index.md#octopus-server-linux-docker-image)**. Our Linux container is ready for production workloads with full support.
 * **[Tentacle for ARM/ARM64](blog/2021-03/octopus-release-2020-6/index.md#tentacle-for-arm-arm64)**. Octopus Tentacle now supports ARM and ARM64 hardware.
-* **[Global Search within a Space](blog/2021-03/octopus-release-2020-6/index.md#global-search)**. Navigate Octopus faster and find records and settings more easily.  
+* **[Global Search within a Space](blog/2021-03/octopus-release-2020-6/index.md#global-search)**. Navigate Octopus faster and find resources and settings more easily.  
 * **[API keys](blog/2021-03/octopus-release-2020-6/index.md#api-key-management)**. We've added improvements to API key management including key expiration and improved audit log tracking.
 
 This is the final 2020 release and includes 6 months of long term support (critical patches). The following table shows our current releases with long term support. 
@@ -31,11 +31,13 @@ This is the final 2020 release and includes 6 months of long term support (criti
 
 Keep reading to learn more about the updates.
 
-## Octopus Linux Docker image RTW {#octopus-linux-docker-image}
+## Octopus Server Linux Docker image RTW {#octopus-server-linux-docker-image}
 
-![Octopus Linux Docker image](octopus-linux-image.png "width=500")
+![Octopus Server Linux Docker image](octopus-linux-image.png "width=500")
 
 Octopus Deploy Docker images allow you to self-host Octopus on a Linux operating system of your choice. We're proud to announce that this feature has reached release to web (RTW) status after shipping to [early access](https://octopus.com/blog/octopus-release-2020-3) in Octopus 2020.3. We've removed the early access feature toggle so it's available to all of our customers.
+
+Special thanks to the members of the Octopus community who tested our Docker images during the public preview and reported issues. This has helped us reach RTW status with confidence.
 
 Check out our [DockerHub repository](https://hub.docker.com/r/octopusdeploy/octopusdeploy) to get started, and follow the **Learn More** link for more detailed instructions and a thorough example.
 
@@ -53,11 +55,11 @@ The Octopus Tentacle agent now supports ARM and ARM64 hardware. This update make
 
 ![Octopus Global Search for account](global-search-account.png "width=500")
 
-We've introduced a Search field to the Octopus UI to help you:
+We've introduced a Search field to the Octopus Web Portal to help you:
 
-* navigate Octopus faster,
-* find and invoke actions with a few keystrokes, and
-* quickly find server-side resources within a Space and go directly to them with ease. 
+* Navigate Octopus faster.
+* Find and invoke actions with a few keystrokes.
+* Quickly find server-side resources within a Space and go directly to them with ease. 
 
 Global Search benefits all Octopus users. It helps first-time users to gain confidence with Octopus and find what they need without knowing where to look, and allows advanced users to navigate even faster than before.
 
@@ -69,11 +71,11 @@ Please let us know what you think of the new Global Search, and how we can impro
 
 ![Octopus User Profile API Keys](my-api-keys.png "width=500")
 
-The Octopus API is one of our best features, but we recognised an opportunity to improve API key management. In this release we've: 
+The Octopus API is one of our most popular features, but we recognised an opportunity to improve API key management. In this release we've: 
 
-* introduced optional expiration dates for API keys,
-* added API key subscription events, and
-* made improvements to audit logging of API key events.
+* Introduced optional expiration dates for API keys.
+* Added API key subscription events.
+* Made improvements to audit logging of API key events.
 
 We hope it's now easier to track who created a given API key. Read on for a more detailed description of the changes.
 
@@ -93,9 +95,9 @@ We've improved the filter for the Api Key document type to ensure API key creati
 
 Events are generated for service account API key expiration, much like certificate expirations. The events include:
 
-* Key expired
-* Key within 10 days of expiring
-* Key within 20 days of expiring
+* Key expired.
+* Key within 10 days of expiring.
+* Key within 20 days of expiring.
 
 ### Display of API keys ###
 
