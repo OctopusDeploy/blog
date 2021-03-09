@@ -1,6 +1,6 @@
 ---
 title: "Octopus 2020.6: Octopus Server Linux container RTW"
-description: "Octopus 2020.6 introduces Octopus Server Linux Docker image Release to Web (RTW), Tentacle for ARM/ARM64, Global Search and API key management improvements."
+description: "Octopus 2020.6: Octopus Server's Linux Docker image is Released to Web (RTW), Tentacle for ARM/ARM64, Global Search and API key management improvements."
 author: kathryn.marks@octopus.com
 visibility: public
 bannerImage: release-2020-6.png
@@ -77,13 +77,13 @@ The Octopus API is one of our most popular features, but we recognised an opport
 * Added API key subscription events.
 * Made improvements to audit logging of API key events.
 
-We hope it's now easier to track who created a given API key. Read on for a more detailed description of the changes.
+This update should make it easier to track who created a given API key. Read on for a more detailed description of the changes.
 
 ### API key expiration ###
 
 The API key expiration date is optional and the default value is `Never`. Expiration is set during key creation and checked every time the key is used.
 
-When generating a new key you can select a time period such as 30, 60, 90 or 180 days, 1 or 2 years, or nominate a custom date with the date picker. The expiration date appears in the audit log as part of the API key creation event.
+When generating a new key you can select a time period such as 30, 60, 90 or 180 days, 1 or 2 years, or select a custom date. The expiration date appears in the audit log as part of the API key creation event.
 
 ![Octopus Generate New API Key](generate-new-api-key.png "width=500")
 
