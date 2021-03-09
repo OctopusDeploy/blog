@@ -93,7 +93,7 @@ We've improved the filter for the Api Key document type to ensure API key creati
 
 ### API key subscription events ###
 
-You can now subscribe to notifications for API key expiration events. Receive a notification of the event before it's a problem and update the key accordingly, thereby saving you the frustration of an integration breaking unexpectedly.
+You can now subscribe to notifications for API key expiration events. Receive a notification of the event before it's a problem and update the key accordingly, saving you the frustration of an integration breaking unexpectedly.
 
 The new API key subscription events include:
 
