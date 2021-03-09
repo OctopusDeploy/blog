@@ -34,7 +34,7 @@ These response times apply to anybody who emails our support team from your emai
 
 ### Availability
 
-Priority Support is available to all new and existing Octopus Deploy customers with an active paid license. This includes all customers with a valid paid license on our current subscription licensing model, and any customers still using one of our legacy licenses who are still within their maintenance period.
+Priority Support is available to all new and existing Octopus Deploy customers with a valid paid license.
 
 The cost of Priority Support is $800 USD per month and is billed annually.
 
