@@ -103,7 +103,7 @@ From now on the first four characters of the API key are displayed in Octopus, i
 
 Note that this change applies only to new keys. Existing keys are already hashed so the first four characters are not available.
 
-[Learn more](TODO URL)
+[Learn more](https://octopus.com/docs/octopus-rest-api/how-to-create-an-api-key)
 
 ## Breaking changes
 
