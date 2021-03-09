@@ -49,9 +49,9 @@ The Octopus Tentacle agent now supports ARM and ARM64 hardware. This update make
 
 ## Global Search within a Space {#global-search}
 
-![Octopus Global Search for 'add sub'](global-search-add-sub.png)
+![Octopus Global Search for 'add sub'](global-search-add-sub.png "width=500")
 
-![Octopus Global Search for account](global-search-account.png)
+![Octopus Global Search for account](global-search-account.png "width=500")
 
 We've introduced a Search field to the Octopus UI to help you:
 
@@ -67,6 +67,8 @@ Please let us know what you think of the new Global Search, and how we can impro
 
 ## Improvements to API key management {#api-key-management}
 
+![Octopus User Profile API Keys](my-api-keys.png "width=500")
+
 The Octopus API is one of our best features, but we recognised an opportunity to improve API key management. In this release we've: 
 
 * introduced optional expiration dates for API keys,
@@ -80,6 +82,8 @@ We hope it's now easier to track who created a given API key. Read on for a more
 The API key expiration date is optional and the default value is `Never`. Expiration is set during key creation and checked every time the key is used.
 
 When generating a new key you can select a time period such as 30, 60, 90 or 180 days, 1 or 2 years, or nominate a custom date with the date picker. The expiration date appears in the audit log as part of the API key creation event.
+
+![Octopus Generate New API Key](generate-new-api-key.png "width=500")
 
 ### Audit log filtering ###
 
