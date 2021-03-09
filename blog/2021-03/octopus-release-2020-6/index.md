@@ -49,7 +49,9 @@ The Octopus Tentacle agent now supports ARM and ARM64 hardware. This update make
 
 ## Global Search within a Space {#global-search}
 
-![Octopus Global Search 'add sub'](global-search-add-sub.png)
+![Octopus Global Search for 'add sub'](global-search-add-sub.png)
+
+![Octopus Global Search for account](global-search-account.png)
 
 We've introduced a Search field to the Octopus UI to help you:
 
