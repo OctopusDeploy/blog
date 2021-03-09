@@ -15,7 +15,7 @@ tags:
 
 At Octopus Deploy, how we support our customers has always been important to us. We don't just want to build the world's great deployment tool; we want to make sure you have a great experience using Octopus Deploy, and that when you need help, we're here to provide it.
 
-In the early days, the entire team, from our CEO down, answered support emails. As we grew, we added a dedicated team of support engineers who worked closely with our product engineering teams to ensure we were giving our customers the best possible support. Now we have support engineers based in Australia, the UK, and the US, which means we're able to provide support 24 hours a day and there's no more time zone lag.
+In the early days, the entire team, from our CEO down, answered support emails. As we grew, we added a dedicated team of support engineers who worked closely with our product engineering teams to ensure we were giving our customers the best possible support. Now we have support engineers based in Australia, the UK, and the US, which means we provide support 24 hours a day five days a week and there's no time zone lag.
 
 You can access support by [email](mailto:support@octopus.com) and on our [support forum](https://help.octopus.com/), or if you prefer to self-support, we have [documentation](https://www.octopus.com/docs), a [YouTube channel](https://www.youtube.com/octopusdeploy), and a [community Slack channel](http://octopus.com/slack).
 
@@ -30,7 +30,7 @@ Customers with Priority Support can expect:
 - A response within 1 hour to their first email.
 - An average response time of 1 hour for all other emails until the support issue has been resolved. 
 
-These response times apply to anybody who emails our support team from your email domain. For instance, if we receive a support request from a user with an email address @example.com and example.com has Priority Support, the request will be flagged as a priority issue and you will receive a response within 1 hour.
+These response times apply to anybody who emails our support team from your email domain. For instance, if we receive a support request from a user with an email address @example.com and example.com has Priority Support, the request will be flagged as a priority issue and they will receive a response within 1 hour.
 
 ### Availability
 
@@ -38,9 +38,9 @@ Priority Support is available to all new and existing Octopus Deploy customers w
 
 The cost of Priority Support is $800 USD per month and is billed annually.
 
-If we fail to meet our guarantees as outlined above for a given month, we will credit that **full month** of support fees back to you. This credit will then be available to be used on subsequent priority support or license key renewals. If you decide to stop using Octopus Deploy and still have available credit, we will refund the balance of the credit to you.
+If we fail to meet our guarantees as outlined above for a given month, we will credit that **full month** of support fees back to you. This credit will then be available to be used on subsequent priority support or license key renewals. If you decide to stop using Octopus Deploy and still have available credit, we will refund the balance of the credit.
 
-Priority Support can be added to your account the next time you renew your license. If this is coming up soon for you, and you’re interested in Priority Support, reach out to our sales team at [sales@octopus.com](mailto:sales@octopus.com).
+Priority Support can be added to your account the next time you renew your license. If this is coming up soon for you, and you’re interested in Priority Support, please email our sales team at [sales@octopus.com](mailto:sales@octopus.com).
 
 ### Early access
 
