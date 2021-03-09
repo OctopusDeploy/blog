@@ -3,8 +3,8 @@ title: "Octopus 2020.6: Octopus Server Linux containers RTW"
 description: "Octopus 2020.6 introduces Octopus Linux Docker image RTW, Tentacle for ARM/ARM64, Export/Import Projects, Global Search and API key management improvements."
 author: kathryn.marks@octopus.com
 visibility: public
-bannerImage: release-2020.6.png
-metaImage: release-2020.6.png
+bannerImage: release-2020-6.png
+metaImage: release-2020-6.png
 published: 3021-03-15
 tags:
 - Product
