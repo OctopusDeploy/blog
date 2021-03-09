@@ -4,7 +4,7 @@ description: "Octopus 2020.6: Octopus Server's Linux Docker image is Released to
 author: kathryn.marks@octopus.com
 visibility: public
 bannerImage: release-2020-6.png
-metaImage: release-2020-6.png
+metaImage: octopus-release-2020-6-summary-card.png
 published: 3021-03-15
 tags:
 - Product
