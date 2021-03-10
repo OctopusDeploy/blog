@@ -15,11 +15,11 @@ tags:
 
 The idea of testing your code as part of your development process has won almost universal adoption. Unit tests are now a common feature of most complex codebases.
 
-Testing doesn't stop with unit tests, though. The canonical example describing testing patterns performed during an application's lifecycle is the testing pyramid (although there are many alternatives like [the testing honeycomb](https://engineering.atspotify.com/2018/01/11/testing-of-microservices/)) which describe certain strategies, like end-to-end tests, that often require a live running instance of your application for the tests to be performed.
+Testing doesn't stop with unit tests, though. The canonical example that describes testing patterns performed during an application's lifecycle is the testing pyramid (although there are many alternatives like [the testing honeycomb](https://engineering.atspotify.com/2018/01/11/testing-of-microservices/)) which describe certain strategies, like end-to-end tests, that often require a live running instance of your application for the tests to be performed.
 
 One such example of end-to-end testing is via tools like Cypress, which interact with a web page in much the same way a human would. These tests necessarily require the web application to be running, which makes them an ideal candidate to include in the final stages of your deployment process after your web application is deployed and running in a test environment. 
 
-In this blog post, we'll look at some practical concerns around running Cypress during an Octopus deployment. I'll also present a solution that allows Cypress tests to be run in most common scenarios.
+In this blog post, we look at some practical concerns around running Cypress during an Octopus deployment. I also present a solution that allows Cypress tests to be run in most common scenarios.
 
 ## Including Cypress in your deployment process
 
@@ -39,7 +39,7 @@ It is possible to bake the tests into a custom Docker image, and if your tests d
 
 However, I suspect most teams that invest in end-to-end testing will want to continue quickly updating their tests scripts without the burden of including them in new Docker images. Wouldn't it be nice to have a common, generic Cypress Docker image that could execute random test scripts?
 
-When running Docker directly, this is relatively easy. You simply mount a local directory containing your test scripts into the generic Cypress Docker image. The Cypress [documentation](https://github.com/cypress-io/cypress-docker-images/tree/master/included) provides an example like this, which mounts the current directory as the `e2e` directory in the Docker container:
+When running Docker directly, this is relatively easy. You simply mount a local directory that contains your test scripts into the generic Cypress Docker image. The Cypress [documentation](https://github.com/cypress-io/cypress-docker-images/tree/master/included) provides an example for this, which mounts the current directory as the `e2e` directory in the Docker container:
 
 ```
 docker run -it -v $PWD:/e2e -w /e2e cypress/included:6.4.0
@@ -186,7 +186,7 @@ With that, we now have a way to run custom Cypress tests inside the container cr
 
 ## Testing in Kubernetes
 
-One of the reasons we chose the approach of using worker containers is that it allowed us to run the same tests inside a Kubernetes cluster. To verify this, we need to run an Octopus worker inside a Kubernetes cluster. The following deployment starts a Tentacle in a Kubernetes cluster:
+One of the reasons we chose to use worker containers is that it allowed us to run the same tests inside a Kubernetes cluster. To verify this, we need to run an Octopus worker inside a Kubernetes cluster. The following deployment starts a Tentacle in a Kubernetes cluster:
 
 ```yaml
 apiVersion: apps/v1
@@ -245,6 +245,6 @@ Just as testing code is now common practice, verifying a deployment via end-to-e
 
 In this blog post, we discussed why worker containers were such a useful tool for running tests, created a custom worker image to execute our tests in, looked at a simple Cypress test script, and wrote a simple bash script to run the test and collect the results. We then saw how to run a worker in a Kubernetes cluster configured to run the same tests using Docker-in-Docker.
 
-The result is a reusable testing process that allows Cypress test scripts to be quickly developed, deployed, and executed across multiple platforms. With a few small tweaks it's possible to verify your web application deployments with end-to-end tests, ensuring each stage of an application's lifecycle is tested and verified before it reaches end users.
+The result is a reusable testing process that allows Cypress test scripts to be quickly developed, deployed, and executed across multiple platforms. With a few small tweaks, it's possible to verify your web application deployments with end-to-end tests, ensuring each stage of an application's lifecycle is tested and verified before it reaches end users.
 
 Happy deployments!
