@@ -9,6 +9,7 @@ bannerImage: blogimage-rancher-octopus.png
 tags:
  - Kubernetes
  - DevOps
+ - Webinars and Events
 ---
 
 ![Deploy to Rancher with Octopus Deploy](blogimage-rancher-octopus.png)
