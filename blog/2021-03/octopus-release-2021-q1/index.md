@@ -1,10 +1,10 @@
 ---
-title: "Octopus 2020.6: Octopus Server Linux container RTW"
-description: "Octopus 2020.6: Octopus Server's Linux Docker image is Released to Web (RTW), Tentacle for ARM/ARM64, Global Search and API key management improvements."
+title: "Octopus 2021 Q1: Octopus Server Linux container RTW"
+description: "Octopus 2021 Q1: Octopus Server's Linux Docker image is Released to Web (RTW), Tentacle for ARM/ARM64, Global Search and API key management improvements."
 author: kathryn.marks@octopus.com
 visibility: public
-bannerImage: release-2020-6.png
-metaImage: octopus-release-2020-6-summary-card.png
+bannerImage: release-2021-q1.png
+metaImage: octopus-release-2021-q1-summary-card.png
 published: 3021-03-15
 tags:
 - Product
@@ -12,16 +12,16 @@ tags:
 - Docker
 ---
 
-![Octopus 2020.6](release-2020-6.png)
+![Octopus 2021 Q1](release-2021-q1.png)
 
-We're excited to announce that Octopus 2020.6 is generally available. This release includes several useful updates.
+We're excited to announce that Octopus 2021 Q1 is generally available. This release includes several useful updates.
 
-* **[Octopus Server Linux Docker image RTW](blog/2021-03/octopus-release-2020-6/index.md#octopus-server-linux-docker-image)**. Our Linux container is ready for production workloads with full support.
-* **[Tentacle for ARM/ARM64](blog/2021-03/octopus-release-2020-6/index.md#tentacle-for-arm-arm64)**. Octopus Tentacle now supports ARM and ARM64 hardware.
-* **[Global Search within a Space](blog/2021-03/octopus-release-2020-6/index.md#global-search)**. Navigate Octopus faster and find resources and settings more easily.  
-* **[API keys](blog/2021-03/octopus-release-2020-6/index.md#api-key-management)**. We've added improvements to API key management including key expiration and improved audit log tracking.
+* **[Octopus Server Linux Docker image RTW](blog/2021-03/octopus-release-2021-q1/index.md#octopus-server-linux-docker-image)**. Our Linux container is ready for production workloads with full support.
+* **[Tentacle for ARM/ARM64](blog/2021-03/octopus-release-2021-q1/index.md#tentacle-for-arm-arm64)**. Octopus Tentacle now supports ARM and ARM64 hardware.
+* **[Global Search within a Space](blog/2021-03/octopus-release-2021-q1/index.md#global-search)**. Navigate Octopus faster and find resources and settings more easily.  
+* **[API keys](blog/2021-03/octopus-release-2021-q1/index.md#api-key-management)**. We've added improvements to API key management including key expiration and improved audit log tracking.
 
-This is the final 2020 release and includes 6 months of long term support (critical patches). The following table shows our current releases with long term support. 
+The following table shows our current releases with long term support. 
 
 | Release               | Long term support           |
 | --------------------- | --------------------------- |
@@ -128,7 +128,7 @@ Check out our [public roadmap](https://octopus.com/roadmap) to see what’s comi
 
 ## Conclusion
 
-Octopus 2020.6 offers Linux Docker images, Tentacle support for ARM/ARM64, Global Search and improvements to API key management. We look forward to shipping more great features in the next release.
+Octopus 2021 Q1 offers Linux Docker images, Tentacle support for ARM/ARM64, Global Search and improvements to API key management. We look forward to shipping more great features in the next release.
 
 Feel free to leave a comment, and let us know what you think! Happy deployments!
 
