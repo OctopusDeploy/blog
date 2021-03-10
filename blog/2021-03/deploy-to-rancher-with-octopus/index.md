@@ -165,4 +165,10 @@ And there you have it, we’ve successfully deployed to Kubernetes clusters mana
 
 In this post, I demonstrated how you can define Kubernetes clusters in Rancher and then integrate Rancher with Octopus deploy to deploy your projects. 
 
+## Register for the webinar
 
+On March 24th, we're running a webinar **Deploying to a Rancher managed Kubernetes cluster with Octopus**. The webinar will go into more detail and provide practical demonstrations. 
+
+Learn more or register for the [webinar](link-to-registration).
+
+Happy Deployments!
