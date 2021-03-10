@@ -18,7 +18,7 @@ We're excited to announce that Octopus 2021 Q1 is generally available. This rele
 
 * **[Octopus Server Linux Docker image RTW](blog/2021-03/octopus-release-2021-q1/index.md#octopus-server-linux-docker-image)**. Our Linux container is ready for production workloads with full support.
 * **[Tentacle for ARM/ARM64](blog/2021-03/octopus-release-2021-q1/index.md#tentacle-for-arm-arm64)**. Octopus Tentacle now supports ARM and ARM64 hardware.
-* **[Global Search within a Space](blog/2021-03/octopus-release-2021-q1/index.md#global-search)**. Navigate Octopus faster and find resources and settings more easily.  
+* **[Global Search](blog/2021-03/octopus-release-2021-q1/index.md#global-search)**. Navigate Octopus faster and find resources and settings more easily.  
 * **[API keys](blog/2021-03/octopus-release-2021-q1/index.md#api-key-management)**. We've added improvements to API key management including key expiration and improved audit log tracking.
 
 The following table shows our current releases with long term support. 
@@ -49,7 +49,7 @@ The Octopus Tentacle agent now supports ARM and ARM64 hardware. This update make
 
 [Learn more](https://octopus.com/blog/tentacle-on-arm)
 
-## Global Search within a Space {#global-search}
+## Global Search {#global-search}
 
 ![Octopus Global Search for 'add sub'](global-search-add-sub.png "width=500")
 
