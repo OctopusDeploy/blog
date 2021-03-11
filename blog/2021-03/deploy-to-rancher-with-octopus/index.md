@@ -94,7 +94,7 @@ Before we can add our Rancher managed cluster, we must create a means of authent
 1. Give the API Key an expiration and a scope.  
 1. Add a description so you know what this key will be used for, then click **Create**.
 
-After you click create, you will be shown the API Key information. *Save this information, as you will not be able to retrieve it later*.
+After you click create, you will be shown the API Key information. Save this information, as you will not be able to retrieve it later.
 
 ### Rancher cluster endpoints
 
