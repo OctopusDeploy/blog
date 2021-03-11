@@ -10,7 +10,7 @@ tags:
   - DevOps
 ---
 
-State the subject of the announcement as plainly and directly as you can.
+State the subject of the announcement as plainly and directly as you can. Don't waffle on.
 
 ## Body
 
