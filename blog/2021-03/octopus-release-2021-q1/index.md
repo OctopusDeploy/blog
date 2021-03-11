@@ -63,7 +63,7 @@ Check out our [DockerHub repository](https://hub.docker.com/r/octopusdeploy/octo
 
 The Octopus Tentacle agent now supports ARM and ARM64 hardware. This update makes it possible to deploy your apps and services to Raspberry Pi 3 and 4, AWS A1 EC2 instances, and any ARM hardware that can run [.NET Core 3.0 or later](https://devblogs.microsoft.com/dotnet/announcing-net-core-3-0/#platform-support).
 
-[Learn more](https://octopus.com/blog/tentacle-on-arm).
+Learn more in our blog post about [Octopus Tentacle on ARM/ARM64](https://octopus.com/blog/tentacle-on-arm).
 
 ## Global Search {#global-search}
 
@@ -75,13 +75,13 @@ We've introduced a Search field to the Octopus Web Portal to help you:
 
 - Navigate Octopus faster.
 - Find and invoke actions with a few keystrokes.
-- Quickly find server-side resources within a Space and go directly to them with ease. 
+- Quickly find server-side resources within a space and go directly to them with ease. 
 
 Global Search benefits all Octopus users. It helps first-time users to gain confidence with Octopus and find what they need without knowing where to look, and allows advanced users to navigate even faster than before.
 
 Please let us know what you think of the new Global Search, and how we can improve it.
 
-[Learn more](https://github.com/OctopusDeploy/Issues/issues/6703)
+You can also learn more by [reading about the issue on GitHub](https://github.com/OctopusDeploy/Issues/issues/6703).
 
 ## Improvements to API key management {#api-key-management}
 
@@ -123,7 +123,7 @@ From now on, the first four characters of the API key are displayed in Octopus, 
 
 Note that this change applies only to new keys. Existing keys are already hashed so the first four characters are not available.
 
-[Learn more](https://octopus.com/docs/octopus-rest-api/how-to-create-an-api-key)
+Learn more in our [documentation on how to create an API key](https://octopus.com/docs/octopus-rest-api/how-to-create-an-api-key).
 
 ## Breaking changes
 
