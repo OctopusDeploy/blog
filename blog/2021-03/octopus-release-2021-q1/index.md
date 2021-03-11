@@ -16,7 +16,7 @@ tags:
 
 We're pleased to announce that Octopus 2021 Q1 is generally available.
 
-This release brings together two exciting features for Linux fans that allow you to self-host Octopus Server on Linux and run the Tentacle agent on ARM and ARM64 hardware. Anyone who uses Octopus Deploy will benefit from the new Search and API key features.
+This release brings together two exciting features for Linux users that allow you to self-host Octopus Server on Linux and run the Tentacle agent on ARM and ARM64 hardware. Anyone who uses Octopus Deploy will benefit from the new Search and API key features.
 
 * **[Octopus Server Linux Docker image RTW](blog/2021-03/octopus-release-2021-q1/index.md#octopus-server-linux-docker-image)**. Our Linux container is ready for production workloads with full support.
 * **[Tentacle for ARM/ARM64](blog/2021-03/octopus-release-2021-q1/index.md#tentacle-for-arm-arm64)**. Octopus Tentacle now supports ARM and ARM64 hardware.
