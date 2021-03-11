@@ -1,14 +1,13 @@
 ---
 title: Title
 description: A brief summary of the announcement.
-author: Joan Smith
-visibility: private
-published: 3020-01-01
+author: tegan.ali@octopus.com
+visibility: public
+published: 2021-04-01
 metaImage: to-be-added-by-marketing
 bannerImage: to-be-added-by-marketing
 tags:
   - DevOps
- 
 ---
 
 State the subject of the announcement as plainly and directly as you can.
