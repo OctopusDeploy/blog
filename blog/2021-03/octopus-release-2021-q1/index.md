@@ -46,11 +46,13 @@ Keep reading to learn more about the updates.
 
 ![Octopus Server Linux Docker image](octopus-linux-image.png "width=500")
 
-Octopus Deploy Docker images allow you to self-host Octopus on a Linux operating system of your choice. We're proud to announce that this feature has reached release to web (RTW) status after shipping to [early access](https://octopus.com/blog/octopus-release-2020-3) in Octopus 2020.3. We've removed the pre-release tag so it's now fully supported for production workloads for all of our our customers.
+Octopus Deploy Docker images allow you to self-host Octopus on a Linux operating system of your choice. They also make it easier to try Octopus for the first time, since a simple Docker Compose file is all you need to be up and running in minutes. 
+
+We're proud to announce that this feature has reached release to web (RTW) status after shipping to [early access](https://octopus.com/blog/octopus-release-2020-3) in Octopus 2020.3. We've removed the pre-release tag so it's now fully supported for production workloads for all of our our customers.
 
 Special thanks to the members of the Octopus community who tested our Docker images during the public preview and reported issues. This has helped us reach RTW status with confidence.
 
-One side benefit of shipping our Linux Docker image is that it's incredibly fast to get started and try Octopus. With a simple Docker Compose file you can be up and running in minutes. Check out our [DockerHub repository](https://hub.docker.com/r/octopusdeploy/octopusdeploy) to get started, and follow the **Learn More** link for more detailed instructions and a thorough example.
+Check out our [DockerHub repository](https://hub.docker.com/r/octopusdeploy/octopusdeploy) to get started, and follow the **Learn More** link for more detailed instructions and a thorough example.
 
 [Learn more](https://octopus.com/blog/introducing-linux-docker-image)
 
