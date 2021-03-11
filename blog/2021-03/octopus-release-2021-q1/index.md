@@ -16,9 +16,9 @@ tags:
 
 We're pleased to announce that our Octopus 2021 Q1 release is generally available.
 
-This update brings together two exciting features for Linux users that allow you to self-host Octopus Server on Linux and run the Tentacle agent on ARM and ARM64 hardware. We joined the [Linux Foundation](https://www.linuxfoundation.org/en/join/members/) in 2020, and we care deeply about making DevOps automation excellent on both Windows and Linux platforms. Octopus Cloud usesour Linux Docker image to power the deployments for thousands of customers. It a stable and secure platform for all your deployment and runbook automation!
+This update brings together two exciting features for Linux users that allow you to self-host Octopus Server on Linux and run the Tentacle agent on ARM and ARM64 hardware. We joined the [Linux Foundation](https://www.linuxfoundation.org/en/join/members/) in 2020, and we care deeply about making DevOps automation excellent on both Windows and Linux platforms. Octopus Cloud uses our Linux Docker image to power the deployments for thousands of customers. It a stable and secure platform for all your deployment and runbook automation!
 
-This release also includes new Search and API key management features that anyone who uses Octopus Deploy will benefit from.
+This release also includes new Search and API key management features that will benefit all users of Octopus Deploy.
 
 * **[Octopus Server Linux Docker image RTW](blog/2021-03/octopus-release-2021-q1/index.md#octopus-server-linux-docker-image)**. Our Linux container is ready for production workloads with full support.
 * **[Tentacle for ARM/ARM64](blog/2021-03/octopus-release-2021-q1/index.md#tentacle-for-arm-arm64)**. Octopus Tentacle now supports ARM and ARM64 hardware.
@@ -50,7 +50,7 @@ Octopus Deploy Docker images allow you to self-host Octopus on a Linux operating
 
 Special thanks to the members of the Octopus community who tested our Docker images during the public preview and reported issues. This has helped us reach RTW status with confidence.
 
-One side benefit of shipping our Linux Docker image is that it's incredibly fast to get started and try Octopus. With a simple Docker Compose file, you can be up and running in minutes. Check out our [DockerHub repository](https://hub.docker.com/r/octopusdeploy/octopusdeploy) to get started, and follow the **Learn More** link for more detailed instructions and a thorough example.
+One side benefit of shipping our Linux Docker image is that it's incredibly fast to get started and try Octopus. With a simple Docker Compose file you can be up and running in minutes. Check out our [DockerHub repository](https://hub.docker.com/r/octopusdeploy/octopusdeploy) to get started, and follow the **Learn More** link for more detailed instructions and a thorough example.
 
 [Learn more](https://octopus.com/blog/introducing-linux-docker-image)
 
@@ -94,7 +94,7 @@ This update should make it easier to track who created a given API key. Read on 
 
 The API key expiration date is optional and the default value is `Never`. Expiration is set during key creation and checked every time the key is used.
 
-When generating a new key you can select a time period such as 30, 60, 90 or 180 days, 1 or 2 years, or select a custom date. The expiration date appears in the audit log as part of the API key creation event.
+When generating a new key you can select a time period such as 30, 60, 90 or 180 days, 1 or 2 years, or a custom date. The expiration date appears in the audit log as part of the API key creation event.
 
 ![Octopus Generate New API Key](generate-new-api-key.png "width=500")
 
@@ -114,7 +114,7 @@ The new API key subscription events include:
 
 ### Display of API keys ###
 
-From now on the first four characters of the API key are displayed in Octopus, including audit logs and the list of API keys for a given user. For example, `API-WXYZ••••••••`. This ensures API keys can be matched in the user interface.
+From now on the first four characters of the API key are displayed in Octopus, including audit logs and the list of API keys for a given user. An example is `API-WXYZ••••••••`. This ensures API keys can be matched in the user interface.
 
 Note that this change applies only to new keys. Existing keys are already hashed so the first four characters are not available.
 
