@@ -10,7 +10,7 @@ tags:
   - DevOps
 ---
 
-State the subject of the announcement as plainly and directly as you can. Don't waffle on.
+State the subject of the announcement as plainly and directly as you can.
 
 ## Body
 
@@ -18,7 +18,7 @@ Body and Conclusion headings might be unnecessary for short posts.
 
 If the announcement is likely to be controversial, acknowledge that and explain the reasons that helped inform the decision.
 
-## Conclusion
+## conclusion
 
 Close of the post by stating what the reader should expect next and invite feedback.
 
