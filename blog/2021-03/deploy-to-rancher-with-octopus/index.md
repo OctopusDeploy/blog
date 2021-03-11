@@ -3,7 +3,7 @@ title: Deploy to Rancher with Octopus Deploy
 description: Learn how to deploy to a Kubernetes cluster managed by Rancher.
 author: shawn.sesna@octopus.com
 visibility: public
-published: 2021-03-22
+published: 2021-03-22-1400
 metaImage: blogimage-rancher-octopus.png
 bannerImage: blogimage-rancher-octopus.png
 tags:
@@ -14,11 +14,11 @@ tags:
 
 ![Deploy to Rancher with Octopus Deploy](blogimage-rancher-octopus.png)
 
-Managing Kubernetes from the command-line can be cumbersome and tedious, especially when you have multiple clusters to manage.  To ease this burden, a number of tools have been developed to easily create and manage Kubernetes clusters. [Rancher](http://www.rancher.com) is one example, and in this post, I show you how to add your Kubernetes cluster that is managed by Rancher to Octopus Deploy as a deployment target you can deploy to.
+Managing Kubernetes from the command-line can be cumbersome and tedious, especially when you have multiple clusters to manage. To ease this burden, tools have been developed to easily create and manage Kubernetes clusters. [Rancher](http://www.rancher.com) is one example. In this post, I show you how to add your Kubernetes cluster that is managed by Rancher to Octopus Deploy as a deployment target you can deploy to.
 
 ## Getting started with Rancher
 
-Rancher is unique, in that you install it anywhere.  Instead, Rancher runs within a Docker container and can run anywhere that Docker is installed.  This is all you need to get started:
+Rancher is unique, in that you install it anywhere. Rancher runs within a Docker container and can run anywhere that Docker is installed.  This is all you need to get started:
 
 ```bash
 $ sudo docker run -d --restart=unless-stopped -p 80:80 -p 443:443 rancher/rancher
@@ -31,13 +31,13 @@ There are, of course, more advanced installations with high availability and a r
 Rancher can work with:
 
 - On-premise infrastructure
-- Cloud infrastructure providers
+- Cloud infrastructure providers:
   - Amazon EC2
   - Azure
   - Digital Ocean
   - Linode
   - vShere
-- Cloud Kubernetes services
+- Cloud Kubernetes services:
   - Amazon Elastic Kubernetes Service (EKS)
   - Azure Kubernetes Service (AKS)
   - Google Kubernetes Engine (GKE)
@@ -52,7 +52,7 @@ I created three Ubuntu VMs for my on-premises cluster, so I chose **From existin
 
 ![Rancher select cluster type screen](rancher-choose-cluster.png "width=500")
 
-I gave the cluster a name on the next screen and accepted the defaults, then clicked **Next**.
+I gave the cluster a name on the next screen, accepted the defaults, then clicked **Next**.
 
 The final screen of the creation process presents us with three check-boxes.  Clusters managed by Rancher need to have nodes that serve three roles:
 
@@ -72,7 +72,7 @@ For the second cluster, I chose to use the Cloud Kubernetes Service of GKE:
 
 ![Rancher select cluster type screen](rancher-gke-cluster.png "width=500")
 
-The creation process for GKE is a bit different than for on-premises.  
+The creation process for GKE is a bit different than for on-premises:  
 
 1. Create the [Google Service Account](https://cloud.google.com/iam/docs/service-accounts) with sufficient permissions to create the cluster resources. 
 2. Create a JSON Key for the service account, this is needed for Rancher to authenticate with Google.  
@@ -82,35 +82,35 @@ Unlike the on-premises setup, creating a cluster on GKE is automated.  Using the
 
 ## Connect the clusters to Octopus Deploy
 
-Not only does Rancher provide a centralized interface to manage Kubernetes clusters it also provides a centralized means of communication to the clusters.  This means that Octopus Deploy can connect to Rancher instead of having to connect to the clusters it manages individually.
+Not only does Rancher provide a centralized interface to manage Kubernetes clusters, it also provides a centralized means of communication to the clusters. This means Octopus Deploy can connect to Rancher instead of connecting to the clusters it manages individually.
 
 ### Authentication
 
-Before we can add our Rancher managed cluster, we must create a means of authenticating to it.  This can be accomplished using the Rancher UI to create a key for access.
+Before we can add our Rancher managed cluster, we must create a means of authenticating to it. This can be accomplished using the Rancher UI to create a key for access.
 
 1. Log into Rancher, then click on your **Profile** in the upper right-hand corner.
 1. Select **API & Keys**.
 1. Click on **Add Key**.
 1. Give the API Key an expiration and a scope.  
-1. I recommended adding a description so you know what this key will be used for, then click **Create**.
+1. Add a description so you know what this key will be used for, then click **Create**.
 
-After you click create, you will be shown the API Key information, *save this information, you will not be able to retrieve it later*.
+After you click create, you will be shown the API Key information. *Save this information, as you will not be able to retrieve it later*.
 
 ### Rancher cluster endpoints
 
-As previously mentioned, you can proxy communication to your clusters through Rancher.  Instead of connecting to the individual K8s API endpoints directly, you can use API endpoints within Rancher to issue commands.  The format of the URL is as follows: `https://<RancherUrl>/k8s/clusters/<ClusterId>`.
+As mentioned, you can proxy communication to your clusters through Rancher. Instead of connecting to the individual K8s API endpoints directly, you can use API endpoints within Rancher to issue commands. The format of the URL is: `https://<RancherUrl>/k8s/clusters/<ClusterId>`.
 
 A quick way to find the correct URL is to grab it from the provided Kubeconfig file information.  For each cluster you define, Rancher provides a `Kubeconfig file` that can be downloaded directly from the UI.  To find it, select the cluster you need from the Global dashboard, and click the **Kubeconfig File** button.
 
-The next screen shows the Kubeconfig file which contains the specific URL we need to use to connect our cluster to Octopus Deploy:
+The next screen shows the Kubeconfig file which contains the specific URL we need to connect our cluster to Octopus Deploy:
 
 ![Kubeconfig file](rancher-cluster-url.png "width=500")
 
 ### Add the account to Octopus Deploy
 
-In order for Octopus Deploy to deploy to the cluster, it needs credentials to log in with. In the Octopus Web Portal, navigate to the **Infrastructure** tab and click **Accounts**.
+For Octopus Deploy to deploy to the cluster, it needs credentials to log in with. In the Octopus Web Portal, navigate to the **Infrastructure** tab and click **Accounts**.
 
-Rancher provided us with two methods to authenticate when we created our API Key, *Username and Password* or *Token*. You can use either of these methods, for this post, I chose token.
+Rancher provided two methods to authenticate when we created our API Key, *Username and Password* or *Token*. You can use either of these methods. For this post, I chose Token.
 
 1. Click **ADD ACCOUNT**.
 1. Select which account type you want to create.
@@ -120,7 +120,7 @@ Now that we’ve created an account, we’re ready to create our Kubernetes targ
 
 ### Create a Kubernetes deployment target
 
-With the prep work out of the way, you can now add your Rancher managed Kubernetes clusters to Octopus Deploy.  Adding the target is done in exactly the same way you would add any other Kubernetes target.  
+With the prep work complete, you can now add your Rancher managed Kubernetes clusters to Octopus Deploy. Adding the target is done in exactly the same way you would add any other Kubernetes target.  
 
 1. Click **{{Infrastructure, Deployment Targets}}**.
 1. Click **ADD DEPLOYMENT TARGET**.
@@ -138,7 +138,7 @@ Select the radio button that corresponds with how you’ve chosen to connect to 
 
 #### Kubernetes Details
 
-This is where we use the URL we took from the *kubeconfig file* in Rancher.  For the first cluster, it was `https://rancher1/k8s/clusters/c-v4cbx`.  My cluster is using a self-signed certificate, so I needed to select **Skip TLS verification**.  
+This is where we use the URL we took from the *kubeconfig file* in Rancher.  For the first cluster, it was `https://rancher1/k8s/clusters/c-v4cbx`.  My cluster is using a self-signed certificate, so I selected **Skip TLS verification**.  
 
 Also, I created three namespaces for my cluster:
 
@@ -152,11 +152,11 @@ To verify the configuration, you can watch for the initial health check run.
 
 ## Deploy to the clusters
 
-Deploying to a cluster that is managed through Rancher is no different than deploying to a non-Rancher managed cluster.
+Deploying to a cluster that is managed through Rancher is the same as deploying to a non-Rancher managed cluster.
 
 To demonstrate, I’ll use the same example process from my [Beyond Hello World: Build a real-world Kubernetes CI/CD pipeline](https://octopus.com/blog/build-a-real-world-kubernetes-cicd-pipeline) post, modified to target the Rancher managed cluster instead.
 
-When I Deploy the release, I can see it executed against both the on-premises cluster Rancher-dev and the Google Cloud cluster:
+When I deploy the release, I can see it executed against both the on-premises cluster Rancher-dev and the Google Cloud cluster:
 
 ![](octopus-project-deployment-complete.png "width=500")
 
@@ -164,7 +164,7 @@ And there you have it, we’ve successfully deployed to Kubernetes clusters mana
 
 ## Conclusion
 
-In this post, I demonstrated how you can define Kubernetes clusters in Rancher and then integrate Rancher with Octopus deploy to deploy your projects. 
+In this post, I demonstrated how you can define Kubernetes clusters in Rancher and then integrate Rancher with Octopus Deploy to deploy your projects. 
 
 ## Register for the webinar
 
@@ -172,4 +172,4 @@ On March 24th, we're running a webinar **Deploying to a Rancher managed Kubernet
 
 Learn more or register for the [webinar](link-to-registration).
 
-Happy Deployments!
+Happy deployments!
