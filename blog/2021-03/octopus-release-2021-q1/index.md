@@ -23,7 +23,7 @@ This update brings together two exciting features for Linux users that allow you
 
 We joined the [Linux Foundation](https://www.linuxfoundation.org/en/join/members/) in 2020, and we care deeply about making DevOps automation excellent on both Windows and Linux platforms. Octopus Cloud uses our Linux Docker image to power the deployments for thousands of customers. It's a stable and secure platform for all your deployment and runbook automation!
 
-This release also includes new Search and API key management features that benefit all users of Octopus Deploy.
+This release also includes new Search and API key management features that benefit all users of Octopus Server.
 
 - **[Octopus Server Linux Docker image RTW](blog/2021-03/octopus-release-2021-q1/index.md#octopus-server-linux-docker-image)**. Our Linux container is ready for production workloads with full support.
 - **[Tentacle for ARM/ARM64](blog/2021-03/octopus-release-2021-q1/index.md#tentacle-for-arm-arm64)**. Octopus Tentacle now supports ARM and ARM64 hardware.
@@ -33,11 +33,11 @@ This release also includes new Search and API key management features that benef
 
 ## Included in the Q1 release
 
-- Octopus Deploy 2020.6
+- Octopus Server 2020.6
 - Tentacle 6.0.490
 - Octopus Server Docker Images: `latest` or `octopusdeploy/octopusdeploy:2020.6`
 
-The following table shows the Octopus Deploy releases with long term support. 
+The following table shows the Octopus Server releases with long term support. 
 
 | Release               | Long term support           |
 | --------------------- | --------------------------- |
@@ -49,7 +49,7 @@ Keep reading to learn more about the updates.
 
 ## Octopus Server Linux Docker image RTW {#octopus-server-linux-docker-image}
 
-Octopus Deploy Docker images allow you to self-host Octopus on a Linux operating system of your choice. They also make it easier to try Octopus for the first time, since a simple Docker Compose file is all you need to be up and running in minutes. 
+Octopus Server Docker images allow you to self-host Octopus on a Linux operating system of your choice. They also make it easier to try Octopus for the first time, since a simple Docker Compose file is all you need to be up and running in minutes. 
 
 We're proud to announce that this feature has reached release to web (RTW) status after shipping to [early access](https://octopus.com/blog/octopus-release-2020-3) in Octopus 2020.3. We've removed the pre-release tag so it's now fully supported for production workloads for all of our customers.
 
@@ -134,11 +134,11 @@ This release includes two breaking changes:
 
 Octopus Cloud users are already running this release, and self-hosted Octopus customers can [download the latest version](https://octopus.com/downloads/2020.6.0) now.  
 
-As usual, we encourage you to review the [steps for upgrading Octopus Deploy](https://octopus.com/docs/administration/upgrading). Please see the [release notes](https://octopus.com/downloads/compare?to=2020.6.0) for further information.
+As usual, we encourage you to review the [steps for upgrading Octopus Server](https://octopus.com/docs/administration/upgrading). Please see the [release notes](https://octopus.com/downloads/compare?to=2020.6.0) for further information.
 
-## What’s coming in Octopus 2021.1?
+## What’s coming in future releases?
 
-Check out our [public roadmap](https://octopus.com/roadmap) to see what’s coming next and register for updates.
+Check out our [public roadmap](https://octopus.com/roadmap) to stay informed and register for updates.
 
 ## Conclusion
 
