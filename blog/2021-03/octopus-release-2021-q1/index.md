@@ -5,7 +5,7 @@ author: kathryn.marks@octopus.com
 visibility: public
 bannerImage: release-2021-q1.png
 metaImage: octopus-release-2021-q1-summary-card.png
-published: 3021-03-15-1400
+published: 2021-03-15-1400
 tags:
 - Product
 - Linux
