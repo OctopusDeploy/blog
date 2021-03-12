@@ -49,9 +49,9 @@ Keep reading to learn more about the updates.
 
 ## Octopus Server Linux Docker image RTW {#octopus-server-linux-docker-image}
 
-![Octopus Server Linux Docker image](octopus-linux-image.png "width=500")
-
 Octopus Deploy Docker images allow you to self-host Octopus on a Linux operating system of your choice. They also make it easier to try Octopus for the first time, since a simple Docker Compose file is all you need to be up and running in minutes. 
+
+![Octopus Server Linux Docker image](octopus-linux-image.png "width=500")
 
 We're proud to announce that this feature has reached release to web (RTW) status after shipping to [early access](https://octopus.com/blog/octopus-release-2020-3) in Octopus 2020.3. We've removed the pre-release tag so it's now fully supported for production workloads for all of our customers.
 
@@ -67,15 +67,13 @@ Learn more in our blog post about [Octopus Tentacle on ARM/ARM64](https://octopu
 
 ## Global Search {#global-search}
 
-![Octopus Global Search for 'add sub'](global-search-add-sub.png "width=500")
-
-![Octopus Global Search for account](global-search-account.png "width=500")
-
 We've introduced a Search field to the Octopus Web Portal to help you:
 
 - Navigate Octopus faster.
 - Find and invoke actions with a few keystrokes.
 - Quickly find server-side resources within a space and go directly to them with ease. 
+
+![Octopus Global Search for 'add sub'](global-search-add-sub.png "width=500")
 
 Global Search benefits all Octopus users. It helps first-time users to gain confidence with Octopus and find what they need without knowing where to look, and allows advanced users to navigate even faster than before.
 
@@ -85,13 +83,13 @@ You can also learn more by [reading about the issue on GitHub](https://github.co
 
 ## Improvements to API key management {#api-key-management}
 
-![Octopus User Profile API Keys](my-api-keys.png "width=500")
-
 The Octopus API is one of our most popular features, but we recognised an opportunity to improve API key management. In this release we have: 
 
 - Introduced optional expiration dates for API keys.
 - Added API key subscription events.
 - Made improvements to audit logging of API key events.
+
+![Octopus User Profile API Keys](my-api-keys.png "width=500")
 
 This update should make it easier to track who created a given API key. Read on for a more detailed description of the changes.
 
