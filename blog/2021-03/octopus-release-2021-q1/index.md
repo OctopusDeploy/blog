@@ -56,7 +56,7 @@ We're proud to announce this feature has reached _release to web_ (RTW) status a
 
 Special thanks to the members of the Octopus community who tested our Docker images during the public preview and reported issues. This helped us reach RTW status with confidence.
 
-Check out our [DockerHub repository](https://hub.docker.com/r/octopusdeploy/octopusdeploy) to get started. For more detailed instructions and a thorough example you can read the blog post [introducing the Octopus Server Linux Docker image](https://octopus.com/blog/introducing-linux-docker-image).
+Check out our [DockerHub repository](https://hub.docker.com/r/octopusdeploy/octopusdeploy) to get started. For more detailed instructions and a thorough example you can read the blog post [Introducing the Octopus Server Linux Docker image](https://octopus.com/blog/introducing-linux-docker-image).
 
 ## Tentacle for ARM/ARM64 {#tentacle-for-arm-arm64}
 
