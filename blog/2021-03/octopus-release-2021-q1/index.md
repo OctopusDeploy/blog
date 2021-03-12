@@ -14,7 +14,9 @@ tags:
 
 ![Octopus 2021 Q1](release-2021-q1.png)
 
-We're pleased to announce that our Octopus 2021 Q1 release is generally available.
+We're pleased to announce our first release of 2021. This year we're shifting to a quarterly cadence, with four Octopus Server releases instead of six.
+
+The Q1 release includes Octopus Server 2020.6. In Q2 we will release 2021.1, followed by 2021.2 and 2021.3 in Q3 and Q4 respectively.
 
 This update brings together two exciting features for Linux users that allow you to:
 
@@ -28,11 +30,11 @@ This release also includes new Search and API key management features that benef
 ## Included in the Q1 release
 
 - Octopus Server 2020.6
-   - **[Octopus Server Linux Docker image RTW](blog/2021-03/octopus-release-2021-q1/index.md#octopus-server-linux-docker-image)**.
-   - **[Tentacle for ARM/ARM64](blog/2021-03/octopus-release-2021-q1/index.md#tentacle-for-arm-arm64)**.
-   - **[Global Search](blog/2021-03/octopus-release-2021-q1/index.md#global-search)**.
-   - **[Improved API key management](blog/2021-03/octopus-release-2021-q1/index.md#api-key-management)**.
-   - **[Over 30 additional improvements and bug fixes](https://octopus.com/downloads/whatsnew/2020.6)**.
+   - **[Octopus Server Linux Docker image RTW](blog/2021-03/octopus-release-2021-q1/index.md#octopus-server-linux-docker-image)**
+   - **[Tentacle for ARM/ARM64](blog/2021-03/octopus-release-2021-q1/index.md#tentacle-for-arm-arm64)**
+   - **[Global Search](blog/2021-03/octopus-release-2021-q1/index.md#global-search)**
+   - **[Improved API key management](blog/2021-03/octopus-release-2021-q1/index.md#api-key-management)**
+   - **[Over 30 additional improvements and bug fixes](https://octopus.com/downloads/whatsnew/2020.6)**
 - Tentacle 6.0.490
 - Octopus Server Docker Images: `latest` or `octopusdeploy/octopusdeploy:2020.6`
 
