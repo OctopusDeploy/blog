@@ -39,7 +39,7 @@ The similarities between deployment resources is easy to see using a diff tool:
 
 *A diff of two microservice deployments. They share a common set of properties.*
 
-To remove the boilerplate code required to define a deployment and its associated service, we take advantage of a feature in Octopus called [step templates](https://octopus.com/docs/deployment-process/steps/custom-step-templates). The YAML below, which can be added to a **Deploy Kubernetes containers** step via the **Edit YAML** option in the deployment section, captures the fields used by most of the microservice applications in their deployments, with application specific values replaced with variables:
+To remove the boilerplate code required to define a deployment and its associated service, we use a feature in Octopus called [step templates](https://octopus.com/docs/deployment-process/steps/custom-step-templates). The YAML below can be added to a **Deploy Kubernetes containers** step via the **Edit YAML** option in the deployment section. It captures the fields used by most of the microservice applications in their deployments, with application specific values replaced with variables:
 
 ```yaml
 apiVersion: apps/v1
@@ -82,11 +82,15 @@ spec:
 
 There are a few interesting aspects of this YAML to call out.
 
-The `if` syntax (for example `#{if ServiceTerminationGracePeriodSeconds}#{ServiceTerminationGracePeriodSeconds}#{/if}`) provides a way to return the variable value if it has been defined or an empty string if the variable has not been defined. Octopus will ignore empty YAML properties where appropriate to avoid validation errors when deploying the final resource.
+The `if` syntax (for example `#{if ServiceTerminationGracePeriodSeconds}#{ServiceTerminationGracePeriodSeconds}#{/if}`) provides a way to return the variable value if it has been defined, or an empty string if the variable has not been defined. Octopus will ignore empty YAML properties where appropriate, to avoid validation errors when deploying the final resource.
 
-The list of individual environment variables has been replaced by `envFrom.secretRef`. This allows Kubernetes to inject environment variables based on the values saved in an external secret. The secret we reference here is called `mysecret-#{Octopus.Deployment.Id | ToLower}` and will be created as a custom resource later in the step.
+The list of individual environment variables has been replaced by `envFrom.secretRef`. This allows Kubernetes to inject environment variables based on the values saved in an external secret. 
 
-Next, we have the service template. Unlike the deployment template, the service template is the same for all microservices. This YAML can also be added to the step via the **Edit YAML** option in the service section:
+The secret we reference here is called `mysecret-#{Octopus.Deployment.Id | ToLower}` and will be created as a custom resource later in the step.
+
+Next, we have the service template. Unlike the deployment template, the service template is the same for all microservices. 
+
+This YAML can also be added to the step via the **Edit YAML** option in the service section:
 
 ```yaml
 apiVersion: v1
@@ -102,6 +106,7 @@ spec:
     port: "#{ServicePort}"
     targetPort: "#{ServicePort}"
 ```
+
 
 Finally, we create the secret that holds the environment variables exposed to the pod as a custom resource.
 
@@ -147,7 +152,7 @@ This parameter is referenced in the container definition with the **Let the proj
 
 ## Deploying the template
 
-With the template deployed, we now create those microservices that originally shared a common deployment pattern. Since all the common boilerplate code has been abstracted away, all we need to do is populate the parameters defined by the step template:
+With the template deployed, we now create those microservices that originally shared a common deployment pattern. Since all the common boilerplate code has been abstracted away, all we do is populate the parameters defined by the step template:
 
 ![A microservice using the step template to define the deployed resources](deploy-template.png "width=500")
 
@@ -181,9 +186,9 @@ Docker images with plain text tags, like `redis:alpine`, can also take advantage
 
 ## Promoting an entire environment
 
-The entire microservice stack is made up of nearly a dozen individual services. These could be promoted from one environment to another individually, and indeed if the microservices are genuinely separate entities managed by different teams and released on their own individual time lines, then individually promoting the services may be desirable.
+The entire microservice stack is made up of nearly a dozen individual services. These could be promoted from one environment to another individually. If the microservices are genuinely separate entities managed by different teams and released on their own individual time lines, then individually promoting the services may be desirable.
 
-But there are cases where the microservices are still tightly coupled and must be released in a particular order or situations where it’s critical that the state of an environment be well known at any time. For this, Octopus offers the **Deploy a release** step. 
+There are cases where the microservices are still tightly coupled and must be released in a particular order, or situations where it’s critical that the state of an environment be well known at any time. For this, Octopus offers the **Deploy a release** step. 
 
 The **Deploy a release** step treats an Octopus release as an artifact to be selected during the creation of a release of a kind of _meta-project_. In our case, the meta-project contains a **Deploy a release** step for each microservice, allowing an entire microservice stack in one environment to be promoted to another environment in the correct sequence and with well known release versions. The ordering of the **Deploy a release** steps in the meta-project captures the dependencies of services on one another, and release managers could use the details of these meta-project releases to understand exactly which combination of applications was deployed at any given time.
 
