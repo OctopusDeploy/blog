@@ -14,7 +14,7 @@ tags:
 
 ![Deploy to Rancher with Octopus Deploy](blogimage-rancher-octopus.png)
 
-Managing Kubernetes from the command-line can be cumbersome and tedious, especially when you have multiple clusters to manage. To ease this burden, tools have been developed to easily create and manage Kubernetes clusters. [Rancher](http://www.rancher.com) is one example. In this post, I show you how to add your Kubernetes cluster that is managed by Rancher to Octopus Deploy as a deployment target you can deploy to.
+Managing Kubernetes from the command-line can be cumbersome and tedious, especially when you have multiple clusters to manage. To ease this burden, tools have been developed to easily create and manage Kubernetes clusters. [Rancher](http://www.rancher.com) is one example. In this post, I show you how to add your Kubernetes cluster, that is managed by Rancher, to Octopus Deploy as a deployment target you can deploy to.
 
 ## Getting started with Rancher
 
@@ -24,7 +24,9 @@ Rancher is unique, in that you install it anywhere. Rancher runs within a Docker
 $ sudo docker run -d --restart=unless-stopped -p 80:80 -p 443:443 rancher/rancher
 ```
 
-There are, of course, more advanced installations with high availability and a range of other [options](https://rancher.com/docs/rancher/v2.x/en/installation/), but for testing Rancher, that’s all you need. When the container is up and running, connect to it with a browser and set the `admin` password.  After setting the password, you’re ready to create a cluster.
+There are, of course, more advanced installations with high availability and a range of other [options](https://rancher.com/docs/rancher/v2.x/en/installation/), but for testing Rancher, that’s all you need. 
+
+When the container is up and running, connect to it with a browser and set the `admin` password.  After setting the password, you’re ready to create a cluster.
 
 ## Creating clusters
 
@@ -108,9 +110,7 @@ The next screen shows the Kubeconfig file which contains the specific URL we nee
 
 ### Add the account to Octopus Deploy
 
-For Octopus Deploy to deploy to the cluster, it needs credentials to log in with. In the Octopus Web Portal, navigate to the **Infrastructure** tab and click **Accounts**.
-
-Rancher provided two methods to authenticate when we created our API Key, *Username and Password* or *Token*. You can use either of these methods. For this post, I chose Token.
+For Octopus Deploy to deploy to the cluster, it needs credentials to log in with. In the Octopus Web Portal, navigate to the **Infrastructure** tab and click **Accounts**, and we will add the API Key token we created in Rancher:
 
 1. Click **ADD ACCOUNT**.
 1. Select which account type you want to create.
@@ -168,7 +168,7 @@ In this post, I demonstrated how you can define Kubernetes clusters in Rancher a
 
 ## Register for the webinar
 
-On March 24th, we're running a webinar **Deploying to a Rancher managed Kubernetes cluster with Octopus**. The webinar will go into more detail and provide practical demonstrations. 
+On Wednesday 24th March, we're running a webinar **Deploying to a Rancher managed Kubernetes cluster with Octopus**. The webinar will go into more detail and provide practical demonstrations. 
 
 Learn more or register for the [webinar](link-to-registration).
 
