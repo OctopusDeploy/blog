@@ -28,9 +28,9 @@ This update brings together two exciting features for Linux users that allow you
 - Self-host the Octopus Server on Linux. 
 - Run the Tentacle agent on ARM and ARM64 hardware. 
 
-We joined the [Linux Foundation](https://www.linuxfoundation.org/en/join/members/) in 2020, and we care deeply about making DevOps automation excellent on both Windows and Linux platforms. Octopus Cloud uses our Linux Docker image to power the deployments for thousands of customers. It's a stable and secure platform for all your deployment and runbook automation.
+We joined the [Linux Foundation](https://www.linuxfoundation.org/en/join/members/) in 2020, and we care deeply about making DevOps automation excellent on both Windows and Linux platforms. Octopus Cloud uses our Linux Docker image to power the deployments for thousands of customers. It's a stable and secure platform for all your deployment and runbook automation, and now it's available to self-hosted customers as well.
 
-This release also includes new Search and API key management features that benefit all users of Octopus Server.
+This release also includes new Global Search and API key management features that benefit all users of Octopus Server.
 
 ## Included in the Q1 release
 
@@ -42,6 +42,8 @@ This release also includes new Search and API key management features that benef
    - [Additional improvements and bug fixes](https://octopus.com/downloads/whatsnew/2020.6)
 - Tentacle 6.0.490
 - Octopus Server Docker Images: `latest` or `octopusdeploy/octopusdeploy:2020.6`
+
+## Long term support
 
 The following table shows the Octopus Server releases with long term support. 
 
@@ -81,7 +83,7 @@ We've introduced a search field to the Octopus Web Portal to help you:
 
 Global Search benefits all Octopus users. It helps first-time users gain confidence with Octopus and find what they need even when they don't know where to look, and it allows advanced users to navigate even faster than before.
 
-Please let us know what you think of the new Global Search, and how we can improve it.
+Please let us know what you think of the new Global Search and how we can improve it.
 
 You can also learn more by reading about the [issue on GitHub](https://github.com/OctopusDeploy/Issues/issues/6703).
 
@@ -95,7 +97,7 @@ The Octopus API is one of our most popular features, but we recognized an opport
 
 ![Octopus User Profile API Keys](my-api-keys.png "width=500")
 
-This update should make it easier to track who created a given API key.
+This update makes it easier to track who created a given API key.
 
 ### API key expiration ###
 
@@ -129,7 +131,7 @@ The new API key subscription events include:
 
 From now on, the first four characters of the API key are displayed in Octopus, including audit logs and the list of API keys for a given user. An example is `API-WXYZ••••••••`. This ensures API keys can be matched in the user interface.
 
-Note that this change applies only to new keys. Existing keys are already hashed so the first four characters are not available.
+Note that this change only applies to new keys. Existing keys are already hashed so the first four characters are not available.
 
 Learn [how to create an API key](https://octopus.com/docs/octopus-rest-api/how-to-create-an-api-key) in our documentation.
 
