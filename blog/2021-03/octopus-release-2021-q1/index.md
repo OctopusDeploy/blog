@@ -53,6 +53,10 @@ The following table shows the Octopus Server releases with long term support.
 | Octopus 2020.5        | Yes                         |
 | Octopus 2020.4        | Expired                     |
 
+## Release Tour
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/RlpyOqjQffo" frameborder="0" allowfullscreen></iframe>
+
 ## Octopus Server Linux Docker image {#octopus-server-linux-docker-image}
 
 Octopus Server Docker images allow you to self-host Octopus on a Linux operating system of your choice. They also make it easier to try Octopus for the first time, since a simple Docker Compose file is all you need to be up and running in minutes. 
