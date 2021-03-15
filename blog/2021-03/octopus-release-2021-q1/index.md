@@ -16,7 +16,12 @@ tags:
 
 We're pleased to announce our first release of 2021. This year we're shifting to a quarterly cadence, with four Octopus Server releases instead of six.
 
-The Q1 release includes Octopus Server 2020.6. In Q2 we will release 2021.1, followed by 2021.2 and 2021.3 in Q3 and Q4 respectively.
+This year's releases are:
+
+- Q1: Octopus Server 2020.6
+- Q2: Octopus Server 2021.1 
+- Q3: Octopus Server 2021.2
+- Q4: Octopus Server 2021.3
 
 This update brings together two exciting features for Linux users that allow you to:
 
@@ -96,7 +101,13 @@ This update should make it easier to track who created a given API key.
 
 The API key expiration date is optional and the default value is `Never`. Expiration is set during key creation and checked every time the key is used.
 
-When generating a new key you can select a time period such as 30, 60, 90 or 180 days, 1 or 2 years, or a custom date. The expiration date appears in the audit log as part of the API key creation event.
+When generating a new key you can select a time period such as:
+
+- 30, 60, 90 or 180 days.
+- 1 or 2 years.
+- A custom date. 
+
+The expiration date appears in the audit log as part of the API key creation event.
 
 ![Octopus Generate New API Key](generate-new-api-key.png "width=500")
 
