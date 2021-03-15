@@ -37,8 +37,6 @@ The similarities between deployment resources is easy to see using a diff tool:
 
 ![The difference between deployment resources](deployment-diff.png "width=500")
 
-*A diff of two microservice deployments. They share a common set of properties.*
-
 To remove the boilerplate code required to define a deployment and its associated service, we take advantage of a feature in Octopus called [step templates](https://octopus.com/docs/deployment-process/steps/custom-step-templates). The YAML below, which can be added to a **Deploy Kubernetes containers** step via the **Edit YAML** option in the deployment section, captures the fields used by most of the microservice applications in their deployments, with application specific values replaced with variables:
 
 ```yaml
@@ -123,27 +121,19 @@ During deployment, Octopus appends the string `-#{Octopus.Deployment.Id | ToLowe
 
 ![The step template with a deployment, service, and custom resource](step-template.png "width=500")
 
-*The step template with a deployment, service, and custom resource.*
-
 The variables injected into the secret take the form `GroupName[VariableName].VariableProperty`, for example, `EnvironmentVariables[REDIS_ADDR].Value`, `EnvironmentVariables[PORT].Value`, or `EnvironmentVariables[LISTEN_ADDR].Value`. These variables are expected to be defined by the project using the step template.
 
 The variables that make up the deployment are then exposed as parameters:
 
 ![The step template parameters](parameters.png "width=500")
 
-*The step template parameters.*
-
 The container image name is defined as a package, allowing the image version to be selected during release creation:
 
 ![The parameter that defines the Docker image to use for the container](server-image-parameter.png "width=500")
 
-*The parameter that defines the Docker image to use for the container.*
-
 This parameter is referenced in the container definition with the **Let the project select the package** option for the Docker image field:
 
 ![The definition of the container, allowing the Docker image to be selected by the project](container-image-parameter.png "width=500")
-
-*The definition of the container, allowing the Docker image to be selected by the project.*
 
 ## Deploying the template
 
@@ -151,19 +141,13 @@ With the template deployed, we now create those microservices that originally sh
 
 ![A microservice using the step template to define the deployed resources](deploy-template.png "width=500")
 
-*A microservice using the step template to define the deployed resources.*
-
 The environment variables are then defined using the group syntax noted above:
 
 ![The Octopus variables that will be used as environment variables](environment-variables.png "width=500")
 
-*The Octopus variables that will be used as environment variables.*
-
 For those microservices that don’t follow the standard template (for example, the frontend app and the redis database), we can simply copy the deployment and service YAML into the appropriate **Edit YAML** section, which will populate the UI for us:
 
 ![Editing raw YAML allows unique resources to quickly populate an Octopus step](edit-yaml.png "width=500")
-
-*Editing raw YAML allows unique resources to quickly populate an Octopus step.*
 
 ## Channel rules
 
@@ -174,8 +158,6 @@ We want our deployments to ignore this hash and instead allow the selection of t
 The rule defines a version range of `[0.0,1.0]`, which includes all the zero based point releases published by Google, and ignores the image tagged with a hash:
 
 ![Channel rules to select the desired tags](channel-rules.png "width=500")
-
-*Channel rules to select the desired tags.*
 
 Docker images with plain text tags, like `redis:alpine`, can also take advantage of channel rules. The tag `alpine` is considered to be the version `0.0.0-alpine`, which can be matched with the version rule `(,0.0)` and a pre-release regular expression of `^alpine$`.
 
@@ -190,8 +172,6 @@ The **Deploy a release** step treats an Octopus release as an artifact to be sel
 Here is an example of our meta-project used to deploy all microservices to a given environment:
 
 ![A meta-project deploying a number of child projects in a specific order](deploy-release.png "width=500")
-
-*A meta-project deploying a number of child projects in a specific order.*
 
 ## Conclusion
 
