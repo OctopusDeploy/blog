@@ -2,8 +2,8 @@
 title: Deploying a microservice to Kubernetes with Octopus
 description: Learn the features available in Octopus to streamline and manage Kubernetes deployments with an example microservices application stack.
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
+visibility: public 
+published: 2021-03-17-1400
 metaImage: blogimage-kubernetes.png
 bannerImage: blogimage-kubernetes.png
 tags:
@@ -15,7 +15,7 @@ tags:
 
 Microservices can be a powerful design pattern that allow large teams of developers to deliver code to production without requiring code to be coordinated in a single codebase and released on a common schedule. Deploying these microservices can be a challenge though, as the cost of orchestrating Kubernetes resources and promoting between environments is paid by each individual microservice.
 
-Octopus has a number of useful features to help streamline and manage microservice deployments. In this post and screencast, we’ll run through the process of deploying the sample microservice application created by Google called [Online Boutique](https://github.com/GoogleCloudPlatform/microservices-demo).
+Octopus has a number of useful features to help streamline and manage microservice deployments. In this post and screencast, we’ll run through the process of deploying the sample microservice application [Online Boutique](https://github.com/GoogleCloudPlatform/microservices-demo), which was created by Google.
 
 ## Screencast
 
@@ -23,7 +23,7 @@ Octopus has a number of useful features to help streamline and manage microservi
 
 ## Creating the deployment template
 
-If you look at the [YAML containing all the Kubernetes resource definitions](https://github.com/GoogleCloudPlatform/microservices-demo/blob/master/release/kubernetes-manifests.yaml), you will notice a pattern where each deployment is exposed by a matching service. Pairing deployments and services like this is a common practice in Kubernetes deployments, and this pattern is captured by the **Deploy Kubernetes containers** step in Octopus.
+If you look at the [YAML that contains all the Kubernetes resource definitions](https://github.com/GoogleCloudPlatform/microservices-demo/blob/master/release/kubernetes-manifests.yaml), you will notice a pattern where each deployment is exposed by a matching service. Pairing deployments and services like this is a common practice in Kubernetes deployments, and this pattern is captured by the **Deploy Kubernetes containers** step in Octopus.
 
 You will also notice that the deployment definitions are largely similar for the majority of the microservices. They all define:
 
@@ -82,9 +82,9 @@ spec:
 
 There are a few interesting aspects of this YAML to call out.
 
-The `if` syntax (for example `#{if ServiceTerminationGracePeriodSeconds}#{ServiceTerminationGracePeriodSeconds}#{/if}`) provides a way to return the variable value if it has been defined, or an empty string if the variable has not been defined. Octopus will ignore empty YAML properties where appropriate to avoid validation errors when deploying the final resource.
+The `if` syntax (for example `#{if ServiceTerminationGracePeriodSeconds}#{ServiceTerminationGracePeriodSeconds}#{/if}`) provides a way to return the variable value if it has been defined or an empty string if the variable has not been defined. Octopus will ignore empty YAML properties where appropriate to avoid validation errors when deploying the final resource.
 
-The list of individual environment variables has been replaced by `envFrom.secretRef`. This allows Kubernetes to inject environment variables based on the values saved in an external secret. The secret we reference here is called `mysecret-#{Octopus.Deployment.Id | ToLower}`, and will be created as a custom resource later in the step.
+The list of individual environment variables has been replaced by `envFrom.secretRef`. This allows Kubernetes to inject environment variables based on the values saved in an external secret. The secret we reference here is called `mysecret-#{Octopus.Deployment.Id | ToLower}` and will be created as a custom resource later in the step.
 
 Next, we have the service template. Unlike the deployment template, the service template is the same for all microservices. This YAML can also be added to the step via the **Edit YAML** option in the service section:
 
@@ -119,7 +119,7 @@ metadata:
 type: Opaque
 ```
 
-During deployment, Octopus appends the string `-#{Octopus.Deployment.Id | ToLower}` to the name of each custom resource. This ensures that each resource is immutable and tightly coupled to the deployment resource it is paired with. So the final name of this secret will be `mysecret-#{Octopus.Deployment.Id | ToLower}`. This matches the secret name from the deployment `envFrom.secretRef` property.
+During deployment, Octopus appends the string `-#{Octopus.Deployment.Id | ToLower}` to the name of each custom resource. This ensures that each resource is immutable and tightly coupled to the deployment resource it's paired with. The final name of this secret will be `mysecret-#{Octopus.Deployment.Id | ToLower}`. This matches the secret name from the deployment `envFrom.secretRef` property.
 
 ![The step template with a deployment, service, and custom resource](step-template.png "width=500")
 
@@ -135,18 +135,19 @@ The variables that make up the deployment are then exposed as parameters:
 
 The container image name is defined as a package, allowing the image version to be selected during release creation:
 
-![The parameter defining the Docker image to use for the container](server-image-parameter.png "width=500")
+![The parameter that defines the Docker image to use for the container](server-image-parameter.png "width=500")
 
-*The parameter defining the Docker image to use for the container.*
+*The parameter that defines the Docker image to use for the container.*
 
 This parameter is referenced in the container definition with the **Let the project select the package** option for the Docker image field:
 
 ![The definition of the container, allowing the Docker image to be selected by the project](container-image-parameter.png "width=500")
+
 *The definition of the container, allowing the Docker image to be selected by the project.*
 
 ## Deploying the template
 
-With the template deployed, we now create those microservices that originally shared a common deployment pattern. Since all the common boilerplate code has been abstracted away, all that is left is to populate the parameters defined by the step template:
+With the template deployed, we now create those microservices that originally shared a common deployment pattern. Since all the common boilerplate code has been abstracted away, all we need to do is populate the parameters defined by the step template:
 
 ![A microservice using the step template to define the deployed resources](deploy-template.png "width=500")
 
@@ -180,11 +181,11 @@ Docker images with plain text tags, like `redis:alpine`, can also take advantage
 
 ## Promoting an entire environment
 
-The entire microservice stack is made up of nearly a dozen individual services. These could be promoted from one environment to another individually, and indeed if the microservices are genuinely separate entities managed by different teams and released on their own individual timelines, then individually promoting the services may be desirable.
+The entire microservice stack is made up of nearly a dozen individual services. These could be promoted from one environment to another individually, and indeed if the microservices are genuinely separate entities managed by different teams and released on their own individual time lines, then individually promoting the services may be desirable.
 
 But there are cases where the microservices are still tightly coupled and must be released in a particular order or situations where it’s critical that the state of an environment be well known at any time. For this, Octopus offers the **Deploy a release** step. 
 
-The **Deploy a release** step treats an Octopus release as an artifact to be selected during the creation of a release of a kind of "meta-project". In our case, the meta-project contains a **Deploy a release** step for each microservice, allowing an entire microservice stack in one environment to be promoted to another environment in the correct sequence and with well known release versions. The ordering of the **Deploy a release** steps in the meta-project captures the dependencies of services on one another, and release managers could use the details of these meta-project releases to understand exactly which combination of applications was deployed at any given time.
+The **Deploy a release** step treats an Octopus release as an artifact to be selected during the creation of a release of a kind of _meta-project_. In our case, the meta-project contains a **Deploy a release** step for each microservice, allowing an entire microservice stack in one environment to be promoted to another environment in the correct sequence and with well known release versions. The ordering of the **Deploy a release** steps in the meta-project captures the dependencies of services on one another, and release managers could use the details of these meta-project releases to understand exactly which combination of applications was deployed at any given time.
 
 Here is an example of our meta-project used to deploy all microservices to a given environment:
 
@@ -201,6 +202,6 @@ In this demo, we took advantage of a number of Octopus features to deploy a micr
 * Channel rules allowed us to limit the available Docker image tags to a specific range.
 * The **Deploy a release** step allowed us to create a meta-project which deploys all the microservices in the correct order in a new environment.
 
-This meant that, once the initial templates were defined, we could define new microservice deployments quickly and reliably and populate whole environments with the deployment of a single meta-project.
+This meant that once the initial templates were defined, we could define new microservice deployments quickly and reliably and populate whole environments with the deployment of a single meta-project.
 
 Happy deployments!
