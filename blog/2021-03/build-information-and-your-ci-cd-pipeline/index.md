@@ -46,7 +46,7 @@ After the issue has been created, we need to take note of the `key` value, as we
 ![The Jira issue key](jira-issue-ops-1.png)
 
 
-### Connect a commit to issue
+### Connect a commit to an issue
 
 Connecting a commit to an issue can vary depending on the issue tracker you are using. For Jira, your commit message needs to use the following format:
 
