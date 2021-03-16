@@ -8,6 +8,7 @@ metaImage: blogimage-build-info.png
 bannerImage: blogimage-build-info.png
 tags:
  - DevOps
+ - Continuous Integration
 ---
 
 ![Octopus with build information](blogimage-build-info.png)
