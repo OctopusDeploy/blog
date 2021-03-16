@@ -171,7 +171,7 @@ Since each package was tagged with the build information, the message will look 
 Without the Release Notes template (or manually entered release notes), the `Octopus.Release.Notes` variable is empty.
 
 ### Octopus.Deployment.Changes
-Another method of accessing the build information is the `Octopus.Deployment.Changes` variable. Using a `Run a script` step, you could iterate through the changes, constructing a message and set an [Output Variable](https://octopus.com/docs/projects/variables/output-variables):
+Another method of accessing the build information is the `Octopus.Deployment.Changes` variable. Using a **Run a script** step, you could iterate through the changes, constructing a message and set an [Output Variable](https://octopus.com/docs/projects/variables/output-variables):
 
 ```PowerShell
 $changeListRaw = $OctopusParameters["Octopus.Deployment.Changes"]
@@ -212,7 +212,7 @@ foreach ($change in $changeList)
 Set-OctopusVariable -name "EmailBody" -value $emailBody
 ```
 
-Using something like a **Send an email** template, you could set the **Body** of the email to the value of the output variable.
+Using a **Send an email** template, you can set the **Body** of the email to the value of the output variable.
 
 ![An Octopus email step](octopus-send-email.png)
 
