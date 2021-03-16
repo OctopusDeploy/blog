@@ -91,7 +91,7 @@ Issuing a build, we can see our change has been picked up by the build server.
 
 ![TeamCity commit message](teamcity-build-commit-message.png)
 
-## Configure the Issue Tracking integration
+## Configure the issue tracking integration
 
 As mentioned, the issue tracking for build information will not work until you configure the corresponding integration in Octopus Deploy. For this demonstration, we need to configure the [Jira integration](https://octopus.com/docs/releases/issue-tracking/jira).  
 
