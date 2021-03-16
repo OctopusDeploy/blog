@@ -140,7 +140,7 @@ So far we've shown how the build information can be accessed via the Octopus Dep
 
 ### Project release notes template
 
-In the project's settings you can define a [release notes template](https://octopus.com/docs/releases/release-notes#Release-Notes-Templates). The template allows you to customize the display of the build information related to the packages. Here's an example template:
+In the project's settings, you can define a [release notes template](https://octopus.com/docs/releases/release-notes#Release-Notes-Templates). The template allows you to customize the display of the build information related to the packages. Here's an example template:
 
 ```
 #{each workItem in Octopus.Release.WorkItems}#{if Octopus.Template.Each.First == "True"}WorkItems:#{/if}
