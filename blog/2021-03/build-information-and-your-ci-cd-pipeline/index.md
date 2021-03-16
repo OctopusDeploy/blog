@@ -18,7 +18,7 @@ Continuous Integration (CI) typically involves three components:
 1. Issue tracking.
 1. A build server.  
 
-Tools such as Azure DevOps combine all components into a single solution whereas other configurations separate them, for instance, they might use GitHub for source control, TeamCity for build, and Jira for issue tracking. When it comes to Continuous Delivery (CD), commits and issue tracking are important to ensure the correct version of the software is deployed. With Octopus Deploy, you can include [build information](https://octopus.com/docs/packaging-applications/build-servers#build-information), such as commit and issues, as part of your release.  
+Tools such as Azure DevOps combine all components into a single solution whereas other configurations separate them. For instance, they might use GitHub for source control, TeamCity for build, and Jira for issue tracking. When it comes to Continuous Delivery (CD), commits and issue tracking are important to ensure the correct version of the software is deployed. With Octopus Deploy, you can include [build information](https://octopus.com/docs/packaging-applications/build-servers#build-information), such as commits and issues, as part of your release.  
 
 :::hint
 It's important to note that while commits will work in all cases, issue tracking will only function if you have one of the following integrations configured in Octopus Deploy:
@@ -33,8 +33,10 @@ In this post, I walk through configuring TeamCity and Octopus Deploy to include 
 ## Example scenario
 For this demonstration, I use the scenario described above: GitHub ([OctoPetShop](https://github.com/OctopusSamples/OctoPetShop)), TeamCity, and Jira. I address these specific technologies, but the overall process is similar regardless of which tools you use.
 
+This post assumes you already know how to create a project within Jira.
+
 ### Create an issue
-We'll start off by logging a bug in Jira for the OctoPetShop application. This post assumes you already know how to create a project within Jira.
+We'll start off by logging a bug in Jira for the OctoPetShop application. 
 
 ![The create an issue screen in Jira](jira-issue.png)
   
@@ -90,7 +92,7 @@ Issuing a build, we can see our change has been picked up by the build server.
 
 ## Configure the Issue Tracking integration
 
-As stated previously, the issue tracking for build information will not work until you configure the corresponding integration in Octopus Deploy. For this demonstration, we need to configure the [Jira integration](https://octopus.com/docs/releases/issue-tracking/jira).  
+As mentioned, the issue tracking for build information will not work until you configure the corresponding integration in Octopus Deploy. For this demonstration, we need to configure the [Jira integration](https://octopus.com/docs/releases/issue-tracking/jira).  
 
 1. Navigate to the **Configuration** tab in Octopus Deploy and click **Settings**.
 1. Click `Jira` and fill in the required information:
@@ -108,6 +110,7 @@ On this page, we can see the build information has been uploaded to Octopus Depl
 ![OctoPetShop build information](octopus-build-information.png)
 
 The build information contains:
+
 - Links to the build it came from.
 - The commits. 
 - The work items (issues) it was associated with.
@@ -136,7 +139,7 @@ So far we've shown how the build information can be accessed via the Octopus Dep
 
 ### Project release notes template
 
-In the settings of a project is a space where you can define a [release notes template](https://octopus.com/docs/releases/release-notes#Release-Notes-Templates). The template allows you to customize the display of the build information related to the packages. Here is an example template:
+In the settings of a project is a space where you can define a [release notes template](https://octopus.com/docs/releases/release-notes#Release-Notes-Templates). The template allows you to customize the display of the build information related to the packages. Here's an example template:
 
 ```
 #{each workItem in Octopus.Release.WorkItems}#{if Octopus.Template.Each.First == "True"}WorkItems:#{/if}
@@ -220,4 +223,4 @@ This will allow you to send an email to stakeholders informing them of the progr
 
 Including build information in Octopus Deploy can be an incredibly powerful communication tool. I hope this post demonstrates the different ways it can be used in your CI/CD pipeline.  
 
-Happy Deployments!
+Happy deployments!
