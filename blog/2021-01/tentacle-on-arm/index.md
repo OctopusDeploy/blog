@@ -53,7 +53,7 @@ Installing the Tentacle package is straightforward:
 
 ```bash
 sudo wget https://rpm.octopus.com/tentacle.repo -O /etc/yum.repos.d/tentacle.repo
-sudo install tentacle
+sudo yum install tentacle
 ```
 
 At the end of the installation, you will see the following message:
