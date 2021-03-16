@@ -22,7 +22,7 @@ The generated page is organized by API [resources](https://cloud.google.com/apis
 
 ![Swagger ApiKeys resource screenshot](find-apikey.png "width=500")
 
-The first row under ApiKeys: `POST /users/{userId}/apikeys` allows us to create a new API key for the specified user. API keys in Octopus are associated with an Octopus user, and the keys inherit the permissions assigned to the user to which they belong.
+The first row under ApiKeys: `POST /users/{userId}/apikeys` allows us to create a new API key for the specified user. API keys in Octopus are associated with an Octopus user, and the keys inherit the permissions assigned to that user.
 
 :::hint
 It's best practice when provisioning new API keys to set up [Octopus Service Accounts](https://octopus.com/docs/security/users-and-teams/service-accounts) dedicated for specific functions or integrations.
