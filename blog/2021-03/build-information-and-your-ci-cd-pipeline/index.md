@@ -164,7 +164,7 @@ With a template defined, the release notes are accessible during a deployment vi
 
 ![Slack notification step](octopus-process-slack.png)
 
-Since each package was tagged with the build information, the resulting message would look like this:
+Since each package was tagged with the build information, the message will look like this:
 
 ![Slack message](slack-message.png)
 
