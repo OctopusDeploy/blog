@@ -47,7 +47,7 @@ Links   : @{Self=/api/users/Users-561/apikeys/apikeys-I6D74k9rh7eyoqXDlqJCvlsVgU
 
 You might notice in this example, that we already have an API to create a new API key.
 
-## Create an API key when you don't already have one
+## Creating an API key when you don't already have one
 
 Imagine you're writing automation to provision your Octopus Server itself. You've written scripts using the [Octopus Deploy Chocolatey Package](https://chocolatey.org/packages/OctopusDeploy/), the [Octopus.Server.exe command line tool](https://octopus.com/docs/octopus-rest-api/octopus.server.exe-command-line), or even the new [Octopus Deploy Terraform Provider](https://octopus.com/blog/octopusdeploy-terraform-provider). You don't want to break off in the middle of your provisioning automation because you need to login to your Octopus Server, create an API key, then manually plug the key into the rest of your automation.
 
