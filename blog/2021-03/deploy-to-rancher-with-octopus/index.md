@@ -170,6 +170,6 @@ In this post, I demonstrated how you can define Kubernetes clusters in Rancher a
 
 On Wednesday 24th March, we're running a webinar **Deploying to a Rancher managed Kubernetes cluster with Octopus**. The webinar will go into more detail and provide practical demonstrations. 
 
-Learn more or register for the [webinar](link-to-registration).
+Learn more or register for the [webinar](https://octopus.zoom.us/webinar/register/2516158860964/WN_JiJmlUhHQsePnDl6nuOiXQ).
 
 Happy deployments!
