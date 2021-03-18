@@ -16,7 +16,7 @@ In this blog post, I walk through scripting the creation of an API key for use w
 
 TL;DR - Just want to see the final script? Check out [my GitHub gist](https://gist.github.com/pstephenson02/3cf2dc3b9d68db28722ad568c9eb49eb).
 
-## Swagger
+## The Swagger API docs
 
 The first place I go when I want to automate something using the Octopus API is the [Swagger](https://swagger.io/) docs. Each Octopus Server comes with a built-in route where all API documentation is published. Just add `/swaggerui` to the base URL path of your Octopus Server. 
 For example: https://samples.octopus.app/swaggerui
