@@ -51,7 +51,7 @@ You might notice in this example, that we already have an API to create a new AP
 
 Imagine you're writing automation to provision your Octopus Server itself. You've written scripts using the [Octopus Deploy Chocolatey Package](https://chocolatey.org/packages/OctopusDeploy/), the [Octopus.Server.exe command line tool](https://octopus.com/docs/octopus-rest-api/octopus.server.exe-command-line), or even the new [Octopus Deploy Terraform Provider](https://octopus.com/blog/octopusdeploy-terraform-provider). You don't want to break off in the middle of your provisioning automation because you need to login to your Octopus Server, create an API key, then manually plug the key into the rest of your automation.
 
-When we create new users in Octopus, those users don't have API keys, but the Octopus Web Portal lets us create the user is logged in. And if the browser can do it, then so can we. Here's what to do:
+When we create new users in Octopus, those users don't have API keys, but the Octopus Web Portal lets them create API keys when they log in. And if the browser can do it, then so can we. Here's what to do:
 
 1. Simulate the browser login with a username and password.
 2. Retrieve any necessary cookies sent back to us from Octopus Server.
