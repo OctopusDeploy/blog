@@ -61,7 +61,7 @@ When we first [install Octopus Server](https://octopus.com/docs/installation#ins
 
 ## Inspecting browser activity with Chrome DevTools
 
-We need to inspect what's happening in the browser when we log into our Octopus Web Portal. Let's use [Chrome's excellent built-in DevTools](https://developers.google.com/web/tools/chrome-devtools). 
+We need to inspect what's happening in the browser when we log into our Octopus Web Portal. Let's use [Chrome's built-in DevTools](https://developers.google.com/web/tools/chrome-devtools). 
 
 1. Navigate to your Octopus Web Portal login page.
 2. Either right click on the page and select `Inspect`, or use the hot keys `Ctrl-Shift-i` to open DevTools. 
