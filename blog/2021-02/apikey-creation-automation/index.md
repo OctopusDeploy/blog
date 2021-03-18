@@ -10,13 +10,16 @@ tags:
  - API
 ---
 
-Advanced users of Octopus will already be familiar with the robust, feature-rich [Octopus REST API](https://octopus.com/docs/octopus-rest-api). Maybe you've used it to automate a unique process that isn't available in the Octopus Web UI. Before you can interact with the API though, you need to create an Octopus [API key](https://octopus.com/docs/octopus-rest-api/how-to-create-an-api-key). These steps require a human though, and we know some of you would prefer to automate the process. In this blog post, I walk through scripting the creation of an API key for use with the Octopus REST API.
+Advanced users of Octopus will already be familiar with the robust, feature-rich [Octopus REST API](https://octopus.com/docs/octopus-rest-api). You may have used it to automate a unique process that isn't available in the Octopus Web UI, for example. Before you can interact with the API however, you need to create an Octopus [API key](https://octopus.com/docs/octopus-rest-api/how-to-create-an-api-key). These steps require a human though, and we know some of you would prefer to automate the process. 
+
+In this blog post, I walk through scripting the creation of an API key for use with the Octopus REST API.
 
 TL;DR - Just want to see the final script? Check out [my GitHub gist](https://gist.github.com/pstephenson02/3cf2dc3b9d68db28722ad568c9eb49eb).
 
 ## Swagger
 
-The first place I go when I want to automate something using the Octopus API is the [Swagger](https://swagger.io/) docs. Each Octopus Server comes with a built-in route where all API documentation is published. Just add `/swaggerui` to the base URL path of your Octopus Server. For example: https://samples.octopus.app/swaggerui
+The first place I go when I want to automate something using the Octopus API is the [Swagger](https://swagger.io/) docs. Each Octopus Server comes with a built-in route where all API documentation is published. Just add `/swaggerui` to the base URL path of your Octopus Server. 
+For example: https://samples.octopus.app/swaggerui
 
 The generated page is organized by API [resources](https://cloud.google.com/apis/design/resources), and there are many of them. Let's do a `CTRL-F` find for `apikey`:
 
@@ -42,13 +45,13 @@ Expires :
 Links   : @{Self=/api/users/Users-561/apikeys/apikeys-I6D74k9rh7eyoqXDlqJCvlsVgU}
 ```
 
-Easy right? Well, attentive readers might now be saying "But hold on Phil! I need an API key to create an API key?". You're absolutely right in this example. Let's see if we can get away without using one.
+Easy! But you might be wondering now if you need an API key to create an API key. In this example, you do. We can also get away without using one though.
 
-## Causality dilemma: The chicken or the egg?
+## Creating an API key without having one first
 
-Imagine you're writing automation to provision your Octopus Server itself. Perhaps you've written scripts using the [Octopus Deploy Chocolatey Package](https://chocolatey.org/packages/OctopusDeploy/), the [`Octopus.Server.exe` command line tool](https://octopus.com/docs/octopus-rest-api/octopus.server.exe-command-line), or even the new [Octopus Deploy Terraform Provider](https://octopus.com/blog/octopusdeploy-terraform-provider). You don't want a break in the middle of your provisioning automation when you're forced to login to your Octopus Server, create an API key, then manually plug that into the rest of your automation.
+Imagine you're writing automation to provision your Octopus Server itself. You've written scripts using the [Octopus Deploy Chocolatey Package](https://chocolatey.org/packages/OctopusDeploy/), the [`Octopus.Server.exe` command line tool](https://octopus.com/docs/octopus-rest-api/octopus.server.exe-command-line), or even the new [Octopus Deploy Terraform Provider](https://octopus.com/blog/octopusdeploy-terraform-provider). You don't want a break in the middle of your provisioning automation where you're forced to login to your Octopus Server, create an API key, then manually plug that into the rest of your automation.
 
-But is it possible to create an API key without having one first? When we create new users in Octopus, those users have no API keys yet but the Octopus Web Portal lets us create one when we're logged in. If the browser can do it, then so can we! Here's what we need to do:
+When we create new users in Octopus, those users have no API keys yet but the Octopus Web Portal lets us create one when we're logged in. And if the browser can do it, then so can we! Here's what to do:
 
 1. Simulate the browser login with a username and password.
 2. Retrieve any necessary cookies sent back to us from Octopus Server.
@@ -77,7 +80,7 @@ Scrolling to the bottom of the Headers page shows you the exact request body use
 
 ![Response headers screenshot](set-cookie.png "width=500")
 
-The Octopus Server sends back two `Set-Cookie` headers to the browser after logging in, which the browser then dutifully stores in its Cookie storage. Upon subsequent requests to the same domain the browser is programmed to send those cookies in the `Cookie` header. This is how the Octopus Server recognizes my unique session. 
+The Octopus Server sends back two `Set-Cookie` headers to the browser after logging in, which the browser then dutifully stores in its cookie storage. Upon subsequent requests to the same domain the browser is programmed to send those cookies in the `Cookie` header. This is how the Octopus Server recognizes my unique session. 
 
 Let's write some PowerShell to simulate part of that process:
 
@@ -108,7 +111,7 @@ $csrfToken = $session.Cookies.GetCookies($loginPath) | Where-Object { $_.Name.St
 $sessionToken = $session.Cookies.GetCookies($loginPath) | Where-Object { $_.Name.StartsWith('OctopusIdentificationToken') }
 ```
 
-Now, you could just throw these two tokens into the `Cookie` header and hope it works. But since we're using Chrome DevTools already, we can record a request made to generate an API key, and understand how the browser uses these values. 
+Now, you could just throw these two tokens into the `Cookie` header and hope it works. But since we're using Chrome DevTools already, we can record the request made to generate an API key, and understand how the browser uses these values. 
 
 Navigate to our profile page and then the `My API Keys` page. With our DevTools still open and recording, let's create an API key and look for the `apikeys` POST request shown in the screenshot below. Take a close look at the Request Headers:
 
@@ -163,10 +166,9 @@ Invoke-RestMethod -Method Post `
 
 Scripting the creation of API keys can be useful for new service users, provisioning your Octopus instance, or for use with the Octopus Terraform Provider.
 
-Using Chrome DevTools (or Firefox, Edge, or Safari equivalents) is a powerful way to see what's happening in the interactions between the Octopus front end Web Portal (a single page React app) and the Octopus REST API. Occasionally you may find that the Swagger documentation is just slightly off or doesn't have all the information you need and using the browser's tools can give you the definitive answer.
+Using Chrome DevTools (or Firefox, Edge, or Safari equivalents) is a powerful way to see what's happening in the interactions between the Octopus front end Web Portal (a single page React app) and the Octopus REST API. Occasionally you may find the Swagger documentation is just slightly off or doesn't have all the information you need and using the browser's tools can give you a definitive answer.
 
 Interested in learning more about the Octopus REST API? Check out our recent webinar:
+[Using the Octopus API to save time by automating repetitive tasks.](https://octopus.zoom.us/webinar/register/6016118341944/WN_ykrzzdSvRZOMWFojvxNguw)
 
-[Using the Octopus API to save time by automating repetitive tasks](https://octopus.zoom.us/webinar/register/6016118341944/WN_ykrzzdSvRZOMWFojvxNguw)
-
-Thanks for reading, and happy deployments!
+Happy deployments!
