@@ -59,7 +59,7 @@ When we create new users in Octopus, those users have no API keys yet but the Oc
 
 When we first [install Octopus Server](https://octopus.com/docs/installation#install-octopus), it asks us to create a `Local System Account` or `Custom Domain Account`. For simplicity, let's assume you have a Local System Account. You can also create one using the `Octopus.Server.exe` CLI's [`admin` command](https://octopus.com/docs/octopus-rest-api/octopus.server.exe-command-line/admin).
 
-## Chrome DevTools
+## Inspecting browser activity with Chrome DevTools
 
 We need to inspect what's happening in the browser when we log into our Octopus Web Portal. Let's use [Chrome's excellent built-in DevTools](https://developers.google.com/web/tools/chrome-devtools). 
 
