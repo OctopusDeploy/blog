@@ -10,18 +10,18 @@ tags:
  - API
 ---
 
-Advanced users of Octopus will already be familiar with the robust, feature-rich [Octopus REST API](https://octopus.com/docs/octopus-rest-api). You may have used it to automate a unique process that isn't available in the Octopus Web UI, for example. Before you can interact with the API however, you need to create an Octopus [API key](https://octopus.com/docs/octopus-rest-api/how-to-create-an-api-key). These steps require a human though, and we know some of you would prefer to automate the process. 
+Advanced users of Octopus will already be familiar with the robust, feature-rich [Octopus REST API](https://octopus.com/docs/octopus-rest-api). You may have used it to automate a unique process that isn't available in the Octopus Web Portal, for example. Before you can interact with the API however, you need to create an Octopus [API key](https://octopus.com/docs/octopus-rest-api/how-to-create-an-api-key). These steps require a human, but it's possible to automate the process. 
 
 In this blog post, I walk through scripting the creation of an API key for use with the Octopus REST API.
 
-TL;DR - Just want to see the final script? Check out [my GitHub gist](https://gist.github.com/pstephenson02/3cf2dc3b9d68db28722ad568c9eb49eb).
+The final script is available in a [GitHub gist](https://gist.github.com/pstephenson02/3cf2dc3b9d68db28722ad568c9eb49eb).
 
 ## The Swagger API docs
 
-The first place I go when I want to automate something using the Octopus API is the [Swagger](https://swagger.io/) docs. Each Octopus Server comes with a built-in route where all API documentation is published. Just add `/swaggerui` to the base URL path of your Octopus Server. 
-For example: https://samples.octopus.app/swaggerui
+The first place I go when I want to automate something with the Octopus API is the Swagger docs. Each Octopus Server comes with a built-in route where all API documentation is published. Just add `/swaggerui` to the base URL path of your Octopus Server. 
+For example: [samples.octopus.app/swaggerui](https://samples.octopus.app/swaggerui).
 
-The generated page is organized by API [resources](https://cloud.google.com/apis/design/resources), and there are many of them. Let's do a `CTRL-F` find for `apikey`:
+The generated page is organized by API [resources](https://cloud.google.com/apis/design/resources), and there are lots of them. Let's do a `CTRL-F` find for `apikey`:
 
 ![Swagger ApiKeys resource screenshot](find-apikey.png "width=500")
 
@@ -31,7 +31,7 @@ The first row under ApiKeys: `POST /users/{userId}/apikeys` allows us to create 
 It's best practice when provisioning new API keys to set up [Octopus Service Accounts](https://octopus.com/docs/security/users-and-teams/service-accounts) dedicated for specific functions or integrations.
 :::
 
-Let's assume we know our `{userId}` and use a quick one liner PowerShell cmdlet to create an API key:
+Let's assume we know our `{userId}` and use a quick one line PowerShell cmdlet to create an API key:
 
 ```pwsh
 > Invoke-RestMethod -Method Post -Uri https://samples.octopus.app/api/users/Users-561/apikeys -Headers @{'X-Octopus-ApiKey'='API-XXXX...'} -Body (@{'Purpose'='Just blogging'} | ConvertTo-Json)
@@ -45,42 +45,42 @@ Expires :
 Links   : @{Self=/api/users/Users-561/apikeys/apikeys-I6D74k9rh7eyoqXDlqJCvlsVgU}
 ```
 
-Easy! But you might be wondering now if you need an API key to create an API key. In this example, you do. We can also get away without using one though.
+You might notice in this example, that we already have an API to create a new API key.
 
-## Creating an API key without having one first
+## Create an API key when you don't already have one
 
-Imagine you're writing automation to provision your Octopus Server itself. You've written scripts using the [Octopus Deploy Chocolatey Package](https://chocolatey.org/packages/OctopusDeploy/), the [`Octopus.Server.exe` command line tool](https://octopus.com/docs/octopus-rest-api/octopus.server.exe-command-line), or even the new [Octopus Deploy Terraform Provider](https://octopus.com/blog/octopusdeploy-terraform-provider). You don't want a break in the middle of your provisioning automation where you're forced to login to your Octopus Server, create an API key, then manually plug that into the rest of your automation.
+Imagine you're writing automation to provision your Octopus Server itself. You've written scripts using the [Octopus Deploy Chocolatey Package](https://chocolatey.org/packages/OctopusDeploy/), the [Octopus.Server.exe command line tool](https://octopus.com/docs/octopus-rest-api/octopus.server.exe-command-line), or even the new [Octopus Deploy Terraform Provider](https://octopus.com/blog/octopusdeploy-terraform-provider). You don't want to break off in the middle of your provisioning automation because you need to login to your Octopus Server, create an API key, then manually plug the key into the rest of your automation.
 
-When we create new users in Octopus, those users have no API keys yet but the Octopus Web Portal lets us create one when we're logged in. And if the browser can do it, then so can we! Here's what to do:
+When we create new users in Octopus, those users don't have API keys, but the Octopus Web Portal lets us create the user is logged in. And if the browser can do it, then so can we. Here's what to do:
 
 1. Simulate the browser login with a username and password.
 2. Retrieve any necessary cookies sent back to us from Octopus Server.
 3. Use our cookies to make the same request the browser does when creating a user's first API key.
 
-When we first [install Octopus Server](https://octopus.com/docs/installation#install-octopus), it asks us to create a `Local System Account` or `Custom Domain Account`. For simplicity, let's assume you have a Local System Account. You can also create one using the `Octopus.Server.exe` CLI's [`admin` command](https://octopus.com/docs/octopus-rest-api/octopus.server.exe-command-line/admin).
+When we first [install Octopus Server](https://octopus.com/docs/installation#install-octopus), it asks us to create a _Local System Account_ or _Custom Domain Account_. For simplicity, let's assume you have a Local System Account. You can also create one using the **Octopus.Server.exe** CLI's [`admin` command](https://octopus.com/docs/octopus-rest-api/octopus.server.exe-command-line/admin).
 
 ## Inspecting browser activity with Chrome DevTools
 
 We need to inspect what's happening in the browser when we log into our Octopus Web Portal. Let's use [Chrome's built-in DevTools](https://developers.google.com/web/tools/chrome-devtools). 
 
 1. Navigate to your Octopus Web Portal login page.
-2. Either right click on the page and select `Inspect`, or use the hot keys `Ctrl-Shift-i` to open DevTools. 
-3. Select the `Network` tab shown in the screenshot.
-4. After entering your username and password, click `Sign In`.
+2. Either right click on the page and select **Inspect**, or use the hot keys **Ctrl-Shift-i** to open DevTools. 
+3. Select the **Network** tab shown in the screenshot.
+4. After entering your username and password, click **Sign In**.
 
 ![Chrome DevTools screenshot](chrome-devtools.png "width=500")
 
-In the DevTools window you should see Chrome recording the many requests occurring during login. These requests include necessary asset files (js, css, etc.), resource requests for initializing the Octopus Dashboard, and more. Scroll back up to the top of the sequence and look for the request labeled `login`:
+In the DevTools window you should see Chrome recording the many requests occurring during login. These requests include necessary asset files (js, css, etc.), resource requests for initializing the Octopus Dashboard, and more. Scroll back up to the top of the sequence and look for the request labeled **login**:
 
 ![Login Recorded screenshot](login-recorded.png "width=500")
 
-Click the `login` request. A window to the right of the requests list will appear showing you additional information. This window has its own set of tabs, where you need to select `Headers`. 
+Click the **login** request. A window to the right of the requests list will appear showing you additional information. This window has its own set of tabs, where you need to select **Headers**. 
 
-Scrolling to the bottom of the Headers page shows you the exact request body used. This will be important when we build our request in PowerShell. Inspecting the `Response headers` also gives us some important information:
+Scrolling to the bottom of the Headers page shows you the exact request body used. This will be important when we build our request in PowerShell. Inspecting the **Response headers** also gives us some important information:
 
 ![Response headers screenshot](set-cookie.png "width=500")
 
-The Octopus Server sends back two `Set-Cookie` headers to the browser after logging in, which the browser then dutifully stores in its cookie storage. Upon subsequent requests to the same domain the browser is programmed to send those cookies in the `Cookie` header. This is how the Octopus Server recognizes my unique session. 
+The Octopus Server sends back two **Set-Cookie** headers to the browser after logging in, which the browser then dutifully stores in its cookie storage. Upon subsequent requests to the same domain the browser is programmed to send those cookies in the **Cookie** header. This is how the Octopus Server recognizes my unique session. 
 
 Let's write some PowerShell to simulate part of that process:
 
@@ -100,7 +100,7 @@ $response = Invoke-WebRequest -Method Post `
 A few things to note here: 
 
 - We use the `Invoke-WebRequest` cmdlet here rather than `Invoke-RestRequest` because we need access to the response headers directly to get the cookies. 
-- The `-SessionVariable` parameter creates a variable `$session` of type [WebRequestSession](https://docs.microsoft.com/en-us/dotnet/api/microsoft.powershell.commands.webrequestsession?view=powershellsdk-7.0.0) which makes it very easy to get the cookies, as we'll see next. 
+- The `-SessionVariable` parameter creates a variable `$session` of type [WebRequestSession](https://docs.microsoft.com/en-us/dotnet/api/microsoft.powershell.commands.webrequestsession?view=powershellsdk-7.0.0) which makes it easy to get the cookies, as we'll see next. 
 - The response body contains the `User ID`, which we'll also need for the next request. 
 
 Let's store the variables we need:
@@ -111,9 +111,9 @@ $csrfToken = $session.Cookies.GetCookies($loginPath) | Where-Object { $_.Name.St
 $sessionToken = $session.Cookies.GetCookies($loginPath) | Where-Object { $_.Name.StartsWith('OctopusIdentificationToken') }
 ```
 
-Now, you could just throw these two tokens into the `Cookie` header and hope it works. But since we're using Chrome DevTools already, we can record the request made to generate an API key, and understand how the browser uses these values. 
+Now, you could add these two tokens to the `Cookie` header and hope it works. But since we're using Chrome DevTools already, we can record the request made to generate an API key, and understand how the browser uses these values. 
 
-Navigate to our profile page and then the `My API Keys` page. With our DevTools still open and recording, let's create an API key and look for the `apikeys` POST request shown in the screenshot below. Take a close look at the Request Headers:
+Navigate to your profile page and then the **My API Keys** page. With our DevTools still open and recording, let's create an API key and look for the `apikeys` POST request shown in the screenshot below. Take a close look at the Request Headers:
 
 ![API key generation headers screenshot](generate-apikey-recorded.png "width=500")
 
@@ -166,7 +166,7 @@ Invoke-RestMethod -Method Post `
 
 Scripting the creation of API keys can be useful for new service users, provisioning your Octopus instance, or for use with the Octopus Terraform Provider.
 
-Using Chrome DevTools (or Firefox, Edge, or Safari equivalents) is a powerful way to see what's happening in the interactions between the Octopus front end Web Portal (a single page React app) and the Octopus REST API. Occasionally you may find the Swagger documentation is just slightly off or doesn't have all the information you need and using the browser's tools can give you a definitive answer.
+Using Chrome DevTools (or the Firefox, Edge, or Safari equivalents) is a powerful way to see what's happening in the interactions between the Octopus front end Web Portal (a single page React app) and the Octopus REST API. Occasionally you may find the Swagger documentation is just slightly off or doesn't have all the information you need and using the browser's tools can give you a definitive answer.
 
 Interested in learning more about the Octopus REST API? Check out our recent webinar:
 [Using the Octopus API to save time by automating repetitive tasks.](https://octopus.zoom.us/webinar/register/6016118341944/WN_ykrzzdSvRZOMWFojvxNguw)
