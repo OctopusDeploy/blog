@@ -1,6 +1,6 @@
 ---
 title: "Scripting the creation of Octopus API keys"
-description: Using PowerShell to simulate Octopus login and API key creation.
+description: Learn how to script the creation of an API key for use with the Octopus REST API, and how to use browser developer tools to explore the Octopus API in action.
 author: phil.stephenson@octopus.com
 visibility: public
 published: 2999-01-01-1400
