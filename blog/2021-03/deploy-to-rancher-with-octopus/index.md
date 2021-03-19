@@ -100,7 +100,7 @@ After you click create, you will be shown the API Key information. Save this inf
 
 ### Rancher cluster endpoints
 
-As mentioned, you can proxy communication to your clusters through Rancher. Instead of connecting to the individual K8s API endpoints directly, you can use API endpoints within Rancher to issue commands. The format of the URL is: `https://<RancherUrl>/k8s/clusters/<ClusterId>`.
+You can proxy communication to your clusters through Rancher. Instead of connecting to the individual K8s API endpoints directly, you can use API endpoints within Rancher to issue commands. The format of the URL is: `https://<RancherUrl>/k8s/clusters/<ClusterId>`.
 
 A quick way to find the correct URL is to grab it from the provided Kubeconfig file information.  For each cluster you define, Rancher provides a `Kubeconfig file` that can be downloaded directly from the UI.  To find it, select the cluster you need from the Global dashboard, and click the **Kubeconfig File** button.
 
