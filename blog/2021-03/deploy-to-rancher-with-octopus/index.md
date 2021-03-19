@@ -44,7 +44,7 @@ Rancher can work with:
   - Azure Kubernetes Service (AKS)
   - Google Kubernetes Engine (GKE)
 
-For this post, I created two Kubernetes (K8s) clusters to demonstrate the versatility of using Rancher with Octopus deploy; one on-premises and one using a Cloud Kubernetes service.
+For this post, I created two Kubernetes (K8s) clusters to demonstrate the versatility of using Rancher with Octopus Deploy; one on-premises and one using a Cloud Kubernetes service.
 
 ### The first cluster
 
