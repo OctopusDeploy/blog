@@ -140,7 +140,7 @@ Select the radio button that corresponds with how you’ve chosen to connect to 
 
 This is where we use the URL we took from the *kubeconfig file* in Rancher.  For the first cluster, it was `https://rancher1/k8s/clusters/c-v4cbx`.  My cluster is using a self-signed certificate, so I selected **Skip TLS verification**.  
 
-Also, I created three namespaces for my cluster:
+I created three namespaces for my cluster:
 
 - development
 - test
