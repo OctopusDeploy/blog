@@ -127,7 +127,7 @@ With the prep work complete, you can now add your Rancher managed Kubernetes clu
 1. Click the **KUBERNETES CLUSTER** category.
 1. Then click **ADD** on the Kubernetes Cluster.
 
-The two most important parts of the Kubernetes deployment target form are going to be:
+The two most important parts of the Kubernetes deployment target form are:
 
 - Authentication
 - Kubernetes Details
