@@ -48,7 +48,7 @@ After the issue has been created, we need to take note of the `key` value, as we
 
 ### Connect a commit to an issue
 
-Connecting a commit to an issue can vary depending on the issue tracker you are using. For Jira, your commit message needs to use the following format:
+How you connect a commit to an issue varies depending on the issue tracker you are using. For Jira, your commit message needs to use the following format:
 
 ```
 git commit -m "[key-value] Commit message"
