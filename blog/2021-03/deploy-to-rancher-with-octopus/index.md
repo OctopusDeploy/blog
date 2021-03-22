@@ -77,7 +77,7 @@ For the second cluster, I chose to use the Cloud Kubernetes Service of GKE:
 The creation process for GKE is a bit different than for on-premises:  
 
 1. Create the [Google Service Account](https://cloud.google.com/iam/docs/service-accounts) with sufficient permissions to create the cluster resources. 
-2. Create a JSON Key for the service account, this is needed for Rancher to authenticate with Google.  
+2. Create a JSON key for the service account, as this is needed for Rancher to authenticate with Google.  
 3. Paste the JSON (or use the **Read from a file** button), and click **Next: Configure Nodes**.
 
 Unlike the on-premises setup, creating a cluster on GKE is automated.  Using the Service Account, Rancher connects to Google and provisions all the resources for you.
@@ -93,10 +93,10 @@ Before we can add our Rancher managed cluster, we must create a means of authent
 1. Log into Rancher, then click on your **Profile** in the upper right-hand corner.
 1. Select **API & Keys**.
 1. Click on **Add Key**.
-1. Give the API Key an expiration and a scope.  
+1. Give the API key an expiration and a scope.  
 1. Add a description so you know what this key will be used for, then click **Create**.
 
-After you click create, you will be shown the API Key information. Save this information, as you will not be able to retrieve it later.
+After you click create, you will be shown the API key information. Save this information, as you will not be able to retrieve it later.
 
 ### Rancher cluster endpoints
 
@@ -110,7 +110,7 @@ The next screen shows the Kubeconfig file which contains the specific URL we nee
 
 ### Add the account to Octopus Deploy
 
-For Octopus Deploy to deploy to the cluster, it needs credentials to log in with. In the Octopus Web Portal, navigate to the **Infrastructure** tab and click **Accounts**, and we will add the API Key token we created in Rancher:
+For Octopus Deploy to deploy to the cluster, it needs credentials to log in with. In the Octopus Web Portal, navigate to the **Infrastructure** tab and click **Accounts**, and we will add the API key token we created in Rancher:
 
 1. Click **ADD ACCOUNT**.
 1. Select which account type you want to create.
@@ -168,7 +168,7 @@ In this post, I demonstrated how you can define Kubernetes clusters in Rancher a
 
 ## Register for the webinar
 
-On Wednesday 24th March, we're running a webinar **Deploying to a Rancher managed Kubernetes cluster with Octopus**. The webinar will go into more detail and provide practical demonstrations. 
+On Wednesday 24th March, we're running a webinar [Deploying to a Rancher managed Kubernetes cluster with Octopus](https://octopus.zoom.us/webinar/register/2516158860964/WN_JiJmlUhHQsePnDl6nuOiXQ). The webinar will go into more detail and provide practical demonstrations. 
 
 Learn more or register for the [webinar](https://octopus.zoom.us/webinar/register/2516158860964/WN_JiJmlUhHQsePnDl6nuOiXQ).
 
