@@ -11,7 +11,7 @@ tags:
  - 
 ---
 
-An increasingly common question we receive is can I run an Octopus worker within a Kubernetes (K8s) cluster?  Using the [Tentacle image](https://hub.docker.com/r/octopusdeploy/tentacle), not only is this possible, but you can deploy it using Octopus itself!  In this post, I will demonstrate how to use Octopus Deploy to deploy Tentacle containers to be used as workers on an Octopus instance.
+An increasingly common question we receive is can I run an Octopus worker within a Kubernetes (K8s) cluster?  There are a couple of reasons why you would want to do this; create a dedicated worker for that cluster, or simply create a bunch of workers to use with Octopus Deploy.  Using the [Tentacle image](https://hub.docker.com/r/octopusdeploy/tentacle), not only is this possible, but you can deploy it using Octopus itself!  In this post, I will demonstrate the second scenario, deploying Tentacle containers to be used as workers on an Octopus instance.
 
 ## Create a worker pool
 The first thing we'll need to do is create a new worker pool for our container workers.  Navigate to the `Infrastructure` tab, select `Worker Pools`, then click **ADD WORKER POOL**.
