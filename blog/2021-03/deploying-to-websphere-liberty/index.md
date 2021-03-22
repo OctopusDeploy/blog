@@ -81,7 +81,7 @@ With this feature configured, define the following Project variables
 - //*:property[@name='url']/@value : JDBC connection string to MySQL
 
 ### Deploy
-With our process defined, we are now in a position to deploy our application to our server!  When the deployment is complete, you should see the follwoing output for the deployment of the PetClinic web application
+With our process defined, we are now in a position to deploy our application to our server!  When the deployment is complete, you should see the following output for the deployment of the PetClinic web application
 
 ![](octopus-deployment-complete.png)
 
