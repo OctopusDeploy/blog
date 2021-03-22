@@ -275,7 +275,7 @@ Deploying to the development environment, we can see that the `Structured Config
 If we navigate to [http://d-target-payara.centralus.cloudapp.azure.com:8080/petclinic/vets.html](http://d-target-payara.centralus.cloudapp.azure.com:8080/petclinic/vets.html), we can see the PetClinic application has been deployed and is pulling data.
 
 ## Conclusion
-Without a specific Step Template, it's easy to think that Octopus Deploy doesn't support Payara. I hope this post has demonstrated that it is indeed supported, and easy to deploy to.
+Without a specific step template, it's easy to think that Octopus Deploy doesn't support Payara. I hope this post has demonstrated that it is indeed supported, and easy to deploy to.
 
 :::hint
 Be sure to checkout the `Build a tutorial for your stack` feature located on our home page (towards the bottom) for more in-depth tutorials.
