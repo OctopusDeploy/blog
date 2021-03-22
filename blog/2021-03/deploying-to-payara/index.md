@@ -2,18 +2,21 @@
 title: Deploying to Payara
 description: Learn how to deploy to a Payara web server with Octopus Deploy.
 author: shawn.sesna@octopus.com
-visibility: private
-published: 2022-03-01-1400
+visibility: public
+published: 2021-03-31-1400
 metaImage: 
 bannerImage: 
 tags:
- - 
+ - DevOps
+ - Java
 ---
 
-Unlike the Microsoft world, there is a much larger selection of web servers for Java based applications.  Octopus Deploy has built-in support for both Tomcat and Wildfly (JBOSS), however, other server technologies are also supported without the need for a specific template.  In this post, I'll demonstrate how to deploy the Java application, PetClinic, to a [Payara](https://www.payara.fish/) web server.
+Unlike the Microsoft world, there's a much larger selection of web servers for Java based applications. Octopus Deploy has built-in support for both Tomcat and Wildfly (JBOSS), however other server technologies are also supported without the need for a specific template. In this post, I'll demonstrate how to deploy the Java application, PetClinic, to a [Payara](https://www.payara.fish/) web server.
 
 ## Infrastructure
-For this post, I set up a MySQL PaaS server in Azure to serve as my database back end and an Ubuntu VM for Payara.  Provisioning of these resources were automated by using a [Runbook](https://octopus.com/docs/runbooks) so they could easily be spun up and down (see our [Samples instance for details](https://samples.octopus.app/app#/Spaces-642)).  Though I chose a Linux operating system for running the web server, Payara will also run on Windows.  Below is the code for the Azure Resource Manager (ARM) template and the Bash automation script for installing the Octopus Tentacle and the Payara server.
+For this post, I set up a MySQL PaaS server in Azure to serve as my database back end, and an Ubuntu VM for Payara.  Provisioning of these resources was automated by using a [Runbook](https://octopus.com/docs/runbooks), so they could easily be spun up and down (see our [Samples instance for details](https://samples.octopus.app/app#/Spaces-642)). I chose a Linux operating system for running the web server, but Payara will also run on Windows.  
+
+Below is the code for the Azure Resource Manager (ARM) template and the Bash automation script for installing the Octopus Tentacle and the Payara server:
 
 <details>
 	<summary>MySQL PaaS template code</summary>
@@ -177,94 +180,105 @@ sudo /opt/payara5/bin/asadmin --user admin --passwordfile $PWD/password.txt enab
 
 
 ### Azure MySQL PaaS troubleshooting
-There were some gotchas I encountered while working with the PaaS MySQL server, I'll list them here with their solutions to save you from frustration :)
+There were some gotchas I encountered while working with the PaaS MySQL server. They're listed below along with my solutions, so you can avoid these issues.
 
 #### Firewall
-I used the Azure wizard to generate the ARM template for the MySQL PaaS server.  The wizard didn't contain any Security Group (firewall) options so when the server was provisioned, nothing could connect to it.  Using the Azure Command Line Interface (CLI), I opened the firewall to allow both Octopus Deploy workers and the Payara VM to talk to it.
+I used the Azure wizard to generate the ARM template for the MySQL PaaS server. The wizard didn't contain any Security Group (firewall) options, so when the server was provisioned, nothing could connect to it. Using the Azure Command Line Interface (CLI), I opened the firewall to allow both Octopus Deploy workers and the Payara VM to talk to it.
 
 ```
 az mysql server firewall-rule create --resource-group <your resource group> --server-name '<your server name>' --name AllowAllAzureIps --start-ip-address <start range> --end-ip-address <end range>
 ```
 
 #### You do not have the SUPER privilege and binary logging is enabled
-If the database deployment for your application includes any functions or stored procedures, you may run into the error `You do not have the SUPER privilege and binary logging is enabled`.  The PaaS version of MySQL will not allow you to create these types of objects until you turn on `log_bin_trust_function_creators`.
+If the database deployment for your application includes any functions or stored procedures, you may run into the error `You do not have the SUPER privilege and binary logging is enabled`. The PaaS version of MySQL will not allow you to create these types of objects until you turn on `log_bin_trust_function_creators`.
 
 ```
 az mysql server configuration set --resource-group <your resource group> --server-name "<your server name>" --name log_bin_trust_function_creators --value "ON"
 ```
 
 #### Additional JDBC querystring parameters
-Once I deployed the .war to Payara, I found that there were a couple of additional querystring parameters to get the application to connect to the database.
+Once I deployed the .war to Payara, there were a couple of additional querystring parameters to get the application to connect to the database.
 
 ```
 ?useSSL=true&serverTimezone=UTC
 ```
 
 #### Username 
-The Azure MySQL PaaS requires the username also contain the hostname, so the username looks like this
+The Azure MySQL PaaS requires that the username also contain the hostname, so the username looks like this:
 
 ```
 username@hostname
 ```
 
 ## Octopus Deploy
-This post assumes you are familiar with creating projects within Octopus Deploy, so we'll skip that part.  
+This post assumes you're familiar with creating projects within Octopus Deploy, so we'll skip that step.  
 
 ### Process
-The PetClinic application is a spring boot Java application using a MySQL backend.  To deploy the application, my process consisted of the following:
-- Create database if not exists
-- Deploy database using [Flyway](https://flywaydb.org/)
-- Deploy PetClinic application to Payara
+The PetClinic application is a spring boot Java application using a MySQL backend. To deploy the application:
 
-The focus of this post is around Payara specifically, we'll focus on that step.
+1. Create the database if it does't exist.
+1. Deploy the database using [Flyway](https://flywaydb.org/).
+1. Deploy PetClinic application to Payara.
+
+This post is specifically about Payara, so we'll focus on that step.
 
 #### Deploying to Payara
-As previously stated, Octopus Deploy contains specific templates for deploying to Tomcat and Wildfly.  Payara, however, contains an autodeploy feature which makes creating Payara template unecessary.  By placing the .war file in a specific folder, Payara will automatically deploy the application to the server.
+As mentioned, Octopus Deploy contains specific templates for deploying to Tomcat and Wildfly. Payara, however, contains an autodeploy feature which makes creating a Payara template unnecessary. By placing the .war file in a specific folder, Payara automatically deploys the application to the server.
 
 ##### Add Deploy Java Archive step
-Within your Octopus Deploy project, add a Deploy a Java Archive step to your process
+Within your Octopus Deploy project, add a Deploy a Java Archive step to your process.
 
 ![](octopus-deploy-java-archive.png)
 
 ##### Configure Deploy Java Archive step
-Under `Package Details`, ensure the `Deployment` section is expanded (it should be by default on a newly added step)
+Under `Package Details`, ensure the `Deployment` section is expanded (it should be by default on a newly added step).
 
-If you want the package to be renamed to something more friendly, use the `Deployed package file name` to specify something else.  The name of the file affects the url for the application.  If `Deployed package file name` is left blank it will use the original file name, so the url on the Payara server would be something like http://PayaraServer/petclinic.web.1.0.21022.194744.  In my case, I wanted something more friendly so I entered `petclinic.war` so my url looks like http://PayaraServer/petclinic.
+To rename the package to be more user-friendly, use the `Deployed package file name` to specify a new name. Note that the name of the file affects the URL for the application. 
 
-To take advantage of the autodeploy feature of Payara, we also need to tick the box `Use custom deployment directory`.  The autodeploy folder is located in a subfolder of the domain.  If you've reviewed the Tentacle and Payara automation script, you'll note that I installed Payara to `/opt/payara5`, so the full path for autodeploy is `/opt/payara5/glassfish/domains/domain1/autodeploy`
+If `Deployed package file name` is left blank it will use the original file name, so the URL on the Payara server would be something like http://PayaraServer/petclinic.web.1.0.21022.194744. 
+
+I entered `petclinic.war` so my URL looked like http://PayaraServer/petclinic.
+
+To take advantage of the autodeploy feature of Payara, tick the box `Use custom deployment directory`.  The autodeploy folder is located in a subfolder of the domain. If you've reviewed the Tentacle and Payara automation script, you'll note that I installed Payara to `/opt/payara5`, so the full path for autodeploy is `/opt/payara5/glassfish/domains/domain1/autodeploy`.
 
 ![](octopus-deploy-section.png)
 
-I also needed to enable the [Structured configuration variables](https://octopus.com/docs/projects/steps/configuration-features/structured-configuration-variables-feature) feature to update the database connection information.  To do this, I clicked on **CONFIGURE FEATURES** button and tick the `Structured Configuration Variables` box
+I also enabled the [Structured configuration variables](https://octopus.com/docs/projects/steps/configuration-features/structured-configuration-variables-feature) feature to update the database connection information. To do this: 
+
+1. Click on the **CONFIGURE FEATURES** button.
+1. Tick the `Structured Configuration Variables` box.
 
 ![](octopus-structured-configuration-variables.png)
 
-The file that contains the database information is `WEB-INF/classes/spring/datasource-config.xml`
+The file containing the database information is `WEB-INF/classes/spring/datasource-config.xml`
 
 ![](octopus-structured-configuration-variables-folder.png)
 
 ##### Configure variables
-The last part is to create the project variables for the datasource-config.xml file.  I needed to replace three components
-- Url
+Finally, create the project variables for the datasource-config.xml file.  I needed to replace three components:
+
+- URL
 - Username
 - Password
 
-I used the following for my variables
+I used the following for my variables:
 
 ![](octopus-variables.png)
 
-The `Name` of the variables are XPath expressions to replace the components necessary.
+The `Name` of the variables are XPath expressions, to replace the necessary components.
 
 ### Deployment
-Deploying to the Development environment, we can see that the `Structured Configuration Variable` feature was applied and then the file copied to the `/opt/payara5/glassfish/domains/domain1/autodeploy`
+Deploying to the development environment, we can see that the `Structured Configuration Variable` feature was applied and then the file copied to the `/opt/payara5/glassfish/domains/domain1/autodeploy`.
 
 ![](octopus-deploy-complete.png)
 
-If we navigate to [http://d-target-payara.centralus.cloudapp.azure.com:8080/petclinic/vets.html](http://d-target-payara.centralus.cloudapp.azure.com:8080/petclinic/vets.html), we can see the PetClinic application has been deployed and pulling data!
+If we navigate to [http://d-target-payara.centralus.cloudapp.azure.com:8080/petclinic/vets.html](http://d-target-payara.centralus.cloudapp.azure.com:8080/petclinic/vets.html), we can see the PetClinic application has been deployed and is pulling data.
 
 ## Conclusion
-Without a specific Step Template, it is easy to think that Octopus Deploy doesn't support Payara.  I hope this post has demonstrated that it is indeed supported and relatively easy to do.
+Without a specific Step Template, it's easy to think that Octopus Deploy doesn't support Payara. I hope this post has demonstrated that it is indeed supported, and easy to deploy to.
 
 :::hint
-Be sure to checkout the `Build a tutorial for your stack` feature located on our home page towards the bottom for more in-depth tutorials.
+Be sure to checkout the `Build a tutorial for your stack` feature located on our home page (towards the bottom) for more in-depth tutorials.
 :::
+
+Happy deployments!
