@@ -9,6 +9,7 @@ bannerImage: testing-terraform.png
 tags:
  - DevOps
  - Terraform
+ - Testing
 ---
 
 ![Testing Terraform code](testing-terraform.png)

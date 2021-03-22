@@ -8,6 +8,7 @@ metaImage: running-tests.png
 bannerImage: running-tests.png
 tags:
  - DevOps
+ - Testing
 ---
 
 ![Considerations for browser UI testing](running-tests.png)

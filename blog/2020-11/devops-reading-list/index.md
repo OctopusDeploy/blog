@@ -59,7 +59,7 @@ Caveats aside, now it’s time for you to answer the questions for yourself and 
   </p>
 </div>
 
-If you want clarification on the highlighted the questions in the decision tree above, you’ll find more guidance below. If you do not need any clarification, skip to my summaries of [The Books](#the-books).
+If you want clarification on the highlighted questions in the decision tree above, you’ll find more guidance below. If you do not need any clarification, skip to my summaries of [The Books](#the-books).
 
 ## Clarifications on the loaded questions
 
