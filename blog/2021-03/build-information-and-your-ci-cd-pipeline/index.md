@@ -19,7 +19,7 @@ Continuous Integration (CI) typically involves three components:
 1. Issue tracking
 1. A build server
 
-Tools such as Azure DevOps combine all components into a single solution whereas other configurations separate them. For instance, they might use GitHub for source control, TeamCity for build, and Jira for issue tracking. When it comes to Continuous Delivery (CD), commits and issue tracking are important to ensure the correct version of the software is deployed. With Octopus Deploy, you can include [build information](https://octopus.com/docs/packaging-applications/build-servers#build-information), such as commits and issues, as part of your release.  
+Tools such as Azure DevOps combine all components into a single solution whereas other configurations separate them. For instance, some tools might use GitHub for source control, TeamCity for build, and Jira for issue tracking. When it comes to Continuous Delivery (CD), commits and issue tracking are important to ensure the correct version of the software is deployed. With Octopus Deploy, you can include [build information](https://octopus.com/docs/packaging-applications/build-servers#build-information), such as commits and issues, as part of your release.  
 
 :::hint
 It's important to note that while commits will work in all cases, issue tracking will only function if you have one of the following integrations configured in Octopus Deploy:
