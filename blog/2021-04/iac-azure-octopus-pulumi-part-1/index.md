@@ -190,7 +190,7 @@ The webinar will go into more detail and provide practical demonstrations.
 
 Learn more and register for the webinar at one of the following times:
 
-- [Wednesday 7 April 2021, 10pm GMT](https://octopus.zoom.us/webinar/register/3316043355267/WN_dbVsyT1DSYGfp8IhdNnNtw).
+- [Wednesday 7 April 2021, 8am AEST / 3pm US Pacific](https://octopus.zoom.us/webinar/register/3316043355267/WN_dbVsyT1DSYGfp8IhdNnNtw).
 - [Thursday 8 April 2021, 2pm GMT](https://octopus.zoom.us/webinar/register/8016154691421/WN_zcUrb-L2TKOIg-IXeaaVdA).
 
 Happy deployments!
