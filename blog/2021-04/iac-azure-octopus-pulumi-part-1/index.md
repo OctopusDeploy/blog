@@ -31,7 +31,7 @@ To follow along with this post, you'll need:
 
 Pulumi is a multi-language cloud development platform that lets you use programming languages (e.g. Go, C#, Python, TypeScript, JavaScript, F#, VB) to build cloud services. Whether you want to build virtual machines, networks, serverless implementations, or anything else, Pulumi can help.
 
-For each language that Pulumi supports, there's an SDK available that you can use to interact with different cloud services. For example, you can use the Azure SDK to create a resource group.
+For each language Pulumi supports, there's an SDK available that you can use to interact with different cloud services. For example, you can use the Azure SDK to create a resource group.
 
 With Octopus Deploy, you can use community steps to run Pulumi projects on both Windows and Linux servers. This should cover any environment you need to work with.
 
@@ -70,17 +70,17 @@ Now that you've create the Pulumi project and it's available on your local machi
 
 The project includes:
 
-- A `go.mod` file, which specifies the required packages. 
-- `yaml` configurations files that specify the project and the project name. 
-- The `main.go` file, which already includes Go code. 
+- A go.mod file, which specifies the required packages. 
+- YAML configurations files that specify the project and the project name. 
+- The main.go file, which already includes Go code. 
 
 With every Pulumi project, you'll see starter code by default that shows you which SDKs and packages are used.
 
 ### Azure example
 
-Instead of using the default code in the `main.go` file, let's create something from scratch.
+Instead of using the default code in the main.go file, let's create something from scratch.
 
-The first thing to specify is the package name and the imports. Since the code is from `main`, the package that you're using will be `main` as well.
+The first thing to specify is the package name and the imports. Since the code is from `main`, the package you're using will be `main` as well.
 
 From the standard library, `fmt` and `log` will be used to print output to the screen. The two Pulumi packages are for the Azure SDK and the Pulumi SDK:
 
@@ -137,7 +137,7 @@ func main() {
 ```
 The `main` function executes the `newResourceGroup()` function and passes in some parameters at runtime. There's also an empty initialization of the Pulumi context, as that's one of the parameters needed in `newResourceGroup()`. 
 
-The finished code looks like the following code snippet: 
+The finished code snippet looks like this: 
 
 ```go
 package main
@@ -178,7 +178,7 @@ func newResourceGroup(ctx *pulumi.Context, resourceGroupName string, location st
 
 ## Conclusion
 
-There are a lot of initial steps to configuring Pulumi, but as you can see, it's very powerful. You can take the programming language you enjoy using and create the infrastructure or services you need in an environment.
+There are multiple steps to configure Pulumi initially, but as you can see, it's very powerful. You can take the programming language you enjoy using and create the infrastructure or services you need in an environment.
 
 In [part two](/blog/2020-12/iac-azure-octopus-pulumi-part-2/index.md), I'll show you how to package the Go code and deploy it with Octopus Deploy.
 
