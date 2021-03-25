@@ -25,7 +25,7 @@ There are different scenarios that can be used to build and package an applicati
 - Zipping up a package.
 - Plus many others.
 
-For this blog post, we're using GitHub, which covers a free and common scenario.
+For this post, we're using GitHub, which covers a free and common scenario.
 
 ### Creating a GitHub Repo
 
@@ -52,7 +52,7 @@ For Octopus Deploy to pull in the external feed from GitHub, the GitHub repo nee
 
 ![](images/3.png)
 
-2. Give the release a name and a version number. 
+2. Give the release a name and version number. 
 2. Click **Publish release**. This will create a release.
 
 ## Configuring an Octopus project for Pulumi
@@ -80,8 +80,8 @@ You don't have to add any credentials as the repo is public.
 
 For the Pulumi step template to deploy to Azure, it needs authentication for Azure. Allow this by using a project variable of type **Azure Account**.
 
-1. Navigate to the project you created and under **Variables**, and click **Project**.
-2. Create a new variable of account type **Azure Account**. Ensure that the variable name is **Azure** because the step template searches the project variables for a variable name of **Azure**.
+1. Navigate to the project you created and under **Variables**, click **Project**.
+2. Create a new variable of account type **Azure Account**. Ensure the variable name is **Azure** because the step template searches the project variables with a variable name of **Azure**.
 3. Select the Azure account that has access to deploy resources.
 4. Save the variable.
 
@@ -89,9 +89,9 @@ For the Pulumi step template to deploy to Azure, it needs authentication for Azu
 
 1. From your project select **Process** and click **ADD STEP**.
 1. Select **Package** and then select **Deploy a Package**. 
-1. Click **CONFIGURE FEATURES**, select **Custom Installation Directory**.
+1. Click **CONFIGURE FEATURES**, and select **Custom Installation Directory**.
 1. Uncheck **.NET Configuration Variables** and **.NET Configuration Transforms** and click **OK**.
-1. Specify the name, target roles, and package details. Ensure that the package details are pointing to the GitHub feed and the repo where you stored the Pulumi Azure project.
+1. Specify the name, target roles, and package details. Ensure the package details are pointing to the GitHub feed and the repo where you stored the Pulumi Azure project.
 1. For the custom installation directory, choose where the Pulumi Azure code will reside. This is also where the Pulumi step will look to create the Azure resource group.
 1. Save the step.
 
@@ -102,7 +102,7 @@ For the Pulumi step template to deploy to Azure, it needs authentication for Azu
 1. Specify the name and target roles. 
 1. Add the parameters for the Run Pulumi (Linux) step template:
    - **Stack Name**: The full name of the project in Pulumi using the following format: `OrganizationName/ProjectName/StackName`. For example, mine is `AdminTurnedDevOps/azure-go-new-resource-group/dev`. You can find the information for your stack name in the Pulumi portal.
-   - **Create Stack**: This option is only needed if you create a stack. Because a stack already exists, you can ignore this option.
+   - **Create Stack**: You can ignore this option, because a stack already exists.
    - **Command**: Pulumi has several commands, but you just need `pulumi up`. You don't have to type the full command, just type `up`.
    - **Command Args**: The command arg `--yes` is required. When you run Pulumi, for example, from the command-line, there's an option to create a resource. The two options are `yes` or `no`. Because we don't have those pop-ups in the step template, we use the `--yes` flag.
    - **Pulumi Access Token**: This is an API key you can generate in the Pulumi portal under settings.
@@ -120,8 +120,10 @@ Now it's time to create a new release and run the continuous deployment process 
 3. Deploy to the environment of your choosing, by clicking **DEPLOY TO** and selecting the environment. 
 4. Click **DEPLOY**.
 
-You have successfully created an Azure Resource Group using Octopus Deploy and Pulumi.
+You have now successfully created an Azure Resource Group using Octopus Deploy and Pulumi.
 
 ## Conclusion
 
-Combining tools like Octopus Deploy and Pulumi allow you to automate an entire workflow from start to finish so you don't have to worry about manual processes anymore.
+Combining tools like Octopus Deploy and Pulumi allows you to automate an entire workflow from start to finish, without manual processes.
+
+Happy deployments!
