@@ -126,4 +126,15 @@ You have now successfully created an Azure Resource Group using Octopus Deploy a
 
 Combining tools like Octopus Deploy and Pulumi allows you to automate an entire workflow from start to finish, without manual processes.
 
+## Register for the webinar
+
+We're running a webinar **Modern DevOps Automation with Octopus Deploy and Pulumi**. 
+
+The webinar will go into more detail and provide practical demonstrations.
+
+Learn more and register for the webinar at one of the following times:
+
+- [Tuesday 6 April 2021, 03:00 PM PST / Wednesday 7 April 2021, 08:00 AM AEST](https://octopus.zoom.us/webinar/register/3316043355267/WN_dbVsyT1DSYGfp8IhdNnNtw).
+- [Thursday 8 April 2021, 02:00 PM GMT](https://octopus.zoom.us/webinar/register/8016154691421/WN_zcUrb-L2TKOIg-IXeaaVdA).
+
 Happy deployments!
