@@ -4,12 +4,14 @@ description: Learn how to deploy to a Payara web server with Octopus Deploy.
 author: shawn.sesna@octopus.com
 visibility: public
 published: 2021-03-31-1400
-metaImage: 
-bannerImage: 
+metaImage: blogimage-deploying-to-payara-2021.png
+bannerImage: blogimage-deploying-to-payara-2021.png
 tags:
  - DevOps
  - Java
 ---
+
+![Payara logo on web servers, and Octopus and Payara fish playing in same fish bowl.](blogimage-deploying-to-payara-2021.png)
 
 When you're developing apps in Java, you have a larger selection of web servers you can deploy to. Octopus Deploy has built-in support for both Tomcat and Wildfly (JBoss), however, other server technologies are also supported. 
 
