@@ -3,12 +3,16 @@ title: "Scripting the creation of Octopus API keys"
 description: Learn how to script the creation of an API key for use with the Octopus REST API, and how to use browser developer tools to explore the Octopus API in action.
 author: phil.stephenson@octopus.com
 visibility: public
-published: 2999-01-01-1400
+published: 2021-03-29-1400
+metaImage: blogimage-scripting-api-key-creation-2021.png
+bannerImage: blogimage-scripting-api-key-creation-2021.png
 tags:
  - DevOps
  - PowerShell
  - API
 ---
+
+![Octopus keyring](blogimage-scripting-api-key-creation-2021.png)
 
 Advanced users of Octopus will already be familiar with the robust, feature-rich [Octopus REST API](https://octopus.com/docs/octopus-rest-api). You may have used it to automate a unique process that isn't available in the Octopus Web Portal, for example. Before you can interact with the API however, you need to create an Octopus [API key](https://octopus.com/docs/octopus-rest-api/how-to-create-an-api-key). These steps require a human, but it's possible to automate the process. 
 
