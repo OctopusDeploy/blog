@@ -14,7 +14,7 @@ tags:
 
 ![Octopus keyring](blogimage-scripting-api-key-creation-2021.png)
 
-Advanced users of Octopus will already be familiar with the robust, feature-rich [Octopus REST API](https://octopus.com/docs/octopus-rest-api). You may have used it to automate a unique process that isn't available in the Octopus Web Portal, for example. Before you can interact with the API however, you need to create an Octopus [API key](https://octopus.com/docs/octopus-rest-api/how-to-create-an-api-key). These steps require a human, but it's possible to automate the process. 
+Advanced users of Octopus will already be familiar with the robust [Octopus REST API](https://octopus.com/docs/octopus-rest-api). Octopus is designed API first, so anything you can do in the Octopus Web Portal, you can do with the API. Before you can interact with the API however, you need to create an Octopus [API key](https://octopus.com/docs/octopus-rest-api/how-to-create-an-api-key). These steps require a human, but it's possible to automate the process. 
 
 In this blog post, I walk through scripting the creation of an API key for use with the Octopus REST API.
 
@@ -25,14 +25,14 @@ The final script is available in a [GitHub gist](https://gist.github.com/pstephe
 The first place I go when I want to automate something with the Octopus API is the Swagger docs. Each Octopus Server comes with a built-in route where all API documentation is published. Just add `/swaggerui` to the base URL path of your Octopus Server. 
 For example: [samples.octopus.app/swaggerui](https://samples.octopus.app/swaggerui).
 
-The generated page is organized by API [resources](https://cloud.google.com/apis/design/resources), and there are lots of them. Let's do a `CTRL-F` find for `apikey`:
+The generated page is organized by API [resources](https://cloud.google.com/apis/design/resources), and there are lots of them. Let's do a `CTRL-F` to find `apikey`:
 
 ![Swagger ApiKeys resource screenshot](find-apikey.png "width=500")
 
-The first row under ApiKeys: `POST /users/{userId}/apikeys` allows us to create a new API key for the specified user. API keys in Octopus are associated with an Octopus user, and the keys inherit the permissions assigned to that user.
+The first row under ApiKeys: `POST /users/{userId}/apikeys` allows us to create a new API key for the specified user. Because API keys in Octopus are associated with an Octopus user, the keys inherit the permissions assigned to that user.
 
 :::hint
-It's best practice when provisioning new API keys to set up [Octopus Service Accounts](https://octopus.com/docs/security/users-and-teams/service-accounts) dedicated for specific functions or integrations.
+It's best practice when provisioning new API keys to set up [Octopus Service Accounts](https://octopus.com/docs/security/users-and-teams/service-accounts) dedicated to specific functions or integrations.
 :::
 
 Let's assume we know our `{userId}` and use a quick one line PowerShell cmdlet to create an API key:
@@ -53,15 +53,15 @@ You might notice in this example, that we already have an API to create a new AP
 
 ## Creating an API key when you don't already have one
 
-Imagine you're writing automation to provision your Octopus Server itself. You've written scripts using the [Octopus Deploy Chocolatey Package](https://chocolatey.org/packages/OctopusDeploy/), the [Octopus.Server.exe command line tool](https://octopus.com/docs/octopus-rest-api/octopus.server.exe-command-line), or even the new [Octopus Deploy Terraform Provider](https://octopus.com/blog/octopusdeploy-terraform-provider). You don't want to break off in the middle of your provisioning automation because you need to login to your Octopus Server, create an API key, then manually plug the key into the rest of your automation.
+Imagine you're writing automation to provision the Octopus Server itself. You've written scripts using the [Octopus Deploy Chocolatey Package](https://chocolatey.org/packages/OctopusDeploy/), the [Octopus.Server.exe command-line tool](https://octopus.com/docs/octopus-rest-api/octopus.server.exe-command-line), or even the new [Octopus Deploy Terraform Provider](https://octopus.com/blog/octopusdeploy-terraform-provider). You don't want to break off in the middle of your provisioning automation because you need to log in to your Octopus Server, create an API key, then manually plug the key into the rest of your automation.
 
 When we create new users in Octopus, those users don't have API keys, but the Octopus Web Portal lets them create API keys when they log in. And if the browser can do it, then so can we. Here's what to do:
 
 1. Simulate the browser login with a username and password.
-2. Retrieve any necessary cookies sent back to us from Octopus Server.
+2. Retrieve any necessary cookies sent back to us from the Octopus Server.
 3. Use our cookies to make the same request the browser does when creating a user's first API key.
 
-When we first [install Octopus Server](https://octopus.com/docs/installation#install-octopus), it asks us to create a _Local System Account_ or _Custom Domain Account_. For simplicity, let's assume you have a Local System Account. You can also create one using the **Octopus.Server.exe** CLI's [`admin` command](https://octopus.com/docs/octopus-rest-api/octopus.server.exe-command-line/admin).
+When we first [install the Octopus Server](https://octopus.com/docs/installation#install-octopus), it asks us to create a _Local System Account_ or _Custom Domain Account_. For simplicity, let's assume you have a Local System Account. You can also create one using the **Octopus.Server.exe** CLI's [`admin`](https://octopus.com/docs/octopus-rest-api/octopus.server.exe-command-line/admin) command.
 
 ## Inspecting browser activity with Chrome DevTools
 
@@ -84,7 +84,7 @@ Scrolling to the bottom of the Headers page shows you the exact request body use
 
 ![Response headers screenshot](set-cookie.png "width=500")
 
-The Octopus Server sends back two **Set-Cookie** headers to the browser after logging in, which the browser then dutifully stores in its cookie storage. Upon subsequent requests to the same domain the browser is programmed to send those cookies in the **Cookie** header. This is how the Octopus Server recognizes my unique session. 
+The Octopus Server sends back two **Set-Cookie** headers to the browser after logging in, which the browser stores in its cookie storage. Upon subsequent requests to the same domain the browser is programmed to send those cookies in the **Cookie** header. This is how the Octopus Server recognizes my unique session. 
 
 Let's write some PowerShell to simulate part of that process:
 
@@ -117,7 +117,7 @@ $sessionToken = $session.Cookies.GetCookies($loginPath) | Where-Object { $_.Name
 
 Now, you could add these two tokens to the `Cookie` header and hope it works. But since we're using Chrome DevTools already, we can record the request made to generate an API key, and understand how the browser uses these values. 
 
-Navigate to your profile page and then the **My API Keys** page. With our DevTools still open and recording, let's create an API key and look for the `apikeys` POST request shown in the screenshot below. Take a close look at the Request Headers:
+In the Octopus Web Portal, navigate to your profile page and then the **My API Keys** page. With DevTools still open and recording, let's create an API key and look for the `apikeys` POST request shown in the screenshot below. Take a close look at the Request Headers:
 
 ![API key generation headers screenshot](generate-apikey-recorded.png "width=500")
 
@@ -135,7 +135,7 @@ Invoke-RestMethod -Method Post `
     -Body (@{'Purpose'='Just Blogging'} | ConvertTo-Json)
 ```
 
-### Finished product
+### The complete script
 
 ```pwsh
 $octopusUrl = 'https://samples.octopus.app'
