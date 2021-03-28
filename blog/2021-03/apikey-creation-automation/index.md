@@ -173,6 +173,6 @@ Scripting the creation of API keys can be useful for new service users, provisio
 Using Chrome DevTools (or the Firefox, Edge, or Safari equivalents) is a powerful way to see what's happening in the interactions between the Octopus front end Web Portal (a single page React app) and the Octopus REST API. Occasionally you may find the Swagger documentation is just slightly off or doesn't have all the information you need and using the browser's tools can give you a definitive answer.
 
 Interested in learning more about the Octopus REST API? Check out our recent webinar:
-[Using the Octopus API to save time by automating repetitive tasks.](https://octopus.zoom.us/webinar/register/6016118341944/WN_ykrzzdSvRZOMWFojvxNguw)
+[Using the Octopus API to save time by automating repetitive tasks.](https://www.youtube.com/watch?v=ACb2sHWoZto)
 
 Happy deployments!
