@@ -248,7 +248,7 @@ To take advantage of the autodeploy feature of Payara, tick the box **Use custom
 
 ![The deploy section of the step template](octopus-deploy-section.png)
 
-I also enabled the [Structured configuration variables](https://octopus.com/docs/projects/steps/configuration-features/structured-configuration-variables-feature) feature to update the database connection information. To do this: 
+I also enabled the [Structured Configuration Variables](https://octopus.com/docs/projects/steps/configuration-features/structured-configuration-variables-feature) feature to update the database connection information. To do this: 
 
 1. Click on the **CONFIGURE FEATURES** button.
 1. Tick the `Structured Configuration Variables` box.
