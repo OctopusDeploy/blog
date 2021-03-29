@@ -2,7 +2,7 @@
 title: Create workers on a Kubernetes cluster
 description: Learn how to create Octopus workers on a Kubernetes cluster using Octopus Deploy.
 author: shawn.sesna@octopus.com
-visibility: private
+visibility: public
 published: 2099-01-01-1400
 metaImage: 
 bannerImage: 
@@ -38,10 +38,10 @@ For this post, I created an external feed that points to Docker Hub. Other docke
 ![](octopus-docker-hub-feed.png)
 
 ## Create a runbook
-Infrastructure activities should be undertaken using [Runbooks](https://octopus.com/docs/runbooks). This post assumes you're framiliar with creating [Projects](https://octopus.com/docs/projects) within Octopus so we'll skip that part.  
+Infrastructure activities should be undertaken using [Runbooks](https://octopus.com/docs/runbooks). This post assumes you're familiar with creating [Projects](https://octopus.com/docs/projects) within Octopus, so we'll skip that part.  
 
 1. Create a runbook in your project. I called mine Create K8s workers.  
-1. Add a `Deploy Kubernetes containers` step to your process. 
+1. Add a **Deploy Kubernetes containers** step to your process. 
 
 This step template is large, so we'll go over the minimum components to get this working.
 
@@ -66,7 +66,7 @@ Click **ADD CONTAINER** and fill in the following components:
   - ServerPort: 10943 (setting this environment variable configures the worker for Polling mode)
   - Space: Name of the space to add the worker too (the OctoStache variable of #{Octopus.Space.Name} will retrieve the name of the current space)
 
-And that's it. Anything not listed above uses the form defaults.  
+Anything not listed above uses the form defaults.  
 
 ## Execute the runbook
 Click **RUN** to run the runbook in the environment of your choice.
