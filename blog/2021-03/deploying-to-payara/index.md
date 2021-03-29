@@ -246,7 +246,7 @@ I entered `petclinic.war` so my URL looks like http://PayaraServer/petclinic.
 
 To take advantage of the autodeploy feature of Payara, tick the box **Use custom deployment directory**.  The autodeploy folder is located in a subfolder of the domain. If you've reviewed the Tentacle and Payara automation script, you'll note that I installed Payara to `/opt/payara5`, so the full path for autodeploy is `/opt/payara5/glassfish/domains/domain1/autodeploy`.
 
-![The deploy section of the step template]](octopus-deploy-section.png)
+![The deploy section of the step template](octopus-deploy-section.png)
 
 I also enabled the [Structured configuration variables](https://octopus.com/docs/projects/steps/configuration-features/structured-configuration-variables-feature) feature to update the database connection information. To do this: 
 
