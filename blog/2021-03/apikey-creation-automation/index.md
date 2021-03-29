@@ -55,13 +55,13 @@ You might notice in this example, that we already have an API to create a new AP
 
 Imagine you're writing automation to provision the Octopus Server itself. You've written scripts using the [Octopus Deploy Chocolatey Package](https://chocolatey.org/packages/OctopusDeploy/), the [Octopus.Server.exe command-line tool](https://octopus.com/docs/octopus-rest-api/octopus.server.exe-command-line), or even the new [Octopus Deploy Terraform Provider](https://octopus.com/blog/octopusdeploy-terraform-provider). You don't want to break off in the middle of your provisioning automation because you need to log in to your Octopus Server, create an API key, then manually plug the key into the rest of your automation.
 
-When we create new users in Octopus, those users don't have API keys, but the Octopus Web Portal lets them create API keys when they log in. And if the browser can do it, then so can we. Here's what to do:
+When you create new users in Octopus, those users don't have API keys, but the Octopus Web Portal lets them create API keys when they log in. And if the browser can do it, then so can we. Here's what to do:
 
 1. Simulate the browser login with a username and password.
 2. Retrieve any necessary cookies sent back to you from the Octopus Server.
 3. Use the cookies to make the same request the browser does when creating a user's first API key.
 
-When we first [install the Octopus Server](https://octopus.com/docs/installation#install-octopus), it asks us to create a _Local System Account_ or _Custom Domain Account_. For simplicity, let's assume you have a Local System Account. You can also create one using the **Octopus.Server.exe** CLI's [`admin`](https://octopus.com/docs/octopus-rest-api/octopus.server.exe-command-line/admin) command.
+When you first [install the Octopus Server](https://octopus.com/docs/installation#install-octopus), the installer asks you to create a _Local System Account_ or _Custom Domain Account_. For simplicity, let's assume you have a Local System Account. You can also create one using the **Octopus.Server.exe** CLI's [`admin`](https://octopus.com/docs/octopus-rest-api/octopus.server.exe-command-line/admin) command.
 
 ## Inspecting browser activity with Chrome DevTools
 
