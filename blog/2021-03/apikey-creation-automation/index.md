@@ -78,13 +78,13 @@ In the DevTools window you should see Chrome recording the many requests occurri
 
 ![Login Recorded screenshot](login-recorded.png "width=500")
 
-Click the **login** request. A window to the right of the requests list will appear showing you additional information. This window has its own set of tabs, where you need to select **Headers**. 
+Click the **login** request. A window to the right of the requests list will appear, displaying the additional information. This window has its own set of tabs, you need to select **Headers**. 
 
-Scrolling to the bottom of the Headers page shows you the exact request body used. This will be important when we build our request in PowerShell. Inspecting the **Response headers** also gives us some important information:
+Scrolling to the bottom of the Headers page shows you the exact request body used. This will be important when you build your request in PowerShell. Inspecting the **Response headers** also gives you some important information:
 
 ![Response headers screenshot](set-cookie.png "width=500")
 
-The Octopus Server sends back two **Set-Cookie** headers to the browser after logging in, which the browser stores in its cookie storage. Upon subsequent requests to the same domain the browser is programmed to send those cookies in the **Cookie** header. This is how the Octopus Server recognizes my unique session. 
+The Octopus Server sends back two **Set-Cookie** headers to the browser after logging in, which the browser stores in its cookie storage. Upon subsequent requests to the same domain the browser is programmed to send those cookies in the **Cookie** header. This is how the Octopus Server recognizes your unique session. 
 
 Let's write some PowerShell to simulate part of that process:
 
