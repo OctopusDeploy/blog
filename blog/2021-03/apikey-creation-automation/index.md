@@ -58,8 +58,8 @@ Imagine you're writing automation to provision the Octopus Server itself. You've
 When we create new users in Octopus, those users don't have API keys, but the Octopus Web Portal lets them create API keys when they log in. And if the browser can do it, then so can we. Here's what to do:
 
 1. Simulate the browser login with a username and password.
-2. Retrieve any necessary cookies sent back to us from the Octopus Server.
-3. Use our cookies to make the same request the browser does when creating a user's first API key.
+2. Retrieve any necessary cookies sent back to you from the Octopus Server.
+3. Use the cookies to make the same request the browser does when creating a user's first API key.
 
 When we first [install the Octopus Server](https://octopus.com/docs/installation#install-octopus), it asks us to create a _Local System Account_ or _Custom Domain Account_. For simplicity, let's assume you have a Local System Account. You can also create one using the **Octopus.Server.exe** CLI's [`admin`](https://octopus.com/docs/octopus-rest-api/octopus.server.exe-command-line/admin) command.
 
