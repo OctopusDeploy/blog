@@ -11,19 +11,18 @@ tags:
  - Java
 ---
 
-![Payara logo on web servers, and Octopus and Payara fish playing in same fish bowl.](blogimage-deploying-to-payara-2021.png)
+![Payara logo on web servers, and Octopus and Payara fish playing in a fish bowl.](blogimage-deploying-to-payara-2021.png)
 
-When you're developing apps in Java, you have a larger selection of web servers you can deploy to. Octopus Deploy has built-in support for both Tomcat and Wildfly (JBoss), however, other server technologies are also supported. 
+When you're developing apps in Java, you have a larger selection of web servers that you can deploy to. Octopus Deploy has built-in support for both Tomcat and Wildfly (JBoss), however, other server technologies are also supported. 
 
 In this post, I demonstrate how to deploy the Java application, PetClinic, to a [Payara](https://www.payara.fish/) web server.
 
 ## Infrastructure
-For this post, I set up a MySQL PaaS server in Azure to serve as my database back-end, and an Ubuntu VM for Payara.  I automated provisioning these resources with a [runbook](https://octopus.com/docs/runbooks), so they can be easily spun up and down (see our [Samples instance for details](https://samples.octopus.app/app#/Spaces-642)). I chose a Linux operating system for running the web server, but Payara will also run on Windows.  
+For this post, I set up a MySQL PaaS server in Azure to serve as my database back-end, and an Ubuntu VM for Payara.  I automated provisioning these resources with a [runbook](https://octopus.com/docs/runbooks), so they can be spun up and down as I need (see our [Samples instance for details](https://samples.octopus.app/app#/Spaces-642)). I chose a Linux operating system to run the web server, but Payara will also run on Windows.  
 
 Below is the code for the Azure Resource Manager (ARM) template and the Bash automation script that installs the Octopus Tentacle and the Payara server:
 
-<details>
-	<summary>MySQL PaaS template code</summary>
+### MySQL PaaS template code
 
 ```
 {
@@ -116,10 +115,8 @@ Below is the code for the Azure Resource Manager (ARM) template and the Bash aut
     "variables": {}
 }
 ```
-</details>
 
-<details>
-	<summary>Tentacle and Payara automation script</summary>
+### Tentacle and Payara automation script
 
 ```bash
 #!/bin/bash
@@ -180,8 +177,6 @@ sudo /opt/payara5/bin/asadmin start-domain
 # Enable remote management
 sudo /opt/payara5/bin/asadmin --user admin --passwordfile $PWD/password.txt enable-secure-admin
 ```
-</details>
-
 
 ### Azure MySQL PaaS troubleshooting
 
@@ -217,10 +212,11 @@ username@hostname
 ```
 
 ## Octopus Deploy
-This post assumes you're familiar with creating projects within Octopus Deploy, so we'll skip creating projects.
+This post assumes you're familiar with creating projects within Octopus Deploy.
 
 ### Process
-The PetClinic application is a spring boot Java application with a MySQL back-end. To deploy the application:
+
+The PetClinic application is a Spring Boot Java application with a MySQL back-end. To deploy the application:
 
 1. Create the database if it doesn't exist.
 1. Deploy the database using [Flyway](https://flywaydb.org/).
@@ -238,11 +234,11 @@ Within your Octopus Deploy project, add a **Deploy a Java Archive** step to your
 ##### Configure Deploy Java Archive step
 Under **Package Details**, ensure the **Deployment** section is expanded (it should be by default on a newly added step).
 
-To rename the package to be more user-friendly, use the **Deployed package file name** to specify a new name. Note that the name of the file affects the URL for the application. 
+To rename the package to be more user-friendly, use the **Deployed package file name** option to specify a new name. Note that the name of the file affects the URL for the application. 
 
-If **Deployed package file name** is left blank, it will use the original file name, so the URL on the Payara server will be something like http://PayaraServer/petclinic.web.1.0.21022.194744. 
+If **Deployed package file name** is left blank, it will use the original file name, so the URL on the Payara server will be something like `http://PayaraServer/petclinic.web.1.0.21022.194744`. 
 
-I entered `petclinic.war` so my URL looks like http://PayaraServer/petclinic.
+I entered `petclinic.war` so my URL looks like `http://PayaraServer/petclinic`.
 
 To take advantage of the autodeploy feature of Payara, tick the box **Use custom deployment directory**.  The autodeploy folder is located in a subfolder of the domain. If you've reviewed the Tentacle and Payara automation script, you'll note that I installed Payara to `/opt/payara5`, so the full path for autodeploy is `/opt/payara5/glassfish/domains/domain1/autodeploy`.
 
@@ -281,7 +277,7 @@ If we navigate to [http://d-target-payara.centralus.cloudapp.azure.com:8080/petc
 
 ## Conclusion
 
-Without a specific step template, it's easy to think that Octopus Deploy doesn't support Payara. I hope this post has demonstrated that it is indeed supported, and easy to deploy to.
+Without a specific step template, it's easy to think that Octopus Deploy doesn't support Payara. I hope this post has demonstrated that it is indeed supported and easy to deploy to.
 
 :::hint
 Be sure to checkout the [Build a tutorial for your stack](https://octopus.com/docs/guides) feature for more in-depth tutorials.
