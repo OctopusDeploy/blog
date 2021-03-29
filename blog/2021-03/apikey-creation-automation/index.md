@@ -22,8 +22,7 @@ The final script is available in a [GitHub gist](https://gist.github.com/pstephe
 
 ## The Swagger API docs
 
-The first place I go when I want to automate something with the Octopus API is the Swagger docs. Each Octopus Server comes with a built-in route where all API documentation is published. Just add `/swaggerui` to the base URL path of your Octopus Server. 
-For example: [samples.octopus.app/swaggerui](https://samples.octopus.app/swaggerui).
+The first place I go when I want to automate something with the Octopus API is the Swagger docs. Each Octopus Server comes with a built-in route where all API documentation is published. Just add `/swaggerui` to the base URL path of your Octopus Server. For example: [samples.octopus.app/swaggerui](https://samples.octopus.app/swaggerui).
 
 The generated page is organized by API [resources](https://cloud.google.com/apis/design/resources), and there are lots of them. Let's do a `CTRL-F` to find `apikey`:
 
@@ -55,7 +54,7 @@ You might notice in this example, that we already have an API to create a new AP
 
 Imagine you're writing automation to provision the Octopus Server itself. You've written scripts using the [Octopus Deploy Chocolatey Package](https://chocolatey.org/packages/OctopusDeploy/), the [Octopus.Server.exe command-line tool](https://octopus.com/docs/octopus-rest-api/octopus.server.exe-command-line), or even the new [Octopus Deploy Terraform Provider](https://octopus.com/blog/octopusdeploy-terraform-provider). You don't want to break off in the middle of your provisioning automation because you need to log in to your Octopus Server, create an API key, then manually plug the key into the rest of your automation.
 
-When you create new users in Octopus, those users don't have API keys, but the Octopus Web Portal lets them create API keys when they log in. And if the browser can do it, then so can we. Here's what to do:
+When you create new users in Octopus, those users don't have API keys, but the Octopus Web Portal lets them create API keys when they log in. And if the browser can do it, so can we. Here's what to do:
 
 1. Simulate the browser login with a username and password.
 2. Retrieve any necessary cookies sent back to you from the Octopus Server.
@@ -65,7 +64,7 @@ When you first [install the Octopus Server](https://octopus.com/docs/installatio
 
 ## Inspecting browser activity with Chrome DevTools
 
-We need to inspect what's happening in the browser when we log into our Octopus Web Portal. Let's use [Chrome's built-in DevTools](https://developers.google.com/web/tools/chrome-devtools). 
+You need to inspect what's happening in the browser when you log into your Octopus Web Portal. Let's use [Chrome's built-in DevTools](https://developers.google.com/web/tools/chrome-devtools). 
 
 1. Navigate to your Octopus Web Portal login page.
 2. Either right click on the page and select **Inspect**, or use the hot keys **Ctrl-Shift-i** to open DevTools. 
@@ -121,7 +120,7 @@ In the Octopus Web Portal, navigate to your profile page and then the **My API K
 
 ![API key generation headers screenshot](generate-apikey-recorded.png "width=500")
 
-If we compare the two `Set-Cookie` response headers we received after our login request, we can see exactly how the browser uses the values. Now we can complete our request:
+If you compare the two `Set-Cookie` response headers you received after your login request, you can see exactly how the browser uses the values. Now you can complete your request:
 
 ```pwsh
 $headers = @{
@@ -173,6 +172,6 @@ Scripting the creation of API keys can be useful for new service users, provisio
 Using Chrome DevTools (or the Firefox, Edge, or Safari equivalents) is a powerful way to see what's happening in the interactions between the Octopus front end Web Portal (a single page React app) and the Octopus REST API. Occasionally you may find the Swagger documentation is just slightly off or doesn't have all the information you need and using the browser's tools can give you a definitive answer.
 
 Interested in learning more about the Octopus REST API? Check out our recent webinar:
-[Using the Octopus API to save time by automating repetitive tasks.](https://www.youtube.com/watch?v=ACb2sHWoZto)
+[Using the Octopus API to save time by automating repetitive tasks](https://www.youtube.com/watch?v=ACb2sHWoZto).
 
 Happy deployments!
