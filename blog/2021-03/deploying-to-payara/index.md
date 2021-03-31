@@ -273,7 +273,9 @@ Deploying to the development environment, we can see that the **Structured Confi
 
 ![Deployment task log](octopus-deploy-complete.png)
 
-If we navigate to [http://d-target-payara.centralus.cloudapp.azure.com:8080/petclinic/vets.html](http://d-target-payara.centralus.cloudapp.azure.com:8080/petclinic/vets.html), we can see the PetClinic application has been deployed and is pulling data.
+If we navigate to the Payara server, we can see the PetClinic application has been deployed and is pulling data.
+
+![](payara-petclinic.png)
 
 ## Conclusion
 
