@@ -12,9 +12,9 @@ tags:
 
 ![Infrastructure as code in Azure with Octopus Deploy and Pulumi: Part two](blogimage-infrastructure-development-azure-pulumi-2.png)
 
-In [part one](/blog/2020-12/iac-azure-octopus-pulumi-part-1/index.md) of this series about infrastructure development with Pulumi and Octopus Deploy, I showed you how to configure Pulumi with a new project and write code with the Pulumi SDK that specifies Azure using Go.
+In [part one](/blog/2021-04/iac-azure-octopus-pulumi-part-1/index.md) of this series about infrastructure development with Pulumi and Octopus Deploy, I showed you how to configure Pulumi with a new project and write code with the Pulumi SDK that specifies Azure using Go.
 
-In this post, I go over deployment and show you how to package and deploy the Go code from [part one](/blog/2020-12/iac-azure-octopus-pulumi-part-1/index.md) with Octopus Deploy.
+In this post, I go over deployment and show you how to package and deploy the Go code from [part one](/blog/2021-04/iac-azure-octopus-pulumi-part-1/index.md) with Octopus Deploy.
 
 ## Using a GitHub repo
 
@@ -39,7 +39,7 @@ First, create a new GitHub repo:
 
 ### Pulling down the repo locally and pushing the code
 
-1. Clone the GitHub repo and copy your Pulumi project (from [part one](/blog/2020-12/iac-azure-octopus-pulumi-part-1/index.md)) into your local repo.
+1. Clone the GitHub repo and copy your Pulumi project (from [part one](/blog/2021-04/iac-azure-octopus-pulumi-part-1/index.md)) into your local repo.
 2. Commit and push the code to the GitHub repo.
 
 ![](images/2.png)
