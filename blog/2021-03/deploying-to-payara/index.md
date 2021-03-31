@@ -180,7 +180,7 @@ sudo /opt/payara5/bin/asadmin --user admin --passwordfile $PWD/password.txt enab
 
 ### Azure MySQL PaaS troubleshooting
 
-There were some gotchas I encountered with the PaaS MySQL server. They're listed below along with my solutions, so you can avoid these issues.
+There were some gotchas I encountered with the PaaS MySQL server. They're listed below along with my solutions, to help you avoid these issues.
 
 #### Firewall
 I used the Azure wizard to generate the ARM template for the MySQL PaaS server. The wizard didn't contain any Security Group (firewall) options, so when the server was provisioned, nothing could connect to it. Using the Azure Command Line Interface (CLI), I opened the firewall to allow both Octopus Deploy workers and the Payara VM to talk to it:
@@ -212,7 +212,7 @@ username@hostname
 ```
 
 ## Octopus Deploy
-This post assumes you're familiar with creating projects within Octopus Deploy.
+This post assumes you're familiar with [creating projects](https://octopus.com/docs/projects#add-a-project) within Octopus Deploy.
 
 ### Process
 
@@ -226,7 +226,7 @@ This post is specifically about Payara, so we'll focus on deploying to Payara.
 
 #### Deploying to Payara
 
-As mentioned, Octopus Deploy contains specific templates for deploying to Tomcat and Wildfly. Payara, however, contains an autodeploy feature that makes creating a Payara template unnecessary. By placing the .war file in a specific folder, Payara automatically deploys the application to the server.
+Octopus Deploy contains specific templates for deploying to Tomcat and Wildfly. Payara, however, contains an autodeploy feature that makes creating a Payara template unnecessary. By placing the .war file in a specific folder, Payara automatically deploys the application to the server.
 
 ##### Add Deploy Java Archive step
 Within your Octopus Deploy project, add a **Deploy a Java Archive** step to your process.
@@ -236,7 +236,7 @@ Under **Package Details**, ensure the **Deployment** section is expanded (it sho
 
 To rename the package to be more user-friendly, use the **Deployed package file name** option to specify a new name. Note that the name of the file affects the URL for the application. 
 
-If **Deployed package file name** is left blank, it will use the original file name, so the URL on the Payara server will be something like `http://PayaraServer/petclinic.web.1.0.21022.194744`. 
+If **Deployed package file name** is left blank, it will use the original file name, and the URL on the Payara server will be something like `http://PayaraServer/petclinic.web.1.0.21022.194744`. 
 
 I entered `petclinic.war` so my URL looks like `http://PayaraServer/petclinic`.
 
@@ -251,7 +251,7 @@ I also enabled the [Structured Configuration Variables](https://octopus.com/docs
 
 ![Octopus structured configuration variables feature toggle](octopus-structured-configuration-variables.png)
 
-The file containing the database information is `WEB-INF/classes/spring/datasource-config.xml`
+The file containing the database information is `WEB-INF/classes/spring/datasource-config.xml`.
 
 ![Location of the structured configuration variables](octopus-structured-configuration-variables-folder.png)
 
