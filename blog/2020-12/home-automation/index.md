@@ -1,5 +1,5 @@
 ---
-title: Lessons learned while playing with Home Automation
+title: Lessons learned with Home Automation
 description: Lessons learned when implementing home automation.
 author: shawn.sesna@octopus.com
 visibility: public
@@ -15,9 +15,10 @@ At Octopus Deploy, we're obsessed with automation. As you might expect, this obs
 
 Home automation allows us to do things like have our garage door open automatically when our car enters the driveway, or unlock the door from a phone if someone's locked out. 
 
-While home automation is a fun hobby, it comes with challenges as well. In this post, I go over some lessons learnt while implementing smart products around my household.
+While home automation is a fun hobby, it comes with challenges as well. In this post, I go over some lessons learned while implementing smart products around my household.
 
 ## Lesson 1: Z-Wave, Zigbee and WiFi
+
 Perhaps one of the most important lessons I learned was that not all "smart" devices communicate the same way, and they may require special equipment to operate.  
 
 A smart device will fall into three distinct communication categories:
@@ -43,7 +44,7 @@ As mentioned, Zigbee devices also require the use of a Hub in order to communica
 ### WiFi
 WiFi devices are the only one of the three that do not require a hub to communicate. These devices are directly attached to your WiFi network, so it's easier to communicate with things like Google Home Assistant or Amazon Alexa.  
 
-Most WiFi enabled smart devices operate on the 2.4 GHz band, which makes sense as their data needs are often small and 2.4 has a farther range. Unlike Z-Wave and Zigbee, WiFi devices are dependent on access point location and do not offer range extending capabilities.
+Most WiFi enabled smart devices operate on the 2.4 GHz band, which makes sense as their data needs are often small and 2.4 has a greater range. Unlike Z-Wave and Zigbee, WiFi devices are dependent on access point location and do not offer range extending capabilities.
 
 ## Lesson 2: Mesh network parent devices
 Both Zigbee and Z-Wave devices attach themselves to a parent device on the mesh network. Once connected, they don't actively seek a "better" parent until communication with the first one is broken. 
@@ -59,7 +60,7 @@ One of the early issues in my home automation journey was that each brand of dev
 
 ![](too-many-apps.png)
 
-My recommendation is to determine what you'd like to do with your home automation and research the available brands, to minimize the number apps you'll need. Most WiFi devices are compatible with Google Home or Amazon Alexa, so once configured, you won't necessarily need their app to control the device.
+My recommendation is to determine what you'd like to do with your home automation and research the available brands, to minimize the number of apps you'll need. Most WiFi devices are compatible with Google Home or Amazon Alexa, so once configured, you won't necessarily need their app to control the device.
 
 ## Lesson 4: Beware of app requirements
 I came across a smart plug being advertised for a low price. Before purchasing, I read the reviews and found that its app *required* access to your contacts. That was a red flag for me.
@@ -95,14 +96,14 @@ Device apps, Google, and Amazon give you the ability to do common, basic automat
 ### IFTTT
 IFTTT stands for **If This Then That** and is a well known advanced home automation platform.  
 
-IFTTT is an app for Apple or Google products that you can use to define advanced routines for your smart devices. It comes in both free (with limitations) and paid variants.
+IFTTT is an app for Apple and Google products that you can use to define advanced routines for your smart devices. It comes in both free (with limitations) and paid variants.
 
 ### Home Assistant
-Home Assistant is an application that runs in a Docker container, with configurable storage options such as SQLLite, MySQL, or PostgreSQL. (Mine runs in a Docker Swarm on a Raspberry Pi with a MySQL backend, since SQLLite and CIFS don't get along.) 
+Home Assistant is an application that runs in a Docker container, with configurable storage options such as SQLLite, MySQL, or PostgreSQL. (Mine runs in a Docker Swarm on a Raspberry Pi with a MySQL back-end, since SQLLite and CIFS don't get along.) 
 
 Home Assistant is highly regarded. It has a large following and adds more integrations with each iteration. Home Assistant can control Z-Wave or Zigbee devices with the use of USB adapters instead of a hub.
 
-Troy Hunt recently wrote an [article about Home Assistant] (https://www.troyhunt.com/iot-unravelled-part-1-its-a-mess-but-then-theres-home-assistant/) covering additional problems it can solve.
+Troy Hunt recently wrote an [article about Home Assistant](https://www.troyhunt.com/iot-unravelled-part-1-its-a-mess-but-then-theres-home-assistant/) covering additional problems it can solve.
 
 ## Lesson 8: Cost
 As with most hobbies, home automation can be expensive. Even basic smart devices, such as a plug or bulb, can range from $15 to $40 each (prices often depend on communication type) and hubs can be upwards of $100.
