@@ -1,6 +1,6 @@
 ---
 title: Lessons learned with Home Automation
-description: Lessons learned when implementing home automation.
+description: Lessons learned implementing home automation.
 author: shawn.sesna@octopus.com
 visibility: public
 published: 2021-04-12-1400
