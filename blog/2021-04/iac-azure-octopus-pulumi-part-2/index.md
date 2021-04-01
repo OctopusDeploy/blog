@@ -8,6 +8,7 @@ metaImage: blogimage-infrastructure-development-azure-pulumi-2.png
 bannerImage: blogimage-infrastructure-development-azure-pulumi-2.png
 tags:
  - DevOps
+ - Pulumi
 ---
 
 ![Infrastructure as code in Azure with Octopus Deploy and Pulumi: Part two](blogimage-infrastructure-development-azure-pulumi-2.png)
