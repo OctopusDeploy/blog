@@ -3,15 +3,17 @@ title: Create workers on a Kubernetes cluster
 description: Learn how to create Octopus workers on a Kubernetes cluster using Octopus Deploy.
 author: shawn.sesna@octopus.com
 visibility: public
-published: 2099-01-01-1400
-metaImage: 
-bannerImage: 
+published: 2021-04-07-1400
+metaImage: blogimage-create-workers-on-a-kubernetes-cluster-2021.png
+bannerImage: blogimage-create-workers-on-a-kubernetes-cluster-2021.png
 tags:
  - DevOps
  - Kubernetes
  - Runbooks
  - Workers
 ---
+
+![Create workers on a Kubernetes cluster](blogimage-create-workers-on-a-kubernetes-cluster-2021.png)
 
 Customers often ask if they can run an Octopus worker within a Kubernetes (K8s) cluster. There are a couple of reasons you'd want to do this; to create a dedicated worker for that cluster, or simply to create a bunch of workers to use with Octopus Deploy. Using the [Tentacle image](https://hub.docker.com/r/octopusdeploy/tentacle), this is possible, but you can even use it to deploy Octopus itself. 
 
