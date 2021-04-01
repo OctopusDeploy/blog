@@ -1,5 +1,5 @@
 ---
-title: Lessons learned with Home Automation
+title: Lessons learned with home automation
 description: Lessons learned implementing home automation.
 author: shawn.sesna@octopus.com
 visibility: public
