@@ -74,7 +74,7 @@ Click **RUN** to run the runbook in the environment of your choice.
 
 ![Successful execution of an Octopus runbook](octopus-runbook-success.png)
 
-After the runbook has completed successfully, select the **Infrastructure** tab and you will see workers have been added to **Worker pools**.
+After the runbook has completed successfully, select the **Infrastructure** tab and you will see workers have been added to **Worker Pools**.
 
 ![Octopus worker pool](octopus-worker-pool.png)
 
