@@ -65,7 +65,7 @@ Click **ADD CONTAINER** and fill in the following components:
   - **ACCEPT_EULA**: `Y`
   - **TargetWorkerPool**: Name of the pool to add to
   - **ServerPort**: `10943` (setting this environment variable configures the worker for Polling mode)
-  - **Space**: Name of the space to add the worker too (the OctoStache variable of `#{Octopus.Space.Name}` will retrieve the name of the current space)
+  - **Space**: Name of the space to add the worker to (the OctoStache variable of `#{Octopus.Space.Name}` will retrieve the name of the current space)
 
 Anything not listed above uses the form defaults.  
 
