@@ -4,12 +4,14 @@ description: Lessons learned implementing home automation.
 author: shawn.sesna@octopus.com
 visibility: public
 published: 2021-04-12-1400
-metaImage: 
-bannerImage: 
+metaImage: blogimage-lessons-learned-while-playing-with-home-automation-2021.png
+bannerImage: blogimage-lessons-learned-while-playing-with-home-automation-2021.png
 tags:
  - DevOps
  - Kubernetes
 ---
+
+![A modern home front and a tablet device surrounded by icons representing different home automations](blogimage-lessons-learned-while-playing-with-home-automation-2021.png)
 
 At Octopus Deploy, we're obsessed with automation. As you might expect, this obsession goes beyond deployments, with many of us dabbling in the world of home automation.  
 
