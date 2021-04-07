@@ -87,7 +87,7 @@ Using the `Octopus Deploy: Push packages` plugin step, you can push both the web
 And that's all!  Our PHP application is all packaged up and ready for deployment!
 
 ## Deploying your PHP application
-With the packages ready, we can move on to defining our deployment process.  This post assumes you have some familiarity with creating Octopus Deploy projects, so we'll not cover that part.  If you don't check out our [Getting Started](https://octopus.com/docs/getting-started) guide.
+With the packages ready, we can move on to defining our deployment process.  This post assumes you have some familiarity with creating Octopus Deploy projects, so we'll not cover that part.  If you aren't familiar with that topic, check out our [Getting Started](https://octopus.com/docs/getting-started) guide to learn how.
 
 Our deployment process will consist of the following steps:
 - Create MySQL database if not exists
@@ -181,6 +181,15 @@ That's it!  We've configured the step to deploy our PHP application to NGINX.  A
 ### Deploy
 Once you've deployed your release, you should receive output that looks similar to this
 
-![]()
+![](octopus-deploy-success.png)
 
-Do not be alarmed by 
+You may notice that the NGINX step is displaying warnings, however, this is normal.  NGINX writes Information messages to the stderr stream which Octopus interprets as a possible error and flags it as a warning.
+
+![](octopus-nginx-stderr.png)
+
+Accessing our server, we can see that our PHP application is up and running!
+
+![](car-rental-app.png)
+
+## Conclusion
+Much of the world runs their applications on PHP.  In this post, I demonstrated how you can easily deploy PHP applications with database back ends using Octopus Deploy.  Happy Deployments!
