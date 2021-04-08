@@ -10,8 +10,6 @@ tags:
   - Product
 ---
 
-![Description of the image](/path/to/image.png "width=500")
-
 At Octopus Deploy, we don't just want to build the world's best deployment tool; we want every interaction with us to be world-class. 
 
 We knew we could do better with the Octopus Account, so we reimagined it, giving us a strong foundation for future features.
