@@ -92,7 +92,7 @@ At first glance, this example appears to provide a point in the process for a hu
 
 In short, a good CD tool facilitates the human decision-making process that is so common (if not essential) to deployments, or at the very least surfaces the current state of the deployments between environments, and automates the deployment, so promotions between environments are easy and reliable.
 
-##Conclusion
+## Conclusion
 
 Recognizing the different requirements between a machine-driven CI process and a human-driven CD process is essential for delivering features to your customers in a fast, reliable, and repeatable manner. This is why using dedicated tools for Continuous Integration and Continuous Deployment can make sense.
 
