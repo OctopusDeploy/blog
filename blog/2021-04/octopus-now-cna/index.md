@@ -4,7 +4,7 @@ description: Octopus Deploy is now a CVE Numbering Authority (CNA). We can assig
 author: kyle.jackson@octopus.com
 visibility: public
 published: 2021-04-21-1400
-metaImage: 
+metaImage: blogimage-security.png
 bannerImage: 
 tags:
   - Product
