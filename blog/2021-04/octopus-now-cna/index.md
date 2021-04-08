@@ -5,7 +5,7 @@ author: kyle.jackson@octopus.com
 visibility: public
 published: 2021-04-21-1400
 metaImage: blogimage-security.png
-bannerImage: 
+bannerImage: blogimage-security.png
 tags:
   - Product
   - Trust and Security
