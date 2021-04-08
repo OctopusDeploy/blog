@@ -3,7 +3,7 @@ title: Continuous Integration vs Continuous Deployment
 description: CI/CD are frequently referred to by a single acronym as if they were a single process. This post looks at the fundamental differences between CI and CD.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2019-08-19
+published: 2021-04-19
 metaImage: img_comparecicd_2019.png
 bannerImage: img_comparecicd_2019.png
 tags:
@@ -13,7 +13,7 @@ tags:
 
 ![Illustration of two deep sea masks representing CI and CD](img_comparecicd_2019.png)
 
-The terms *Continuous Integration* and *Continuous Deployment* tend to be combined into the acronym CI/CD, often without any distinction between the two. CI and CD are distinct processes even if this combining of terms suggests that Continuous Deployment is an extension of Continuous Integration, and the execution of both processes is the responsibility of a single tool.
+The terms *Continuous Integration* and *Continuous Deployment* tend to be combined into the acronym CI/CD, often without any distinction between the two. CI and CD are distinct processes, even if this combining of terms suggests that Continuous Deployment is an extension of Continuous Integration, and the execution of both processes is the responsibility of a single tool.
 
 Assuming CI/CD is *just CI with a deployment step* ignores some fundamental differences between the two processes. In this blog post, we'll look at:
 
@@ -23,7 +23,13 @@ Assuming CI/CD is *just CI with a deployment step* ignores some fundamental diff
 
 ## What is Continuous Integration?  
 
-At a high level, CI is all about taking the code written by developers and compiling it into an artifact, running automated tests, and capturing the log files so any failed builds or tests can be resolved. A CI server facilitates this process by running builds and tests with each commit.
+At a high level, CI is all about: 
+
+- Taking the code written by developers and compiling it into an artifact.
+- Running automated tests.
+- Capturing the log files so any failed builds or tests can be resolved. 
+
+A CI server facilitates this process by running builds and tests with each commit.
 
 The CI process can be described as the equation:
 
@@ -33,9 +39,9 @@ The CI process can be described as the equation:
 
 The left side of the equation takes the code written by developers, any dependencies of the code, a build tool, and the environment where the build and tests are executed. When these inputs are available, a CI server completes the build to produce the elements on the right side of the equation.
 
-When a CI server has been configured correctly, each commit to a repository results in the build being run, and thus solving the equation without any manual intervention from a human.
+When a CI server has been configured correctly, each commit to a repository results in the build being run, thus solving the equation without manual intervention from a human.
 
-This means that the CI process is machine-driven, so much so that it is common for CI servers to have read-only user interfaces, like the Jenkins Blue Ocean UI.
+This means the CI process is machine-driven, so much so that it's common for CI servers to have read-only user interfaces, like the Jenkins Blue Ocean UI.
 
 The other important aspect of the CI equation is that developers provide the inputs, and the outputs are created for developers or people in other technical roles. Employees outside the IT department rarely interact with the CI server.
 
@@ -43,7 +49,7 @@ The other important aspect of the CI equation is that developers provide the inp
 
 Taken literally, CD takes the compiled artifacts from a successful build performed by the CI server and deploys them into the production environment. In this scenario, CD is quite rightly an extension of CI, and the distinction between the two becomes arbitrary.
 
-Such commit-to-consumer pipelines are common in simple projects. More complex projects can also have a completely automated development pipeline, so long as the appropriate tests and monitoring systems have been put in place.
+Such commit-to-consumer pipelines are common in simple projects. More complex projects can also have a completely automated development pipeline, if the appropriate tests and monitoring systems are in place.
 
 But while fully automated deployments have many benefits, it is not uncommon for deployments to involve human decision making. There are many valid reasons for not automatically deploying every commit to the master branch into production, including:
 
@@ -55,7 +61,7 @@ But while fully automated deployments have many benefits, it is not uncommon for
 * Integrating deployments with backend changes like databases.
 * Not having 100% confidence in your tests.
 
-Where CI is machine-driven, for many teams, CD is human-driven. Much of the grunt work of performing a deployment will still be automated, but the decision to promote a release through to production is a human one. Importantly, the decision may not be made by technical employees, but rather product owners, managers, or someone who stayed up until midnight to click the deploy button.
+Where CI is machine-driven for many teams, CD is human-driven. Much of the grunt work of performing a deployment will still be automated, but the decision to promote a release through to production is a human one. Importantly, the decision may not be made by technical employees, but rather product owners, managers, or someone who stayed up until midnight to click the deploy button.
 
 ## Why use separate CI and CD tools?
 
@@ -63,7 +69,7 @@ Where CI is machine-driven, for many teams, CD is human-driven. Much of the grun
 
 *A typical CI/CD pipeline, with no distinction between the two.*
 
-This slide is from a talk titled [How to build cloud-native CI/CD pipelines with Tekton on Kubernetes](https://developers.redhat.com/blog/2019/07/22/how-to-build-cloud-native-ci-cd-pipelines-with-tekton-on-kubernetes/?sc_cid=701f2000000RtqCAAS]) that hit my inbox recently. It is a classic example of how simple projects merge CI and CD into a single process where a production deployment starts as soon as the code has been compiled.
+This slide is from a talk titled [How to build cloud-native CI/CD pipelines with Tekton on Kubernetes](https://developers.redhat.com/blog/2019/07/22/how-to-build-cloud-native-ci-cd-pipelines-with-tekton-on-kubernetes/?sc_cid=701f2000000RtqCAAS]) that hit my inbox recently. It's a classic example of how simple projects merge CI and CD into a single process where a production deployment starts as soon as the code has been compiled.
 
 There is nothing wrong with this process, and it works as intended so long as every part of the pipeline remains fully automated. But what happens if a human needs to test and approve the application before it's released?
 
@@ -80,12 +86,14 @@ This single decision point means our once machine-driven equation now:
 
 *Dashboards with deploy buttons for humans.*
 
-This focus on the human element is frequently lost when CI/CD is presented as nothing more than a deployment step automatically performed after the code has been compiled. For instance, the [Jenkins documentation](https://jenkins.io/doc/pipeline/tour/deployment/#stages-as-deployment-environments) recommends that the test and production environments are modeled as stages in a CI pipeline.
+This focus on the human element is frequently lost when CI/CD is presented as nothing more than a deployment step, automatically performed after the code has been compiled. For instance, the [Jenkins documentation](https://jenkins.io/doc/pipeline/tour/deployment/#stages-as-deployment-environments) recommends that the test and production environments are modeled as stages in a CI pipeline.
 
 At first glance, this example appears to provide a point in the process for a human to approve the deployment, but what happens to a build that was never intended to be pushed to production?  Such a build would be canceled before the application is exposed to customers, resulting in a failed build. These failed builds are difficult to distinguish from builds that failed to compile or failed their tests, even though not promoting to production is the expected behavior of the CD process in this instance.
 
 In short, a good CD tool facilitates the human decision-making process that is so common (if not essential) to deployments, or at the very least surfaces the current state of the deployments between environments, and automates the deployment, so promotions between environments are easy and reliable.
 
-Recognizing the different requirements between a machine-driven CI process and a human-driven CD process is essential for delivering features to your customers in a fast, reliable, and repeatable manner, which is why using dedicated tools for Continuous Integration and Continuous Deployment can make sense.
+##Conclusion
+
+Recognizing the different requirements between a machine-driven CI process and a human-driven CD process is essential for delivering features to your customers in a fast, reliable, and repeatable manner. This is why using dedicated tools for Continuous Integration and Continuous Deployment can make sense.
 
 Happy deployments!
