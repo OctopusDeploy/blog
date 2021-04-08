@@ -11,6 +11,8 @@ tags:
   - Trust and Security
 ---
 
+![Octopus on shield to represent security](blogimage-security.png)
+
 In February 2021 we announced our dedicated [security advisories](https://octopus.com/blog/security-advisories) page. Following that, we are now a CVE Numbering Authority (CNA). This authorises Octopus Deploy to assign CVE IDs to vulnerabilities within our scope.
 
 ## Why did we become a CNA?
