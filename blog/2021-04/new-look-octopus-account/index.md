@@ -16,7 +16,7 @@ We knew we could do better with the Octopus Account, so we reimagined it, giving
 
 ## How the Octopus Account evolved
 
-The Octopus Account was pieced together over time. We built the first iteration when we released Octopus Cloud V1. 
+The Octopus Account was pieced together over time. We built the first iteration in July 2018, when we released Octopus Cloud V1. 
 
 We needed a place for account management tools, like billing. Then we needed Octopus ID, then self-service features like server license management. We continued adding features without considering the experience as a whole.
 
