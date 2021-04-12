@@ -17,7 +17,7 @@ At Octopus Deploy, we're obsessed with automation. As you might expect, this obs
 
 Home automation allows us to do things like have our garage door open automatically when our car enters the driveway, or unlock the door from a phone if someone's locked out. 
 
-While home automation is a fun hobby, it comes with challenges as well. In this post, I go over some lessons learned while implementing smart products around my household.
+While home automation is a fun hobby, it comes with challenges as well. In this post, I go over some lessons I've learned while implementing smart products around my household.
 
 ## Lesson 1: Z-Wave, Zigbee and WiFi
 
