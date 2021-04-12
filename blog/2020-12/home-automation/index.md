@@ -21,7 +21,7 @@ While home automation is a fun hobby, it comes with challenges as well. In this 
 
 ## Lesson 1: Z-Wave, Zigbee and WiFi
 
-Perhaps one of the most important lessons I learned was that not all "smart" devices communicate the same way, and they may require special equipment to operate.  
+Perhaps one of the most important lessons I learned was that not all smart devices communicate the same way, and they may require special equipment to operate.  
 
 A smart device will fall into three distinct communication categories:
 
