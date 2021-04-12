@@ -41,7 +41,7 @@ Z-Wave is a mesh network technology that uses low-energy radio waves, usually th
 ### Zigbee
 Zigbee is similar to Z-Wave in that it's also a low-energy radio wave mesh network technology. Zigbee, however, uses the 2.4 GHz band for communication, similar to the B/G/N bands of WiFi.  
 
-As mentioned, Zigbee devices also require the use of a Hub in order to communicate. Just like Z-Wave, devices attached to constant power act as repeaters to extend the range of the Zigbee network.
+As mentioned, Zigbee devices also require the use of a hub in order to communicate. Just like Z-Wave, devices attached to constant power act as repeaters to extend the range of the Zigbee network.
 
 ### WiFi
 WiFi devices are the only one of the three that do not require a hub to communicate. These devices are attached to your WiFi network, so it's easier to communicate with things like Google Home Assistant or Amazon Alexa.  
