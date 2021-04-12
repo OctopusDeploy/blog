@@ -23,28 +23,28 @@ While home automation is a fun hobby, it comes with challenges as well. In this 
 
 Perhaps one of the most important lessons I learned was that not all smart devices communicate the same way, and they may require special equipment to operate.  
 
-A smart device will fall into three distinct communication categories:
+Smart devices fall into three distinct communication categories:
 
 - Z-Wave
 - Zigbee
 - WiFi
 
-Z-Wave and Zigbee don't directly connect to your home network. They need something in the middle to receive and transmit instructions. These devices often come in the form of a **hub**, which is a piece of hardware that connects to your network, either wired or wireless. 
+Z-Wave and Zigbee don't connect directly to your home network. They need something in the middle to receive and transmit instructions. These devices often come in the form of a hub, which is a piece of hardware that connects to your network, either wired or wireless. 
 
 Some hubs are brand specific, such as Phillips Hue, and do not communicate with anything but their brand. Other hubs are more generic and are compatible with most things, and may include both Z-Wave and Zigbee functionality. Samsung SmartThings is a good example of this.
 
 While hubs are the most common device, it is possible to communicate with Z-Wave and or Zigbee devices with USB adapters. I'll go into that later in this post.
 
 ### Z-Wave
-Z-Wave is a mesh network technology that uses low-energy radio waves, usually the 900 MHz band, for communication.  Being a mesh network technology, Z-Wave devices that are connected to constant power, such as a smart plug or a smart bulb, have the capability of acting like a repeater, allowing you to place devices further away from the hub.
+Z-Wave is a mesh network technology that uses low-energy radio waves, usually the 900 MHz band, for communication.  Being a mesh network technology, Z-Wave devices that are connected to constant power, such as a smart plug or a smart bulb, and they can act like a repeater, allowing you to place devices further away from the hub.
 
 ### Zigbee
-Zigbee is similar to Z-Wave in that it is also a low-energy radio wave mesh network technology. Zigbee, however, uses the 2.4 GHz band for communication, similar to the B/G/N bands of WiFi.  
+Zigbee is similar to Z-Wave in that it's also a low-energy radio wave mesh network technology. Zigbee, however, uses the 2.4 GHz band for communication, similar to the B/G/N bands of WiFi.  
 
 As mentioned, Zigbee devices also require the use of a Hub in order to communicate. Just like Z-Wave, devices attached to constant power act as repeaters to extend the range of the Zigbee network.
 
 ### WiFi
-WiFi devices are the only one of the three that do not require a hub to communicate. These devices are directly attached to your WiFi network, so it's easier to communicate with things like Google Home Assistant or Amazon Alexa.  
+WiFi devices are the only one of the three that do not require a hub to communicate. These devices are attached to your WiFi network, so it's easier to communicate with things like Google Home Assistant or Amazon Alexa.  
 
 Most WiFi enabled smart devices operate on the 2.4 GHz band, which makes sense as their data needs are often small and 2.4 has a greater range. Unlike Z-Wave and Zigbee, WiFi devices are dependent on access point location and do not offer range extending capabilities.
 
@@ -55,10 +55,10 @@ To update Z-Wave to use a new parent, you may need to remove the device from you
 
 Zigbee, however, can find a new parent if you power off the old one, forcing it to find something else. 
 
-The lesson I learned: if the child can still communicate with the parent, it "thinks" it's still online, even if the parent no longer communicates to its parent, or hub. 
+The lesson I learned: if the child can still communicate with the parent, it "thinks" it's still online, even if the parent no longer communicates to its parent or the hub. 
 
 ## Lesson 3: There's an app for that
-One of the early issues in my home automation journey was that each brand of device required its own app to control them, or at least, perform initial setup. It quickly became tedious setting up an account for each brand, to configure the device.
+One of the early issues in my home automation journey was that each brand of device required its own app to control them, or at least, perform initial setup. It quickly became tedious setting up an account for each brand to configure the device.
 
 ![](too-many-apps.png)
 
@@ -79,21 +79,21 @@ For example, I have a Samsung SmartThings hub to control my Z-Wave and Zigbee de
 ## Lesson 6: Basic routine/automation
 There are multiple ways to perform basic automation (often referred to as **routines**) with smart devices:
 
-- Device's app
+- The device's app
 - Amazon/Google
 
-### Device's app
+### The device's app
 As referred to in Lesson 3, each brand of device comes with its own app.  These apps allow you to set up different types of automations, however, they'll only work with their brand. For example, I can set up a routine that turns on my TP-Link smart bulbs at dusk, using the Kasa app. However, if I wanted my Feit Electric lights to turn on too, I'd need to set up the same automation in the Feit Electric app.
 
 ### Amazon/Google
 Amazon Alexa and Google Home allow you to link the individual brand accounts to their platforms and authorize them to control your devices.  This gives you more flexibility, as you can create a single automation to control multiple devices across brands.
 
 :::warning
-Routines running in Google or Amazon have increased latency between action and trigger, due to all the communication required. For example, I have a routine that turns on a smart bulb in a closet, when the door sensor is in an open state. Both devices are Zigbee attached to a SmartThings hub.  If the routine is defined in the SmartThings app, the light turns on nearly instantly. If the routine is set up in Alexa, it takes a full second before the light turns on.  
+Routines running in Google or Amazon have increased latency between action and trigger, due to all the communication required. For example, I have a routine that turns on a smart bulb in a closet when the door sensor is in an open state. Both devices are Zigbee attached to a SmartThings hub.  If the routine is defined in the SmartThings app, the light turns on nearly instantly. If the routine is set up in Alexa, it takes a full second before the light turns on.  
 :::
 
 ## Lesson 7: Advanced automation
-Device apps, Google, and Amazon give you the ability to do common, basic automation, like above with the door sensor and the smart bulb. However, none of them allow you to do advanced or complex automations such as leave the bathroom light on if the door is closed and motion is detected. Or, if the door is closed and no motion is detected but humidity is above a certain threshold, don't turn off the light (it is likely someone is taking a shower). For this level of automation, you'd need to implement something like [IFTTT](https://ifttt.com/) or [Home Assistant](https://www.home-assistant.io/).
+Device apps, Google, and Amazon give you the ability to do common, basic automation, like above with the door sensor and the smart bulb. However, none of them allow you to do advanced or complex automations such as leave the bathroom light on if the door is closed and motion is detected, or if the door is closed and no motion is detected but humidity is above a certain threshold, don't turn off the light (it is likely someone is taking a shower). For this level of automation, you'd need to implement something like [IFTTT](https://ifttt.com/) or [Home Assistant](https://www.home-assistant.io/).
 
 ### IFTTT
 IFTTT stands for **If This Then That** and is a well known advanced home automation platform.  
