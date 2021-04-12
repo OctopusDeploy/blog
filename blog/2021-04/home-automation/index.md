@@ -83,7 +83,7 @@ There are multiple ways to perform basic automation (often referred to as **rout
 - Amazon/Google
 
 ### The device's app
-As referred to in Lesson 3, each brand of device comes with its own app.  These apps allow you to set up different types of automations, however, they'll only work with their brand. For example, I can set up a routine that turns on my TP-Link smart bulbs at dusk, using the Kasa app. However, if I wanted my Feit Electric lights to turn on too, I'd need to set up the same automation in the Feit Electric app.
+As referred to in lesson 3, each brand of device comes with its own app.  These apps allow you to set up different types of automations, however, they'll only work with their brand. For example, I can set up a routine that turns on my TP-Link smart bulbs at dusk, using the Kasa app. However, if I wanted my Feit Electric lights to turn on too, I'd need to set up the same automation in the Feit Electric app.
 
 ### Amazon/Google
 Amazon Alexa and Google Home allow you to link the individual brand accounts to their platforms and authorize them to control your devices.  This gives you more flexibility, as you can create a single automation to control multiple devices across brands.
