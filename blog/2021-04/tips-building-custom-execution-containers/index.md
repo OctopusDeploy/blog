@@ -27,7 +27,7 @@ Execution containers solved the problem. I can create Docker images with the sof
 
 ![specify custom Docker image in deployment process](specify-custom-execution-container-version.png)
 
-The version is part of the deployment process. Upgrading my deployment process to the newest tooling requires changing both the version number assigned to the Docker image, and any steps running that process. There are no surprises, as the version of the required tooling is part of the deployment process.
+The version is part of the deployment process. Upgrading my deployment process to the newest tooling requires changing both the version number assigned to the Docker image and any steps running that process. There are no surprises, as the version of the required tooling is part of the deployment process.
 
 ## Tip 1: Referencing packages with execution containers
 
@@ -52,7 +52,7 @@ When creating custom execution container images, there are a few requirements:
 
 The `docker run` command also leverages the workdir, or `-w` [parameter](https://docs.docker.com/engine/reference/run/#workdir) to set the working directory in the container to match the working directory in the host. 
 
-Normally, the working directory in a container isn't significant. If the script runs successfully, it doesn't matter if it runs from the root or a random folder, except when you need to install custom software on your Docker image. It doesn't use a package manager such as [Chocolatey](https://chocolatey.org) for Windows, [APT](https://en.wikipedia.org/wiki/APT_(software)) or [YUM](https://en.wikipedia.org/wiki/Yum_(software)) for Linux distros.  
+Normally, the working directory in a container isn't significant. If the script runs successfully, it doesn't matter if it runs from the root or a random folder, except when you need to install custom software on your Docker image. It doesn't use a package manager such as Chocolatey for Windows, APT or YUM for Linux distros.  
 
 I recently ran into this issue building an execution container for Flyway. Package manager is helpful because it adds the necessary paths to the environment variables.  Instead of `C:\Flyway\flyway.exe info` to run the info command, I can use `flyway info`. At the time of writing, there is only a Maven repo, which you can use to download a .tar or .zip file.  
 
@@ -104,7 +104,7 @@ The script downloads and extracts the Flyway executable to `C:\flyway-[version n
 
 ## Tip 4: Creating base images
 
-I recommend creating base images, that contain the basics for any child image to leverage.  I created [base images](https://github.com/OctopusDeployLabs/workertools) for the Flyway execution container image:
+I recommend creating base images that contain the basics for any child image to leverage.  I created [base images](https://github.com/OctopusDeployLabs/workertools) for the Flyway execution container image:
 
 - Windows 2019 Image
     - PowerShell Core
@@ -134,7 +134,7 @@ Make it possible to do this:
 
 That can be done using a [Docker manifest](https://docs.docker.com/engine/reference/commandline/manifest/).  
 
-:::important
+:::success
 Docker provides [buildx](https://docs.docker.com/buildx/working-with-buildx/) as an alternative to the manifest command.  At the time of writing, buildx doesn't easily support Windows containers and Linux containers.  
 :::
 
@@ -156,7 +156,7 @@ How the manifest works:
 
 You will build and tag an image for each architecture (Windows and Linux).  The tags are unique to the architecture.  When you build the manifest for the `latest` tag, you can "combine latest-windows.2019 and latest-ubuntu.1804" into one tag.  When complete, your tags will look like this on Docker Hub.
 
-:::important
+:::success
 The images must be pushed prior to building the manifest.  Otherwise you'll receive an error about not finding the image, because the manifest is not looking at the local computer.
 :::
 
