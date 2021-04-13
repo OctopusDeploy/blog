@@ -11,7 +11,7 @@ tags:
 ---
 ![White octopus inside a blue cube-shaped container](execution-workers.png)
 
-[Execution containers](https://octopus.com/blog/octopus-release-2020-2) are a hidden gem in Octopus Deploy. I recently completed a deep dive into them to assist a customer. This involved creating a custom Docker image for use with the execution container feature. I learned a few tips and tricks I wanted to share, to help you write your custom images.
+[Execution containers](https://octopus.com/blog/octopus-release-2020-2) are a hidden gem in Octopus Deploy. I recently completed a deep dive into them to assist a customer. This involved creating a custom Docker image for use with the execution container feature. I learned a few tips and tricks I want to share, to help you write your custom images.
 
 ## Execution container benefits
 When [workers](https://octopus.com/docs/infrastructure/workers) were released in 2018, I was excited by the ability to off-load deployment tasks from the Octopus Server.  I started creating worker pools. One problem I ran into when configuring a worker, was needing to pre-install software.  In certain instances, some software, such as Terraform, is not compatible between versions.  Running side by side is technically possible, but it can cause issues, and I couldn't upgrade to the newest version without having to fix a bunch of deployments.
@@ -32,13 +32,13 @@ The version is part of the deployment process. Upgrading my deployment process t
 
 Database deployments are a common use case for workers.  A database deployment involves at least one package containing the desired state or the migration scripts, but how do package references work with execution containers?
 
-For starters, steps that run on execution containers are typically derived from the run a script step.  The run a script step provides the ability to [reference packages](https://octopus.com/docs/deployments/custom-scripts/run-a-script-step#referencing-packages). This mounts the necessary directories as volumes onto that Docker container.
+Firstly, steps that run on execution containers are typically derived from the **Run a script step**.  The **Run a script step** provides the ability to [reference packages](https://octopus.com/docs/deployments/custom-scripts/run-a-script-step#referencing-packages). This mounts the necessary directories as volumes onto that Docker container.
 
 ![referencing packages with execution containers](reference-packages.png)
 
 You can easily pass the contents of a package to an execution container, which should make it a seamless transition from running directly on the server to an execution container.  That is applicable for the [Octopus Deploy supplied images](https://hub.docker.com/r/octopusdeploy/worker-tools) or your custom images.
 
-## Tip 2: Image Requirements
+## Tip 2: Image requirements
 
 When creating custom execution container images, there are a few requirements:
 
@@ -47,15 +47,15 @@ When creating custom execution container images, there are a few requirements:
 3. Linux containers run on Linux hosts, Windows containers run on Windows hosts.  No Linux containers on Windows hosts.
 4. Assuming you tag images with multiple architectures (more on that below), a worker pool can consist of either Windows hosts or Linux hosts.  
 
-## Tip 3: Understand the working directory and configuring executable paths
+## Tip 3: Understanding the working directory and configuring executable paths
 
 The `docker run` command also leverages the workdir, or `-w` [parameter](https://docs.docker.com/engine/reference/run/#workdir) to set the working directory in the container to match the working directory in the host. 
 
-Normally, the working directory in a container isn't significant. If the script runs successfully, it doesn't matter if it runs from the root or a random folder, except when you need to install custom software on your Docker image. It doesn't use a package manager such as [Chocolatey](https://chocolatey.org) for Windows, [APT](https://en.wikipedia.org/wiki/APT_(software) or [YUM](https://en.wikipedia.org/wiki/Yum_(software) for Linux distros.  
+Normally, the working directory in a container isn't significant. If the script runs successfully, it doesn't matter if it runs from the root or a random folder, except when you need to install custom software on your Docker image. It doesn't use a package manager such as [Chocolatey](https://chocolatey.org) for Windows, [APT](https://en.wikipedia.org/wiki/APT_(software)) or [YUM](https://en.wikipedia.org/wiki/Yum_(software)) for Linux distros.  
 
-I recently ran into this issue building an execution container for Flyway. Package manager is helpful because it adds the necessary paths to the environment variables.  Instead of calling `C:\Flyway\flyway.exe info` to run the info command, I only need to do this `flyway info`.  At the time of writing, they only provide a Maven repo to download a `.tar` or `.zip` file.  
+I recently ran into this issue building an execution container for Flyway. Package manager is helpful because it adds the necessary paths to the environment variables.  Instead of `C:\Flyway\flyway.exe info` to run the info command, I can use `flyway info`. At the time of writing, there is only a Maven repo, which you can use to download a .tar or .zip file.  
 
-For Linux based distros, the commands to get this to work are:
+For Linux based distros, the commands for this are:
 
 ```Dockerfile
 ARG FLYWAY_VERSION=7.7.1
@@ -99,9 +99,9 @@ RUN $old = (Get-ItemProperty -Path 'Registry::HKEY_LOCAL_MACHINE\System\CurrentC
     refreshenv
 ```
 
-The script downloads and extracting the Flyway executable to `C:\flyway-[version number]` then adds that directory to the environment path.  All I need to do in my script is invoke `flyway info` to run the [flyway info command](https://flywaydb.org/documentation/command/info).
+The script downloads and extracts the Flyway executable to `C:\flyway-[version number]` then adds that directory to the environment path.  All I need to do in my script is invoke `flyway info` to run the [flyway info command](https://flywaydb.org/documentation/command/info).
 
-## Tip 4: Create Base Images
+## Tip 4: Creating base images
 
 I recommend creating base images, that contain the basics for any child image to leverage.  I created [base images](https://github.com/OctopusDeployLabs/workertools) for the Flyway execution container image:
 
@@ -121,9 +121,9 @@ This way the child image only has to pull the base image and install the necessa
 
 Before moving to base images, my builds for Linux and Windows were approximately 13 minutes.  Moving to base images reduced them to 5 minutes.
 
-## Tip 5: Use Docker manifest for cross-platform images
+## Tip 5: Using Docker manifest for cross-platform images
 
-Requiring a person to pick the Windows or Linux image is an additional cognitive load, especially if the tooling is cross-platform.  It forces the user to think _where_ the container will be running.  
+Requiring a person to pick the Windows or Linux image is an additional cognitive load, especially if the tooling is cross-platform.  It forces the user to think _where_ the container will run.  
 
 Instead of this:
 ![incorrect picking of version](incorrect-versioning.png)
@@ -153,7 +153,7 @@ How the manifest works:
 6. Build the manifest: `docker manifest create octopuslabs/flyway-workertools:latest octopuslabs/flyway-workertools:latest-windows.2019 octopuslabs/flyway-workertools:latest-ubuntu.1804`.
 7. Push the manifest: `docker manifest push octopuslabs/flyway-workertools:latest`.
 
-You will build and tag an image for each architecture (Windows and Linux).  The tags are unique to the architecture.  When you build the manifest for the `latest` tag, you say "combine latest-windows.2019 and latest-ubuntu.1804" into one tag.  After you are done, your tags will look like this on Docker Hub.
+You will build and tag an image for each architecture (Windows and Linux).  The tags are unique to the architecture.  When you build the manifest for the `latest` tag, you say "combine latest-windows.2019 and latest-ubuntu.1804" into one tag.  When complete, your tags will look like this on Docker Hub.
 
 :::important
 The images must be pushed prior to building the manifest.  Otherwise you'll receive an error about not finding the image, because the manifest is not looking at the local computer.
@@ -163,7 +163,7 @@ The images must be pushed prior to building the manifest.  Otherwise you'll rece
 
 I've made the GitHub action to [build the Flyway execution container public](https://github.com/OctopusDeployLabs/flyway-workertools/blob/main/.github/workflows/docker-build-push.yml) so you can see this in action.
 
-## Tip 6: Leverage Docker build arguments
+## Tip 6: Leveraging Docker build arguments
 
 You'll notice in my Dockerfile examples I'm using the `ARG` command:
 
@@ -171,7 +171,7 @@ You'll notice in my Dockerfile examples I'm using the `ARG` command:
 ARG FLYWAY_VERSION=7.7.1
 ```
 
-When a new version of Flyway is ready to be installed, and assuming everything else is consistent, all I have to do is pass in a `--build-arg` switch in my `docker build` command.
+When a new version of Flyway is ready to be installed, and assuming everything else is consistent, I just pass in a `--build-arg` switch in my `docker build` command.
 
 ```
 docker build ./ubuntu-1804 --tag octopuslabs/flyway-workertools:$FLYWAY_VERSION_TO_BUILD-ubuntu.1804 --tag octopuslabs/flyway-workertools:latest-ubuntu.1804 --build-arg FLYWAY_VERSION=$FLYWAY_VERSION_TO_BUILD
@@ -181,7 +181,7 @@ To create a new version of the Docker image, I only change a single spot in my p
 
 ## Tip 7: Name and version the Docker image based on the key software
 
-I've been using Flyway as my example container.  That is the key software for the container.  Other software, such as the Java Runtime Environment (JRE) are required for it to work correctly.  The name for the image is `flyway-workertools`, and the versioning is based on the Flyway version.
+I've been using Flyway as my example container.  That is the key software for the container.  Other software, such as the Java Runtime Environment (JRE), are required for it to work correctly.  The name for the image is `flyway-workertools`, and the versioning is based on the Flyway version.
 
 ![flyway versioning for the worker tools image](flyway-workertools-versioning.png)
 
@@ -224,4 +224,8 @@ The logic is different for package managers and will [depend on the package mana
 
 ## Conclusion
 
-Execution Containers in Octopus Deploy make it much easier to manage dependencies.  We attempted to provide images to help as many people as possible get started with execution containers.  The upside is they should work for the vast majority of you out there.  The downside is the images often include additional software you might not need.  That leads to bloat and longer download times.  The hope is with these tips, you can craft images to fit your needs exactly.
+Execution containers in Octopus Deploy make it easier to manage dependencies. Octopus provides images to help as many people as possible get started with execution containers. They should work for most, but the images can include additional software you don’t need, resulting in bloat and longer download times. 
+
+I hope the tips provided help you craft images to fit your specific needs.
+
+Happy deployments!
