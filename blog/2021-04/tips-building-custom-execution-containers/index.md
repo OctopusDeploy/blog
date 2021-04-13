@@ -153,7 +153,7 @@ How the manifest works:
 6. Build the manifest: `docker manifest create octopuslabs/flyway-workertools:latest octopuslabs/flyway-workertools:latest-windows.2019 octopuslabs/flyway-workertools:latest-ubuntu.1804`.
 7. Push the manifest: `docker manifest push octopuslabs/flyway-workertools:latest`.
 
-You will build and tag an image for each architecture (Windows and Linux).  The tags are unique to the architecture.  When you build the manifest for the `latest` tag, you say "combine latest-windows.2019 and latest-ubuntu.1804" into one tag.  When complete, your tags will look like this on Docker Hub.
+You will build and tag an image for each architecture (Windows and Linux).  The tags are unique to the architecture.  When you build the manifest for the `latest` tag, you can "combine latest-windows.2019 and latest-ubuntu.1804" into one tag.  When complete, your tags will look like this on Docker Hub.
 
 :::important
 The images must be pushed prior to building the manifest.  Otherwise you'll receive an error about not finding the image, because the manifest is not looking at the local computer.
