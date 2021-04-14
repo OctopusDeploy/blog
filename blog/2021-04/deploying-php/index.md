@@ -7,7 +7,7 @@ published: 2022-04-05-1400
 metaImage: 
 bannerImage: 
 tags:
-
+ - devops
 ---
 
 Whether you love it or hate it, PHP is the most [popular](https://w3techs.com/technologies/market/programming_language) language for web-based applications.  This popularity has led to a wide availability of products that will deploy your PHP code, but not necessarily your entire stack.  Applications often include components other than a web front-end such as databases, APIs, and even containerized microservices.  In this post, I'll demonstrate how to deploy a PHP application to an NGINX web server that uses MySQL as a database back-end.
