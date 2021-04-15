@@ -18,9 +18,9 @@ We knew we could do better with the Octopus Account, so we re-imagined it, to ma
 
 The Octopus Account was pieced together over time. We built the first iteration in July 2018, when we released Octopus Cloud V1. 
 
-We needed a place for account management tools, like billing. Then we needed Octopus ID, then self-service features like server license management, and we continued adding features without considering the overall experience.
+We needed a place for account management tools, like billing. Next came Octopus ID, then self-service features like server license management, and we continued adding features without considering the overall experience.
 
-We want our customers to enjoy every touch-point across Octopus, so now that the Octopus Account is well established, we’ve taken the time to redesign it and consider the whole experience.
+As a customers, you should enjoy every touch-point across Octopus, so now that the Octopus Account is well established, we’ve taken the time to redesign it and consider the whole experience.
 
 ## What's changed?
 
@@ -35,7 +35,7 @@ We’ve shipped the new design across the Control Center, and all existing funct
 
 ## Conclusion
 
-The Control Center is now a distinct space to manage your account, with intuitive navigation to make finding what you need even easier, and these changes pave the way for future features we're working on.
+The Control Center is now a distinct space to manage your account, with intuitive navigation to make finding what you need even easier. These changes also pave the way for future features we're working on.
 
 We hope the redesign makes it more enjoyable to use. Please let us know if you have suggestions for further improvements. 
 
