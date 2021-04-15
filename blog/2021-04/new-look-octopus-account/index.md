@@ -1,5 +1,5 @@
 ---
-title: Your new-look Octopus Account
+title: Introducing the Octopus Control Center
 description: We want our customers to love their Octopus experience. We knew we could do better with the Octopus Account, so we've redesigned it. Find out what's changed.
 author: jed.lehmann@octopus.com
 visibility: public
@@ -35,7 +35,7 @@ We’ve shipped the new design across the Control Center, and all existing funct
 
 ## Conclusion
 
-The Control Center is now a distinct space to manage your account, with intuitive navigation to make finding what you need even easier. These changes also pave the way for future features we're working on.
+The Control Center is now a distinct space to manage your account, with intuitive navigation to make finding what you need even easier. These changes also pave the way for future features we decide to implement.
 
 We hope the redesign makes it more enjoyable to use. Please let us know if you have suggestions for further improvements. 
 
