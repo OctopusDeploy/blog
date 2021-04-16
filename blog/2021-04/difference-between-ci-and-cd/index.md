@@ -102,7 +102,7 @@ Recognizing the different requirements between a machine-driven CI process and a
 
 On the 21st and 22nd of April, we're running the webinar: Continuous Delivery with Dave Farley:
 
-![Continuous delivery webinar image](continuous-deliveery-webinar.png)
+![Continuous delivery webinar image](continuous-delivery-webinar.png)
 
 Join Dave Farley, consultant and co-author of Continuous Delivery, and Bob Walker, VP of Customer Solutions at Octopus Deploy.
 
