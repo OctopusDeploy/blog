@@ -100,7 +100,7 @@ Recognizing the different requirements between a machine-driven CI process and a
 
 ## Register for the webinar
 
-On the 21st and 22nd of April, we're running the webinar: Continuous Delivery with Dave Farley:
+On the 21st and 22nd of April, we're running the webinar: Continuous Delivery with Dave Farley and Bob Walker:
 
 ![Continuous delivery webinar image](continuous-delivery-webinar.png)
 
