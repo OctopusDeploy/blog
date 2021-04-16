@@ -13,9 +13,18 @@ tags:
 **TODO - Update image reference when received from Design**
 ![Image details](image.png)
 
-All new Octopus licenses, from the 1st September 2019 support High Availability, meaning teams can run multiple Octopus servers, distributing load and tasks between them. We've noticed that High-Availability has become the default Octopus configuration and we've recently updated our [High-Availability](https://octopus.com/docs/administration/high-availability) documentation to give people more choice on where to host Highly-Available Octopus Deploy. In this blog, I expand on the options for hosting HA Octopus on [Microsoft Azure](https://azure.microsoft.com/en-us/).
+All new Octopus licenses, from the 1st September 2019 support High Availability, meaning teams can run multiple Octopus servers, distributing load and tasks between them. We've noticed that High-Availability has become the default Octopus configuration and we've recently updated our [High-Availability](https://octopus.com/docs/administration/high-availability) documentation to give people more information and options on where to host Highly-Available Octopus Deploy. In this blog, I set up Octopus High-Availability on Azure and expand on the options for hosting HA Octopus on [Microsoft Azure](https://azure.microsoft.com/en-us/).
 
 !toc
+
+## Why should you make Octopus Highly-Available?
+
+[High Availability](https://octopus.com/docs/administration/high-availability) enables you to run multiple Octopus Deploy Servers, distributing load and tasks between them. High Availability has several benefits which include:
+
+- Higher resilience for business-critical workloads
+- Simplifies maintenance tasks such as [server patching](https://en.wikipedia.org/wiki/Patch_(computing))
+- Performance and Scability
+- No one enjoys downtime
 
 ## Octopus High-Availability Components
 
@@ -30,16 +39,7 @@ An Octopus: HA configuration requires four main components:
 - **Shared storage**
   Some larger files - like [NuGet packages](/docs/packaging-applications/package-repositories/index.md), artifacts, and deployment task logs - aren't suitable to be stored in the database, and so must be stored in a shared folder available to all nodes.
 
-## Why should you make Octopus Highly-Available?
-
-[High Availability](https://octopus.com/docs/administration/high-availability) enables you to run multiple Octopus Deploy Servers, distributing load and tasks between them. High Availability has several benefits which include:
-
-- Higher resilience for business-critical workloads
-- Simplifies maintenance tasks such as [server patching](https://en.wikipedia.org/wiki/Patch_(computing))
-- Performance benefits
-- Reducing cost
-
-### Octopus Virtual Machines
+## Octopus Virtual Machines
 
 When creating a Highly-Available configuration, you are going to need to spin up a minimum of two Virtual Machines in Azure to host Octopus. We don't have a one-size-fits-all spec for Octopus as it will depend on:
 
@@ -49,7 +49,39 @@ When creating a Highly-Available configuration, you are going to need to spin up
 
 If you have a reasonably small workload in Octopus, then you can probably go for a smaller Virtual Machine. Still, the Azure D Series Virtual Machines are a great place to start as they are for general purpose and fit most scenarios reasonably well. Our recommendation would be to consider your workload and then use one of the D Series VM's and see how well this performs for your requirements.
 
-### SQL Database
+In this instance, I spun up two Virtual Machines, one call **Octo1** and **Octo2** using **D2s V2** which has 2 vCPU and 8GB of memory using **Server 2019**. This is a great place to start, and you can change the D Series quite easily to other sizes. So, in theory, you can increase resources and decrease resources as required. You could use some form of automation here to horizontally
+
+### Virtual Machine Disks
+
+You'll need to consider what type of storage you want for your Octopus Virtual Machines, and you can see a full list of [Availability Disk Types](https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types) and it compares them. There are a few to consider:
+
+- [Ultra Disk](https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types#ultra-disk)
+- [Premium SSD](https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types#premium-ssd)
+- [Standard SSD](https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types#standard-ssd)
+- [Standard HDD](https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types#standard-hdd)
+
+The key bit is to remember that this is only for the VM and I selected **Standard SSD** for my purposes. The main reason for this was that the cost and performance matched my requirements. Octopus isn't very disk intensive which means you're unlikely to get much benefit using Ultra Disks, but you should definitely consider Premium SSD if you're using Octopus with thousands of projects as this can really be beneficial.
+
+### Azure Availability Sets vs Azure Availability Zones
+
+For a full list of Availability options for Azure Virtual Machines, please check out the [Azure Docs](https://docs.microsoft.com/en-us/azure/virtual-machines/availability) as we won't cover all of these.
+
+- [Azure Availability Zones](https://docs.microsoft.com/en-us/azure/availability-zones/az-overview#availability-zones) are separate data centers within Azure Region, with their own dedicated power, cooling and networking. With this option, when using Availability Zones you are ensuring Octopus remains resilient to failure in your primary Azure Region. To ensure resiliency, there's a minimum of three separate zones in all enabled regions. Azure offers 99.99% uptime SLA for this option.
+- [Azure Availability Sets](https://docs.microsoft.com/en-us/azure/virtual-machines/availability-set-overview) is a logical grouping of VMs that provides redundancy and availability. Azure offers a 99.95% SLA for Availability Sets and there are no costs for this, apart from the Virtual Machine Costs.
+
+When designing and configuring my Octopus on Microsoft Azure, I went for the Azure Availability Zones option purely for the increased SLA and it's also what Microsoft are generally recommending for High Availability. I set up my two Virtual Machines **Octo1** and **Octo2** in **Availability Zone 1** and **Availability Zone 2**. This gives me tolerance in Octopus HA as it's using different logical Data Centers but also of having low-latency access to the storage and the SQL database.
+
+Most Octopus High-Availability will contain two Virtual Machines, but if you were using 3 or more you will need to place them into their own Zones.
+
+An example configuration for multi-VM Octopus High-Availability would be:
+
+- Octo1 in AZ1, Octo2 in AZ2
+- Octo1 in AZ1, Octo2 in AZ2, Octo3 in AZ3
+- Octo1 in AZ1, Octo2 in AZ2, Octo3 in AZ3, Octo4 in AZ1
+
+We have only tested Octopus to 8 nodes, but you can separate these over as many of the Availability Zones as you wish.
+
+## SQL Database
 
 Octopus is underpinned by a SQL Database that stores environments, projects, variables, releases, and deployment history. You will need to spin up a SQL server in Azure, and there are two options which you should consider, and these are:
 
@@ -76,9 +108,9 @@ Some of the drawbacks of using SQL Virtual Machines over Azure SQL:
 - Increased Setup time
 - Maintaining Infrastructure and Database(s)
 
-I spend a considerable amount of time doing Proof of Concepts, and I am a big fan of anything [PaaS](https://en.wikipedia.org/wiki/Platform_as_a_service). I particularly like [Azure SQL Database Service](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-technical-overview), as I don't need to invest a considerable amount of time spinning up Virtual Machines's, Network Security Groups, Configuring SQL, Firewall rules, Maintenance plans and so forth. I can log on to the [Azure Portal](https://portal.azure.com/) and spin up a new SQL Server, Database, and connection strings in a matter of minutes and if you have [ARM Templates](https://azure.microsoft.com/en-gb/resources/templates/) in place for this, it can take seconds. [Infrastructure as Code](https://en.wikipedia.org/wiki/Infrastructure_as_code) is a huge time saver, but I realize that this may not be for everyone's preference just yet.
+I spend a considerable amount of time doing Proof of Concepts, and I am a big fan of anything [PaaS](https://en.wikipedia.org/wiki/Platform_as_a_service). I particularly like [Azure SQL Database Service](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-technical-overview), as I don't need to invest a considerable amount of time spinning up Virtual Machines's, Network Security Groups, Configuring SQL, Firewall rules, Maintenance plans and so forth. I can log on to the [Azure Portal](https://portal.azure.com/) and spin up a new SQL Server, Database, and connection strings in a matter of minutes and if you have [ARM Templates](https://azure.microsoft.com/en-gb/resources/templates/) in place for this, it can take a few minutes. [Infrastructure as Code](https://en.wikipedia.org/wiki/Infrastructure_as_code) is a huge time saver, but I realize that this may not be for everyone's preference just yet.
 
-When spinning up a database on Azure SQL, I can create a geo-replicated or locally-replicated database in a few moments, and that's my DatabaseDatabase highly available. All I need to do now is configure the Connection string for Octopus, and I am good to go.
+When spinning up a database on Azure SQL, I can create a geo-replicated or locally-replicated database in a few moments, and that's my DatabaseD highly available. All I need to do now is configure the Connection string for Octopus, and I am good to go.
 
 There are many benefits of using Azure SQL over SQL Virtual Machines:
 
@@ -97,7 +129,36 @@ Some of the drawbacks of using Azure SQL over SQL Virtual Machines:
 
 As you can see with both options, they have their merits and their drawbacks, and it's probably best if you give this some thought and pick the right solution for you and your Organizational needs.
 
-### Storage
+### SQL Database Selection
+
+In my example, I selected:
+
+- Azure SQL Server in West Europe as this is my primary region for all
+- Azure SQL Server in North Europe for my Geo-Replicated Octopus Database for Disaster Recovery needs.
+- Created a database named **Octo-HA** in the primary region and SQL Server
+- Browsed to Geo-Replication on the Primary Azure SQL Database and enabled Replication
+- Let it replicate to the secondary database server and region
+
+At this point, you have a primary Database Server and Database, and it's being synced cross region to a secondary server and database.
+
+:::info
+Zone Redundant Databases are currently in Preview in Azure, and had this been available, I would have used Zone Redundant Databases as this is the same level of redundancy I have set for my Azure Virtual Machines.
+:::
+
+### SQL Database Specifications
+
+This part of the blog covers options for SQL Server Performance. I'd recommend checking out [High Availability SLA](https://docs.microsoft.com/en-us/azure/azure-sql/database/high-availability-sla) doc to ensure you pick the right sizing of Database and Server.
+
+In my example, I selected:
+
+- General Purpose
+- Provisioned which provides Computer resources which are pre-allocated and billed per hour. 
+- 2 vCores
+- Max Data Size of 30gb
+- Zone Redundancy turned on. (Zone Redundancy adds about 20% to the cost)
+
+This wouldbe a great place to start from in a Highly-Available configuration but you may need to consider your workload, as this may be far too big for your requirements if you own a small Octopus instance. If you own a large instance, I'd consider the HyperScale and Business Critical loads in Microsoft Azure
+## Storage
 
 In a single node setup, you would typically host Octopus on [Local Storage](https://en.wikipedia.org/wiki/Local_storage) on either `C:\Octopus` or `D:\Octopus`. You're going to need some local storage for Octopus unless you decide to present an Azure File Share as a mapped drive or as a Symbolic link to the server. Our recommendation is to host your logs and configuration of Octopus locally on the server. It avoids any potential issues with accidentally pointing all of your Octopus nodes logs location to the same file, which would cause file locking issues and cause the Octopus server to stop until you resolved it.
 
