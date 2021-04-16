@@ -10,6 +10,7 @@ Automation
 AWS
 Azure
 Continuous Integration
+Continuous Deployment
 Config as Code
 Database Deployments
 Deployment Patterns
