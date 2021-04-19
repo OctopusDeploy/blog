@@ -1,6 +1,6 @@
 ---
 title: Deploying to MongoDB with Octopus Deploy and Liquibase
-description: Learn how to use Octopus Deploy to deploy to MongoDB using Liquibase
+description: Learn how to use Octopus Deploy to deploy to MongoDB using Liquibase.
 author: shawn.sesna@octopus.com
 visibility: public
 published: 2021-05-04-1400
