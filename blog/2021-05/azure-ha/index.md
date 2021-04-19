@@ -11,7 +11,9 @@ tags:
  - Azure
 ---
 
-From the 1st September 2019, all new Octopus licenses support High Availability, meaning teams can run multiple Octopus servers, distributing load and tasks between them. We've noticed that High-Availability has become the default Octopus configuration. We've recently updated our [High-Availability](https://octopus.com/docs/administration/high-availability) documentation to give people more information and options on where to host Highly-Available Octopus Deploy. In this blog, I set up Octopus High-Availability on Azure and expand on the possibilities for hosting Highly Available Octopus on [Microsoft Azure](https://azure.microsoft.com/en-us/).
+We've recently updated our [High-Availability](https://octopus.com/docs/administration/high-availability) documentation to give people more information and options on where to host Highly-Available Octopus Deploy.
+
+In this blog, I set up Octopus High-Availability on Azure, evaluate different options you can use and take you through the different components of a highly available Octopus Deploy setup on on [Microsoft Azure](https://azure.microsoft.com/en-us/).
 
 !toc
 
@@ -23,6 +25,7 @@ From the 1st September 2019, all new Octopus licenses support High Availability,
 - Simplifies maintenance tasks such as [server patching](https://en.wikipedia.org/wiki/Patch_(computing))
 - Performance and Scalability
 - No one enjoys downtime
+- You get it free with all new Octopus licenses, so why not use it?
 
 ## Octopus High-Availability Components
 
@@ -39,7 +42,7 @@ An Octopus: HA configuration requires four main components:
 
 ## Octopus Virtual Machines
 
-When creating a Highly-Available configuration, you will need to spin up a minimum of two Virtual Machines in Azure to host Octopus. We don't have a one-size-fits-all spec for Octopus as it will depend on:
+When creating a Highly-Available configuration, you will need to provision a minimum of two Virtual Machines in Azure to host Octopus. We don't have a one-size-fits-all spec for Octopus as it will depend on:
 
 - [Number and type of Deployment Targets](https://octopus.com/docs/administration/retention-policies/)
 - [Retention Policies](https://octopus.com/docs/administration/retention-policies/)
@@ -53,21 +56,23 @@ In this instance, I spun up two Virtual Machines, one call **Octo1** and **Octo2
 
 You'll need to consider what type of storage you want for your Octopus Virtual Machines, and you can see a full list of [Availability Disk Types](https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types), and it compares them. There are a few to consider:
 
-- [Ultra Disk](https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types#ultra-disk)
-- [Premium SSD](https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types#premium-ssd)
-- [Standard SSD](https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types#standard-ssd)
-- [Standard HDD](https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types#standard-hdd)
+- [Ultra Disk](https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types#ultra-disk) - Azures fastest Disks
+- [Premium SSD](https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types#premium-ssd) - A great solution for most workloads.
+- [Standard SSD](https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types#standard-ssd) - A solution that gives you fast disks but within a reasonable budget.
+- [Standard HDD](https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types#standard-hdd) - Generally best kept for low-performance workloads or Dev and Test environments.
 
 The critical bit is to remember that this is only for the VM, and I selected **Standard SSD** for my purposes. The main reason for this was that the cost and performance matched my requirements. Octopus isn't very disk-intensive, which means you're unlikely to get many benefits using Ultra Disks. Still, you should consider Premium SSD if you're using Octopus with thousands of projects, as this can be beneficial.
 
 ### Azure Availability Sets vs. Azure Availability Zones
 
-Please check out the [Azure Docs] for a complete list of availability options for Azure Virtual Machines; please check out the [Azure Docs](https://docs.microsoft.com/en-us/azure/virtual-machines/availability) as we won't cover all of these.
+Please check out the [Azure Docs](https://docs.microsoft.com/en-us/azure/virtual-machines/availability) for a complete list of availability options for Azure Virtual Machines as we won't cover all of these.
 
-- [Azure Availability Zones](https://docs.microsoft.com/en-us/azure/availability-zones/az-overview#availability-zones) are separate data centers within Azure Region, with dedicated power, cooling, and networking. With this option, when using Availability Zones, you are ensuring Octopus remains resilient to failure in your primary Azure Region. To ensure resiliency, there's a minimum of three separate zones in all enabled regions. Azure offers a 99.99% uptime SLA for this option.
-- [Azure Availability Sets](https://docs.microsoft.com/en-us/azure/virtual-machines/availability-set-overview) is a logical grouping of VMs that provides redundancy and Availability. Azure offers a 99.95% SLA for Availability Sets, and there are no costs for this, apart from the Virtual Machine Costs.
+- [Azure Availability Zones](https://docs.microsoft.com/en-us/azure/availability-zones/az-overview#availability-zones) are separate data centers within Azure Region, with dedicated power, cooling, and networking. With this option, when using Availability Zones, you are ensuring Octopus remains resilient to failure in your primary Azure Region. To ensure resiliency, there's a minimum of three separate zones in all enabled regions. Azure offers a **99.99% uptime SLA** for this option.
+- [Azure Availability Sets](https://docs.microsoft.com/en-us/azure/virtual-machines/availability-set-overview) is a logical grouping of VMs that provides redundancy and Availability. Azure offers a **99.95% uptime SLA** for Availability Sets, and there are no costs for this, apart from the Virtual Machine Costs.
 
-When designing and configuring my Octopus on Microsoft Azure, I went for the Azure Availability Zones option purely for the increased SLA, and it's also what Microsoft is generally recommending for High Availability. I set up my two Virtual Machines **Octo1** and **Octo2** in **Availability Zone 1** and **Availability Zone 2**. This gives me tolerance in Octopus HA as it's using different logical Data Centers but also benefits of having low-latency access to the storage and the SQL database.
+When designing and configuring Octopus on Microsoft Azure, I went for the **Azure Availability Zones** option purely for the increased SLA, and it's also what Microsoft is generally recommending for High Availability. 
+
+I set up my two Virtual Machines **Octo1** and **Octo2** in **Availability Zone 1** and **Availability Zone 2**. This gives me tolerance in Octopus HA as it's using different logical Data Centers but also benefits of having low-latency access to the storage and the SQL database.
 
 Most Octopus High-Availability will contain two Virtual Machines but using three or more, you will need to place them into their Zones.
 
@@ -79,7 +84,7 @@ An example configuration for multi-VM Octopus High-Availability would be:
 
 We have only tested Octopus to 8 nodes, but you can separate these over as many of the Availability Zones as you wish.
 
-## SQL Database
+## Octopus SQL Database
 
 Octopus is underpinned by a SQL Database that stores environments, projects, variables, releases, and deployment history. You will need to spin up a SQL server in Azure, and there are two options that you should consider, and these are:
 
@@ -90,9 +95,9 @@ Octopus natively works with both of these options, and we don't have a preferenc
 
 ### SQL Virtual Machine vs. Azure SQL
 
-I still see that most organizations are using Virtual Machines when they are provisioning their SQL workload in the cloud, and in this section, I will go through the benefits of picking SQL VM's and some of the drawbacks.
+Most organizations are using Virtual Machines when they are provisioning their SQL workload in the cloud, and in this section, I will go through the benefits of picking SQL VM's and some of the drawbacks.
 
-As we are after a highly available configuration, Octopus, we need to factor in high Availability at the SQL level. What this means is that you are going to need a minimum of 2 SQL servers, preferably in a [SQL cluster in Azure](https://techcommunity.microsoft.com/t5/Premier-Field-Engineering/Configure-SQL-Server-Failover-Cluster-Instance-on-Azure-Virtual/ba-p/371464), or an [Always On Availability Group](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sql/virtual-machines-windows-portal-sql-availability-group-tutorial) in Azure. For the most part, I will keep this part high-level as there is a lot of really great content on these topics out there already, and you may have a Database Administrator who will carry this out for you. If you have this already on Azure, I would recommend using that setup to host Octopus, preferably on a dedicated SQL instance.
+As we are after a highly available configuration, Octopus, we need to factor in high Availability at the SQL level. What this means is that you are going to need a minimum of 3 SQL servers, preferably in a [SQL cluster in Azure](https://techcommunity.microsoft.com/t5/Premier-Field-Engineering/Configure-SQL-Server-Failover-Cluster-Instance-on-Azure-Virtual/ba-p/371464), or an [Always On Availability Group](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/sql/virtual-machines-windows-portal-sql-availability-group-tutorial) in Azure. For the most part, I will keep this part high-level as there is a lot of really great content on these topics out there already, and you may have a Database Administrator who will carry this out for you. If you have this already on Azure, I would recommend using that setup to host Octopus, preferably on a dedicated SQL instance.
 
 There are several benefits of using SQL Virtual Machines over Azure SQL, and these are:
 
@@ -159,7 +164,7 @@ These specifications would be a great place to start from in a Highly-Available 
 
 If you own a large instance, I'd consider the HyperScale and Business Critical loads in Microsoft Azure. Try and find the right fit for your requirements for SQL, as you don't want a slow-performing Octopus instance, but you probably also don't want to size it too big and pay too much for your Database hosting.
 
-## Storage
+## Octopus Storage
 
 In a single node setup, you would typically host Octopus on [Local Storage](https://en.wikipedia.org/wiki/Local_storage) on either `C:\Octopus` or `D:\Octopus.` You're going to need some local storage for Octopus unless you decide to present an Azure File Share as a mapped drive or as a Symbolic link to the server. Our recommendation is to host your logs and configuration of Octopus locally on the server. It avoids any potential issues with accidentally pointing all of your Octopus node's logs location to the same file, which would cause file locking issues and cause the Octopus server to stop until you resolved it.
 
@@ -266,19 +271,19 @@ If you have used Active Directory on-Premises and you are moving to Azure, and y
 - Rinse and Repeat for all users.
 
 :::info
-Please check out [this script](https://github.com/OctopusDeploy/OctopusDeploy-Api/blob/master/REST/PowerShell/Users/AddAzureActiveDirectoryLoginToUsers.ps1) as this is likely to help with any migrations from On-Premises to Azure.
+Please check out [this script](https://github.com/OctopusDeploy/OctopusDeploy-Api/blob/master/REST/PowerShell/Users/AddAzureActiveDirectoryLoginToUsers.ps1) as this is likely to help with any migrations from On-Premises to Azure if you are switching to Azure Active Directory.
 :::
 
 ## Networking
 
 Networking is a contentious issue at the best of times, and your configuration will depend heavily on your existing network topology and standards. I'd consider implementing one or some of the below to help protect your Azure workload:
 
-- [Azure Bastion](https://azure.microsoft.com/en-gb/services/azure-bastion/)
-- [VPN Gateway](https://azure.microsoft.com/en-gb/services/vpn-gateway/)
-- [ExpressRoute](https://azure.microsoft.com/en-gb/services/expressroute/)
-- [A Jump Box](https://en.wikipedia.org/wiki/Jump_server)
+- [Azure Bastion](https://azure.microsoft.com/en-gb/services/azure-bastion/) - A fully platform-managed PaaS service you can use to provide secure and seamless RDP/SSH connectivity to you servers.
+- [VPN Gateway](https://azure.microsoft.com/en-gb/services/vpn-gateway/) - A service that connects your on-Premise network to Azure services.
+- [ExpressRoute](https://azure.microsoft.com/en-gb/services/expressroute/) - A way to have a dedicated line direct to Azure over a private link.
+- [A Jump Box](https://en.wikipedia.org/wiki/Jump_server) - A way to enable a single route into your Azure services from a secured server.
 
-I'd look to use existing methods to connect to Azure if you already have this in place. If you have ExpressRoute, then this is the best approach, but much like with anything, it's the most expensive. If you have a VPN Gateway, a jump box, or even Azure Bastion service, I would recommend using these to your advantage.
+I'd consider using existing methods to connect to Azure if you already have this in place. If you have ExpressRoute, then this is the best approach, but much like with anything, it's the most expensive. If you have a VPN Gateway, a jump box, or even Azure Bastion service, I would recommend using these to your advantage.
 
 The biggest recommendation I can make here is to reduce your [surface of attack](https://en.wikipedia.org/wiki/Attack_surface) while keeping your networking as straightforward as you can without causing any potential security issues.
 
