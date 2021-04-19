@@ -13,7 +13,7 @@ tags:
 **TODO - Update image reference when received from Design**
 ![Image details](image.png)
 
-All new Octopus licenses, from the 1st September 2019 support High Availability, meaning teams can run multiple Octopus servers, distributing load and tasks between them. We've noticed that High-Availability has become the default Octopus configuration and we've recently updated our [High-Availability](https://octopus.com/docs/administration/high-availability) documentation to give people more information and options on where to host Highly-Available Octopus Deploy. In this blog, I set up Octopus High-Availability on Azure and expand on the options for hosting HA Octopus on [Microsoft Azure](https://azure.microsoft.com/en-us/).
+All new Octopus licenses, from the 1st September 2019 support High Availability, meaning teams can run multiple Octopus servers, distributing load and tasks between them. We've noticed that High-Availability has become the default Octopus configuration and we've recently updated our [High-Availability](https://octopus.com/docs/administration/high-availability) documentation to give people more information and options on where to host Highly-Available Octopus Deploy. In this blog, I set up Octopus High-Availability on Azure and expand on the options for hosting Highly Available Octopus on [Microsoft Azure](https://azure.microsoft.com/en-us/).
 
 !toc
 
@@ -69,7 +69,7 @@ For a full list of Availability options for Azure Virtual Machines, please check
 - [Azure Availability Zones](https://docs.microsoft.com/en-us/azure/availability-zones/az-overview#availability-zones) are separate data centers within Azure Region, with their own dedicated power, cooling and networking. With this option, when using Availability Zones you are ensuring Octopus remains resilient to failure in your primary Azure Region. To ensure resiliency, there's a minimum of three separate zones in all enabled regions. Azure offers 99.99% uptime SLA for this option.
 - [Azure Availability Sets](https://docs.microsoft.com/en-us/azure/virtual-machines/availability-set-overview) is a logical grouping of VMs that provides redundancy and availability. Azure offers a 99.95% SLA for Availability Sets and there are no costs for this, apart from the Virtual Machine Costs.
 
-When designing and configuring my Octopus on Microsoft Azure, I went for the Azure Availability Zones option purely for the increased SLA and it's also what Microsoft are generally recommending for High Availability. I set up my two Virtual Machines **Octo1** and **Octo2** in **Availability Zone 1** and **Availability Zone 2**. This gives me tolerance in Octopus HA as it's using different logical Data Centers but also of having low-latency access to the storage and the SQL database.
+When designing and configuring my Octopus on Microsoft Azure, I went for the Azure Availability Zones option purely for the increased SLA and it's also what Microsoft are generally recommending for High Availability. I set up my two Virtual Machines **Octo1** and **Octo2** in **Availability Zone 1** and **Availability Zone 2**. This gives me tolerance in Octopus HA as it's using different logical Data Centers but also benefits of having low-latency access to the storage and the SQL database.
 
 Most Octopus High-Availability will contain two Virtual Machines, but if you were using 3 or more you will need to place them into their own Zones.
 
@@ -108,9 +108,9 @@ Some of the drawbacks of using SQL Virtual Machines over Azure SQL:
 - Increased Setup time
 - Maintaining Infrastructure and Database(s)
 
-I spend a considerable amount of time doing Proof of Concepts, and I am a big fan of anything [PaaS](https://en.wikipedia.org/wiki/Platform_as_a_service). I particularly like [Azure SQL Database Service](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-technical-overview), as I don't need to invest a considerable amount of time spinning up Virtual Machines's, Network Security Groups, Configuring SQL, Firewall rules, Maintenance plans and so forth. I can log on to the [Azure Portal](https://portal.azure.com/) and spin up a new SQL Server, Database, and connection strings in a matter of minutes and if you have [ARM Templates](https://azure.microsoft.com/en-gb/resources/templates/) in place for this, it can take a few minutes. [Infrastructure as Code](https://en.wikipedia.org/wiki/Infrastructure_as_code) is a huge time saver, but I realize that this may not be for everyone's preference just yet.
+I spend a considerable amount of time doing Proof of Concepts, and I am a big fan of anything [PaaS](https://en.wikipedia.org/wiki/Platform_as_a_service). I particularly like [Azure SQL Database Service](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-technical-overview), as I don't need to invest a considerable amount of time spinning up Virtual Machines's, Network Security Groups, Configuring SQL, Firewall rules, Maintenance plans and so forth. I can log on to the [Azure Portal](https://portal.azure.com/) and spin up a new SQL Server, Database, and connection strings in a matter of minutes and if you have [ARM Templates](https://azure.microsoft.com/en-gb/resources/templates/) in place for this, it can take a few moments. [Infrastructure as Code](https://en.wikipedia.org/wiki/Infrastructure_as_code) is a huge time saver, but I realize that this may not be for everyone's preference just yet.
 
-When spinning up a database on Azure SQL, I can create a geo-replicated or locally-replicated database in a few moments, and that's my DatabaseD highly available. All I need to do now is configure the Connection string for Octopus, and I am good to go.
+When spinning up a database on Azure SQL, I can create a geo-replicated or locally-replicated database in a few moments, and that's my Database highly available. All I need to do now is configure the Connection string for Octopus, and I am good to go.
 
 There are many benefits of using Azure SQL over SQL Virtual Machines:
 
@@ -152,12 +152,15 @@ This part of the blog covers options for SQL Server Performance. I'd recommend c
 In my example, I selected:
 
 - General Purpose
-- Provisioned which provides Computer resources which are pre-allocated and billed per hour. 
+- Provisioned which provides Computer resources which are pre-allocated and billed per hour.
 - 2 vCores
 - Max Data Size of 30gb
 - Zone Redundancy turned on. (Zone Redundancy adds about 20% to the cost)
 
-This wouldbe a great place to start from in a Highly-Available configuration but you may need to consider your workload, as this may be far too big for your requirements if you own a small Octopus instance. If you own a large instance, I'd consider the HyperScale and Business Critical loads in Microsoft Azure
+This would be a great place to start from in a Highly-Available configuration but you may need to consider your workload, as this may be far too big for your requirements if you own a small Octopus instance.
+
+If you own a large instance, I'd consider the HyperScale and Business Critical loads in Microsoft Azure. Try and find the right fit for your requirements for SQL, as you don't want a slow performing Octopus instance, but you probably also don't want to size it too big and pay too much for your Database hosting.
+
 ## Storage
 
 In a single node setup, you would typically host Octopus on [Local Storage](https://en.wikipedia.org/wiki/Local_storage) on either `C:\Octopus` or `D:\Octopus`. You're going to need some local storage for Octopus unless you decide to present an Azure File Share as a mapped drive or as a Symbolic link to the server. Our recommendation is to host your logs and configuration of Octopus locally on the server. It avoids any potential issues with accidentally pointing all of your Octopus nodes logs location to the same file, which would cause file locking issues and cause the Octopus server to stop until you resolved it.
@@ -184,7 +187,7 @@ If your Octopus Server is running in Microsoft Azure, there is only one solution
 
 Once you have created your File Share, I find the best option is to add the Azure File Share as a [symbolic link](https://en.wikipedia.org/wiki/Symbolic_link) and then adding this in to `C:\Octopus\` for the Artifacts, Packages, and TaskLogs which need to be available to all nodes.
 
-Run the below before installing Octopus.
+Run the below **before installing Octopus**.
 
 ````powershell
 # Add the Authentication for the symbolic links. You can get this from the Azure Portal.
@@ -214,19 +217,60 @@ mklink /D C:\Octopus\Packages \\octostorage.file.core.windows.net\octoha\Package
 & 'C:\Program Files\Octopus Deploy\Octopus\Octopus.Server.exe' path --nugetRepository "C:\Octopus\Packages"
 ````
 
-### Load Balancer
+## Load Balancing
 
-This one took me a bit of time to make a selection as there are a few options for balancing your loads in Azure. It will depend entirely on your preference and what your Network team prefers, as are many options, and we are only listing a few of these below.
+When you configured the first Octopus Server node, as well as each of the subsequent nodes, you would have configured the HTTP endpoint that the Octopus web interface is available on. The final step is to configure a load balancer, so that user traffic is directed between each of the Octopus Server nodes.
+
+Octopus can work with any load balancer technology, including hardware and software load balancers. In Azure, we have the following Load Balancers available to us.
 
 - [Azure Traffic Manager](https://docs.microsoft.com/en-us/azure/traffic-manager/traffic-manager-overview)
 - [Azure Application Gateway](https://docs.microsoft.com/en-us/azure/application-gateway/overview)
 - [Azure Load Balancer](https://docs.microsoft.com/en-us/azure/load-balancer/load-balancer-overview)
+- [Azure Front Door](https://docs.microsoft.com/en-us/azure/frontdoor/front-door-overview)
 - [Kemp LoadMaster](https://kemptechnologies.com/uk/solutions/microsoft-load-balancing/loadmaster-azure/)
 - [F5 Big-IP Virtual Edition](https://www.f5.com/partners/technology-alliances/microsoft-azure)
 
-My preference after evaluating the options on Azure is the Azure Load Balancer option as this is a feature-rich
+My preference after evaluating the options on Azure is the Azure Load Balancer option as this is a feature-rich Load Balancer that meets my requirements.
 
-### Networking
+:::tip
+Create your Azure Load Balancer before you create the Virtual Machines, as you can select the Load Balancer during provisioning.
+:::
+
+### Load balancer session persistence
+
+We typically recommend using a round-robin (or similar) approach for sharing traffic between the nodes in your cluster, as the Octopus Web Portal is stateless.
+
+However, each node in the cluster keeps a local cache of data including user permissions. There is a known issue that occurs when a users permissions change. The local cache is only invalidated on the node where the change was made. This will be resolved in a future version of Octopus.
+
+To work around this issue in the meantime you can configure your load balancer with **session persistence**. This will ensure user sessions are routed to the same node.
+
+## Authentication Providers
+
+If you're migrating from On-Premises to Azure, you are going to need to consider your Authentication Providers. You're likely using **Active Directory** on-Premises, and generally this isn't something that's supported in Octopus in Azure. The main reason for this, is that you need a Domain Controller in the same network as your Octopus installation to allow for Authentication of your users using Active Directory.
+
+If you do have Domain Controllers in Azure that are contactable, then you can continue to use Active Directory authentication.
+
+If you do not have Domain Controllers that are contactle in Azure, then you'd need to consider switching to:
+
+- [Azure Active Directory](https://octopus.com/docs/security/authentication/azure-ad-authentication)
+- [GoogleApps](https://octopus.com/docs/security/authentication/googleapps-authentication)
+- [Okta](https://octopus.com/docs/security/authentication/okta-authentication)
+- [Built-in Users and Teams](https://octopus.com/docs/security/users-and-teams)
+
+### Moving Authentication Providers
+
+If you have used Active Directory on-Premises and you are moving to Azure and you can't continue using Active Directory, you can associate multiple external identities to a single user in Octopus. The most common migration is likely to be from Active Directory to Azure Active Directory. In this example, assuming I have a user named **Derek.Campbell** on a domain called **work.local** and an Active Directory tenant of **worklocal.onmicrosoft.com** I would:
+
+- Setup [Azure Active Directory](https://octopus.com/docs/security/authentication/azure-ad-authentication)
+- Add my **Derek.Campbell@Worklocal.OnMicrosoft.com** account to the Octopus Deploy user that also has my **Derek.Campbell@Work.local** user.
+- Remove **Derek.Campbell@work.local** from the user.
+- Test Authentication
+- Rinse and Repeat for all users.
+
+:::info
+Please check out [this script](https://github.com/OctopusDeploy/OctopusDeploy-Api/blob/master/REST/PowerShell/Users/AddAzureActiveDirectoryLoginToUsers.ps1) as this is likely to help with any migrations from On-Premises to Azure.
+
+## Networking
 
 Networking at the best of times is a contentious issue, and your configuration will depend heavily on your existing network topology and standards. I'd consider implementing one or some of the below to help protect your Azure workload:
 
