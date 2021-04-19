@@ -100,7 +100,7 @@ Specify any additional query string parameters for the connection string.  For e
 Path to the database driver jar file within the package to use for connecting to the database server.  Not used when the **Download Liquibase** option is checked.
 
 #### Executable file path
-Path to the Liquibase executable within the package.  Not used when `Download Liquibase` option is checked.
+Path to the Liquibase executable within the package.  Not used when **Download Liquibase** option is checked.
 
 #### Report only?
 This checkbox is used when you only want to see the SQL that is going to be used for the deployment.  
@@ -113,7 +113,7 @@ Use this option if you're not including Liquibase in your deployment package.
 This option will download the community version of Liquibase, Java, and the databased type .jar file necessary to perform the deployment.  This post uses this option.
 
 #### Liquibase version
-This option is only used with the `Download Liquibase` option.  
+This option is only used with the **Download Liquibase** option.  
 
 This specifies the version of Liquibase to download. Leave blank to use the latest.
 
