@@ -129,13 +129,10 @@ Combining tools like Octopus Deploy and Pulumi allows you to automate an entire 
 
 ## Register for the webinar
 
-We're running a webinar **Modern DevOps Automation with Octopus Deploy and Pulumi**. 
+## Watch the webinar
 
-The webinar will go into more detail and provide practical demonstrations.
+<iframe width="560" height="315" src="https://www.youtube.com/embed/SA3-efF5PWk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Learn more and register for the webinar at one of the following times:
-
-- [Tuesday 6 April 2021, 03:00 PM PST / Wednesday 7 April 2021, 08:00 AM AEST](https://octopus.zoom.us/webinar/register/3316043355267/WN_dbVsyT1DSYGfp8IhdNnNtw).
-- [Thursday 8 April 2021, 02:00 PM GMT](https://octopus.zoom.us/webinar/register/8016154691421/WN_zcUrb-L2TKOIg-IXeaaVdA).
+We host webinars regularly. See the [webinars page](https://octopus.com/events) for an archive of past webinars and details about upcoming webinars. 
 
 Happy deployments!

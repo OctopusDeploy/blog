@@ -183,15 +183,10 @@ There are multiple steps to configure Pulumi initially, but as you can see, it's
 
 In my next [post](/blog/2021-04/iac-azure-octopus-pulumi-part-2/index.md), I show you how to package the Go code and deploy it with Octopus Deploy.
 
-## Register for the webinar
+## Watch the webinar
 
-We're running a webinar **Modern DevOps Automation with Octopus Deploy and Pulumi**. 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/SA3-efF5PWk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-The webinar will go into more detail and provide practical demonstrations.
-
-Learn more and register for the webinar at one of the following times:
-
-- [Tuesday April 6th 2021, 3pm PST / Wednesday April 7th 2021, 8am AEST](https://octopus.zoom.us/webinar/register/1516171718254/WN_dbVsyT1DSYGfp8IhdNnNtw).
-- [Thursday April 8th 2021, 2pm GMT](https://octopus.zoom.us/webinar/register/7716171721080/WN_zcUrb-L2TKOIg-IXeaaVdA).
+We host webinars regularly. See the [webinars page](https://octopus.com/events) for an archive of past webinars and details about upcoming webinars. 
 
 Happy deployments!
