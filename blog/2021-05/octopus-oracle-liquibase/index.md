@@ -34,7 +34,7 @@ The [step template for Liquibase](https://library.octopus.com/step-templates/6a2
 - With Liquibase included in the package.
 - With only the changelog file.
 
-For this post, we package the change log file:
+For this post, we package the changelog file:
 
 <details>
   <summary>dbchangelog.xml</summary>
@@ -61,7 +61,7 @@ The Liquibase template is specifically designed to support running on a Worker w
 
 #### Database type
 
-Select the database type that you're deploying to. The types supported currently are:
+Select the database type that you're deploying to. The currently supported types are:
 
 - MariaDB
 - MySQL
@@ -155,6 +155,16 @@ If we log into Oracle, we can see that our database updates have been applied:
 
 ## Conclusion
 
-Octopus Deploy supports deploying to many database technologies (Microsoft SQL Server, MariaDB, MySQL, Oracle, PostgreSQL, etc.) as well as many different deployment methods (DACPAC, DbUp, Flyway, Liquibase, RoundhousE, etc.).  I hope this post helped you understand how you can use Octopus Deploy to deploy to an Oracle database using Liquibase.
+Octopus Deploy supports deploying to many database technologies (Microsoft SQL Server, MariaDB, MySQL, Oracle, PostgreSQL, etc.) as well as many different deployment methods (DACPAC, DbUp, Flyway, Liquibase, RoundhousE, etc.).  I hope this post helps you understand how you can use Octopus Deploy to deploy to an Oracle database using Liquibase.
+
+
+## Register for the webinar
+
+On the 5th and 6th of May, we're running the webinar: Delivering Database DevOps with Octopus Deploy and Liquibase.
+
+Join Shawn Sesna, Solutions Architect at Octopus, and Mike Olivas, Senior Solutions Architect at Liquibase, to see both technologies in action and how they complement each other.
+
+- Wednesday May 5th, 7am PT / 3pm GMT: [Register now](https://octopus.zoom.us/webinar/register/7316182119057/WN_h2Ab-BBbSYGDmYeXxsK-7A)
+- Thursday May 6th, 2pm PT / 10pm GMT: [Register now](https://octopus.zoom.us/webinar/register/7116182117799/WN_S8kZIbZCSRmUNkNlOnx5_g)
 
 Happy deployments!
