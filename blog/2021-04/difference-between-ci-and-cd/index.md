@@ -52,7 +52,7 @@ Taken literally, CD takes the compiled artifacts from a successful build perform
 
 Such commit-to-consumer pipelines are common in simple projects. More complex projects can also have a completely automated development pipeline, if the appropriate tests and monitoring systems are in place.
 
-But while fully automated deployments have many benefits, it is not uncommon for deployments to involve human decision making. There are many valid reasons for not automatically deploying every commit to the master branch into production, including:
+But while fully automated deployments have many benefits, it is not uncommon for deployments to involve human decision making. There are many valid reasons for not automatically deploying every commit to the main branch into production, including:
 
 * Coordinating deployments with legacy systems.
 * Acquiring sign-off from product owners.
