@@ -4,14 +4,12 @@ description: How to setup Octopus High-Availability in Microsoft Azure.
 author: derek.campbell@octopus.com
 visibility: public
 published: 2021-05-01
-metaImage: image.png
-bannerImage: image.png
+metaImage: 
+bannerImage: 
 tags:
  - Product
+ - Azure
 ---
-
-**TODO - Update image reference when received from Design**
-![Image details](image.png)
 
 From the 1st September 2019, all new Octopus licenses support High Availability, meaning teams can run multiple Octopus servers, distributing load and tasks between them. We've noticed that High-Availability has become the default Octopus configuration. We've recently updated our [High-Availability](https://octopus.com/docs/administration/high-availability) documentation to give people more information and options on where to host Highly-Available Octopus Deploy. In this blog, I set up Octopus High-Availability on Azure and expand on the possibilities for hosting Highly Available Octopus on [Microsoft Azure](https://azure.microsoft.com/en-us/).
 
@@ -37,7 +35,7 @@ An Octopus: HA configuration requires four main components:
 - **A database**
   Most data used by the Octopus Server nodes are stored in this Database.
 - **Shared storage**
-  Some larger files - like [NuGet packages](/docs/packaging-applications/package-repositories/index.md), artifacts, and deployment task logs - aren't suitable to be stored in the Database and so must be stored in a shared folder available to all nodes.
+  Some larger files - like [NuGet packages](https://octopus.com/docs/packaging-applications/package-repositories/index.md), artifacts, and deployment task logs - aren't suitable to be stored in the Database and so must be stored in a shared folder available to all nodes.
 
 ## Octopus Virtual Machines
 
@@ -300,7 +298,7 @@ Configuring the Tentacle via the command line is the preferred option with the c
 C:\Program Files\Octopus Deploy\Tentacle>Tentacle poll-server --server=http://my.Octopus.server --apikey=API-77751F90F9EEDCEE0C0CD84F7A3CC726AD123FA6
 ```
 
-For more information on this command, please refer to the [Tentacle Poll Server options document](/docs/octopus-rest-api/tentacle.exe-command-line/poll-server.md)
+For more information on this command, please refer to the [Tentacle Poll Server options document](https://octopus.com/docs/octopus-rest-api/tentacle.exe-command-line/poll-server.md)
 
 Alternatively, you can edit Tentacle.config directly to add each Octopus Server (this is interpreted as a JSON array of servers). This method is not recommended as the Octopus service for each server will need to be restarted to accept incoming connections via this method.
 
@@ -355,3 +353,7 @@ If you're migrating an instance of Octopus to Azure, our recommended approach is
 ## Summary
 
 As you can see, as much as high Availability in Azure is straightforward. There is a lot to consider when moving from On-Premises to Azure hosting for Octopus Deploy. In this blog, I've explained and recommended some technologies to use to help you when you're setting Octopus in High-Available on Microsoft Azure.
+
+I hope that these tips will help you setup Highly-Available Octopus on Microsoft Azure!
+
+Happy Deployments!
