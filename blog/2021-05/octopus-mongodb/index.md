@@ -8,19 +8,20 @@ metaImage: mongodb-octopus.png
 bannerImage: mongodb-octopus.png
 tags:
  - Database Deployments
+ - DevOps
 ---
 
 ![Deploying to MongoDB with Octopus Deploy and Liquibase](mongodb-octopus.png)
 
-The use of NoSQL as a database backend has been gaining in popularity in recent years. Usage has been so high that Amazon, Microsoft, and Google have all created their own cloud-based offerings.  One of the more recognizable names in the NoSQL world is MongoDB.  
+The use of NoSQL as a database backend has been gaining in popularity in recent years. Usage has been so high that Amazon, Microsoft, and Google all created their own cloud-based offerings.  One of the more recognizable names in the NoSQL world is MongoDB.  
 
 In this post, I demonstrate how to automate deployments to MongoDB using Octopus Deploy and Liquibase.
 
 ## Liquibase
 
-I previously demonstrated how to [deploy to Oracle using the Liquabase product](https://octopus.com/blog/octopus-oracle-liquibase).  However, Liquibase does not operate strictly in the relational database space, they also have solutions for deploying to NoSQL, including MongoDB.
+I previously demonstrated how to [deploy to Oracle using the Liquibase product](https://octopus.com/blog/octopus-oracle-liquibase).  However, Liquibase does not operate strictly in the relational database space, they also have solutions for deploying to NoSQL, including MongoDB.
 
-### Change log
+### Changelog
 
 Working with MongoDB differs significantly from its relational counter parts.  For example, where you would create a table in a relational database, in MongoDB you create a collection.  
 
@@ -70,7 +71,7 @@ The following contains examples of how to create collections in MongoDB:
 </databaseChangeLog>
 ```
 
-Similarly, inserting data into a collection has entirely different syntax than SQL.  Rather than inserting rows into a table, you insert documents in to a collection.  
+Similarly, inserting data into a collection has an entirely different syntax to SQL.  Rather than inserting rows into a table, you insert documents into a collection.  
 
 The biggest difference between a row and a document is that a document doesn't have to follow the same structure (or schema in the relational world), the exception being if there is a validator on the collection as shown above.  
 
@@ -419,7 +420,7 @@ My deployment project consists of the following steps:
 MongoDB requires the `Connection query string parameters` parameter to be set to whatever database is providing [authentication](https://docs.mongodb.com/manual/reference/connection-string/) such as `?authSource=admin` shown above. 
 :::
 
-It is entirely possible to create the database, collection, and user, as well as assign roles to the user within the Liquibase changelog. MongoDB will simply create the objects on the fly if they don't already exist.  Separating the steps is meant to make it easier to follow for those who aren't familiar with how MongoDB works.
+It is possible to create the database, collection, and user, as well as assign roles to the user within the Liquibase changelog. MongoDB will simply create the objects on the fly if they don't already exist.  Separating the steps is meant to make it easier to follow for those who aren't familiar with how MongoDB works.
 
 ### Deployment
 
@@ -430,5 +431,14 @@ After the deployment has completed, we can use MongoDB Compass, to verify that o
 ## Conclusion
 
 In this post, I demonstrated how easy it is to deploy to MongoDB using Liquibase and Octopus Deploy.  
+
+## Register for the webinar
+
+On the 5th and 6th of May, we're running the webinar: Delivering Database DevOps with Octopus Deploy and Liquibase.
+
+Join Shawn Sesna, Solutions Architect at Octopus, and Mike Olivas, Senior Solutions Architect at Liquibase, to see both technologies in action and how they complement each other.
+
+- Wednesday May 5th, 7am PT / 3pm GMT: [Register now](https://octopus.zoom.us/webinar/register/7316182119057/WN_h2Ab-BBbSYGDmYeXxsK-7A)
+- Thursday May 6th, 2pm PT / 10pm GMT: [Register now](https://octopus.zoom.us/webinar/register/7116182117799/WN_S8kZIbZCSRmUNkNlOnx5_g)
 
 Happy deployments!
