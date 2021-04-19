@@ -70,7 +70,7 @@ Where CI is machine-driven for many teams, CD is human-driven. Much of the grunt
 
 *A typical CI/CD pipeline, with no distinction between the two.*
 
-This slide is from a talk titled [How to build cloud-native CI/CD pipelines with Tekton on Kubernetes](https://developers.redhat.com/blog/2019/07/22/how-to-build-cloud-native-ci-cd-pipelines-with-tekton-on-kubernetes/?sc_cid=701f2000000RtqCAAS]) that hit my inbox recently. It's a classic example of how simple projects merge CI and CD into a single process where a production deployment starts as soon as the code has been compiled.
+This slide is from a talk titled [How to build cloud-native CI/CD pipelines with Tekton on Kubernetes](https://developers.redhat.com/blog/2019/07/22/how-to-build-cloud-native-ci-cd-pipelines-with-tekton-on-kubernetes/?sc_cid=701f2000000RtqCAAS]). It's a classic example of how simple projects merge CI and CD into a single process where a production deployment starts as soon as the code has been compiled.
 
 There is nothing wrong with this process, and it works as intended so long as every part of the pipeline remains fully automated. But what happens if a human needs to test and approve the application before it's released?
 
