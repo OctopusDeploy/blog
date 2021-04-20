@@ -438,7 +438,7 @@ On the 5th and 6th of May, we're running the webinar: Delivering Database DevOps
 
 Join Shawn Sesna, Solutions Architect at Octopus, and Mike Olivas, Senior Solutions Architect at Liquibase, to see both technologies in action and how they complement each other.
 
-- Wednesday May 5th, 7am PT / 3pm GMT: [Register now](https://octopus.zoom.us/webinar/register/7316182119057/WN_h2Ab-BBbSYGDmYeXxsK-7A)
-- Thursday May 6th, 12pm PT / 8pm GMT: [Register now](https://octopus.zoom.us/webinar/register/7116182117799/WN_S8kZIbZCSRmUNkNlOnx5_g)
+- Wednesday May 5th, 7am PT / 3pm GMT: [Register now](https://octopus.zoom.us/webinar/register/5816182119225/WN_h2Ab-BBbSYGDmYeXxsK-7A)
+- Thursday May 6th, 12pm PT / 8pm GMT: [Register now](https://octopus.zoom.us/webinar/register/6616182117906/WN_S8kZIbZCSRmUNkNlOnx5_g)
 
 Happy deployments!
