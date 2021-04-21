@@ -1,5 +1,5 @@
 ---
-title: Setting up Octopus High-Availability in Azure 
+title: Configure Octopus High-Availability in Azure 
 description: How to setup Octopus High-Availability in Microsoft Azure. 
 author: derek.campbell@octopus.com
 visibility: public
