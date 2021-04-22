@@ -3,7 +3,7 @@ title: Introducing the Octopus Control Center
 description: We want our customers to love their Octopus experience. We knew we could do better with the Octopus Account, so we've redesigned it. Find out what's changed.
 author: jed.lehmann@octopus.com
 visibility: public
-published: 2021-04-28-1400
+published: 2021-04-29-1400
 metaImage: blogimage-control-center-redesign-2021.png
 bannerImage: blogimage-control-center-redesign-2021.png
 tags:
