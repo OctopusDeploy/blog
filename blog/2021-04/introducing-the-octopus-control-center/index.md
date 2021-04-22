@@ -4,11 +4,12 @@ description: We want our customers to love their Octopus experience. We knew we 
 author: jed.lehmann@octopus.com
 visibility: public
 published: 2021-04-28-1400
-metaImage: 
-bannerImage: 
+metaImage: blogimage-control-center-redesign-2021.png
+bannerImage: blogimage-control-center-redesign-2021.png
 tags:
   - Product
 ---
+![Control Center illustration and Octopus Deploy logo](blogimage-control-center-redesign-2021.png)
 
 At Octopus Deploy, we don't just want to build the world's best deployment tool; we want every interaction with us to be world-class. 
 
@@ -32,6 +33,8 @@ As a customers, you should enjoy every touch-point across Octopus, so now that t
 - A Priority Support dashboard is visible to customers who have a [Priority Support](https://octopus.com/blog/introducing-priority-support) agreement with us. 
 
 We’ve shipped the new design across the Control Center, and all existing functions and features continue to work as they did previously.
+
+![Control Center dashboard](dashboard-image.png)
 
 ## Conclusion
 
