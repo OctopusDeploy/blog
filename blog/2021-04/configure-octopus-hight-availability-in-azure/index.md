@@ -4,12 +4,14 @@ description: How to set up Octopus High Availability in Microsoft Azure.
 author: derek.campbell@octopus.com
 visibility: public
 published: 2021-04-28-1400
-metaImage: 
-bannerImage: 
+metaImage: image.png
+bannerImage: image.png
 tags:
  - Product
  - Azure
 ---
+
+![Octopus High-Availability on Azure](image.png)
 
 We recently updated our [high availability](https://octopus.com/docs/administration/high-availability) documentation to provide more information and options for hosting Octopus High Availability.
 
