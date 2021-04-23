@@ -11,7 +11,7 @@ tags:
  - 
 ---
 
-Back in the day, JavaScript was something that executed only on client browsers to do things like manipulate the Document Object Model (DOM) or perform input validation to save a trip to the server.  Node.js, however, is a technology that developers can use to write server side _and_ client side code using the JavaScript language.  There are some methods that exist that can help automate deploying your Node.js application, but not necessarily the entire stack such as database.  In this post, I will demonstrate how to deploy applications written in Node.js using Octopus Deploy.
+Back in the day, JavaScript was something that executed only on client browsers to do things like manipulate the Document Object Model (DOM) or perform input validation to save a trip to the server.  Node.js, however, is a technology that developers can use to write client side _and_ server side code using the JavaScript language.  In this post, I will demonstrate how to deploy applications written in Node.js using Octopus Deploy.
 
 ## Sample application
 For this post, I chose the [BestBags](https://github.com/maryamaljanabi/bestbags-nodejs-ecommerce) e-commerce sample application.  This sample includes everything you need to get it up and running quickly, even files to create and seed the MongoDB database that it uses as a backend.  
@@ -21,7 +21,6 @@ In order to make this project more configurable, I needed to make some minor mod
 - Port to listen on
 - Database connection string
 
-The modified project can be found [here](https://bitbucket.org/octopussamples/bestbags/src/main/).
 
 #### Port
 The port that the application listens on is defined in the `app.js` file.  It checks to see if an environment variable has been set, if not, it will use a static value.  I changed this to use Octostache syntax instead so I could take advantage of the [Substitute Variables in Templates](https://octopus.com/docs/projects/steps/configuration-features/substitute-variables-in-templates) feature.
@@ -38,10 +37,10 @@ const uri = process.env.MONGO_URI || "mongodb://#{MongoDB.Admin.User.Name}:#{Mon
 ```
 
 #### Liquibase change log for MongoDB
-As previously mentioned, the sample application includes some files in the `seedDb` folder that will create collections in MongoDB and populate the collections with documents.  While it's certainly possible to continue to use the method of instructing `Node` to execute files to manipulate the database, it's not very scalable.  The Liquibase product is compatible with MongoDB and is specifically built to handle database deployments.  I added `dbchangelog.xml` which contains the same information in the format that Liquibase expects.
+As previously mentioned, the sample application includes some files in the `seedDb` folder that will create collections in MongoDB and populate the collections with documents.  While it's certainly possible to continue to use the method of instructing `Node` to execute files to manipulate the database, it's not very scalable.  The [Liquibase](https://liquibase.org) product is compatible with MongoDB and is specifically built to handle database deployments.  I added `dbchangelog.xml` which contains the same information as the files in `seedDb` in the format that Liquibase expects.
 
 :::hint
-The change log can be in several different file formats (XML, JSON, or YAML).  It may be necessary to URL Encode characters such as & to &amp; for it to be valid.
+The change log can be in several different file formats (XML, JSON, or YAML).  It may be necessary to URL Encode characters such as `&` to `&amp;` for it to be valid.
 :::
 
 <details>
@@ -1315,6 +1314,9 @@ xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liqui
 
 </details>
 
+The modified project can be found [here](https://bitbucket.org/octopussamples/bestbags/src/main/).
+
+
 ## Building your Node.js application
 Node.js is a scripting language which means it doesn't need to be compiled like a .NET or Java.  However, there are some advantages to using a build server such has
 - Installing dependencies at build time so they're not stored in source control
@@ -1400,7 +1402,8 @@ This step uploads the commit information to Octopus Deploy so it can be included
 With our build complete, we can focus on deploying our application!
 
 ## Octopus Deploy
-This post assumes that you are already framiliar with how to create projects within Octopus Deploy, so we'll not cover that part here.  If you're not, please see our [Getting Started](https://octopus.com/docs/getting-started) guides.  Our deployment process will consist of the following steps
+This post assumes that you are already framiliar with how to create projects within Octopus Deploy, so we'll not cover that part here.  If you're not, please see our [Getting Started](https://octopus.com/docs/getting-started) guides.  
+Our deployment process will consist of the following steps
 - Liquibase Apply changeset: this will deploy our changes to MongoDB
 - Deploy to NGINX: we'll be using NGINX as a reverse proxy to our Node app
 
@@ -1496,4 +1499,9 @@ Click on **ADD LOCATION**.
 
 And that's it!  Our process is complete, we are now ready to deploy.
 
+Once the deployment is complete, we can click on the link displayed (last part of the Post-deployment script) and see our application in action!
 
+![](nodejs-bestbags.png)
+
+## Conclusion
+In this post I demonstrated how to deploy a Node.js application with a MongoDB backend using Octopus Deploy.  Happy deployments!
