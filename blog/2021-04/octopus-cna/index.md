@@ -1,6 +1,6 @@
 ---
 title: Octopus Deploy is now a CVE Numbering Authority (CNA)
-description: Octopus Deploy is now a CVE Numbering Authority (CNA). We can assign CVE IDs to vulnerabilities within our scope, and customers can confirm their installations are secure.
+description: Octopus Deploy is now a CVE Numbering Authority (CNA). We can assign CVE IDs to vulnerabilities within our scope, so customers can confirm their installations are secure.
 author: kyle.jackson@octopus.com
 visibility: public
 published: 2021-04-26
@@ -30,6 +30,6 @@ This is important to us, because it makes sure our customers have all the inform
 
 ## Learn more
 
-For more information about Octopus Deploy's security journey through 2021 you can see our [Trust and Security Roadmap](https://github.com/OctopusDeploy/Issues/issues/6523).
+If you're interested in learning more about Trust and Security at Octopus Deploy, see our [Trust and Security roadmap](https://github.com/OctopusDeploy/Issues/issues/6523).
 
-If you need to report a vulnerability please contact us at [security@octopus.com](mailto:security@octopus.com).
+If you need to report a vulnerability, please contact us at [security@octopus.com](mailto:security@octopus.com).
