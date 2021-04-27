@@ -66,3 +66,388 @@ Another option is to use the REST API, which exposes every action that the web U
 
 Fortunately the [Octopus Terraform provider](https://registry.terraform.io/providers/OctopusDeployLabs/octopusdeploy/latest/docs) provides exactly what we need. Combining this provider with the existing Terraform deployment steps in Octopus allows us to create our own meta-steps, which in turn means we can manage the ephemeral Octopus resources we need to represent feature branches.
 
+## Runbooks to manage feature branches
+
+We'll make use of runbooks to support the creation and deletion of ephemeral Octopus resources. This allows us to separate the management of the underlying infrastructure from the deployment of our applications.
+
+We'll create six runbooks. Three runbooks will create, delete and suspend resources for a single feature branch, and those will be paired with three more runbooks to execute them based on the presence or absence of branches in GIT:
+
+* Create Branch Infrastructure, which will create the resources required to deploy a single branch.
+* Resume Branches, which will (re)create branch infrastructure based on those present in the GIT repository.
+* Destroy Branch Infrastructure, which will destroy the feature branch resources.
+* Destroy Branches, which will remove any feature branch resources for branch resources deleted in GIT.
+* Suspend Branch Infrastructure, which will turn off or destroy costly feature branch resources when it isn't used.
+* Suspend Branches, which will suspend all branches.
+
+## Mapping Octopus resources to feature branches
+
+Octopus has a number of resources that can be used to facilitate feature branch deployments, but there are no hard and fast rules as to how these resources relate to a feature branch. We'll offer some opinions here that will dictate how we construct the runbooks listed above.
+
+We'll use environments to encapsulate the resources used to host feature branches. Environments provide a nice scoping and security boundary, and clearly separate feature branches from static environments like production.
+
+To prevent feature branches from being promoted to production environments, or being promoted at all, we'll create a lifecycle per feature branch that includes the single environment above.
+
+To ensure the appropriate feature branch artifacts are deployed to the correct environment, we'll use a channel. The channel rules will ensure the feature branch artifact versions are selected and directed to the correct lifecycle, which in turn ensures the correct environment receives the feature branch deployment.
+
+Of these three resources, we'll treat the channel as the representation of the feature branch. You select the channel during a deployment, and it is the only resource local to the Octopus project (lifecycles and environments are scoped to a space). This makes it the natural choice to represent a feature branch in a project.
+
+:::hint
+Tenants could also have been used to represent a feature branch. I found though that environments, channels, and lifecycles were a more natural fit.
+:::
+
+The web apps we deploy to will be represented by targets. These targets will be scoped to their associated feature branch environment.
+
+:::hint
+Web apps have the notion of slots, which could also have been used to deploy feature branches. However, slots are a limited resource on Azure service plans, meaning you would be limited to the number of feature branches that could be deployed at any time. For this reason this post uses new web apps for each feature branch.
+:::
+
+## The initial Azure account
+
+To deploy feature branch web apps in Azure, we need an initial "seed" Azure account to manage the cloud resources. This is the account the Terraform scripts will be run under:
+
+![](azure-account.png "width=500")
+
+## Completing the meta-step round journey
+
+Our meta-steps will be executed as if they were any other Terraform deployment, which means even though Octopus is managing itself, we need to create the variables to allow a Terraform deployment to reach back into the Octopus server.
+
+Create a new Octopus project, and define two variables called **ApiKey** and **ServerUrl**. The API key will be a secret variable holding an [Octopus API key](https://octopus.com/docs/octopus-rest-api/how-to-create-an-api-key), and the server URL will be the URL of the Octopus server. I'm using a [cloud instance](https://octopus.com/docs/octopus-cloud) in this example with the URL https://mattc.octopus.app.
+
+In addition, create a prompted variable called **FeatureBranch**. This will be used to pass the name of a feature branch into the runbooks.
+
+Finally, create a variable called **Azure** that points to the Azure account created in the pervious section:
+
+![](variables.png "width=500")
+
+## The deployment project
+
+Our deployment project will make use of the **Deploy an Azure App Service** step to deploy a Docker image from the **octopussamples/randomquotesjava** Docker repository. The [repository](https://hub.docker.com/r/octopussamples/randomquotesjava) contains images built with [this code hosted on GitHub](https://github.com/OctopusSamples/RandomQuotes-Java).
+
+Call the step **Deploy Web App**. We'll reference this step name when creating the channel in the next section.
+
+## The Create Branch Infrastructure runbook
+
+We'll start by creating the runbook that builds all the resources, both in Octopus and in Azure, to deploy a feature branch.
+
+This template creates the Azure web app infrastructure. We keep this in a separate template to allow us to destroy these resources individually, without destroying the Octopus resources. This template will be deployed in a step called **Feature Branch Web App** (we'll use the step name later to reference the output variables):
+
+```
+provider "azurerm" {
+version = "=2.0.0"
+features {}
+}
+
+variable "apiKey" {
+    type = string
+}
+
+variable "space" {
+    type = string
+}
+
+variable "serverURL" {
+    type = string
+}
+
+terraform {
+  backend "azurerm" {
+    resource_group_name  = "mattc-test"
+    storage_account_name = "storageaccountmattc8e9b"
+    container_name       = "terraformstate"
+    key                  = "#{FeatureBranch}.azure.terraform.tfstate"
+  }
+}
+
+resource "azurerm_resource_group" "resourcegroup" {
+  name     = "mattc-test-webapp-#{FeatureBranch}"
+  location = "West Europe"
+  tags = {
+  	OwnerContact = "@matthew.casperson"
+  	Environment = "Dev"
+    Lifetime = "15/5/2021"
+  }
+}
+
+resource "azurerm_app_service_plan" "serviceplan" {
+  name                = "#{FeatureBranch}"
+  location            = azurerm_resource_group.resourcegroup.location
+  resource_group_name = azurerm_resource_group.resourcegroup.name
+  kind                = "Linux"
+  reserved            = true
+
+  sku {
+    tier = "Standard"
+    size = "S1"
+  }
+}
+
+resource "azurerm_app_service" "webapp" {
+  name                = "mattctestapp-#{FeatureBranch}"
+  location            = azurerm_resource_group.resourcegroup.location
+  resource_group_name = azurerm_resource_group.resourcegroup.name
+  app_service_plan_id = azurerm_app_service_plan.serviceplan.id
+}
+
+output "ResourceGroupName" {
+  value = "${azurerm_resource_group.resourcegroup.name}"
+}
+
+output "WebAppName" {
+  value = "${azurerm_app_service.webapp.name}"
+}
+
+```
+
+This next Terraform template will create an environment, place it in a lifecycle, and configure it in a channel. It also creates a web app target
+
+```
+variable "apiKey" {
+    type = string
+}
+
+variable "space" {
+    type = string
+}
+
+variable "serverURL" {
+    type = string
+}
+
+terraform {
+  required_providers {
+    octopusdeploy = {
+      source  = "OctopusDeployLabs/octopusdeploy"
+    }
+  }
+
+  backend "azurerm" {
+    resource_group_name  = "mattc-test"
+    storage_account_name = "storageaccountmattc8e9b"
+    container_name       = "terraformstate"
+    key                  = "#{FeatureBranch}.terraform.tfstate"
+  }
+}
+
+provider "octopusdeploy" {
+  address  = var.serverURL
+  api_key   = var.apiKey
+  space_id = var.space
+}
+
+resource "octopusdeploy_environment" "environment" {
+  allow_dynamic_infrastructure = true
+  description                  = "Feature branch environment for #{FeatureBranch}"
+  name                         = "#{FeatureBranch}"
+  use_guided_failure           = false
+}
+
+resource "octopusdeploy_lifecycle" "lifecycle" {
+  description = "The lifecycle holding the feature branch #{FeatureBranch}"
+  name        = "#{FeatureBranch}"
+
+  release_retention_policy {
+    quantity_to_keep    = 1
+    should_keep_forever = true
+    unit                = "Days"
+  }
+
+  tentacle_retention_policy {
+    quantity_to_keep    = 30
+    should_keep_forever = false
+    unit                = "Items"
+  }
+
+  phase {
+    name                        = "#{FeatureBranch}"
+    is_optional_phase           = false
+	optional_deployment_targets = ["${octopusdeploy_environment.environment.id}"]
+
+    release_retention_policy {
+      quantity_to_keep    = 1
+      should_keep_forever = true
+      unit                = "Days"
+    }
+
+    tentacle_retention_policy {
+      quantity_to_keep    = 30
+      should_keep_forever = false
+      unit                = "Items"
+    }
+  }
+}
+
+resource "octopusdeploy_channel" "channel" {
+  name       = "Feature branch #{FeatureBranch}"
+  project_id = "#{Octopus.Project.Id}"
+  lifecycle_id = "${octopusdeploy_lifecycle.lifecycle.id}"
+  description = "Repo: https://github.com/OctopusSamples/RandomQuotes-Java Branch: #{FeatureBranch}"
+  rule {
+  	id = "#{FeatureBranch}"
+    tag = "^#{FeatureBranch}.*$"
+    action_package {
+      deployment_action = "Deploy Web App"
+    }
+  }
+}
+
+resource "octopusdeploy_azure_service_principal" "azure_service_principal_account" {
+  application_id  = "#{Azure.Client}"
+  name            = "Azure account for #{FeatureBranch}"
+  password        = "#{Azure.Password}"
+  subscription_id = "#{Azure.SubscriptionNumber}"
+  tenant_id       = "#{Azure.TenantId}"
+}
+
+resource "octopusdeploy_azure_web_app_deployment_target" "webapp" {
+  account_id                        = "${octopusdeploy_azure_service_principal.azure_service_principal_account.id}"
+  name                              = "Azure Web app #{FeatureBranch}"
+  resource_group_name               = "#{Octopus.Action[Feature Branch Web App].Output.TerraformValueOutputs[ResourceGroupName]}"
+  roles                             = ["Web Application", "Web Application #{FeatureBranch}"]
+  tenanted_deployment_participation = "Untenanted"
+  web_app_name                      = "#{Octopus.Action[Feature Branch Web App].Output.TerraformValueOutputs[WebAppName]}"
+  environments                      = ["${octopusdeploy_environment.environment.id}"]
+  endpoint {
+  	default_worker_pool_id          = "WorkerPools-762"
+    communication_style				= "None"
+  }
+}
+```
+
+There are a few important things to call out in this template.
+
+The Octopus provider is an official plugin that can be downloaded by Terraform automatically:
+
+```
+  required_providers {
+    octopusdeploy = {
+      source  = "OctopusDeployLabs/octopusdeploy"
+    }
+  }
+```
+
+We have made use of the Octopus template syntax to build up various parts of the Terraform template. A backend block [cannot make use of Terraform variables](https://www.terraform.io/docs/language/settings/backends/configuration.html#using-a-backend-block), but because Octopus processes the file before it is passed to Terraform, we can work around this limitation to essentially inject variables into key name:
+
+```
+  backend "azurerm" {
+    resource_group_name  = "mattc-test"
+    storage_account_name = "storageaccountmattc8e9b"
+    container_name       = "terraformstate"
+    key                  = "#{FeatureBranch}.terraform.tfstate"
+  }
+```
+
+The description given to the channel indicates the GIT repository and branch that the channel represents. Because we have decided that the channel is the representation of a feature branch in a channel, the details required to link it back to the code repository it came from will be captured here.
+
+Also note that we reference the step created earlier called **Deploy Web App** to apply the channel rules to:
+
+```
+resource "octopusdeploy_channel" "channel" {
+  name       = "Feature branch #{FeatureBranch}"
+  project_id = "#{Octopus.Project.Id}"
+  lifecycle_id = "${octopusdeploy_lifecycle.lifecycle.id}"
+  description = "Repo: https://github.com/OctopusSamples/RandomQuotes-Java Branch: #{FeatureBranch}"
+  rule {
+  	id = "#{FeatureBranch}"
+    tag = "^#{FeatureBranch}.*$"
+    action_package {
+      deployment_action = "Deploy Web App"
+    }
+  }
+```
+
+To create the Azure account, we have created a new account with the same details as the Azure account that is defined on the Terraform step:
+
+![](managed-account.png "width=500")
+
+ In a more secure environment these details would be replaced with an account that was limited to only the necessary resources. In a less secure environment, you may omit creating a feature branch specific account all together, and simply share an existing account:
+
+```
+resource "octopusdeploy_azure_service_principal" "azure_service_principal_account" {
+  application_id  = "#{Azure.Client}"
+  name            = "Azure account for #{FeatureBranch}"
+  password        = "#{Azure.Password}"
+  subscription_id = "#{Azure.SubscriptionNumber}"
+  tenant_id       = "#{Azure.TenantId}"
+}
+```
+
+When creating the target, we make use of the output variables created by the first terraform script. The resource group name was output as `#{Octopus.Action[Feature Branch Web App].Output.TerraformValueOutputs[ResourceGroupName]}`, and the web app name was output as `#{Octopus.Action[Feature Branch Web App].Output.TerraformValueOutputs[WebAppName]}`.
+
+This target also specifically defines a Windows worker pool (with the ID `WorkerPools-762` in my case) for the health checks. This is because Azure web app targets require a Windows worker to run a health check:
+
+```
+resource "octopusdeploy_azure_web_app_deployment_target" "webapp" {
+  account_id                        = "${octopusdeploy_azure_service_principal.azure_service_principal_account.id}"
+  name                              = "Azure Web app #{FeatureBranch}"
+  resource_group_name               = "#{Octopus.Action[Feature Branch Web App].Output.TerraformValueOutputs[ResourceGroupName]}"
+  roles                             = ["Web Application", "Web Application #{FeatureBranch}"]
+  tenanted_deployment_participation = "Untenanted"
+  web_app_name                      = "#{Octopus.Action[Feature Branch Web App].Output.TerraformValueOutputs[WebAppName]}"
+  environments                      = ["${octopusdeploy_environment.environment.id}"]
+  endpoint {
+  	default_worker_pool_id          = "WorkerPools-762"
+    communication_style				= "None"
+  }
+```
+
+The final step in this runbook is to call the Octopus CLI to create and deploy a release to the new environment. By running the deployment we can be assured that when we recreate the feature branches in the morning, they will have their latest application code deployed.
+
+We allow this call to fail in the event that a branch has been created with no artifact deployed:
+
+```
+octo create-release \
+	--project="Random Quotes" \
+    --channel="Feature branch #{FeatureBranch}" \
+    --deployTo="#{FeatureBranch}" \
+    --space="#{Octopus.Space.Name}" \
+    --server="#{ServerUrl}" \
+    --apiKey="#{ApiKey}"
+
+# allow failure if the a package is not available
+exit 0
+```
+
+By running this runbook, Octopus will be populated with all the feature branch resources, a web app is created in Azure, and the latest version of the feature branch application is deployed (if it exists). 
+
+Because Terraform is idempotent, we can rerun this runbook multiple times, and any missing resources will be recreated. We'll take advantage of this later on when we destroy the web apps overnight to save costs.
+
+## The Resume Branches runbook
+
+The **Create Branch Infrastructure** runbook can create the resources for a branch, but it has not idea what branches exist in GIT. The **Resume Branches** runbook scans a GIT repo for branches and executes the **Create Branch Infrastructure** runbook to reflect those branches in Octopus.
+
+The Powershell below parses the results of a call to `ls-remote --heads https://repo` and use the resulting list to call the **Create Branch Infrastructure** runbook:
+
+```powershell
+$octopusURL = "https://mattc.octopus.app"
+$octopusAPIKey = "#{ApiKey}"
+$spaceName = "#{Octopus.Space.Name}"
+$projectName = "#{Octopus.Project.Name}"
+$environmentName = "#{Octopus.Environment.Name}"
+$repos = @("https://github.com/OctopusSamples/RandomQuotes-Java.git")
+$ignoredBranches = @("master", "main")
+
+# Get all the branches for the repos listed in the channel descriptions    
+$branches = $repos | 
+    % {PortableGit\bin\git ls-remote --heads $_} | 
+    % {[regex]::Match($_, "\S+\s+(\S+)").captures.groups[1].Value} |
+    % {$_.Replace("refs/heads/", "")} |
+    ? {-not $ignoredBranches.Contains($_)}
+
+# Clean up the old branch infrastructure
+$branches | 
+    % {Write-Host "Creating branch $_"; 
+    	octo run-runbook `
+          --apiKey $octopusAPIKey `
+          --server $octopusURL `
+          --project $projectName `
+          --runbook "Create Branch Infrastructure" `
+          -v "FeatureBranch=$_" `
+          --environment $environmentName `
+          --space $spaceName}
+```
+
+:::hint
+The `git` executable in the `PortableGit` directory was supplied as an additional package reference that bundled up a [portable copy of GIT for Windows](https://git-scm.com/download/win):
+
+![](git-portable.png "width=500")
+:::
