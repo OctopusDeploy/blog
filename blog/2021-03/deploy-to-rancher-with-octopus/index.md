@@ -1,5 +1,5 @@
 ---
-title: Deploy to Rancher with Octopus Deploy
+title: Deploying to Rancher with Octopus Deploy
 description: Learn how to deploy to a Kubernetes cluster managed by Rancher.
 author: shawn.sesna@octopus.com
 visibility: public
