@@ -1,5 +1,5 @@
 ---
-title: Configure Octopus High Availability in Azure 
+title: Configuring Octopus High Availability in Azure 
 description: How to set up Octopus High Availability in Microsoft Azure. 
 author: derek.campbell@octopus.com
 visibility: public
@@ -31,7 +31,7 @@ In this blog, I set up Octopus High Availability on Azure, evaluate different op
 
 ## Octopus High Availability components
 
-An Octopus: HA configuration requires four main components:
+An Octopus HA configuration requires four main components:
 
 - **A load balancer**: Load balancers direct user traffic bound for the Octopus web interface between the different Octopus Server nodes.
 - **Octopus Server nodes**:  These run the Octopus Server windows service. They serve user traffic and orchestrate deployments.
@@ -42,7 +42,7 @@ An Octopus: HA configuration requires four main components:
 
 When creating a highly-available configuration, you'll need to provision a minimum of two virtual machines in Azure to host Octopus. We don't have a one-size-fits-all spec for Octopus as it will depend on:
 
-- [Number and type of deployment targets](https://octopus.com/docs/administration/retention-policies/).
+- [Number and type of deployment targets](https://octopus.com/docs/infrastructure/deployment-targets).
 - [Retention policies](https://octopus.com/docs/administration/retention-policies/).
 - [Number of concurrent tasks](https://octopus.com/docs/support/increase-the-octopus-server-task-cap/).
 
@@ -300,7 +300,7 @@ If you have a VPN Gateway, a jump box, or even Azure Bastion service, I recommen
 
 The most important recommendation is to reduce your [attack surface](https://en.wikipedia.org/wiki/Attack_surface), while keeping your networking as straightforward as you can without causing any potential security issues.
 
-- Where possible, use [Internal IP's and networks](https://en.wikipedia.org/wiki/Private_network) over public IPs, particularly for your SQL configuration.
+- Where possible, use [internal IPs and networks](https://en.wikipedia.org/wiki/Private_network) over public IPs, particularly for your SQL configuration.
 - Use a VPN or a Jump/Bastion box. Preferably both.
 - Secure Octopus to use HTTPS only with a valid certificate.
 
