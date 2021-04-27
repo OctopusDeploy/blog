@@ -17,8 +17,7 @@ Octopus has supported the concept of [sensitive variables](https://octopus.com/d
 
 Storing sensitive values in Octopus Deploy solves many problems; the trade-off is, if your organisation has standardised on a secrets manager, that might mean storing sensitive values twice, making secrets management more complicated.
 
-In this post, I walk through a number of new [HashiCorp Vault step templates](https://library.octopus.com/listing/hashicorp%20vault) to enable you to retrieve secrets from Vault for use in your deployments or runbooks.
-
+In this post, I walk through a number of new [HashiCorp Vault step templates](https://library.octopus.com/listing/hashicorp%20vault) that are designed to enable you to retrieve secrets from Vault for use in your deployments or runbooks.
 
 <h2>In this post</h2>
 
@@ -34,6 +33,8 @@ The step templates cover both [Vault authentication](https://www.vaultproject.io
 
 All of the step templates make use of the Vault [HTTP API](https://www.vaultproject.io/api-docs) so no additional dependencies are required to use them, except being able to connect to your Vault server of course!
 
+They have all been tested using Vault version `1.7.1` and can run on both Windows and Linux (with `Powershell Core` installed).
+
 ## Authentication
 
 Authentication with Vault can be achieved with a number of different auth methods. As Octopus executes both runbooks and deployments on deployment targets (machines), auth methods that are suited to this non-interactive mode are preferable. The following methods are included:
@@ -46,6 +47,12 @@ Once you have authenticated with Vault, a [token](https://www.vaultproject.io/do
 ### LDAP login #{ldap-login}
 
 The [HashiCorp Vault - Login with LDAP](https://library.octopus.com/step-templates/de807003-3b05-4649-9af3-11a2c7722b3f/actiontemplate-hashicorp-vault-ldap-login) step template authenticates with a Vault Server using the [LDAP](https://www.vaultproject.io/docs/auth/ldap) auth method. This is useful as it allows Vault integration without having to duplicate username or password configuration.
+
+You might choose to authenticate using LDAP if you already have an LDAP server available and make use of service accounts to control access to sensitive information.
+
+:::hint
+Microsoft's Active Directory supports LDAP using [Active Directory Lightweight Directory Services](https://docs.microsoft.com/en-us/previous-versions/windows/desktop/adam/what-is-active-directory-lightweight-directory-services).
+:::
 
 Once authenticated, the `client_token` from the Vault response will be made available as a [sensitive output variable](https://octopus.com/docs/projects/variables/output-variables#sensitive-output-variables) named `LDAPAuthToken` for use in other step templates.
 
@@ -60,6 +67,18 @@ The step template has the following parameters:
 - `Password`: The LDAP password.
 
 ![Parameters for the Vault LDAP login step](vault-login-step-parameters.png)
+
+#### Using the LDAP login step
+
+The LDAP login step is added to deployment and runbook processes in the [same way as other steps](https://octopus.com/docs/projects/steps#adding-steps-to-your-deployment-processes).
+
+Once you have added the step to your process, fill out the parameters in the step:
+
+![The Vault LDAP login step used in a deployment](vault-login-step-in-process.png)
+
+Once you've added the step, you can execute the step in a runbook or deployment process, and on successful authentication, the sensitive output variable name containing the token is displayed in the Task log:
+
+![The Vault LDAP login step task log](vault-login-step-output-variable.png)
 
 ### AppRole login #{approle-login}
 
