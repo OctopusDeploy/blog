@@ -19,7 +19,7 @@ We knew we could do better with the Octopus Account, so we re-imagined it, to ma
 
 The Octopus Account was pieced together over time. We built the first iteration in July 2018, when we released Octopus Cloud V1. 
 
-We needed a place for account management tools, like billing. Next came Octopus ID, then self-service features like server license management, and we continued adding features without considering the overall experience.
+We needed a place for account management tools, like billing. Next came Octopus ID, then self-service features like server license management, and we continued adding features one at a time, without pausing to consider the overall experience.
 
 As a customers, you should enjoy every touch-point across Octopus, so now that the Octopus Account is well established, we’ve taken the time to redesign it and consider the whole experience.
 
@@ -27,9 +27,9 @@ As a customers, you should enjoy every touch-point across Octopus, so now that t
 
 - It’s now called the Control Center, better identifying its purpose.
 - The Control Center has more indicators to help with navigation, including:
-   - Descriptive page titles, signposting of nested pages, and active states – to assist with orientation. 
-   - We’ve exposed the organization you’re viewing on all pages – so you maintain context.
-   - Details of your Cloud Instances are on separate pages – to allow for more robust user management features in the future.
+   - Descriptive page titles, signposting for nested pages, and active states to assist with orientation. 
+   - We’ve exposed the organization you’re viewing on all pages, so you maintain context.
+   - Details of your Cloud instances are on separate pages to allow for more robust user management features in the future.
 - A Priority Support dashboard is visible to customers who have a [Priority Support](https://octopus.com/blog/introducing-priority-support) agreement with us. 
 
 We’ve shipped the new design across the Control Center, and all existing functions and features continue to work as they did previously.
