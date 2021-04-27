@@ -451,3 +451,64 @@ The `git` executable in the `PortableGit` directory was supplied as an additiona
 
 ![](git-portable.png "width=500")
 :::
+
+## The Destroy Branch Infrastructure runbook
+
+The **Destroy Branch Infrastructure** is the opposite of the **Create Branch Infrastructure** in that it removes all the resources instead of creating them. This is achieved by using the same Terraform templates as defined in the **Create Branch Infrastructure** runbook, but executing them with the **Destroy Terraform resources** step instead.
+
+## The Destroy Branches runbook
+
+The **Destroy Branches** runbook is the opposite of the **Resume Branches** runbook. It queries Octopus for all the channels, queries GIT for all the branches, and where a channel does not have a matching branch, calls the **Destroy Branch Infrastructure** runbook:
+
+```powershell
+Install-Module -Force PowershellOctopusClient
+Import-Module PowershellOctopusClient
+
+$channelDescriptionRegex = "Repo:\s*(\S+)\s*Branch:\s*(\S+)"
+
+# Octopus variables
+$octopusURL = "#{OctopusUrl}"
+$octopusAPIKey = "#{ApiKey}"
+$spaceName = "#{Octopus.Space.Name}"
+$projectName = "#{Octopus.Project.Name}"
+
+$endpoint = New-Object Octopus.Client.OctopusServerEndpoint $octopusURL, $octopusAPIKey
+$repository = New-Object Octopus.Client.OctopusRepository $endpoint
+$client = New-Object Octopus.Client.OctopusClient $endpoint
+
+$space = $repository.Spaces.FindByName($spaceName)
+$repositoryForSpace = $client.ForSpace($space)
+
+$project = $repositoryForSpace.Projects.FindByName($projectName)
+$channels = $repositoryForSpace.Channels.GetAll() | ? {$_.ProjectId -eq $project.Id}
+
+# Get all the project channels whose description is in the format "Repo: http://blah Branch: blah"
+$repos = $channels | 
+    % {[regex]::Match($_.Description, $channelDescriptionRegex)} | 
+    ? {$_.Success} | 
+    % {$_.captures.groups[1]} |
+    Get-Unique
+
+# Get all the branches for the repos listed in the channel descriptions    
+$branches = $repos | 
+    % {@{Repo = $_; Branch = $(PortableGit\bin\git ls-remote --heads $_)}} | 
+    % {$repo = $_.Repo; [regex]::Match($_.Branch, "\S+\s+(\S+)").captures.groups[1].Value.Replace("refs/heads/", "") | %{"Repo: $repo Branch: $_"}}
+
+# Get all the branches that have a channel but have been removed from the repo
+$oldChannels = $channels | 
+    ? {[regex]::Match($_.Description, $channelDescriptionRegex).Success} |
+    ? {-not $branches.Contains($_.Description)} |
+    % {[regex]::Match($_.Description, $channelDescriptionRegex).captures.groups[2]}
+
+# Clean up the old branch infrastructure
+$oldChannels | 
+    % {Write-Host "Deleting branch $_"; 
+    	octo run-runbook `
+          --apiKey $octopusAPIKey `
+          --server $octopusURL `
+          --project $projectName `
+          --runbook "Destroy Branch Infrastructure" `
+          -v "FeatureBranch=$_" `
+          --environment $_ `
+          --space $spaceName}
+```
