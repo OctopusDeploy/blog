@@ -1,5 +1,5 @@
 ---
-title: Create workers on a Kubernetes cluster
+title: Creating workers on a Kubernetes cluster
 description: Learn how to create Octopus workers on a Kubernetes cluster using Octopus Deploy.
 author: shawn.sesna@octopus.com
 visibility: public
