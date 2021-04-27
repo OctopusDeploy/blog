@@ -80,6 +80,8 @@ Once you've added the step, you can execute the step in a runbook or deployment 
 
 ![The Vault LDAP login step task log](vault-ldap-login-step-output-variable.png)
 
+In subsequent steps, the output variable `#{Octopus.Action[HashiCorp Vault - Login with LDAP].Output.LDAPAuthToken}` can be used to authenticate, and retrieve secrets!
+
 ### AppRole login step template #{approle-login}
 
 The [HashiCorp Vault - Login with AppRole](https://library.octopus.com/step-templates/e04a9cec-f04a-4da2-849b-1aed0fd408f0/actiontemplate-hashicorp-vault-approle-login) step template authenticates with a Vault Server using the [AppRole](https://www.vaultproject.io/docs/auth/approle) authentication method. 
@@ -90,8 +92,8 @@ This is perfect for use with Octopus. HashiCorp themselves recommend it for mach
 
 With an AppRole, a machine can login with:
 
-- A `RoleID` - think of this as the username in the authentication pair.
-- A `SecretID` - think of this as the password in the authentication pair.
+- A `RoleID` - think of this as the username in an authentication pair.
+- A `SecretID` - think of this as the password in an authentication pair.
 
 :::warning
 **Don't store the Secret ID:**
@@ -101,7 +103,7 @@ However, the same is **not recommended** for the SecretID.
 
 The reasons for this are simple. A SecretID, just like a password is _designed to expire_. In addition storing the SecretID would provide the capabililty to potentially retrieve all secrets as both the RoleID and SecretID would be available.
 
-For this reason, it's recommended that you consider the use of the more secure [Get wrapped Secret ID](get-wrapped-secretid) and [Unwrap Secret ID and Login](#{unwrap-secretid-login}) step templates.
+We recommend that you consider the use of the more secure [Get wrapped Secret ID](#get-wrapped-secretid) and [Unwrap Secret ID and Login](#unwrap-secretid-login) step templates.
 
 If you do choose to use this step template, we recommend you provide the SecretID at execution time using a sensitive [prompted variable](https://octopus.com/docs/projects/variables/prompted-variables).
 :::
@@ -121,6 +123,18 @@ The step template has the following parameters:
 ![Parameters for the Vault AppRole login step](vault-approle-login-step-parameters.png)
 
 #### Using the AppRole login step
+
+The AppRole login step is added to deployment and runbook processes in the [same way as other steps](https://octopus.com/docs/projects/steps#adding-steps-to-your-deployment-processes).
+
+Once you have added the step to your process, fill out the parameters in the step:
+
+![The Vault AppRole login step used in a deployment](vault-approle-login-step-in-process.png)
+
+Once you've added the step, you can execute the step in a runbook or deployment process, and on successful authentication, the sensitive output variable name containing the token is displayed in the Task log:
+
+![The Vault AppRole login step task log](vault-approle-login-step-output-variable.png)
+
+In subsequent steps, the output variable `#{Octopus.Action[HashiCorp Vault - Login with AppRole].Output.AppRoleAuthToken}` can be used to authenticate, and retrieve secrets!
 
 ### Response wrapping #{response-wrapping}
 
