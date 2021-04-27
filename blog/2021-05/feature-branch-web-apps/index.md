@@ -512,3 +512,112 @@ $oldChannels |
           --environment $_ `
           --space $spaceName}
 ```
+
+## The Suspend Branch Infrastructure runbook
+
+To save money overnight we'll destroy the feature branch web apps in Azure. This is the [suggested solution from Microsoft](https://feedback.azure.com/forums/169385-web-apps/suggestions/13550325-ability-to-suspend-app-service-plans-without-charg) to "suspend" app service plans.
+
+Deleting the Azure resources is again just a case of running the **Destroy Terraform resources** step instead with the template in the step called **Feature Branch Web App** from the **Create Branch Infrastructure** runbook. Because we only destroy the Azure resources, any existing Octopus releases, channels, environments, targets, and accounts will remain in place.
+
+Since we use the same backend state file when deleting and creating these Azure resources, Terraform knows the state of any given Azure resource. This means we can call the **Suspend Branch Infrastructure**, **Create Branch Infrastructure**, and **Destroy Branch Infrastructure** as we need, and Terraform will leave Azure in the desired state.
+
+## The Suspend Branches runbook
+
+The **Suspend Branches** runbook scans Octopus for channels and calls the **Suspend Branch Infrastructure** runbook. This means any Azure resources relating to channels, and therefor feature branches, in Octopus will be destroyed and no longer cost money:
+
+```powershell
+Install-Module -Force PowershellOctopusClient
+Import-Module PowershellOctopusClient
+
+$channelDescriptionRegex = "Repo:\s*(\S+)\s*Branch:\s*(\S+)"
+
+# Octopus variables
+$octopusURL = "#{ServerUrl}"
+$octopusAPIKey = "#{ApiKey}"
+$spaceName = "#{Octopus.Space.Name}"
+$projectName = "#{Octopus.Project.Name}"
+$environment = "#{Octopus.Environment.Name}"
+
+$endpoint = New-Object Octopus.Client.OctopusServerEndpoint $octopusURL, $octopusAPIKey
+$repository = New-Object Octopus.Client.OctopusRepository $endpoint
+$client = New-Object Octopus.Client.OctopusClient $endpoint
+
+$space = $repository.Spaces.FindByName($spaceName)
+$repositoryForSpace = $client.ForSpace($space)
+
+$project = $repositoryForSpace.Projects.FindByName($projectName)
+$channels = $repositoryForSpace.Channels.GetAll() | ? {$_.ProjectId -eq $project.Id}
+
+# Get all the project channels whose description is in the format "Repo: http://blah Branch: blah"
+$branches = $channels | 
+    % {[regex]::Match($_.Description, $channelDescriptionRegex)} | 
+    ? {$_.Success} | 
+    % {$_.captures.groups[2].Value} |
+    Get-Unique
+
+# Clean up the old branch infrastructure
+$branches | 
+    % {Write-Host "Deleting branch $_"; 
+    	octo run-runbook `
+          --apiKey $octopusAPIKey `
+          --server $octopusURL `
+          --project $projectName `
+          --runbook "Suspend Branch Infrastructure" `
+          -v "FeatureBranch=$_" `
+          --environment $environment `
+          --space $spaceName}
+```
+
+## Synchronizing Octopus and GIT
+
+We now have all the runbooks we need to manage feature branch resources. To keep Octopus and GIT in sync, the next step is to schedule triggers to remove old branches, shutdown resources, and create new branches.
+
+We start by triggering the **Destroy Branches** runbook at various point during the day. This runbook will destroy the feature branch resources where the underlying feature branch has been removed from GIT.
+
+Cleaning up these branches should not disrupt anyone, as we assume that deleting the underlying branch means the feature has been merged or abandoned. So we create a trigger to execute the **Destroy Branches** runbook every hour.
+
+Likewise we want to catch any new branches that have been created throughout the day, so we schedule the **Create Branches** runbook to run regularly between 6 AM and 6 PM to catch the average working day.
+
+To reduce our costs, we want to remove the cloud resources hosting our feature branches at the end of the day. To do this, we schedule the **Suspend Branches** runbook to run at 7 PM. This ensures it is run after the final **Create Branches** runbook trigger.
+
+The end result is that throughout the day deleted branches are cleaned up via **Destroy Branches**, at the start of weekdays any new branches are detected and all Azure resources are recreated via **Create Branches**, and at night all Azure resources are destroyed via **Suspend Branches**:
+
+![](triggers.png "width=500")
+
+If using triggers is not responsive enough to catch new branches being created and destroyed, it is also possible to execute `octo run-runbook` directly from GIT itself. Popular hosting services like GitHub frequently offer tooling that allows scripts to be run as branches are created and destroyed, which would make the creation and cleanup of feature branches in Octopus almost instantaneous.
+
+## A look at Octopus with feature branches
+
+With these runbooks in places and triggered appropiately, we can now review the resources created in Octopus to represent our feature branches.
+
+Here are the channels:
+
+![](channels.png "width=500")
+
+Here are the environments:
+
+![](environments.png "width=500")
+
+Here are the lifecycles:
+
+![](lifecycles.png "width=500")
+
+Here are the targets:
+
+![](targets.png "width=500")
+
+Here are the accounts:
+
+![](accounts.png "width=500")
+
+Here is the release creation, where we select a channel/feature branch to deploy to, and let Octopus match the channel rules to select the correct feature branch artifact for us:
+
+![](release-creation.png "width=500")
+
+## Conclusion
+
+The Terraform apply and destroy steps, in conjunction with the Octopus Terraform provider, gives us the tooling we need to create the kind of meta-steps required to implement short lived feature branches in Octopus. Thanks to the idempotent nature of Terraform, we have a robust set of steps that reliably manage our ephemeral Azure and Octopus resources.
+
+With some custom scripting to synchronize Octopus with GIT branches, and scheduled triggers or direct triggers from a hosted platform like GitHub, we can ensure Octopus reflects the feature branches being developed in our code base.
+
+Happy deployments!
