@@ -618,7 +618,7 @@ Here is the release creation, where we select a channel/feature branch to deploy
 
 ## Conclusion
 
-The Terraform apply and destroy steps, in conjunction with the Octopus Terraform provider, gives us the tooling we need to create the kind of meta-steps required to implement short lived feature branches in Octopus. Thanks to the idempotent nature of Terraform, we have a robust set of steps that reliably manage our ephemeral Azure and Octopus resources.
+The Terraform apply and destroy steps, in conjunction with the Octopus Terraform provider, gives us the tooling we need to create the meta-steps required to implement short lived feature branches in Octopus. Thanks to the idempotent nature of Terraform, we have a robust set of steps that reliably manage our ephemeral Azure and Octopus resources.
 
 With some custom scripting to synchronize Octopus with GIT branches, and scheduled triggers or direct triggers from a hosted platform like GitHub, we can ensure Octopus reflects the feature branches being developed in our code base.
 
