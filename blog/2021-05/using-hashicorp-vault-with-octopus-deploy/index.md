@@ -37,7 +37,7 @@ They have all been tested using Vault version `1.7.1` and can run on both Window
 
 ## Authentication
 
-Authentication with Vault can be achieved with a number of different auth methods. As Octopus executes both runbooks and deployments on deployment targets (machines), auth methods that are suited to this non-interactive mode are preferable. The following methods are included:
+Authentication with Vault can be achieved with a number of different methods. As Octopus executes both runbooks and deployments on deployment targets (machines), authentication methods that are suited to this non-interactive mode are preferable. The following methods are included:
 
 - [LDAP login](#ldap-login)
 - [AppRole login](#approle-login)
@@ -46,7 +46,7 @@ Once you have authenticated with Vault, a [token](https://www.vaultproject.io/do
 
 ### LDAP login #{ldap-login}
 
-The [HashiCorp Vault - Login with LDAP](https://library.octopus.com/step-templates/de807003-3b05-4649-9af3-11a2c7722b3f/actiontemplate-hashicorp-vault-ldap-login) step template authenticates with a Vault Server using the [LDAP](https://www.vaultproject.io/docs/auth/ldap) auth method. This is useful as it allows Vault integration without having to duplicate username or password configuration.
+The [HashiCorp Vault - Login with LDAP](https://library.octopus.com/step-templates/de807003-3b05-4649-9af3-11a2c7722b3f/actiontemplate-hashicorp-vault-ldap-login) step template authenticates with a Vault Server using the [LDAP](https://www.vaultproject.io/docs/auth/ldap) authentication method. This is useful as it allows Vault integration without having to duplicate username or password configuration.
 
 You might choose to authenticate using LDAP if you already have an LDAP server available and make use of service accounts to control access to sensitive information.
 
@@ -82,10 +82,42 @@ Once you've added the step, you can execute the step in a runbook or deployment 
 
 ### AppRole login #{approle-login}
 
+The [HashiCorp Vault - Login with AppRole](https://library.octopus.com/step-templates/e04a9cec-f04a-4da2-849b-1aed0fd408f0/actiontemplate-hashicorp-vault-approle-login) step template authenticates with a Vault Server using the [AppRole](https://www.vaultproject.io/docs/auth/approle) authentication method. 
+
+This is perfect for use with Octopus. HashiCorp themselves recommend it for machines or apps:
+
+> This auth method is oriented to automated workflows (machines and services), and is less useful for human operators.
+
+With an AppRole, a machine can login with:
+
+- A `RoleID` - think of this as the username in the authentication pair.
+- A `SecretID` - think of this as the password in the authentication pair.
+
+:::warning
+**Don't store the Secret ID:**
+
+Storing the the RoleID in Octopus as a sensitive variable is a good way to ensure it remains encrypted until required. 
+
+However, the same is **not recommended** for the SecretID.
+
+The reasons for this are simple. A SecretID, just like a password is _designed to expire_. In addition storing the SecretID would provide the capabililty to potentially retrieve all secrets as both the RoleID and SecretID would be available.
+
+For this reason, it's recommended that you consider the use of the more secure [Get wrapped Secret ID](get-wrapped-secretid) and [Unwrap Secret ID and Login](#{unwrap-secretid-login}) step templates.
+
+If you do choose to use this step template, we recommend you provide the SecretID at execution time using a sensitive [prompted variable](https://octopus.com/docs/projects/variables/prompted-variables).
+:::
+
 ### Response wrapping #{response-wrapping}
 
+The AppRole is considered a _trusted-broker_ method. Simply put, this means that the onus of trust rests in the system that acts as the authentication intermediary (the _broker_) between the client (typically an Octopus deployment target) and Vault.
+
+:::warning
+**Secure the broker:**
+Since the trust rests on the broker, we strongly recommend using the Octopus Server's [built-in worker](https://octopus.com/docs/infrastructure/workers#built-in-worker), or a highly-secured [external worker](https://octopus.com/docs/infrastructure/workers#external-workers) to act as the broker. It would be responsible for retrieving  
+:::
+
 :::hint
-Link to Vault AppRole best practices
+Link to Vault AppRole best practices: https://learn.hashicorp.com/tutorials/vault/approle
 :::
 
 ### Get wrapped Secret ID #{get-wrapped-secretid}
