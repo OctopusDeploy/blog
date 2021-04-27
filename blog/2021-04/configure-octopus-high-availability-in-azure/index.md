@@ -21,7 +21,7 @@ In this blog, I set up Octopus High Availability on Azure, evaluate different op
 
 ## The benefits of Octopus High Availability
 
-[High availability](https://octopus.com/docs/administration/high-availability) lets you run multiple Octopus Servers, distributing load and tasks between them. High availability has several benefits, which include:
+[High availability](https://octopus.com/docs/administration/high-availability) lets you run multiple Octopus Servers, distributing load and tasks between them. High availability has several benefits:
 
 - Higher resilience for business-critical workloads.
 - Easier maintenance tasks such as [server patching](https://en.wikipedia.org/wiki/Patch_(computing)).
@@ -40,7 +40,7 @@ An Octopus: HA configuration requires four main components:
 
 ## Octopus virtual machines
 
-When creating a highly-available configuration, you will need to provision a minimum of two virtual machines in Azure to host Octopus. We don't have a one-size-fits-all spec for Octopus as it will depend on:
+When creating a highly-available configuration, you'll need to provision a minimum of two virtual machines in Azure to host Octopus. We don't have a one-size-fits-all spec for Octopus as it will depend on:
 
 - [Number and type of deployment targets](https://octopus.com/docs/administration/retention-policies/).
 - [Retention policies](https://octopus.com/docs/administration/retention-policies/).
@@ -64,7 +64,7 @@ You need to consider what type of storage you want for your Octopus virtual mach
 - [Standard SSD](https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types#standard-ssd): A solution that gives you fast disks within a reasonable budget.
 - [Standard HDD](https://docs.microsoft.com/en-us/azure/virtual-machines/disks-types#standard-hdd): Generally best kept for low-performance workloads or Dev and Test environments.
 
-It's critical to remember this is only for the VM, and I selected **Standard SSD** because the cost and performance match my requirements. Octopus isn't very disk-intensive, which means you're unlikely to get many benefits using Ultra Disks. Still, you should consider Premium SSD if you're using Octopus with thousands of projects, as this can be beneficial.
+It's critical to remember this is only for the VM, and I selected **Standard SSD** because the cost and performance match my requirements. Octopus isn't very disk-intensive, which means you're unlikely to get many benefits using Ultra Disks. You should consider Premium SSD if you're using Octopus with thousands of projects, as this can be beneficial.
 
 ### Azure Availability Sets vs. Azure Availability Zones
 
@@ -73,7 +73,7 @@ Please check out the [Azure docs](https://docs.microsoft.com/en-us/azure/virtual
 - [Azure Availability Zones](https://docs.microsoft.com/en-us/azure/availability-zones/az-overview#availability-zones) are separate data centers within Azure Region, with dedicated power, cooling, and networking. With this option, when using Availability Zones, you are ensuring Octopus remains resilient to failure in your primary Azure Region. For resiliency, there's a minimum of three separate zones in all enabled regions. Azure offers a **99.99% uptime SLA** for this option.
 - [Azure Availability Sets](https://docs.microsoft.com/en-us/azure/virtual-machines/availability-set-overview) is a logical grouping of VMs that provide redundancy and availability. Azure offers a **99.95% uptime SLA** for Availability Sets, and there are no costs for this, apart from the virtual machine costs.
 
-When designing and configuring Octopus on Microsoft Azure, I went for the **Azure Availability Zones** option purely for the increased SLA, and it's also what Microsoft generally recommends for high availability. 
+When designing and configuring Octopus on Microsoft Azure, I went for the **Azure Availability Zones** option purely for the increased SLA. It's also what Microsoft generally recommends for high availability. 
 
 I set up my two virtual machines **Octo1** and **Octo2** in **Availability Zone 1** and **Availability Zone 2**. This gives me tolerance in Octopus HA as it's using different logical data centers and the benefits of having low-latency access to the storage and the SQL database.
 
@@ -137,7 +137,7 @@ Some of the drawbacks of using Azure SQL over SQL Virtual Machines:
 - Refactoring SQL scripts.
 - Trying to understand what a [DTU](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-service-tiers-dtu) is.
 
-Both options have their merits and drawbacks, and you should give this some thought when choosing the right solution for you and your organizational needs.
+Both options have their merits and drawbacks. You should give this some thought when choosing the right solution for you and your organizational needs.
 
 ### SQL Database selection
 
@@ -175,7 +175,7 @@ If you own a large instance, I'd consider the HyperScale and Business Critical l
 
 In a single node setup, you typically host Octopus on [local storage](https://en.wikipedia.org/wiki/Local_storage) on either `C:\Octopus` or `D:\Octopus.` You need some local storage for Octopus unless you decide to present an Azure File Share as a mapped drive or as a symbolic link to the server. 
 
-We recommend hosting your Octopus logs and configuration locally on the server. This avoids potential issues with accidentally pointing to all of your Octopus node's logs location to the same file, which would cause file locking issues and the Octopus server to stop until you resolved it.
+We recommend hosting your Octopus logs and configuration locally on the server. This avoids potential file locking issues that could cause Octopus to stop responding.
 
 ### Artifacts, packages, and task logs
 
