@@ -35,12 +35,20 @@ All of the step templates make use of the Vault [HTTP API](https://www.vaultproj
 
 They have all been tested using Vault version `1.7.1` and can run on both Windows and Linux (with `Powershell Core` installed).
 
-## Authentication
+## Authentication #{authentication}
 
-Authentication with Vault can be achieved with a number of different methods. As Octopus executes both runbooks and deployments on deployment targets (machines), authentication methods that are suited to this non-interactive mode are preferable. The following methods are included:
+Authentication with Vault can be achieved with a number of different methods. Step templates for both user-based login (LDAP) and machine role-based authentication is included. 
 
 - [LDAP login](#ldap-login)
 - [AppRole login](#approle-login)
+- [AppRole best practises](#approle-best-practises)
+- [Get wrapped SecretID](#get-wrapped-secretid)
+- [Unwrap SecretID](#unwrap-secretid)
+- [Unwrap SecretID and Login](#unwrap-secretid-login)
+
+:::hint
+As Octopus executes both runbooks and deployments on deployment targets (machines), the `AppRole` method is the recommended way to authenticate with Vault.
+:::
 
 Once you have authenticated with Vault, a [token](https://www.vaultproject.io/docs/concepts/tokens) is generated that can be used in further interactions with Vault. The primary use in our case is to retrieve secrets from a Secrets Engine.
 
@@ -56,7 +64,7 @@ Microsoft's Active Directory supports LDAP using [Active Directory Lightweight D
 
 Once authenticated, the `client_token` from the Vault response will be made available as a [sensitive output variable](https://octopus.com/docs/projects/variables/output-variables#sensitive-output-variables) named `LDAPAuthToken` for use in other step templates.
 
-#### LDAP login parameters
+#### LDAP login parameters #{ldap-login-parameters}
 
 The step template has the following parameters:
 
@@ -68,19 +76,23 @@ The step template has the following parameters:
 
 ![Parameters for the Vault LDAP login step](vault-ldap-login-step-parameters.png)
 
-#### Using the LDAP login step
+#### Using the LDAP login step #{ldap-login-use}
 
 The LDAP login step is added to deployment and runbook processes in the [same way as other steps](https://octopus.com/docs/projects/steps#adding-steps-to-your-deployment-processes).
 
 Once you have added the step to your process, fill out the parameters in the step:
 
-![The Vault LDAP login step used in a deployment](vault-ldap-login-step-in-process.png)
+![Vault LDAP login step used in a process](vault-ldap-login-step-in-process.png)
 
 Once you've added the step, you can execute the step in a runbook or deployment process, and on successful authentication, the sensitive output variable name containing the token is displayed in the Task log:
 
-![The Vault LDAP login step task log](vault-ldap-login-step-output-variable.png)
+![Vault LDAP login step task log](vault-ldap-login-step-output-variable.png)
 
 In subsequent steps, the output variable `#{Octopus.Action[HashiCorp Vault - Login with LDAP].Output.LDAPAuthToken}` can be used to authenticate, and retrieve secrets!
+
+:::hint
+**Tip:** Remember to replace `HashiCorp Vault - Login with LDAP` with the name of your step!
+:::
 
 ### AppRole login step template #{approle-login}
 
@@ -96,73 +108,124 @@ With an AppRole, a machine can login with:
 - A `SecretID` - think of this as the password in an authentication pair.
 
 :::warning
-**Don't store the Secret ID:**
+**Don't store the SecretID:**
 Storing the the RoleID in Octopus as a sensitive variable is a good way to ensure it remains encrypted until required. 
 
 However, the same is **not recommended** for the SecretID.
 
 The reasons for this are simple. A SecretID, just like a password is _designed to expire_. In addition storing the SecretID would provide the capabililty to potentially retrieve all secrets as both the RoleID and SecretID would be available.
 
-We recommend that you consider the use of the more secure [Get wrapped Secret ID](#get-wrapped-secretid) and [Unwrap Secret ID and Login](#unwrap-secretid-login) step templates, as they use [response wrapping](#response-wrapping).
+We recommend that you consider the use of the more secure [Get wrapped SecretID](#get-wrapped-secretid) and [Unwrap SecretID and Login](#unwrap-secretid-login) step templates, as they use [best practises](#approle-best-practises).
 
 If you do choose to use this step template, we recommend you provide the SecretID at execution time using a sensitive [prompted variable](https://octopus.com/docs/projects/variables/prompted-variables).
 :::
 
 Once authenticated, the `client_token` from the Vault response will be made available as a [sensitive output variable](https://octopus.com/docs/projects/variables/output-variables#sensitive-output-variables) named `AppRoleAuthToken` for use in other step templates.
 
-#### AppRole login parameters
+#### AppRole login parameters #{approle-login-parameters}
 
 The step template has the following parameters:
 
 - `Vault Server URL`: The URL of the Vault instance you are connecting to, including the port (The default is `8200`).
 - `API version`: All Vault [API routes](https://www.vaultproject.io/api-docs) are prefixed with a version e.g. `/v1/`.
-- `AppRole path`: The path where the [approle auth method is mounted](https://www.vaultproject.io/api-docs/auth/approle) at. 
+- `App Role path`: The path where the [approle auth method is mounted](https://www.vaultproject.io/api-docs/auth/approle) at. 
 - `Role ID`: The [RoleID](https://www.vaultproject.io/docs/auth/approle#roleid) of the AppRole.
-- `Secret ID`: The [Secret ID](https://www.vaultproject.io/docs/auth/approle#secretid) of the AppRole.
+- `Secret ID`: The [SecretID](https://www.vaultproject.io/docs/auth/approle#secretid) of the AppRole.
 
 ![Parameters for the Vault AppRole login step](vault-approle-login-step-parameters.png)
 
-#### Using the AppRole login step
+#### Using the AppRole login step #{approle-login-use}
 
 The AppRole login step is added to deployment and runbook processes in the [same way as other steps](https://octopus.com/docs/projects/steps#adding-steps-to-your-deployment-processes).
 
 Once you have added the step to your process, fill out the parameters in the step:
 
-![The Vault AppRole login step used in a deployment](vault-approle-login-step-in-process.png)
+![Vault AppRole login step used in a process](vault-approle-login-step-in-process.png)
 
 Once you've added the step, you can execute the step in a runbook or deployment process, and on successful authentication, the sensitive output variable name containing the token is displayed in the Task log:
 
-![The Vault AppRole login step task log](vault-approle-login-step-output-variable.png)
+![Vault AppRole login step task log](vault-approle-login-step-output-variable.png)
 
 In subsequent steps, the output variable `#{Octopus.Action[HashiCorp Vault - Login with AppRole].Output.AppRoleAuthToken}` can be used to authenticate, and retrieve secrets!
 
-### AppRole response wrapping #{response-wrapping}
+:::hint
+**Tip:** Remember to replace `HashiCorp Vault - Login with AppRole` with the name of your step!
+:::
+
+### AppRole recommended best practises #{approle-best-practises}
 
 The [AppRole](https://www.vaultproject.io/docs/auth/approle) authentication method is considered a _trusted-broker_ method. Simply put, this means that the onus of trust rests in the system that acts as the authentication intermediary (the _broker_) between the client (typically an Octopus deployment target) and Vault.
 
 Rather than repeating what's already there, I encourage you to read both the [tutorial](https://learn.hashicorp.com/tutorials/vault/pattern-approle?in=vault/recommended-patterns) and the [AppRole pull authentication guide](https://learn.hashicorp.com/tutorials/vault/approle) in the Vault documentation for more details about the recommended patterns for Vault AppRole use.
 
 The highlights for me are:
-- Use [response wrapping](https://www.vaultproject.io/docs/concepts/response-wrapping) to obtain a Secret ID.
-- Use a secured system to act as the broker for retrieving a wrapped Secret ID.
+- Use [response wrapping](https://www.vaultproject.io/docs/concepts/response-wrapping) to obtain a SecretID.
+- Use a secured system to act as the broker for retrieving a wrapped SecretID.
+- Limit the number of uses and Time-to-live (TTL) value for a SecretID to prevent overuse.
 - Avoid [anti-patterns](https://learn.hashicorp.com/tutorials/vault/pattern-approle?in=vault/recommended-patterns#anti-patterns) such as having the broker retrieve secrets.
 
 :::warning
 **Secure the broker:**
-Since the trust rests on the broker, we strongly recommend using the Octopus Server's [built-in worker](https://octopus.com/docs/infrastructure/workers#built-in-worker), or a highly-secured [external worker](https://octopus.com/docs/infrastructure/workers#external-workers) to act as the broker. It would be responsible for retrieving a wrapped Secret ID and passing that value to the machine (the client) that authenticates with Vault.
+Since the trust rests on the broker, we strongly recommend using the Octopus Server's [built-in worker](https://octopus.com/docs/infrastructure/workers#built-in-worker), or a highly-secured [external worker](https://octopus.com/docs/infrastructure/workers#external-workers) to act as the broker. It would be responsible for retrieving a wrapped SecretID and passing that value to the machine (the client) that authenticates with Vault.
 :::
 
 To support these recommended practices, three additional step templates have been created:
 
-- [Get wrapped Secret ID](#get-wrapped-secretid)
-- [Unwrap Secret ID](#unwrap-secretid)
-- [Unwrap Secret ID and Login](#unwrap-secretid-login)
+- [Get wrapped SecretID](#get-wrapped-secretid)
+- [Unwrap SecretID](#unwrap-secretid)
+- [Unwrap SecretID and Login](#unwrap-secretid-login)
 
-### Get wrapped Secret ID #{get-wrapped-secretid}
+### Get wrapped SecretID #{get-wrapped-secretid}
 
-### Unwrap Secret ID #{unwrap-secretid}
+The [HashiCorp Vault - AppRole Get Wrapped Secret ID](https://library.octopus.com/step-templates/76827264-af27-46d0-913a-e093a4f0db48/actiontemplate-hashicorp-vault-approle-get-wrapped-secret-id) step template generates a [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping) SecretID for the [AppRole](https://www.vaultproject.io/docs/auth/approle) authentication method. 
 
-### Unwrap Secret ID and Login #{unwrap-secretid-login}
+The step template authenticates with a Vault Server using a token to retrieve a wrapped SecretID. The response contains a **wrapping token**. This token and the creation path for the token can then be used to validate and retrieve the actual SecretID value.
+
+:::warning
+The token used to authenticate to retrieve a wrapped SecretID should be of limited scope and should only be allowed to retrieve wrapped SecretIDs. Consider creating a long-lived Vault token as this presents only a minor risk.
+:::
+
+Once the response has been received from the Vault server, two [sensitive output variables](https://octopus.com/docs/projects/variables/output-variables#sensitive-output-variables) are created for use in other step templates.:
+
+- `WrappedToken` - This is the wrapped `token` from the response, used to retrieve the actual SecretID value.
+- `WrappedTokenCreationPath` - This is the creation path of the token to allow you to validate [no malfeasance](https://www.vaultproject.io/docs/concepts/response-wrapping#response-wrapping-token-validation) has occurred.
+
+#### Get wrapped SecretID parameters #{get-wrapped-secretid-parameters}
+
+The step template has the following parameters:
+
+- `Vault Server URL`: The URL of the Vault instance you are connecting to, including the port (The default is `8200`).
+- `API version`: All Vault [API routes](https://www.vaultproject.io/api-docs) are prefixed with a version e.g. `/v1/`.
+- `App Role path`: The path where the [approle auth method is mounted](https://www.vaultproject.io/api-docs/auth/approle) at. 
+- `Role Name`: The role name of the [AppRole](https://www.vaultproject.io/api/auth/approle).
+- `Time-to-live (TTL)`: The TTL in seconds of the [response-wrapping token](https://www.vaultproject.io/docs/concepts/response-wrapping#response-wrapping-tokens) itself. The default is: `120s`
+- `Auth Token`: The [token](https://www.vaultproject.io/docs/auth/token) used to authenticate with Vault to generate a [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping) SecretID.
+
+![Parameters for the Vault Get Wrapped SecretID step](vault-get-wrapped-secretid-step-parameters.png)
+
+#### Using the Get wrapped SecretID step
+
+The Get wrapped SecretID step is added to deployment and runbook processes in the [same way as other steps](https://octopus.com/docs/projects/steps#adding-steps-to-your-deployment-processes).
+
+Once you have added the step to your process, fill out the parameters in the step:
+
+![Vault Get wrapped SecretID step used in a process](vault-get-wrapped-secretid-step-in-process.png)
+
+Once you've added the step, you can execute the step in a runbook or deployment process, and on successful authentication, the sensitive output variable name containing the token is displayed in the Task log:
+
+![Vault Get wrapped SecretID step task log](vault-get-wrapped-secretid-step-output-variable.png)
+
+In subsequent steps, the output variables can be used to validate and retrieve the actual SecretID value:
+- `#{Octopus.Action[HashiCorp Vault - AppRole Get Wrapped Secret ID].Output.WrappedToken}` 
+- `#{Octopus.Action[HashiCorp Vault - AppRole Get Wrapped Secret ID].Output.WrappedTokenCreationPath}` 
+
+:::hint
+**Tip:** Remember to replace `HashiCorp Vault - AppRole Get Wrapped Secret ID` with the name of your step!
+:::
+
+### Unwrap SecretID #{unwrap-secretid}
+
+### Unwrap SecretID and Login #{unwrap-secretid-login}
 
 ## Retrieving secrets #{retrieving-secrets}
 
