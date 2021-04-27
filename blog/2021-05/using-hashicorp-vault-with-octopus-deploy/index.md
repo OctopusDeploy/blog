@@ -103,7 +103,7 @@ However, the same is **not recommended** for the SecretID.
 
 The reasons for this are simple. A SecretID, just like a password is _designed to expire_. In addition storing the SecretID would provide the capabililty to potentially retrieve all secrets as both the RoleID and SecretID would be available.
 
-We recommend that you consider the use of the more secure [Get wrapped Secret ID](#get-wrapped-secretid) and [Unwrap Secret ID and Login](#unwrap-secretid-login) step templates.
+We recommend that you consider the use of the more secure [Get wrapped Secret ID](#get-wrapped-secretid) and [Unwrap Secret ID and Login](#unwrap-secretid-login) step templates, as they use [response wrapping](#response-wrapping).
 
 If you do choose to use this step template, we recommend you provide the SecretID at execution time using a sensitive [prompted variable](https://octopus.com/docs/projects/variables/prompted-variables).
 :::
@@ -136,18 +136,27 @@ Once you've added the step, you can execute the step in a runbook or deployment 
 
 In subsequent steps, the output variable `#{Octopus.Action[HashiCorp Vault - Login with AppRole].Output.AppRoleAuthToken}` can be used to authenticate, and retrieve secrets!
 
-### Response wrapping #{response-wrapping}
+### AppRole response wrapping #{response-wrapping}
 
-The AppRole is considered a _trusted-broker_ method. Simply put, this means that the onus of trust rests in the system that acts as the authentication intermediary (the _broker_) between the client (typically an Octopus deployment target) and Vault.
+The [AppRole](https://www.vaultproject.io/docs/auth/approle) authentication method is considered a _trusted-broker_ method. Simply put, this means that the onus of trust rests in the system that acts as the authentication intermediary (the _broker_) between the client (typically an Octopus deployment target) and Vault.
+
+Rather than repeating what's already there, I encourage you to read both the [tutorial](https://learn.hashicorp.com/tutorials/vault/pattern-approle?in=vault/recommended-patterns) and the [AppRole pull authentication guide](https://learn.hashicorp.com/tutorials/vault/approle) in the Vault documentation for more details about the recommended patterns for Vault AppRole use.
+
+The highlights for me are:
+- Use [response wrapping](https://www.vaultproject.io/docs/concepts/response-wrapping) to obtain a Secret ID.
+- Use a secured system to act as the broker for retrieving a wrapped Secret ID.
+- Avoid [anti-patterns](https://learn.hashicorp.com/tutorials/vault/pattern-approle?in=vault/recommended-patterns#anti-patterns) such as having the broker retrieve secrets.
 
 :::warning
 **Secure the broker:**
-Since the trust rests on the broker, we strongly recommend using the Octopus Server's [built-in worker](https://octopus.com/docs/infrastructure/workers#built-in-worker), or a highly-secured [external worker](https://octopus.com/docs/infrastructure/workers#external-workers) to act as the broker. It would be responsible for retrieving  
+Since the trust rests on the broker, we strongly recommend using the Octopus Server's [built-in worker](https://octopus.com/docs/infrastructure/workers#built-in-worker), or a highly-secured [external worker](https://octopus.com/docs/infrastructure/workers#external-workers) to act as the broker. It would be responsible for retrieving a wrapped Secret ID and passing that value to the machine (the client) that authenticates with Vault.
 :::
 
-:::hint
-Link to Vault AppRole best practices: https://learn.hashicorp.com/tutorials/vault/approle
-:::
+To support these recommended practices, three additional step templates have been created:
+
+- [Get wrapped Secret ID](#get-wrapped-secretid)
+- [Unwrap Secret ID](#unwrap-secretid)
+- [Unwrap Secret ID and Login](#unwrap-secretid-login)
 
 ### Get wrapped Secret ID #{get-wrapped-secretid}
 
