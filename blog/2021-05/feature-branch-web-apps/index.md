@@ -10,13 +10,13 @@ tags:
  - Octopus
 ---
 
-Octopus is great at managing the progression of your changes through the development, test, and production environments. It also handles branching strategies like hotfixes nicely through the use of channels, allowing you to bypass certain environments and push packages with matching versions rules (like having the word `hotfix` in the version release field) straight to production in an emergency.
+Octopus is great at managing the progression of your changes through development, test, and production environments. It also handles branching strategies like hotfixes nicely through the use of channels, allowing you to bypass certain environments and push packages with matching version rules (like having the word `hotfix` in the version release field) straight to production in an emergency.
 
 But what about feature branches? In this blog post we'll break down exactly what a feature branch is, and how you can manage them in Octopus.
 
 ## What is a feature branch?
 
-Before we can model a feature branch in Octopus, we need to understand what a feature branch is to most developers.
+Before we can model a feature branch in Octopus, we need to understand what a feature branch is.
 
 [Martin Fowler provides good description of a feature branch](https://martinfowler.com/bliki/FeatureBranch.html):
 
@@ -26,37 +26,39 @@ I suspect most developers are familiar with working in a feature branch, but it 
 
 Specifically, we want to give developers a way to deploy the code they are working on:
 
-* To test it in an environment that can't be easily replicated locally, such as cloud Platform as a Service (PaaS) offerings.
-* To easily share the current state of their work with the rest of the team
+* To test in an environment that can't be easily replicated locally, such as Platform as a Service (PaaS) offerings.
+* To easily share the current state of their work with the rest of the team.
 * Or to provide a stable target for additional testing like end-to-end, performance, or security tests.
 
-Unlike deployments to fixed environments like test or production, feature branches are short lived. They exist while a feature is being developed, but once merged into a mainline branch, the feature branch should be deleted.
+Unlike fixed environments like test or production, feature branches are short lived. They exist while a feature is being developed, but once merged into a mainline branch, the feature branch should be deleted.
 
 Also, a feature branch is not intended to be deployed to production. Unlike a hotfix, which is an emergency production deployment to quickly solve a critical issue, a feature branch is only used for testing.
 
-An potential cost saving consequence of the limited audience a feature branch is exposed to is that you will likely be able to delete the deployments, and their underlying infrastructure, in the evening and redeploy the feature branches again in the morning. Doing so can mean you no longer pay to host applications no one will ever use overnight.
+A potential cost saving consequence of the limited audience a feature branch is exposed to is that you will likely be able to delete the deployments, and their underlying infrastructure, in the evening, and redeploy the feature branches again in the morning. Doing so means you no longer pay to host applications no one will ever use overnight.
 
-Feature branches are typically processed by a CI system as a convenient way to ensure the tests pass and then produce deployable artifacts. There is a compelling argument to be made that a CI system should produce a deployable artifact (if the code compiles) regardless of the test results given processes like Test Driven Design (TDD) encourage failing tests as a normal part of the design workflow. A question then is how are feature branch artifacts versioned?
+Feature branches are typically processed by a CI system as a convenient way to ensure the tests pass and then produce deployable artifacts. There is a compelling argument to be made that a CI system should produce a deployable artifact (if the code compiles) regardless of the test results given processes like Test Driven Development (TDD) encourage failing tests as a normal part of the development workflow. 
 
-Tools like GitVersion [provide examples showing feature branch names included in a SemVer prerelease field](https://gitversion.net/docs/learn/branching-strategies/gitflow/examples), resulting in versions like `1.3.0-myfeature`. Most package management tools have versioning strategies that include components to accommodate a feature branch name. Where a package manager has no versioning guidelines, like Docker repositories, adopting a versioning scheme like SemVer is a good choice.
+A question then is how are feature branch artifacts versioned?
+
+Tools like GitVersion [provide examples showing feature branch names included in a SemVer prerelease field](https://gitversion.net/docs/learn/branching-strategies/gitflow/examples), resulting in versions like `1.3.0-myfeature`. Most package management tools have versioning strategies that expose components to accommodate a feature branch name. Where a package manager has no versioning guidelines, like Docker repositories, adopting a versioning scheme like SemVer is a good choice.
 
 :::hint
-The Maven versioning scheme has a quirk where a version with a qualifier, like `1.0.0-myfeature`, is considered to be a later version that an unqualified version, like `1.0.0`. However, using channel versions rules means qualified versions representing feature branches are not eligible for deployment to production environments, so the ordering of qualified and unqualified versions does not present an issue in Octopus.
+The Maven versioning scheme has a quirk where a version with a qualifier, like `1.0.0-myfeature`, is considered to be a later version than an unqualified version, like `1.0.0`. However, using channel versions rules means qualified versions representing feature branches are not eligible for deployment to production environments, so the ordering of qualified and unqualified versions does not present an issue in Octopus.
 :::
 
-With all the above in mind, we can define a feature branch as having the following qualities:
+With all the above in mind, we can define a feature branch deployments as having the following qualities:
 
 * They are for testing only, and are not exposed in a production environment.
 * They are short lived, existing only while a corresponding branch in the version control system exists.
 * They may not be needed outside of business hours, providing cost savings if deployments can be shut down overnight.
-* They don't get promoted anywhere, and so have a lifecycle that includes a single deployment to a test environment, and eventual clean up.
-* They product artifacts versioned in such a way as to identify the source feature branch.
+* They don't get promoted anywhere, and so have a lifecycle that includes a single deployment to a test environment.
+* They application artifacts are versioned in such a way as to identify the source feature branch.
 
 The next step is to model the rules above in Octopus.
 
 ## Octopus meta-steps
 
-Octopus includes a limited notion of meta-steps, which is a term we'll use to categorize steps that modify Octopus itself. The **Deploy a release** step is one example, which (as the name suggests) can be used to deploy a release created for an other project. [Script steps can also dynamically generate some Octopus resources](https://octopus.com/docs/infrastructure/deployment-targets/dynamic-infrastructure).
+Octopus includes a limited notion of meta-steps, which is a term we'll use to categorize steps that modify Octopus itself. The **Deploy a release** step is one example, which (as the name suggests) can be used to deploy a release created for another project. [Script steps can also dynamically generate some Octopus resources](https://octopus.com/docs/infrastructure/deployment-targets/dynamic-infrastructure).
 
 But meta-step functionality is somewhat ad-hoc and limited. What we need is a more comprehensive solution to create and destroy resources within Octopus to reflect the short lived nature of feature branches.
 
@@ -76,7 +78,7 @@ We'll create six runbooks. Three runbooks will create, delete and suspend resour
 * Resume Branches, which will (re)create branch infrastructure based on those present in the GIT repository.
 * Destroy Branch Infrastructure, which will destroy the feature branch resources.
 * Destroy Branches, which will remove any feature branch resources for branch resources deleted in GIT.
-* Suspend Branch Infrastructure, which will turn off or destroy costly feature branch resources when it isn't used.
+* Suspend Branch Infrastructure, which will turn off or destroy costly feature branch resources when they aren't used.
 * Suspend Branches, which will suspend all branches.
 
 ## Mapping Octopus resources to feature branches
@@ -98,7 +100,7 @@ Tenants could also have been used to represent a feature branch. I found though 
 The web apps we deploy to will be represented by targets. These targets will be scoped to their associated feature branch environment.
 
 :::hint
-Web apps have the notion of slots, which could also have been used to deploy feature branches. However, slots are a limited resource on Azure service plans, meaning you would be limited to the number of feature branches that could be deployed at any time. For this reason this post uses new web apps for each feature branch.
+Web apps have the notion of slots, which could also have been used to deploy feature branches. However, slots are a limited resource on Azure service plans, meaning you would be limited to the number of feature branches that could be deployed at any time. For this reason this blog uses new web apps for each feature branch.
 :::
 
 ## The initial Azure account
@@ -115,13 +117,13 @@ Create a new Octopus project, and define two variables called **ApiKey** and **S
 
 In addition, create a prompted variable called **FeatureBranch**. This will be used to pass the name of a feature branch into the runbooks.
 
-Finally, create a variable called **Azure** that points to the Azure account created in the pervious section:
+Finally, create a variable called **Azure** that points to the Azure account created in the previous section:
 
 ![](variables.png "width=500")
 
 ## The deployment project
 
-Our deployment project will make use of the **Deploy an Azure App Service** step to deploy a Docker image from the **octopussamples/randomquotesjava** Docker repository. The [repository](https://hub.docker.com/r/octopussamples/randomquotesjava) contains images built with [this code hosted on GitHub](https://github.com/OctopusSamples/RandomQuotes-Java).
+Our deployment project will make use of the **Deploy an Azure App Service** step to deploy a Docker image from the **octopussamples/randomquotesjava** Docker repository. The [repository](https://hub.docker.com/r/octopussamples/randomquotesjava) contains images built with [this code hosted on GitHub](https://github.com/OctopusSamples/RandomQuotes-Java), with the correct tagging rules to identify feature branches.
 
 Call the step **Deploy Web App**. We'll reference this step name when creating the channel in the next section.
 
@@ -129,7 +131,7 @@ Call the step **Deploy Web App**. We'll reference this step name when creating t
 
 We'll start by creating the runbook that builds all the resources, both in Octopus and in Azure, to deploy a feature branch.
 
-This template creates the Azure web app infrastructure. We keep this in a separate template to allow us to destroy these resources individually, without destroying the Octopus resources. This template will be deployed in a step called **Feature Branch Web App** (we'll use the step name later to reference the output variables):
+This Terraform template creates the Azure web app infrastructure. We keep this in a separate template to allow us to destroy these resources individually, without destroying the Octopus resources. This template will be deployed in a step called **Feature Branch Web App** (we'll use the step name later to reference the output variables):
 
 ```
 provider "azurerm" {
@@ -198,7 +200,7 @@ output "WebAppName" {
 
 ```
 
-This next Terraform template will create an environment, place it in a lifecycle, and configure it in a channel. It also creates a web app target
+This next Terraform template will create an Octopus environment, place it in a lifecycle, and configure it in a channel. It also creates a web app target:
 
 ```
 variable "apiKey" {
@@ -325,7 +327,7 @@ The Octopus provider is an official plugin that can be downloaded by Terraform a
   }
 ```
 
-We have made use of the Octopus template syntax to build up various parts of the Terraform template. A backend block [cannot make use of Terraform variables](https://www.terraform.io/docs/language/settings/backends/configuration.html#using-a-backend-block), but because Octopus processes the file before it is passed to Terraform, we can work around this limitation to essentially inject variables into key name:
+We have made use of the Octopus template syntax (the hash symbol followed by curly brackets) to build up various parts of the Terraform template. A backend block [cannot make use of Terraform variables](https://www.terraform.io/docs/language/settings/backends/configuration.html#using-a-backend-block), but because Octopus processes the file before it is passed to Terraform, we can work around this limitation to essentially inject variables into the key name:
 
 ```
   backend "azurerm" {
@@ -336,7 +338,7 @@ We have made use of the Octopus template syntax to build up various parts of the
   }
 ```
 
-The description given to the channel indicates the GIT repository and branch that the channel represents. Because we have decided that the channel is the representation of a feature branch in a channel, the details required to link it back to the code repository it came from will be captured here.
+The description given to the channel indicates the GIT repository and branch that the channel represents. Because we have decided that the channel is the representation of a feature branch in a project, the details required to link it back to the code repository it came from will be captured here.
 
 Also note that we reference the step created earlier called **Deploy Web App** to apply the channel rules to:
 
@@ -359,7 +361,7 @@ To create the Azure account, we have created a new account with the same details
 
 ![](managed-account.png "width=500")
 
- In a more secure environment these details would be replaced with an account that was limited to only the necessary resources. In a less secure environment, you may omit creating a feature branch specific account all together, and simply share an existing account:
+ In a more secure environment these details would be replaced with an account limited to only the necessary resources. In a less secure environment, you may omit creating a feature branch specific account all together, and simply share an existing account:
 
 ```
 resource "octopusdeploy_azure_service_principal" "azure_service_principal_account" {
@@ -371,7 +373,7 @@ resource "octopusdeploy_azure_service_principal" "azure_service_principal_accoun
 }
 ```
 
-When creating the target, we make use of the output variables created by the first terraform script. The resource group name was output as `#{Octopus.Action[Feature Branch Web App].Output.TerraformValueOutputs[ResourceGroupName]}`, and the web app name was output as `#{Octopus.Action[Feature Branch Web App].Output.TerraformValueOutputs[WebAppName]}`.
+When creating the target, we make use of the output variables created by the first Terraform script. The resource group name was output as `#{Octopus.Action[Feature Branch Web App].Output.TerraformValueOutputs[ResourceGroupName]}`, and the web app name was output as `#{Octopus.Action[Feature Branch Web App].Output.TerraformValueOutputs[WebAppName]}`.
 
 This target also specifically defines a Windows worker pool (with the ID `WorkerPools-762` in my case) for the health checks. This is because Azure web app targets require a Windows worker to run a health check:
 
@@ -392,7 +394,7 @@ resource "octopusdeploy_azure_web_app_deployment_target" "webapp" {
 
 The final step in this runbook is to call the Octopus CLI to create and deploy a release to the new environment. By running the deployment we can be assured that when we recreate the feature branches in the morning, they will have their latest application code deployed.
 
-We allow this call to fail in the event that a branch has been created with no artifact deployed:
+We allow this call to fail in the event that a branch has been created with no artifact available for deployment:
 
 ```
 octo create-release \
@@ -413,9 +415,9 @@ Because Terraform is idempotent, we can rerun this runbook multiple times, and a
 
 ## The Resume Branches runbook
 
-The **Create Branch Infrastructure** runbook can create the resources for a branch, but it has not idea what branches exist in GIT. The **Resume Branches** runbook scans a GIT repo for branches and executes the **Create Branch Infrastructure** runbook to reflect those branches in Octopus.
+The **Create Branch Infrastructure** runbook can create the resources for a branch, but it has no idea what branches exist in GIT. The **Resume Branches** runbook scans a GIT repo for branches and executes the **Create Branch Infrastructure** runbook to reflect those branches in Octopus.
 
-The Powershell below parses the results of a call to `ls-remote --heads https://repo` and use the resulting list to call the **Create Branch Infrastructure** runbook:
+The Powershell below parses the results of a call to `ls-remote --heads https://repo` and uses the resulting list to call the **Create Branch Infrastructure** runbook:
 
 ```powershell
 $octopusURL = "https://mattc.octopus.app"
@@ -454,11 +456,11 @@ The `git` executable in the `PortableGit` directory was supplied as an additiona
 
 ## The Destroy Branch Infrastructure runbook
 
-The **Destroy Branch Infrastructure** is the opposite of the **Create Branch Infrastructure** in that it removes all the resources instead of creating them. This is achieved by using the same Terraform templates as defined in the **Create Branch Infrastructure** runbook, but executing them with the **Destroy Terraform resources** step instead.
+The **Destroy Branch Infrastructure** is the opposite of the **Create Branch Infrastructure** in that it removes all the resources instead of creating them. This is achieved using the same Terraform templates as defined in the **Create Branch Infrastructure** runbook, but executing them with the **Destroy Terraform resources** step instead of the **Apply a Terraform template** step.
 
 ## The Destroy Branches runbook
 
-The **Destroy Branches** runbook is the opposite of the **Resume Branches** runbook. It queries Octopus for all the channels, queries GIT for all the branches, and where a channel does not have a matching branch, calls the **Destroy Branch Infrastructure** runbook:
+The **Destroy Branches** runbook is the opposite of the **Resume Branches** runbook. It queries Octopus for all channels, queries GIT for all branches, and where a channel does not have a matching branch, calls the **Destroy Branch Infrastructure** runbook:
 
 ```powershell
 Install-Module -Force PowershellOctopusClient
@@ -517,9 +519,9 @@ $oldChannels |
 
 To save money overnight we'll destroy the feature branch web apps in Azure. This is the [suggested solution from Microsoft](https://feedback.azure.com/forums/169385-web-apps/suggestions/13550325-ability-to-suspend-app-service-plans-without-charg) to "suspend" app service plans.
 
-Deleting the Azure resources is again just a case of running the **Destroy Terraform resources** step instead with the template in the step called **Feature Branch Web App** from the **Create Branch Infrastructure** runbook. Because we only destroy the Azure resources, any existing Octopus releases, channels, environments, targets, and accounts will remain in place.
+Deleting the Azure resources is again just a case of running the **Destroy Terraform resources** step with the template in the step called **Feature Branch Web App** from the **Create Branch Infrastructure** runbook. Because we only destroy the Azure resources, any existing Octopus releases, channels, environments, targets, and accounts will remain in place.
 
-Since we use the same backend state file when deleting and creating these Azure resources, Terraform knows the state of any given Azure resource. This means we can call the **Suspend Branch Infrastructure**, **Create Branch Infrastructure**, and **Destroy Branch Infrastructure** as we need, and Terraform will leave Azure in the desired state.
+Since we use the same backend state file when deleting and creating these Azure resources, Terraform knows the state of any given Azure resource. This means we can call the **Suspend Branch Infrastructure**, **Create Branch Infrastructure**, and **Destroy Branch Infrastructure** runbooks as  needed, and Terraform will leave Azure in the desired state.
 
 ## The Suspend Branches runbook
 
@@ -572,11 +574,11 @@ $branches |
 
 We now have all the runbooks we need to manage feature branch resources. To keep Octopus and GIT in sync, the next step is to schedule triggers to remove old branches, shutdown resources, and create new branches.
 
-We start by triggering the **Destroy Branches** runbook at various point during the day. This runbook will destroy the feature branch resources where the underlying feature branch has been removed from GIT.
+We start by triggering the **Destroy Branches** runbook at various points during the day. This runbook will destroy the feature branch resources where the underlying feature branch has been removed from GIT.
 
 Cleaning up these branches should not disrupt anyone, as we assume that deleting the underlying branch means the feature has been merged or abandoned. So we create a trigger to execute the **Destroy Branches** runbook every hour.
 
-Likewise we want to catch any new branches that have been created throughout the day, so we schedule the **Create Branches** runbook to run regularly between 6 AM and 6 PM to catch the average working day.
+Likewise we want to catch any new branches that have been created throughout the day, so we schedule the **Create Branches** runbook to run regularly between 6 AM and 6 PM to cover the average working day.
 
 To reduce our costs, we want to remove the cloud resources hosting our feature branches at the end of the day. To do this, we schedule the **Suspend Branches** runbook to run at 7 PM. This ensures it is run after the final **Create Branches** runbook trigger.
 
@@ -584,11 +586,11 @@ The end result is that throughout the day deleted branches are cleaned up via **
 
 ![](triggers.png "width=500")
 
-If using triggers is not responsive enough to catch new branches being created and destroyed, it is also possible to execute `octo run-runbook` directly from GIT itself. Popular hosting services like GitHub frequently offer tooling that allows scripts to be run as branches are created and destroyed, which would make the creation and cleanup of feature branches in Octopus almost instantaneous.
+If using triggers is not responsive enough to catch new branches being created and destroyed, it is also possible to execute `octo run-runbook` directly from GIT itself. Popular hosting services like GitHub offer tooling that allows scripts to be run as branches are created and destroyed, which would make the creation and cleanup of feature branches in Octopus almost instantaneous.
 
 ## A look at Octopus with feature branches
 
-With these runbooks in places and triggered appropiately, we can now review the resources created in Octopus to represent our feature branches.
+With these runbooks in place and triggered appropriately, we can now review the resources created in Octopus to represent our feature branches.
 
 Here are the channels:
 
