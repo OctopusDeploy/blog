@@ -13,7 +13,7 @@ tags:
 
 ![Using HashiCorp Vault with Octopus Deploy](octopus-step-template.png)
 
-Octopus has supported the concept of [sensitive variables](https://octopus.com/docs/projects/variables/sensitive-variables) since [Octopus 2.0](https://octopus.com/blog/new-in-2.0/sensitive-variables). However, we're often asked by customers about support for Secret managers. You only have to do a [quick search](https://www.google.com/search?q=secret+managers) to see that all of the major cloud providers have secret managers. In addition, there are a number of third-party products in the marketplace such as [HashiCorp Vault](https://www.vaultproject.io/).
+Octopus has supported the concept of [sensitive variables](https://octopus.com/docs/projects/variables/sensitive-variables) since [Octopus 2.0](https://octopus.com/blog/new-in-2.0/sensitive-variables). However, we're often asked by customers about support for Secret managers. You only have to do a [quick search](https://www.google.com/search?q=secret+managers) to see all of the major cloud providers have secret managers. In addition, there are a number of popular products in the marketplace, such as [HashiCorp Vault](https://www.vaultproject.io/).
 
 Storing sensitive values in Octopus Deploy solves many problems; the trade-off is, if your organisation has standardised on a secrets manager, that might mean storing sensitive values twice, making secrets management more complicated.
 
