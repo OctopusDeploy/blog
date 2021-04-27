@@ -44,7 +44,7 @@ Authentication with Vault can be achieved with a number of different methods. As
 
 Once you have authenticated with Vault, a [token](https://www.vaultproject.io/docs/concepts/tokens) is generated that can be used in further interactions with Vault. The primary use in our case is to retrieve secrets from a Secrets Engine.
 
-### LDAP login #{ldap-login}
+### LDAP login step template #{ldap-login}
 
 The [HashiCorp Vault - Login with LDAP](https://library.octopus.com/step-templates/de807003-3b05-4649-9af3-11a2c7722b3f/actiontemplate-hashicorp-vault-ldap-login) step template authenticates with a Vault Server using the [LDAP](https://www.vaultproject.io/docs/auth/ldap) authentication method. This is useful as it allows Vault integration without having to duplicate username or password configuration.
 
@@ -66,7 +66,7 @@ The step template has the following parameters:
 - `Username`: The LDAP username.
 - `Password`: The LDAP password.
 
-![Parameters for the Vault LDAP login step](vault-login-step-parameters.png)
+![Parameters for the Vault LDAP login step](vault-ldap-login-step-parameters.png)
 
 #### Using the LDAP login step
 
@@ -74,13 +74,13 @@ The LDAP login step is added to deployment and runbook processes in the [same wa
 
 Once you have added the step to your process, fill out the parameters in the step:
 
-![The Vault LDAP login step used in a deployment](vault-login-step-in-process.png)
+![The Vault LDAP login step used in a deployment](vault-ldap-login-step-in-process.png)
 
 Once you've added the step, you can execute the step in a runbook or deployment process, and on successful authentication, the sensitive output variable name containing the token is displayed in the Task log:
 
-![The Vault LDAP login step task log](vault-login-step-output-variable.png)
+![The Vault LDAP login step task log](vault-ldap-login-step-output-variable.png)
 
-### AppRole login #{approle-login}
+### AppRole login step template #{approle-login}
 
 The [HashiCorp Vault - Login with AppRole](https://library.octopus.com/step-templates/e04a9cec-f04a-4da2-849b-1aed0fd408f0/actiontemplate-hashicorp-vault-approle-login) step template authenticates with a Vault Server using the [AppRole](https://www.vaultproject.io/docs/auth/approle) authentication method. 
 
@@ -95,7 +95,6 @@ With an AppRole, a machine can login with:
 
 :::warning
 **Don't store the Secret ID:**
-
 Storing the the RoleID in Octopus as a sensitive variable is a good way to ensure it remains encrypted until required. 
 
 However, the same is **not recommended** for the SecretID.
@@ -106,6 +105,22 @@ For this reason, it's recommended that you consider the use of the more secure [
 
 If you do choose to use this step template, we recommend you provide the SecretID at execution time using a sensitive [prompted variable](https://octopus.com/docs/projects/variables/prompted-variables).
 :::
+
+Once authenticated, the `client_token` from the Vault response will be made available as a [sensitive output variable](https://octopus.com/docs/projects/variables/output-variables#sensitive-output-variables) named `AppRoleAuthToken` for use in other step templates.
+
+#### AppRole login parameters
+
+The step template has the following parameters:
+
+- `Vault Server URL`: The URL of the Vault instance you are connecting to, including the port (The default is `8200`).
+- `API version`: All Vault [API routes](https://www.vaultproject.io/api-docs) are prefixed with a version e.g. `/v1/`.
+- `AppRole path`: The path where the [approle auth method is mounted](https://www.vaultproject.io/api-docs/auth/approle) at. 
+- `Role ID`: The [RoleID](https://www.vaultproject.io/docs/auth/approle#roleid) of the AppRole.
+- `Secret ID`: The [Secret ID](https://www.vaultproject.io/docs/auth/approle#secretid) of the AppRole.
+
+![Parameters for the Vault AppRole login step](vault-approle-login-step-parameters.png)
+
+#### Using the AppRole login step
 
 ### Response wrapping #{response-wrapping}
 
