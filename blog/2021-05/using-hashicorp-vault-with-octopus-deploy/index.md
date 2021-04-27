@@ -156,7 +156,7 @@ In subsequent steps, the output variable `#{Octopus.Action[HashiCorp Vault - Log
 
 The [AppRole](https://www.vaultproject.io/docs/auth/approle) authentication method is considered a _trusted-broker_ method. Simply put, this means that the onus of trust rests in the system that acts as the authentication intermediary (the _broker_) between the client (typically an Octopus deployment target) and Vault.
 
-Rather than repeating what's already there, I encourage you to read both the [tutorial](https://learn.hashicorp.com/tutorials/vault/pattern-approle?in=vault/recommended-patterns) and the [AppRole pull authentication guide](https://learn.hashicorp.com/tutorials/vault/approle) in the Vault documentation for more details about the recommended patterns for Vault AppRole use.
+Rather than repeating what's already there, I encourage you to read both the [tutorial](https://learn.hashicorp.com/tutorials/vault/pattern-approle?in=vault/recommended-patterns) and the [AppRole Pull Authentication guide](https://learn.hashicorp.com/tutorials/vault/approle) in the Vault documentation for more details about the recommended patterns for Vault AppRole use.
 
 The highlights for me are:
 - Use [response wrapping](https://www.vaultproject.io/docs/concepts/response-wrapping) to obtain a SecretID.
