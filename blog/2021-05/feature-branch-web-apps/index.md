@@ -40,7 +40,7 @@ Feature branches are typically processed by a CI system as a convenient way to e
 
 A question then is how are feature branch artifacts versioned?
 
-Tools like GitVersion [provide examples showing feature branch names included in a SemVer prerelease field](https://gitversion.net/docs/learn/branching-strategies/gitflow/examples), resulting in versions like `1.3.0-myfeature`. Most package management tools have versioning strategies that expose components to accommodate a feature branch name. Where a package manager has no versioning guidelines, like Docker repositories, adopting a versioning scheme like SemVer is a good choice.
+Tools like GitVersion [provide examples showing feature branch names included in a SemVer prerelease field](https://Gitversion.net/docs/learn/branching-strategies/Gitflow/examples), resulting in versions like `1.3.0-myfeature`. Most package management tools have versioning strategies that expose components to accommodate a feature branch name. Where a package manager has no versioning guidelines, like Docker repositories, adopting a versioning scheme like SemVer is a good choice.
 
 :::hint
 The Maven versioning scheme has a quirk where a version with a qualifier, like `1.0.0-myfeature`, is considered to be a later version than an unqualified version, like `1.0.0`. However, using channel versions rules means qualified versions representing feature branches are not eligible for deployment to production environments, so the ordering of qualified and unqualified versions does not present an issue in Octopus.
@@ -72,12 +72,12 @@ Fortunately the [Octopus Terraform provider](https://registry.terraform.io/provi
 
 We'll make use of runbooks to support the creation and deletion of ephemeral Octopus resources. This allows us to separate the management of the underlying infrastructure from the deployment of our applications.
 
-We'll create six runbooks. Three runbooks will create, delete and suspend resources for a single feature branch, and those will be paired with three more runbooks to execute them based on the presence or absence of branches in GIT:
+We'll create six runbooks. Three runbooks will create, delete and suspend resources for a single feature branch, and those will be paired with three more runbooks to execute them based on the presence or absence of branches in Git:
 
 * Create Branch Infrastructure, which will create the resources required to deploy a single branch.
-* Resume Branches, which will (re)create branch infrastructure based on those present in the GIT repository.
+* Resume Branches, which will (re)create branch infrastructure based on those present in the Git repository.
 * Destroy Branch Infrastructure, which will destroy the feature branch resources.
-* Destroy Branches, which will remove any feature branch resources for branch resources deleted in GIT.
+* Destroy Branches, which will remove any feature branch resources for branch resources deleted in Git.
 * Suspend Branch Infrastructure, which will turn off or destroy costly feature branch resources when they aren't used.
 * Suspend Branches, which will suspend all branches.
 
@@ -123,7 +123,7 @@ Finally, create a variable called **Azure** that points to the Azure account cre
 
 ## The deployment project
 
-Our deployment project will make use of the **Deploy an Azure App Service** step to deploy a Docker image from the **octopussamples/randomquotesjava** Docker repository. The [repository](https://hub.docker.com/r/octopussamples/randomquotesjava) contains images built with [this code hosted on GitHub](https://github.com/OctopusSamples/RandomQuotes-Java), with the correct tagging rules to identify feature branches.
+Our deployment project will make use of the **Deploy an Azure App Service** step to deploy a Docker image from the **octopussamples/randomquotesjava** Docker repository. The [repository](https://hub.docker.com/r/octopussamples/randomquotesjava) contains images built with [this code hosted on GitHub](https://Github.com/OctopusSamples/RandomQuotes-Java), with the correct tagging rules to identify feature branches.
 
 Call the step **Deploy Web App**. We'll reference this step name when creating the channel in the next section.
 
@@ -282,7 +282,7 @@ resource "octopusdeploy_channel" "channel" {
   name       = "Feature branch #{FeatureBranch}"
   project_id = "#{Octopus.Project.Id}"
   lifecycle_id = "${octopusdeploy_lifecycle.lifecycle.id}"
-  description = "Repo: https://github.com/OctopusSamples/RandomQuotes-Java Branch: #{FeatureBranch}"
+  description = "Repo: https://Github.com/OctopusSamples/RandomQuotes-Java Branch: #{FeatureBranch}"
   rule {
   	id = "#{FeatureBranch}"
     tag = "^#{FeatureBranch}.*$"
@@ -338,7 +338,7 @@ We have made use of the Octopus template syntax (the hash symbol followed by cur
   }
 ```
 
-The description given to the channel indicates the GIT repository and branch that the channel represents. Because we have decided that the channel is the representation of a feature branch in a project, the details required to link it back to the code repository it came from will be captured here.
+The description given to the channel indicates the Git repository and branch that the channel represents. Because we have decided that the channel is the representation of a feature branch in a project, the details required to link it back to the code repository it came from will be captured here.
 
 Also note that we reference the step created earlier called **Deploy Web App** to apply the channel rules to:
 
@@ -347,7 +347,7 @@ resource "octopusdeploy_channel" "channel" {
   name       = "Feature branch #{FeatureBranch}"
   project_id = "#{Octopus.Project.Id}"
   lifecycle_id = "${octopusdeploy_lifecycle.lifecycle.id}"
-  description = "Repo: https://github.com/OctopusSamples/RandomQuotes-Java Branch: #{FeatureBranch}"
+  description = "Repo: https://Github.com/OctopusSamples/RandomQuotes-Java Branch: #{FeatureBranch}"
   rule {
   	id = "#{FeatureBranch}"
     tag = "^#{FeatureBranch}.*$"
@@ -415,7 +415,7 @@ Because Terraform is idempotent, we can rerun this runbook multiple times, and a
 
 ## The Resume Branches runbook
 
-The **Create Branch Infrastructure** runbook can create the resources for a branch, but it has no idea what branches exist in GIT. The **Resume Branches** runbook scans a GIT repo for branches and executes the **Create Branch Infrastructure** runbook to reflect those branches in Octopus.
+The **Create Branch Infrastructure** runbook can create the resources for a branch, but it has no idea what branches exist in Git. The **Resume Branches** runbook scans a Git repo for branches and executes the **Create Branch Infrastructure** runbook to reflect those branches in Octopus.
 
 The Powershell below parses the results of a call to `ls-remote --heads https://repo` and uses the resulting list to call the **Create Branch Infrastructure** runbook:
 
@@ -425,12 +425,12 @@ $octopusAPIKey = "#{ApiKey}"
 $spaceName = "#{Octopus.Space.Name}"
 $projectName = "#{Octopus.Project.Name}"
 $environmentName = "#{Octopus.Environment.Name}"
-$repos = @("https://github.com/OctopusSamples/RandomQuotes-Java.git")
+$repos = @("https://Github.com/OctopusSamples/RandomQuotes-Java.Git")
 $ignoredBranches = @("master", "main")
 
 # Get all the branches for the repos listed in the channel descriptions    
 $branches = $repos | 
-    % {PortableGit\bin\git ls-remote --heads $_} | 
+    % {PortableGit\bin\Git ls-remote --heads $_} | 
     % {[regex]::Match($_, "\S+\s+(\S+)").captures.groups[1].Value} |
     % {$_.Replace("refs/heads/", "")} |
     ? {-not $ignoredBranches.Contains($_)}
@@ -449,9 +449,9 @@ $branches |
 ```
 
 :::hint
-The `git` executable in the `PortableGit` directory was supplied as an additional package reference that bundled up a [portable copy of GIT for Windows](https://git-scm.com/download/win):
+The `Git` executable in the `PortableGit` directory was supplied as an additional package reference that bundled up a [portable copy of Git for Windows](https://Git-scm.com/download/win):
 
-![](git-portable.png "width=500")
+![](Git-portable.png "width=500")
 :::
 
 ## The Destroy Branch Infrastructure runbook
@@ -460,7 +460,7 @@ The **Destroy Branch Infrastructure** is the opposite of the **Create Branch Inf
 
 ## The Destroy Branches runbook
 
-The **Destroy Branches** runbook is the opposite of the **Resume Branches** runbook. It queries Octopus for all channels, queries GIT for all branches, and where a channel does not have a matching branch, calls the **Destroy Branch Infrastructure** runbook:
+The **Destroy Branches** runbook is the opposite of the **Resume Branches** runbook. It queries Octopus for all channels, queries Git for all branches, and where a channel does not have a matching branch, calls the **Destroy Branch Infrastructure** runbook:
 
 ```powershell
 Install-Module -Force PowershellOctopusClient
@@ -493,7 +493,7 @@ $repos = $channels |
 
 # Get all the branches for the repos listed in the channel descriptions    
 $branches = $repos | 
-    % {@{Repo = $_; Branch = $(PortableGit\bin\git ls-remote --heads $_)}} | 
+    % {@{Repo = $_; Branch = $(PortableGit\bin\Git ls-remote --heads $_)}} | 
     % {$repo = $_.Repo; [regex]::Match($_.Branch, "\S+\s+(\S+)").captures.groups[1].Value.Replace("refs/heads/", "") | %{"Repo: $repo Branch: $_"}}
 
 # Get all the branches that have a channel but have been removed from the repo
@@ -570,11 +570,11 @@ $branches |
           --space $spaceName}
 ```
 
-## Synchronizing Octopus and GIT
+## Synchronizing Octopus and Git
 
-We now have all the runbooks we need to manage feature branch resources. To keep Octopus and GIT in sync, the next step is to schedule triggers to remove old branches, shutdown resources, and create new branches.
+We now have all the runbooks we need to manage feature branch resources. To keep Octopus and Git in sync, the next step is to schedule triggers to remove old branches, shutdown resources, and create new branches.
 
-We start by triggering the **Destroy Branches** runbook at various points during the day. This runbook will destroy the feature branch resources where the underlying feature branch has been removed from GIT.
+We start by triggering the **Destroy Branches** runbook at various points during the day. This runbook will destroy the feature branch resources where the underlying feature branch has been removed from Git.
 
 Cleaning up these branches should not disrupt anyone, as we assume that deleting the underlying branch means the feature has been merged or abandoned. So we create a trigger to execute the **Destroy Branches** runbook every hour.
 
@@ -586,7 +586,7 @@ The end result is that throughout the day deleted branches are cleaned up via **
 
 ![](triggers.png "width=500")
 
-If using triggers is not responsive enough to catch new branches being created and destroyed, it is also possible to execute `octo run-runbook` directly from GIT itself. Popular hosting services like GitHub offer tooling that allows scripts to be run as branches are created and destroyed, which would make the creation and cleanup of feature branches in Octopus almost instantaneous.
+If using triggers is not responsive enough to catch new branches being created and destroyed, it is also possible to execute `octo run-runbook` directly from Git itself. Popular hosting services like GitHub offer tooling that allows scripts to be run as branches are created and destroyed, which would make the creation and cleanup of feature branches in Octopus almost instantaneous.
 
 ## A look at Octopus with feature branches
 
@@ -620,6 +620,6 @@ Here is the release creation, where we select a channel/feature branch to deploy
 
 The Terraform apply and destroy steps, in conjunction with the Octopus Terraform provider, gives us the tooling we need to create the meta-steps required to implement short lived feature branches in Octopus. Thanks to the idempotent nature of Terraform, we have a robust set of steps that reliably manage our ephemeral Azure and Octopus resources.
 
-With some custom scripting to synchronize Octopus with GIT branches, and scheduled triggers or direct triggers from a hosted platform like GitHub, we can ensure Octopus reflects the feature branches being developed in our code base.
+With some custom scripting to synchronize Octopus with Git branches, and scheduled triggers or direct triggers from a hosted platform like GitHub, we can ensure Octopus reflects the feature branches being developed in our code base.
 
 Happy deployments!
