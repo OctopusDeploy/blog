@@ -377,10 +377,11 @@ The step template has the following parameters:
 where the secrets engine is mounted, as well as the path to the secret itself.
 - `Secrets retrieval method`: Choose between retrieving a single secret or multiple secrets. Retrieving a single secret is the equivalent of a `vault kv get` command using the [Get](https://www.vaultproject.io/api-docs/secret/kv/kv-v1#read-secret) method. Retrieving multiple secrets is the equivalent of the combination of both a `vault kv list` command using the [List](https://www.vaultproject.io/api-docs/secret/kv/kv-v2#list-secrets) method and then subsequent `vault kv get` commands for each secret.
 - `Recursive retrieval`: If multiple secrets are being retrieved, should any sub-folders also be enumerated and retrieved? The default is: `False`.
+- `Secret Version`: _Optional_ When retrieving a single secret, choose the version of the secret to retrieve. For example, if you wanted version 2 of all field values in a secret, enter the value `2`.
 - `Field names`: Choose specific fields to be retrieved from identified secrets. This is useful when you only want to retrieve specific fields from one or more secret(s). You can optionally include a name for the resultant output variable.
 - `Print output variable names`: Write out the Octopus output variable names to the task log. The default is: `False`.
 
-
+![Parameters for the retrieve KV v2 secrets step](vault-retrieve-kv-v2-secrets-step-parameters.png)
 
 #### Using Retrieve KV (v2) secrets step #{retrieve-kv-v2-secrets-use}
 
