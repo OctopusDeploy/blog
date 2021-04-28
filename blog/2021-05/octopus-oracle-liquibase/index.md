@@ -64,6 +64,7 @@ The Liquibase template is specifically designed to support running on a Worker w
 Select the database type that you're deploying to. The currently supported types are:
 
 - MariaDB
+- MongoDB
 - MySQL
 - Oracle
 - PostgreSQL
