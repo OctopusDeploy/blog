@@ -35,7 +35,6 @@ Authentication with Vault can be achieved with a number of different methods. Th
 
 - [LDAP login](#ldap-login)
 - [AppRole login](#approle-login)
-- [AppRole best practises](#approle-best-practises)
 - [AppRole Get wrapped SecretID](#get-wrapped-secretid)
 - [AppRole Unwrap SecretID](#unwrap-secretid)
 - [AppRole Unwrap SecretID and Login](#unwrap-secretid-login)
@@ -144,7 +143,7 @@ In subsequent steps, the output variable `#{Octopus.Action[HashiCorp Vault - Log
 **Tip:** Remember to replace `HashiCorp Vault - Login with AppRole` with the name of your step!
 :::
 
-### AppRole recommended best practises #{approle-best-practises}
+### AppRole best practises #{approle-best-practises}
 
 The [AppRole](https://www.vaultproject.io/docs/auth/approle) authentication method is considered a _trusted-broker_ method. This means that the onus of trust rests in the system that acts as the authentication intermediary (the _broker_) between the client (typically an Octopus deployment target) and Vault.
 
