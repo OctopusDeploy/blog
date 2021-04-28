@@ -31,7 +31,7 @@ All of the step templates make use of the Vault [HTTP API](https://www.vaultproj
 
 ## Authentication #{authentication}
 
-Authentication with Vault can be achieved with a number of different methods. The following step templates have been created to support Vault authentication:
+Before you can interact with Vault, you must authenticate against an auth method. Vault offers a number of different authentication options. The following step templates have been created to support Vault authentication:
 
 - [LDAP login](#ldap-login)
 - [AppRole login](#approle-login)
@@ -43,7 +43,7 @@ Authentication with Vault can be achieved with a number of different methods. Th
 The AppRole method is the recommended way to authenticate with Vault for Servers.
 :::
 
-Once you have authenticated with Vault, a [token](https://www.vaultproject.io/docs/concepts/tokens) is generated that can be used in further interactions with Vault.
+Upon authentication with Vault, a [token](https://www.vaultproject.io/docs/concepts/tokens) is generated that can be used in further interactions with Vault.
 
 ### LDAP login step #{ldap-login}
 
@@ -307,7 +307,12 @@ In subsequent steps, the output variable `#{Octopus.Action[HashiCorp Vault - App
 
 ## Retrieving secrets #{retrieving-secrets}
 
-When you have authenticated, you get a token that can be used to 
+Once you've authenticated with Vault, you receive an authentication token. This token can then be used to retrieve secrets. Secrets in Vault are stored in a [Secrets Engine](https://www.vaultproject.io/docs/secrets), of which there are many different types.
+
+The step templates created to support retrieving secrets focus on the [Key-Value (kv)](https://www.vaultproject.io/docs/secrets/kv) Secrets Engine as it's a generic Key-Value store used to store arbitrary secrets:
+
+- [Retrieve KV (version 1) secrets step](#retrieve-kv-v1-secrets)
+- [Retrieve KV (version 2) secrets step](#retrieve-kv-v2-secrets)
 
 ### Retrieve KV (version 1) secrets step #{retrieve-kv-v1-secrets}
 
@@ -315,6 +320,10 @@ When you have authenticated, you get a token that can be used to
 
 ## Conclusion
 
+
+
 ## Learn more
 
 - Read the [AppRole Pull Authentication](https://bitbucket.org/octopusdeploy/pack/src/master/README.md) tutorial showing how to retrieve SecretIDs securely.
+- HashiCorp Vault documentation for the [K/V Version 1 Secrets Engine](https://www.vaultproject.io/docs/secrets/kv/kv-v1).
+- HashiCorp Vault documentation for the [K/V Version 2 Secrets Engine](https://www.vaultproject.io/docs/secrets/kv/kv-v2).
