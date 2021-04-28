@@ -423,6 +423,6 @@ Until next time, Happy Deployments!
 
 ## Learn more
 
-- Read the [AppRole Pull Authentication](https://bitbucket.org/octopusdeploy/pack/src/master/README.md) tutorial showing how to retrieve SecretIDs securely.
+- Read the [AppRole Pull Authentication](https://learn.hashicorp.com/tutorials/vault/approle) tutorial showing how to retrieve SecretIDs securely.
 - HashiCorp Vault documentation for the [K/V v1 Secrets Engine](https://www.vaultproject.io/docs/secrets/kv/kv-v1).
 - HashiCorp Vault documentation for the [K/V v2 Secrets Engine](https://www.vaultproject.io/docs/secrets/kv/kv-v2).
