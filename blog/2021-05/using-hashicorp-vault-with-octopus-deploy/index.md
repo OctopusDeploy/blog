@@ -407,7 +407,9 @@ In subsequent steps, the output variables created from matching secrets can be u
 
 ## Conclusion
 
-//TODO
+The templates covered in this post show how it's possible to extend the functionality of Octopus and enable you to retrieve secrets from Vault, or any other Secrets Manager and use them in your deployments or runbooks.
+
+Until next time, Happy Deployments!
 
 ## Learn more
 
