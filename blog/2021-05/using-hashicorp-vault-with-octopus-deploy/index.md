@@ -318,7 +318,11 @@ The step templates created to support retrieving secrets focus on the [Key-Value
 
 The [HashiCorp Vault - Key Value (v1) retrieve secrets](https://library.octopus.com/step-templates/9aab9522-25e0-4539-841c-8b726e6b1520/actiontemplate-hashicorp-vault-key-value-(v1)-retrieve-secrets) step template retrieves one or more secrets stored in a `v1` Key-Value secrets engine.
 
-**//TODO: Add details about output variables here...**
+Retrieving a single secret requires the path to the secret, an authentication token with permission to access the secret and _optionally_ a list of field names to retrieve.
+
+An advanced feature of the step template offers support for retrieving multiple secrets at once. This requires changing the **Secrets retrieval method** parameter to `Multiple vault keys`. It's also possible to recursively retrieve secrets. This is useful when you want to retrieve all secrets for a given path.
+
+For each secret retrieved, a [sensitive output variable](https://octopus.com/docs/projects/variables/output-variables#sensitive-output-variables) is created for use in subsequent steps. By default, only a count of the number of variables that were created will be shown in the Task log. To see the names of the variables in the Task log, Change the **Print output variable names** parameter to `True`.
 
 #### Retrieve KV (v1) secrets parameters #{retrieve-kv-v1-secrets-parameters}
 
@@ -331,7 +335,7 @@ The step template has the following parameters:
 where the secrets engine is mounted, as well as the path to the secret itself.
 - `Secrets retrieval method`: Choose between retrieving a single secret or multiple secrets. Retrieving a single secret is the equivalent of a `vault kv get` command using the [Get](https://www.vaultproject.io/api-docs/secret/kv/kv-v1#read-secret) method. Retrieving multiple secrets is the equivalent of the combination of both a `vault kv list` command using the [List](https://www.vaultproject.io/api-docs/secret/kv/kv-v2#list-secrets) method and then subsequent `vault kv get` commands for each secret.
 - `Recursive retrieval`: If multiple secrets are being retrieved, should any sub-folders also be enumerated and retrieved? The default is: `False`.
-- `Field names`: Choose specific fields to be retrieved from identified secrets. This is useful when you only want to retrieve specific fields from one or more secret(s). You can optionally include a name for the resultant output variable.
+- `Field names`: Choose specific fields to be retrieved from identified secrets. This is useful when you only want to retrieve specific fields from one or more secret(s). You can optionally include a name for the output variable.
 - `Print output variable names`: Write out the Octopus output variable names to the task log. The default is: `False`.
 
 ![Parameters for the retrieve KV v1 secrets step](vault-retrieve-kv-v1-secrets-step-parameters.png)
@@ -364,7 +368,13 @@ The [HashiCorp Vault - Key Value (v2) retrieve secrets](https://library.octopus.
 
 One of the key advantages of the `v2` Key-Value secrets engine is its support for [versioned secrets](https://learn.hashicorp.com/tutorials/vault/versioned-kv). This can be useful if you need to roll back secrets in the event of unintentional data loss.
 
-**//TODO: Add details about output variables here...**
+Retrieving a single secret requires the path to the secret, an authentication token with permission to access the secret and _optionally_ a list of field names to retrieve.
+
+This step template offers advanced features:
+1. Support for retrieving multiple secrets at once. This requires changing the **Secrets retrieval method** parameter to `Multiple vault keys`. It's also possible to recursively retrieve secrets. This is useful when you want to retrieve all secrets for a given path.
+2. Support for retrieving a specific version of a secret. This is only supported when retrieving a single secret.
+
+For each secret retrieved, a [sensitive output variable](https://octopus.com/docs/projects/variables/output-variables#sensitive-output-variables) is created for use in subsequent steps. By default, only a count of the number of variables that were created will be shown in the Task log. To see the names of the variables in the Task log, Change the **Print output variable names** parameter to `True`.
 
 #### Retrieve KV (v2) secrets parameters #{retrieve-kv-v2-secrets-parameters}
 
@@ -378,7 +388,7 @@ where the secrets engine is mounted, as well as the path to the secret itself.
 - `Secrets retrieval method`: Choose between retrieving a single secret or multiple secrets. Retrieving a single secret is the equivalent of a `vault kv get` command using the [Get](https://www.vaultproject.io/api-docs/secret/kv/kv-v1#read-secret) method. Retrieving multiple secrets is the equivalent of the combination of both a `vault kv list` command using the [List](https://www.vaultproject.io/api-docs/secret/kv/kv-v2#list-secrets) method and then subsequent `vault kv get` commands for each secret.
 - `Recursive retrieval`: If multiple secrets are being retrieved, should any sub-folders also be enumerated and retrieved? The default is: `False`.
 - `Secret Version`: _Optional_ When retrieving a single secret, choose the version of the secret to retrieve. For example, if you wanted version 2 of all field values in a secret, enter the value `2`.
-- `Field names`: Choose specific fields to be retrieved from identified secrets. This is useful when you only want to retrieve specific fields from one or more secret(s). You can optionally include a name for the resultant output variable.
+- `Field names`: Choose specific fields to be retrieved from identified secrets. This is useful when you only want to retrieve specific fields from one or more secret(s). You can optionally include a name for the output variable.
 - `Print output variable names`: Write out the Octopus output variable names to the task log. The default is: `False`.
 
 ![Parameters for the retrieve KV v2 secrets step](vault-retrieve-kv-v2-secrets-step-parameters.png)
@@ -407,7 +417,7 @@ In subsequent steps, the output variables created from matching secrets can be u
 
 ## Conclusion
 
-The templates covered in this post show how it's possible to extend the functionality of Octopus and enable you to retrieve secrets from Vault, or any other Secrets Manager and use them in your deployments or runbooks.
+The templates covered in this post show how it's possible to extend the functionality of Octopus and enable you to retrieve secrets from Vault, or any other secrets manager and use them in your deployments or runbooks.
 
 Until next time, Happy Deployments!
 
