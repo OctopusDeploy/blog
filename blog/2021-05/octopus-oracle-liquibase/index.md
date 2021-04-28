@@ -13,7 +13,7 @@ tags:
 
 ![Deploying to Oracle with Octopus Deploy and Liquibase](liquibase-octopus.png)
 
-Customers have asked if it's possible to deploy to an Oracle database with Liquibase using Octopus Deploy. In this post, I'll demonstrate how to do it.
+Database deployments are often the hardest part of deployments. In this post, I show you how to deploy an Oracle database with Liquibase using Octopus Deploy.
 
 ## Liquibase
 
@@ -45,15 +45,15 @@ For this post, we package the changelog file:
 
 ## Octopus Deploy
 
-Using Octopus Deploy, you can include the Liquibase step template to automate your deployments to Oracle.  This post assumes you're already familiar with creating a project in Octopus Deploy and will cover the steps specific to Liquibase.
+Using Octopus Deploy, you can include the Liquibase step template to automate your deployments to Oracle.  This post assumes you're already familiar with [creating a project](https://octopus.com/docs/projects#add-a-project) in Octopus Deploy and will cover the steps specific to Liquibase.
 
 ### Liquibase step template
 
-To add the Liquibase template, click the **ADD STEP** button in the Process tab of your Octopus project.
+To add the Liquibase template, click the **ADD STEP** button in the **Process** tab of your Octopus project:
 
 ![](octopus-project-add-step.png)
 
-Then filter by `liquibase`.  The template will appear in the Community Contributed Step Templates section.  Click **INSTALL AND ADD** (or **ADD** if it's already installed).
+Then filter by `liquibase`.  The template will appear in the **Community Contributed Step Templates** section.  Click **INSTALL AND ADD** (or **ADD** if it's already installed):
 
 ![](octopus-liquibase-template.png)
 
@@ -110,7 +110,7 @@ The step template will automatically attach the .sql file as an artifact of the 
 #### Download Liquibase?
 Use this option if you're not including Liquibase in your deployment package.  
 
-This option will download the community version of Liquibase, Java, and the databased type .jar file necessary to perform the deployment.  This post uses this option.
+This option will download the community version of Liquibase, Java, and the database type .jar file necessary to perform the deployment.  This post uses this option.
 
 #### Liquibase version
 This option is only used with the **Download Liquibase** option.  
@@ -155,7 +155,7 @@ If we log into Oracle, we can see that our database updates have been applied:
 
 ## Conclusion
 
-Octopus Deploy supports deploying to many database technologies (Microsoft SQL Server, MariaDB, MySQL, Oracle, PostgreSQL, etc.) as well as many different deployment methods (DACPAC, DbUp, Flyway, Liquibase, RoundhousE, etc.).  I hope this post helps you understand how you can use Octopus Deploy to deploy to an Oracle database using Liquibase.
+Octopus Deploy supports deploying to many database technologies (Microsoft SQL Server, MariaDB, MySQL, Oracle, PostgreSQL, etc.) as well as many different deployment methods (DACPAC, DbUp, Flyway, Liquibase, RoundhousE, etc.).  I hope this post helps you understand how you can use Octopus to deploy to an Oracle database using Liquibase.
 
 
 ## Register for the webinar
