@@ -75,7 +75,7 @@ Similarly, inserting data into a collection has an entirely different syntax to 
 
 The biggest difference between a row and a document is that a document doesn't have to follow the same structure (or schema in the relational world), the exception being if there is a validator on the collection as shown above.  
 
-This example inserts two documents with two different structures into the same collection:
+This example inserts two documents with two different structures in to the same collection:
 
 ```xml
 <databaseChangeLog
@@ -104,7 +104,7 @@ This example inserts two documents with two different structures into the same c
 More examples of MongoDB operations with Liquibase can be found in this [GitHub repo](https://github.com/liquibase/liquibase-mongodb/tree/main/src/test/resources/liquibase/ext).
 :::
 
-For this post, I chose the [AirBnB](https://docs.atlas.mongodb.com/sample-data/sample-airbnb) example from the MongoDB samples documentation.  My deployment example inserts some data into the Listings collection and creates an additional collection called Bookings. The Listings collection is created during my deployment process, explained later in this post.
+For this post, I chose the [AirBnB](https://docs.atlas.mongodb.com/sample-data/sample-airbnb) example from the MongoDB samples documentation.  My deployment example inserts some data into the Listings collection and creates an additional collection called Bookings. The Listings collection is created during my deployment process, which is explained later in this post.
 
 <details>
 	<summary>dbchangelog.xml</summary>
@@ -367,7 +367,6 @@ For this post, I chose the [AirBnB](https://docs.atlas.mongodb.com/sample-data/s
 ```
 </details>
 
-
 ## Octopus Deploy
 
 The step template used to deploy to MongoDB is the same template I used for  Oracle: [Liquibase - Apply changeset](https://library.octopus.com/step-templates/6a276a58-d082-425f-a77a-ff7b3979ce2e/actiontemplate-liquibase-apply-changeset).  This template has been updated to include MongoDB as a selectable database type.
@@ -392,7 +391,7 @@ My deployment project consists of the following steps:
   - Server Name: Name or IP address of the MongoDB server
   - Server Port: Port MongoDB is listening on
   - Database Name: Name of the database to grant roles to
-  - Admin Username: Username of an account that can create users.
+  - Admin Username: Username of an account that can create users
   - Admin Password: Password for the Admin Username
   - Roles: Comma-delimited list of Roles to assign
 - DBA Approval
