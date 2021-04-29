@@ -16,7 +16,7 @@ When evaluating software, it's easy to overlook an option because it doesn't lis
 
 For Java-based applications, Octopus Deploy includes specific steps to deploy to Tomcat and Wildfly (JBOSS).  Those are the two most popular options but there are more web server technologies available.  
 
-Web servers such as Payara and IBM WebSphere Liberty will automatically deploy an application once it's placed in a specific folder. For those, writing a template for that specific server type isn't necessary.  
+Web servers such as Payara and IBM WebSphere Liberty will automatically deploy an application once it's placed in a specific folder. Writing a template for those specific server types isn't necessary.  
 
 In this post, I'll demonstrate how to deploy the PetClinic application to an IBM WebSphere Liberty web server.
 
@@ -78,7 +78,7 @@ If you want the name to be more useful, fill in the `Deployed package file name`
 
 ![](octopus-package-name.png)
 
-As previously mentioned, IBM WebSphere Liberty will automatically deploy an application if placed in a specific folder called `dropins`.  The `dropins` folder is located directly off the server folder that we created earlier; `c:\wlp\usr\servers\petclinic\dropins`.  
+As mentioned, IBM WebSphere Liberty will automatically deploy an application if placed in a specific folder called **dropins**.  The **dropins** folder is located directly off the server folder that we created earlier; `c:\wlp\usr\servers\petclinic\dropins`.  
 
 To place our file in this specific folder, we'll need to enable the **Use custom deployment directory** feature and specify where to place it.
 
