@@ -21,7 +21,7 @@ The Octopus Account was pieced together over time. We built the first iteration 
 
 We needed a place for account management tools, like billing. Next came Octopus ID, then self-service features like server license management, and we continued adding features one at a time, without pausing to consider the overall experience.
 
-As a customers, you should enjoy every touch-point across Octopus, so now that the Octopus Account is well established, we’ve taken the time to redesign it and consider the whole experience.
+As a customer, you should enjoy every touch-point across Octopus, so now that the Octopus Account is well established, we’ve taken the time to redesign it and consider the whole experience.
 
 ## What's changed?
 
