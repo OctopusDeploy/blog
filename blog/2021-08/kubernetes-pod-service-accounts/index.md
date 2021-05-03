@@ -8,6 +8,8 @@ metaImage: TODO
 bannerImage: TODO
 tags:
  - DevOps
+ - Kubernetes
+ - Targets
 ---
 
 TODO: Add blog image.
@@ -47,12 +49,12 @@ Now we have a pool of healthy worker(s) running inside the Kubernetes cluster. T
 1. Select at least one [target role](https://octopus.com/docs/infrastructure/deployment-targets#target-roles) for the target.
 1. Select **Pod Service Account** as the Authentication mode.
 1. Enter the path to the token file of the **Pod Service Account**. The default path usually is `/var/run/secrets/kubernetes.io/serviceaccount/token`. Please note that the path is relative to the pod's directory.
-   ![Pod Service Account authentication](images/authentication-pod-service-account.png)
+![Pod Service Account authentication](images/authentication-pod-service-account.png)
 1. Enter the URL of the Kubernetes cluster. Each Kubernetes target in Octopus Deploy requires the cluster URL, which can be located by retrieving the cluster information (running `kubectl cluster-info` in the Kubernetes cluster).
 1. Optionally, enter the path to the cluster certificate. The default path usually is `/var/run/secrets/kubernetes.io/serviceaccount/ca.crt`. Please note that the path is relative to the pod's directory. If you select **Skip TSL verification**, you are not required to enter this detail.
-   ![Kubernetes Cluster details](images/kubernetes-cluster-details.png)
+![Kubernetes Cluster details](images/kubernetes-cluster-details.png)
 1. *Important*: Select the worker pool which contains the workers running inside the Kubernetes cluster. Otherwise, the health check for the deployment target will fail.
-   ![Worker Pool selection](images/worker-pool-selection.png)
+![Worker Pool selection](images/worker-pool-selection.png)
 
 ## Create a deployment process
 The deployment target is now ready to be used in Kubernetes deployment processes. You can proceed to create a [Deploy Kubernetes containers](https://octopus.com/docs/deployments/kubernetes/deploy-container) step to target the [target role](https://octopus.com/docs/infrastructure/deployment-targets#target-roles) of this deployment target.
