@@ -2,12 +2,14 @@
 title: Feature branching web apps
 description: Learn how to deploy and manage Azure Web App feature branches in Octopus
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2021-05-17-1400
 metaImage: 
 bannerImage: 
 tags:
- - Octopus
+ - DevOps
+ - Azure
+ - Runbooks
 ---
 
 Octopus is great at managing the progression of your changes through development, test, and production environments. It also handles branching strategies like hotfixes nicely through the use of channels, allowing you to bypass certain environments and push packages with matching version rules (like having the word `hotfix` in the version release field) straight to production in an emergency.
@@ -18,7 +20,7 @@ But what about feature branches? In this blog post I break down exactly what a f
 
 Before we can model a feature branch in Octopus, we need to understand what a feature branch is.
 
-[Martin Fowler provides good description of a feature branch](https://martinfowler.com/bliki/FeatureBranch.html):
+[Martin Fowler provides good description](https://martinfowler.com/bliki/FeatureBranch.html):
 
 > A feature branch is a source code branching pattern where a developer opens a branch when she starts working on a new feature. She does all the work on the feature on this branch and integrates the changes with the rest of the team when the feature is done.
 
@@ -64,13 +66,13 @@ Octopus includes a limited notion of meta-steps, which is a term we'll use to ca
 
 The **Deploy a release** step is one example, which (as the name suggests) can be used to deploy a release created for another project. [Script steps can also dynamically generate some Octopus resources](https://octopus.com/docs/infrastructure/deployment-targets/dynamic-infrastructure).
 
-But meta-step functionality is somewhat ad-hoc and limited. We need a more comprehensive solution to create and destroy resources within Octopus to reflect the short lived nature of feature branches.
+But meta-step functionality is somewhat ad-hoc and limited. We need a comprehensive solution to create and destroy resources within Octopus to reflect the short lived nature of feature branches.
 
 The [Octopus CLI provides some additional functionality](https://octopus.com/docs/octopus-rest-api/octopus-cli), with the ability to create many Octopus resources like releases, channels, and environments. Unfortunately it does not include all the corresponding options to delete these resources, so it's not a complete solution.
 
 Another option is to use the REST API, which exposes every action the web UI can perform. However, I'd prefer to avoid writing a second CLI tool to manage the complete lifecycle of Octopus resources if possible.
 
-Fortunately the [Octopus Terraform provider](https://registry.terraform.io/providers/OctopusDeployLabs/octopusdeploy/latest/docs) provides exactly what we need. Combining this provider with the existing Terraform deployment steps in Octopus allows us to create our own meta-steps. This in turn means we can manage the ephemeral Octopus resources we need to represent feature branches.
+Fortunately the [Octopus Terraform provider](https://registry.terraform.io/providers/OctopusDeployLabs/octopusdeploy/latest/docs) offers exactly what we need. Combining this provider with the existing Terraform deployment steps in Octopus allows us to create our own meta-steps. This in turn means we can manage the ephemeral Octopus resources we need to represent feature branches.
 
 ## Runbooks to manage feature branches
 
@@ -123,7 +125,7 @@ To deploy feature branch web apps in Azure, we need an initial "seed" Azure acco
 
 Our meta-steps will be executed as if they were any other Terraform deployment. This means even though Octopus is managing itself, we need to create the variables to allow a Terraform deployment to reach back into the Octopus server.
 
-1. Create a new Octopus project, and define two variables called **ApiKey** and **ServerUrl**. The API key will be a secret variable holding an [Octopus API key](https://octopus.com/docs/octopus-rest-api/how-to-create-an-api-key), and the server URL will be the URL of the Octopus server. I'm using a [cloud instance](https://octopus.com/docs/octopus-cloud) in this example with the URL https://mattc.octopus.app.
+1. Create a new Octopus project, and define two variables called **ApiKey** and **ServerUrl**. The API key will be a secret variable holding an [Octopus API key](https://octopus.com/docs/octopus-rest-api/how-to-create-an-api-key), and the server URL will be the URL of the Octopus server. I'm using a [cloud instance](https://octopus.com/docs/octopus-cloud) in this example with the URL `https://mattc.octopus.app`.
 
 1. In addition, create a prompted variable called **FeatureBranch**. This will be used to pass the name of a feature branch into the runbooks.
 
@@ -135,7 +137,7 @@ Our meta-steps will be executed as if they were any other Terraform deployment. 
 
 Our deployment project will make use of the **Deploy an Azure App Service** step to deploy a Docker image from the **octopussamples/randomquotesjava** Docker repository. The [repository](https://hub.docker.com/r/octopussamples/randomquotesjava) contains images built with [this code hosted on GitHub](https://Github.com/OctopusSamples/RandomQuotes-Java), with the correct tagging rules to identify feature branches.
 
-Call the step **Deploy Web App**. We'll reference this step name when creating the channel in the next section.
+Call the step `Deploy Web App`. We'll reference this step name when creating the channel in the next section.
 
 ## The Create Branch Infrastructure runbook
 
@@ -350,7 +352,7 @@ We have made use of the Octopus template syntax (the hash symbol followed by cur
 
 The description given to the channel indicates the Git repository and branch the channel represents. Because we decided that the channel is the representation of a feature branch in a project, the details required to link it back to the code repository it came from will be captured here.
 
-Also note that we reference the step created earlier called **Deploy Web App** to apply the channel rules to:
+Also note that we reference the step created earlier called `Deploy Web App` to apply the channel rules to:
 
 ```
 resource "octopusdeploy_channel" "channel" {
@@ -539,7 +541,7 @@ Since we use the same back-end state file when deleting and creating these Azure
 
 ## The Suspend Branches runbook
 
-The **Suspend Branches** runbook scans Octopus for channels and calls the **Suspend Branch Infrastructure** runbook. This means any Azure resources relating to channels, and therefor feature branches, in Octopus will be destroyed and no longer cost money:
+The **Suspend Branches** runbook scans Octopus for channels and calls the **Suspend Branch Infrastructure** runbook. This means any Azure resources relating to channels, and therefore feature branches, in Octopus will be destroyed and no longer cost money:
 
 ```powershell
 Install-Module -Force PowershellOctopusClient
@@ -592,9 +594,9 @@ We start by triggering the **Destroy Branches** runbook at various points during
 
 Cleaning up these branches should not disrupt anyone, as we assume that deleting the underlying branch means the feature has been merged or abandoned. So we create a trigger to execute the **Destroy Branches** runbook every hour.
 
-Likewise we want to catch any new branches that have been created throughout the day, so we schedule the **Create Branches** runbook to run regularly between 6 AM and 6 PM to cover the average working day.
+Likewise we want to catch any new branches that have been created throughout the day, so we schedule the **Create Branches** runbook to run regularly between 6am and 6pm to cover the average working day.
 
-To reduce our costs, we want to remove the cloud resources hosting our feature branches at the end of the day. To do this, we schedule the **Suspend Branches** runbook to run at 7 PM. This ensures it is run after the final **Create Branches** runbook trigger.
+To reduce our costs, we want to remove the cloud resources hosting our feature branches at the end of the day. To do this, we schedule the **Suspend Branches** runbook to run at 7pm. This ensures it is run after the final **Create Branches** runbook trigger.
 
 The end result is: 
 
