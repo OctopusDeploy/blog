@@ -24,7 +24,7 @@ Part of the strategy involves creating separate value streams within Octopus - t
 
 One of those value streams focuses on Steps - the things that do the work of deployment within Octopus.
 
-We wanted to create an entirely now architecture for steps, one that would allow us to quickly deliver new value to our customers, and to rapidly establish a high-performing team responsible for delivering them.
+We wanted to create an entirely new architecture for steps, one that would allow us to quickly deliver new value to our customers, and to rapidly establish a high-performing team responsible for delivering them.
 
 ## Architecture
 
