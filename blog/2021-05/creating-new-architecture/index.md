@@ -111,9 +111,9 @@ Goals can be used as a litmus test. Does this decision take us toward achieving 
 
 Complexity within architecture tends to come in two categories - static complexity, which deals with the system's components and their relationships, and emergent complexity, which comes from users using your software in novel and unique ways, and overall changes in the impact of usage on the systems.
 
-Architectural decisions needs to take both into account.
+Architectural decisions need to take both into account.
 
-Static complexity tends to impact sensemaking - it is hard to make a decision if the area you are working within is very complex. It can be hard to reason about all the ways your decision might impact various sub-systems.
+Static complexity tends to impact sense-making - it is hard to make a decision if the area you are working within is very complex. It can be hard to reason about all the ways your decision might impact various sub-systems.
 
 The solution to this problem is getting stuck into analysis. We use [Whimsical](https://whimsical.com/) heavily at Octopus, but many other diagramming tools can be of great assistance in these scenarios. Something that allows you to build flowcharts and visualise connections between various sub-systems in specific contexts will help you find all of the places you need to consider when making a decision. There is no avoiding this type of analysis - if you don't do it, you'll make wrong assumptions that will bite you later. It is hard to "outsource" this type of analysis - someone might be able to describe to you the inner workings of a particular sub-system, but if they don't have a detailled map to provide you, it is likely you're going to need to pull the code and get diagramming.
 
