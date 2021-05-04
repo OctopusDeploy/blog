@@ -115,19 +115,19 @@ The solution to this problem is getting stuck into analysis. We use [Whimsical](
 
 Emergent complexity comes with attempting to anticipate how humans may interact with the system once built, or how the usage of the system may change over time, and how you will need to accommodate that change.
 
-Emergent complexity can be dealt with in a couple of ways.
+We can either attempt to limit emergent complexity within our architecture, or acknowledge and control it.
 
-Firstly, we can go back to constraints. Can we constrain the ways we will enable users to use our system? This will limit the emergent complexity that is possible, and simplify our decision making.
+To limit it, we can go back to constraints. Can we constrain the ways we will enable users to use our system? This will limit the emergent complexity that is possible, and simplify our decision making.
 
-If we have constraints in place, we can then look at how certain implementation decisions may increase or decrease emergent complexity.
+If we have constraints in place, we can then look at how certain implementation decisions may help us control emergent complexity.
 
-When we were deciding how a step's UI should be expressed, we were faced with a decision: should we let users bring their own HTML, javascript, and framework to express the step UI? What about just some html? What if it were more of a code-based DSL? What about just plain old declarative JSON?
+When we were deciding how a step's UI should be expressed, we were faced with a decision: should we let users bring their own HTML, javascript, and framework to express the step UI? What about having them just provide some html? What if it were more of a code-based DSL? What about just plain old declarative JSON? Each of these solution candidates would have a very different impact on emergent complexity.
 
 To tackle this complexity and help make a decision, we created a decision matrix to help visualise how each option would either solve or not solve each piece of complexity.
 
 ![Decision matrix for step UI](blogimage-decision-making.png)
 
-There was a particular class of emergent complexity we wanted to avoid - the impact of Octopus UI changes across hundreds or thousands of steps, should those changes be necessitated in the future. By acknowleding this emergent complexity, and visualising our solution options, we were able to make a decision that limited it - we decided to implement a DSL that could be used to express a step's UI - this would give people the power and flexibility of implementing the UI in code, and would avoid the complexity that would come with people supplying arbitrary HTML and javascript.
+By enumerating the properties a solution might contribute for us, and evaluating each solution candidate against these properties, we could make a decision that took our emergent complexity into account. Our decision was to implement a custom UI framework - a DSL that could be used to express a step's UI. This would give people the power and flexibility of implementing the UI in code and familiar tooling, but would avoid the emergent complexity that would come with people supplying arbitrary HTML and javascript.
 
 ### "ilities"
 
