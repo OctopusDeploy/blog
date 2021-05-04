@@ -10,24 +10,6 @@ tags:
   - architecture
 ---
 
-Within engineering organisations that build large software products, complexity can often grow at a hard-to-measure pace. This complexity can be static and measurable - as you add more functionality and relationships within your software, its static complexity grows. It can also be emergent - as your software gains more functionality and users, those users will find more unique uses for it, many of which you will not have anticipated!
-
-Over time, these complexities make changing your software harder. Engineers struggle to attain mastery across the software as it becomes larger and more complex. Things take a lot longer to do as the cognitive overhead of implementing any change keeps growing. Keeping quality up takes more effort as there are more things that need to be taken into account with every change.
-
-It can be challenging enought to identify you are _in_ that scenario. However identifying it is critical, as it usually takes systemic change to get _out_ of it.
-
-Octopus Deploy is a large and complex software product. We have some ambitious plans to execute on through 2021 and onwards. However we are not immune to the challenges of developing high quality, large scale software solutions. Our engineering leadership team had been monitoring some common recurring themes throughout 2020. It _was_ getting harder to understand Octopus end-to-end as an engineer - which is understandable, it has an incredible amount of functionality, and supports a very wide variety of organisation structures, platforms, and deployment requirements. It was taking longer to implement changes too, as code changes could potentially impact many other parts of the growing codebase.
-
-Knowing that it was becoming more challenging to ship high quality changes to Octopus with speed, and understanding we had some ambitious plans going forward, we established an engineering strategy for 2021 that put these chalenges front-and-center of our focus.
-
-Part of the strategy involves creating separate value streams within Octopus - teams that can make decisions independently and move with speed to ship valuable changes within Octopus to our customers.
-
-One of those value streams focuses on Steps - the things that do the work of deployment within Octopus.
-
-We wanted to create an entirely new architecture for steps, one that would allow us to quickly deliver new value to our customers, and to rapidly establish a high-performing team responsible for delivering them.
-
-## Architecture
-
 In software, architecture encompasses the structure of the system, the relationships between its components, the properties the system emits (sometimes referred to as the "ilities"), and the behaviours the system encodes. Some systems may comprise a single, large piece of software. Others may be decomposed into smaller sub-systems that work together to accomplish goals.
 
 The essence of good architecture is that it helps you make decisions and changes with speed and confidence. Want to add a new behaviour? Good architecture will make it easy to reason about doing that, and to execute on it. Poor architecture will have you reasoning about how the world came to be before you can write a line of code. Carl Sagan once said "If you wish to make apple pie from scratch, you must first create the universe.". You _don't_ want to have to perform that sort of reasoning in software - you just want to have to reason your way up from a good set of apple pie ingredients.
@@ -83,11 +65,33 @@ Others were not as strict - "simple and easy to develop" provides context, but i
 
 In the early stages of designing our new architecture, we were struggling to gain clarity and concensus around the programming and composition model for steps. If a user wanted a step to behave "just a bit differently", and re-order the logical inner sequencing of the steps behaviour, or perhaps inject some of their own unique behaviour within the step - would that be something we want to support?
 
-By taking a stand on the above potential requirement, we would be able to establish a clear constraint. This constraint would impact many of he architecture's sub-systems - the UI, the executor, the programming model, it even ventured further outside of our initial boundary and would potentially impact other areas of Octopus.
+By taking a stand on the above potential requirement, we would be able to establish a clear constraint. This constraint would impact many of the architecture's sub-systems - the UI, the executor, the programming model, it even ventured outside of our architecture's boundaries and could impact other areas of Octopus.
 
 Working together, we decided that we wouldn't need to enable arbitrary composition within steps - if you pursue this line of thinking, eventually you'd end up needing to produce a DSL or programming language to build up deployment processes, as that would be the only thing flexible enough to satisfy all use cases! Instead of pursuing that angle, we instead made a decision that we would focus on providing high-leverage, high-value steps to our users, and give users a frictionless way to progress from opinionated steps to more flexible steps (run a template, run a script / cli) should they require their own unique behaviours.
 
 This constraint had an immediate impact - we could reason more clearly about our UI, our executors, our programming model, and the impact on Octopus itself, thanks to the clear limitations this constraint imposed.
+
+### Naming Things
+
+Another thing that can be challenging in initial conversations is that you are talking about emerging concepts, and they will not yet be named things.
+
+Talking about things that don't have names can quickly become frustrating, as you tend to make up your own name for things based on your own context that others won't understand, and you will spend inordinate amounts of energy in conversations just ensuring everyone is talking about the same things, rather than focussing on more important details.
+
+It is surprising how easily conversations start to flow once you have established a common language, and are no longer falling over yourselves just trying to explain which logical component or sub-system within an architecture you are talking about.
+
+The best way forward here is to get your team together, bring up a whiteboard (virtual or physical), draw up your conceptual model, and start brainstorming names!
+
+When we went through this process, we established some guidelines to ensure the names made sense not only within our team, but to a wider audience:
+
+> Guidelines
+>
+> - We want to name things in a way that it makes sense to our customers
+> - Naming should be simple and self-describing
+> - Examples: "I want to develop a custom Step!" "I want to develop a step to deploy to X Cloud"
+
+At the end of the process, we had a clear map of sub-systems and components, and could more freely talk about them when discussing our architecture:
+
+![Naming for step components](blogimage-naming-things.png)
 
 ### Decision Making
 
@@ -153,6 +157,7 @@ Good architecture:
 
 - Is founded on a set of clear goals that can be tied to business goals
 - Expresses strong constraints that limit the complexity the architecture needs to support
+- Establishes a common language for sub-systems and components
 - Is developed on the back of many high-quality decisions, which have had the appropriate analysis, scruitiny, and expert input applied
 - Acknowledges complexity, by ensuring it is understood with deep analysis, and designed for when it is emergent
 - Addresses the important "ilities", making sure they are considered and designed for within all of the sub-systems defined within the architecture
