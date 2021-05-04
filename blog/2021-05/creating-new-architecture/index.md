@@ -125,7 +125,7 @@ When we were deciding how a step's UI should be expressed, we were faced with a 
 
 To tackle this complexity and help make a decision, we created a decision matrix to help visualise how each option would either solve or not solve each piece of complexity.
 
-![Decision matrix for step UI](UI-decision-making.png)
+![Decision matrix for step UI](blogimage-decision-making.png)
 
 There was a particular class of emergent complexity we wanted to avoid - the impact of Octopus UI changes across hundreds or thousands of steps, should those changes be necessitated in the future. By acknowleding this emergent complexity, and visualising our solution options, we were able to make a decision that limited it - we decided to implement a DSL that could be used to express a step's UI - this would give people the power and flexibility of implementing the UI in code, and would avoid the complexity that would come with people supplying arbitrary HTML and javascript.
 
