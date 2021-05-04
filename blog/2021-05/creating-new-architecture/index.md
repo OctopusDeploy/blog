@@ -93,21 +93,21 @@ This constraint had an immediate impact - we could reason more clearly about our
 
 When making decisions at Octopus, we are strong believers in creating concensus, and then executing strongly on the basis of it. Almost all impactful decisions are deeply scruitinized. When defining architecture, this scruitiny allows you to better forsee system-level impacts of architectural choices. This is one of the _hardest_ things to do when building new architecture, but it is also the _most important_.
 
-To make great decisions, you need to ensure the right experts have had inputs into your architectural decisions.
+To make great decisions, you need to ensure the right experts have had input into your architectural decisions.
 
-This does not mean design-by-committee - ownership is important, and you as an architect should own the architecture you develop. However it mean you have the responsibility to widely seek input into your architectural designs - finding experts in other sub-sytems outside of your sphere of control that may need to influence your designs.
+This does not mean design-by-committee - ownership is important, and you as an architect should own the architecture you develop. However it means you have a responsibility to widely seek input into your architectural designs - finding experts in other sub-sytems outside of your sphere of expertise that may need to influence your designs.
 
-One example of this with our new architecture was an overlap identified with Project Bento - our brand new project import/export system. By talking with the team developing Bento, we discovered that there was a shared piece of the system under both of our initiatives - the input model for steps. Bento needed to know if a given set of inputs contained an Account, or other domain-specific resources within Octopus. It would use this knowledge to "crawl" the set of resources it would need to export/import across spaces. We were proposing to redefine how inputs were modelled within Octopus. We needed to make sure our proposed architecture in this space would still satisfy Bento's requirements.
+One example of this within our new architecture was an overlap identified with Project Bento - our brand new project import/export system. By talking with the team developing Bento, we discovered that there was a shared piece of the system under both of our initiatives - the input model for steps. Bento needed to know if a given set of inputs contained an Account, or other domain-specific resources within Octopus. It would use this knowledge to "crawl" the set of resources it would need to export/import across spaces. We were proposing to redefine how inputs were modelled within Octopus. We needed to make sure our proposed architecture in this space would still satisfy Bento's requirements.
 
-Another thing that can assist decision making is keeping our goals front-of-mind. Whilst our constraints limit our choices, so we know what things we don't need to make decisions about, goals help us decide between multiple potentially valid options.
+Another thing that assists decision making is keeping goals front-of-mind. Whilst our constraints limit our choices, so we know what things we don't need to make decisions about, goals help us decide between multiple potentially valid options.
 
 Goals can be used as a litmus test. Does this decision take us toward achieving this goal, or does it push us further away from acheiving it? Ensure they are considered for all fundamental decisions. We have revisited our goal of steps being "simple and easy to develop" numerous times when deciding how to implement the various APIs that underpin the new architecture.
 
 ### Complexity
 
-Complexity within architecture tends to come in two categories - static complexity, which deals with the systems components and their relationships, and emergent complexity, which comes from users using your software in novel and unique ways.
+Complexity within architecture tends to come in two categories - static complexity, which deals with the system's components and their relationships, and emergent complexity, which comes from users using your software in novel and unique ways, and overall changes in the impact of usage on the systems.
 
-Making architectural decisions needs to take both into account.
+Architectural decisions needs to take both into account.
 
 Static complexity tends to impact sensemaking - it is hard to make a decision if the area you are working within is very complex. It can be hard to reason about all the ways your decision might impact various sub-systems.
 
@@ -121,9 +121,13 @@ Firstly, we can go back to constraints. Can we constrain the ways we will enable
 
 If we have constraints in place, we can then look at how certain implementation decisions may increase or decrease emergent complexity.
 
-When we were deciding how UI should be expressed for steps, we were faced with a decision. Should we let users bring their own HTML, javascript, and framework to express the step UI? What about just some html? What if it were more of a code-based DSL? What about just plain old declarative JSON?
+When we were deciding how a step's UI should be expressed, we were faced with a decision: should we let users bring their own HTML, javascript, and framework to express the step UI? What about just some html? What if it were more of a code-based DSL? What about just plain old declarative JSON?
 
-There was a particular class of emergent complexity we wanted to avoid - the impact of Octopus UI changes across hundreds or thousands of steps, should those changes be necessitated in the future. By acknowleding this emergent complexity, we were able to make a decision that limited it - we decided to implement a DSL that could be used to express a step's UI - this would give people the power and flexibility of implementing the UI in code, and would avoid the complexity that would come with people supplying arbitrary HTML and javascript.
+To tackle this complexity and help make a decision, we created a decision matrix to help visualise how each option would either solve or not solve each piece of complexity.
+
+![Decision matrix for step UI](UI-decision-making.png)
+
+There was a particular class of emergent complexity we wanted to avoid - the impact of Octopus UI changes across hundreds or thousands of steps, should those changes be necessitated in the future. By acknowleding this emergent complexity, and visualising our solution options, we were able to make a decision that limited it - we decided to implement a DSL that could be used to express a step's UI - this would give people the power and flexibility of implementing the UI in code, and would avoid the complexity that would come with people supplying arbitrary HTML and javascript.
 
 ### "ilities"
 
