@@ -4,13 +4,15 @@ description: Learn how to deploy and manage Azure Web App feature branches in Oc
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2021-05-17-1400
-metaImage: 
-bannerImage: 
+metaImage: feature-branching.png
+bannerImage: feature-branching.png
 tags:
  - DevOps
  - Azure
  - Runbooks
 ---
+
+![octopus hanging off a branch in a pot plant](feature-branching.png)
 
 Octopus is great at managing the progression of your changes through development, test, and production environments. It also handles branching strategies like hotfixes nicely through the use of channels, allowing you to bypass certain environments and push packages with matching version rules (like having the word `hotfix` in the version release field) straight to production in an emergency.
 
