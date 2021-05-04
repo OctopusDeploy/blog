@@ -40,7 +40,7 @@ Once we have an agreed set of goals that define what success is, we can get into
 
 > architecture encompasses the structure of the system, the relationships between its components, the properties the system emits (sometimes referred to as the "ilities"), and the behaviours the system encodes
 
-For steps, we started by defining structures - breaking down what "steps" actually are into sub-systems so that we could reason and make decisions about them.
+For steps, we started by defining structures and relationships - breaking down what "steps" actually are into sub-systems so that we could reason and make decisions about them.
 
 These included:
 
@@ -53,7 +53,7 @@ These included:
 
 Initial conversations can be challenging when defining new architecture - you'll find that at times it can be hard to "land the plane" on conversations, as you will circle around how a decision in one sub-system will impact the others, exploring different viewpoints such as user experience, developer experience, and product experience with each lap. One line of conversation will take you on a full-circle lap of sub-systems, until you arrive again at the first point you were trying to decide on.
 
-If you find you are struggling to make decisions early on, and conversations feel circular or never-ending, it is likely you are missing a key ingredient - constraints.
+If you find you are struggling to make decisions early on, and conversations feel circular or never-ending, it is likely you are missing a key ingredient - **constraints**.
 
 Constraints limit the freedom of choice we have when defining and developing our architecture.
 
@@ -61,17 +61,17 @@ This is exactly what we want early on - we want to make strong decisions about c
 
 Some of our goals already impose strict constraints - "steps needed to be able to be developed in a technology other than .NET" gives us a pretty clear initial constraint.
 
-Others were not as strict - "simple and easy to develop" provides context, but is not a hard-and-fast constraint - it is subjective.
+Others were not as strict - "simple and easy to develop" provides context, but is not a hard-and-fast constraint - it is a qualitative goal.
 
 In the early stages of designing our new architecture, we were struggling to gain clarity and concensus around the programming and composition model for steps. If a user wanted a step to behave "just a bit differently", and re-order the logical inner sequencing of the steps behaviour, or perhaps inject some of their own unique behaviour within the step - would that be something we want to support?
 
 By taking a stand on the above potential requirement, we would be able to establish a clear constraint. This constraint would impact many of the architecture's sub-systems - the UI, the executor, the programming model, it even ventured outside of our architecture's boundaries and could impact other areas of Octopus.
 
-Working together, we decided that we wouldn't need to enable arbitrary composition within steps - if you pursue this line of thinking, eventually you'd end up needing to produce a DSL or programming language to build up deployment processes, as that would be the only thing flexible enough to satisfy all use cases! Instead of pursuing that angle, we instead made a decision that we would focus on providing high-leverage, high-value steps to our users, and give users a frictionless way to progress from opinionated steps to more flexible steps (run a template, run a script / cli) should they require their own unique behaviours.
+Working together, we decided that we wouldn't need to enable arbitrary composition within steps - if you pursue this line of thinking, eventually you'd end up needing to produce a DSL or programming language to build up deployment processes, as that would be the only thing flexible enough to satisfy all use cases! Instead of pursuing that, we made a decision that we would focus on providing high-leverage, high-value steps to our users, and give users a frictionless way to progress from opinionated steps to more flexible steps (run a template, run a script / cli) should they require their own unique behaviours.
 
 This constraint had an immediate impact - we could reason more clearly about our UI, our executors, our programming model, and the impact on Octopus itself, thanks to the clear limitations this constraint imposed.
 
-### Naming Things
+### Names
 
 Another thing that can be challenging in initial conversations is that you are talking about emerging concepts, and they will not yet be named things.
 
@@ -89,23 +89,31 @@ When we went through this process, we established some guidelines to ensure the 
 > - Naming should be simple and self-describing
 > - Examples: "I want to develop a custom Step!" "I want to develop a step to deploy to X Cloud"
 
+We would describe each "thing" in abstract - an example would be _"the thing that provides the step's UI"_. And then we would go through and attempt to name each of the abstract things.
+
 At the end of the process, we had a clear map of sub-systems and components, and could more freely talk about them when discussing our architecture:
 
 ![Naming for step components](blogimage-naming-things.png)
 
 ### Decision Making
 
-When making decisions at Octopus, we are strong believers in creating consensus, and then executing strongly on the basis of it. Almost all impactful decisions are deeply scrutinized. When defining architecture, this scrutiny allows you to better forsee system-level impacts of architectural choices. This is one of the _hardest_ things to do when building new architecture, but it is also the _most important_.
+When making decisions at Octopus, we are strong believers in creating _consensus_, and then executing with confidence. Almost all impactful decisions are deeply scrutinized. When defining architecture, this scrutiny allows you to better forsee system-level impacts of architectural choices. This is one of the _hardest_ things to do when building new architecture, but it is also the _most important_.
 
-To make great decisions, you need to ensure the right experts have had input into your architectural decisions.
+The first step towards ensuring you make high quality decisions is to ensure you have collaborated closely with your team in arriving at a decision. You've worked through the candidate solutions with them, and you have established a shared understanding the impacts they may have on sub-systems. In any sufficiently complex system, you will always need to get input from others to ensure you have visibility across all potential impacts a new architecture may have - and your team is the best starting point for this.
 
-This does not mean design-by-committee - ownership is important, and you as an architect should own the architecture you develop. However it means you have a responsibility to widely seek input into your architectural designs - finding experts in other sub-sytems outside of your sphere of expertise that may need to influence your designs.
+One tool we use in Octopus to solicit input is the [strawman proposal](https://en.wikipedia.org/wiki/Straw_man_proposal). The idea is that you present your team with your proposed design for a given component or sub-system, and explain it in enough detail that the team can reason about it. With a strawman you don't want your team to agree to it - you want them to _challenge_ it, to point out its flaws, to suggest alternatives and improvements. This type of conversation generates great insights and solution options that can lead you towards a high quality decision.
+
+After your team has given input, you also need to ensure the right experts have had input into your architectural decisions.
 
 One example of this within our new architecture was an overlap identified with Project Bento - our brand new project import/export system. By talking with the team developing Bento, we discovered that there was a shared piece of the system under both of our initiatives - the input model for steps. Bento needed to know if a given set of inputs contained an Account, or other domain-specific resources within Octopus. It would use this knowledge to "crawl" the set of resources it would need to export/import across spaces. We were proposing to redefine how inputs were modelled within Octopus. We needed to make sure our proposed architecture would still satisfy Bento's requirements.
 
-Another thing that assists decision making is keeping goals front-of-mind. Whilst our constraints limit our choices, so we know what things we don't need to make decisions about, goals help us decide between multiple potentially valid options.
+Seeking input widely does not mean design-by-committee - ownership is important, and you as an architect should own the architecture you develop. However it means you have a responsibility to widely seek input into your architectural designs - finding experts in other sub-sytems outside of your sphere of expertise that may need to influence your designs.
 
-Goals can be used as a litmus test. Does this decision take us toward achieving this goal, or does it push us further away from acheiving it? Ensure they are considered for all fundamental decisions. We have revisited our goal of steps being "simple and easy to develop" numerous times when deciding how to implement the various APIs that underpin the new architecture.
+> Goals and Decisions
+>
+> Another thing that assists decision making is keeping goals front-of-mind. Whilst our constraints limit our choices, so we know what things we don't need to make decisions about, goals can help us decide between multiple potentially valid options.
+>
+> Goals can be used as a litmus test. Does this decision take us toward achieving this goal, or does it push us further away from acheiving it? Ensure they are considered for all fundamental decisions. We have revisited our goal of steps being "simple and easy to develop" numerous times when deciding how to implement the various APIs that underpin the new architecture.
 
 ### Complexity
 
