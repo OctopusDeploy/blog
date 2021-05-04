@@ -1,6 +1,6 @@
 ---
 title: Using remote backend with Terraform in Octopus Deploy
-description: Learn how to setup a remote backend to use with Terraform in Octopus Deploy.
+description: Learn how to set up a remote backend to use with Terraform in Octopus Deploy.
 author: egor.pavlikhin@octopus.com
 visibility: private
 published: 3021-05-07-1400
@@ -14,17 +14,17 @@ tags:
 
 ![Using remote backend with Terraform in Octopus Deploy](blogimage-create-workers-on-a-kubernetes-cluster-2021.png)
 
-In this post, we will be using a github repository as the source of Terraform templates.
+In this post, we will be using a GitHub repository as the source of Terraform templates.
 
 ## Create an external feed
 
-First we need to configure Octopus Deploy to use our GitHub repository as a [package feed](https://octopus.com/docs/packaging-applications/package-repositories/github-feeds).  
+First, we need to configure Octopus Deploy to use our GitHub repository as a [package feed](https://octopus.com/docs/packaging-applications/package-repositories/github-feeds).  
 
 ![Octopus GitHub Feed](octopus-external-feed.png)
 
 ## GitHub Repository
 
-For this post, I created a [sample repository](https://github.com/OctopusDeploy/TerraformBackendSample) that you can easily fork for your own project. There are 4 files in the repository. You can structure these files differently if you like, the only important part is that your project and backend variables are kept as separate files.
+For this post, I created a [sample repository](https://github.com/OctopusDeploy/TerraformBackendSample) that you can easily fork for your project. There are four files in the repository. You can structure these files differently if you like; the only important part is that your project and backend variables are kept as separate files.
 
 Remember, only commits with tags will be available in the feed, so make sure to add a tag to your repository.
 
@@ -77,23 +77,23 @@ resource "aws_s3_bucket" "mybucket" {
 }
 ```
 
-**terraform.auto.tfvars** - here we store variables used in other files. Octopus will perform [variable substitution](https://octopus.com/docs/projects/variables/variable-substitutions) before using the file. Note, that this file must have the extension `.auto.tfvars` otherwise it will not be used by the remote backend.
+**terraform.auto.tfvars** - here we store variables used in other files. Octopus will perform [variable substitution](https://octopus.com/docs/projects/variables/variable-substitutions) before using the file. Note that this file must have the extension `.auto.tfvars` otherwise it will not be used by the remote backend.
 ``` 
 bucket_name = "#{BucketName}"
 aws_access_key = "#{AWS Account.AccessKey}"
 aws_secret_key = "#{AWS Account.SecretKey}"
 ```
 
-**backend.tfvars** - this file is supplied to the `-backend-config` parameter of the `terraform init` command. This allows us to store sensitive variables securely, instead of having these values in the repository directly.
+**backend.tfvars** - this file is supplied to the `-backend-config` parameter of the `terraform init` command. This allows us to store sensitive variables securely instead of having these values in the repository directly.
 ```
 token = "#{TerrraformCloudRemoteToken}"
 ```
 
-After the above is done your workspace should look like this.
+After the above is done, your workspace should look like this.
 
 ![Terraform Folder Structure](octopus-terraform-folder-structure.png)
 
-Now we need to configure "Apply a Terraform template" step to use our GitHub repository and perform the necessary variable subsitution, providing us with the remote token and the bucket name.
+Now we need to configure "Apply a Terraform template" step to use our GitHub repository and perform the necessary variable substitution, providing us with the remote token and the bucket name.
 
 Since the workspace is now stored in Terraform Cloud we can use it both by invoking Terraform CLI manually and as part of your deployment process in Octopus Deploy. Terraform will keep track of the [workspace state](https://www.terraform.io/docs/language/state/index.html) and ensure your local state matches the real infrastructure.
 
@@ -116,7 +116,7 @@ Now navigate to the **Variables** section on the left and add two variables (tha
 
 Infrastructure activities are often defined as [Runbooks](https://octopus.com/docs/runbooks). This post assumes you're familiar with creating [projects](https://octopus.com/docs/projects) within Octopus, so we'll skip that part.  
 
-1. Create a runbook in your project. I called mine **Terraform Apply**.
+1. Create a runbook for your project. I called mine **Terraform Apply**.
 1. Add a **Apply a Terraform template** step to your process.
 
 This step template is large, so we'll go over the minimum components to get this working.
@@ -160,7 +160,7 @@ Congratulations! You have just completed your deployment using a shared remote b
 
 Be careful when running terraform commands locally and via Octopus from the same workspace, as different versions of Terraform have incompatible state formats. If you use Terraform Cloud you can specify the exact version of Terraform you want to use via `Settings > General`.
 
-> The version of Terraform to use for this workspace. Upon creating this workspace, the latest version was selected and  will be used until it is changed manually. It will not upgrade automatically.
+> The version of Terraform to use for this workspace. Upon creating this workspace, the latest version was selected and will be used until it is changed manually. It will not upgrade automatically.
 
 You can use [tfenv tool](https://github.com/tfutils/tfenv) to manage multiple versions of Terraform.
 
@@ -175,6 +175,6 @@ See [this issue](https://github.com/hashicorp/terraform/issues/23290) for more d
 
 ## Conclusion
 
-In this post I demonstrated how you can use Terraform Cloud backend for your Terraform workspace within Octopus Deploy.
+In this post I demonstrated how you could use Terraform Cloud backend for your Terraform workspace within Octopus Deploy.
 
 Happy deployments!
