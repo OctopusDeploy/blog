@@ -18,13 +18,13 @@ It can be challenging enought to identify you are _in_ that scenario. However id
 
 Octopus Deploy is a large and complex software product. We have some ambitious plans to execute on through 2021 and onwards. However we are not immune to the challenges of developing high quality, large scale software solutions. Our engineering leadership team had been monitoring some common recurring themes throughout 2020. It _was_ getting harder to understand Octopus end-to-end as an engineer - which is understandable, it has an incredible amount of functionality, and supports a very wide variety of organisation structures, platforms, and deployment requirements. It was taking longer to implement changes too, as code changes could potentially impact many other parts of the growing codebase.
 
-Knowing that it was becoming more challenging to ship high quality changes to Octopus with speed, and understanding we had some ambitious plans going forward, we established an engineering strategy for 2021 that put these issues front-and-center of our focus.
+Knowing that it was becoming more challenging to ship high quality changes to Octopus with speed, and understanding we had some ambitious plans going forward, we established an engineering strategy for 2021 that put these chalenges front-and-center of our focus.
 
-Part of the strategy involves creating separate value streams within Octopus - teams that can make decisions independently and move with speed to ship valuable changes within Octopus to Octopus customers.
+Part of the strategy involves creating separate value streams within Octopus - teams that can make decisions independently and move with speed to ship valuable changes within Octopus to our customers.
 
 One of those value streams focuses on Steps - the things that do the work of deployment within Octopus.
 
-We wanted to create an entirely now architecture for Steps, one that would allow us to quickly deliver new value to our customers, and to rapidly grow a high-performing team responsible for delivering them.
+We wanted to create an entirely now architecture for steps, one that would allow us to quickly deliver new value to our customers, and to rapidly establish a high-performing team responsible for delivering them.
 
 ## Architecture
 
