@@ -81,13 +81,13 @@ Some of our goals already impose strict constraints - "steps needed to be able t
 
 Others were not as strict - "simple and easy to develop" provides context, but is not a hard-and-fast constraint - it is subjective.
 
-In the early stages of designing our new architecture, we were struggling to gain clarity and concensus around the programming and composition model for steps. If a user wanted a step to behave "just a bit differently", and re-order the logical inner sequence of the steps behaviour, or perhaps inject some of their own unique behaviour within the step - should we be enabling this to occur?
+In the early stages of designing our new architecture, we were struggling to gain clarity and concensus around the programming and composition model for steps. If a user wanted a step to behave "just a bit differently", and re-order the logical inner sequencing of the steps behaviour, or perhaps inject some of their own unique behaviour within the step - would that be something we want to support?
 
-By taking a stand on the above constraint, we would have a clear direction of what our architecture would need to enable. This constraint also impacted many sub-systems - the UI, the executor, the programming model, it even ventured further outside of our initial boundary and would potentially impact other areas of Octopus.
+By taking a stand on the above potential requirement, we would be able to establish a clear constraint. This constraint would impact many of he architecture's sub-systems - the UI, the executor, the programming model, it even ventured further outside of our initial boundary and would potentially impact other areas of Octopus.
 
-Working together, we decided that we wouldn't need to enable arbitrary composition within steps - if you pursue this line of thinking, eventually you'd end up needing to produce a DSL or programming language to build up deployment processes, as that would be the only thing flexible enough to satisfy all use cases! Instead of pursuing that angle, we instead made a decision that centers around providing high-leverage, high-value steps to our users, and gives users a frictionless way to progress from opinionated steps to more flexible steps (run a template, run a script / cli) should they require their own unique behaviours.
+Working together, we decided that we wouldn't need to enable arbitrary composition within steps - if you pursue this line of thinking, eventually you'd end up needing to produce a DSL or programming language to build up deployment processes, as that would be the only thing flexible enough to satisfy all use cases! Instead of pursuing that angle, we instead made a decision that we would focus on providing high-leverage, high-value steps to our users, and give users a frictionless way to progress from opinionated steps to more flexible steps (run a template, run a script / cli) should they require their own unique behaviours.
 
-This decision had an immediate impact - we could straight away reason more clearly about our UI, our executors, our programming model, and the impact on Octopus itself, thanks to the clear limitations this decision imposed.
+This constraint had an immediate impact - we could reason more clearly about our UI, our executors, our programming model, and the impact on Octopus itself, thanks to the clear limitations this constraint imposed.
 
 ### Decision Making
 
