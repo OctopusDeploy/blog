@@ -133,7 +133,7 @@ To limit it, we can go back to constraints. Can we constrain the ways we will en
 
 If we have constraints in place, we can then look at how certain implementation decisions may help us control emergent complexity.
 
-When we were deciding how a step's UI should be expressed, we were faced with a decision: should we let users bring their own HTML, javascript, and framework to express the step UI? What about having them just provide some html? What if it were an API written in code? What about just plain old declarative JSON? Each of these solution candidates would have a very different impact on emergent complexity.
+When we were deciding how a step's UI should be expressed, we were faced with a decision: should we let users bring their own HTML, javascript, and framework to express the step UI? What about having them just provide some HTML? What if it were an API written in code? What about just plain old declarative JSON? Each of these solution candidates would have a very different impact on emergent complexity.
 
 To tackle this complexity and help make a decision, we created a decision matrix to help visualise how each option would either solve or not solve each piece of complexity.
 
