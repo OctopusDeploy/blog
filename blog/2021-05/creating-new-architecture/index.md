@@ -91,7 +91,7 @@ This constraint had an immediate impact - we could reason more clearly about our
 
 ### Decision Making
 
-When making decisions at Octopus, we are strong believers in creating concensus, and then executing strongly on the basis of it. Almost all impactful decisions are deeply scruitinized. When defining architecture, this scruitiny allows you to better forsee system-level impacts of architectural choices. This is one of the _hardest_ things to do when building new architecture, but it is also the _most important_.
+When making decisions at Octopus, we are strong believers in creating consensus, and then executing strongly on the basis of it. Almost all impactful decisions are deeply scrutinized. When defining architecture, this scrutiny allows you to better forsee system-level impacts of architectural choices. This is one of the _hardest_ things to do when building new architecture, but it is also the _most important_.
 
 To make great decisions, you need to ensure the right experts have had input into your architectural decisions.
 
