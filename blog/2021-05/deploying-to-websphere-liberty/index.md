@@ -4,13 +4,15 @@ description: Learn how to deploy to an IBM WebSphere Liberty web server with Oct
 author: shawn.sesna@octopus.com
 visibility: private
 published: 2021-05-05-1400
-metaImage: 
-bannerImage: 
+metaImage: blogimage-deploying-to-ibm-websphere-liberty-2021.png
+bannerImage: blogimage-deploying-to-ibm-websphere-liberty-2021.png
 tags:
  - DevOps
  - Database Deployments
  - Java
 ---
+
+![An Octopus standing by Websphere servers](blogimage-deploying-to-ibm-websphere-liberty-2021.png)
 
 When evaluating software, it's easy to overlook an option because it doesn't list the specific stack you use.  However, just because it isn't listed, doesn't mean it isn't supported.  
 
