@@ -14,7 +14,7 @@ In software, architecture encompasses the structure of the system, the relations
 
 The essence of good architecture is that it helps you make decisions and changes with speed and confidence. Want to add a new behaviour? Good architecture will make it easy to reason about doing that, and to execute on it. Poor architecture will have you reasoning about how the world came to be before you can write a line of code. Carl Sagan once said "If you wish to make apple pie from scratch, you must first create the universe.". You _don't_ want to have to perform that sort of reasoning in software - you just want to have to reason your way up from a good set of apple pie ingredients.
 
-Making changes with speed and confidence is a must at Octopus. The landscape of release management is growing at an unprecedented rate. New technology ecosystems are being created in which workloads can be created. New cloud service are arriving all of the time, providing new, novel ways to host workloads. Octopus' goal is to make shipping those workloads onto those new platforms world-class, and we want to enable those experiences in Octopus as rapidly as possible.
+Making changes with speed and confidence is a must at Octopus. The landscape of release management is growing at an unprecedented rate. New technology ecosystems are being created in which workloads can be created. New cloud services are arriving all of the time, providing new, novel ways to host workloads. Octopus' goal is to make shipping those workloads onto those new platforms world-class, and we want to enable those experiences in Octopus as rapidly as possible.
 
 To ensure we can achieve that goal, at Octopus we have been investing time and effort into creating a brand new architecture for developing Steps within Octopus - the things that do the work of deployment!
 
@@ -22,7 +22,7 @@ Creating a new architecture is always an interesting challenge - where do you st
 
 ### Goals
 
-Success in software comes from knowing where the finish line is in any endeavour. How will you know if you have succeeded? Success isn't just having some new software. This holds true if you are defining a whole new architecture, or just building a small feature. If you don't know where you are going, any road will get you there - and we don't want to arrive at just anywhere, we want to succeed!
+Success in software comes from knowing where the finish line is. How will you know if you have succeeded? Success isn't just having some new software. This holds true if you are defining a whole new architecture, or just building a small feature. If you don't know where you are going, any road will get you there - and we don't want to arrive at just anywhere, we want to succeed!
 
 After initial collaboration with our primary stakeholders, and with Paul, our CEO, we agreed on the following sets of goals for the new steps architecture:
 
