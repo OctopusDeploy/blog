@@ -94,7 +94,7 @@ Scroll to the **Structured Configuration Variables** section that was just added
 
 ![](octopus-structured-configuration-variables-value.png)
 
-With this feature configured, define the following project variables
+With this feature configured, define the following project variables:
 
 - `//*:property[@name='password']/@value`: Password for the user account
 - `//*:property[@name='username']/@value`: Username for MySQL connection
