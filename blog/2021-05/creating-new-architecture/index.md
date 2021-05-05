@@ -12,13 +12,17 @@ tags:
 
 In software, architecture encompasses the structure of the system, the relationships between its components, the properties the system emits (sometimes referred to as the "ilities"), and the behaviours the system encodes. Some systems may comprise a single, large piece of software. Others may be decomposed into smaller sub-systems that work together to accomplish goals.
 
+**TODO: Insert image here**
+
+Creating a new architecture is always an interesting challenge - where do you start? What problems do you need to solve? How do you actually deliver something and not get lost down endless rabbit holes? In this article we will explore how to approach defining and building a new software architecture in a way that increases your chances of succeess.
+
+## Why architecture matters
+
 The essence of good architecture is that it helps you make decisions and changes with speed and confidence. Want to add a new behaviour? Good architecture will make it easy to reason about doing that, and to execute on it. Poor architecture will have you reasoning about how the world came to be before you can write a line of code. Carl Sagan once said "If you wish to make apple pie from scratch, you must first create the universe.". You _don't_ want to have to perform that sort of reasoning in software - you just want to have to reason your way up from a good set of apple pie ingredients.
 
 Making changes with speed and confidence is a must at Octopus. The landscape of release management is growing at an unprecedented rate. New technology ecosystems are being created in which workloads can be created. New cloud services are arriving all of the time, providing new, novel ways to host workloads. Octopus' goal is to make shipping those workloads onto those new platforms world-class, and we want to enable those experiences in Octopus as rapidly as possible.
 
 To ensure we can achieve that goal, at Octopus we have been investing time and effort into creating a brand new architecture for developing Steps within Octopus - the things that do the work of deployment!
-
-Creating a new architecture is always an interesting challenge - where do you start? What problems do you need to solve? How do you actually deliver something and not get lost down endless rabbit holes? In this article we will explore how to approach defining and building a new software architecture in a way that increases your chances of succeess.
 
 ### Goals
 
@@ -95,7 +99,7 @@ At the end of the process, we had a clear map of sub-systems and components, and
 
 ![Naming for step components](blogimage-naming-things.png)
 
-### Decision Making
+### Decision making
 
 When making decisions at Octopus, we are strong believers in creating _consensus_, and then executing with confidence. Almost all impactful decisions are deeply scrutinized. When defining architecture, this scrutiny allows you to better forsee system-level impacts of architectural choices. This is one of the _hardest_ things to do when building new architecture, but it is also the _most important_.
 
@@ -109,7 +113,7 @@ One example of this within our new architecture was an overlap identified with P
 
 Seeking input widely does not mean design-by-committee - ownership is important, and you as an architect should own the architecture you develop. However it means you have a responsibility to widely seek input into your architectural designs - finding experts in other sub-sytems outside of your sphere of expertise that may need to influence your designs.
 
-> Goals and Decisions
+> Goals and decisions
 >
 > Another thing that assists decision making is keeping goals front-of-mind. Whilst our constraints limit our choices, so we know what things we don't need to make decisions about, goals can help us decide between multiple potentially valid options.
 >
