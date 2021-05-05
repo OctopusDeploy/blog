@@ -2,7 +2,7 @@
 title: Deploying to IBM WebSphere Liberty
 description: Learn how to deploy to an IBM WebSphere Liberty web server with Octopus Deploy.
 author: shawn.sesna@octopus.com
-visibility: private
+visibility: public
 published: 2021-05-05-1400
 metaImage: blogimage-deploying-to-ibm-websphere-liberty-2021.png
 bannerImage: blogimage-deploying-to-ibm-websphere-liberty-2021.png
