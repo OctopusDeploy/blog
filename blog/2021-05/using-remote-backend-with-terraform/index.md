@@ -14,11 +14,21 @@ tags:
 
 ![Using remote backend with Terraform in Octopus Deploy](blogimage-create-workers-on-a-kubernetes-cluster-2021.png)
 
-In this post, we will be using a GitHub repository as the source of Terraform templates.
+In this post, we will be using a GitHub repository as the source of Terraform templates and store workspace state in Terraform's own cloud offering.
+
+## Create a new workspace in Terraform Cloud
+
+First, we need to create a workspace that will serve as our project's backend at [app.terraform.io](https://app.terraform.io/). Create an account, if you don't have one yet.
+
+In the workspace wizard:
+- Choose **CLI-driven workflow** - as Octopus' Terraform steps are executed using the CLI.
+- Change Terraform version in the top right corner to the version of the CLI shipped with Octopus (0.11.15 at the time of this post, or check [here](https://github.com/OctopusDeploy/Octopus.Dependencies.TerraformCLI/blob/master/build.cake#L32)). You can use a different version of Terraform either by supplying a full path to a custom Terraform CLI executable (via `Octopus.Action.Terraform.CustomTerraformExecutable` variable) or by running the step inside a [custom Docker container](https://octopus.com/docs/projects/steps/execution-containers-for-workers).
+
+![Terraform Version Selector](terraform-version.png)
 
 ## Create an external feed
 
-First, we need to configure Octopus Deploy to use our GitHub repository as a [package feed](https://octopus.com/docs/packaging-applications/package-repositories/github-feeds).  
+Next, we need to configure Octopus Deploy to use our GitHub repository as a [package feed](https://octopus.com/docs/packaging-applications/package-repositories/github-feeds).  
 
 ![Octopus GitHub Feed](octopus-external-feed.png)
 
