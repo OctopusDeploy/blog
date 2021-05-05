@@ -51,7 +51,7 @@ These included:
 - Server Integration (The packaging model)
 - Deployment Execution
 
-Initial conversations can be challenging when defining new architecture - you'll find that at times it can be hard to "land the plane" on conversations, as you will circle around how a decision in one sub-system will impact the others, exploring different viewpoints such as user experience, developer experience, and product experience with each lap. One line of conversation will take you on a full-circle lap of sub-systems, until you arrive again at the first point you were trying to decide on.
+Initial conversations can be challenging when defining new architecture - you may find that at times it can be hard to "land the plane" on conversations, as you will circle around how a decision in one sub-system will impact the others, exploring different viewpoints such as user experience, developer experience, and product experience with each lap. One line of conversation will take you on a full-circle lap of sub-systems, until you arrive again at the first point you were trying to decide on.
 
 If you find you are struggling to make decisions early on, and conversations feel circular or never-ending, it is likely you are missing a key ingredient - **constraints**.
 
@@ -63,7 +63,7 @@ Some of our goals already impose strict constraints - "steps needed to be able t
 
 Others were not as strict - "simple and easy to develop" provides context, but is not a hard-and-fast constraint - it is a qualitative goal.
 
-In the early stages of designing our new architecture, we were struggling to gain clarity and concensus around the programming and composition model for steps. If a user wanted a step to behave "just a bit differently", and re-order the logical inner sequencing of the steps behaviour, or perhaps inject some of their own unique behaviour within the step - would that be something we want to support?
+In the early stages of designing our new architecture, we were struggling to gain clarity and consensus around the programming and composition model for steps. If a user wanted a step to behave "just a bit differently", and re-order the logical inner sequencing of the steps behaviour, or perhaps inject some of their own unique behaviour within the step - would that be something we want to support?
 
 By taking a stand on the above potential requirement, we would be able to establish a clear constraint. This constraint would impact many of the architecture's sub-systems - the UI, the executor, the programming model, it even ventured outside of our architecture's boundaries and could impact other areas of Octopus.
 
