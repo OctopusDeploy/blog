@@ -62,7 +62,7 @@ Ensure that you are executing the script against the desired database.
 Your VM now has the `db_owner` role for the selected database.
 
 ### Testing connectivity
-To verify that the managed identity is working properly, log on to the server and bring up PowerShell or PowerShell ISE.  Once loaded, run the following script to verify that it is connecting:
+To verify that the managed identity is working properly, log on to the Azure VM and bring up PowerShell or PowerShell ISE.  Once loaded, run the following script to verify that it is connecting:
 
 ``` PowerShell
 $response = Invoke-WebRequest -Uri 'http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&resource=https%3A%2F%2Fdatabase.windows.net%2F' -Method GET -Headers @{Metadata="true"}
