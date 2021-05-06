@@ -644,4 +644,16 @@ The Terraform apply and destroy steps, in conjunction with the Octopus Terraform
 
 With some custom scripting to synchronize Octopus with Git branches, and scheduled triggers or direct triggers from a hosted platform like GitHub, we can ensure Octopus reflects the feature branches being developed in our code base.
 
+## Register for the webinar
+
+On the 19th, 20th, and 24th of May, we're running the webinar: Accelerating Azure DevOps Pipelines and Azure PaaS with Octopus Deploy.
+
+Join Derek Campbell, Senior Solutions Architect at Octopus Deploy, and Gregor Suttie, an Azure MVP, and Azure Architect at Intercept, to learn how Azure DevOps, Azure, and Octopus are an excellent fit for your CI/CD pipelines and Platform-as-a-Service applications.
+
+- Wednesday May 19th, 6am PT / 2pm GMT: [Register now](https://octopus.zoom.us/webinar/register/1316183969597/WN_LNjcE6lzQtmDXWIKunlKwQ)
+
+- Thursday May 20th, 12pm PT / 8pm GMT: [Register now](https://octopus.zoom.us/webinar/register/4716183971335/WN_V60nspCkQSeZv4gPYC_hQg)
+
+- Monday May 24th, 3pm AEST / 6am GMT: [Register now](https://octopus.zoom.us/webinar/register/8116197742605/WN_bhAzKNdyQeWPzG2_RCdT5g)
+
 Happy deployments!
