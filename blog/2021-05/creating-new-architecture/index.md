@@ -21,7 +21,7 @@ Creating a new architecture is always an interesting challenge; where do you sta
 
 The essence of good architecture is that it helps you make decisions and changes with speed and confidence. Want to add a new behavior? Good architecture will make it easy to reason about doing that, and to execute on it. Poor architecture will have you reasoning about how the world came to be before you can write a single line of code. Carl Sagan once said, "If you wish to make apple pie from scratch, you must first create the universe." You _don't_ want to have to perform that sort of reasoning in software - you just want to have to reason your way up from a good set of apple pie ingredients.
 
-Making changes with speed and confidence is a must at Octopus. The landscape of release management is growing at an unprecedented rate. New technology ecosystems are being created in which workloads can be created. New cloud services are arriving all of the time, providing new, novel ways to host workloads. Octopus's goal is to make shipping those workloads onto those new platforms world-class, and we want to enable those experiences in Octopus as rapidly as possible.
+Making changes with speed and confidence is a must at Octopus. The landscape of release management is growing at an unprecedented rate. New technology ecosystems are being created in which workloads can be created. New cloud services are arriving all of the time, providing new, novel ways to host workloads. Octopus's goal is to make deploying those workloads onto those new platforms world-class, and we want to enable those experiences in Octopus as rapidly as possible.
 
 To ensure we can achieve that goal, at Octopus we have been investing time and effort into creating a brand new architecture for developing steps within Octopus, after all, steps are the things that do the work of deployment!
 
@@ -155,7 +155,7 @@ Ilities, or [system quality attributes](https://en.wikipedia.org/wiki/List_of_sy
 
 A good architecture will emit properties that support the "ilities" that you've identified as important. These "ilities" tend to cut across all of the sub-systems within an architecture.
 
-An example of an "ility" that is high on our mind for the new steps architecture is maintainability.
+An example of an "ility" that is high on our mind for the new steps architecture is **maintainability**.
 
 If we need to make changes on one side of an interface boundary between steps and Octopus itself, we want to make sure we don't need to force the propagation of that change across hundreds of steps (or require step authors to do the same).
 
