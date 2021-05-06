@@ -3,11 +3,12 @@ title: Creating new architecture
 description: Creating a new architecture can be a daunting challenge. This post will look at how we approach creating new architecture within Octopus, and give some real examples on how to tame complexity and achieve success.
 author: Andrew Best
 visibility: private
-published: 3020-01-01
+published: 2021-05-10
 metaImage:
 bannerImage:
 tags:
-  - architecture
+  - Engineering
+  - Architecture
 ---
 
 In software, architecture encompasses the structure of the system, the relationships between its components, the properties the system emits (sometimes referred to as the "ilities"), and the behaviors the system encodes. Some systems may comprise a single, large piece of software. Others may be decomposed into smaller sub-systems that work together to accomplish goals.
