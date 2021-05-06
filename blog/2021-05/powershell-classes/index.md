@@ -121,7 +121,7 @@ Unable to find type [Microsoft.SqlServer.Dac.IUniversalAuthProvider].
 ```
 
 #### Alternate class creation method
-My researched found that I could create classes by defining them first within a string variable using C# syntax!  In addition, I could pass in dependent assembly references on object creation
+My researched found that I could create classes by defining them first within a string variable using C# syntax!  In addition, I could pass in dependent assembly references when adding the type
 
 ``` Powershell
 # Define C# class
