@@ -110,7 +110,7 @@ class AzureADAuth : Microsoft.SqlServer.Dac.IUniversalAuthProvider
 }
 ```
 
-The problem I ran into was that `class` definitions are evaluated before code execution, despite loading the appropriate assemblies prior to the class definition, PowerShell would fail because it could not find the type.  If the DLL was in the Global Assembly Cache (GAC), it might have worked, however, I couldn't assume that would be the case for a step template.
+The problem I ran into was that `class` definitions are evaluated before code execution.  Despite loading the appropriate assemblies prior to the class definition, PowerShell would fail because it could not find the type.  If the DLL was in the Global Assembly Cache (GAC), it might have worked, however, I couldn't assume that would be the case for a step template.
 
 ```
 + class AzureADAuth : Microsoft.SqlServer.Dac.IUniversalAuthProvider
