@@ -1,5 +1,5 @@
 ---
-title: Creating new architecture
+title: How we think about creating new architecture
 description: Creating a new architecture can be a daunting challenge. This post will look at how we approach creating new architecture within Octopus, and give some real examples on how to tame complexity and achieve success.
 author: Andrew Best
 visibility: private
