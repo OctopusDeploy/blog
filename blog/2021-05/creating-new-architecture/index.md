@@ -11,26 +11,26 @@ tags:
   - Architecture
 ---
 
-In software, architecture encompasses: 
+In software, architecture encompasses:
 
 - The structure of the system
 - The relationships between its components
 - The properties the system emits (sometimes referred to as the "ilities")
-- The behaviors the system encodes 
+- The behaviors the system encodes
 
 Some systems may comprise a single, large piece of software. Others may be decomposed into smaller sub-systems that work together to accomplish goals.
 
-Creating a new architecture is always an interesting challenge: 
+Creating a new architecture is always an interesting challenge:
 
-- Where do you start? 
-- What problems do you need to solve? 
-- How do you actually deliver something and not get lost down endless rabbit holes? 
+- Where do you start?
+- What problems do you need to solve?
+- How do you actually deliver something and not get lost down endless rabbit holes?
 
 In this article we will explore how to approach defining and building a new software architecture in a way that increases your chances of success.
 
 ## Why architecture matters
 
-Good architecture helps you make decisions and changes with speed and confidence. Want to add a new behavior? Good architecture will make it easy to reason about doing that, and to execute on it. Poor architecture will have you reasoning about how the world came to be before you can write a single line of code. 
+Good architecture helps you make decisions and changes with speed and confidence. Want to add a new behavior? Good architecture will make it easy to reason about doing that, and to execute on it. Poor architecture will have you reasoning about how the world came to be before you can write a single line of code.
 
 Carl Sagan once said, "If you wish to make apple pie from scratch, you must first create the universe." You _don't_ want to have to perform that sort of reasoning in software - you just want to have to reason your way up from a good set of apple pie ingredients.
 
@@ -50,11 +50,11 @@ After initial collaboration with our primary stakeholders, and with Paul, our CE
 
 These goals underpin Octopus's business goals of building up a high-performing team to deliver new deployment capabilities, and to more rapidly enable new deployment scenarios for Octopus's customers.
 
-Goals are a must-have, as they help you reason about decisions and avoid rabbit holes. They provide a great *litmus test* when deciding whether you should do something one way, or another. If something takes you toward one of the goals, it is probably a good thing. If it leads you away from a goal, it might be a bad thing. If it doesn't contribute to a goal at all, it's probably not needed.
+Goals are a must-have, as they help you reason about decisions and avoid rabbit holes. They provide a great _litmus test_ when deciding whether you should do something one way, or another. If something takes you toward one of the goals, it is probably a good thing. If it leads you away from a goal, it might be a bad thing. If it doesn't contribute to a goal at all, it's probably not needed.
 
 ### Constraints
 
-Once we have an agreed set of goals that define success, we can define the architecture itself. Once again, architecture refers to a lot of things:
+Once we have an agreed set of goals that define success, we can begin defining the architecture itself. Once again, architecture refers to a lot of things:
 
 > Architecture encompasses the structure of the system, the relationships between its components, the properties the system emits (sometimes referred to as the "ilities"), and the behaviors the system encodes.
 
@@ -85,7 +85,7 @@ In the early stages of designing our new architecture, we struggled to gain clar
 
 By taking a stand on the above potential requirement, we can establish a clear constraint. This constraint impacts many of the architecture's sub-systems, the UI, the executor, the programming model. It even ventures outside of our architecture's boundaries and could impact other areas of Octopus.
 
-Working together, we decided that we don't need to enable arbitrary composition within steps. If you pursue this line of thinking, eventually you'll end up needing to produce a DSL or programming language to build up deployment processes, as that would be the only thing flexible enough to satisfy all use cases. 
+Working together, we decided that we don't need to enable arbitrary composition within steps. If you pursue this line of thinking, eventually you'll end up needing to produce a DSL or programming language to build up deployment processes, as that would be the only thing flexible enough to satisfy all use cases.
 
 Instead of pursuing that, we made a decision to focus on providing high-leverage, high-value steps to our users, and give users a frictionless way to progress from opinionated steps to more flexible steps (i.e., run a template, run a script/cli) should they require their own unique behaviors.
 
@@ -117,7 +117,7 @@ At the end of the process, we had a clear map of sub-systems and components, and
 
 ### Decision making
 
-At Octopus, we're strong believers in creating _consensus_ when we make decisions, and then executing with confidence. Almost all impactful decisions are deeply scrutinized. 
+At Octopus, we're strong believers in creating _consensus_ when we make decisions, and then executing with confidence. Almost all impactful decisions are deeply scrutinized.
 
 When defining architecture, this scrutiny allows you to foresee system-level impacts of architectural choices. This is one of the _hardest_ things to do when building new architecture, but it is also the _most important_.
 
@@ -141,8 +141,8 @@ Seeking input widely does not mean design-by-committee. Ownership is important, 
 
 Complexity within architecture tends to come in two categories:
 
- - Static complexity, which deals with the system's components and their relationships.
- - Emergent complexity, which comes from users using your software in novel and unique ways, and overall changes in the impact of usage on the systems.
+- Static complexity, which deals with the system's components and their relationships.
+- Emergent complexity, which comes from users using your software in novel and unique ways, and overall changes in the impact of usage on the systems.
 
 Architectural decisions need to take both into account.
 
@@ -150,7 +150,7 @@ Architectural decisions need to take both into account.
 
 Static complexity tends to impact sense-making; it's hard to make a decision if the area you are working within is very complex. It can be hard to reason about all the ways your decision might impact various sub-systems.
 
-The solution to this problem is diving into analysis. We use [Whimsical](https://whimsical.com/) heavily at Octopus, but other diagramming tools can be helpful in these scenarios. You need a tool that allows you to build flowcharts and visualize connections between various sub-systems in specific contexts. This will help you identify all the places you need to consider when making a decision. 
+The solution to this problem is diving into analysis. We use [Whimsical](https://whimsical.com/) heavily at Octopus, but other diagramming tools can be helpful in these scenarios. You need a tool that allows you to build flowcharts and visualize connections between various sub-systems in specific contexts. This will help you identify all the places you need to consider when making a decision.
 
 There is no avoiding this type of analysis. If you don't do it, you'll make wrong assumptions that will bite you later. It's also hard to "outsource" this type of analysis. Someone might be able to describe the inner workings of a particular sub-system, but if they don't have a detailed map to provide you, it's likely you're going to need to pull the code and get diagramming.
 
@@ -170,7 +170,7 @@ To tackle this complexity and help make a decision, we created a decision matrix
 
 ![Decision matrix for step UI](blogimage-decision-making.png)
 
-By enumerating the properties a solution might contribute for us, and evaluating each solution candidate against these properties, we could make a decision that took our emergent complexity into account. 
+By enumerating the properties a solution might contribute for us, and evaluating each solution candidate against these properties, we could make a decision that took our emergent complexity into account.
 
 We decided to implement a custom UI framework, that is, code that could be used to express a step's UI. This gives people the power and flexibility of implementing the UI in code and familiar tooling, but it avoids the emergent complexity that comes with people supplying arbitrary HTML and JavaScript.
 
