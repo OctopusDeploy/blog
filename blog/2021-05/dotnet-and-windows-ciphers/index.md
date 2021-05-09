@@ -94,7 +94,7 @@ Microsoft maintains [documentation listing all the supported ciphers across curr
 
 It is tempting to think that because a web browser will successfully open the website that all applications should work. This is not the case though. Browsers like Chrome and Firefox maintain and ship their own ciphers. This means so long as your browser is up to date, it will likely include the modern ciphers required to establish most HTTPS connections.
 
-Platforms like Go and Java also maintain their own ciphers, so applications written in those languages may continue to support newer ciphers while run on older versions of Windows.
+Platforms like Go and Java also maintain their own ciphers, so applications written in those languages may continue to support newer ciphers while running on older versions of Windows.
 
 DotNET applications on the other hand rely on the ciphers provided by the OS, and the only way to get new ciphers into the OS is through a patch from Microsoft. Unsupported versions of Windows typically do not receive these patches, and so over time you can expect an increasing number of websites to no longer work with DotNET applications.
 
