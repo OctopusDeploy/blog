@@ -44,10 +44,8 @@ To demonstrate an example of a website that fails on older versions of Windows (
 On my Windows 10 machine, the application produces the expected output of `Result was OK`. However, on an older copy of Windows such as Windows 7, the result is the following exception:
 
 ```
-Unhandled exception. System.Net.Http.HttpRequestException: The SSL connection could not be established, see inner except
-ion.
- ---> System.Security.Authentication.AuthenticationException: Authentication failed because the remote party sent a TLS
-alert: 'HandshakeFailure'.
+Unhandled exception. System.Net.Http.HttpRequestException: The SSL connection could not be established, see inner exception.
+ ---> System.Security.Authentication.AuthenticationException: Authentication failed because the remote party sent a TLS alert: 'HandshakeFailure'.
  ---> System.ComponentModel.Win32Exception (0x80090326): The message received was unexpected or badly formatted.
    --- End of inner exception stack trace ---
    at System.Net.Security.SslStream.ForceAuthenticationAsync[TIOAdapter](TIOAdapter adapter, Boolean receiveFirst, Byte[]reAuthenticationData, Boolean isApm)
