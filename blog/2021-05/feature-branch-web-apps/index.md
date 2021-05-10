@@ -652,7 +652,7 @@ Join Derek Campbell, Senior Solutions Architect at Octopus Deploy, and Gregor Su
 
 - US - Thursday May 20th, 12pm PT / 3pm ET: [Register now](https://octopus.zoom.us/webinar/register/4716183971335/WN_V60nspCkQSeZv4gPYC_hQg)
 
-- UK/Europe - Wednesday May 19th, 4pm CET: [Register now](https://octopus.zoom.us/webinar/register/1316183969597/WN_LNjcE6lzQtmDXWIKunlKwQ)
+- UK/Europe - Wednesday May 19th, 3pm CET: [Register now](https://octopus.zoom.us/webinar/register/1316183969597/WN_LNjcE6lzQtmDXWIKunlKwQ)
 
 - APAC - Monday May 24th, 1pm SGT: [Register now](https://octopus.zoom.us/webinar/register/8116197742605/WN_bhAzKNdyQeWPzG2_RCdT5g)
 
