@@ -159,13 +159,10 @@ If we log into Oracle, we can see that our database updates have been applied:
 Octopus Deploy supports deploying to many database technologies (Microsoft SQL Server, MariaDB, MySQL, Oracle, PostgreSQL, etc.) as well as many different deployment methods (DACPAC, DbUp, Flyway, Liquibase, RoundhousE, etc.).  I hope this post helps you understand how you can use Octopus to deploy to an Oracle database using Liquibase.
 
 
-## Register for the webinar
+## Watch the webinar
 
-On the 5th and 6th of May, we're running the webinar: Delivering Database DevOps with Octopus Deploy and Liquibase.
+<iframe width="560" height="315" src="https://www.youtube.com/embed/1nrxnF4LxGw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Join Shawn Sesna, Solutions Architect at Octopus, and Mike Olivas, Senior Solutions Architect at Liquibase, to see both technologies in action and how they complement each other.
-
-- Wednesday May 5th, 7am PT / 3pm GMT: [Register now](https://octopus.zoom.us/webinar/register/5816182119225/WN_h2Ab-BBbSYGDmYeXxsK-7A)
-- Thursday May 6th, 12pm PT / 8pm GMT: [Register now](https://octopus.zoom.us/webinar/register/6616182117906/WN_S8kZIbZCSRmUNkNlOnx5_g)
+We host webinars regularly. See the [webinars page](https://octopus.com/events) for past webinars and details about upcoming webinars. 
 
 Happy deployments!
