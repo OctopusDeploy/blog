@@ -4,12 +4,14 @@ description: Creating a new architecture can be daunting. Find out how we approa
 author: Andrew Best
 visibility: private
 published: 2021-05-10-1400
-metaImage:
-bannerImage:
+metaImage: blogimage-creating-new-architecture-2021.png
+bannerImage: blogimage-creating-new-architecture-2021.png
 tags:
   - Engineering
   - Architecture
 ---
+
+![An image of a blueprint](blogimage-creating-new-architecture-2021.png)
 
 In software, architecture encompasses:
 
@@ -19,6 +21,8 @@ In software, architecture encompasses:
 - The behaviors the system encodes
 
 Some systems may comprise a single, large piece of software. Others may be decomposed into smaller sub-systems that work together to accomplish goals.
+
+![Diagram](img-creating-new-architecture-content-images_2021.png)
 
 Creating a new architecture is always an interesting challenge:
 
