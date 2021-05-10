@@ -22,7 +22,7 @@ In software, architecture encompasses:
 
 Some systems may comprise a single, large piece of software. Others may be decomposed into smaller sub-systems that work together to accomplish goals.
 
-![Diagram](img-creating-new-architecture-content-images_2021.png)
+![Diagram](img-creating-new-architecture-content-image_2021.png)
 
 Creating a new architecture is always an interesting challenge:
 
