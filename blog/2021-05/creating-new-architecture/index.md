@@ -127,7 +127,7 @@ When defining architecture, this scrutiny allows you to foresee system-level imp
 
 The first step toward making high-quality decisions is to collaborate closely with your team to arrive at a decision. You've worked through the candidate solutions with them, and you have established a shared understanding of their impacts. In any sufficiently complex system, you will always need to get input from others to ensure you have visibility across all potential impacts a new architecture may have, and your team is the best starting point for this.
 
-One tool we use at Octopus to solicit input is the [strawman proposal](https://en.wikipedia.org/wiki/Straw_man_proposal). You present your team with your proposed design for a given component or sub-system, and explain it in enough detail that the team can reason about it. With a strawman you don't want your team to agree to it, you want them to _challenge_ it, to point out its flaws, to suggest alternatives and improvements. This type of conversation generates great insights and solution options that can lead you towards a high-quality decision.
+One tool we use at Octopus to solicit input is the [straw-man proposal](https://en.wikipedia.org/wiki/Straw_man_proposal). You present your team with your proposed design for a given component or sub-system, and explain it in enough detail that the team can reason about it. With a straw-man you don't want your team to agree to it, you want them to _challenge_ it, to point out its flaws, to suggest alternatives and improvements. This type of conversation generates great insights and solution options that can lead you towards a high-quality decision.
 
 After your team has given input, you also need to ensure the right experts have provided input on your architectural decisions.
 
@@ -168,7 +168,7 @@ To limit it, we can go back to constraints. Can we constrain the ways we will en
 
 If we have constraints in place, we can look at how certain implementation decisions may help us control emergent complexity.
 
-When we were deciding how a step's UI should be expressed, we were faced with a decision: should we let users bring their own HTML, JavaScript, and framework to express the step UI? What about having them just provide some HTML? What if it were an API written in code? What about just plain old declarative JSON? Each of these solution candidates would have a very different impact on emergent complexity.
+When we were deciding how a step's UI should be expressed, we were faced with a decision: should we let users bring their own HTML, JavaScript, and framework to express the step UI? What about having them just provide some HTML? What if it were an API written in code? What about just plain old declarative JSON? Each of these solutions would have a very different impact on emergent complexity.
 
 To tackle this complexity and help make a decision, we created a decision matrix to help visualize how each option would either solve or not solve each piece of complexity.
 
