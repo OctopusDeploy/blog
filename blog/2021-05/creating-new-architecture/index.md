@@ -38,7 +38,7 @@ Good architecture helps you make decisions and changes with speed and confidence
 
 Carl Sagan once said, "If you wish to make apple pie from scratch, you must first create the universe." You _don't_ want to have to perform that sort of reasoning in software - you just want to have to reason your way up from a good set of apple pie ingredients.
 
-Making changes with speed and confidence is a must at Octopus. The landscape of release management is growing at an unprecedented rate. New technology ecosystems are being created in which workloads can be created. New cloud services are arriving all of the time, providing new, novel ways to host workloads. Octopus's goal is to make deploying those workloads onto those new platforms world-class, and we want to enable those experiences in Octopus as rapidly as possible.
+Making changes with speed and confidence is a must at Octopus. The landscape of release management is growing at an unprecedented rate. New technology ecosystems are being created in which workloads can be developed. New cloud services are arriving all of the time, providing new, novel ways to host workloads. Octopus's goal is to make deploying those workloads onto those new platforms world-class, and we want to enable those experiences in Octopus as rapidly as possible.
 
 To ensure we can achieve that goal, at Octopus we have been investing time and effort into creating a brand new architecture for developing steps within Octopus. After all, steps are the things that do the work of deployment!
 
