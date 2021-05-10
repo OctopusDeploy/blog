@@ -1,6 +1,6 @@
 ---
-title: "Deloying a NodeJS application with Octopus Deploy"
-description: "Learn how to deploy an application written in NodeJS with a MongoDB back-end with Octopus Deploy"
+title: "Deploying a NodeJS application with Octopus Deploy"
+description: "Learn how to deploy an application written in NodeJS with a MongoDB back-end with Octopus Deploy."
 author: shawn.sesna@octopus.com
 visibility: public
 published: 2021-05-19-1400 
@@ -8,10 +8,10 @@ metaImage:
 bannerImage: 
 tags:
  - DevOps
- - 
+ - PowerShell
 ---
 
-JavaScript previously only executed on client browsers, to do things like manipulate the Document Object Model (DOM) or perform input validation to save a trip to the server.  Node.js, however, is a technology that developers can use to write client-side _and_ server-side code using the JavaScript language.  
+Initially, JavaScript only executed on client browsers, to do things like manipulate the Document Object Model (DOM) or perform input validation to save a trip to the server.  Node.js, however, is a technology that developers can use to write client-side _and_ server-side code using the JavaScript language.  
 
 In this post, I demonstrate how to deploy applications written in Node.js using Octopus Deploy.
 
@@ -19,14 +19,16 @@ In this post, I demonstrate how to deploy applications written in Node.js using 
 For this post, I chose the [BestBags](https://github.com/maryamaljanabi/bestbags-nodejs-ecommerce) e-commerce sample application.  This sample includes everything you need to get it up and running quickly, even files to create and seed the MongoDB database that it uses as a back-end.  
 
 ### Modifications
-To make this project more configurable, I made some minor modifications.  The original project hardcoded values that could potentially change as the application moves from environment to environment:
+To make this project more configurable, I made some minor modifications.  The original project hardcoded values that could change as the application moves from environment to environment:
 
 - Port to listen on
 - Database connection string
 
 
 #### Port
-The port that the application listens on is defined in the `app.js` file.  It checks if an environment variable has been set. If not, it uses a static value.  I changed this to use Octostache syntax instead so I could take advantage of the [Substitute Variables in Templates](https://octopus.com/docs/projects/steps/configuration-features/substitute-variables-in-templates) feature:
+The port that the application listens on is defined in the `app.js` file.  It checks if an environment variable has been set. If not, it uses a static value.  
+
+I changed this to use Octostache syntax instead so I could take advantage of the [Substitute Variables in Templates](https://octopus.com/docs/projects/steps/configuration-features/substitute-variables-in-templates) feature:
 
 ```javascript
 var port = process.env.PORT || #{Project.Nodejs.Port};
@@ -47,7 +49,7 @@ As mentioned, the sample application includes some files in the `seedDb` folder 
 The [Liquibase](https://liquibase.org) product is compatible with MongoDB and is built to handle database deployments. I added `dbchangelog.xml` which contains the same information as the files in `seedDb` in the format that Liquibase expects.
 
 :::hint
-The changelog can be in several different file formats (XML, JSON, or YAML).  It may be necessary to URL encode characters such as `&` to `&amp;` for it to be valid.
+The changelog can be in several file formats (XML, JSON, or YAML).  It may be necessary to URL encode characters such as `&` to `&amp;` for it to be valid.
 :::
 
 <details>
@@ -1330,7 +1332,7 @@ Node.js is a scripting language, which means it doesn't need to be compiled like
 - Installing dependencies at build time, so they're not stored in source control.
 - Using build server integration/plugin for Octopus Deploy:
   - Packing the application
-  - Pushing the package to Octopus Deploy or third-party repository
+  - Pushing the package to Octopus Deploy or a third-party repository
   - Pushing build information to Octopus Deploy
   - Creating a release
   - Deploying or promoting a release through different environments
@@ -1341,7 +1343,7 @@ The build server I chose for this post was Bamboo and consisted of the following
 - npm to install dependencies
 - PowerShell script to set version number
 - Inject Bamboo variables so the version number is available
-- Octopus Deploy: Pack Package to package the web front end
+- Octopus Deploy: Pack Package to package the web front-end
 - Octopus Deploy: Pack package to package database file
 - Octopus Deploy: Push packages
 - Octopus Deploy: Octopus Build Information
@@ -1352,7 +1354,7 @@ The first step is self-explanatory, so I won't detail that one.
 Bamboo has a built-in step that will execute `npm` commands.  Select that step and enter `install` as the `Command` to run.
 
 :::warning
-Though the step exists in Bamboo, you still need to install the Node `Executeable` on the build server and define it's location in Bamboo administration -> Executables.
+Though the step exists in Bamboo, you still need to install the Node `Executable` on the build server and define its location in Bamboo administration -> Executables.
 :::
 
 :::hint
@@ -1360,7 +1362,7 @@ An alternative approach to installing the dependencies during build is to run `n
 :::
 
 ### PowerShell script
-I used PowerShell to create the version number by combining major and minor Bamboo variables with date to make each build have a unique number:
+I used PowerShell to create the version number by combining major and minor Bamboo variables with date, so each build has a unique number:
 ```PowerShell
 $day = ([datetime] $(Get-Date)).DayOfYear
 $day = ([string]$day).PadLeft(3, '0')
@@ -1380,10 +1382,10 @@ The previous step of `npm install` will download and install the dependencies de
 - Package output folder: `${bamboo.build.working.directory}\artifacts`
 
 :::warning
-Similar to npm, you will need to install the Octopus Deploy CLI on the build server and define it's location in Bamboo administration -> Executables
+Similar to npm, you will need to install the Octopus Deploy CLI on the build server and define its location in Bamboo administration -> Executables
 :::
 
-### Package the change log file
+### Package the changelog file
 We need to package up the database changelog file to use the Liquibase product:
 
 - PackageId: `BestBags.Db`
@@ -1402,7 +1404,7 @@ In my case, I was pushing the packages to the local Octopus Deploy repository:
 - Package paths: `/Artifacts/*.zip`
 
 ### Build info
-This step uploads the commit information to Octopus Deploy so it can be included in the Release Notes information:
+This step uploads the commit information to Octopus Deploy, so it can be included in the Release Notes information:
 
 - Octopus URL: URL to your Octopus instance
 - API Key: API key with sufficient permissions to upload packages
@@ -1415,36 +1417,41 @@ This step uploads the commit information to Octopus Deploy so it can be included
 With our build complete, we can deploy our application.
 
 ## Octopus Deploy
-This post assumes that you are already familiar with how to create projects within Octopus Deploy, so we won't cover that. If you're not, please see our [Getting Started](https://octopus.com/docs/getting-started) guides.  
+This post assumes you're familiar with creating projects within Octopus Deploy, so we won't cover that. If you're not, please see our [Getting Started](https://octopus.com/docs/getting-started) guides.  
+
 Our deployment process will consist of the following steps:
 
 - Liquibase Apply changeset: this will deploy our changes to MongoDB
 - Deploy to NGINX: we'll be using NGINX as a reverse proxy to our Node app
 
 ### Liquibase - Apply changeset
-This step will take the changelog file we packaged in our build and apply it to our MongoDB database server.  Traditional database deployments usually require that the database is created first, before attempting to deploy against it.  MongoDB, however, will automatically create the referenced database if it doesn't already exist.  This template is also [Worker](https://octopus.com/docs/infrastructure/workers) compatible. I chose `Run once on a worker` for the `Execution Location`.
+This step will take the changelog file we packaged in our build and apply it to our MongoDB database server.  
+
+Traditional database deployments usually require that the database is created first, before attempting to deploy against it.  MongoDB, however, will automatically create the referenced database if it doesn't already exist.  
+
+This template is also [Worker](https://octopus.com/docs/infrastructure/workers) compatible. I chose `Run once on a worker` for the `Execution Location`.
 
 Fill in the following inputs for the template:
 
 - Database type: Select MongoDB
-- Change Log file name: Name of the file for the changelog, `dbchangelog.xml` in our case
+- Changelog file name: Name of the file for the changelog, `dbchangelog.xml` in our case
 - Server name: Name of the MongoDB server
 - Server port: Port number MongoDB is configured to listen on
 - Database name: Name of the database to execute against
 - Username: User with sufficient permissions to create and or update the database
 - Password: Password for the user account
 - Connection query string parameters: `?authSource=admin`
-- Download Liquibase?: I didn't include the Liquibase product, so I ticked this box so it would download it at deploy time
+- Download Liquibase?: I didn't include the Liquibase product, so I ticked this box to download it at deploy time
 - Changeset package: Select the package with the changelog in it
 
 ### Deploy to NGINX
-A popular method for running Node.js applications is to run it behind an NGINX reverse proxy.  Octopus Deploy contains a built-in step to deploy to NGINX making this step easy.
+A popular method for running Node.js applications is to run it behind an NGINX reverse proxy.  Octopus Deploy contains a built-in step to deploy to NGINX, making this step easy.
 
 Once you've added the NGINX step to your process, you will need to click on the **CONFIGURE FEATURES** button and enable both **Custom Deployment Scripts** and **Substitute Variables in Templates** features:
 
 ![](octopus-nginx-configure-features.png)
 
-Scroll to the **Custom Deployment Scripts** section and enter the following for the **Post-deployment script**.  Ensure you select `Bash` for the language:
+Scroll to the **Custom Deployment Scripts** section and enter the following for the **Post-deployment script**.  Ensure you select **Bash** for the language:
 
 ```bash
 SYSTEMD_CONF=/etc/systemd/system
@@ -1504,21 +1511,21 @@ Scroll to the NGINX Web Server section, remove the default binding and add a new
 
 ![](octopus-nginx-add-binding.png)
 
-Click on **ADD LOCATION**;
+Click on **ADD LOCATION**:
   
-- Location: /
+- Location: `/`
 - Reverse Proxy: Check this box
 - Url: Enter the URL and port for Node, I bound my to a variable:
 
 ![](octopus-nginx-add-location.png)
 
-And that's it!  Our process is complete, we're now ready to deploy.
+And that's it!  Our process is now complete, and we're ready to deploy.
 
 Once the deployment is complete, we can click on the link displayed (last part of the Post-deployment script) and see our application in action:
 
 ![](nodejs-bestbags.png)
 
 ## Conclusion
-In this post I demonstrated how to deploy a Node.js application with a MongoDB backend using Octopus Deploy.  
+In this post I demonstrated how to deploy a Node.js application with a MongoDB back-end using Octopus Deploy.  
 
 Happy deployments!
