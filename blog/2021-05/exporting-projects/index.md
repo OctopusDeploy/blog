@@ -3,6 +3,7 @@ title: Exporting and Importing Projects between Spaces
 description: In Octopus 2021.1 we've introduced a new feature to export and import projects 
 author: michael.richardson@octopus.com
 visibility: private
+published: 2222-01-01
 tags:
  - Product 
 ---
