@@ -8,7 +8,6 @@ metaImage:
 bannerImage: 
 tags:
  - DevOps
- - Database Deployments
 ---
 
 PHP is the most [popular](https://w3techs.com/technologies/market/programming_language) language for web-based applications.  This popularity has led to a wide availability of products that will deploy your PHP code, but not necessarily your entire stack.  Applications often include components other than a web front-end, such as databases, APIs, and even containerized microservices.  
