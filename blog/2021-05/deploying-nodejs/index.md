@@ -1354,7 +1354,7 @@ The first step is self-explanatory, so I won't detail that one.
 Bamboo has a built-in step that will execute `npm` commands.  Select that step and enter `install` as the `Command` to run.
 
 :::warning
-Though the step exists in Bamboo, you still need to install the Node `Executable` on the build server and define its location in Bamboo administration -> Executables.
+Though the step exists in Bamboo, you still need to install the Node `Executable` on the build server and define its location in **{{Bamboo administration > Executables}}**.
 :::
 
 :::hint
@@ -1370,7 +1370,7 @@ Add-Content -Path "version.txt" -Value "buildVersion=${bamboo.Major}.${bamboo.Mi
 ```
 
 ### Inject Bamboo variables
-The `Inject Bamboo variables` step allows us to take the version number we just created and make it available to the rest of the build process by specifying the file (version.txt) we created in the `Add-Content` PowerShell statement from above.
+The **Inject Bamboo variables** step allows us to take the version number we just created and make it available to the rest of the build process by specifying the file (version.txt) we created in the `Add-Content` PowerShell statement from above.
 
 ### Package the front-end
 The previous step of `npm install` will download and install the dependencies defined in `package.json` file of our project into a node_modules folder.  With all necessary modules installed, we can package the application to be deployed:
@@ -1382,7 +1382,7 @@ The previous step of `npm install` will download and install the dependencies de
 - Package output folder: `${bamboo.build.working.directory}\artifacts`
 
 :::warning
-Similar to npm, you will need to install the Octopus Deploy CLI on the build server and define its location in Bamboo administration -> Executables
+Similar to npm, you will need to install the Octopus Deploy CLI on the build server and define its location in **{{Bamboo administration > Executables}}**
 :::
 
 ### Package the changelog file
@@ -1429,7 +1429,7 @@ This step will take the changelog file we packaged in our build and apply it to 
 
 Traditional database deployments usually require that the database is created first, before attempting to deploy against it.  MongoDB, however, will automatically create the referenced database if it doesn't already exist.  
 
-This template is also [Worker](https://octopus.com/docs/infrastructure/workers) compatible. I chose `Run once on a worker` for the `Execution Location`.
+This template is also [Worker](https://octopus.com/docs/infrastructure/workers) compatible. I chose `Run once on a worker` for the **Execution Location**.
 
 Fill in the following inputs for the template:
 
