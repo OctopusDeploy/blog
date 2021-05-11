@@ -18,7 +18,11 @@ Our Customer Solutions team stepped up to fill the gap with the [Space Cloner](h
 
 Fast-forward two years, and there is another reason many people want this ability: to migrate projects from self-hosted Octopus instances to [Octopus Cloud](https://octopus.com/docs/octopus-cloud).  
 
-As of the 2021 Q2 release, one or more projects can be selected to be exported. 
+The 2021 Q2 release introduces the ability to export and import projects as a fully-supported, in-the-box feature! 
+
+![Project Export/Import menu](import-export-menu.png "width=500")
+
+One or more projects can be selected to be exported. A password is supplied to be used for encryption, as the export will include sensitive variables. 
 
 ![Export projects page](export-projects-page.png "width=500")
 
