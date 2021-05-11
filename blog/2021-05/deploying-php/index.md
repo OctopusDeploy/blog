@@ -10,14 +10,15 @@ tags:
  - DevOps
 ---
 
-PHP is the most [popular](https://w3techs.com/technologies/market/programming_language) language for web-based applications.  This popularity has led to a wide availability of products that will deploy your PHP code, but not necessarily your entire stack.  Applications often include components other than a web front-end, such as databases, APIs, and even containerized microservices.  
+PHP is the most [popular](https://w3techs.com/technologies/market/programming_language) language for web-based applications.  This popularity has led to a wide availability of products that will deploy your PHP code but not necessarily your entire stack.  Applications often include components other than a web front-end, such as databases, APIs, and even containerized microservices.  
 
-In this post, I'll demonstrate how to deploy a PHP application to an NGINX web server that uses MySQL as a database back-end.
+In this post, I demonstrate how to deploy a PHP application to an NGINX web server that uses MySQL as a database back-end.
 
 ## Sample application
-The sample application application I've chosen for this post is the [Car Rental Project](https://projectnotes.org/php/car-rental-project-in-php-and-mysqli-with-source-code/).  
 
-With minor modification to a single file, this application worked out of the box and is a perfect fit for this demonstration.  The source code includes a database script for MySQL that will create the table schema and seed the database with data.  I'll go over the required modifications later in this post.  Here is the link to the [modified project](https://bitbucket.org/octopussamples/carrental/src/main/).
+The sample application application I chose for this post is the [Car Rental Project](https://projectnotes.org/php/car-rental-project-in-php-and-mysqli-with-source-code/).  
+
+With minor modifications to a single file, this application worked out of the box and is a perfect fit for this demonstration.  The source code includes a database script for MySQL that will create the table schema and seeds the database with data.  I'll go over the required modifications later in this post.  Here's the link to the [modified project](https://bitbucket.org/octopussamples/carrental/src/main/).
 
 ## Building your PHP application
 PHP is a scripting language, meaning it doesn't need to be compiled to be deployed.  However, there are benefits to using a build server with a PHP application:
@@ -37,7 +38,7 @@ For this post, I chose Jenkins as my build server and there were three steps:
 - Push packages to Octopus Deploy
 
 ### Package web front-end
-First, let's go over the modifications I made for this project.  As mentioned, the Car Rental application uses MySQL as its database back-end.  The database connection information is located in `src/includes/config.php`.  Using Octostache and the [Substitute variables in templates](https://octopus.com/docs/projects/steps/configuration-features/substitute-variables-in-templates#:~:text=The%20Substitute%20Variables%20in%20Files,Octopus%20Variables%20into%20any%20file.) feature, we can parameterize the connection info:
+First, let's go over the modifications I made for this project.  As mentioned, the Car Rental application uses MySQL as its database back-end.  The database connection information is located in `src/includes/config.php`.  Using Octostache and the [substitute variables in templates](https://octopus.com/docs/projects/steps/configuration-features/substitute-variables-in-templates#:~:text=The%20Substitute%20Variables%20in%20Files,Octopus%20Variables%20into%20any%20file.) feature, we can parameterize the connection info:
 
 ```php
 <?php 
@@ -58,18 +59,18 @@ exit("Error: " . $e->getMessage());
 ?>
 ```
 
-For this demonstration, I used Azure MySQL PaaS which requires an SSL connection to the database. I needed to add the following to the PDO `options` component array (as seen above):
+For this demonstration, I used Azure MySQL PaaS which requires an SSL connection to the database. I needed to add the following to the PDO options component array (as seen above):
 
 ```
 PDO::MYSQL_ATTR_SSL_CA => '/var/www/html/DigiCertGlobalRootG2.crt.pem'
 PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false
 ```
 
-Using the Octopus Deploy Jenkins plugin, packaging an application for deployment is easy.  Simply choose the `Octopus Deploy: Package application` step and fill in the following:
+Using the Octopus Deploy Jenkins plugin, packaging an application for deployment is easy.  Simply choose the **Octopus Deploy: Package application** step and fill in the following:
 
 - Octopus Deploy CLI: select the Octopus Deploy CLI that was configured in `Global Tool Configuration`
-- Package ID: the name of the package.  For this demonstration, it's `CarRental.PHP.Web`
-- Version Number: The version number of the package
+- Package ID: the name of the package, i.e., `CarRental.PHP.Web`
+- Version Number: the version number of the package
 - Package format: Zip or Nuget
 - Package base folder: for my repo it was `${WORKSPACE}/src`
 - Package output folder: `${WORKSPACE}`
@@ -78,22 +79,22 @@ Using the Octopus Deploy Jenkins plugin, packaging an application for deployment
 Included in the source is a script that creates the schema and populates the database with data.  The database script file is named specifically to work with the Flyway database migrations product:
   
 - Octopus Deploy CLI: select the Octopus Deploy CLI that was configured in `Global Tool Configuration`
-- Package ID: the name of the package.  For this demonstration, it's `CarRental.PHP.Db`
-- Version Number: The version number of the package.
+- Package ID: the name of the package, i.e., `CarRental.PHP.Db`
+- Version Number: the version number of the package
 - Package format: Zip or Nuget
 - Package base folder: for my repo it was `${WORKSPACE}`
 - Package output folder: `${WORKSPACE}`
 - Package include paths: `**/sql/*.*`
 
 ### Pushing packages to Octopus Deploy
-Using the `Octopus Deploy: Push packages` plugin step, you can push both the web and database packages to Octopus Deploy in a single step:
+Using the **Octopus Deploy: Push packages** plugin step, you can push both the web and database packages to Octopus Deploy in a single step:
 
 - Octopus Deploy CLI: select the Octopus Deploy CLI that was configured in `Global Tool Configuration`
-- Octopus Deploy Server: select the Octopus Deploy server to push to (defined in Manage Jenkins -> Configure System)
+- Octopus Deploy Server: select the Octopus Deploy server to push to (defined in **{{ Manage Jenkins > Configure System}}**
 - Space: select the Space to push to (uses Default if left blank)
 - Package paths: `/.zip`
 
-Our PHP application is now packaged up and ready for deployment.
+Our PHP application is now packaged and ready for deployment.
 
 ## Deploying your PHP application
 With the packages ready, we can define our deployment process.  
@@ -102,7 +103,7 @@ This post assumes you have familiarity creating Octopus Deploy projects, so I wo
 
 Our deployment process will consist of the following steps:
 
-- Create MySQL database if not exists
+- Create the MySQL database if it doesn't exist
 - Flyway Database Migrations (using execution containers)
 - Deploy to NGINX
 
@@ -111,7 +112,7 @@ This step will create a database on a MySQL server if the database doesn't alrea
 
 - Server: Name or IP address of the MySQL server
 - Username: Username that has sufficient permissions to create databases
-- Password: Password for user account
+- Password: Password for the user account
 - Database Name: Name of the database to create
 - Port: Port that MySQL is listening on (default 3306)
 - Use SSL: Whether or not to use SSL when connecting to MySQL (this was required to be true for me because I was using Azure MySQL PaaS)
@@ -121,18 +122,18 @@ For this post, I used the newly created [Flyway template](https://library.octopu
 
 - Execution Location: Run once on a worker
 - Worker Pool: Pool that contains workers with Docker installed
-- Container image: `octopuslabs/flyway-workertools:latest` (must have an external feed configured to use Docker Hub)
+- Container image: `octopuslabs/flyway-workertools:latest` (You must have an external feed configured to use Docker Hub)
 
-The step will need the following filled in:
+The step will need the following information:
 
 - Flyway Package: `CarRental.PHP.Db`
 - Flyway Command: `Migrate`
-- -Url: JDBC connection Url, i.e. jdbc:mysql://`<ServerName>`:`<Port>`/`<DatabaseName>`}?serverTimezone=UTC&useSSL=true
+- -Url: JDBC connection URL, i.e. jdbc:mysql://`<ServerName>`:`<Port>`/`<DatabaseName>`}?serverTimezone=UTC&useSSL=true
 - -User: User that can make updates to the database
 - -Password: Password for user account
 
 ### Deploy Car Rental to NGINX
-The third and final step is to deploy the Car Rental PHP application to an NGINX web server.  Add a step to the process, choosing the NGINX built-in Step Template:
+The third and final step is to deploy the Car Rental PHP application to an NGINX web server.  Add a step to the process, choosing the NGINX built-in step template:
 
 ![](octopus-nginx-step.png)
 
@@ -147,7 +148,7 @@ Click on **CONFIGURE FEATURES** and enable:
 In the **Package Details** section, choose the `CarRental.PHP.Web` package.
 
 #### Custom Deployment Scripts
-Add the following in the Post-deployment script window:
+Add the following in the post-deployment script window:
 ```
 nginx -s reload
 ```
@@ -156,7 +157,7 @@ Be sure to select the appropriate language for the script. I chose Bash since I'
 
 ![](octopus-nginx-post-deploy-script.png)
 
-#### Substitute Variables in Templates
+#### Substitute variables in templates
 Specify the location of the `config.php` file that contains the database connection information, so that it gets updated with the appropriate values in the **Target files** input: `includes/config.php`
 
 ![](octopus-file-substitute.png)
@@ -174,6 +175,7 @@ I only needed one binding for this sample application:
 ##### Locations
 To configure NGINX to run our PHP application, we'll need to define three locations:
 
+```
 Location: = /
 Directives:
  
@@ -182,29 +184,30 @@ Directives:
 Location: /
 Directives:
 
-- root = `#{Octopus.Action.Package.InstallationDirectoryPath}/`
-- try_files = `$uri /index.php$is_args$args`
+- root = #{Octopus.Action.Package.InstallationDirectoryPath}/
+- try_files = $uri /index.php$is_args$args
 
 Location: ~ [^/]\.php(/|$)
 Directives:
 
-- fastcgi_split_path_info = `^(.+?\.php)(/.*)$`
-- fastcgi_pass = `unix:/run/php/php7.2-fpm.sock` 
-- fastcgi_index = `index.php`
-- include = `fastcgi.conf`
-- root = `#{Octopus.Action.Package.InstallationDirectoryPath}/`
-- fastcgi_param = `ENVIRONMENT_NAME #{Octopus.Environment.Name}`
+- fastcgi_split_path_info = ^(.+?\.php)(/.*)$
+- fastcgi_pass = unix:/run/php/php7.2-fpm.sock
+- fastcgi_index = index.php
+- include = fastcgi.conf
+- root = #{Octopus.Action.Package.InstallationDirectoryPath}/
+- fastcgi_param = ENVIRONMENT_NAME #{Octopus.Environment.Name}
+```
 
 ![](octopus-nginx-locations.png)
 
 We've now configured the step to deploy our PHP application to NGINX.  All that's left is to create a release and deploy.
 
 ### Deploy
-Once you've deployed your release, you should receive output that looks similar to this:
+After you've deployed your release, you should receive output that looks similar to this:
 
 ![](octopus-deploy-success.png)
 
-You may notice that the NGINX step is displaying warnings, however this is normal.  NGINX writes information messages to the stderr stream which Octopus interprets as a possible error and flags as a warning.
+You may notice that the NGINX step displays warnings, however, this is normal.  NGINX writes information messages to the stderr stream which Octopus interprets as a possible error and flags as a warning.
 
 ![](octopus-nginx-stderr.png)
 
