@@ -4,11 +4,13 @@ description: Learn how to deploy PHP applications using Octopus Deploy.
 author: shawn.sesna@octopus.com
 visibility: public
 published: 2021-05-12-1400 
-metaImage: 
-bannerImage: 
+metaImage: blogimage-deploying-php-applications-with-octopus-deploy-2021.png
+bannerImage: blogimage-deploying-php-applications-with-octopus-deploy-2021.png
 tags:
  - DevOps
 ---
+
+![](blogimage-deploying-php-applications-with-octopus-deploy-2021.png)
 
 PHP is the most [popular](https://w3techs.com/technologies/market/programming_language) language for web-based applications.  This popularity has led to a wide availability of products that will deploy your PHP code but not necessarily your entire stack.  Applications often include components other than a web front-end, such as databases, APIs, and even containerized microservices.  
 
