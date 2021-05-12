@@ -59,15 +59,15 @@ This functionality is also multi-tenant aware, if you are redeploying a multi-te
 I recommend setting this to a [prompted variable](https://octopus.com/docs/projects/variables/prompted-variables) with the default set to **Promote**.  This way you can change the behavior of the parent/release orchestration project on the fly.
 :::
 
-## Example
+## Examples
 For this article, I am going to convert the project I created in the [first article](https://octopus.com/blog/release-management-with-octopus) of this series.  When we are done the project will be able to:
 
 - Redeploy the latest release in **Development**, **Test**, **Staging** and **Production**.
 - Redeploy to a specific target or all targets.
 - Configuring a deployment target trigger to run when a new target is added.
+- Allow releases to **Staging** and **Production** to be configured for redeployments or promotion.
 
-### Current Configuration
-When we finished, we had a release orchestration project that deployed to **Staging**, **Prod Approval**, and **Production**.
+When we finished the first article, we had a release orchestration project that deployed to **Staging**, **Prod Approval**, and **Production**.
 
 ![release orchestration project overview](release-orchestration-project-overview.png)
 
@@ -89,22 +89,151 @@ As you can see, this process makes heavy use of variables.  Those variable defin
 
 ![release orchestration project variables](release-orchestration-project-variables.png)
 
+## Scenario #1: Manual redeployments
+
+The majority of the time, a release is used to promote from **Test** to **Staging** or **Staging** to **Production**.  There are a handful of scenarios when it makes sense to redeploy what is in **Staging** or in **Production**.  
+
+This scenario might come when:
+
+- We did a **Staging** environment refresh.  Data was copied and sanitized from **Production** to **Staging**.  When it was complete we wanted to redeploy everything to make sure the latest configuration values and database changes were applied.
+- A new server was added in **Production** to handle an increase in traffic.
+- A server was acting "funny" and needed to be "kicked."
+
+### Variables
+
+I am going to update my variables to allow the process to:
+
+- Only allow promotion in **Prod Approval**
+- Allow both redeployments and promotion via a prompted variable in **Staging** and **Production**.  
+- Allow the user to select the machine they want to redeploy to via a prompted variable for **Staging** and **Production**.  **Prod Approval** does not allow that functionality.
+- Create a variable to use as a run condition for the "Get [component] release" steps.  It will return True (the step will run) when in promotion mode.  It will return False (the step will be skipped) when in redeploy mode.
+
+![Scenario 1 new variables](scenario-1-new-variables.png)
+
+:::hint
+Specific machine variable is set to `N/A` because that is default value for the step template.  The step template will see that and ignore the specific machine functionality.  It was set to a value to make it easier for prompted variables.
+:::
+
+### Deployment Process
+
+In all the "Get [component] release steps" I am going to update the deployment mode, specific machines and run conditions to use the new variables created.
+
+![updated get component release steps](release-orchestration-updated-get-steps.png)
+
+For the deployment steps only the deployment mode and specific machines were updated.
+
+![updated deploy component step](deploy-child-project-steps-updated.png)
+
+### Create the release
+
+Creating a release to **Staging**, **Prod Approval** and **Production** will be the same as before.  
+
+![create regular release](create-regular-release.png)
+
+### Promoting the release
+
+Most of the time everyone will leave the prompted variables as is and do a promotion.  
+
+![regular deployment](deploy-regular-release-to-staging.png)
+
+That will continue to function as it always has.
+
+![normal deployment working as is](promote-works-as-is.png)
+
+### Triggering a redeployment
+
+But the user can also opt to do a redeployment by changing the prompted variable to redeploy.
+
+![redeploy staging kickoff](redeploy-staging-deployment-kickoff.png)
+
+That will trigger a redeployment of releases in **Staging** or **Production**.
+
+![redeploy staging](redeploy-staging-environment.png)
+
+If that release has already been deployed to a specific environment you can click on `...` in the top right menu and select **Re-deploy...**
+
+![choosing the option to redeploy](selecting-to-redeploy.png)
+
+### Redeploying to a specific machine
+
+Users can also opt to redeploy to a specific machine.  
+
+![redeploy to specific machine](redeploy-to-specific-machine.png)
+
+When the deployment runs the step template will skip any projects not associated with the entered machine.
+
+![redeploy to specific machine in action in staging](redeploy-to-specific-machine-staging.png)
+
+## Scenario #2: Automatic redeployments when scaling out
+
+The first scenario covered manually selecting deployment targets.  What is even better is leveraging this functionality with a deployment target trigger.  When a new deployment target is created automatically deploy everything associated with that target.  To do this we need to make a small modification to the variables and deployment process.
+
+### Variable Changes
+
+In my scenario I would like to support both manual redeployments as well as automatic redeployments.  This means I still want a prompted variable.  However the default value will change to:
+
+```
+#{unless Octopus.Deployment.Trigger.Name}Promote#{else}Redeploy#{/unless}
+```
+
+What that is saying that if the deployment was triggered by a deployment, then do a promotion.  If it was triggered by a deployment target trigger then do a redeploy.  The prompted variable ends up looking like this:
+
+![](prompted-variable-with-trigger.png)
+
+### Create a Trigger
+
+The component projects all target specific roles, `App-Service`, `App-WebApi`, and `App-WebUI`.  I don't want to add a trigger in each of those component projects, I'd rather have one trigger to rule them all.  I all this trigger to the release orchestration project.
+
+![new machine added trigger](create-trigger-to-handle-scale-out.png)
+
+### Deployment process modifications
+
+Right now there is one problem with the trigger and the existing deployment process.  I am going to walk through what the problem is and then talk about how to fix it.  First, I add a new target for one of those roles in **Staging**.
+
+![new target](new-target-added.png)
+
+We can wait for hours or days but the trigger will never fire.  That is because the release orchestration project doesn't have any steps that specifically target those roles.  You can see it in the deployment screen.  There are no targets.
+
+![no targets for release orchestration](no-deployment-targets.png)
+
+To get around that limitation we an add a simple script step that targets all those roles.
+
+![script step](run-a-script-with-deployment-targets.png)
+
+### Testing the trigger
+
+Now when we are ready to deploy a release we can see all the deployment targets the script will run on.
+
+![deployment targets for the release orchestration project](deployment-targets-targeted.png)
+
+When I add a new machine to staging the trigger will fire.  It will skip over projects the new machine won't deploy to, just like we saw when we manually selected a deployment target.
+
+![redeploy on trigger](redeploy-on-trigger.png)
+
+Not only that, it will only send in that specific machine to the component project.
+
+![specific machine on deployment](filter-on-machine.png)
+
+## Scenario #3: Redeployments with Build Servers
+
+The final scenario is when external tools, such as a build server, trigger the deployments to all the component projects.  In this example, the build server automatically triggers deployments to those **Development** and **Test**.  While this works fine for code changes this has some limitations when a new server comes online.
+
+- With an Octopus project per component, the build server is only updating one component at a time.  You need a way to deploy all projects at once.
+- Projects not currently being worked will never get a deployment triggered. A mechanism is needed to redeploy everything when a new server comes online.
+
+We don't want to change the build server integration.  Rather we will update the existing process to allow for redeployment only releases for **Development** and **Test**.
+
 ### Create new lifecycle
 
-One of the goals is to be able to redeploy to all environments.  The current lifecycle only allows deployments to **Staging**, **Prod Approval**, and **Production**.  In this scenario I'd like to keep that lifecycle as is.
+The current lifecycle in the project only allows deployments to **Staging**, **Prod Approval**, and **Production**.  In this scenario, I'd like to keep that lifecycle as is and create a new lifecycle.  The release orchestration project will be used to promote from **Test** to **Staging** and **Staging** to **Production** the majority of the time.  The redeployments to **Development** and **Test** are the exception, rathert han the norm.
 
-- If you recall from the early article, the build server is responsible for deploying new code to **Development** and **Test**.  
-- The vast majority of the time the release orchestration project will be used to promote from **Test** to **Staging** and **Staging** to **Production**.
-- I want a clear line in the sand.  Release orchestration for promotions / redeploys for **Staging** and **Production** deployments.  Redeploys only for everything else.  
-- I don't want to have to create a new release and deploy it to **Development** and **Test** just so I can deploy to **Staging** and **Production**.
+:::hint
+You might find it easier to add the **Development** and **Test** to your lifecycle but mark them as optional.    
+:::
 
 Let's create that new lifecycle and configure it to deploy to **Development** and **Test**.
 
 ![Dev and test only lifecycle](new-lifecycle.png)
-
-:::hint
-Using a custom lifecycle is for my specific use case.  There are legitimate reasons for updating the existing lifecycle or creating a "super lifecycle" that has all environments. 
-:::
 
 Now that the lifecycle has been created, I'm going to go ahead and add a channel to the project.
 
@@ -118,34 +247,21 @@ Finally, I am going to update **Discrete Channel Release** setting to be `Treat 
 I am going to update my variables to:
 
 - Only allow redeployments in **Development** and **Test**
-- Only allow promotion in **Prod Approval**
-- Allow both redeployments and promotion via a prompted variable in **Staging** and **Production**.  The default will be promote unless the deployment is triggered by a deployment target trigger.
-- Allow the user to select the machine they want to redeploy to via a prompted variable for **Development**, **Test**, **Staging**, and **Production**.  **Prod Approval** does not allow that functionality.
-- Create a variable to use as a run condition for the "Get [component] release" steps.  It will return True (the step will run) when in promotion mode.  It will return False (the step will be skipped) when in redeploy mode.
-
-:::hint
-My goal is to cover all possible use cases in this scenario.  In your instance you might not use triggers.
-:::
+- Allow the user to select the machine they want to redeploy to via a prompted variable for **Development** and **Test** just like they can in **Staging**, and **Production**.  **Prod Approval** remains the same, and does not allow that functionality.
 
 ![New variables added](new-variables.png)
 
-You will notice the specific machine variable is set to `N/A`.  That is the default value for the step template, it sees that and it will ignore the specific machine functionality.  It was set to a value to make it easier for prompted variables.
-
-### Deployment Process
-
-In all the "Get [component] release steps" I am going to update the deployment mode, specific machines and run conditions to use the new variables created.
-
-![updated get component release steps](release-orchestration-updated-get-steps.png)
-
-For the deployment steps only the deployment mode and specific machines were updated.
-
-![updated deploy component step](deploy-child-project-steps-updated.png)
+:::hint
+Specific machine variable is set to `N/A` because that is default value for the step template.  The step template will see that and ignore the specific machine functionality.  It was set to a value to make it easier for prompted variables.
+:::
 
 ### Release for redeployment only
 
-First, for **Development** and **Test** environments I am going to create a redeploy only release.  The step template ignores the version filter and just redeploys the latest release.  So really, I can put any release number I want in here.
+For **Development** and **Test** environments I am going to create a redeploy only release.  The step template ignores the version filter and just redeploys the latest release.  So really, I can put any release number I want in here.
 
 ![redeploy only release](redeploy-only-release.png)
+
+### Deploying the redeployment only release
 
 When I specify a machine name in my prompted variable like this:
 
@@ -159,56 +275,6 @@ If I don't specify a machine then the redeployment will deploy to all machines f
 
 ![redeploy the whole thing](redeploy-all-machines.png)
 
-### Release for promotion or redeployment
+## Conclusion
 
-The release for **Staging**, **Prod Approval** and **Production** will be the same as before.  It will have a specific version number without a pre-release tag.
-
-![create regular release](create-regular-release.png)
-
-Most of the time everyone will leave the prompted variables as is.
-
-![regular deployment](deploy-regular-release-to-staging.png)
-
-But the user can also opt to do a redeployment.  A common example is if the databases from **Production** were sanitized and copied down to **Staging**.  
-
-![redeploy staging kickoff](redeploy-staging-deployment-kickoff.png)
-
-The same behavior we saw in **Development** and **Test** we will see in **Staging** and **Production**.
-
-![redeploy staging](redeploy-staging-environment.png)
-
-## Deployment Target Triggers
-
-So far, almost everything configured (outside of a few variables) has assumed a manual redeployment.  What about leveraging triggers to handle when a new machine is added?  The good news is that is entirely possible, the bad news is you have to add an additional step into the release orchestration deployment process.
-
-The component projects all target specific roles, `App-Service`, `App-WebApi`, and `App-WebUI`.  I can create a trigger in the release orchestration project to fire when a new machine is added.
-
-![new machine added trigger](create-trigger-to-handle-scale-out.png)
-
-I add a new target for one of those roles in **Development**.
-
-![new target](new-target-added.png)
-
-Octopus saw the new machine was added and it counted against the trigger, but nothing happened.  
-
-![trigger doesn't fire](trigger-does-not-fire.png)
-
-That is because the release orchestration project doesn't have any steps that specifically target those roles.  You can see it in the deployment screen.  There are no targets.
-
-![no targets for release orchestration](no-deployment-targets.png)
-
-To get around that limitation we an add a simple script step that targets all those roles.
-
-![script step](run-a-script-with-deployment-targets.png)
-
-Now when we are ready to deploy a release we can see all the deployment targets the script will run on.
-
-![deployment targets for the release orchestration project](deployment-targets-targeted.png)
-
-When I add a new machine to staging the trigger will fire.  It will skip over projects the new machine won't deploy to, just like we saw when we manually selected a deployment target.
-
-![redeploy on trigger](redeploy-on-trigger.png)
-
-Not only that, it will only send in that specific machine to the component project.
-
-![specific machine on deployment](filter-on-machine.png)
+I'll be the first to admit, I didn't see the step template evolving like this.  When I originally started writing it my goal was to solve the promotion problem.  But after seeing it used in the wild and getting feedback supporting redeployment scenarios such as these make a lot of sense.  My hope is with a few modifications to your deployment process you too can take advantage of this redeploy functionality!
