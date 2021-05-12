@@ -19,7 +19,7 @@ In this post, I demonstrate how to deploy applications written in Node.js using 
 For this post, I chose the [BestBags](https://github.com/maryamaljanabi/bestbags-nodejs-ecommerce) e-commerce sample application.  This sample includes everything you need to get it up and running quickly, even files to create and seed the MongoDB database that it uses as a back-end.  
 
 ### Modifications
-To make this project more configurable, I made some minor modifications.  The original project hardcoded values that could change as the application moves from environment to environment:
+To make this project more configurable, I made some minor modifications.  The original project hard-coded values that could change as the application moves from environment to environment:
 
 - Port to listen on
 - Database connection string
