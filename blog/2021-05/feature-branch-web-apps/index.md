@@ -1,6 +1,6 @@
 ---
 title: Feature branching web apps
-description: Learn how to deploy and manage Azure Web App feature branches in Octopus
+description: Learn how to deploy and manage Azure Web App feature branches in Octopus Deploy.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2021-05-17-1400
