@@ -4,14 +4,14 @@ description: "Learn how to deploy an application written in NodeJS with a MongoD
 author: shawn.sesna@octopus.com
 visibility: public
 published: 2021-05-19-1400 
-metaImage: blogimage_deploying-a_nodejs_application_with_octopus deploy_2021.png
-bannerImage: blogimage_deploying-a_nodejs_application_with_octopus deploy_2021.png
+metaImage: blogimage_deploying-a_nodejs_application_with_octopus_deploy_2021.png
+bannerImage: blogimage_deploying-a_nodejs_application_with_octopus_deploy_2021.png
 tags:
  - DevOps
  - PowerShell
 ---
 
-![NodeJS logo on a laptop screen in between and connected to MongoDB logo and octopus with glasses.](blogimage_deploying-a_nodejs_application_with_octopus deploy_2021.png)
+![NodeJS logo on a laptop screen in between and connected to MongoDB logo and octopus with glasses.](blogimage_deploying-a_nodejs_application_with_octopus_deploy_2021.png)
 
 Initially, JavaScript only executed on client browsers, to do things like manipulate the Document Object Model (DOM) or perform input validation to save a trip to the server.  Node.js, however, is a technology that developers can use to write client-side _and_ server-side code using the JavaScript language.  
 
