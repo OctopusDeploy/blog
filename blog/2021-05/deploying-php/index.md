@@ -92,7 +92,7 @@ Included in the source is a script that creates the schema and populates the dat
 Using the **Octopus Deploy: Push packages** plugin step, you can push both the web and database packages to Octopus Deploy in a single step:
 
 - Octopus Deploy CLI: select the Octopus Deploy CLI that was configured in `Global Tool Configuration`
-- Octopus Deploy Server: select the Octopus Deploy server to push to (defined in **{{ Manage Jenkins > Configure System}}**
+- Octopus Deploy Server: select the Octopus Deploy server to push to (defined in **{{ Manage Jenkins > Configure System}}**)
 - Space: select the Space to push to (uses Default if left blank)
 - Package paths: `/.zip`
 
