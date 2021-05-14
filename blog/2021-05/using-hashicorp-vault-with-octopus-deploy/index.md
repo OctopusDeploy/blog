@@ -4,14 +4,14 @@ description: Introducing new step templates to allow Secrets stored in HashiCorp
 author: mark.harrison@octopus.com
 visibility: private
 published: 2022-05-01
-metaImage: octopus-step-template.png
-bannerImage: octopus-step-template.png
+metaImage: blogimage-hashicorp-vault-step-templates-2021.png
+bannerImage: blogimage-hashicorp-vault-step-templates-2021.png
 tags:
  - Product
  - Security
 ---
 
-![Using HashiCorp Vault with Octopus Deploy](octopus-step-template.png)
+![Using HashiCorp Vault with Octopus Deploy](blogimage-hashicorp-vault-step-templates-2021.png)
 
 Storing sensitive values in Octopus Deploy solves many problems; the trade-off is, if your organization has standardized on a secrets manager, that might mean storing them twice, making secrets management more complicated. Octopus has supported the concept of [sensitive variables](https://octopus.com/docs/projects/variables/sensitive-variables) since [Octopus 2.0](https://octopus.com/blog/new-in-2.0/sensitive-variables), but we're often asked by customers about support for Secret managers. One, in particular, is [HashiCorp Vault](https://www.vaultproject.io/).
 
