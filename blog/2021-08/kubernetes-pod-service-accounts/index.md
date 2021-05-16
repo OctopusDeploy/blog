@@ -59,10 +59,10 @@ The deployment target is now ready to be used in Kubernetes deployment processes
 
 Similar to the deployment target created earlier, the deployment steps require a worker pool running inside the Kubernetes cluster. Please ensure that you select a valid **Worker Pool** for your steps.
 ![Step's Worker Pool selection](images/step-worker-pool-selection.png)
-## Conclusion
 
+## Conclusion
 This blog post demonstrates how you can utilize the **Pod Service Account** authentication mode when creating a **Kubernetes deployment target**. 
 
-One of the benefits of his authentication mode is that it enables the workers to connect back to the parent cluster by itself. Hence, no certificate data of your cluster is required to be stored in Octopus Server.
+One of the benefits of this authentication mode is that it enables the workers to connect back to the parent cluster by itself. Hence, no certificate data of your cluster is required to be stored in Octopus Server.
 
 Happy deployments!
