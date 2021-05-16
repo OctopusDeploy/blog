@@ -44,7 +44,7 @@ Feature branches are typically processed by a CI system as a convenient way to e
 
 ### Versioning feature branch artifacts
 
-Tools like GitVersion provide examples that show [feature branch names included in a SemVer prerelease field](https://Gitversion.net/docs/learn/branching-strategies/Gitflow/examples), resulting in versions like `1.3.0-myfeature`. Most package management tools have versioning strategies that expose components to accommodate a feature branch name.
+Tools like GitVersion provide examples that show [feature branch names included in a SemVer prerelease field](https://gitversion.net/docs/learn/branching-strategies/gitflow/examples), resulting in versions like `1.3.0-myfeature`. Most package management tools have versioning strategies that expose components to accommodate a feature branch name.
 
 Where a package manager has no versioning guidelines, like Docker repositories, adopting a versioning scheme like SemVer is a good choice.
 
