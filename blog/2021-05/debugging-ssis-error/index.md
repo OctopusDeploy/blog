@@ -10,7 +10,7 @@ tags:
  - Databases
 ---
 
-In a [previous post](https://octopus.com/blog/deploying-ssis), I walked through how to configure a build and deploy a SQL Server Integration Services (SSIS) package using Azure DevOps and Octopus Deploy.  In this post, I'll discuss a problem I encountered after the package was deployed to the server, due to using a newer version of Visual Studio to develop the SSIS package, but deploying to an older version of SQL Server.
+In a [previous post](https://octopus.com/blog/deploying-ssis), I walked through how to deploy SQL Server Integration Services (SSIS) packages using Octopus Deploy.  In this post, I discuss a problem I encountered after the package was deployed to the server, due to using a newer version of Visual Studio to develop the SSIS package, but deploying to an older version of SQL Server.
 
 ## The error
 After a successful deployment, the developer attempted to run the SSIS package but received the following error message:
@@ -74,7 +74,7 @@ Function Import-Assemblies
     Write-Host "Execution folder: $WorkingFolder"
 
     # Load the IntegrationServices Assembly
-    [Reflection.Assembly]::LoadWithPartialName("Microsoft.SqlServer.Management.IntegrationServices") | Out-Null # Out-Null supresses a message that would normally be displayed saying it loaded out of GAC
+    [Reflection.Assembly]::LoadWithPartialName("Microsoft.SqlServer.Management.IntegrationServices") | Out-Null # Out-Null suppresses a message that would normally be displayed saying it loaded out of GAC
 }
 
 Function Get-Catalog
@@ -82,7 +82,7 @@ Function Get-Catalog
     # define parameters
     Param ($CatalogName, $IntegrationServices)
 
-    # define working varaibles
+    # define working variables
     $Catalog = $null
 
     # check to see if there are any catalogs
@@ -118,7 +118,7 @@ Function Get-Folder
         throw
     }
     
-    # return the folde reference
+    # return the folder reference
     return $Folder
 }
 
