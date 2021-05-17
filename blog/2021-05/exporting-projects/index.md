@@ -8,7 +8,8 @@ tags:
  - Product 
 ---
 
-The 2021 Q2 Octopus Deploy release includes a new feature allowing projects to be exported and then imported into another Space.
+The 2021 Q2 Octopus Deploy release includes a new feature allowing projects to be exported and then imported into another Space, to help you organise your Octopus instance. It also allows you to easily move your on-premesis Octopus installation to Octopus Cloud.
+
 
 ## How Spaces evolved
 Octopus 2019.1 introduced [Spaces](https://octopus.com/docs/administration/spaces), a way to partition your Octopus Server.  
@@ -17,7 +18,7 @@ We didn't include the ability to _move projects between Spaces_ though,   becaus
 
 The demand for this has been strong though. We were told Spaces was less valuable without a way to partition existing projects into new Spaces. 
 
-Our Customer Solutions team stepped up to fill the gap with the [Space Cloner](https://github.com/OctopusDeployLabs/SpaceCloner) project, a collection of PowerShell scripts to help with copying between spaces.  This was useful in many cases, but came with limitations as a solution that operated via the HTTP API as opposed to being "in the box". 
+Our Customer Solutions team stepped up to fill the gap with the [Space Cloner](https://github.com/OctopusDeployLabs/SpaceCloner) project, a collection of PowerShell scripts to help with copying between spaces.  This was useful in many cases, but there were limitations because it operated via the HTTP API, as opposed to being "in the box". 
 
 Fast-forward two years, and people also want to migrate projects from self-hosted Octopus instances to [Octopus Cloud](https://octopus.com/docs/octopus-cloud).  
 
