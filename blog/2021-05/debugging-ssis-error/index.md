@@ -55,7 +55,7 @@ There are two solutions:
 - Use PowerShell to update the Package Parameters for you.
 
 ### Manual method
-The hint above describes how to navigate to the Package Parameters and manually update them.  However, this is repetitive and inefficient as it would need to be repeated after each deployment.
+The hint above describes how to navigate to the Package Parameters and manually update them.  However, this is inefficient as it would need to be repeated after each deployment.
 
 ### PowerShell
 A better solution is to add a Run a Script task to our deployment process to perform the edits for us. 
