@@ -38,7 +38,7 @@ Unlike fixed environments, such as test or production, feature branches are shor
 
 Also, a feature branch is not intended to be deployed to production. Unlike a hotfix, which is an emergency production deployment to quickly solve a critical issue, a feature branch is only used for testing.
 
-By limiting the audience a feature branch is exposed to, you can also potentially save costs. This is because you can likely delete the deployments, and their underlying infrastructure, in the evening, and then redeploy the feature branches again in the morning. Doing so means you no longer pay to host applications no one will ever use overnight.
+By limiting the audience a feature branch is exposed to, you can also potentially save costs. This is because you can likely delete the deployments and their underlying infrastructure in the evening, and then redeploy the feature branches again in the morning. Doing so means you no longer pay to host applications no one will ever use overnight.
 
 Feature branches are typically processed by a CI system as a convenient way to ensure tests pass and produce deployable artifacts. There is a compelling argument to be made that a CI system should produce a deployable artifact (if the code compiles) regardless of the test results, given processes like Test Driven Development (TDD) encourage failing tests as a normal part of the development workflow.
 
@@ -82,7 +82,7 @@ Fortunately, the [Octopus Terraform provider](https://registry.terraform.io/prov
 
 We'll make use of runbooks to support the creation and deletion of ephemeral Octopus resources. This allows us to separate the management of the underlying infrastructure from the deployment of our applications.
 
-We'll create six runbooks. Three runbooks will create, delete, and suspend resources for a single feature branch, these will be paired with three more runbooks to execute based on the presence or absence of branches in Git:
+We'll create six runbooks. Three runbooks will create, delete, and suspend resources for a single feature branch. These will be paired with three more runbooks to execute based on the presence or absence of branches in Git:
 
 * Create Branch Infrastructure, which will create the resources required to deploy a single branch.
 * Resume Branches, which will (re)create branch infrastructure based on those present in the Git repository.
