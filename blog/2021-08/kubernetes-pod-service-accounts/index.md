@@ -58,6 +58,7 @@ Now we have a pool of healthy worker(s) running inside the Kubernetes cluster. T
 The deployment target is now ready to be used in Kubernetes deployment processes. You can proceed to create a [Deploy Kubernetes containers](https://octopus.com/docs/deployments/kubernetes/deploy-container) step to target the [target role](https://octopus.com/docs/infrastructure/deployment-targets#target-roles) of this deployment target.
 
 Similar to the deployment target created earlier, the deployment steps require a worker pool running inside the Kubernetes cluster. Please ensure that you select a valid **Worker Pool** for your steps.
+
 ![Step's Worker Pool selection](images/step-worker-pool-selection.png)
 
 ## Conclusion
