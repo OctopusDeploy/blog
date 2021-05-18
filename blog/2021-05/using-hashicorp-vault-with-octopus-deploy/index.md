@@ -1,9 +1,9 @@
 ---
 title: Using HashiCorp Vault with Octopus Deploy
-description: Introducing new step templates to allow Secrets stored in HashiCorp Vault to be used in deployments or runbooks.
+description: Introducing new step templates to allow secrets stored in HashiCorp Vault to be used in deployments or runbooks.
 author: mark.harrison@octopus.com
-visibility: private
-published: 2022-05-01
+visibility: public
+published: 2022-05-24-1400
 metaImage: blogimage-hashicorp-vault-step-templates-2021.png
 bannerImage: blogimage-hashicorp-vault-step-templates-2021.png
 tags:
@@ -13,9 +13,11 @@ tags:
 
 ![Using HashiCorp Vault with Octopus Deploy](blogimage-hashicorp-vault-step-templates-2021.png)
 
-Storing sensitive values in Octopus Deploy solves many problems; the trade-off is, if your organization has standardized on a secrets manager, that might mean storing them twice, making secrets management more complicated. Octopus has supported the concept of [sensitive variables](https://octopus.com/docs/projects/variables/sensitive-variables) since [Octopus 2.0](https://octopus.com/blog/new-in-2.0/sensitive-variables), but we're often asked by customers about support for Secret managers. One, in particular, is [HashiCorp Vault](https://www.vaultproject.io/).
+Storing sensitive values in Octopus Deploy solves many problems. If your organization has standardized on a secrets manager though, that might mean storing sensitive values twice, making secrets management more complicated. 
 
-In this post, I walk through a number of new [HashiCorp Vault step templates](https://library.octopus.com/listing/hashicorp%20vault) that are designed to enable you to retrieve secrets from Vault for use in your deployments or runbooks.
+Octopus has supported the concept of [sensitive variables](https://octopus.com/docs/projects/variables/sensitive-variables) since [Octopus 2.0](https://octopus.com/blog/new-in-2.0/sensitive-variables), but customers often ask about support for secret managers. One, in particular, is [HashiCorp Vault](https://www.vaultproject.io/).
+
+In this post, I walk through a number of new [HashiCorp Vault step templates](https://library.octopus.com/listing/hashicorp%20vault) designed for you to retrieve secrets from Vault for use in your deployments or runbooks.
 
 <h2>In this post</h2>
 
@@ -23,15 +25,17 @@ In this post, I walk through a number of new [HashiCorp Vault step templates](ht
 
 ## Introduction
 
-This post assumes some familiarity with [Custom step templates](https://octopus.com/docs/projects/custom-step-templates) and the Octopus [Community Library](https://octopus.com/docs/projects/community-step-templates). If you want to learn more about these, my colleague Ryan Rousseau wrote up an excellent [two-part series](https://octopus.com/blog/creating-an-octopus-deploy-step-template) on how to create your own step template and publish it to the Library. In addition, this post doesn't cover how to configure a Vault server or its main concepts in great detail.
+This post assumes some familiarity with [custom step templates](https://octopus.com/docs/projects/custom-step-templates) and the Octopus [Community Library](https://octopus.com/docs/projects/community-step-templates). To learn more about these, you can read Ryan Rousseau's [two-part series](https://octopus.com/blog/creating-an-octopus-deploy-step-template) on how to create your own step template and publish it to the Library. 
 
-The step templates covered in this post perform both [Vault authentication](https://www.vaultproject.io/docs/concepts/auth) and Secret retrieval for both versions `1` and `2` of the [Key-Value (kv)](https://www.vaultproject.io/docs/secrets/kv) Secrets Engine. 
+In addition, this post doesn't cover in great detail how to configure a Vault server or its main concepts.
 
-All of the step templates make use of the Vault [HTTP API](https://www.vaultproject.io/api-docs) so there are no additional dependencies required to use them, except being able to connect to your Vault server of course! They have all been tested using Vault version `1.7.1` and can run on both Windows and Linux (with `Powershell Core` installed).
+The step templates covered in this post perform both [Vault authentication](https://www.vaultproject.io/docs/concepts/auth) and secret retrieval for both versions `1` and `2` of the [Key-Value (kv)](https://www.vaultproject.io/docs/secrets/kv) Secrets Engine. 
+
+All of the step templates make use of the Vault [HTTP API](https://www.vaultproject.io/api-docs) so there are no additional dependencies required to use them, except being able to connect to your Vault server of course. They've all been tested using Vault version `1.7.1` and can run on both Windows and Linux (with `Powershell Core` installed).
 
 ## Authentication #{authentication}
 
-Before you can interact with Vault, you must authenticate against an auth method. Vault offers a number of different authentication options. The following step templates have been created to support Vault authentication:
+Before interacting with Vault, you must authenticate against an auth method. Vault offers a number of different authentication options. The following step templates have been created to support Vault authentication:
 
 - [LDAP login](#ldap-login)
 - [AppRole login](#approle-login)
@@ -40,7 +44,7 @@ Before you can interact with Vault, you must authenticate against an auth method
 - [AppRole Unwrap SecretID and Login](#unwrap-secretid-login)
 
 :::hint
-The AppRole method is the recommended way to authenticate with Vault for Servers.
+The AppRole method is the recommended way to authenticate with Vault for servers.
 :::
 
 Upon authentication with Vault, a [token](https://www.vaultproject.io/docs/concepts/tokens) is generated that can be used in further interactions with Vault.
@@ -49,7 +53,7 @@ Upon authentication with Vault, a [token](https://www.vaultproject.io/docs/conce
 
 The [HashiCorp Vault - Login with LDAP](https://library.octopus.com/step-templates/de807003-3b05-4649-9af3-11a2c7722b3f/actiontemplate-hashicorp-vault-ldap-login) step template authenticates with a Vault Server using the [LDAP](https://www.vaultproject.io/docs/auth/ldap) authentication method. This is useful as it allows Vault integration without having to duplicate username or password configuration.
 
-You might choose to authenticate using LDAP if you already have an LDAP server available and make use of service accounts to control access to sensitive information.
+You might choose to authenticate using LDAP if you already have an LDAP server available and use service accounts to control access to sensitive information.
 
 :::hint
 Microsoft's Active Directory supports LDAP using [Active Directory Lightweight Directory Services](https://docs.microsoft.com/en-us/previous-versions/windows/desktop/adam/what-is-active-directory-lightweight-directory-services).
@@ -73,15 +77,15 @@ The step template has the following parameters:
 
 The **LDAP login** step is added to deployment and runbook processes in the [same way as other steps](https://octopus.com/docs/projects/steps#adding-steps-to-your-deployment-processes).
 
-Once you have added the step to your process, fill out the parameters in the step:
+After you've added the step to your process, fill out the parameters in the step:
 
 ![Vault LDAP login step used in a process](vault-ldap-login-step-in-process.png)
 
-Once you've filled in the parameters, you can execute the step in a runbook or deployment process, and on successful execution, the sensitive output variable name containing the token is displayed in the Task log:
+You can then execute the step in a runbook or deployment process. On successful execution, the sensitive output variable name containing the token is displayed in the task log:
 
 ![Vault LDAP login step task log](vault-ldap-login-step-output-variable.png)
 
-In subsequent steps, the output variable `#{Octopus.Action[HashiCorp Vault - Login with LDAP].Output.LDAPAuthToken}` can be used to authenticate, and retrieve secrets.
+In subsequent steps, the output variable `#{Octopus.Action[HashiCorp Vault - Login with LDAP].Output.LDAPAuthToken}` can be used to authenticate and retrieve secrets.
 
 :::hint
 **Tip:** Remember to replace `HashiCorp Vault - Login with LDAP` with the name of your step for any output variable names.
@@ -95,8 +99,8 @@ The [HashiCorp Vault - Login with AppRole](https://library.octopus.com/step-temp
 
 With an AppRole, a machine can log in with:
 
-- A `RoleID` - think of this as the username in an authentication pair.
-- A `SecretID` - think of this as the password in an authentication pair.
+- `RoleID` - think of this as the username in an authentication pair.
+- `SecretID` - think of this as the password in an authentication pair.
 
 :::warning
 **Don't store the SecretID:**
@@ -104,11 +108,11 @@ Storing the RoleID in Octopus as a sensitive variable is a good way to ensure it
 
 However, the same is **not recommended** for the SecretID.
 
-A SecretID, just like a password is _designed to expire_. In addition, storing the SecretID would provide the capability to potentially retrieve all secrets as both the RoleID and SecretID would be available.
+A SecretID, just like a password is _designed to expire_. Storing the SecretID could also provide the capability to retrieve all secrets as both the RoleID and SecretID would be available.
 
-We recommend that you consider the use of the more secure [Get wrapped SecretID](#get-wrapped-secretid) and [Unwrap SecretID and Login](#unwrap-secretid-login) step templates, as they use one of the [best practices](#approle-best-practices) - **response wrapping**.
+We recommend you use the more secure [Get wrapped SecretID](#get-wrapped-secretid) and [Unwrap SecretID and Login](#unwrap-secretid-login) step templates, as they use one of the [best practices](#approle-best-practices) - **response wrapping**.
 
-If you do choose to use the AppRole login step template, we recommend you provide the SecretID at execution time using a sensitive [prompted variable](https://octopus.com/docs/projects/variables/prompted-variables).
+If you use the AppRole login step template, we recommend you provide the SecretID at execution time using a sensitive [prompted variable](https://octopus.com/docs/projects/variables/prompted-variables).
 :::
 
 Once authenticated, the `client_token` from the Vault response will be made available as a [sensitive output variable](https://octopus.com/docs/projects/variables/output-variables#sensitive-output-variables) named `AppRoleAuthToken` for use in other steps.
@@ -129,15 +133,15 @@ The step template has the following parameters:
 
 The **AppRole login** step is added to deployment and runbook processes in the [same way as other steps](https://octopus.com/docs/projects/steps#adding-steps-to-your-deployment-processes).
 
-Once you have added the step to your process, fill out the parameters in the step:
+After you've added the step to your process, fill out the parameters in the step:
 
 ![Vault AppRole login step used in a process](vault-approle-login-step-in-process.png)
 
-Once you've filled in the parameters, you can execute the step in a runbook or deployment process, and on successful execution, the sensitive output variable name containing the token is displayed in the Task log:
+You can then execute the step in a runbook or deployment process. On successful execution, the sensitive output variable name containing the token is displayed in the task log:
 
 ![Vault AppRole login step task log](vault-approle-login-step-output-variable.png)
 
-In subsequent steps, the output variable `#{Octopus.Action[HashiCorp Vault - Login with AppRole].Output.AppRoleAuthToken}` can be used to authenticate, and retrieve secrets.
+In subsequent steps, the output variable `#{Octopus.Action[HashiCorp Vault - Login with AppRole].Output.AppRoleAuthToken}` can be used to authenticate and retrieve secrets.
 
 :::hint
 **Tip:** Remember to replace `HashiCorp Vault - Login with AppRole` with the name of your step for any output variable names.
@@ -147,11 +151,12 @@ In subsequent steps, the output variable `#{Octopus.Action[HashiCorp Vault - Log
 
 The [AppRole](https://www.vaultproject.io/docs/auth/approle) authentication method is considered a _trusted-broker_ method. This means that the onus of trust rests in the system that acts as the authentication intermediary (the _broker_) between the client (typically an Octopus deployment target) and Vault.
 
-One of the most important best practices to adopt is to avoid storing an AppRole SecretID. Instead, use [response wrapping](https://www.vaultproject.io/docs/concepts/response-wrapping) to provide a [wrapping token](https://www.vaultproject.io/docs/concepts/response-wrapping#response-wrapping-tokens) that will provide an access mechanism to retrieve a SecretID when required. This method of obtaining a SecretID is also known as a [Pull mode](https://www.vaultproject.io/docs/auth/approle#pull-and-push-secretid-modes) as it requires the SecretID to be fetched or _pulled_ from the AppRole.
+An important best practice is to avoid storing an AppRole SecretID. Instead, use [response wrapping](https://www.vaultproject.io/docs/concepts/response-wrapping) to provide a [wrapping token](https://www.vaultproject.io/docs/concepts/response-wrapping#response-wrapping-tokens) that will provide an access mechanism to retrieve a SecretID when required. This method of obtaining a SecretID is also known as a [Pull mode](https://www.vaultproject.io/docs/auth/approle#pull-and-push-secretid-modes) as it requires the SecretID to be fetched or _pulled_ from the AppRole.
 
 The Vault documentation contains [recommended patterns](https://learn.hashicorp.com/tutorials/vault/pattern-approle?in=vault/recommended-patterns) when using AppRole authentication.
 
 The TL;DR of the recommendations are:
+
 - Use a secured system to act as the broker for retrieving a wrapped SecretID.
 - Use [response wrapping](https://www.vaultproject.io/docs/concepts/response-wrapping) to obtain a SecretID.
 - Limit the number of uses and Time-to-live (TTL) value for a SecretID to prevent overuse.
@@ -173,13 +178,14 @@ To support these recommended practices, three additional `AppRole` step template
 The [HashiCorp Vault - AppRole Get Wrapped Secret ID](https://library.octopus.com/step-templates/76827264-af27-46d0-913a-e093a4f0db48/actiontemplate-hashicorp-vault-approle-get-wrapped-secret-id) step template generates a [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping) SecretID for the [AppRole](https://www.vaultproject.io/docs/auth/approle) authentication method. 
 
 The step template authenticates with a Vault Server using a token to retrieve a wrapped SecretID. The response contains a [wrapping token](https://www.vaultproject.io/docs/concepts/response-wrapping#response-wrapping-tokens) and other metadata such as the creation path for the token.
+
 This value can be used to validate [no malfeasance](https://www.vaultproject.io/docs/concepts/response-wrapping#response-wrapping-token-validation) has occurred. The wrapping token can then be used to retrieve the actual SecretID value.
 
 :::warning
 The token used to authenticate to retrieve a wrapped SecretID should be of limited scope and should only be allowed to retrieve wrapped SecretIDs. Consider creating a long-lived Vault token as this presents only a minor risk.
 :::
 
-Once the response has been received from the Vault server, two [sensitive output variables](https://octopus.com/docs/projects/variables/output-variables#sensitive-output-variables) are created for use in other steps.:
+After the response has been received from the Vault server, two [sensitive output variables](https://octopus.com/docs/projects/variables/output-variables#sensitive-output-variables) are created for use in other steps:
 
 - `WrappedToken` - This is the wrapped `token` from the response, used to retrieve the actual SecretID value.
 - `WrappedTokenCreationPath` - This is the creation path for the token. It allows you to validate [no malfeasance](https://www.vaultproject.io/docs/concepts/response-wrapping#response-wrapping-token-validation) has occurred.
@@ -189,7 +195,7 @@ Once the response has been received from the Vault server, two [sensitive output
 The step template has the following parameters:
 
 - `Vault Server URL`: The URL of the Vault instance you are connecting to, including the port (The default is `8200`).
-- `API version`: Choose the API version to use from a drop-down list. Currently, there is only one option: `v1`.
+- `API version`: Choose the API version from a drop-down list. Currently, there is only one option: `v1`.
 - `App Role Path`: The path where the [approle auth method is mounted](https://www.vaultproject.io/api-docs/auth/approle) at. 
 - `Role Name`: The role name of the [AppRole](https://www.vaultproject.io/api/auth/approle).
 - `Time-to-live (TTL)`: The TTL in seconds of the [response-wrapping token](https://www.vaultproject.io/docs/concepts/response-wrapping#response-wrapping-tokens) itself. The default is: `120s`
@@ -201,11 +207,11 @@ The step template has the following parameters:
 
 The **Get wrapped SecretID** step is added to deployment and runbook processes in the [same way as other steps](https://octopus.com/docs/projects/steps#adding-steps-to-your-deployment-processes).
 
-Once you have added the step to your process, fill out the parameters in the step:
+After you've added the step to your process, fill out the parameters in the step:
 
 ![Vault Get wrapped SecretID step used in a process](vault-get-wrapped-secretid-step-in-process.png)
 
-Once you've filled in the parameters, you can execute the step in a runbook or deployment process, and on successful execution, the sensitive output variable names are displayed in the Task log:
+You can then execute the step in a runbook or deployment process, and on successful execution, the sensitive output variable names are displayed in the task log:
 
 ![Vault Get wrapped SecretID step task log](vault-get-wrapped-secretid-step-output-variable.png)
 
@@ -238,15 +244,15 @@ The step template has the following parameters:
 
 The **Unwrap SecretID** step is added to deployment and runbook processes in the [same way as other steps](https://octopus.com/docs/projects/steps#adding-steps-to-your-deployment-processes).
 
-Once you have added the step to your process, fill out the parameters in the step:
+After you've added the step to your process, fill out the parameters in the step:
 
 ![Vault Unwrap SecretID step used in a process](vault-unwrap-secretid-step-in-process.png)
 
 :::hint
-Note the use of [sensitive output variables](https://octopus.com/docs/projects/variables/output-variables#sensitive-output-variables) in the step parameters. In this example, the values were created using the [Get Wrapped SecretID](#get-wrapped-secretid) step template named `HashiCorp Vault - AppRole Get Wrapped Secret ID`.
+Note the use of [sensitive output variables](https://octopus.com/docs/projects/variables/output-variables#sensitive-output-variables) in the step parameters. In this example, the values are created using the [Get Wrapped SecretID](#get-wrapped-secretid) step template named `HashiCorp Vault - AppRole Get Wrapped Secret ID`.
 :::
 
-Once you've filled in the parameters, you can execute the step in a runbook or deployment process, and on successful execution, the sensitive output variable names are displayed in the Task log:
+You can then execute the step in a runbook or deployment process. On successful execution, the sensitive output variable names are displayed in the task log:
 
 ![Vault Unwrap SecretID step task log](vault-unwrap-secretid-step-output-variable.png)
 
@@ -263,7 +269,7 @@ The [HashiCorp Vault - AppRole Unwrap Secret ID and Login](https://library.octop
 - [AppRole Unwrap SecretID](#unwrap-secretid) - It retrieves and unwraps a SecretID for an [AppRole](https://www.vaultproject.io/docs/auth/approle) using a [wrapping token](https://www.vaultproject.io/docs/concepts/response-wrapping#response-wrapping-tokens).
 - [AppRole login](#approle-login) - It authenticates with Vault using a supplied RoleID and the unwrapped SecretID.
 
-It is designed to be used as the second part of a two-step workflow with Vault:
+It's designed as the second part of a two-step workflow with Vault:
 
 1. Get a wrapped SecretID using the [AppRole Get wrapped SecretID](#get-wrapped-secretid) step template.
 2. Provide the wrapped SecretID stored in a sensitive output variable from the first step to this step template to unwrap and authenticate.
@@ -287,7 +293,7 @@ The step template has the following parameters:
 
 The **Unwrap SecretID and Login** step is added to deployment and runbook processes in the [same way as other steps](https://octopus.com/docs/projects/steps#adding-steps-to-your-deployment-processes).
 
-Once you have added the step to your process, fill out the parameters in the step:
+After you've added the step to your process, fill out the parameters in the step:
 
 ![Vault Unwrap SecretID and Login step used in a process](vault-unwrap-secretid-login-step-in-process.png)
 
@@ -295,7 +301,7 @@ Once you have added the step to your process, fill out the parameters in the ste
 Note the use of [sensitive output variables](https://octopus.com/docs/projects/variables/output-variables#sensitive-output-variables) in the step parameters. In this example, the values were created using the [Get Wrapped SecretID](#get-wrapped-secretid) step template named `HashiCorp Vault - AppRole Get Wrapped Secret ID`.
 :::
 
-Once you've filled in the parameters, you can execute the step in a runbook or deployment process, and on successful execution, the sensitive output variable names are displayed in the Task log:
+You can then execute the step in a runbook or deployment process. On successful execution, the sensitive output variable names are displayed in the task log:
 
 ![Vault Unwrap SecretID and Login step task log](vault-unwrap-secretid-login-step-output-variable.png)
 
@@ -307,7 +313,7 @@ In subsequent steps, the output variable `#{Octopus.Action[HashiCorp Vault - App
 
 ## Retrieving secrets #{retrieving-secrets}
 
-Once you've authenticated with Vault, you receive an authentication token. This token can then be used to retrieve secrets. Secrets in Vault are stored in a [secrets engine](https://www.vaultproject.io/docs/secrets), of which there are many different types.
+After you've authenticated with Vault, you receive an authentication token that can be used to retrieve secrets. Secrets in Vault are stored in a [secrets engine](https://www.vaultproject.io/docs/secrets), of which there are many different types.
 
 The step templates created to support retrieving secrets focus on the [Key-Value (kv)](https://www.vaultproject.io/docs/secrets/kv) Secrets Engine as it's a generic Key-Value store used to store arbitrary secrets:
 
@@ -318,11 +324,17 @@ The step templates created to support retrieving secrets focus on the [Key-Value
 
 The [HashiCorp Vault - Key Value (v1) retrieve secrets](https://library.octopus.com/step-templates/9aab9522-25e0-4539-841c-8b726e6b1520/actiontemplate-hashicorp-vault-key-value-(v1)-retrieve-secrets) step template retrieves one or more secrets stored in a `v1` Key-Value secrets engine.
 
-Retrieving a single secret requires the path to the secret, an authentication token with permission to access the secret, and _optionally_ a list of field names to retrieve.
+Retrieving a single secret requires: 
 
-An advanced feature of the step template offers support for retrieving multiple secrets at once. This requires changing the **Secrets retrieval method** parameter to `Multiple vault keys`. It's also possible to recursively retrieve secrets. This is useful when you want to retrieve all secrets for a given path.
+- The path to the secret. 
+- An authentication token with permission to access the secret.
+- _Optionally_ a list of field names to retrieve.
 
-For each secret retrieved, a [sensitive output variable](https://octopus.com/docs/projects/variables/output-variables#sensitive-output-variables) is created for use in subsequent steps. By default, only a count of the number of variables that were created will be shown in the Task log. To see the names of the variables in the Task log, Change the **Print output variable names** parameter to `True`.
+An advanced feature of the step template offers support for retrieving multiple secrets at once. This requires changing the **Secrets retrieval method** parameter to `Multiple vault keys`. 
+
+It's also possible to recursively retrieve secrets. This is useful when you want to retrieve all secrets for a given path.
+
+For each secret retrieved, a [sensitive output variable](https://octopus.com/docs/projects/variables/output-variables#sensitive-output-variables) is created for use in subsequent steps. By default, only a count of the number of variables created will be shown in the task log. To see the names of the variables in the task log, Change the **Print output variable names** parameter to `True`.
 
 #### Retrieve KV (v1) secrets parameters #{retrieve-kv-v1-secrets-parameters}
 
@@ -335,7 +347,7 @@ The step template has the following parameters:
 where the secrets engine is mounted, as well as the path to the secret itself.
 - `Secrets retrieval method`: Choose between retrieving a single secret or multiple secrets. Retrieving a single secret is the equivalent of a `vault kv get` command using the [Get](https://www.vaultproject.io/api-docs/secret/kv/kv-v1#read-secret) method. Retrieving multiple secrets is the equivalent of the combination of both a `vault kv list` command using the [List](https://www.vaultproject.io/api-docs/secret/kv/kv-v2#list-secrets) method and then subsequent `vault kv get` commands for each secret.
 - `Recursive retrieval`: If multiple secrets are being retrieved, should any sub-folders also be enumerated and retrieved? The default is: `False`.
-- `Field names`: Choose specific fields to be retrieved from identified secrets. This is useful when you only want to retrieve specific fields from one or more secret(s). You can optionally include a name for the output variable.
+- `Field names`: Choose specific fields to be retrieved from identified secrets. This is useful when you only want to retrieve specific fields from one or more secrets. You can optionally include a name for the output variable.
 - `Print output variable names`: Write out the Octopus output variable names to the task log. The default is: `False`.
 
 ![Parameters for the retrieve KV v1 secrets step](vault-retrieve-kv-v1-secrets-step-parameters.png)
@@ -344,7 +356,7 @@ where the secrets engine is mounted, as well as the path to the secret itself.
 
 The **Key Value (v1) retrieve secrets** step is added to deployment and runbook processes in the [same way as other steps](https://octopus.com/docs/projects/steps#adding-steps-to-your-deployment-processes).
 
-Once you have added the step to your process, fill out the parameters in the step:
+After you've added the step to your process, fill out the parameters in the step:
 
 ![Vault retrieve KV v1 secrets step used in a process](vault-retrieve-kv-v1-secrets-step-in-process.png)
 
@@ -352,7 +364,7 @@ Once you have added the step to your process, fill out the parameters in the ste
 Note the use of the [sensitive output variable](https://octopus.com/docs/projects/variables/output-variables#sensitive-output-variables) in the `Auth Token` parameter. In this example, the value was created using the [Unwrap SecretID and Login](#unwrap-secretid-login) step template named `HashiCorp Vault - AppRole Unwrap Secret ID and Login`.
 :::
 
-Once you've filled in the parameters, you can execute the step in a runbook or deployment process, and on successful execution, any matching secrets will be stored as sensitive output variables. If you've configured your step to print the variable names, they'll appear in the Task log:
+After you've filled in the parameters, you can execute the step in a runbook or deployment process. On successful execution, any matching secrets will be stored as sensitive output variables. If you've configured your step to print the variable names, they'll appear in the task log:
 
 ![Vault retrieve KV v1 secrets step task log](vault-retrieve-kv-v1-secrets-step-output-variable.png)
 
@@ -366,15 +378,20 @@ In subsequent steps, output variables created from matching secrets can be used 
 
 The [HashiCorp Vault - Key Value (v2) retrieve secrets](https://library.octopus.com/step-templates/337f1b67-cdb0-4f33-9e08-6bf804f672d2/actiontemplate-hashicorp-vault-key-value-(v2)-retrieve-secrets) step template retrieves one or more secrets stored in a `v2` Key-Value secrets engine.
 
-One of the key advantages of the `v2` Key-Value secrets engine is its support for [versioned secrets](https://learn.hashicorp.com/tutorials/vault/versioned-kv). This can be useful if you need to roll back secrets in the event of unintentional data loss.
+One of the key advantages of the `v2` Key-Value secrets engine is its support for [versioned secrets](https://learn.hashicorp.com/tutorials/vault/versioned-kv). This is useful if you need to roll back secrets in the event of unintentional data loss.
 
-Retrieving a single secret requires the path to the secret, an authentication token with permission to access the secret, and _optionally_ a list of field names to retrieve.
+Retrieving a single secret requires: 
+
+- The path to the secret,
+- An authentication token with permission to access the secret. 
+- _optionally_ a list of field names to retrieve.
 
 This step template offers advanced features:
-1. Support for retrieving multiple secrets at once. This requires changing the **Secrets retrieval method** parameter to `Multiple vault keys`. It's also possible to recursively retrieve secrets. This is useful when you want to retrieve all secrets for a given path.
-2. Support for retrieving a specific version of a secret. This is only supported when retrieving a single secret.
 
-For each secret retrieved, a [sensitive output variable](https://octopus.com/docs/projects/variables/output-variables#sensitive-output-variables) is created for use in subsequent steps. By default, only a count of the number of variables that were created will be shown in the Task log. To see the names of the variables in the Task log, Change the **Print output variable names** parameter to `True`.
+1. Support for retrieving multiple secrets at once. This requires changing the **Secrets retrieval method** parameter to `Multiple vault keys`. It's also possible to recursively retrieve secrets. This is useful to retrieve all secrets for a given path.
+1. Support for retrieving a specific version of a secret. This is only supported when retrieving a single secret.
+
+For each secret retrieved, a [sensitive output variable](https://octopus.com/docs/projects/variables/output-variables#sensitive-output-variables) is created for use in subsequent steps. By default, only a count of the number of variables created will be shown in the task log. To see the names of the variables in the Task log, Change the **Print output variable names** parameter to `True`.
 
 #### Retrieve KV (v2) secrets parameters #{retrieve-kv-v2-secrets-parameters}
 
@@ -397,7 +414,7 @@ where the secrets engine is mounted, as well as the path to the secret itself.
 
 The **Key Value (v2) retrieve secrets** step is added to deployment and runbook processes in the [same way as other steps](https://octopus.com/docs/projects/steps#adding-steps-to-your-deployment-processes).
 
-Once you have added the step to your process, fill out the parameters in the step:
+After you've added the step to your process, fill out the parameters in the step:
 
 ![Vault retrieve KV v2 secrets step used in a process](vault-retrieve-kv-v2-secrets-step-in-process.png)
 
@@ -405,7 +422,7 @@ Once you have added the step to your process, fill out the parameters in the ste
 Note the use of the [sensitive output variable](https://octopus.com/docs/projects/variables/output-variables#sensitive-output-variables) in the `Auth Token` parameter. In this example, the value was created using the [Unwrap SecretID and Login](#unwrap-secretid-login) step template named `HashiCorp Vault - AppRole Unwrap Secret ID and Login`.
 :::
 
-Once you've filled in the parameters, you can execute the step in a runbook or deployment process, and on successful execution, any matching secrets will be stored as sensitive output variables. If you've configured your step to print the variable names, they'll appear in the Task log:
+After you've filled in the parameters, you can execute the step in a runbook or deployment process. On successful execution, any matching secrets will be stored as sensitive output variables. If you've configured your step to print the variable names, they'll appear in the task log:
 
 ![Vault retrieve KV v2 secrets step task log](vault-retrieve-kv-v2-secrets-step-output-variable.png)
 
@@ -417,12 +434,14 @@ In subsequent steps, the output variables created from matching secrets can be u
 
 ## Conclusion
 
-The templates covered in this post show how it's possible to extend the functionality of Octopus and enable you to retrieve secrets from Vault, or any other secrets manager and use them in your deployments or runbooks.
+The templates covered in this post show how it's possible to extend the functionality of Octopus and retrieve secrets from Vault, or any other secrets manager, and use them in your deployments or runbooks.
 
-Until next time, Happy Deployments!
+Happy deployments!
 
 ## Learn more
 
-- Read the [AppRole Pull Authentication](https://learn.hashicorp.com/tutorials/vault/approle) tutorial showing how to retrieve SecretIDs securely.
+For further information, you can read:
+
+- The [AppRole Pull Authentication](https://learn.hashicorp.com/tutorials/vault/approle) tutorial showing how to retrieve SecretIDs securely.
 - HashiCorp Vault documentation for the [K/V v1 Secrets Engine](https://www.vaultproject.io/docs/secrets/kv/kv-v1).
 - HashiCorp Vault documentation for the [K/V v2 Secrets Engine](https://www.vaultproject.io/docs/secrets/kv/kv-v2).
