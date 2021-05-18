@@ -36,11 +36,13 @@ The end result of this process is the creation of the **Application** shown in t
 
 ![](modules_hierarchy.svg "width=500")
 
+:::hint
 Only one application resource can exist per project. If you attempt to create another application, say in a different region, you'll see an error like this:
 
 ```
 ERROR: (gcloud.app.create) The project [mattctest] already contains an App Engine application. You can deploy your application using `gcloud app deploy`.
 ```
+:::
 
 With our application resource created, we can deploy our web app. An application resource can host may services, where each service runs our own application. Services are (somewhat confusingly) defined in a file called `app.yaml`. Here is an example `app.yaml` file that we'll use to define and deploy our Java web app:
 
@@ -79,3 +81,44 @@ gcloud app deploy .\target\randomquotes.0.1.9.jar --appyaml .\app.yaml --project
 Our compiled application is then deployed. The deployment logs will return a URL like https://<projectname>.uc.r.appspot.com/ to the live service, which we can then open in a web browser:
 
 ![](randomquotes.png "width=500")
+
+## Deploying a feature branch
+
+A common deployment pattern is to have feature branches deployed side by side with the mainline branch. To simulate this we'll deploy the [blueheader](https://github.com/OctopusSamples/RandomQuotes-Java/tree/blueheader) branch of our web app, which will change the background color of the banner to blue.
+
+The `app.yaml` file for this branch looks like this:
+
+```yaml
+runtime: java11
+service: blueheader
+instance_class: F2
+
+env_variables:
+  SERVER_SERVLET_CONTEXT_PATH: "/blueheader"
+```
+
+We have given this service a new name to match the name of the feature branch. We have also defined the `SERVER_SERVLET_CONTEXT_PATH` environment variable, setting it to `/blueheader`. This defines the context path that the web app expects to receive traffic from. This allows us to test some traffic routing rules that means we can access the new service from a URL like https://<projectname>.uc.r.appspot.com/blueheader (as opposed to the unique service URL of https://blueheader-dot-<projectname>.uc.r.appspot.com).
+
+To route the subdirectory of `blueheader` to the new service, create a file called `displatch.yaml` with the following content:
+
+```yaml
+dispatch:
+  - url: "*/"
+    service: default
+
+  - url: "*/blueheader"
+    service: blueheader
+    
+  - url: "*/blueheader/*"
+    service: blueheader
+```
+
+This is deployed with the command:
+
+```
+gcloud app deploy dispatch.yaml --project mattctest
+```
+
+We can now open the feature branch at the URL https://<projectname>.uc.r.appspot.com/blueheader:
+
+![](blueheader.png "width=500")
