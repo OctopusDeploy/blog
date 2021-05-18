@@ -122,3 +122,42 @@ gcloud app deploy dispatch.yaml --project mattctest
 We can now open the feature branch at the URL https://<projectname>.uc.r.appspot.com/blueheader:
 
 ![](blueheader.png "width=500")
+
+## Traffic splitting
+
+Let's now look at how we can use traffic splitting to implement canary and blue/green deployments. For this we'll bump the version of the application in the `pom.xml` file to `0.1.10`:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <version>0.1.10</version>
+    ...
+</project>
+```
+
+The app is then repackaged with the command:
+
+```
+./mvnw package
+```
+
+The new version is deployed with the command:
+
+```
+gcloud app deploy .\target\randomquotes.0.1.10.jar --appyaml .\app.yaml --project mattctest --no-promote
+```
+
+The `--no-promote` option ensures this new version does not receive any traffic, so opening https://<projectname>.uc.r.appspot.com/ will still display the previous version of the web app.
+
+In the **Versions** tab we a button called **SPLIT TRAFFIC**:
+
+![](splittraffic.png "width=500")
+
+Clicking this button allows us to direct traffic between the service versions. In the screenshot below you can see that the traffic has been split 50/50 between the latest two versions. We have split the traffic randomly, as this allows us to refresh the URL and see the two versions. However, if you were performing a production canary deployment, it is likely that you would direct users to the same version based on a cookie or IP address so each request didn't get routed to a random version:
+
+![](traffic.png "width=500")
+
+Now 50% of the requests to https://<projectname>.uc.r.appspot.com/ return version 0.1.9, and 50% return version 0.1.10.
+
+A canary deployment is achieved by gradually increasing the traffic to the new version of the service. A blue/green deployment would simply switch traffic 100% to the new version once any tests were completed. We can test a specific version outside of any traffic splitting rules using a URL like https://<version>-dot-<projectname>.uc.r.appspot.com/.
