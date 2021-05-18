@@ -1327,7 +1327,7 @@ You can view the [modified project on Bitbucket](https://bitbucket.org/octopussa
 
 
 ## Building your Node.js application
-Node.js is a scripting language, which means it doesn't need to be compiled like a .NET or Java.  However, there are some advantages to using a build server, such has:
+Node.js is a scripting language, which means it doesn't need to be compiled like a .NET or Java.  However, there are some advantages to using a build server, such as:
 
 - Installing dependencies at build time, so they're not stored in source control.
 - Using a build server integration/plugin for Octopus Deploy:
@@ -1447,7 +1447,7 @@ Fill in the following inputs for the template:
 ### Deploy to NGINX
 A popular method for running Node.js applications is to run it behind an NGINX reverse proxy.  Octopus Deploy contains a built-in step to deploy to NGINX, making this step easy.
 
-After you've added the NGINX step to your process, you will need to click on the **CONFIGURE FEATURES** button and enable both **Custom Deployment Scripts** and **Substitute Variables in Templates** features:
+After you've added the NGINX step to your process, click the **CONFIGURE FEATURES** button and enable both **Custom Deployment Scripts** and **Substitute Variables in Templates** features:
 
 ![](octopus-nginx-configure-features.png)
 
