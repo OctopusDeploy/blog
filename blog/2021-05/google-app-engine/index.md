@@ -161,3 +161,9 @@ Clicking this button allows us to direct traffic between the service versions. I
 Now 50% of the requests to https://\[projectname\].uc.r.appspot.com/ return version 0.1.9, and 50% return version 0.1.10.
 
 A canary deployment is achieved by gradually increasing the traffic to the new version of the service. A blue/green deployment would simply switch traffic 100% to the new version once any tests were completed. We can test a specific version outside of any traffic splitting rules using a URL like https://\[version\]-dot-\[projectname\].uc.r.appspot.com/.
+
+## Conclusion
+
+Google app engine provides a flexible platform for hosting web applications, and the network routing and traffic splitting functionality allows complex deployment processes like feature branches, canary, and blue/green deployments to be performed. In this blog post we deployed a simple Java web application, and demonstrated how advanced deployment patterns can be performed.
+
+Happy deployments!
