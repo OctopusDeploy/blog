@@ -16,11 +16,11 @@ In this post we'll look at how to deploy a sample application to GAE and manipul
 
 ## A simple deployment
 
-GAE offers two kinds of deployments: deploying source code to be compile by GAE, and deploying compiled applications. Allowing GAE to compile your source code is convenient, but can be hard to scale as the size of your team and the code base increases. For example, I wasn't able to find concrete documentation on how GAE compiled the source code it received (although [this blog post](https://cloud.google.com/blog/products/containers-kubernetes/google-cloud-now-supports-buildpacks) indicates that buildpacks are now the preferred solution), so debugging and build issues locally might present a challenge. Also most enterprise teams will already have a Continuous Integration (CI) server performing build and collecting test results. So for this post we'll focus on deploying compiled applications.
+GAE offers two kinds of deployments: deploying source code to be compile by GAE, and deploying compiled applications. Allowing GAE to compile your source code is convenient, but can be hard to scale as the size of your team and the code base increases. For example, I wasn't able to find concrete documentation on how GAE compiled the source code it received (although [this blog post](https://cloud.google.com/blog/products/containers-kubernetes/google-cloud-now-supports-buildpacks) indicates that buildpacks are now the preferred solution), so debugging any build issues locally might present a challenge. Also most enterprise teams will already have a Continuous Integration (CI) server performing builds and collecting test results. So for this post we'll focus on deploying compiled applications.
 
 Our sample application will be a simple Java Spring web app called Random Quotes. The source code for this application can be found [here](https://github.com/OctopusSamples/RandomQuotes-Java). This application generates a self contained JAR file hosting the application and a built-in web server.
 
-To deploy the application we need to create a corresponding application resource in the GAE service inside a GCP project. The steps below show an application resource being created via the web console. The first step is to select where the application resource will be hosted:
+To deploy the application we need to create a corresponding GAE application resource inside a GCP project. The steps below show an application resource being created via the web console. The first step is to select where the application resource will be hosted:
 
 ![](location.png "width=500")
 
@@ -44,7 +44,7 @@ ERROR: (gcloud.app.create) The project [mattctest] already contains an App Engin
 ```
 :::
 
-With our application resource created, we can deploy our web app. An application resource can host may services, where each service runs our own application. Services are (somewhat confusingly) defined in a file called `app.yaml`. Here is an example `app.yaml` file that we'll use to define and deploy our Java web app:
+With our application resource created, we can deploy our web app. An application resource can host many services, where each service runs our own application. Services are (somewhat confusingly) defined in a file called `app.yaml`. Here is an example `app.yaml` file that we'll use to define and deploy our Java web app:
 
 ```yaml
 runtime: java11
@@ -52,7 +52,7 @@ service: default
 instance_class: F2
 ```
 
-The runtime is a required field that defines the platform that will host our code. I couldn't find a definite list of runtimes, but `java`, `java8`, and `java11` are all included in various places in the documentation and examples. I've used `java11` here as Java 11 is part of the GAE [second generation](https://cloud.google.com/appengine/docs/standard/runtimes).
+The runtime is a required defining the platform that will host our code. I couldn't find a definite list of runtimes, but `java`, `java8`, and `java11` are all included in various places in the documentation and examples. We've used `java11` here as Java 11 is part of the GAE [second generation](https://cloud.google.com/appengine/docs/standard/runtimes).
 
 The first service that is deployed to GAE must be called `default`, so we have defined that name in the `service` field.
 
@@ -72,7 +72,7 @@ Compile the Java application with the command:
 ./mvnw package
 ```
 
-This will create a JAR file under the `target` directory. At the time of writing the sample application is at version 0.1.9, so the JAR file is called `target/randomquotes.0.1.9.jar`. To deploy the web app, run the command following command, replacing the name of the project to match your environment:
+This will create a JAR file under the `target` directory. At the time of writing the sample application is at version 0.1.9, so the JAR file is called `target/randomquotes.0.1.9.jar`. To deploy the web app, run the following command, replacing the name of the project to match your environment:
 
 ```
 gcloud app deploy .\target\randomquotes.0.1.9.jar --appyaml .\app.yaml --project mattctest
@@ -123,7 +123,7 @@ We can now open the feature branch at the URL https://\[projectname\].uc.r.appsp
 
 ![](blueheader.png "width=500")
 
-## Traffic splitting
+## Traffic splitting, canary, and blue/green deployments
 
 Let's now look at how we can use traffic splitting to implement canary and blue/green deployments. For this we'll bump the version of the application in the `pom.xml` file to `0.1.10`:
 
