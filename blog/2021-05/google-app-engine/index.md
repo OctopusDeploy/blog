@@ -99,7 +99,7 @@ env_variables:
 
 We have given this service a new name to match the name of the feature branch. We have also defined the `SERVER_SERVLET_CONTEXT_PATH` environment variable, setting it to `/blueheader`. This defines the context path that the web app expects to receive traffic from. This allows us to test some traffic routing rules that means we can access the new service from a URL like https://\[projectname\].uc.r.appspot.com/blueheader (as opposed to the unique service URL of https://blueheader-dot-\[projectname\].uc.r.appspot.com).
 
-To route the subdirectory of `blueheader` to the new service, create a file called `displatch.yaml` with the following content:
+To route the subdirectory of `blueheader` to the new service, create a file called `displatch.yaml` with the following content. These dispatch rules are define how traffic is routed from a URL to a service:
 
 ```yaml
 dispatch:
@@ -150,7 +150,7 @@ gcloud app deploy .\target\randomquotes.0.1.10.jar --appyaml .\app.yaml --projec
 
 The `--no-promote` option ensures this new version does not receive any traffic, so opening https://\[projectname\].uc.r.appspot.com/ will still display the previous version of the web app.
 
-In the **Versions** tab we a button called **SPLIT TRAFFIC**:
+In the **Versions** tab we have a button called **SPLIT TRAFFIC**:
 
 ![](splittraffic.png "width=500")
 
