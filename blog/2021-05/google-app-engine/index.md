@@ -78,7 +78,7 @@ This will create a JAR file under the `target` directory. At the time of writing
 gcloud app deploy .\target\randomquotes.0.1.9.jar --appyaml .\app.yaml --project mattctest
 ```
 
-Our compiled application is then deployed. The deployment logs will return a URL like https://<projectname>.uc.r.appspot.com/ to the live service, which we can then open in a web browser:
+Our compiled application is then deployed. The deployment logs will return a URL like https://\[projectname\].uc.r.appspot.com/ to the live service, which we can then open in a web browser:
 
 ![](randomquotes.png "width=500")
 
@@ -97,7 +97,7 @@ env_variables:
   SERVER_SERVLET_CONTEXT_PATH: "/blueheader"
 ```
 
-We have given this service a new name to match the name of the feature branch. We have also defined the `SERVER_SERVLET_CONTEXT_PATH` environment variable, setting it to `/blueheader`. This defines the context path that the web app expects to receive traffic from. This allows us to test some traffic routing rules that means we can access the new service from a URL like https://<projectname>.uc.r.appspot.com/blueheader (as opposed to the unique service URL of https://blueheader-dot-<projectname>.uc.r.appspot.com).
+We have given this service a new name to match the name of the feature branch. We have also defined the `SERVER_SERVLET_CONTEXT_PATH` environment variable, setting it to `/blueheader`. This defines the context path that the web app expects to receive traffic from. This allows us to test some traffic routing rules that means we can access the new service from a URL like https://\[projectname\].uc.r.appspot.com/blueheader (as opposed to the unique service URL of https://blueheader-dot-\[projectname\].uc.r.appspot.com).
 
 To route the subdirectory of `blueheader` to the new service, create a file called `displatch.yaml` with the following content:
 
@@ -119,7 +119,7 @@ This is deployed with the command:
 gcloud app deploy dispatch.yaml --project mattctest
 ```
 
-We can now open the feature branch at the URL https://<projectname>.uc.r.appspot.com/blueheader:
+We can now open the feature branch at the URL https://\[projectname\].uc.r.appspot.com/blueheader:
 
 ![](blueheader.png "width=500")
 
@@ -148,7 +148,7 @@ The new version is deployed with the command:
 gcloud app deploy .\target\randomquotes.0.1.10.jar --appyaml .\app.yaml --project mattctest --no-promote
 ```
 
-The `--no-promote` option ensures this new version does not receive any traffic, so opening https://<projectname>.uc.r.appspot.com/ will still display the previous version of the web app.
+The `--no-promote` option ensures this new version does not receive any traffic, so opening https://\[projectname\].uc.r.appspot.com/ will still display the previous version of the web app.
 
 In the **Versions** tab we a button called **SPLIT TRAFFIC**:
 
@@ -158,6 +158,6 @@ Clicking this button allows us to direct traffic between the service versions. I
 
 ![](traffic.png "width=500")
 
-Now 50% of the requests to https://<projectname>.uc.r.appspot.com/ return version 0.1.9, and 50% return version 0.1.10.
+Now 50% of the requests to https://\[projectname\].uc.r.appspot.com/ return version 0.1.9, and 50% return version 0.1.10.
 
-A canary deployment is achieved by gradually increasing the traffic to the new version of the service. A blue/green deployment would simply switch traffic 100% to the new version once any tests were completed. We can test a specific version outside of any traffic splitting rules using a URL like https://<version>-dot-<projectname>.uc.r.appspot.com/.
+A canary deployment is achieved by gradually increasing the traffic to the new version of the service. A blue/green deployment would simply switch traffic 100% to the new version once any tests were completed. We can test a specific version outside of any traffic splitting rules using a URL like https://\[version\]-dot-\[projectname\].uc.r.appspot.com/.
