@@ -3,7 +3,7 @@ title: Debugging an error while automating SSIS deployments
 description: Learn from my experience automating SSIS deployments, and how to avoid an error using different versions of Visual Studio and SQL Server.
 author: shawn.sesna@octopus.com
 visibility: public
-published: 2022-01-13
+published: 2021-05-26-1400
 metaImage: deploying-ssis-issue.png
 bannerImage: deploying-ssis-issue.png
 tags:
