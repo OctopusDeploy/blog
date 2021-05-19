@@ -56,10 +56,63 @@ spec:
     spec:
       containers:
         - image: gcr.io/cloudrun-314201/randomquotesjava:0.1.189
+          ports:
+            - name: http1
+              containerPort: 80
 ```
+
+The `metadata.name` property defines the name of the service. The `spec.template.spec.containers[0].image` property references the Docker image we copied into GCR. The `spec.template.spec.containers[0].ports.name` property can either be set to `h2c` to indicate that the port is exposed by HTTP2, or `http1` to indicate that the port is exposed by HTTP1. The `spec.template.spec.containers[0].ports.containerPort` property defines the port that is exposed by the container to receive web traffic on.
 
 To deploy this service, run the command:
 
 ```bash
-gcloud beta run services replace service.yaml
+gcloud beta run services replace service.yaml --platform managed
 ```
+
+Once the service is deployed, you'll receive a URL like https://randomquotes-5od2layuca-ts.a.run.app that can be used to access it. Opening the URL will likely result in the the following error being displayed:
+
+![](forbidden.png "width=500")
+
+The solution is to give the `allUsers` user the `Cloud Run Invoker` permission:
+
+![](permissions.jpg "width=500")
+
+We can then open our web app:
+
+![](randomquotes.png "width=500")
+
+## Feature branch deployments
+
+To deploy an image create from a feature branch, we first need to copy it into GCR. Here we have a feature branch image with the tag `0.1.200-blueheader`, which we copy into GCR with the command:
+
+```
+skopeo copy docker://octopussamples/randomquotesjava:0.1.200-blueheader docker://gcr.io/cloudrun-314201/randomquotesjava:0.1.200-blueheader
+```
+
+The URL assigned to our service is based on the service name. In the YAML below you can see that we change the name of the service to include the feature branch name:
+
+```yaml
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: randomquotes-blueheader
+spec:
+  template:
+    spec:
+      containers:
+        - image: gcr.io/cloudrun-314201/randomquotesjava:0.1.200-blueheader
+          ports:
+            - name: http1
+              containerPort: 80
+```
+
+Again we deploy this service with the command:
+
+```bash
+gcloud beta run services replace service.yaml --platform managed
+```
+
+The returned URL will be something like https://randomquotes-blueheader-5od2layuca-ts.a.run.app. By renaming the service we can now run the feature branch side by side with the mainline deployment:
+
+![](blueheader.png "width=500")
+
