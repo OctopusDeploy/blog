@@ -189,7 +189,7 @@ gcloud run services update-traffic randomquotes --platform managed --remove-tags
 
 ## Conclusion
 
-Google cloud run provides a convenient platform for deploying web applications that incur charges only while they are processing requests. Cloud run provides automatic scaling to handle incoming requests, and traffic routing rules that allow us to implement blue/green and canary style deployments.
+Google cloud run provides a convenient platform for deploying web applications that incur charges only while they are processing requests. Cloud run provides automatic scaling to handle incoming requests, and traffic routing rules allowing us to implement blue/green and canary style deployments.
 
 In this blog post we looked at how to copy Docker images into GCR and then deploy a service. We manipulated the revisions and traffic rules to implement blue/green and canary deployments, and looked at how tags can be used to gain access to a revision that otherwise has no traffic directed to it.
 
