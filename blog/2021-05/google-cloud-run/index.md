@@ -184,3 +184,9 @@ gcloud run services update-traffic randomquotes --platform managed --to-revision
 ```
 
 This command can be repeated until 100% of traffic is directed to the new revision. A more traditional blue/green deployment would see 100% of traffic cut over to the new revision immediately once any testing on the new stack is completed.
+
+Once testing is complete, we can remove the `green` tag with the command:
+
+```
+gcloud run services update-traffic randomquotes --platform managed --remove-tags green
+```
