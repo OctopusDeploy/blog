@@ -116,3 +116,71 @@ The returned URL will be something like https://randomquotes-blueheader-5od2layu
 
 ![](blueheader.png "width=500")
 
+## Canary and blue/green deployments
+
+To perform a canary or blue green deployment we'll make use of service revisions. The name of a revision is defined in the `spec.template.metadata.name` property. It must be prefixed with the name of the service, and can only use lower case letters, numbers, or the dash. Here we have defined a revision called `randomquotes-0-1-189`:
+
+```yaml
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: randomquotes
+spec:
+  template:
+    metadata:
+      name: randomquotes-0-1-189
+    spec:
+      containers:
+        - image: gcr.io/cloudrun-314201/randomquotesjava:0.1.189
+          ports:
+            - name: http1
+              containerPort: 80
+```
+
+By default, this revision will receive 100% of the traffic. Let's now deploy a new revision:
+
+```yaml
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: randomquotes
+spec:
+  template:
+    metadata:
+      name: randomquotes-0-1-200-blueheader
+    spec:
+      containers:
+        - image: gcr.io/cloudrun-314201/randomquotesjava:0.1.200-blueheader
+          ports:
+            - name: http1
+              containerPort: 80
+  traffic:
+  - revisionName: randomquotes-0-1-200-blueheader
+    percent: 0
+  - revisionName: randomquotes-0-1-189
+    percent: 100
+```
+
+This time we deploy the service with a tag:
+
+```
+gcloud beta run services replace service.yaml --platform managed --tag randomquotes-0-1-200-blueheader
+```
+
+This new revision has been set to receive no traffic, instead redirecting 100% of the traffic to the previous revision:
+
+![](trafficsplitstart.png "width=500")
+
+If we consider the previous revision to be the blue half of a blue green deployment, the new revision will be the green half. We can access this new revision by assigning it a tag:
+
+![](tag.png "width=500")
+
+This new revision can be opened via a URL like https://green---randomquotes-5od2layuca-ts.a.run.app/ to test it before directing any main traffic to it.
+
+A canary deployment can be achieved by slowing directing more traffic to the green stack. The command below directs 10% of traffic to the new revision:
+
+```
+gcloud run services update-traffic randomquotes --platform managed --to-revisions=randomquotes-0-1-200-blueheader=10,randomquotes-0-1-189=90
+```
+
+This command can be repeated until 100% of traffic is directed to the new revision. A more traditional blue/green deployment would see 100% of traffic cut over to the new revision immediately once any testing on the new stack is completed.
