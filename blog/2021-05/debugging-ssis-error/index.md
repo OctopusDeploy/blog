@@ -4,11 +4,13 @@ description: Learn from my experience automating SSIS deployments, and how to av
 author: shawn.sesna@octopus.com
 visibility: public
 published: 2022-01-13
-metaImage: 
-bannerImage: 
+metaImage: deploying-ssis-issue.png
+bannerImage: deploying-ssis-issue.png
 tags:
  - Databases
 ---
+
+![deploying SSIS with octopus deploy](deploying-ssis-issue.png)
 
 In a [previous post](https://octopus.com/blog/deploying-ssis), I walked through how to deploy SQL Server Integration Services (SSIS) packages using Octopus Deploy.  In this post, I discuss a problem I encountered after the package was deployed to the server, due to using a newer version of Visual Studio to develop the SSIS package, but deploying to an older version of SQL Server.
 
