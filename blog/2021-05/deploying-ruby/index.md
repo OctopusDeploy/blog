@@ -1,6 +1,6 @@
 ---
 title: Deploying A Ruby web application
-description: Learn how to deploy a Ruby web application using Octopus Deploy and Liquibase.
+description: Learn how to deploy a Ruby web application using Octopus Deploy.
 author: shawn.sesna@octopus.com
 visibility: private
 published: 2022-05-03-1400
