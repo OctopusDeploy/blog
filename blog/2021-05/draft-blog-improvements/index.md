@@ -4,13 +4,11 @@ description: This is where the meta description goes, keep it under 170 characte
 author: jed.lehmann@octopus.com
 visibility: private
 published: 3020-01-01
-metaImage: img-may-newsletter-for-webinars-2021.png
-bannerImage: img-may-newsletter-for-webinars-2021.png
+metaImage: 
+bannerImage: 
 tags:
   - tag
 ---
-
-![webinar image](img-may-newsletter-for-webinars-2021.png)
 
 Introductory paragraph that tells the reader why they should read on.
 
