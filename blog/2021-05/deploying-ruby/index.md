@@ -242,12 +242,29 @@ A popular method for performing database upates for Ruby applications is to defi
 
 ```bash
 # Ensure the bin files are executable
-chmod +x -R "#{Octopus.Action[Deploy to Nginx].Output.Package.InstallationDirectoryPath}/vendor/bin"
+sudo chmod +x -R "#{Octopus.Action[Deploy to Nginx].Output.Package.InstallationDirectoryPath}/vendor/bin"
+
+# Set variables
 ROOTDIR=#{Octopus.Action[Deploy to Nginx].Output.Package.InstallationDirectoryPath | Replace "%" "%%"}
 export GEM_HOME="${ROOTDIR}/vendor"
+export GEM_PATH="${ROOTDIR}/vendor"
+
+# Install platform specific gems
+gem install bcrypt
+gem install bond
+gem install nio4r
+gem install pg
+gem install puma
+
+# Run database migrations
 ${ROOTDIR}/vendor/bin/rake db:create
 ${ROOTDIR}/vendor/bin/rake db:migrate
 ```
+:::hint
+You'll note that this script installs some Ruby Gems.  This was required because GitHub Actions uses an Ubuntu based container to perform the build.  The platform for this is identified as `x86_64-linux` whereas an Ubuntu VM is identied as `x86_64-linux-gnu`.  Though similar, the compiler makes different binaries which are incompatible.  
+
+The Gems this affects are identifed in the build log with `Installing X with native extensions`, those will need to be built again on the target platform.
+:::
 
 ##### Post-deployment script
 The NGINX step will configure NGINX to serve the Puma Ruby App Server, but we need something to start Puma, especially after a reboot.  The following script will configure the Puma App server to start as a Linux Service
