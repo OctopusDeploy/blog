@@ -141,7 +141,7 @@ Our deployment project will make use of the **Deploy an Azure App Service** step
 
 Call the step `Deploy Web App`. We'll reference this step name when creating the channel in the next section.
 
-## The create branch infrastructure runbook
+## The Create Branch Infrastructure runbook
 
 We'll start by creating the runbook that builds all the resources, both in Octopus and in Azure, to deploy a feature branch.
 
