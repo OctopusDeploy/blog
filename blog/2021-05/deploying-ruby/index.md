@@ -335,6 +335,16 @@ The second location is `@app`.  This location will need to be configured as a Re
 
 Once the locations are completed, we are finished with the deployment process.  Create a release and deploy!
 
+![](octopus-deploy.png)
+
+:::info
+Some programs on Linux write information messages to the stderr stream, Octopus interprets these as a possible error and displays them in red.  If you see messages like this, it is completely normal.
+:::
+
+Opening our browser, we can see the deployed application in action!
+
+![](nginx-veggie-tracker.png)
+
 ## Conclusion
 In this post I demonstrated how to deploy a web application written in Ruby to an NGINX web server including the database migration.  
 
