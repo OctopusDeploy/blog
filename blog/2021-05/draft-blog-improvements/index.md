@@ -258,7 +258,7 @@ Special characters will break the anchor text, so don't include special characte
 
 When instructing users to navigate through multiple options in the UI, use the following syntax:
 
-    {% raw %}{{ infrastructure,Deployment Targets }}{% endraw %}
+`{{ infrastructure,Deployment Targets }}`
 
 Which will be rendered:
 
@@ -410,4 +410,3 @@ docs/page1.md -> docs/page2.md
 In the above example, `/docs/page1` is redirected to `/docs/page2`.
 
 Add your redirect to the end of the file, after the redirect is added, the original file (`page1`) needs to be deleted from the repo.
-
