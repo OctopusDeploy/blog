@@ -3,12 +3,14 @@ title: Draft blog post for blog improvement testing
 description: This is where the meta description goes, keep it under 170 characters including spaces.
 author: jed.lehmann@octopus.com
 visibility: private
-published: 3020-01-01
-metaImage: 
-bannerImage: 
+published: 3020-01-01-1400
+metaImage: blogimage_deploying-a_nodejs_application_with_octopus deploy_2021.png
+bannerImage: blogimage_deploying-a_nodejs_application_with_octopus deploy_2021.png
 tags:
   - tag
 ---
+
+![blog image](blogimage_deploying-a_nodejs_application_with_octopus deploy_2021.png)
 
 Introductory paragraph that tells the reader why they should read on.
 
@@ -40,7 +42,7 @@ Close off the post by restating the main points of the post, share any closing t
 
 - [link](https://www.example.com/resource)
 
-oth the [Octopus blog](https://github.com/OctopusDeploy/blog) and the [Octopus documentation](https://github.com/OctopusDeploy/docs) are written in Markdown and rendered using [markdig](https://github.com/lunet-io/markdig). Markdig supports [GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown) as well as some extra syntax. 
+The [Octopus blog](https://github.com/OctopusDeploy/blog) and the [Octopus documentation](https://github.com/OctopusDeploy/docs) are written in Markdown and rendered using [markdig](https://github.com/lunet-io/markdig). Markdig supports [GitHub Flavored Markdown](https://help.github.com/articles/github-flavored-markdown) as well as some extra syntax. 
 
 - [Filenames](#filenames)
 - [Files and directories](#files-and-directories)
