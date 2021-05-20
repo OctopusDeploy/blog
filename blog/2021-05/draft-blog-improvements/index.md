@@ -250,9 +250,7 @@ This will link to https://octopus.com/docs/installation/requirements#windows-ser
 
 If you'd like to control the anchor text (to ensure it doesn't change even if the title does), use the following syntax:
 
-~~~
-## Windows Server {#windows-server}
-~~~
+`## Windows Server {#windows-server}`
 
 Special characters will break the anchor text, so don't include special characters in the anchor.
 
@@ -412,5 +410,4 @@ docs/page1.md -> docs/page2.md
 In the above example, `/docs/page1` is redirected to `/docs/page2`.
 
 Add your redirect to the end of the file, after the redirect is added, the original file (`page1`) needs to be deleted from the repo.
-
 
