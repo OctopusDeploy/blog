@@ -4,13 +4,13 @@ description: This is where the meta description goes, keep it under 170 characte
 author: jed.lehmann@octopus.com
 visibility: private
 published: 3020-01-01-1400
-metaImage: blogimage_deploying-a_nodejs_application_with_octopus deploy_2021.png
-bannerImage: blogimage_deploying-a_nodejs_application_with_octopus deploy_2021.png
+metaImage: blogimage_deploying-a_nodejs_application_with_octopusdeploy_2021.png
+bannerImage: blogimage_deploying-a_nodejs_application_with_octopusdeploy_2021.png
 tags:
   - tag
 ---
 
-![blog image](blogimage_deploying-a_nodejs_application_with_octopus deploy_2021.png)
+![blog image](blogimage_deploying-a_nodejs_application_with_octopusdeploy_2021.png)
 
 Introductory paragraph that tells the reader why they should read on.
 
