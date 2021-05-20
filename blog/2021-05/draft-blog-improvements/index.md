@@ -346,30 +346,6 @@ When you use an include file in this way, you only need to update the text in on
 
 See [Octopus snippets](octopus-snippets.md) for more information on this topic and a library of ready to use snippets across repos.
 
-### Referencing Docker images
-
-When referencing docker images, use the syntax:
-
-`!docker-image <org/image:tag>`
-
-This will be replaced with the most recently published version of the image.
-
-#### Example 1 - with tags
-
-`!docker-image <octopusdeploy/octo:alpine>`
-
-Will be replaced with:
-
-`octopusdeploy/octo:6.17.3-alpine`
-
-#### Example 2 - without tags
-
-`!docker-image <octopusdeploy/octo>`
-
-Will be replaced with:
-
-`octopusdeploy/octo:6.17.3`
-
 ## Link to the Octopus Guides
 
 The Octopus Guides combine content to allow users to specify their entire CI/CD pipeline and access a guide for their specific pipeline. It is sometimes helpful to link to the guides with specific options pre-defined rather than the default options.
