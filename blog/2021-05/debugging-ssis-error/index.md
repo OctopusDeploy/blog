@@ -1,5 +1,5 @@
 ---
-title: Debugging an error while automating SSIS deployments
+title: Debugging package parameter issues for automated SSIS deployments
 description: Learn from my experience automating SSIS deployments, and how to avoid an error using different versions of Visual Studio and SQL Server.
 author: shawn.sesna@octopus.com
 visibility: public
@@ -21,13 +21,13 @@ After a successful deployment, the developer attempted to run the SSIS package b
 Failed to configure a connection property that has the following path: \Package.Connections [WWI_Source_DB].Properties[ConnectByProxy]. Element "ConnectByProxy" does not exist in collection "Properties".
 ```
 
-To investigate, I first looked at the Environment variable mapping:
+To investigate, I first looked at the environment variable mapping:
 
 ![](ssis-environment-mapping.png)
 
-The property exists and is mapped to the appropriate Environment variable.
+The property exists and is mapped to the appropriate environment variable.
 
-As an experiment, I had the developer publish the SSIS package directly from Visual Studio and the package worked correctly.  The main difference between the two methods was the Visual Studio publish didn't map Package Parameters to Environment Variables.  Instead, they were set to **Use default value from package**.  In this case, the default value was displayed as `False`.
+As an experiment, I had the developer publish the SSIS package directly from Visual Studio and the package worked correctly.  The main difference between the two methods was that Visual Studio publish didn't map package parameters to environment variables.  Instead, they were set to **Use default value from package**.  In this case, the default value was displayed as `False`.
 
 ![](ssis-package-parameter.png)
 
@@ -35,16 +35,17 @@ As an experiment, I had the developer publish the SSIS package directly from Vis
 To get to this window:
 
 1. Right-click the package and choose **Configure**.
-1. Change the Scope drop-down to **All packages and projects**.
+1. Change the scope drop-down to **All packages and projects**.
 1. Click the **Connection Managers** tab
 :::
 
-We redeployed the SSIS package using Octopus Deploy.  Once deployed, we edited the package and chose **Edit value** and selected `False`.  The package failed again with the same error, however, setting the value to **Use default value from package** succeeded.
+I redeployed the SSIS package using Octopus Deploy.  Once deployed, I edited the package and chose **Edit value** and selected `False`.  The package failed again with the same error, however, setting the value to **Use default value from package** succeeded.
 
 ## The problem
-After several hours of research, I identified the issue. The developer was using the most recent version of Visual Studio to develop the SSIS package, but was deploying to an older version of SQL Server.  
 
-The newer version of Visual Studio was introducing additional properties to the Connection Manager that the older version of SQL Server didn't know about. The error was trying to tell us this, but was unclear. 
+After several hours of research, I discover the developer was using the most recent version of Visual Studio to develop the SSIS package, but it was deploying to an older version of SQL Server.  
+
+The newer version of Visual Studio introduced additional properties to the connection manager that the older version of SQL Server didn't know about. The error was trying to tell us this, but it was unclear.
 
 `Element "ConnectByProxy" does not exist in collection "Properties"` was saying that `ConnectByProxy` didn't exist in the Server collection of `Properties` for a package, not the package itself.  The selection of **Use default value from package** was also misleading.  
 
@@ -53,14 +54,14 @@ From the UI, this selection displayed a value of `False`, however, the actual va
 ## The solution
 There are two solutions:
 
-- Manually update the Package Parameters to **Use value from package** setting.
-- Use PowerShell to update the Package Parameters for you.
+- Manually update the package parameters to **Use value from package** setting.
+- Use PowerShell to update the package parameters for you.
 
 ### Manual method
-The hint above describes how to navigate to the Package Parameters and manually update them.  However, this is inefficient as it would need to be repeated after each deployment.
+The hint above describes how to navigate to the package parameters and manually update them.  However, this is inefficient as it would need to be repeated after each deployment.
 
 ### PowerShell
-A better solution is to add a Run a Script task to our deployment process to perform the edits for us. 
+A better solution is to add a Run a Script task to your deployment process to perform the edits for you.
 
 The following script should get you most of the way there:
 
@@ -70,7 +71,7 @@ Function Import-Assemblies
 {
     # display action
     Write-Host "Importing assemblies..."
-    
+
     # get folder we're executing in
     $WorkingFolder = Split-Path $script:MyInvocation.MyCommand.Path
     Write-Host "Execution folder: $WorkingFolder"
@@ -98,7 +99,7 @@ Function Get-Catalog
         Write-Error  "Catalog $CataLogName does not exist or the Tentacle account does not have access to it."
 
         # throw error
-        throw 
+        throw
     }
 
     # return the catalog
@@ -119,7 +120,7 @@ Function Get-Folder
         Write-Error "Folder not found."
         throw
     }
-    
+
     # return the folder reference
     return $Folder
 }
@@ -180,6 +181,7 @@ Clear-Parameter -ParameterName "CM.WWI_Source_DB.ConnectByProxy"
 With this script, you can call `Clear-Parameter` for whatever parameters that need to be set to `Use default value from package` on.
 
 ## Conclusion
+
 While automating SSIS deployments, I discovered a newer version of Visual Studio was introducing additional properties to the Connection Manager that an older version of SQL Server didn't know about. I hope this blog saves you from encountering the same issue.
 
 Happy deployments!
