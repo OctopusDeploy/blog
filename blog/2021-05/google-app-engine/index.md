@@ -19,7 +19,7 @@ In this post we'll look at how to deploy a sample application to GAE and manipul
 GAE offers two kinds of deployments for Java: deploying source code to be compile by GAE, and deploying compiled applications. Allowing GAE to compile your source code is convenient, although for this example we'll make use of a JAR file that has already been compiled by our CI system.
 
 :::hint
-The ability to deploy a compiled application is unique to Java in GAE. Other runtimes, like Node, Python, Ruby, and PHP don't typically produce compiled applications. Go is the notable exception, and in that case you do need to deploy your source code and allow GAE to compile it for you.
+The ability to deploy a compiled application is unique to Java in GAE. Other runtimes like Node, Python, Ruby, and PHP don't typically produce compiled applications. Go is the notable exception, and in that case you do need to deploy your source code and allow GAE to compile it for you.
 :::
 
 Our sample application will be a simple Java Spring web app called Random Quotes. The source code for this application can be found [here](https://github.com/OctopusSamples/RandomQuotes-Java). This application generates a self contained JAR file hosting the application and a built-in web server.
