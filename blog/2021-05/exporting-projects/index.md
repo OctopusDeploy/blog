@@ -3,10 +3,14 @@ title: Exporting and importing projects between Spaces
 description: In Octopus 2021.1 we've introduced a new feature to export and import projects. 
 author: michael.richardson@octopus.com
 visibility: public
-published: 2222-01-01
+published: 2021-06-01-1400
+metaImage: blogimage-project-bento-2021.png
+bannerImage: blogimage-project-bento-2021.png
 tags:
  - Product 
 ---
+
+![octopus branded bento box filled with sushi](blogimage-project-bento-2021.png)
 
 The 2021 Q2 Octopus Deploy release includes a new feature allowing projects to be exported and then imported into another Space, to help you organise your Octopus instance. It also allows you to easily move your on-premesis Octopus installation to Octopus Cloud.
 
@@ -14,7 +18,7 @@ The 2021 Q2 Octopus Deploy release includes a new feature allowing projects to b
 ## How Spaces evolved
 Octopus 2019.1 introduced [Spaces](https://octopus.com/docs/administration/spaces), a way to partition your Octopus Server.  
 
-We didn't include the ability to _move projects between Spaces_ though,   because the functionality was complicated to design and build.  
+We didn't include the ability to _move projects between spaces_ though,   because the functionality was complicated to design and build.  
 
 The demand for this has been strong though. We were told Spaces was less valuable without a way to partition existing projects into new spaces. 
 
@@ -22,7 +26,7 @@ Our Customer Solutions team stepped up to fill the gap with the [Space Cloner](h
 
 Fast-forward two years, and people also want to migrate projects from self-hosted Octopus instances to [Octopus Cloud](https://octopus.com/docs/octopus-cloud).  
 
-The 2021 Q2 release introduces the ability to export and import projects as a fully-supported, in-the-box feature! 
+The 2021 Q2 release introduces the ability to export and import projects as a fully-supported, in-the-box feature. 
 
 ![Project Export/Import menu](import-export-menu.png "width=500")
 
