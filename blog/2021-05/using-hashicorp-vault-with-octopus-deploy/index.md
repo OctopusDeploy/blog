@@ -123,7 +123,7 @@ The step template has the following parameters:
 
 - `Vault Server URL`: The URL of the Vault instance you are connecting to, including the port (The default is `8200`).
 - `API version`: Choose the API version to use from a drop-down list. Currently, there is only one option: `v1`.
-- `App Role Path`: The path where the [approle auth method is mounted](https://www.vaultproject.io/api-docs/auth/approle) at.
+- `App Role Path`: The path where the [approle auth method is mounted](https://www.vaultproject.io/api-docs/auth/approle).
 - `Role ID`: The [RoleID](https://www.vaultproject.io/docs/auth/approle#roleid) of the AppRole.
 - `Secret ID`: The [SecretID](https://www.vaultproject.io/docs/auth/approle#secretid) of the AppRole.
 
@@ -196,7 +196,7 @@ The step template uses the following parameters:
 
 - `Vault Server URL`: The URL of the Vault instance you are connecting to, including the port (The default is `8200`).
 - `API version`: Choose the API version from a drop-down list. Currently, there is only one option: `v1`.
-- `App Role Path`: The path where the [AppRole auth method is mounted](https://www.vaultproject.io/api-docs/auth/approle) at.
+- `App Role Path`: The path where the [AppRole auth method is mounted](https://www.vaultproject.io/api-docs/auth/approle).
 - `Role Name`: The role name of the [AppRole](https://www.vaultproject.io/api/auth/approle).
 - `Time-to-live (TTL)`: The TTL in seconds of the [response-wrapping token](https://www.vaultproject.io/docs/concepts/response-wrapping#response-wrapping-tokens) itself. The default is: `120s`
 - `Auth Token`: The [token](https://www.vaultproject.io/docs/auth/token) used to authenticate with Vault to generate a [response-wrapped](https://www.vaultproject.io/docs/concepts/response-wrapping) SecretID.
