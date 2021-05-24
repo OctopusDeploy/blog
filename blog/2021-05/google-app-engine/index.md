@@ -16,7 +16,11 @@ In this post we'll look at how to deploy a sample application to GAE and manipul
 
 ## A simple deployment
 
-GAE offers two kinds of deployments: deploying source code to be compile by GAE, and deploying compiled applications. Allowing GAE to compile your source code is convenient, but can be hard to scale as the size of your team and the code base increases. For example, I wasn't able to find concrete documentation on how GAE compiled the source code it received (although [this blog post](https://cloud.google.com/blog/products/containers-kubernetes/google-cloud-now-supports-buildpacks) indicates that buildpacks are now the preferred solution), so debugging any build issues locally might present a challenge. Also most enterprise teams will already have a Continuous Integration (CI) server performing builds and collecting test results. So for this post we'll focus on deploying compiled applications.
+GAE offers two kinds of deployments for Java: deploying source code to be compile by GAE, and deploying compiled applications. Allowing GAE to compile your source code is convenient, although for this example we'll make use of a JAR file that has already been compiled by our CI system.
+
+:::hint
+The ability to deploy a compiled application is unique to Java in GAE. Other runtimes, like Node, Python, Ruby, and PHP don't typically produce compiled applications. Go is the notable exception, and in that case you do need to deploy your source code and allow GAE to compile it for you.
+:::
 
 Our sample application will be a simple Java Spring web app called Random Quotes. The source code for this application can be found [here](https://github.com/OctopusSamples/RandomQuotes-Java). This application generates a self contained JAR file hosting the application and a built-in web server.
 
