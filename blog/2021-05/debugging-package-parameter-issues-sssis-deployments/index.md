@@ -1,6 +1,6 @@
 ---
 title: Debugging package parameter issues for automated SSIS deployments
-description: Learn from my experience automating SSIS deployments, and how to avoid an error using different versions of Visual Studio and SQL Server.
+description: Learn from about issues with package parameters experience when automating SSIS deployments, and how to avoid an error using different versions of Visual Studio and SQL Server.
 author: shawn.sesna@octopus.com
 visibility: public
 published: 2021-05-26-1400
