@@ -7,6 +7,7 @@ published: 2021-05-26-1400
 metaImage: deploying-ssis-issue.png
 bannerImage: deploying-ssis-issue.png
 tags:
+ - DevOps
  - Databases
 ---
 
