@@ -1,6 +1,6 @@
 ---
 title: Debugging package parameter issues for automated SSIS deployments
-description: Learn from about issues with package parameters experience when automating SSIS deployments, and how to avoid an error using different versions of Visual Studio and SQL Server.
+description: Learn about issues with package parameters when automating SSIS deployments, and how to avoid an error using different versions of Visual Studio and SQL Server.
 author: shawn.sesna@octopus.com
 visibility: public
 published: 2021-05-26-1400
@@ -44,7 +44,7 @@ I redeployed the SSIS package using Octopus Deploy.  Once deployed, I edited the
 
 ## The problem
 
-After several hours of research, I discover the developer was using the most recent version of Visual Studio to develop the SSIS package, but it was deploying to an older version of SQL Server.  
+After several hours of research, I discovered the developer was using the most recent version of Visual Studio to develop the SSIS package, but it was deploying to an older version of SQL Server.  
 
 The newer version of Visual Studio introduced additional properties to the connection manager that the older version of SQL Server didn't know about. The error was trying to tell us this, but it was unclear.
 
@@ -183,6 +183,6 @@ With this script, you can call `Clear-Parameter` for whatever parameters that ne
 
 ## Conclusion
 
-While automating SSIS deployments, I discovered a newer version of Visual Studio was introducing additional properties to the Connection Manager that an older version of SQL Server didn't know about. I hope this blog saves you from encountering the same issue.
+While automating SSIS deployments, I discovered a newer version of Visual Studio was introducing additional properties to the connection manager that an older version of SQL Server didn't know about. I hope this blog saves you from encountering the same issue.
 
 Happy deployments!
