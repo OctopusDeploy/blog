@@ -3,7 +3,7 @@ title: How DevOps principles power Octopus documentation
 description: How DevOps principles power Octopus documentation producing 60 guides with 300,000 words, 6,000 images and 25 hours of video maintained by a team of two.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2020-01-08
+published: 2021-06-21-1400
 metaImage: devops_documentation_2020.png
 bannerImage: devops_documentation_2020.png
 tags:
@@ -12,7 +12,7 @@ tags:
 
 ![DevOps practices power Octopus documentation](devops_documentation_2020.png)
 
-We recently added detailed end-to-end CI/CD guides to the [Octopus documentation](https://octopus.com/docs/guides) to help teams configure their delivery pipelines. We applied DevOps principles to the process of software documentation that allowed us to create useful step-by-step guides, with automated screenshots and screencasts of each scenario being documented.
+We have detailed end-to-end CI/CD guides to the [Octopus documentation](https://octopus.com/docs/guides) to help teams configure their delivery pipelines. We applied DevOps principles to the process of software documentation that allowed us to create useful step-by-step guides, with automated screenshots and screencasts of each scenario being documented.
 
 If you’ve ever tried supporting a friend, colleague, or customer with a technical issue over the phone, you know how inefficient that conversation can be:
 
@@ -24,21 +24,31 @@ If you’ve ever provided the same support to somebody in person, the process is
 
 The shared context provided by two people looking at the same screen instantly removes the ambiguity and the whole process is much smoother.
 
-Octopus Deploy is an integration tool that sits in the middle of any of a dozen different (and equally complex) platforms and tools, so when we started work on the end-to-end guides, we knew we needed to provide complete journeys rather than assuming people already knew the big picture, and that we’d need to show users how to do things rather than tell them.
+Octopus Deploy is an integration tool that sits in the middle of any of a dozen different (and equally complex) platforms and tools. When we started work on the end-to-end guides, we knew we needed to provide complete journeys rather than assuming people knew the big picture. We also needed to show users how to do things rather than tell them.
 
-The result of this project is the [Octopus Guides](https://octopus.com/docs/guides). If you visit our [homepage](https://octopus.com), you can select your technology stack and see a dedicated guide that steps you through the process from compiling your code to deploying it to its destination. We haven’t completed every combination yet, but if you find a combination that hasn’t been written yet, you can vote for it.
+The result of this project is the [Octopus Guides](https://octopus.com/docs/guides). 
+
+If you visit our [homepage](https://octopus.com), you can select your technology stack and see a dedicated guide that steps you through the process from compiling your code to deploying it to its destination. We haven’t completed every combination yet, but if you find a combination that hasn’t been written yet, you can vote for it.
 
 ![](guides.png "width=500")
 
-To recreate the efficiency of two people looking at the same screen, each guide is illustrated with over 100 highlighted images, and the entire process is captured by a screencast that shows every mouse click. And because each guide is tailored to the selected software stack, you’re not left on your own to Google the next step in the process.
+## Creating tailored software documentation
 
-Creating this suite of tailored software documentation is not a trivial task. At the time of writing, we have around 60 such individual guides with over 6,000 highlighted images, 25 hours of video, and close to 300,000 words documenting various combinations of around 16 technology stacks. Many of the applications included in the guides are released on a monthly or weekly schedule, and ideally, our screenshots will be kept up to date. This content was created and will be maintained by a team of two (myself as writer/developer and an editor to review and edit the content) over the course of a few months.  
+To recreate the efficiency of two people looking at the same screen, each guide is illustrated with over 100 highlighted images, and the entire process is captured by a screencast that shows every mouse click. And because each guide is tailored to the selected software stack, you’re not left to Google the next step in the process.
 
-To achieve this, we needed a solution that could scale up far beyond a traditional write, commit, transform, and publish workflow. Without the luxury of throwing more people at the problem, we leaned heavily on DevOps practices such as automated testing (to ensure the process we were documenting worked as described), infrastructure as code, and automated pipelines to generate screenshots and video.
+Creating this suite of tailored software documentation is not a trivial task. At the time of writing, we have around 60 such individual guides with over 6,000 highlighted images, 25 hours of video, and close to 300,000 words documenting various combinations of around 16 technology stacks. 
+
+Many of the applications included in the guides are released on a monthly or weekly schedule, and ideally, our screenshots will be kept up to date. This content was created and will be maintained by a team of two (myself as writer/developer and an editor to review and edit the content) over the course of a few months.  
+
+To achieve this, we needed a solution that could scale up far beyond a traditional write, commit, transform, and publish workflow. Without the luxury of throwing more people at the problem, we leaned heavily on DevOps practices such as: 
+
+- Automated testing (to ensure the process we were documenting worked as described).
+- Infrastructure as code.
+- Automated pipelines to generate screenshots and video.
 
 ## A simple example
 
-To demonstrate the process we used to create the guides, we’ll create a simple example that documents performing a Google search:
+To demonstrate how we created the guides, I’ll create a simple example that documents performing a Google search:
 
 <iframe src="https://fast.wistia.net/embed/iframe/eecl0uod01?videoFoam=true" title="google-example Video" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="500px" height="400px"></iframe>
 
@@ -52,15 +62,15 @@ To demonstrate the process we used to create the guides, we’ll create a simple
 
 ![](https://i.octopus.com/guides/google/020-search-results.png "width=500")
 
-This is a trivial example, but it illustrates two of the features of the guides we implemented.
+This is a trivial example, but it illustrates two features that we implemented:
 
-First, we have a screencast showing the interaction with the browser, tracking each mouse click and form entry. This video is a big part of the *show, don’t tell* philosophy as it demonstrates exactly what the documentation describes.
+1. We have a screencast showing the interaction with the browser, tracking each mouse click and form entry. This video is a big part of the *show, don’t tell* philosophy as it demonstrates exactly what the documentation describes.
 
-Next, you’ll notice the elements we interact with on the search screen are highlighted with a fluorescent green box in the screenshots. This is the equivalent of sitting over someone’s shoulder and pointing to the screen rather than relying on awkward written descriptions of visual user interfaces.
+1. The elements we interact with on the search screen are highlighted with a fluorescent green box in the screenshots. This is the equivalent of sitting over someone’s shoulder and pointing to the screen rather than relying on awkward written descriptions of visual user interfaces.
 
 ## Automating the process
 
-This video and the screenshots could have been created and edited manually, but given that we’re building the foundation for a workflow that expanded to dozens (if not hundreds) of guides, we needed a way for these assets to be created automatically.
+This video and the screenshots could have been created and edited manually, but given that we’re building the foundation for a workflow that expanded to dozens (if not hundreds) of guides, we needed these assets to be created automatically.
 
 Automating the creation and updating of these assets requires four services:
 
@@ -76,11 +86,13 @@ For the Octopus Guides, we used:
 * A custom tool using [Selenium WebDriver](https://selenium.dev/) for scripting a web browser.
 * [GitHub Actions](https://github.com/features/actions) to execute everything.
 
-To see this in action, we’ll take a look at a [sample project](https://github.com/OctopusSamples/GoogleAgileDocs). This project includes two workflows that are executed by GitHub Actions: one to capture the screencast, and another to generate the screenshots.
+To see this in action, take a look at a [sample project](https://github.com/OctopusSamples/GoogleAgileDocs). This project includes two workflows that are executed by GitHub Actions: one to capture the screencast, and another to generate the screenshots.
 
-The code for the workflow that captures the screencast can be found in the [OctopusSamples GitHub repo ](https://github.com/OctopusSamples/GoogleAgileDocs/blob/master/.github/workflows/video.yml). It starts with some boilerplate YAML that names the workflow, specifies when to run it, and defines a job called `build` that is executed on an Ubuntu virtual machine (VM).
+The code for the workflow that captures the screencast can be found in the [OctopusSamples GitHub repo](https://github.com/OctopusSamples/GoogleAgileDocs/blob/master/.github/workflows/video.yml). It starts with some boilerplate YAML that names the workflow, specifies when to run it, and defines a job called `build` that is executed on an Ubuntu virtual machine (VM).
 
-The `push` option means each commit to the repository triggers a build, while the `schedule` option has been set to run the build at midnight UTC every day. Running the build on a schedule like this means we know that our screenshots and videos are current, even if the applications being used are updated. Or in the case of this example, it ensures our documentation captures the latest Google doodle.
+The `push` option means each commit to the repository triggers a build, while the `schedule` option has been set to run the build at midnight UTC every day. 
+
+Running the build on a schedule like this means we know that our screenshots and videos are current, even if the applications being used are updated. Or in the case of this example, it ensures our documentation captures the latest Google doodle.
 
 This is important because we don’t want our documentation to be full of stale media.
 
@@ -127,9 +139,9 @@ The next step uses Puppet to install the tools we need, like the AWS CLI for upl
 We use Puppet instead of the native GitHub Actions for a couple of reasons:
 
 1. Puppet can run outside of GitHub Actions in a development VM to debug the process.
-2. The scenarios documented by the Octopus Guides involve complex infrastructure initialization: CI servers, Octopus Deploy, package repositories like Artifactory, Kubernetes clusters with Minikube and web servers.
+1. The scenarios documented by the Octopus Guides involve complex infrastructure initialization: CI servers, Octopus Deploy, package repositories like Artifactory, Kubernetes clusters with Minikube and web servers.
 
-Puppet is well suited to deploy this infrastructure, while GitHub Actions tend to be limited to building and testing code.
+Puppet is well suited to deploy this infrastructure, while GitHub Actions tends to be limited to building and testing code.
 
 ```yaml
       - name: Configure VM
@@ -140,11 +152,11 @@ The next step runs our custom Selenium WebDriver scripting tool. The code for th
 
 Here you can see a number of the global environment variables are passed as Java properties via the `JAVA_OPTS` environment variable. These properties are defined with the `-D` argument, the name of the property, and the value of the property:
 
-* `moveCursorToElement`: Enable the mouse cursor movement as part of the WebDriver script.
-* `disableHighlights`: Disable the green highlights from being placed on elements.
-* `disableScreenshots`: Disable screenshots.
-* `mouseMoveVerticalOffset`: Define the height of the browser UI’s top widgets.
-* `CucumberAlias-[Alias Name]`: Define some aliases to be used in the script.
+- `moveCursorToElement`: Enable the mouse cursor movement as part of the WebDriver script.
+- `disableHighlights`: Disable the green highlights from being placed on elements.
+- `disableScreenshots`: Disable screenshots.
+- `mouseMoveVerticalOffset`: Define the height of the browser UI’s top widgets.
+- `CucumberAlias-[Alias Name]`: Define some aliases to be used in the script.
 
 Finally, the arguments to be passed to the Docker image are defined. The arguments are passed to the Cucumber CLI, which this Docker image implements. The first argument enables the progress plugin (`--plugin progress`), and passes the path of the feature file to be run (`/github/workspace/google.feature`):
 
@@ -200,7 +212,7 @@ The workflow for generating the screenshots is very similar, with the exception 
 
 With the GitHub Actions workflows done, we have configured all the tooling we need to generate the screenshots and videos and upload the results to either Wistia or AWS S3. The final piece of the puzzle is the WebDriver scripts.
 
-We alluded to the fact the WebDriver Docker container was running Cucumber. Cucumber is a library that reads Gherkin scripts and executes code associated with the steps. But don’t worry if you are not familiar with Cucumber or Gherkin, as the scripts are easy enough to follow since they are designed to be written in something that resembles plain English.
+We mentioned the WebDriver Docker container was running Cucumber. Cucumber is a library that reads Gherkin scripts and executes code associated with the steps. But don’t worry if you're not familiar with Cucumber or Gherkin, as the scripts are easy enough to follow because they're designed to be written in something that resembles plain English.
 
 The `google.feature` file is shown below:
 
@@ -264,7 +276,7 @@ We now start interacting with the page by entering a query into the search text 
     When I populate the "Search" text box with "Octopus Deploy"
 ```
 
-The next two steps add the fluorescent green highlights around elements on the page (unless all highlighting has been disabled from the command-line). These highlights are used to help readers quickly pinpoint the elements that are referenced in the documentation:
+The next two steps add the fluorescent green highlights around elements on the page (unless all highlighting has been disabled from the command-line). These highlights are used to help readers quickly pinpoint the elements referenced in the documentation:
 
 ```
     And I highlight outside the "Search" text box with an offset of "2"
@@ -306,27 +318,35 @@ This same script is run twice, once to capture the video with all highlights dis
 
 ## Bringing DevOps to software documentation
 
-Although this was a trivial example, the workflow we created here is fundamentally the same process that we used to produce the thousands of screenshots and hours of video that has gone into the Octopus Guides. There are several key features that have been demonstrated here that allow us to scale up the production of documentation.
+Although this was a trivial example, the workflow we created here is fundamentally the same process that we used to produce the thousands of screenshots and hours of video in the Octopus Guides. There are several key features that have been demonstrated here that allow us to scale up the production of documentation.
 
 ### Near infinite execution scale
 
-The entire process is automated and scheduled using GitHub Actions. This allows us to scale out by running multiple workflows in parallel, with the only limit being how much you want to spend on compute costs and the limitations imposed by GitHub. GitHub takes care of provisioning and cleaning up the build environments, so all we need to do is set the appropriate schedule.
+The entire process is automated and scheduled using GitHub Actions. This allows us to scale out by running multiple workflows in parallel, only limited by how much you want to spend on compute costs and the limitations imposed by GitHub. 
+
+GitHub takes care of provisioning and cleaning up the build environments, so all we need to do is set the appropriate schedule.
 
 ### Verifiable rather than aspirational documentation
 
 Have you ever read technical documentation and thought the writer was describing how they thought the product *should* work rather than how it *does* work? Or maybe you hit a wall because the developer writing the docs forgot to mention a dependency they installed years ago and simply didn’t realize it was critical to the process?
 
-By using Puppet and the blank-slate VMs (immutable infrastructure) provided by GitHub Actions, we force ourselves to rebuild the environment that we are documenting from scratch every time. Although this example didn’t install any local infrastructure and only accessed Google, the Octopus Guides workflows install the CI servers, databases, build tools, and web servers with each and every run. This means that the guides can verifiably demonstrate how Octopus and the associated tools actually work rather than describing how things are assumed to work.
+By using Puppet and the blank-slate VMs (immutable infrastructure) provided by GitHub Actions, we force ourselves to rebuild the environment that we are documenting from scratch every time. 
+
+Although this example didn’t install any local infrastructure and only accessed Google, the Octopus Guides workflows install the CI servers, databases, build tools, and web servers with each and every run. This means that the guides can verifiably demonstrate how Octopus and the associated tools actually work rather than describing how things are assumed to work.
 
 ### Automating testing and testable documentation
 
-Although the documentation is still written by hand, there is now a one-to-one mapping between the steps outlined in the documentation to the Gherkin script that we execute and verify with GitHub Actions. This means we now have documentation that is backed by automated tests, which is essential when producing the amount of content that we include with the Octopus Guides. Scheduling regular runs of the workflows mean we can be notified of any product updates that might break our scripts, and therefore require the documentation to be updated.
+Although the documentation is still written by hand, there is now a one-to-one mapping between the steps outlined in the documentation to the Gherkin script that we execute and verify with GitHub Actions. This means we now have documentation that is backed by automated tests, which is essential when producing the amount of content that we include with the Octopus Guides. 
+
+Scheduling regular runs of the workflows mean we can be notified of any product updates that might break our scripts, and therefore require the documentation to be updated.
 
 ### Software documentation that is always up to date
 
-Although the purpose of these browser scripts is to generate the screenshots and videos consumed by our documentation, they are also essentially end-to-end tests. If the script fails, for example, if an HTML element is no longer available or a manual verification step does not succeed, the GitHub Action fails, we are notified, and can determine if some aspect of our documentation needs to be updated.
+Although the purpose of these browser scripts is to generate the screenshots and videos consumed by our documentation, they are also essentially end-to-end tests. 
 
-On the flip side, if the script passes, we can be quite confident that the screenshots and video we collected are valid, and they can be updated immediately.
+If the script fails, for example, if an HTML element is no longer available or a manual verification step does not succeed, the GitHub Action fails, we are notified, and can determine if some aspect of our documentation needs to be updated.
+
+On the flip side, if the script passes, we can be confident that the screenshots and video we collected are valid, and they can be updated immediately.
 
 In practice, this means if your Puppet scripts default to installing the latest versions of any software, and the scripts pass, the screenshots and video can be pushed to the live documentation without any manual intervention. This solves the issue of stale images being presented in the documentation and removes the cost of manually keeping this kind of media up to date.
 
@@ -334,9 +354,11 @@ So if Jenkins ever refreshes their UI, you can be assured that the Octopus Guide
 
 ## Conclusion
 
-By adopting DevOps best practices like infrastructure as code, automated testing, and pipelines, it is possible to streamline some of the most manual, tedious, and expensive aspects of creating and maintaining significant volumes of high-quality documentation. With just a few months’ worth of work, a team of 2 produced thousands of screenshots, hours of video, and hundreds of thousands of words, all automatically generated and verified.
+By adopting DevOps best practices like infrastructure as code, automated testing, and pipelines, it is possible to streamline some of the most manual, tedious, and expensive aspects of creating and maintaining significant volumes of high-quality documentation. 
 
-If you are an Octopus customer, we hope you find these new guides valuable, and if you’re interested in producing similar content the links below will take you to the resources that were mentioned in this blog:
+With just a few months’ worth of work, a team of 2 produced thousands of screenshots, hours of video, and hundreds of thousands of words, all automatically generated and verified.
+
+If you're an Octopus customer, we hope you find these new guides valuable. If you’re interested in producing similar content, the resources mentioned in this blog are listed below:
 
 * [Octopus Guides](https://octopus.com/docs/guides/) homepage.
 * The [GitHub repo](https://github.com/OctopusDeploy/OctopusGuides) that contains the code used to create the guides.
@@ -344,3 +366,9 @@ If you are an Octopus customer, we hope you find these new guides valuable, and 
 * The [Docker image](https://hub.docker.com/repository/docker/mcasperson/webdriver) called from GitHub Actions.
 * The [WebDriver application source code](https://github.com/OctopusDeploy/WebDriverTraining).
 * The [GitHub repo](https://github.com/OctopusSamples/GoogleAgileDocs) holding the example project described in this post.
+
+## Register for Matthew's *Continuously Delivered Documentation* talk
+
+Matthew Casperson, Product Manager at Octopus Deploy, will be presenting his talk *Continuously Delivered Documentation* at CDCon 2021 on June 24th: [Register now](https://cdcon2021.sched.com/event/iosa)
+
+Happy deployments!
