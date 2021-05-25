@@ -1,5 +1,5 @@
 ---
-title: New Azure App Service step 
+title: Improved Azure App Service deployments 
 description: Octopus 2021.1 included an improved Azure App Service deployment step 
 author: michael.richardson@octopus.com
 visibility: private
