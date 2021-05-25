@@ -10,11 +10,11 @@ tags:
  - Product 
 ---
 
-Octopus 2021.1 includes a new _Deploy an Azure App Service_ step, bringing some major improvements for deploying Azure web applications, including:
+Octopus 2021.1 includes a new _Deploy an Azure App Service_ step, bringing some major improvements for deploying Azure web applications including:
 
 - Deploying to Linux app service plans (without obscure configuration hacks) 
 - Deploying container images 
-- Executing on Linux Octopus workers
+- Executing deployments on Linux Octopus workers
 - Configuring application settings and connection strings
 
 ![Add Azure App Service step tile](azure-app-service-step-tile.png "width=500")
