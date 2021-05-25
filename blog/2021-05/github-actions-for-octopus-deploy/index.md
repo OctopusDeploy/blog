@@ -60,19 +60,102 @@ I highly recommend this introduction to GitHub actions to learn more. This blog 
 
 ## Getting started with the GitHub Actions for Octopus Deploy
 
-To illustrate how to use the new GitHub Actions for Octopus, we'll update the example build script to 
+To illustrate how to use the new GitHub Actions for Octopus, we'll update the example build script to install the Octopus CLI, push our build artifact as as ZIP to Octopus and then create a release and deploy it to our DEV environment.
+
+The complete build file looks like the following. 
+
+```yaml
+name: Build
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet publish -o build 
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
+    - name: Install Octopus CLI 🐙
+      uses: OctopusDeploy/install-octopus-cli-action@v1.1.6
+      with:
+        version: latest
+    - name: Pack
+      run: octo pack --id="RandomQuotes" --format="zip" --version="1.0.${{github.run_number}}" --basePath="/home/runner/work/RandomQuotes/RandomQuotes/build/" --verbose
+    - name: Push a package to Octopus Deploy 🐙
+      uses: OctopusDeploy/push-package-action@v1.0.1
+      with:
+        api_key: ${{ secrets.OCTOPUS_APIKEY }}
+        server: ${{ secrets.OCTOPUS_SERVER }}
+        packages: "RandomQuotes.1.0.${{github.run_number}}.zip"
+    - name: Create a release in Octopus Deploy 🐙
+      uses: OctopusDeploy/create-release-action@v1.0.2
+      with:
+        api_key: ${{ secrets.OCTOPUS_APIKEY }}
+        server: ${{ secrets.OCTOPUS_SERVER }}
+        project: "Projects-141"
+        deploy_to: "Dev"
+
+```
+
+NOTE: This is building a .NET 5 web application but it could easily be a Spring (Java) web app or NodeJS express service. The important parts are the usage of the GitHub Actions for Octopus that make it easy to integrate.
 
 ### Install the Octopus CLI
 
+```yaml
+    - name: Install Octopus CLI 🐙
+      uses: OctopusDeploy/install-octopus-cli-action@v1.1.6
+      with:
+        version: latest
+```
+
+This is a pre-requisite to use any of the other steps as it bootstraps the container/job runner with the approapriate dependencies to instal the Octopsu CLI.
 
 
 ### Push build artifacts to Octopus
 
+```yaml
+    - name: Pack
+      run: octo pack --id="RandomQuotes" --format="zip" --version="1.0.${{github.run_number}}" --basePath="/home/runner/work/RandomQuotes/RandomQuotes/build/" --verbose
+    - name: Push a package to Octopus Deploy 🐙
+      uses: OctopusDeploy/push-package-action@v1.0.1
+      with:
+        api_key: ${{ secrets.OCTOPUS_APIKEY }}
+        server: ${{ secrets.OCTOPUS_SERVER }}
+        packages: "RandomQuotes.1.0.${{github.run_number}}.zip"
+```
 
+The next step is to package up your build artifacts and push it to a package repository. The easiest option here and a very popular option for teams is to push it to the Octopus build-in package repository. I have two steps here. One that is using the Octopus CLI to ZIP the outcome of my build. The second is pushing the package to my Octopus instance. 
+
+In this step, you can see I'm referencing two secrets stored in my repository configuration. One is for the Octopus Server URL and the other is an API key for my GitHub build. 
 
 ### Create a release and deploy it to the DEV environment
 
+```yaml
+    - name: Create a release in Octopus Deploy 🐙
+      uses: OctopusDeploy/create-release-action@v1.0.2
+      with:
+        api_key: ${{ secrets.OCTOPUS_APIKEY }}
+        server: ${{ secrets.OCTOPUS_SERVER }}
+        project: "Projects-141"
+        deploy_to: "Dev"
+```
 
+The final step in my build process is to create a release of my project and deploy it to my DEV environment. 
 
 ## Conclusion
 
