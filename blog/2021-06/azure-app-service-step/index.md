@@ -4,12 +4,14 @@ description: Learn about the improved Azure App Service deployment step included
 author: michael.richardson@octopus.com
 visibility: public
 published: 2021-06-07-1400
-metaImage: 
-bannerImage: 
+metaImage: img-blog-azure-app-service-zip-deploy-2021.png
+bannerImage: img-blog-azure-app-service-zip-deploy-2021.png
 tags:
  - Product 
  - Azure
 ---
+
+![Octopus, a zip file and Azure logo connected in the clouds](img-blog-azure-app-service-zip-deploy-2021.png)
 
 Octopus 2021.1 includes a new _Deploy an Azure App Service_ step. This delivers major improvements for deploying Azure web applications including:
 
