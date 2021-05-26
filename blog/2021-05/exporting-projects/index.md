@@ -16,12 +16,10 @@ The 2021 Q2 Octopus Deploy release includes a new feature allowing projects to b
 
 During development we referred to this as Project Bento.  
 
-## How Spaces evolved
+## Spaces and Octopus Cloud 
 Octopus 2019.1 introduced [Spaces](https://octopus.com/docs/administration/spaces), a way to partition your Octopus Server.  
 
-We didn't include the ability to _move projects between spaces_ though,   because the functionality was complicated to design and build.  
-
-The demand for this has been strong though. We were told Spaces was less valuable without a way to partition existing projects into new spaces. 
+We didn't include the ability to _move projects between spaces_ though, because the functionality was complicated to design and build. The demand for this has been consistently strong, with the feedback being that Spaces was less valuable without a way to partition existing projects into new spaces. 
 
 Our Customer Solutions team stepped up to fill the gap with the [Space Cloner](https://github.com/OctopusDeployLabs/SpaceCloner) project, a collection of PowerShell scripts to help with copying between spaces.  This was useful in many cases, but there were limitations because it operated via the HTTP API, as opposed to being "in the box". 
 
