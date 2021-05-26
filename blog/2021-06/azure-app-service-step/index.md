@@ -26,19 +26,16 @@ Octopus 2021.1 includes a new _Deploy an Azure App Service_ step. This delivers 
 
 The _Deploy an Azure App Service_ step is designed to supercede the existing _Deploy an Azure Web App_ step, however the original step is still available. 
 
-The _Deploy an Azure Web App_ step relied on [Microsoft Web Deploy](https://www.iis.net/downloads/microsoft/web-deploy) as the deployment mechanism. This restricted the step to executing on Windows workers, required special configuration to work with Linux app service plans, and didn't support container images.  
+The _Deploy an Azure Web App_ step relied on [Microsoft Web Deploy](https://www.iis.net/downloads/microsoft/web-deploy) as the deployment mechanism. This restricted the step to executing on Windows workers, required special configuration to work with Linux app service plans, and didn't support container images.  The new step relies on the [zip deploy API](https://docs.microsoft.com/en-us/azure/app-service/deploy-zip#rest) for file-based packages (zip, nupkg, war), and also support container images.
 
-The new step:
 
-- Relies on the [zip deploy API](https://docs.microsoft.com/en-us/azure/app-service/deploy-zip#rest) for file-based packages (zip, nupkg, war).
-- Supports container images. 
-- Brings the ability to configure the Azure application settings and connection strings. 
+## App settings and connection strings 
+
+The new step also brings the ability to configure the Azure application settings and connection strings.
 
 ![Configuring app settings and connection strings](app-settings-and-connection-strings.png "width=500")
 
 This is done by supplying the settings and/or connection strings as JSON. 
-
-## The JSON format
 
 The benefits of using the JSON format are: 
 
