@@ -75,6 +75,6 @@ So it is not possible to directly interact with previous revisions of functions,
 
 ## Conclusion
 
-Google Cloud Functions provides a convenient solution for anyone looking to quickly deploy simple applications, either to support public facing interactions via HTTP, or to respond to events in the GCP ecosystem. Unlike other application hosting platforms provided by GCP, cloud functions offer very simple versioning and networking options, meaning advanced deployment strategies must be orchestrated externally through naming conventions. However, for more traditional deployments this lack of flexibility can be a blessing, as function deployments require very little effort, especially when you consider that Google takes care of compiling your code for you.
+Google Cloud Functions provides a convenient solution for anyone looking to quickly deploy simple applications, either to support public facing interactions via HTTP, or to respond to events in the GCP ecosystem. Unlike other application hosting platforms provided by GCP, cloud functions offer very simple versioning and networking options, meaning advanced deployment strategies must be orchestrated externally through naming conventions. However, for more traditional deployments, this lack of flexibility can be a blessing, as function deployments require very little effort, especially when you consider that Google takes care of compiling your code for you.
 
 Happy deployments!
