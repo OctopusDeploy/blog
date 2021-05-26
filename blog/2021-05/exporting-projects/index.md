@@ -14,6 +14,7 @@ tags:
 
 The 2021 Q2 Octopus Deploy release includes a new feature allowing projects to be exported and then imported into another Space, to help you organise your Octopus instance. It also allows you to easily move your on-premesis Octopus installation to Octopus Cloud.
 
+During development we referred to this as Project Bento.  
 
 ## How Spaces evolved
 Octopus 2019.1 introduced [Spaces](https://octopus.com/docs/administration/spaces), a way to partition your Octopus Server.  
