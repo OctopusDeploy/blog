@@ -61,6 +61,8 @@ The following options for transforming configuration files are provided:
 
 ## Conclusion
 
-The new _Deploy an Azure App Service_ step is available now in both Octopus Cloud instances and in Octopus 2021.1 on the self-hosted [downloads page](https://octopus.com/downloads). We hope this makes it easier to deploy Azure web applications.
+We tip our hats to our friends at [Clear Measure](https://clearmeasure.com/) for their help in developing this new Azure App Service integration.     
+
+The _Deploy an Azure App Service_ step is available now in both Octopus Cloud instances and in Octopus 2021.1 on the self-hosted [downloads page](https://octopus.com/downloads). We hope this makes it easier than ever to deploy your Azure web applications.
 
 Happy deployments!
