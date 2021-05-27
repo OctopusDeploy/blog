@@ -54,21 +54,19 @@ jobs:
 
 The workflow is named **build** and it triggers a single job whenever changes are pushed to the parent Git repository on the `master` branch. The steps are straightforward in that they prepare and execute a continous integration build including restoring dependencies, executing the build and running all tests. 
 
-I highly recommend reading GitHub's introductory docs to learn more. This blog post assumes you are familiar with the basics of building a workflow with GitHub actions.
+I highly recommend reading [GitHub's docs](https://docs.github.com/en/actions/learn-github-actions) to learn more. This blog post assumes you are familiar with the basics of building a workflow with GitHub actions.
 
 ## Getting started with the GitHub Actions for Octopus Deploy
 
-To illustrate how to use the new GitHub Actions for Octopus, we'll update the example build script to install the Octopus CLI, push our build artifact as as ZIP to Octopus and then create a release and deploy it to our DEV environment.
+To illustrate how to use the new GitHub Actions for Octopus, we'll update the example build script above to install the Octopus CLI, package and push our build artifact to Octopus and then create a release and deploy it to our DEV environment.
 
-The complete build file looks like the following. 
+The complete workflow file looks like the following and you can also view it in this [GitHub Samples repository](https://github.com/OctopusSamples/RandomQuotes/actions/workflows/dotnet.yml).
 
 ```yaml
 name: Build
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
     branches: [ master ]
 
 jobs:
@@ -92,9 +90,9 @@ jobs:
       uses: OctopusDeploy/install-octopus-cli-action@v1.1.6
       with:
         version: latest
-    - name: Pack
-      run: octo pack --id="RandomQuotes" --format="zip" --version="1.0.${{github.run_number}}" --basePath="/home/runner/work/RandomQuotes/RandomQuotes/build/" --verbose
-    - name: Push a package to Octopus Deploy 🐙
+    - name: Package build artifacts
+      run: octo pack --id="RandomQuotes" --format="zip" --version="1.0.${{github.run_number}}" --basePath="/home/runner/work/RandomQuotes/RandomQuotes/build/"
+    - name: Push packages to Octopus Deploy 🐙
       uses: OctopusDeploy/push-package-action@v1.0.1
       with:
         api_key: ${{ secrets.OCTOPUS_APIKEY }}
@@ -110,7 +108,11 @@ jobs:
 
 ```
 
-NOTE: This is building a .NET 5 web application but it could easily be a Spring (Java) web app or NodeJS express service. The important parts are the usage of the GitHub Actions for Octopus that make it easy to integrate.
+![GitHub Actions Secrets for the Octopus Server URL and an API key](github-action-secrets.png)
+
+I'll higlight the fact that we reference two secrets in this configuration. One is for the Octopus Server URL and the other is an API key which allows us to authenticate and integrate with our Octopus instance. In this case, I'm using an [Octopus Cloud instance](https://octopus.com/pricing/cloud) however you could also connect to a [self-hosted Octopus instance](https://octopus.com/pricing/server) if it's publicly accessible.
+
+NOTE: This is building a Microsoft .NET 5 web application but it could easily be a Spring (Java) web app or NodeJS express service etc. The important parts are the usage of the GitHub Actions for Octopus that make it easy to integrate.
 
 ### Install the Octopus CLI
 
@@ -121,8 +123,7 @@ NOTE: This is building a .NET 5 web application but it could easily be a Spring 
         version: latest
 ```
 
-This is a pre-requisite to use any of the other steps as it bootstraps the container/job runner with the approapriate dependencies to instal the Octopsu CLI.
-
+The first step to integrate with an Octopus Server in to install the Octopus CLI. This is a pre-requisite to use any of the other steps as it bootstraps the job runner with the appropriate dependencies to instal; the Octopus CLI.
 
 ### Push build artifacts to Octopus
 
@@ -137,9 +138,13 @@ This is a pre-requisite to use any of the other steps as it bootstraps the conta
         packages: "RandomQuotes.1.0.${{github.run_number}}.zip"
 ```
 
-The next step is to package up your build artifacts and push it to a package repository. The easiest option here and a very popular option for teams is to push it to the Octopus build-in package repository. I have two steps here. One that is using the Octopus CLI to ZIP the outcome of my build. The second is pushing the package to my Octopus instance. 
+The next step is to package up our build artifacts and push it to a package repository. In this case, we're pushing it to the Octopus build-in package repository which is a very popular option for teams. 
 
-In this step, you can see I'm referencing two secrets stored in my repository configuration. One is for the Octopus Server URL and the other is an API key for my GitHub build. 
+There are two steps to package and push my build artifacts.
+* The first step is packaging my build output as a ZIP file.
+* The second step is pushing the package to my Octopus instance. 
+
+As I previously mentioned, I am referencing two secrets stored in my repository configuration. One is for the Octopus Server URL and the other is an API key for my GitHub build. 
 
 ### Create a release and deploy it to the DEV environment
 
@@ -153,7 +158,13 @@ In this step, you can see I'm referencing two secrets stored in my repository co
         deploy_to: "Dev"
 ```
 
-The final step in my build process is to create a release of my project and deploy it to my DEV environment. 
+The final step in my build process is to create a release of my project and deploy it to my DEV environment. This is done with a single step and I supply my project ID and the environment name that I want to deploy to. And that's it.
+
+### Success!
+
+![Successful GitHub build](github-build.png)
+
+If we push a commit to our repository, we can see the GitHub Action run and see it's output. This might take a few iterations to fix syntax and get everything right but the outcome is that we have a success build! 
 
 ## Conclusion
 
