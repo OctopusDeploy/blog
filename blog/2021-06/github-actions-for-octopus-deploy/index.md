@@ -13,7 +13,7 @@ tags:
 
 ![GitHub actions integrating with Octopus Deploy build](github-actions-integration.png)
 
-We're proud to have shipped our first official GitHub Actions for Octopus Deploy. These initial actions cover the core integration scenarios so you can connect your GitHub builds with your deploys and runbook runs in Octopus: 
+We've shipped our first official GitHub Actions for Octopus Deploy. These initial actions cover the core integration scenarios so you can connect your GitHub builds with your deploys and runbook runs in Octopus: 
 
 - [Push packages](https://github.com/marketplace/actions/push-package-to-octopus-deploy) to Octopus Deploy. 
 - [Create releases](https://github.com/marketplace/actions/create-release-in-octopus-deploy) in Octopus Deploy.
