@@ -1,6 +1,6 @@
 ---
 title: Using classes in custom Step Templates
-description: Learn how to implement a class in a custom Step Template
+description: Learn how to implement a class in a custom Step Template.
 author: shawn.sesna@octopus.com
 visibility: private
 published: 2022-05-03-1400
@@ -11,13 +11,15 @@ tags:
  - 
 ---
 
-At Octopus Depoloy, staff are afforded dedicated time to learning in what we refer to as Sharpening time.  During my last Sharpening period, I wanted to see if it would be possible to modify the [DACPAC](https://library.octopus.com/step-templates/e4a60d6f-036f-425d-a3f7-793034fc0f49/actiontemplate-sql-deploy-dacpac-from-package-parameter) step template to use [Azure Active Directory Managed Identity](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview) for authentication.  In this post, I will show you how I was able to accomplish this with PowerShell and a custom class.
+At Octopus Deploy, we have dedicated time to learning, which we call Sharpening.  During my last Sharpening period, I wanted to see if it would be possible to modify the [DACPAC](https://library.octopus.com/step-templates/e4a60d6f-036f-425d-a3f7-793034fc0f49/actiontemplate-sql-deploy-dacpac-from-package-parameter) step template to use [Azure Active Directory Managed Identity](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview) for authentication.  
+
+In this post, I'll show you how I accomplished this with PowerShell and a custom class.
 
 ## Preparation
-The first thing we'll need to do is provision an Azure SQL Server and an Azure VM.  This post assumes you're already framliar with how to provision those types of resources and will not cover those topics.
+First, you need to provision an Azure SQL Server and an Azure VM.  This post assumes you're familiar with provisioning those types of resources and won't cover those topics.
 
-### Configure the VM for a Managed Identity
-Once the Azure VM has been created, we will need to configure it to use the Managed Identity feature.  Navigate to the VM resource and click on **Identity** in the left hand pane.
+### Configuring the VM for a Managed Identity
+Once the Azure VM has been created, you need to configure it to use the Managed Identity feature.  Navigate to the VM resource and click on **Identity** in the left hand pane.
 
 ![](azure-vm-identity.png)
 
