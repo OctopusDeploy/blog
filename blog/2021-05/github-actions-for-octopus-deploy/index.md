@@ -4,8 +4,8 @@ description: GitHub Actions for Octopus Deploy are now available enabling you to
 author: rob.pearson@octopus.com
 visibility: public
 published: 2022-06-01
-metaImage: github-actions-integration
-bannerImage: github-actions-integration
+metaImage: github-actions-integration.png
+bannerImage: github-actions-integration.png
 tags:
  - DevOps
  - GitHub Actions
