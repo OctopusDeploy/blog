@@ -171,3 +171,5 @@ If we push a commit to our repository, we can see the GitHub Action run and see 
 GitHub Actions for Octopus Deploy are now available. This release includes actions to install the Octopus CLI, push packages to an Octopus instance and support to create and deploy releases as well as execute runbooks. You can now automate your builds with GitHub Actions and integrate with Octopus for all your deployment and runbook automation needs.
 
 We plan to add additional actions for Octopus. Please add a comment if there there are any that you'd like to see us add. 
+
+Happy deployments!
