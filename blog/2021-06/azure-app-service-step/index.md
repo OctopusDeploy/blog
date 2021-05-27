@@ -3,7 +3,7 @@ title: Improved Azure App Service deployments
 description: Learn about the improved Azure App Service deployment step included in Octopus 2021.1.
 author: michael.richardson@octopus.com
 visibility: public
-published: 2021-06-02-1400
+published: 2021-06-07-1400
 metaImage: img-blog-azure-app-service-zip-deploy-2021.png
 bannerImage: img-blog-azure-app-service-zip-deploy-2021.png
 tags:
