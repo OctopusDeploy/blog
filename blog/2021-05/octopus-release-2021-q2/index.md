@@ -17,14 +17,13 @@ The Octopus 2021 Q2 release is now available and delivers a better cloud experie
 
 - Migrate Octopus projects to Octopus Cloud with self-service export/import.
 - Integrate Octopus more easily with GitHub Actions and HashiCorp's Terraform.
-- Deploy to an Azure App Service from Octopus with Azure's Zip Deploy technology.
+- Deploy your Azure web apps with our improved Azure App Service step.
 - Scale Octopus Cloud as your needs grow:
    - Run more concurrent automation tasks.
    - Persist more build and automation artifacts with best-in-class storage.
 - Configure the Tentacle agent without root or admin permissions.
 
 Our [public roadmap](https://octopus.com/roadmap) outlines more cloud improvements to follow later in the year, including integration with Google Cloud Platform (GCP).
-
 
 ## Included in the Q2 release
 
@@ -89,26 +88,21 @@ Since then we've applied incremental improvements to the provider itself and rel
 
 Learn more about [getting started with the Terraform provider for Octopus Deploy](https://octopus.com/blog/octopusdeploy-terraform-provider) or read the [quick start guide](https://registry.terraform.io/providers/OctopusDeployLabs/octopusdeploy/latest/docs).
 
-## Azure App Service zip deployments {#azure-zip-deploy}
+## Azure App Service deployments {#azure-deploy}
 
-We added a new step to Octopus so you can deploy your app to an Azure App Service with [Zip Deploy](https://docs.microsoft.com/en-us/azure/app-service/deploy-zip). Our new **Deploy an Azure App Service** step supports a range of packages:
+Azure App Service now supports many different types of applications (.NET, Java, and Node.js) and various ways to deploy and configure them.
 
-- Container images
-- Java web archives (WAR files)
-- NuGet packages (nupkg)
-- Zip files
+We added a new step to Octopus so you can take advantage of these capabilities.
 
-![Zip Deploy to an Azure App Service with Octopus Deploy](octopus-zip-deploy-azure-app-service.png)
+![Deploy to an Azure App Service with Octopus Deploy](octopus-zip-deploy-azure-app-service.png)
 
-Among other benefits, the step also:
+The **Deploy an Azure App Service** step:
 
+- Deploys container images in addition to packages (zip, NuGet, and Java war files).
 - Runs cross-platform, so it's available to customers who self-host Octopus Server on Linux.
 - Deploys apps to Linux App Service plans without needing obscure configuration settings.
-- Configures Azure app settings directly.
-- Performs file transforms.
-- Creates the deployment slot if it doesn't exist.
-
-Our existing **Deploy an Azure Web App** step uses Web Deploy and will remain available, as there are scenarios that only Web Deploy supports. For example, Web Deploy allows you to preserve specific directories such as `app_data`.
+- Configures Azure app settings and connection strings.
+- Performs configuration file transforms.
 
 ## Improvements to Octopus Cloud {#octopus-cloud}
 
@@ -169,7 +163,7 @@ Check out our [public roadmap](https://octopus.com/roadmap) to stay informed and
 
 Octopus 2021 Q2 delivers a better cloud experience. 
 
-Now you can Export/Import Projects, scale Octopus Cloud as your needs grow, take advantage of Azure's Zip Deploy technology, and integrate Octopus more easily with GitHub Actions and Terraform.
+Now you can Export/Import Projects, scale Octopus Cloud as your needs grow, take advantage of Azure App Service capabilities, and integrate Octopus more easily with GitHub Actions and Terraform.
 
 Please let us know what you think, by leaving a comment here or in our [Community Slack](https://octopus.com/slack).
 
