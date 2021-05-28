@@ -3,7 +3,7 @@ title: "Octopus 2021 Q2: Migrate to the Cloud with Octopus Deploy"
 description: "Octopus 2021 Q2: Export/Import Projects EAP, Azure Zip Deploy, GitHub Actions, Terraform integration and Octopus Cloud improvements."
 author: kathryn.marks@octopus.com
 visibility: private
-bannerImage: release-2021-q2.png
+bannerImage: release-octopus-2021-q2.png
 metaImage: octopus-release-2021-q2-summary-card.png
 published: 9999-05-24-1400
 tags:
