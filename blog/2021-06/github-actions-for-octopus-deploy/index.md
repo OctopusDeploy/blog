@@ -152,7 +152,7 @@ To integrate with an Octopus Server, first install the Octopus CLI. This is a pr
         packages: "RandomQuotes.1.0.${{github.run_number}}.zip"
 ```
 
-The next step is packaging your build artifacts and pushing them to a package repository. In this case, we're pushing to the Octopus build-in package repository which is a popular option for teams. 
+The next step is packaging your build artifacts and pushing them to a package repository. In this case, we're pushing to the Octopus built-in package repository which is a popular option for teams. 
 
 There are two steps to package and push my build artifacts:
 
