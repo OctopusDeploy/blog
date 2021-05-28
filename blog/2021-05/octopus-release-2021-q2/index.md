@@ -5,7 +5,7 @@ author: kathryn.marks@octopus.com
 visibility: private
 bannerImage: release-octopus-2021-q2.png
 metaImage: octopus-release-2021-q2-summary-card.png
-published: 9999-05-24-1400
+published: 2021-05-31-1400
 tags:
 - DevOps
 - Product
