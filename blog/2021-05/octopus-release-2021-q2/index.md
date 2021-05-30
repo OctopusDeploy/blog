@@ -90,7 +90,7 @@ Learn more about [getting started with the Terraform provider for Octopus Deploy
 
 ## Azure App Service deployments {#azure-deploy}
 
-Azure App Service now supports many different types of applications (.NET, Java, and Node.js) and various ways to deploy and configure them.
+Azure App Service now supports many different types of applications (such as .NET, Java, and Node.js) and various ways to deploy and configure them.
 
 We added a new step to Octopus so you can take advantage of these capabilities.
 
