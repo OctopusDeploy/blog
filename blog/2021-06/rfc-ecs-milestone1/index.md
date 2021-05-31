@@ -88,7 +88,7 @@ With ECS targets it makes little difference whether you deploy many logical envi
 
 *Diagram showing targets sharing a cluster, using multiple clusters, or using multiple accounts.*
 
-### Abstract away task definition versions
+### Abstracting away task definition versions
 
 If you have ever had to deploy a new Docker image by first creating a new task definition version and then updating the service to reference it, you will appreciate how tedious manual ECS deployments can be.
 
@@ -100,7 +100,7 @@ It doesn't matter if your task definitions include environment specific values, 
 
 The proposed step and target also integrate with advanced Octopus features like [tenants](https://octopus.com/docs/deployments/patterns/multi-tenant-deployments) and [channels](https://octopus.com/docs/releases/channels). 
 
-The new ECS targets can be scoped to tenants, once again abstracting away the details of where a deployment takes place from the steps and encapsulating it in target.
+The new ECS targets can be scoped to tenants, once again abstracting away the details of where a deployment takes place from the steps and encapsulating it in a target.
 
 Meanwhile channel rules can be applied to Docker image tags, facilitating deployment patterns like hotfixes that go straight to production.
 
