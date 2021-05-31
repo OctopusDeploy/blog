@@ -28,7 +28,7 @@ Octopus already has many features in place to coordinate container deployments, 
 
 ### A new ECS target
 
-The proposed ECS support starts with a new target that represents an ECS cluster. This target defines the AWS credentials used to access an ECS cluster, the AWS region, and the name of the cluster:
+The proposed ECS support starts with a new target that represents an ECS cluster. This target references the AWS credentials used to access an ECS cluster, the AWS region, and the name of the cluster:
 
 ![](https://via.placeholder.com/500x300 "width=500")
 
@@ -36,11 +36,11 @@ The proposed ECS support starts with a new target that represents an ECS cluster
 
 ### A new service deployment step
 
-At a high level, there are three components that combine to allow you to deploy an application to an ECS cluster.
+At a high level, there are three components required to deploy an application to an ECS cluster.
 
 First you need a Docker image. We envision your Continuous Integration (CI) server will continue to build and deploy these images to a Docker registry.
 
-A task definition then references a specific image tag and defines many of the settings the define how the resulting container will operate such a memory and CPU requirements, environment variables, exposed ports and more. Task definitions are immutable, and each new image tag must be referenced by a new version of a task definition.
+A task definition then references a specific image tag and defines many of the settings for the resulting container such as memory and CPU requirements, environment variables, exposed ports and more. Task definitions are immutable, and each new image tag must be captured by a new version of a task definition.
 
 A service then references a task definition, along with additional runtime details such as how many instances to run, how the instances are distributed through the cluster, which VPC to run in, load balancers and scaling requirements.
 
