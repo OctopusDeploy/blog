@@ -94,11 +94,11 @@ If you have ever had to deploy a new Docker image by first creating a new task d
 
 Our goal is for a new ECS deployment to involve nothing more than creating an Octopus release and selecting the new Docker image tags to include in it. By intelligently scanning the latest version of a task definition to see if it matches the current deployment, and creating a task definition if necessary, we remove the need for those deploying to ECS to even think about task definitions.
 
-It doesn't matter if your task definitions include environment specific values, or if each environment is represented by a cluster in a new AWS account, as Octopus will create the necessary task definitions on your behalf. This streamlines your workflow to: creating new Docker images, creating Octopus releases with those Docker images, and promoting your release across your environments. It also ensures you can [recover from failed deployments](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments#recoverable-deployments) by redeploying an old release.
+It doesn't matter if your task definitions include environment specific values, or if each environment is represented by a cluster in a new AWS account, as Octopus will create the necessary task definitions on your behalf. This streamlines your workflow to: creating new Docker images, creating an Octopus release with those Docker images, and promoting your release across your environments. It also ensures you can [recover from failed deployments](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments#recoverable-deployments) by redeploying an old release.
 
 ### Advanced deployments with tenants and channels
 
-The proposed step and target also integrate with advanced Octopus features like tenants and channels. 
+The proposed step and target also integrate with advanced Octopus features like [tenants](https://octopus.com/docs/deployments/patterns/multi-tenant-deployments) and [channels](https://octopus.com/docs/releases/channels). 
 
 The new ECS targets can be scoped to tenants, once again abstracting away the details of where a deployment takes place from the steps and encapsulating it in target.
 
@@ -110,7 +110,7 @@ Meanwhile channel rules can be applied to Docker image tags, facilitating deploy
 
 ### Fall back to CloudFormation
 
-Behind the scenes the new step will generate CloudFormation templates, which will then be executed for you. 
+Behind the scenes the new step will generate CloudFormation templates, which will then be executed for you. This ensures all resources can be [audited](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments#auditable-deployments) and [tracked](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-drift.html) with existing CloudFormation tooling.
 
 However, any opinionated step will eventually meet a use case that it simply does not support. For those with specialized requirements, or who find they outgrow the proposed step, we'll offer the ability to convert the opinionated step into a raw CloudFormation template. 
 
