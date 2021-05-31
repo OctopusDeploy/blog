@@ -72,4 +72,12 @@ The Project Export/Import feature is available in Octopus Cloud instances now, a
 
 We hope this makes it easier to migrate projects from self-hosted to Octopus Cloud.
 
+## Register for the webinar: What's New in Octopus 2021.1
+
+Join Senior Solutions Architect Derek Campbell and Solutions Architect Adam Close from Octopus Deploy for a discussion and demo of the new features released in 2021 so far.
+
+- US - Thursday June 3rd, 12pm PT / 3pm ET: [Register now](https://octopus.zoom.us/webinar/register/1316184944939/WN_j9NMfQV7R_a9xufzqt2Xtw?timezone_id=America%2FLos_Angeles)
+- UK/Europe - Wednesday June 2nd, 3pm CET: [Register now](https://octopus.zoom.us/webinar/register/5016184939584/WN_-PnNDNo7RCGNIOU4gtXxbQ)
+- APAC - Monday June 7th, 3pm AEST: [Register now](https://octopus.zoom.us/webinar/register/9016195970319/WN_E-B5nzLkSDeabkv3uGntjw?timezone_id=Australia%2FSydney)
+
 Happy deployments!
