@@ -1,0 +1,91 @@
+---
+title: RFC - ECS integration with Octopus
+description: We're proposing new integrations with ECS in Octopus, and want your feedback!
+author: matthew.casperson@octopus.com
+visibility: private
+published: 2999-01-01
+metaImage: 
+bannerImage: 
+tags:
+ - Octopus
+---
+
+Octopus is (among other things) a deployment tool. We have had industry leading functionality for deploying to your on-premises infrastructure from the beginning, and we've powered Azure application deployments for years. Our Kubernetes steps have expanded our deployment capabilities to all major cloud providers, but since those steps were released in 2018 Octopus hasn't enabled first class deployments to any new cloud Platform as a Service (PaaS) offerings.
+
+We want Octopus to be your first choice regardless of whether you deploy on-premises, to the cloud, or to a hybrid of both. This means providing first class support for more PaaS offerings to make your complex deployments easy.
+
+To reach this goal, Octopus has established a new internal team dedicated to integrating Octopus with popular PaaS offerings.
+
+As part of the process, we want to share our goals and plans with our customers, partners, and other internal Octopus departments. This blog is what we hope will be the first of many Request For Comment (RFC) posts where we discuss proposed new functionality and provide an opportunity for those interested to offer feedback.
+
+One PaaS service that we have been repeatedly asked to support is AWS ECS, and this post will discuss the proposed new steps and targets that we are currently discussing.
+
+## First class ECS support
+
+[Amazon describes Elastic Container Service (ECS) as](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html):
+
+> a highly scalable, fast container management service that makes it easy to run, stop, and manage containers on a cluster. Your containers are defined in a task definition that you use to run individual tasks or tasks within a service.
+
+Octopus already has many features in place to coordinate container deployments, including the ability to consume Docker images via feeds (including ECR feeds) and securely storing AWS credentials via an account. By scripting against the AWS CLI it has been *possible*, if not convenient, to deploy to ECS today. But we can do better.
+
+### A new ECS target
+
+The proposed ECS support starts with a new target that represents an ECS cluster. This target defines the AWS credentials used to access an ECS cluster, the AWS region, and the name of the cluster:
+
+![](https://via.placeholder.com/500x300 "width=500")
+
+*An ECS target mockup.*
+
+### A new service deployment step
+
+At a high level, there are three components that combine to allow you to deploy an application to an ECS cluster.
+
+First you need a Docker image. We envision your Continuous Integration (CI) server will continue to build and deploy these images to a Docker registry.
+
+A task definition then references a specific image tag and defines many of the settings the define how the resulting container will operate such a memory and CPU requirements, environment variables, exposed ports and more. Task definitions are immutable, and each new image tag must be referenced by a new version of a task definition.
+
+A service then references a task definition, along with additional runtime details such as how many instances to run, how the instances are distributed through the cluster, which VPC to run in, load balancers and scaling requirements.
+
+Our proposed new step provides an opinionated deployment workflow that combines a Fargate task definition and service into a single step. You'll start by defining your task definition. It is important to note here that unlike the AWS console, the Docker images(s) defined in this step do not include the tag:
+
+![](https://via.placeholder.com/500x300 "width=500")
+
+*Step mockup showing Docker image selection and task definition inputs.*
+
+The same step defines the service properties:
+
+![](https://via.placeholder.com/500x300 "width=500")
+
+*Step mockup showing service properties.*
+
+An ECS deployment will then follow these steps:
+1. Select the Docker image tags to be defined in the task definition when creating a deployment.
+2. Query the ECS service configured in the matching target and attempt to find a task definition whose latest version matches the details defined in the step.
+3. If no task definition is found, create one.
+4. If the latest version of the task definition does not match the details in the step, create a new version.
+5. Configure the service with the task definition found in step 2, created in step 3, or the new version created in step 4.
+
+## Benefits
+
+The target and step described above have been designed to help those orchestrating ECS deployments fall into the pit of success.
+
+### Why use targets?
+
+Central to all of these features is the idea that deployments will progress through a series of environments, with the canonical environment set being the development, test, and production environments. ECS has no concept of environments though, and so we must create a layer in our deployments that express the notion of an environment.
+
+By capturing the details of an ECS cluster as a target, which is scoped to an environment and exposed by a role, the specific details of where a deployment will take place is lifted out of the steps. A step simply defines the target role it deploys to, and Octopus will ensure that a deployment takes place on the correctly scoped target.
+
+This means it makes very little difference whether you deploy many logical environments to one shared ECS cluster, have a dedicated cluster per environment, or even separate environments into multiple AWS accounts. Simply point each ECS target to the appropriate cluster and your deployments will scale across any environment partitions you may use:
+
+![](https://via.placeholder.com/500x300 "width=500")
+
+*Diagram showing targets sharing a cluster, using multiple clusters, or using multiple accounts.*
+
+### Abstract away task definition versions
+
+If you have ever had to deploy a new Docker image by first creating a new task definition version and then updating the service to reference it, you will appreciate how tedious ECS deployments can be.
+
+Ideally we want to see a new ECS deployment involve nothing more than creating an Octopus release and selecting the new Docker image tags to include in it. By intelligently scanning the latest version of a task definition to see if it matches the current deployment, and creating a task definition if necessary, we remove the need for those deploying to ECS to even think about task definitions.
+
+It doesn't matter if your task definitions include environment specific values, or each environment is represented by a cluster in a new AWS account, as Octopus will create the necessary task definitions on your behalf.
+
