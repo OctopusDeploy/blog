@@ -98,13 +98,16 @@ It doesn't matter if your task definitions include environment specific values, 
 
 ### Advanced deployments with tenants and channels
 
-The proposed step and target also integrate with advanced Octopus features like [tenants](https://octopus.com/docs/deployments/patterns/multi-tenant-deployments) and [channels](https://octopus.com/docs/releases/channels). 
+The proposed step and target also integrate with advanced Octopus features like [tenants](https://octopus.com/docs/deployments/patterns/multi-tenant-deployments), [channels](https://octopus.com/docs/releases/channels), and [lifecycles](https://octopus.com/docs/releases/lifecycles). 
 
-The new ECS targets can be scoped to tenants, once again abstracting away the details of where a deployment takes place from the steps and encapsulating it in a target.
-
-Meanwhile channel rules can be applied to Docker image tags, facilitating deployment patterns like hotfixes that go straight to production.
+The new ECS targets can be scoped to tenants, once again abstracting away the details of where a deployment takes place from the steps and encapsulating it in a target:
 
 ![](tenants.png "width=500")
+
+Meanwhile channel rules can be applied to Docker image tags, facilitating deployment patterns like hotfixes follow a lifecycle allowing deployments straight to production:
+
+![](lifecycles.png "width=500")
+
 
 ### Fall back to CloudFormation
 
