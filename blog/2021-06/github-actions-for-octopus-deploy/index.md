@@ -26,7 +26,7 @@ In this blog post, I demonstrate how you can get started with GitHub Actions to 
 
 ## What is GitHub Actions? 
 
-[GitHub Actions](https://docs.github.com/en/actions) is a popular new platform to automate software development workflows like CI/CD build around the GitHub ecosystem. 
+[GitHub Actions](https://docs.github.com/en/actions) is a popular new platform to automate software development workflows, like CI/CD built around the GitHub ecosystem. 
 
 You define your workflow using a YAML configuration file and store it in your Git repository. You can compose your automation with reusable building blocks called workflows. Workflows are executed in containers for a repeatable and reliable process.
 
