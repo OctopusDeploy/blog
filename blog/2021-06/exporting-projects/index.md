@@ -21,11 +21,11 @@ Octopus 2019.1 introduced [Spaces](https://octopus.com/docs/administration/space
 
 We didn't include the ability to _move projects between spaces_ though, because the functionality was complicated to design and build. The demand for this has been consistently strong, with the feedback being that Spaces was less valuable without a way to partition existing projects into new spaces. 
 
-Our Customer Solutions team stepped up to fill the gap with the [Space Cloner](https://github.com/OctopusDeployLabs/SpaceCloner) project, a collection of PowerShell scripts to help with copying between spaces.  This was useful in many cases, but there were limitations because it operated via the HTTP API, as opposed to being "in-the-box". 
+Our Customer Solutions team stepped up to fill the gap with the [Space Cloner](https://github.com/OctopusDeployLabs/SpaceCloner) project, a collection of PowerShell scripts to help with copying between spaces.  This was useful in many cases, but there were limitations because it operated via the HTTP API, as opposed to being in-the-box. 
 
 Fast-forward two years, and people also want to migrate projects from self-hosted Octopus instances to [Octopus Cloud](https://octopus.com/docs/octopus-cloud).  
 
-The 2021 Q2 release introduces the ability to export and import projects as a fully-supported, in-the-box feature. 
+The [2021 Q2 release](https://octopus.com/blog/octopus-release-2021-q2) introduces the ability to export and import projects as a fully-supported, in-the-box feature. 
 
 ![Project Export/Import menu](import-export-menu.png "width=500")
 
