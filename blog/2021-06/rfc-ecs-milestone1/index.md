@@ -136,7 +136,7 @@ We do however see these features being included in subsequent milestones, so wat
 
 ## When will this be released?
 
-We're still in the early planning stages, and ECS support is not a confirmed feature at this point, so we can not provide a release date. Keep an eye on the blog for further announcements.
+We're still in the early planning stages, and ECS support is not a confirmed feature at this point, so we can not provide a release date. Keep an eye on the [blog](https://octopus.com/blog/) for further announcements.
 
 ## We want your feedback!
 
