@@ -65,7 +65,7 @@ An ECS deployment will then execute the following process:
 4. If the latest version of the task definition does not match the details in the step, create a new version.
 5. Configure the service with the task definition found in step 2, created in step 3, or the new version created in step 4.
 
-## Benefits
+## What are the benefits of the proposed approach?
 
 The target and step described above have been designed to help those orchestrating ECS deployments fall into the pit of success, which we have summarized as [The ten pillars of pragmatic deployments](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments).
 
