@@ -104,7 +104,7 @@ The new ECS targets can be scoped to tenants, once again abstracting away the de
 
 Meanwhile channel rules can be applied to Docker image tags, facilitating deployment patterns like hotfixes that go straight to production.
 
-![](tenants.png"width=500")
+![](tenants.png "width=500")
 
 ### Fall back to CloudFormation
 
