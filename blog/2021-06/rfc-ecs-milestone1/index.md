@@ -88,8 +88,6 @@ With ECS targets it makes little difference whether you deploy many logical envi
 
 ![](targets.png "width=500")
 
-*Diagram showing targets sharing a cluster, using multiple clusters, or using multiple accounts.*
-
 ### Abstracting away task definition versions
 
 If you have ever had to deploy a new Docker image by first creating a new task definition version and then updating the service to reference it, you will appreciate how tedious manual ECS deployments can be.
@@ -106,9 +104,7 @@ The new ECS targets can be scoped to tenants, once again abstracting away the de
 
 Meanwhile channel rules can be applied to Docker image tags, facilitating deployment patterns like hotfixes that go straight to production.
 
-![](https://via.placeholder.com/500x300 "width=500")
-
-*Diagram showing multitenant targets.*
+![](tenants.png"width=500")
 
 ### Fall back to CloudFormation
 
