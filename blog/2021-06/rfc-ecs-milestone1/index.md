@@ -52,15 +52,15 @@ You'll start by defining the values contributed to a task definition. It is impo
 
 *Step mockup showing Docker image selection and task definition inputs.*
 
-The same step defines the values contributed to a service properties:
+The same step defines the values contributed to the properties of a service:
 
 ![](https://via.placeholder.com/500x300 "width=500")
 
 *Step mockup showing service properties.*
 
 An ECS deployment will then execute the following process:
-1. Select the Docker image tags to be defined in the task definition when creating a deployment.
-2. Query the ECS service configured in the matching target and attempt to find a task definition whose latest version matches the details defined in the step.
+1. Select the Docker image tags to be defined in the task definition when creating a release.
+2. During a deployment, query the ECS service configured in the matching target and attempt to find a task definition whose latest version matches the details defined in the step.
 3. If no task definition is found, create one.
 4. If the latest version of the task definition does not match the details in the step, create a new version.
 5. Configure the service with the task definition found in step 2, created in step 3, or the new version created in step 4.
@@ -74,7 +74,7 @@ With this first milestone we have specifically focused on the fundamentals inclu
 
 ### Why use targets?
 
-Central to all of these features is the idea that deployments will progress through a series of [environments](https://octopus.com/docs/infrastructure/environments), with the canonical environment set including the development, test, and production environments. ECS has no concept of environments though, and so to enable [repeatable deployments](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments#repeatable-deployments) we must model the new step and target to facilitate environmental progression, taking into account factors like environment specific configuration.
+Central to all of these features is the idea that deployments will progress through a series of [environments](https://octopus.com/docs/infrastructure/environments), with the canonical environment set including the development, test, and production environments. ECS has no concept of environments though, and so to enable [repeatable deployments](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments#repeatable-deployments) we must model the new step and target to facilitate environmental progression, taking into account factors like [environment scoped variables](https://octopus.com/docs/projects/variables#scoping-variables) and the [ability to update a release snapshot](https://octopus.com/docs/octopus-rest-api/examples/releases/update-release-variable-snapshot).
 
 By capturing the details of an ECS cluster as a [target](https://octopus.com/docs/infrastructure/deployment-targets), which is scoped to an environment and exposed by a [role](https://octopus.com/docs/infrastructure/deployment-targets#target-roles), the specific details of where a deployment will take place is lifted out of the steps. A step simply defines the target role it deploys to, and Octopus will ensure that the deployment takes place on the correctly scoped target for the current environment.
 
