@@ -143,7 +143,14 @@ ECS support is still in the planning phases, so now is a great time to shape the
 
 Specifically we want to know if the proposed step and target will work for your ECS deployments, as well as learning what your ECS architecture looks like. Do you have multiple clusters? Do you have multiple AWS accounts? What kinds of applications are you deploying? What ECS deployment challenges do you wish Octopus could solve for you? This is all great feedback that will help us deliver the best solution we can.
 
-## Thankyou
+## Conclusion
+
+In summary, the first milestone of our proposed ECS support includes:
+
+* A new target to model environments and tenanted deployments.
+* A new step combining the creation/updating of a task definition and creation/updating of a service.
+* The ability to convert the opinionated step into a raw CloudFormation template.
+* A simplified deployment workflow across environments supporting environment specific variables, channels, and lifecycles.
 
 Thankyou for reading this post. We hope you are as excited about the proposed new ECS functionality as we are, and any feedback you may have is greatly appreciated.
 
