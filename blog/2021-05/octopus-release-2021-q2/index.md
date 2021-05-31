@@ -43,7 +43,7 @@ The following table shows the Octopus Server releases with long term support.
 
 ## Release Tour
 
-<!--- <iframe width="560" height="315" src="TODO" frameborder="0" allowfullscreen></iframe> -->
+<iframe width="560" height="315" src="https://www.youtube.com/embed/mQIeG3CwhP4" frameborder="0" allowfullscreen></iframe>
 
 ## Self-service migrations with Export/Import Projects (early access) {#project-export-import}
 
