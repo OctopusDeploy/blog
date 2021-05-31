@@ -87,15 +87,15 @@ With ECS targets it makes little difference whether you deploy many logical envi
 
 If you have ever had to deploy a new Docker image by first creating a new task definition version and then updating the service to reference it, you will appreciate how tedious manual ECS deployments can be.
 
-Our goal is for a new ECS deployment involve nothing more than creating an Octopus release and selecting the new Docker image tags to include in it. By intelligently scanning the latest version of a task definition to see if it matches the current deployment, and creating a task definition if necessary, we remove the need for those deploying to ECS to even think about task definitions.
+Our goal is for a new ECS deployment to involve nothing more than creating an Octopus release and selecting the new Docker image tags to include in it. By intelligently scanning the latest version of a task definition to see if it matches the current deployment, and creating a task definition if necessary, we remove the need for those deploying to ECS to even think about task definitions.
 
-It doesn't matter if your task definitions include environment specific values, or each environment is represented by a cluster in a new AWS account, as Octopus will create the necessary task definitions on your behalf. This simplifies your workflow to creating new Docker images, creating Octopus releases with those Docker images, and promoting your release across your environments.
+It doesn't matter if your task definitions include environment specific values, or if each environment is represented by a cluster in a new AWS account, as Octopus will create the necessary task definitions on your behalf. This simplifies your workflow to creating new Docker images, creating Octopus releases with those Docker images, and promoting your release across your environments.
 
 ### Advanced deployments with tenants and channels
 
-The proposed step and target also play nicely with advanced Octopus features like tenants and channels. 
+The proposed step and target also integrate with advanced Octopus features like tenants and channels. 
 
-The new ECS targets can be scoped to tenants, once again abstracting away the details of where a deployment takes place fromm the steps and encapsulating it in target.
+The new ECS targets can be scoped to tenants, once again abstracting away the details of where a deployment takes place from the steps and encapsulating it in target.
 
 Meanwhile channel rules can be applied to Docker image tags, facilitating deployment patterns like hotfixes that go straight to production.
 
@@ -118,14 +118,14 @@ Simply select the convert option in the overflow menu, and the step will be conv
 Our goal is to release the ECS integration incrementally, both to get the feature out to our customers sooner, and to collect feedback from early adopters. The proposed step above is a high level look at where we see this new feature going, but the first milestone will likely have the following limitations:
 
 * Limiting the step to deploying to Fargate only.
-* Only support rolling deployments, and not support blue/green deployments
+* Only support rolling deployments, and not support blue/green deployments.
 * Not provide the ability to build a new load balancer.
 * Exclude auto-scaling settings.
 * Exclude app mesh and firelens settings.
 * Exclude service auto-discovery settings.
 * Only create a service, and not support tasks or scheduled tasks.
 
-Wo do however see these features being included in subsequent milestones, so watch for a new RFC post covering these.
+We do however see these features being included in subsequent milestones, so watch for a new RFC post covering these.
 
 ## When will this be released?
 
@@ -133,9 +133,9 @@ We're still in the early planning stages, and ECS support is not a confirmed fea
 
 ## We want your feedback!
 
-ECS support is still in the planning phases, and now is a great time to shape the future of this new feature with your feedback. We have created a GitHub issue here *TODO* to capture the discussion.
+ECS support is still in the planning phases, so now is a great time to shape the future of this new feature with your feedback. We have created a GitHub issue here *TODO* to capture the discussion.
 
-Specifically we want to know if the proposed step and target will work for your ECS deployments, as well as learning what your ECS architecture looks like. Do you have multiple clusters? Do you have multiple AWS account? What kinds of applications are you deploying? What ECS deployment challenges do you wish Octopus could solve for you? This is all great feedback that will help us deliver the best solution we can.
+Specifically we want to know if the proposed step and target will work for your ECS deployments, as well as learning what your ECS architecture looks like. Do you have multiple clusters? Do you have multiple AWS accounts? What kinds of applications are you deploying? What ECS deployment challenges do you wish Octopus could solve for you? This is all great feedback that will help us deliver the best solution we can.
 
 ## Thankyou
 
