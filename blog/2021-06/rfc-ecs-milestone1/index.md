@@ -14,9 +14,7 @@ Octopus is (among other things) a deployment tool. We have had industry leading 
 
 We want Octopus to be your first choice regardless of whether you deploy on-premises, to the cloud, or to a hybrid of both. This means providing first class support for more PaaS offerings to make your complex deployments easy.
 
-To reach this goal, Octopus has established a new internal team dedicated to integrating Octopus with popular PaaS offerings.
-
-As part of the process, we want to share our goals and plans with our customers, partners, and other internal Octopus departments. This blog is what we hope will be the first of many Request For Comment (RFC) posts where we discuss proposed new functionality and provide an opportunity for those interested to offer feedback.
+To reach this goal, Octopus has established a new internal team dedicated to integrating Octopus with popular PaaS offerings. After spending some months focused on developing a new framework to deliver our PaaS integrations, we are now in a position to share our goals and plans with our customers, partners, and other internal Octopus departments. This blog is what we hope will be the first of many Request For Comment (RFC) posts where we discuss proposed new functionality and provide an opportunity for those interested to offer feedback.
 
 One PaaS service that we have been repeatedly asked to support is AWS ECS, and this post will discuss the proposed new steps and targets that we are currently discussing.
 
