@@ -104,6 +104,8 @@ The **Deploy an Azure App Service** step:
 - Configures Azure app settings and connection strings.
 - Performs configuration file transforms.
 
+We tip our hats to our friends at [Clear Measure](https://clearmeasure.com/) for their help in developing these improvements to Azure App Service deployments.  
+
 ## Improvements to Octopus Cloud {#octopus-cloud}
 
 We improved the compute and storage capabilities of Octopus Cloud so it can scale with you. Customers on paid plans will enjoy the following benefits:
