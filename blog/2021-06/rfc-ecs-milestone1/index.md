@@ -74,6 +74,8 @@ With this first milestone we have specifically focused on the fundamentals inclu
 
 Central to all of these features is the idea that deployments will progress through a series of [environments](https://octopus.com/docs/infrastructure/environments), with the canonical environment set including the development, test, and production environments. ECS has no concept of environments though, and so to enable [repeatable deployments](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments#repeatable-deployments) we must model the new step and target to facilitate environmental progression, taking into account factors like [environment scoped variables](https://octopus.com/docs/projects/variables#scoping-variables) and the [ability to update a release snapshot](https://octopus.com/docs/octopus-rest-api/examples/releases/update-release-variable-snapshot).
 
+![](environments.png "width=500")
+
 ### Why use targets?
 
 By capturing the details of an ECS cluster as a [target](https://octopus.com/docs/infrastructure/deployment-targets), which is scoped to an environment and exposed by a [role](https://octopus.com/docs/infrastructure/deployment-targets#target-roles), the specific details of where a deployment will take place is lifted out of the steps. A step simply defines the target role it deploys to, and Octopus will ensure that the deployment takes place on the correctly scoped target for the current environment.
@@ -84,7 +86,7 @@ We envisage this will be incredibly beneficial if you are looking to adopt some 
 
 With ECS targets it makes little difference whether you deploy many logical environments to one shared ECS cluster, have a dedicated cluster per environment, or even separate environments into multiple AWS accounts. Simply point each ECS target to the appropriate cluster and your deployments will scale across any environment partitions you may use:
 
-![](https://via.placeholder.com/500x300 "width=500")
+![](targets.png "width=500")
 
 *Diagram showing targets sharing a cluster, using multiple clusters, or using multiple accounts.*
 
