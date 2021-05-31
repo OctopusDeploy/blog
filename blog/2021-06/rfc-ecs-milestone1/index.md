@@ -44,7 +44,9 @@ A [task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/
 
 A [service](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service_definition_parameters.html) then references a task definition, along with additional runtime details such as how many instances to run, how the instances are distributed through the cluster, which VPC to run in, load balancers and scaling requirements.
 
-Our proposed new step provides an opinionated deployment workflow that combines a Fargate task definition and service into a single step. You'll start by defining the values contributed to a task definition. It is important to note here that unlike the AWS console, the Docker images(s) defined in this step do not include the tag:
+Our proposed new step provides an opinionated deployment workflow that combines a Fargate task definition and service into a single step. 
+
+You'll start by defining the values contributed to a task definition. It is important to note here that unlike the AWS console, the Docker images(s) defined in this step do not include the tag, as the selection of an image tag is deferred until a release is created:
 
 ![](https://via.placeholder.com/500x300 "width=500")
 
@@ -56,7 +58,7 @@ The same step defines the values contributed to a service properties:
 
 *Step mockup showing service properties.*
 
-An ECS deployment will then execute this process:
+An ECS deployment will then execute the following process:
 1. Select the Docker image tags to be defined in the task definition when creating a deployment.
 2. Query the ECS service configured in the matching target and attempt to find a task definition whose latest version matches the details defined in the step.
 3. If no task definition is found, create one.
@@ -65,11 +67,14 @@ An ECS deployment will then execute this process:
 
 ## Benefits
 
-The target and step described above have been designed to help those orchestrating ECS deployments fall into the pit of success.
+The target and step described above have been designed to help those orchestrating ECS deployments fall into the pit of success, which we have summarized as [The ten pillars of pragmatic deployments](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments).
+
+With this first milestone we are specifically focusing on the fundamentals including enabling [repeatable deployments across environments](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments#repeatable-deployments), [recoverable deployments by redeploying previous releases](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments#recoverable-deployments), and [auditable deployments by ensuring all resources are defined and tracked via CloudFormation stacks](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments#auditable-deployments).
+
 
 ### Why use targets?
 
-Central to all of these features is the idea that deployments will progress through a series of environments, with the canonical environment set including the development, test, and production environments. ECS has no concept of environments though, and so we must model the new step and target to facilitate environmental progression, taking into account factors like environment specific configuration.
+Central to all of these features is the idea that deployments will progress through a series of environments, with the canonical environment set including the development, test, and production environments. ECS has no concept of environments though, and so to enable [repeatable deployments](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments#repeatable-deployments) we must model the new step and target to facilitate environmental progression, taking into account factors like environment specific configuration.
 
 By capturing the details of an ECS cluster as a target, which is scoped to an environment and exposed by a role, the specific details of where a deployment will take place is lifted out of the steps. A step simply defines the target role it deploys to, and Octopus will ensure that the deployment takes place on the correctly scoped target for the current environment.
 
@@ -89,7 +94,7 @@ If you have ever had to deploy a new Docker image by first creating a new task d
 
 Our goal is for a new ECS deployment to involve nothing more than creating an Octopus release and selecting the new Docker image tags to include in it. By intelligently scanning the latest version of a task definition to see if it matches the current deployment, and creating a task definition if necessary, we remove the need for those deploying to ECS to even think about task definitions.
 
-It doesn't matter if your task definitions include environment specific values, or if each environment is represented by a cluster in a new AWS account, as Octopus will create the necessary task definitions on your behalf. This simplifies your workflow to creating new Docker images, creating Octopus releases with those Docker images, and promoting your release across your environments.
+It doesn't matter if your task definitions include environment specific values, or if each environment is represented by a cluster in a new AWS account, as Octopus will create the necessary task definitions on your behalf. This simplifies your workflow to creating new Docker images, creating Octopus releases with those Docker images, and promoting your release across your environments. It also ensures you can [recover from failed deployments](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments#recoverable-deployments) by redeploying an old release.
 
 ### Advanced deployments with tenants and channels
 
@@ -105,7 +110,9 @@ Meanwhile channel rules can be applied to Docker image tags, facilitating deploy
 
 ### Fall back to CloudFormation
 
-Any opinionated step will eventually meet a use case that it simply does not support. For those with specialized requirements, or who find they outgrow the proposed step, we'll offer the ability to convert the opinionated step into a raw CloudFormation template. 
+Behind the scenes the new step will generate CloudFormation templates, which will then be executed for you. 
+
+However, any opinionated step will eventually meet a use case that it simply does not support. For those with specialized requirements, or who find they outgrow the proposed step, we'll offer the ability to convert the opinionated step into a raw CloudFormation template. 
 
 Simply select the convert option in the overflow menu, and the step will be converted into a CloudFormation deployment step, giving you complete control over your ECS deployments, without having to recreate them from scratch:
 
