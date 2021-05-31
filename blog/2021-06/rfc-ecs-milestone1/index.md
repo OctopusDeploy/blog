@@ -117,9 +117,7 @@ However, any opinionated step will eventually meet a use case that it simply doe
 
 Simply select the convert option in the overflow menu, and the step will be converted into a CloudFormation deployment step, giving you complete control over your ECS deployments, without having to recreate them from scratch:
 
-![](https://via.placeholder.com/500x300 "width=500")
-
-*Mockup showing the convert option.*
+![](convert.png "width=500")
 
 ## What is the scope of the first ECS milestone?
 
