@@ -18,7 +18,7 @@ To reach this goal, Octopus has established a new internal team dedicated to int
 
 One PaaS service that we have been repeatedly asked to support is AWS ECS, and this post will discuss the proposed new steps and targets that we are currently discussing.
 
-## First class ECS support
+## How we propose to deliver first class ECS support
 
 [Amazon describes Elastic Container Service (ECS) as](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html):
 
