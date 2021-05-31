@@ -74,9 +74,9 @@ With this first milestone we have specifically focused on the fundamentals inclu
 
 ### Why use targets?
 
-Central to all of these features is the idea that deployments will progress through a series of environments, with the canonical environment set including the development, test, and production environments. ECS has no concept of environments though, and so to enable [repeatable deployments](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments#repeatable-deployments) we must model the new step and target to facilitate environmental progression, taking into account factors like environment specific configuration.
+Central to all of these features is the idea that deployments will progress through a series of [environments](https://octopus.com/docs/infrastructure/environments), with the canonical environment set including the development, test, and production environments. ECS has no concept of environments though, and so to enable [repeatable deployments](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments#repeatable-deployments) we must model the new step and target to facilitate environmental progression, taking into account factors like environment specific configuration.
 
-By capturing the details of an ECS cluster as a target, which is scoped to an environment and exposed by a role, the specific details of where a deployment will take place is lifted out of the steps. A step simply defines the target role it deploys to, and Octopus will ensure that the deployment takes place on the correctly scoped target for the current environment.
+By capturing the details of an ECS cluster as a [target](https://octopus.com/docs/infrastructure/deployment-targets), which is scoped to an environment and exposed by a [role](https://octopus.com/docs/infrastructure/deployment-targets#target-roles), the specific details of where a deployment will take place is lifted out of the steps. A step simply defines the target role it deploys to, and Octopus will ensure that the deployment takes place on the correctly scoped target for the current environment.
 
 We envisage this will be incredibly beneficial if you are looking to adopt some of the [best practices recommended by AWS with respect to using multiple accounts](https://aws.amazon.com/blogs/mt/best-practices-for-organizational-units-with-aws-organizations/):
 
