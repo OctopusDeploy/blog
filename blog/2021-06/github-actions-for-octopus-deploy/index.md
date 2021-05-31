@@ -1,6 +1,6 @@
 ---
 title: Announcing GitHub Actions for Octopus Deploy
-description: GitHub Actions for Octopus Deploy is now available, enabling you to integrate your GitHub builds with deploys in Octopus. Learn how to get started.
+description: You can now integrate your GitHub builds with deployments in Octopus Deploy thanks to our GitHub Actions.
 author: rob.pearson@octopus.com
 visibility: public
 published: 2021-06-02-1400
@@ -13,7 +13,7 @@ tags:
 
 ![GitHub actions integrating with Octopus Deploy build](github-actions-integration.png)
 
-We've shipped our first official GitHub Actions for Octopus Deploy. These initial actions cover the core integration scenarios so you can connect your GitHub builds with your deploys and runbook runs in Octopus: 
+We've shipped our first official GitHub Actions for Octopus Deploy. These initial actions cover the core integration scenarios to connect your GitHub builds with your deploys and runbook runs in Octopus: 
 
 - [Push packages](https://github.com/marketplace/actions/push-package-to-octopus-deploy) to Octopus Deploy. 
 - [Create releases](https://github.com/marketplace/actions/create-release-in-octopus-deploy) in Octopus Deploy.
@@ -22,13 +22,13 @@ We've shipped our first official GitHub Actions for Octopus Deploy. These initia
 
 We plan to add additional GitHub Actions later in the year. 
 
-In this blog post, I introduce GitHub Actions and demonstrate how you can get started with them to push build artifacts to Octopus, create a release, and deploy it to a development environment.
+In this blog post, I demonstrate how you can get started with GitHub Actions to push build artifacts to Octopus, create a release, and deploy it to a development environment.
 
 ## What is GitHub Actions? 
 
 [GitHub Actions](https://docs.github.com/en/actions) is a popular new platform to automate software development workflows like CI/CD build around the GitHub ecosystem. 
 
-You define your workflow using a YAML configuration file and store it within your Git repository. You can compose your automation with resusable building blocks called actions. Workflows are executed in containers for a repeatable and reliable process.
+You define your workflow using a YAML configuration file and store it in your Git repository. You can compose your automation with reusable building blocks called workflows. Workflows are executed in containers for a repeatable and reliable process.
 
 Below is an example GitHub Action job workflow to build a simple .NET web application. GitHub provides examples for most programming languages and frameworks.
 
@@ -70,7 +70,7 @@ I recommend reading [GitHub's docs](https://docs.github.com/en/actions/learn-git
 
 To illustrate how to use the new GitHub Actions for Octopus, we'll update the example build script above to install the Octopus CLI, package and push our build artifact to Octopus and then create a release and deploy it to our dev environment.
 
-The complete workflow file looks like the following and you can also view it in this [GitHub Samples repository](https://github.com/OctopusSamples/RandomQuotes/actions/workflows/dotnet.yml).
+The complete workflow file is available in the [GitHub Samples repository](https://github.com/OctopusSamples/RandomQuotes/actions/workflows/dotnet.yml):
 
 ```yaml
 name: Build
@@ -120,12 +120,11 @@ jobs:
 
 ![GitHub Actions Secrets for the Octopus Server URL and an API key](github-action-secrets.png)
 
-
-Note that we reference two secrets in this configuration. One is for the Octopus Server URL and the other is an API key which allows us to authenticate and integrate with our Octopus instance. In this case, I'm using an [Octopus Cloud instance](https://octopus.com/pricing/cloud) however you could also connect to a [self-hosted Octopus instance](https://octopus.com/pricing/server) if it's publicly accessible.
+Note that we reference two secrets in this configuration. One is for the Octopus Server URL and the other is an API key to authenticate and integrate with our Octopus instance. In this case, I'm using an [Octopus Cloud instance](https://octopus.com/pricing/cloud), however, you can also connect to a [self-hosted Octopus instance](https://octopus.com/pricing/server) if it's publicly accessible.
 
 
 :::hint
-NOTE: This is building a Microsoft .NET 5 web application but it could easily be a Spring (Java) web app or NodeJS express service etc. The important parts are the usage of the GitHub Actions for Octopus that make it easy to integrate.
+NOTE: This is building a Microsoft .NET 5 web application but it could easily be a Spring (Java) web app or NodeJS express service, etc. The important parts are how the GitHub Actions for Octopus make it easy to integrate.
 :::
 
 ### Installing the Octopus CLI
@@ -152,7 +151,7 @@ To integrate with an Octopus Server, first install the Octopus CLI. This is a pr
         packages: "RandomQuotes.1.0.${{github.run_number}}.zip"
 ```
 
-The next step is packaging your build artifacts and pushing them to a package repository. In this case, we're pushing to the Octopus built-in package repository which is a popular option for teams. 
+The next step is packaging your build artifacts and pushing them to a package repository. In this case, we're pushing to the Octopus built-in package repository which is a popular option. 
 
 There are two steps to package and push my build artifacts:
 
@@ -179,7 +178,7 @@ The final step in my build process is to create a release of my project and depl
 
 ![Successful GitHub build](github-build.png)
 
-If we push a commit to our repository, we can see the GitHub Action run and see its output. It might take a few iterations to fix syntax and get everything right but the outcome is a successful build. 
+If we push a commit to our repository, we can see the GitHub Action run and its output. It might take a few iterations to fix syntax and get everything right, but the outcome is a successful build. 
 
 ## Conclusion
 
