@@ -69,7 +69,7 @@ An ECS deployment will then execute the following process:
 
 The target and step described above have been designed to help those orchestrating ECS deployments fall into the pit of success, which we have summarized as [The ten pillars of pragmatic deployments](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments).
 
-With this first milestone we are specifically focusing on the fundamentals including enabling [repeatable deployments across environments](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments#repeatable-deployments), [recoverable deployments by redeploying previous releases](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments#recoverable-deployments), and [auditable deployments by ensuring all resources are defined and tracked via CloudFormation stacks](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments#auditable-deployments).
+With this first milestone we have specifically focused on the fundamentals including enabling [repeatable deployments across environments](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments#repeatable-deployments), [recoverable deployments by redeploying previous releases](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments#recoverable-deployments), and [auditable deployments by ensuring all resources are defined and tracked via CloudFormation stacks](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments#auditable-deployments).
 
 
 ### Why use targets?
