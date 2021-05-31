@@ -73,9 +73,13 @@ The target and step described above have been designed to help those orchestrati
 
 Central to all of these features is the idea that deployments will progress through a series of environments, with the canonical environment set being the development, test, and production environments. ECS has no concept of environments though, and so we must create a layer in our deployments that express the notion of an environment.
 
-By capturing the details of an ECS cluster as a target, which is scoped to an environment and exposed by a role, the specific details of where a deployment will take place is lifted out of the steps. A step simply defines the target role it deploys to, and Octopus will ensure that a deployment takes place on the correctly scoped target.
+By capturing the details of an ECS cluster as a target, which is scoped to an environment and exposed by a role, the specific details of where a deployment will take place is lifted out of the steps. A step simply defines the target role it deploys to, and Octopus will ensure that the deployment takes place on the correctly scoped target for the current environment.
 
-This means it makes very little difference whether you deploy many logical environments to one shared ECS cluster, have a dedicated cluster per environment, or even separate environments into multiple AWS accounts. Simply point each ECS target to the appropriate cluster and your deployments will scale across any environment partitions you may use:
+This can be incredibly beneficial if you are looking to adopt some of the [best practices recommended by AWS with respect to using multiple accounts](https://aws.amazon.com/blogs/mt/best-practices-for-organizational-units-with-aws-organizations/):
+
+> An AWS account provides natural security, access, and billing boundaries for your AWS resources, and enables you to achieve resource independence and isolation. 
+
+With ECS targets it makes little difference whether you deploy many logical environments to one shared ECS cluster, have a dedicated cluster per environment, or even separate environments into multiple AWS accounts. Simply point each ECS target to the appropriate cluster and your deployments will scale across any environment partitions you may use:
 
 ![](https://via.placeholder.com/500x300 "width=500")
 
@@ -87,5 +91,56 @@ If you have ever had to deploy a new Docker image by first creating a new task d
 
 Ideally we want to see a new ECS deployment involve nothing more than creating an Octopus release and selecting the new Docker image tags to include in it. By intelligently scanning the latest version of a task definition to see if it matches the current deployment, and creating a task definition if necessary, we remove the need for those deploying to ECS to even think about task definitions.
 
-It doesn't matter if your task definitions include environment specific values, or each environment is represented by a cluster in a new AWS account, as Octopus will create the necessary task definitions on your behalf.
+It doesn't matter if your task definitions include environment specific values, or each environment is represented by a cluster in a new AWS account, as Octopus will create the necessary task definitions on your behalf. This simplifies your workflow to creating new Docker images, creating Octopus releases with those Docker images, and promoting your release across your environments.
 
+### Advanced deployments with tenants and channels
+
+The proposed step and target also play nicely with advanced Octopus features like tenants and channels. 
+
+The new ECS targets can be scoped to tenants, once again abstracting away the details of where a deployment takes place fromm the steps and encapsulating it in target.
+
+Meanwhile channel rules can be applied to Docker image tags, facilitating deployment patterns like hotfixes that go straight to production.
+
+![](https://via.placeholder.com/500x300 "width=500")
+
+*Diagram showing multitenant targets.*
+
+### Fall back to CloudFormation
+
+Any opinionated step will eventually meet a use case that it simply does not support. For those with specialized requirements, or who find they outgrow the proposed step, we'll offer the ability to convert the opinionated step into a raw CloudFormation template. 
+
+Simply select the convert option in the overflow menu, and the step will be converted into a CloudFormation deployment step, giving you complete control over your ECS deployments, without having to recreate them from scratch:
+
+![](https://via.placeholder.com/500x300 "width=500")
+
+*Mockup showing the convert option.*
+
+## What is the scope of the first ECS milestone?
+
+Our goal is to release the ECS integration incrementally, both to get the feature out to our customers sooner, and to collect feedback from early adopters. The proposed step above is a high level look at where we see this new feature going, but the first milestone will likely have the following limitations:
+
+* Limiting the step to deploying to Fargate only.
+* Only support rolling deployments, and not support blue/green deployments
+* Not provide the ability to build a new load balancer.
+* Exclude auto-scaling settings.
+* Exclude app mesh and firelens settings.
+* Exclude service auto-discovery settings.
+* Only create a service, and not support tasks or scheduled tasks.
+
+Wo do however see these features being included in subsequent milestones, so watch for a new RFC post covering these.
+
+## When will this be released?
+
+We're still in the early planning stages, and ECS support is not a confirmed feature at this point, so we can not provide a release date. Keep an eye on the blog for further announcements.
+
+## We want your feedback!
+
+ECS support is still in the planning phases, and now is a great time to shape the future of this new feature with your feedback. We have created a GitHub issue here *TODO* to capture the discussion.
+
+Specifically we want to know if the proposed step and target will work for your ECS deployments, as well as learning what your ECS architecture looks like. Do you have multiple clusters? Do you have multiple AWS account? What kinds of applications are you deploying? What ECS deployment challenges do you wish Octopus could solve for you? This is all great feedback that will help us deliver the best solution we can.
+
+## Thankyou
+
+Thankyou for reading this post. We hope you are as excited about the proposed new ECS functionality as we are, and any feedback you may have is greatly appreciated.
+
+Happy deployments!
