@@ -104,7 +104,7 @@ The new ECS targets can be scoped to tenants, once again abstracting away the de
 
 ![](tenants.png "width=500")
 
-Meanwhile channel rules can be applied to Docker image tags, facilitating deployment patterns like hotfixes follow a lifecycle allowing deployments straight to production:
+Meanwhile channel rules can be applied to Docker image tags, facilitating deployment patterns like hotfixes via a lifecycle allowing deployments straight to production:
 
 ![](lifecycles.png "width=500")
 
