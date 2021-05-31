@@ -10,7 +10,7 @@ tags:
  - Octopus
 ---
 
-Octopus is (among other things) a deployment tool. We have had industry leading functionality for deploying to your on-premises infrastructure from the beginning, and we've powered Azure application deployments for years. Our Kubernetes steps have expanded our deployment capabilities to all major cloud providers, but since those steps were released in 2018 Octopus hasn't enabled first class deployments to any new cloud Platform as a Service (PaaS) offerings.
+Octopus is (among other things) a deployment tool. We have had industry leading functionality for deploying to your on-premises infrastructure from the beginning, and we've powered Azure application deployments for years. Our Kubernetes steps expanded our deployment capabilities to all major cloud providers, but since those steps were released in 2018 Octopus hasn't enabled first class deployments to any new cloud Platform as a Service (PaaS) offerings.
 
 We want Octopus to be your first choice regardless of whether you deploy on-premises, to the cloud, or to a hybrid of both. This means providing first class support for more PaaS offerings to make your complex deployments easy.
 
@@ -40,9 +40,9 @@ At a high level, there are three components required to deploy an application to
 
 First you need a Docker image. We envision your Continuous Integration (CI) server will continue to build and deploy these images to a Docker registry.
 
-A task definition then references a specific image tag and defines many of the settings for the resulting container such as memory and CPU requirements, environment variables, exposed ports and more. Task definitions are immutable, and each new image tag must be captured by a new version of a task definition.
+A [task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) then references a specific image tag and defines many of the settings for the resulting container such as memory and CPU requirements, environment variables, exposed ports and more. Task definitions are immutable, and each new image tag must be captured by a new version of a task definition.
 
-A service then references a task definition, along with additional runtime details such as how many instances to run, how the instances are distributed through the cluster, which VPC to run in, load balancers and scaling requirements.
+A [service](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service_definition_parameters.html) then references a task definition, along with additional runtime details such as how many instances to run, how the instances are distributed through the cluster, which VPC to run in, load balancers and scaling requirements.
 
 Our proposed new step provides an opinionated deployment workflow that combines a Fargate task definition and service into a single step. You'll start by defining the values contributed to a task definition. It is important to note here that unlike the AWS console, the Docker images(s) defined in this step do not include the tag:
 
