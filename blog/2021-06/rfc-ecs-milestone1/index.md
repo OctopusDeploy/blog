@@ -7,7 +7,7 @@ published: 2999-01-01
 metaImage: 
 bannerImage: 
 tags:
- - Octopus
+ - Product
 ---
 
 Octopus is (among other things) a deployment tool. We have had industry leading functionality for deploying to your on-premises infrastructure from the beginning, and we've powered Azure application deployments for years. Our Kubernetes steps expanded our deployment capabilities to all major cloud providers, but since those steps were released in 2018 Octopus hasn't enabled first class deployments to any new cloud Platform as a Service (PaaS) offerings.
@@ -16,7 +16,7 @@ We want Octopus to be your first choice regardless of whether you deploy on-prem
 
 To reach this goal, Octopus has established a new internal team dedicated to integrating Octopus with popular PaaS offerings. After spending some months focused on developing a new framework to deliver our PaaS integrations, we are now in a position to share our goals and plans with our customers, partners, and other internal Octopus departments. This blog is what we hope will be the first of many Request For Comment (RFC) posts where we discuss proposed new functionality and provide an opportunity for those interested to offer feedback.
 
-One PaaS service that we have been repeatedly asked to support is AWS ECS, and this post will discuss the proposed new steps and targets that we are currently discussing.
+One PaaS service that we have been repeatedly asked to support is AWS ECS, and this post will explore the proposed new steps and targets that we are currently discussing.
 
 ## How we propose to deliver first class ECS support
 
@@ -60,17 +60,14 @@ The same step defines the values contributed to the properties of a service:
 
 An ECS deployment will then execute the following process:
 1. Select the Docker image tags to be defined in the task definition when creating a release.
-2. During a deployment, query the ECS service configured in the matching target and attempt to find a task definition whose latest version matches the details defined in the step.
-3. If no task definition is found, create one.
-4. If the latest version of the task definition does not match the details in the step, create a new version.
-5. Configure the service with the task definition found in step 2, created in step 3, or the new version created in step 4.
+2. Create a new task definition with the details specific to the deployment to a given environment.
+3. Configure the service with the task definition from step 2.
 
 ## What are the benefits of the proposed approach?
 
 The target and step described above have been designed to help those orchestrating ECS deployments fall into the pit of success, which we have summarized as [The ten pillars of pragmatic deployments](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments).
 
 With this first milestone we have specifically focused on the fundamentals including enabling [repeatable deployments across environments](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments#repeatable-deployments), [recoverable deployments by redeploying previous releases](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments#recoverable-deployments), and [auditable deployments by ensuring all resources are defined and tracked via CloudFormation stacks](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments#auditable-deployments).
-
 
 Central to all of these features is the idea that deployments will progress through a series of [environments](https://octopus.com/docs/infrastructure/environments), with the canonical environment set including the development, test, and production environments. ECS has no concept of environments though, and so to enable [repeatable deployments](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments#repeatable-deployments) we must model the new step and target to facilitate environmental progression, taking into account factors like [environment scoped variables](https://octopus.com/docs/projects/variables#scoping-variables) and the [ability to update a release snapshot](https://octopus.com/docs/octopus-rest-api/examples/releases/update-release-variable-snapshot).
 
@@ -118,6 +115,8 @@ However, any opinionated step will eventually meet a use case that it simply doe
 Simply select the convert option in the overflow menu, and the step will be converted into a CloudFormation deployment step, giving you complete control over your ECS deployments, without having to recreate them from scratch:
 
 ![](convert.png "width=500")
+
+To allow the deployment of CloudFormation templates with Docker image references (which is an increasingly common scenario with [EKS](https://aws.amazon.com/eks/), [ECS](https://aws.amazon.com/ecs/), [Lightsail](https://aws.amazon.com/lightsail/), [Lambdas](https://aws.amazon.com/lambda/), and [AppRunner](https://aws.amazon.com/apprunner/)), the **Deploy an AWS CloudFormation template** step will be updated to support [additional package references](https://octopus.com/blog/script-step-packages). This allows Docker images to be defined and referenced in a CloudFormation template, while deferring the image tag selection to release creation time.
 
 ## What is the scope of the first ECS milestone?
 
