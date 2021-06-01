@@ -44,7 +44,7 @@ A [task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/
 
 A [service](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service_definition_parameters.html) then references a task definition, along with additional runtime details such as how many instances to run, how the instances are distributed through the cluster, which VPC to run in, load balancers and scaling requirements.
 
-Our proposed new step provides an opinionated deployment workflow that combines a Fargate task definition and service into a single step. 
+Our proposed new step provides an opinionated deployment workflow that combines a [Fargate](https://aws.amazon.com/fargate/) task definition and service into a single step. 
 
 You'll start by defining the values contributed to a task definition. It is important to note here that unlike the AWS console, the Docker images(s) defined in this step do not include the tag, as the selection of an image tag is deferred until a release is created:
 
