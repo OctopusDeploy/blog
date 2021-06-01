@@ -152,6 +152,6 @@ In summary, the first milestone of our proposed ECS support includes:
 * The ability to convert the opinionated step into a raw CloudFormation template.
 * A simplified deployment workflow across environments supporting environment specific variables, channels, and lifecycles.
 
-Thankyou for reading this post. We hope you are as excited about the proposed new ECS functionality as we are, and any feedback you may have is greatly appreciated.
+Thank you for reading this post. We hope you are as excited about the proposed new ECS functionality as we are, and any feedback you may have is greatly appreciated.
 
 Happy deployments!
