@@ -89,7 +89,7 @@ With ECS targets it makes little difference whether you deploy many logical envi
 
 If you have ever had to deploy a new Docker image by first creating a new task definition version and then updating the service to reference it, you will appreciate how tedious manual ECS deployments can be.
 
-Our goal is for a new ECS deployment to involve nothing more than creating an Octopus release and selecting the new Docker image tags to include in it. By intelligently scanning the latest version of a task definition to see if it matches the current deployment, and creating a task definition if necessary, we remove the need for those deploying to ECS to even think about task definitions.
+Our goal is for a new ECS deployment to involve nothing more than creating an Octopus release and selecting the new Docker image tags to include in it. By creating a new task definition with each deployment we remove the need for those deploying to ECS to even think about task definitions.
 
 It doesn't matter if your task definitions include environment specific values, or if each environment is represented by a cluster in a new AWS account, as Octopus will create the necessary task definitions on your behalf. This streamlines your workflow to: creating new Docker images, creating an Octopus release with those Docker images, and promoting your release across your environments. It also ensures you can [recover from failed deployments](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments#recoverable-deployments) by redeploying an old release.
 
