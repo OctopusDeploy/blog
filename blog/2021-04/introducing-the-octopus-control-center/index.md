@@ -30,7 +30,6 @@ As a customer, you should enjoy every touch-point across Octopus, so now that th
    - Descriptive page titles, signposting for nested pages, and active states to assist with orientation. 
    - We’ve exposed the organization you’re viewing on all pages, so you maintain context.
    - Details of your Cloud instances are on separate pages to allow for more robust user management features in the future.
-- A Priority Support dashboard is visible to customers who have a [Priority Support](https://octopus.com/blog/introducing-priority-support) agreement with us. 
 
 We’ve shipped the new design across the Control Center, and all existing functions and features continue to work as they did previously.
 
