@@ -10,13 +10,15 @@ tags:
  - Product
 ---
 
-Octopus is (among other things) a deployment tool. We have had industry leading functionality for deploying to your on-premises infrastructure from the beginning, and we've powered Azure application deployments for years. Our Kubernetes steps expanded our deployment capabilities to all major cloud providers, but since those steps were released in 2018 Octopus hasn't enabled first class deployments to any new cloud Platform as a Service (PaaS) offerings.
 
-We want Octopus to be your first choice regardless of whether you deploy on-premises, to the cloud, or to a hybrid of both. This means providing first class support for more PaaS offerings to make your complex deployments easy.
 
-To reach this goal, Octopus has established a new internal team dedicated to integrating Octopus with popular PaaS offerings. After spending some months focused on developing a new framework to deliver our PaaS integrations, we are now in a position to share our goals and plans with our customers, partners, and other internal Octopus departments. This blog is what we hope will be the first of many Request For Comment (RFC) posts where we discuss proposed new functionality and provide an opportunity for those interested to offer feedback.
+    Octopus is a tool that enables world-class deployments. We have had industry leading functionality for deploying to your on-premises infrastructure from the beginning, and we've powered Azure application deployments for years. More recently we expanded into other major cloud service providers, allowing you to use tools like Kubernetes and Terraform to deploy to Azure and AWS. But we can do more - there are still a number of cloud native services that Octopus does not yet provide first class integrations for.
 
-One PaaS service that we have been repeatedly asked to support is AWS ECS, and this post will explore the proposed new steps and targets that we are currently discussing.
+    We want Octopus to be your first choice regardless of whether you deploy on-premises, to the cloud, or to a hybrid of both. This means providing first class support for more cloud native service offerings to make your complex deployments easy.
+
+    To reach this goal, Octopus has established a new internal team dedicated to integrating Octopus with the most popular cloud native services. After spending some months focused on developing a new framework to enable the rapid delivery of these integrations, we are now in a position to share our goals and plans with our customers, partners, and other internal Octopus departments. This blog is what we hope will be the first of many Request For Comment (RFC) posts where we discuss proposed new functionality and provide an opportunity for those interested to offer feedback.
+
+    One cloud service that we have been repeatedly asked to support is AWS ECS, and this post will outline some new steps and targets that we are currently discussing.
 
 ## How we propose to deliver first class ECS support
 
@@ -38,7 +40,7 @@ The proposed ECS support starts with a new target that represents an ECS cluster
 
 At a high level, there are three components required to deploy an application to an ECS cluster.
 
-First you need a Docker image. We envision your Continuous Integration (CI) server will continue to build and deploy these images to a Docker registry.
+First you need a Docker image. We envision your Continuous Integration (CI) server will continue to build, tag, and deploy these images to a Docker registry.
 
 A [task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) then references a specific image tag and defines many of the settings for the resulting container such as memory and CPU requirements, environment variables, exposed ports and more. Task definitions are immutable, and each new image tag must be captured by a new version of a task definition.
 
@@ -126,11 +128,11 @@ Our goal is to release the ECS integration incrementally, both to get the featur
 * Only support rolling deployments, and not support blue/green deployments.
 * Not provide the ability to build a new load balancer.
 * Exclude auto-scaling settings.
-* Exclude app mesh and firelens settings.
+* Exclude App Mesh and FireLens settings.
 * Exclude service auto-discovery settings.
 * Only create a service, and not support tasks or scheduled tasks.
 
-We do however see these features being included in subsequent milestones, so watch for a new RFC post covering these.
+These features are likely to be included in subsequent milestones, so watch for new RFC posts covering these.
 
 ## When will this be released?
 
