@@ -10,15 +10,13 @@ tags:
  - Product
 ---
 
+Octopus is a tool that enables world-class deployments. We have had industry leading functionality for deploying to your on-premises infrastructure from the beginning, and we've powered Azure application deployments for years. More recently we expanded into other major cloud service providers, allowing you to use tools like Kubernetes and Terraform to deploy to Azure and AWS. But we can do more - there are still a number of cloud native services that Octopus does not yet provide first class integrations for.
 
+We want Octopus to be your first choice regardless of whether you deploy on-premises, to the cloud, or to a hybrid of both. This means providing first class support for more cloud native service offerings to make your complex deployments easy.
 
-    Octopus is a tool that enables world-class deployments. We have had industry leading functionality for deploying to your on-premises infrastructure from the beginning, and we've powered Azure application deployments for years. More recently we expanded into other major cloud service providers, allowing you to use tools like Kubernetes and Terraform to deploy to Azure and AWS. But we can do more - there are still a number of cloud native services that Octopus does not yet provide first class integrations for.
+To reach this goal, Octopus has established a new internal team dedicated to integrating Octopus with the most popular cloud native services. After spending some months focused on developing a new framework to enable the rapid delivery of these integrations, we are now in a position to share our goals and plans with our customers, partners, and other internal Octopus departments. This blog is what we hope will be the first of many Request For Comment (RFC) posts where we discuss proposed new functionality and provide an opportunity for those interested to offer feedback.
 
-    We want Octopus to be your first choice regardless of whether you deploy on-premises, to the cloud, or to a hybrid of both. This means providing first class support for more cloud native service offerings to make your complex deployments easy.
-
-    To reach this goal, Octopus has established a new internal team dedicated to integrating Octopus with the most popular cloud native services. After spending some months focused on developing a new framework to enable the rapid delivery of these integrations, we are now in a position to share our goals and plans with our customers, partners, and other internal Octopus departments. This blog is what we hope will be the first of many Request For Comment (RFC) posts where we discuss proposed new functionality and provide an opportunity for those interested to offer feedback.
-
-    One cloud service that we have been repeatedly asked to support is AWS ECS, and this post will outline some new steps and targets that we are currently discussing.
+One cloud service that we have been repeatedly asked to support is AWS ECS, and this post will outline some new steps and targets that we are currently discussing.
 
 ## How we propose to deliver first class ECS support
 
