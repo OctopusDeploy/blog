@@ -7,8 +7,8 @@ bannerImage: release-octopus-2021-q2.png
 metaImage: octopus-release-2021-q2-summary-card.png
 published: 2021-05-31-1400
 tags:
-- DevOps
 - Product
+- DevOps
 ---
 
 ![Octopus 2021 Q2](release-octopus-2021-q2.png)
