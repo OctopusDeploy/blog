@@ -123,7 +123,7 @@ To allow the deployment of CloudFormation templates with Docker image references
 Our goal is to release the ECS integration incrementally, both to get the feature out to our customers sooner, and to collect feedback from early adopters. The proposed step above is a high level look at where we see this new feature going, but the first milestone will likely have the following limitations:
 
 * Limiting the step to deploying to Fargate only.
-* Only support rolling deployments, and not support blue/green deployments.
+* Only support rolling deployments, and not support integrated CodeDeploy blue/green deployments.
 * Not provide the ability to build a new load balancer.
 * Exclude auto-scaling settings.
 * Exclude App Mesh and FireLens settings.
