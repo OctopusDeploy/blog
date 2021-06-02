@@ -12,9 +12,9 @@ tags:
 
 ![octopus branded bento box filled with sushi](blogimage-project-bento-2021.png)
 
-The 2021 Q2 Octopus Deploy release includes a new feature that makes it possible for projects to be exported and then imported into another space, giving you more control over how you organize your Octopus instance. This also allows you to easily move your on-premises Octopus installation to Octopus Cloud.
+The 2021 Q2 Octopus Deploy release includes a new feature that makes it possible for projects to be exported and then imported into another space, giving you more control over how you organize your Octopus instance. This also allows you to easily move your on-premises Octopus projects to Octopus Cloud.
 
-During development we referred to this as Project Bento.  
+During development we referred to this as Project Bento, as the goal was a portable container for your Octopus projects. 
 
 ## Spaces and Octopus Cloud 
 Octopus 2019.1 introduced [Spaces](https://octopus.com/docs/administration/spaces), a way to partition your Octopus Server.  
@@ -65,12 +65,14 @@ This first iteration of the Project Export/Import feature was designed primarily
 
 This iteration _does not_ address repeatedly moving a project between spaces, for example to test upgrades or promote a project to a secure, segregated Octopus instance.  
 
-These scenarios are different in subtle but significant ways, often requiring different variable values, lifecycles, tenants, etc., to be maintained between the instances.  We have laid the foundations with this feature to support these scenarios, and hope to do so in a future release. 
+These scenarios are different in subtle but significant ways, often requiring different variable values, lifecycles, tenants, etc., to be maintained between the instances.  We have laid the foundations with this feature to support these scenarios, and hope to do so in a future release. In the meantime, the [migrator utility](https://octopus.com/docs/octopus-rest-api/octopus.migrator.exe-command-line) remains a valid option.
+
 
 ## Conclusion
 The Project Export/Import feature is available in Octopus Cloud instances now, and is part of the 2021.1 release available from the [Downloads page](https://octopus.com/downloads). 
 
-We hope this makes it easier to migrate projects from self-hosted to Octopus Cloud.
+The feature is currently an early-access release, and we're very keen to hear your feedback.  We hope this makes migrating projects from self-hosted to Octopus Cloud simple and smooth.
+
 
 ## Register for the webinar: What's New in Octopus 2021.1
 
