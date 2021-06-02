@@ -45,7 +45,7 @@ As you can only have one account configured as an **Active Directory admin**, I 
 
 ![](azure-sql-aad-admin.png)
 
-On the **Active Directory admin** screen, click **Set admin**.  Select your VM and click **Select**.  The account will now show as the selected Administrator account. Click **Save** to save your changes.
+On the **Active Directory admin** screen, click **Set admin**.  Select your VM and click **Select**.  The account will now show as the selected administrator account. Click **Save** to save your changes.
 
 ![](azure-sql-select-admin.png)
 
