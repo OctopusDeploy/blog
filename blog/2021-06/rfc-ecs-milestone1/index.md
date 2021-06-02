@@ -138,7 +138,7 @@ We're still in the early planning stages, and ECS support is not a confirmed fea
 
 ## We want your feedback!
 
-ECS support is still in the planning phases, so now is a great time to shape the future of this new feature with your feedback. We have created a GitHub issue here *TODO* to capture the discussion.
+ECS support is still in the planning phases, so now is a great time to shape the future of this new feature with your feedback. [We have created a GitHub issue to capture the discussion](https://github.com/OctopusDeploy/StepsFeedback/issues/1).
 
 Specifically we want to know if the proposed step and target will work for your ECS deployments, as well as learning what your ECS architecture looks like. Do you have multiple clusters? Do you have multiple AWS accounts? What kinds of applications are you deploying? What ECS deployment challenges do you wish Octopus could solve for you? This is all great feedback that will help us deliver the best solution we can.
 
