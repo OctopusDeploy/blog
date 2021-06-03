@@ -2,7 +2,7 @@
 title: Introducing Priority Support
 description: We're introducing Priority Support for customers who need guaranteed support turnaround times from Octopus Deploy.
 author: alex.rolley@octopus.com
-visibility: public
+visibility: private
 published: 2021-03-08-1400
 metaImage: blogimage-introducing-priority-support.png
 bannerImage: blogimage-introducing-priority-support.png
@@ -32,7 +32,7 @@ Customers with Priority Support can expect:
 
 These response times apply to anybody who emails our support team from your email domain. For instance, if we receive a support request from a user with an email address @example.com and example.com has Priority Support, the request will be flagged as a priority issue and they will receive a response within 1 hour.
 
-### Availability
+### Availability 
 
 Priority Support is available to all new and existing Octopus Deploy customers with a valid paid license.
 

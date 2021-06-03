@@ -1,5 +1,5 @@
 ---
-title: Debugging package parameter issues for automated SSIS deployments
+title: "Debugging \"element does not exist in the collection properties\" for SSIS"
 description: Learn about issues with package parameters when automating SSIS deployments, and how to avoid an error using different versions of Visual Studio and SQL Server.
 author: shawn.sesna@octopus.com
 visibility: public
