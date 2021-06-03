@@ -13,7 +13,7 @@ tags:
 ![Publishing a package to Octopus with GitHub Actions](github-actions-publish.png)
 
 :::hint
-The sample workflow in this post used a now deprecrated [set-env command](https://github.blog/changelog/2020-10-01-github-actions-deprecating-set-env-and-add-path-commands/). The post has been updated to use [environment files](https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions#environment-files) instead.
+As part of the Octopus 2021 Q2 release, we introduced native support for GitHub Actions so you can integrate your GitHub builds and other automated processes with your Octopus workflows. Learn how to get started in our post [Announcing GitHub Actions for Octopus Deploy](https://octopus.com/blog/github-actions-for-octopus-deploy).
 :::
 
 I recently set aside some time to write my first GitHub Action. I used my personal blog as my test case. It is a static site that is built with Wyam and hosted in Firebase.
@@ -22,7 +22,7 @@ I recently set aside some time to write my first GitHub Action. I used my person
 
 ## What are GitHub Actions?
 
-GitHub actions are workflows that can react to events raised in your repository. Pushing to a branch, opening a pull request, and opening an issue are examples of events that can trigger your workflow.
+GitHub Actions are workflows that can react to events raised in your repository. Pushing to a branch, opening a pull request, and opening an issue are examples of events that can trigger your workflow.
 
 In my case, my workflow reacts to pushing to the master branch.
 
@@ -38,6 +38,10 @@ The high-level set of steps that I need to perform are:
 * Push that package to my Octopus instance.
 
 Some of these steps require other steps to run first. I'll need steps to install .NET Core, Wyam, and the Octopus CLI. I also need a step to calculate a version for my site package.
+
+:::hint
+The sample workflow in this post used a now deprecrated [set-env command](https://github.blog/changelog/2020-10-01-github-actions-deprecating-set-env-and-add-path-commands/). The post has been updated to use [environment files](https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions#environment-files) instead.
+:::
 
 ## Workflow creation
 
