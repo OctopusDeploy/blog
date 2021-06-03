@@ -47,7 +47,7 @@ The following table shows the Octopus Server releases with long term support.
 
 ## Self-service migrations with Export/Import Projects (early access) {#project-export-import}
 
-The Export/Import Projects feature allows you to move projects from one space to another. We nicknamed it Project Bento as our goal was to make a portable container for your Octopus data.
+The [Export/Import Projects feature](https://octopus.com/blog/exporting-projects) allows you to move projects from one space to another. We nicknamed it Project Bento as our goal was to make a portable container for your Octopus data.
 
 ![Export/Import Projects aka Project Bento](octopus-bento-project-import-export.png)
 
@@ -77,6 +77,8 @@ To date, we've published four official GitHub Actions for Octopus Deploy, and th
 - [Create releases](https://github.com/marketplace/actions/create-release-in-octopus-deploy) in Octopus Deploy.
 - [Execute a runbook](https://github.com/marketplace/actions/run-runbook-in-octopus-deploy) in Octopus Deploy.
 - [Install](https://github.com/marketplace/actions/install-octopus-cli) the Octopus CLI.
+
+Learn how to get started in our post [Announcing GitHub Actions for Octopus Deploy](https://octopus.com/blog/github-actions-for-octopus-deploy). 
 
 We look forward to bringing you more GitHub Actions as the year progresses.
 
