@@ -5,7 +5,7 @@ author: derek.campbell@octopus.com
 visibility: public
 published: 2021-06-15-1400
 metaImage: INSERT.png
-bannerImage: TODO.png
+bannerImage: INSERT.png
 tags:
  - Community
 
@@ -66,8 +66,6 @@ Lastly, we have overhauled our High-Availability docs covering On-Premises, Micr
 
 ## Blogs
 
-
-
 ## Step Templates of the month
 
 Mark Harrison, a Solutions Architect in the Octopus Solutions team, has been busy creating new secrets retrieval step templates, and if you're using Azure Key Vault or Hashicorps Vault, then you can see our shiny new Community Step Templates.
@@ -79,6 +77,7 @@ Mark Harrison, a Solutions Architect in the Octopus Solutions team, has been bus
 - [HashiCorp Vault - AppRole Unwrap Secret ID and Login](https://library.octopus.com/step-templates/aa113393-e615-40ed-9c5a-f95f471d728f/actiontemplate-hashicorp-vault-approle-unwrap-secret-id-and-login)
 - [HashiCorp Vault - Key Value (v1) retrieve secrets](https://library.octopus.com/step-templates/9aab9522-25e0-4539-841c-8b726e6b1520/actiontemplate-hashicorp-vault-key-value-(v1)-retrieve-secrets)
 - [HashiCorp Vault - Key Value (v2) retrieve secrets](https://library.octopus.com/step-templates/337f1b67-cdb0-4f33-9e08-6bf804f672d2/actiontemplate-hashicorp-vault-key-value-(v2)-retrieve-secrets)
+- [HashiCorp Vault - LDAP Login](https://library.octopus.com/step-templates/de807003-3b05-4649-9af3-11a2c7722b3f/actiontemplate-hashicorp-vault-ldap-login)
 
 ## Conclusion
 
