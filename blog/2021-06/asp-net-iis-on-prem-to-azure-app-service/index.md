@@ -19,72 +19,102 @@ In this blog post, I'll walk through how to update the deployment process of an 
 
 ## Example application
 
-We're using the [Random Quotes web application](https://github.com/octopussamples/randomquotes) as the example in this migration guide. This is a web application which retrieves and displays famous quotes randomly. It has an ASP.NET front end with a SQL Server backend. This is very simple however it helps illustrate the changes required. 
+We're using the [Random Quotes web application](https://github.com/octopussamples/randomquotes) as the example in this migration guide. This is a web application which retrieves and displays famous quotes randomly. It has an ASP.NET front end with a SQL Server backend. It is a simple application however it helps illustrate the changes required without becoming overhwelming. 
 
-## Updating our deployment process
+NOTE: This is a web application build on ASP.NET however it could be a Spring Boot Java or Ruby on Rails application. We're focusing on the changes to the deployment process so the tech stack is less important.
 
-Screenshot1 TODO
+## Deployment process: before and after
+
+We need to update our deployment process and it's a quite straightforward.
+
+![On-prem web server deployment process](on-prem-deployment-process.png "width=500")
 
 Our existing on-prem based deployment process has two steps. It has a script step that executes a command line tool to update our database and a second step to deploy our web application package to IIS and configure the bindings. 
 
-Screnshot2 TODO
+![Azure App Service deployment process](cloud-based-deployment-process.png "width=500")
 
-Our cloud-based deployment process is similar however it's updated to suit the cloud. Our first step is still running a script step to udpaet our database but this time it's an Azure script step which means it's pre-authenticated and has access to the Azure CLI. The second step is an Deploy Azure App Service step. It captures everything required to deploy our web appliation package to an Azure app service including configuration file udpdates.
+Our cloud-based deployment process is similar however it's updated to deploy to a cloud provider. Our first step is still running a script step to update our database. The second step has changed and it's now a Deploy an Azure App Service step. It captures everything required to deploy our web appliation to an Azure App Service including updating our configuration file.
 
 ## Migrating to Octopus Cloud (optional)
 
-One commmon pattern we've see with our customers as they shift away from virtual machines on-premises is that they also look to shift their CI/CD platform from on-prem tooling to the cloud. For example: companies shift from using TeamCity and Octopus on-prem to TeamCity Cloud and Octopus Cloud. 
+With teams shifting from shifting away from on-prem virtual machines, one common patter is they also move their CI/CD platform from on-prem tooling to the cloud. For example: companies shift from using TeamCity and Octopus on-prem to TeamCity Cloud and Octopus Cloud. 
 
-I'll briefly outline how to accomplish this with Octopus Deploy. We recently launched Project export and import support to make it easy to move projects from one Octopus instance to another. This is self-service meaning that individual developers can do this themselves without the need for operations teams to help. 
+I'll briefly outline how to accomplish this with Octopus Deploy. We recently launched [Project export and import support](https://octopus.com/blog/exporting-projects) to make it easy to move projects from one Octopus instance to another. This is self-service meaning that individual developers can do this themselves without the need for operations teams to help. 
 
-Pre-requisite: Both of your Octopus instance need to be running Octopus 2021.1 (Build 7198) or newer. 
+Note: This requiers that both of your Octopus instance need to be running Octopus 2021.1 or newer. 
 
-On-premises Ocotpus instance:
+On-premises Octopus instance:
 
-1. Navigate to the Projects dashboard. Select the more button (three virticle elipses) and then the Export Projects button. 
-2. Select the project(s) that you'd like to export. This can be one or more. 
+![Octopus Server project export](project-export.png "width=500")
+
+1. Navigate to the Projects dashboard. Select the more button (three virticle elipses) and then the **Export Projects** button. 
+2. Select the project(s) that you'd like to export.
 3. Set a password to protect the exported files.
+4. Click the **Export** button and then download the arfifacts.
 
 Octopus Cloud instance:
 
-1. Navigate to the Projects dashboard. Select the more button (three virticle elipses) and then the Import Projects button. 
-2. Select your exported ZIP file from your on-prem server and enter your password.
-3. Review the Import Preview and click the import button.
+![Octopus Cloud project import](project-import.png "width=500")
 
-NOTE: There are limitations to the project import/export so I recommend reviewing our [documentation](TODO).
+1. Navigate to the Projects dashboard. Select the more button (three virticle elipses) and then the **Import Projects** button. 
+2. Select your exported ZIP file from your on-prem server and enter your password.
+3. Review the Import Preview and click the **Import** button.
+
+NOTE: There are limitations to the project import/export so I recommend reviewing our [documentation](https://octopus.com/docs/projects/export-import).
 
 ## Updated your infrastructure
 
-In order to move to an Azure based deployment, we need to configure an Azure Account and add one or more Azure Web App deployment targets. The Azure account captures everything required to authenticate with an Azure subscription. This is then used to configure your Azure web app targets. 
+![Octopus Azure account](azure-account.png)
 
-Configuring an Azure account requires four specific IDs which is relatively complicated to configure. I won't go into the detail here and I highly recommend reviewing our docs to learn where to get the values to connect this integration. 
+In order to move to an Azure based deployment, we need to configure an Azure Account and add one or more Azure Web App deployment targets. The Azure account captures everything required to authenticate with an Azure subscription which you can then use to configure your Azure web app targets. 
 
-Next, we need to add one or more Azure Web App deployment targets. These are the App services that we will deploy our web application to. They are the replacements for our virtual machines running IIS. Configuring an Azure web app deployment target is straightfoward.
+Navigate to {{Infrastructure, Accounts}} to add one or more Azure accounts. Configuring an Azure account requires four specific IDs which are relatively difficult to find. I won't go into the detail here and I highly recommend reviewing our [Azure account documentation](https://octopus.com/docs/infrastructure/deployment-targets/azure) to learn where to source the values to connect this integration. 
 
-1. Navigate to Infrastructure -> Deployment Targets
-2. Click the add target button and select Azure and then Azure web app. 
-3. Configure the name, role and select the Azure account.
+[Azure web app deployment targets](azure-web-app-deployment-targets.png)
 
-Repeat for your different subscriptions appropriate for your DEV and test infrastructure.
+Next, we need to add one or more Azure Web App deployment targets. These are the App Services that we will deploy our web application to and they are the replacement for our on-prem virtual machines running IIS. 
+
+Add an Azure web app deployment target:
+
+1. Navigate to {{Infrastructure, Deployment Targets}}
+2. Click the **Add target** button and select Azure and then Azure Web App. 
+3. Configure the name, role and select the Azure account and Azure Web App.
+4. Click the **Save** button.
+
+Repeat for your different subscriptions appropriate for your development, test and production infrastructure.
 
 ## Update your deployment process
 
-We need to update our deployment process to support our move to the cloud. I could use [Ocotpus channels](TODO) to support the old and new deployment processes but I've imported this process so I don't think it's necessary. In this case, I'll delete the old IIS based deployment step. 
+We need to update our deployment process to support our move to the cloud. I could use [Ocotpus channels](https://octopus.com/docs/releases/channels) to support the old and new deployment processes but we're moving away from the on-prem infrascuture so I'll delete the old IIS based deployment step.
 
-My database udpate step uses a script that uses the database connection string to connect to a database. So long as my worker has access to my target database, I don't need to change anything there.
+My database update step uses a script that uses the database connection string to connect to a database. I don't need to change anything for this step however I do need to ensure that my Azure SQL Server database has granted access to my Octopus Server to connect to. Octopus Cloud uses [Static IP addresses](https://octopus.com/docs/octopus-cloud/static-ip) so you can easily add the appropriate range.
 
-The core part of the work to add and configure a new Deploy to Azure App Service deployment step. That said, this is relatively straightforward as we've already setup our infrastructure. 
+The key update that we need to perform to move from our on-prem deployment process is to configure our Azure App Service deployment step. We've already configured out infrastructure so this isn't difficult.
+
+![Azure App Service deployment step configuration](azure-web-app-deploy.png)
 
 One new thing we can do is wire-up our configuration updates directly in the step. In this case, we only have two configuration variables that require this. Random Quotes retrieve two configuration values that specific the application version and the environment it was deployed to. We can enter the following details in the app settings text box thing.
 
 ```json
-
+[
+   {
+      "name": "AppSettings.EnvironmentName",
+      "value": "#{AppSettings:EnvironmentName}",
+      "slotSetting": false
+   },
+   {
+      "name": "AppSettings.AppVersion",
+      "value": "#{AppSettings:AppVersion}",
+      "slotSetting": false
+   }
+]
 ```
-
 
 ## Update your configuration variables
 
-We also need to update our Project variables to support the cloud. The primary thing we need to change here is our database connection string. In this case, I've composed my database connection string with individual variables which makes it easy to update. 
+![Azure app service deployment variables](cloud-based-variables.png)
+
+We also need to update our Project variables to support the cloud. The primary thing we need to change is our database connection string. In this case, I've composed my database connection string with individual variables which makes it easy to update. 
 
 I can remove unused variables for ports and bindings etc. I could add host name or DNS details if needed but this doesn't apply in this case. 
 
@@ -99,4 +129,4 @@ I won't go into detail in this post but it's a natural next step to leverage run
 
 ## Conclusion
 
-Teams are retiring old virtual machines and moving to cloud-based CI/CD infrastructure and application hosting. In this blog post, we saw how we can move an existing web application from on-prem to the cloud including moving from Octopus Server to Octopus Cloud. 
+Teams are retiring old virtual machines and moving to cloud-based CI/CD infrastructure and application hosting. In this blog post, we saw how we can move an existing web application from on-prem to the cloud as well as shift from from Octopus Server on-prem to Octopus Cloud. 
