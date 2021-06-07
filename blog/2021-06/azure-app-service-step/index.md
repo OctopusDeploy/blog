@@ -13,7 +13,7 @@ tags:
 
 ![Octopus, a zip file and Azure logo connected in the clouds](img-blog-azure-app-service-zip-deploy-2021.png)
 
-Octopus 2021.1 includes a new _Deploy an Azure App Service_ step. This delivers major improvements for deploying Azure web applications including:
+Octopus 2021.1 includes a new _Deploy an Azure App Service_ step. This step delivers major improvements for deploying Azure web applications, including:
 
 - Deploying to Linux app service plans (without obscure configuration hacks). 
 - Deploying container images. 
@@ -24,7 +24,7 @@ Octopus 2021.1 includes a new _Deploy an Azure App Service_ step. This delivers 
 
 ## What's changed?
 
-The _Deploy an Azure App Service_ step is designed to supercede the existing _Deploy an Azure Web App_ step, however the original step is still available. 
+The _Deploy an Azure App Service_ step is designed to supersede the existing _Deploy an Azure Web App_ step, however, the original step is still available. 
 
 The _Deploy an Azure Web App_ step relied on [Microsoft Web Deploy](https://www.iis.net/downloads/microsoft/web-deploy) as the deployment mechanism. This restricted the step to executing on Windows workers, required special configuration to work with Linux app service plans, and didn't support container images.  The new step relies on the [zip deploy API](https://docs.microsoft.com/en-us/azure/app-service/deploy-zip#rest) for file-based packages (zip, nupkg, war), and also support container images.
 
@@ -42,7 +42,7 @@ The benefits of using the JSON format are:
 - It is the same JSON format as the [bulk-edit feature in the Azure portal](https://docs.microsoft.com/en-us/azure/app-service/configure-common#edit-in-bulk), making it easy to move existing app settings into Octopus.  
 - These fields accept [Octopus variable expressions](https://octopus.com/docs/projects/variables/variable-substitutions), allowing advanced scenarios such as conditionally including values, and iterating over collections of Octopus variables to build the app settings or connection strings.  
 
-In the future we hope to add a friendlier UI over these fields, maintaining the JSON configuring as an 'advanced' mode. 
+In the future we hope to add a friendlier UI over these fields, and maintain the JSON configuration as an 'advanced' mode. 
 
 ## Transforming configuration files
 
