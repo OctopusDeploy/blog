@@ -19,9 +19,9 @@ In this blog post, I'll walk through how to update the deployment process of an 
 
 ## Example application
 
-We're using the [Random Quotes web application](https://github.com/octopussamples/randomquotes) as the example in this migration guide. This is a web application which retrieves and displays famous quotes randomly. It has an ASP.NET front end with a SQL Server backend. It is a simple application however it helps illustrate the changes required without becoming overhwelming. 
+We're using the [Random Quotes](https://github.com/octopussamples/randomquotes) web application as the example in this migration guide. This is a web application which retrieves and displays famous quotes randomly. It has an ASP.NET front end with a SQL Server backend. It is a simple application however it helps illustrate the changes required without becoming overhwelming. 
 
-NOTE: This is a web application build on ASP.NET however it could be a Spring Boot Java or Ruby on Rails application. We're focusing on the changes to the deployment process so the tech stack is less important.
+NOTE: This is a web application build on ASP.NET however it could be a Spring Boot Java web app or Ruby on Rails application. We're focusing on the changes to the deployment process so the tech stack is less important.
 
 ## Deployment process: before and after
 
@@ -70,7 +70,7 @@ In order to move to an Azure based deployment, we need to configure an Azure Acc
 
 Navigate to {{Infrastructure, Accounts}} to add one or more Azure accounts. Configuring an Azure account requires four specific IDs which are relatively difficult to find. I won't go into the detail here and I highly recommend reviewing our [Azure account documentation](https://octopus.com/docs/infrastructure/deployment-targets/azure) to learn where to source the values to connect this integration. 
 
-[Azure web app deployment targets](azure-web-app-deployment-targets.png)
+[Azure web app deployment targets](azure-web-app-deployment-targets.png "width=500")
 
 Next, we need to add one or more Azure Web App deployment targets. These are the App Services that we will deploy our web application to and they are the replacement for our on-prem virtual machines running IIS. 
 
@@ -91,7 +91,7 @@ My database update step uses a script that uses the database connection string t
 
 The key update that we need to perform to move from our on-prem deployment process is to configure our Azure App Service deployment step. We've already configured out infrastructure so this isn't difficult.
 
-![Azure App Service deployment step configuration](azure-web-app-deploy.png)
+![Azure App Service deployment step configuration](azure-web-app-deploy.png "width=500")
 
 One new thing we can do is wire-up our configuration updates directly in the step. In this case, we only have two configuration variables that require this. Random Quotes retrieve two configuration values that specific the application version and the environment it was deployed to. We can enter the following details in the app settings text box thing.
 
@@ -112,7 +112,7 @@ One new thing we can do is wire-up our configuration updates directly in the ste
 
 ## Update your configuration variables
 
-![Azure app service deployment variables](cloud-based-variables.png)
+![Azure app service deployment variables](cloud-based-variables.png "width=500")
 
 We also need to update our Project variables to support the cloud. The primary thing we need to change is our database connection string. In this case, I've composed my database connection string with individual variables which makes it easy to update. 
 
