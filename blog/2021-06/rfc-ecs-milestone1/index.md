@@ -116,6 +116,8 @@ Simply select the convert option in the overflow menu, and the step will be conv
 
 ![](overflow-menu-v2.png)
 
+*Step mockup showing conversion from opinionated step to raw CloudFormation template.*
+
 To allow the deployment of CloudFormation templates with Docker image references (which is an increasingly common scenario with [EKS](https://aws.amazon.com/eks/), [ECS](https://aws.amazon.com/ecs/), [Lightsail](https://aws.amazon.com/lightsail/), [Lambdas](https://aws.amazon.com/lambda/), and [AppRunner](https://aws.amazon.com/apprunner/)), the **Deploy an AWS CloudFormation template** step will be updated to support [additional package references](https://octopus.com/blog/script-step-packages). This allows Docker images to be defined and referenced in a CloudFormation template, while deferring the image tag selection to release creation time.
 
 ## What is the scope of the first ECS milestone?
