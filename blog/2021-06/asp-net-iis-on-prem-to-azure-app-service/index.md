@@ -1,9 +1,9 @@
 ---
 title: Migrate an ASP.NET web app from IIS on-prem to an Azure App Service
-description: How to migrate an existing ASP.NET web app from IIS on-premesis to an Azure App Service in the Cloud.
+description: Learn how to migrate an ASP.NET web app from hopsting it on-premon-premesis to an Azure App Service in the Cloud.
 author: rob.pearson@octopus.com
 visibility: public
-published: 2022-06-02
+published: 2022-06-09
 metaImage: socialimage-github-actions-integration_2021.png
 bannerImage: socialimage-github-actions-integration_2021.png
 tags:
@@ -13,13 +13,13 @@ tags:
 
 ![Migrate an ASP.NET web app from IIS on-prem to an Azure App Service](socialimage-github-actions-integration_2021.png)
 
-Team are migrating their applications and infrastructure to the cloud. The natural migration path for ASP.NET web apps or services running on Microsoft's IIS web server on-prem is to App Services on Microsoft's Azure cloud platform. 
+Team are migrating their applications and infrastructure to the cloud. The natural migration path for ASP.NET web app running on Microsoft's IIS web server on-prem is to App Services on Microsoft's Azure cloud platform. It's relatively straightforward to change the way your application is hosted but it's also important to ensure your CI/CD process is still repeatable and reliable. 
 
-It's relatively straightforward to change the way your application is hosted but it's also important to ensure your CI/CD process is still repeatable and reliable. In this blog post, I'll walk through how to update the deployment process of an existing web application with Octopus Deploy shifting it from on-prem to the cloud. 
+In this blog post, I'll walk through how to update the deployment process of an existing web application with Octopus Deploy shifting it from on-prem to the cloud. 
 
 ## Example application
 
-We're using the Random Quotes web application as the example in this migration guide. This is a web application which retrieves and displays famous quotes randomly. It has an ASP.NET front end with a SQL Server backend. This is very simple however it helps illustrate the changes required. 
+We're using the [Random Quotes web application](https://github.com/octopussamples/randomquotes) as the example in this migration guide. This is a web application which retrieves and displays famous quotes randomly. It has an ASP.NET front end with a SQL Server backend. This is very simple however it helps illustrate the changes required. 
 
 ## Updating our deployment process
 
@@ -90,8 +90,13 @@ I can remove unused variables for ports and bindings etc. I could add host name 
 
 ## Explore runbooks
 
-TODO: Write something about how runbooks can help a new Auzre app service. Examples are manually toggling blue/green deployments, provision and tear down DEV/TEST infrastructure on a schedule. i.e. Cost savings.
+Now that we have moved to the cloud, it's worth mentioning some of the areas that runbooks can assist. Common usage scenarios include: 
+* Provisioning and tearing down development and test infrastructure on a schedule to save money.
+* Running regular database maintenance jobs like indexing and clean-up.
+* Toggling a blue/green deployment to push a new release live after testing.
+
+I won't go into detail in this post but it's a natural next step to leverage runbook automation with cloud infrastructure.
 
 ## Conclusion
 
-Reword intro.
+Teams are retiring old virtual machines and moving to cloud-based CI/CD infrastructure and application hosting. In this blog post, we saw how we can move an existing web application from on-prem to the cloud including moving from Octopus Server to Octopus Cloud. 
