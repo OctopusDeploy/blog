@@ -30,7 +30,7 @@ Octopus already has many features in place to coordinate container deployments, 
 
 The proposed ECS support starts with a new target that represents an ECS cluster. This target references the AWS credentials used to access an ECS cluster, the AWS region, and the name of the cluster:
 
-![](https://via.placeholder.com/500x300 "width=500")
+![](esc-target.png "width=500")
 
 *An ECS target mockup.*
 
@@ -48,13 +48,13 @@ Our proposed new step provides an opinionated deployment workflow that combines 
 
 You'll start by defining the values contributed to a task definition. It is important to note here that unlike the AWS console, the Docker images(s) defined in this step do not include the tag, as the selection of an image tag is deferred until a release is created:
 
-![](https://via.placeholder.com/500x300 "width=500")
+![](drawer.png "width=500")
 
 *Step mockup showing Docker image selection and task definition inputs.*
 
 The same step defines the values contributed to the properties of a service:
 
-![](https://via.placeholder.com/500x300 "width=500")
+![](ecs-step.png "width=500")
 
 *Step mockup showing service properties.*
 
@@ -114,7 +114,7 @@ However, any opinionated step will eventually meet a use case that it simply doe
 
 Simply select the convert option in the overflow menu, and the step will be converted into a CloudFormation deployment step, giving you complete control over your ECS deployments, without having to recreate them from scratch:
 
-![](convert.png "width=500")
+![](overflow-menu-v2.png "width=500")
 
 To allow the deployment of CloudFormation templates with Docker image references (which is an increasingly common scenario with [EKS](https://aws.amazon.com/eks/), [ECS](https://aws.amazon.com/ecs/), [Lightsail](https://aws.amazon.com/lightsail/), [Lambdas](https://aws.amazon.com/lambda/), and [AppRunner](https://aws.amazon.com/apprunner/)), the **Deploy an AWS CloudFormation template** step will be updated to support [additional package references](https://octopus.com/blog/script-step-packages). This allows Docker images to be defined and referenced in a CloudFormation template, while deferring the image tag selection to release creation time.
 
