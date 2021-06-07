@@ -50,13 +50,13 @@ You'll start by defining the values contributed to a task definition. It is impo
 
 ![](drawer.png "width=500")
 
-*Step mockup showing Docker image selection and task definition inputs.*
+*Step mockup showing Docker image selection.*
 
 The same step defines the values contributed to the properties of a service:
 
 ![](ecs-step.png "width=500")
 
-*Step mockup showing service properties.*
+*Step mockup showing service properties and the task definition containers.*
 
 An ECS deployment will then execute the following process:
 1. Select the Docker image tags to be defined in the task definition when creating a release.
