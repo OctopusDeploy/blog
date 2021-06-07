@@ -1,5 +1,5 @@
 ---
-title: Request For Comment - ECS integration with Octopus
+title: Request For Comments - ECS integration with Octopus
 description: We're proposing new integrations with ECS in Octopus, and want your feedback.
 author: matthew.casperson@octopus.com
 visibility: public
@@ -12,13 +12,13 @@ tags:
 
 Octopus is a tool that enables world-class deployments. We've always had industry leading functionality for deploying to your on-premises infrastructure, and we've powered Azure application deployments for years. 
 
-More recently we expanded into other major cloud service providers, allowing you to use tools like Kubernetes and Terraform to deploy to Azure and AWS. But we can do more - there are still cloud native services that Octopus doesn't provide first class integrations for.
+More recently we expanded into other major cloud service providers, allowing you to use tools like Kubernetes and Terraform to deploy to Azure and AWS. But we can do more — there are still cloud native services that Octopus doesn't provide first class integrations for.
 
 We want Octopus to be your first choice regardless of whether you deploy on-premises, to the cloud, or to a hybrid of both. This means providing first class support for more cloud native service offerings to make your complex deployments easy.
 
-To reach this goal, Octopus has established a new internal team dedicated to integrating Octopus with the most popular cloud native services. After months developing a framework to enable the rapid delivery of these integrations, we're now in a position to share our goals and plans with our customers, partners, and other internal Octopus departments. 
+To reach this goal, Octopus has established a team dedicated to integrating Octopus with the most popular cloud native services. After months developing a framework to enable the rapid delivery of these integrations, we can now share our goals and plans with our customers, partners, and other internal Octopus departments. 
 
-We hope this blog is the first of many Request For Comment (RFC) posts where we discuss proposed new functionality and provide an opportunity for feedback.
+We hope this blog is the first of many Request For Comments (RFC) posts where we discuss proposed functionality and provide an opportunity for feedback.
 
 One cloud service that we have been repeatedly asked to support is AWS ECS, and this post will outline some new steps and targets that we're currently discussing.
 
@@ -50,7 +50,7 @@ A [service](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service_
 
 Our proposed step provides an opinionated deployment workflow that combines a [Fargate](https://aws.amazon.com/fargate/) task definition and service into a single step. 
 
-You'll start by defining the values contributed to a task definition. It is important to note here that unlike the AWS console, the Docker images(s) defined in this step do not include the tag, as the selection of an image tag is deferred until a release is created:
+You'll start by defining the values contributed to a task definition. It is important to note that unlike the AWS console, the Docker images(s) defined in this step do not include the tag, as the selection of an image tag is deferred until a release is created:
 
 ![Step mockup showing Docker image selection](drawer.png)
 
@@ -114,7 +114,7 @@ It also ensures you can [recover from failed deployments](https://octopus.com/bl
 
 The proposed step and target also integrate with advanced Octopus features like [tenants](https://octopus.com/docs/deployments/patterns/multi-tenant-deployments), [channels](https://octopus.com/docs/releases/channels), and [lifecycles](https://octopus.com/docs/releases/lifecycles). 
 
-The new ECS targets can be scoped to tenants, once again abstracting away the details of where a deployment takes place from the steps and encapsulating it in a target:
+The new ECS targets can be scoped to tenants, again abstracting away the details of where a deployment takes place from the steps and encapsulating it in a target:
 
 ![](tenants.png)
 
@@ -125,21 +125,21 @@ Meanwhile channel rules can be applied to Docker image tags, facilitating deploy
 
 ### Fall back to CloudFormation
 
-Behind the scenes the new step will generate CloudFormation templates, which will then be executed for you. This ensures all resources can be [audited](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments#auditable-deployments) and [tracked](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-drift.html) with existing CloudFormation tooling.
+Behind the scenes, the new step will generate CloudFormation templates, which will then be executed for you. This ensures all resources can be [audited](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments#auditable-deployments) and [tracked](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-stack-drift.html) with existing CloudFormation tooling.
 
-However, any opinionated step will eventually meet a use case that it doesn't support. For those with specialized requirements, or those who outgrow the proposed step, we'll offer the ability to convert the opinionated step into a raw CloudFormation template. 
+However, any opinionated step will eventually meet a use case that it doesn't support. For those with specialized requirements, or for those who outgrow the proposed step, we'll offer the ability to convert the opinionated step into a raw CloudFormation template. 
 
-Simply select the convert option in the overflow menu, and the step will be converted into a CloudFormation deployment step, giving you complete control over your ECS deployments, without having to recreate them from scratch:
+Simply select the **Convert** option in the overflow menu, and the step will be converted into a CloudFormation deployment step, giving you complete control over your ECS deployments, without having to recreate them from scratch:
 
 ![Step mockup showing conversion from opinionated step to raw CloudFormation template](overflow-menu-v2.png)
 
 *Step mockup showing conversion from opinionated step to raw CloudFormation template.*
 
-To allow the deployment of CloudFormation templates with Docker image references (which is an increasingly common scenario with [EKS](https://aws.amazon.com/eks/), [ECS](https://aws.amazon.com/ecs/), [Lightsail](https://aws.amazon.com/lightsail/), [Lambdas](https://aws.amazon.com/lambda/), and [AppRunner](https://aws.amazon.com/apprunner/)), the **Deploy an AWS CloudFormation template** step will be updated to support [additional package references](https://octopus.com/blog/script-step-packages). This allows Docker images to be defined and referenced in a CloudFormation template, while deferring the image tag selection to release creation time.
+To allow the deployment of CloudFormation templates with Docker image references (which is a common scenario with [EKS](https://aws.amazon.com/eks/), [ECS](https://aws.amazon.com/ecs/), [Lightsail](https://aws.amazon.com/lightsail/), [Lambdas](https://aws.amazon.com/lambda/), and [AppRunner](https://aws.amazon.com/apprunner/)), the **Deploy an AWS CloudFormation template** step will be updated to support [additional package references](https://octopus.com/blog/script-step-packages). This allows Docker images to be defined and referenced in a CloudFormation template, while deferring the image tag selection to release creation time.
 
 ## What is the scope of the first ECS milestone?
 
-Our goal is to release the ECS integration incrementally, both to get the feature out to our customers sooner, and to collect feedback from early adopters. 
+Our goal is to release the ECS integration incrementally, to get the feature to our customers sooner, and to collect feedback from early adopters. 
 
 The proposed step above is a high level look at where we see this new feature going, but the first milestone will likely have the following limitations:
 
