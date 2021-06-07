@@ -171,12 +171,10 @@ Now you can Export/Import Projects, scale Octopus Cloud as your needs grow, take
 
 Please let us know what you think, by leaving a comment here or in our [Community Slack](https://octopus.com/slack).
 
-## Register for the webinar: What's New in Octopus 2021.1
+## Watch the webinar
 
-Join Senior Solutions Architect Derek Campbell and Solutions Architect Adam Close from Octopus Deploy for a discussion and demo of the new features released in 2021 so far.
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Dm4vOwuo9GI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-- US - Thursday June 3rd, 12pm PT / 3pm ET: [Register now](https://octopus.zoom.us/webinar/register/1316184944939/WN_j9NMfQV7R_a9xufzqt2Xtw?timezone_id=America%2FLos_Angeles)
-- UK/Europe - Wednesday June 2nd, 3pm CET: [Register now](https://octopus.zoom.us/webinar/register/5016184939584/WN_-PnNDNo7RCGNIOU4gtXxbQ)
-- APAC - Monday June 7th, 3pm AEST: [Register now](https://octopus.zoom.us/webinar/register/9016195970319/WN_E-B5nzLkSDeabkv3uGntjw?timezone_id=Australia%2FSydney)
+We host webinars regularly. See the [webinars page](https://octopus.com/events) for past webinars and details about upcoming webinars. 
 
 Happy deployments!
