@@ -30,7 +30,7 @@ Octopus already has many features in place to coordinate container deployments, 
 
 The proposed ECS support starts with a new target that represents an ECS cluster. This target references the AWS credentials used to access an ECS cluster, the AWS region, and the name of the cluster:
 
-![](esc-target.png "width=500")
+![](ecs-target.png "width=500")
 
 *An ECS target mockup.*
 
