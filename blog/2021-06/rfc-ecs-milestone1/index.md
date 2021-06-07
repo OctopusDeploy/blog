@@ -30,7 +30,7 @@ Octopus already has many features in place to coordinate container deployments, 
 
 The proposed ECS support starts with a new target that represents an ECS cluster. This target references the AWS credentials used to access an ECS cluster, the AWS region, and the name of the cluster:
 
-![](ecs-target.png "width=500")
+![](ecs-target.png)
 
 *An ECS target mockup.*
 
@@ -48,13 +48,13 @@ Our proposed new step provides an opinionated deployment workflow that combines 
 
 You'll start by defining the values contributed to a task definition. It is important to note here that unlike the AWS console, the Docker images(s) defined in this step do not include the tag, as the selection of an image tag is deferred until a release is created:
 
-![](drawer.png "width=500")
+![](drawer.png)
 
 *Step mockup showing Docker image selection.*
 
 The same step defines the values contributed to the properties of a service:
 
-![](ecs-step.png "width=500")
+![](ecs-step.png)
 
 *Step mockup showing service properties and the task definition containers.*
 
@@ -71,7 +71,7 @@ With this first milestone we have specifically focused on the fundamentals inclu
 
 Central to all of these features is the idea that deployments will progress through a series of [environments](https://octopus.com/docs/infrastructure/environments), with the canonical environment set including the development, test, and production environments. ECS has no concept of environments though, and so to enable [repeatable deployments](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments#repeatable-deployments) we must model the new step and target to facilitate environmental progression, taking into account factors like [environment scoped variables](https://octopus.com/docs/projects/variables#scoping-variables) and the [ability to update a release snapshot](https://octopus.com/docs/octopus-rest-api/examples/releases/update-release-variable-snapshot).
 
-![](environments.png "width=500")
+![](environments.png)
 
 ### Why use targets?
 
@@ -83,7 +83,7 @@ We envisage this will be incredibly beneficial if you are looking to adopt some 
 
 With ECS targets it makes little difference whether you deploy many logical environments to one shared ECS cluster, have a dedicated cluster per environment, or even separate environments into multiple AWS accounts. Simply point each ECS target to the appropriate cluster and your deployments will scale across any environment partitions you may use:
 
-![](targets.png "width=500")
+![](targets.png)
 
 ### Abstracting away task definition versions
 
@@ -99,11 +99,11 @@ The proposed step and target also integrate with advanced Octopus features like 
 
 The new ECS targets can be scoped to tenants, once again abstracting away the details of where a deployment takes place from the steps and encapsulating it in a target:
 
-![](tenants.png "width=500")
+![](tenants.png)
 
 Meanwhile channel rules can be applied to Docker image tags, facilitating deployment patterns like hotfixes via a lifecycle allowing deployments straight to production:
 
-![](lifecycles.png "width=500")
+![](lifecycles.png)
 
 
 ### Fall back to CloudFormation
@@ -114,7 +114,7 @@ However, any opinionated step will eventually meet a use case that it simply doe
 
 Simply select the convert option in the overflow menu, and the step will be converted into a CloudFormation deployment step, giving you complete control over your ECS deployments, without having to recreate them from scratch:
 
-![](overflow-menu-v2.png "width=500")
+![](overflow-menu-v2.png)
 
 To allow the deployment of CloudFormation templates with Docker image references (which is an increasingly common scenario with [EKS](https://aws.amazon.com/eks/), [ECS](https://aws.amazon.com/ecs/), [Lightsail](https://aws.amazon.com/lightsail/), [Lambdas](https://aws.amazon.com/lambda/), and [AppRunner](https://aws.amazon.com/apprunner/)), the **Deploy an AWS CloudFormation template** step will be updated to support [additional package references](https://octopus.com/blog/script-step-packages). This allows Docker images to be defined and referenced in a CloudFormation template, while deferring the image tag selection to release creation time.
 
