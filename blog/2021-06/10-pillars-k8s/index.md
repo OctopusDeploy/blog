@@ -11,7 +11,7 @@ tags:
   - Deployments
 ---
 
-Following on from the [10 pillars of pragmatic deployments](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments), Senior Product Manager, Matthew Casperson, has written an ebook about the 10 pillars of pragmatic Kubernetes deployments with Octopus Deploy.
+Following on from the [10 pillars of pragmatic deployments](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments), Senior Product Manager, Matthew Casperson, has written an ebook about the 10 pillars of pragmatic **Kubernetes** deployments with Octopus Deploy.
 
 The ten pillars speak to the needs of modern DevOps teams, always being asked to deliver more in less time. By understanding the value of each pillar, and learning practical implementations, DevOps teams can meet these challenges head-on.
 
@@ -38,4 +38,6 @@ To follow along with the exercises, you’ll need:
 
 The ebook assumes familiarity with concepts like pods, deployments, services, service accounts, secrets, configmaps, etc. However, all the Kubernetes resources created in the book provide detailed instructions on the values to enter into Octopus, so it is possible to get a sense of the deployment processes without a deep understanding of every setting. 
 
-Download the ebook
+### [Download the ebook](https://github.com/OctopusDeploy/TenPillarsK8s/releases/latest)
+
+Happy deployments!
