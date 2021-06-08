@@ -112,7 +112,7 @@ Next, we need to add a new **Azure App Service deployment** step. We've already 
 
 ![Azure App Service deployment step configuration](azure-web-app-deploy.png "width=500")
 
-This screenshot shows our step configuration. We're using a worker to deploy to Azure web app targets with the `web` role, and we specify the package, app service and connection string configuration updates. Octopus recently introduced an improved [Azure App Service deployment step](https://octopus.com/blog/azure-app-service-step) which allows us to wire-up our configuration updates directly in the step. 
+This screenshot shows our step configuration. We're using a worker to deploy to Azure web app targets with the `web` role, and we specify the package, app service and connection string configuration updates. Octopus recently introduced an improved [Azure App Service deployment step](https://octopus.com/blog/azure-app-service-step) which allows us to configure updates directly in the step. 
 
 For example, Random Quotes displays two configuration values to show the application version and the environment it was deployed to. To configure this, we use the following JSON string and something similar for the database connection string: 
 
