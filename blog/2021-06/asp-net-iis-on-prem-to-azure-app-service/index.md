@@ -37,7 +37,7 @@ Our new **cloud-based deployment process** is similar however it's updated to de
 
 ## Migrating to Octopus Cloud (optional)
 
-With teams shifting from shifting away from on-prem virtual machines, one common patter is they also move their CI/CD platform from on-prem tooling to the cloud. For example: companies might change from using [TeamCity](https://www.jetbrains.com/teamcity/) and Octopus on-prem to [TeamCity Cloud](https://www.jetbrains.com/teamcity/cloud/) and [Octopus Cloud](https://octopus.com/cloud). 
+With teams shifting from shifting away from on-prem virtual machines, one common pattern is to move their CI/CD platform to the cloud. For example, companies might go from using [TeamCity](https://www.jetbrains.com/teamcity/) and Octopus on-prem to [TeamCity Cloud](https://www.jetbrains.com/teamcity/cloud/) and [Octopus Cloud](https://octopus.com/cloud). 
 
 I'll briefly outline how to accomplish this with Octopus Deploy. We recently launched [Project export and import support](https://octopus.com/blog/exporting-projects) to make it easy to move projects from one Octopus instance to another. This is self-service meaning that individual developers can do this themselves without the need for system administrators to help. That said, it's often good to involve the operations team to keep them in the loop.
 
@@ -74,7 +74,7 @@ In order to move to an Azure solution, we need to create some cloud-based infras
 
 Next, we need to configure an Azure Account in Octopus and add one or more Azure Web App deployment targets. 
 
-The Azure account captures everything required to authenticate with an Azure subscription which you can then use to configure your Azure web app targets. Navigate to {{Infrastructure, Accounts}} to add one or more Azure accounts. Configuring an Azure account requires four specific IDs which are relatively difficult to find. I won't go into the detail here and I highly recommend reviewing our [Azure account documentation](https://octopus.com/docs/infrastructure/deployment-targets/azure) to configure this integration.
+The Azure account in Octopus captures everything required to authenticate with an Azure subscription which you can then use to configure your Azure web app targets. Navigate to {{Infrastructure, Accounts}} to add one or more Azure accounts. Configuring an Azure account requires four specific IDs which are somewhat difficult to find. I won't go into the detail here and I highly recommend reviewing our [Azure account documentation](https://octopus.com/docs/infrastructure/deployment-targets/azure) to configure this integration.
 
 [Azure web app deployment targets](azure-web-app-deployment-targets.png "width=500")
 
@@ -93,13 +93,13 @@ Repeat for your different subscriptions appropriate for your development, test a
 
 We need to update our deployment process to support our move to the cloud. I could use [Octopus channels](https://octopus.com/docs/releases/channels) to support the old and new deployment processes but we're moving away from our on-prem infrastructure so I'll delete the old IIS based deployment step.
 
-First, I need to review the **database update step**. It uses a script that uses the database connection string to connect to a database so I don't need to change anything for this step however I do need to ensure that my Azure SQL Server database has granted access to my Octopus Server to connect to. Octopus Cloud uses [Static IP addresses](https://octopus.com/docs/octopus-cloud/static-ip) so you can easily add the appropriate range.
+First, I need to review the **database update step**. This is a script step uses a database connection string to connect to a database so we don't need any changes here. That said, we do need to ensure that our Octopus instance can connect to our Azure SQL database. I needed to update the Azure SQL database firewall to allow the Octopus Cloud [Static IP addresses](https://octopus.com/docs/octopus-cloud/static-ip) to connect to it.
 
-Next, I needed to add a new **Azure App Service deployment step**. We've already configured out infrastructure so this isn't difficult. 
+Next, I needed to add a new **Azure App Service deployment step**. We've already configured our infrastructure so this isn't difficult. 
 
 ![Azure App Service deployment step configuration](azure-web-app-deploy.png "width=500")
 
-This screenshot shows our step configuration. We're using a worker to deploy to the `web` role, and we specify the package, app service and connection string configuration updates. Octopus recently introduced an improved Azure App Service deployment step and this allows us to wire-up our configuration updates directly in the step. For example, Random Quotes displays two configuration values to show the application version and the environment it was deployed to. To configure this, we use the following JSON string and something similar for the database connection string. 
+This screenshot shows our step configuration. We're using a worker to deploy to Azure web app targets with the `web` role, and we specify the package, app service and connection string configuration updates. Octopus recently introduced an improved Azure App Service deployment step and this allows us to wire-up our configuration updates directly in the step. For example, Random Quotes displays two configuration values to show the application version and the environment it was deployed to. To configure this, we use the following JSON string and something similar for the database connection string. 
 
 ```json
 [
@@ -122,9 +122,7 @@ NOTE: This syntax uses the same schema as the Azure portal [bulk edit](https://d
 
 ![Azure app service deployment variables](cloud-based-variables.png "width=500")
 
-We also need to update our Project variables to support the cloud. The primary thing we need to change is our database connection string. In this case, I've composed my database connection string with individual variables which makes it easy to update. 
-
-I can remove unused variables for ports and bindings etc. I could add host name or DNS details if needed but this doesn't apply in this case. 
+We also need to update our Project variables to support the cloud. The primary thing we need to change is our database connection string. In this case, I've composed my database connection string with individual variables which makes it easy to update. I also removed unused variables for IIS bindings and port configuration. 
 
 ## Explore runbooks
 
