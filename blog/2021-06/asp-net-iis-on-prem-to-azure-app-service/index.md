@@ -70,7 +70,9 @@ NOTE: I recommend reading our [documentation](https://octopus.com/docs/projects/
 
 ![Octopus Azure account](azure-account.png)
 
-In order to move to an Azure cloud-based deployment, we need to configure an Azure Account in Octopus and add one or more Azure Web App deployment targets. 
+In order to move to an Azure solution, we need to create some cloud-based infrastructure and then update Octopus to integrate with it. In the Azure portal, I created multiple [App Services](https://azure.microsoft.com/en-us/services/app-service/) and I [migrated](https://docs.microsoft.com/en-us/azure/azure-sql/database/database-import?tabs=azure-powershell) to an [Azure SQL Database](https://azure.microsoft.com/en-au/products/azure-sql/database/).
+
+Next, we need to configure an Azure Account in Octopus and add one or more Azure Web App deployment targets. 
 
 The Azure account captures everything required to authenticate with an Azure subscription which you can then use to configure your Azure web app targets. Navigate to {{Infrastructure, Accounts}} to add one or more Azure accounts. Configuring an Azure account requires four specific IDs which are relatively difficult to find. I won't go into the detail here and I highly recommend reviewing our [Azure account documentation](https://octopus.com/docs/infrastructure/deployment-targets/azure) to configure this integration.
 
@@ -91,13 +93,13 @@ Repeat for your different subscriptions appropriate for your development, test a
 
 We need to update our deployment process to support our move to the cloud. I could use [Octopus channels](https://octopus.com/docs/releases/channels) to support the old and new deployment processes but we're moving away from our on-prem infrastructure so I'll delete the old IIS based deployment step.
 
-My database update step uses a script that uses the database connection string to connect to a database. I don't need to change anything for this step however I do need to ensure that my Azure SQL Server database has granted access to my Octopus Server to connect to. Octopus Cloud uses [Static IP addresses](https://octopus.com/docs/octopus-cloud/static-ip) so you can easily add the appropriate range.
+First, I need to review the **database update step**. It uses a script that uses the database connection string to connect to a database so I don't need to change anything for this step however I do need to ensure that my Azure SQL Server database has granted access to my Octopus Server to connect to. Octopus Cloud uses [Static IP addresses](https://octopus.com/docs/octopus-cloud/static-ip) so you can easily add the appropriate range.
 
-The key update that we need to perform to move from our on-prem deployment process is to configure our new Azure App Service deployment step. We've already configured out infrastructure so this isn't difficult. 
+Next, I needed to add a new **Azure App Service deployment step**. We've already configured out infrastructure so this isn't difficult. 
 
 ![Azure App Service deployment step configuration](azure-web-app-deploy.png "width=500")
 
-This screenshot shows our step configuration. We're using a worker to deploy to the "web" role, and we specify the package, app service and connection string configuration updates. Octopus recently introduced an updated Azure App Service deployment step and this allows us to wire-up our configuration updates directly in the step. For example, Random Quotes displays two configuration values to show the application version and the environment it was deployed to. To configure this, we use the following JSON string and something similar for the database connection string. 
+This screenshot shows our step configuration. We're using a worker to deploy to the `web` role, and we specify the package, app service and connection string configuration updates. Octopus recently introduced an improved Azure App Service deployment step and this allows us to wire-up our configuration updates directly in the step. For example, Random Quotes displays two configuration values to show the application version and the environment it was deployed to. To configure this, we use the following JSON string and something similar for the database connection string. 
 
 ```json
 [
