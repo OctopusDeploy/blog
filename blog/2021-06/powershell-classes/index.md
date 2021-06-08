@@ -3,7 +3,7 @@ title: Using classes in custom step templates
 description: Learn how to implement a class in a custom step template.
 author: shawn.sesna@octopus.com
 visibility: public
-published: 2022-05-03-1400
+published: 2021-06-16-1400
 metaImage: 
 bannerImage: 
 tags:
