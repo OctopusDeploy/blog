@@ -4,14 +4,14 @@ description: Learn how to migrate an ASP.NET web app from hosting it on-premises
 author: rob.pearson@octopus.com
 visibility: public
 published: 2022-06-09-1400
-metaImage: socialimage-github-actions-integration_2021.png
-bannerImage: socialimage-github-actions-integration_2021.png
+metaImage: move-to-the-cloud-with-octopus-deploy-2021.png
+bannerImage: move-to-the-cloud-with-octopus-deploy-2021.png
 tags:
  - DevOps
  - Migration
 ---
 
-![Migrate an ASP.NET web app from IIS on-prem to an Azure App Service](socialimage-github-actions-integration_2021.png)
+![Migrate an ASP.NET web app from IIS on-prem to an Azure App Service](move-to-the-cloud-with-octopus-deploy-2021.png)
 
 Teams are migrating their applications and infrastructure to the cloud. The natural migration path for an ASP.NET web app running on Microsoft's IIS web server on-premises is to App Services on Microsoft's Azure cloud platform. It's relatively straightforward to change the way your application is hosted but it's also important to ensure your CI/CD process is still repeatable and reliable. 
 
