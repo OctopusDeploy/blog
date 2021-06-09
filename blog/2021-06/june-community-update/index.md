@@ -3,31 +3,20 @@ title: Octopus Deploy June Community update
 description: See all the latest updates from the Octopus community in June 2021
 author: derek.campbell@octopus.com
 visibility: public
-published: 2021-06-15-1400
+published: 2021-06-28-1400
 metaImage: blogimage-community-youtube-2021.png
 bannerImage: blogimage-community-youtube-2021.png
 tags:
  - Community
-
 ---
 
 ![Community Image](blogimage-community-youtube-2021.png)
 
-I've recently moved into a Community Director role here at Octopus Deploy HQ and as part of my role, I am hoping to engage the community better as our Community is essential, and in this blog, we cover Community updates over the last month and share them with you.
+I've recently moved into a Community Director role at Octopus Deploy HQ, and as part of my role, I want to engage the Community as our Community is essential. In this blog, I'll cover Community updates over the last month and share them with you, and this is the first monthly blog wrapping up our community activities over the past six weeks.
 
 ## Webinars
 
-In this section, I'll list out the most recent webinars that were delivered.
-
-### Delivering Database DevOps with Liquibase and Octopus Deploy
-
-Most organizations have some form of automation to deliver their applications. We often see the Database lags behind and requires manual deployments to Production. In this webinar, Shawn Sesna, a Solutions Architect at Octopus Deploy, and Senior Solutions Architect Mike Olivas from Liquibase, talk and demo:
-
-- What is Liquibase and Octopus Deploy?
-- How to create a MongoDB and deploy it
-- How to take a code change from commit to Pull Request and then to Dev, Test, and Production.
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/1nrxnF4LxGw" frameborder="0" allowfullscreen></iframe>
+In this section, I'll list out the most recent Octopus webinars.
 
 ### Accelerating your Azure DevOps Pipeline and Azure Platform as a Service with Octopus Deploy
 
@@ -56,6 +45,20 @@ In 2020.6 and 2021.1, we added:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/NRwFdpvNYyA" frameborder="0" allowfullscreen></iframe>
 
+### Self-hosting Octopus on Linux
+
+Containers are a hot topic. Octopus Cloud has been using Linux containers for over a year. From 2020.6 it is the recommended way to run Octopus in a container.
+
+In this webinar, Octopus Deploy’s Solutions Architects Derek Campbell and Adam Close will run the Octopus Linux container locally. They’ll also explain the concepts involved and deploy the container onto Microsoft’s cloud-managed Azure Kubernetes Service (AKS).
+
+In this webinar you will learn:
+
+- About the components of the Octopus Deploy Linux container.
+- How to run Octopus as a container.
+- How to set up the Octopus container on AKS.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/UPDATE" frameborder="0" allowfullscreen></iframe>
+
 ## Blogs
 
 In this section, we'll cover our favorite blogs of the last month.
@@ -82,5 +85,7 @@ Mark Harrison, a Solutions Architect in the Octopus Solutions team, has been bus
 - [HashiCorp Vault - LDAP Login](https://library.octopus.com/step-templates/de807003-3b05-4649-9af3-11a2c7722b3f/actiontemplate-hashicorp-vault-ldap-login)
 
 ## Conclusion
+
+We hope that you have enjoyed this blog and find the resources helpful. If there is something you want to see in this blog each month, please reach out to me at <webinars@octopus.com>.
 
 Happy deployments!
