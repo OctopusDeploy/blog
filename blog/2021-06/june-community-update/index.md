@@ -4,18 +4,16 @@ description: See all the latest updates from the Octopus community in June 2021
 author: derek.campbell@octopus.com
 visibility: public
 published: 2021-06-15-1400
-metaImage: INSERT.png
-bannerImage: INSERT.png
+metaImage: blogimage-community-youtube-2021.png
+bannerImage: blogimage-community-youtube-2021.png
 tags:
  - Community
 
 ---
 
-![Community Image](INSERT.png)
+![Community Image](blogimage-community-youtube-2021.png)
 
-Any Community is essential, and in this blog, we cover Community updates over the last month and share them with you.
-
-In this blog, we will share a range of valuable resources to help you become more successful with Octopus Deploy.
+I've recently moved into a Community Director role here at Octopus Deploy HQ and as part of my role, I am hoping to engage the community better as our Community is essential, and in this blog, we cover Community updates over the last month and share them with you.
 
 ## Webinars
 
@@ -33,7 +31,7 @@ Most organizations have some form of automation to deliver their applications. W
 
 ### Accelerating your Azure DevOps Pipeline and Azure Platform as a Service with Octopus Deploy
 
-In this webinar, [Gregor Suttie](twitter.com/gregor_suttie), an Azure MVP and Azure Architect, and I go through how to build a multi-tier application in Azure DevOps, deploy the infrastructure using Runbooks in Octopus, and then use Octopus to deploy the website, Database, product service API and shopping cart service to Azure Platform-as-a-service. You'll see and learn about:
+In this webinar, [Gregor Suttie](https://twitter.com/gregor_suttie), an Azure MVP and Azure Architect, and I go through how to build a multi-tier application in Azure DevOps, deploy the infrastructure using Runbooks in Octopus, and then use Octopus to deploy the website, Database, product service API and shopping cart service to Azure Platform-as-a-service. You'll see and learn about:
 
 - Azure DevOps Classic Editor builds, and YAML builds
 - How to connect Azure DevOps pipelines to Octopus
@@ -58,25 +56,9 @@ In 2020.6 and 2021.1, we added:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/NRwFdpvNYyA" frameborder="0" allowfullscreen></iframe>
 
-## Documentation
-
-We recently added a [Best Practices](https://octopus.com/docs/getting-started/best-practices) section for new Octopus Administrators in our documentation under Getting Started documentation. This guide will provide a set of best practices and recommendations you can adopt with your Octopus Deploy Instance.
-
-We added a new section about how to get the best performance out of your [Octopus installation.](https://octopus.com/docs/administration/managing-infrastructure/performance).
-
-Lastly, we have overhauled our High-Availability docs covering On-Premises, Microsoft Azure, and AWS. If you're running Octopus in a single node, you can upgrade to a Highly Available, fault-tolerant version of Octopus free of charge. It's available [here](https://octopus.com/docs/administration/high-availability)
-
 ## Blogs
 
-In this section, we'll cover our favorite five blogs of the last month.
-
-### Announcing Github Actions
-
-In this [blog](https://octopus.com/blog/github-actions-for-octopus-deploy), release champion, Rob Pearson, announces the new Github Action for Octopus Deploy and talks about how to get started with some great examples.
-
-### Exporting and Importing Projects between Spaces
-
-In this [blog](https://octopus.com/blog/exporting-projects), Director of Product Michael Richardson details the new Project Export/Import tool that you can use to move Projects to different instances of Octopus and other Spaces, or even to migrate to [Octopus Cloud](https://octopus.com/docs/octopus-cloud).
+In this section, we'll cover our favorite blogs of the last month.
 
 ### Octopus 2021 Q2
 
@@ -85,12 +67,6 @@ In this [blog](https://octopus.com/blog/octopus-release-2021-q2), we announce th
 ### Using Hashicorp Vault with Octopus Deploy
 
 If you are using Vault by Hashicorp, then this comprehensive [blog](https://octopus.com/blog/using-hashicorp-vault-with-octopus-deploy) by Mark Harrison is worth a read. In this blog, Mark goes through how to use the steps to retrieve secrets.
-
-### Feature branching web apps
-
-Octopus is excellent at managing the progression of your changes through development, test, and production environments. It also handles branching strategies like hotfixes nicely through the use of channels, allowing you to bypass specific environments and push packages with matching version rules (like having the word hotfix in the version release field) straight to Production in an emergency.
-
-But what about feature branches? In this [blog post](https://octopus.com/blog/feature-branch-web-apps), Matt Casperson breaks down exactly what a feature branch is and how you can manage them in Octopus.
 
 ## Step Templates of the month
 
