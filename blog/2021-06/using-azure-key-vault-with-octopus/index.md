@@ -2,8 +2,8 @@
 title: Using Azure Key Vault with Octopus
 description: Introducing a new step template to allow secrets stored in Azure Key Vault to be used in deployments or runbooks.
 author: mark.harrison@octopus.com
-visibility: private
-published: 2022-06-30-1400
+visibility: public
+published: 2021-06-16-1400
 metaImage: octopus-step-template.png
 bannerImage: octopus-step-template.png
 tags:
@@ -13,13 +13,15 @@ tags:
 
 ![Using Azure Key Vault with Octopus Deploy](octopus-step-template.png)
 
-In a previous post, I wrote about [extending the functionality of Octopus to integrate with HashiCorp Vault](blog/2021-05/using-hashicorp-vault-with-octopus-deploy/index.md) using step templates. Afterwards, a number of people asked me if I had plans to create step templates to integrate with any other secret managers.
+I recently wrote about [extending the functionality of Octopus to integrate with HashiCorp Vault](https://octopus.com/blog/using-hashicorp-vault-with-octopus-deploy) using step templates. Afterwards, several people asked if I plan to create step templates to integrate with other secret managers.
 
-In this post, I walk through a new step template [Azure Key Vault - Retrieve Secrets](https://library.octopus.com/step-templates/6f59f8aa-b2db-4f7a-b02d-a72c13d386f0/actiontemplate-azure-key-vault-retrieve-secrets) designed to retrieve secrets from an Azure Key Vault for use in your deployments or runbooks.
+In this post, I walk through a new step template, [Azure Key Vault - Retrieve Secrets](https://library.octopus.com/step-templates/6f59f8aa-b2db-4f7a-b02d-a72c13d386f0/actiontemplate-azure-key-vault-retrieve-secrets), designed to retrieve secrets from an Azure Key Vault for use in your deployments or runbooks.
 
 ## Introduction
 
-Just as before, this post assumes some familiarity with [custom step templates](https://octopus.com/docs/projects/custom-step-templates) and the Octopus [Community Library](https://octopus.com/docs/projects/community-step-templates). In addition, this post doesn't go into great detail about Azure Key Vault concepts or how to set it up. To learn more about it, you can read the [Azure Key Vault basic concepts guide](https://docs.microsoft.com/en-us/azure/key-vault/general/basic-concepts) from Microsoft.
+This post assumes some familiarity with [custom step templates](https://octopus.com/docs/projects/custom-step-templates) and the Octopus [Community Library](https://octopus.com/docs/projects/community-step-templates). 
+
+In addition, this post doesn't go into great detail about Azure Key Vault concepts or how to set it up. You can learn more by reading the [Azure Key Vault basic concepts guide](https://docs.microsoft.com/en-us/azure/key-vault/general/basic-concepts) from Microsoft.
 
 The step template in this post retrieves secrets from an [Azure Key Vault](https://azure.microsoft.com/en-gb/services/key-vault/) using the [Az.KeyVault](https://docs.microsoft.com/en-us/powershell/module/az.keyvault/) PowerShell module. The module must be downloaded and installed on the deployment target or worker before the step can retrieve secrets successfully. The step template has been tested on both Windows and Linux (with `Powershell Core` installed).
 
@@ -32,7 +34,7 @@ Before you can retrieve secrets from Azure Key Vault, you must authenticate with
 In Octopus, authentication with Azure Key Vault can be achieved with an [Azure Account](https://octopus.com/docs/infrastructure/deployment-targets/azure), using a service principal.
 
 :::hint
-In addition to being able to access resources in Azure, your service principal may need further permissions configured to access and retrieve secrets stored in Azure Key Vault. To learn more, read the [Azure Key Vault RBAC guide](https://docs.microsoft.com/en-us/azure/key-vault/general/rbac-guide) on how to provide access to keys, certificates, and secrets with an Azure role-based access control.
+In addition to accessing resources in Azure, your service principal may need further permissions configured to access and retrieve secrets stored in Azure Key Vault. To learn more, read the [Azure Key Vault RBAC guide](https://docs.microsoft.com/en-us/azure/key-vault/general/rbac-guide) on how to provide access to keys, certificates, and secrets with an Azure role-based access control.
 :::
 
 ## Retrieving secrets {#retrieving-secrets}
@@ -55,7 +57,7 @@ For each secret retrieved, a [sensitive output variable](https://octopus.com/doc
 
 The step template uses the following parameters:
 
-- `Azure Account`: An Azure account with permissions to retrieve secrets from the Azure Key Vault..
+- `Azure Account`: An Azure account with permissions to retrieve secrets from the Azure Key Vault.
 - `Vault Name`: The name of the Azure Key Vault to retrieve secrets from.
 - `Vault Secrets to retrieve`: Specify the names of the Secrets to be returned from Azure Key Vault, in the format: `SecretName SecretVersion | OutputVariableName` where:
 
@@ -95,6 +97,6 @@ In subsequent steps, output variables created from matching secrets can be used 
 
 ## Conclusion
 
-The step template covered in this post shows how it's easy to integrate with Azure Key Vault, and make use of secrets stored there with your Octopus deployments or runbooks.
+The step template covered in this post demonstrates that it's easy to integrate with Azure Key Vault, and make use of secrets stored there with your Octopus deployments or runbooks.
 
 Happy deployments!
