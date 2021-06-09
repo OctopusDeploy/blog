@@ -1,5 +1,5 @@
 ---
-title: Request For Comments - ECS integration with Octopus
+title: Request for Comments - ECS integration with Octopus
 description: We're proposing new integrations with ECS in Octopus, and want your feedback.
 author: matthew.casperson@octopus.com
 visibility: public
@@ -18,9 +18,9 @@ We want Octopus to be your first choice regardless of whether you deploy on-prem
 
 To reach this goal, Octopus has established a team dedicated to integrating Octopus with the most popular cloud native services. After months developing a framework to enable the rapid delivery of these integrations, we can now share our goals and plans with our customers, partners, and other internal Octopus departments. 
 
-We hope this blog is the first of many Request For Comments (RFC) posts where we discuss proposed functionality and provide an opportunity for feedback.
+We hope this blog is the first of many Request for Comments (RFC) posts where we discuss proposed functionality and provide an opportunity for feedback.
 
-One cloud service that we have been repeatedly asked to support is AWS ECS, and this post will outline some new steps and targets that we're currently discussing.
+One cloud service that we have been repeatedly asked to support is AWS ECS, and this post outlines some new steps and targets that we're currently discussing.
 
 ## How we propose to deliver first class ECS support
 
@@ -44,7 +44,7 @@ At a high level, there are three components required to deploy an application to
 
 First you need a Docker image. We envision your Continuous Integration (CI) server will continue to build, tag, and deploy these images to a Docker registry.
 
-A [task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) then references a specific image tag and defines many of the settings for the resulting container such as memory and CPU requirements, environment variables, exposed ports and more. Task definitions are immutable, and each new image tag must be captured by a new version of a task definition.
+A [task definition](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html) then references a specific image tag and defines many of the settings for the resulting container such as memory and CPU requirements, environment variables, exposed ports, and more. Task definitions are immutable, and each new image tag must be captured by a new version of a task definition.
 
 A [service](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/service_definition_parameters.html) then references a task definition, along with additional runtime details such as how many instances to run, how the instances are distributed through the cluster, which VPC to run in, load balancers and scaling requirements.
 
@@ -92,7 +92,7 @@ We envisage this will be incredibly beneficial if you're looking to adopt some o
 
 > An AWS account provides natural security, access, and billing boundaries for your AWS resources, and enables you to achieve resource independence and isolation. 
 
-With ECS targets, it makes little difference whether you deploy many logical environments to one shared ECS cluster, have a dedicated cluster per environment, or even separate environments into multiple AWS accounts. Simply point each ECS target to the appropriate cluster and your deployments will scale across any environment partitions you may use:
+With ECS targets, it makes little difference whether you deploy many logical environments to one shared ECS cluster, have a dedicated cluster per environment, or even separate environments into multiple AWS accounts. Simply point each ECS target to the appropriate cluster and your deployments will scale across any environment partitions you use:
 
 ![](targets.png)
 
@@ -121,7 +121,6 @@ The new ECS targets can be scoped to tenants, again abstracting away the details
 Meanwhile channel rules can be applied to Docker image tags, facilitating deployment patterns like hotfixes via a lifecycle allowing deployments straight to production:
 
 ![](lifecycles.png)
-
 
 ### Fall back to CloudFormation
 
@@ -163,8 +162,8 @@ ECS support is still in the planning phase, so now is a great time to help shape
 
 Specifically, we want to know: 
 
-- Will the proposed step and target will work for your ECS deployments?
-- What does  your ECS architecture looks like? 
+- Will the proposed step and target work for your ECS deployments?
+- What does your ECS architecture look like? 
 - Do you have multiple clusters? 
 - Do you have multiple AWS accounts? 
 - What kinds of applications are you deploying? 
