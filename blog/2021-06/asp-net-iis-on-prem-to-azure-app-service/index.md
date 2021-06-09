@@ -19,7 +19,7 @@ In this blog post, I walk through how to update the deployment process of an exi
 
 ## Example application
 
-We're using the [Random Quotes](https://github.com/octopussamples/randomquotes) web application as the example in this migration guide. This web application randomly retrieves and displays famous quotes. It's a simple application with an ASP.NET front end with a SQL Server back end to help illustrate the changes required without being overwhelming. 
+We're using the [Random Quotes](https://github.com/octopussamples/randomquotes) web application as the example in this migration guide. This web application randomly retrieves and displays famous quotes. It's a simple application with an ASP.NET front end with a SQL Server back-end to help illustrate the changes required without being overwhelming. 
 
 :::hint
 NOTE: This is a web application built on ASP.NET but it could be a Spring Boot Java web app or Ruby on Rails application. We're focusing on the changes to the deployment process so the tech stack is less important.
