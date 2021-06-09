@@ -3,7 +3,7 @@ title: Migrating an ASP.NET web app from IIS on-premises to an Azure App Service
 description: Learn how to migrate an ASP.NET web app from hosting it on-premises to an Azure App Service in the Cloud.
 author: rob.pearson@octopus.com
 visibility: public
-published: 2022-06-09-1400
+published: 2021-06-09-1400
 metaImage: move-to-the-cloud-with-octopus-deploy-2021.png
 bannerImage: move-to-the-cloud-with-octopus-deploy-2021.png
 tags:
