@@ -135,7 +135,7 @@ If the layer does not exist the client will initiate an upload with this POST re
 
 Docker supports both [monolithic](https://docs.docker.com/registry/spec/api/#monolithic-upload) and [chunked](https://docs.docker.com/registry/spec/api/#chunked-upload) uploads. This handler supports the chunked upload method (the sample application doesn't support monolithic uploads).
 
-The client may or may not supply a `content-range` header indicating the chunk that is being uploaded, as often the entire layer is uploaded as a single chunk anyway.
+The client may or may not supply a `content-range` header indicating the chunk that is being uploaded. Often the entire layer is uploaded as a single chunk anyway, and no `content-range` header is provided.
 
 In this method we save the body of the request to a file with the random GUID that was generated in the `StartUpload` method:
 
