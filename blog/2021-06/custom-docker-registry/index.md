@@ -307,7 +307,7 @@ And with that we have all the endpoints required to support pulling images.
 
 ## Testing the server
 
-Our web app has been configured via the `launchSettings.json` file to listen to all IP addresses. Here is the trimmed down file showing the `applicationUrl` setting, which has been configured to listen to `0.0.0.0`, which means the app will respond to requests on all IP addresses.
+Our web app has been configured via the `launchSettings.json` file to listen to all IP addresses. Here is the trimmed down file showing the `applicationUrl` setting, which has been configured to listen to `0.0.0.0`, meaning the app will respond to requests on all IP addresses.
 
 I found this necessary in testing as pushing to `localhost` didn't work on Windows based machines, and so instead I had to push to the machines local IP address:
 
@@ -326,9 +326,9 @@ I found this necessary in testing as pushing to `localhost` didn't work on Windo
 }
 ```
 
-By default Docker will attempt to contact any repositories via HTTPS. Our web app has a self signed certificate, so for testing we want Docker to use HTTP.
+By default Docker will attempt to contact all external repositories via HTTPS. Our web app has a self signed certificate, so for testing we want Docker to use HTTP.
 
-My laptop has an IP address of 10.1.1.37. To instruct Docker to access the registry access via this IP, we need to the `insecure-registries` array in the Docker configuration file:
+My laptop has an IP address of 10.1.1.37. To instruct Docker to access the registry via this IP, we need to edit the `insecure-registries` array in the Docker configuration file:
 
 ![](docker-config.png)
 
@@ -386,7 +386,7 @@ Download the image from our server with the command:
 $ docker pull 10.1.1.37:5001/alpine
 ```
 
-And with that we have pushed and pulled images from our minimal Docker repository. There is still some missing functionality, such as deleting images and searching, but we will leave our implementation here. 
+And with that we have pushed and pulled images from our minimal Docker repository. There is still much functionality missing, such as deleting images and searching, but we will leave our implementation here. 
 
 ## Conclusion
 
