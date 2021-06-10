@@ -16,7 +16,7 @@ In this post we'll look at what it takes to create a C# server that successfully
 
 ## Docker API for pushing and pulling images
 
-These are the paths that our application needs to implement to support pushing and pulling images:
+These are the paths that our application must implement to support pushing and pulling images:
 
 * GET `/v2`: Docker accesses this path to verify that the server supports version 2 of the Docker HTTP API.
 * HEAD `{name}/blobs/{digest}`: This path is used to determine if the image layer exists on the server.
@@ -46,7 +46,7 @@ Pulling an image is much easier than pushing one:
 
 1. Contact `/v2` to confirm the server supports the correct API.
 2. Perform a HEAD query on `{name}/manifests/{reference}` to determine if the manifest exists.
-3. If the manifest exists, it is retrieved with a GET request to `{name}/manifests/{reference}`.
+3. If the manifest exists, retrieve it with a GET request to `{name}/manifests/{reference}`.
 4. For each image listed in the manifest, a HEAD query is performed on `{name}/blobs/{digest}` to verify it exists.
 5. The image is then downloaded with a GET request to `{name}/blobs/{digest}`.
 
