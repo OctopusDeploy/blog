@@ -54,6 +54,8 @@ Pulling an image is much easier than pushing one:
 
 Our sample application won't be pretty, and certainly isn't something you would host production workloads with. But it is just functional enough to allow images to be pushed and pulled, which provides a great insight into what happens to Docker images behind the scenes.
 
+The source code described here is available from [GitHub](https://github.com/OctopusSamples/DotNetCoreDockerRegistry).
+
 We start with a controller that places all its methods under the `v2` root path. This root path is a hard requirement in the Docker spec. Some mixed artifact repositories expose a Docker registry on its own port to ensure this root path doesn't conflict with other APIs:
 
 ```csharp
@@ -217,12 +219,59 @@ One quirk here is that the `reference` could either be a tag name like `latest`,
         }
 ```
 
-The GET request to the manifest path is very similar, only this time we send the manifest content back to the client.
-
-Note that we have read the manifest, parsed it as JSON, and then extracted the `mediaType` property. This value is sent back to the client via the `content-type` header:
+If the manifest does not exist, we save it with this method. Again note we have save the manifest in two places: one with the tag in the filename, and the other with the hash in the filename:
 
 ```csharp
-[HttpGet("{name}/manifests/{reference}")]
+        [HttpPut("{name}/manifests/{reference}")]
+        public async Task<IActionResult> SaveManifest(string name, string reference)
+        {
+            var path = LayerPath + "/" + name + "." + reference + ".json";
+
+            await using (var fs = System.IO.File.OpenWrite(path))
+            {
+                await Request.Body.CopyToAsync(fs);
+            }
+            
+            var hash = Sha256Hash(path);
+            Response.Headers.Add("docker-content-digest", "sha256:" + hash);
+
+            System.IO.File.Copy(path, LayerPath + "/" + hash + ".json", true);
+
+            return Created($"/v2/{name}/manifests/{reference}", null);
+        }
+```
+
+These endpoints allow us to complete a `docker push` command. Pulling an image requires two more methods.
+
+The first returns the layer data:
+
+```csharp
+        [HttpGet("{name}/blobs/{digest}")]
+        public async Task<IActionResult> GetLayer(string name, string digest)
+        {
+            var hash = digest.Split(":").Last();
+            var path = LayerPath + "/" + hash;
+
+            if (System.IO.File.Exists(LayerPath + "/" + hash))
+            {
+                Response.Headers.Add("content-length", new FileInfo(path).Length.ToString());
+                await using (var fs = new FileStream(path, FileMode.Open))
+                {
+                    await fs.CopyToAsync(Response.Body);
+                    return Ok();
+                }
+            }
+
+            return NotFound();
+        }
+```
+
+The next returns the manifest data. Just as with the HEAD request, we search for a manifest file based on the tag name or hash code, as `reference` could be either value.
+
+Note here we load the manifest file, parse it as JSON, and extract the `mediaType` property. This is sent back to the client as the `content-type` header:
+
+```csharp
+        [HttpGet("{name}/manifests/{reference}")]
         public async Task<IActionResult> GetManifest(string name, string reference)
         {
             var hash = reference.Split(":").Last();
@@ -253,3 +302,96 @@ Note that we have read the manifest, parsed it as JSON, and then extracted the `
             return NotFound();
         }
 ```
+
+And with that we have all the endpoints required to support pulling images.
+
+## Testing the server
+
+Our web app has been configured via the `launchSettings.json` file to listen to all IP addresses. Here is the trimmed down file showing the `applicationUrl` setting, which has been configured to listen to `0.0.0.0`, which means the app will respond to requests on all IP addresses.
+
+I found this necessary in testing as pushing to `localhost` didn't work on Windows based machines, and so instead I had to push to the machines local IP address:
+
+```
+{
+...
+
+  "profiles": {
+    
+    ...
+    
+    "dockerregistry": {
+      "applicationUrl": "https://0.0.0.0:5002;http://0.0.0.0:5001",
+    }
+  }
+}
+```
+
+By default Docker will attempt to contact any repositories via HTTPS. Our web app has a self signed certificate, so for testing we want Docker to use HTTP.
+
+My laptop has an IP address of 10.1.1.37. To instruct Docker to access the registry access via this IP, we need to the `insecure-registries` array in the Docker configuration file:
+
+![](docker-config.png)
+
+Run the app with:
+
+```powershell
+dotnet run
+```
+
+The temporary directory holding our artifacts will be displayed in the console:
+
+```powershell
+$ dotnet run
+Building...
+info: Microsoft.Hosting.Lifetime[0]
+      Now listening on: https://0.0.0.0:5002
+info: Microsoft.Hosting.Lifetime[0]
+      Now listening on: http://0.0.0.0:5001
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Development
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: C:\Users\Matthew\Octopus\dockerregistry
+Saving artifacts to C:\Users\Matthew\AppData\Local\Temp\tmp5E8E.tmp
+```
+
+Download a Docker image and retag it against the local repository:
+
+```powershell
+$ docker pull alpine
+$ docker tag alpine 10.1.1.37:5001/alpine
+```
+
+Then push the image to the local server:
+
+```powershell
+$ docker push 10.1.1.37:5001/alpine
+```
+
+Four files are created in the temporary directory: two image layers, and the manifest saved with the tag and with the hash:
+
+![](files.png)
+
+Let's now delete the images from our local PC. This will ensure that any downloads of this image cannot reuse our previous cached images:
+
+```
+$ docker image rm 10.1.1.37:5001/alpine
+$ docker image rm alpine
+```
+
+Download the image from our server with the command:
+
+```
+$ 10.1.1.37:5001/alpine
+```
+
+And with that we have pushed and pulled images from our minimal Docker repository. There is still some missing functionality, such as deleting images and searching, but we will leave our implementation here. 
+
+## Conclusion
+
+Docker is such a central component to many development workflows, but interestingly there isn't much information on how to implement the Docker API. The [official documentation](https://docs.docker.com/registry/spec/api/#monolithic-upload) is a little dense (as specs usually are), but in this post we looked at a very minimal implementation that allowed Docker images to be pushed and pulled using the regular Docker client.
+
+Hopefully this post demystifies some of the process around transferring Docker images, and can provide a useful starting point for anyone looking to integrate their own applications with the Docker client.
+
+Happy deployments!
