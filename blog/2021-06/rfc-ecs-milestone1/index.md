@@ -4,11 +4,13 @@ description: We're proposing new integrations with ECS in Octopus, and want your
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2021-06-14-1400
-metaImage: 
-bannerImage: 
+metaImage: blogimage-feedback_2021_01.png
+bannerImage: blogimage-feedback_2021_01.png
 tags:
  - Product
 ---
+
+![Octopus salesperson at laptop with headset and icons representing customer feedback](blogimage-feedback_2021_01.png)
 
 Octopus is a tool that enables world-class deployments. We've always had industry leading functionality for deploying to your on-premises infrastructure, and we've powered Azure application deployments for years. 
 
