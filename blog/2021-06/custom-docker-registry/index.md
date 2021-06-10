@@ -133,7 +133,7 @@ If the layer does not exist the client will initiate an upload with this POST re
         }
 ```
 
-Docker supports both [monolithic](https://docs.docker.com/registry/spec/api/#monolithic-upload) and [chunked](chunked-upload) uploads. This handler supports the chunked upload method.
+Docker supports both [monolithic](https://docs.docker.com/registry/spec/api/#monolithic-upload) and [chunked](https://docs.docker.com/registry/spec/api/#chunked-upload) uploads. This handler supports the chunked upload method (the sample application doesn't support monolithic uploads).
 
 The client may or may not supply a `content-range` header indicating the chunk that is being uploaded, as often the entire layer is uploaded as a single chunk anyway.
 
