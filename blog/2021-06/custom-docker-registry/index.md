@@ -219,7 +219,7 @@ One quirk here is that the `reference` could either be a tag name like `latest`,
         }
 ```
 
-If the manifest does not exist, we save it with this method. Again note we have save the manifest in two places: one with the tag in the filename, and the other with the hash in the filename:
+If the manifest does not exist, we save it with a PUT request to this method. Again note we have save the manifest in two places: one with the tag in the filename, and the other with the hash in the filename:
 
 ```csharp
         [HttpPut("{name}/manifests/{reference}")]
@@ -243,7 +243,7 @@ If the manifest does not exist, we save it with this method. Again note we have 
 
 These endpoints allow us to complete a `docker push` command. Pulling an image requires two more methods.
 
-The first returns the layer data:
+The first returns the layer data with a GET request to the following method:
 
 ```csharp
         [HttpGet("{name}/blobs/{digest}")]
@@ -266,7 +266,7 @@ The first returns the layer data:
         }
 ```
 
-The next returns the manifest data. Just as with the HEAD request, we search for a manifest file based on the tag name or hash code, as `reference` could be either value.
+The manifest data is returned linewith a GET request to the following method. Just as with the HEAD request, we search for a manifest file based on the tag name or hash code, as `reference` could be either value.
 
 Note here we load the manifest file, parse it as JSON, and extract the `mediaType` property. This is sent back to the client as the `content-type` header:
 
