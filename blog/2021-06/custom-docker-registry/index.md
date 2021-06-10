@@ -12,7 +12,7 @@ tags:
 
 Have you ever wondered what happens when you do a `docker push` or `docker pull`? Behind the scenes a repository, like Docker Hub, implementing the [Docker V2 HTTP API](https://docs.docker.com/registry/spec/api/) specification is responding to these requests to receive or deliver Docker images. This specification is open for anyone to implement though, and you can learn much about Docker from a minimal docker registry implementation.
 
-In this post we'll look at what it takes to create a C# server that successfully responds to the `docker push` or `docker pull` commands, and dive into the details of what a Docker image actually is.
+In this post we'll look at what it takes to create a C# server that successfully responds to the `docker push` or `docker pull` commands, and in the process we'll get to see the individual components that make up a Docker image.
 
 ## Docker API for pushing and pulling images
 
