@@ -84,7 +84,7 @@ Central to all of these features is the idea that deployments will progress thro
 
 ECS has no concept of environments though, and so to enable [repeatable deployments](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments#repeatable-deployments) we must model the new step and target to facilitate environmental progression, taking into account factors like [environment scoped variables](https://octopus.com/docs/projects/variables#scoping-variables) and the [ability to update a release snapshot](https://octopus.com/docs/octopus-rest-api/examples/releases/update-release-variable-snapshot).
 
-![](environments.png)
+![diagram with arrows between development test and production blocks](blogimage-environments.png)
 
 ### Why use targets?
 
@@ -96,7 +96,7 @@ We envisage this will be incredibly beneficial if you're looking to adopt some o
 
 With ECS targets, it makes little difference whether you deploy many logical environments to one shared ECS cluster, have a dedicated cluster per environment, or even separate environments into multiple AWS accounts. Simply point each ECS target to the appropriate cluster and your deployments will scale across any environment partitions you use:
 
-![](targets.png)
+![test account showing dev, test and production targets](blogimage-targets.png)
 
 ### Abstracting away task definition versions
 
@@ -118,11 +118,11 @@ The proposed step and target also integrate with advanced Octopus features like 
 
 The new ECS targets can be scoped to tenants, again abstracting away the details of where a deployment takes place from the steps and encapsulating it in a target:
 
-![](tenants.png)
+![](blogimage-tenants.png)
 
 Meanwhile channel rules can be applied to Docker image tags, facilitating deployment patterns like hotfixes via a lifecycle allowing deployments straight to production:
 
-![](lifecycles.png)
+![](blogimage-lifecyles.png)
 
 ### Fall back to CloudFormation
 
