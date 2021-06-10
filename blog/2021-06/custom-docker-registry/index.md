@@ -383,7 +383,7 @@ $ docker image rm alpine
 Download the image from our server with the command:
 
 ```
-$ 10.1.1.37:5001/alpine
+$ docker pull 10.1.1.37:5001/alpine
 ```
 
 And with that we have pushed and pulled images from our minimal Docker repository. There is still some missing functionality, such as deleting images and searching, but we will leave our implementation here. 
