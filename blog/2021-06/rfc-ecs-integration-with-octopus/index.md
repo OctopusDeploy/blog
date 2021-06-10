@@ -173,8 +173,6 @@ Specifically, we want to know:
 
 This feedback will help us deliver the best solution we can.
 
-### [Provide your feedback](https://github.com/OctopusDeploy/StepsFeedback/issues/1)
-
 ## Conclusion
 
 In summary, the first milestone of our proposed ECS support includes:
