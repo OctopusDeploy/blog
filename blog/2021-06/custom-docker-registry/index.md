@@ -266,7 +266,7 @@ The first returns the layer data with a GET request to the following method:
         }
 ```
 
-The manifest data is returned linewith a GET request to the following method. Just as with the HEAD request, we search for a manifest file based on the tag name or hash code, as `reference` could be either value.
+The manifest data is returned with a GET request to the following method. Just as with the HEAD request, we search for a manifest file based on the tag name or hash code, as `reference` could be either value.
 
 Note here we load the manifest file, parse it as JSON, and extract the `mediaType` property. This is sent back to the client as the `content-type` header:
 
