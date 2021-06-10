@@ -161,7 +161,7 @@ In this method we save the body of the request to a file with the random GUID th
         }
 ```
 
-Once the layer is uploaded, this method is called to signify the upload completion. The spec mentions that this method may be called with the final content chunk to be saved to the layer, so we append anything in the PUT body to the layer file.
+Once the layer is uploaded, this method is called to signify the upload completion. [The spec mentions that this method may be called with the final content chunk to be saved to the layer](https://docs.docker.com/registry/spec/api/#completed-upload), so we append anything in the PUT body to the layer file.
 
 We then use the hash from the `digest` query parameter to rename the file from the temporary GUID to the hash:
 
