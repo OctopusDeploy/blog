@@ -390,7 +390,7 @@ And with that we have pushed and pulled images from our minimal Docker repositor
 
 ## Conclusion
 
-Docker is such a central component to many development workflows, but interestingly there isn't much information on how to implement the Docker API. The [official documentation](https://docs.docker.com/registry/spec/api/#monolithic-upload) is a little dense (as specs usually are), but in this post we looked at a very minimal implementation that allowed Docker images to be pushed and pulled using the regular Docker client.
+Docker is such a central component to many development workflows, but interestingly there isn't much information on how to implement the Docker API. The [official documentation](https://docs.docker.com/registry/spec/api/#monolithic-upload) is a little dense (as specs usually are), so in this post we looked at a very minimal implementation that allowed Docker images to be pushed and pulled using the regular Docker client.
 
 Hopefully this post demystifies some of the process around transferring Docker images, and can provide a useful starting point for anyone looking to integrate their own applications with the Docker client.
 
