@@ -1,5 +1,5 @@
 ---
-title: .NET and Windows Ciphers
+title: Unsupported versions of Windows and .NET
 description: Understand why old versions of Windows can fail to make network requests
 author: matthew.casperson@octopus.com
 visibility: private
@@ -99,4 +99,3 @@ Platforms like Go and Java also maintain their own ciphers, so applications writ
 ## Conclusion
 
 Conventional wisdom says it is not recommended to run unsupported versions of Windows, although usually because of rather vague statements like "it is not secure". While that is definitely true, in this blog post we have demonstrated a specific example of how unsupported versions of Windows are no longer able to interact with external services that choose to implement strict requirements for HTTPS connections.
-
