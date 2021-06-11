@@ -1,5 +1,5 @@
 ---
-title: DotNET and Windows Ciphers
+title: .NET and Windows Ciphers
 description: Understand why old versions of Windows can fail to make network requests
 author: matthew.casperson@octopus.com
 visibility: private
@@ -10,9 +10,9 @@ tags:
  - Octopus
 ---
 
-If you are running DotNET applications on unsupported versions of Windows, you may be surprised to see errors like `Authentication failed` when nothing appeared to change in the software you were running or the way it was configured. To understand these errors, we need to dig into the cipher suites supported by Windows, and therefor supported by DotNET applications.
+If you are running .NET applications on unsupported versions of Windows, you may be surprised to see errors like `Authentication failed` when nothing appeared to change in the software you were running or the way it was configured. To understand these errors, we need to dig into the cipher suites supported by Windows, and therefor supported by .NET applications.
 
-In this blog post we'll diagnose an example of a failed HTTPS connection via a DotNET application on an unsupported version of Windows.
+In this blog post we'll diagnose an example of a failed HTTPS connection via a .NET application on an unsupported version of Windows.
 
 ## The sample application
 
@@ -86,7 +86,7 @@ The cipher names reported here are based on OpenSSL. The ciphers referenced by W
 * TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 * TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
 
-Microsoft maintains [documentation listing all the supported ciphers across current and previous versions of Windows](https://docs.microsoft.com/en-au/windows/win32/secauthn/cipher-suites-in-schannel). Looking through the lists, unsupported versions of Windows like Server 2012 and 8.1 do not list any of the ciphers accepted by the website. Because DotNET applications rely on the ciphers exposed by the underlying OS, our simple application can not establish a secure HTTPS connection.
+Microsoft maintains [documentation listing all the supported ciphers across current and previous versions of Windows](https://docs.microsoft.com/en-au/windows/win32/secauthn/cipher-suites-in-schannel). Looking through the lists, unsupported versions of Windows like Server 2012 and 8.1 do not list any of the ciphers accepted by the website. Because .NET applications rely on the ciphers exposed by the underlying OS, our simple application can not establish a secure HTTPS connection.
 
 ## But why does my browser still work?
 
@@ -94,7 +94,7 @@ It is tempting to think that because a web browser will successfully open the we
 
 Platforms like Go and Java also maintain their own ciphers, so applications written in those languages may continue to support newer ciphers while running on older versions of Windows.
 
-DotNET applications on the other hand rely on the ciphers provided by the OS, and the only way to get new ciphers into the OS is through a patch from Microsoft. Unsupported versions of Windows typically do not receive these patches, and so over time you can expect an increasing number of websites to no longer work with DotNET applications.
+.NET applications on the other hand rely on the ciphers provided by the OS, and the only way to get new ciphers into the OS is through a patch from Microsoft. Unsupported versions of Windows typically do not receive these patches, and so over time you can expect an increasing number of websites to no longer work with .NET applications.
 
 ## Conclusion
 
