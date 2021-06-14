@@ -96,7 +96,7 @@ $sqlConnection.Close()
 ```
 This script should succeed without error messages and will return a `-1` as a result, which in this case means success.
 
-This script calls the internal to Azure identity service to return an access token used to authenticate to the database server.
+This script calls the internal Azure identity service to return the access token used to authenticate to the database server.
 
 ## DACPAC step template
 
