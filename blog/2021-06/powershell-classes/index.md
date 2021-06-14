@@ -11,7 +11,7 @@ tags:
  - Step Templates
 ---
 
-I recently decided to modify the [DACPAC](https://library.octopus.com/step-templates/e4a60d6f-036f-425d-a3f7-793034fc0f49/actiontemplate-sql-deploy-dacpac-from-package-parameter) step template to use [Azure Active Directory Managed Identity](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview) for authentication.  
+I recently decided to create a new [DACPAC](https://library.octopus.com/step-templates/ae9d0024-a5aa-4aa8-95a9-cba53c291054/actiontemplate-sql-deploy-dacpac-with-aad-auth-support) step template to support [Azure Active Directory Managed Identity](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview) for authentication (modifying the existing ones would have introduced breaking changes).  
 
 In this post, I show you how I accomplished this with PowerShell and a custom class.
 
@@ -184,7 +184,3 @@ Testing our code shows a successful deployment using the managed identity method
 In this post I demonstrated creating custom classes in PowerShell, including implementation of an interface.  I hope this helps your work with PowerShell in the future.
 
 Happy deployments!
-
-:::hint
-The modifications for the step template are incomplete at this point, however, I plan to add other authentication methods such as Azure Active Directory Integrated and Azure Active Directory Username/Password.
-:::
