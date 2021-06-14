@@ -137,7 +137,7 @@ This release includes one breaking change.
 
 We have deprecated Windows Docker images for **Octopus Server** and **Octopus CLI** as customer uptake was low and Microsoft no longer supports the OS versions we were publishing (Windows [1809](https://docs.microsoft.com/en-us/windows/release-health/status-windows-10-1809-and-windows-server-2019), [1903](https://docs.microsoft.com/en-us/lifecycle/announcements/windows-10-1903-end-of-servicing), and  [1909](https://docs.microsoft.com/en-us/windows/release-health/status-windows-10-1909)). 
 
-Customers are encouraged to use the Linux Docker image instead. Existing Windows images for Octopus Server and Octopus CLI will remain available from our [Docker Hub repository](https://hub.docker.com/r/octopusdeploy/octopusdeploy), but those tagged as `latest` will no longer work on Windows. See our documentation for a guide to [Migrate to a Octopus Server Linux Container from a Windows Container](https://octopus.com/docs/installation/octopus-in-container/migrate-to-server-container-linux-from-windows-container).
+Customers are encouraged to use the Linux Docker image instead. Existing Windows images for Octopus Server and Octopus CLI will remain available from our [Docker Hub repository](https://hub.docker.com/r/octopusdeploy/octopusdeploy), but those tagged as `latest` will no longer work on Windows. See our documentation for a guide to [Migrate to an Octopus Server Linux Container from a Windows Container](https://octopus.com/docs/installation/octopus-in-container/migrate-to-server-container-linux-from-windows-container).
 
 Octopus CLI is available as an exe, a .NET Core global tool, or via chocolatey. Please refer to our [downloads page](https://octopus.com/downloads/octopuscli).
 
