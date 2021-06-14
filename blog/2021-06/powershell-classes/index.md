@@ -8,9 +8,10 @@ metaImage:
 bannerImage: 
 tags:
  - DevOps
+ - Step Templates
 ---
 
-At Octopus Deploy, we have dedicated time to learn, which we call sharpening.  During my last sharpening period, I wanted to see if it would be possible to modify the [DACPAC](https://library.octopus.com/step-templates/e4a60d6f-036f-425d-a3f7-793034fc0f49/actiontemplate-sql-deploy-dacpac-from-package-parameter) step template to use [Azure Active Directory Managed Identity](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview) for authentication.  
+I recently decided to modify the [DACPAC](https://library.octopus.com/step-templates/e4a60d6f-036f-425d-a3f7-793034fc0f49/actiontemplate-sql-deploy-dacpac-from-package-parameter) step template to use [Azure Active Directory Managed Identity](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview) for authentication.  
 
 In this post, I show you how I accomplished this with PowerShell and a custom class.
 
@@ -31,6 +32,7 @@ On the Identity pane, switch the **Status** to **On**.
 The VM can now authenticate to Azure resources such as Azure SQL Server.
 
 ### Configuring Azure SQL Server for managed identity authentication
+
 There are two methods to grant authentication of the managed identity to SQL server:
 
 - Configure the VM managed identity as the **Active Directory admin** for the Azure SQL Server.
@@ -40,19 +42,19 @@ There are two methods to grant authentication of the managed identity to SQL ser
 Navigate to the Azure SQL Server resource and click **Active Directory admin**.
 
 :::warning
-As you can only have one account configured as an **Active Directory admin**, I would not recommend this approach for production use.
+As you can only have one account configured as an **Active Directory admin**, I do not recommend this approach for production use.
 :::
 
 ![](azure-sql-aad-admin.png)
 
-On the **Active Directory admin** screen, click **Set admin**.  Select your VM and click **Select**.  The account will now show as the selected administrator account. Click **Save** to save your changes.
+On the **Active Directory admin** screen, click **Set admin**.  Select your VM and click **Select**. The account will now show as the selected administrator account. Click **Save** to save your changes.
 
 ![](azure-sql-select-admin.png)
 
 #### Adding managed identity as an external login to the database
 Using something like SQL Server Management Studio (SSMS), you can execute a script that will grant permissions to the VM.  
 
-Select the database to add permissions to, noting that the `USER` is the name of the VM, and run the following:
+Select the database to add permissions to, noting the `USER` is the name of the VM, and run the following:
 
 ``` sql
 CREATE USER [Octo-AAD-Worker] FROM EXTERNAL PROVIDER
@@ -60,7 +62,7 @@ ALTER ROLE db_owner ADD MEMBER [Octo-AAD-Worker]
 ```
 
 :::warning
-Ensure you're executing the script against the desired database.
+Check you're executing the script against the correct database.
 :::
 
 ![](azure-sql-user-script.png)
@@ -94,13 +96,14 @@ $command.ExecuteNonQuery();
 
 $sqlConnection.Close()
 ```
+
 This script should succeed without error messages and will return a `-1` as a result, which in this case means success.
 
 This script calls the internal Azure identity service to return the access token used to authenticate to the database server.
 
 ## DACPAC step template
 
-The DACPAC step template uses .NET objects to interact with SQL Server instead of calling the sqlpackage.exe command line program.  To establish a connection with the database server, the code creates a [DacServices](https://docs.microsoft.com/en-us/dotnet/api/microsoft.sqlserver.dac.dacservices?view=sql-dacfx-150) object passing a connection string to the constructor.  
+The DACPAC step template uses .NET objects to interact with SQL Server instead of calling the `sqlpackage.exe` command-line program.  To establish a connection with the database server, the code creates a [DacServices](https://docs.microsoft.com/en-us/dotnet/api/microsoft.sqlserver.dac.dacservices?view=sql-dacfx-150) object passing a connection string to the constructor.  
 
 Like the above script, authenticating with a managed identity requires an access token which cannot be added to the connection string itself.  The above script shows that the [SqlConnection](https://docs.microsoft.com/en-us/dotnet/api/system.data.sqlclient.sqlconnection?view=dotnet-plat-ext-5.0) object contains the property `AccessToken` which is assigned for authentication purposes. `DacServices`, however, contains no such property.  
 
@@ -124,7 +127,7 @@ class AzureADAuth : Microsoft.SqlServer.Dac.IUniversalAuthProvider
 }
 ```
 
-An issue can arise with `class` definitions that are evaluated before code execution.  Despite loading the appropriate assemblies prior to the class definition, PowerShell fails if it can't find the type.  If the DLL is in the Global Assembly Cache (GAC), it might work, however, you can't assume that for a step template.
+An issue can arise with *class* definitions that are evaluated before code execution.  Despite loading the appropriate assemblies prior to the class definition, PowerShell fails if it can't find the type.  If the DLL is in the Global Assembly Cache (GAC), it might work, however, you can't assume that for a step template.
 
 ```
 + class AzureADAuth : Microsoft.SqlServer.Dac.IUniversalAuthProvider
@@ -169,7 +172,7 @@ $dacServices = New-Object Microsoft.SqlServer.Dac.DacServices $connectionString,
 ```
 
 :::hint
-As the DACPAC step template is long, only the relevant portions of code for class creation are included in this post.  Searching for the value for $DacDLL is not included here.
+As the DACPAC step template is long, only the relevant portions of code for class creation are included in this post.  Searching for the value for `$DacDLL` is not included here.
 :::
 
 ### Deployment
@@ -183,5 +186,5 @@ In this post I demonstrated creating custom classes in PowerShell, including imp
 Happy deployments!
 
 :::hint
-The modifications for the step template are incomplete at this point, I hope to add other authentication methods such as Azure Active Directory Integrated and Azure Active Directory Username/Password.
+The modifications for the step template are incomplete at this point, however, I plan to add other authentication methods such as Azure Active Directory Integrated and Azure Active Directory Username/Password.
 :::
