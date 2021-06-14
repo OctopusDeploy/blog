@@ -169,7 +169,7 @@ $dacServices = New-Object Microsoft.SqlServer.Dac.DacServices $connectionString,
 ```
 
 :::hint
-As the DACPAC step template is long, only the relevant portions of code for class creation are included in this post.  The searching for the location of the value for $DacDLL is not included here.
+As the DACPAC step template is long, only the relevant portions of code for class creation are included in this post.  Searching for the value for $DacDLL is not included here.
 :::
 
 ### Deployment
@@ -185,4 +185,3 @@ Happy deployments!
 :::hint
 The modifications for the step template are incomplete at this point, I hope to add other authentication methods such as Azure Active Directory Integrated and Azure Active Directory Username/Password.
 :::
-
