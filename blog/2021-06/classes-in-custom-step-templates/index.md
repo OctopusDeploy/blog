@@ -8,7 +8,7 @@ metaImage: blogimage-using-classes-in-custom-step-template-2021.png
 bannerImage: blogimage-using-classes-in-custom-step-template-2021.png
 tags:
  - DevOps
- - Step Templates
+ - PowerShell
 ---
 
 ![powershell logo and database beside an open laptop showing code on screen](blogimage-using-classes-in-custom-step-template-2021.png)
