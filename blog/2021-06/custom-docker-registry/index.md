@@ -1,5 +1,5 @@
 ---
-title: Hack up a custom Docker registry
+title: Create a custom Docker registry
 description: Learn how to create a bare bones Docker registry with C#
 author: matthew.casperson@octopus.com
 visibility: private
