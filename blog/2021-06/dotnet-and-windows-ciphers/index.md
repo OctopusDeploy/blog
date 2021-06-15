@@ -1,22 +1,22 @@
 ---
 title: Unsupported versions of Windows and .NET
-description: Understand why old versions of Windows can fail to make network requests
+description: Understand why old versions of Windows can fail to make network requests.
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
+visibility: public
+published: 2021-06-22-1400
 metaImage: 
 bannerImage: 
 tags:
  - Octopus
 ---
 
-If you are running .NET applications on unsupported versions of Windows, you may be surprised to see errors like `Authentication failed` when nothing appeared to change in the software you were running or the way it was configured. To understand these errors, we need to dig into the cipher suites supported by Windows, and therefor supported by .NET applications.
+If you're running .NET applications on unsupported versions of Windows, you may be surprised to see errors like `Authentication failed` when nothing appeared to change in the software you were running or the way it was configured. To understand these errors, we need to dig into the cipher suites supported by Windows, and therefore supported by .NET applications.
 
-In this blog post we'll diagnose an example of a failed HTTPS connection via a .NET application on an unsupported version of Windows.
+In this blog post, I diagnose an example of a failed HTTPS connection via a .NET application on an unsupported version of Windows.
 
 ## The sample application
 
-Our sample application will use the `HttpClient` class to perform a HTTP GET request against the URL passed in as the first argument:
+Our sample application uses the `HttpClient` class to perform a HTTP GET request against the URL passed in as the first argument:
 
 ```csharp
 using System;
@@ -39,7 +39,7 @@ namespace DotNetHttpClientExample
 
 ```
 
-To demonstrate an example of a website that fails on older versions of Windows (at least at the time of writing), we'll pass the URL https://getambassador.io to it.
+To demonstrate an example of a website that fails on older versions of Windows (at the time of writing), we'll pass the URL https://getambassador.io to it.
 
 On my Windows 10 machine, the application produces the expected output of `Result was OK`. However, on an older copy of Windows such as Windows 7, the result is the following exception:
 
@@ -62,7 +62,7 @@ Unhandled exception. System.Net.Http.HttpRequestException: The SSL connection co
    at DotNetHttpClientExample.Program.<Main>(String[] args)
 ```
 
-Messages like `Authentication failed` don't seem to make much sense on the surface, as we are not passing any credentials as part of this network request. So why does this simple application work on one copy of Windows and not another?
+Messages like `Authentication failed` don't make much sense on the surface, as we're not passing any credentials as part of this network request. So why does this simple application work on one copy of Windows and not another?
 
 ## Matching ciphers between the website and the OS
 
@@ -78,7 +78,7 @@ Accepted  TLSv1.2  256 bits  ECDHE-RSA-CHACHA20-POLY1305   Curve 25519 DHE 253
 Accepted  TLSv1.2  128 bits  ECDHE-RSA-AES128-GCM-SHA256   Curve 25519 DHE 253
 ```
 
-The cipher names reported here are based on OpenSSL. The ciphers referenced by Windows use the IANA naming convention. To convert between the two we can use the table at https://testssl.sh/openssl-iana.mapping.html. This gives us the following IANA cipher names:
+The cipher names reported here are based on OpenSSL. The ciphers referenced by Windows use the IANA naming convention. To convert between the two, use the table at [https://testssl.sh/openssl-iana.mapping.html](https://testssl.sh/openssl-iana.mapping.html). This gives us the following IANA cipher names:
 
 * TLS_AES_256_GCM_SHA384
 * TLS_CHACHA20_POLY1305_SHA256
@@ -86,16 +86,18 @@ The cipher names reported here are based on OpenSSL. The ciphers referenced by W
 * TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 * TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
 
-Microsoft maintains [documentation listing all the supported ciphers across current and previous versions of Windows](https://docs.microsoft.com/en-au/windows/win32/secauthn/cipher-suites-in-schannel). Looking through the lists, unsupported versions of Windows like Server 2012 and 8.1 do not list any of the ciphers accepted by the website. Because .NET applications rely on the ciphers exposed by the underlying OS, our simple application can not establish a secure HTTPS connection.
+Microsoft maintains [documentation listing all the supported ciphers across current and previous versions of Windows](https://docs.microsoft.com/en-au/windows/win32/secauthn/cipher-suites-in-schannel). Looking through the lists, unsupported versions of Windows like Server 2012 and 8.1 do not list any of the ciphers accepted by the website. Because .NET applications rely on the ciphers exposed by the underlying OS, our simple application can't establish a secure HTTPS connection.
 
 ## But why does my browser still work?
 
-It is tempting to think that because a web browser will successfully open the website that all applications should work. This is not the case though. Browsers like Chrome and Firefox maintain and ship their own ciphers. This means so long as your browser is up to date, it will likely include the modern ciphers required to establish most HTTPS connections.
+It's tempting to assume that because a web browser will successfully open the website all applications should work. This isn't the case though. Browsers like Chrome and Firefox maintain and ship their own ciphers. This means that if your browser is up to date, it will likely include the modern ciphers required to establish most HTTPS connections.
 
-Platforms like Go and Java also maintain their own ciphers, so applications written in those languages may continue to support newer ciphers while running on older versions of Windows.
+Platforms like Go and Java also maintain their own ciphers, so applications written in those languages may support newer ciphers while running on older versions of Windows.
 
-.NET applications on the other hand rely on the ciphers provided by the OS, and the only way to get new ciphers into the OS is through a patch from Microsoft. Unsupported versions of Windows typically do not receive these patches, and so over time you can expect an increasing number of websites to no longer work with .NET applications.
+.NET applications however rely on the ciphers provided by the OS, and the only way to get new ciphers into the OS is through a patch from Microsoft. Unsupported versions of Windows typically do not receive these patches, so over time you can expect an increasing number of websites to stop working with .NET applications.
 
 ## Conclusion
 
-Conventional wisdom says it is not recommended to run unsupported versions of Windows, although usually because of rather vague statements like "it is not secure". While that is definitely true, in this blog post we have demonstrated a specific example of how unsupported versions of Windows are no longer able to interact with external services that choose to implement strict requirements for HTTPS connections.
+It's not recommended to run unsupported versions of Windows, and this is usually explained with vague statements like "it is not secure". While that's true, this blog post demonstrates a specific example of how unsupported versions of Windows can no longer interact with external services that implement strict requirements for HTTPS connections.
+
+Happy deployments!
