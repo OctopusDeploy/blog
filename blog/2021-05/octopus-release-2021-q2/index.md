@@ -61,7 +61,7 @@ Project Export/Import can be used to:
 
 The feature is in early access so there may be few rough edges, but we've designed the process to abort without changes in the event of a problem or error. We'd love you to try Bento and provide feedback.
 
- Learn more about [exporting and importing projects](https://octopus.com/docs/projects/export-import) in our documentation.
+Learn more about [exporting and importing projects](https://octopus.com/docs/projects/export-import) in our documentation.
 
 ## GitHub Actions {#github-actions}
 
@@ -106,7 +106,9 @@ The **Deploy an Azure App Service** step:
 - Configures Azure app settings and connection strings.
 - Performs configuration file transforms.
 
-We tip our hats to our friends at [Clear Measure](https://clearmeasure.com/) for their help in developing these improvements to Azure App Service deployments.  
+We tip our hats to our friends at [Clear Measure](https://clearmeasure.com/) for their help in developing these improvements to Azure App Service deployments.
+
+Learn how to get started in our post [Improved Azure App Service deployments](https://octopus.com/blog/azure-app-service-step).
 
 ## Improvements to Octopus Cloud {#octopus-cloud}
 
