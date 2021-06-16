@@ -4,14 +4,14 @@ description: Introducing a new step template to allow secrets stored in Azure Ke
 author: mark.harrison@octopus.com
 visibility: public
 published: 2021-06-16-1400
-metaImage: octopus-step-template.png
-bannerImage: octopus-step-template.png
+metaImage: blogimage-azure-key-vault-step-template-2021.jpg
+bannerImage: blogimage-azure-key-vault-step-template-2021.jpg
 tags:
  - Product
  - Security
 ---
 
-![Using Azure Key Vault with Octopus Deploy](octopus-step-template.png)
+![Using Azure Key Vault with Octopus Deploy](blogimage-azure-key-vault-step-template-2021.jpg)
 
 I recently wrote about [extending the functionality of Octopus to integrate with HashiCorp Vault](https://octopus.com/blog/using-hashicorp-vault-with-octopus-deploy) using step templates. Afterwards, several people asked if I plan to create step templates to integrate with other secret managers.
 
