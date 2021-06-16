@@ -7,7 +7,7 @@ published: 2021-06-22-1400
 metaImage: 
 bannerImage: 
 tags:
- - Octopus
+ - Engineering
 ---
 
 If you're running .NET applications on unsupported versions of Windows, you may be surprised to see errors like `Authentication failed` when nothing appeared to change in the software you were running or the way it was configured. To understand these errors, we need to dig into the cipher suites supported by Windows, and therefore supported by .NET applications.
@@ -88,9 +88,9 @@ The cipher names reported here are based on OpenSSL. The ciphers referenced by W
 
 Microsoft maintains [documentation listing all the supported ciphers across current and previous versions of Windows](https://docs.microsoft.com/en-au/windows/win32/secauthn/cipher-suites-in-schannel). Looking through the lists, unsupported versions of Windows like Server 2012 and 8.1 do not list any of the ciphers accepted by the website. Because .NET applications rely on the ciphers exposed by the underlying OS, our simple application can't establish a secure HTTPS connection.
 
-## But why does my browser still work?
+## Why your browser still works
 
-It's tempting to assume that because a web browser will successfully open the website all applications should work. This isn't the case though. Browsers like Chrome and Firefox maintain and ship their own ciphers. This means that if your browser is up to date, it will likely include the modern ciphers required to establish most HTTPS connections.
+It's tempting to assume that because a web browser will successfully open the website, all applications should work. This isn't the case though. Browsers like Chrome and Firefox maintain and ship their own ciphers. This means that if your browser is up to date, it will likely include the modern ciphers required to establish most HTTPS connections.
 
 Platforms like Go and Java also maintain their own ciphers, so applications written in those languages may support newer ciphers while running on older versions of Windows.
 
@@ -98,6 +98,6 @@ Platforms like Go and Java also maintain their own ciphers, so applications writ
 
 ## Conclusion
 
-It's not recommended to run unsupported versions of Windows, and this is usually explained with vague statements like "it is not secure". While that's true, this blog post demonstrates a specific example of how unsupported versions of Windows can no longer interact with external services that implement strict requirements for HTTPS connections.
+It's not recommended to run unsupported versions of Windows, and this is usually explained with vague statements like "it is not secure". While that statement is true, this blog post demonstrates a specific example of how unsupported versions of Windows can no longer interact with external services that implement strict requirements for HTTPS connections.
 
 Happy deployments!
