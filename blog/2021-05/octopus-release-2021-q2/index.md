@@ -121,7 +121,7 @@ All paying customers receive the storage increase with the release.
 
 ![Migrate to the cloud with Octopus Deploy](blogimage-move-to-the-cloud-with-octopus-deploy-2021.png)
 
-We're also working on migration guides to support your cloud journey. The [first guide](https://octopus.com/blog/iis-to-azure-app-service) in the series describes how to move ASP.NET web apps from IIS on-premises to an Azure App Service.
+We're also working on migration guides to support your cloud journey. The [first guide](https://octopus.com/blog/iis-to-azure-app-service) in the series describes how to move an ASP.NET web app from IIS on-premises to an Azure App Service.
 
 ## Registering Tentacle agents {#octopus-tentacle-agents}
 
