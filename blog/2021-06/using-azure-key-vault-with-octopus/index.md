@@ -15,7 +15,7 @@ tags:
 
 I recently wrote about [extending the functionality of Octopus to integrate with HashiCorp Vault](https://octopus.com/blog/using-hashicorp-vault-with-octopus-deploy) using step templates. Afterwards, several people asked if I plan to create step templates to integrate with other secret managers.
 
-In this post, I walk through a new step template, [Azure Key Vault - Retrieve Secrets](https://library.octopus.com/step-templates/6f59f8aa-b2db-4f7a-b02d-a72c13d386f0/actiontemplate-azure-key-vault-retrieve-secrets), designed to retrieve secrets from an Azure Key Vault for use in your deployments or runbooks.
+In this post, I walk through a new step template, [Azure Key Vault - Retrieve Secrets](https://library.octopus.com/step-templates/6f59f8aa-b2db-4f7a-b02d-a72c13d386f0/actiontemplate-azure-key-vault-retrieve-secrets), which is designed to retrieve secrets from an Azure Key Vault for use in your deployments or runbooks.
 
 ## Introduction
 
