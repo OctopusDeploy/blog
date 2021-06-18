@@ -62,7 +62,7 @@ Unhandled exception. System.Net.Http.HttpRequestException: The SSL connection co
    at DotNetHttpClientExample.Program.<Main>(String[] args)
 ```
 
-Messages like `Authentication failed` don't make much sense on the surface, as we're not passing any credentials as part of this network request. So why does this simple application work on one copy of Windows and not another?
+Messages like `Authentication failed` don't make much sense on the surface, as we're not passing any credentials as part of this network request. So why does this sample application work on one copy of Windows and not another?
 
 ## Matching ciphers between the website and the OS
 
@@ -86,7 +86,7 @@ The cipher names reported here are based on OpenSSL. The ciphers referenced by W
 * TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 * TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
 
-Microsoft maintains [documentation listing all the supported ciphers across current and previous versions of Windows](https://docs.microsoft.com/en-au/windows/win32/secauthn/cipher-suites-in-schannel). Looking through the lists, unsupported versions of Windows like Server 2012 and 8.1 do not list any of the ciphers accepted by the website. Because .NET applications rely on the ciphers exposed by the underlying OS, our simple application can't establish a secure HTTPS connection.
+Microsoft maintains [documentation listing all the supported ciphers across current and previous versions of Windows](https://docs.microsoft.com/en-au/windows/win32/secauthn/cipher-suites-in-schannel). Looking through the lists, unsupported versions of Windows like Server 2012 and 8.1 do not list any of the ciphers accepted by the website. Because .NET applications rely on the ciphers exposed by the underlying OS, our sample application can't establish a secure HTTPS connection.
 
 ## Why your browser still works
 
