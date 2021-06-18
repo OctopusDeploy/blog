@@ -4,13 +4,13 @@ description: Understand why old versions of Windows can fail to make network req
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2021-06-22-1400
-metaImage: blogimage-unsupported-versions-of-windows-and.net-2021.png
-bannerImage: blogimage-unsupported-versions-of-windows-and.net-2021.png
+metaImage: blogimage-unsupported-versions-of-windows-and-.net-2021.png
+bannerImage: blogimage-unsupported-versions-of-windows-and-.net-2021.png
 tags:
  - Engineering
 ---
 
-![](blogimage-unsupported-versions-of-windows-and.net-2021.png)
+![](blogimage-unsupported-versions-of-windows-and-.net-2021.png)
 
 If you're running .NET applications on unsupported versions of Windows, you may be surprised to see errors like `Authentication failed` when nothing appeared to change in the software you were running or the way it was configured. To understand these errors, we need to dig into the cipher suites supported by Windows, and therefore supported by .NET applications.
 
