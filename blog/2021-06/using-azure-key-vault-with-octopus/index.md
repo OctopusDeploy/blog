@@ -23,7 +23,7 @@ This post assumes some familiarity with [custom step templates](https://octopus.
 
 In addition, this post doesn't go into great detail about Azure Key Vault concepts or how to set it up. You can learn more by reading the [Azure Key Vault basic concepts guide](https://docs.microsoft.com/en-us/azure/key-vault/general/basic-concepts) from Microsoft.
 
-The step template in this post retrieves secrets from an [Azure Key Vault](https://azure.microsoft.com/en-gb/services/key-vault/) using the [Az.KeyVault](https://docs.microsoft.com/en-us/powershell/module/az.keyvault/) PowerShell module. The module must be downloaded and installed on the deployment target or worker before the step can retrieve secrets successfully. The step template has been tested on both Windows and Linux (with `Powershell Core` installed).
+The step template in this post retrieves secrets from an [Azure Key Vault](https://azure.microsoft.com/en-gb/services/key-vault/) using the [Az.KeyVault](https://docs.microsoft.com/en-us/powershell/module/az.keyvault/) PowerShell module. The module must be downloaded and installed on the deployment target or worker before the step can retrieve secrets successfully. The step template has been tested on both Windows and Linux (with `PowerShell Core` installed).
 
 ## Authentication {#authentication}
 
