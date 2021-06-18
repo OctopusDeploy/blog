@@ -12,22 +12,11 @@ tags:
 
 ![Community Image](blogimage-community-youtube-2021.png)
 
-I've recently moved into a Community Director role at Octopus Deploy HQ, and as part of my role, I want to engage the Community as our Community is essential. In this blog, I'll cover Community updates over the last month and share them with you, and this is the first monthly blog wrapping up our community activities over the past six weeks.
+In this blog, I will cover the latest and greatest content from and about Octopus Deploy. We're going to publish this monthly towards the end of the month to share the latest updates with you.
 
 ## Webinars
 
 In this section, I'll list out the most recent Octopus webinars.
-
-### Accelerating your Azure DevOps Pipeline and Azure Platform as a Service with Octopus Deploy
-
-In this webinar, [Gregor Suttie](https://twitter.com/gregor_suttie), an Azure MVP and Azure Architect, and I go through how to build a multi-tier application in Azure DevOps, deploy the infrastructure using Runbooks in Octopus, and then use Octopus to deploy the website, Database, product service API and shopping cart service to Azure Platform-as-a-service. You'll see and learn about:
-
-- Azure DevOps Classic Editor builds, and YAML builds
-- How to connect Azure DevOps pipelines to Octopus
-- Creating Azure PaaS using IaC Runbooks
-- How to take your code and deploy it to Production from a single release
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/NRwFdpvNYyA" frameborder="0" allowfullscreen></iframe>
 
 ### What's new in Octopus 2020.6 and 2021.1
 
@@ -47,17 +36,17 @@ In 2020.6 and 2021.1, we added:
 
 ### Self-hosting Octopus on Linux
 
-Containers are a hot topic. Octopus Cloud has been using Linux containers for over a year. From 2020.6 it is the recommended way to run Octopus in a container.
+Containers are a hot topic. Octopus Cloud has been using Linux containers for over a year. From 2020.6, it is the recommended way to run Octopus in a container.
 
-In this webinar, Octopus Deploy’s Solutions Architects Derek Campbell and Adam Close will run the Octopus Linux container locally. They’ll also explain the concepts involved and deploy the container onto Microsoft’s cloud-managed Azure Kubernetes Service (AKS).
+In this webinar, Octopus Deploy's Solutions Architects Derek Campbell and Adam Close run the Octopus Linux container locally, then upgrade the container to 2021.1. They explain the concepts involved and deploy the container onto Microsoft's cloud-managed Azure Kubernetes Service (AKS).
 
-In this webinar you will learn:
+In this webinar, you will learn:
 
 - About the components of the Octopus Deploy Linux container.
 - How to run Octopus as a container.
 - How to set up the Octopus container on AKS.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/UPDATE" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/UhR2QppsJ08" frameborder="0" allowfullscreen></iframe>
 
 ## Blogs
 
@@ -84,8 +73,19 @@ Mark Harrison, a Solutions Architect in the Octopus Solutions team, has been bus
 - [HashiCorp Vault - Key Value (v2) retrieve secrets](https://library.octopus.com/step-templates/337f1b67-cdb0-4f33-9e08-6bf804f672d2/actiontemplate-hashicorp-vault-key-value-(v2)-retrieve-secrets)
 - [HashiCorp Vault - LDAP Login](https://library.octopus.com/step-templates/de807003-3b05-4649-9af3-11a2c7722b3f/actiontemplate-hashicorp-vault-ldap-login)
 
+## Documentation updates
+
+We're constantly reviewing and improving our docs.
+
+- We've updated the Octopus [upgrade guide](https://octopus.com/docs/administration/upgrading/guide/automate-upgrades) to include scripts to allow a fully automated process to upgrade an Octopus instance.
+- We've updated the Octopus [High Availability docs](https://octopus.com/docs/administration/high-availability) to include detailed guides for On-Premises, AWS, and Azure.
+- Our guidance on using the tools bundled with both the [AWS PowerShell](https://octopus.com/docs/deployments/custom-scripts/aws-cli-scripts) and [Azure PowerShell](https://octopus.com/docs/deployments/azure/running-azure-powershell) built-in Octopus steps has now changed. We now recommend you configure Octopus Deploy to use your versions of the required tools.
+- We've added a section to the Linux tentacle page about [creating a Tentacle instance without requiring root or sudo privileges](https://octopus.com/docs/infrastructure/deployment-targets/linux/tentacle#rootless-instance-creation).
+- There are 4 new variable filters coming in **2021.2**; [Match](https://octopus.com/docs/projects/variables/variable-filters#match), [StartsWith, EndsWith and Contains](https://octopus.com/docs/projects/variables/variable-filters#startswith-endswith-and-contains).
+- We've launched a new and [improved Webinar page](https://octopus.com/events) where you can see all of our upcoming webinars and the recordings
+
 ## Conclusion
 
-We hope that you have enjoyed this blog and find the resources helpful. If there is something you want to see in this blog each month, please reach out to me at <webinars@octopus.com>.
+We hope that you have enjoyed this blog and find the resources helpful. If you want to see something in this blog each month and see any great third-party content on Octopus Deploy, please reach out to me at <derek.campbell@octopus.com>.
 
 Happy deployments!
