@@ -369,6 +369,6 @@ If you're an Octopus customer, we hope you find these new guides valuable. If yo
 
 ## Register for Matthew's talk: Continuously Delivered Documentation 
 
-Matthew Casperson, Product Manager at Octopus Deploy, will be presenting his talk *Continuously Delivered Documentation* at CDCon 2021 on Thursday, 24 June, 2021: [Register now](https://cdcon2021.sched.com/event/iosa)
+Matthew Casperson, Product Manager at Octopus Deploy, will be presenting his talk *Continuously Delivered Documentation* at CDCon 2021 on Wednesday, 23 June, 2021: [Register now](https://cdcon2021.sched.com/event/iosa)
 
 Happy deployments!
