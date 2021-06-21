@@ -3,7 +3,7 @@ title: Using Azure Key Vault with Octopus
 description: Introducing a new step template to allow secrets stored in Azure Key Vault to be used in deployments or runbooks.
 author: mark.harrison@octopus.com
 visibility: public
-published: 2021-06-16-1400
+published: 2021-06-23-1400
 metaImage: blogimage-azure-key-vault-step-template-2021.jpg
 bannerImage: blogimage-azure-key-vault-step-template-2021.jpg
 tags:
