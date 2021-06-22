@@ -28,7 +28,7 @@ Octopus Deploy is an integration tool that sits in the middle of any of a dozen 
 
 The result of this project is the [Octopus Guides](https://octopus.com/docs/guides). 
 
-If you visit our [homepage](https://octopus.com), you can select your technology stack and see a dedicated guide that steps you through the process from compiling your code to deploying it to its destination. We haven’t completed every combination yet, but if you find a combination that hasn’t been written yet, you can vote for it.
+The [Octopus Guides](https://octopus.com/docs/guides) allows you to select your technology stack and see a dedicated guide that steps you through the process from compiling your code to deploying it to its destination. We haven’t completed every combination yet, but if you find a combination that hasn’t been written yet, you can vote for it.
 
 ![](guides.png "width=500")
 
