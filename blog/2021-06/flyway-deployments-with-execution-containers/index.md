@@ -1,6 +1,6 @@
 ---
 title: Database deployments with Flyway and Octopus Execution Containers
-description: Using execution containers and Flyway to deploy database changes.
+description: Using Octopus Execution Containers and Flyway to deploy database changes.
 author: bob.walker@octopus.com
 visibility: public
 published: 2021-06-30-1400
@@ -14,13 +14,13 @@ I recently used [Flyway](https://flywaydb.org) and Octopus Deploy to deploy data
 
 In the **2020.2** release of Octopus Deploy, we introduced the [Execution Containers](https://octopus.com/blog/execution-containers) feature.  Execution Containers use Docker Images to manage dependencies.  
 
-This post walks through how to configure a database deployment in Octopus Deploy to use Execution Containers and Flyway.
+This post walks through how to configure a database deployment in Octopus Deploy using Execution Containers and Flyway.
 
 ## Execution container basics
 
 I prefer not having to include all the binaries to run Flyway in my package, as it leads to package bloat. In my examples, the difference was 10 KB versus 90 MB.  
 
-As a developer, I'm also responsible for upgrading the binaries and including them in my Git repo. I also try to avoid pre-installing tools on the worker as this means everyone is on the same version, and an upgrade could break everyone.  
+As a developer, I'm also responsible for upgrading the binaries and including them in my Git repo. I also avoid pre-installing tools on the worker as this means everyone is on the same version, and an upgrade could break everyone.  
 
 Execution containers solve both problems by using Docker images to manage dependencies.  The Docker image has all the necessary tooling (JRE, Flyway, PowerShell, etc.) installed.  You specify the Docker image and the tag to use in the deployment process.  When a deployment runs using Execution Containers, Calamari executes a Docker run command.  Also, Calamari automatically mounts folders to the container.  
 
@@ -29,18 +29,18 @@ The task log shows a command similar to this:
 docker run --rm  --env TentacleHome=/home/Octopus  -w /home/Octopus/Work/20210329204922-325128-24   -v /home/Octopus/Work/20210329204922-325128-24:/home/Octopus/Work/20210329204922-325128-24  -v /home/Octopus:/home/Octopus  index.docker.io/octopuslabs/flyway-workertools:latest 
 ```
 
-If you have packages, they're automatically extracted into the `/home/Octopus/Work/[DATETIME]` folder.  This all happens behind the scenes; changing from running directly on the worker versus running on an Execution Container only requires clicking a radio button and providing the package name. Everything else is the same.
+If you have packages, they're automatically extracted into the `/home/Octopus/Work/[DATETIME]` folder.  This all happens behind the scenes. To change from running directly on the worker to running on an Execution Container, you simply click a radio button and provide the package name. Everything else is the same.
 
 ## The Flyway Execution Container
 
-Octopus Deploy provides [offical Docker images](https://octopus.com/docs/projects/steps/execution-containers-for-workers#worker-tools-images) you can use.  Unfortunately, those images cannot be used in this example for two reasons:
+Octopus Deploy provides [official Docker images](https://octopus.com/docs/projects/steps/execution-containers-for-workers#worker-tools-images) you can use.  Unfortunately, these images cannot be used in this example for two reasons:
 
-1. They include dozens of tools requiring GBs more data downloaded from Docker Hub.
+1. They include dozens of tools requiring gigabytes more data downloaded from Docker Hub.
 1. None of the images include Flyway.  
 
 To overcome this, I created a [Docker image](https://hub.docker.com/r/octopuslabs/flyway-workertools) you can use for this example. I also created a [GitHub Action](https://github.com/OctopusDeployLabs/flyway-workertools/blob/main/.github/workflows/docker-build-push.yml) that will run once a day and build a new image when a new version is detected.  
 
-The [base image](https://hub.docker.com/r/octopuslabs/workertools) for this Docker image includes the most popular scripting languages we support: PowerShell and Python.  The Ubuntu-based image also supports Bash.  
+The [base image](https://hub.docker.com/r/octopuslabs/workertools) for this Docker image includes the most popular scripting languages we support: PowerShell and Python.  The Ubuntu-based image also supports Bash.
 
 ## Scaffolding
 
@@ -57,9 +57,9 @@ If you search `Flyway` in our [community step template library](https://library.
 
 The primary differences with this new step template are:
 
-1. You can choose from any of the commands (migrate, info, validate, etc.) Flyway support.
+1. You can choose from any of the commands (migrate, info, validate, etc.) that Flyway support.
 1. I worked with the Flyway team at Redgate to find the popular command-line switches.
-1. Both the free and paid versions of Flyway are supported, giving you access to dry run migrations and use the undo command.
+1. Both the free and paid versions of Flyway are supported, giving you access to dry run migrations and to use the undo command.
 1. It runs on either Linux or Windows.
 1. It attempts to find the Flyway executable, making it easy to either include Flyway in the package (if that's your preference) or run it in an execution container.
 1. SQL and JAR migrations are both supported.
@@ -70,7 +70,7 @@ I followed a similar pattern of including more parameters in other recent step t
 - [Run Octopus Deploy Runbook](https://library.octopus.com/step-templates/0444b0b3-088e-4689-b755-112d1360ffe3/actiontemplate-run-octopus-deploy-runbook) 
 - [Re-prioritize Octopus Deploy Tasks](https://library.octopus.com/step-templates/c9d5c96f-f731-4e6c-b9b3-d93f84a9bb74/actiontemplate-re-prioritize-octopus-deploy-tasks) 
 
-I did this so that any parameter starting with a `-` is a [command line switch](https://flywaydb.org/documentation/configuration/parameters/) in the Flyway command-line tool.
+I did this to ensure any parameter starting with a `-` is a [command line switch](https://flywaydb.org/documentation/configuration/parameters/) in the Flyway command-line tool.
 
 ## Packaging migration scripts
 
@@ -79,15 +79,15 @@ In our docs, it says you need to build your packages. If you only have SQL files
 Consider this example:
 ![sample folder to package](folder-to-package.png)
 
-You'd need to run the Octo Pack command on the `db/src` folder on the build server.  The package would contain those folders and contents.
+You need to run the Octo Pack command on the `db/src` folder on the build server.  The package would contain those folders and contents.
 
 ![sample package](packaged-folder.png)
 
-After the package is built, you need to publish it to Octopus Deploy.  For a proof of concept, you don't need a build server.  You can use a tool like 7-Zip to zip up the folder to be `Flyway.Test.1.0.0.zip` and manually [upload the package](https://octopus.com/docs/packaging-applications/package-repositories/built-in-repository#pushing-packages-to-the-built-in-repository).  In fact, that's what I did for this post.
+After the package is built, you need to publish it to Octopus Deploy.  For a proof of concept, you don't need a build server.  You can use a tool like 7-Zip to zip the folder to be `Flyway.Test.1.0.0.zip` and manually [upload the package](https://octopus.com/docs/packaging-applications/package-repositories/built-in-repository#pushing-packages-to-the-built-in-repository).  That's what I did for this post.
 
 However, after the proof of concept, if it makes sense to integrate a build server, we have docs and blog posts to help you out.
 
-Build Servers Examples:
+Examples of build servers:
 
 - [Jenkins](https://octopus.com/docs/packaging-applications/build-servers/jenkins#Jenkins-Packageapplication)
 - [TeamCity](https://octopus.com/docs/packaging-applications/build-servers/teamcity#TeamCity-CreateAndPushPackageToOctopusCreatingandpushingpackagesfromTeamCitytoOctopus)
@@ -97,33 +97,33 @@ Build Servers Examples:
 
 ## Configuring the project
 
-Now that we have the step template, Docker feed, and package uploaded, we can configure the project.  
+We can configure the project now that we've uploaded the step template, Docker feed, and package.  
 
-First, create a project.  In this example, I'll be using the name [Flyway - Azure SQL Execution Containers](https://samples.octopus.app/app#/Spaces-106/projects/flyway-azure-sql-execution-containers/deployments).  We already had a Flyway example on our samples instance; this was to show how to use execution containers with it.
+First, create a project.  In this example, I'll be using the name [Flyway - Azure SQL Execution Containers](https://samples.octopus.app/app#/Spaces-106/projects/flyway-azure-sql-execution-containers/deployments).  We already had a Flyway example on our samples instance; to show how to use execution containers with it.
 
 ### Variables
 
-After the project is created, go to the variable screen and add the necessary variables.
+After the project is created, navigate to **Variables** and add the necessary variables.
 
 :::hint
-I recommend namespacing variables, for example `Project.[Component].[VariableName]` for project variables and `[VariableSetName].[Component].[VariableName]` for library variable set variables.  This will make it easier to find when inserting variables into the process.  As a bonus, in six months, you'll know where the variables are located.
+I recommend namespacing variables, for example `Project.[Component].[VariableName]` for project variables and `[VariableSetName].[Component].[VariableName]` for library variable set variables.  This will make it easier to find when inserting variables into the process.  In future, you'll also know where the variables are located.
 :::
 
-- Project.Database.ConnectionString: The connection string to the database I want to deploy to.  **Please note:** this is the _only_ real difference between my example using SQL Server and you change it to Oracle, MySQL, PostgreSQL, Maria, Snowflake, etc.
-- Project.Database.Name: the name of the database being deployed to.
-- Project.Database.Password: the password of the database user doing the deployment.
-- Project.Database.UserName: the username of the database user doing the deployment.
-- Project.Database.Server.Name: the name of the server where the database is located.
-- Project.Flyway.LicenseKey: the Flyway license key to required take advantage of features such as dry run deployments and undo.  **Please Note:** when a license key is not supplied Flyway will revert to the community edition.
-- Project.Worker.Pool: The worker pool where the work will be done.
+- `Project.Database.ConnectionString`: the connection string to the database I want to deploy to.  **Please note:** this is the _only_ real difference between my example using SQL Server and changing it to Oracle, MySQL, PostgreSQL, Maria, Snowflake, etc.
+- `Project.Database.Name`: the name of the database being deployed to.
+- `Project.Database.Password:` the password of the database user doing the deployment.
+- `Project.Database.UserName`: the username of the database user doing the deployment.
+- `Project.Database.Server.Name`: the name of the server where the database is located.
+- `Project.Flyway.LicenseKey`: the Flyway license key to required take advantage of features such as dry run deployments and undo.  **Please Note:** when a license key is not supplied Flyway will revert to the community edition.
+- `Project.Worker.Pool`: the worker pool where the work will be done.
 
 ![The flyway project variables](project-variables.png)
 
 ### Deployment process
 
-In [our docs](https://octopus.com/docs/deployments/databases/common-patterns/manual-approvals) we recommend starting with this process for database deployments:
+In [our docs](https://octopus.com/docs/deployments/databases/common-patterns/manual-approvals), we recommend starting with the following process for database deployments:
 
-1. Generate Delta Script and attach it as an [artifact](https://octopus.com/docs/projects/deployment-process/artifacts).
+1. Generate delta script and attach it as an [artifact](https://octopus.com/docs/projects/deployment-process/artifacts).
 2. Notify DBAs of pending approval (only in Production).
 3. DBAs approve delta script [via manual intervention](https://octopus.com/docs/projects/built-in-step-templates/manual-intervention-and-approvals) (only in Production).
 4. Deploy database changes.
@@ -131,7 +131,7 @@ In [our docs](https://octopus.com/docs/deployments/databases/common-patterns/man
 
 ![overview of the deployment process](process-overview.png)
 
-The notification steps can be email, Slack, Microsoft Teams, or the tool of your choice.  The manual interventions are self-explanatory and we cover that information in our docs.
+The notification steps can be email, Slack, Microsoft Teams, or any tool of your choice.  The manual interventions are self-explanatory and we cover that information in our docs.
 
 ### Using the Flyway Database Migrations step template
 
@@ -140,7 +140,7 @@ Generating the delta report and deploying the database changes will be accomplis
 1. Update the name of the step.
 1. Change it to run on a worker.
 1. Select a worker pool.
-1. Change the container image to be "runs inside a container, on a worker"
+1. Change the container image to be `runs inside a container, on a worker`.
 1. Enter in `octopuslabs/flyway-workertools:latest` as the Docker image; Docker will automatically download the correct architecture (Ubuntu or Windows) based on what the host is running.
 
 :::hint
@@ -149,7 +149,7 @@ The worker must have Docker installed to work.  Octopus Cloud provides hosted wo
 
 ![configuring Flyway to run on the execution container](configure-step-to-run-on-execution-container.png)
 
-That configures where the step template will run.  Now we need to configure the parameters.  
+Where the step template will run is now configured. Next we configure the parameters:  
 
 - Select the package containing the scripts you want Flyway to run.
 - Optional: enter in the path where Flyway is located.
@@ -164,15 +164,15 @@ If you're running this on the `octopuslabs/flyway-workertools` execution contain
 
 The most common commands used in Octopus are:
 
-- Info: this will generate a list of all the scripts found and their state in relation to the database being deployed.  The info command is ideal when using the community edition, and you need to list out all the scripts that will be run on the database.
+- `info`: this will generate a list of all the scripts found and their state in relation to the database being deployed.  The info command is ideal when using the community edition, and you need to list out all the scripts that will be run on the database.
 
 ![using info to list pending scripts](community-info-list-pending-files.png)
 
-- Migrate Dry Run: this will generate a file containing all the pending SQL scripts, and it will be saved as an artifact a DBA can download and review.  This is preferred over `info` but is only supported when you supply a Flyway license key.
+- `migrate dry run`: this will generate a file containing all the pending SQL scripts, and it will be saved as an artifact a DBA can download and review.  This is preferred over `info` but is only supported when you supply a Flyway license key.
 
 ![migrate dry run file generated as an artifact](dry-run-report-as-artifact.png)
 
-- Migrate: this will take all the SQL scripts and JAR files found in the package and run them on the target database.  This is the command that does the actual work.
+- `migrate`: this will take all the SQL scripts and JAR files in the package and run them on the target database.  This is the command that does the actual work.
 
 ![migrate command in action](migrate-command-in-action.png)
 
@@ -185,7 +185,7 @@ Next are the licensing parameters, followed by the connection parameters, and fi
 
 ![remaining parameters](remaining-parameters.png)
 
-The step template includes detailed help text for each parameter along with links to the appropriate documentation.
+The step template includes detailed help text for each parameter and links to the appropriate documentation.
 
 ![parameter help text](parameter-help.png)
 
@@ -195,13 +195,13 @@ Not all commands support all command line parameters.  The step template is smar
 
 ### Generate Delta Script step
 
-The step to generate the delta script for the DBAs to approve has the following parameters set.  I have a license key, so I am using the `migrate dry run` command.  If I did not have a license key, I'd select `info` as the command.
+The step to generate the delta script for the DBAs to approve has the following parameters set.  I have a license key, so I'm using the `migrate dry run` command.  If I did not have a license key, I'd select `info` as the command.
 
 ![generate delta report step](generate-delta-report.png)
 
 ### Deploy Database Changes step
 
-The step to deploy the database changes from the package is virtually identical to the generate delta script step.  The only difference is the command run is `migrate` instead of `migrate dry run`.
+The step to deploy the database changes from the package is virtually identical to the generate delta script step.  The only difference is using the command `migrate` instead of `migrate dry run`.
 
 ![deploy database changes step](deploy-database-changes.png)
 
@@ -209,6 +209,6 @@ The step to deploy the database changes from the package is virtually identical 
 
 As this post demonstrates, updating your process to run inside an execution container isn't very involved, especially if you're using Octopus Cloud.  After adding a Docker Container Registry external feed, you simply click a radio button for each step that should run on an execution container.  
 
-It's a small change, but it makes the deployment process and pipeline more robust.  Instead of worrying about what is installed on the worker or having to bundle everything in the package, I can leverage a tool that's running the exact version of Flyway I need, without all the maintenance overhead.
+It's a small change, but it makes the deployment process and pipeline more robust.  You can leverage a tool that's running the exact version of Flyway you need, without all the maintenance overhead.
 
 Happy deployments!
