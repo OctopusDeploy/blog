@@ -3,7 +3,7 @@ title: 10 pillars of pragmatic Kubernetes deployments
 description: The 10 pillars of pragmatic Kubernetes deployments is a comprehensive guide to building a repeatable deployment pipeline from Octopus to Kubernetes. Download the ebook. 
 author: matthew.casperson@octopus.com
 visibility: public
-published: 3020-01-01-1400
+published: 2021-06-28-1400
 metaImage: blogimage-ten-pillars-of-k8s-deployments-2021.png
 bannerImage: blogimage-ten-pillars-of-k8s-deployments-2021.png
 tags:
