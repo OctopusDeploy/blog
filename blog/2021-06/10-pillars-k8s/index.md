@@ -20,7 +20,7 @@ The ten pillars speak to the needs of modern DevOps teams, always being asked to
 
 ## Who will benefit from the ebook?
 
-The ebook is a comprehensive guide for anyone trying to build a repeatable deployment pipeline from Octopus to Kubernetes. 
+The ebook is a comprehensive guide to building a repeatable deployment pipeline from Octopus to Kubernetes. 
 
 It’s aimed at people looking to build deployment pipelines that scale as the following increases:
 
