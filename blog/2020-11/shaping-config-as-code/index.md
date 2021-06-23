@@ -1,6 +1,6 @@
 ---
-title: Shaping Configuration-as-Code
-description:  We have been busy recently building _configuration-as-code_ support for Octopus Deploy.  In this post, we’ll talk about some of the factors that affected the shaping of this feature.
+title: Shaping Config as Code
+description:  We have been busy recently building _Config as Code_ support for Octopus Deploy.  In this post, we’ll talk about some of the factors that affected the shaping of this feature.
 author: michael.richardson@octopus.com
 visibility: public
 published: 2020-11-25 
@@ -11,22 +11,22 @@ tags:
  - Config as Code
 ---
 
-![Shaping Configuration-as-Code](blogimage-shaping-config-as-code_2020.png)
+![Shaping Config as Code](blogimage-shaping-config-as-code_2020.png)
 
-We’ve been busy recently building _configuration-as-code_ support for Octopus Deploy.  In this post, we’ll look at some of the factors that have affected the shaping of this feature: 
+We’ve been busy recently building _Config as Code_ support for Octopus Deploy.  In this post, we’ll look at some of the factors that have affected the shaping of this feature: 
 
-- Why we’re building configuration-as-code 
+- Why we’re building Config as Code 
 - Anti-patterns we wanted to avoid 
 - Challenges
 - Design decisions
 
-But before we do, we should define what we mean by “configuration-as-code”. We are referring to a version-controlled (Git) text representation of an Octopus project. Today, when you configure a project in Octopus, the configuration is stored as records in a relational database. This feature is basically taking some of that data and persisting it as files in a Git repository rather than the database.  
+But before we do, we should define what we mean by “Config as Code”. We are referring to a version-controlled (Git) text representation of an Octopus project. Today, when you configure a project in Octopus, the configuration is stored as records in a relational database. This feature is basically taking some of that data and persisting it as files in a Git repository rather than the database.  
 
-## Why config-as-code?
+## Why Config as Code?
 
 Over the past few years, version-controlling Octopus configuration has been comfortably our most commonly requested feature.  
 
-Often prioritizing features is a trade-off between addressing requests from existing users and building something to appeal to new users. Configuration-as-code is commonly requested by both groups, and we understand why.  The benefits are compelling and include:
+Often prioritizing features is a trade-off between addressing requests from existing users and building something to appeal to new users. Config as Code is commonly requested by both groups, and we understand why.  The benefits are compelling and include:
 
 - **History**: Git is a time-machine for code, and being able to view the what, when, and who for your Octopus configuration alongside application code is undeniably useful. 
 - **Branching**: Today, there is a single instance of the deployment process. This makes testing changes difficult, as when a release is created it will use the current deployment process. Git branches make it possible to have as many versions of the deployment process as you like, allowing iterating on changes without impacting stability.   
@@ -91,7 +91,7 @@ Octopus has a rich authorization model. It allows granting fine-grained permissi
 - If a step is scoped to an environment/tenant, anyone with read access to the Git repository will be able to see the name of that environment/tenant.
 - For variables stored in a Git repository, it is not possible to allow/deny editing based on the environment scoping of the values 
 
-At the risk of violating our own baby-with-the-bathwater principle, forfeiting some fine-grained permissions feels like a fundamental consequence of moving to a config-as-code approach.  This is a key concern for many organizations, and this is one of the reasons we will support both database and config-as-code approaches for the foreseeable future.
+At the risk of violating our own baby-with-the-bathwater principle, forfeiting some fine-grained permissions feels like a fundamental consequence of moving to a Config as Code approach.  This is a key concern for many organizations, and this is one of the reasons we will support both database and Config as Code approaches for the foreseeable future.
 
 ### Foreign keys
 
@@ -105,7 +105,7 @@ The logical conclusion of this is that we have to accept we can no longer guaran
 
 A concrete example:
 
-When deleting an environment, for non-config-as-code projects, we remove the deleted environment from any step or variable scopings. And if the step/variable was scoped to _only_ that environment, then we cascade-delete the step/variable (as it should never be applicable). It isn’t feasible to inspect every branch of every config-as-code enabled project to find references to an environment.  Even if we could, we would then have to make a commit against every branch with the environment reference on it! So, instead, we will allow deleting the environment and accept the fact that deployment processes may reference environments that don’t exist.  We will handle this as gracefully as we can in the relevant places in the UI. 
+When deleting an environment, for non-Config as Code projects, we remove the deleted environment from any step or variable scopings. And if the step/variable was scoped to _only_ that environment, then we cascade-delete the step/variable (as it should never be applicable). It isn’t feasible to inspect every branch of every Config as Code enabled project to find references to an environment.  Even if we could, we would then have to make a commit against every branch with the environment reference on it! So, instead, we will allow deleting the environment and accept the fact that deployment processes may reference environments that don’t exist.  We will handle this as gracefully as we can in the relevant places in the UI. 
 
 In the very early days of thinking about this feature, the referential integrity problem was a huge concern.  But as we thought about each scenario and the user intention, we grew confident we can handle them gracefully.  
 
@@ -129,7 +129,7 @@ This allows easily switching to a new branch to make changes to a deployment pro
 
 ### Commit messages when saving
 
-Keeping with the _expose Git concepts_ principle, when configuration-as-code is enabled for a project, we have relabeled the `Save` buttons as `Commit`. 
+Keeping with the _expose Git concepts_ principle, when Config as Code is enabled for a project, we have relabeled the `Save` buttons as `Commit`. 
 
 ![Commit button](commit-button.png "width=500")
 
@@ -146,9 +146,9 @@ We want to cater for both these scenarios, so we have introduced a split-button 
 
 ### Releases and Git: A perfect match 
 
-Configuration-as-code fits perfectly with the concept of a [release](https://octopus.com/docs/releases) in Octopus.
+Config as Code fits perfectly with the concept of a [release](https://octopus.com/docs/releases) in Octopus.
 
-Today, when you create a release, it takes a snapshot of the current deployment process, variables, and a few other things. With configuration-as-code enabled, when creating a release, it will allow selecting the Git ref (branch, tag, or commit) containing the deployment process and variables:  
+Today, when you create a release, it takes a snapshot of the current deployment process, variables, and a few other things. With Config as Code enabled, when creating a release, it will allow selecting the Git ref (branch, tag, or commit) containing the deployment process and variables:  
 
 ![Creating release from gitref](create-release-gitref.png "width=500")
 

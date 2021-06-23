@@ -146,15 +146,15 @@ Watch our Managing Octopus with Go and Terraform webinar to get an indepth overv
 
 The [project repository](https://github.com/OctopusDeployLabs/terraform-provider-octopusdeploy) is available on GitHub with the Mozilla Public License Version 2.0 license. We accept pull requests, and we’d love to see community contributions.
 
-## Infrastructure as Code with the Terraform provider vs Configuration as Code
+## Infrastructure as Code with the Terraform provider vs Config as Code
 
-We’re currently building support for [Configuration as Code](https://octopus.com/blog/shaping-config-as-code) to give teams a version-controlled text representation of Octopus projects. This brings numerous benefits but it also raises several questions. 
+We’re currently building support for [Config as Code](https://octopus.com/blog/shaping-config-as-code) to give teams a version-controlled text representation of Octopus projects. This brings numerous benefits but it also raises several questions. 
 
-*What is the difference between Configuration as Code and Infrastructure as Code with our Terraform Provider? When should I use Configuration as Code? When should I use the Terraform provider?*
+*What is the difference between Config as Code and Infrastructure as Code with our Terraform Provider? When should I use Config as Code? When should I use the Terraform provider?*
 
-Both features are valuable, and they complement each other. You can choose to use them independently or together if it suits your needs. The most significant difference between the two technologies is scope. Infrastructure as code focuses on provisioning and configuring a whole Octopus instance, whereas Configuration as Code focuses on automated processes in a project.
+Both features are valuable, and they complement each other. You can choose to use them independently or together if it suits your needs. The most significant difference between the two technologies is scope. Infrastructure as code focuses on provisioning and configuring a whole Octopus instance, whereas Config as Code focuses on automated processes in a project.
 
-With **Configuration as Code**, you get a human-readable version of an automated process (deployment and runbook) in Git source control. This brings numerous benefits including capturing history, enabling changes with branches, having a single source of truth, and improving the ability to create template configurations than can be cloned. Config as Code focuses on automated processes within a project. It does not allow you to configure other areas of Octopus.
+With **Config as Code**, you get a human-readable version of an automated process (deployment and runbook) in Git source control. This brings numerous benefits including capturing history, enabling changes with branches, having a single source of truth, and improving the ability to create template configurations than can be cloned. Config as Code focuses on automated processes within a project. It does not allow you to configure other areas of Octopus.
 
 With **Infrastructure as Code**, you can provision new Octopus instances and configure existing ones. This covers most of the Octopus surface area from infrastructure, to projects, to the library, to system configuration. You also gain numerous benefits from the Terraform ecosystem, including a consistent approach for configuring infrastructure, managing changes, and detecting drift.
 

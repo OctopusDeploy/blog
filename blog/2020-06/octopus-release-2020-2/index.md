@@ -130,7 +130,7 @@ As usual, the [steps for upgrading Octopus Deploy](https://octopus.com/docs/admi
 
 ## What’s coming in Octopus 2020.3?
 
-Check out our [public roadmap](https://octopus.com/roadmap) to see what’s coming next and register for updates. We’re already working on our configuration as code feature set, and it’s looking good.
+Check out our [public roadmap](https://octopus.com/roadmap) to see what’s coming next and register for updates. We’re already working on our Config as Code feature set, and it’s looking good.
 
 ## Conclusion
 
