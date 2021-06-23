@@ -45,19 +45,7 @@ In this webinar, Octopus Deploy's Solutions Architects, Derek Campbell and Adam 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/UhR2QppsJ08" frameborder="0" allowfullscreen></iframe>
 
-<!--
-## Blogs
 
-In this section, we'll cover our favorite blogs of the last month.
-
-### Octopus 2021 Q2
-
-In this [blog](https://octopus.com/blog/octopus-release-2021-q2), we announce the latest release of Octopus Deploy. We provide updates on the LTS version of Octopus and contains the Octopus Release Tour. You can also check out the webinar, which shows the latest features off.
-
-### Using Hashicorp Vault with Octopus Deploy
-
-If you are using Vault by Hashicorp, then this comprehensive [blog](https://octopus.com/blog/using-hashicorp-vault-with-octopus-deploy) by Mark Harrison is worth a read. In this blog, Mark goes through how to use the steps to retrieve secrets.
--->
 ## Step Templates of the month
 
 Mark Harrison, a Solutions Architect at Octopus Deploy, has been busy creating new secrets retrieval step templates. If you're using [Azure Key Vault](https://azure.microsoft.com/en-au/services/key-vault/) or [Vault for Hashicorp](https://www.vaultproject.io/), you might find the new community step templates useful:
@@ -79,9 +67,7 @@ We're constantly reviewing and improving our docs. These are some of our most re
 - We've updated the Octopus [High Availability docs](https://octopus.com/docs/administration/high-availability) to include detailed guides for On-Premises, AWS, and Azure.
 - Our guidance for using the tools bundled with both the [AWS PowerShell](https://octopus.com/docs/deployments/custom-scripts/aws-cli-scripts) and [Azure PowerShell](https://octopus.com/docs/deployments/azure/running-azure-powershell) built-in Octopus steps has now changed. We now recommend you configure Octopus Deploy to use your versions of the required tools.
 - We've added a section to the Linux Tentacle page about [creating a Tentacle instance without requiring root or sudo privileges](https://octopus.com/docs/infrastructure/deployment-targets/linux/tentacle#rootless-instance-creation).
-<!--
-- There are four new variable filters coming in **2021.2**; [Match](https://octopus.com/docs/projects/variables/variable-filters#match), [StartsWith, EndsWith and Contains](https://octopus.com/docs/projects/variables/variable-filters#startswith-endswith-and-contains).
--->
+
 
 ## Conclusion
 
