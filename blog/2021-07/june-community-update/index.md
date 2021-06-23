@@ -1,6 +1,6 @@
 ---
 title: Octopus Deploy June Community update
-description: See the latest updates from the Octopus Community in June 2021
+description: See the latest updates, content and resources from Octopus in June 2021.
 author: derek.campbell@octopus.com
 visibility: public
 published: 2021-07-01-1400
@@ -13,15 +13,17 @@ tags:
 
 ![Community Image](blogimage-community-youtube-2021.png)
 
-June was a busy month for Octopus Deploy, in this post, I'll share some of the latest content from Octopus Deploy. 
+June was a busy month for Octopus Deploy. In this post, I share some of our latest content and resources I think you'll find useful. 
 
 ## Webinars
 
-We held two webinars in June. You can see the replays for both below. We've also been busy creating a new and [improved Webinar page](https://octopus.com/events) where you can see all of our upcoming webinars and the recordings. 
+We held two webinars in June. You can see the replays for both below. We've also been busy creating a new and improved [Webinar page](https://octopus.com/events) where you can see our upcoming webinars and the recordings. 
 
 ### What's new in Octopus 2020.6 and 2021.1
 
-In this webinar, we shared the new features from our first releases of 2021. 2020.6 is a transition release, as it's the last release of 2020 and the first release of 2021. You can read more about this change in this [blog](https://octopus.com/blog/octopus-release-2021-q1).
+In this webinar, we share the new features from our first two releases of 2021. 
+
+2020.6 is a transition release, as it's the last release of 2020 and the first release of 2021. You can read more about this in our [2021 Q1 release blog](https://octopus.com/blog/octopus-release-2021-q1).
 
 In 2020.6 and 2021.1, we added:
 
@@ -37,9 +39,9 @@ In 2020.6 and 2021.1, we added:
 
 ### Self-hosting Octopus on Linux
 
-Containers are a hot topic. Octopus Cloud has been using Linux containers for over a year, and from 2020.6, using the Linux container is the recommended way to run Octopus in a container.
+Containers are a hot topic. Octopus Cloud has been using Linux containers for over a year, and from 2020.6, it is the recommended way to run Octopus in a container.
 
-In this webinar, Octopus Deploy's Solutions Architects Derek Campbell and Adam Close run the Octopus Linux container locally, then upgrade the container to 2021.1. They explain the concepts involved and deploy the container onto Microsoft's cloud-managed Azure Kubernetes Service (AKS).
+In this webinar, Octopus Deploy's Solutions Architects, Derek Campbell and Adam Close, run the Octopus Linux container locally, then upgrade the container to 2021.1. They explain the concepts involved and deploy the container onto Microsoft's cloud-managed Azure Kubernetes Service (AKS).
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/UhR2QppsJ08" frameborder="0" allowfullscreen></iframe>
 
@@ -58,7 +60,7 @@ If you are using Vault by Hashicorp, then this comprehensive [blog](https://octo
 -->
 ## Step Templates of the month
 
-Mark Harrison, a Solutions Architect in the Octopus Solutions team, has been busy creating new secrets retrieval step templates. If you're using [Azure Key Vault](https://azure.microsoft.com/en-au/services/key-vault/) or [Vault for Hashicorp](https://www.vaultproject.io/), you might find the new Community step templates useful:
+Mark Harrison, a Solutions Architect at Octopus Deploy, has been busy creating new secrets retrieval step templates. If you're using [Azure Key Vault](https://azure.microsoft.com/en-au/services/key-vault/) or [Vault for Hashicorp](https://www.vaultproject.io/), you might find the new community step templates useful:
 
 - [Azure Key Vault - Retrieve Secrets](https://library.octopus.com/step-templates/6f59f8aa-b2db-4f7a-b02d-a72c13d386f0/actiontemplate-azure-key-vault-retrieve-secrets)
 - [HashiCorp Vault - AppRole Get Wrapped Secret ID](https://library.octopus.com/step-templates/76827264-af27-46d0-913a-e093a4f0db48/actiontemplate-hashicorp-vault-approle-get-wrapped-secret-id)
@@ -71,7 +73,7 @@ Mark Harrison, a Solutions Architect in the Octopus Solutions team, has been bus
 
 ## Documentation updates
 
-We're constantly reviewing and improving our docs. These are some of the most recent updates we've made:
+We're constantly reviewing and improving our docs. These are some of our most recent updates:
 
 - The Octopus [upgrade guide](https://octopus.com/docs/administration/upgrading/guide/automate-upgrades) now includes scripts to allow a fully automated process to upgrade an Octopus instance.
 - We've updated the Octopus [High Availability docs](https://octopus.com/docs/administration/high-availability) to include detailed guides for On-Premises, AWS, and Azure.
@@ -83,6 +85,6 @@ We're constantly reviewing and improving our docs. These are some of the most re
 
 ## Conclusion
 
-I hope these resources are helpful. If you want to see something in this blog each month and see any great third-party content about Octopus Deploy, please reach out to me at <derek.campbell@octopus.com>.
+I hope these resources are helpful. If there's any topics you’d like us to cover in our blog, or any great third-party content about Octopus Deploy you think we should include, please reach out to me at <derek.campbell@octopus.com>.
 
 Happy deployments!
