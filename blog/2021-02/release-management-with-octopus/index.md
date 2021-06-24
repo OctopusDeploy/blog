@@ -483,4 +483,4 @@ No matter what, deployments take time.  Even if Octopus Deploy and the target VM
 
 With this new step template, I hope it solves some of the release management issues you have run into in the past.  
 
-Until next time, Happy Deployments!
+Happy deployments!
