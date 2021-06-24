@@ -23,7 +23,7 @@ This post assumes you read the previous posts:
 
 ## Release management and dynamic infrastructure
 
-After reading my first post, a customer asked how to use my step to _redeploy_ a suite of application components, not _promote_ from one environment to another.  I hadn't considered that as a use case when writing that step template,  but I should have.  The customer was rebuilding their test servers periodically.  
+After reading my first post, a customer asked how to use my step to _redeploy_ a suite of application components, not _promote_ from one environment to another.  I hadn't considered that as a use case when writing the step template,  but I should have.  The customer was rebuilding their test servers periodically.  
 
 After some discussion, we landed on these requirements:
 
