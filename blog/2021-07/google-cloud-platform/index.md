@@ -10,10 +10,12 @@ tags:
  - DevOps
 ---
 
-TODO write blog post
-
 Intro
 
 ## Body
 
+Some text.
+
 ## Conclusion
+
+This is the conslusion.
