@@ -71,6 +71,6 @@ We're constantly reviewing and improving our docs. These are some of our most re
 
 ## Conclusion
 
-I hope these resources are helpful. If there's any topics you’d like us to cover in our blog, or any great third-party content about Octopus Deploy you think we should include, please reach out to me at <derek.campbell@octopus.com>.
+I hope these resources are helpful. If there are any topics you’d like us to cover in our blog, or any great third-party content about Octopus Deploy you think we should include, please reach out to me at <derek.campbell@octopus.com>.
 
 Happy deployments!
