@@ -33,7 +33,7 @@ The Run gcloud in a Script step can be used to execute scripts on targets within
 
 To deploy infrastructure to GCP, you can define a Google Cloud account in Octopus.
 
-Octopus manages the GCP credentials used by the Google Cloud steps.
+Octopus manages the GCP credentials used by the Google Cloud steps. This means you don't need to worry about authentication within a deployment process or runbook and run pre-authenticated gcloud scripts.
 
 The Google Cloud account is the JSON key file credentials that can be retrieved from the service account assigned to the instance that is executing the deployment.
 
