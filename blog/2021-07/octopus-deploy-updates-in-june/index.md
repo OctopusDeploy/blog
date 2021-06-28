@@ -35,7 +35,7 @@ In 2020.6 and 2021.1, we added:
 - New and improved Azure App Service step
 - Github Actions for Octopus Deploy
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/NRwFdpvNYyA" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Dm4vOwuo9GI" frameborder="0" allowfullscreen></iframe>
 
 ### Self-hosting Octopus on Linux
 
