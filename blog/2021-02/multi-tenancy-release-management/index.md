@@ -20,7 +20,7 @@ My [previous post](blog/2021-02/release-management-with-octopus/index.md) was a 
 In this post, I cover the multi-tenancy functionality of the new step template, and how you can use it to better manage your multi-tenancy releases.
 
 :::success
-This article assumes you read the [previous article](blog/2021-02/release-management-with-octopus/index.md). It will touch on similar topics, but it isn't a full rehash.
+This post assumes you read the [previous post](blog/2021-02/release-management-with-octopus/index.md). It will touch on similar topics, but it isn't a full rehash.
 :::
 
 ## Sample application
@@ -58,9 +58,9 @@ Here are our sample customers:
 
 Some customers choose a single massive project to handle everything.  They deploy their software in one go, but outage windows are quite large because unchanged components are also redeployed.  
 
-That can lead to the question, "How do I skip steps where the package hasn't changed?".
+This can lead to the question, "How do I skip steps where the package hasn't changed?".
 
-The problem with that approach is that a web deployment rarely "just" pushes out a server package.  Additional steps are needed to configure items such as branding or running integration tests.  
+The problem with this approach is that a web deployment rarely "just" pushes out a server package.  Additional steps are needed to configure items such as branding or running integration tests.  
 
 Each component in Octopus Deploy needs to be assigned to a unique project. A parent project will handle the orchestration. Until now, there hasn't been a step to solve several use cases seen in the real-world:
 
@@ -138,7 +138,7 @@ You can view the final project on the [samples instance](https://samples.octopus
 
 ### Scaffolding
 
-There is some scaffolding to configure for users and lifecycles.  Please see the scaffolding section in the [previous article](blog/2021-02/release-management-with-octopus/index.md#scaffolding).  
+There is some scaffolding to configure for users and lifecycles.  Please see the scaffolding section in the [previous post](blog/2021-02/release-management-with-octopus/index.md#scaffolding).  
 
 After configuring the users and lifecycles, you need to create a project.  When creating the project, remember to select the new lifecycle created above.
 
@@ -190,7 +190,7 @@ Here are the values for each parameter:
 
 #### Create the release and deploy it
 
-After adding and configuring the steps, you create a release.  I will be making many changes to the parent project in this article; you might see `2021.1.0-RCx` for the release numbers.  
+After adding and configuring the steps, you create a release.  I will be making many changes to the parent project in this post; you might see `2021.1.0-RCx` for the release numbers.  
 
 ![](release-orchestration-create-release.png)
 
@@ -326,7 +326,7 @@ Sometimes, specific customers are required to sign-off on a release before going
 
 **All Pets** and **Pet World** require specific approval.  All the other customers only require a single approval, which will occur for the **Internal** tenant.  
 
-To avoid having a deployment sitting in **Production** awaiting manual intervention for days, you can have a **Prod Approval** environment that sits between **Staging** and **Production**.  
+To avoid a deployment sitting in **Production** awaiting manual intervention for days, you can have a **Prod Approval** environment that sits between **Staging** and **Production**.  
 
 :::success
 The **Prod Approval** environment will _only_ be used for parent projects.  Child project's lifecycles will remain the same.
@@ -340,7 +340,7 @@ Add the **Prod Approval** environment.  You will notice this environment in my s
 
 ![add prod approval](release-management-add-prod-approval.png)
 
-Now that the new environment has been added, update the lifecycle used by this release orchestration project.
+Now the new environment has been added, update the lifecycle used by this release orchestration project.
 
 ![Prod approval in the release orchestration lifecycle](release-management-updated-lifecycles.png)
 
