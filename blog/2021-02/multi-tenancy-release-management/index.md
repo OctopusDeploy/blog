@@ -13,7 +13,7 @@ tags:
 
 ![Multi-Tenancy Release Management with Octopus Deploy](blogimage-multi-tenancy-release-management-2021.png)
 
-One of my favorite features in Octopus Deploy is [Multi-Tenancy](https://octopus.com/docs/deployments/patterns/multi-tenant-deployments). Each customer gets their own version of an application, either hosted on unique infrastructure per customer, or hosted by the customer themselves. The multi-tenancy feature in Octopus Deploy solves many problems.  
+One of my favorite features in Octopus Deploy is [multi-tenancy](https://octopus.com/docs/deployments/patterns/multi-tenant-deployments). Each customer gets their own version of an application, either hosted on unique infrastructure per customer, or hosted by the customer themselves. The multi-tenancy feature in Octopus Deploy solves many problems.  
 
 My [previous post](blog/2021-02/release-management-with-octopus/index.md) was a deep dive into the new [Deploy Child Octopus Deploy Project step template](https://library.octopus.com/step-templates/0dac2fe6-91d5-4c05-bdfb-1b97adf1e12e/actiontemplate-deploy-child-octopus-deploy-project) and covered a variety of scenarios, but it didn't include multi-tenancy.  
 
