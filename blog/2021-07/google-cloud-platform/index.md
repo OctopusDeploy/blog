@@ -10,13 +10,15 @@ tags:
  - DevOps
 ---
 
-In line with our [public roadmap](https://octopus.com/company/roadmap), we’re continuously rolling out cloud improvements, and we’re excited to introduce first-class support for Google Cloud Platform (GCP). 
+In line with our [public roadmap](https://octopus.com/company/roadmap), we’re continuously rolling out new cloud and on-premise improvements, and we’re excited to introduce first-class support for Google Cloud Platform (GCP).
 
-This fresh addition means that Octopus now offers native support to the three major cloud providers (AWS, Azure, and now GCP), meeting the evolving needs of our customers, particularly those who have GCP K8s clusters and are running tentacles on GCP VMs. 
+GCP integration is available in Octopus Deploy 2021.2 and newer. Octopus cloud customers are already running this version and on-prem customers can download it now. (INSERT link to the download pag?)
+
+This fresh addition means that Octopus now offers native support to the three major cloud providers (AWS, Azure, and now GCP), meeting the evolving needs of our customers, particularly those who have GCP Kubernetes (K8s) clusters and are running tentacles on GCP VMs. 
 
 This native integration of Octopus with GCP will allow you to:
-* Connect and authenticate with GCP via a dedicated account type.
-* Use gcloud, the GCP command-line tool.
+* Connect and authenticate with GCP via a dedicated account type. This allows you to centralise and secure your GCP authentication and use it in your deployment and runbooks.
+* Use gcloud, the GCP command-line tool, out-of-the-box.
 * Create and tear down GCP infrastructure with Terraform.
 * Store and secure your Docker images within the Google Container Registry (GCR).
 * Deploy, scale and manage containerized applications on GCP with Octopus and Kubernetes.
