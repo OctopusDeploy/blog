@@ -52,7 +52,7 @@ Learn more about setting up [Google Cloud account variables](https://octopus.com
 
 **Running gcloud scripts**
 
-Octopus Deploy can help you run scripts on targets within Google cloud platforms. (add a real-world scenario to help developers understand why this is valuable!!!)
+Octopus Deploy can help you run scripts on targets within Google cloud platforms. (NOTE: add a real-world scenario to help developers understand why this is valuable!!!)
 
 These scripts typically rely on tools being available on the target worker.
 
