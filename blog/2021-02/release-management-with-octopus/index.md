@@ -1,6 +1,6 @@
 ---
-title: Better Release Management with Octopus Deploy
-description: Introducing a new step template to make release management a bit easier.
+title: Better release management with Octopus Deploy
+description: Introducing a new step template to make release management easier.
 author: bob.walker@octopus.com
 visibility: public
 published: 2021-02-15
@@ -12,11 +12,11 @@ tags:
 
 ![Better Release Management with Octopus Deploy](blogimage-deploy-release-step.png)
 
-We're often asked by customers if they should have one Octopus Deploy project per application or one Octopus Deploy project per component (i.e., WebUI, API, Database, etc.)? I've been involved with projects where it's more common to deploy one or two pieces, perhaps to fix a small bug, than it is to deploy everything all at once.
+We're often asked by customers if they should have one Octopus Deploy project per application or one Octopus Deploy project per component (i.e., WebUI, API, Database, etc.). For some projects, it makes sense to deploy one or two pieces, perhaps to fix a small bug, rather than deploying everything at once.
 
 Having an Octopus Deploy project per component solves many problems; the trade-off is, deploying the entire application stack is more complicated.
 
-In this post, I walk through how to use a new step template [Deploy Child Octopus Deploy Project](https://library.octopus.com/step-templates/0dac2fe6-91d5-4c05-bdfb-1b97adf1e12e/actiontemplate-deploy-child-octopus-deploy-project) to make release management in Octopus Deploy much easier.
+In this post, I walk through how to use a new step template [Deploy Child Octopus Deploy Project](https://library.octopus.com/step-templates/0dac2fe6-91d5-4c05-bdfb-1b97adf1e12e/actiontemplate-deploy-child-octopus-deploy-project) to make release management in Octopus Deploy easier.
 
 ## Why a project per component
 
