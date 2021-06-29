@@ -2,7 +2,7 @@
 title: Announcing Octopus support for Google Cloud
 description: TODO description
 author: andreia.virmond@octopus.com
-visibility: public
+visibility: private
 published: 2022-07-21-1400
 tags:
  - DevOps
