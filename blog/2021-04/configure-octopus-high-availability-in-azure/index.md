@@ -15,7 +15,7 @@ tags:
 
 We recently updated our [high availability](https://octopus.com/docs/administration/high-availability) documentation to provide more information and options for hosting Octopus High Availability.
 
-In this blog, I set up Octopus High Availability on Azure, evaluate different options you can use, and take you through the different components of a highly available Octopus Deploy setup on on [Microsoft Azure](https://azure.microsoft.com/en-us/).
+In this blog, I set up Octopus High Availability on Azure, evaluate different options you can use, and take you through the different components of a highly available Octopus Deploy setup on [Microsoft Azure](https://azure.microsoft.com/en-us/).
 
 !toc
 
