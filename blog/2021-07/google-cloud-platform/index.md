@@ -44,7 +44,7 @@ Learn more about [creating a Google Cloud account](https://octopus.com/docs/infr
 
 **Google Cloud account variable**
 
-Once you have created a Google Cloud account, Google Cloud accounts can be accessed in a project through a project [variable](https://octopus.com/docs/projects/variables) of the type Google Cloud account. 
+Once you have created Google Cloud accounts, they can be accessed in a project through a project [variable](https://octopus.com/docs/projects/variables) of the type Google Cloud account. 
 
 ![Octopus Google Cloud account](google-cloud-account-variable.png "width=500")
 
@@ -68,8 +68,8 @@ To execute a script in the context of a Google cloud platform instance, Octopus 
 
 ## **Conclusion**
 
-We hope you’re as excited as we’re with this newly added ability to deploy infrastructure to GCP. 
+We hope you’ll enjoy the ability to deploy infrastructure to GCP. 
 
 Give it a try and let us know what you think! If you have any questions or comments, we’d love to hear them. Please enter them below or join the conversation in the [Octopus community Slack](https://octopususergroup.slack.com/join/shared_invite/zt-eowov3at-4OTwkT75Uqq7WuzvBskuFg#/).
 
-Happy deployments!!! 
+Happy deployments!
