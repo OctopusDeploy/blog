@@ -2,7 +2,7 @@
 title: Octopus Deploy updates in June
 description: See the latest updates, content and resources from Octopus in June 2021.
 author: derek.campbell@octopus.com
-visibility: public
+visibility: private
 published: 2021-07-01-1400
 metaImage: blogimage-community-youtube-2021.png
 bannerImage: blogimage-community-youtube-2021.png
