@@ -4,17 +4,19 @@ description: Using Octopus Execution Containers and Flyway to deploy database ch
 author: bob.walker@octopus.com
 visibility: public
 published: 2021-06-30-1400
-metaImage: 
-bannerImage: 
+metaImage: blogimage-database-deployments-flyway-octopus-execution-containers.png
+bannerImage: blogimage-database-deployments-flyway-octopus-execution-containers.png
 tags:
  - Engineering
 ---
 
+![flyway logo inside execution container in front of laptop](blogimage-database-deployments-flyway-octopus-execution-containers.png)
+
 I recently used [Flyway](https://flywaydb.org) and Octopus Deploy to deploy database changes. I was impressed with Flyway, except that I had to either bundle the tool and the Java Runtime Engine (JRE) or pre-install them on a worker.  
 
-In the **2020.2** release of Octopus Deploy, we introduced the [Execution Containers](https://octopus.com/blog/execution-containers) feature.  Execution Containers use Docker Images to manage dependencies.  
+In the **2020.2** release of Octopus Deploy, we introduced the [Execution Containers](https://octopus.com/blog/execution-containers) feature.  Execution containers use Docker Images to manage dependencies.  
 
-This post walks through how to configure a database deployment in Octopus Deploy using Execution Containers and Flyway.
+This post walks through how to configure a database deployment in Octopus Deploy using execution containers and Flyway.
 
 ## Execution container basics
 
@@ -22,14 +24,14 @@ I prefer not having to include all the binaries to run Flyway in my package, as 
 
 As a developer, I'm also responsible for upgrading the binaries and including them in my Git repo. I also avoid pre-installing tools on the worker as this means everyone is on the same version, and an upgrade could break everyone.  
 
-Execution containers solve both problems by using Docker images to manage dependencies.  The Docker image has all the necessary tooling (JRE, Flyway, PowerShell, etc.) installed.  You specify the Docker image and the tag to use in the deployment process.  When a deployment runs using Execution Containers, Calamari executes a Docker run command.  Also, Calamari automatically mounts folders to the container.  
+Execution containers solve both problems by using Docker images to manage dependencies.  The Docker image has all the necessary tooling (JRE, Flyway, PowerShell, etc.) installed.  You specify the Docker image and the tag to use in the deployment process.  When a deployment runs using execution containers, Calamari executes a Docker run command.  Also, Calamari automatically mounts folders to the container.  
 
 The task log shows a command similar to this:
 ```
 docker run --rm  --env TentacleHome=/home/Octopus  -w /home/Octopus/Work/20210329204922-325128-24   -v /home/Octopus/Work/20210329204922-325128-24:/home/Octopus/Work/20210329204922-325128-24  -v /home/Octopus:/home/Octopus  index.docker.io/octopuslabs/flyway-workertools:latest 
 ```
 
-If you have packages, they're automatically extracted into the `/home/Octopus/Work/[DATETIME]` folder.  This all happens behind the scenes. To change from running directly on the worker to running on an Execution Container, you simply click a radio button and provide the package name. Everything else is the same.
+If you have packages, they're automatically extracted into the `/home/Octopus/Work/[DATETIME]` folder.  This happens behind the scenes. To change from running directly on the worker to running on an execution container, you simply click a radio button and provide the package name. Everything else is the same.
 
 ## The Flyway Execution Container
 
@@ -74,7 +76,7 @@ I did this to ensure any parameter starting with a `-` is a [command line switch
 
 ## Packaging migration scripts
 
-In our docs, it says you need to build your packages. If you only have SQL files, however, there isn't anything to build.  You just need to package the folder on your build server and push it to Octopus.
+Our docs instruct you to build your packages. If you only have SQL files, however, there isn't anything to build.  You just need to package the folder on your build server and push it to Octopus.
 
 Consider this example:
 ![sample folder to package](folder-to-package.png)
@@ -135,7 +137,7 @@ The notification steps can be email, Slack, Microsoft Teams, or any tool of your
 
 ### Using the Flyway Database Migrations step template
 
-Generating the delta report and deploying the database changes will be accomplished by the Flyway Database Migrations step template.  When you add that into your process, make the following changes:
+Generating the delta report and deploying the database changes is accomplished using the Flyway Database Migrations step template. When you add that into your process, make the following changes:
 
 1. Update the name of the step.
 1. Change it to run on a worker.
@@ -164,7 +166,7 @@ If you're running this on the `octopuslabs/flyway-workertools` execution contain
 
 The most common commands used in Octopus are:
 
-- `info`: this will generate a list of all the scripts found and their state in relation to the database being deployed.  The info command is ideal when using the community edition, and you need to list out all the scripts that will be run on the database.
+- `info`: this will generate a list of all the scripts found and their state in relation to the database being deployed.  The info command is ideal when using the community edition, and you need to list out all the scripts that will run on the database.
 
 ![using info to list pending scripts](community-info-list-pending-files.png)
 
@@ -195,13 +197,13 @@ Not all commands support all command line parameters.  The step template is smar
 
 ### Generate Delta Script step
 
-The step to generate the delta script for the DBAs to approve has the following parameters set.  I have a license key, so I'm using the `migrate dry run` command.  If I did not have a license key, I'd select `info` as the command.
+The step to generate the delta script for the DBAs to approve has the following parameters set.  I have a license key, so I'm using the `migrate dry run` command.  If I didn't have a license key, I'd select `info` as the command.
 
 ![generate delta report step](generate-delta-report.png)
 
 ### Deploy Database Changes step
 
-The step to deploy the database changes from the package is virtually identical to the generate delta script step.  The only difference is using the command `migrate` instead of `migrate dry run`.
+The step to deploy the database changes from the package is virtually identical to the **generate delta script** step.  The only difference is using the command `migrate` instead of `migrate dry run`.
 
 ![deploy database changes step](deploy-database-changes.png)
 
