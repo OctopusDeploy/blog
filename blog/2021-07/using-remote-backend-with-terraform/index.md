@@ -1,5 +1,5 @@
 ---
-title: Using remote back-end with Terraform in Octopus Deploy
+title: Using a remote back-end with Terraform in Octopus Deploy
 description: Learn how to set up a remote back-end to use with Terraform in Octopus Deploy.
 author: egor.pavlikhin@octopus.com
 visibility: public
@@ -14,7 +14,7 @@ tags:
 
 ![Using remote backend with Terraform in Octopus Deploy](blogimage-create-workers-on-a-kubernetes-cluster-2021.png)
 
-In this post, we'll use a GitHub repository as the source of Terraform templates and store workspace states in Terraform's own cloud offering.
+In this post, we use a GitHub repository as the source of Terraform templates and store workspace states in Terraform's own cloud offering.
 
 ## Creating a new workspace in Terraform Cloud
 
@@ -43,7 +43,7 @@ There are four files in the repository. You can structure these files differentl
 
 Remember, only commits with tags will be available in the feed, so make sure to add a tag to your repository.
 
-1. **main.tf** - Here we specify global Terraform options, such as back-end options and the workspace we want to use.
+**1.** **main.tf** - Here we specify global Terraform options, such as back-end options and the workspace we want to use.
 
 ```
 terraform {
@@ -70,7 +70,7 @@ provider "aws" {
 }
 ```
 
-2. **buckets.tf** - For this example we'll create an empty S3 bucket.
+**2.** **buckets.tf** - For this example we'll create an empty S3 bucket.
 
 ```
 variable "bucket_name" {
@@ -94,7 +94,7 @@ resource "aws_s3_bucket" "mybucket" {
 }
 ```
 
-3. **terraform.auto.tfvars** - Here we store variables used in other files. Octopus will perform [variable substitution](https://octopus.com/docs/projects/variables/variable-substitutions) before using the file. 
+**3.** **terraform.auto.tfvars** - Here we store variables used in other files. Octopus will perform [variable substitution](https://octopus.com/docs/projects/variables/variable-substitutions) before using the file. 
 
 Note that this file must have the extension `.auto.tfvars` otherwise it will not be used by the remote back-end.
 
@@ -104,7 +104,7 @@ aws_access_key = "#{AWS Account.AccessKey}"
 aws_secret_key = "#{AWS Account.SecretKey}"
 ```
 
-4. **backend.tfvars** - This file is supplied to the `-backend-config` parameter of the `terraform init` command. This allows us to store sensitive variables securely instead of having these values in the repository directly.
+**4.** **backend.tfvars** - This file is supplied to the `-backend-config` parameter of the `terraform init` command. This allows us to store sensitive variables securely instead of having these values in the repository directly.
 
 ```
 token = "#{TerrraformCloudRemoteToken}"
@@ -173,7 +173,7 @@ Click **RUN** to run the runbook in the environment of your choice.
 
 ![Successful Runbook Run](octopus-successful-run.png)
 
-You can find the url for your Terraform Cloud run in the logs of the Terraform Step.
+You can find the URL for your Terraform Cloud run in the logs of the Terraform Step.
 
 ![Terraform Cloud URL](terraform-cloud-url.png)
 
@@ -181,11 +181,11 @@ You have now completed your deployment using a shared remote back-end. You can c
 
 ## Note on Terraform versions
 
-Be careful when running Terraform commands locally and via Octopus from the same workspace, as different versions of Terraform have incompatible state formats. If you use Terraform Cloud you can specify the exact version of Terraform you want to use via **Settings** > **General**.
+Be careful when running Terraform commands locally and via Octopus from the same workspace, as different versions of Terraform have incompatible state formats. If you use Terraform Cloud you can specify the exact version of Terraform you want to use via **{{Settings > General}}**.
 
 > The version of Terraform to use for this workspace. Upon creating this workspace, the latest version was selected and will be used until it is changed manually. It will not upgrade automatically.
 
-You can use [tfenv tool](https://github.com/tfutils/tfenv) to manage multiple versions of Terraform.
+You can use the [tfenv tool](https://github.com/tfutils/tfenv) to manage multiple versions of Terraform.
 
 You can also limit CLI versions that can be used with the workspace by specifying `required_version`.
 
