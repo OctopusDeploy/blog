@@ -10,7 +10,7 @@ tags:
  - Targets
 ---
 
-TODO: Add blog image.
+<Add blog image>
 
 I'm happy to announce that we're introducing simpler authentication for Octopus Workers running inside Kubernetes clusters, using the Kubernetes Pod Service Account's credentials. In this blog post, I'll introduce the new support and show you how to get started to take advantage of this update.
 
