@@ -24,6 +24,7 @@ Octopus Cloud
 PowerShell
 Reporting
 Runbooks
+Step Templates
 Testing
 Trust and Security
 Variables

@@ -1,6 +1,6 @@
 ---
-title: "Configuration as Code: What is it and how is it beneficial?"
-description: Learn about the benefits of Configuration as Code and some of the considerations to understand when implementing Configuration as Code.
+title: "Config as Code: What is it and how is it beneficial?"
+description: Learn about the benefits of Config as Code and some of the considerations to understand when implementing Config as Code.
 author: adbertram@gmail.com
 visibility: public
 published: 2020-11-02
@@ -11,17 +11,17 @@ tags:
  - Config as Code
 ---
 
-![Configuration as Code: What is it and how is it beneficial?](blogimage-config-as-code-explanation_2020.png)
+![Config as Code: What is it and how is it beneficial?](blogimage-config-as-code-explanation_2020.png)
 
 Managing application configuration settings is becoming an increasingly important aspect of modern application development. Typically, configurations are stored with their associated application code repositories and any changes necessitate a new version of the code to be deployed. This is true, even if only a single configuration setting is changed!
 
-Configuration as Code (CaC) treats your application settings as first-class citizens. Often, this implies that the configurations are stored in their own repository and managed in a different process from the primary codebase.
+Config as Code (CaC) treats your application settings as first-class citizens. Often, this implies that the configurations are stored in their own repository and managed in a different process from the primary codebase.
 
-In this article, we explore what exactly Configuration as Code means and what benefits are derived by promoting configurations to first-class citizens in the DevOps process.
+In this article, we explore what exactly Config as Code means and what benefits are derived by promoting configurations to first-class citizens in the DevOps process.
 
-## Benefits of Configuration as Code
+## Benefits of Config as Code
 
-Configuration as Code, as generally outlined above, is the versioned migration of configurations between different environments. Other than adding complexity to existing build and deployment processes, what does this approach gain an organization?
+Config as Code, as generally outlined above, is the versioned migration of configurations between different environments. Other than adding complexity to existing build and deployment processes, what does this approach gain an organization?
 
 - **Security**: User access separation promotes least-privilege permissions and higher levels of access auditability.
 - **Traceability**: Using a separate version control repository, specific to configurations, makes it easier to trace changes and updates.
@@ -29,17 +29,17 @@ Configuration as Code, as generally outlined above, is the versioned migration o
 
 As you can see, there is a myriad of benefits associated with moving configuration management into its own unique process. Though complexity is introduced, and some setup and configuration is needed to remove configuration from within a codebase, the benefits in the long run, are well worth the effort.
 
-Taking the time to plan a Configuration as Code approach that ensures the configuration is versioned, accessible to only those who need it, secrets are encrypted, and proper approval gates are in place will ensure a successful and managed configuration deployment process.
+Taking the time to plan a Config as Code approach that ensures the configuration is versioned, accessible to only those who need it, secrets are encrypted, and proper approval gates are in place will ensure a successful and managed configuration deployment process.
 
-## Infrastructure as Code vs. Configuration as Code
+## Infrastructure as Code vs. Config as Code
 
-Infrastructure as Code (IaC) concerns itself with the deployment of the underlying infrastructure necessary to support an application’s environment. This can lead to confusion as it looks similar to managing configurations. Configuration as Code is about managing the specific application configuration settings themselves, which is separated from your infrastructure code and managed in its own unique process.
+Infrastructure as Code (IaC) concerns itself with the deployment of the underlying infrastructure necessary to support an application’s environment. This can lead to confusion as it looks similar to managing configurations. Config as Code is about managing the specific application configuration settings themselves, which is separated from your infrastructure code and managed in its own unique process.
 
-That is not to say that both Infrastructure as Code and Configuration as Code do not complement each other and are often used hand in hand. For example, certain configurations can, and should, be managed in the configuration process that will later be consumed by the infrastructure processes. By using each approach in this way, an organization can quickly get a handle on complex configurations and how they are managed.
+That is not to say that both Infrastructure as Code and Config as Code do not complement each other and are often used hand in hand. For example, certain configurations can, and should, be managed in the configuration process that will later be consumed by the infrastructure processes. By using each approach in this way, an organization can quickly get a handle on complex configurations and how they are managed.
 
-## Practical use of configuration as code
+## Practical use of Config as Code
 
-What does using Configuration as Code in practice actually imply? There are a number of ways to implement this approach in practice, and not all of them make sense for every organization. Read how the broad strokes outlined below may fit your unique needs.
+What does using Config as Code in practice actually imply? There are a number of ways to implement this approach in practice, and not all of them make sense for every organization. Read how the broad strokes outlined below may fit your unique needs.
 
 - Using unique configuration source control repositories.
 - Developing a tailored build and deployment process.
@@ -71,13 +71,13 @@ Perhaps changing an API key or endpoint URI will need a different team’s input
 
 ### Secrets management within configurations
 
-Most configurations will include secrets necessary to access databases, key stores, or file locations that should not be widely shared. With configurations that live solely in a flat file stored next to application code, it can be difficult to secure those secrets to only those who should have access. With Configuration as Code, you can separate these protected secrets to encrypted values that are subject to different approval and verification processes. This increases the security of your applications and greatly decreases the chance of code or infrastructure breaches.
+Most configurations will include secrets necessary to access databases, key stores, or file locations that should not be widely shared. With configurations that live solely in a flat file stored next to application code, it can be difficult to secure those secrets to only those who should have access. With Config as Code, you can separate these protected secrets to encrypted values that are subject to different approval and verification processes. This increases the security of your applications and greatly decreases the chance of code or infrastructure breaches.
 
 ## Conclusion
 
-Though there are many different ways to integrate DevOps and all of its associated processes into your environment, Configuration as Code makes a great starting point to work towards a more managed and controlled application environment.
+Though there are many different ways to integrate DevOps and all of its associated processes into your environment, Config as Code makes a great starting point to work towards a more managed and controlled application environment.
 
-The gain in security, auditibility, manageability, and control afforded to organizations integrating Configuration as Code into their workflows make managing complex configurations easier and more secure than with the typical approach to bundling configuration within an application’s codebase.
+The gain in security, auditibility, manageability, and control afforded to organizations integrating Config as Code into their workflows make managing complex configurations easier and more secure than with the typical approach to bundling configuration within an application’s codebase.
 
 ---
 

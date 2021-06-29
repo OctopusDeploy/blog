@@ -141,7 +141,7 @@ Our deployment project will make use of the **Deploy an Azure App Service** step
 
 Call the step `Deploy Web App`. We'll reference this step name when creating the channel in the next section.
 
-## The create branch infrastructure runbook
+## The Create Branch Infrastructure runbook
 
 We'll start by creating the runbook that builds all the resources, both in Octopus and in Azure, to deploy a feature branch.
 
@@ -644,16 +644,10 @@ The Terraform apply and destroy steps, in conjunction with the Octopus Terraform
 
 With some custom scripting to synchronize Octopus with Git branches and scheduled triggers or direct triggers from a hosted platform like GitHub, we can ensure Octopus reflects the feature branches being developed in our codebase.
 
-## Register for the webinar
+## Watch the webinar
 
-On the 19th, 20th, and 24th of May, we're running the webinar: Accelerating Azure DevOps Pipelines and Azure PaaS with Octopus Deploy.
+<iframe width="560" height="315" src="https://www.youtube.com/embed/NRwFdpvNYyA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Join Derek Campbell, Senior Solutions Architect at Octopus Deploy, and Gregor Suttie, an Azure MVP and Azure Architect at Intercept, to learn how Azure DevOps, Azure, and Octopus are an excellent fit for your CI/CD pipelines and Platform-as-a-Service applications.
-
-- US - Thursday May 20th, 12pm PT / 3pm ET: [Register now](https://octopus.zoom.us/webinar/register/4716183971335/WN_V60nspCkQSeZv4gPYC_hQg)
-
-- UK/Europe - Wednesday May 19th, 3pm CET: [Register now](https://octopus.zoom.us/webinar/register/1316183969597/WN_LNjcE6lzQtmDXWIKunlKwQ)
-
-- APAC - Monday May 24th, 1pm SGT: [Register now](https://octopus.zoom.us/webinar/register/8116197742605/WN_bhAzKNdyQeWPzG2_RCdT5g)
+We host webinars regularly. See the [webinars page](https://octopus.com/events) for past webinars and details about upcoming webinars. 
 
 Happy deployments!

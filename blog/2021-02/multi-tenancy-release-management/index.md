@@ -413,4 +413,6 @@ This article covered some of the multi-tenancy scenarios for the [Deploy Child O
 
 Octopus Deploy's multi-tenancy feature was designed to make life easier for companies who install software on distinct infrastructure.  I see and hear about all the various quirks customers run into with that model.  The more customizations are offered, the harder it is to manage deployments.  Those quirks were a primary driver in writing this step template.  A person shouldn't need to consult a spreadsheet to know which releases to deploy to which customers.  Something like that introduces the potential for errors because of a manual process.  That is the goal of this step template, to remove as much psychological weight from multi-tenant deployments as possible.
 
-I hope you find this step template useful for your multi-tenancy projects.  Until next time, Happy Deployments!
+I hope you find this step template useful for your multi-tenancy projects.
+
+Happy deployments!

@@ -218,7 +218,7 @@ Back: [Book Index](#book-index) / Next: [Honorable Mentions](#hon_mentions)
 
 The first time I attended the London Continuous Delivery (CD) Meetup group, shortly after this book was published, half the attendees were holding a copy. They called it “The Bible.” While the DevOps movement had already started by 2011, I don’t think I’d heard of it yet. Our community had something very similar called CD instead.
 
-This book formalized many of the ideas about deployment pipelines that have since become ubiquitous. It goes into some technical detail about configuration as code, build and deployment automation, and effective testing strategies.
+This book formalized many of the ideas about deployment pipelines that have since become ubiquitous. It goes into some technical detail about Config as Code, build and deployment automation, and effective testing strategies.
 
 Most folks don’t tend to read this book end to end. (It’s pretty dry and technical.) Instead, it’s best used as a reference book. If you intend to adopt new technical practices, it’s well worth reading the associated chapter before you get started to help you understand how to approach it.
 
