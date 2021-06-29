@@ -1,9 +1,9 @@
 ---
-title: Deploying A Ruby web application
+title: Deploying a Ruby web application
 description: Learn how to deploy a Ruby web application using Octopus Deploy.
 author: shawn.sesna@octopus.com
 visibility: private
-published: 2022-05-03-1400
+published: 2021-07-014-1400
 metaImage: 
 bannerImage: 
 tags:
@@ -11,22 +11,30 @@ tags:
  - 
 ---
 
-Twitter, AirBNB, Shopify, and GitHub are big names in the tech industry.  Along with being instantly recognizable, they all have something else in common; they are all written in the Ruby language.  
+Twitter, AirBNB, Shopify, and GitHub are big names in the tech industry.  Along with being instantly recognizable, they all have something else in common; they're all written in the Ruby language.  
 
-In this post, I will demonstrate how to deploy a web application written in Ruby using Octopus deploy, including database migrations.
+In this post, I demonstrate how to deploy a web application written in Ruby using Octopus Deploy, including database migrations.
 
 ## Sample application
-For this post, I selected the [Veggie Tracker](https://github.com/morinoko/veggie_tracker) example application.  This sample included both the web application as well as code for creating database and performing database migrations.  With some modifications to the project, I was able to get this application running fairly quickly in my local environment (see [here](https://github.com/OctopusSamples/VeggieTracker) for the modified version).  
+
+For this post, I selected the [Veggie Tracker](https://github.com/morinoko/veggie_tracker) example application.  
+
+This sample included the web application and the code for creating a database and performing database migrations.  With some modifications to the project, I was able to get this application running fairly quickly in my local environment (see [here](https://github.com/OctopusSamples/VeggieTracker) for the modified version).
 
 ### Ruby Application servers and Web servers
-With Ruby, it is important to understand the distinction between what is an `App Server` and what is a `Web Server`.  An `App Server` runs the Ruby application, and in most cases, will work without having a `Web Server` in front of it.  The disadvantage to this approach is that the `App Server` can only serve up the application it's running versus being able to handle multiple applications like a `Web Server`.  In addition, `App Servers` typically don't handle things like request compression or SSL/TLS.  For this reason, the most typical configuration for Ruby web applications is to have something like an Apache or NGINX `Web Server` in front of of the `App Server`.
+With Ruby, it's important to understand the distinction between what is an **App Server** and what is a **Web Server**.  
+
+An **App Server** runs the Ruby application, and in most cases, will work without having a **Web Server** in front of it.  The disadvantage to this approach is that the **App Server** can only serve up the application it's running, versus being able to handle multiple applications like a **Web Server**.  In addition, **App Servers** typically don't handle things like request compression or SSL/TLS.  For this reason, the most typical configuration for Ruby web applications is to have something like an Apache or NGINX **Web Server** in front of the **App Server**.
 
 ### Selecting an App Server
-When developing in the Ruby language, you have a multitude of application servers to choose from; Unicorn, Thin, Puma, and Passenger just to name a few .  The original application server for the Veggie Tracker application was called `Shotgun`.  The README of the project stated that you simply needed to run `shotgun` from the commandline to get the application running on your local machine.  This would have worked, had I been developing on Linux :)  
-Though my server is Linux, my development machine is Windows, so I needed something that worked for both Windows and Linux.  After a bit of research, I found that the `Puma` application server is both Linux and Windows compatible.  Switching to `Puma` was as simple as removing Shotgun from the Gemfile and adding Puma.
+When developing in the Ruby language, you have a multitude of application servers to choose from, e.g. Unicorn, Thin, Puma, Passenger etc.  
+
+The original application server for the Veggie Tracker application was called `Shotgun`.  The README of the project stated that you simply needed to run `Shotgun` from the command-line to get the application running on your local machine.  This would have worked, had I been developing on Linux.
+  
+Though my server is Linux, my development machine is Windows, so I needed something that worked for both Windows and Linux. I found that the `Puma` application server is both Linux and Windows compatible.  Switching to `Puma` was as simple as removing Shotgun from the Gemfile and adding Puma.
 
 #### Configuring Puma for use with sockets
-For this post, I wanted to Puma to use sockets instead of another port on the server.  To configure Puma to use sockets, you need to creat a `puma.rb` file in the `config` subfolder with the following contents:
+For this post, I wanted Puma to use sockets instead of another port on the server.  To configure Puma to use sockets, you need to create a `puma.rb` file in the `config` subfolder with the following contents:
 
 ```Ruby
 # Change to match your CPU core count
@@ -64,7 +72,7 @@ The above code is configured to work with the Linux NGINX server that it was goi
 :::
 
 #### Configuring database.yml
-The original application was configured to use `SqlLite` as the database, however, could easily be modified to use something like `Postgres`.  The two modifications that were necessary to do this were to add the reference to the Postgres gem in the `Gemfile`:
+The original application was configured to use `SqlLite` as the database, however, it could easily be modified to use something like `Postgres`.  The two modifications that were necessary to do this were to add the reference to the Postgres gem in the `Gemfile`:
 
 ```Ruby
 gem 'pg'
@@ -107,19 +115,21 @@ staging:
 production:
   <<: *defaults
 ```
-The `database.yml` file allows you to override the connection properties based on the environment that has been defined.  For this post, however, I've configured the `database.yml` file to inherit everything from the `defaults` as I will be using the [Structured configuration variables](https://octopus.com/docs/projects/steps/configuration-features/structured-configuration-variables-feature) feature in Octopus Deploy.
+The `database.yml` file allows you to override the connection properties based on the environment that has been defined.  For this post, however, I configured the `database.yml` file to inherit everything from the `defaults` as I will be using the [Structured configuration variables](https://octopus.com/docs/projects/steps/configuration-features/structured-configuration-variables-feature) feature in Octopus Deploy.
 
 ## Building your Ruby application
 As Ruby is a scripting language, there is no need to "build" the application.  However, there are distinct advantages to using a build server with a Ruby application:
-- Gather all dependent gems for application execution
+
+- Gather all dependent gems for application execution.
 - Use the build server Octopus Deploy plugin or integration for ease of integration, such as:
-  - Packing the application
-  - Pushing the package to the Octopus Deploy server or third-party package solution (Nexus, Artifactory, etc.)
-  - Pushing build information to Octopus Deploy
-  - Creating the release
-  - Deploying and or promoting releases
+  - Packing the application.
+  - Pushing the package to the Octopus Deploy server or third-party package solution (Nexus, Artifactory, etc.).
+  - Pushing build information to Octopus Deploy.
+  - Creating the release.
+  - Deploying and or promoting releases.
 
 For this post, I chose to use GitHub Actions as the build server.  Below is the YAML which does the following:
+
 - Configures GitHub Actions to use Ruby.
 - Sets the package version number.
 - Installs dependent Gems, placing the Gems in the `vendor` subfolder. This allows the application to contain all the dependencies it needs without having to install Gems directly on the server.
@@ -204,29 +214,30 @@ jobs:
 With our build complete, we can now focus on creating the deployment in Octopus Deploy.
 
 ## Deploying VeggieTracker with Octopus Deploy
-This post assumes you are already familair with how to create Projects with Octopus Deploy.  The deployment process for the Veggie Tracker application will consist of a single step with multiple components, more on that later.
+This post assumes you're already familiar with how to create Projects with Octopus Deploy.  The deployment process for the Veggie Tracker application will consist of a single step with multiple components, more on that later.
 
 ### Variables
 Before we define our process, let's create some variables that will be used in our Deployment:
-- Project.NGINX.Port - Port NGINX will listen on
-- defaults:database - Name of the database for the VeggieTracker application
-- defaults:host - Hostname or IP address of the PostgreSQL server
-- defaults:password - Password for the user account for PostgreSQL
-- defaults:port - Port number the PostgreSQL server is listening on
-- defaults:username - Username for the account on the PostgreSQL server
+
+- `Project.NGINX.Port` - Port NGINX will listen on
+- `defaults:database` - Name of the database for the VeggieTracker application
+- `defaults:host` - Hostname or IP address of the PostgreSQL server
+- `defaults:password` - Password for the user account for PostgreSQL
+- `defaults:port` - Port number the PostgreSQL server is listening on
+- `defaults:username` - Username for the account on the PostgreSQL server
 
 ![](octopus-project-variables.png)
 
 :::hint
-The variables that begin with `defaults:` are the ones that will be used with the Structured configuration variables feature
+The variables that begin with `defaults:` are the ones that will be used with the **Structured Configuration Variables** feature.
 :::
 
 ### Process
-Add a **Deploy to NGINX** step
+Add a **Deploy to NGINX** step.
 
 ![](octopus-add-nginx.png)
 
-Enable the **Custom Deployment Scripts** and **Structured Configuration Variables** features by clicking on the **CONFIGURE FEATURES** button
+Enable the **Custom Deployment Scripts** and **Structured Configuration Variables** features by clicking the **CONFIGURE FEATURES** button.
 
 ![](octopus-nginx-configure-features.png)
 
@@ -235,10 +246,10 @@ Under the **Package Details** section, choose the VeggieTracker.Web package.
 
 
 #### Custom Deployment Scripts
-There are two scripts that we are going to run as part of the deployment process
+There are two scripts that we are going to run as part of the deployment process.
 
 ##### Deployment Scripts
-A popular method for performing database upates for Ruby applications is to define the database updates in code.  The Veggie Tracker application includes a folder called db which defines the database structure using code.  To perform both the database creation and migrations, place the following code in the **Deployment script** window (be sure to select **Bash** as the language to use)
+A popular method for performing database updates for Ruby applications is to define the database updates in code.  The Veggie Tracker application includes a folder called db which defines the database structure using code.  To perform both the database creation and migrations, place the following code in the **Deployment script** window (be sure to select **Bash** as the language to use).
 
 ```bash
 # Ensure the bin files are executable
@@ -261,9 +272,9 @@ ${ROOTDIR}/vendor/bin/rake db:create
 ${ROOTDIR}/vendor/bin/rake db:migrate
 ```
 :::hint
-You'll note that this script installs some Ruby Gems.  This was required because GitHub Actions uses an Ubuntu based container to perform the build.  The platform for this is identified as `x86_64-linux` whereas an Ubuntu VM is identied as `x86_64-linux-gnu`.  Though similar, the compiler makes different binaries which are incompatible.  
+You'll note that this script installs some Ruby Gems.  This was required because GitHub Actions uses an Ubuntu based container to perform the build.  The platform for this is identified as `x86_64-linux` whereas an Ubuntu VM is identified as `x86_64-linux-gnu`.  Though similar, the compiler makes different binaries which are incompatible.  
 
-The Gems this affects are identifed in the build log with `Installing X with native extensions`, those will need to be built again on the target platform.
+The Gems this affects are identified in the build log with `Installing X with native extensions`, those will need to be built again on the target platform.
 :::
 
 ##### Post-deployment script
@@ -365,4 +376,4 @@ Opening our browser, we can see the deployed application in action!
 ## Conclusion
 In this post I demonstrated how to deploy a web application written in Ruby to an NGINX web server including the database migration.  
 
-Happy Deployments!
+Happy deployments!
