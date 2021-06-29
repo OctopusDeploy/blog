@@ -36,7 +36,7 @@ To follow along with the exercises in the book, you need:
 
 - A Kubernetes cluster. The book uses a Kubernetes cluster hosted in Google Cloud, but beyond initial administration tasks, which rely on the administrative credentials exposed by a Google Cloud Kubernetes cluster, any Kubernetes cluster can be used.
 - Access to administrative credentials. 
-- An instance of Octopus. You can sign up for an [Octopus Cloud instance](https://octopus.com/start). A free instance gives you up to 10 targets, which is enough to follow most of the examples in the book.
+- An instance of Octopus. You can sign up for an [Octopus Cloud instance](https://octopus.com/start/cloud). A free instance gives you up to 10 targets, which is enough to follow most of the examples in the book.
 
 The ebook assumes familiarity with concepts like pods, deployments, services, service accounts, secrets, configmaps, etc. However, all the Kubernetes resources created in the book provide detailed instructions on the values to enter into Octopus, so it is possible to get a sense of the deployment processes without a deep understanding of every setting. 
 
