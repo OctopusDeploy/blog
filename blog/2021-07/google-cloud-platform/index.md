@@ -21,7 +21,7 @@ This native integration of Octopus with GCP will allow you to:
 * Store and secure your Docker images within the Google Container Registry (GCR).
 * Deploy, scale and manage containerized applications on GCP with Octopus and Kubernetes.
 
-GCP integration is available in Octopus Deploy 2021.2 and newer. Octopus cloud customers are already running this version and on-prem customers can download it now. (INSERT link to the download page?)
+GCP integration is available in Octopus Deploy 2021.2 and newer. Octopus cloud customers are already running this version and on-prem customers can [download it now](https://octopus.com/downloads).
 
 
 ## **Walk through**
