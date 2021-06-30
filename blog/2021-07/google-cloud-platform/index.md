@@ -34,7 +34,7 @@ To see this new integration in action, we'll walk through how to add a new Googl
 
 To integrate with GCP, we need to first define a Google Cloud account in Octopus. This is done in the {{Infrastructure, Accounts} area along side any AWS or Azure accounts you already have.
 
-Octopus manages the GCP credentials used by the Google Cloud steps.
+Octopus manages the GCP credentials used by the Google Cloud steps. This means you don't need to worry about authentication within a deployment process or runbook and run pre-authenticated `gcloud` scripts.
 
 The Google Cloud account is the JSON key file credentials that can be retrieved from the service account assigned to the instance that is executing the deployment.
 
