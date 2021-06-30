@@ -53,7 +53,7 @@ Learn more about setting up [Google Cloud account variables](https://octopus.com
 
 Octopus Deploy can help you run scripts on targets within Google cloud platforms. In this example, we'll explore the process of creating a new Kubernetes Cluster.
 
-These scripts typically rely on tools being available on the target worker.
+These scripts typically rely on tools being available on the target worker however there are a few options to get started quickly. If you're Octopus Cloud, the built-in workers have `gcloud` pre-installed. Another option is to use the Octopus [`worker-tools`](https://hub.docker.com/r/octopusdeploy/worker-tools) Docker image with [Execution containers for workers](https://octopus.com/docs/projects/steps/execution-containers-for-workers). 
 
 We recommend that you provision your own tools on your worker - this way you can control what version of the tools are provisioned, and ensure their compatibility with the scripts you are trying to execute.
 
