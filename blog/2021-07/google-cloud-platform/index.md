@@ -26,7 +26,7 @@ GCP integration is available in Octopus Deploy 2021.2 and newer. Octopus cloud c
 
 ## **Walk through**
 
-To see this new integration in action, we'll walk through how to add a new Google Cloud account in Octopus and run a gcloud script to "do something" (NOTE: I don't know what something should be. We should ask the gcp team for help. Most likely, it would be running a script against a Kubernetes Cluster).
+To see this new integration in action, we'll walk through how to add a new Google Cloud account in Octopus and run a `gcloud` script to create a new Kubernetes cluster.
 
 The Run gcloud in a Script step can be used to execute scripts on targets within Google Cloud platforms.
 
