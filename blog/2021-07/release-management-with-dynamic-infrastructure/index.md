@@ -201,7 +201,7 @@ Create a trigger for the roles for all the various component projects, `App-Serv
 
 ### Deployment process modifications
 
-There is one problem with the trigger and the existing deployment process, which I'll explain. I'll also demonstrate how to avoid the problem.  
+There is one problem with the trigger and the existing deployment process, which I'll explain. I also demonstrate how to avoid the problem.  
 
 First, I add a new target for one of those roles in **Staging**.
 
