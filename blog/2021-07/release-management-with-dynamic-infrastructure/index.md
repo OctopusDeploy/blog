@@ -7,25 +7,21 @@ published: 2021-07-05-1400
 metaImage: 
 bannerImage: 
 tags:
- - Engineering
+ - DevOps
 ---
 
-This post on the [Deploy Child Octopus Deploy Project](https://library.octopus.com/step-templates/0dac2fe6-91d5-4c05-bdfb-1b97adf1e12e/actiontemplate-deploy-child-octopus-deploy-project) step template is the third in a series.  The [first post](https://octopus.com/blog/release-management-with-octopus) covers common release management scenarios. The [second post](https://octopus.com/blog/multi-tenancy-release-management) takes those scenarios and introduces multi-tenancy.  
+In this post, I talk about release management with dynamic infrastructure and demonstrate how to use the [Deploy Child Octopus Deploy Project](https://library.octopus.com/step-templates/0dac2fe6-91d5-4c05-bdfb-1b97adf1e12e/actiontemplate-deploy-child-octopus-deploy-project) step template.
 
-In this post, I cover release management with dynamic infrastructure.  
-
-:::success
-This post assumes you read the previous posts:
+This is the third post in a series about release management. The previous posts are:
 
 - [Better release management with Octopus Deploy](blog/2021-02/release-management-with-octopus/index.md)
 - [Multi-tenancy release management with Octopus Deploy](https://octopus.com/blog/multi-tenancy-release-management)
-:::
 
 ## Release management and dynamic infrastructure
 
-After reading my first post, a customer asked how to use my step to _redeploy_ a suite of application components, not _promote_ from one environment to another.  I hadn't considered that as a use case when writing the step template,  but I should have.  The customer was rebuilding their test servers periodically.  
+After reading my first post, a customer asked how to use my step to _redeploy_ a suite of application components, not _promote_ from one environment to another.  I hadn't considered that as a use case when writing the step template, but I should have.  
 
-After some discussion, we landed on these requirements:
+The customer was rebuilding their test servers periodically, and after some discussion, we landed on these requirements:
 
 - Redeploy the last successful release found in the destination environment.
 - The rebuilt server shouldn't host all the components, only run applicable child projects.
@@ -33,21 +29,22 @@ After some discussion, we landed on these requirements:
 - At first, it's okay to enter the target name manually; later, a deployment target trigger should redeploy automatically.
 
 ## Child project target filter
-Not all applications are hosted on a single deployment target. Consider this example for Staging:
 
-- **Database**: no targets, only workers
+Not all applications are hosted on a single deployment target. Consider this example for staging:
+
+- **Database**: No targets, only workers
 - **Scheduling Service**: `s-app-service-01`
 - **Web API**: `s-web-api-01` and `s-web-api-02`
 - **Web UI**: `s-web-ui-01` and `s-web-ui-02`
 
 To rebuild `s-web-api-01` and `s-app-service-01`, I only want to redeploy the **Scheduling Service** and **Web API** projects.  But only for the related project/server combination.  I don't want to deploy the **Scheduling Service** to `s-web-api-01` or the **Web API** to `s-app-service-01`.  
 
-One objective with the [Deploy Child Octopus Deploy Project step template](https://library.octopus.com/step-templates/0dac2fe6-91d5-4c05-bdfb-1b97adf1e12e/actiontemplate-deploy-child-octopus-deploy-project) is it "just works."  I want to remove as much psychological weight as possible when promoting/deploying an application suite.  
+One objective with the [Deploy Child Octopus Deploy Project step template](https://library.octopus.com/step-templates/0dac2fe6-91d5-4c05-bdfb-1b97adf1e12e/actiontemplate-deploy-child-octopus-deploy-project) is that it will _just work_.  I want to remove as much psychological weight as possible when promoting/deploying an application suite.  
 
 That objective applies to this scenario.  When the parent/release orchestration project is given a specific set of machines to deploy, it will compare that list with the machines the child project can deploy to.  Using the same scenario:
 
-- **Database**: no targets; the project is skipped.
-- **Scheduling Service**: deploys to only `s-app-service-01`.  It will remove `s-web-api-01` from the list of targets before redeploying the child project.
+- **Database**: No targets; the project is skipped.
+- **Scheduling Service**: Deploys to only `s-app-service-01`.  It will remove `s-web-api-01` from the list of targets before redeploying the child project.
 - **Web API**: deploys to only `s-web-api-01` and `s-web-api-02`.  It will remove `s-app-service-01` from the list of targets and only deploy to `s-web-api-01` when the redeployment occurs.
 - **Web UI**: The two rebuilt servers do not match any servers this project deploys to.  The Web UI project will be skipped.
 
@@ -68,7 +65,8 @@ I recommend setting this to a [prompted variable](https://octopus.com/docs/proje
 :::
 
 ## Examples
-For this post, I will convert the project I created in the [first post](https://octopus.com/blog/release-management-with-octopus) of this series.  When complete, the project will be able to:
+
+For this post, I will convert the project I created in the [first post](https://octopus.com/blog/release-management-with-octopus) of this series.  When complete, the project will:
 
 - Redeploy the latest release in **Development**, **Test**, **Staging** and **Production**.
 - Redeploy to a specific target or all targets.
@@ -93,7 +91,7 @@ The [Deploy Child Octopus Deploy Project step template](https://library.octopus.
 
 The only difference between each step is:
 
-- The "What if" parameter is set to `Yes` on all the "Get [Child Project Name] Release" steps.
+- The `What if` parameter is set to `Yes` on all the **Get [Child Project Name] Release** steps.
 - The child project name is different on each step.
 
 As you can see, this process makes heavy use of variables.  Those variable definitions are:
@@ -108,7 +106,7 @@ For example:
 
 - During a **Staging** environment refresh, when data is copied and sanitized from **Production** to **Staging**.  When complete, a redeployment occurs to ensure the latest database and code changes are on **Staging**.
 - A new server is added in **Production** to handle an increase in traffic.
-- A server is acting "funny" and needs to be "kicked."
+- A server isn't responding as expected and needs to be _kicked_.
 
 ### Variables
 
@@ -117,12 +115,12 @@ I am going to update my variables so that the process:
 - Only allows promotion in **Prod Approval**.
 - Allows both redeployments and promotion via a prompted variable in **Staging** and **Production**.  
 - Allows the user to select the machine they want to redeploy via a prompted variable for **Staging** and **Production**.  **Prod Approval** does not allow that functionality.
-- Creates a variable to use as a run condition for the "Get [component] release" steps.  It will return `True` (the step will run) when in promotion mode.  It will return `False` (the step will be skipped) when in redeploy mode.
+- Creates a variable to use as a run condition for the **Get [component] release** steps.  It will return `True` (the step will run) when in promotion mode.  It will return `False` (the step will be skipped) when in redeploy mode.
 
 ![Scenario 1 new variables](scenario-1-new-variables.png)
 
 :::hint
-Specific machine variable is set to `N/A` because that's the default value for the step template.  The step template will see that and ignore the specific machine functionality.  The value `N/A` should make it easier for prompted variables.
+The specific machine variable is set to `N/A` because that's the default value for the step template.  The step template will see that and ignore the specific machine functionality.  The value `N/A` should make it easier for prompted variables.
 :::
 
 ### Deployment Process
@@ -183,7 +181,7 @@ When a new deployment target is created, you can automatically deploy everything
 
 ### Variable changes
 
-In my scenario, I want to support both manual and automatic redeployments.  Supporting both modes still requires a prompted variable,  however the default value will change to:
+In my scenario, I want to support both manual and automatic redeployments.  Supporting both modes still requires a prompted variable, however the default value will change to:
 
 ```
 #{unless Octopus.Deployment.Trigger.Name}Promote#{else}Redeploy#{/unless}
@@ -296,7 +294,7 @@ If I don't specify a machine, the redeployment will deploy to all machines for t
 
 ## Conclusion
 
-When I started writing the step template, [Deploy Child Octopus Deploy Project](https://library.octopus.com/step-templates/0dac2fe6-91d5-4c05-bdfb-1b97adf1e12e/actiontemplate-deploy-child-octopus-deploy-project), my goal was to help with promoting from one environment to another. After receiving feedback though, I realised that supporting redeployments for a suite of application components was useful too.
+When I started writing the step template, [Deploy Child Octopus Deploy Project](https://library.octopus.com/step-templates/0dac2fe6-91d5-4c05-bdfb-1b97adf1e12e/actiontemplate-deploy-child-octopus-deploy-project), my goal was to help with promoting from one environment to another. After receiving feedback though, I realized that supporting redeployments for a suite of application components was useful too.
 
 I hope that with a few modifications to your deployment process, you can take advantage of this redeploy functionality.
 
