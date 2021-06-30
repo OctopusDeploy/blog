@@ -33,7 +33,7 @@ The task log shows a command similar to this:
 docker run --rm  --env TentacleHome=/home/Octopus  -w /home/Octopus/Work/20210329204922-325128-24   -v /home/Octopus/Work/20210329204922-325128-24:/home/Octopus/Work/20210329204922-325128-24  -v /home/Octopus:/home/Octopus  index.docker.io/octopuslabs/flyway-workertools:latest 
 ```
 
-Any packages your have are automatically extracted into the `/home/Octopus/Work/[DATETIME]` folder.  This happens behind the scenes. To change from running directly on the worker to running on an execution container, you simply click a radio button and provide the package name. Everything else is the same.
+Any packages you have are automatically extracted into the `/home/Octopus/Work/[DATETIME]` folder.  This happens behind the scenes. To change from running directly on the worker to running on an execution container, you simply click a radio button and provide the package name. Everything else is the same.
 
 ## The Flyway Execution Container
 
