@@ -10,7 +10,7 @@ tags:
  - DevOps
 ---
 
-In line with our [public roadmap](https://octopus.com/company/roadmap), we’re continuously rolling out new cloud and on-premise improvements, and we’re excited to introduce first-class support for Google Cloud Platform (GCP).
+We're excited to introduce first-class support for Google Cloud Platform (GCP) as we continuously roll out cloud and on-premise improvements inline with our [public roadmap](https://octopus.com/company/roadmap).
 
 This fresh addition means that Octopus now offers native support to the three major cloud providers (AWS, Azure, and now GCP), meeting the evolving needs of our customers, particularly those who have GCP Kubernetes (K8s) clusters and are running tentacles on GCP VMs. 
 
