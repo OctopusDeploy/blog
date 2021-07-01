@@ -3,7 +3,7 @@ title: Safe Schema Updates - Strangling the Monolith
 description: TODO description
 author: alex.yates@dlmconsultants.com
 visibility: private
-published: 2022-07-21-1400
+published: 2022-09-15-1400
 tags:
  - DevOps
  - Database Deployments
