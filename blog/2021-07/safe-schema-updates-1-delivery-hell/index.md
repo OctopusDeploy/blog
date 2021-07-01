@@ -34,9 +34,9 @@ In order to understand why it’s necessary to make a change, it’s useful to r
 
 IT folk often shudder at those words. Years of experience have taught them to expect an uphill battle to get *that* feature shipped to production.
 
-There are several reasons for this sense of impending doom. For fun, I’m going to borrow a little artistic licence from Dante. *(For the record, I totally stole this idea from Gianluca Sartori (b|t), check out his devilishly stylish database “infernals” talk here)*.
+There are several reasons for this sense of impending doom. For fun, I’m going to borrow a little artistic licence from Dante. *(For the record, I totally stole this idea from Gianluca Sartori ([b](https://spaghettidba.com/)|[t](https://twitter.com/spaghettidba)), check out [his devilishly stylish database “infernals” talk here](https://www.youtube.com/watch?v=p1qQlmoj0sE))*.
 
-GRAPHIC DESIGNERS: I’D LOVE AN ITERATION ON SOME CLASSICAL GOTHIC ART FOR MY 9 LEVELS OF DATABASE DELIVERY HELL… (IF YOU DON’T KNOW WHAT I’M TALKING ABOUT, GOOGLE IMAGE SEARCH FOR DANTE’S INFERNO.) ;-P
+**GRAPHIC DESIGNERS: I’D LOVE AN ITERATION ON SOME CLASSICAL GOTHIC ART FOR MY 9 LEVELS OF DATABASE DELIVERY HELL… (IF YOU DON’T KNOW WHAT I’M TALKING ABOUT, GOOGLE IMAGE SEARCH FOR DANTE’S INFERNO.) ;-P**
 
 **Level 0: Data Hell**
 
@@ -66,7 +66,7 @@ The schema deployment itself is especially risky because, thanks to the dependen
 
 As mentioned above, due to the complexity of dependencies, there’s rarely a fit-for-purpose testing environment. What’s more, having a reliable automated test suite for each dependent service is unlikely and (probably) unfeasible. This makes it impossible to have confidence that nothing is going to break when the deployment is executed.
 
-These problems are real and significant. These first three levels are tied together nicely in one of the massive deployment failures in The Phoenix Project. There was a missing Index on a giant Table in a single-point-of-failure database, at the centre of a tangled web of dependencies. This was probably missed either because the dev/test databases didn’t match production, or because they did not have representative data, so the performance issues weren’t spotted.
+These problems are real and significant. These first three levels are tied together nicely in one of the massive deployment failures in [The Phoenix Project](https://octopus.com/blog/devops-reading-list#phoenix). There was a missing Index on a giant Table in a single-point-of-failure database, at the centre of a tangled web of dependencies. This was probably missed either because the dev/test databases didn’t match production, or because they did not have representative data, so the performance issues weren’t spotted.
 
 The update was running agonisingly slowly, and it couldn’t be cancelled. They missed their downtime window and, due to the enormous number of dependent services, they caused enormous disruption to thousands of internal users and customers when the systems did not come back online on Monday morning.
 
@@ -78,38 +78,39 @@ All those developers were twiddling their thumbs for a week. I’m nervous to im
 
 It would be bad enough if you were just deploying the database change. However, due to the dependencies, you may also need to deploy new versions of a collection of dependent systems at the same time, or in a specific order. The entire process needs to be orchestrated carefully and an issue with just one part could jeopardise the whole exercise. 
 
-This issue is exacerbated by poor source control practices and the use of shared environments. In such cases, the changes to be released may need to be cherry-picked from a larger set of changes that exist in a dev/test database. This, often manual, process requires a great deal more complexity and has more potential for error. It probably also involves either a horribly convoluted or an unrealistically simple branching pattern in source control. Either case creates complexity, risk and migraines. I ranted about this topic in more detail on my personal blog.
+This issue is exacerbated by poor source control practices and the use of shared environments. In such cases, the changes to be released may need to be cherry-picked from a larger set of changes that exist in a dev/test database. This, often manual, process requires a great deal more complexity and has more potential for error. It probably also involves either a horribly convoluted or an unrealistically simple branching pattern in source control. Either case creates complexity, risk and migraines. [I ranted about this topic in more detail on my personal blog](http://workingwithdevs.com/branching-reality/).
 
-When releases of dependent objects/systems need to be carefully orchestrated, it’s a sign that you are suffering from the combination of a dependency nightmare in your code, as well as your team/project management structures. Team Topologies talks about these issues in more detail.
+When releases of dependent objects/systems need to be carefully orchestrated, it’s a sign that you are suffering from the combination of a dependency nightmare in your code, as well as your team/project management structures. [Team Topologies](https://octopus.com/blog/devops-reading-list#tt) talks about these issues in more detail.
 
 **Level 4: Downtime Window Hell**
 
-Due to all the dependencies and the coordination effort above, you need to take the entire system offline for a period to complete the update. Negotiating downtime with users/customers/*“The Business”* is not easy so you are forced to do it during unsociable hours. You might not be fully awake, and support is less likely to be available. *(The developers who wrote the code might be asleep!)* If you miss your deadline, there will be consequences.
+Due to all the dependencies and the coordination effort above, you need to take the entire system offline for a period to complete the update. Negotiating downtime with users/customers/*[“The Business”](https://twitter.com/paulstovell/status/1323552178091433984)* is not easy so you are forced to do it during unsociable hours. You might not be fully awake, and support is less likely to be available. *(The developers who wrote the code might be asleep!)* If you miss your deadline, there will be consequences.
 
 To make matters worse, since you are only offered a limited number of downtime windows, you are under additional pressure to deliver as many changes as possible during each window. Deployments get larger, more complicated, and more risky.
 
-*(Corollary: A variation of this hell is caused by naïve business assumptions about 100% uptime. 100% uptime is both practically impossible and unimaginably expensive. Oftentimes senior management do not realise this. Through poor communication, tech folks are often left in a hopeless position, being measured against absurd expectations. This causes its own frustrating politicking and bad decisions.)*
+*(Corollary: A variation of this hell is caused by naïve business assumptions about 100% uptime. 100% uptime is both practically impossible and unimaginably expensive. [Oftentimes senior management do not realise this](https://www.brentozar.com/archive/2011/12/letters-that-get-dbas-fired/). Through poor communication, tech folks are often left in a hopeless position, being measured against absurd expectations. This causes its own frustrating politicking and bad decisions.)*
 
 **Level 5: Bureaucracy Hell**
 
 Given the number of people who are potentially affected by any change to a monolithic backend database, coupled with the severe consequences of failure, a lot of stakeholders want a veto on the deployment. Engineers are forced to spend as much time demonstrating that they have done the testing as they spend actually doing the testing. 
 
-While this abundant caution might sound wise, it is usually ineffective when implemented badly. (And it’s almost always implemented badly.) Senior leadership is unlikely to accept a slower pace of work. Thus, if the testing/approval measures for changes cause delays, the consequence will be a significantly greater amount of “work in progress” (WIP). This leads to larger, and even more complicated deployments, with more dependency and coordination issues.
+While this abundant caution might sound wise, it is usually ineffective when implemented badly. ([And it’s almost always implemented badly](https://octopus.com/blog/change-advisory-boards-dont-work).) Senior leadership is unlikely to accept a slower pace of work. Thus, if the testing/approval measures for changes cause delays, the consequence will be a significantly greater amount of “work in progress” (WIP). This leads to larger, and even more complicated deployments, with more dependency and coordination issues.
 
-According to Accelerate, data from the State of DevOps reports demonstrates that Change Advisory Boards are on average “worse than having no change approval process at all”. Despite good intentions, these safety measures result in demonic deployments that are more complicated and riskier.
+According to [Accelerate](https://octopus.com/blog/devops-reading-list#accelerate), data from the State of DevOps reports demonstrates that Change Advisory Boards are on average “worse than having no change approval process at all”. Despite good intentions, these safety measures result in demonic deployments that are more complicated and riskier.
 
 **Level 6: Disobedience of Bureaucracy Hell**
 
 Under pressure to release on time, and through personal desire to complete a job, engineers attempt to circumvent official processes. Middle managers play politics to protect their teams’ changes. People massage the truth to avoid bureaucracy. Shadow IT emerges because using the officially sanctioned systems is frustratingly tedious, hampering a team’s ability to hit their deadlines.
-Senior managers may even support and congratulate such “innovation”, without acknowledging that they are contributing to a big ball of mud. Such short-term progress normally comes at the expense of long-term performance. 
+
+Senior managers may even support and congratulate such “innovation”, without acknowledging that they are contributing to a [big ball of mud](https://en.wikipedia.org/wiki/Big_ball_of_mud). Such short-term progress normally comes at the expense of long-term performance. 
 
 **Level 7: Negligence Hell**
 
 As the business becomes more desperate to hit ever more impossible deadlines on increasingly stretched budgets, it becomes harder to invest in anything that isn’t directly related to narrow and specific objectives. At first this might not be so bad. It focusses energy on the most important work. However, inevitably this leads to under-investment in critical infrastructure. 
 
-To use the “four types of work” terminology from The Phoenix Project: This is the point that IT folks are under so much pressure to complete “Business Projects” and “Unplanned Work” that they have no time left to focus on “Internal Projects” or even routine “Changes” (like patching servers).
+To use the “four types of work” terminology from [The Phoenix Project](https://octopus.com/blog/devops-reading-list#phoenix): This is the point that IT folks are under so much pressure to complete “Business Projects” and “Unplanned Work” that they have no time left to focus on “Internal Projects” or even routine “Changes” (like patching servers).
 
-As my fellow brits might put it, senior managers become *“penny-wise, pound-foolish”*. Improvement work and even routine maintenance is delayed or scrapped. Firefighting becomes commonplace. The team has stopped actively working on improving. They don’t have time.
+As [my fellow brits might put it](https://twitter.com/DavidJPoole/status/1361340954700107786), senior managers become *“penny-wise, pound-foolish”*. Improvement work and even routine maintenance is delayed or scrapped. Firefighting becomes commonplace. The team has stopped actively working on improving. They don’t have time.
 
 One common engineering consequence is the short-sighted cheat to avoid refactoring or deleting anything in the database. Database deployments are certainly easier if you never clean up after yourself.
 
@@ -127,11 +128,11 @@ This is a one-way ticket to…
 
 “Unplanned Work” has devoured everything.
 
-As the business spirals down the levels, acquiring ever more technical debt, the percentage of each engineer’s time that is spent firefighting increases. Eventually that percentage hits 100%, or even higher, with engineers working overtime just to maintain core operations. A short-sighted solution might be to hire more people, but that won’t work. Frederick Brooks explained why in The Mythical Man-Month in 1975! After nearly half a century, I’m not going to waste any more words repeating his ideas in this post. If you work in IT and you haven’t heard of it, I recommend that you follow the link above.
+As the business spirals down the levels, acquiring ever more [technical debt](https://martinfowler.com/bliki/TechnicalDebt.html), the percentage of each engineer’s time that is spent firefighting increases. Eventually that percentage hits 100%, or even higher, with engineers working overtime just to maintain core operations. A short-sighted solution might be to hire more people, but that won’t work. Frederick Brooks explained why in [The Mythical Man-Month](https://en.wikipedia.org/wiki/The_Mythical_Man-Month) in 1975! After nearly half a century, I’m not going to waste any more words repeating his ideas in this post. If you work in IT and you haven’t heard of it, I recommend that you follow the link above.
 
 Alas, the problems still get worse. There’s barely any time to work on new stuff.  We’ve reached the bottom of the pit. Some sort of change is inevitable. Either the business will change its thinking, or it’s a matter of time before they lose out to a more capable competitor.
 
-In my experience, each level pushes folks toward the next. They reinforce each other. For those in the trenches, these issues can feel like Sisyphus’s boulder, except this boulder is getting bigger and heavier over time. Reaching the summit, or even maintaining the current momentum, feels more impossible every day.
+In my experience, each level pushes folks toward the next. They reinforce each other. For those in the trenches, these issues can feel like [Sisyphus’s boulder](https://www.ancient.eu/sisyphus/), except this boulder is getting bigger and heavier over time. Reaching the summit, or even maintaining the current momentum, feels more impossible every day.
 
 Something has got to give. 
 
@@ -139,4 +140,4 @@ Wherever you are on your journey, it’s critical to recognise your trajectory a
 
 ## Next time…
 
-In the next post we’ll start to imagine what a better system might look like by exploring the concepts of resilience and robustness. You can read Part 2 here. *(Scheduled for publication: July 20th 2021).)*
+In the next post we’ll start to imagine what a better system might look like by exploring the concepts of resilience and robustness. [You can read Part 2 here](https://octopus.com/blog/safe-schema-updates-2-resilient-vs-robust). *(Scheduled for publication: July 20th 2021).)*
