@@ -45,15 +45,15 @@ Learn more about [creating a Google Cloud account](https://octopus.com/docs/infr
 
 Once you have created Google Cloud accounts, they can be accessed in a project through a project [variable](https://octopus.com/docs/projects/variables) of the type Google Cloud account. 
 
-![Octopus Google Cloud account](google-cloud-account-variable.png "width=500")
+![Octopus Google Cloud account](google-cloud-variables.png "width=500")
 
 Learn more about setting up [Google Cloud account variables](https://octopus.com/docs/projects/variables/google-cloud-account-variables).
 
 **Running gcloud scripts**
 
-Octopus Deploy can help you run scripts on targets within Google cloud platforms. In this example, we'll explore the process of creating a new Kubernetes Cluster.
+Octopus Deploy can help you run scripts on targets within Google Cloud platforms. In this example, we'll explore the process of creating a new Kubernetes Cluster.
 
-These scripts typically rely on tools being available on the target worker however there are a few options to get started quickly. If you're Octopus Cloud, the built-in workers have `gcloud` pre-installed. Another option is to use the Octopus [`worker-tools`](https://hub.docker.com/r/octopusdeploy/worker-tools) Docker image with [Execution containers for workers](https://octopus.com/docs/projects/steps/execution-containers-for-workers). 
+These scripts typically rely on tools being available on the target worker, however there are a few options to get started quickly. If you're Octopus Cloud, the built-in workers have `gcloud` pre-installed. Another option is to use the Octopus [`worker-tools`](https://hub.docker.com/r/octopusdeploy/worker-tools) Docker image with [Execution containers for workers](https://octopus.com/docs/projects/steps/execution-containers-for-workers). 
 
 We recommend that you provision your own tools on your worker - this way you can control what version of the tools are provisioned, and ensure their compatibility with the scripts you are trying to execute.
 
@@ -63,7 +63,14 @@ This functionality requires the gcloud CLI to be installed on the worker.
 
 To execute a script in the context of a Google cloud platform instance, Octopus provide a *Run gcloud in a Script* step. For information about adding a step to the deployment process, see the [add step](https://octopus.com/docs/projects/steps) section.
 
-![Google Cloud script step](google-cloud-script-step-body.png "width=500")
+![Google Cloud deployer](google-cloud-deployer.png "width=500")
+
+![Google Cloud script step](google-cloud-script-step.png "width=500")
+
+![Google Cloud source code](google-cloud-source-code.png "width=500")
+
+![Google Cloud script step](google-cloud-variables.png "width=500")
+
 
 ## **Conclusion**
 
