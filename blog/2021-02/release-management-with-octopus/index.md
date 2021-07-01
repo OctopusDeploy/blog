@@ -522,3 +522,10 @@ Deployments take time, even when using the best machines and fastest connections
 I hope this new step template solves some of the release management issues you've run into, and makes future deployments more reliable. 
 
 Happy deployments!
+
+:::hint
+There are two more guides in this series:
+
+- [Multi-tenancy release management with Octopus Deploy](https://octopus.com/blog/multi-tenancy-release-management)
+- [Release management with dynamic infrastructure](https://octopus.com/blog/release-management-with-dynamic-infrastructure)
+:::
