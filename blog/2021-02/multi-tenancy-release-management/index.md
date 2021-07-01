@@ -425,3 +425,9 @@ Octopus Deploy's multi-tenancy feature was designed to help companies who instal
 I hope you find this step template useful for your multi-tenancy projects.
 
 Happy deployments!
+
+:::hint
+The final guide in this three-part series is:
+
+- [Release management with dynamic infrastructure](https://octopus.com/blog/release-management-with-dynamic-infrastructure)
+:::
