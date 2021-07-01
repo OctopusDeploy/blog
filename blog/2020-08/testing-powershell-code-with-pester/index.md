@@ -9,6 +9,7 @@ bannerImage: powershell-testing-with-pester.png
 tags:
  - DevOps
  - PowerShell
+ - Testing
 ---
 
 ![Testing PowerShell code with Pester](powershell-testing-with-pester.png)

@@ -6,12 +6,13 @@ Events and Webinars
 Company
 
 # Optional tags to help with discoverability and internal links (Don't over do it with these, apply the one or two tags that are the best fit)
+Automation
 AWS
 Azure
-AWS
 Continuous Integration
+Continuous Deployment
 Config as Code
-Databases
+Database Deployments
 Deployment Patterns
 Docker
 Java
@@ -23,7 +24,8 @@ Octopus Cloud
 PowerShell
 Reporting
 Runbooks
-Security
+Step Templates
 Testing
+Trust and Security
 Variables
 Workers
