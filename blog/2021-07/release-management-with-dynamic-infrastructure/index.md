@@ -4,11 +4,13 @@ description: Support redeployments for a suite of application components, by lev
 author: bob.walker@octopus.com
 visibility: public
 published: 2021-07-05-1400
-metaImage: 
-bannerImage: 
+metaImage: blogimage-release-management-with-dynamic-infrastructure-2021.png
+bannerImage: blogimage-release-management-with-dynamic-infrastructure-2021.png
 tags:
  - DevOps
 ---
+
+![Animated process characters in a minecart heading towards a city](blogimage-release-management-with-dynamic-infrastructure-2021.png)
 
 In this post, I talk about release management with dynamic infrastructure and demonstrate how to use the [Deploy Child Octopus Deploy Project](https://library.octopus.com/step-templates/0dac2fe6-91d5-4c05-bdfb-1b97adf1e12e/actiontemplate-deploy-child-octopus-deploy-project) step template.
 
