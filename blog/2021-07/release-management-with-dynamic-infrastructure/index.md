@@ -258,7 +258,7 @@ After the lifecycle has been created, we can add a channel to the project:
 
 ![Dev and test only channel](dev-test-only-channel.png)
 
-Finally, update the **Discrete Channel Release** project setting to **Treat Independently of Other Channels**.  
+Finally, update the **Discrete Channel Releases** project setting to **Treat independently of other channels**.  
 
 ![Discrete channel release setting](channel-release-mode.png)
 
