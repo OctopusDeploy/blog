@@ -40,11 +40,11 @@ Of course, the API chatter might grow, and that’s a new problem that needs to 
 
 Some readers will think this architecture is unrealistic. For example, both the sales and the support systems need access to similar customer data. If they need access to the same data, how can the databases be split up?
 
-For these people, I recommend taking an evening to read Vaughn Vernon’s Domain-Driven Design Distilled, a short and more accessible version of Eric Evans more thorough Domain-Driven Design. Vernon and Evans describe a process for data modelling that puts the concept of Bounded Contexts front and centre. In fact, my sales and support example above, as well as the image below, are both taken from Martin Fowlers excellent BoundedContext blog post:
+For these people, I recommend taking an evening to read Vaughn Vernon’s [Domain-Driven Design Distilled](https://octopus.com/blog/devops-reading-list#ddd), a short and more accessible version of Eric Evans more thorough [Domain-Driven Design](https://www.goodreads.com/book/show/179133.Domain_Driven_Design). Vernon and Evans describe a process for data modelling that puts the concept of Bounded Contexts front and centre. In fact, my sales and support example above, as well as the image below, are both taken from [Martin Fowlers excellent BoundedContext blog post](https://martinfowler.com/bliki/BoundedContext.html):
 
 ![Example bounded contexts diagram, with explicit customer and product schema](ssu4-bounded-contexts.png)
 
-*Image source: https://martinfowler.com/bliki/BoundedContext.html *
+*Image source: [https://martinfowler.com/bliki/BoundedContext.html](https://martinfowler.com/bliki/BoundedContext.html)*
 
 In this example, the teams who look after the sales and support applications have agreed on a ubiquitous data structure for a Product and a Customer and they have made their data available through APIs to other services. For example, the Sales and Support databases might both have identical Customer and Product tables, with some unique field(s) used to identify matches. The APIs would have an agreed set of methods for retrieving data and these methods would be tested routinely through the build/deployment pipeline.
 
@@ -86,14 +86,10 @@ With a monolith, that poorly tuned upgrade script might have caused a global out
 
 ## Next time
 
-In this post we imagined a more loosely coupled architecture. This architecture was more resilient to failure since it created natural fire breaks. What’s more, smaller services are generally easier and faster to develop and restore.
+In this post (post 4) we imagined a more loosely coupled architecture. This architecture was more resilient to failure since it created natural fire breaks. What’s more, smaller services are generally easier and faster to develop and restore.
 
 Additionally, the more granular nature of the system made it easier to manage different flows of work. The significant reduction in concurrent work streams for any given service reduces the project management/release management/branching overheads.
 
-Taken alone, these points will result in significantly safer database releases. However, the benefits are compounded by human factors. In the next post, we’ll look at those human factors in more detail. 
-
-## Next time…
-
-In the next post (part 5) we’ll start to imagine what a safer software architecture, delivery process, and devlopment culture might look like. We'll begin by exploring the nature of failure within complex systems, and we'll move on to discuss the concepts of resilience and robustness. This post will be the first of four posts intended to help folks to re-evaluate the way they view and assess safety within complex IT systems.
+Taken alone, these points will result in significantly safer database releases. However, the benefits are compounded by human factors. In the next post (post 5), we’ll look at those human factors in more detail. 
 
 !include <safe-schema-updates-posts>
