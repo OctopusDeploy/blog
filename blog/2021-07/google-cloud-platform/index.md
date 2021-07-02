@@ -1,6 +1,6 @@
 ---
-title: Announcing Octopus support for Google Cloud
-description: Octopus Deploy includes native integration for Google Cloud Platform including accounts, gcloud scripts, Terraform and 
+title: Octopus Deploy integration for Google Cloud Platform
+description: Octopus Deploy now includes native integration for Google Cloud Platform including built-in accounts, gcloud scripts, Terraform and Kubernetes.
 author: andreia.virmond@octopus.com
 visibility: public
 published: 2022-07-21-1400
