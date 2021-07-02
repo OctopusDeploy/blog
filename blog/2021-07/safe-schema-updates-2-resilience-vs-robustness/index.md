@@ -1,6 +1,6 @@
 ---
 title: Safe Schema Updates - Resilient vs Robust IT Systems
-description: TODO description
+description: On the nature of failure in complex IT systems, and the benefits and drawbacks of desiginig for resilience vs rubustness.
 author: alex.yates@dlmconsultants.com
 visibility: private
 published: 2022-07-28-1400
