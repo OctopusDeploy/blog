@@ -30,7 +30,7 @@ What if each service managed its own data?
 
 For example, whenever our imaginary “Support” service needed to access data from our equally imaginary “Sales” service, the services could communicate using some API or other communication tier, rather than direct database calls. This would enable the teams who look after each service to be responsible for their own data, so long as their API remains available.
  
-
+![Example loosely-coupled software architecture](ssu4-loose-coupling.png)
 
 The database administration concerns for each service are isolated from each other. Large datasets are split into smaller, more manageable datasets. The complexity of releases to any one service are significantly reduced since dependency management just got a lot simpler. It’s relatively easy to create simple tests for any API calls that each subsystem needs to support, without needing to concern ourselves with which dependent systems are actually using them.
 
@@ -42,7 +42,7 @@ Some readers will think this architecture is unrealistic. For example, both the 
 
 For these people, I recommend taking an evening to read Vaughn Vernon’s Domain-Driven Design Distilled, a short and more accessible version of Eric Evans more thorough Domain-Driven Design. Vernon and Evans describe a process for data modelling that puts the concept of Bounded Contexts front and centre. In fact, my sales and support example above, as well as the image below, are both taken from Martin Fowlers excellent BoundedContext blog post:
 
-
+![Example bounded contexts diagram, with explicit customer and product schema](ssu4-bounded-contexts.png)
 
 *Image source: https://martinfowler.com/bliki/BoundedContext.html *
 
