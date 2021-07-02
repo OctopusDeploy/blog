@@ -14,7 +14,7 @@ This blog post is part 4 of my Safe Schema Updates series. The other posts in th
 
 !include <safe-schema-updates-posts>
 
-In part 2 of this series we discussed the idea of resilience vs robustness. We talked about the value of designing systems where failure is acknowledged, contained and rapidly resolvable. In part 3 we explored the true meaning of "continuous integration", beyond automated builds. We learned that the central idea is to reduce the amount of work in progress and the need for complicated integrations or merges.
+In part 2 of this series we discussed the idea of resilience vs robustness. We talked about the value of designing systems where failure is acknowledged, contained and rapidly resolvable. In part 3 we explored the true meaning of continuous integration, beyond automated builds. We learned that the central idea is to reduce the amount of work in progress and the need for complicated integrations or merges.
 
 In this post we’ll imagine a software and database architecture that intrinsically supports both the development and maintenance of resilient systems. This architecture is also a great enabler of continuous integration, since it significantly reduces the amount of concurrent work on any one component. Hence, this architecture naturally results in safer systems that are easier to develop, test, deploy and maintain.
 
@@ -52,31 +52,33 @@ In this example, the teams who look after the sales and support applications hav
 
 Now that the sales and support databases *do not* interact directly, many engineering challenges become easier to solve.
 
-When a developer for the support system wishes to provision a dev environment to complete a task, they do not need to provision the entire global system and all the dependencies - all they need is the support system. If they need data from the sales system, in most cases it could be mocked, but where both systems really are required, that’s no issue. These two services are probably just two of many, so the overall size of the dev environment is still considerably reduced compared to deploying the entire monolith.
+When a developer for the support system wishes to provision a dev environment to complete a task, they do not need to provision the entire global system and all the dependencies - all they need is the support system. If they need data from the sales system, in most cases it could be mocked, but where both systems are required, that’s no issue. These two services are probably just two of many, so the overall size of the dev environment is still considerably reduced compared to deploying the entire monolith.
 
-This smaller dev environment is faster and cheaper to deploy. Data masking, privacy and storage concerns are significantly reduced. The overall complexity of the system is much easier to manage and dependencies on other systems are explicit and testable.
+This smaller dev environment is faster and cheaper to deploy. Data masking, privacy and storage concerns are significantly reduced. The overall complexity of the system is much easier to manage and dependencies on other systems are explicit.
 
 ## Loose Coupling enables Continuous Integration
 
-As discussed in part 3, continuous integration teaches us that we should prioritise the completion and integration/deployment of existing work in progress (WIP) over the creation of new WIP. That goes for any and all dev work that exists in any place and has not yet been successfully merged, deployed to production and validated. Without the prioritization of merging over diverging, we end up with ever-increasing amounts of WIP, which has enormous hidden costs.
+As discussed in part 3, Continuous Integration teaches us that we should prioritise the completion and integration/deployment of existing work in progress (WIP) over the creation of new WIP. That goes for any and all dev work that exists in any place and has not yet been successfully merged, deployed to production and validated. Without the prioritization of merging over diverging, we end up with ever-increasing amounts of WIP, which has enormous hidden costs.
 
-When we have a large, monolithic system, perhaps with a hundred developers across a dozen teams, our CI problems are significant. With so many tasks being performed in parallel on the same codebase, it’s difficult to manage everything. This is often where we see complicated branching plans and jumbled up dev environments, containing a mess of half-finished or long-since abandoned dev and test code.
+When we have a monolithic system, with a hundred developers across a dozen teams, our CI problems are significant. With so many tasks being performed in parallel on the same codebase, it’s difficult to manage everything. This is often where we see complicated branching plans and jumbled up dev environments, containing a mess of half-finished or long-since abandoned dev and test code.
 
 However, if those 10 teams are generally working on separate, loosely coupled services, each in their own repository, the complexity associated with managing the changes for any given service is exponentially reduced. Each service will only ever have a handful of concurrent tasks under development at any one time. This level of complexity could, for example, be practically comprehended and managed during a short daily team stand-up. Branch plans become simpler and release co-ordination concerns evaporate, as long as all the required APIs remain available.
 
 With more loosely coupled systems it’s much easier for developers to integrate their work, continuously. This significantly reduces challenges associated with WIP, environment drift, branch hell, politics and project management overheads.
 
-What’s more, loosely coupled systems scale up in a manageable way. If the idea of a dozen teams working on the same monolithic backend terrifies you, imagine the challenges associated with Amazon or Google scale systems. If you anticipate that your system is likely to grow (and as long as companies stay in business, their critical systems tend to grow), it’s wise to design your systems with loose coupling in mind from the very beginning.
+What’s more, loosely coupled systems scale up in a manageable way. If the idea of a dozen teams working on the same monolithic backend terrifies you, imagine the challenges associated with Amazon or Google scale systems. If you anticipate that your system is likely to grow (and as long as companies stay in business, they always do), it’s wise to design your systems with loose coupling in mind from the very beginning.
 
 ## Loose coupling creates fire breaks
 
-Given enough time, everything breaks. That’s true for monolithic systems and it’s true for loosely coupled services. Failures will still happen, but loosely coupled systems are more resilient: The data eggs are no longer all in the same basket.
+Given enough time, everything breaks. That’s true for monolithic systems and it’s true for loosely coupled services. Failures will still happen, but loosely coupled systems are more resilient.
+
+The data eggs are no longer all in the same basket.
 
 Each service would host its data independently. If a meteor strikes the data centre hosting the sales service, the support service might not be affected. In this way, failures are better isolated, and the affected services are smaller, simpler and easier to fix. All this has been achieved without slowing down the pace of development. In fact, development is simpler and safer now.
 
 Of course, there are certain rules we need to follow.
 
-Each service needs to be designed to fail/degrade gracefully when dependent services are unavailable. For example, the support system should be designed such that it can still run, possibly with degraded functionality, when the sales service is unavailable. Perhaps the support team might lose some functionality and visibility of the sales data, but they should still be able to conduct core support operations.
+Each service needs to be designed to fail gracefully when dependent services are unavailable. For example, the support system should be designed such that it can still run, possibly with degraded functionality, when the sales service is unavailable. Perhaps the support team might lose some functionality and visibility of the sales data, but they should still be able to conduct core support operations.
 
 As a developer, it becomes critical to test dependencies. If you are dependent on an API call to another service, you should ensure that there’s a test in place to verify the dependency, and you should be designing systems to fail gracefully and log an error if the API call fails.
 
