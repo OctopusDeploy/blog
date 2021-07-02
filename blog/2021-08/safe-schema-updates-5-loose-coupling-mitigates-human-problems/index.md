@@ -27,6 +27,8 @@ When things go wrong with critical but complicated monoliths, and when it’s di
 
 Patrick Lencioni talks about conflict, commitment, and accountability in The Five Dysfunctions of a Team. His fourth dysfunction explicitly calls out the avoidance of accountability as being detrimental to effective teamwork:
  
+![The Five Dysfunctions of a Team](five-disfunctions.jpg)
+
 * Image source: https://medium.com/taskworld-blog/lencionis-5-dysfunctions-of-a-team-330d58b2cd81 *
 
 In part 2 of this series, as part of our discussion into reliability vs robustness, we discussed Richard Cook’s insightful research into how complex systems fail. In particular, we looked at the problems with traditional views about accountability or blame and “root cause analysis” within complex systems, where failures are often caused by many, seemingly unrelated factors. These challenges are inescapable, but we can help ourselves by designing systems that are easier to observe and where relationships, dependencies and expectations are more clearly defined.
