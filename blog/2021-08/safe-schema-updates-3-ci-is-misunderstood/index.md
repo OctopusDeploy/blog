@@ -27,22 +27,30 @@ Regular, automated builds are reasonably uncontroversial and generally accepted.
 
 ## *Why* do we run automated builds and tests?
 
-Most people are likely to respond with an answer like “to catch bugs”, or “fast feedback”. And yes, those are great. However, that’s still only part of the story. These answers still miss the point.
+Most people are likely to respond with answers along the lines of “to catch bugs”, or “fast feedback”. And yes, those are great. However, that’s still only part of the story. These answers still miss the fundamental point.
 
-Continuous Integration is about *Integration*. It’s literally that simple.
+**Continuous *Integration* is about *Integration*.**
 
-Most people miss the answer that’s staring them in the face. CI is about reducing the amount of Work in Progress (WIP) and avoiding big merges. It’s about breaking down broad goals into smaller (but deliverable) tasks that can be developed, tested and integrated independently. Once changes are integrated, there should be no need to “cherry pick” this change or that update from source control for deployment, because the entire set of integrated changes have already been validated as a whole. Once changes are integrated, they should be releasable.
+It’s, literally, as simple as that. (Word choice is intentional, and accurate.)
 
-Now, there will be some who will put forward objections along the lines of conflicting business goals, scheduling, or co-ordination etc. For example:
-- “This feature needs to be shipped after that one.”
-- "This release needs to be coordinated with some marketing launch/contractual deadline.”
-- “We need to fast-track this hotfix.”
+Most people miss the answer that’s staring them in the face. CI is about reducing the amount of Work in Progress (WIP) and avoiding big merges. It’s about breaking down broad goals into smaller (but deliverable) tasks that can be developed, tested and integrated independently. Once changes are integrated, there should be no need to “cherry pick” this change or that update from source control for deployment, because the entire set of integrated changes have already been validated as a whole. Once changes are integrated, they should be releasable with minimal risk.
+
+Those builds exists purely to validate that our regular integrations work. After all, if we only integrate code once every three months, perhaps a 1 week testing phase isn't such a pain? However, if we plan to integrate multiple times a day, a one-week testing phase isn't going to be practical. Those builds don't just exist to catch bugs - they exist to enable the *continuous integration* of deployable changes to the main source control branch - multiple times a day.
+
+The implication is that any true continuous integration practitioner, will also be practicing some form of [trunk-based development](https://trunkbaseddevelopment.com/).
+
+There will be some who object to the idea of trunk-based development. They may want to keep the delivery of different features/work items/tickets isolated from each other for reasons along the lines of conflicting business goals, scheduling, or co-ordination etc. For example:
+
+- "This feature needs to be shipped after that one."
+- "This release needs to be coordinated with some marketing launch/contractual deadline."
+- "We need to fast-track this hotfix."
+- "The big scary feature isn't ready to be deployed yet."
 
 Well, this is why Continuous Integration is fundamentally a project management issue, and why those fancy build tools are just one implementation detail, along with many other technical and management practices.
 
 We need to manage our development, testing and deployment efforts in such a manner that the issues above simply disappear. And we need to do this because the benefits of true *Continuous Integration*, dwarf the benefits of mere *Continuous Build*.
 
-## Why do we need Continuous Integration?
+## Why do we need Continuous *Integration*?
 
 Have you ever worked on a 12-month project, where the 11th month was reserved for “integration”? How did that work out for you? I’m guessing it didn’t go well.
 
@@ -54,13 +62,13 @@ We are now dealing with “load-bearing-bugs”.
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">OH: &quot;You can&#39;t fix that bug. That&#39;s a load-bearing bug.&quot;</p>&mdash; amye (@amye) <a href="https://twitter.com/amye/status/1097686448260579328?ref_src=twsrc%5Etfw">February 19, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
 
-Each issue is now orders of magnitude more tricky to fix, since to resolve the problem cleanly would require a complicated refactor and probably a fundamental rethink about how this bit is supposed to work with that bit. Due to dependencies, our load-bearing bugfix is likely to have unintended consequences of its own, each of which will take time to understand and fix. Unfortunately, we don’t have the time or budget to open that Pandora’s box, so we work around it, heaping smelly workarounds on top of quick hacks and duct tape.
+Each issue is now orders of magnitude more tricky to fix, since to resolve the problem cleanly would require a complicated refactor and probably a fundamental rethink about how this bit is supposed to work with that bit. Due to dependencies, our load-bearing bugfix is likely to have unintended consequences of its own, each of which will take time to understand and fix. Unfortunately, we don’t have the time or budget to open that Pandora’s box, so we work around it, heaping [smelly](https://en.wikipedia.org/wiki/Code_smell) workarounds on top of quick hacks and duct tape.
 
-This all goes to demonstrate that work in progress (WIP) is a liability, not an asset. It’s a sunk cost. If your team of 8 has invested 6 months of dev time into some complicated new feature, that’s 4 developer-years of investment, probably a six-figure sum, that has been gambled on your ability to integrate the code.
+This all goes to demonstrate that work in progress (WIP) is a liability, not an asset. It’s a [sunk cost](https://en.wikipedia.org/wiki/Sunk_cost). If your team of 8 has invested 6 months of dev time into some complicated new feature, that’s 4 developer-years of investment, probably a six-figure sum, that has been gambled on your ability to integrate the code without problems.
 
-The larger the delta between a development branch and main, the more complicated the merge and the greater the chance of hitting a nasty load-bearing bug. Additionally, the more concurrent WIP, the greater the management overhead wasted managing complicated branching patterns, inconsistent development environments, brain-melting merges and kamikaze, big-bang deployments. The hidden costs and risks are multiplying.
+The larger the delta between a development branch and main, the more complicated the merge and the greater the chance of hitting a nasty load-bearing bug. This will take time and cost money to fix, as well as (most likely) reducing the overall quality of the code. Additionally, the more concurrent WIP, the greater the management overhead wasted managing complicated branching patterns, inconsistent development environments, brain-melting merges and kamikaze, big-bang deployments. The hidden costs increase in a non-linear fashion relative to the size of the integration.
 
-Ultimately, the bigger the integration, the more likely that the integration will either fail, or the feature will be abandoned. Alternatively, it may suck up resources as either the sunk cost fallacy or pride influences people to push the merge through, despite ludicrous risk and/or cost. The Phoenix Project, is a classic example of this.
+Aside from the increase cost, large integrations carry huge risk. The bigger the integration, the more likely that the integration will either fail, or the feature will be abandoned. Alternatively, it may suck up resources as either the sunk cost fallacy or human pride influences people to push the merge through, despite ludicrous risk and/or cost. [The Phoenix Project](https://octopus.com/blog/devops-reading-list#phoenix), is a classic example of this.
 
 Fast-feedback is great, but automated builds won’t highlight *integration* issues, until concurrent development tasks are *integrated*. Hence, keeping integrations small and frequent is critical for the delivery of reliable IT systems.
 
@@ -68,15 +76,16 @@ Fast-feedback is great, but automated builds won’t highlight *integration* iss
 
 Simply put, what would a development process that prioritised *merging* over *diverging* look like?
 
-Of course, automated builds and tests are necessary. If the team only goes through their integration and test cycle once a year, perhaps it’s fine if it takes a week? However, when planning to complete those test and integration cycles many times a day, that just isn’t going to be practical.
-
-However, the problems CI practitioners face are so much bigger than mere builds. For example:
+Of course, automated builds and tests are necessary. However, the problems CI practitioners face are so much bigger than mere builds. For example:
 
 - How do we break down a 12-month project into a zillion hour/day long tasks, each releasable individually?
+- How do we balance longer term vision, with iterative learning and more agile prioritisation and decision making?
 - What about those tricky, big changes that take more than a day to deliver, and which can’t be shipped in an incomplete state? 
-- How do we manage the reliability of a submodule, when its dependencies are being updated frequently, without warning? (Without resorting to painful, manual review processes.)
+- How do we manage the reliability of a submodule, when its dependencies are being updated frequently, without warning? (Without resorting to [painful, manual review processes](https://octopus.com/blog/change-advisory-boards-dont-work).)
 - How do we manage relationships with customers/users if they still plan in terms of annual budgets, quarterly releases and infrequent software updates? What about senior management and shareholders?
 - How do we manage situations where business, legal or contractual obligations necessitate infrequent, large releases?
+- What does an appropriate review process look like, when we are shipping changes multiple times a day?
+- How do we practice continuous integration at scale? How would we manage this in extremely large IT functions which are packed full of developers commiting changes multiple times a day?
 
 In order to solve these problems, we need to think carefully about our software architectures and the way we manage dependencies. We need ways to integrate our code and deploy changes frequently, while reserving the ability to release/reveal those updates to users on a different schedule which is optimised for commercial objectives, rather than pure engineering concerns. We need bureaucratic processes that are based on the frequent delivery of many small changes with short lead times, rather than infrequent big changes with long lead times. We need to ensure that the delta between dev and prod remains small at all times.
 
