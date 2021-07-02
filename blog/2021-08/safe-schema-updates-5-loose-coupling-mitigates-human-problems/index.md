@@ -10,28 +10,28 @@ tags:
  - Deployment Patterns
 ---
 
-This blog post is part 1 of my Safe Schema Updates series. The other posts in this series are available at the following links:
+This blog post is part 5 of my Safe Schema Updates series. The other posts in this series are available at the following links:
 
 !include <safe-schema-updates-posts>
 
 > *“No matter what the problem is, it’s always a people problem.”*
 > *Gerald Weinberg*
 
-In the previous post we focussed on technical issues associated with software/database architecture. In this post we’ll focus on the human issues.
+In the previous post (Part 4) we focussed on technical issues associated with software/database architecture. In this post we’ll focus on the human issues.
 
-Conway’s Law dictates that organisations are limited to design systems that mirror their internal communication patterns. As Eric S Raymond so eloquently put it in The New Hacker’s Dictionary, *“if you have four groups working on a compiler, you'll get a 4-pass compiler”*. 
+[Conway’s Law](https://en.wikipedia.org/wiki/Conway%27s_law) dictates that organisations are limited to design systems that mirror their internal communication patterns. As Eric S Raymond so eloquently put it in [The New Hacker’s Dictionary](https://www.goodreads.com/book/show/104746.The_New_Hacker_s_Dictionary), *“if you have four groups working on a compiler, you'll get a 4-pass compiler”*. 
 
-Our team structures measurably affect our software architectures… but the reverse is also true: complicated architectures foster painful and toxic bureaucracy and working cultures. Together, left unchecked, they form a vicious circle. 
+Our team structures measurably affect our software architectures… but the reverse can also be true: complicated architectures can foster painful and toxic bureaucracy and working cultures. Together, left unchecked, it's possible for them to form a vicious circle. 
 
 When things go wrong with critical but complicated monoliths, and when it’s difficult to attribute cause and effect, individuals are generally quick to point fingers and cover their own backs. If we are honest with ourselves, we can probably all think of times when we’ve acted defensively, even if we didn’t know whether we were at fault. We are all valuable but imperfect humans, and we share a deep personal instinct for self-preservation.
 
-Patrick Lencioni talks about conflict, commitment, and accountability in The Five Dysfunctions of a Team. His fourth dysfunction explicitly calls out the avoidance of accountability as being detrimental to effective teamwork:
+Patrick Lencioni talks about conflict, commitment, and accountability in [The Five Dysfunctions of a Team](https://octopus.com/blog/devops-reading-list#dysfunc). His fourth dysfunction explicitly calls out the avoidance of accountability as being detrimental to effective teamwork:
  
 ![The Five Dysfunctions of a Team](five-disfunctions.jpg)
 
-* Image source: https://medium.com/taskworld-blog/lencionis-5-dysfunctions-of-a-team-330d58b2cd81 *
+*Image source: [https://medium.com/taskworld-blog/lencionis-5-dysfunctions-of-a-team-330d58b2cd81](https://medium.com/taskworld-blog/lencionis-5-dysfunctions-of-a-team-330d58b2cd81)*
 
-In part 2 of this series, as part of our discussion into reliability vs robustness, we discussed Richard Cook’s insightful research into how complex systems fail. In particular, we looked at the problems with traditional views about accountability or blame and “root cause analysis” within complex systems, where failures are often caused by many, seemingly unrelated factors. These challenges are inescapable, but we can help ourselves by designing systems that are easier to observe and where relationships, dependencies and expectations are more clearly defined.
+In part 2 of this series, as part of our discussion into reliability vs robustness, we discussed Richard Cook’s insightful research into [how complex systems fail](https://how.complexsystems.fail/). In particular, we looked at the problems with traditional views about accountability or blame and “root cause analysis” within complex systems, where failures are often caused by many, seemingly unrelated factors. These challenges are inescapable, but we can help ourselves by designing systems that are easier to observe and where relationships, dependencies and expectations are more clearly defined.
 
 When we break our complicated, monolithic architectures up into sets of smaller, more loosely coupled systems, it helps everyone to understand the relationship between cause and effect. Through proper instrumentation/telemetry/monitoring we are able to track various performance metrics for each service. When systems fail, there’s less confusion, arguing, finger pointing and politics. It’s much easier to focus on understanding, fixing and reviewing failures - and to make changes to avoid issues recurring in the future.
 
@@ -57,11 +57,11 @@ By publishing both the SLO and performance metrics for each service, teams becom
 
 In an ideal world, where reviews are necessary, they should be carried out by someone who is able to read the code while it’s still fresh, understand the consequences, and provide insightful recommendations about improvements. Where regulatory compliance is concerned, the review should (as a minimum) be carried out by an engineer who understands the systems well enough to spot any potentially fraudulent changes. (Note: this generally requires a great deal of technical skill/experience.) Preventing fraud, after all, is the entire point of the Sarbanes-Oxley (SOX) Act.
 
-Since Continuous Integration teaches us to prioritise merging over diverging, the reviewer should also prioritise the code review over anything they are currently working on. Ideally, within minutes of the change being submitted for approval, the reviewer(s) should pause whatever they are doing and review the change.
+Since Continuous Integration teaches us to prioritise merging over diverging (as discussed earlier in this series), the reviewer should also prioritise the code review over anything they are currently working on. Ideally, within minutes of the change being submitted for approval, the reviewer(s) should pause whatever they are doing and review the change.
 
 That’s right. It should be *expected* that reviewers take a break from any new development work, in order to prioritise the merging and deployment of “dev-complete” work.
 
-From this stance the idea of a weekly Change Advisory Board (CAB) meeting should sound as poisonous and inefficient as it is. The audacity of any CAB member to think that any WIP should sit around, festering for a week, to fit in with their own schedule, should be considered egregiously arrogant. What else are they doing with their time that is more important to the business than merging a week’s worth of putrid divergence? Delivering reliable updates is *literally the point of the job* – not a task to be put off until the end of the week. (I talked in more detail about why Change Advisory Boards Don’t Work last year, so I won’t repeat myself further here.)
+From this stance the idea of a weekly Change Advisory Board (CAB) meeting should sound as poisonous and inefficient as it is. The audacity of any CAB member to think that any WIP should sit around, festering for a week, to fit in with their own schedule, should be considered egregiously arrogant. What else are they doing with their time that is more important to the business than merging a week’s worth of putrid divergence? Delivering reliable updates is *literally the point of the job* – not a task to be put off until the end of the week. (I talked in more detail about why [Change Advisory Boards Don’t Work](https://octopus.com/blog/change-advisory-boards-dont-work) last year, so I won’t repeat myself further here.)
 
 It’s clear that senior managers should not be reviewing deployments. They probably will not be able to drop whatever they are working on whenever someone submits a new pull request. Their role is to support healthy review practices, not to personally conduct the reviews.
 
@@ -92,7 +92,7 @@ The shift toward bounded responsibility can be hugely beneficial, but only if th
 
 We started this series with a look at traditional database delivery hell, and the various factors that reinforce a vicious cycle that leads to a technical debt singularity. We then went on to imagine a better way, covering the theoretical foundations of resilience, continuous delivery, and loose coupling. However, while we went into some detail imagining what a better system might look like, I’ve not written in any technical detail about how to transition from one architecture to the other.
 
-In my next post, we’ll switch gears. We’ll move from theory into practice, with the first of three technical posts intended to aid you to develop three important capabilities that will support your transition to a loosely coupled architecture.
+In my next post (post 6), we’ll switch gears. We’ll move from theory into practice, with the first of three technical posts intended to aid you to develop three important capabilities that will support your transition to a loosely coupled architecture.
 
 In the first of these three posts we’ll talk about the replacement of shared dev/test instances with the self-service and on-demand provisioning of useable and regulatory compliant dev/test environments. After that, we’ll finish this series with two posts that discuss near-zero downtime releases and a safe process for breaking monoliths up into smaller services.
 
