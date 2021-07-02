@@ -1,6 +1,6 @@
 ---
 title: Safe Schema Updates - Database Delivery Hell
-description: TODO description
+description: The first step to recovery is to acknowledge the problem. This post opens a series about safe schema updates with a whistlestop tour through Dante's 9 level's of Database Delivery Hell.
 author: alex.yates@dlmconsultants.com
 visibility: private
 published: 2022-07-21-1400
