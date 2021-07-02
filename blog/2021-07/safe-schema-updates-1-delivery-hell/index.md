@@ -12,21 +12,7 @@ tags:
 
 This blog post is part 1 of my Safe Schema Updates series. The other posts in this series are available at the following links:
 
-**Critiquing existing systems:**
-- [Part 1: Database Delivery Hell](https://octopus.com/blog/safe-schema-updates-1-delivery-hell) *(scheduled: July 19th 2021)*
-
-**Imagining better systems:**
-- [Part 2: Resilient vs Robust IT Systems](https://octopus.com/blog/safe-schema-updates-2-resilient-vs-robust) *(scheduled: July 20th 2021)*
-- [Part 3: Continuous Integration is Misunderstood](https://octopus.com/blog/safe-schema-updates-3-ci-is-misunderstood) *(scheduled: July 21st  2021)*
-- [Part 4: Loose Coupling Mitigates Tech Problems](https://octopus.com/blog/safe-schema-updates-4-loose-coupling-mitigates-tech-problems) *(scheduled: July 22nd 2021)*
-- [Part 5: Loose Coupling Mitigates Human Problems](https://octopus.com/blog/safe-schema-updates-5-loose-coupling-mitigates-human-problems) *(scheduled: July 23rd 2021)*
-
-**Delivering better systems:**
-- [Part 6: Provisioning Dev/Test Databases](https://octopus.com/blog/safe-schema-updates-6-provisioning-dev-databases) *(scheduled: TBC)*
-- [Part 7: Near-Zero Downtime Deploys](https://octopus.com/blog/safe-schema-updates-7-near-zero-downtime-deploys) *(scheduled: TBC)*
-- [Part 8: Strangling The Monolith](https://octopus.com/blog/safe-schema-updates-8-strangling-the-monolith) *(scheduled: TBC)*
-
-~
+!include <safe-schema-updates-posts>
 
 In order to understand why it’s necessary to make a change, it’s useful to reflect on where we are right now. Apologies in advance, this might make for uncomfortable reading.
 
@@ -140,4 +126,6 @@ Wherever you are on your journey, it’s critical to recognise your trajectory a
 
 ## Next time…
 
-In the next post we’ll start to imagine what a better system might look like by exploring the concepts of resilience and robustness. [You can read Part 2 here](https://octopus.com/blog/safe-schema-updates-2-resilient-vs-robust). *(Scheduled for publication: July 20th 2021).)*
+In the next post (part 2) we’ll start to imagine what a safer software architecture, delivery process, and devlopment culture might look like. We'll begin by exploring the nature of failure within complex systems, and we'll move on to discuss the concepts of resilience and robustness. This post will be the first of four posts intended to help folks to re-evaluate the way they view and assess safety within complex IT systems.
+
+!include <safe-schema-updates-posts>
