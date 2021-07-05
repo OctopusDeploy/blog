@@ -16,16 +16,16 @@ In this post, I demonstrate how to deploy a web application written in Ruby usin
 
 ## Sample application
 
-For this post, I'm using the [Veggie Tracker](https://github.com/morinoko/veggie_tracker) example application.  
+For this post, I'm using the [Veggie Tracker](https://github.com/morinoko/veggie_tracker) sample application.  
 
 This sample includes the web application and the code for creating a database and performing database migrations.  With some modifications to the project, I had this application running fairly quickly in my local environment (see [GitHub](https://github.com/OctopusSamples/VeggieTracker) for the modified version).
 
 ### Ruby Application servers and Web servers
 With Ruby, it's important to understand the distinction between an **App Server** and a **Web Server**.  
 
-An **App Server** runs the Ruby application, and usually works without having a **Web Server** in front of it.  The disadvantage to this approach is that the **App Server** can only serve up the application it's running, versus being able to handle multiple applications like a **Web Server**.  
+An App Server runs the Ruby application, and usually works without having a Web Server in front of it.  The disadvantage to this approach is that the App Server can only serve the application it's running, versus being able to handle multiple applications like a Web Server.  
 
-In addition, **App Servers** typically don't handle things like request compression or SSL/TLS.  For this reason, the most typical configuration for Ruby web applications is to have something like an Apache or NGINX **Web Server** in front of the **App Server**.
+In addition, App Servers typically don't handle things like request compression or SSL/TLS.  For this reason, the most typical configuration for Ruby web applications is to have something like an Apache or NGINX Web Server in front of the App Server.
 
 ### Selecting an App Server
 When developing in the Ruby language, you have many application servers to choose from, e.g. Unicorn, Thin, Puma, Passenger etc.  
@@ -219,7 +219,7 @@ With our build complete, we can focus on creating the deployment in Octopus Depl
 ## Deploying VeggieTracker with Octopus Deploy
 This post assumes you're familiar with creating projects with Octopus Deploy.  
 
-The deployment process for the Veggie Tracker application consists of a single step with multiple components, which I'll cover later.
+The deployment process for the Veggie Tracker application consists of a single step with multiple components, which I cover later.
 
 ### Variables
 Before we define our process, let's create variables to use in our deployment:
@@ -339,7 +339,7 @@ sudo systemctl restart "${APPNAME}.service"
 #### Structured Configuration Variables
 We'll use the **Structured Configuration Variables** feature to replace the values in the `database.yml` so that we connect to the database server.  This file is located in the `config` folder of our application.  
 
-Enter `config/database.yml` as Target file.
+For **Target files**, enter `config/database.yml`.
 
 ![](octopus-nginx-structured-variables.png)
 
