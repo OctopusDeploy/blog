@@ -13,9 +13,9 @@ tags:
 
 ![The state of config file formats: XML vs. YAML vs. JSON vs. HCL](blogimage-config-as-code-explanation_2020.png)
 
-Every application, environment, or system requires some level of configuration. Configuration formats, such as the `ini` format to plain text-based files, have waxed and waned in popularity over the years. As application and system needs have evolved, so has the configuration complexity and structure that’s required.
+Every application, environment, or system requires some level of configuration. Configuration formats, such as the `ini` format to plain text-based files, have fluctuated in popularity over the years. As application and system needs have evolved, so has the configuration complexity and structure that’s required.
 
-Today, a multitude of configuration formats exist, but some are more popular in cloud environments. XML, JSON, YAML, and HCL support complex configurations, each with their advantages and disadvantages.
+Today, many configuration formats exist, but some are more popular in cloud environments. XML, JSON, YAML, and HCL support complex configurations, each with their advantages and disadvantages.
 
 ## [Extensible Markup Language (XML)](https://www.w3.org/XML/)
 
@@ -43,7 +43,7 @@ Recognized as a formal specification in 2013, JSON has been around since the ear
 
 Derived from JavaScript, JSON is language independent. JSON parsers exist for many different programming languages and tooling.
 
-In contrast to XML, JSON offers a simpler alternative. With a clean and easy to use syntax, JSON has taken over many configuration setups. Developers appreciate the simplicity and speed of processing that JSON offers. 
+JSON is a simpler alternative to XML. With a clean and easy to use syntax, JSON has taken over many configuration setups. Developers appreciate the simplicity and speed of processing that JSON offers. 
 
 JSON is one of the most common languages in use today, and is popular despite the drawbacks inherent in its design.
 
@@ -64,9 +64,9 @@ JSON is one of the most common languages in use today, and is popular despite th
 
 First known as Yet Another Markup Language, the official definition changed to express a data focus over a document focus. Created in 2001, YAML doesn't have a formal W3C specification. The latest YAML 1.2 specifications have been stable since 2009. 
 
-Intended for defining configurations instead of as a data transport language, YAML is very human-readable.
+YAML is very human-readable, because it’s intended for defining configurations instead of as a data transport language.
 
-Although YAML looks different to JSON, YAML is a superset of JSON. As a superset of JSON, a valid YAML file can contain JSON. Additionally, JSON can transform into YAML as well. YAML itself can also contain JSON within its configuration files.
+Although YAML looks different to JSON, YAML is a superset of JSON. As a superset of JSON, a valid YAML file can contain JSON. Additionally, JSON can transform into YAML as well. YAML itself can also contain JSON in its configuration files.
 
 ### Advantages of YAML
 
