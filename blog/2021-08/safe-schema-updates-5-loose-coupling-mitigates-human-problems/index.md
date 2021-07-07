@@ -91,10 +91,7 @@ The shift toward bounded responsibility can be hugely beneficial, but only if th
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Dear intern:<br><br>We&#39;ve all screwed something up,<br>So welcome to the club.<br><br>&quot;That Sinking Feeling (The <a href="https://twitter.com/hashtag/HugOps?src=hash&amp;ref_src=twsrc%5Etfw">#HugOps</a> Song)&quot; <a href="https://t.co/KmwgSfx33h">pic.twitter.com/KmwgSfx33h</a></p>&mdash; Forrest Brazeal (@forrestbrazeal) <a href="https://twitter.com/forrestbrazeal/status/1412586571170291718?ref_src=twsrc%5Etfw">July 7, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
-Inspiring leaders, who value the psychological safety of their workers, are critical.
-
-> *“No matter what the problem is, it’s always a people problem.”*
-> *Gerald Weinberg*
+Creating a safe architecture, where it's *technically* safe to fail, is critical for delivering reliable services. However, this counts for nothing unless you also have inspiring leaders, who foster a culture that also values the *psychological* safety of all their team members.
 
 ## Next time
 
