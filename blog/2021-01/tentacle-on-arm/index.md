@@ -5,6 +5,7 @@ author: ben.pearce@octopus.com
 visibility: public
 metaImage: metaimage-raspberrypi.png
 bannerImage: blogimage-raspberrypi.png
+bannerImageAlt: Octopus Tentacle on ARM/ARM64
 published: 2021-01-20
 tags:
  - Product

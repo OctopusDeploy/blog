@@ -5,6 +5,7 @@ author: shannon.lewis@octopus.com
 visibility: public
 metaImage: 4.0config_metaimage.png
 bannerImage: 4.0config_blogimage.png
+bannerImageAlt: Octopus 4.0 new configuration API and UI
 published: 2017-11-14
 tags:
  - Engineering

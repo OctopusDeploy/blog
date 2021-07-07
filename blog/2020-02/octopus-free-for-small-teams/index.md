@@ -4,6 +4,7 @@ description: "Octopus Cloud and Server are now free for small teams for up to 10
 author: andrew.katsivas@octopus.com
 visibility: private
 bannerImage: octopus-cloud-free.png
+bannerImageAlt: Octopus Cloud and Server are free for small teams
 metaImage: octopus-cloud-free.png
 published: 2020-02-24
 tags:

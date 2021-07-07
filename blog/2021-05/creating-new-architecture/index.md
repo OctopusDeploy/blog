@@ -6,6 +6,7 @@ visibility: public
 published: 2021-05-10-1400
 metaImage: blogimage-creating-new-architecture-2021.png
 bannerImage: blogimage-creating-new-architecture-2021.png
+bannerImageAlt: An image of a blueprint
 tags:
   - Engineering
   - Architecture

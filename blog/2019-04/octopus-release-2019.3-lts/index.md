@@ -4,6 +4,7 @@ description: Octopus Server 2019.3 LTS is the second release with six months of 
 author: nick.josevski@octopus.com
 visibility: public
 bannerImage: blogimage-ltsrelease.png
+bannerImageAlt: Cars on slow lane and fast lane
 metaImage: blogimage-ltsrelease.png
 published: 2019-04-02
 tags:

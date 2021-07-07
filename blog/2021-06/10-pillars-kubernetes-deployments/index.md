@@ -6,6 +6,7 @@ visibility: public
 published: 2021-06-28-1400
 metaImage: blogimage-ten-pillars-of-k8s-deployments-2021.png
 bannerImage: blogimage-ten-pillars-of-k8s-deployments-2021.png
+bannerImageAlt: A book and ten pillars
 tags:
   - DevOps
   - Deployments

@@ -6,6 +6,7 @@ visibility: public
 published: 2020-11-04
 metaImage: blogimage-k8s-roles.png
 bannerImage: blogimage-k8s-roles.png
+bannerImageAlt: Mixing Kubernetes Roles, RoleBindings, ClusterRoles, and ClusterBindings
 tags:
  - Octopus
  - Kubernetes

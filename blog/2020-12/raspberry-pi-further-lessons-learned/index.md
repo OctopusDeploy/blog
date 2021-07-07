@@ -6,6 +6,7 @@ visibility: public
 published: 2020-12-16
 metaImage: raspberry-pi-cluster.png
 bannerImage: raspberry-pi-cluster.png
+bannerImageAlt: Further lessons learned building a Raspberry Pi cluster
 tags:
  - DevOps
  - Kubernetes

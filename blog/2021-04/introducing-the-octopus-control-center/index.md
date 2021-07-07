@@ -6,6 +6,7 @@ visibility: public
 published: 2021-04-29-1400
 metaImage: blogimage-control-center-redesign-2021.png
 bannerImage: blogimage-control-center-redesign-2021.png
+bannerImageAlt: Control Center illustration and Octopus Deploy logo
 tags:
   - Product
 ---

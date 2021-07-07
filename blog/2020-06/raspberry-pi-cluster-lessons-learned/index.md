@@ -6,6 +6,7 @@ visibility: public
 published: 2020-06-23
 metaImage: raspberry-pi-cluster.png
 bannerImage: raspberry-pi-cluster.png
+bannerImageAlt: Lessons learned building a Raspberry Pi cluster
 tags:
  - Engineering
  - Raspberry Pi

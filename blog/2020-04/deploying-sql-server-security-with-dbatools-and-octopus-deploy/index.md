@@ -6,6 +6,7 @@ visibility: public
 published: 2020-04-16
 metaImage: sql-server-security-with-dbatools.png
 bannerImage: sql-server-security-with-dbatools.png
+bannerImageAlt: Deploying SQL Server Security with dbatools and Octopus Deploy
 tags:
  - Product
  - Database Deployments

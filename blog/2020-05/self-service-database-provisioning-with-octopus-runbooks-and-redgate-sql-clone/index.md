@@ -6,6 +6,7 @@ visibility: public
 published: 2020-10-19
 metaImage: runbooks-selfservice.png
 bannerImage: runbooks-selfservice.png
+bannerImageAlt: Self-service database provisioning with Octopus Runbooks and Redgate SQL Clone
 tags:
  - DevOps
  - Runbooks

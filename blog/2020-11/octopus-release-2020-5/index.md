@@ -4,6 +4,7 @@ description: "Octopus 2020.5 introduces support for self-signed certificates, Gi
 author: rob.pearson@octopus.com
 visibility: public
 bannerImage: release-2020.5.png
+bannerImageAlt: Octopus 2020.5
 metaImage: release-2020.5.png
 published: 2020-11-30
 tags:

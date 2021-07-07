@@ -6,6 +6,7 @@ visibility: public
 published: 2019-11-11
 metaImage: blogimage-designdatabasedeployment.png
 bannerImage: blogimage-designdatabasedeployment.png
+bannerImageAlt: Designing a automated database deployment pipeline
 tags:
  - Engineering
  - Database Deployments

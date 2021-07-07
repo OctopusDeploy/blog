@@ -6,6 +6,7 @@ visibility: public
 published: 2021-04-14-1400
 metaImage: execution-workers.png
 bannerImage: execution-workers.png
+bannerImageAlt: White octopus inside a blue cube-shaped container
 tags:
  - DevOps
  - Docker

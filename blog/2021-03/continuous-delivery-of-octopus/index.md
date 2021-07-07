@@ -6,6 +6,7 @@ visibility: public
 published: 2021-03-02
 metaImage: blogimage-versions.png
 bannerImage: blogimage-versions.png
+bannerImageAlt: Versions
 tags:
   - Product
   - Engineering

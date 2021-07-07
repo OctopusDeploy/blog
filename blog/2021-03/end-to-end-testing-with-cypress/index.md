@@ -6,6 +6,7 @@ visibility: public
 published: 2021-03-10-1400
 metaImage: blogimage-testing.png
 bannerImage: blogimage-testing.png
+bannerImageAlt: Professor Octopus testing
 tags:
  - Octopus
  - Testing

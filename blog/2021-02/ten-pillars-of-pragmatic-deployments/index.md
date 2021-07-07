@@ -6,6 +6,8 @@ visibility: public
 published: 2021-02-22-1400
 metaImage: blogimage-the-ten-pillars-of-pragmatic-deployments-2021.png
 bannerImage: blogimage-the-ten-pillars-of-pragmatic-deployments-2021.png
+bannerImageAlt: The ten pillars of pragmatic deployments
+isFeatured: true
 tags:
  - Deployments
 ---

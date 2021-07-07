@@ -6,6 +6,7 @@ visibility: public
 published: 2020-08-10
 metaImage: octopus-kubernetes.png
 bannerImage: octopus-kubernetes.png
+bannerImageAlt: Deploy your first container to Kubernetes via Octopus
 tags:
  - DevOps
  - Kubernetes

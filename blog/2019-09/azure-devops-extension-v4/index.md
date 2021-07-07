@@ -6,6 +6,7 @@ visibility: public
 published: 2019-09-12
 metaImage: blogimage-azureintegration.png
 bannerImage: blogimage-azureintegration.png
+bannerImageAlt: Illustration showing Azure DevOps and Octopus Deploy work great together
 tags:
  - Product
  - Azure

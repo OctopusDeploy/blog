@@ -4,6 +4,7 @@ description: This post demonstrates how to containerize a real-world .NET Core w
 author: shawn.sesna@octopus.com
 visibility: public
 bannerImage: containerize-a-real-world-application.png
+bannerImageAlt: Containerize a real-world web application
 metaImage: containerize-a-real-world-application.png
 published: 2019-12-09
 tags:

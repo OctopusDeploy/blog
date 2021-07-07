@@ -6,6 +6,7 @@ visibility: public
 published: 2020-10-21
 metaImage: self-service-runbook-examples.png
 bannerImage: self-service-runbook-examples.png
+bannerImageAlt: Self-service runbooks examples
 tags:
  - DevOps
  - Runbooks

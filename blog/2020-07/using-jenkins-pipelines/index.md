@@ -6,6 +6,7 @@ visibility: public
 published: 2020-07-28
 metaImage: jenkins-plugin.png
 bannerImage: jenkins-plugin.png
+bannerImageAlt: Using Jenkins Pipelines with Octopus
 tags:
  - Product
  - Jenkins

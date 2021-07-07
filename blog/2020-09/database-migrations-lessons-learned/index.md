@@ -6,6 +6,7 @@ visibility: public
 published: 2020-09-15
 metaImage: database-migrations_2020.png
 bannerImage: database-migrations_2020.png
+bannerImageAlt: Database migrations lessons learned
 tags:
  - Engineering
 ---

@@ -6,6 +6,7 @@ visibility: public
 published: 2020-01-30
 metaImage: k8s-clusterlint-runbook.png
 bannerImage: k8s-clusterlint-runbook.png
+bannerImageAlt: Kuberentes DevOps Runbook example with clusterlint
 tags:
  - DevOps
  - Runbooks

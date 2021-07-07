@@ -6,6 +6,7 @@ visibility: public
 published: 2020-05-13
 metaImage: database-deployments.png
 bannerImage: database-deployments.png
+bannerImageAlt: Lessons learned implementing database deployments
 tags:
  - DevOps
 ---

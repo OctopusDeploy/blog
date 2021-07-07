@@ -6,6 +6,7 @@ visibility: public
 published: 2020-04-27
 metaImage: github-actions-publish.png
 bannerImage: github-actions-publish.png
+bannerImageAlt: Publishing a package to Octopus with GitHub Actions
 tags:
  - DevOps
 ---

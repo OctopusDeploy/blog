@@ -6,6 +6,7 @@ visibility: public
 published: 2021-07-07-1400
 metaImage: blogimage-config-as-code-explanation_2020.png
 bannerImage: blogimage-config-as-code-explanation_2020.png
+bannerImageAlt: Config as Code What is it and how is it beneficial?
 tags:
  - DevOps
  - Config as Code

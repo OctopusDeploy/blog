@@ -6,6 +6,7 @@ visibility: public
 published: 2020-01-29
 metaImage: runbooks-chaos-toolkit.png
 bannerImage: runbooks-chaos-toolkit.png
+bannerImageAlt: Chaos engineering and runbooks
 tags:
  - DevOps
  - Runbooks

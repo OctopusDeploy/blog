@@ -6,6 +6,7 @@ visibility: public
 published: 2018-10-11
 metaImage: blogimage-dockertok8.png
 bannerImage: blogimage-dockertok8.png
+bannerImageAlt: Octopus deploying a TeamCity container to Kubernetes illustration
 tags:
  - Engineering
 ---

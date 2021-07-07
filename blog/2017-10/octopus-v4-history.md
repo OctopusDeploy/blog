@@ -5,6 +5,7 @@ author: pawel.pabich@octopus.com
 visibility: public
 metaImage: 4.0_history_metaimage.png
 bannerImage: 4.0_history_blogimage.png
+bannerImageAlt: Octopus 4.0 coming soon
 published: 2017-10-24
 tags:
  - Engineering

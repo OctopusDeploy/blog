@@ -6,6 +6,7 @@ visibility: public
 published: 2020-08-31
 metaImage: blogimage-security.png
 bannerImage: blogimage-security.png
+bannerImageAlt: A stylized Octopus & Shield icon
 tags:
  - Trust & Security
  - Product

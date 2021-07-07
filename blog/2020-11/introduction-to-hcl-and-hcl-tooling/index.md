@@ -6,6 +6,7 @@ visibility: public
 published: 2020-11-16
 metaImage: blogimage-config-as-code-explanation_2020.png
 bannerImage: blogimage-config-as-code-explanation_2020.png
+bannerImageAlt: Introduction to HCL and HCL tooling
 tags:
  - DevOps
  - Config as Code

@@ -6,6 +6,7 @@ visibility: public
 published: 2020-05-25
 metaImage: database-deployments.png
 bannerImage: database-deployments.png
+bannerImageAlt: Building trust in an automated database deployment process
 tags:
  - DevOps
  - Database Deployments

@@ -6,6 +6,7 @@ visibility: public
 published: 2021-05-26-1400
 metaImage: deploying-ssis-issue.png
 bannerImage: deploying-ssis-issue.png
+bannerImageAlt: deploying SSIS with octopus deploy
 tags:
  - DevOps
  - Databases

@@ -6,6 +6,7 @@ visibility: public
 published: 2019-10-15
 metaImage: lambda-aliases_environment.png
 bannerImage: lambda-aliases_environment.png
+bannerImageAlt: Illustration showing dev, test, and prod environments with different lambdas
 tags:
  - Engineering
 ---

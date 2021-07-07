@@ -6,6 +6,7 @@ visibility: public
 published: 2020-09-07
 metaImage: fargate-octopus.png
 bannerImage: fargate-octopus.png
+bannerImageAlt: Deploying containers to AWS Fargate
 tags:
  - DevOps
  - AWS

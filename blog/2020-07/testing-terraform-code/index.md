@@ -6,6 +6,7 @@ visibility: public
 published: 2020-07-06
 metaImage: testing-terraform.png
 bannerImage: testing-terraform.png
+bannerImageAlt: Testing Terraform code
 tags:
  - DevOps
  - Terraform

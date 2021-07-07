@@ -6,6 +6,7 @@ visibility: public
 published: 2021-03-31-1400
 metaImage: blogimage-deploying-to-payara-2021.png
 bannerImage: blogimage-deploying-to-payara-2021.png
+bannerImageAlt: Payara logo on web servers, and Octopus and Payara fish playing in a fish bowl.
 tags:
  - DevOps
  - Java

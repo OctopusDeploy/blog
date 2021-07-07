@@ -5,6 +5,7 @@ author: shawn.sesna@octopus.com
 visibility: public
 published: 2019-10-01
 bannerImage: bootstrapping_tentacle_installation_dsc.png
+bannerImageAlt: Tentacles rising from the ocean to install software on a server
 metaImage: bootstrapping_tentacle_installation_dsc.png
 tags:
  - DevOps

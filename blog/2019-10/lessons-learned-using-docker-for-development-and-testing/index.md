@@ -6,6 +6,7 @@ visibility: public
 published: 2019-10-28
 metaImage: docker_development_testing.png
 bannerImage: docker_development_testing.png
+bannerImageAlt: Illustration showing a book of docker lessons learned for development and testing
 tags:
  - Engineering
  - Docker

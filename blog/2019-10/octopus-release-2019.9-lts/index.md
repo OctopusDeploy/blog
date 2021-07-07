@@ -4,6 +4,7 @@ description: Octopus Server 2019.9 LTS is here, and we recommend this release fo
 author: rob.pearson@octopus.com
 visibility: public
 bannerImage: blogimage-ltsrelease.png
+bannerImageAlt: Cars on slow lane and fast lane
 metaImage: blogimage-ltsrelease.png
 published: 2019-10-10
 tags:

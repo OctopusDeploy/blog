@@ -6,6 +6,7 @@ visibility: public
 published: 2020-10-07
 metaImage: octopus-linux-workers.png
 bannerImage: octopus-linux-workers.png
+bannerImageAlt: Announcing Linux worker pools on Octopus Cloud
 tags:
  - Octopus Cloud
  - Workers

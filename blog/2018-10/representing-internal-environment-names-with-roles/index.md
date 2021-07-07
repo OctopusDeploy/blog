@@ -4,6 +4,7 @@ description: We can use Target Roles to track tenant specific environment names 
 author: ryan.rousseau@octopus.com
 visibility: public
 bannerImage: blogimage-targetroles.png
+bannerImageAlt: Octopus Labeling Machines
 metaImage: blogimage-targetroles.png
 published: 2018-10-01
 tags:

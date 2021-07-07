@@ -6,6 +6,7 @@ visibility: public
 published: 2020-03-11
 metaImage: sql-server-database-deployment-automation-options.png
 bannerImage: sql-server-database-deployment-automation-options.png
+bannerImageAlt: SQL Server Deployment Options for Octopus Deploy
 tags:
  - Product
  - Database Deployments

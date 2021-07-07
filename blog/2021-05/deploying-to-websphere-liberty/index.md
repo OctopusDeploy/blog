@@ -6,6 +6,7 @@ visibility: public
 published: 2021-05-05-1400
 metaImage: blogimage-deploying-to-ibm-websphere-liberty-2021.png
 bannerImage: blogimage-deploying-to-ibm-websphere-liberty-2021.png
+bannerImageAlt: An Octopus standing by Websphere servers
 tags:
  - DevOps
  - Database Deployments

@@ -6,6 +6,7 @@ visibility: public
 published: 2020-08-10
 metaImage: octopus-kind.png
 bannerImage: octopus-kind.png
+bannerImageAlt: Getting started with Kind and Octopus
 tags:
  - DevOps
  - Kubernetes

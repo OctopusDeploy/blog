@@ -6,6 +6,7 @@ visibility: public
 published: 2020-08-12
 metaImage: octopus-helm.png
 bannerImage: octopus-helm.png
+bannerImageAlt: Deploy a Helm chart with Octopus
 tags:
  - DevOps
  - Kubernetes

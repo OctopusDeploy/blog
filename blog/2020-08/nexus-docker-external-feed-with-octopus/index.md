@@ -6,6 +6,7 @@ visibility: public
 published: 2020-08-18
 metaImage: octopus-docker.png
 bannerImage: octopus-docker.png
+bannerImageAlt: Using a Nexus Docker registry with Octopus Deploy
 tags:
  - DevOps
  - Docker

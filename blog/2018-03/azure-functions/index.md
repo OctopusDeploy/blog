@@ -6,6 +6,7 @@ visibility: public
 published: 2018-03-13
 metaImage: metaimage-azurefunctions.png
 bannerImage: blogimage-azurefunctions.png
+bannerImageAlt: Azure Functions in the Cloud
 tags:
  - Product
 ---

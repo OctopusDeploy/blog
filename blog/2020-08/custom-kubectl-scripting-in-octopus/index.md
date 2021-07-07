@@ -6,6 +6,7 @@ visibility: public
 published: 2020-08-12
 metaImage: k8s-devops-runbook.png
 bannerImage: k8s-devops-runbook.png
+bannerImageAlt: Custom kubectl scripting in Octopus
 tags:
  - DevOps
  - Kubernetes

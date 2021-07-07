@@ -6,6 +6,7 @@ visibility: public
 published: 2019-09-18
 metaImage: img-blog-deploy-netcore-to-aws-elastic-beanstalk.png
 bannerImage: img-blog-deploy-netcore-to-aws-elastic-beanstalk.png
+bannerImageAlt: Slingshot deploying a new application release to a beanstalk vine
 tags:
  - DevOps
 ---

@@ -6,6 +6,7 @@ visibility: public
 published: 2021-04-06-1400 
 metaImage: blogimage-infrastructure-development-azure-pulumi-2.png
 bannerImage: blogimage-infrastructure-development-azure-pulumi-2.png
+bannerImageAlt: Infrastructure as code in Azure with Octopus Deploy and Pulumi Part two
 tags:
  - DevOps
  - Pulumi

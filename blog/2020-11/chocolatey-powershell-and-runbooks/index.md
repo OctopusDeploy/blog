@@ -6,6 +6,7 @@ visibility: public
 published: 2020-11-03
 metaImage: automate_machine_chocolately.png
 bannerImage: automate_machine_chocolately.png
+bannerImageAlt: Configure team member’s machines with Chocolatey, PowerShell, and Octopus Runbooks
 tags:
  - Product
  - Runbooks

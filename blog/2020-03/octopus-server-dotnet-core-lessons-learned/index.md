@@ -4,6 +4,7 @@ description: "We ported Octopus Server to .NET Core 3.1 to unlock the ability to
 author: rob.pearson@octopus.com
 visibility: public
 bannerImage: eskimo-octopus-linux-land.png
+bannerImageAlt: Lessons learned porting Octopus Server to .NET Core 3.1
 metaImage: eskimo-octopus-linux-land.png
 published: 2020-03-19
 tags:

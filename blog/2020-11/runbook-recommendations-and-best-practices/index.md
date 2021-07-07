@@ -6,6 +6,7 @@ visibility: public
 published: 2020-11-18
 metaImage: blogimage-runbookslaunch.png
 bannerImage: blogimage-runbookslaunch.png
+bannerImageAlt: Runbook lessons learned and recommendations
 tags:
  - DevOps
  - Runbooks

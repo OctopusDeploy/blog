@@ -6,6 +6,7 @@ visibility: public
 published: 2020-08-19
 metaImage: negotiating-with-gatekeepers.png
 bannerImage: negotiating-with-gatekeepers.png
+bannerImageAlt: Negotiating with the gatekeepers
 tags:
  - DevOps
 ---

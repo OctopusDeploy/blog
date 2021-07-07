@@ -4,6 +4,7 @@ description: "Octopus 2020.4 introduces better config file updates for Java, Nod
 author: rob.pearson@octopus.com
 visibility: public
 bannerImage: release-2020.4.png
+bannerImageAlt: Octopus 2020.4
 metaImage: release-2020.4.png
 published: 2020-10-05
 tags:
