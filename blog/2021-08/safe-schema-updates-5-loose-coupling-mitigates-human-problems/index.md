@@ -87,7 +87,11 @@ Guess I better work on my resume and put some feelers out?
 
 (Fun fact: When I started this series, I thought it was going to be a single blog post! Then it became a 3-parter… Now it’s grown into something *much* bigger and I’m a long way behind my original publication schedule! I'm super grateful to the awesome folks at Octopus for their patience and understanding!)
 
-The shift toward bounded responsibility can be hugely beneficial, but only if the team feel safe and supported, *especially* in failure. This is something that can only be achieved through clear, honest and sincere direction - from the top. Inspiring leaders, who value the psychological safety of their workers, are critical.
+The shift toward bounded responsibility can be hugely beneficial, but only if the team feel safe and supported, *especially* in failure. This is something that can only be achieved through clear, honest and sincere direction - from the top. If you'd like a little help imagining what that might look like, pop some headphones on, and click play:
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">Dear intern:<br><br>We&#39;ve all screwed something up,<br>So welcome to the club.<br><br>&quot;That Sinking Feeling (The <a href="https://twitter.com/hashtag/HugOps?src=hash&amp;ref_src=twsrc%5Etfw">#HugOps</a> Song)&quot; <a href="https://t.co/KmwgSfx33h">pic.twitter.com/KmwgSfx33h</a></p>&mdash; Forrest Brazeal (@forrestbrazeal) <a href="https://twitter.com/forrestbrazeal/status/1412586571170291718?ref_src=twsrc%5Etfw">July 7, 2021</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+Inspiring leaders, who value the psychological safety of their workers, are critical.
 
 > *“No matter what the problem is, it’s always a people problem.”*
 > *Gerald Weinberg*
