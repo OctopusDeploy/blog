@@ -6,6 +6,7 @@ visibility: public
 published: 2020-11-09
 metaImage: blogimage-config-as-code-explanation_2020.png
 bannerImage: blogimage-config-as-code-explanation_2020.png
+bannerImageAlt: The state of config file formats XML vs. YAML vs. JSON vs. HCL
 tags:
  - DevOps
  - Config as Code

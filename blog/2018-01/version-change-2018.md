@@ -5,6 +5,7 @@ author: michael.noonan@octopus.com
 visibility: public
 metaImage: metaimage-shipping-2018-1.png
 bannerImage: blogimage-shipping-2018-1.png
+bannerImageAlt: Roadmap for 2018
 published: 2018-01-22
 tags:
  - Company

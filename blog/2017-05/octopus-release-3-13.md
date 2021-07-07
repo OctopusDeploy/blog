@@ -5,6 +5,7 @@ author: mark.siedle@octopus.com
 visibility: public
 published: 2017-05-03
 bannerImage: shipping-3-13-blogimage.png
+bannerImageAlt: Octopus 3.13 release announcement
 tags:
  - Product
 ---

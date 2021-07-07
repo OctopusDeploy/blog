@@ -5,6 +5,7 @@ author: tom.peters@octopus.com
 visibility: public
 metaImage: 4.0variables_metaimage.png
 bannerImage: 4.0variables_blogimage.png
+bannerImageAlt: Octopus 4.0's new variable editor rocks
 published: 2017-10-31
 tags:
  - Engineering

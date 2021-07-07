@@ -6,6 +6,7 @@ visibility: public
 published: 2020-07-20
 metaImage: rolling-deployments.png
 bannerImage: rolling-deployments.png
+bannerImageAlt: Rolling deployments
 tags:
  - DevOps
  - Deployment Patterns

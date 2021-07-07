@@ -4,6 +4,7 @@ description: Automating Tentacle for Linux installation with an AWS CloudFormati
 author: shawn.sesna@octopus.com
 visibility: public
 bannerImage: blogimage-tentacleaws.png
+bannerImageAlt: Tentacles rising from the ocean to install software on a Linux server with AWS Cloudformation
 metaImage: blogimage-tentacleaws.png
 published: 2019-10-14
 tags:

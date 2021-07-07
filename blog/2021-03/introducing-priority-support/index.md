@@ -6,6 +6,7 @@ visibility: private
 published: 2021-03-08-1400
 metaImage: blogimage-introducing-priority-support.png
 bannerImage: blogimage-introducing-priority-support.png
+bannerImageAlt: Introducing priority support
 tags:
  - Product
  - Support

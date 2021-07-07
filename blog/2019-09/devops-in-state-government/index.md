@@ -4,6 +4,7 @@ description: The story of how I implemented DevOps practices at a state governme
 author: shawn.sesna@octopus.com
 visibility: public
 bannerImage: blogimage-devopgovernment.png
+bannerImageAlt: Illustration showing an infinite feedback loop surrounding a government building
 metaImage: blogimage-devopgovernment.png
 published: 2019-09-04
 tags:

@@ -4,6 +4,7 @@ description: How to incorporate Kubernetes in the CI/CD pipeline for a real-worl
 author: shawn.sesna@octopus.com
 visibility: public
 bannerImage: build-a-real-world-kubernetes-cicd-pipeline.png
+bannerImageAlt: Beyond Hello World - Build a real-world Kubernetes CI/CD pipeline
 metaImage: build-a-real-world-kubernetes-cicd-pipeline.png
 published: 2020-01-15
 tags:

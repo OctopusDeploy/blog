@@ -6,6 +6,7 @@ visibility: public
 published: 2019-10-07
 metaImage: octopus-cloud-recap.png
 bannerImage: octopus-cloud-recap.png
+bannerImageAlt: Octopus in the balloon looking ahead to Octopus Cloud version 2.0
 tags:
  - Engineering
  - Octopus Cloud

@@ -6,6 +6,7 @@ visibility: public
 published: 2020-04-29
 metaImage: octopus-circle-ci-orb.png
 bannerImage: octopus-circle-ci-orb.png
+bannerImageAlt: Reusable YAML with CircleCI orbs
 tags:
  - DevOps
  - CircleCI

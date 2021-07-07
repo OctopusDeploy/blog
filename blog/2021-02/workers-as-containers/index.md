@@ -6,6 +6,7 @@ visibility: public
 published: 2021-02-01
 metaImage: blogimage-worker-as-containers.png
 bannerImage: blogimage-worker-as-containers.png
+bannerImageAlt: Creating workers with the Tentacle Docker image
 tags:
   - DevOps
 ---

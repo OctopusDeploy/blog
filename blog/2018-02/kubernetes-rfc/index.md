@@ -5,6 +5,7 @@ author: michael.richardson@octopus.com
 visibility: public
 metaImage: metaimage-kubernetes-rfc.png
 bannerImage: blogimage-kubernetes-rfc.png
+bannerImageAlt: Octopus sailing Kubernetes
 published: 2018-02-19
 tags:
  - Product

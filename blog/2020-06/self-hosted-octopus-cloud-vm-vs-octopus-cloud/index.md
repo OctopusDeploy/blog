@@ -6,6 +6,7 @@ visibility: public
 published: 2020-06-16
 metaImage: cloud-hybrid-shift-to-cloud.png
 bannerImage: cloud-hybrid-shift-to-cloud.png
+bannerImageAlt: Self-hosted Octopus in a Cloud VM vs. Octopus Cloud
 tags:
  - Octopus
  - Product

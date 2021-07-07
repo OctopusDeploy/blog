@@ -4,6 +4,7 @@ description: This post demonstrates incorporating Docker containers in the CI/CD
 author: shawn.sesna@octopus.com
 visibility: public
 bannerImage: docker-in-a-ci-cd-pipeline.png
+bannerImageAlt: Build a real-world CI/CD Docker pipeline
 metaImage: docker-in-a-ci-cd-pipeline.png
 published: 2019-12-11
 tags:

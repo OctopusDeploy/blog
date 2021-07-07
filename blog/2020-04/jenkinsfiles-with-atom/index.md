@@ -6,6 +6,7 @@ visibility: public
 published: 2020-04-01
 metaImage: jenkins-graphic.png
 bannerImage: jenkins-graphic.png
+bannerImageAlt: Writing and linting Jenkinsfiles with Atom
 tags:
  - Octopus
 ---

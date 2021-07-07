@@ -6,6 +6,7 @@ visibility: public
 published: 2020-02-24
 metaImage: java-octopus.png
 bannerImage: java-octopus.png
+bannerImageAlt: Creating a Kubernetes Operator with Kotlin
 tags:
  - DevOps
  - Kubernetes

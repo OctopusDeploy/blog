@@ -6,6 +6,7 @@ visibility: public
 published: 2021-04-20
 metaImage: blogimage-insight-blog-post-2021.png
 bannerImage: blogimage-insight-blog-post-2021.png
+bannerImageAlt: Insight Partners and Octopus Deploy
 tags:
   - Company
 ---

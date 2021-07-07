@@ -6,6 +6,7 @@ visibility: public
 published: 2020-10-09
 metaImage: blogimage-security.png
 bannerImage: blogimage-security.png
+bannerImageAlt: Bounty program
 tags:
  - Trust and Security
 ---

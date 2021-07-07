@@ -6,6 +6,7 @@ visibility: public
 published: 2020-09-01
 metaImage: go-auth-with-azure.png
 bannerImage: go-auth-with-azure.png
+bannerImageAlt: Authenticate to Azure with Golang
 tags:
  - DevOps
  - golang

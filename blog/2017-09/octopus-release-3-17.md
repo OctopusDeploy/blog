@@ -6,6 +6,7 @@ published: 2017-09-11
 visibility: public
 metaImage: metaimage-release3-17.png
 bannerImage: blogimage-release-3-17.png
+bannerImageAlt: Octopus 3.17 release announcement
 tags:
  - Product
 ---

@@ -6,6 +6,7 @@ visibility: public
 published: 2020-03-23
 metaImage: octopus-cli-tab-completion.png
 bannerImage: octopus-cli-tab-completion.png
+bannerImageAlt: Command-line tab completion for Octopus CLI
 tags:
  - Engineering
 ---

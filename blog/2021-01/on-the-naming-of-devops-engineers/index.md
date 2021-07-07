@@ -6,6 +6,7 @@ visibility: public
 published: 2021-01-11
 metaImage: blog-image-naming-of-devops-engineers_2021.png
 bannerImage: blog-image-naming-of-devops-engineers_2021.png
+bannerImageAlt: On the naming of “DevOps Engineers”
 tags:
  - DevOps
 ---

@@ -6,6 +6,7 @@ published: 2018-02-23
 author: andrew.katsivas@octopus.com
 metaImage: metaimage-bitbucket.png
 bannerImage: blogimage-bitbucket.png
+bannerImageAlt: Bitbucket pipelinse and Octopus Deploy
 tags:
  - DevOps
 ---

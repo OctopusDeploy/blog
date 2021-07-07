@@ -6,6 +6,7 @@ visibility: public
 published: 2021-01-27
 metaImage: deploy-lambdas-multiple-environments.png
 bannerImage: deploy-lambdas-multiple-environments.png
+bannerImageAlt: Deploying AWS Lambdas across environments
 tags:
  - DevOps
  - AWS 

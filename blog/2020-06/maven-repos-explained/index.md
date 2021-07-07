@@ -6,6 +6,7 @@ visibility: public
 published: 2020-06-17
 metaImage: maven-repo.png
 bannerImage: maven-repo.png
+bannerImageAlt: Maven repositories explained
 tags:
  - DevOps
  - Java

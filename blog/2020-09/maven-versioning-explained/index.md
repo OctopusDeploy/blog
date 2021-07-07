@@ -6,6 +6,7 @@ visibility: public
 published: 2020-09-29
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
+bannerImageAlt: Maven versions explained
 tags:
  - Engineering
 ---

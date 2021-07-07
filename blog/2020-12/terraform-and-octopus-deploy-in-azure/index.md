@@ -6,6 +6,7 @@ visibility: public
 published: 2020-12-09
 metaImage: infrastructure-as-code-terraform.png
 bannerImage: infrastructure-as-code-terraform.png
+bannerImageAlt: Infrastructure as code in Azure with Terraform and Octopus Deploy
 tags:
  - DevOps
  - Terraform

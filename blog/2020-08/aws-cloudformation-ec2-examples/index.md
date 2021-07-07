@@ -6,6 +6,7 @@ visibility: public
 published: 2020-08-04
 metaImage: aws-cloudformation-ec2.png
 bannerImage: aws-cloudformation-ec2.png
+bannerImageAlt: Creating EC2 instance in AWS with CloudFormation
 tags:
  - DevOps
  - AWS

@@ -6,6 +6,7 @@ visibility: public
 published: 2021-07-05-1400
 metaImage: blogimage-release-management-with-dynamic-infrastructure-2021.png
 bannerImage: blogimage-release-management-with-dynamic-infrastructure-2021.png
+bannerImageAlt: Animated process characters in a minecart heading towards a city
 tags:
  - DevOps
 ---

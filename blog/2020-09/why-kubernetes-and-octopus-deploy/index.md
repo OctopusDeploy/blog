@@ -4,6 +4,7 @@ description: Understanding the value that Octopus brings to your Kubernetes depl
 author: matthew.casperson@octopus.com
 visibility: public
 bannerImage: blogimage-kubernetes.png
+bannerImageAlt: Why use Octopus for Kubernetes deployments?
 metaImage: blogimage-kubernetes.png
 published: 2020-09-21
 tags:

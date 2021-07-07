@@ -5,6 +5,7 @@ author: bob.walker@octopus.com
 visibility: public
 metaImage: img_blog_automatingsql_navy_2019.png
 bannerImage: img_blog_automatingsql_navy_2019.png
+bannerImageAlt: Illustration showing developers installing SQL Server
 published: 2019-08-21
 tags:
  - Engineering

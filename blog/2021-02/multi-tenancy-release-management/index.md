@@ -6,6 +6,7 @@ visibility: public
 published: 2021-02-24-1400
 metaImage: blogimage-multi-tenancy-release-management-2021.png
 bannerImage: blogimage-multi-tenancy-release-management-2021.png
+bannerImageAlt: Multi-Tenancy Release Management with Octopus Deploy
 tags:
  - Engineering
  - Deployment Patterns

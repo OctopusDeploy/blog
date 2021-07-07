@@ -6,6 +6,7 @@ visibility: public
 published: 2020-09-02
 metaImage: go-aws-automation.png
 bannerImage: go-aws-automation.png
+bannerImageAlt: Golang for Automation in AWS
 tags:
  - DevOps
  - golang

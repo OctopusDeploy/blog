@@ -4,6 +4,7 @@ description: "Octopus 2021 Q1: Octopus Server's Linux Docker image is Released t
 author: kathryn.marks@octopus.com
 visibility: public
 bannerImage: release-2021-q1.png
+bannerImageAlt: Octopus 2021 Q1
 metaImage: octopus-release-2021-q1-summary-card.png
 published: 2021-03-15-1400
 tags:

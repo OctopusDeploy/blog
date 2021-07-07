@@ -6,6 +6,7 @@ visibility: public
 published: 2020-06-29
 metaImage: spaces.png
 bannerImage: spaces.png
+bannerImageAlt: Cloning a space using the Octopus API
 tags:
  - Engineering
 ---

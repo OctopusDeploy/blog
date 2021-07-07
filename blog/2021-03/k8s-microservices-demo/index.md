@@ -6,6 +6,7 @@ visibility: public
 published: 2021-03-17-1400
 metaImage: blogimage-kubernetes.png
 bannerImage: blogimage-kubernetes.png
+bannerImageAlt: Deploying a microservice to Kubernetes with Octopus
 tags:
  - Octopus
  - Kubernetes

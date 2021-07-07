@@ -6,6 +6,7 @@ visibility: public
 published: 2019-09-17
 metaImage: img-blog_whatis_cnab.png
 bannerImage: img-blog_whatis_cnab.png
+bannerImageAlt: Docker Whale with a Cloud Native Application Bundle on its back
 tags:
  - DevOps
 ---

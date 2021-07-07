@@ -6,6 +6,7 @@ visibility: public
 published: 2020-08-26
 metaImage: powershell-testing-with-pester.png
 bannerImage: powershell-testing-with-pester.png
+bannerImageAlt: Testing PowerShell code with Pester
 tags:
  - DevOps
  - PowerShell

@@ -6,6 +6,7 @@ visibility: public
 published: 2020-11-25 
 metaImage: blogimage-shaping-config-as-code_2020.png
 bannerImage: blogimage-shaping-config-as-code_2020.png
+bannerImageAlt: Shaping Config as Code
 tags:
  - Product 
  - Config as Code

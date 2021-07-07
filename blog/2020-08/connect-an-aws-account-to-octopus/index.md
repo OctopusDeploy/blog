@@ -6,6 +6,7 @@ visibility: public
 published: 2020-08-24
 metaImage: aws-octopus.png
 bannerImage: aws-octopus.png
+bannerImageAlt: Connect an AWS Account to Octopus Deploy
 tags:
  - DevOps
  - AWS

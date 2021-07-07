@@ -6,6 +6,7 @@ visibility: public
 published: 2020-12-23
 metaImage: blogimage-infrastructure-development-k8-pulumi.png
 bannerImage: blogimage-infrastructure-development-k8-pulumi.png
+bannerImageAlt: Create an AKS Cluster with Pulumi and Octopus Deploy
 tags:
  - DevOps
  - Pulumi

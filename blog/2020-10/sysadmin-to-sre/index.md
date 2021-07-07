@@ -6,6 +6,7 @@ visibility: public
 published: 2020-10-26
 metaImage: blogimage-sysadmin-to-sre.png
 bannerImage: blogimage-sysadmin-to-sre.png
+bannerImageAlt: From Sysadmin to SRE 
 tags:
  - DevOps
  - Sysadmin

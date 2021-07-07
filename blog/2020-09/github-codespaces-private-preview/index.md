@@ -6,6 +6,7 @@ visibility: public
 published: 2020-09-14
 metaImage: github-codespaces.png
 bannerImage: github-codespaces.png
+bannerImageAlt: A look at GitHub Codespaces private preview
 tags:
  - DevOps
 ---

@@ -6,6 +6,7 @@ visibility: public
 published: 2020-10-16
 metaImage: blogimage-java-blog-series-6.png
 bannerImage: blogimage-java-blog-series-6.png
+bannerImageAlt: Java CI/CD From release management to operations
 tags:
  - DevOps
  - Java

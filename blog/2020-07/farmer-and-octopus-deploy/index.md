@@ -6,6 +6,7 @@ visibility: public
 published: 2020-07-21
 metaImage: octopus-farmer.png
 bannerImage: octopus-farmer.png
+bannerImageAlt: Farmer ARM deployments and Octopus
 tags:
  - DevOps
  - Product

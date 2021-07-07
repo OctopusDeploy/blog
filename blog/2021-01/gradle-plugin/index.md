@@ -6,6 +6,7 @@ visibility: public
 published: 2021-01-18
 metaImage: gradle-octopus.png
 bannerImage: gradle-octopus.png
+bannerImageAlt: Octopus Deploy Gradle plugin
 tags:
  - Continuous Integration
  - DevOps

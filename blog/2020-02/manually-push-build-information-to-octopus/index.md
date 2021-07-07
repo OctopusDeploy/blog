@@ -4,6 +4,7 @@ description: "This post describes how to manually push build information to Octo
 author: shawn.sesna@octopus.com
 visibility: public
 bannerImage: octopus-build-information.png
+bannerImageAlt: Manually push build information to Octopus
 metaImage: octopus-build-information.png
 published: 2020-02-26
 tags:
