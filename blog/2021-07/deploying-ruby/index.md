@@ -4,8 +4,9 @@ description: Learn how to deploy a Ruby web application using Octopus Deploy.
 author: shawn.sesna@octopus.com
 visibility: public
 published: 2021-07-12-1400
-metaImage: 
-bannerImage: 
+metaImage: blogimage-deploying-a-ruby-web-application-2021.png
+bannerImage: blogimage-deploying-a-ruby-web-application-2021.png
+bannerImageAlt: three ruby jewels in an Octopus Deploy branded treasure box next to an NGINX server
 tags:
  - DevOps
 ---
