@@ -122,7 +122,7 @@ production:
 The `database.yml` file allows you to override the connection properties based on the defined environment.  For this post, however, I configured the `database.yml` file to inherit everything from the `defaults` as I will be using the [Structured configuration variables](https://octopus.com/docs/projects/steps/configuration-features/structured-configuration-variables-feature) feature in Octopus Deploy.
 
 ## Building your Ruby application
-As Ruby is a scripting language, there is no need to build the application.  However, there are distinct advantages to using a build server with a Ruby application:
+As Ruby is a scripting language, there's no need to build the application.  However, there are distinct advantages to using a build server with a Ruby application:
 
 - Gathering all dependent gems for application execution.
 - Using the build server Octopus Deploy plugin or integration for ease of integration, such as:
@@ -353,7 +353,7 @@ Remove the default binding and replace it with the port variable configured in o
 ![](octopus-nginx-port.png)
 
 ##### Locations
-There are two locations that we need to define for our application.  Both locations have some directives that will also be applied.  Click **ADD LOCATION** to get started.
+There are two locations to define for our application.  Both locations have some directives that will also be applied.  Click **ADD LOCATION** to get started.
 
 ###### Location /
 The first location is `/` and will need two directives.  
