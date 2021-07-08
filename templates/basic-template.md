@@ -6,6 +6,7 @@ visibility: private
 published: 3020-01-01
 metaImage: 
 bannerImage: 
+bannerImageAlt:
 tags:
   - tag
 ---
