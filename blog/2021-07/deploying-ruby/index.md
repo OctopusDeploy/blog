@@ -11,9 +11,9 @@ tags:
  - DevOps
 ---
 
-Twitter, AirBNB, Shopify, and GitHub are big names in the tech industry.  Along with being instantly recognizable, they have something else in common; they're all written in the Ruby language.  
+Twitter, AirBNB, Shopify, and GitHub are big names in the tech industry.  Along with being instantly recognizable, they have something else in common; they're all written in Ruby.  
 
-In this post, I demonstrate how to deploy a web application written in Ruby using Octopus Deploy, including database migrations.
+In this post, I demonstrate how to deploy a web application written in Ruby, including database migrations, using Octopus Deploy.
 
 ## Sample application
 
@@ -29,7 +29,7 @@ An App Server runs the Ruby application, and usually works without having a Web 
 In addition, App Servers typically don't handle things like request compression or SSL/TLS.  For this reason, the most typical configuration for Ruby web applications is to have something like an Apache or NGINX Web Server in front of the App Server.
 
 ### Selecting an App Server
-When developing in the Ruby language, you have many application servers to choose from, e.g. Unicorn, Thin, Puma, Passenger etc.  
+When developing in the Ruby language, you have many application servers to choose from, e.g. Unicorn, Thin, Puma, Passenger, etc.  
 
 The original application server for the Veggie Tracker application is called **Shotgun**.  The README of the project states that you simply need to run `Shotgun` from the command-line to get the application running on your local machine.  This works if you're developing on Linux.
   
@@ -282,7 +282,7 @@ ${ROOTDIR}/vendor/bin/rake db:migrate
 :::hint
 This script installs some Ruby Gems.  This is required because GitHub Actions uses an Ubuntu based container to perform the build.  The platform for this is identified as `x86_64-linux` whereas an Ubuntu VM is identified as `x86_64-linux-gnu`.  Though similar, the compiler makes different binaries which are incompatible.  
 
-The Gems this affects are identified in the build log with `Installing X with native extensions`, and those will need to be built again on the target platform.
+The Gems this affects are identified in the build log with `Installing X with native extensions`, and those need to be built again on the target platform.
 :::
 
 ##### Post-deployment script
@@ -356,7 +356,7 @@ Remove the default binding and replace it with the port variable configured in o
 There are two locations to define for our application.  Both locations have some directives that will also be applied.  Click **ADD LOCATION** to get started.
 
 ###### Location /
-The first location is `/` and will need two directives.  
+The first location is `/` and needs two directives.  
 
 Click the **ADD DIRECTIVE** button and enter the following:
 
@@ -369,7 +369,7 @@ Click the **ADD DIRECTIVE** button and enter the following:
 ![](octopus-nginx-location1.png)
 
 ###### Location @app
-The second location is `@app`.  This location will need to be configured as a Reverse Proxy to `http://unix:#{Octopus.Action.Package.InstallationDirectoryPath}/shared/sockets/puma.sock` with a single directive.
+The second location is `@app`.  This location needs to be configured as a Reverse Proxy to `http://unix:#{Octopus.Action.Package.InstallationDirectoryPath}/shared/sockets/puma.sock` with a single directive.
 
 - Directive: `proxy_set_header`
 - Value: `Host $http_host`
