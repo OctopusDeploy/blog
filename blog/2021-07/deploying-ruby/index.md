@@ -124,23 +124,23 @@ The `database.yml` file allows you to override the connection properties based o
 ## Building your Ruby application
 As Ruby is a scripting language, there's no need to build the application.  However, there are distinct advantages to using a build server with a Ruby application:
 
-- Gathering all dependent gems for application execution.
+- Gathering all dependent gems for application execution
 - Using the build server Octopus Deploy plugin or integration for ease of integration, such as:
-  - Packing the application.
-  - Pushing the package to the Octopus Deploy server or third-party package solution (Nexus, Artifactory, etc.).
-  - Pushing build information to Octopus Deploy.
-  - Creating the release.
-  - Deploying and or promoting releases.
+  - Packing the application
+  - Pushing the package to the Octopus Deploy server or third-party package solution (Nexus, Artifactory, etc.)
+  - Pushing build information to Octopus Deploy
+  - Creating the release
+  - Deploying and or promoting releases
 
 For this post, I'm using GitHub Actions as the build server.  Below is the YAML which does the following:
 
-- Configures GitHub Actions to use Ruby.
-- Sets the package version number.
-- Installs dependent Gems, placing the Gems in the **vendor** subfolder. This allows the application to contain all the dependencies it needs without installing Gems directly on the server.
-- Configures GitHub Actions to use the Octopus CLI.
-- Creates an artifacts folder.
-- Packages the VeggieTracker application and places the archive in the artifacts folder.
-- Pushes the VeggieTracker artifact to the Octopus Deploy server.
+- Configures GitHub Actions to use Ruby
+- Sets the package version number
+- Installs dependent Gems, placing the Gems in the **vendor** subfolder -  this allows the application to contain all the dependencies it needs without installing Gems directly on the server
+- Configures GitHub Actions to use the Octopus CLI
+- Creates an artifacts folder
+- Packages the VeggieTracker application and places the archive in the artifacts folder
+- Pushes the VeggieTracker artifact to the Octopus Deploy server
 
 ```yaml
 # This is a basic workflow to help you get started with Actions
