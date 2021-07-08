@@ -28,7 +28,7 @@ Config as Code, as outlined above, is the versioned migration of configurations 
 - **Traceability**: Using a separate version control repository, specific to configurations, makes it easier to trace changes and updates.
 - **Manageability**: Build and deployment processes specific to configurations can include additional approval, validation, and testing steps to ensure non-breaking changes.
 
-There are many benefits associated with moving configuration management into its own unique process. Though complexity is introduced, and some setup and configuration is needed to remove configuration from within a codebase, the long term benefits are worth the effort.
+There are many benefits when moving configuration management into its own unique process. Though complexity is introduced, and some setup and configuration is needed to remove configuration from within a codebase, the long term benefits are worth the effort.
 
 Taking the time to plan a Config as Code approach results in a successful and managed configuration deployment process. This includes ensuring the following: 
  
@@ -39,7 +39,7 @@ Taking the time to plan a Config as Code approach results in a successful and ma
 
 ## Infrastructure as Code vs. Config as Code
 
-Infrastructure as Code (IaC) concerns itself with the deployment of the underlying infrastructure necessary to support an application’s environment. This can lead to confusion as it looks similar to managing configurations. 
+Infrastructure as Code (IaC) concerns itself with the deployment of the underlying infrastructure necessary to support an application’s environment. This can cause confusion as it looks similar to managing configurations. 
 
 Config as Code is about managing the specific application configuration settings themselves, which is separated from your infrastructure code and managed in its own unique process.
 
@@ -57,7 +57,7 @@ What does using Config as Code in practice actually imply? There are several way
 
 ### Using unique configuration source control repositories
 
-Typically, application configuration is packaged with the same code that is deployed. When a configuration value is changed, the entire codebase must then be deployed to effect the change. Although this means there is a versioned change, the configuration settings are normally stored in a flat file, and it can be difficult to trace the exact change made, especially in a larger code commit.
+Typically, application configuration is packaged with the same code that is deployed. When a configuration value is changed, the entire codebase must then be deployed to affect the change. Although this means there is a versioned change, the configuration settings are normally stored in a flat file, and it can be difficult to trace the exact change made, especially in a larger code commit.
 
 By storing and versioning configuration in its own repository, you gain:
 
@@ -70,7 +70,7 @@ By storing and versioning configuration in its own repository, you gain:
 
 The deployment process for an application may not fit the needs of simple configuration changes. Often the configuration build and deployment process is simplified. The validation and testing of a configuration change may not touch as many different aspects of the application that a code change may.
 
-With a specific configuration deployment process, additional validation steps can be built into the process. This can eliminate many of the process steps that don't make sense for configuration specific deployments. For example, configuration items may need to be validated, such as format and substance, which can then be handled in a configuration specific build and deployment process.
+With a specific configuration deployment process, additional validation steps can be built into the process. This can eliminate many process steps that don't make sense for configuration specific deployments. For example, configuration items may need to be validated, such as format and substance, which can then be handled in a configuration specific build and deployment process.
 
 ### Creating configuration specific test environments
 
@@ -80,7 +80,7 @@ This may also mean that independent changes can happen at the same time. Applica
 
 ### Ensuring approval and quality assurance processes exist
 
-Perhaps changing an API key or endpoint URI will need a different team’s input and sign-off. This approval process would not typically exist if the configurations themselves were buried within the application codebase. By dovetailing the tailored build and deployment process, both approvals and quality assurance can be integrated to ensure that just the right configurations are deployed where they should be.
+Perhaps changing an API key or endpoint URI will need a different team’s input and sign-off. This approval process wouldn't typically exist if the configurations themselves were buried within the application codebase. By dovetailing the tailored build and deployment process, both approvals and quality assurance can be integrated to ensure that just the right configurations are deployed where they should be.
 
 ### Secrets management within configurations
 
