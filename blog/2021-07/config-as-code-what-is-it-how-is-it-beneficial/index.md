@@ -28,7 +28,7 @@ Config as Code, as outlined above, is the versioned migration of configurations 
 - **Traceability**: Using a separate version control repository, specific to configurations, makes it easier to trace changes and updates.
 - **Manageability**: Build and deployment processes specific to configurations can include additional approval, validation, and testing steps to ensure non-breaking changes.
 
-There are a myriad of benefits associated with moving configuration management into its own unique process. Though complexity is introduced, and some setup and configuration is needed to remove configuration from within a codebase, the long term benefits are worth the effort.
+There are many benefits associated with moving configuration management into its own unique process. Though complexity is introduced, and some setup and configuration is needed to remove configuration from within a codebase, the long term benefits are worth the effort.
 
 Taking the time to plan a Config as Code approach results in a successful and managed configuration deployment process. This includes ensuring the following: 
  
