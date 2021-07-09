@@ -64,7 +64,7 @@ Activities such as `Acquire Packages` will result in a worker being locked and a
 :::
 
 ### How is a worker selected from the pool?
-Workers are selected from a pool in a round-robin fashion.  It is important to note that the workers are selected at the **beginning** of a deployment or runbook run and not at each step.  There are some caveats to this that I will explain later in this post.
+Workers are selected from a pool in a round-robin fashion.  It is important to note that the workers are selected at the beginning of each step.  There are some caveats to this that I will explain later in this post.
 
 Consider the following scenario:
 Worker Pool `Setup` consists of
