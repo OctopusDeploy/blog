@@ -4,10 +4,14 @@ description: Octopus Deploy now includes native integration for Google Cloud Pla
 author: andreia.virmond@octopus.com
 visibility: public
 published: 2022-07-21-1400
+bannerImage: img-blog-google-cloud-platform-2021.png
+metaImage: img-blog-google-cloud-platform-2021.png
 tags:
  - DevOps
  - Google Cloud
 ---
+
+![Octopus Deploy integration for Google Cloud Platform](blogimage-config-as-code-explanation_2020.png)
 
 We're excited to introduce first-class support for Google Cloud Platform (GCP) as we continuously roll out cloud and on-premise improvements inline with our [public roadmap](https://octopus.com/company/roadmap).
 
