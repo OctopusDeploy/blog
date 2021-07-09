@@ -21,14 +21,14 @@ This native integration of Octopus with GCP will allow you to:
 * Connect and authenticate with GCP via a dedicated account type. This allows you to centralize and secure your GCP authentication and use it in your deployment and runbooks.
 * Use [gcloud](https://cloud.google.com/sdk/gcloud), the GCP command-line tool, in custom scripts out-of-the-box.
 * Create and tear down GCP infrastructure with [Terraform](https://www.terraform.io/).
-* Store and secure your Docker images within the [Google Container Registry (GCR)](https://cloud.google.com/container-registry).
+* Access Docker images hosted with [Google Container Registry (GCR)](https://cloud.google.com/container-registry).
 * Deploy, scale and manage containerized applications on GCP with Octopus and Kubernetes.
 
 GCP integration is available in Octopus Deploy 2021.2 and newer. Octopus cloud customers are already running this version and on-prem customers can [download it now](https://octopus.com/downloads).
 
 ## Walk through
 
-To see this new integration in action, we'll take a look at how to how to add a new Google Cloud account in Octopus and run a `gcloud` script to create a new Kubernetes cluster.
+To see this new integration in action, we'll take a look at how to add a new Google Cloud account in Octopus and run a `gcloud` script to create a new Kubernetes cluster.
 
 ### Google Cloud accounts
 
@@ -52,7 +52,7 @@ Learn more about setting up [Google Cloud account variables](https://octopus.com
 
 Octopus Deploy can help you run scripts on targets with the Google Cloud platform. In this example, we'll explore the process of creating a new Kubernetes Cluster.
 
-These scripts typically rely on tools being available on the target workers, however there are a few options to get started quickly. If you're Octopus Cloud, the built-in workers have `gcloud` pre-installed. Another option is to use the Octopus [`worker-tools`](https://hub.docker.com/r/octopusdeploy/worker-tools) Docker image with [execution containers for workers](https://octopus.com/docs/projects/steps/execution-containers-for-workers). In general, we recommend that you provision your own tools on your worker. This gives you control over tool versions, and it can ensure their compatibility with the scripts you are trying to execute.
+These scripts typically rely on tools being available on the target workers, however there are a few options to get started quickly. If you're Octopus Cloud, the built-in "Windows 2016" dynamic worker images have `gcloud` pre-installed. Another option is to use the Octopus [`worker-tools`](https://hub.docker.com/r/octopusdeploy/worker-tools) Docker image with [execution containers for workers](https://octopus.com/docs/projects/steps/execution-containers-for-workers). In general, we recommend that you provision your own tools on your worker. This gives you control over tool versions, and it can ensure their compatibility with the scripts you are trying to execute.
 
 :::hint
 Workers move deployment work off the Octopus Server and onto other machines running in worker pools. Octopus Cloud uses them to execute custom scripts and they're also commonly used to run deployment and runbook work for cloud platforms and database deployments.
