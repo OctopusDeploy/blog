@@ -31,7 +31,7 @@ Workers can be used with steps that don't _need_ to be executed on a target.  Th
 Deploying database updates only requires a connection string to the database server and database you are working with.  Workers provide a means to performing database deployments without having to install any additional software on the database server.
 
 ### API or Web Service calls
-Activities such as API or Web Service calls don't require a target.  We often use workers to call the Octopus API to register or deregister targets, workers, or initiate processes such as health checks on a worker machine.
+Activities such as sending emails, Slack notifications, or messages on Teams don't need a target to run on.  This is a perfect use case for using workers.
 
 ### Running scripts
 Running scripts is another use case that workers can be used for.  Process intensive operations can be offloaded to run on a worker instead of bogging down the Octopus Server.
@@ -39,12 +39,12 @@ Running scripts is another use case that workers can be used for.  Process inten
 ### Kubernetes deployments
 Kubernetes (K8s) targets are the only target type that require the use of workers. Workers for K8s targets must have the `kubectl` CLI installed.  For this reason, you have the ability to select a worker pool to use during Health Check operations on the K8s target screen.  
 
-
-
-Deployments to K8s interact with an API, providing instructions to the K8s cluster rather than deploying files directly to it.
+Kubernetes Deployments interact with an API, providing instructions to the K8s cluster rather than deploying files directly to it.  This makes a perfect use case for workers.
 
 ### Execution containers
-A byproduct of the evolution of Octopus is the increasing number of technologies supported by the tool.  As this list continued to grow, we were required to bundle more and more software components into Octopus.  For various reasons, some customers were unable to keep up with the release cycle of Octopus and encountered issues of older versions of our software, but needing modern versions of the bundled software.  In addition, not all projects in an Octopus instance may be using the same version of the sofware so installing directly on a worker would introduce a different set of problems.  The answer to both the bloating of Octopus and version incompatibility is the ability for the worker to launch a container to perform the work.  If the worker machine has Docker installed, they can launch containers of different version to cover the difference scenarios listed above.
+A byproduct of the evolution of Octopus is the increasing number of technologies supported by the tool.  As this list continued to grow, we were required to bundle more and more software components into Octopus.  For various reasons, some customers were unable to keep up with the release cycle of Octopus and encountered issues running older versions of Octopus, but needing modern versions of the bundled software.  In addition, not all projects in an Octopus instance may be using the same version of the bundled sofware so installing directly on a worker would introduce a different set of problems.  [Execution containers](https://octopus.com/docs/projects/steps/execution-containers-for-workers) was introduced so that workers running docker can run specific versions of software for their deployment activities.
+
+![](octopus-worker-execution-containers.png)
 
 ## Specifying a step to use a worker
 When defining a step in a [Runbook](https://octopus.com/docs/runbooks) or [Project Deployment Process](https://octopus.com/docs/projects/deployment-process), you are able to tell Octopus that this step will run on a worker and select a pool.
@@ -56,14 +56,7 @@ The keen eyed observer would have noticed there is a second selection for the `W
 
 ![](octopus-worker-pool-variable.png)
 
-
-
-
-
-
-![](octopus-worker-execution-containers.png)
-
-## How do workers execute?
+## How do workers execute differently than targets?
 If you've ever attempted to execute two deployments against the same target machine, you may have noticed that the deployments seem to bounce back and forth between the tasks, executing one step at a time.  This behavior is by design to protect the target from multiple deployments attempting to update the same resource at the same time, such as an IIS metabase.  Workers, on the other hand, are configured to be able to handle multiple tasks simultaneously.
 
 :::information
@@ -71,7 +64,7 @@ Activities such as `Acquire Packages` will result in a worker being locked and a
 :::
 
 ### How is a worker selected from the pool?
-Workers are selected from a pool in a round-robin fashion for whatever workers are not currently in use.  There are some caveats to this that I will explain later in this post.
+Workers are selected from a pool in a round-robin fashion.  It is important to note that the workers are selected at the **beginning** of a deployment or runbook run and not at each step.  There are some caveats to this that I will explain later in this post.
 
 Consider the following scenario:
 Worker Pool `Setup` consists of
@@ -107,15 +100,15 @@ Unleash the kraken
      +-- worker1
 ```
 #### Worker selection caveats
-Worker selection does have some caveats when it comes to whether steps reference packages.  Any step that uses the same package will execute on the same worker machine.  For example, runbook `Create Region workers` deploys a Tentacle image to a Kubernetes cluster in different Azure regions to be used as region specific workers.  Because steps 2 through 6 all use the same package, they will all use the same worker
+Steps that reference packages can have an affect on worker selection.  Any step that uses the same package will execute on the same worker machine.  For example, runbook `Create Region workers` deploys a Tentacle image to a Kubernetes cluster in different Azure regions.  Because steps 2 through 6 all use the same package (image), they will all use the same worker
 
 ![](octopus-worker-k8s-deploy.png)
 
-Package reference ordering will affect worker selection.  If the packages are referenced in the same order, the steps will use the same worker.  
+Package reference ordering will affect worker selection.  For example, if you have two steps that reference the same packages in the same order, Octopus will run both steps on the same woker.
 
 ![](octopus-reference-package1.png)
 
-However, if the ordering of the packages are different, this will cause a different worker to be selected
+However, if the ordering of the packages are different, Octopus will select different workers for each step.
 
 ![](octopus-reference-package2.png)
 
@@ -128,3 +121,8 @@ Octopus Deploy maintains a set of workers that customers can use as dyanamic wor
 - Hosted Ubuntu (Ubuntu 18.04 with Docker)
 
 Each cloud instance can lease one worker per pool.  The lease is exclusive to that cloud instance and is destroyed once the lease time has expired (see [this](https://help.octopus.com/t/how-do-dynamic-workers-work-in-octopus-cloud/25228/2) kb article for time expiration.)
+
+## Conclusion
+I hope that this post clarifies what workers are and how they are used and selected.  I certainly learned quite a bit writing this post!
+
+Happy Deployments!
