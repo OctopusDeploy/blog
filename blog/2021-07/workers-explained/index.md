@@ -100,11 +100,15 @@ Unleash the kraken
      +-- worker1
 ```
 #### Worker selection caveats
-Steps that reference packages can have an affect on worker selection.  Any step that uses the same package will execute on the same worker machine.  For example, runbook `Create Region workers` deploys a Tentacle image to a Kubernetes cluster in different Azure regions.  Because steps 2 through 6 all use the same package (image), they will all use the same worker
+There are scenarios which can affect how Octopus selects workers.
+
+##### Steps that reference packages
+Steps that reference packages can have an affect on worker selection.  Any step that uses the same package will execute on the same worker machine.  For example, runbook `Create Region workers` deploys the same image to a Kubernetes clusters in different Azure regions.  Because steps 2 through 6 all use the same package (image), they will all use the same worker
 
 ![](octopus-worker-k8s-deploy.png)
 
-Package reference ordering will affect worker selection.  For example, if you have two steps that reference the same packages in the same order, Octopus will run both steps on the same woker.
+##### Referenced package ordering
+Package reference ordering will also affect worker selection.  For example, if you have two steps that reference the same packages in the same order, Octopus will run both steps on the same woker.
 
 ![](octopus-reference-package1.png)
 
@@ -112,15 +116,16 @@ However, if the ordering of the packages are different, Octopus will select diff
 
 ![](octopus-reference-package2.png)
 
-A worker is selected from the pool at the beginning of a deployment or runbook run.  The same worker will be used for the entire deployment process, the exception being when a [Manual Intervention](https://octopus.com/docs/projects/built-in-step-templates/manual-intervention-and-approvals) step is encountered and the task is removed from the queue.  Once the task has been placed back into the queue, a worker is selected again to continue processing.
+##### Manual intervention
+Another caveat is the use of a [Manual Intervention](https://octopus.com/docs/projects/built-in-step-templates/manual-intervention-and-approvals) step.  When a manual intervention step is encountered, it is removed from the task queue.  Once the intervention has been acted upon, the task is added back into the queue which forces worker selection to occur again.
 
-#### I'm using Octopus Cloud, how are dynamic workers selected?
-Octopus Deploy maintains a set of workers that customers can use as dyanamic workers available in the following pools:
+## I'm using Octopus Cloud, how do dynamic workers work?
+Octopus Deploy maintains a set of workers (VMs) that customers can use on demand as dyanamic workers.  These workers are available in the following pools:
 - Default worker pool (Windows Server 2016)
 - Hosted Windows (Windows Server 2019 with Docker)
 - Hosted Ubuntu (Ubuntu 18.04 with Docker)
 
-Each cloud instance can lease one worker per pool.  The lease is exclusive to that cloud instance and is destroyed once the lease time has expired (see [this](https://help.octopus.com/t/how-do-dynamic-workers-work-in-octopus-cloud/25228/2) kb article for time expiration.)
+Each cloud instance can lease one worker per pool and is exclusive to that cloud instance.  Once the lease has expired, the worker is destroyed (see [this](https://help.octopus.com/t/how-do-dynamic-workers-work-in-octopus-cloud/25228/2) kb article for time expiration.)  Once destroyed, a new worker is provisioned and added to the pool of available workers for cloud instances to lease.
 
 ## Conclusion
 I hope that this post clarifies what workers are and how they are used and selected.  I certainly learned quite a bit writing this post!
