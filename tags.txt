@@ -10,7 +10,7 @@ AWS
 Azure
 Continuous Integration
 Continuous Deployment
-Config as Code
+Configuration as Code
 Database Deployments
 Deployment Patterns
 Docker
