@@ -30,7 +30,7 @@ Customer solutions have identified a number of issues when running Octopus as sc
 * [How can I easily coordinate multiple project deployments?](https://trello.com/c/9IZmL1Oa/159-how-can-i-easily-coordinate-multiple-project-deployments)
 * [How can I see and promote all the releases in test not currently in staging?](https://trello.com/c/4IokRDDO/162-how-can-i-see-and-promote-all-the-releases-in-test-not-currently-in-staging)
 
-There is a common pattern to these issues. Configuring 10 things (tenants, roles, projects, deployments etc) is manageable, if tedious. Configuring 100's of resources is time consuming and frustrating. Scaling up to 1000 resources and Octopus becomes almost impossible to maintain.
+There is a common pattern to these issues. Interacting with 10 things (tenants, roles, projects, deployments etc) is manageable, if tedious. Interacting with 100's of resources is time consuming and frustrating. Scaling up to 1000 resources and Octopus becomes almost impossible to maintain.
 
 We know Octopus is the best tool for deploying to thousands of targets. We have seen runbooks allowing teams to manage that same infrastructure. By taking the next logical step and allowing Octopus itself to be managed though a familiar and proven paradigm, we can ensure Octopus will scale to meet enterprise requirements.
 
@@ -42,15 +42,16 @@ By exposing Octopus as a target and requiring an API key to perform management t
 
 ## The new steps
 
-The motto "if you can click in in the UI, you can automate it with a step" is an ambitious goal, and will be broken down into areas of common functionality. The following groups allow us to address the issues of configuring and managing Octopus resources that increase in number as enterprises orchestrate more deployments through Octopus:
+The motto "if you can click in in the UI, you can automate it with a step" is an ambitious goal, and will be broken down into areas of common functionality, largely grouped by their placement in the UI:
 
-* Deployments / Runbook runs - Creating releases, deploying releases, responding to manual intervention prompts. Running runbooks.
-* Deployment processes / Runbooks - Creating, updating, and deleting steps in a deployment process. Applying cross cutting configuration like execution containers, target roles, environment conditions, tenant conditions, run conditions etc.
+* Deployments / Runbook runs - Creating releases, deploying releases, responding to manual intervention prompts, running runbooks.
 * Tenants - Creating, updating, and deleting tenants. Associating tenants with projects and environments. Adding or removing tenant tags. Defining tenant variables.
 * Targets - Creating, updating, and deleting targets. Adding or removing roles. Associating with environments and tenants.
 * Users / Teams - Creating, updating, and deleting users and teams. Adding or removing users from teams.
 
 ## Create a release
+
+*I want to automate the process of clicking the **CREATE RELEASE** button.*
 
 Automating the creation of releases allow multiple applications releases to be created with a common set of channels, package versions, and release notes. The **Create a Release** step exposes the fields that are defined when clicking the **CREATE RELEASE** button, while also exposing some flexible logic when it comes to selecting package versions:
 
