@@ -13,9 +13,9 @@ tags:
 
 ![Octopus Deploy integration for Google Cloud Platform](blogimage-config-as-code-explanation_2020.png)
 
-We're excited to introduce first-class support for Google Cloud Platform (GCP) as we continuously roll out cloud and on-premise improvements inline with our [public roadmap](https://octopus.com/company/roadmap).
+In line with our [public roadmap](https://octopus.com/company/roadmap), we're continuously rolling out cloud and on-premise improvements, and this time we're introducing first-class support for Google Cloud Platform (GCP).
 
-This fresh addition means that Octopus now offers native support to the three major cloud providers ([AWS](https://aws.amazon.com), [Azure](https://azure.microsoft.com/), and now [GCP](https://cloud.google.com/)), meeting the evolving needs of our customers, particularly those who have GCP Kubernetes (K8s) clusters and are running tentacles on GCP virtual machines (VMs). 
+This fresh addition means that Octopus now offers native support to the three major cloud providers ([AWS](https://aws.amazon.com), [Azure](https://azure.microsoft.com/), and now [GCP](https://cloud.google.com/)), meeting the evolving needs of our customers, particularly those who have GCP Kubernetes (K8s) clusters and are running tentacles on GCP virtual machines (VMs).
 
 This native integration of Octopus with GCP will allow you to:
 * Connect and authenticate with GCP via a dedicated account type. This allows you to centralize and secure your GCP authentication and use it in your deployment and runbooks.
