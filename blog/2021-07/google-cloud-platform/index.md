@@ -6,25 +6,31 @@ visibility: public
 published: 2022-07-21-1400
 bannerImage: img-blog-google-cloud-platform-2021.png
 metaImage: img-blog-google-cloud-platform-2021.png
+bannerImageAlt: Octopus Deploy integrating with Google Cloud Platform
+isFeatured: false
 tags:
  - DevOps
- - Google Cloud
 ---
 
-![Octopus Deploy integration for Google Cloud Platform](blogimage-config-as-code-explanation_2020.png)
+In line with our [public roadmap](https://octopus.com/company/roadmap), we're introducing first-class support for [Google Cloud Platform (GCP)](https://cloud.google.com/).
 
-In line with our [public roadmap](https://octopus.com/company/roadmap), we're continuously rolling out cloud and on-premise improvements, and this time we're introducing first-class support for Google Cloud Platform (GCP).
+This native integration of Octopus with GCP allows you to:
 
-This fresh addition means that Octopus now offers native support to the three major cloud providers ([AWS](https://aws.amazon.com), [Azure](https://azure.microsoft.com/), and now [GCP](https://cloud.google.com/)), meeting the evolving needs of our customers, particularly those who have GCP Kubernetes (K8s) clusters and are running tentacles on GCP virtual machines (VMs).
+- Connect and authenticate with GCP via a dedicated account type. This allows you to centralize and secure your GCP authentication and use it in your deployments and runbooks.
+- Use [gcloud](https://cloud.google.com/sdk/gcloud), the GCP command-line tool, in custom scripts out-of-the-box.
+- Create and tear down GCP infrastructure with [Terraform](https://www.terraform.io/).
+- Access Docker images hosted with [Google Container Registry (GCR)](https://cloud.google.com/container-registry).
+- Deploy, scale and manage containerized applications on GCP with Octopus and Kubernetes.
 
-This native integration of Octopus with GCP will allow you to:
-* Connect and authenticate with GCP via a dedicated account type. This allows you to centralize and secure your GCP authentication and use it in your deployment and runbooks.
-* Use [gcloud](https://cloud.google.com/sdk/gcloud), the GCP command-line tool, in custom scripts out-of-the-box.
-* Create and tear down GCP infrastructure with [Terraform](https://www.terraform.io/).
-* Access Docker images hosted with [Google Container Registry (GCR)](https://cloud.google.com/container-registry).
-* Deploy, scale and manage containerized applications on GCP with Octopus and Kubernetes.
+With this addition, Octopus now offers native support to the three major cloud providers:
+ 
+- [AWS](https://aws.amazon.com)
+- [Azure](https://azure.microsoft.com/)
+- [GCP](https://cloud.google.com/)
 
-GCP integration is available in Octopus Deploy 2021.2 and newer. Octopus cloud customers are already running this version and on-prem customers can [download it now](https://octopus.com/downloads).
+This meets the evolving needs of our customers, particularly those who have GCP Kubernetes (K8s) clusters and are running tentacles on GCP virtual machines (VMs).
+
+GCP integration is available in Octopus Deploy 2021.2 and newer. Octopus Cloud customers are already running this version and on-premises customers can [download it now](https://octopus.com/downloads).
 
 ## Walk through
 
@@ -34,9 +40,11 @@ To see this new integration in action, we'll take a look at how to add a new Goo
 
 ![Google Cloud deployer](google-cloud-deployer.png "width=500")
 
-To integrate with GCP, we need to first define a Google Cloud account in Octopus. This is done in the {{ Infrastructure, Accounts }} area along side any AWS or Azure accounts you already have. Octopus manages the GCP credentials used by the Google Cloud steps, and this means you don't need to worry about authentication within a deployment process or runbook and you can run pre-authenticated `gcloud` scripts.
+To integrate with GCP, first define a Google Cloud account in Octopus. Do this in **{{Infrastructure > Accounts}}**, alongside any AWS or Azure accounts you already have. 
 
-Google Cloud accounts are secured by the JSON credentials key file that can be retrieved from the service account assigned to the instance that is executing the deployment.
+Octopus manages the GCP credentials used by the Google Cloud steps. This means you don't need to worry about authentication in a deployment process or runbook, and you can run pre-authenticated `gcloud` scripts.
+
+Google Cloud accounts are secured by the JSON credentials key file, which can be retrieved from the service account assigned to the instance that is executing the deployment.
 
 Learn more about [creating a Google Cloud account](https://octopus.com/docs/infrastructure/accounts/google-cloud) and see the [Google Cloud documentation](https://cloud.google.com/iam/docs/creating-managing-service-account-keys) for instructions to create a service account and download the key file.
 
@@ -44,31 +52,37 @@ Learn more about [creating a Google Cloud account](https://octopus.com/docs/infr
 
 ![Octopus Google Cloud account](google-cloud-variables.png "width=500")
 
-Once you have created Google Cloud accounts, they can be accessed in a project through a [project variable](https://octopus.com/docs/projects/variables) of the type Google Cloud account. Project variables are available to both deployment and runbook processes.
+After you've created Google Cloud accounts, they can be accessed in a project through a [project variable](https://octopus.com/docs/projects/variables) of the type Google Cloud account. Project variables are available to both deployment and runbook processes.
 
 Learn more about setting up [Google Cloud account variables](https://octopus.com/docs/projects/variables/google-cloud-account-variables).
 
-**Running gcloud scripts**
+#### Running gcloud scripts
 
-Octopus Deploy can help you run scripts on targets with the Google Cloud platform. In this example, we'll explore the process of creating a new Kubernetes Cluster.
+Octopus Deploy can help you run scripts on targets with the Google Cloud platform. In this example, we explore the process of creating a new Kubernetes Cluster.
 
-These scripts typically rely on tools being available on the target workers, however there are a few options to get started quickly. If you're using Octopus Cloud, the built-in "Windows 2016" [dynamic workers](https://octopus.com/docs/infrastructure/workers/dynamic-worker-pools) have `gcloud` pre-installed. Another option is to use the Octopus [`worker-tools`](https://hub.docker.com/r/octopusdeploy/worker-tools) Docker image with [execution containers for workers](https://octopus.com/docs/projects/steps/execution-containers-for-workers). In general, we recommend that you provision your own tools on your worker. This gives you control over tool versions, and it can ensure their compatibility with the scripts you are trying to execute.
+These scripts typically rely on tools being available on the target workers, however there are a few options to get started quickly: 
+
+- If you're using Octopus Cloud, the built-in "Windows 2016" [dynamic workers](https://octopus.com/docs/infrastructure/workers/dynamic-worker-pools) have `gcloud` pre-installed. 
+- Another option is to use the Octopus [`worker-tools`](https://hub.docker.com/r/octopusdeploy/worker-tools) Docker image with [execution containers for workers](https://octopus.com/docs/projects/steps/execution-containers-for-workers). 
+- In general, we recommend provisioning your own tools on your worker. This gives you control over tool versions, and can ensure their compatibility with the scripts you're trying to execute.
 
 :::hint
 Workers move deployment work off the Octopus Server and onto other machines running in worker pools. Octopus Cloud uses them to execute custom scripts and they're also commonly used to run deployment and runbook work for cloud platforms and database deployments.
 
-Learn more about [Workers](https://octopus.com/docs/infrastructure/workers) and [Worker pools](https://octopus.com/docs/infrastructure/workers/worker-pools).
+Read our documentation about [Workers](https://octopus.com/docs/infrastructure/workers) and [Worker pools](https://octopus.com/docs/infrastructure/workers/worker-pools) to learn more.
 :::
 
-When executing a script against GCP, Octopus Deploy will automatically use your provided Google Cloud account details to authenticate you to the target instance, or you can choose to use the service account associated with the target instance.
+When executing a script against GCP, Octopus Deploy automatically uses your provided Google Cloud account details to authenticate you to the target instance. Alternatively, you can choose to use the service account associated with the target instance.
 
 ![Google Cloud script step](google-cloud-script-step.png "width=500")
 
-In this example, we will add a new [runbook](https://octopus.com/docs/runbooks) process to create a new Kubernetes cluster using the `gcloud` command line interface. To do this, add a *Run gcloud in a Script* step to our automated process with a `gcloud container clusters create` command. 
+In this example, we add a new [runbook](https://octopus.com/docs/runbooks) process to create a new Kubernetes cluster using the `gcloud` command-line interface. 
+
+To do this, add a *Run gcloud in a Script* step to our automated process with a `gcloud container clusters create` command. 
 
 ![Google Cloud source code](google-cloud-source-code.png "width=500")
 
-The full script looks something like this however, you will need to customize it for your needs.
+You need to customize the script for your needs, but it should like something like this:
 
 ```sh
 echo "Create cluster"
@@ -99,10 +113,10 @@ gcloud container \
     --enable-shielded-nodes
 ```
 
-## **Conclusion**
+## Conclusion
 
-We hope you’ll enjoy the ability to deploy infrastructure to GCP. 
+We hope you enjoy deploying infrastructure to GCP. 
 
-Give it a try and let us know what you think! If you have any questions or comments, we’d love to hear them. Please enter them below or join the conversation in the [Octopus community Slack](https://octopus.com/slack).
+Give it a try and let us know what you think. If you have any questions or comments, we’d love to hear them. Please use the comments section below or join the conversation in the [Octopus community Slack](https://octopus.com/slack).
 
 Happy deployments!
