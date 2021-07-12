@@ -19,6 +19,9 @@ In essence, a worker is a tentacle.  It runs the same tentacle software as a dep
 ### If a worker is a tentacle, does it count as a target for licensing?
 Despite running the tentacle software, workers are viewed as an extension of the Octopus Server and are therefore not counted as targets.  Under the current licensing model, there is no limit to how many worker machines you can have.
 
+## What is the built-in worker?
+All Octopus instances come with a `Default Worker Pool` defined.  Any step that selects the `Default Worker Pool` will execute on the built-in worker, which is the Octopus Server.  If, however, a worker machine is added to the `Default Worker Pool`, the built-in worker is no longer used.
+
 ## What can a worker be used for?
 Workers can be used with steps that don't _need_ to be executed on a target.  The most common use cases are:
 - Database deployments 
@@ -41,13 +44,19 @@ Kubernetes (K8s) targets are the only target type that require the use of worker
 Kubernetes Deployments interact with an API, providing instructions to the K8s cluster rather than deploying files directly to it.  This makes a perfect use case for workers.
 
 ## What are some advantages of using workers?
-A byproduct of the evolution of Octopus is the increasing number of technologies supported by the tool.  As this list continued to grow, we were required to bundle more and more software components into Octopus, which has caused the installation to grow in size.
+Workers offer two major advantages:
+- Offload processes from the Octopus Server
+- Ability to run customized software
+
+### Offload processes from the Octopus Server
+Long running or intensive processes could hinder performance of the Octopus Server.  These tasks can be offloaded to a worker machine, freeing up resources to allow Octopus Server to perform optimally.
 
 ### Customized software
-The bundled software may not include everything needed by a customer for a process.  With a worker, you have the ability to install any cusotmized software such as automated testing suites.
+The bundled software that ships with Octopus may not include everything needed by a customer for a process.  With a worker, you have the ability to install custom software packages to aid in the deployment or runbook process.
 
-### Execution containers
-Not all projects in an Octopus instance may be using the same version of the bundled or custom sofware so installing directly on a worker may introduce a different set of problems.  [Execution containers](https://octopus.com/docs/projects/steps/execution-containers-for-workers) was introduced so that workers running docker can run specific versions of software for their deployment activities.
+:::info
+If the worker has Docker installed, they can use the [Execution containers](https://octopus.com/docs/projects/steps/execution-containers-for-workers) feature to use customized containers versus installing directly software directly on the worker.
+:::
 
 ![](octopus-worker-execution-containers.png)
 
@@ -134,8 +143,10 @@ When a [Manual Intervention](https://octopus.com/docs/projects/built-in-step-tem
 ## I'm using Octopus Cloud, how do dynamic workers work?
 Octopus Deploy maintains a set of workers (VMs) that customers can use on demand as dyanamic workers.  These workers are available in the following pools:
 - Default worker pool (Windows Server 2016)
-- Hosted Windows (Windows Server 2019 with Docker)
-- Hosted Ubuntu (Ubuntu 18.04 with Docker)
+- Hosted Windows (Windows Server 2019`*`)
+- Hosted Ubuntu (Ubuntu 18.04`*`)
+
+`*` Pool can use the Execution Containers feature.
 
 Each cloud instance can lease one worker per pool and is exclusive to that cloud instance.  Once the lease has expired, the worker is destroyed (see [this](https://help.octopus.com/t/how-do-dynamic-workers-work-in-octopus-cloud/25228/2) kb article for time expiration.)  Once destroyed, a new worker is provisioned and added to the pool of available workers for cloud instances to lease.
 
