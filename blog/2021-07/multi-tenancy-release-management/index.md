@@ -437,9 +437,9 @@ Join Senior Solutions Architect Mark Harrison and Solutions Architect Adam Close
 
 We're running three sessions of the webinar:
 
-- Wed 14 Jul, 2021
-- Thurs 15 Jul, 2021
-- Mon 19 Jul, 2021
+- Wed 28 Jul, 2021
+- Thurs 29 Jul, 2021 
+- Mon 2 Aug, 2021
 
 #### [Register now](https://octopus.com/events/better-multi-tenancy-deployments-using-octopus-deploy)
 
