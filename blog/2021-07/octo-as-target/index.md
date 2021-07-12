@@ -50,8 +50,26 @@ The motto "if you can click in in the UI, you can automate it with a step" is an
 * Targets - Creating, updating, and deleting targets. Adding or removing roles. Associating with environments and tenants.
 * Users / Teams - Creating, updating, and deleting users and teams. Adding or removing users from teams.
 
-## Orchestrating releases
+## Create a release
 
-Orchestrating releases allow multiple applications releases to be created with a common set of channels, package versions, and release notes. The **Create an Octopus Release** step exposes the fields that are defined when clicking the **CREATE RELEASE** button, while also exposing some flexible logic when it comes to selecting package versions:
+Automating the creation of releases allow multiple applications releases to be created with a common set of channels, package versions, and release notes. The **Create a Release** step exposes the fields that are defined when clicking the **CREATE RELEASE** button, while also exposing some flexible logic when it comes to selecting package versions:
 
 ![](create-release.png)
+
+The existing **Deploy a Release** step will be updated to allow the release version to be defined in the step, allowing administrators to chain the **Create a Release** and **Deploy a Release** steps.
+
+By capturing the details of release creation in a step, common values can be extracted and shared as variables, and multiple releases can be created and deployed with a single runbook run.
+
+## Running runbooks
+
+Runbooks provide a great way to encapsulate common functionality. The new **Run a Runbook** step allows a runbook to be executed from a deployment process or runbook:
+
+![](run-runbook.png)
+
+## Interacting with manual intervention prompts
+
+Manual intervention steps provide the opportunity to verify a deployment through manual testing or prompt to allow a deployment to proceed. When used at scale though it can be hard to know which manual intervention prompts require action, and in which order.
+
+The new **Action a Manual Intervention** step provides the ability to interact with a pending manual intervention in another project. By creating a runbook with many **Action a Manual Intervention** steps, multiple deployments can be allowed to proceed or halted without manually clicking through each project:
+
+![](manual-intervention.png)
