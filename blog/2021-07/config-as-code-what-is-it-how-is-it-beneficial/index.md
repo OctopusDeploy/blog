@@ -9,7 +9,7 @@ bannerImage: blogimage-config-as-code-explanation_2020.png
 bannerImageAlt: Config as Code What is it and how is it beneficial?
 tags:
  - DevOps
- - Config as Code
+ - Configuration as Code
 ---
 
 ![Config as Code: What is it and how is it beneficial?](blogimage-config-as-code-explanation_2020.png)

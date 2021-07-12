@@ -9,7 +9,7 @@ bannerImage: blogimage-config-as-code-explanation_2020.png
 bannerImageAlt: Introduction to HCL and HCL tooling
 tags:
  - DevOps
- - Config as Code
+ - Configuration as Code
 ---
 
 ![Introduction to HCL and HCL tooling](blogimage-config-as-code-explanation_2020.png)
