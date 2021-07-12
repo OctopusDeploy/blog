@@ -38,7 +38,7 @@ You can run a pool of Octopus workers inside a Kubernetes cluster. There are two
 
 This can be done by deploying the [Tentacle image](https://hub.docker.com/r/octopusdeploy/tentacle) hosted in Docker Hub, or using [Octopus Deploy Runbooks](https://octopus.com/docs/runbooks). Please refer to our post about [creating workers on a Kubernetes cluster](https://octopus.com/blog/kubernetes-workers) for comprehensive instructions on using Octopus Deploy to deploy a worker pool to Kubernetes clusters.
 
-After you have a set of healthy workers running inside the Kubernetes cluster, you need to install `kubectl` in each Octopus worker. `kubectl` is [the Kubernetes command-line tool](https://kubernetes.io/docs/tasks/tools/) which allows you to run commands against Kubernetes clusters.
+After you have a set of healthy workers running inside the Kubernetes cluster, you need to install `kubectl` in each Octopus worker. `kubectl` is the [Kubernetes command-line tool](https://kubernetes.io/docs/tasks/tools/) which allows you to run commands against Kubernetes clusters.
 
 To do this, navigate to each worker's directory and run the commands below:
 
@@ -67,14 +67,17 @@ The next step is adding a deployment target using the new authentication mode, P
 1. Select at least one [target role](https://octopus.com/docs/infrastructure/deployment-targets#target-roles) for the target.
 1. Select **Pod Service Account** as the Authentication mode.
 1. Enter the path to the token file of the **Pod Service Account**. The default path is usually `/var/run/secrets/kubernetes.io/serviceaccount/token`. Please note that the path is relative to the pod's directory.
+
 ![Pod Service Account authentication](images/authentication-pod-service-account.png)
-1. Enter the URL of the Kubernetes cluster. Each Kubernetes target in Octopus Deploy requires the cluster URL, which can be located by retrieving the cluster information (running `kubectl cluster-info` in the Kubernetes cluster).
-1. Optionally, enter the path to the cluster certificate. The default path is usually `/var/run/secrets/kubernetes.io/serviceaccount/ca.crt`. Please note that the path is relative to the pod's directory. If you select **Skip TSL verification**, you're not required to enter this detail.
+
+8. Enter the URL of the Kubernetes cluster. Each Kubernetes target in Octopus Deploy requires the cluster URL, which can be located by retrieving the cluster information (running `kubectl cluster-info` in the Kubernetes cluster).
+8. Optionally, enter the path to the cluster certificate. The default path is usually `/var/run/secrets/kubernetes.io/serviceaccount/ca.crt`. Please note that the path is relative to the pod's directory. If you select **Skip TSL verification**, you're not required to enter this detail.
 ![Kubernetes Cluster details](images/kubernetes-cluster-details.png)
-1. *Important*: Select the worker pool which contains the workers running inside the Kubernetes cluster. Otherwise, the health check for the deployment target will fail.
+10. *Important*: Select the worker pool which contains the workers running inside the Kubernetes cluster. Otherwise, the health check for the deployment target will fail.
 ![Worker Pool selection](images/worker-pool-selection.png)
 
 ## Creating a deployment process
+
 The deployment target is now ready to be used in Kubernetes deployment processes. 
 
 You can create a [Deploy Kubernetes containers](https://octopus.com/docs/deployments/kubernetes/deploy-container) step to target the [target role](https://octopus.com/docs/infrastructure/deployment-targets#target-roles) of this deployment target.
@@ -84,6 +87,7 @@ Similar to the deployment target created earlier, the deployment steps require a
 ![Step's Worker Pool selection](images/step-worker-pool-selection.png)
 
 ## Conclusion
+
 This post demonstrates how you can use the **Pod Service Account** authentication mode when creating a **Kubernetes deployment target**. 
 
 One benefit of this authentication mode is enabling the workers to connect back to the parent cluster by itself. This means you don't need certificate data of your cluster to be stored in the Octopus Server.
