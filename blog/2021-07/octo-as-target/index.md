@@ -73,3 +73,15 @@ Manual intervention steps provide the opportunity to verify a deployment through
 The new **Action a Manual Intervention** step provides the ability to interact with a pending manual intervention in another project. By creating a runbook with many **Action a Manual Intervention** steps, multiple deployments can be allowed to proceed or halted without manually clicking through each project:
 
 ![](manual-intervention.png)
+
+## Defining steps
+
+Each step will be able to be defined as a generic template and saved in a specific place in an existing deployment project or runbook. These "step factories" open up the possibility to populate newly created deployment projects, add new steps to multiple existing projects, or replace steps in multiple projects with new values or new steps:
+
+![](define-step.png)
+
+Steps can also be deleted en masse:
+
+Cross cutting step concerns like the execution location can be defined across multiple steps with the **Define Execution Location** step:
+
+![](location.png)
