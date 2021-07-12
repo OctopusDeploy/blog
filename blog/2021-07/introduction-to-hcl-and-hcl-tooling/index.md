@@ -3,7 +3,7 @@ title: Introduction to HCL and HCL tooling
 description: Learn about the different tooling you can use with HCL.
 author: adbertram@gmail.com
 visibility: public
-published: 2020-11-16
+published: 2021-07-21-1400
 metaImage: blogimage-config-as-code-explanation_2020.png
 bannerImage: blogimage-config-as-code-explanation_2020.png
 bannerImageAlt: Introduction to HCL and HCL tooling
