@@ -6,7 +6,7 @@ visibility: public
 published: 2021-07-21-1400
 metaImage: blogimage-config-as-code-explanation_2020.png
 bannerImage: blogimage-config-as-code-explanation_2020.png
-bannerImageAlt: Introduction to HCL and HCL tooling
+bannerImageAlt: A laptop screen displaying analytics data that is peeled up on one corner showing the code behind it
 tags:
  - DevOps
  - Configuration as Code
