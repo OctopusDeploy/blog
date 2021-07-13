@@ -3,9 +3,11 @@ title: Using a remote back-end with Terraform in Octopus Deploy
 description: Learn how to set up a remote back-end to use with Terraform in Octopus Deploy.
 author: egor.pavlikhin@octopus.com
 visibility: public
-published: 2021-08-05-1400
+published: 2021-08-04-1400
 metaImage: blogimage-create-workers-on-a-kubernetes-cluster-2021.png
 bannerImage: blogimage-create-workers-on-a-kubernetes-cluster-2021.png
+bannerImageAlt:
+isFeatured: false
 tags:
  - DevOps
  - Runbooks
