@@ -55,7 +55,7 @@ The first milestone focuses on the creating and deploying releases, running runb
 
 *I want to automate the process of clicking the **CREATE RELEASE** button.*
 
-Automating the creation of releases allow multiple applications releases to be created with a common set of channels, package versions, and release notes. The **Automate Create Release** step exposes the fields that are defined when clicking the **CREATE RELEASE** button, while also exposing some flexible logic when it comes to selecting package versions:
+Automating the creation of releases allow multiple project releases to be created with a common set of channels, package versions, and release notes. The **Automate Create Release** step exposes the fields that are defined when clicking the **CREATE RELEASE** button, while also exposing some flexible logic when it comes to selecting package versions:
 
 ![](create-release.png)
 
@@ -65,9 +65,13 @@ Automating the creation of releases allow multiple applications releases to be c
 
 The deployment dashboard provides a grid of environments project releases, with a handy **DEPLOY** button in the intersection. This makes promoting the release of one project through environments easy. However, it does involve a lot of clicking around when promoting multiple projects to a new environment.
 
+The **Automate Deploy Release** step automates the process usually initiated by clicking the **DEPLOY** button. Unlike the **Deploy a release** step, which treats a project's releases as a feed with versions to be selected at release creation time, the **Automate Deploy Release** step models the actions of an end user, which is usually to deploy the latest release available for a given environment at the current point in time:
+
 ![](deploy-release.png)
 
 ## Running runbooks
+
+*I want to automate the process of clicking the **RUN** button.*
 
 Runbooks provide a great way to encapsulate common functionality. The new **Run a Runbook** step allows a runbook to be executed from a deployment process or runbook:
 
@@ -75,8 +79,34 @@ Runbooks provide a great way to encapsulate common functionality. The new **Run 
 
 ## Interacting with manual intervention prompts
 
+*I want to automate the process of clicking the manual intervention **PROCEED** or **CANCEL** buttons.*
+
 Manual intervention steps provide the opportunity to verify a deployment through manual testing or prompt to allow a deployment to proceed. When used at scale though it can be hard to know which manual intervention prompts require action, and in which order.
 
 The new **Action a Manual Intervention** step provides the ability to interact with a pending manual intervention in another project. By creating a runbook with many **Action a Manual Intervention** steps, multiple deployments can be allowed to proceed or halted without manually clicking through each project:
 
 ![](manual-intervention.png)
+
+## Benefits of the new steps
+
+Octopus does a fantastic job of modeling complex infrastructure, deploying applications to thousands of machines partitioned in multiple environments, and running runbooks when and where there are needed. You can orchestrate almost any kind of deployment process or management task with Octopus, so long as you are happy to have someone click the right buttons in the right order at the right time.
+
+From the very beginning, runbooks have been designed to free DevOps teams from disconnected and untested documentation describing a sequence of tasks. Unfortunately, any large scale deployment process in Octopus requiring a specific and coordinated sequence of release creations, deployments, and interventions requires advanced API scripting, or some kind of external runbook document and a lot of manual clicking.
+
+The four steps described above are the first of many to allow Octopus itself to be automated from a runbook like any other system. Specifically, we forsee the following benefits customers deploying at scale:
+
+### The same proven processes, now automated at scale
+
+These steps deliberately don't introduce any new paradigms or concepts for you to learn and incorporate into your processes. They simply describe the same buttons you have been clicking and forms fields your have been populating all along, allowing you to automate your existing proven and familiar processes.
+
+### Automation without scripts
+
+Writing custom scripts to automate Octopus is a highly specialized task. It requires a decent level of proficiency writing code and a deep understanding of the internals of Octopus. 
+
+Octopus has always prided itself on making complex deployments easy, and these new steps take that same principal and applies it to Octopus itself. These steps allow us to fulfil the vision of orchestarting deployments without custom scripts.
+
+### Simple security model
+
+By exposing an Octopus instance as a target, all existing security boundaries are respected and preserved, and all actions will be performed via regular API calls with API keys you create. These steps won't use any privileged access paths within Octopus, so you retain complete control.
+
+## We want your feedback
