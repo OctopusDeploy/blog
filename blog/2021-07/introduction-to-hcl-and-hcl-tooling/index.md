@@ -111,7 +111,7 @@ For Python, there is an [HCL2 parser](https://pypi.org/project/python-hcl2/) tha
 
 ## Conclusion
 
-The Hashicorp Configuration Language is a unique configuration language that started out specific to Hashicorp but has evolved to become more attractive in a variety of projects. 
+The Hashicorp Configuration Language started out specific to Hashicorp but has evolved to become more attractive in a variety of projects. 
 
 The recent HCL2 rewrite further incorporates string interpolation and additional functions. This increases the usability of an already flexible language. The power of a configuration language that's easy to understand with built-in templating, is quickly making HCL2 the language of choice for complex configurations.
 
