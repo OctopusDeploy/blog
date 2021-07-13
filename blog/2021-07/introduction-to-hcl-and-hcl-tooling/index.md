@@ -43,7 +43,7 @@ HCL is a JSON compatible language that adds features to help you use the Terrafo
     - Base 10 numbers are the default.
     - Hexadecimal: Prefix a number with `0x`.
     - Octal: Prefix a number with a `0`.
-    - Scientific Numbers: Use the notation such as `1e10`.
+    - Scientific numbers: Use the notation such as `1e10`.
 - Arrays and lists of objects are easy to create using `[]` for arrays and `{ key = value }` for lists.
 
 This overview only scratches the surface of what HCL can do. It’s easier to see how HCL works by exploring an example configuration file and analyzing how it works.
