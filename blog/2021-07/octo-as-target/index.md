@@ -49,17 +49,23 @@ The motto "if you can click in in the UI, you can automate it with a step" is an
 * Targets - Creating, updating, and deleting targets. Adding or removing roles. Associating with environments and tenants.
 * Users / Teams - Creating, updating, and deleting users and teams. Adding or removing users from teams.
 
+The first milestone focuses on the creating and deploying releases, running runbooks, and interacting with manual interventions.
+
 ## Create a release
 
 *I want to automate the process of clicking the **CREATE RELEASE** button.*
 
-Automating the creation of releases allow multiple applications releases to be created with a common set of channels, package versions, and release notes. The **Create a Release** step exposes the fields that are defined when clicking the **CREATE RELEASE** button, while also exposing some flexible logic when it comes to selecting package versions:
+Automating the creation of releases allow multiple applications releases to be created with a common set of channels, package versions, and release notes. The **Automate Create Release** step exposes the fields that are defined when clicking the **CREATE RELEASE** button, while also exposing some flexible logic when it comes to selecting package versions:
 
 ![](create-release.png)
 
-The existing **Deploy a Release** step will be updated to allow the release version to be defined in the step, allowing administrators to chain the **Create a Release** and **Deploy a Release** steps.
+## Deploy a release
 
-By capturing the details of release creation in a step, common values can be extracted and shared as variables, and multiple releases can be created and deployed with a single runbook run.
+*I want to automate the process of clicking the **DEPLOY** button.*
+
+The deployment dashboard provides a grid of environments project releases, with a handy **DEPLOY** button in the intersection. This makes promoting the release of one project through environments easy. However, it does involve a lot of clicking around when promoting multiple projects to a new environment.
+
+![](deploy-release.png)
 
 ## Running runbooks
 
@@ -74,15 +80,3 @@ Manual intervention steps provide the opportunity to verify a deployment through
 The new **Action a Manual Intervention** step provides the ability to interact with a pending manual intervention in another project. By creating a runbook with many **Action a Manual Intervention** steps, multiple deployments can be allowed to proceed or halted without manually clicking through each project:
 
 ![](manual-intervention.png)
-
-## Defining steps
-
-Each step will be able to be defined as a generic template and saved in a specific place in an existing deployment project or runbook. These "step factories" open up the possibility to populate newly created deployment projects, add new steps to multiple existing projects, or replace steps in multiple projects with new values or new steps:
-
-![](define-step.png)
-
-Steps can also be deleted en masse:
-
-Cross cutting step concerns like the execution location can be defined across multiple steps with the **Define Execution Location** step:
-
-![](location.png)
