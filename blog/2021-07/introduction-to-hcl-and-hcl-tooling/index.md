@@ -12,7 +12,7 @@ tags:
  - Configuration as Code
 ---
 
-![A laptop screen displaying analytics data that is peeled off and up on one corner showing the code behind it](blogimage-config-as-code-explanation_2020.png)
+![A laptop screen displaying analytics data that is peeled up on one corner showing the code behind it](blogimage-config-as-code-explanation_2020.png)
 
 [Hashicorp Configuration Language (HCL)](https://www.terraform.io/docs/configuration/index.html) is a unique configuration language. It was designed to be used with Hashicorp tools, notably Terraform, but HCL has expanded as a more general configuration language. It’s visually similar to JSON with additional data structures and capabilities built-in.
 
