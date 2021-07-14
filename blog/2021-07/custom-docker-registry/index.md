@@ -1,18 +1,21 @@
 ---
-title: Create a custom Docker registry
+title: Creating a custom Docker registry
 description: Learn how to create a bare bones Docker registry with C#
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
+visibility: public
+published: 2021-07-28-1400
 metaImage: 
 bannerImage: 
+bannerImageAlt:
+isFeatured: false
 tags:
- - Octopus
+ - Engineering
+ - Docker
 ---
 
-Have you ever wondered what happens when you do a `docker push` or `docker pull`? Behind the scenes a repository, like Docker Hub, implementing the [Docker V2 HTTP API](https://docs.docker.com/registry/spec/api/) specification is responding to these requests to receive or deliver Docker images. This specification is open for anyone to implement though, and you can learn much about Docker from a minimal docker registry implementation.
+Do you wonder what happens when you do a `docker push` or `docker pull`? Behind the scenes, a repository, like Docker Hub, implementing the [Docker V2 HTTP API](https://docs.docker.com/registry/spec/api/) specification, is responding to these requests to receive or deliver Docker images. This specification is open for anyone to implement though, and you can learn much about Docker from a minimal docker registry implementation.
 
-In this post we'll look at what it takes to create a C# server that successfully responds to the `docker push` or `docker pull` commands, and in the process we'll get to see the individual components that make up a Docker image.
+In this post we create a C# server that successfully responds to the `docker push` or `docker pull` commands, and in the process you get to see the individual components that make up a Docker image.
 
 ## Docker API for pushing and pulling images
 
@@ -34,15 +37,15 @@ The process of pushing a Docker image is:
 
 1. Contact `/v2` to confirm the server supports the correct API.
 2. Perform a HEAD query on `{name}/blobs/{digest}`, where `name` is the image name like `alpine`, and `digest` is a hash of the layer.
-3. If the layer does not exist, perform a POST to `{name}/blobs/uploads`. The response from this path includes a `Location` header in the format `{name}/blobs/uploads/{uuid}` where the layer upload will be performed.
+3. If the layer does not exist, perform a POST to `{name}/blobs/uploads`. The response from this path includes a `Location` header in the format `{name}/blobs/uploads/{uuid}` where the layer upload is performed.
 4. The layer is then uploaded, potentially as many small chunks, as PATCH requests to `{name}/blobs/uploads/{uuid}`. The data being sent is captured in the `Range` header, and the server is expected to incrementally populate the layer file with each incoming chunk.
 5. When a layer is uploaded, a PUT call is made to `{name}/blobs/uploads/{uuid}`. This request includes a query parameter called `digest` whose value is the hash of the layer that was completed.
-6. Once the layers are uploaded, a HEAD query on `{name}/manifests/{reference}` will determine if the manifest already exists on the server.
-7. If the manifest does not exist, a PUT request on `{name}/manifests/{reference}` will created it.
+6. Once the layers are uploaded, a HEAD query on `{name}/manifests/{reference}` determines if the manifest already exists on the server.
+7. If the manifest does not exist, a PUT request on `{name}/manifests/{reference}` creates it.
 
 ## Pulling an image
 
-Pulling an image is much easier than pushing one:
+Pulling an image is easier than pushing one:
 
 1. Contact `/v2` to confirm the server supports the correct API.
 2. Perform a HEAD query on `{name}/manifests/{reference}` to determine if the manifest exists.
@@ -52,11 +55,11 @@ Pulling an image is much easier than pushing one:
 
 ## The sample application
 
-Our sample application won't be pretty, and certainly isn't something you would host production workloads with. But it is just functional enough to allow images to be pushed and pulled, which provides a great insight into what happens to Docker images behind the scenes.
+Our sample application isn't pretty, and you wouldn’t host production workloads with. But it’s just functional enough to allow images to be pushed and pulled. This provides a great insight into what happens to Docker images behind the scenes.
 
 The source code described here is available from [GitHub](https://github.com/OctopusSamples/DotNetCoreDockerRegistry).
 
-We start with a controller that places all its methods under the `v2` root path. This root path is a hard requirement in the Docker spec. Some mixed artifact repositories expose a Docker registry on its own port to ensure this root path doesn't conflict with other APIs:
+Start with a controller that places all its methods under the `v2` root path. This root path is a hard requirement in the Docker spec. Some mixed artifact repositories expose a Docker registry on its own port to ensure this root path doesn't conflict with other APIs:
 
 ```csharp
 namespace Controllers
@@ -66,7 +69,7 @@ namespace Controllers
     {
 ```
 
-Each time we start the application we'll create a new temporary directory to hold the Docker images and layers. This is great for testing, because you can restart the app and have an empty registry:
+Each time you start the application, create a new temporary directory to hold the Docker images and layers. This is great for testing, because you can restart the app and have an empty registry:
 
 ```csharp
         private static readonly string LayerPath;
@@ -87,7 +90,7 @@ Each time we start the application we'll create a new temporary directory to hol
         }
 ```
 
-This handler responds to GET requests on the `/v2` root path. We return a HTTP 200 OK response to let the client know we support the V2 API:
+This handler responds to GET requests on the `/v2` root path. You return a HTTP 200 OK response to let the client know you support the V2 API:
 
 ```csharp
         [HttpGet]
@@ -97,9 +100,9 @@ This handler responds to GET requests on the `/v2` root path. We return a HTTP 2
         }
 ```
 
-We then start building up the handlers to allow images to be pushed to the server. Here we respond to a HEAD request checking to see if an image already exists on the server. The `name` parameter is the image name (like `alpine`), and the `digest` parameter is a hash that identifies the layer, like `sha256:11ad9c3e3069bdb53ff873af66070ca6c4309e85581cf3befe05459f889fd729`.
+Next, build up the handlers to allow images to be pushed to the server. You need to respond to a HEAD request, checking to see if an image already exists on the server. The `name` parameter is the image name (like `alpine`), and the `digest` parameter is a hash that identifies the layer, like `sha256:11ad9c3e3069bdb53ff873af66070ca6c4309e85581cf3befe05459f889fd729`.
 
-We've taken a little shortcut here by saving layers as their SHA hash, minus the `sha256:` prefix. If the file exists, we return 200 OK, with the `content-length` header indicating the size of the image. If the layer doesn't exist, we return 404 NOT FOUND:
+Take a little shortcut here by saving layers as their SHA hash, minus the `sha256:` prefix. If the file exists, return 200 OK, with the `content-length` header indicating the size of the image. If the layer doesn't exist, return 404 NOT FOUND:
 
 ```csharp
         [HttpHead("{name}/blobs/{digest}")]
@@ -118,7 +121,7 @@ We've taken a little shortcut here by saving layers as their SHA hash, minus the
         }
 ```
 
-If the layer does not exist the client will initiate an upload with this POST request. The response includes a `location` header with a unique URL that the actual layer data is sent to:
+If the layer does not exist the client initiates an upload with this POST request. The response includes a `location` header with a unique URL that the actual layer data is sent to:
 
 ```csharp
         [HttpPost("{name}/blobs/uploads")]
@@ -135,9 +138,9 @@ If the layer does not exist the client will initiate an upload with this POST re
 
 Docker supports both [monolithic](https://docs.docker.com/registry/spec/api/#monolithic-upload) and [chunked](https://docs.docker.com/registry/spec/api/#chunked-upload) uploads. This handler supports the chunked upload method (the sample application doesn't support monolithic uploads).
 
-The client may or may not supply a `content-range` header indicating the chunk that is being uploaded. Often the entire layer is uploaded as a single chunk anyway, and no `content-range` header is provided.
+The client may or may not supply a `content-range` header indicating the chunk that is being uploaded. Often the entire layer is uploaded as a single chunk, and no `content-range` header is provided.
 
-In this method we save the body of the request to a file with the random GUID that was generated in the `StartUpload` method:
+In this method, you save the body of the request to a file with the random GUID that was generated in the `StartUpload` method:
 
 ```csharp
         [DisableRequestSizeLimit] 
@@ -161,9 +164,9 @@ In this method we save the body of the request to a file with the random GUID th
         }
 ```
 
-Once the layer is uploaded, this method is called to signify the upload completion. [The spec mentions that this method may be called with the final content chunk to be saved to the layer](https://docs.docker.com/registry/spec/api/#completed-upload), so we append anything in the PUT body to the layer file.
+After the layer is uploaded, this method is called to signify the upload completion. [The spec mentions that this method may be called with the final content chunk to be saved to the layer](https://docs.docker.com/registry/spec/api/#completed-upload), so you need to append anything in the PUT body to the layer file.
 
-We then use the hash from the `digest` query parameter to rename the file from the temporary GUID to the hash:
+Now use the hash from the `digest` query parameter to rename the file from the temporary GUID to the hash:
 
 ```csharp
         [HttpPut("{name}/blobs/uploads/{uuid}")]
@@ -187,9 +190,14 @@ We then use the hash from the `digest` query parameter to rename the file from t
         }
 ```
 
-Once the layers are uploaded, the manifest (which you can think of as the Docker image) is then created. First, the client will make a HEAD request to see if the manifest exists.
+After the layers are uploaded, the manifest (which you can think of as the Docker image) is created. First, the client makes a HEAD request to see if the manifest exists.
 
-One quirk here is that the `reference` could either be a tag name like `latest`, or a hash. For convenience we save manifests in two locations, one based on the tag name, and one based on the hash. This is not efficient, but is an easy solution for our sample application:
+One quirk here is that the `reference` could either be a tag name like `latest`, or a hash. For convenience, save manifests in two locations:
+
+- One based on the tag name
+- One based on the hash 
+
+This isn't efficient, but it's an easy solution for your sample application:
 
 ```csharp
         [HttpHead("{name}/manifests/{reference}")]
@@ -219,7 +227,10 @@ One quirk here is that the `reference` could either be a tag name like `latest`,
         }
 ```
 
-If the manifest does not exist, we save it with a PUT request to this method. Again note we have save the manifest in two places: one with the tag in the filename, and the other with the hash in the filename:
+If the manifest doesn't exist, save it with a PUT request to this method. Again note you have to save the manifest in two places: 
+
+- One with the tag in the filename
+- The other with the hash in the filename:
 
 ```csharp
         [HttpPut("{name}/manifests/{reference}")]
@@ -241,7 +252,7 @@ If the manifest does not exist, we save it with a PUT request to this method. Ag
         }
 ```
 
-These endpoints allow us to complete a `docker push` command. Pulling an image requires two more methods.
+These endpoints allow you to complete a `docker push` command. Pulling an image requires two more methods.
 
 The first returns the layer data with a GET request to the following method:
 
@@ -266,9 +277,9 @@ The first returns the layer data with a GET request to the following method:
         }
 ```
 
-The manifest data is returned with a GET request to the following method. Just as with the HEAD request, we search for a manifest file based on the tag name or hash code, as `reference` could be either value.
+The manifest data is returned with a GET request to the following method. Just as with the HEAD request, you need to search for a manifest file based on the tag name or hash code, as `reference` could be either value.
 
-Note here we load the manifest file, parse it as JSON, and extract the `mediaType` property. This is sent back to the client as the `content-type` header:
+Note here you load the manifest file, parse it as JSON, and extract the `mediaType` property. This is sent back to the client as the `content-type` header:
 
 ```csharp
         [HttpGet("{name}/manifests/{reference}")]
@@ -303,11 +314,11 @@ Note here we load the manifest file, parse it as JSON, and extract the `mediaTyp
         }
 ```
 
-And with that we have all the endpoints required to support pulling images.
+And with that you have all the endpoints required to support pulling images.
 
 ## Testing the server
 
-Our web app has been configured via the `launchSettings.json` file to listen to all IP addresses. Here is the trimmed down file showing the `applicationUrl` setting, which has been configured to listen to `0.0.0.0`, meaning the app will respond to requests on all IP addresses.
+The web app has been configured via the `launchSettings.json` file to listen to all IP addresses. Here is the trimmed down file showing the `applicationUrl` setting, which has been configured to listen to `0.0.0.0`, meaning the app responds to requests on all IP addresses.
 
 I found this necessary in testing as pushing to `localhost` didn't work on Windows based machines, and so instead I had to push to the machines local IP address:
 
@@ -326,9 +337,9 @@ I found this necessary in testing as pushing to `localhost` didn't work on Windo
 }
 ```
 
-By default Docker will attempt to contact all external repositories via HTTPS. Our web app has a self signed certificate, so for testing we want Docker to use HTTP.
+By default Docker attempts to contact all external repositories via HTTPS. The web app has a self signed certificate, so for testing you want Docker to use HTTP.
 
-My laptop has an IP address of 10.1.1.37. To instruct Docker to access the registry via this IP, we need to edit the `insecure-registries` array in the Docker configuration file:
+My laptop has an IP address of 10.1.1.37. To instruct Docker to access the registry via your IP, you need to edit the `insecure-registries` array in the Docker configuration file:
 
 ![](docker-config.png)
 
@@ -338,7 +349,7 @@ Run the app with:
 dotnet run
 ```
 
-The temporary directory holding our artifacts will be displayed in the console:
+The temporary directory holding our artifacts displays in the console:
 
 ```powershell
 $ dotnet run
@@ -373,25 +384,25 @@ Four files are created in the temporary directory: two image layers, and the man
 
 ![](files.png)
 
-Let's now delete the images from our local PC. This will ensure that any downloads of this image cannot reuse our previous cached images:
+Now delete the images from our local PC. This ensures that any downloads of this image cannot reuse your previous cached images:
 
 ```
 $ docker image rm 10.1.1.37:5001/alpine
 $ docker image rm alpine
 ```
 
-Download the image from our server with the command:
+Download the image from your server with the command:
 
 ```
 $ docker pull 10.1.1.37:5001/alpine
 ```
 
-And with that we have pushed and pulled images from our minimal Docker repository. There is still much functionality missing, such as deleting images and searching, but we will leave our implementation here. 
+And with that you have pushed and pulled images from your minimal Docker repository. There is still much functionality missing, such as deleting images and searching, but we'll leave our implementation here. 
 
 ## Conclusion
 
-Docker is such a central component to many development workflows, but interestingly there isn't much information on how to implement the Docker API. The [official documentation](https://docs.docker.com/registry/spec/api/#monolithic-upload) is a little dense (as specs usually are), so in this post we looked at a very minimal implementation that allowed Docker images to be pushed and pulled using the regular Docker client.
+Docker is central to many development workflows, but interestingly there isn't much information on how to implement the Docker API. The [official documentation](https://docs.docker.com/registry/spec/api/#monolithic-upload) is a little dense (as specs usually are), so in this post we looked at a very minimal implementation that allowed Docker images to be pushed and pulled using the regular Docker client.
 
-Hopefully this post demystifies some of the process around transferring Docker images, and can provide a useful starting point for anyone looking to integrate their own applications with the Docker client.
+Hopefully this demystifies some of the process around transferring Docker images, and can provide a useful starting point if you're looking to integrate your own applications with the Docker client.
 
 Happy deployments!
