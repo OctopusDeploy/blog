@@ -2,7 +2,7 @@
 title: Octopus as a target
 description: Learn how Octopus is evolving to be the best tool for managing Octopus.
 author: matthew.casperson@octopus.com
-visibility: private # Do not change this! This is not a public post!
+visibility: private # DO NOT CHANGE THIS!!!! This is not a public post!
 published: 2999-01-01
 metaImage: 
 bannerImage: 
