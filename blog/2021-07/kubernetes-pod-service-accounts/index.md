@@ -1,5 +1,5 @@
 ---
-title: Kubernetes Pod Service Account Authentication
+title: Kubernetes Pod Service Account authentication
 description: Learn how to create a Kubernetes deployment target using the Pod Service Account authentication mode.
 author: ray.nham@octopus.com
 visibility: public
