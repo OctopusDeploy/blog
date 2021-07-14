@@ -88,7 +88,7 @@ Runbooks provide a great way to encapsulate shared functionality. The new **Run 
 
 Manual intervention steps provide the opportunity to verify a deployment through manual testing or prompt to allow a deployment to proceed. When used at scale though it can be hard to know which manual intervention prompts require action, and in which order.
 
-The new **Action a Manual Intervention** step provides the ability to interact with a pending manual intervention in another project. By creating a runbook with many **Action a Manual Intervention** steps, multiple deployments can be allowed to proceed or halted without manually clicking through each project:
+The new **Automate Manual Intervention** step provides the ability to interact with a pending manual intervention in another project. By creating a runbook with many **Automate Manual Intervention** steps, multiple deployments can be allowed to proceed or halted without manually clicking through each project:
 
 ![](manual-intervention.png)
 
