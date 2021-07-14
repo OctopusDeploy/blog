@@ -6,7 +6,7 @@ visibility: public
 published: 2021-07-19-1400
 metaImage: blogimage-kubernetes-pod-service-account-authentication-2021.png
 bannerImage: blogimage-kubernetes-pod-service-account-authentication-2021.png
-bannerImageAlt: octopus sailors in a kubernetes-branded pea pod ship 
+bannerImageAlt: octopus sailors in a Kubernetes-branded pea pod ship 
 isFeatured: false
 tags:
  - DevOps
