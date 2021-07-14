@@ -42,12 +42,13 @@ By exposing Octopus as a target and requiring an API key to perform management t
 
 ## The new steps
 
-The motto "if you can click in in the UI, you can automate it with a step" is an ambitious goal, and will be broken down into areas of common functionality, largely grouped by their placement in the UI:
+The motto "if you can click in in the UI, you can automate it with a step" is an ambitious goal, and will be broken down into areas of common functionality, largely grouped by their placement in the UI. Some examples include:
 
 * Deployments / Runbook runs - Creating releases, deploying releases, responding to manual intervention prompts, running runbooks.
 * Tenants - Creating, updating, and deleting tenants. Associating tenants with projects and environments. Adding or removing tenant tags. Defining tenant variables.
 * Targets - Creating, updating, and deleting targets. Adding or removing roles. Associating with environments and tenants.
 * Users / Teams - Creating, updating, and deleting users and teams. Adding or removing users from teams.
+* Certificates - Creating, updating, and deleting certificates. This would likely be paired with scripts using libraries such as [Posh-ACME](https://github.com/rmbolger/Posh-ACME).
 
 The first milestone focuses on the creating and deploying releases, running runbooks, and interacting with manual interventions.
 
@@ -103,10 +104,18 @@ These steps deliberately don't introduce any new paradigms or concepts for you t
 
 Writing custom scripts to automate Octopus is a highly specialized task. It requires a decent level of proficiency writing code and a deep understanding of the internals of Octopus. 
 
-Octopus has always prided itself on making complex deployments easy, and these new steps take that same principal and applies it to Octopus itself. These steps allow us to fulfil the vision of orchestarting deployments without custom scripts.
+Octopus has always prided itself on making complex deployments easy, and these new steps take that same principal and applies it to Octopus itself. This allows us to fulfil the vision of orchestrating deployments without custom scripts.
 
 ### Simple security model
 
 By exposing an Octopus instance as a target, all existing security boundaries are respected and preserved, and all actions will be performed via regular API calls with API keys you create. These steps won't use any privileged access paths within Octopus, so you retain complete control.
 
 ## We want your feedback
+
+We want your feedback to determine if this feature is a good fit for Octopus. Specifically we would like to know:
+
+* Does it makes sense for Octopus to be able to automate itself or other Octopus instances?
+* Will these proposed steps solve problems you have seen customers encountering?
+* Would the concept of "Octopus as a target" (once rounded out with additional similar steps) be valuable for your teams in terms of sales, marketing, or solutions?
+
+Please leave your feedback on this [GitHub issue](https://github.com/OctopusDeploy/StepsFeedback/issues/2).
