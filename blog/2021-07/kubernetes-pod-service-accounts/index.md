@@ -56,7 +56,7 @@ $ kubectl version
 
 ## Adding a Kubernetes target using Pod Service Account authentication
 
-We now have a pool of healthy worker(s) running inside the Kubernetes cluster. 
+We now have a pool of healthy workers running inside the Kubernetes cluster. 
 
 The next step is adding a deployment target using the new authentication mode, Pod Service Account.
 
@@ -90,6 +90,6 @@ Similar to the deployment target created earlier, the deployment steps require a
 
 This post demonstrates how you can use the **Pod Service Account** authentication mode when creating a **Kubernetes deployment target**. 
 
-One benefit of this authentication mode is enabling the workers to connect back to the parent cluster by itself. This means you don't need certificate data of your cluster to be stored in the Octopus Server.
+One benefit of this authentication mode is enabling the workers to connect back to the parent cluster by themselves. This means you don't need certificate data of your cluster to be stored in the Octopus Server.
 
 Happy deployments!
