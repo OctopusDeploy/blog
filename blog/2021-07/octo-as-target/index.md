@@ -54,7 +54,7 @@ The motto "if you can click it in the UI, you can automate it with a step" is an
 * Users / Teams: Creating, updating, and deleting users and teams. Adding or removing users from teams.
 * Certificates: Creating, updating, and deleting certificates. This would likely be paired with scripts using libraries such as [Posh-ACME](https://github.com/rmbolger/Posh-ACME).
 
-The first milestone focuses on creating and deploying releases, running runbooks, and interacting with manual interventions.
+The first milestone focuses on automating the process of creating and deploying releases, running runbooks, and interacting with manual interventions.
 
 ## Create a release
 
