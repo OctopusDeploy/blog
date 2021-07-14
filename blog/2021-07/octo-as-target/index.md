@@ -102,7 +102,7 @@ The four steps described above are the first of many to allow Octopus itself to 
 
 ### The same proven processes, now automated at scale
 
-These steps deliberately don't introduce any new paradigms or concepts for customers to learn and incorporate into their processes. They simply describe the same buttons customers have been clicking and forms fields they have been populating all along, allowing them to automate their existing proven and familiar processes, and providing a natural path as deployment complexity increases.
+These steps deliberately don't introduce any new paradigms or concepts for customers to learn and incorporate into their processes. They simply describe the same buttons customers have been clicking and form fields they have been populating all along, allowing them to automate their existing proven and familiar processes, and providing a natural path forward as deployment complexity increases.
 
 ### Automation without scripts
 
@@ -112,7 +112,7 @@ Octopus has always prided itself on making complex deployments easy, and these n
 
 ### Simple security model
 
-By exposing an Octopus instance as a target, all existing security boundaries are respected and preserved, and all actions will be performed via regular API calls with API keys. These steps won't use any privileged access paths within Octopus, so you retain complete control.
+By exposing an Octopus instance as a target, all existing security boundaries are respected and preserved, and all actions will be performed via regular API calls with API keys. These steps won't use any privileged access paths within Octopus, so customers retain complete control.
 
 ## What are the next steps
 
