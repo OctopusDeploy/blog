@@ -4,9 +4,9 @@ description: Learn how to create a Kubernetes deployment target using the Pod Se
 author: ray.nham@octopus.com
 visibility: public
 published: 2021-07-19-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt:
+metaImage: blogimage-kubernetes-pod-service-account-authentication-2021.png
+bannerImage: blogimage-kubernetes-pod-service-account-authentication-2021.png
+bannerImageAlt: octopus sailors in a kubernetes-branded pea pod ship 
 isFeatured: false
 tags:
  - DevOps
