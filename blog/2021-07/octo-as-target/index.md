@@ -60,7 +60,7 @@ The first milestone focuses on automating the process of creating and deploying 
 
 *I want to automate the process of clicking the **CREATE RELEASE** button.*
 
-Automating the creation of releases allow multiple project releases to be defined with a common set of channels, package versions, and release notes. The **Automate Create Release** step exposes the fields that are defined when clicking the **CREATE RELEASE** button, while also exposing some flexible logic when it comes to selecting package versions:
+Automating the creation of releases allow multiple project releases to be defined with a common set of channels, package versions, and release notes. The **Automate Create Release** step exposes the fields that are defined when clicking the **CREATE RELEASE** button, while also exposing flexible logic when it comes to selecting package versions:
 
 ![](create-release.png)
 
@@ -94,7 +94,7 @@ The new **Automate Manual Intervention** step provides the ability to interact w
 
 ## Benefits of the new steps
 
-Octopus does a fantastic job of modeling complex infrastructure, deploying applications to thousands of machines partitioned across multiple environments, and running runbooks when and where there are needed. You can orchestrate almost any kind of deployment process or management task with Octopus, so long as you are happy to have someone click the right buttons in the right order at the right time.
+Octopus does a fantastic job of modeling complex infrastructure, deploying applications to thousands of machines distributed across multiple environments, and running runbooks when and where there are needed. You can orchestrate almost any kind of deployment process or management task with Octopus, so long as you are happy to have someone click the right buttons in the right order at the right time.
 
 From the very beginning, runbooks have been designed to free DevOps teams from disconnected and untested documentation describing a sequence of tasks. Unfortunately, any complex deployment process in Octopus requiring a specific and coordinated sequence of release creations, deployments, and interventions requires advanced API scripting, or some kind of external runbook document and a lot of manual clicking.
 
