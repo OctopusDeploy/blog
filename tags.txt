@@ -19,6 +19,7 @@ Jira
 Jenkins
 Kubernetes
 Linux
+Multi-Tenancy
 Octopus Cloud
 PowerShell
 Reporting
