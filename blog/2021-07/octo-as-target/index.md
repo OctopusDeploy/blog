@@ -36,7 +36,7 @@ We know Octopus is the best tool for deploying to thousands of targets. We have 
 
 ## What is out of scope
 
-The proposed steps quite deliberately do not attempt to introduce any new processes or paradigms to deployment processes or runbooks. They are focused on automating the same interactions typically performed through the UI.
+The proposed steps quite deliberately do not attempt to introduce any new processes or paradigms to deployment processes or runbooks. They are focused on automating the same interactions typically performed through the UI, likely as part of a runbook.
 
 ## The new target
 
@@ -46,21 +46,21 @@ By exposing Octopus as a target and requiring an API key to perform management t
 
 ## The new steps
 
-The motto "if you can click in in the UI, you can automate it with a step" is an ambitious goal, and will be broken down into areas of common functionality, largely grouped by their placement in the UI. Some examples include:
+The motto "if you can click it in the UI, you can automate it with a step" is an ambitious goal, and will be broken down into areas of common functionality, largely grouped by their placement in the UI. Some examples include:
 
-* Deployments / Runbook runs - Creating releases, deploying releases, responding to manual intervention prompts, running runbooks.
-* Tenants - Creating, updating, and deleting tenants. Associating tenants with projects and environments. Adding or removing tenant tags. Defining tenant variables.
-* Targets - Creating, updating, and deleting targets. Adding or removing roles. Associating with environments and tenants.
-* Users / Teams - Creating, updating, and deleting users and teams. Adding or removing users from teams.
-* Certificates - Creating, updating, and deleting certificates. This would likely be paired with scripts using libraries such as [Posh-ACME](https://github.com/rmbolger/Posh-ACME).
+* Deployments / Runbook runs: Creating releases, deploying releases, responding to manual intervention prompts, running runbooks.
+* Tenants: Creating, updating, and deleting tenants. Associating tenants with projects and environments. Adding or removing tenant tags. Defining tenant variables.
+* Targets: Creating, updating, and deleting targets. Adding or removing roles. Associating with environments and tenants.
+* Users / Teams: Creating, updating, and deleting users and teams. Adding or removing users from teams.
+* Certificates: Creating, updating, and deleting certificates. This would likely be paired with scripts using libraries such as [Posh-ACME](https://github.com/rmbolger/Posh-ACME).
 
-The first milestone focuses on the creating and deploying releases, running runbooks, and interacting with manual interventions.
+The first milestone focuses on creating and deploying releases, running runbooks, and interacting with manual interventions.
 
 ## Create a release
 
 *I want to automate the process of clicking the **CREATE RELEASE** button.*
 
-Automating the creation of releases allow multiple project releases to be created with a common set of channels, package versions, and release notes. The **Automate Create Release** step exposes the fields that are defined when clicking the **CREATE RELEASE** button, while also exposing some flexible logic when it comes to selecting package versions:
+Automating the creation of releases allow multiple project releases to be defined with a common set of channels, package versions, and release notes. The **Automate Create Release** step exposes the fields that are defined when clicking the **CREATE RELEASE** button, while also exposing some flexible logic when it comes to selecting package versions:
 
 ![](create-release.png)
 
@@ -68,7 +68,7 @@ Automating the creation of releases allow multiple project releases to be create
 
 *I want to automate the process of clicking the **DEPLOY** button.*
 
-The deployment dashboard provides a grid of environments project releases, with a handy **DEPLOY** button in the intersection. This makes promoting the release of one project through environments easy. However, it does involve a lot of clicking around when promoting multiple projects to a new environment.
+The deployment dashboard provides a grid of environments and project releases, with a handy **DEPLOY** button in the intersection. This makes promoting the release of one project through environments easy. However, it does involve a lot of clicking around when promoting multiple projects to a new environment.
 
 The **Automate Deploy Release** step automates the process usually initiated by clicking the **DEPLOY** button. Unlike the **Deploy a release** step, which treats a project's releases as a feed with versions to be selected at release creation time, the **Automate Deploy Release** step models the actions of an end user, which is usually to deploy the latest release available for a given environment at the current point in time:
 
@@ -78,7 +78,7 @@ The **Automate Deploy Release** step automates the process usually initiated by 
 
 *I want to automate the process of clicking the **RUN** button.*
 
-Runbooks provide a great way to encapsulate common functionality. The new **Run a Runbook** step allows a runbook to be executed from a deployment process or runbook:
+Runbooks provide a great way to encapsulate shared functionality. The new **Run a Runbook** step allows a runbook to be executed from a deployment process or runbook:
 
 ![](run-runbook.png)
 
