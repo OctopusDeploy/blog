@@ -14,13 +14,13 @@ Octopus has evolved over the years to make complex deployments easy with best pr
 
 However, while Octopus is one of the best tools available for managing external platforms and deployments, it has become clear that there is one complex platform companies are increasingly relying on for their operations that Octopus is not well suited to managing: Octopus itself. 
 
-Complex deployments often mean thousands of tenants, targets, projects, environments, and spaces, and the only solution today to managing these resources as a group is by directly scripting the Octopus API. [The vision statement for the deploy group](https://docs.google.com/document/d/1Se7ALUyJM6zlXSJYxG_Ay7gHAaggGn8XBfgLr_VmjW0/edit) highlights that Octopus must be democratic, allowing people from various disciplines and teams to participate in releasing and deploying software is a core value for us. API scripts require a very specialized skill set, and so prevent many from operating Octopus at scale.
+Complex deployments often mean thousands of tenants, targets, projects, environments, and spaces, and the only solution today to managing these resources as a group is by directly scripting the Octopus API. [The vision statement for the deploy group](https://docs.google.com/document/d/1Se7ALUyJM6zlXSJYxG_Ay7gHAaggGn8XBfgLr_VmjW0/edit) highlights that Octopus must be democratic, so allowing people from various disciplines and teams to participate in releasing and deploying software is a core value for us. API scripts require a very specialized skill set, and so prevent many from operating Octopus at scale.
 
-To make Octopus the best tool for managing Octopus, we're proposing a new feature set called "Octopus as a target" with the motto "if you can click in in the UI, you can automate it with a step".
+To make Octopus the best tool for managing Octopus, we're proposing a new feature set called "Octopus as a target", with the motto "if you can click it in the UI, you can automate it with a step".
 
 ## What problems are we trying to solve?
 
-Customer solutions have identified a number of issues when running Octopus as scale including:
+Customer solutions have identified a number of issues when running Octopus at scale, including:
 
 * [How can I add/update/remove a tenant tag or project to 1000 tenants?](https://trello.com/c/aDij9iLl/148-how-can-i-add-update-remove-a-tenant-tag-or-project-to-1000-tenants)
 * [How can I add/update/remove a role or environment to 100 targets?](https://trello.com/c/7Fr0VMDo/149-how-can-i-add-update-remove-a-role-or-environment-to-100-targets)
@@ -30,9 +30,13 @@ Customer solutions have identified a number of issues when running Octopus as sc
 * [How can I easily coordinate multiple project deployments?](https://trello.com/c/9IZmL1Oa/159-how-can-i-easily-coordinate-multiple-project-deployments)
 * [How can I see and promote all the releases in test not currently in staging?](https://trello.com/c/4IokRDDO/162-how-can-i-see-and-promote-all-the-releases-in-test-not-currently-in-staging)
 
-There is a common pattern to these issues. Interacting with 10 things (tenants, roles, projects, deployments etc) is manageable, if tedious. Interacting with 100's of resources is time consuming and frustrating. Scaling up to 1000 resources and Octopus becomes almost impossible to maintain.
+There is a common pattern to these issues. Interacting with 10 things (tenants, roles, projects, deployments etc) is manageable, if tedious. Interacting with 100's of resources is time consuming and frustrating. Scaling up to 1000's of resources and Octopus becomes almost impossible to maintain via the web UI, and requires complex custom scripts.
 
-We know Octopus is the best tool for deploying to thousands of targets. We have seen runbooks allowing teams to manage that same infrastructure. By taking the next logical step and allowing Octopus itself to be managed though a familiar and proven paradigm, we can ensure Octopus will scale to meet enterprise requirements.
+We know Octopus is the best tool for deploying to thousands of targets. We have seen runbooks empowering teams to manage that same infrastructure. By taking the next logical step and allowing Octopus itself to be managed through these proven processes, we can ensure Octopus will scale to meet enterprise requirements.
+
+## What is out of scope
+
+The proposed steps quite deliberately do not attempt to introduce any new processes or paradigms to deployment processes or runbooks. They are focused on automating the same interactions typically performed through the UI.
 
 ## The new target
 
