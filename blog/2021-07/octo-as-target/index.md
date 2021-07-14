@@ -94,15 +94,15 @@ The new **Automate Manual Intervention** step provides the ability to interact w
 
 ## Benefits of the new steps
 
-Octopus does a fantastic job of modeling complex infrastructure, deploying applications to thousands of machines partitioned in multiple environments, and running runbooks when and where there are needed. You can orchestrate almost any kind of deployment process or management task with Octopus, so long as you are happy to have someone click the right buttons in the right order at the right time.
+Octopus does a fantastic job of modeling complex infrastructure, deploying applications to thousands of machines partitioned across multiple environments, and running runbooks when and where there are needed. You can orchestrate almost any kind of deployment process or management task with Octopus, so long as you are happy to have someone click the right buttons in the right order at the right time.
 
-From the very beginning, runbooks have been designed to free DevOps teams from disconnected and untested documentation describing a sequence of tasks. Unfortunately, any large scale deployment process in Octopus requiring a specific and coordinated sequence of release creations, deployments, and interventions requires advanced API scripting, or some kind of external runbook document and a lot of manual clicking.
+From the very beginning, runbooks have been designed to free DevOps teams from disconnected and untested documentation describing a sequence of tasks. Unfortunately, any complex deployment process in Octopus requiring a specific and coordinated sequence of release creations, deployments, and interventions requires advanced API scripting, or some kind of external runbook document and a lot of manual clicking.
 
-The four steps described above are the first of many to allow Octopus itself to be automated from a runbook like any other system. Specifically, we forsee the following benefits customers deploying at scale:
+The four steps described above are the first of many to allow Octopus itself to be automated from a runbook like any other system. Specifically, we forsee the following benefits for customers deploying at scale:
 
 ### The same proven processes, now automated at scale
 
-These steps deliberately don't introduce any new paradigms or concepts for you to learn and incorporate into your processes. They simply describe the same buttons you have been clicking and forms fields your have been populating all along, allowing you to automate your existing proven and familiar processes.
+These steps deliberately don't introduce any new paradigms or concepts for customers to learn and incorporate into their processes. They simply describe the same buttons customers have been clicking and forms fields your have been populating all along, allowing them to automate their existing proven and familiar processes, and providing a natural path as deployment complexity increases.
 
 ### Automation without scripts
 
