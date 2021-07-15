@@ -441,6 +441,6 @@ We're running three sessions of the webinar:
 - Thurs 29 Jul, 2021 
 - Mon 2 Aug, 2021
 
-#### [Register now](https://octopus.com/events/better-multi-tenancy-deployments-using-octopus-deploy)
+<span><a class="btn btn-success" href="/events/better-multi-tenancy-deployments-using-octopus-deploy">Register now</a></span>
 
 Happy deployments!
