@@ -8,7 +8,7 @@ metaImage: blogimage-k8s-roles.png
 bannerImage: blogimage-k8s-roles.png
 bannerImageAlt: Mixing Kubernetes Roles, RoleBindings, ClusterRoles, and ClusterBindings
 tags:
- - Octopus
+ - DevOps
  - Kubernetes
 ---
 
