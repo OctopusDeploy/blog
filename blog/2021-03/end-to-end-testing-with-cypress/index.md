@@ -8,7 +8,7 @@ metaImage: blogimage-testing.png
 bannerImage: blogimage-testing.png
 bannerImageAlt: Professor Octopus testing
 tags:
- - Octopus
+ - DevOps
  - Testing
 ---
 
