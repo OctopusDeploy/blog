@@ -16,13 +16,15 @@ The use of containers is a clear trend in our industry. The [RedHat 2021 State o
 
 ![](report.png)
 
-Octopus has similarly seen steadily increasing usage of docker feeds:
+Octopus has similarly seen steadily increasing usage of Docker feeds:
 
 ![](dockerfeeds.png)
 
 However, containers are typically stored in a container repository, which presents a challenge today as this requires an additional platform to be operated alongside Octopus.
 
-The post proposes an integrated container repository within Octopus itself.
+Migrating to containerized applications also presents a challenge for teams that have relied on features like **Structured Configuration Variables**, **Substitute Variables in Templates**, **.NET Configuration Variables**, and **.NET Configuration Transforms**.
+
+This post proposes an integrated container repository within Octopus itself, and provides a process through which environment specific Docker images can be deployed much like traditional application artifacts.
 
 
 ## What problems are we trying to solve?
@@ -49,7 +51,7 @@ Each space would host a built-in Docker registry implementing the [Docker HTTP A
 
 ![](dockerregistry.png)
 
-## Hosting Dockerfiles rather than images
+## Hosting Dockerfiles directly
 
 Octopus will be expanded to host special packages that contain a `Dockerfile` file and define dependencies to additional external packages. These will be called **Source Docker Images** (SDIs).
 
@@ -88,9 +90,9 @@ Baking environment specific configuration into an image guarantees that the appl
 
 ### Not all configuration can be contained in environment variables
 
-Environment variables are great for simple key/pair values, but not all configuration is that simple. Test scripts run with testing tools like [Cypress](https://hub.docker.com/r/cypress/included) or [Postman](https://hub.docker.com/r/postman/newman/) would not be placed in a environment variable. Making these scripts available to containers today often means having the container download scripts from an external file host or mapping shared volumes.
+Environment variables are great for simple key/pair values, but not all configuration is that simple. For example, test scripts run with testing tools like [Cypress](https://hub.docker.com/r/cypress/included) or [Postman](https://hub.docker.com/r/postman/newman/) would not be placed in a environment variable. Making these scripts available to containers today often means having the container download scripts from an external file host or mapping shared volumes.
 
-SDIs make running ad hoc scripts like quick and easy. The script is pushed as a regular package to the built in feed, an SDI includes the script in an environment specific image, and the self contained image is consumed by the hosting platform with no need for volume mounts or external downloads.
+SDIs make running ad hoc scripts quick and easy. The script is pushed as a regular package to the built in feed, an SDI includes the script in an environment specific image, and the self contained image is consumed by the hosting platform with no need for volume mounts or external downloads.
 
 ## When are these features being delivered
 
