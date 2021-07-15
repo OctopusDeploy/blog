@@ -62,7 +62,32 @@ Any step that can reference a docker image file as part of its deployment can no
 
 ## Benefits of the new features
 
-With so many companies embracing containers as part of their deployment strategy, extending Octopus to remove barriers to container adoption makes strategic sense.
+With so many companies embracing containers as part of their deployment strategy, extending Octopus to remove barriers to container adoption makes strategic sense. We envisage the proposed features offering customers the following benefits.
 
-### No need for an external Docker registry
+### Deploy Docker images with fewer steps
 
+By providing a built-in Docker registry, there is no longer any need to configure and maintain an external Docker registry. This means teams can quickly prototype new container deployment processes, and removes a significant point of friction for anyone trying to migrate to containers.
+
+### Embracing environment specific Docker images
+
+Octopus has always supported the idea of deploying a static binary with environment specific configuration to different environments. By extracting an artifact, processing configuration files with the **Structured Configuration Variables**, **Substitute Variables in Templates**, **.NET Configuration Variables**, and **.NET Configuration Transforms** features, and deploying the result, Octopus is effectively deploying environment specific artifacts.
+
+This process is battle tested and widely adopted:
+
+![](configvariables.png)
+
+SDIs embrace this process. They take static binaries from package references or are based on a "golden" Docker image, add processed configuration files, build a new Docker image, and pass the result to the deployment target.
+
+Environment specific Docker images are considered an anti-pattern by some, but I suggest we have real world experience to prove that translating the deployment patterns of traditional artifacts to Docker is an example of best practice.
+
+### Simplify rollbacks and scale events
+
+The behavior of an application is the combination of the code it is running and the configuration it loaded. To reliably roll back a deployment or scale up, you must be sure that the application code **and** the configuration are rolled back together or remain consistent while scaling up.
+
+Baking environment specific configuration into an image guarantees that the application code and configuration is consistent. It removes the need to snapshot configuration values and removes a point of failure as settings are loaded from an external system.
+
+### Not all configuration can be contained in environment variables
+
+Environment variables are great for simple key/pair values, but not all configuration is that simple. Test scripts run with testing tools like [Cypress](https://hub.docker.com/r/cypress/included) or [Postman](https://hub.docker.com/r/postman/newman/) would not be placed in a environment variable. Making these scripts available to containers today often means having the container download scripts from an external file host or mapping shared volumes.
+
+SDIs make running adhoc scripts like quick and easy. The script is pushed as a regular package to the built in feed, an SDI includes the script in a deployment specific image, and self contained image is consumed by the hosting platform with no need for volume mounts or external downloads.
