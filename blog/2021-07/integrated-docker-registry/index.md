@@ -60,7 +60,7 @@ Any step that can reference a Docker image file as part of its deployment can no
 1. Extract the SDI along with any additional packages it references.
 2. Perform file modifications with traditional features such as **Structured Configuration Variables**, **Substitute Variables in Templates**, **.NET Configuration Variables**, and **.NET Configuration Transforms**.
 3. Run `docker build`, and push the resulting image to the built-in Docker registry with a deployment specific tag like `1.2.0-deployments-75`.
-4. The step referencing the SDI is then passed the image reference of `octopusserver:8080/spaces-1/mywebapp:1.2.0-deployments-75`.
+4. The step referencing the SDI is then passed the image reference like `octopusserver:8080/spaces-1/mywebapp:1.2.0-deployments-75`.
 
 ## Benefits of the new features
 
@@ -72,7 +72,7 @@ By providing a built-in Docker registry, there is no longer any need to configur
 
 ### Embracing environment specific Docker images
 
-Octopus has always supported the idea of deploying a static binary with environment specific configuration to different environments. By extracting an artifact, processing configuration files with the **Structured Configuration Variables**, **Substitute Variables in Templates**, **.NET Configuration Variables**, and **.NET Configuration Transforms** features, and deploying the result, Octopus is effectively deploying environment specific artifacts.
+Octopus has always supported the idea of deploying a static binary with environment specific configuration to multiple environments. By extracting an artifact, processing configuration files with the **Structured Configuration Variables**, **Substitute Variables in Templates**, **.NET Configuration Variables**, and **.NET Configuration Transforms** features, and deploying the result, Octopus is effectively deploying environment specific artifacts.
 
 This process is battle tested and widely adopted, with tens of thousands of deployments making use of these features:
 
@@ -86,11 +86,11 @@ Environment specific Docker images are considered an anti-pattern by some, but I
 
 The behavior of an application is the combination of the code it is running and the configuration it loaded. To reliably roll back a deployment or scale it up, you must be sure that the application code **and** the configuration are rolled back together or remain consistent while scaling up.
 
-Baking environment specific configuration into an image guarantees that the application code and configuration is consistent. It removes the need to snapshot configuration values and removes a point of failure as settings are loaded from an external system.
+Baking environment specific configuration into an image guarantees that the application code and configuration is consistent. It removes the need to snapshot configuration values and removes a point of failure exposed by loading settings from an external system.
 
 ### Not all configuration can be contained in environment variables
 
-Environment variables are great for simple key/pair values, but not all configuration is that simple. For example, test scripts run with testing tools like [Cypress](https://hub.docker.com/r/cypress/included) or [Postman](https://hub.docker.com/r/postman/newman/) would not be placed in a environment variable. Making these scripts available to containers today often means having the container download scripts from an external file host or mapping shared volumes.
+Environment variables are great for simple key/pair values, but not all configuration is that simple. For example, test scripts run with testing tools like [Cypress](https://hub.docker.com/r/cypress/included) or [Postman](https://hub.docker.com/r/postman/newman/) would not be placed in an environment variable. Making these scripts available to containers today often means having the container download scripts from an external file host or mapping shared volumes.
 
 SDIs make running ad hoc scripts quick and easy. The script is pushed as a regular package to the built in feed, an SDI includes the script in an environment specific image, and the self contained image is consumed by the hosting platform with no need for volume mounts or external downloads.
 
