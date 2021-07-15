@@ -72,7 +72,7 @@ By providing a built-in Docker registry, there is no longer any need to configur
 
 Octopus has always supported the idea of deploying a static binary with environment specific configuration to different environments. By extracting an artifact, processing configuration files with the **Structured Configuration Variables**, **Substitute Variables in Templates**, **.NET Configuration Variables**, and **.NET Configuration Transforms** features, and deploying the result, Octopus is effectively deploying environment specific artifacts.
 
-This process is battle tested and widely adopted:
+This process is battle tested and widely adopted, with tens of thousands of deployments making use of these features:
 
 ![](configvariables.png)
 
@@ -82,7 +82,7 @@ Environment specific Docker images are considered an anti-pattern by some, but I
 
 ### Simplify rollbacks and scale events
 
-The behavior of an application is the combination of the code it is running and the configuration it loaded. To reliably roll back a deployment or scale up, you must be sure that the application code **and** the configuration are rolled back together or remain consistent while scaling up.
+The behavior of an application is the combination of the code it is running and the configuration it loaded. To reliably roll back a deployment or scale it up, you must be sure that the application code **and** the configuration are rolled back together or remain consistent while scaling up.
 
 Baking environment specific configuration into an image guarantees that the application code and configuration is consistent. It removes the need to snapshot configuration values and removes a point of failure as settings are loaded from an external system.
 
@@ -90,4 +90,18 @@ Baking environment specific configuration into an image guarantees that the appl
 
 Environment variables are great for simple key/pair values, but not all configuration is that simple. Test scripts run with testing tools like [Cypress](https://hub.docker.com/r/cypress/included) or [Postman](https://hub.docker.com/r/postman/newman/) would not be placed in a environment variable. Making these scripts available to containers today often means having the container download scripts from an external file host or mapping shared volumes.
 
-SDIs make running adhoc scripts like quick and easy. The script is pushed as a regular package to the built in feed, an SDI includes the script in a deployment specific image, and self contained image is consumed by the hosting platform with no need for volume mounts or external downloads.
+SDIs make running ad hoc scripts like quick and easy. The script is pushed as a regular package to the built in feed, an SDI includes the script in an environment specific image, and the self contained image is consumed by the hosting platform with no need for volume mounts or external downloads.
+
+## When are these features being delivered
+
+This RFC has been written to gauge interest and collect feedback for possible strategies to pursue in 2022. We currently have no commitment to building these features.
+
+## We want your feedback
+
+We want your feedback to determine if this feature is a good fit for Octopus. Specifically we would like to know:
+
+* Does the idea of environment specific images make sense?
+* Will these proposed features solve problems you have seen customers encountering?
+* Would the concept of Source Docker Images be valuable for your teams in terms of sales, marketing, or solutions?
+
+Please leave your feedback on this [GitHub issue](https://github.com/OctopusDeploy/StepsFeedback/issues/3) (TODO - create the issue).
