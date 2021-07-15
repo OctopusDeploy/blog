@@ -29,7 +29,7 @@ This post proposes an integrated container repository within Octopus itself, and
 
 ## What problems are we trying to solve?
 
-The two problems this RFC aims to solve are the overheads of maintaining an external Docker registry, and the limitations with externalizing all environment specific configuration from a Docker image.
+The two problems this RFC aims to solve are the overheads of maintaining an external Docker registry, and the limitations of externalizing all environment specific configuration from a Docker image.
 
 ### Hosting Docker images directly
 
@@ -41,9 +41,9 @@ By integrating a Docker registry we remove the need for customers to implement a
 
 ### Building environment specific Docker images
 
-The traditional advice for building environment agnostic Docker images has been to [externalize all configuration via environment variables](https://12factor.net/config). This is certainly good advice for a number of scenarios, but does require many legacy applications to be redesigned to load external values, and does not support by the traditional (and much used) configuration file modification features in Octopus.
+The traditional advice for building environment agnostic Docker images has been to [externalize all configuration via environment variables](https://12factor.net/config). This is certainly good advice for a number of scenarios, but does require many legacy applications to be redesigned to load external values, and does not support the traditional (and much used) configuration file modification features in Octopus.
 
-By having Octopus build Docker images for each environment, we offer a logical upgrade path for legacy applications, especially those that have relied configuration file modification.
+By having Octopus build Docker images for each environment, we offer a logical upgrade path for legacy applications, especially those that have relied on configuration file modification.
 
 ## Built-in Docker registry
 
@@ -53,14 +53,14 @@ Each space would host a built-in Docker registry implementing the [Docker HTTP A
 
 ## Hosting Dockerfiles directly
 
-Octopus will be expanded to host special packages that contain a `Dockerfile` file and define dependencies to additional external packages. These will be called **Source Docker Images** (SDIs).
+Octopus will be expanded to host specialized packages that contain a `Dockerfile` file and define dependencies to additional external packages. These will be called **Source Docker Images** (SDIs).
 
-Any step that can reference a docker image file as part of its deployment can now also reference an SDI. During package acquisition, Octopus will peform the following steps:
+Any step that can reference a Docker image file as part of its deployment can now also reference an SDI. During package acquisition, Octopus will perform the following steps:
 
 1. Extract the SDI along with any additional packages it references.
 2. Perform file modifications with traditional features such as **Structured Configuration Variables**, **Substitute Variables in Templates**, **.NET Configuration Variables**, and **.NET Configuration Transforms**.
 3. Run `docker build`, and push the resulting image to the built-in Docker registry with a deployment specific tag like `1.2.0-deployments-75`.
-4. The step referencing the SDI is then passed the image reference of `octopusserver:8080/mywebapp:1.2.0-deployments-75`.
+4. The step referencing the SDI is then passed the image reference of `octopusserver:8080/spaces-1/mywebapp:1.2.0-deployments-75`.
 
 ## Benefits of the new features
 
