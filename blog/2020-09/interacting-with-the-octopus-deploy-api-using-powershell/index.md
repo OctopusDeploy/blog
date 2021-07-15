@@ -8,6 +8,7 @@ metaImage: octopus-api-powershell.png
 bannerImage: octopus-api-powershell.png
 bannerImageAlt: Interacting with the Octopus Deploy API using PowerShell
 tags:
+ - DevOps
  - PowerShell
 ---
 
