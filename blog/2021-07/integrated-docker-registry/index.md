@@ -33,6 +33,8 @@ The two problems this RFC aims to solve are the overheads of maintaining an exte
 
 Deploying any container based application today requires orchestrating Docker image builds pushed to an external Docker registry, with the resulting images consumed by Octopus and passed along to the destination target. This means even the most simple of deployments involving Docker images requires three separate platforms to be configured correctly.
 
+Providing a Docker registry has been suggested via [UserVoice](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/18824059-provide-private-docker-registry).
+
 By integrating a Docker registry we remove the need for customers to implement an external registry, and provide the same kind of convenience as the current built-in feed.
 
 ### Building environment specific Docker images
@@ -63,3 +65,4 @@ Any step that can reference a docker image file as part of its deployment can no
 With so many companies embracing containers as part of their deployment strategy, extending Octopus to remove barriers to container adoption makes strategic sense.
 
 ### No need for an external Docker registry
+
