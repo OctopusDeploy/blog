@@ -4,16 +4,14 @@ description: Learn how to set up a remote back-end to use with Terraform in Octo
 author: egor.pavlikhin@octopus.com
 visibility: public
 published: 2021-08-04-1400
-metaImage: blogimage-create-workers-on-a-kubernetes-cluster-2021.png
-bannerImage: blogimage-create-workers-on-a-kubernetes-cluster-2021.png
-bannerImageAlt:
+metaImage: blogimage-using-remote-backend-with-terraform-in-octopus-deploy-2021.png
+bannerImage: blogimage-using-remote-backend-with-terraform-in-octopus-deploy-2021.png
+bannerImageAlt: Terraform logo floating among clouds
 isFeatured: false
 tags:
  - DevOps
  - Runbooks
 ---
-
-![Using remote backend with Terraform in Octopus Deploy](blogimage-create-workers-on-a-kubernetes-cluster-2021.png)
 
 In this post, we use a GitHub repository as the source of Terraform templates and store workspace states in Terraform's own cloud offering.
 
