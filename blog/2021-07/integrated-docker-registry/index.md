@@ -43,6 +43,23 @@ By having Octopus build Docker images for each environment, we offer a logical u
 
 ## Built-in Docker registry
 
-Each space would host a built-in Docker registry implementing the [Docker HTTP API](https://docs.docker.com/registry/spec/api/). This registry would allow [OCI artifacts](https://github.com/opencontainers/artifacts) (typically Docker images, but potentially hosting any kind of OCI artifact) to be pushed and pulled by clients.
+Each space would host a built-in Docker registry implementing the [Docker HTTP API](https://docs.docker.com/registry/spec/api/). This registry would allow [OCI artifacts](https://github.com/opencontainers/artifacts) (typically Docker images, but potentially hosting any kind of OCI artifact) to be pushed and pulled by clients:
 
 ![](dockerregistry.png)
+
+## Hosting Dockerfiles rather than images
+
+Octopus will be expanded to host special packages that contain a `Dockerfile` file and define dependencies to additional external packages. These will be called **Source Docker Images** (SDIs).
+
+Any step that can reference a docker image file as part of its deployment can now also reference an SDI. During package acquisition, Octopus will peform the following steps:
+
+1. Extract the SDI along with any additional packages it references.
+2. Perform file modifications with traditional features such as **Structured Configuration Variables**, **Substitute Variables in Templates**, **.NET Configuration Variables**, and **.NET Configuration Transforms**.
+3. Run `docker build`, and push the resulting image to the built-in Docker registry with a deployment specific tag like `1.2.0-deployments-75`.
+4. The step referencing the SDI is then passed the image reference of `octopusserver:8080/mywebapp:1.2.0-deployments-75`.
+
+## Benefits of the new features
+
+With so many companies embracing containers as part of their deployment strategy, extending Octopus to remove barriers to container adoption makes strategic sense.
+
+### No need for an external Docker registry
