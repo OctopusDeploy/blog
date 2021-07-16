@@ -94,6 +94,10 @@ Environment variables are great for simple key/pair values, but not all configur
 
 SDIs make running ad hoc scripts quick and easy. The script is pushed as a regular package to the built in feed, an SDI includes the script in an environment specific image, and the self contained image is consumed by the hosting platform with no need for volume mounts or external downloads.
 
+### Autodeploy triggers for Docker images
+
+A built in Docker registry can be integrated with ARC like the built-in feed, bringing deployment triggers to Docker images.
+
 ## When are these features being delivered
 
 This RFC has been written to gauge interest and collect feedback for possible strategies to pursue in 2022. We currently have no commitment to building these features.
