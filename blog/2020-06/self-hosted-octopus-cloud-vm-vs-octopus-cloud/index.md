@@ -209,7 +209,7 @@ When you use Octopus Server on a VM, you can configure the IP and DNS that suits
 
 ### Organize projects and environments
 
-[Spaces](https://octopus.com/spaces) are available with both Octopus Cloud and Octopus Server. Spaces create a hard wall between projects and infrastructure, so each of your teams only access the projects and infrastructure they need.
+[Spaces](https://octopus.com/docs/administration/spaces) are available with both Octopus Cloud and Octopus Server. Spaces create a hard wall between projects and infrastructure, so each of your teams only access the projects and infrastructure they need.
 
 **Server**
 
