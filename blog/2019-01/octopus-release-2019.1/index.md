@@ -14,7 +14,7 @@ tags:
 
 <h2>Focus on what matters to you with Spaces</h2>
 
-We are proud to ship [Spaces](https://octopus.com/spaces). Our goal with Spaces is to help teams organize their Octopus servers better and focus on the projects, environments and deployments that are important to them. This should reduce the noise and allow teams to work more efficiently.
+We are proud to ship [Spaces](https://octopus.com/docs/administration/spaces). Our goal with Spaces is to help teams organize their Octopus servers better and focus on the projects, environments and deployments that are important to them. This should reduce the noise and allow teams to work more efficiently.
 
 <h2>In this post </h2>
 
@@ -54,7 +54,7 @@ That's it for this month. Feel free to leave us a comment and let us know what y
 
 ## Want to learn more
 
-- [Read](https://octopus.com/spaces) all about the benefits of Spaces
+- [Read](https://octopus.com/docs/administration/spaces) all about the benefits of Spaces
 - [Watch](https://hello.octopus.com/webinar-spaces-workers/on-demand?utm_referrer=http%3A%2F%2Foctopus.com%2Fblog%2Foctopus-release-2019.1) our webinar on 'Scaling your Octopus with Spaces and Workers'
 - [Read](https://g.octopushq.com/spaces) the Spaces documentation
 - [Read](https://octopus.com/blog/octopus-spaces-blog-series-kick-off) about our journey building Spaces in our blog series
