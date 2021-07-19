@@ -84,10 +84,10 @@ You can also see we use a ternary conditional for the `options` variable. If the
 
 [Visual Studio Code](https://code.visualstudio.com/) (VS Code) is currently one of the most popular editors and it’s offered for free by Microsoft. VS Code has extensions that add additional functionality to the base editor. These include:
 
-- An [HCL extension exists](https://marketplace.visualstudio.com/items?itemName=wholroyd.HCL) to offer proper language colorization.
+- An [HCL extension](https://marketplace.visualstudio.com/items?itemName=wholroyd.HCL) to offer proper language colorization.
 - The [Terraform extension](https://marketplace.visualstudio.com/items?itemName=4ops.terraform) that also adds HCL support, despite being named for one of the Hashicorp tools. This extension offers syntax highlighting and basic validation.
 
-The [Atom editor](https://atom.io/) is an alternative editor to VS Code which is also popular. It offers an [HCL syntax highlighting](https://atom.io/packages/language-hcl) package as well. 
+The [Atom editor](https://atom.io/) is an alternative editor to VS Code and is also popular. It offers an [HCL syntax highlighting](https://atom.io/packages/language-hcl) package as well. 
 
 ## HCL processing and tooling in other languages
 
