@@ -56,22 +56,6 @@ For GitLab, builds are defined using YAML in a special file, `.gitlab-ci.yml` lo
 - build-information
 - push-build-information
 
-#### before_script
-To make the Octopus Deploy CLI available for use during the build process, we need to install the CLI on the runner.  This is accomplished by adding a `before_script` section in your YAML
-
-```yaml
-before_script:
-    - apt update && apt install -y
-    - apt-get install curl -y
-    - apt update && apt install -y --no-install-recommends gnupg curl ca-certificates apt-transport-https
-    - curl -sSfL https://apt.octopus.com/public.key | apt-key add -
-    - sh -c "echo deb https://apt.octopus.com/ stable main > /etc/apt/sources.list.d/octopus.com.list"
-    - apt update && apt install octopuscli -y
-```
-
-:::info
-At the time of this writing, the Octopus Deploy CLI Docker image doesn't work with GitLab.  We are aware of the issue and are considering options to resolve it:::
-
 #### build-information
 The build information stage will consist of constructing the file used for uploading build information.  I wanted to use PowerShell Core to build the file, which Ubuntu doesn't have by default.  Rather than installing PowerShell Core, I used the GitLab Docker runner functionality.  The image `mcr.microsoft.com/dotnet/core/sdk:3.1` comes with PowerShell Core installed.
 
@@ -142,6 +126,7 @@ Pushing the build information to Octopus consists of a single command in the scr
 ```yaml
 push-build-information:
     stage: push-build-information
+    image: octopuslabs/gitlab-octocli
     script:
         - octo build-information --package-id=OctoPetShop.Web --version=1.0.21132.111113 --file=BuildInformation.json --server="$OCTOPUS_SERVER_URL" --apiKey="$OCTOPUS_API_KEY" --space="$OCTOPUS_SPACE_NAME"
 ```
@@ -155,14 +140,6 @@ image: ubuntu:latest
 stages:
     - build-information
     - push-build-information
-
-before_script:
-    - apt update && apt install -y
-    - apt-get install curl -y
-    - apt update && apt install -y --no-install-recommends gnupg curl ca-certificates apt-transport-https
-    - curl -sSfL https://apt.octopus.com/public.key | apt-key add -
-    - sh -c "echo deb https://apt.octopus.com/ stable main > /etc/apt/sources.list.d/octopus.com.list"
-    - apt update && apt install octopuscli -y
 
 build-information:
     stage: build-information
@@ -206,6 +183,7 @@ build-information:
       
 push-build-information:
     stage: push-build-information
+    image: octopuslabs/gitlab-octocli
     script:
         - octo build-information --package-id=OctoPetShop.Web --version=1.0.21132.111113 --file=BuildInformation.json --server="$OCTOPUS_SERVER_URL" --apiKey="$OCTOPUS_API_KEY" --space="$OCTOPUS_SPACE_NAME"
 ```
