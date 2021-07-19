@@ -55,7 +55,7 @@ Pulling an image is easier than pushing one:
 
 ## The sample application
 
-Our sample application isn't pretty, and you wouldn’t host production workloads with. But it’s just functional enough to allow images to be pushed and pulled. This provides a great insight into what happens to Docker images behind the scenes.
+Our sample application isn't pretty, and you wouldn’t host production workloads with it. But it’s just functional enough to allow images to be pushed and pulled. This provides a great insight into what happens to Docker images behind the scenes.
 
 The source code described here is available from [GitHub](https://github.com/OctopusSamples/DotNetCoreDockerRegistry).
 
@@ -121,7 +121,7 @@ Take a little shortcut here by saving layers as their SHA hash, minus the `sha25
         }
 ```
 
-If the layer does not exist the client initiates an upload with this POST request. The response includes a `location` header with a unique URL that the actual layer data is sent to:
+If the layer does not exist, the client initiates an upload with this POST request. The response includes a `location` header with a unique URL that the actual layer data is sent to:
 
 ```csharp
         [HttpPost("{name}/blobs/uploads")]
@@ -197,7 +197,7 @@ One quirk here is that the `reference` could either be a tag name like `latest`,
 - One based on the tag name
 - One based on the hash 
 
-This isn't efficient, but it's an easy solution for your sample application:
+This isn't efficient but it's an easy solution for your sample application:
 
 ```csharp
         [HttpHead("{name}/manifests/{reference}")]
@@ -252,7 +252,9 @@ If the manifest doesn't exist, save it with a PUT request to this method. Again 
         }
 ```
 
-These endpoints allow you to complete a `docker push` command. Pulling an image requires two more methods.
+These endpoints allow you to complete a `docker push` command. 
+
+Pulling an image requires two more methods.
 
 The first returns the layer data with a GET request to the following method:
 
