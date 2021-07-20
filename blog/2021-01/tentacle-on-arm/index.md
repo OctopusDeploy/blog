@@ -125,17 +125,17 @@ Next, we'll run something against our new Tentacle.
 
 For this step, I am going to set up a new project and configure a runbook to install the latest package updates.
 
-In your instance, create a new _Project_, I called mine **Pi 🥧**
+In your instance, create a new project, I called mine **Pi 🥧**
 
 ![New project](project.png "width=200")
 
-I then created a new _Runbook_ called **Upgrade it!** and added a single script step containing:
+I then created a new runbook called **Upgrade it!** and added a single script step containing:
 
 ```bash
 sudo yum upgrade -y
 ```
 
-The step is configured to run a _bash_ script against the role **pi**, which is the role I specified in the configuration script earlier.
+The step is configured to run a bash script against the role **pi**, which is the role I specified in the configuration script earlier.
 
 ![Script step](script-step.png)
 
