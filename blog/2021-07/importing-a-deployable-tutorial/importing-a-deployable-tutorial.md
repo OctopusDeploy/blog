@@ -11,7 +11,9 @@ tags:
  - Configuration as Code
 ---
 
-Setting up your first deployment can be a challenging process. There are  new systems and many configurations that need to be set up. It can easily become overwhelming for first time users. This blog post is aimed at guiding you through this and reducing the difficulty in setting up your first project. We will do this by utilizing a new feature in Octopus Deploy 2021.1 named Project Bento. Project Bento is an import/export feature for projects that will automatically import many of the configurationsn needed to get a deployment working. You will use a previously exported project and deploy a sample application to an Azure web application. This applicationwill be visible to you and sharable with your company. The only prerequisite is a running Octopus Deploy instance, either in Octopus Cloud or self-hosted.
+Setting up your first deployment can be a challenging process. There are new systems and many configurations that need to be set up. It can easily become overwhelming for first time users. This blog post is aimed at guiding you through this and reducing the difficulty in setting up your first project. We will do this by utilizing a new feature in Octopus Deploy 2021.1 named Project Bento. 
+
+Project Bento is an import/export feature for projects that will automatically import many of the configurations needed to get a deployment working. You will use a previously exported project and deploy a sample application to an Azure web application. This application will be visible to you and sharable with your company. The only prerequisite is a running Octopus Deploy instance, either in Octopus Cloud or self-hosted.
 
 These are the steps in Octopus Deploy to deploy the web application:
 
@@ -55,7 +57,11 @@ The password for this project is **html**
 
 The benefits of the `Export/Import Projects` feature is that you do not have to manually configure the environment and deployment steps of your project. Although this is a small project, some projects can be large and have complex deployment steps. Using the Export/Import feature ensures these steps are maintained across spaces.
 
- You have successfully imported the project, good work! There are just a few other items to configure. Exporting and importing a project does not capture the deployment targets or the required packages of the project. Deployment targets require a fresh connection on a new instance and packages are not captured to avoid extremely large files being part of the export process.
+:::hint
+If you haven't upgraded to Octopus Deploy 2021.1 now is a great time to do so to use the Export/Import Project features
+:::
+
+You have successfully imported the project, good work! There are just a few other items to configure. Exporting and importing a project does not capture the deployment targets or the required packages of the project. Deployment targets require a fresh connection on a new instance and packages are not captured to avoid extremely large files being part of the export process.
 
 ## Configure an Azure Account
 
