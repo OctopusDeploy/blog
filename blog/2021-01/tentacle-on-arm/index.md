@@ -23,9 +23,9 @@ Back in late 2019, we introduced support for ARM-based deployment targets and wo
 
 Connecting over SSH is fine, but it doesn't work for everyone, such as highly secure environments where port 22 is not allowed. It also requires a direct connection, possibly through a firewall, between the Octopus Server and the SSH server. 
 
-By installing a Polling Tentacle on your ARM device, you can avoid having to open a firewall port for an SSH connection, which is especially important if you are using the Octopus Cloud service. 
+By installing a polling tentacle on your ARM device, you can avoid having to open a firewall port for an SSH connection, which is especially important if you are using the Octopus Cloud service. 
 
-Feel free to check out our [previous blog post](https://octopus.com/blog/tentacle-on-linux), which goes into further detail about the benefits of using a Linux Tentacle for deployments rather than SSH.
+Feel free to check out our [previous blog post](https://octopus.com/blog/tentacle-on-linux), which goes into further detail about the benefits of using a Linux tentacle for deployments rather than SSH.
 
 Running your workloads on ARM hardware has some benefits:
 - Lower running cost
@@ -65,7 +65,7 @@ To set up a Tentacle instance, run the following script:
 
 There are sample scripts available in the [Linux Tentacle documentation](https://octopus.com/docs/infrastructure/deployment-targets/linux/tentacle) if you need to make an automated, repeatable install, but for now, we will run the configuration script and mostly just accept the defaults.
 
-For this example, it is important to select **Polling** (2) for the kind of Tentacle. The [Polling Tentacle](https://octopus.com/docs/infrastructure/deployment-targets/windows-targets/tentacle-communication#polling-tentacles) will make a connection out to the Octopus Server so we don't need to open up any additional ports in the firewall:
+For this example, it is important to select **Polling** (2) for the kind of Tentacle. The [polling tentacle](https://octopus.com/docs/infrastructure/deployment-targets/windows-targets/tentacle-communication#polling-tentacles) will make a connection out to the Octopus Server so we don't need to open up any additional ports in the firewall:
 
 ```bash
 [user@fedora ~]# sudo /opt/octopus/tentacle/configure-tentacle.sh
@@ -115,27 +115,27 @@ Service started: Tentacle
 Tentacle instance 'Tentacle' is now installed
 ```
 
-After the script has finished configuring the Tentacle, you will be able to see the Linux Tentacle in the Deployment Targets page on your instance.
+After the script has finished configuring the tentacle, you will be able to see the Linux tentacle in the Deployment Targets page on your instance.
 
 ![Deployment target](deployment-target.png "width=200")
 
 ### The Tentacle in action
 
-Next, we'll run something against our new Tentacle.
+Next, we'll run something against our new tentacle.
 
 For this step, I am going to set up a new project and configure a runbook to install the latest package updates.
 
-In your instance, create a new _Project_, I called mine **Pi 🥧**
+In your instance, create a new project, I called mine **Pi 🥧**
 
 ![New project](project.png "width=200")
 
-I then created a new _Runbook_ called **Upgrade it!** and added a single script step containing:
+I then created a new runbook called **Upgrade it!** and added a single script step containing:
 
 ```bash
 sudo yum upgrade -y
 ```
 
-The step is configured to run a _bash_ script against the role **pi**, which is the role I specified in the configuration script earlier.
+The step is configured to run a bash script against the role **pi**, which is the role I specified in the configuration script earlier.
 
 ![Script step](script-step.png)
 
@@ -145,4 +145,4 @@ This is a simple example, this could also be a runbook that updates PiHole (`pi-
 
 ## Conclusion
 
-There are many reasons you might use ARM hardware from cost savings to performance or remote IoT devices. Being able to connect them to an Octopus instance via Tentacle allows you to deploy application updates to them or manage them using our [runbooks](https://octopus.com/docs/runbooks) feature to centralize management of the operating system and applications. The Polling Tentacle has the added benefit of avoiding complex firewall configurations and exposing SSH ports across the public Internet.
+There are many reasons you might use ARM hardware from cost savings to performance or remote IoT devices. Being able to connect them to an Octopus instance via Tentacle allows you to deploy application updates to them or manage them using our [Runbooks](https://octopus.com/docs/runbooks) feature to centralize management of the operating system and applications. The polling tentacle has the added benefit of avoiding complex firewall configurations and exposing SSH ports across the public Internet.
