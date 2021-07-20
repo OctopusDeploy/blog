@@ -145,4 +145,4 @@ This is a simple example, this could also be a runbook that updates PiHole (`pi-
 
 ## Conclusion
 
-There are many reasons you might use ARM hardware from cost savings to performance or remote IoT devices. Being able to connect them to an Octopus instance via Tentacle allows you to deploy application updates to them or manage them using our [runbooks](https://octopus.com/docs/runbooks) feature to centralize management of the operating system and applications. The Polling Tentacle has the added benefit of avoiding complex firewall configurations and exposing SSH ports across the public Internet.
+There are many reasons you might use ARM hardware from cost savings to performance or remote IoT devices. Being able to connect them to an Octopus instance via Tentacle allows you to deploy application updates to them or manage them using our [Runbooks](https://octopus.com/docs/runbooks) feature to centralize management of the operating system and applications. The Polling Tentacle has the added benefit of avoiding complex firewall configurations and exposing SSH ports across the public Internet.
