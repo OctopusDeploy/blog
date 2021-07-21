@@ -61,7 +61,7 @@ The benefits of the `Export/Import Projects` feature is that you do not have to 
 If you haven't upgraded to Octopus Deploy 2021.1 now is a great time to do so to use the Export/Import Project features
 :::
 
-You have successfully imported the project, good work! There are just a few other items to configure. Exporting and importing a project does not capture the deployment targets or the required packages of the project. Deployment targets require a fresh connection on a new instance and packages are not captured to avoid extremely large files being part of the export process.
+You have successfully imported the project, good work! There are just a few other items to configure before deploying the web application. Exporting and importing a project does not capture the deployment targets or the required packages of the project. Deployment targets require a fresh connection on a new instance and packages are not captured to avoid extremely large files being part of the export process.
 
 ## Configure an Azure Account
 
@@ -129,9 +129,7 @@ Now that we have the Azure account set up in Azure and Octopus deploy we can add
 
 ## Upload an existing package
 
-The web application we are deploying requires some code to deploy. Octopus Deploy makes this code available to deployment targets through packages. A package is some code that will deploy to a target. In this case it will be a deployable tutorial that your web application can display.
-
-The following is the package that you will be using to deploy with Octopus Deploy:
+The web application we are deploying requires some code to deploy. Octopus Deploy makes this code available to deployment targets through packages. A package is some code that will deploy to a target. In this case it will be a deployable tutorial that your web application can display. The package system makes it convienient to interchange or update packages for redeployment at a later stage. The following is the package that you will be using to deploy with Octopus Deploy:
 
 > [guide.1.0.0.zip](https://octopus.com/images/docs/hello-world.1.0.0.zip)
 
@@ -167,5 +165,5 @@ Upon success, the web application should now be deployed to your Azure Web Appli
 
 ![Deployed Application](deployed-application.png "Deployed Application")
 
-Well done! You have taken a preexisting project and package and deployed it to an Azure web application through Octupus Deploy. This deployed application can now be shared to other members of your company to teach them how to deploy their own Octopus Deployments. 
+Well done! You have taken a preexisting project and deployed a package to an Azure web application through Octupus Deploy. This deployed application can now be shared to other members of your company to teach them how to deploy their own Octopus Deployments. 
 
