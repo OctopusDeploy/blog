@@ -117,7 +117,7 @@ So why might you choose one or more environments to represent your customers in 
 
 1. **Customer environments are modelled explictly**
 
-    With this approach it's easy to identify exactly which environment a customer deploys to. The dashboard overview shows in a single row which version has been deployed to which customer environment. When a new customer is added, the environment they deploy to has to be created to allow deployment for that customer.
+    With this approach customer environments have to be modelled explicitly. When a new customer is added, the environment they deploy to has to be created to allow deployment for that customer. It's also possible to see in a single row on the dashboard overview which environment a customer can deploy to.
 
 #### Multiple environment cons {#multiple-environment-cons}
 
