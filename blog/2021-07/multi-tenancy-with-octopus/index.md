@@ -4,16 +4,14 @@ description: Learn about the benefits of using the multi-tenancy feature in Octo
 author: mark.harrison@octopus.com
 visibility: public
 published: 2021-07-26-1400
-metaImage: blogimage-better-multi-tenancy-with-octopus-2021.png
-bannerImage: blogimage-better-multi-tenancy-with-octopus-2021.png
-bannerImageAlt: Better multi-tenancy with Octopus Deploy
+metaImage: blogimage-better-multi-tenancy-with-octopus-deploy-2021.png
+bannerImage: blogimage-better-multi-tenancy-with-octopus-deploy-2021.png
+bannerImageAlt: Three customers in front of three databases linked to the Octopus Deploy logo
 isFeatured: false
 tags:
  - Product
  - Multi-Tenancy
 ---
-
-![Better multi-tenancy with Octopus Deploy](blogimage-better-multi-tenancy-with-octopus-2021.png)
 
 Most people using Octopus will deploy projects to one or more environment. For customers providing Software as a Service (SaaS) applications, they typically need to deploy multiple instances of the application for each of their customers.
 
