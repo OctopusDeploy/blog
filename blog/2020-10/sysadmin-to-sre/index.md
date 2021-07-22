@@ -19,7 +19,7 @@ DevOps is everywhere! It’s used as hashtags, the name of products, and job tit
 
 Needless to say, DevOps is hot!
 
-The job title Site Reliability Engineer(SRE) has emerged in recent years from Google. SRE isn’t yet as popular as its predecessor, but it is often used synonymously by recruiters. 
+The job title Site Reliability Engineer (SRE) has emerged in recent years from Google. SRE isn’t yet as popular as its predecessor, but it is often used synonymously by recruiters. 
 
 In this post, I share my thoughts on how somebody new to the industry can aspire to these roles.
 
