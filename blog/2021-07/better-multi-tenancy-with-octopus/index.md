@@ -134,7 +134,7 @@ Although you can use multiple customer environments, there are usually many prob
 
 1. **Multiple environments created per customer**
 
-  For each customer, you need to create a new environment record for each customer environment, which doesn't scale. For example, if you have 10 customers, and 4 environments - Development, Test, Staging and Production - you need to create 40 customer environments.
+    For each customer, you need to create a new environment record for each customer environment, which doesn't scale. For example, if you have 10 customers, and 4 environments - Development, Test, Staging and Production - you need to create 40 customer environments.
 
 1. **Complicated variable scoping**
 
