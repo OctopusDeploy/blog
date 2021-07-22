@@ -299,7 +299,7 @@ But those guard rails don't start just at deployment. Octopus will also warn you
 
 ![Warning of missing tenant variable](warning-missing-tenant-variable.png)
 
-This level of safety provides a higher chance of successful deployment for a tenant without a missing or incorrect variable value.
+This level of safety reduces the chance of a failed deployment for a tenant due to a missing or incorrect variable value.
 
 ### Tenanted deployment targets {#tenanted-deployment-targets}
 
