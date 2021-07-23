@@ -322,7 +322,7 @@ Using tenants, customer-specific target roles aren't required. You can choose de
 
 To choose which tenants to associate with a deployment target:
 
-1. Navigate to the **{{Restrictions > Associated Tenant}}** section of the deployment target. 
+1. Navigate to the **{{Restrictions > Associated Tenants}}** section of the deployment target. 
 1. Select one or more tenants to allow to deploy to individually, or choose from any of the configured tenant tags.
 
 ![Tenant target restrictions](tenant-target-select-tenant.png)
