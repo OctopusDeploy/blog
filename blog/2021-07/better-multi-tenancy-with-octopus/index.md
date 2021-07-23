@@ -32,14 +32,14 @@ This post assumes knowledge of some key Octopus concepts, including:
 
 If you're new to Octopus, I recommend reading our [Getting started with Octopus guide](https://octopus.com/docs/getting-started). 
 
-To demonstrate how you can model deployments of multiple instances of an application with Octopus, I use a fictitious company called **Vet Clinic**, based on deploying the Java application, [Pet Clinic](https://github.com/spring-projects/spring-petclinic). 
+To demonstrate how you can model deployments of multiple instances of an application with Octopus, I use a fictitious company called **Vet Clinic**, deploying the Java application, [Pet Clinic](https://github.com/spring-projects/spring-petclinic). 
 
 ## Deploying without tenants {#deploying-without-tenants}
 
 There are two main implementations we see when deploying multiple instances of the same application for each customer:
 
 1. Using [multiple projects](#using-multiple-projects)
-1. Using [multiple environments](#uing-multiple-environments)
+1. Using [multiple environments](#using-multiple-environments)
 
 While easy to set up, they don't scale well and can result in duplication.
 
@@ -95,7 +95,7 @@ While multiple projects can be used to deploy customer instances separately, the
 
 1. **Multiple projects per customer doesn't scale**
 
-    The per-project approach doesn't scale well when you have more than a handful of customers. This can be problematic if you deploy many more applications per customer. Each application needs to be modelled `n times`, where `n` is the number of customers you have.
+    The per-project approach doesn't scale well when you have more than a handful of customers. This can be problematic if you deploy many more applications per customer. Each application needs to be modeled `n times`, where `n` is the number of customers you have.
 
 1. **No guard rails to ensure variables provided**
 
@@ -103,7 +103,7 @@ While multiple projects can be used to deploy customer instances separately, the
 
 ### Using multiple environments {#using-multiple-environments}
 
-An alternative to deploying without tenants is using a single Octopus project per application, and modelling each customer with a set of environments they deploy to. 
+An alternative to deploying without tenants is using a single Octopus project per application, and modeling each customer with a set of environments they deploy to. 
 
 ![Multi-tenancy using multiple environments](multiple-environments.png)
 
@@ -122,11 +122,11 @@ So why choose one or more environments to represent your customers in Octopus?
 
     In contrast to multiple projects, with this approach there's just one project, one deployment process, one set of variables, and one lifecycle to manage. When a change is required, it can be made once instead of per project. 
     
-    For example, if you want to add a step that's required for all customers, such as a Manual intervention step before deployments to production, it can be added quickly and easily. 
+    For example, if you want to add a step that's required for all customers, such as a **Manual intervention step** before deployments to production, it can be added quickly and easily. 
 
-1. **Customer environments are modelled explictly**
+1. **Customer environments are modeled explicitly**
 
-    With this approach customer environments have to be modelled explicitly. When a new customer is added, the environment they deploy to has to be created to allow deployment for that customer. It's also possible to see in a single row on the dashboard overview which environment a customer can deploy to.
+    With this approach customer environments have to be modeled explicitly. When a new customer is added, the environment they deploy to has to be created to allow deployment for that customer. It's also possible to see in a single row on the dashboard overview which environment a customer can deploy to.
 
 #### Multiple environment cons {#multiple-environment-cons}
 
@@ -134,7 +134,7 @@ Although you can use multiple customer environments, there are usually many prob
 
 1. **Multiple environments created per customer**
 
-    For each customer, you need to create a new environment record for each customer environment, which doesn't scale. For example, if you have 10 customers, and 4 environments - Development, Test, Staging and Production - you need to create 40 customer environments.
+    For each customer, you need to create a new environment record for each customer environment, which doesn't scale. For example, if you have 10 customers, and 4 environments (Development, Test, Staging and Production), you need to create 40 customer environments.
 
 1. **Complicated variable scoping**
 
@@ -144,7 +144,7 @@ Although you can use multiple customer environments, there are usually many prob
 
 1. **Rigid deployment process** 
 
-    Customising the deployment process in a project using multiple customers requires you to add [environment run conditions](https://octopus.com/docs/projects/steps/conditions#environments) for each step that needs to be run for specific customers. This isn't flexible and doesn't scale as you need to modify these conditions per step, when you add a new customer or change your environments.
+    Customizing the deployment process in a project using multiple customers requires you to add [environment run conditions](https://octopus.com/docs/projects/steps/conditions#environments) for each step that needs to be run for specific customers. This isn't flexible and doesn't scale as you need to modify these conditions per step, when you add a new customer or change your environments.
 
     ![Multi-tenancy multiple environments run conditions](multiple-environments-run-conditions.png)
 
@@ -154,7 +154,7 @@ Although you can use multiple customer environments, there are usually many prob
 
 1. **Complicated, unwieldy Lifecycle**
 
-    As you onboard new customers, you typically have to add new customer environments to the project's lifecycle. You then have to define awkward lifecycle phases that fit the environments that are required for each customer (both existing and new). Typically this is handled with a phase that allows *any 1* customer environment to be deployed to before progressing to the next phase. As the number of customers grows, so does the complexity of the lifecycle and its phases.
+    As you onboard new customers, you typically add new customer environments to the project's lifecycle. You then have to define awkward lifecycle phases that fit the environments that are required for each customer (both existing and new). Typically this is handled with a phase that allows *any 1* customer environment to be deployed to before progressing to the next phase. As the number of customers grows, so does the complexity of the lifecycle and its phases.
     
     ![Multi-tenancy multiple environments lifecycles](multiple-environments-lifecycles.png)
 
@@ -192,7 +192,7 @@ Tenants in Octopus are the backbone of the multi-tenancy feature. They usually r
 
 Although we discuss the use of tenants to model customers in this post, we designed tenants to be generic so that they can satisfy multiple use cases. Tenants can also represent:
 
-- Geographical regions or datacenters
+- Geographical regions or data centers
 - Developers, testers, or teams
 - Feature branches
 
@@ -204,7 +204,7 @@ The tenant overview provides a central place to manage which projects are connec
 
 ![Tenant overview](tenant-overview.png)
 
-It's worth mentioning that each project can control its interaction with tenants. By default the multi-tenant deployment features are disabled. You can allow deployments with/without a tenant, which is a hybrid mode that's useful when you're transitioning to a fully multi-tenant project. 
+Note that each project can control its interaction with tenants. By default the multi-tenant deployment features are disabled. You can allow deployments with/without a tenant, which is a hybrid mode that's useful when you're transitioning to a fully multi-tenant project. 
 
 There's also a mode where you can require a tenant for all deployments, which disables untenanted deployments for that project.
 
@@ -310,7 +310,7 @@ The way you host your infrastructure for multiple instances of the same project 
 In this post, we focus on dedicated hosting, but you can design and implement both dedicated and shared multi-tenant hosting models in Octopus using [environments](https://octopus.com/docs/infrastructure/environments), [deployment targets](https://octopus.com/docs/infrastructure), and [tenant tags](https://octopus.com/docs/tenants/tenant-tags).
 :::
 
-If your customers have isolated infrastructure, in an untenanted configuration, you need to define unique target roles in Octopus to ensure there's no cross-customer communication in the form of deploying one customers application to another customers infrastructure.
+If your customers have isolated infrastructure, in an untenanted configuration, you need to define unique target roles in Octopus to ensure there's no cross-customer communication in the form of deploying one customer's application to another customer's infrastructure.
 
 Using tenants, customer-specific target roles aren't required. You can choose deployments that a target can be involved in:
 
@@ -322,7 +322,7 @@ Using tenants, customer-specific target roles aren't required. You can choose de
 
 To choose which tenants to associate with a deployment target:
 
-1. Navigate to the **{{Restrictions > Associated Tenant}}** section of the deployment target. 
+1. Navigate to the **{{Restrictions > Associated Tenants}}** section of the deployment target. 
 1. Select one or more tenants to allow to deploy to individually, or choose from any of the configured tenant tags.
 
 ![Tenant target restrictions](tenant-target-select-tenant.png)
