@@ -157,9 +157,26 @@ With Octopus Deploy, you can deploy software to Windows servers, Linux servers, 
 
 Now that we have imported a project, set up the Azure account, set up the deployment target and uploaded the package, everything is set for the deployment. 
 
-1. Go to **{{Projects, HTML, create release}}** and step through to deploy the web application to Azure.
+1. Go to **{{Projects, HTML, create release}}** and step through to deploy the web application to Azure from Test to Development to Production.
+2. Deployment variables have been set up to notify the tasklog of which environment is being deployed. A Hello, [Environment] log message will be displayed
 
 ![Deploy Success](deploy-success.png "Deploy Success")
+
+![Variable](variable.png "Variable")
+
+Octopus Deploy provides a runbook feature to run scripts for tasks that lie outside of deloying releases. This project provides a sample runbook that can be run on each environment to display a log message of 'Hello, [Environment] Runbook'.
+
+1. Go to the **{{HTML Project, Operations, Runbooks, Run}}**
+2. Select all three environemnts and runs
+3. You will see a success message and a log message of Hello, [Environment] Runbook for each environment.
+
+![Runbook Run](runbook-run.png "Runbook Run")
+
+![Runbook Success](runbook-success.png "Runbook Success")
+
+![Runbook Log](runbook-log.png "Runbook Log")
+
+Runbooks are a useful way to automate tasks that should not be done as part of a release. Examples include updating databases, switching off and on servers, patching software and more.
 
 Upon success, the web application should now be deployed to your Azure Web Application. Check by going to [your-site].azurewebsites.net where you will see the following page:
 
