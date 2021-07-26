@@ -30,6 +30,8 @@ ArgoCD and Flux are 6th and 8th most popular tools to manage CI/CD pipelines in 
 
 ![](toolusage.png)
 
+*CNCF 2020 Survey results.*
+
 ## What is GitOps
 
 While GitOps is a nebulous term, the [GitOps Working Group](https://github.com/gitops-working-group/gitops-working-group) has provided some initial principals:
