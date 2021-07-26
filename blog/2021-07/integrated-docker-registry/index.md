@@ -119,6 +119,7 @@ This RFC has been written to gauge interest and collect feedback for possible st
 We want your feedback to determine if this feature is a good fit for Octopus. Specifically we would like to know:
 
 * Does the idea of environment specific images make sense?
+* Does the ability to generate container images on the fly make sense?
 * Will these proposed features solve problems you have seen customers encountering?
 * Would the concept of Source Docker Images be valuable for your teams in terms of sales, marketing, or solutions?
 
