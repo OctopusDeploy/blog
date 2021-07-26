@@ -86,7 +86,7 @@ This process is battle tested and widely adopted, with tens of thousands of depl
 
 SDIs embrace this process. They take static binaries from package references or are based on a "golden" Docker image, add processed configuration files, build a new Docker image, and pass the result to the deployment target.
 
-Environment specific Docker images are considered an anti-pattern by some, but I suggest we have real world experience to prove that translating the deployment patterns of traditional artifacts to Docker is an example of best practice.
+Environment specific Docker images are considered an anti-pattern by some, but I suggest we have real world experience to prove that translating the deployment patterns of traditional artifacts to Docker represents best practice.
 
 ### Simplify rollbacks and scale events
 
@@ -103,6 +103,10 @@ SDIs make running ad hoc scripts quick and easy. The script is pushed as a regul
 ### Autodeploy triggers for Docker images
 
 A built in Docker registry can be integrated with ARC like the built-in feed, bringing deployment triggers to Docker images.
+
+### Container images are easy to customize
+
+Using an SDI as a container image allows almost all aspects of the Calamari execution environment to be configured with each deployment or runbook run. Unique container images can be created for each execution, and Octopus can take care of cleaning up the images afterwards.
 
 ## When are these features being delivered
 
