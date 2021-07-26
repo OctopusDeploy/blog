@@ -15,11 +15,13 @@ The use of containers is a clear trend in our industry. The [RedHat 2021 State o
 > Container adoption is already widespread; just under 50% of respondents worldwide use containers in production to at least some degree. 
 
 ![](report.png)
+
 *RedHat Docker usage graph.*
 
 Octopus has similarly seen steadily increasing usage of Docker feeds:
 
 ![](dockerfeeds.png)
+
 *Octopus Docker feed usage.*
 
 However, containers are typically stored in a container repository, which presents a challenge today as this requires an additional platform to be operated alongside Octopus.
@@ -58,6 +60,7 @@ By allowing container images to be built on the fly with deployment specific var
 Each space would host a built-in Docker registry implementing the [Docker HTTP API](https://docs.docker.com/registry/spec/api/). This registry would allow [OCI artifacts](https://github.com/opencontainers/artifacts) (typically Docker images, but potentially hosting any kind of OCI artifact) to be pushed and pulled by clients:
 
 ![](dockerregistry.png)
+
 *A mockup of an integrated Docker registry.*
 
 ## Hosting Dockerfiles directly
@@ -72,6 +75,7 @@ Any step that can reference a Docker image (including container images) as part 
 4. The step referencing the SDI is then passed the image reference like `octopusserver:8080/spaces-1/mywebapp:1.2.0-deployments-75`.
 
 ![](mockup.png)
+
 *A mockup of what an SDI might look like.*
 
 ## Benefits of the new features
