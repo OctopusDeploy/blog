@@ -96,10 +96,53 @@ The only solution provided by GitOps to ensure consistent and well formed resour
 
 ## How will we solve the problem?
 
-To allow Octopus to function "left of the git repo" we will introduce a new Git Repository target type, and allow this target to be used from the existing Kubernetes steps.
+To allow Octopus to function "left of the git repo" we will introduce a new Git Repository target type, allow this target to be used from the existing Kubernetes steps, and introduce new steps to allow Octopus to create and manage pull requests.
 
 ### New Git Repository target
 
 A new target called Git Repository will be created. This target will include the git repository URL, credentials, and the default branch.
 
 ![](gittarget.png)
+
+### Deploy declarative state to a git repo
+
+Existing Kubernetes steps that generate declarative templates, like **Deploy Kubernetes containers**, will accept the new git target. When deploying to a git repo, Octopus will commit the generated templates to the selected branch.
+
+The commits can be made directly to the main branch, or to a feature branch that will then be used as part of a pull request.
+
+### New steps to manage pull requests
+
+A number of new steps will be added to Octopus to allow it to manage and respond to pull requests:
+
+* Create a pull request
+* Approve a pull request
+* Merge a pull request
+* Wait for a pull request to be approved or merged
+
+## Benefits of the new features
+
+We expect these features will allow teams that have embraced early GitOps platforms like ArgoCD and Flux to automate common deployment and operations scenarios at large scale. By taking the next logical step in the GitOps journey and removing the manual task of committing changes to a git repo, Octopus can bring the same benefits it offers today with traditional deployments and apply them "left of the git repo".
+
+Octopus will also provide a natural mix of deploying declarative resources and automating adhoc commands. For example, you can not (in any practical way) use GitOps to perform common management tasks like getting pod logs, delete a pod managed by a deployment, viewing events etc. The asynchronous nature of GitOps simply makes these tasks impractical. However, by using runbooks with Octopus, teams get the best of both worlds.
+
+Looking forward we expect to see more platforms embracing GitOps. The GitOps working group has a number of [interested parties](https://github.com/gitops-working-group/gitops-working-group/blob/main/interested-parties.md), including cloud providers like AWS and Azure.
+
+GitOps is called out on the [AWS CloudFormation landing page](https://aws.amazon.com/cloudformation/):
+
+> With CloudFormation, you can apply DevOps and GitOps best practices using widely adopted processes such as starting with a git repository and deploying through a CI/CD pipeline.
+
+With these new features in place, and step in Octopus that generates a declarative template can be easily modified to write the results to a git repo instead of deploying the template directly.
+
+## When are these features being delivered
+
+This RFC has been written to gauge interest and collect feedback for possible strategies to pursue in 2022. We currently have no commitment to building these features.
+
+## We want your feedback
+
+We want your feedback to determine if this feature is a good fit for Octopus. Specifically we would like to know:
+
+* Does the idea of writing templates to a git repository make sense?
+* Will these proposed features solve problems you have seen customers encountering?
+* Would first class GitOps support be valuable for your teams in terms of sales, marketing, or solutions?
+
+Please leave your feedback on this GitHub issue. (TODO - create issue)
