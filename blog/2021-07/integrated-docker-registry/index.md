@@ -29,7 +29,7 @@ This post proposes an integrated container repository within Octopus itself, and
 
 ## What problems are we trying to solve?
 
-The two problems this RFC aims to solve are the overheads of maintaining an external Docker registry, and the limitations of externalizing all environment specific configuration from a Docker image.
+The three problems this RFC aims to solve are the overheads of maintaining an external Docker registry, the limitations of externalizing all environment specific configuration from a Docker image, and the need to build and push bespoke container images for unique deployment scenarios.
 
 ### Hosting Docker images directly
 
@@ -44,6 +44,12 @@ By integrating a Docker registry we remove the need for customers to implement a
 The traditional advice for building environment agnostic Docker images has been to [externalize all configuration via environment variables](https://12factor.net/config). This is certainly good advice for a number of scenarios, but does require many legacy applications to be redesigned to load external values, and does not support the traditional (and much used) configuration file modification features in Octopus.
 
 By having Octopus build Docker images for each environment, we offer a logical upgrade path for legacy applications, especially those that have relied on configuration file modification.
+
+### Building deployment specific container images
+
+Customers have two choices when it comes to container images: build a single, general purpose image for all deployments, or create smaller task specific images. Both require images to be build and deployed outside of Octopus.
+
+By allowing container images to be built on the fly with deployment specific variables, customers unlock the ability to use relatively small and specialized images without the overhead of first building and pushing them.
 
 ## Built-in Docker registry
 
