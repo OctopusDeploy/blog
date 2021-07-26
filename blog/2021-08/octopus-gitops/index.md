@@ -56,7 +56,7 @@ This post proposes new targets and steps that allow Octopus to deploy to a git r
 
 ## What problems are we trying to solve?
 
-[To quote a recent panel discussion on GitOps](https://youtu.be/GrHmeAxfEkM?list=PL2KXbZ9-EY9TRND2YHxordGt8pOw5r45R&t=1177):
+[To quote a recent panel discussion on GitOps](https://www.youtube.com/watch?v=qC6JkWDgv4g&list=PL2KXbZ9-EY9TRND2YHxordGt8pOw5r45R&index=7&t=1177s):
 
 > The interface to operations is now through git
 
