@@ -38,6 +38,40 @@ What we see time and again in the GitOps space is developers and operations staf
 
 We know from our experience deploying applications that there is a huge amount of work required to scale up deployments. You need environments, tenants, dashboards, interventions, templates, security, automated testing, reporting and more to manage deployments at scale. I propose paradigms like GitOps also need these things, and anyone implementing GitOps at scale today is most likely twisting a CI server into knots trying to implement these features.
 
-This post proposes new targets and steps that allow Octopus to deploy to a git repository like any other deployment target, which will position Octopus as the best solution for GitOps left of the git repository:
+This post proposes new targets and steps that allow Octopus to deploy to a git repository like any other deployment target, which will position Octopus as the best solution for GitOps "left of the git repository":
 
 ![](redhatgitops2.png)
+
+## What problems are we trying to solve?
+
+[To quote a recent panel discussion on GitOps](https://youtu.be/GrHmeAxfEkM?list=PL2KXbZ9-EY9TRND2YHxordGt8pOw5r45R&t=1177):
+
+> The interface to operations is now through git
+
+GitOps views the evolution of operations and deployments as starting with manual configuration performed through SSH or RDP, to processes automated through CLI tools like `kubectl`, and finally to commits to a git repository by end users (or tooling like Octopus) defining the declarative state of a system to be reified by an agent of some kind.
+
+One of the stated goals of team steps is to prefer [declarative over imperative](https://github.com/OctopusDeploy/Architecture/blob/main/Steps/StepDesignGuidelines.md#declarative-over-imperative), meaning new steps will attempt to create declarative representations of deployments rather than execute custom commands against an SDK. This fits nicely with the GitOps paradigm.
+
+The two problems this RFC aims to solve are deploying declarative state to a git repository, integrating common git operations like pull requests into existing deployment processes or runbooks, and allowing GitOps to scale.
+
+### Deploying declarative state to git
+
+Steps like `Deploy Kubernetes containers` and the upcoming ECS deployment have been designed from the ground up to build declarative templates. By committing these templates to a git repository rather than applying them directly, Octopus can replace the role of a developer or operations staff performing manual updates.
+
+### Managing pull requests
+
+Pull requests are a very important aspect of GitOps, as this is how changes are reviewed and authorized. Octopus will provide the opportunity to review, comment on, approve, and merge PRs as part of a standard deployment process or runbook.
+
+### Allowing GitOps to scale
+
+GitOps is all about scale. To implement the infrastructure required to support GitOps requires teams to reach an advanced point in their deployment and DevOps maturity. GitOps at scale means many teams committing to many repositories with many PRs to be processed. It also means integrating tools like CI servers to allow programatic changes, such as replacing a Docker tag in a declarative template when a new Docker image is built and published.
+
+I propose that any sufficiently advanced GitOps workflow must treat a git repository like a structured data store because:
+
+* Automated tooling must know the exact field in the exact file to update when deploying new images.
+* To progress changes across environments, each git repository hosting an environment must be substantially similar to the other environments.
+* Reporting tools must be able to inspect the state of a git repository and reason about the changes (assuming reporting is done "right of the git repo").
+* Depending on how granular git repositories are, rollbacks may require resetting the state of a well known file rather than reverting to a previous commit.
+* PRs only make sense when small changes are made to similar resources.
+* Any team advanced enough to implement GitOps must be deploying well known resources with common constraints.
+* Nobody goes to the trouble of implementing GitOps just so they can make YOLO commits of whatever resources take their fancy.
