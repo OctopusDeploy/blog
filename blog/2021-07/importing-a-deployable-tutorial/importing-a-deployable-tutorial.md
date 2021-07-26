@@ -130,7 +130,7 @@ Now that we have the Azure account set up in Azure and Octopus deploy we can add
 
 ## Upload an existing package
 
-The web application we are deploying requires some code to deploy. Octopus Deploy makes this code available to deployment targets through packages. A package is some code that will deploy to a target. In this case it will be a deployable tutorial that your web application can display. The package system makes it convienient to interchange or update packages for redeployment at a later stage. The following is the package that you will be using to deploy with Octopus Deploy:
+The web application we are deploying requires some code to deploy. Octopus Deploy makes this code available to deployment targets through packages. A package is some code that will deploy to a target. In this case it will be a deployable tutorial that your web application can display. The package system makes it convenient to interchange or update packages for redeployment at a later stage. The following is the package that you will be using to deploy with Octopus Deploy:
 
 > [guide.1.0.0.zip](https://octopus.com/images/docs/hello-world.1.0.0.zip)
 
@@ -165,10 +165,10 @@ Now that we have imported a project, set up the Azure account, set up the deploy
 
 ![Variable](variable.png "Variable")
 
-Octopus Deploy provides a runbook feature to run scripts for tasks that lie outside of deloying releases. This project provides a sample runbook that can be run on each environment to display a log message of 'Hello, [Environment] Runbook'.
+Octopus Deploy provides a runbook feature to run scripts for tasks that lie outside of deploying releases. This project provides a sample runbook that can be run on each environment to display a log message of 'Hello, [Environment] Runbook'.
 
 1. Go to the **{{HTML Project, Operations, Runbooks, Run}}**
-2. Select all three environemnts and runs
+2. Select all three environments and runs
 3. You will see a success message and a log message of Hello, [Environment] Runbook for each environment.
 
 ![Runbook Run](runbook-run.png "Runbook Run")
@@ -183,5 +183,5 @@ Upon success, the web application should now be deployed to your Azure Web Appli
 
 ![Deployed Application](deployed-application.png "Deployed Application")
 
-Well done! You have taken a preexisting project and deployed a package to an Azure web application through Octupus Deploy. This deployed application can now be shared to other members of your company to teach them how to deploy their own Octopus Deployments. 
+Well done! You have taken a preexisting project and deployed a package to an Azure web application through Octopus Deploy. This deployed application can now be shared to other members of your company to teach them how to deploy their own Octopus Deployments. 
 
