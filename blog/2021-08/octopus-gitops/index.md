@@ -38,7 +38,7 @@ While GitOps is a nebulous term, the [GitOps Working Group](https://github.com/g
 
 Today the emphasis on GitOps is what happens after configuration has been committed to a git repository (which I'll refer to as "right of the git repo"). Tools like [Argo CD](https://argoproj.github.io/argo-cd/) and [Flux](https://fluxcd.io/) are used to manage Kubernetes clusters, while there are some early homegrown solutions appearing for other declarative tools like Terraform and Ansible.
 
-This diagram from the post [Ops by pull request: an Ansible GitOps story](https://www.ansible.com/blog/ops-by-pull-request-an-ansible-gitops-story) provides a nice overview of the state of GitOps, although I suspect not in the way the original authors intended:
+This diagram from the post [Ops by pull request: an Ansible GitOps story](https://www.ansible.com/blog/ops-by-pull-request-an-ansible-gitops-story) provides a nice overview of the current state of GitOps:
 
 ![](redhatgitops.png)
 
@@ -46,7 +46,7 @@ This diagram from the post [Ops by pull request: an Ansible GitOps story](https:
 
 What we see time and again in the GitOps space is developers and operations staff committing directly to a git repository, and then using the "magic of GitOps" to realise its many benefits.
 
-We know from our experience deploying applications that there is a huge amount of work required to scale up deployments. You need environments, tenants, dashboards, interventions, templates, security, automated testing, reporting and more to manage deployments at scale. I propose paradigms like GitOps also need these things, and anyone implementing GitOps at scale today is most likely twisting a CI server into knots trying to implement these features.
+We know from our experience deploying applications that there is a huge amount of work required to scale up deployment pipelines. You need environments, tenants, dashboards, interventions, templates, security, automated testing, reporting and more to manage deployments at scale. I propose paradigms like GitOps also need these things, and anyone implementing GitOps at scale today is most likely twisting a CI server into knots trying to implement these features.
 
 This post proposes new targets and steps that allow Octopus to deploy to a git repository like any other deployment target, which will position Octopus as the best solution for GitOps "left of the git repo":
 
@@ -64,9 +64,9 @@ GitOps views the evolution of operations and deployments as:
 
 1. Starting with manual configuration performed through SSH or RDP.
 2. Processes automated through CLI tools like `kubectl`.
-3. Finally git commits by end users (or tooling like Octopus) defining the declarative state of a system to be reified by an agent of some kind.
+3. Finally git commits by end users defining the declarative state of a system to be reified by an agent of some kind.
 
-GitOps identified running adhoc commands with tools like `kubectl` as a weakness in a delivery pipeline operating at scale. Octopus identifies running adhoc `git` commits as a similar weakness. Because any sufficiently advanced GitOps workflow must eventually treat a git repo like a database.
+GitOps identified running adhoc commands with tools like `kubectl` as a weakness in a delivery pipeline operating at scale. This RFC identifies running adhoc `git` commits as a similar weakness. Because any sufficiently advanced GitOps workflow must eventually treat a git repo like a database.
 
 One of the stated goals of team steps is to prefer [declarative over imperative](https://github.com/OctopusDeploy/Architecture/blob/main/Steps/StepDesignGuidelines.md#declarative-over-imperative), meaning new steps will default to creating declarative representations of deployments rather than execute custom commands against an SDK. This fits nicely with the GitOps paradigm.
 
