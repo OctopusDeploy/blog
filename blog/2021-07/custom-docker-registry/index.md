@@ -4,9 +4,9 @@ description: Learn how to create a bare bones Docker registry with C#
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2021-07-28-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt:
+metaImage: blogimage-create-a-custom-docker-registry-2021.png
+bannerImage: blogimage-create-a-custom-docker-registry-2021.png
+bannerImageAlt: Docker receiving and delivering docker images
 isFeatured: false
 tags:
  - Engineering
@@ -15,7 +15,7 @@ tags:
 
 Do you wonder what happens when you do a `docker push` or `docker pull`? Behind the scenes, a repository, like Docker Hub, implementing the [Docker V2 HTTP API](https://docs.docker.com/registry/spec/api/) specification, is responding to these requests to receive or deliver Docker images. This specification is open for anyone to implement though, and you can learn much about Docker from a minimal docker registry implementation.
 
-In this post we create a C# server that successfully responds to the `docker push` or `docker pull` commands, and in the process you get to see the individual components that make up a Docker image.
+In this post, we create a C# server that successfully responds to the `docker push` or `docker pull` commands. In the process you get to see the individual components that make up a Docker image.
 
 ## Docker API for pushing and pulling images
 
@@ -386,7 +386,7 @@ Four files are created in the temporary directory: two image layers, and the man
 
 ![](files.png)
 
-Now delete the images from our local PC. This ensures that any downloads of this image cannot reuse your previous cached images:
+Now delete the images from your local PC. This ensures any downloads of this image cannot reuse your previous cached images:
 
 ```
 $ docker image rm 10.1.1.37:5001/alpine
@@ -399,12 +399,12 @@ Download the image from your server with the command:
 $ docker pull 10.1.1.37:5001/alpine
 ```
 
-And with that you have pushed and pulled images from your minimal Docker repository. There is still much functionality missing, such as deleting images and searching, but we'll leave our implementation here. 
+You have now pushed and pulled images from your minimal Docker repository. There is still functionality missing, such as deleting images and searching, but we'll leave our implementation here. 
 
 ## Conclusion
 
 Docker is central to many development workflows, but interestingly there isn't much information on how to implement the Docker API. The [official documentation](https://docs.docker.com/registry/spec/api/#monolithic-upload) is a little dense (as specs usually are), so in this post we looked at a very minimal implementation that allowed Docker images to be pushed and pulled using the regular Docker client.
 
-Hopefully this demystifies some of the process around transferring Docker images, and can provide a useful starting point if you're looking to integrate your own applications with the Docker client.
+Hopefully this demystifies some of the process around transferring Docker images, and is a useful starting point if you're looking to integrate your own applications with the Docker client.
 
 Happy deployments!
