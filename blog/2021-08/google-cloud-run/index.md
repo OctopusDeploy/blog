@@ -1,26 +1,28 @@
 ---
 title: Deploying to Google Cloud Run
-description: Learn how to deploy a container to the Google Cloud Run service
+description: Learn how to deploy a container to the Google Cloud Run service.
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
+visibility: public
+published: 2021-08-02-1400
 metaImage: 
 bannerImage: 
+bannerImageAlt:
+isFeatured: false
 tags:
- - Octopus
+ - Engineering
 ---
 
 Google Cloud Run is a relatively new Platform as a Service (PaaS) offering on the Google Cloud Platform (GCP). It provides the ability to run and scale container images while only paying for the time that a request is being processed.
 
-In this blog post we'll look at how to deploy a sample application in cloud run, and use the traffic shaping rules to perform deployment strategies like feature branches, canary, and blue/green.
+In this post, I look at how to deploy a sample application in Cloud Run, and use the traffic shaping rules to perform deployment strategies like feature branches, canary, and blue/green.
 
 ## Deploying a sample application
 
-We'll start by deploying a sample application called [Random Quotes](https://github.com/OctopusSamples/RandomQuotes-Java). This Java Spring web application has been pushed to Docker Hub, and we'll use the latest tag at the time of writing which is `octopussamples/randomquotesjava:0.1.189`.
+Let's start by deploying a sample application called [Random Quotes](https://github.com/OctopusSamples/RandomQuotes-Java). This Java Spring web application has been pushed to Docker Hub, and I use the latest tag at the time of writing which is `octopussamples/randomquotesjava:0.1.189`.
 
-The first thing to do when deploying to cloud run is to push the Docker image to a Google Container Registry (GCR). Cloud run does not support external registries.
+When deploying to Cloud Run, start by pushing the Docker image to a Google Container Registry (GCR). Cloud Run does not support external registries.
 
-Using the traditional `docker` CLI tool, we can pull and push an image with the following commands, making sure to replace `cloudrun-314201` with the project ID that will hold your cloud run services:
+Using the traditional `docker` CLI tool, you can pull and push an image with the following commands, making sure to replace `cloudrun-314201` with the project ID that will hold your Cloud Run services:
 
 ```
 docker pull octopussamples/randomquotesjava:0.1.189
@@ -28,23 +30,23 @@ docker tag octopussamples/randomquotesjava:0.1.189 gcr.io/cloudrun-314201/random
 docker push gcr.io/cloudrun-314201/randomquotesjava:0.1.189
 ```
 
-Other tools like `skopeo` provide more a convenient means of copying Docker images. The command below will directly copy the image from the Docker Hub registry to GCR:
+Other tools like `skopeo` provide a more convenient means of copying Docker images. The command below will directly copy the image from the Docker Hub registry to GCR:
 
 ```
 skopeo copy docker://octopussamples/randomquotesjava:0.1.189 docker://gcr.io/cloudrun-314201/randomquotesjava:0.1.189
 ```
 
 :::hint
-If you try to reference a Docker image from an external registry, you will receive the error:
+If you try to reference a Docker image from an external registry, you'll receive the error:
 
 ```
 ERROR: (gcloud.beta.run.services.replace) Expected a Container Registry image path like [region.]gcr.io/repo-path[:tag and/or @digest] or an Artifact Registry image path like [region-]docker.pkg.dev/repo-path[:tag and/or @digest], but obtained octopussamples/randomquotesjava:0.1.189
 ```
 :::
 
-The next step is to define a service YAML resource in a file called `service.yaml`. 
+Next, define a service YAML resource in a file called `service.yaml`. 
 
-If you are familiar with Kubernetes, the structure of the following YAML will look familiar. It follows the `apiVersion`, `kind`, `metadata`, and `spec` layout that all Kubernetes resources use. In fact, the service we are defining here is part of [Knative](https://knative.dev/docs/reference/api/serving-api/), due to the fact that cloud run is a managed implementation of the Knative service:
+If you're familiar with Kubernetes, the structure of the YAML will look familiar. It follows the `apiVersion`, `kind`, `metadata`, and `spec` layout that all Kubernetes resources use. In fact, the service you're defining here is part of [Knative](https://knative.dev/docs/reference/api/serving-api/), due to the fact that Cloud Run is a managed implementation of the Knative service:
 
 ```yaml
 apiVersion: serving.knative.dev/v1
@@ -69,7 +71,7 @@ To deploy this service, run the command:
 gcloud beta run services replace service.yaml --platform managed
 ```
 
-Once the service is deployed, we'll receive a URL like https://randomquotes-5od2layuca-ts.a.run.app that can be used to access it. Opening the URL will likely result in the following error being displayed:
+After the service is deployed, you receive a URL like https://randomquotes-5od2layuca-ts.a.run.app that can be used to access it. Opening the URL will likely result in the following error being displayed:
 
 ![](forbidden.png "width=500")
 
@@ -77,19 +79,19 @@ The solution is to give the `allUsers` user the `Cloud Run Invoker` permission:
 
 ![](permissions.jpg "width=500")
 
-We can then open our web app:
+You can then open your web app:
 
 ![](randomquotes.png "width=500")
 
 ## Feature branch deployments
 
-To deploy an image created from a feature branch, we first need to copy it into GCR. Here we have a feature branch image with the tag `0.1.200-blueheader`, which we copy into GCR with the command:
+To deploy an image created from a feature branch, first copy it into GCR. Here you have a feature branch image with the tag `0.1.200-blueheader`, which you copy into GCR with the command:
 
 ```
 skopeo copy docker://octopussamples/randomquotesjava:0.1.200-blueheader docker://gcr.io/cloudrun-314201/randomquotesjava:0.1.200-blueheader
 ```
 
-The URL assigned to our service is based on the service name. In the YAML below you can see that we change the name of the service to include the feature branch name:
+The URL assigned to your service is based on the service name. In the YAML below you can see tyou need to change the name of the service to include the feature branch name:
 
 ```yaml
 apiVersion: serving.knative.dev/v1
@@ -106,19 +108,23 @@ spec:
               containerPort: 80
 ```
 
-Again we deploy this service with the command:
+Again, you deploy this service with the command:
 
 ```bash
 gcloud beta run services replace service.yaml --platform managed
 ```
 
-The returned URL will be something like https://randomquotes-blueheader-5od2layuca-ts.a.run.app. By renaming the service we can now run the feature branch side by side with the mainline deployment:
+The returned URL will be something like https://randomquotes-blueheader-5od2layuca-ts.a.run.app. 
+
+By renaming the service you can now run the feature branch side by side with the mainline deployment:
 
 ![](blueheader.png "width=500")
 
 ## Canary and blue/green deployments
 
-To perform a canary or blue green deployment we'll make use of service revisions. The name of a revision is defined in the `spec.template.metadata.name` property. It must be prefixed with the name of the service, and can only use lower case letters, numbers, or the dash. Here we have defined a revision called `randomquotes-0-1-189`:
+To perform a canary or blue green deployment, you make use of service revisions. The name of a revision is defined in the `spec.template.metadata.name` property. It must be prefixed with the name of the service, and can only use lower case letters, numbers, or the dash. 
+
+Here we have defined a revision called `randomquotes-0-1-189`:
 
 ```yaml
 apiVersion: serving.knative.dev/v1
@@ -137,9 +143,9 @@ spec:
               containerPort: 80
 ```
 
-By default, this revision will receive 100% of the traffic when it is deployed.
+By default, this revision will receive 100% of the traffic when it's deployed.
 
-Let's now deploy a new revision:
+Now let's deploy a new revision:
 
 ```yaml
 apiVersion: serving.knative.dev/v1
@@ -167,7 +173,7 @@ This new revision has been set to receive no traffic, instead redirecting 100% o
 
 ![](trafficsplitstart.png "width=500")
 
-If we consider the previous revision to be the blue half of a blue green deployment, the new revision will be the green half. We can access this new revision by assigning it a tag:
+If you consider the previous revision to be the blue half of a blue green deployment, the new revision will be the green half. You can access this new revision by assigning it a tag:
 
 ![](tag.png "width=500")
 
@@ -179,9 +185,9 @@ A canary deployment can be achieved by gradually directing more traffic to the g
 gcloud run services update-traffic randomquotes --platform managed --to-revisions=randomquotes-0-1-200-blueheader=10,randomquotes-0-1-189=90
 ```
 
-This command can be repeated until 100% of traffic is directed to the new revision. A more traditional blue/green deployment would see 100% of traffic cut over to the new revision immediately once any testing on the new stack is completed.
+This command can be repeated until 100% of traffic is directed to the new revision. A more traditional blue/green deployment would see 100% of traffic cut over to the new revision immediately after any testing on the new stack is completed.
 
-Once testing is complete, we can remove the `green` tag with the command:
+After testing is complete, we can remove the `green` tag with the command:
 
 ```
 gcloud run services update-traffic randomquotes --platform managed --remove-tags green
@@ -189,8 +195,8 @@ gcloud run services update-traffic randomquotes --platform managed --remove-tags
 
 ## Conclusion
 
-Google cloud run provides a convenient platform for deploying web applications that incur charges only while they are processing requests. Cloud run provides automatic scaling to handle incoming requests, and traffic routing rules allowing us to implement blue/green and canary style deployments.
+Google Cloud Run is a convenient platform for deploying web applications that incur charges only while processing requests. Cloud Run provides automatic scaling to handle incoming requests, and traffic routing rules allow you to implement blue/green and canary style deployments.
 
-In this blog post we looked at how to copy Docker images into GCR and then deploy a service. We manipulated the revisions and traffic rules to implement blue/green and canary deployments, and looked at how tags can be used to gain access to a revision that otherwise has no traffic directed to it.
+This post looked at how to copy Docker images into GCR and then deploy a service. We manipulated the revisions and traffic rules to implement blue/green and canary deployments. We also looked at how tags can be used to gain access to a revision that otherwise has no traffic directed to it.
 
 Happy deployments!
