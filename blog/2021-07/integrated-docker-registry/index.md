@@ -108,7 +108,7 @@ A built in Docker registry can be integrated with ARC like the built-in feed, br
 
 Using an SDI as a container image allows almost all aspects of the Calamari execution environment to be configured with each deployment or runbook run. Unique container images can be created for each execution, and Octopus can take care of cleaning up the images afterwards.
 
-This also decouples Octopus from the underlying VM hosting a tentacle, lifting concerns like tooling into the container image, with the entire process now being in the domain of an Octopus deployment or runbook run.
+This also decouples Octopus from the underlying VM hosting a tentacle, lifting concerns like tooling into the container image, with the entire context now being defined in the domain of an Octopus deployment or runbook run.
 
 ## When are these features being delivered
 
