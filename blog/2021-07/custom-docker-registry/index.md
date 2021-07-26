@@ -1,6 +1,6 @@
 ---
 title: Creating a custom Docker registry
-description: Learn how to create a bare bones Docker registry with C#
+description: Learn how to create a bare bones Docker registry with C Sharp.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2021-07-28-1400
