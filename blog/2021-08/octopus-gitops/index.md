@@ -26,6 +26,10 @@ GitOps is a relative newcomer to the deployment scene, with the term having been
 >
 > I've heard this on a few calls re: k8s. Flux and Argo are usually mentioned
 
+ArgoCD and Flux are 6th and 8th most popular tools to manage CI/CD pipelines in the [2020 CNCF survey](https://www.dropbox.com/s/j7nbbc9vrag0wda/CNCF_Survey_Report_2020.pdf?dl=0):
+
+![](toolusage.png)
+
 ## What is GitOps
 
 While GitOps is a nebulous term, the [GitOps Working Group](https://github.com/gitops-working-group/gitops-working-group) has provided some initial principals:
@@ -133,7 +137,7 @@ GitOps is called out on the [AWS CloudFormation landing page](https://aws.amazon
 
 > With CloudFormation, you can apply DevOps and GitOps best practices using widely adopted processes such as starting with a git repository and deploying through a CI/CD pipeline.
 
-With these new features in place, and step in Octopus that generates a declarative template can be easily modified to write the results to a git repo instead of deploying the template directly.
+With these new features in place, any step in Octopus that generates a declarative template can be easily modified to write the results to a git repo instead of deploying the template directly.
 
 ## When are these features being delivered
 
