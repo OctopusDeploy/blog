@@ -23,7 +23,10 @@ GitOps is a relative newcomer to the deployment scene, with the term having been
 [We're also seeing GitOps being mentioned in customer calls](https://octopusdeploy.slack.com/archives/C0223UFAEAY/p1627262125186800):
 
 > "At Crowe, Octopus is our first choice." Reasons to not go with OD: Kubernetes (they prefer a more git-ops model with Flux)"
+>
 > I've heard this on a few calls re: k8s. Flux and Argo are usually mentioned
+
+## What is GitOps
 
 While GitOps is a nebulous term, the [GitOps Working Group](https://github.com/gitops-working-group/gitops-working-group) has provided some initial principals:
 
@@ -39,6 +42,8 @@ This diagram from the post [Ops by pull request: an Ansible GitOps story](https:
 
 ![](redhatgitops.png)
 
+*Typical GitOps workflow diagram.*
+
 What we see time and again in the GitOps space is developers and operations staff committing directly to a git repository, and then using the "magic of GitOps" to realise its many benefits.
 
 We know from our experience deploying applications that there is a huge amount of work required to scale up deployments. You need environments, tenants, dashboards, interventions, templates, security, automated testing, reporting and more to manage deployments at scale. I propose paradigms like GitOps also need these things, and anyone implementing GitOps at scale today is most likely twisting a CI server into knots trying to implement these features.
@@ -46,6 +51,8 @@ We know from our experience deploying applications that there is a huge amount o
 This post proposes new targets and steps that allow Octopus to deploy to a git repository like any other deployment target, which will position Octopus as the best solution for GitOps "left of the git repo":
 
 ![](redhatgitops2.png)
+
+*Where Octopus fits in GitOps.*
 
 ## What problems are we trying to solve?
 
