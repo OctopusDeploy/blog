@@ -98,7 +98,8 @@ Next, you will set up an [Azure web application](#web-application-setup) and con
 
 ### Web application setup {#web-application-setup}
 
-1. In **Resource groups** click Create to create a Windows Node Application.
+1. In **Resource groups** click **{{Create, Web App}}**
+2. Create a Windows Node Application under runtime stack and operating system.
 2. Once the web app is setup, route the path of the web application to default to the home path by navigating to **{{Configuration, Path Mappings, Virtual applications and directories}}**
 3. Set the Physical path to ```site\wwwroot\guide``` and the Virtual Path to ```\``` 
 
