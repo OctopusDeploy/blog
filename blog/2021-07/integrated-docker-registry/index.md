@@ -135,4 +135,4 @@ We want your feedback to determine if this feature is a good fit for Octopus. Sp
 * Will these proposed features solve problems you have seen customers encountering?
 * Would the concept of Source Docker Images be valuable for your teams in terms of sales, marketing, or solutions?
 
-Please leave your feedback on this [GitHub issue](https://github.com/OctopusDeploy/StepsFeedback/issues/3) (TODO - create the issue).
+Please leave your feedback on this [GitHub issue](https://github.com/OctopusDeploy/StepsFeedback/issues/2).
