@@ -28,7 +28,7 @@ However, containers are typically stored in a container repository, which presen
 
 Migrating to containerized applications also presents a challenge for teams that have relied on features like **Structured Configuration Variables**, **Substitute Variables in Templates**, **.NET Configuration Variables**, and **.NET Configuration Transforms**.
 
-This post proposes an integrated container repository within Octopus itself, and provides a process through which environment specific Docker images can be deployed much like traditional application artifacts.
+This post proposes an integrated container repository within Octopus itself, provides a process through which environment specific Docker images can be deployed much like traditional application artifacts, and allows container images to be generated on the fly.
 
 
 ## What problems are we trying to solve?
