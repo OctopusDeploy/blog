@@ -46,7 +46,7 @@ This diagram from the post [Ops by pull request: an Ansible GitOps story](https:
 
 What we see time and again in the GitOps space is developers and operations staff committing directly to a git repository, and then using the "magic of GitOps" to realise its many benefits.
 
-We know from our experience deploying applications that there is a huge amount of work required to scale up deployment pipelines. You need environments, tenants, dashboards, interventions, templates, security, automated testing, reporting and more to manage deployments at scale. I propose paradigms like GitOps also need these things, and anyone implementing GitOps at scale today is most likely twisting a CI server into knots trying to implement these features.
+We know from our experience deploying applications that there is a huge amount of work required to scale up deployment pipelines. You need environments, secrets, tenants, dashboards, interventions, templates, security, automated testing, reporting and more to manage deployments at scale. I propose paradigms like GitOps also need these features, and anyone implementing GitOps at scale today is most likely twisting a CI server into knots implementing these features.
 
 This post proposes new targets and steps that allow Octopus to deploy to a git repository like any other deployment target, which will position Octopus as the best solution for GitOps "left of the git repo":
 
