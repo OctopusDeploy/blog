@@ -14,7 +14,7 @@ tags:
 
 ![A laptop screen displaying analytics data that is peeled up on one corner showing the code behind it](blogimage-config-as-code-explanation_2020.png)
 
-[Hashicorp Configuration Language (HCL)](https://www.terraform.io/docs/configuration/index.html) is a unique configuration language. It was designed to be used with Hashicorp tools, notably Terraform, but HCL has expanded as a more general configuration language. It’s visually similar to JSON with additional data structures and capabilities built-in.
+[HashiCorp Configuration Language (HCL)](https://www.terraform.io/docs/configuration/index.html) is a unique configuration language. It was designed to be used with HashiCorp tools, notably Terraform, but HCL has expanded as a more general configuration language. It’s visually similar to JSON with additional data structures and capabilities built-in.
 
 HCL consists of three sub-languages: 
 
@@ -85,13 +85,13 @@ You can also see we use a ternary conditional for the `options` variable. If the
 [Visual Studio Code](https://code.visualstudio.com/) (VS Code) is currently one of the most popular editors and it’s offered for free by Microsoft. VS Code has extensions that add additional functionality to the base editor. These include:
 
 - An [HCL extension](https://marketplace.visualstudio.com/items?itemName=wholroyd.HCL) to offer proper language colorization.
-- The [Terraform extension](https://marketplace.visualstudio.com/items?itemName=4ops.terraform) that also adds HCL support, despite being named for one of the Hashicorp tools. This extension offers syntax highlighting and basic validation.
+- The [Terraform extension](https://marketplace.visualstudio.com/items?itemName=4ops.terraform) that also adds HCL support, despite being named for one of the HashiCorp tools. This extension offers syntax highlighting and basic validation.
 
 The [Atom editor](https://atom.io/) is an alternative editor to VS Code and is also popular. It offers an [HCL syntax highlighting](https://atom.io/packages/language-hcl) package as well. 
 
 ## HCL processing and tooling in other languages
 
-So far, I've talked about using HCL in the context of the Hashicorp tools, but there is other tooling that consumes a HCL file for use in different applications. 
+So far, I've talked about using HCL in the context of the HashiCorp tools, but there is other tooling that consumes a HCL file for use in different applications. 
 
 One example is the [hclq command-line processor](https://hclq.sh/). This command-line processor offers the following features:
 
@@ -111,7 +111,7 @@ For Python, there is an [HCL2 parser](https://pypi.org/project/python-hcl2/) tha
 
 ## Conclusion
 
-The Hashicorp Configuration Language started out specific to Hashicorp but has evolved to become more attractive in a variety of projects. 
+The HashiCorp Configuration Language started out specific to HashiCorp but has evolved to become more attractive in a variety of projects. 
 
 The recent HCL2 rewrite further incorporates string interpolation and additional functions. This increases the usability of an already flexible language. The power of a configuration language that's easy to understand with built-in templating, is quickly making HCL2 the language of choice for complex configurations.
 

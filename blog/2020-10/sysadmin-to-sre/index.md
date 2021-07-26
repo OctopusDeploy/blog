@@ -19,7 +19,7 @@ DevOps is everywhere! It’s used as hashtags, the name of products, and job tit
 
 Needless to say, DevOps is hot!
 
-The job title Site Reliability Engineer(SRE) has emerged in recent years from Google. SRE isn’t yet as popular as its predecessor, but it is often used synonymously by recruiters. 
+The job title Site Reliability Engineer (SRE) has emerged in recent years from Google. SRE isn’t yet as popular as its predecessor, but it is often used synonymously by recruiters. 
 
 In this post, I share my thoughts on how somebody new to the industry can aspire to these roles.
 
@@ -31,7 +31,7 @@ I started my career on the help desk. Moved up to a system administrator and eve
 
 ## It isn’t about tools, but...
 
-DevOps isn’t about tools! This is practically shouted at conferences by people seemingly wearing Braveheart face paint and drumming battle drums. They’re arguably correct in their assertion. But the tools you use shape the language you use and determine how you interact with other people to do your job. You literally live in the tools you use. Whether that’s email, slack, or like most developers, Git. 
+DevOps isn’t about tools! This is practically shouted at conferences by people seemingly wearing Braveheart face paint and drumming battle drums. They’re arguably correct in their assertion. But the tools you use shape the language you use and determine how you interact with other people to do your job. You literally live in the tools you use. Whether that’s email, Slack, or like most developers, Git. 
 
 In a traditional company, you’ll find developers using one set of tooling and sysadmins using another. This only reinforces the silos. 
 
@@ -45,7 +45,7 @@ Automation is the starting point. It is the starting point because it gets you w
 
 Starting to learn a coding language is easy. There’s an endless number of blog posts, YouTube videos, books, and Pluralsight courses for you to consume. 
 
-What’s difficult is figuring out how to apply it at work. I suggest you start by automating things that suck. Find routine and mundane tasks and work to automate those. The scripting or programming language you choose to learn will become the hammer in your toolbox. As with any tool collection, a hammer is just the beginning. You’ll need to add other tools. Within the context of infrastructure automation, those tools go by the names of Ansible, Chef, Puppet, Terraform, Azure Resource Manager Templates, and Cloudformation. These tools are valuable because they abstract. Leaving you with less code to write and a better framework for managing your infrastructure. If Infrastructure as Code is the portal, automation is how you open it.
+What’s difficult is figuring out how to apply it at work. I suggest you start by automating things that suck. Find routine and mundane tasks and work to automate those. The scripting or programming language you choose to learn will become the hammer in your toolbox. As with any tool collection, a hammer is just the beginning. You’ll need to add other tools. Within the context of infrastructure automation, those tools go by the names of Ansible, Chef, Puppet, Terraform, Azure Resource Manager Templates, and CloudFormation. These tools are valuable because they abstract. Leaving you with less code to write and a better framework for managing your infrastructure. If Infrastructure as Code is the portal, automation is how you open it.
 
 ## Start at the source
 
