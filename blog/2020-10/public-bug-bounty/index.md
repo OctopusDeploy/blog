@@ -8,6 +8,7 @@ metaImage: blogimage-security.png
 bannerImage: blogimage-security.png
 bannerImageAlt: Bounty program
 tags:
+ - Company
  - Trust and Security
 ---
 

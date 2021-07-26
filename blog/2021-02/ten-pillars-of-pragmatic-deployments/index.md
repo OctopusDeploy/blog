@@ -9,7 +9,8 @@ bannerImage: blogimage-the-ten-pillars-of-pragmatic-deployments-2021.png
 bannerImageAlt: The ten pillars of pragmatic deployments
 isFeatured: true
 tags:
- - Deployments
+ - DevOps
+ - Deployment Patterns
 ---
 
 ![The ten pillars of pragmatic deployments](blogimage-the-ten-pillars-of-pragmatic-deployments-2021.png)

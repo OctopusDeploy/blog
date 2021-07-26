@@ -9,7 +9,7 @@ bannerImage: blogimage-shaping-config-as-code_2020.png
 bannerImageAlt: Shaping Config as Code
 tags:
  - Product 
- - Config as Code
+ - Configuration as Code
 ---
 
 ![Shaping Config as Code](blogimage-shaping-config-as-code_2020.png)

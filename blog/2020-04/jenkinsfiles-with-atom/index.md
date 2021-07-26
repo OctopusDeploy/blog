@@ -8,7 +8,7 @@ metaImage: jenkins-graphic.png
 bannerImage: jenkins-graphic.png
 bannerImageAlt: Writing and linting Jenkinsfiles with Atom
 tags:
- - Octopus
+ - DevOps
 ---
 
 ![Writing and linting Jenkinsfiles with Atom](jenkins-graphic.png)

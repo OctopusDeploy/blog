@@ -8,7 +8,7 @@ metaImage: blogimage-config-as-code-explanation_2020.png
 bannerImage: blogimage-config-as-code-explanation_2020.png
 tags:
  - DevOps
- - Config as Code
+ - Configuration as Code
 ---
 
 ![The state of config file formats: XML vs. YAML vs. JSON vs. HCL](blogimage-config-as-code-explanation_2020.png)
@@ -81,7 +81,7 @@ Although YAML looks different to JSON, YAML is a superset of JSON. As a superset
 - Debugging is difficult, due to the declarative nature of YAML. 
 - Breakpoints and similar functionality do not exist.
 
-## [Hashicorp Configuration Language (HCL)](https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md)
+## [HashiCorp Configuration Language (HCL)](https://github.com/hashicorp/hcl2/blob/master/hcl/hclsyntax/spec.md)
 
 The only specific configuration language listed, HCL is not intended to replace languages such as YAML or JSON. HCL is a tool-specific language intended for use with the Terraform toolset. HCL looks visually similar to JSON, with unique data structures added.
 
@@ -103,7 +103,7 @@ Are other toolsets and languages able to use HCL? Parsers exist for other langua
 
 ### Disadvantages of HCL
 
-- As evidenced by Hashicorp being in the name, HCL was developed primarily for its products, and development is geared towards those ends.
+- As evidenced by HashiCorp being in the name, HCL was developed primarily for its products, and development is geared towards those ends.
 - Despite stated compatibility with JSON, a strict conversion between the two languages is complicated by ambiguity in mapping certain language constructs.
 - As a new language, many features are still being developed and toolkit maturity is still growing.
 

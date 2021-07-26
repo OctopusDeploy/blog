@@ -1,6 +1,6 @@
 ---
 title: Announcing Octopus support for Google Cloud
-description: TODO description
+description: description
 author: andreia.virmond@octopus.com
 visibility: private
 published: 2022-07-21-1400

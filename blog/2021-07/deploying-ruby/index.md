@@ -11,7 +11,7 @@ tags:
  - DevOps
 ---
 
-Twitter, AirBNB, Shopify, and GitHub are big names in the tech industry.  Along with being instantly recognizable, they have something else in common; they're all written in Ruby.  
+Twitter, Airbnb, Shopify, and GitHub are big names in the tech industry.  Along with being instantly recognizable, they have something else in common; they're all written in Ruby.  
 
 In this post, I demonstrate how to deploy a web application written in Ruby, including database migrations, using Octopus Deploy.
 
