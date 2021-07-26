@@ -6,6 +6,7 @@ visibility: public
 published: 2020-09-09
 metaImage: aws-ha-file-share.png
 bannerImage: aws-ha-file-share.png
+bannerImageAlt: Configuring Octopus Server High Availability using AWS FSx
 tags:
  - Product
  - AWS

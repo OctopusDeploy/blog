@@ -6,6 +6,7 @@ visibility: public
 published: 2021-04-07-1400
 metaImage: blogimage-create-workers-on-a-kubernetes-cluster-2021.png
 bannerImage: blogimage-create-workers-on-a-kubernetes-cluster-2021.png
+bannerImageAlt: Create workers on a Kubernetes cluster
 tags:
  - DevOps
  - Kubernetes

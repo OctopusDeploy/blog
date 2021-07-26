@@ -6,6 +6,7 @@ visibility: public
 published: 2018-03-19
 metaImage: metaimage-recurring-deployments.png
 bannerImage: blogimage-recurring-deployments.png
+bannerImageAlt: Octo-Cuckoo clock illustating recurring deployments
 tags:
  - Product
 ---

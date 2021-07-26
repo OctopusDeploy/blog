@@ -6,6 +6,7 @@ visibility: public
 published: 2020-11-24
 metaImage: blogimage-integrating-octopus-and-grafana.png
 bannerImage: blogimage-integrating-octopus-and-grafana.png
+bannerImageAlt: Integrating Octopus and Grafana
 tags:
  - Product
  - Reporting

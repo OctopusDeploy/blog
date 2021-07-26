@@ -6,6 +6,7 @@ visibility: public
 published: 2020-07-16
 metaImage: change-advisory-boards-dont-work.png
 bannerImage: change-advisory-boards-dont-work.png
+bannerImageAlt: Change Advisory Boards Don’t Work
 tags:
  - DevOps
 ---

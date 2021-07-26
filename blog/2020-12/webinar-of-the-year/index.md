@@ -6,6 +6,7 @@ visibility: public
 published: 2020-12-30
 metaImage: webinar.png
 bannerImage: webinar.png
+bannerImageAlt: Webinar of the year
 tags:
  - Webinar
  - Company

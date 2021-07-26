@@ -6,6 +6,7 @@ visibility: public
 published: 2021-06-14-1400
 metaImage: blogimage-feedback_2021_01.png
 bannerImage: blogimage-feedback_2021_01.png
+bannerImageAlt: Octopus salesperson at laptop with headset and icons representing customer feedback
 tags:
  - Product
 ---

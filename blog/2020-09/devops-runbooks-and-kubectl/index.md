@@ -6,6 +6,7 @@ visibility: public
 published: 2020-09-23
 metaImage: k8s-devops-runbook.png
 bannerImage: k8s-devops-runbook.png
+bannerImageAlt: Kubernetes DevOps Runbook example with kubectl
 tags:
  - DevOps
  - Runbooks

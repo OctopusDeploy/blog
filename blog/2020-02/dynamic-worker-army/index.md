@@ -4,6 +4,7 @@ description: How to create dynamic worker infrastructure using Terraform and AWS
 author: shawn.sesna@octopus.com
 visibility: public
 bannerImage: dynamic-workers.png
+bannerImageAlt: Building a dynamic worker army with Terraform and AWS autoscaling groups
 metaImage: dynamic-workers.png
 published: 2020-02-17
 tags:

@@ -6,6 +6,7 @@ visibility: public
 published: 2019-09-10
 metaImage: blogimage_deploy_aws_sam_apps.png
 bannerImage: blogimage_deploy_aws_sam_apps.png
+bannerImageAlt: Illustration showing an AWS SAM deployment with Octopus Deploy
 tags:
  - Engineering
 ---

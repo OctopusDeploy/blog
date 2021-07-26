@@ -6,6 +6,7 @@ visibility: public
 published: 2020-09-22
 metaImage: alternate-kubernetes-dashboards.png
 bannerImage: alternate-kubernetes-dashboards.png
+bannerImageAlt: Alternative Kubernetes Dashboards
 tags:
  - DevOps
  - Kubernetes

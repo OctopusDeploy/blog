@@ -6,6 +6,7 @@ visibility: public
 published: 2021-05-03-1400
 metaImage: liquibase-octopus.png
 bannerImage: liquibase-octopus.png
+bannerImageAlt: Deploying to Oracle with Octopus Deploy and Liquibase
 tags:
  - DevOps
  - Database Deployments

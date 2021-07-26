@@ -6,6 +6,7 @@ visibility: public
 published: 2020-07-27
 metaImage: execution-workers.png
 bannerImage: execution-workers.png
+bannerImageAlt: Extending the Octopus worker-tools Docker image
 tags:
   - DevOps
   - Containers

@@ -6,6 +6,7 @@ visibility: public
 published: 2020-03-09
 metaImage: runbooks-best-practices.png
 bannerImage: runbooks-best-practices.png
+bannerImageAlt: Runbooks best practices
 tags:
  - Product
  - Runbooks

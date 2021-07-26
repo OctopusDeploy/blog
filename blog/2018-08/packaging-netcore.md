@@ -5,6 +5,7 @@ author: shannon.lewis@octopus.com
 visibility: public
 metaImage: metaimage-pipeline.png
 bannerImage: blogimage-pipeline.png
+bannerImageAlt: Octopus Packaging .NET Core banner
 published: 2018-08-24
 tags:
  - Engineering

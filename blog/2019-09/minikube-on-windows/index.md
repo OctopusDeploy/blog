@@ -6,6 +6,7 @@ visibility: public
 published: 2019-09-25
 metaImage: installing_minikube_on_windows.png
 bannerImage: installing_minikube_on_windows.png
+bannerImageAlt: Octopus driving a Kubernetes speedboat
 tags:
  - Engineering
  - Kubernetes

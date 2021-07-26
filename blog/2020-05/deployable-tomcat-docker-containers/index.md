@@ -6,6 +6,7 @@ visibility: public
 published: 2020-05-06
 metaImage: tomcat-docker.png
 bannerImage: tomcat-docker.png
+bannerImageAlt: Booting Tomcat in Docker with the manager app
 tags:
  - DevOps
  - Java

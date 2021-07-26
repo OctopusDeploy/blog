@@ -6,6 +6,7 @@ visibility: public
 published: 2020-06-15
 metaImage: k8-microservice-deploymts.png
 bannerImage: k8-microservice-deploymts.png
+bannerImageAlt: The ultimate guide to Kubernetes microservice deployments
 tags:
  - DevOps
  - Kubernetes

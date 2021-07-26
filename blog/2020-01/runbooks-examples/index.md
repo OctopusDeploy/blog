@@ -4,6 +4,7 @@ description: Runbook automation examples in Octopus Deploy.
 author: rob.pearson@octopus.com
 visibility: private
 bannerImage: blogimage-runbookslaunch.png
+bannerImageAlt: Runbooks examples for operations tasks
 metaImage: blogimage-runbookslaunch.png
 published: 2021-01-01
 tags:

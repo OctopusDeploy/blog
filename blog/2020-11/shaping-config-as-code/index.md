@@ -6,7 +6,7 @@ visibility: public
 published: 2020-11-25 
 metaImage: blogimage-shaping-config-as-code_2020.png
 bannerImage: blogimage-shaping-config-as-code_2020.png
-bannerImageAlt: Octopus Deploy logo and laptop screen displaying the Octopus Control Center that is peeled up on one corner showing the code behind it.
+bannerImageAlt: Octopus Deploy logo and laptop screen showing Octopus Control Center, peeled up on one corner showing the code behind it.
 isFeatured: false
 tags:
  - Product 

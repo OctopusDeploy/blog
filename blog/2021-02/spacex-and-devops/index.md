@@ -6,6 +6,7 @@ visibility: public
 published: 2021-02-08
 metaImage: blogimage-how-spacex-obliterates-its-competitors-2021.png
 bannerImage: blogimage-how-spacex-obliterates-its-competitors-2021.png
+bannerImageAlt: How SpaceX obliterates its competitors and redefines space travel
 tags:
  - DevOps
 ---

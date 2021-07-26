@@ -6,6 +6,7 @@ visibility: public
 published: 2019-11-13
 metaImage: blogimage-implementdatabasedeployment.png
 bannerImage: blogimage-implementdatabasedeployment.png
+bannerImageAlt: Implementing an automated database deployment process
 tags:
  - Engineering
  - Database Deployments

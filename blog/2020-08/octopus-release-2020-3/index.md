@@ -4,6 +4,7 @@ description: "Octopus 2020.3 includes our improve Runbooks support, Jenkins Pipe
 author: rob.pearson@octopus.com
 visibility: public
 bannerImage: release-2020.3.png
+bannerImageAlt: Octopus 2020.3 Runbooks++, Jenkins Pipelines, and Octopus Linux Docker image
 metaImage: release-2020.3.png
 published: 2020-08-03
 tags:

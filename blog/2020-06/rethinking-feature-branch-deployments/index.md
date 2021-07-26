@@ -6,6 +6,7 @@ visibility: public
 published: 2020-06-03
 metaImage: rethinking-feature-branch-deployments.png
 bannerImage: rethinking-feature-branch-deployments.png
+bannerImageAlt: Re-thinking feature branch deployments
 tags:
  - Engineering
  - Database Deployments

@@ -6,6 +6,7 @@ visibility: public
 published: 2020-02-11
 metaImage: metaimage-database-kickoff.png
 bannerImage: blogimage-database-kickoff.png
+bannerImageAlt: Why consider database deployment automation?
 tags:
  - Engineering
  - Database Deployments

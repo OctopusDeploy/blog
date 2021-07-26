@@ -6,6 +6,7 @@ visibility: public
 published: 2020-01-06
 metaImage: pipeline-as-code.png
 bannerImage: pipeline-as-code.png
+bannerImageAlt: CI/CD Pipeline as Code
 tags:
  - DevOps
 ---

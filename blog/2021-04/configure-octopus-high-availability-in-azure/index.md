@@ -6,6 +6,7 @@ visibility: public
 published: 2021-04-28-1400
 metaImage: image.png
 bannerImage: image.png
+bannerImageAlt: Octopus High-Availability on Azure
 tags:
  - Product
  - Azure

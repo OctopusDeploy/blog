@@ -6,6 +6,7 @@ visibility: public
 published: 2021-06-07-1400
 metaImage: img-blog-azure-app-service-zip-deploy-2021.png
 bannerImage: img-blog-azure-app-service-zip-deploy-2021.png
+bannerImageAlt: Octopus, a zip file and Azure logo connected in the clouds
 tags:
  - Product 
  - Azure

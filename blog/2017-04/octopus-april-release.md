@@ -5,6 +5,7 @@ author: rob.pearson@octopus.com
 published: 2017-04-04
 visibility: public
 bannerImage: shipping-3-12_blogimage.png
+bannerImageAlt: Octopus 3.12 release announcement
 tags:
  - Product
 ---

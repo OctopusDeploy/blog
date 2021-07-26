@@ -5,6 +5,7 @@ author: shannon.lewis@octopus.com
 visibility: public
 metaImage: metaimage-package-netcore.png
 bannerImage: blogimage-package-netcore.png
+bannerImageAlt: Octopus Packaging .NET Core banner
 published: 2018-08-06
 tags:
  - Product

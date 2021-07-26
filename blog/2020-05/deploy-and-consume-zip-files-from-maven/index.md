@@ -6,6 +6,7 @@ visibility: public
 published: 2020-05-05
 metaImage: blogimage-mavenzip.png
 bannerImage: blogimage-mavenzip.png
+bannerImageAlt: Deploy and consume ZIP files from Maven
 tags:
  - DevOps
  - Java

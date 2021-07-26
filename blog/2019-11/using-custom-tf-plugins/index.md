@@ -6,6 +6,7 @@ visibility: public
 published: 2019-11-06
 metaImage: terraform-plugins.png
 bannerImage: terraform-plugins.png
+bannerImageAlt: Custom Terraform Plugins
 tags:
  - Engineering
 ---

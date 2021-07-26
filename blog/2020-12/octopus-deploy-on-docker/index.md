@@ -6,6 +6,7 @@ visibility: public
 published: 2020-12-15
 metaImage: octopus-docker.png
 bannerImage: octopus-docker.png
+bannerImageAlt: Octopus Deploy on Docker quickstart
 tags:
  - DevOps
  - Docker

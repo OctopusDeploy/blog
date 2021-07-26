@@ -6,6 +6,7 @@ visibility: public
 published: 2020-11-23
 metaImage: blogimage-devops-reading-list.png
 bannerImage: blogimage-devops-reading-list.png
+bannerImageAlt: The DevOps Reading List Choosing your next DevOps book
 tags:
  - DevOps
 ---

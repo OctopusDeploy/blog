@@ -3,12 +3,14 @@ title: Multi-tenancy release management with Octopus Deploy
 description: How to use the new Deploy Child Octopus Deploy Project step template for multi-tenancy releases.
 author: bob.walker@octopus.com
 visibility: public
-published: 2021-02-24-1400
+published: 2021-07-27-1400
 metaImage: blogimage-multi-tenancy-release-management-2021.png
 bannerImage: blogimage-multi-tenancy-release-management-2021.png
+bannerImageAlt: Multi-Tenancy Release Management with Octopus Deploy
 tags:
  - Engineering
  - Deployment Patterns
+ - Multi-Tenancy
 ---
 
 ![Multi-Tenancy Release Management with Octopus Deploy](blogimage-multi-tenancy-release-management-2021.png)
@@ -424,10 +426,22 @@ Octopus Deploy's multi-tenancy feature was designed to help companies who instal
 
 I hope you find this step template useful for your multi-tenancy projects.
 
-Happy deployments!
-
 :::hint
 The final guide in this three-part series is:
 
 - [Release management with dynamic infrastructure](https://octopus.com/blog/release-management-with-dynamic-infrastructure)
 :::
+
+## Register for the webinar: Better multi-tenancy deployments using Octopus Deploy
+
+Join Senior Solutions Architect Mark Harrison and Solutions Architect Adam Close from Octopus Deploy to learn how the multi-tenancy feature in Octopus can be leveraged for scalable, reusable, simplified deployments.
+
+We're running three sessions of the webinar:
+
+- Wed 28 Jul, 2021
+- Thurs 29 Jul, 2021 
+- Mon 2 Aug, 2021
+
+<span><a class="btn btn-success" href="/events/better-multi-tenancy-deployments-using-octopus-deploy">Register now</a></span>
+
+Happy deployments!

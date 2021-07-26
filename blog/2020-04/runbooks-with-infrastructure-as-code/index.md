@@ -6,6 +6,7 @@ visibility: public
 published: 2020-04-06
 metaImage: runbooks-iac.png
 bannerImage: runbooks-iac.png
+bannerImageAlt: Using Infrastructure as Code with Operations Runbooks
 tags:
  - DevOps
  - Runbooks

@@ -6,6 +6,7 @@ visibility: public
 published: 2020-06-09
 metaImage: refactoring-octopus.png
 bannerImage: refactoring-octopus.png
+bannerImageAlt: Refactoring Octopus Modularity, Calamari, and Sashimi
 tags:
  - Engineering
 ---

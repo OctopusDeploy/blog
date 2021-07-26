@@ -6,6 +6,7 @@ visibility: public
 published: 2021-05-04-1400
 metaImage: mongodb-octopus.png
 bannerImage: mongodb-octopus.png
+bannerImageAlt: Deploying to MongoDB with Octopus Deploy and Liquibase
 tags:
  - Database Deployments
  - DevOps

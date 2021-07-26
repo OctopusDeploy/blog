@@ -6,6 +6,7 @@ visibility: public
 published: 2019-11-27
 metaImage: minimum_requirements_octopus_2020.png
 bannerImage: minimum_requirements_octopus_2020.png
+bannerImageAlt: Raising the minimum requirements for hosting and using Octopus Server
 tags:
 - Product
 ---

@@ -6,6 +6,7 @@ visibility: public
 published: 2021-04-19-1400
 metaImage: img_comparecicd_2019.png
 bannerImage: img_comparecicd_2019.png
+bannerImageAlt: Illustration of two deep sea masks representing CI and CD
 tags:
  - DevOps
  - Continuous Integration

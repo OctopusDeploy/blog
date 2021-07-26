@@ -6,6 +6,7 @@ visibility: public
 published: 2020-09-16
 metaImage: data-guardian-protect-your-data.png
 bannerImage: data-guardian-protect-your-data.png
+bannerImageAlt: How to protect your data in a modern DevOps environment
 tags:
  - DevOps
  - Database Deployments

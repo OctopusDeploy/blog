@@ -6,6 +6,7 @@ visibility: public
 published: 2020-12-02
 metaImage: blogimage-creating-multi-environment-kubernetes-deployments-2020.png
 bannerImage: blogimage-creating-multi-environment-kubernetes-deployments-2020.png
+bannerImageAlt: Creating multi-environment Kubernetes deployments
 tags:
  - DevOps
  - Kubernetes

@@ -6,6 +6,7 @@ visibility: public
 published: 2020-06-02
 metaImage: github-actions.png
 bannerImage: github-actions.png
+bannerImageAlt: Database Deployments with Redgate SQL Change Automation, GitHub Actions, and Octopus Deploy
 tags:
  - Engineering
  - Database Deployments

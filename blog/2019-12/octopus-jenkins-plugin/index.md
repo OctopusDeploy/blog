@@ -6,6 +6,7 @@ visibility: public
 published: 2019-12-02
 metaImage: jenkins-plugin.png
 bannerImage: jenkins-plugin.png
+bannerImageAlt: Octopus Deploy Jenkins plugin
 tags:
  - Product
  - Jenkins

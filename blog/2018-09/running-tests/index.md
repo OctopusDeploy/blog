@@ -5,6 +5,7 @@ author: matthew.casperson@octopus.com
 visibility: public
 published: 2018-09-27
 bannerImage: blogimage-runningtests.png
+bannerImageAlt: Octopus Professor running tests in a lab with chemicals and beakers
 metaImage: metaimage-runningtests.png
 tags:
 - Engineering

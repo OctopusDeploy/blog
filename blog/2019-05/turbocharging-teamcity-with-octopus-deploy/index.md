@@ -5,6 +5,7 @@ author: derek.campbell@octopus.com
 visibility: public
 published: 2019-05-16
 bannerImage: turbocharging-teamcity.png
+bannerImageAlt: Derek Campbell hosted a Webinar in conjunction with Jetbrains on "Turbocharging TeamCity with Octopus Deploy"
 metaImage: turbocharging-teamcity.png
 tags:
  - Events and Webinars

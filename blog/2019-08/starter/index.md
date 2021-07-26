@@ -6,6 +6,7 @@ visibility: public
 published: 2019-09-02
 metaImage: blogimage-freestarterlicense.png
 bannerImage: blogimage-freestarterlicense.png
+bannerImageAlt: Octopus Free Starter license - free for small teams
 tags:
  - Company
 ---

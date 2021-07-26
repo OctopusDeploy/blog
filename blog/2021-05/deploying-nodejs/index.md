@@ -6,6 +6,7 @@ visibility: public
 published: 2021-05-19-1400
 metaImage: blogimage_deploying-a_nodejs_application_with_octopus_deploy_2021.png
 bannerImage: blogimage_deploying-a_nodejs_application_with_octopus_deploy_2021.png
+bannerImageAlt: NodeJS logo on a laptop screen in between and connected to MongoDB logo and octopus with glasses.
 tags:
  - DevOps
  - PowerShell

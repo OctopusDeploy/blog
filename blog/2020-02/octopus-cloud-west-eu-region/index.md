@@ -4,6 +4,7 @@ description: "Octopus Cloud: Western Europe region is now available"
 author: rob.pearson@octopus.com
 visibility: public
 bannerImage: octopus-cloud-regions.png
+bannerImageAlt: Octopus Cloud - new Western Europe region
 metaImage: octopus-cloud-regions.png
 published: 2020-02-05
 tags:

@@ -6,6 +6,7 @@ visibility: public
 published: 2020-10-27
 metaImage: blogimage-100xfaster-db-deploys.png
 bannerImage: blogimage-100xfaster-db-deploys.png
+bannerImageAlt: 100x faster db deploys
 tags:
  - DevOps
  - Database Deployments

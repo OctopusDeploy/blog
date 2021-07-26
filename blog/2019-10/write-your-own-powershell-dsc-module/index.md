@@ -4,6 +4,7 @@ description: How to write your own PowerShell Desired State Configuration (DSC) 
 author: shawn.sesna@octopus.com
 visibility: public
 bannerImage: write-powershell-dsc-module.png
+bannerImageAlt: Octopus learning how to write a custom PowerShell DSC Module
 metaImage: write-powershell-dsc-module.png
 published: 2019-10-23
 tags:

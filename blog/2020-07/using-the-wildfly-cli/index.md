@@ -6,6 +6,7 @@ visibility: public
 published: 2020-07-13
 metaImage: java-octopus-meta.png
 bannerImage: java-octopus.png
+bannerImageAlt: Using the WildFly CLI
 tags:
  - DevOps
  - Java

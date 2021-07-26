@@ -6,6 +6,7 @@ visibility: public
 published: 2020-11-11
 metaImage: spring-configuration-strategies_2020.png
 bannerImage: spring-configuration-strategies_2020.png
+bannerImageAlt: Spring configuration strategies across environments
 tags:
  - DevOps
  - Java

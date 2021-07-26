@@ -6,6 +6,7 @@ visibility: public
 published: 2020-12-14
 metaImage: kubernetes-1-20-deprecating-docker-runtime.png
 bannerImage: kubernetes-1-20-deprecating-docker-runtime.png
+bannerImageAlt: Kubernetes 1.20 is deprecating Docker Runtime What does this mean?
 tags:
  - DevOps
  - Kubernetes

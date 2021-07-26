@@ -6,6 +6,7 @@ visibility: public
 published: 2021-03-24-1400
 metaImage: blogimage-build-info.png
 bannerImage: blogimage-build-info.png
+bannerImageAlt: Octopus with build information
 tags:
  - DevOps
  - Continuous Integration

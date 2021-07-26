@@ -6,6 +6,7 @@ visibility: public
 published: 2021-04-12-1400
 metaImage: blogimage-lessons-learned-while-playing-with-home-automation-2021.png
 bannerImage: blogimage-lessons-learned-while-playing-with-home-automation-2021.png
+bannerImageAlt: A modern home front and a tablet device surrounded by icons representing different home automations
 tags:
  - DevOps
  - Kubernetes

@@ -6,6 +6,7 @@ visibility: public
 published: 2021-01-25
 metaImage: blogimage-terraform-provider-2021.png
 bannerImage: blogimage-terraform-provider-2021.png
+bannerImageAlt: Octopus Deploy Terraform provider Getting started with the Beta
 tags:
  - DevOps
  - Terraform

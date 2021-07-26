@@ -6,6 +6,7 @@ visibility: public
 published: 2020-10-12
 metaImage: blogimage-net-foundation_2020.png
 bannerImage: blogimage-net-foundation_2020.png
+bannerImageAlt: Octopus Deploy sponsors the .NET Foundation
 tags:
   - Company
 ---

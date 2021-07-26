@@ -6,6 +6,7 @@ visibility: public
 published: 2020-02-05
 metaImage: kubernetes-deployments-strategies.png
 bannerImage: kubernetes-deployments-strategies.png
+bannerImageAlt: Kubernetes deployment strategies
 tags:
  - DevOps
  - Kubernetes

@@ -6,6 +6,7 @@ visibility: public
 published: 2021-06-16-1400
 metaImage: blogimage-using-classes-in-custom-step-template-2021.png
 bannerImage: blogimage-using-classes-in-custom-step-template-2021.png
+bannerImageAlt: powershell logo and database beside an open laptop showing code on screen
 tags:
  - DevOps
  - PowerShell

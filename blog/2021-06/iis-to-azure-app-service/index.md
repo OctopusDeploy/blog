@@ -6,6 +6,7 @@ visibility: public
 published: 2021-06-09-1400
 metaImage: move-to-the-cloud-with-octopus-deploy-2021.png
 bannerImage: move-to-the-cloud-with-octopus-deploy-2021.png
+bannerImageAlt: Migrate an ASP.NET web app from IIS on-premises to an Azure App Service
 tags:
  - DevOps
  - Migration

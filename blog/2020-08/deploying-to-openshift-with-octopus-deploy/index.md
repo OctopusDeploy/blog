@@ -6,6 +6,7 @@ visibility: public
 published: 2020-08-17
 metaImage: openshift-octopus.png
 bannerImage: openshift-octopus.png
+bannerImageAlt: Deploying to Red Hat OpenShift with Octopus Deploy
 tags:
  - DevOps
  - Kubernetes

@@ -6,6 +6,7 @@ visibility: public
 published: 2019-08-29
 metaImage: blogimage-shipping-2019-8.png
 bannerImage: blogimage-shipping-2019-8.png
+bannerImageAlt: Octopus Deploy 2019.8 announcement fireworks
 tags:
  - Product
 ---

@@ -6,6 +6,7 @@ visibility: public
 published: 2020-06-08
 metaImage: sql-server-powershell-examples.png
 bannerImage: sql-server-powershell-examples.png
+bannerImageAlt: SQL Server and PowerShell made easier with dbatools Practical Examples
 tags:
  - DevOps
  - PowerShell

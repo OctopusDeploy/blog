@@ -6,6 +6,7 @@ visibility: public
 published: 2020-12-08
 metaImage: blogimage-breaking-up-monoliths-2020.png
 bannerImage: blogimage-breaking-up-monoliths-2020.png
+bannerImageAlt: Breaking up monolithic deployments
 tags:
   - DevOps
 ---
