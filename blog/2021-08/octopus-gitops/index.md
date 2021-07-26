@@ -71,7 +71,8 @@ I propose that any sufficiently advanced GitOps workflow must treat a git reposi
 * Automated tooling must know the exact field in the exact file to update when deploying new images.
 * To progress changes across environments, each git repository hosting an environment must be substantially similar to the other environments.
 * Reporting tools must be able to inspect the state of a git repository and reason about the changes (assuming reporting is done "right of the git repo").
-* Depending on how granular git repositories are, rollbacks may require resetting the state of a well known file rather than reverting to a previous commit.
+* Resources themselves will hold structured data, for example Kubernetes configmaps and secrets, that must map to outside values in a predictable manner.
+* Depending on how granular git repositories are, rollbacks may require resetting the state of a well known file rather than reverting to a previous commit, so individual files have tight colorations to individual "deployments".
 * PRs only make sense when small changes are made to similar resources.
 * Any team advanced enough to implement GitOps must be deploying well known resources with common constraints.
 * Nobody goes to the trouble of implementing GitOps just so they can make YOLO commits of whatever resources take their fancy.
