@@ -87,3 +87,12 @@ Octopus offers a solution here because a deployment process or runbook captures 
 
 The only solution provided by GitOps to ensure consistent and well formed resources are committed to a repo are pull requests. This does not scale well, as relying on manual reviews of complex YAML or JSON to ensure rules like labels are consistently applied or memory limits are within a certain range will eventually overwhelm reviewers. Octopus provides a solution by committing well known resources defined in repeatable steps.
 
+## How will we solve the problem?
+
+To allow Octopus to function "left of the git repo" we will introduce a new Git Repository target type, and allow this target to be used from the existing Kubernetes steps.
+
+### New Git Repository target
+
+A new target called Git Repository will be created. This target will include the git repository URL, credentials, and the default branch.
+
+![](gittarget.png)
