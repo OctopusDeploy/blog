@@ -20,15 +20,15 @@ tl;dr
 
 In this tutorial, you have imported an exported project and deployed a package to an Azure web application. This application is now hosted in Azure. Through setting up this page, you have been exposed to some of the fundamental concepts of Octopus Deploy such as:
 
- - Deployment targets
- - Environments
- - Accounts
- - Packaging applications
- - Projects
- - Releases
- - Deployments
- - Variables
- - Runbooks
+ - deployment targets
+ - environments
+ - accounts
+ - packaging applications
+ - projects
+ - releases
+ - deployments
+ - variables
+ - runbooks
 
 The blog post represented a simple example. Production level solutions are more complex with many deployment steps and deployment targets. Ther are also other advanced Octopus Deploy features such as tenants and the Octopus REST API that developers can use. A comprehensive documentation of all Octopus Deploy features is found [here](https://octopus.com/docs).
 
@@ -36,7 +36,7 @@ The blog post represented a simple example. Production level solutions are more 
 
 With this knowledge, you are now able to utilize the Octopus Deploy platform to serve your continuous deployment needs. We have a wide range of example use cases that our customers have used Octopus Deploy for. It is likely that some or a mixture of these apply to you. Find out more [here](https://octopus.com/company/customers). 
 
-The customers that have signed up with us usually experience an 'a-ha!' moment where they understand the value proposition that Octopus Deploy provides and how it can solve their problems. Through the resources contained in this overview, and the resources that you will be pointed to, we want hope you can understand whether Octopus Deploy can meet your needs.
+The customers that have signed up with us usually experience an 'a-ha!' moment where they understand the value proposition that Octopus Deploy provides and how it can solve their problems. Through the resources contained in this overview, and the resources that you will be referred to, we want you to accurately evaluate whether Octopus Deploy can meet your needs.
 
 ## How much does it cost?
 
@@ -58,7 +58,7 @@ We have a channel where you will where find getting started resources and guides
 
 ### Webinars
 
-Octopus runs a series of webinars to cover fundamental and more advanced topics. Ocotopus integrates with several cloud service providers and tools. Often there will be webinars dedicated to highlighting the linkages between the two. For new users, this Octpus 101 webinar is useful:
+Octopus runs a series of webinars to cover fundamental and more advanced topics. Ocotopus integrates with several cloud service providers and tools. Often there will be webinars jointly hosted by Octopus and another CI/CD software tool. For newer users, this Octpus 101 webinar is useful:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/mo0D4d5hFFU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -75,7 +75,7 @@ We run a blog that contains a lot of useful information for new and existing use
 - [an ebook about Kubernetes deployments](https://octopus.com/blog/10-pillars-kubernetes-deployments)
 
 
-There are many other types of topics such as release notes, company announcements and more. We use the blog to create a relationship between Octopus Deploy and our customers. We find that our customers want to engage with the blog and find it useful and informative. You can find the full blog [here](https://octopus.com/blog).
+There are many other types of topics such as release notes, company announcements and more. We use the blog to create a longstanding relationship between Octopus Deploy and our customers. We find that our customers want to engage with the blog and find it useful and informative. You can find the full blog [here](https://octopus.com/blog).
 
 #### Slack
 
