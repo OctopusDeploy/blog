@@ -1,9 +1,3 @@
----
-title: Getting Started
-description: An overview and roadmap to learning Octopus Deploy.
-position: 0
----
-
 ## Welcome!
 
 If you are reading this, then you have successfully deployed your first application through Octopus Deploy! This overview is meant to provide some additional context and information about Octopus deploy as well as point you in the right direction to learn more.
