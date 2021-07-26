@@ -68,6 +68,8 @@ Any step that can reference a Docker image (including container images) as part 
 3. Run `docker build`, and push the resulting image to the built-in Docker registry with a deployment specific tag like `1.2.0-deployments-75`.
 4. The step referencing the SDI is then passed the image reference like `octopusserver:8080/spaces-1/mywebapp:1.2.0-deployments-75`.
 
+![](mockup.png)
+
 ## Benefits of the new features
 
 With so many companies embracing containers as part of their deployment strategy, extending Octopus to remove barriers to container adoption makes strategic sense. We envisage the proposed features offering customers the following benefits.
