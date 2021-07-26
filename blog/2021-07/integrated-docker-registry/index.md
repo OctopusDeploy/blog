@@ -61,7 +61,7 @@ Each space would host a built-in Docker registry implementing the [Docker HTTP A
 
 Octopus will be expanded to host specialized packages that contain a `Dockerfile` file and define dependencies to additional external packages. These will be called **Source Docker Images** (SDIs).
 
-Any step that can reference a Docker image file as part of its deployment can now also reference an SDI. During package acquisition, Octopus will perform the following steps:
+Any step that can reference a Docker image (including container images) as part of its deployment can now also reference an SDI. During package acquisition, Octopus will perform the following steps:
 
 1. Extract the SDI along with any additional packages it references.
 2. Perform file modifications with traditional features such as **Structured Configuration Variables**, **Substitute Variables in Templates**, **.NET Configuration Variables**, and **.NET Configuration Transforms**.
