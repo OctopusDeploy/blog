@@ -63,10 +63,10 @@ This post proposes new targets and steps that allow Octopus to deploy to a git r
 GitOps views the evolution of operations and deployments as:
 
 1. Starting with manual configuration performed through SSH or RDP.
-2. Processes automated through CLI tools like `kubectl`.
-3. Finally git commits by end users defining the declarative state of a system to be reified by an agent of some kind.
+2. To processes automated through CLI tools like `kubectl`.
+3. And finally git commits by end users defining the declarative state of a system to be reified by an agent of some kind.
 
-GitOps identified running adhoc commands with tools like `kubectl` as a weakness in a delivery pipeline operating at scale. This RFC identifies running adhoc `git` commits as a similar weakness. Because any sufficiently advanced GitOps workflow must eventually treat a git repo like a database.
+GitOps identified running adhoc commands with tools like `kubectl` as a weakness in a delivery pipeline operating at scale. This RFC identifies running adhoc `git` commits as a similar weakness, because any sufficiently advanced GitOps workflow must eventually treat a git repo like a database.
 
 One of the stated goals of team steps is to prefer [declarative over imperative](https://github.com/OctopusDeploy/Architecture/blob/main/Steps/StepDesignGuidelines.md#declarative-over-imperative), meaning new steps will default to creating declarative representations of deployments rather than execute custom commands against an SDK. This fits nicely with the GitOps paradigm.
 
@@ -78,11 +78,11 @@ Steps like `Deploy Kubernetes containers` and the upcoming ECS deployment have b
 
 ### Managing pull requests
 
-Pull requests are a very important aspect of GitOps, as this is how changes are reviewed and authorized. Octopus will provide the opportunity to review, comment on, approve, and merge PRs as part of a standard deployment process or runbook.
+Pull requests are a central tenant of GitOps, as this is how changes are reviewed and authorized. Octopus will provide the opportunity to review, comment on, approve, and merge PRs as part of a standard deployment process or runbook.
 
 ### Allowing GitOps to scale
 
-GitOps is all about scale. To implement the infrastructure required to support GitOps, teams must reach an advanced point in their deployment and DevOps maturity. Most GitOps workflows focus heavily on responding to changes to a git repo, bit don't offer a good solution for managing the incoming changes.
+GitOps is all about scale. To implement the infrastructure required to support GitOps, teams must reach an advanced point in their deployment and DevOps maturity. Most GitOps workflows focus heavily on responding to changes to a git repo, but don't offer a good solution for managing the incoming changes.
 
 GitOps at scale means many teams committing to many repositories with many PRs to be processed. This in turn means providing notifications or a dashboard of pending reviews, which Octopus can provide.
 
@@ -92,7 +92,7 @@ Reporting is a challenge in GitOps. To report on commits to a git repo, a report
 
 Octopus offers a solution here because a deployment process or runbook captures the intention of an action, which can then be used to generate meaningful metrics.
 
-The only solution provided by GitOps to ensure consistent and well formed resources are committed to a repo are pull requests. This does not scale well, as relying on manual reviews of complex YAML or JSON to ensure rules like labels are consistently applied or memory limits are within a certain range will eventually overwhelm reviewers. Octopus provides a solution by committing well known resources defined in repeatable steps.
+The only solution provided by GitOps to ensure that consistent and well formed resources are committed to a repo are pull requests. This does not scale well, as relying on manual reviews of complex YAML or JSON to ensure rules, like labels are consistently applied or memory limits are within a certain range, will eventually overwhelm reviewers. Octopus provides a solution by committing well known resources defined in repeatable steps.
 
 ## How will we solve the problem?
 
@@ -100,9 +100,11 @@ To allow Octopus to function "left of the git repo" we will introduce a new Git 
 
 ### New Git Repository target
 
-A new target called Git Repository will be created. This target will include the git repository URL, credentials, and the default branch.
+A new target called Git Repository will be created. This target will include the git repository URL, credentials, and the default branch:
 
 ![](gittarget.png)
+
+*A mockup of a git target.*
 
 ### Deploy declarative state to a git repo
 
