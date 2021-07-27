@@ -4,15 +4,15 @@ description: Learn how to deploy a container to the Google Cloud Run service.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2021-08-02-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt:
+metaImage: blogimage-deploying-to-google-cloud-run-2021-02.png
+bannerImage: blogimage-deploying-to-google-cloud-run-2021-02.png
+bannerImageAlt: A Docker branded box of images moving towards the Google Cloud Run logo
 isFeatured: false
 tags:
  - Engineering
 ---
 
-Google Cloud Run is a relatively new Platform as a Service (PaaS) offering on the Google Cloud Platform (GCP). It provides the ability to run and scale container images while only paying for the time that a request is being processed.
+Google Cloud Run is a relatively new Platform as a Service (PaaS) offering on the Google Cloud Platform (GCP). It allows you to run and scale container images while only paying for the time that a request is being processed.
 
 In this post, I look at how to deploy a sample application in Cloud Run, and use the traffic shaping rules to perform deployment strategies like feature branches, canary, and blue/green.
 
@@ -20,9 +20,9 @@ In this post, I look at how to deploy a sample application in Cloud Run, and use
 
 Let's start by deploying a sample application called [Random Quotes](https://github.com/OctopusSamples/RandomQuotes-Java). This Java Spring web application has been pushed to Docker Hub, and I use the latest tag at the time of writing which is `octopussamples/randomquotesjava:0.1.189`.
 
-When deploying to Cloud Run, start by pushing the Docker image to a Google Container Registry (GCR). Cloud Run does not support external registries.
+When deploying to Cloud Run, you need to start by pushing the Docker image to a Google Container Registry (GCR). Cloud Run doesn't support external registries.
 
-Using the traditional `docker` CLI tool, you can pull and push an image with the following commands, making sure to replace `cloudrun-314201` with the project ID that will hold your Cloud Run services:
+Using the traditional `docker` CLI tool, you can pull and push an image with the following commands, making sure to replace `cloudrun-314201` with the project ID that holds your Cloud Run services:
 
 ```
 docker pull octopussamples/randomquotesjava:0.1.189
@@ -30,7 +30,7 @@ docker tag octopussamples/randomquotesjava:0.1.189 gcr.io/cloudrun-314201/random
 docker push gcr.io/cloudrun-314201/randomquotesjava:0.1.189
 ```
 
-Other tools like `skopeo` provide a more convenient means of copying Docker images. The command below will directly copy the image from the Docker Hub registry to GCR:
+Other tools like `skopeo` are more convenient for copying Docker images. The command below will directly copy the image from the Docker Hub registry to GCR:
 
 ```
 skopeo copy docker://octopussamples/randomquotesjava:0.1.189 docker://gcr.io/cloudrun-314201/randomquotesjava:0.1.189
@@ -63,7 +63,10 @@ spec:
               containerPort: 80
 ```
 
-The `metadata.name` property defines the name of the service. The `spec.template.spec.containers[0].image` property references the Docker image we copied into GCR. The `spec.template.spec.containers[0].ports.name` property can either be set to `h2c` to indicate that the port is exposed by HTTP2, or `http1` to indicate that the port is exposed by HTTP1. The `spec.template.spec.containers[0].ports.containerPort` property defines the port that is exposed by the container to receive web traffic on.
+- The `metadata.name` property defines the name of the service. 
+- The `spec.template.spec.containers[0].image` property references the Docker image we copied into GCR. 
+- The `spec.template.spec.containers[0].ports.name` property can either be set to `h2c` to indicate that the port is exposed by HTTP2, or `http1` to indicate that the port is exposed by HTTP1. 
+- The `spec.template.spec.containers[0].ports.containerPort` property defines the port that is exposed by the container to receive web traffic on.
 
 To deploy this service, run the command:
 
@@ -91,7 +94,7 @@ To deploy an image created from a feature branch, first copy it into GCR. Here y
 skopeo copy docker://octopussamples/randomquotesjava:0.1.200-blueheader docker://gcr.io/cloudrun-314201/randomquotesjava:0.1.200-blueheader
 ```
 
-The URL assigned to your service is based on the service name. In the YAML below you can see tyou need to change the name of the service to include the feature branch name:
+The URL assigned to your service is based on the service name. In the YAML below you can see you need to change the name of the service to include the feature branch name:
 
 ```yaml
 apiVersion: serving.knative.dev/v1
