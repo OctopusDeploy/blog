@@ -13,7 +13,7 @@ tags:
 
 Setting up your first deployment can be a challenging process. There are new systems and many configurations to set. It can become overwhelming for first-time users. This blog post will guide you through this and reduce the difficulty in setting up your first project. You will do this by utilizing a new feature in Octopus Deploy 2021.1 named Project Bento.
 
-Project Bento is an import/export feature for projects that will import many configurations to get a deployment working. You will use a previously exported project and deploy a sample application to an Azure web application. This application will be visible to you and sharable with your company. The only prerequisite is a running Octopus Deploy instance, either in Octopus Cloud or self-hosted.
+Project Bento is an export/import feature for projects that will import many configurations to get a deployment working. You will use a previously exported project and deploy a sample application to an Azure web application. This application will be visible to you and sharable with your company. The only prerequisite is a running Octopus Deploy instance, either in Octopus Cloud or self-hosted.
 
 These are the steps in Octopus Deploy to deploy the web application:
 
