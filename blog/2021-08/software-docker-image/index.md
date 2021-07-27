@@ -24,24 +24,15 @@ Octopus has similarly seen steadily increasing usage of Docker feeds:
 
 *Octopus Docker feed usage.*
 
-However, containers are typically stored in a container repository, which presents a challenge today as this requires an additional platform to be operated alongside Octopus.
+However, migrating to containerized applications presents a challenge for teams that have relied on features like **Structured Configuration Variables**, **Substitute Variables in Templates**, **.NET Configuration Variables**, and **.NET Configuration Transforms**.
 
-Migrating to containerized applications also presents a challenge for teams that have relied on features like **Structured Configuration Variables**, **Substitute Variables in Templates**, **.NET Configuration Variables**, and **.NET Configuration Transforms**.
+We are also seeing customers increasingly looking to customize container images (see [here](https://octopusdeploy.slack.com/archives/C012AMYFLPR/p1626360196275400) and [here](https://octopusdeploy.slack.com/archives/C012AMYFLPR/p1626383358283600)). This is still quite an involved process involving build and publishing images outside of Octopus to external Docker registries.
 
-This post proposes an integrated container repository within Octopus itself, provides a process through which environment specific Docker images can be deployed much like traditional application artifacts, and allows container images to be generated on the fly.
-
+This post proposes a process through which environment specific Docker images can be deployed much like traditional application artifacts and allows container images to be generated on the fly.
 
 ## What problems are we trying to solve?
 
-The three problems this RFC aims to solve are the overheads of maintaining an external Docker registry, the limitations of externalizing all environment specific configuration from a Docker image, and the need to build and push bespoke container images for unique deployment scenarios.
-
-### Hosting Docker images directly
-
-Deploying any container based application today requires orchestrating Docker image builds pushed to an external Docker registry, with the resulting images consumed by Octopus and passed along to the destination target. This means even the most simple of deployments involving Docker images requires three separate platforms to be configured correctly.
-
-Providing a Docker registry has been suggested via [UserVoice](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/18824059-provide-private-docker-registry).
-
-By integrating a Docker registry we remove the need for customers to implement an external registry, and provide the same kind of convenience as the current built-in feed.
+We want to make it easy to migrate to container deployments and to provide customized container images.
 
 ### Building environment specific Docker images
 
@@ -55,13 +46,9 @@ Customers have two choices when it comes to container images: build a single, ge
 
 By allowing container images to be built on the fly with deployment specific variables, customers unlock the ability to use relatively small and specialized images without the overhead of first building and pushing them.
 
-## Built-in Docker registry
+## How will we solve the problem?
 
-Each space would host a built-in Docker registry implementing the [Docker HTTP API](https://docs.docker.com/registry/spec/api/). This registry would allow [OCI artifacts](https://github.com/opencontainers/artifacts) (typically Docker images, but potentially hosting any kind of OCI artifact) to be pushed and pulled by clients:
-
-![](dockerregistry.png)
-
-*A mockup of an integrated Docker registry.*
+This RFC proposes the ability to build and publish a new Docker image per deployment or runbook run.
 
 ## Hosting Dockerfiles directly
 
@@ -79,12 +66,6 @@ Any step that can reference a Docker image (including container images) as part 
 *A mockup of what an SDI might look like.*
 
 ## Benefits of the new features
-
-With so many companies embracing containers as part of their deployment strategy, extending Octopus to remove barriers to container adoption makes strategic sense. We envisage the proposed features offering customers the following benefits.
-
-### Deploy Docker images with fewer steps
-
-By providing a built-in Docker registry, there is no longer any need to configure and maintain an external Docker registry. This means teams can quickly prototype new container deployment processes, and removes a significant point of friction for anyone trying to migrate to containers.
 
 ### Embracing environment specific Docker images
 
@@ -109,10 +90,6 @@ Baking environment specific configuration into an image guarantees that the appl
 Environment variables are great for simple key/pair values, but not all configuration is that simple. For example, test scripts run with testing tools like [Cypress](https://hub.docker.com/r/cypress/included) or [Postman](https://hub.docker.com/r/postman/newman/) would not be placed in an environment variable. Making these scripts available to containers today often means having the container download scripts from an external file host or mapping shared volumes.
 
 SDIs make running ad hoc scripts quick and easy. The script is pushed as a regular package to the built in feed, an SDI includes the script in an environment specific image, and the self contained image is consumed by the hosting platform with no need for volume mounts or external downloads.
-
-### Autodeploy triggers for Docker images
-
-A built in Docker registry can be integrated with ARC like the built-in feed, bringing deployment triggers to Docker images.
 
 ### Container images are easy to customize
 
