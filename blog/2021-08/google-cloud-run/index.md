@@ -37,7 +37,7 @@ skopeo copy docker://octopussamples/randomquotesjava:0.1.189 docker://gcr.io/clo
 ```
 
 :::hint
-If you try to reference a Docker image from an external registry, you'll receive the error:
+If you try to reference a Docker image from an external registry, you receive the error:
 
 ```
 ERROR: (gcloud.beta.run.services.replace) Expected a Container Registry image path like [region.]gcr.io/repo-path[:tag and/or @digest] or an Artifact Registry image path like [region-]docker.pkg.dev/repo-path[:tag and/or @digest], but obtained octopussamples/randomquotesjava:0.1.189
