@@ -11,9 +11,9 @@ tags:
  - Configuration as Code
 ---
 
-Setting up your first deployment can be a challenging process. There are new systems and many configurations that need to be set up. It can easily become overwhelming for first time users. This blog post is aimed at guiding you through this and reducing the difficulty in setting up your first project. We will do this by utilizing a new feature in Octopus Deploy 2021.1 named Project Bento. 
+Setting up your first deployment can be a challenging process. There are new systems and many configurations to set. It can become overwhelming for first-time users. This blog post will guide you through this and reduce the difficulty in setting up your first project. You will do this by utilizing a new feature in Octopus Deploy 2021.1 named Project Bento.
 
-Project Bento is an import/export feature for projects that will automatically import many of the configurations needed to get a deployment working. You will use a previously exported project and deploy a sample application to an Azure web application. This application will be visible to you and sharable with your company. The only prerequisite is a running Octopus Deploy instance, either in Octopus Cloud or self-hosted.
+Project Bento is an import/export feature for projects that will import many configurations to get a deployment working. You will use a previously exported project and deploy a sample application to an Azure web application. This application will be visible to you and sharable with your company. The only prerequisite is a running Octopus Deploy instance, either in Octopus Cloud or self-hosted.
 
 These are the steps in Octopus Deploy to deploy the web application:
 
@@ -29,7 +29,7 @@ If you haven't set up an Octopus Deploy instance, please do so by selecting one 
 - [Self-hosted on a Windows Server](https://octopus.com/start/server) -> you host it on your infrastructure by [downloading our MSI](https://octopus.com/download) and installing it onto a Windows Server with a SQL Server backend.  Learn more about [our installation requirements](/docs/installation/requirements.md).
 - [Self-hosted as a Docker container](https://octopus.com/blog/introducing-linux-docker-image) -> you run Octopus Deploy in a docker container (currently EAP).  You will still need a [free license](https://octopus.com/start/server).
 
-In this blog post, you are going to use an Azure web application as a deployment target for your application. Octopus Deploy works with many different types of deployment targets and Azure is one of them. The first step is to import an existing project to your new Octopus Deploy instance.
+This blog post will use an Azure web application as a deployment target for your application. Octopus Deploy works with many different types of deployment targets, and Azure is one of them. The first step is to import an existing project to your new Octopus Deploy instance.
 
 ## Import an existing project
 
@@ -37,17 +37,17 @@ In this blog post, you are going to use an Azure web application as a deployment
 The Export/Import Projects feature was added in Octopus Deploy **2021.1**
 :::
 
-The `Export/Import Projects` feature can export one or more projects into a zip file, which can then be imported into other spaces.  The target space may be in a different Octopus Server instance, and projects can be exported and imported between self-hosted and Octopus Cloud instances (see below for some [specific considerations when moving a project to Octopus Cloud](#octopus-cloud)). 
+The Export/Import Projects feature can export one or more projects into a zip file and import them into other spaces. The target space may be in a different Octopus Server instance. Projects can be exported and imported between self-hosted and Octopus Cloud instances.
 
-Export/Import features are found in the overflow menu on the {{Projects}} page. 
+Export/Import features are in the overflow menu on the {{Projects}} page.
 
 ![Import](import-project.png "Import")
 
-The following is the project that you will be using to import to Octopus Deploy:
+The following is the project that you will use to import to Octopus Deploy:
 
 > [guide.1.0.0.zip](https://octopus.com/images/docs/hello-world.1.0.0.zip)
 
-In your brand new instance, navigate to Projects &rightarrow; Import Project &rightarrow; Select zip file and upload the project zip. The zip file will be protected with a password.
+In your brand new instance, navigate to Projects &rightarrow; Import Project &rightarrow; Select zip file and upload the project zip.
 
 :::hint 
 The password for this project is **html**
@@ -55,17 +55,17 @@ The password for this project is **html**
 
 ![Summary](summary-zip.png "Summary")
 
-The benefits of the `Export/Import Projects` feature is that you do not have to manually configure the environment and deployment steps of your project. Although this is a small project, some projects can be large and have complex deployment steps. Using the Export/Import feature ensures these steps are maintained across spaces.
+You do not have to configure the environment and deployment steps of your project manually. Although this is a small project, some projects can be large and have complex deployment steps. Using the Export/Import feature ensures these steps persist across spaces.
 
 :::hint
 If you haven't upgraded to Octopus Deploy 2021.1 now is a great time to do so to use the Export/Import Project features
 :::
 
-You have successfully imported the project, good work! There are just a few other items to configure before deploying the web application. Exporting and importing a project does not capture the deployment targets or the required packages of the project. Deployment targets require a fresh connection on a new instance and packages are not captured to avoid extremely large files being part of the export process.
+You have successfully imported the project, good work! There are a few other items to configure before deploying the web application. Exporting and importing a project does not capture the deployment targets or the required packages of the project. Deployment targets need a new connection on a new instance. Packages are excluded because of their large potential file size.
 
 ## Configure an Azure Account
 
-We need to configure an Azure account and web application to act as a target for Octopus Deploy to deploy to. We could also do this for other deployment targets such as AWS or locally, but for now we will use Azure.
+We need to configure an Azure account and web application to act as a target for Octopus Deploy to deploy. Other targets are possible such as AWS or local.
 
 - Navigate to the Azure [portal](https://portal.azure.com/) to create an account in Azure. 
 
@@ -126,11 +126,11 @@ Click **SAVE AND TEST** to confirm the account can interact with Azure. Octopus 
 A newly created Service Principal may take several minutes before the credential test passes. If you have double checked your credential values, wait 15 minutes and try again.
 :::
 
-Now that we have the Azure account set up in Azure and Octopus deploy we can add the package that will be deployed to Azure.
+Now that we have the Azure account set up in Azure and Octopus deploy, we will upload the package for Azure.
 
 ## Upload an existing package
 
-The web application we are deploying requires some code to deploy. Octopus Deploy makes this code available to deployment targets through packages. A package is some code that will deploy to a target. In this case it will be a deployable tutorial that your web application can display. The package system makes it convenient to interchange or update packages for redeployment at a later stage. The following is the package that you will be using to deploy with Octopus Deploy:
+The web application we are deploying requires some code to deploy. Octopus Deploy makes this code available to deployment targets through packages. A package is some code that will deploy to a target. In this case, it will be a deployable tutorial that your web application can display. The package system makes it convenient to interchange or update packages for redeployment at a later stage. The following is the package that you will be using to deploy with Octopus Deploy:
 
 > [guide.1.0.0.zip](https://octopus.com/images/docs/hello-world.1.0.0.zip)
 
@@ -156,7 +156,7 @@ With Octopus Deploy, you can deploy software to Windows servers, Linux servers, 
 
 ## Deploy to Azure Web Application
 
-Now that we have imported a project, set up the Azure account, set up the deployment target and uploaded the package, everything is set for the deployment. 
+Now that we have imported a project, set up the Azure account, set up the deployment target, and uploaded the package, we will deploy the application.
 
 1. Go to **{{Projects, HTML, create release}}** and step through to deploy the web application to Azure from Test to Development to Production.
 2. Deployment variables have been set up to notify the tasklog of which environment is being deployed. A Hello, [Environment] log message will be displayed
@@ -165,7 +165,7 @@ Now that we have imported a project, set up the Azure account, set up the deploy
 
 ![Variable](variable.png "Variable")
 
-Octopus Deploy provides a runbook feature to run scripts for tasks that lie outside of deploying releases. This project provides a sample runbook that can be run on each environment to display a log message of 'Hello, [Environment] Runbook'.
+Octopus Deploy provides a runbook feature to run scripts for tasks that lie outside of deploying releases. This project provides a sample runbook that runs on each environment to display a 'Hello, [Environment] Runbook' message.
 
 1. Go to the **{{HTML Project, Operations, Runbooks, Run}}**
 2. Select all three environments and runs
@@ -177,11 +177,11 @@ Octopus Deploy provides a runbook feature to run scripts for tasks that lie outs
 
 ![Runbook Log](runbook-log.png "Runbook Log")
 
-Runbooks are a useful way to automate tasks that should not be done as part of a release. Examples include updating databases, switching off and on servers, patching software and more.
+Runbooks are a helpful way to automate tasks that are not part of a release. Examples include updating databases, switching off and on servers, patching software, and more.
 
-Upon success, the web application should now be deployed to your Azure Web Application. Check by going to [your-site].azurewebsites.net where you will see the following page:
+Check your application by going to [your-site].azurewebsites.net where you will see the following page:
 
 ![Deployed Application](deployed-application.png "Deployed Application")
 
-Well done! You have taken a preexisting project and deployed a package to an Azure web application through Octopus Deploy. This deployed application can now be shared to other members of your company to teach them how to deploy their own Octopus Deployments. 
+Well done! You have taken a preexisting project and deployed a package to an Azure web application through Octopus Deploy. You can share this with other company members to teach them how to deploy their own Octopus Deployments.
 
