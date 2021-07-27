@@ -26,9 +26,9 @@ Octopus has similarly seen steadily increasing usage of Docker feeds:
 
 However, migrating to containerized applications presents a challenge for teams that have relied on features like **Structured Configuration Variables**, **Substitute Variables in Templates**, **.NET Configuration Variables**, and **.NET Configuration Transforms**.
 
-Customers are also increasingly looking to customize container images (see [here](https://octopusdeploy.slack.com/archives/C012AMYFLPR/p1626360196275400) and [here](https://octopusdeploy.slack.com/archives/C012AMYFLPR/p1626383358283600)). This is still quite an involved process involving build and publishing images outside of Octopus to external Docker registries.
+Customers are also increasingly customizing container images (see [here](https://octopusdeploy.slack.com/archives/C012AMYFLPR/p1626360196275400), [here](https://octopusdeploy.slack.com/archives/CB2QY9CTD/p1597324718325100), [here](https://octopusdeploy.slack.com/archives/CB2QY9CTD/p1593708361215100)). This is still quite an involved process involving building and publishing images outside of Octopus to external Docker registries.
 
-This post proposes a process through which environment specific Docker images can be deployed much like traditional application artifacts and allows container images to be generated on the fly.
+This post proposes a process for building and deploying environment specific Docker images, much like traditional application artifacts, and allows container images to be generated on the fly.
 
 ## What problems are we trying to solve?
 
@@ -60,8 +60,8 @@ Any step that can reference a Docker image (including container images) as part 
 
 1. Extract the SDI along with any additional packages it references.
 2. Perform file modifications with traditional features such as **Structured Configuration Variables**, **Substitute Variables in Templates**, **.NET Configuration Variables**, and **.NET Configuration Transforms**.
-3. Run `docker build`, and push the resulting image to the built-in Docker registry with a deployment specific tag like `1.2.0-deployments-75`.
-4. The new Docker image is pushed to the associated Docker registry.
+3. Run `docker build` with a deployment specific tag like `1.2.0-deployments-75`.
+4. Push the new Docker image to the associated Docker registry.
 5. The step referencing the SDI is then passed the image reference like `myregistry:8080/spaces-1/mywebapp:1.2.0-deployments-75`.
 
 ![](mockup.png)
@@ -97,8 +97,6 @@ SDIs make running ad hoc scripts quick and easy. The script is pushed as a regul
 ### Container images are easy to customize
 
 Using an SDI as a container image allows almost all aspects of the Calamari execution environment to be configured with each deployment or runbook run. Unique container images can be created for each execution, and Octopus can take care of cleaning up the images afterwards.
-
-[This Slack post](https://octopusdeploy.slack.com/archives/C012AMYFLPR/p1626383358283600) is a good example of the issues faced by customers today.
 
 This also decouples Octopus from the underlying VM hosting a tentacle, lifting concerns like tooling into the container image, with the entire context now being defined in the domain of an Octopus deployment or runbook run.
 
