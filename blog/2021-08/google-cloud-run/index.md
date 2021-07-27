@@ -94,7 +94,7 @@ To deploy an image created from a feature branch, first copy it into GCR. Here y
 skopeo copy docker://octopussamples/randomquotesjava:0.1.200-blueheader docker://gcr.io/cloudrun-314201/randomquotesjava:0.1.200-blueheader
 ```
 
-The URL assigned to your service is based on the service name. In the YAML below you can see you need to change the name of the service to include the feature branch name:
+The URL assigned to your service is based on the service name. In the YAML below, you need to change the name of the service to include the feature branch name:
 
 ```yaml
 apiVersion: serving.knative.dev/v1
