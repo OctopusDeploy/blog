@@ -38,13 +38,13 @@ We want to make it easy to migrate to container deployments and to provide custo
 
 The traditional advice for building environment agnostic Docker images has been to [externalize all configuration via environment variables](https://12factor.net/config). This is certainly good advice for a number of scenarios, but does require many legacy applications to be redesigned to load external values, and does not support the traditional (and much used) configuration file modification features in Octopus.
 
-A interesting discussion on this topic can be found in the [Octopus community Slack #advice channel](https://octopususergroup.slack.com/archives/C6UGLUWMQ/p1617283641350800).
+An interesting discussion on this topic can be found in the [Octopus community Slack #advice channel](https://octopususergroup.slack.com/archives/C6UGLUWMQ/p1617283641350800).
 
 By having Octopus build Docker images for each environment, we offer a logical upgrade path for legacy applications, especially those that have relied on configuration file modification.
 
 ### Building deployment specific container images
 
-Customers have two choices when it comes to container images: build a single, general purpose image for all deployments, or create smaller task specific images. Both require images to be build and deployed outside of Octopus.
+Customers have two choices when it comes to container images: build a single, general purpose image for all deployments, or create smaller task specific images. Both require images to be built and deployed outside of Octopus.
 
 By allowing container images to be built on the fly with deployment specific variables, customers unlock the ability to use relatively small and specialized images without the overhead of first building and pushing them.
 
@@ -62,7 +62,7 @@ Any step that can reference a Docker image (including container images) as part 
 2. Perform file modifications with traditional features such as **Structured Configuration Variables**, **Substitute Variables in Templates**, **.NET Configuration Variables**, and **.NET Configuration Transforms**.
 3. Run `docker build` with a deployment specific tag like `1.2.0-deployments-75`.
 4. Push the new Docker image to the associated Docker registry.
-5. The step referencing the SDI is then passed the image reference like `myregistry:8080/spaces-1/mywebapp:1.2.0-deployments-75`.
+5. The step referencing the SDI is then passed an image reference like `myregistry:8080/spaces-1/mywebapp:1.2.0-deployments-75`.
 
 ![](mockup.png)
 
