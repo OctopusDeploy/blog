@@ -1,5 +1,5 @@
 ---
-title: Integrated Docker registry
+title: Source Docker Images
 description: Learn how Octopus is evolving to be the best deployment tool in 2022.
 author: matthew.casperson@octopus.com
 visibility: private # DO NOT CHANGE THIS!!!! This is not a public post!
@@ -26,7 +26,7 @@ Octopus has similarly seen steadily increasing usage of Docker feeds:
 
 However, migrating to containerized applications presents a challenge for teams that have relied on features like **Structured Configuration Variables**, **Substitute Variables in Templates**, **.NET Configuration Variables**, and **.NET Configuration Transforms**.
 
-We are also seeing customers increasingly looking to customize container images (see [here](https://octopusdeploy.slack.com/archives/C012AMYFLPR/p1626360196275400) and [here](https://octopusdeploy.slack.com/archives/C012AMYFLPR/p1626383358283600)). This is still quite an involved process involving build and publishing images outside of Octopus to external Docker registries.
+Customers are also increasingly looking to customize container images (see [here](https://octopusdeploy.slack.com/archives/C012AMYFLPR/p1626360196275400) and [here](https://octopusdeploy.slack.com/archives/C012AMYFLPR/p1626383358283600)). This is still quite an involved process involving build and publishing images outside of Octopus to external Docker registries.
 
 This post proposes a process through which environment specific Docker images can be deployed much like traditional application artifacts and allows container images to be generated on the fly.
 
@@ -37,6 +37,8 @@ We want to make it easy to migrate to container deployments and to provide custo
 ### Building environment specific Docker images
 
 The traditional advice for building environment agnostic Docker images has been to [externalize all configuration via environment variables](https://12factor.net/config). This is certainly good advice for a number of scenarios, but does require many legacy applications to be redesigned to load external values, and does not support the traditional (and much used) configuration file modification features in Octopus.
+
+A interesting discussion on this topic can be found in the [Octopus community Slack #advice channel](https://octopususergroup.slack.com/archives/C6UGLUWMQ/p1617283641350800).
 
 By having Octopus build Docker images for each environment, we offer a logical upgrade path for legacy applications, especially those that have relied on configuration file modification.
 
@@ -59,7 +61,8 @@ Any step that can reference a Docker image (including container images) as part 
 1. Extract the SDI along with any additional packages it references.
 2. Perform file modifications with traditional features such as **Structured Configuration Variables**, **Substitute Variables in Templates**, **.NET Configuration Variables**, and **.NET Configuration Transforms**.
 3. Run `docker build`, and push the resulting image to the built-in Docker registry with a deployment specific tag like `1.2.0-deployments-75`.
-4. The step referencing the SDI is then passed the image reference like `octopusserver:8080/spaces-1/mywebapp:1.2.0-deployments-75`.
+4. The new Docker image is pushed to the associated Docker registry.
+5. The step referencing the SDI is then passed the image reference like `myregistry:8080/spaces-1/mywebapp:1.2.0-deployments-75`.
 
 ![](mockup.png)
 
