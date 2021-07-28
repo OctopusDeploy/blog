@@ -9,7 +9,7 @@ bannerImage: blogimage-deploying-to-google-cloud-run-2021-02.png
 bannerImageAlt: A Docker branded box of images moving towards the Google Cloud Run logo
 isFeatured: false
 tags:
- - Engineering
+ - DevOps
 ---
 
 Google Cloud Run is a relatively new Platform as a Service (PaaS) offering on the Google Cloud Platform (GCP). It allows you to run and scale container images while only paying for the time that a request is being processed.
