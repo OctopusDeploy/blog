@@ -74,7 +74,7 @@ To deploy this service, run the command:
 gcloud beta run services replace service.yaml --platform managed
 ```
 
-After the service is deployed, you receive a URL like https://randomquotes-5od2layuca-ts.a.run.app that can be used to access it. Opening the URL will likely result in the following error being displayed:
+After the service is deployed, you receive a URL like `https://randomquotes-5od2layuca-ts.a.run.app` that can be used to access it. Opening the URL will likely result in the following error being displayed:
 
 ![](forbidden.png "width=500")
 
@@ -117,7 +117,7 @@ Again, you deploy this service with the command:
 gcloud beta run services replace service.yaml --platform managed
 ```
 
-The returned URL will be something like https://randomquotes-blueheader-5od2layuca-ts.a.run.app. 
+The returned URL will be something like `https://randomquotes-blueheader-5od2layuca-ts.a.run.app`. 
 
 By renaming the service you can now run the feature branch side by side with the mainline deployment:
 
@@ -188,7 +188,7 @@ A canary deployment can be achieved by gradually directing more traffic to the g
 gcloud run services update-traffic randomquotes --platform managed --to-revisions=randomquotes-0-1-200-blueheader=10,randomquotes-0-1-189=90
 ```
 
-This command can be repeated until 100% of traffic is directed to the new revision. A more traditional blue/green deployment would see 100% of traffic cut over to the new revision immediately after any testing on the new stack is completed.
+This command can be repeated until 100% of traffic is directed to the new revision. A more traditional blue/green deployment would see 100% of traffic cut over to the new revision immediately after any testing on the new stack is complete.
 
 After testing is complete, we can remove the `green` tag with the command:
 
