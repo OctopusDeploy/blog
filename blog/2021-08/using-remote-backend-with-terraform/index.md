@@ -13,7 +13,7 @@ tags:
  - Runbooks
 ---
 
-In this post, I demonstrate using a GitHub repository as the source of Terraform templates and store workspace states in Terraform's own cloud offering.
+Terraform lets you define infrastructure with code. In this post, I demonstrate how to use a GitHub repository as the source of Terraform templates and to store workspace states in Terraform's own cloud offering.
 
 :::hint
 Be careful when running Terraform commands locally and via Octopus from the same workspace, as different versions of Terraform have incompatible state formats. 
