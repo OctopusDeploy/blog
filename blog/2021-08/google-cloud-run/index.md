@@ -80,7 +80,7 @@ After the service is deployed, you receive a URL like https://randomquotes-5od2l
 
 The solution is to give the `allUsers` user the `Cloud Run Invoker` permission:
 
-![](permissions.jpg "width=500")
+![](permissions.png "width=500")
 
 You can then open your web app:
 
