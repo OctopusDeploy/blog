@@ -72,7 +72,8 @@ Each component in Octopus Deploy needs to be assigned to a unique project. A par
 - Single responsibility principle, each project deploys one thing to the best of its ability.
 - Tenants are assigned to different projects.
 - Tenants are assigned to different environments per project.
-- Tenants are on different release schedules.
+- Tenants are on different **Production** release schedules.
+- Tenants have a different testing cycle.
 - Tenants require their own set of approvals, but a person should only have to approve a release once.
 - Applications have to be deployed to tenants in a specific order.
 - A customer approves their change on Tuesday for a Thursday night deployment.
@@ -87,15 +88,30 @@ Before proceeding, let's examine how the step template handles different use cas
 
 ### Tenants not assigned to child projects
 
-The step template will automatically detect if you're doing a deployment with a tenant, and run additional logic:
+The step template will automatically handle all the possible multi-tenant use cases:
 
 - Is the tenant assigned to the child project?  If no, exit the step, log a message and proceed onto the next step.
 - Is the tenant assigned to the child project for that specific environment?  If no, exit the step, log a message, and proceed to the next step.
+- Is the tenant assigned to the child project for that specific environment?  If yes, find the latest release and trigger a deployment.
 - Is the child project configured to run multi-tenant?  If no, run the child project without supplying a tenant.
 
 ### Choosing a release
 
-One of the step template's core business rules is to pick the last successfully deployed release in the source environment.  Multi-tenancy makes this a bit more complicated.  Consider this scenario:
+One of the step template's core business rules is to pick the last successfully deployed release in the source environment.  The majority of the logic is focused on calculating that source environment.  That runs through three logic gates.
+
+- When source environment is provided, use that.
+- When the channel is provided, find the phase before the destination environment's phase.
+- When no channel is provided, use the **Default** channel, then find the phase before the destination environment's phase.
+
+Once the source environment is known, find the latest _successful_ release.  The step template uses the task log to calculate which release to promote.  Using the advanced search filters on the Task page, you can see, in real-time, what release will be picked by the step template.
+
+![Task log with advanced filters](multi-tenancy-release-management-task-log.png)
+
+:::hint
+When the destination environment is the first phase in the channel's lifecycle it will find the newest release created for the channel matching the release pattern provided.
+:::
+
+Multi-tenancy adds a layer of complication.  Consider this scenario:
 
 ![A multi-tenant child project with a complex release](multi-tenant-picking-release-complex.png)
 
@@ -111,15 +127,7 @@ What release will be picked by the step template when it promotes the latest `20
 - **Dogs Only**: 2021.1.0.15
 - **All Pets**: 2021.1.0.1
 
-You must provide the step template with a destination environment (**Staging**), a channel (**Default**, if no channel is provided), and a release number pattern (`2021.1.0.*`).  
-
-With this information the step template will:
-
-1. Use the channel's lifecycle to calculate the source environment, which is **Test**.
-2. Pull all the releases for the channel matching the `2021.1.0.*` pattern.
-3. Loop through those releases to find the last release successfully deployed to **Test**.  Note, that is not the newest release created, but the last one deployed to **Test**.
-
-Multi-tenancy adds some complexity:
+Multi-tenancy added that complexity because:
 
 - Only **All Pets** and **Internal** are assigned to the **Test** environment.
 - Tenants can have different releases.
@@ -158,6 +166,10 @@ For each tenant, connect the newly created project for the **Staging** and **Pro
 
 ![Assigning tenants to release orchestration project](assigning-tenants-to-release-orchestration-project.png)
 
+:::hint
+The example scenarios assume a build server will deploy to all the tenants in **Development**.  The step template was not written with that assumption.  Because **Development** is the first phase in the channel's lifecycle, it will find the latest release created matching the release pattern provided.
+:::
+
 ### Scenario: Deploying the latest release for the tenant from Test to Staging
 
 In this scenario, we'll configure the parent project to deploy all the child components from **Test** to **Staging** in a specific order.  For now, we're not concerned with approvals.  
@@ -170,16 +182,21 @@ Go to the newly created project's deployment process and add a `Deploy Child Oct
 
 Here are the values for each parameter:
 
+- **Octopus Base URL**: Accept the default value, `#{Octopus.Web.ServerUri}`.  You can configure that value at Configuration -> Nodes.  This is pre-configured for Octopus Cloud.
 - **Octopus API Key**: The API key variable, `#{Project.ChildProjects.ReleaseAPIKey}`.
-- **Octopus Child Space**: Accept the default value. This example isn't creating a release orchestration project in another space.
+- **Child Project Space**: Accept the default value. This example isn't creating a release orchestration project in another space.
 - **Child Project Name**: The name of the child project.
-- **Child Project Channel**: Accept the default (empty) value The child project only has one channel.
 - **Child Project Release Number**: The release pattern variable, `#{Project.ChildProjects.ReleasePattern}`.
 - **Child Project Release Not Found Error Handle**: Accept the default value, which says if the release doesn't exist, skip it.
 - **Destination Environment Name**: Accept the default value. Use the same environment as the parent project. 
 - **Source Environment Name**: Accept the default (empty) value This example will let the step template decide the source environment.
+- **Child Project Channel**: Accept the default (empty) value The child project only has one channel.
+- **Tenant Name**: Accept the default value, `#{Octopus.Deployment.Tenant.Name}`.
 - **Child Project Prompted Variables**: Accept the default (empty) value. There are no prompted variables. 
+- **Deployment Mode**: Accept the default value.  The example is doing a deployment not a redeploy.
 - **Force Redeployment**: Accept the default value. The example won't redeploy an existing release.
+- **Refresh Variable Snapshots**: Accept the default value.  The example won't refresh child project variable snapshots.
+- **Specific Deployment Targets**: Accept the default value.  The example isn't deploying to specific machines.
 - **Ignore Specific Machine Mismatch**: Accept the default value. We're not adding deployment target triggers yet.
 - **Save Release Notes as Artifacts**: Accept the default value.
 - **What If**: Accept the default value. We're not adding the approvals yet.
