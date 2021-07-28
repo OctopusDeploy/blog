@@ -34,9 +34,9 @@ There is a common pattern to these issues. Interacting with ten things (tenants,
 
 We know Octopus is the best tool for deploying to thousands of targets. We have seen runbooks empowering teams to manage that same infrastructure. By taking the next logical step and allowing Octopus itself to be managed through these proven processes, we can ensure Octopus will scale to meet enterprise requirements.
 
-## What is out of scope
+## How might we solve the problem
 
-The proposed steps deliberately do not attempt to introduce any new processes or paradigms to deployment processes or runbooks. They are focused on automating the same interactions typically performed through the UI, likely as part of a runbook.
+Below are some thoughts on a potential solution where Octopus is exposed as a target, and new steps provide the ability to automate the kinds of interactions end users would perform through the web based UI.
 
 ## The new target
 
