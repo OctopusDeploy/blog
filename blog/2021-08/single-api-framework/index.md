@@ -3,7 +3,7 @@ title: A single API framework
 description: A brief summary of the post.
 author: richard.everett@octopus.com
 visibility: private
-published: 3020-01-01
+published: 3020-01-01-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt:
@@ -12,32 +12,79 @@ tags:
   - tag
 ---
 
-Introductory paragraph that tells the reader why they should read on.
+Octopus Deploy was [first announced](https://paulstovell.com/octopus-intro/) in 2011, and back then the low-ceremony approach of [NancyFx](https://github.com/NancyFx/Nancy) made it an ideal framework to use for our API layer. On top of Nancy, we added a bespoke layer which made it easy to add new routes which conformed to our conventions.
 
-## Body
+But as we continue to grow, we’re finding that this bespoke layer has been a source of confusion for new starters. The world has also changed around us, and as of 2020, Nancy is no longer being maintained. So it is time to migrate Octopus Deploy to a new, more standardised way of writing an API. One that leverages existing knowledge of developers who join the company. We have chosen ASP.NET controllers.
 
-The body of the post is where you share your hypothesis, how-to, or story.
 
-### Subheadings
+The Octopus Deploy API contains 426 different endpoints spread across 73 Nancy modules (a collection of endpoints grouped into a single class), where each module defines endpoints that relate to a specific resource type. It was clear to us this was going to be a significant undertaking.
 
-Use three ### to include H3 headings.
 
-Use **Bold** text for UI labels, use single back-tics for `parameters` and `filepaths`, and three back-tics for code blocks:
+So we adopted a [strategy](https://lethain.com/migrations/): Derisk, Enable, Finish.
 
-```
-Write-Host "Hello, World!"
-```
+## Derisk
 
-Use the following (minus the backtics) to include images:
+We devised a way to allow ASP.NET to live side-by-side with Nancy. Incoming requests would first be passed to ASP.NET middleware and if the request matched an ASP.NET route, then the relevant controller would be called. However, if a match wasn’t found, then the request would be passed on to Nancy.
 
-```
-![Description of the image](/path/to/image.png "width=500")
-```
+
+Next we started with a single Nancy module and migrated the endpoints in it one-by-one. This was done in three steps per endpoint:
+
+
+1. Analyse & Test
+2. Migrate
+3. Verify
+
+### Analyse & Test
+
+We used [Assent](https://github.com/droyad/Assent) tests to snapshot the entire HTTP response from an endpoint, for both the happy path and also any edge cases. These tests also measured the response time for an endpoint so we could check for any performance regressions.
+
+### Migrate
+
+For a simple GET endpoint, the migration might be relatively trivial. For endpoints which mutated state, things could be more time consuming as rules such as validation needed to be considered, understood, and ported over to the ASP.NET controller pattern.
+
+### Verify
+
+The previously-added tests would be re-run in CI, alerting us to any performance regressions, functional changes or alterations of the response content. Objective decisions could then be made about any changes seen and whether they were acceptable or not.
+
+## Enable
+
+This approach was successful and showed us that migrating the entire Octopus Deploy API would be possible. It also showed us that while Nancy endpoints typically took around 100ms to return a response, the first call to an ASP.NET endpoint would return in around 200ms but subsequent calls took 30-40ms.
+
+A team of 4 engineers then spent six months focussing on migrations.
+
+To refine our approach to migrating we decided to target endpoints which were similar and less-complex. To find out which endpoints met these criteria we wrote a C# script, executed in LINQPad, which reflected over the Octopus Deploy codebase and grouped endpoints by common code and base classes. To get a measure of relative complexity, we sorted by a metric based on lines of code and cyclomatic complexity. This grouping and sorting allowed us to focus on the mechanism of migration while avoiding too much domain complexity.
+
+We learned a few things:
+
+- Due to the performance improvements of ASP.NET we did not feel it necessary to continue testing for performance regressions.
+- Snapshot-based tests can be challenging to write because you have to account for and “scrub” data that changes between invocations of an endpoint, such as timestamps or IDs.
+- For tests that are checking edge cases, it can be simpler to just assert on the parts of the response that you really care about, such as response code and any error text.
+- Tests need data, which can be nontrivial to create, so it’s important to separate this concern from the specifics of your tests.
+- Establishing (and documenting) repeatable patterns for how you migrate is vital, as it enables others in the engineering team to do migrations as well.
+- Understanding the domain that is specific to an endpoint can be the hardest part of a migration.
+
+Further, we found that this type of work can be repetitive, risking dips in developer motivation. To combat this we made sure to observe milestones along the way, such as % endpoints migrated and migration of all endpoints of a specific grouping or type.
+
+
+We also tracked our progress with a variation on the classic burndown chart.
+
+![NancyEndpoints burndown chart](NancyEndpointsBurndown 2021-07-26.png "width=500")
+
+## Finish
+
+From the outset of this work it was agreed that the largest celebration would happen and the biggest benefit would be seen when 100% of the API had been migrated to ASP.NET.
+
+
+After six months we had 40% of the API endpoints migrated so we have moved to a new phase of migrations, with agreement across the engineering team *that if you're changing an area, cover it with tests and migrate the rest of the Nancy endpoints in that area while you're in that space.* This approach leverages developer domain knowledge and also spreads the migration work across the whole engineering team.
+
 
 ## Conclusion
 
-Close off the post by restating the main points of the post, share any closing thoughts, and invite feedback.
+- A migration like this can be done, but it takes a large investment.
+- It’s important to be able to quantify the work, and find out the most effective way to organise efforts.
+- This is very parallelizable work.
+- Establishing (and documenting) patterns allows any developer within an organisation to help.
+- You have to accept a certain level of risk.
+- Finding a way to measure progress allows you to celebrate key milestones on the way.
 
-## Learn more
-
-- [link](https://www.example.com/resource)
+Happy deployments!
