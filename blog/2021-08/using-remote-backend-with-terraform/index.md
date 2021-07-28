@@ -13,7 +13,7 @@ tags:
  - Runbooks
 ---
 
-Terraform lets you define infrastructure with code. In this post, I demonstrate how to use a GitHub repository as the source of Terraform templates and to store workspace states in Terraform's own cloud offering.
+Terraform lets you define infrastructure with code. In this post, I demonstrate how to use a GitHub repository as the source of Terraform templates. I also explain how to store workspace states in Terraform's own cloud offering.
 
 :::hint
 Be careful when running Terraform commands locally and via Octopus from the same workspace, as different versions of Terraform have incompatible state formats. 
@@ -58,7 +58,7 @@ Next, you need to configure Octopus Deploy to use your GitHub repository as a [p
 
 For this post, I created a [sample repository](https://github.com/OctopusDeploy/TerraformBackendSample) that you can easily fork for your project. 
 
-There are four files in the repository. You can structure these files differently if you like; but ensure your project and back-end variables are kept as separate files.
+There are four files in the repository. You can structure these files differently; but ensure your project and back-end variables are kept as separate files.
 
 Remember, only commits with tags are available in the feed, so add a tag to your repository.
 
@@ -113,9 +113,9 @@ resource "aws_s3_bucket" "mybucket" {
 }
 ```
 
-**3.** **terraform.auto.tfvars** - Here you store variables used in other files. Octopus will perform [variable substitution](https://octopus.com/docs/projects/variables/variable-substitutions) before using the file. 
+**3.** **terraform.auto.tfvars** - Here you store variables used in other files. Octopus will perform [variable substitutions](https://octopus.com/docs/projects/variables/variable-substitutions) before using the file. 
 
-Note that this file must have the extension `.auto.tfvars` otherwise it will not be used by the remote back-end.
+Note that this file must have the extension `.auto.tfvars` otherwise it won't be used by the remote back-end.
 
 ``` 
 bucket_name = "#{BucketName}"
@@ -149,7 +149,7 @@ Navigate to **{{Infrastructure > Accounts}}** and add your AWS account key and s
 Now navigate to **Variables** on the left and add the two variables that you defined in your `.tfvars` files:
 
 - **AWS Account**: Select the **Value** field, and **change type** to **AWS Account**, then select the account you have added to the **Infrastructure** tab.
-- **BucketName**: The desired name of your S3 bucket (if you click **Open editor** and tick **Prompt for value** the value will have to be entered manually on every runbook run).
+- **BucketName**: The desired name of your S3 bucket (if you click **Open editor** and tick **Prompt for value**, the value will have to be entered manually on every runbook run).
 - **TerrraformCloudRemoteToken**: Change type to **Sensitive** and paste in the secret token for your Terraform Cloud workspace.
 
 ![Octopus Project Variables](octopus-project-variables.png)
