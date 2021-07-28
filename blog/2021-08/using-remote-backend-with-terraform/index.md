@@ -15,8 +15,7 @@ tags:
 
 In this post, I demonstrate using a GitHub repository as the source of Terraform templates and store workspace states in Terraform's own cloud offering.
 
-## Note on Terraform versions
-
+:::hint
 Be careful when running Terraform commands locally and via Octopus from the same workspace, as different versions of Terraform have incompatible state formats. 
 
 If you use Terraform Cloud you can specify the exact version of Terraform you want to use via **{{Settings > General}}**.
@@ -34,6 +33,7 @@ terraform {
 ```
 
 See [this GitHub issue](https://github.com/hashicorp/terraform/issues/23290) for more details.
+:::
 
 ## Creating a new workspace in Terraform Cloud
 
