@@ -1,22 +1,29 @@
 ---
 title: Deploying to Google App Engine
-description: Learn how to deploy a compiled application to Google App Engine
+description: Learn how to deploy a compiled application to Google App Engine.
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
+visibility: public
+published: 2021-08-09-1400
 metaImage: 
 bannerImage: 
 tags:
- - Octopus
+ - DevOps
 ---
 
-Google App Engine (GAE) is one of the original Platform as a Service (PasS) offerings provided by the Google Cloud Platform (GCP). GAE hosts web applications written in a variety of different languages, and also provides network routing, job scheduling, persistent data storage, and task queues.
+Google App Engine (GAE) is one of the original Platform as a Service (PasS) offerings provided by the Google Cloud Platform (GCP). 
 
-In this post we'll look at how to deploy a sample application to GAE and manipulate the networking to implement common deployment scenarios like blue/green, canary, and feature branch deployments.
+GAE hosts web applications written in a variety of different languages. It also provides network routing, job scheduling, persistent data storage, and task queues.
+
+In this post, I look at how to deploy a sample application to GAE and manipulate the networking to implement common deployment scenarios like blue/green, canary, and feature branch deployments.
 
 ## A simple deployment
 
-GAE offers two kinds of deployments for Java: deploying source code to be compile by GAE, and deploying compiled applications. Allowing GAE to compile your source code is convenient, although for this example we'll make use of a JAR file that has already been compiled by our CI system.
+GAE offers two kinds of deployments for Java: 
+
+- Deploying source code to be compile by GAE
+- Deploying compiled applications 
+
+Allowing GAE to compile your source code is convenient, although for this example I use a JAR file that's already been compiled by our CI system.
 
 :::hint
 The ability to deploy a compiled application is unique to Java in GAE. Other runtimes like Node, Python, Ruby, and PHP don't typically produce compiled applications. Go is the notable exception, and in that case you do need to deploy your source code and allow GAE to compile it for you.
