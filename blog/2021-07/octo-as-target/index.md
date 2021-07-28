@@ -30,7 +30,7 @@ Customer solutions have identified a number of issues when running Octopus at sc
 * [How can I easily coordinate multiple project deployments?](https://trello.com/c/9IZmL1Oa/159-how-can-i-easily-coordinate-multiple-project-deployments)
 * [How can I see and promote all the releases in test not currently in staging?](https://trello.com/c/4IokRDDO/162-how-can-i-see-and-promote-all-the-releases-in-test-not-currently-in-staging)
 
-There is a common pattern to these issues. Interacting with ten things (tenants, roles, projects, deployments etc) is manageable, if tedious. Interacting with hundreds of resources is time consuming and frustrating. Scaling up to thousands of resources and Octopus becomes almost impossible to maintain via the web UI, and requires complex custom scripts.
+There is a common pattern to these issues. Interacting with ten things (tenants, roles, projects, deployments etc) is manageable, if tedious. Interacting with hundreds of resources is time consuming and frustrating. Scaling up to thousands of resources means Octopus becomes almost impossible to maintain via the web UI, and requires complex custom scripts.
 
 We know Octopus is the best tool for deploying to thousands of targets. We have seen runbooks empowering teams to manage that same infrastructure. By taking the next logical step and allowing Octopus itself to be managed through these proven processes, we can ensure Octopus will scale to meet enterprise requirements.
 
