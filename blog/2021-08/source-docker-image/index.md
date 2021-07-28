@@ -48,7 +48,7 @@ Customers have two choices when it comes to container images: build a single, ge
 
 By allowing container images to be built on the fly with deployment specific variables, customers unlock the ability to use relatively small and specialized images without the overhead of first building and pushing them.
 
-## How will we solve the problem?
+## How might we solve the problem?
 
 This RFC proposes the ability to build and publish a new Docker image per deployment or runbook run.
 
