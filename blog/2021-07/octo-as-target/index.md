@@ -126,7 +126,7 @@ This RFC has been written to gauge interest and collect feedback for possible st
 
 We want your feedback to determine if this feature is a good fit for Octopus. Specifically we would like to know:
 
-* Does it makes sense for Octopus to be able to automate itself or other Octopus instances?
+* Is the idea of Octopus automating itself or other Octopus instances valuable?
 * Will these proposed steps solve problems you have seen customers encountering?
 * Would the concept of "Octopus as a target" (once rounded out with additional similar steps) be valuable for your teams in terms of sales, marketing, or solutions?
 

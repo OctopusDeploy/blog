@@ -149,6 +149,7 @@ This RFC has been written to gauge interest and collect feedback for possible st
 
 We want your feedback to determine if this feature is a good fit for Octopus. Specifically we would like to know:
 
+* Is integrating Octopus with GitOps workflows like those used by ArgoCD and Flux valuable?
 * Does the idea of writing templates to a git repository make sense?
 * Will these proposed features solve problems you have seen customers encountering?
 * Would first class GitOps support be valuable for your teams in terms of sales, marketing, or solutions?
