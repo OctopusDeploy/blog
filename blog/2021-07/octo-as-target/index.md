@@ -28,7 +28,7 @@ Customer solutions have identified a number of issues when running Octopus at sc
 
 There is a common pattern to these issues. Interacting with ten things (tenants, roles, projects, deployments etc) is manageable, if tedious. Interacting with hundreds of resources is time consuming and frustrating. Scaling up to thousands of resources means Octopus becomes almost impossible to maintain via the web UI, and requires complex custom scripts.
 
-The processes discussed in the links above can be broken down into those that are performed frequently, such as creating and deploying releases, and those that are performed infrequently, such as updating deployment projects, editing teams, adding tags to tentants etc.
+The processes discussed in the links above can be broken down into those that are performed frequently, such as creating and deploying releases, and those that are performed infrequently, such as updating deployment projects, editing teams, adding tags to tenants etc.
 
 This RFC is limited to addressing those processes that are performed frequently, specifically coordinating multiple project deployments, promoting releases, and executing runbooks.
 
