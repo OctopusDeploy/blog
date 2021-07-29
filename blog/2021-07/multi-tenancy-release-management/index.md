@@ -97,18 +97,18 @@ The step template will automatically handle all the possible multi-tenant use ca
 
 ### Choosing a release
 
-One of the step template's core business rules is to pick the last successfully deployed release in the source environment.  The majority of the logic is focused on calculating that source environment.  That runs through three logic gates.
+One of the step template's core business rules is to pick the last successfully deployed release in the source environment.  Most logic is focused on calculating that source environment, and runs through three logic gates:
 
-- When source environment is provided, use that.
+- When the source environment is provided, use that.
 - When the channel is provided, find the phase before the destination environment's phase.
 - When no channel is provided, use the **Default** channel, then find the phase before the destination environment's phase.
 
-Once the source environment is known, find the latest _successful_ release.  The step template uses the task log to calculate which release to promote.  Using the advanced search filters on the Task page, you can see, in real-time, what release will be picked by the step template.
+Once the source environment is known, find the latest _successful_ release.  The step template uses the task log to calculate which release to promote.  Using the advanced search filters on the Tasks page, you see in real-time which release will be picked by the step template.
 
 ![Task log with advanced filters](multi-tenancy-release-management-task-log.png)
 
 :::hint
-When the destination environment is the first phase in the channel's lifecycle it will find the newest release created for the channel matching the release pattern provided.
+When the destination environment is the first phase in the channel's lifecycle, it will find the newest release created for the channel matching the release pattern provided.
 :::
 
 Multi-tenancy adds a layer of complication.  Consider this scenario:
@@ -127,7 +127,7 @@ What release will be picked by the step template when it promotes the latest `20
 - **Dogs Only**: 2021.1.0.15
 - **All Pets**: 2021.1.0.1
 
-Multi-tenancy added that complexity because:
+Multi-tenancy adds that complexity because:
 
 - Only **All Pets** and **Internal** are assigned to the **Test** environment.
 - Tenants can have different releases.
@@ -172,7 +172,7 @@ The example scenarios assume a build server will deploy to all the tenants in **
 
 ### Scenario: Deploying the latest release for the tenant from Test to Staging
 
-In this scenario, we'll configure the parent project to deploy all the child components from **Test** to **Staging** in a specific order.  For now, we're not concerned with approvals.  
+In this scenario, we configure the parent project to deploy all the child components from **Test** to **Staging** in a specific order.  For now, we're not concerned with approvals.  
 
 #### Add the steps
 
@@ -209,7 +209,7 @@ Here are the values for each parameter:
 
 #### Create the release and deploy it
 
-After adding and configuring the steps, you create a release.  I will be making many changes to the parent project in this post; you might see `2021.1.0-RCx` for the release numbers.  
+After adding and configuring the steps, you create a release.  I'll be making many changes to the parent project in this post; you might see `2021.1.0-RCx` for the release numbers.  
 
 ![](release-orchestration-create-release.png)
 
@@ -221,7 +221,7 @@ Wait for the release to finish.  For the Web UI project, you should see release 
 
 ![The correct release is picked up for the odd tenant](odd-tenant-selecting-correct-release.png)
 
-For the other projects, we should see `2021.1.0.15` get picked up.
+For the other projects, you should see `2021.1.0.15` get picked up.
 
 ![The correct release is picked up for the internal tenant](internal-tenant-selecting-correct-release.png)
 
