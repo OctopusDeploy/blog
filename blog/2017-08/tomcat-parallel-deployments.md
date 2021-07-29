@@ -10,10 +10,6 @@ tags:
  - Product
 ---
 
-<div style="background-color:#e9edf2;">
-<img style="display:block; margin: 0 auto; padding: 20px 0 20px 20px;" alt="Octopus Deploy Certificates with WildFly" src="https://i.octopus.com/blog/2017-06/java-octopus.png" />
-</div>
-
 Here at Octopus we are hard at work building support for Java and servers like Tomcat.  Although this work is still in progress, I wanted to shared a neat feature of Tomcat that you will be able to utilize through Octopus Deploy when this Java work is released. 
 
 :::warning

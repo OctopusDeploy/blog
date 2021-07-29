@@ -10,10 +10,6 @@ tags:
  - Product
 ---
 
-<div style="background-color:#e9edf2;">
-<img style="display:block; margin: 0 auto; padding: 20px 0 20px 20px;" alt=Octopus Loves Java" src="https://i.octopus.com/blog/2017-06/java-octopus.png" />
-</div>
-
 Octopus was originally built with .NET developers in mind, and comes with a number of conventions that make deploying .NET applications easy.  At a basic level, Octopus provided Tentacle as a transport layer, and the ability to execute PowerShell.  Layered on top of that, there are built-in steps to deploy an app to IIS, or to set up a Windows service, and there are conventions to deal with .NET configuration files or transforms.
 
 Of course you can already use Octopus for more than just .NET applications - you could ZIP a Java application and push it to a Windows machine, and use PowerShell to configure it. Or more recently you could do the same with SSH and Bash. And that’s enough to make Java deployments work - I recently showed how to deploy to both [WildFly](https://octopus.com/blog/wildfly-deploy) and [Tomcat](https://octopus.com/blog/octopus-tomcat), as well as deploying [Spring Boot applications as Windows services](https://octopus.com/blog/spring-boot-windows-services).

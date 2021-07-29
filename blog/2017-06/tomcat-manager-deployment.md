@@ -10,10 +10,6 @@ tags:
  - Product
 ---
 
-<div style="background-color:#e9edf2;">
-<img style="display:block; margin: 0 auto; padding: 20px 0 20px 20px;" alt="Deploying Tomcat Apps via the Manager" src="https://i.octopus.com/blog/2017-06/java-octopus.png" />
-</div>
-
 In a previous post, I showed you how to deploy to Tomcat from Octopus Deploy by extracting a WAR file into the Tomcat `webapps` folder.  In addition to file copies, Tomcat also supports deploying WAR files through the [manager application](https://tomcat.apache.org/tomcat-7.0-doc/html-manager-howto.html) that is bundled with Tomcat distributions.
 
 In this post, I’ll show you how to deploy WAR files in Tomcat via the Tomcat Manager.
