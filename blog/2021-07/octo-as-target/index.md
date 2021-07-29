@@ -54,7 +54,7 @@ The first milestone focuses on automating the process of creating and deploying 
 
 Future work may add additional steps to manage other resources like certificates (especially in regard to updating short lived Let's Encrypt certificates) and targets.
 
-## Create a release
+### Create a release
 
 *I want to automate the process of clicking the **CREATE RELEASE** button.*
 
@@ -62,7 +62,7 @@ Automating the creation of releases allow multiple project releases to be define
 
 ![](create-release.png)
 
-## Deploy a release
+### Deploy a release
 
 *I want to automate the process of clicking the **DEPLOY** button.*
 
@@ -72,7 +72,7 @@ The **Automate Deploy Release** step automates the process usually initiated by 
 
 ![](deploy-release.png)
 
-## Running runbooks
+### Running runbooks
 
 *I want to automate the process of clicking the **RUN** button.*
 
@@ -80,7 +80,7 @@ Runbooks provide a great way to encapsulate shared functionality. The new **Run 
 
 ![](run-runbook.png)
 
-## Interacting with manual intervention prompts
+### Interacting with manual intervention prompts
 
 *I want to automate the process of clicking the manual intervention **PROCEED** or **CANCEL** buttons.*
 
