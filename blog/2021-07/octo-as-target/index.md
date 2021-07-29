@@ -112,7 +112,7 @@ By exposing an Octopus instance as a target, all existing security boundaries ar
 
 ## What are the next steps
 
-Subsequent milestones would likely focus on delivering steps to automate other Octopus resources that can be hard to manage at scale. These may include resources like tenants, targets, library variable sets etc.
+Subsequent milestones would likely focus on delivering steps to automate other Octopus resources that can be hard to manage at scale. These may include resources like certificates, targets etc.
 
 ## When are these features being delivered
 
