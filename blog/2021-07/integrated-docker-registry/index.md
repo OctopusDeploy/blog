@@ -41,7 +41,7 @@ Providing a Docker registry has been suggested via [UserVoice](https://octopusde
 
 By integrating a Docker registry we remove the need for customers to implement an external registry, and provide the same kind of convenience as the current built-in feed.
 
-## How will we solve the problem?
+## How might we solve the problem?
 
 This RFC proposes the Octopus host an integrated Docker registry, much like the built-in feed provides hosting for traditional application packages.
 
