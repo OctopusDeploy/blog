@@ -10,13 +10,9 @@ tags:
  - Octopus
 ---
 
-Octopus has evolved over the years to make complex deployments easy with best practice features such as environments and targets, unique concepts like tenants and runbooks, and useful management tools like spaces.
+Complex deployments in Octopus often require orchestrating the creation and deployment of many releases in a particular order while managing permissions and checks through manual interventions.
 
-However, while Octopus is one of the best tools available for managing external platforms and deployments, it has become clear that there is one complex platform companies are increasingly relying on for their operations that Octopus is not well suited to orchestrating: Octopus itself. 
-
-Complex deployments often mean thousands of tenants, targets, projects, environments, and spaces, and the only solution today to managing these resources as a group is by directly scripting the Octopus API. [The vision statement for the deploy group](https://docs.google.com/document/d/1Se7ALUyJM6zlXSJYxG_Ay7gHAaggGn8XBfgLr_VmjW0/edit) highlights that Octopus must be democratic, so allowing people from various disciplines and teams to participate in releasing and deploying software is a core value for us. API scripts require a very specialized skill set, and present a roadblock to operating Octopus at scale.
-
-To make Octopus the best tool for managing Octopus, we're proposing a new feature set called "Octopus as a target", with the motto "if you can click it in the UI, you can automate it with a step".
+Supporting these use cases today requires [step templates](https://octopus.com/blog/release-management-with-octopus). However, bringing these concepts into Octopus as first class steps provides a better experience for the enterprise customers who are managing deployments at this kind of scale.
 
 ## What problems are we trying to solve?
 
@@ -36,7 +32,9 @@ The processes discussed in the links above can be broken down into those that ar
 
 This RFC is limited to addressing those processes that are performed frequently, specifically coordinating multiple project deployments, promoting releases, and executing runbooks.
 
-Infrequently performed tasks are likely better addressed by enabling those actions through the UI.
+:::hint
+Infrequently performed tasks are likely better addressed by enabling those actions through the UI. This is outside the scope of this RFC.
+:::
 
 ## How might we solve the problem
 
