@@ -6,16 +6,7 @@ Well done! You have deployed your first application through Octopus Deploy! This
 
 Octopus Deploy began in 2012 to create happy deployments, and by extension, happy software teams. Octopus Deploy focuses on three main parts of continuous delivery: Deploy, Release and Operate.
 
-The market model of Octopus Deploy follows a bottom-up approach. This model means we target the software engineering teams using the product. A developer-led adoption model implies that the product targets the end-users. These users then convince decision-makers to adopt the product company-wide. 
-
-The ideal target market of Octopus Deploy is medium to large-sized companies. A company with 200 or more employees is the tipping point. They are large enough to warrant a complex deployment setup for Octopus Deploy to help.
-
 Octopus Deploy sits in the middle of the CI/CD toolchain, acting as an orchestrator. This orchestration requires several software integrations from coding frameworks to cloud providers. Octopus Deploy chooses to do a smaller number of things at high quality, over doing everything. By focussing on orchestration and enabling these integrations, Octopus enables best-in-class tooling.
-
-tl;dr 
-
-:::hint Octopus Deploy provides best-in-class continuous delivery. It provides a cloud and on premise solution and serves medium to large businesses.:::
-
 
 ## What have I learned?
 
@@ -31,18 +22,18 @@ You have imported an exported project and deployed a package to an Azure web app
  - variables
  - runbooks
 
-The blog post represented a simple example. Production level solutions are more complex, with many deployment steps and deployment targets. There are other advanced Octopus Deploy features that developers can use. These include tenants, the Octopus REST API, and more. Comprehensive documentation of all Octopus Deploy features is [here](https://octopus.com/docs).
+The blog post represented a simple example. Production level solutions are more complex, with many deployment steps and deployment targets. There are other advanced Octopus Deploy features that developers can use. These include tenants, the Octopus REST API, and more. See comprehensive documentation of all Octopus Deploy [features.](https://octopus.com/docs)
 
 
 ## How does this help me?
 
-You are now able to use the Octopus Deploy platform for continuous deployment. We have a wide range of example use cases for customers that have used Octopus Deploy. Some or a mixture of these likely apply to you. Read more about specific use cases [here](https://octopus.com/company/customers). 
+You are now able to use the Octopus Deploy platform for continuous deployment. We have a wide range of example use cases for customers that have used Octopus Deploy. Some or a mixture of these likely apply to you. Read more about specific [use cases.](https://octopus.com/company/customers) 
 
-The customers that have signed up with us experience an 'a-ha!' moment. Over time, customers come to understand how Octopus Deploy can help them. This blog will provide resources for you to test whether Octopus Deploy can meet your needs.
+The customers that have signed up with us experience an 'a-ha!' moment. Over time, customers come to understand how Octopus Deploy can help them. This post will provide resources for you to test whether Octopus Deploy can meet your needs.
 
 ## How much does it cost?
 
-Octopus is free for up to 10 deployment targets or less. This applies to both the Octopus Cloud and self-hosted versions. For deployments that need more targets than this, there is a pricing [guide](https://octopus.com/pricing/overview). There are definitive use cases for the free tier.  Customers have used the free tier license to orchestrate their more complex deployment that uses the paid license.
+Octopus is free for up to 10 deployment targets or less. This applies to both the Octopus Cloud and self-hosted versions. For deployments that need more targets than this, there is a pricing [guide.](https://octopus.com/pricing/overview) There are definitive use cases for the free tier.  Customers have used the free tier license to orchestrate their more complex deployment that uses the paid license.
 
 ## Where can I learn more?
 
@@ -75,17 +66,16 @@ We run a blog that contains a lot of helpful information for new and existing us
 - [an explanation of the new features we are pushing out](https://octopus.com/blog/github-actions-for-octopus-deploy)
 - [tool specific guides](https://octopus.com/blog/deploying-ruby)
 - [an ebook about Kubernetes deployments](https://octopus.com/blog/10-pillars-kubernetes-deployments)
-›
 
-There are many other types of topics, such as release notes, company announcements, and more. We use the blog to create a longstanding relationship between Octopus Deploy and our customers. We find that our customers want to engage with the blog and find it helpful and informative. You can find the full blog [here](https://octopus.com/blog/).
+There are many other types of topics, such as release notes, company announcements, and more. We use the blog to create a longstanding relationship between Octopus Deploy and our customers. We find that our customers want to engage with the blog and find it helpful and informative. Have a read of our [full blog!](https://octopus.com/blog/)
 
 #### Slack
 
-Our Community Slack allows users to interact with other Octopus Deploy users and us. You can join the Community Slack [here](https://octopus.com/slack).
+Our Community Slack allows users to interact with other Octopus Deploy users and us. [Come join us!](https://octopus.com/slack)
 
 #### Support
 
-We have a dedicated support team that is here to answer any questions you may have. They update their knowledge to support Octopus Deploy its software integrations. Their goal is to give accurate and timely answers to all support questions. You can find the support team [here](https://octopus.com/support).
+We have a dedicated support team that is here to answer any questions you may have. They update their knowledge to support Octopus Deploy its software integrations. Their goal is to give accurate and timely answers to all support questions. If you need help you can contact support at support@octopus.com for Octopus-specific technical issues, or you can email advice@octopus.com for more complex CI/CD and integration questions.
 
 
 #### Demos & Samples
