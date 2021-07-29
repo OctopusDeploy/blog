@@ -8,7 +8,7 @@ metaImage: blogimage-multi-tenancy-release-management-2021.png
 bannerImage: blogimage-multi-tenancy-release-management-2021.png
 bannerImageAlt: Multi-Tenancy Release Management with Octopus Deploy
 tags:
- - Engineering
+ - DevOps
  - Deployment Patterns
  - Multi-Tenancy
 ---
