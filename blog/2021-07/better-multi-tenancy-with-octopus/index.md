@@ -9,7 +9,7 @@ bannerImage: blogimage-better-multi-tenancy-with-octopus-deploy-2021.png
 bannerImageAlt: Three customers in front of three databases linked to the Octopus Deploy logo
 isFeatured: false
 tags:
- - Product
+ - DevOps
  - Multi-Tenancy
 ---
 
