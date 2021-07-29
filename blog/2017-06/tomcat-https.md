@@ -10,10 +10,6 @@ tags:
  - Product
 ---
 
-<div style="background-color:#e9edf2;">
-<img style="display:block; margin: 0 auto; padding: 20px 0 20px 20px;" alt="Octopus Deploy Certificates with WildFly" src="https://i.octopus.com/blog/2017-06/java-octopus.png" />
-</div>
-
 In a [previous post](https://octopus.com/blog/wildfly-https) I showed you how to export a certificate managed by Octopus Deploy into a Java keystore, and then configure WildFly to make use of the keystore to provide HTTPS access to web applications and management ports.
 
 In this post I am going to show you how to do the same for Tomcat in Windows.

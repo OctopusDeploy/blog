@@ -10,10 +10,6 @@ tags:
  - Product
 ---
 
-<div style="background-color:#e9edf2;">
-<img style="display:block; margin: 0 auto; padding: 20px 0 20px 20px;" alt="Octopus Deploy with Tomcat" src="https://i.octopus.com/blog/2017-06/java-octopus.png" />
-</div>
-
 :::hint
 This post was written for an old version of Octopus, before native Wildfly support was added.
 
