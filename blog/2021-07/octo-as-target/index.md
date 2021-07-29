@@ -12,7 +12,7 @@ tags:
 
 Octopus has evolved over the years to make complex deployments easy with best practice features such as environments and targets, unique concepts like tenants and runbooks, and useful management tools like spaces.
 
-However, while Octopus is one of the best tools available for managing external platforms and deployments, it has become clear that there is one complex platform companies are increasingly relying on for their operations that Octopus is not well suited to managing: Octopus itself. 
+However, while Octopus is one of the best tools available for managing external platforms and deployments, it has become clear that there is one complex platform companies are increasingly relying on for their operations that Octopus is not well suited to orchestrating: Octopus itself. 
 
 Complex deployments often mean thousands of tenants, targets, projects, environments, and spaces, and the only solution today to managing these resources as a group is by directly scripting the Octopus API. [The vision statement for the deploy group](https://docs.google.com/document/d/1Se7ALUyJM6zlXSJYxG_Ay7gHAaggGn8XBfgLr_VmjW0/edit) highlights that Octopus must be democratic, so allowing people from various disciplines and teams to participate in releasing and deploying software is a core value for us. API scripts require a very specialized skill set, and present a roadblock to operating Octopus at scale.
 
@@ -32,7 +32,11 @@ Customer solutions have identified a number of issues when running Octopus at sc
 
 There is a common pattern to these issues. Interacting with ten things (tenants, roles, projects, deployments etc) is manageable, if tedious. Interacting with hundreds of resources is time consuming and frustrating. Scaling up to thousands of resources means Octopus becomes almost impossible to maintain via the web UI, and requires complex custom scripts.
 
-We know Octopus is the best tool for deploying to thousands of targets. We have seen runbooks empowering teams to manage that same infrastructure. By taking the next logical step and allowing Octopus itself to be managed through these proven processes, we can ensure Octopus will scale to meet enterprise requirements.
+The processes discussed in the links above can be broken down into those that are performed frequently, such as creating and deploying releases, and those that are performed infrequently, such as updating deployment projects, editing teams, adding tags to tentants etc.
+
+This RFC is limited to addressing those processes that are performed frequently, specifically coordinating multiple project deployments, promoting releases, and executing runbooks.
+
+Infrequently performed tasks are likely better addressed by enabling those actions through the UI.
 
 ## How might we solve the problem
 
@@ -46,15 +50,9 @@ By exposing Octopus as a target and requiring an API key to perform management t
 
 ## The new steps
 
-The motto "if you can click it in the UI, you can automate it with a step" is an ambitious goal, and will be broken down into areas of common functionality, largely grouped by their placement in the UI. Some examples include:
-
-* Deployments / Runbook runs: Creating releases, deploying releases, responding to manual intervention prompts, running runbooks.
-* Tenants: Creating, updating, and deleting tenants. Associating tenants with projects and environments. Adding or removing tenant tags. Defining tenant variables.
-* Targets: Creating, updating, and deleting targets. Adding or removing roles. Associating with environments and tenants.
-* Users / Teams: Creating, updating, and deleting users and teams. Adding or removing users from teams.
-* Certificates: Creating, updating, and deleting certificates. This would likely be paired with scripts using libraries such as [Posh-ACME](https://github.com/rmbolger/Posh-ACME).
-
 The first milestone focuses on automating the process of creating and deploying releases, running runbooks, and interacting with manual interventions.
+
+Future work may add additional steps to manage other resources like certificates (especially in regard to updating short lived Let's Encrypt certificates) and targets.
 
 ## Create a release
 
