@@ -67,7 +67,7 @@ We advise using fewer than 10 environments to reduce:
 -	project redundancy and overlap
 -	unnecessary clutter on the dashboard
 
-![An example of good environment use in Octopus](/projects.png "width=500")
+![An example of good environment use in Octopus](environments.png "width=500")
 
 We find some customers use more environments than needed to manage lots of projects or deployment targets. Octopus includes better options, such as Project groups and Tenants.
 
@@ -75,7 +75,7 @@ We find some customers use more environments than needed to manage lots of proje
 
 If you have a lot of Projects, you can group them to help reduce visual noise on your dashboard.
 
-![An example a set of grouped projects in Octopus](/projects.png "width=500")
+![An example a set of grouped projects in Octopus](projects.png "width=500")
 
 To create a project group:
 
@@ -122,7 +122,7 @@ To check your retention policies:
 Here you can change retention policies for existing and default Lifecycles, or create new ones.
 By setting retention policies, files will disappear after the number of days or releases you set, saving you valuable disk space.
 
-![An example a set of a lifecycle's retention policy in Octopus](/retention.png "width=500")
+![An example a set of a lifecycle's retention policy in Octopus](retention.png "width=500")
 
 See our documentation for more detail on:
 
