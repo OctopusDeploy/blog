@@ -97,13 +97,14 @@ The step template will automatically handle all the possible multi-tenant use ca
 
 ### Choosing a release
 
-One of the step template's core business rules is to pick the last successfully deployed release in the source environment.  Most logic is focused on calculating that source environment, and runs through three logic gates:
+One of the step template's core business rules is to pick the last successfully deployed release in the source environment.  Most logic is focused on calculating that source environment, and runs through 4 logic gates:
 
 - When the source environment is provided, use that.
 - When the channel is provided, find the phase before the destination environment's phase.
 - When no channel is provided, use the **Default** channel, then find the phase before the destination environment's phase.
+- Once the source environment is known, find the latest _successful_ release.  
 
-Once the source environment is known, find the latest _successful_ release.  The step template uses the task log to calculate which release to promote.  Using the advanced search filters on the Tasks page, you see in real-time which release will be picked by the step template.
+The step template uses the task log to calculate which release to promote.  Using the advanced search filters on the Tasks page, you see in real-time which release will be picked by the step template.
 
 ![Task log with advanced filters](multi-tenancy-release-management-task-log.png)
 
