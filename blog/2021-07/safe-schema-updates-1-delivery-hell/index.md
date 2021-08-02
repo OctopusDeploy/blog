@@ -128,6 +128,6 @@ Wherever you are on your journey, it’s critical to recognize your trajectory a
 
 ## Next time…
 
-In the next post (part 2) we’ll start to imagine what a safer software architecture, delivery process, and development culture might look like. We'll begin by exploring the nature of failure within complex systems, and we'll move on to discuss the concepts of resilience and robustness. This post will be the first of four posts intended to help folks to re-evaluate the way they view and assess safety within complex IT systems.
+In the next post (part 2) we’ll start to imagine what a safer software architecture, delivery process, and development culture might look like. We'll begin by exploring the nature of failure within complex systems, and we'll move on to discuss the concepts of resilience and robustness. This post will be the first of five posts intended to help folks to re-evaluate the way they view and assess safety within complex IT systems.
 
 !include <safe-schema-updates-posts>
