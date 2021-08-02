@@ -14,19 +14,19 @@ The [first ECS integration milestone in Octopus](https://octopus.com/blog/rfc-ec
 
 However, one consistent piece of feedback we received early on from teams already deploying to ECS was that they were already successfully managing existing ECS resources, either with manually created services, or through tools like Terraform. The challenge faced by these teams wasn't creating services, but updating them with new images as part of their CI/CD pipelines.
 
-For milestone two of our ECS integration, we are proposing a new step that updates existing ECS services without the need to take ownership of them through a CloudFormation template. This gives teams with an established ECS cluster the opportunity to orchestrate the deployment of new image versions to their services while retaining control over how the services are created.
+For milestone two of our ECS integration, we are proposing a new step that updates existing ECS services without the need to take ownership of them through a CloudFormation template. This gives teams with an established ECS cluster the opportunity to orchestrate the deployment of new image versions to their services while retaining control over how the resources are created.
 
 ## How we propose to support established ECS clusters
 
-This RFC proposes a new step, integrated with the ECS target introduced by the first milestone, that creates a new task definition revision with a new image tag, and then updates a service with the task definition revision.
+This RFC proposes a new step, integrated with the ECS target introduced by the first milestone, to create a new task definition revision with a new image tag, and update a service with the task definition revision.
 
-This milestone will also enhance the step delivered in milestone one by exposing the ability to link existing load balancers.
+This milestone also enhances the step delivered in milestone one by exposing the ability to link existing load balancers.
 
 ### The new step
 
-A new step will be created to support those deploying new images to an existing task definition and service.
+The new step supports those deploying new images to an existing task definition and service.
 
-The step will define the name of the task definition and it's associated service. It will also define a number of containers that will be updated in the associated task definition:
+The step defines the name of the task definition and it's associated service. It also defines a number of containers to update in the associated task definition:
 
 ![](stepmockup.png)
 
@@ -38,13 +38,13 @@ An ECS deployment to an existing task definition and service will then execute t
 
 ### Linking to load balancers
 
-Most services deployed to ECS are exposed to network traffic, which means they receive traffic from a load balancer. Milestone two will update the step introduced in milestone one to allow an existing load balancer to be linked to a service:
+Most services deployed to ECS are exposed to network traffic, which means they receive traffic from a load balancer. Milestone two updates the step introduced in milestone one to linked to a service to an existing load balancer:
 
 ![](loadbalancermockup.png)
 
 ## Benefits of the proposed approach
 
-We expect this new step to allow customers with established ECS clusters to orchestrate image deployments through Octopus while still retaining control over any existing infrastructure scripts. Octopus will expose image versions at release creation time, with all the associated functionality of channels and version rules, and then update the minimum settings required to deploy the new image or images to ECS, without attempting to own the task definition or service through an associated CloudFormation template.
+We expect this new step to allow customers with established ECS clusters to orchestrate image deployments through Octopus while still retaining control over any existing infrastructure scripts. Octopus selects image versions at release creation time, with all the associated functionality of channels and version rules, and updates the minimum settings required to deploy the new image or images to ECS, without attempting to own the task definition or service through an associated CloudFormation template.
 
 This decouples deployment time concerns, such as deploying a new image, from infrastructure concerns, such as creating the initial task definition and service.
 
