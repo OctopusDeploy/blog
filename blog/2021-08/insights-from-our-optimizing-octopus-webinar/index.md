@@ -1,15 +1,15 @@
 ---
-title: Insights from our ‘Optimizing Octopus’ webinar
-description: See the key insights from our recent 'Optimizing Octopus' webinar
-author: Andy Corrigan
+title: Insights from our Optimizing Octopus webinar
+description: See the key insights from our recent 'Optimizing Octopus' webinar.
+author: andrew.corrigan@octopus.com
 visibility: private
-published: 3021-01-01
+published: 2021-08-09-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt:
 isFeatured: false
 tags:
-  - tag
+  - DevOps
 ---
 
 In [our recent webinar](https://octopus.com/events/optimizing-octopus-deploy-with-clear-measure), Clear Measure’s Chris Thomas joined Derek Campbell to talk about ways to optimize Octopus Deploy for the best possible experience.
@@ -28,11 +28,16 @@ If you’re on [Octopus Cloud](https://octopus.com/docs/octopus-cloud), database
 
 ### Check SQL reports for problems
 
-Firstly, we recommend running a ‘Index Physical Statistics’ report in SSMS to look for problems. To run the report, right-click your database from the list and select {{ Reports,Standard Reports,Index Physical Statistics }}.
+First, we recommend running a ‘Index Physical Statistics’ report in SSMS to look for problems. 
+
+To run the report, right-click your database from the list and select **{{Reports,Standard Reports > Index Physical Statistics}}**.
 
 When the report opens, check the **Operation Recommended** column for suggestions.
 
-You can also expand items in the **# Partitions** column to see fragmentation information. If fragmentation is over 35% you should schedule some time to defragment the database. Anything under 30% is usually okay, but there’s room for improvement as the percentage increases.
+You can also expand items in the **# Partitions** column to see fragmentation information. 
+
+- If fragmentation is over 35% you should schedule some time to defragment the database. 
+- Anything under 30% is usually okay, but there’s room for improvement as the percentage increases.
 
 ### Set a maintenance plan
 
@@ -43,15 +48,17 @@ Expand the **Management** folder in the left pane, right-click **Maintenance Pla
 Set the plan to run on a schedule that suits your business and select the following maintenance tasks:
 
 - Check Database Integrity
--	Reorganize Index
--	Rebuild Index
--	Update Statistics
+- Reorganize Index
+- Rebuild Index
+- Update Statistics
 
-Use others if needed, though we’d advise against shrinking the database for performance reasons.
+Use others if needed, though we advise against shrinking the database for performance reasons.
 
-As you progress through the wizard, you may want to change settings for each chosen task. We find the defaults are enough, but you can change things as you need. Run the maintenance plan once you’re happy.
+As you progress through the wizard, you may want to change settings for each chosen task. We find the defaults are enough, but you can change things as you need. 
 
-If you prefer using scripts, try [Ola Hallengren’s SQL Server maintenance solution](https://ola.hallengren.com/), which achieves everything we’ve outlined above.
+Run the maintenance plan once you’re happy.
+
+If you prefer using scripts, try [Ola Hallengren’s SQL Server maintenance solution](https://ola.hallengren.com/), which achieves everything we outlined above.
 
 ## Organize Octopus
 
@@ -63,9 +70,9 @@ While you can create many environments, your environment number should mirror yo
 
 We advise using fewer than 10 environments to reduce:
 
-- performance problems
--	project redundancy and overlap
--	unnecessary clutter on the dashboard
+- Performance problems
+- Project redundancy and overlap
+- Unnecessary clutter on the dashboard
 
 ![An image of Octopus with ideal environment setup, mirroring a common development pipeline](environments.png "width=500")
 
@@ -73,42 +80,44 @@ We find some customers use more environments than needed to manage lots of proje
 
 ### Group your projects
 
-If you have a lot of Projects, you can group them to help reduce visual noise on your dashboard.
+If you have many Projects, you can group them to help reduce visual noise on your dashboard.
 
 ![An image showing projects in Octopus, all grouped logically using Project Groups](projects.png "width=500")
 
 To create a project group:
 
 1.	Click **Projects** in Octopus’s top menu.
-2.	Click **ADD GROUP** in the top right.
-3.	Give your group a name and description, then click **SAVE**.
+1.	Click **ADD GROUP** in the top right.
+1.	Give your group a name and description, then click **SAVE**.
 
 To add an existing project to a group:
 
 1.	Click **Projects** in Octopus’s top menu.
-2.	Click on the project you need to move to the new group.
-3.	Click **Settings** at the bottom of the left menu.
-4.	Click **Project Group**, then select the destination group from the **Project group** dropdown menu.
+1.	Click on the project you need to move to the new group.
+1.	Click **Settings** at the bottom of the left menu.
+1.	Click **Project Group**, then select the destination group from the **Project group** dropdown menu.
 
 To add a new project to a group:
 
 1.	Click **Projects** in Octopus’s top menu.
-2.	Click **ADD PROJECT** in the top right.
-3.	Give your new project a name and click **SHOW ADVANCED**.
-4.	Select a group from the **Project group** dropdown menu.
-5.	Click **SAVE** to finish creating your new project.
+1.	Click **ADD PROJECT** in the top right.
+1.	Give your new project a name and click **SHOW ADVANCED**.
+1.	Select a group from the **Project group** dropdown menu.
+1.	Click **SAVE** to finish creating your new project.
 
 ### Use Tenants
 
-We’ve designed Tenants to help customers who deliver Software as a Service (SaaS), but they’re also useful to organize things like:
+We designed Tenants to help customers who deliver Software as a Service (SaaS), but they’re also useful to organize things like:
 
--	geographical regions or datacenters
--	developers, testers or teams
--	feature branches
+-	Geographical regions or data centers
+-	Developers, testers or teams
+-	Feature branches
 
 ![An image of a set of tenants in Octopus, showing an example of how they can group or manage deployment targets or demographics](tenants.png "width=500")
 
-Check out our [documentation on Tenants](https://octopus.com/docs/tenants) for more information. Also, watch our follow-up webinar with Adam Close and Mark Harrison, [Better multi-tenancy deployments using Octopus Deploy](https://octopus.com/events/better-multi-tenancy-deployments-using-octopus-deploy).
+Check out our [documentation on Tenants](https://octopus.com/docs/tenants) for more information. 
+
+Also, watch our follow-up webinar with Adam Close and Mark Harrison, [Better multi-tenancy deployments using Octopus Deploy](https://octopus.com/events/better-multi-tenancy-deployments-using-octopus-deploy).
 
 ### Delete your old stuff
 
@@ -120,6 +129,7 @@ To check your retention policies:
 2.	Click **Lifecycles** from the left menu.
 
 Here you can change retention policies for existing and default Lifecycles, or create new ones.
+
 By setting retention policies, files will disappear after the number of days or releases you set, saving you valuable disk space.
 
 ![An image showing a lifecycle's retention policy in Octopus](retention.png "width=500")
