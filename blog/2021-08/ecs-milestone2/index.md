@@ -82,7 +82,7 @@ This feedback will help us deliver the best solution we can.
 In summary, the second milestone of our proposed ECS support includes:
 
 * A new step to deploy images to existing task definitions and services.
-* The ability to link existing load balancers to services deployed by the
+* The ability to link existing load balancers in the step introduced in milestone one.
 
 Thanks for reading this post. We hope you're as excited about the proposed new ECS functionality as we are.
 
