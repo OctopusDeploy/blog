@@ -344,7 +344,7 @@ I hope you can see how the Octopus multi-tenancy feature solves some of the prob
 
 ## Watch the webinar: Better multi-tenancy deployments using Octopus Deploy
 
-<iframe width="560" height="315" src="https://www.youtube.com/watch?v=dD8psiK1wL4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dD8psiK1wL4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 We host webinars regularly. See the [webinars page](https://octopus.com/events) for past webinars and details about upcoming webinars. 
 
