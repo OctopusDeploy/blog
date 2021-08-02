@@ -54,7 +54,7 @@ Milestone two is focused on supporting teams with established ECS clusters. It a
 
 The limitations from [milestone one](https://octopus.com/blog/rfc-ecs-integration-with-octopus#what-is-the-scope-of-the-first-ecs-milestone) still apply to milestone two:
 
-* Limiting the original step to deploying to Fargate only (the new step proposed in this milestone will update any existing service and task definition, regardless of whether it is EC2 or Fargate).
+* Limiting the original step to deploying to Fargate only (however, the new step proposed in this milestone will update any existing service and task definition, regardless of whether it is EC2 or Fargate).
 * Only supporting rolling deployments, and not supporting integrated CodeDeploy blue/green deployments.
 * Not providing the ability to build a new load balancer (only select an existing one).
 * Exclude auto-scaling settings.
