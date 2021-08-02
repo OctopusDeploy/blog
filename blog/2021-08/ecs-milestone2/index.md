@@ -12,7 +12,7 @@ tags:
 
 The [first ECS integration milestone in Octopus](https://octopus.com/blog/rfc-ecs-integration-with-octopus) is currently under development, and will deliver a new step and target to make it easy to deploy your first ECS service through Octopus. This first milestone will create and manage an opinionated CloudFormation template for you, freeing developers and administrators from writing what can be a fairly verbose template for themselves.
 
-However, one consistent piece of feedback we received early on from teams already deploying to ECS was that they were already successfully managing existing ECS resources, either with manually created services, or through tools like Terraform. The challenge faced by these teams wasn't creating services, but updating them with new images as part of their CI/CD pipelines.
+However, one consistent piece of feedback we received early on from teams deploying to ECS was that they were already successfully managing existing ECS resources, either with manually created services, or through tools like Terraform. The challenge faced by these teams wasn't creating services, but updating them with new images as part of their CI/CD pipelines.
 
 For milestone two of our ECS integration, we are proposing a new step that updates existing ECS services without the need to take ownership of them through a CloudFormation template. This gives teams with an established ECS cluster the opportunity to orchestrate the deployment of new image versions to their services while retaining control over how the resources are created.
 
@@ -32,13 +32,13 @@ The step defines the name of the task definition and it's associated service. It
 
 An ECS deployment to an existing task definition and service will then execute the following process:
 
-1. A new task definition revision will be created based on the latest revision.
-2. The image versions in the task definition revision with matching container definitions from the step will be updated.
+1. A new task definition revision is created based on the latest revision.
+2. The image versions in the task definition revision with matching container definitions from the step are updated.
 3. The service is then updated with the new task definition revision.
 
 ### Linking to load balancers
 
-Most services deployed to ECS are exposed to network traffic, which means they receive traffic from a load balancer. Milestone two updates the step introduced in milestone one to linked to a service to an existing load balancer:
+Most services deployed to ECS are exposed to network traffic, which means they receive traffic from a load balancer. Milestone two updates the step introduced in milestone one to link a service to an existing load balancer:
 
 ![](loadbalancermockup.png)
 
