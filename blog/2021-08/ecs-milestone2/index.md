@@ -10,11 +10,11 @@ tags:
  - Octopus
 ---
 
-The [first ECS integration milestone in Octopus](https://octopus.com/blog/rfc-ecs-integration-with-octopus) is currently under development, and will deliver new steps and a new target to make it easy to deploy your first ECS service through Octopus. This first milestone will create and manage an opinionated CloudFormation template for you, freeing developers and administrators from writing what can be a fairly verbose template for themselves.
+The [first ECS integration milestone in Octopus](https://octopus.com/blog/rfc-ecs-integration-with-octopus) is currently under development, and will deliver a new step and target to make it easy to deploy your first ECS service through Octopus. This first milestone will create and manage an opinionated CloudFormation template for you, freeing developers and administrators from writing what can be a fairly verbose template for themselves.
 
-However, one clear piece of feedback we received early on from teams already deploying to ECS was that they were already successfully managing existing ECS deployments, either with manually created services, or through tools like Terraform. The challenge faced by these teams wasn't creating services, but updating them with new images as part of their CI/CD pipelines.
+However, one consistent piece of feedback we received early on from teams already deploying to ECS was that they were already successfully managing existing ECS resources, either with manually created services, or through tools like Terraform. The challenge faced by these teams wasn't creating services, but updating them with new images as part of their CI/CD pipelines.
 
-For milestone two of our ECS integration, we are proposing steps that update existing ECS services without the need to take ownership of them through a CloudFormation template. This gives teams with an established ECS cluster the opportunity to orchestrate the deployment of new image versions to their services while retaining control over how the services are created.
+For milestone two of our ECS integration, we are proposing a new step that updates existing ECS services without the need to take ownership of them through a CloudFormation template. This gives teams with an established ECS cluster the opportunity to orchestrate the deployment of new image versions to their services while retaining control over how the services are created.
 
 ## How we propose to support established ECS clusters
 
@@ -54,13 +54,13 @@ Milestone two is focused on supporting teams with established ECS clusters. It a
 
 The limitations from [milestone one](https://octopus.com/blog/rfc-ecs-integration-with-octopus#what-is-the-scope-of-the-first-ecs-milestone) still apply to milestone two:
 
-* Limiting the step to deploying to Fargate only.
+* Limiting the original step to deploying to Fargate only (the new step proposed in this milestone will update any existing service and task definition, regardless of whether it is EC2 or Fargate).
 * Only supporting rolling deployments, and not supporting integrated CodeDeploy blue/green deployments.
-* Not providing the ability to build a new load balancer.
+* Not providing the ability to build a new load balancer (only select an existing one).
 * Exclude auto-scaling settings.
 * Exclude App Mesh and FireLens settings.
 * Exclude service auto-discovery settings.
-* Only creating a service, and not supporting tasks or scheduled tasks.
+* Only creating or updating a service, and not supporting tasks or scheduled tasks.
 
 ## When will this be released?
 
