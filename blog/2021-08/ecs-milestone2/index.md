@@ -68,7 +68,7 @@ Work on milestone two is scheduled to start once milestone one has been complete
 
 ## We want your feedback
 
-The second milestone is still in the planning phases, so now is a great time to help shape this new feature with your feedback. We have created a GitHub issue to capture the discussion.
+The second milestone is still in the planning phases, so now is a great time to help shape this new feature with your feedback. We have created a [GitHub issue to capture the discussion](https://github.com/OctopusDeploy/StepsFeedback/issues/5).
 
 Specifically, we want to know:
 
