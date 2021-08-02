@@ -67,7 +67,7 @@ We advise using fewer than 10 environments to reduce:
 -	project redundancy and overlap
 -	unnecessary clutter on the dashboard
 
-![An example of good environment use in Octopus](environments.png "width=500")
+![An image of Octopus with ideal environment setup, mirroring a common development pipeline](environments.png "width=500")
 
 We find some customers use more environments than needed to manage lots of projects or deployment targets. Octopus includes better options, such as Project groups and Tenants.
 
@@ -75,7 +75,7 @@ We find some customers use more environments than needed to manage lots of proje
 
 If you have a lot of Projects, you can group them to help reduce visual noise on your dashboard.
 
-![An example a set of grouped projects in Octopus](projects.png "width=500")
+![An image showing projects in Octopus, all grouped logically using Project Groups](projects.png "width=500")
 
 To create a project group:
 
@@ -106,7 +106,7 @@ We’ve designed Tenants to help customers who deliver Software as a Service (Sa
 -	developers, testers or teams
 -	feature branches
 
-![A group of tenants in Octopus, showing the different ways to use them](tenants.png "width=500")
+![An image of a set of tenants in Octopus, showing an example of how they can group or manage deployment targets or demographics](tenants.png "width=500")
 
 Check out our [documentation on Tenants](https://octopus.com/docs/tenants) for more information. Also, watch our follow-up webinar with Adam Close and Mark Harrison, [Better multi-tenancy deployments using Octopus Deploy](https://octopus.com/events/better-multi-tenancy-deployments-using-octopus-deploy).
 
@@ -122,7 +122,7 @@ To check your retention policies:
 Here you can change retention policies for existing and default Lifecycles, or create new ones.
 By setting retention policies, files will disappear after the number of days or releases you set, saving you valuable disk space.
 
-![An example a set of a lifecycle's retention policy in Octopus](retention.png "width=500")
+![An image showing a lifecycle's retention policy in Octopus](retention.png "width=500")
 
 See our documentation for more detail on:
 
