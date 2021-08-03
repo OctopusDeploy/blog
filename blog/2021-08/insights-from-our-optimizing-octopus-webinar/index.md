@@ -1,6 +1,6 @@
 ---
 title: Insights from our Optimizing Octopus webinar
-description: See the key insights from our recent 'Optimizing Octopus' webinar.
+description: Learn how to keep Octopus running smoothly and easily see what’s happening, with a little planning, maintenance and smart use of Octopus features.
 author: andrew.corrigan@octopus.com
 visibility: private
 published: 2021-08-09-1400
@@ -30,7 +30,7 @@ If you’re on [Octopus Cloud](https://octopus.com/docs/octopus-cloud), database
 
 First, we recommend running a ‘Index Physical Statistics’ report in SSMS to look for problems. 
 
-To run the report, right-click your database from the list and select **{{Reports,Standard Reports > Index Physical Statistics}}**.
+To run the report, right-click your database from the list and select **{{Reports > Standard Reports > Index Physical Statistics}}**.
 
 When the report opens, check the **Operation Recommended** column for suggestions.
 
@@ -74,7 +74,7 @@ We advise using fewer than 10 environments to reduce:
 - Project redundancy and overlap
 - Unnecessary clutter on the dashboard
 
-![An image of Octopus with ideal environment setup, mirroring a common development pipeline](environments.png "width=500")
+![Octopus dashboard with ideal environment setup, showing development pipeline that includes Dev, QA, Stage, UAT and Production](environments.png "width=500")
 
 We find some customers use more environments than needed to manage lots of projects or deployment targets. Octopus includes better options, such as Project groups and Tenants.
 
@@ -82,7 +82,7 @@ We find some customers use more environments than needed to manage lots of proje
 
 If you have many Projects, you can group them to help reduce visual noise on your dashboard.
 
-![An image showing projects in Octopus, all grouped logically using Project Groups](projects.png "width=500")
+![Octopus dashboard showing projects in Octopus, all grouped logically using Project Groups](projects.png "width=500")
 
 To create a project group:
 
@@ -113,34 +113,34 @@ We designed Tenants to help customers who deliver Software as a Service (SaaS), 
 -	Developers, testers or teams
 -	Feature branches
 
-![An image of a set of tenants in Octopus, showing an example of how they can group or manage deployment targets or demographics](tenants.png "width=500")
+![A set of tenants in Octopus, showing how they can group and manage deployment targets and demographics](tenants.png "width=500")
 
 Check out our [documentation on Tenants](https://octopus.com/docs/tenants) for more information. 
 
 Also, watch our follow-up webinar with Adam Close and Mark Harrison, [Better multi-tenancy deployments using Octopus Deploy](https://octopus.com/events/better-multi-tenancy-deployments-using-octopus-deploy).
 
-### Delete your old stuff
+### Delete your old releases and builds
 
 It’s great practice to delete anything you no longer need from Octopus. Octopus Server is set to keep everything by default (Octopus Cloud defaults to 30 days), but you can use Lifecycle retention policies to auto-prune old releases and builds.
 
 To check your retention policies:
 
-1.	Click **Library** in Octopus’s top menu.
-2.	Click **Lifecycles** from the left menu.
+1. Click **Library** in Octopus’s top menu.
+1. Click **Lifecycles** from the left menu.
 
 Here you can change retention policies for existing and default Lifecycles, or create new ones.
 
 By setting retention policies, files will disappear after the number of days or releases you set, saving you valuable disk space.
 
-![An image showing a lifecycle's retention policy in Octopus](retention.png "width=500")
+![Screenshot showing a lifecycle's retention policy in Octopus](retention.png "width=500")
 
 See our documentation for more detail on:
 
--	[Lifecycles](https://octopus.com/docs/releases/lifecycles)
--	[Retention policies](https://octopus.com/docs/administration/retention-policies)
+- [Lifecycles](https://octopus.com/docs/releases/lifecycles)
+- [Retention policies](https://octopus.com/docs/administration/retention-policies)
 
 ## What next?
 
-For help with anything else, look through the [Octopus Deploy documentation](https://octopus.com/docs) or reach out via our [support channels](https://octopus.com/support).
+For more help, you can look through the [Octopus Deploy documentation](https://octopus.com/docs) or you're welcome to reach out via our [support channels](https://octopus.com/support).
 
 Happy deployments!
