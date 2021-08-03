@@ -10,7 +10,7 @@ tags:
  - Octopus
 ---
 
-The [first ECS integration milestone in Octopus](https://octopus.com/blog/rfc-ecs-integration-with-octopus) is currently under development, and will deliver a new step and target to make it easy to deploy your first ECS service through Octopus. This first milestone will create and manage an opinionated CloudFormation template for you, freeing developers and administrators from writing what can be a fairly verbose template for themselves.
+The [first ECS integration milestone in Octopus](https://octopus.com/blog/rfc-ecs-integration-with-octopus) is currently under development, and will deliver a new step and target to make it easy to deploy your first ECS service through Octopus. This first milestone will create and manage an opinionated CloudFormation template, freeing developers and administrators from writing what can be a fairly verbose template for themselves.
 
 However, one consistent piece of feedback we received early on from teams deploying to ECS was that they were already successfully managing existing ECS resources, either with manually created services, or through tools like Terraform. The challenge faced by these teams wasn't creating services, but updating them with new images as part of their CI/CD pipelines.
 
