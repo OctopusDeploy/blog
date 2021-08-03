@@ -20,7 +20,7 @@ With this addition, Octopus now offers native support to the three major cloud p
 - [Azure](https://azure.microsoft.com/)
 - [GCP](https://cloud.google.com/)
 
-This meets the evolving needs of our customers, particularly those who have GCP Kubernetes (K8s) clusters and are running tentacles on GCP virtual machines (VMs).
+This meets the evolving needs of our customers, particularly those who have GCP Kubernetes clusters and are running tentacles on GCP virtual machines.
 
 This native integration of Octopus with GCP allows you to:
 
