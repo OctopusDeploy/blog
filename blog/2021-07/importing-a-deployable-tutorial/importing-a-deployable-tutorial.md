@@ -47,7 +47,7 @@ The following is the project that you will use to import to Octopus Deploy:
 
 > [guide.1.0.0.zip](https://octopus.com/images/docs/hello-world.1.0.0.zip)
 
-In your brand new instance, navigate to Projects &rightarrow; Import Project &rightarrow; Select zip file and upload the project zip.
+In your brand new instance, navigate to Projects &rightarrow; Import Project &rightarrow; Select zip file and upload the project zip. Click import to complete
 
 :::hint 
 The password for this project is **html**
@@ -73,7 +73,7 @@ We need to configure an Azure account and web application to act as a target for
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/QDwDi17Dkfs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-1. In the Azure Portal, navigate to **{{Azure Active Directory,Properties}}** and copy the value from the **Tenant ID** field, this is your **Tenant ID**.
+1. In the Azure Portal, open the menu, ![](menu.png) and navigate to **{{Azure Active Directory,Properties}}** and copy the value from the **Tenant ID** field, this is your **Tenant ID**.
 1. Next you need your **Application ID**.
   - If you have created an AAD registered application, navigate to **{{Azure Active Directory,App Registrations}}**, click **View all applications**, select the app and copy the **Application ID**.  Please note, the Azure UI defaults to **Owned Applications** tab.  Click the **All Applications** tab to view all app registrations. 
   - If you haven't created a registered app, navigate to **{{Azure Active Directory,App Registrations}}**, click on **New registration** and add the details for your app, and click **Save**. Make note of the **Application ID**.
@@ -84,24 +84,6 @@ You now have the following:
 - **Tenant ID**
 - **Application ID**
 - **Application Password/secret**
-
-Next, you need to configure your [resource permissions](#resource-permissions).
-
-### Resource permissions {#resource-permissions}
-
-Resource permissions ensure your registered app has permission to work with your Azure resources.
-
-1. In the Azure Portal navigate to **Resource groups** and select the resource group(s) that you want the registered app to access.
-2. Next, select the **Access Control (IAM)** option and if your app isn't listed, click **Add**. Select the appropriate role (**Contributor** is a common option) and search for your new application name. Select it from the search results and then click **Save**.
-
-Next, you will set up an [Azure web application](#web-application-setup) and configure its properties.
-
-### Web application setup {#web-application-setup}
-
-1. In **Resource groups** click **{{Create, Web App}}**
-2. Create a Windows Node Application under runtime stack and operating system.
-2. Once the web app is setup, route the path of the web application to default to the home path by navigating to **{{Configuration, Path Mappings, Virtual applications and directories}}**
-3. Set the Physical path to ```site\wwwroot\guide``` and the Virtual Path to ```\``` 
 
 Now, you can [add the Service Principal Account in Octopus](#add-service-principal-account).
 
@@ -125,6 +107,24 @@ Click **SAVE AND TEST** to confirm the account can interact with Azure. Octopus 
 :::hint
 A newly created Service Principal may take several minutes before the credential test passes. If you have double checked your credential values, wait 15 minutes and try again.
 :::
+
+Next, you need to configure your [resource permissions](#resource-permissions).
+
+### Resource permissions {#resource-permissions}
+
+Resource permissions ensure your registered app has permission to work with your Azure resources.
+
+1. In the Azure Portal navigate to **Resource groups** and select the resource group(s) that you want the registered app to access.
+2. Next, select the **Access Control (IAM)** option and if your app isn't listed, click **Add**. Select the appropriate role (**Contributor** is a common option) and search for your new application name. Select it from the search results and then click **Save**.
+
+Next, you will set up an [Azure web application](#web-application-setup) and configure its properties.
+
+### Web application setup {#web-application-setup}
+
+1. In your **Resource group** click **{{Create, Web App}}**
+2. Create a Windows Node Application under runtime stack and operating system.
+2. Once the web app is setup, route the path of the web application to default to the home path by navigating to **{{Configuration, Path Mappings, Virtual applications and directories}}**
+3. Set the Physical path to ```site\wwwroot\guide``` and the Virtual Path to ```/``` 
 
 Now that we have the Azure account set up in Azure and Octopus deploy, we will upload the package for Azure.
 
