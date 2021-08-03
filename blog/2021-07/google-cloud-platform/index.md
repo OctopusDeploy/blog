@@ -12,7 +12,7 @@ tags:
  - DevOps
 ---
 
-In line with our [public roadmap](https://octopus.com/company/roadmap), we've introduced first-class support for [Google Cloud Platform (GCP)](https://cloud.google.com/).
+In line with our [public roadmap](https://octopus.com/company/roadmap), we've introduced native support for [Google Cloud Platform (GCP)](https://cloud.google.com/).
 
 With this addition, Octopus now offers native support to the three major cloud providers:
  
