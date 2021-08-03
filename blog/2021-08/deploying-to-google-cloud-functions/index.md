@@ -57,11 +57,11 @@ The web app can then be opened at http://localhost:8080/index.html.
 
 ## Deploying the function
 
-As noted in the introduction, GCF mostly expects that you deploy the function source code rather than a compiled application. This is convenient as it allows you to deploy the contents of a git repository directly. 
+As noted in the introduction, GCF mostly expects that you deploy the function source code rather than a compiled application. This is convenient as it allows you to deploy the contents of a Git repository directly. 
 
 GitHub makes this particularly easy by capturing the code in a zip file with each [release](https://github.com/OctopusSamples/RandomQuotesAPI-Java-Google-Cloud-Functions/releases). This provides you with a robust workflow where: 
 
-1. The git repository is tagged with a given release
+1. The Git repository is tagged with a given release
 1. GitHub creates a release with the associated zip file
 1. You upload the source code package to GCF
 
@@ -101,6 +101,6 @@ This means it's not possible to directly interact with previous revisions of fun
 
 Google Cloud Functions is a convenient solution for anyone looking to quickly deploy simple applications, either to support public facing interactions via HTTP, or to respond to events in the GCP ecosystem. 
 
-Unlike other application hosting platforms provided by GCP, Cloud Functions offer very simple versioning and networking options, meaning advanced deployment strategies must be orchestrated externally through naming conventions. However, for more traditional deployments, this lack of flexibility can be a blessing, as function deployments require very little effort, especially when you consider that Google takes care of compiling your code for you.
+Unlike other application hosting platforms provided by GCP, Cloud Functions offers very simple versioning and networking options. This means advanced deployment strategies must be orchestrated externally through naming conventions. However, for more traditional deployments, this lack of flexibility can be a blessing, as function deployments require very little effort, especially when you consider that Google takes care of compiling your code for you.
 
 Happy deployments!
