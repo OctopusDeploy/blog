@@ -69,8 +69,14 @@ This graph can be used to compare the user experience of the different subscript
 
 ![Apdex Score](apdex-score.png "Apdex Score")
 
+Crows nest can zoom in on a specific customer to analyze Apdex scores across versions and date ranges. The Octopus Deploy customer view is shown. Here we see that the customer experienced an Apdex drop from versions 2021.1.2048 to 2021.2.20455 confirming the results from the cloud deploy graph.
+
 ![Apdex Routes](apdex-route.png "Apdex Routes")
 
 ![Apdex Route View](apdex-route-view.png "Apdex Route View")
+
+Every web request has an endpoint. The endpoint is the subject of the request. These are known as routes. The performance of individual routes can be seen in a customers view. This shows metrics such as the mean, median and highest value of a request. 
+
+Individual routes can be opened to view its historical performance. This is useful when assessing whether updated versions of Octopus Deploy have improved or worsened the route.
 
 ## Application
