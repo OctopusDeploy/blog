@@ -6,7 +6,7 @@ Well done! You have deployed your first application through Octopus Deploy! This
 
 Octopus Deploy began in 2012 to create happy deployments, and by extension, happy software teams. Octopus Deploy focuses on three main parts of continuous delivery: Deploy, Release and Operate.
 
-Octopus Deploy sits in the middle of the CI/CD toolchain, acting as an orchestrator. This orchestration requires several software integrations from coding frameworks to cloud providers. Octopus Deploy chooses to do a smaller number of things at high quality, over doing everything. By focussing on orchestration and enabling these integrations, Octopus enables best-in-class tooling.
+Octopus Deploy sits in the middle of the CI/CD toolchain, acting as an orchestrator. This orchestration requires several software integrations from coding frameworks to cloud providers. Octopus Deploy chooses to do a smaller number of things at high quality, over doing everything. By focussing on orchestration and enabling these integrations, Octopus enables best-in-class tooling. See our custom tutorial builder that builds [tutorials for your CI/CD stack.](https://octopus.com/docs/guides)
 
 ## What have I learned?
 
@@ -76,6 +76,10 @@ Our Community Slack allows users to interact with other Octopus Deploy users and
 #### Support
 
 We have a dedicated support team that is here to answer any questions you may have. They update their knowledge to support Octopus Deploy its software integrations. Their goal is to give accurate and timely answers to all support questions. If you need help you can contact support at support@octopus.com for Octopus-specific technical issues, or you can email advice@octopus.com for more complex CI/CD and integration questions.
+
+### Sales
+
+ Every business is different and licensing needs may vary. Our sales team help businesses deploy the right Octopus Deploy services to meet their needs. If you need advice on licensing, pricing options, or upgrading your account, [our sales team is happy to help!](https://octopus.com/company/contact)
 
 
 #### Demos & Samples
