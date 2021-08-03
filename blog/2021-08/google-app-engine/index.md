@@ -183,7 +183,7 @@ A canary deployment is achieved by gradually increasing the traffic to the new v
 
 ## Conclusion
 
-Google app engine provides a flexible platform for hosting web applications. The network routing and traffic splitting functionality allows complex deployment processes like feature branches, canary, and blue/green to be performed. 
+Google App Engine provides a flexible platform for hosting web applications. The network routing and traffic splitting functionality allows complex deployment processes like feature branches, canary, and blue/green to be performed. 
 
 In this blog post I deployed a simple Java web application, and demonstrated how advanced deployment patterns can be performed.
 
