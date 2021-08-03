@@ -47,7 +47,7 @@ The following is the project that you will use to import to Octopus Deploy:
 
 > [guide.1.0.0.zip](https://octopus.com/images/docs/hello-world.1.0.0.zip)
 
-In your brand new instance, navigate to Projects &rightarrow; Import Project &rightarrow; Select zip file and upload the project zip. Click import to complete
+In your brand new instance, navigate to Projects &rightarrow; Import Project &rightarrow; Select zip file and upload the project zip. Click import to complete.
 
 :::hint 
 The password for this project is **html**
