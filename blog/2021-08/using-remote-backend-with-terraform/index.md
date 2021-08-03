@@ -15,12 +15,11 @@ tags:
 
 Terraform lets you define infrastructure with code. In this post, I demonstrate how to use a GitHub repository as the source of Terraform templates. I also explain how to store workspace states in Terraform's own cloud offering.
 
-:::hint
+## Setting the Terraform version
+
 Be careful when running Terraform commands locally and via Octopus from the same workspace, as different versions of Terraform have incompatible state formats. 
 
 If you use Terraform Cloud you can specify the exact version of Terraform you want to use via **{{Settings > General}}**.
-
-> The version of Terraform to use for this workspace. Upon creating this workspace, the latest version was selected and will be used until it is changed manually. It will not upgrade automatically.
 
 You can use the [tfenv tool](https://github.com/tfutils/tfenv) to manage multiple versions of Terraform.
 
@@ -33,7 +32,6 @@ terraform {
 ```
 
 See [this GitHub issue](https://github.com/hashicorp/terraform/issues/23290) for more details.
-:::
 
 ## Creating a new workspace in Terraform Cloud
 
@@ -135,11 +133,11 @@ Your workspace should now look like this:
 
 Next, configure the **Apply a Terraform template** step to use our GitHub repository and perform the necessary variable substitution, providing you with the remote token and the bucket name.
 
-The workspace is now stored in Terraform Cloud, so you can use it by invoking Terraform CLI manually and as part of your deployment process in Octopus Deploy. 
+The workspace is now stored in Terraform Cloud, so you can use it by invoking the Terraform CLI manually and as part of your deployment process in Octopus Deploy. 
 
 Terraform will keep track of the [workspace state](https://www.terraform.io/docs/language/state/index.html) and ensure your local state matches the real infrastructure.
 
-## Adding AWS account
+## Adding an AWS account
 
 Navigate to **{{Infrastructure > Accounts}}** and add your AWS account key and secret.
 
@@ -156,7 +154,7 @@ Now navigate to **Variables** on the left and add the two variables that you def
 
 ## Creating a runbook
 
-Infrastructure activities are often defined as [runbooks](https://octopus.com/docs/runbooks). This post assumes you're familiar with creating [projects](https://octopus.com/docs/projects) within Octopus, so I'll skip that part.  
+Infrastructure activities are often defined as [runbooks](https://octopus.com/docs/runbooks). This post assumes you're familiar with creating [projects](https://octopus.com/docs/projects) in Octopus, so I'll skip that part.  
 
 1. Create a runbook for your project. I called mine `Terraform Apply`.
 1. Add a **Apply a Terraform template** step to your process.
@@ -179,10 +177,10 @@ Select **File inside a package** as the template source, and fill in the followi
 
 ![Octopus Terraform Template Options](octopus-terraform-template-options.png)
 
-The rest can be left as default.
+The rest can be left with the default values.
 
 ### Advanced options
-Expand **Terraform Options** and specify the following:
+Expand the **Terraform Options** and specify the following:
 
 - **Custom terraform init parameters**: `-backend-config=backend.tfvars`
 
