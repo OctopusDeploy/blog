@@ -13,7 +13,7 @@ tags:
  - Runbooks
 ---
 
-Terraform lets you define infrastructure with code. In this post, I demonstrate how to use a GitHub repository as the source of Terraform templates. I also explain how to store workspace states in Terraform's own cloud offering.
+Terraform lets you define infrastructure with code. In this post, I demonstrate how to use a GitHub repository as the source for your Terraform templates and make sure they're version controlled. I also explain how to store workspace states in Terraform's own cloud offering.
 
 ## Setting the Terraform version
 
