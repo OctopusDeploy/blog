@@ -10,11 +10,11 @@ tags:
  - Octopus
 ---
 
-The [first ECS integration milestone in Octopus](https://octopus.com/blog/rfc-ecs-integration-with-octopus) is currently under development, and will deliver a new step and target to make it easy to deploy your first ECS service through Octopus. This first milestone will create and manage an opinionated CloudFormation template, freeing developers and administrators from writing what can be a fairly verbose template for themselves.
+The [first ECS integration milestone in Octopus](https://octopus.com/blog/rfc-ecs-integration-with-octopus) is currently under development, and will deliver a new step and target to make it easy to deploy your first ECS service through Octopus. This first milestone will create and manage an ECS service and task definitions for you via CloudFormation, freeing developers and administrators from writing what can be a fairly verbose template for themselves.
 
 However, one consistent piece of feedback we received early on from teams deploying to ECS was that they were already successfully managing existing ECS resources, either with manually created services, or through tools like Terraform. The challenge faced by these teams wasn't creating services, but updating them with new images as part of their CI/CD pipelines.
 
-For milestone two of our ECS integration, we are proposing a new step that updates existing ECS services without the need to take ownership of them through a CloudFormation template. This gives teams with an established ECS cluster the opportunity to orchestrate the deployment of new image versions to their services while retaining control over how the resources are created.
+For milestone two of our ECS integration, we are proposing a new step that updates existing ECS services without taking ownership of them. This gives teams with an established ECS cluster the opportunity to orchestrate the deployment of new image versions to their services while retaining control over how the resources are created.
 
 ## How we propose to support established ECS clusters
 
@@ -44,9 +44,9 @@ Most services deployed to ECS are exposed to network traffic, which means they r
 
 ## Benefits of the proposed approach
 
-We expect this new step to allow customers with established ECS clusters to orchestrate image deployments through Octopus while still retaining control over any existing infrastructure scripts. Octopus selects image versions at release creation time, with all the associated functionality of channels and version rules, and updates the minimum settings required to deploy the new image or images to ECS, without attempting to own the task definition or service through an associated CloudFormation template.
+We expect this new step to allow customers with established ECS clusters to orchestrate image deployments through Octopus while still retaining control over any existing infrastructure scripts. Octopus selects image versions at release creation time, with all the associated functionality of channels and version rules, and updates the minimum settings required to deploy the new image or images to ECS, without attempting to own the task definition or service.
 
-This decouples deployment time concerns, such as deploying a new image, from infrastructure concerns, such as creating the initial task definition and service.
+This decouples your software release management from your infrastructure release management.
 
 ## What is the scope of the second ECS milestone?
 
@@ -74,6 +74,7 @@ Specifically, we want to know:
 
 * Will the ability to update an existing task definition and service support your existing ECS clusters?
 * What further ECS deployment challenges do you wish Octopus could solve for you?
+* Can you forsee any challenges that may stop you from using the proposed step with your existing ECS clusters?
 
 This feedback will help us deliver the best solution we can.
 
