@@ -10,15 +10,11 @@ tags:
  - Octopus
 ---
 
-## Introduction
-
-## Telemetry
+As Octopus Deploy has grown, Octopus Deploy now covers a large software surface area. A given user may need to interface with many different touchpoints across Octopus Deploy. These may be viewing the dashboard, securely signing on through certificates or viewing the projects page. In order to serve our customers better, we want to be able to tell whether users accessing these touchpoints are receiving their content in a timely manner.
 
 Telemetry is the process of collecting measurements or statistical data and forwarding it to IT systems in a remote location. Many software companies use it to gather data on how their customers use and experience their product.
 
-### Crows Nest
-
-Octopus Deploy has implemented a telemetry tool that tracks how well customers are served web requests. A web request is sent when a customer wants to visit a page or poll an endpoint to get a response. The response times of these web requests can be calculated to estimate how satisfied a customer is with their service.  Web requests over several Octopus Deploy versions were tracked. The following categories are sent:
+Octopus Deploy has implemented a telemetry tool that tracks how quickly customers are served web requests. A web request is sent when a customer wants to visit a page or poll an endpoint to get a response. The response times of these web requests can be calculated to estimate how satisfied a customer is with their service.  Web requests over several Octopus Deploy versions were tracked. The following categories are sent:
 
 - Web request duration (2020.4)
 - Database operation duration (2020.4)
@@ -40,18 +36,28 @@ Unless being displayed in a more specific context (e.g. on individual data recor
 
 - API (Web) Requests that return a 2xx response
 - Exclusing certain requests that are called often and are cached (e.g. ServerStatus)
-- A Satisified Threashold of <= 50ms
-- A Tolerating Threashold of > 50ms and <= 200ms
+- A Satisified Threshold of <= 50ms
+- A Tolerating Threshold of > 50ms and <= 200ms
 
-Apdex has a range of 0-100. This means that there is a uniform scale to evaluate customer experience
+Apdex has a range of 0-100. This means that there is a uniform scale to evaluate customer experience. A higher number indicates a more positive user experience.
 
 ## Visualizing Apdex and Octopus Deploy
 
+There are several ways to vizualise apdex. The following graphs are some of the ways we use Crow's nest to display apdex and gain useful insights.
+
+### Apdex for cloud and deploy
+
+The blue line shows the Apdex performance of recent versions in Octopus Cloud and the deployment server. The cloud performance has been consistent around 90 for this period. The deployment server is the internal Octopus instance. The orange graph indicates a major dip in Apdex from 2021.2.2048 where it recovered in 2021.2.4155. The causes of this crash and recovery are known. It can be useful to look back and visually see how different versions affected the user experience.
+
 ![Apdex Cloud and Deploy](apdex-cloud-deploy.png "Apdex Cloud and Deploy")
 
-This graph shows the Apdex performance of recent versions in Octopus Cloud and the deployment server. The cloud performance has been consistent around 90 for this period, however the figure is skewed to include all light instances with less than 10 targets.
+### Apdex by version and license
 
-The deployment server is the internal Octopus instance. The graph indicates a major dip in Apdex from 2021.2.2048 where it recovered in 2021.2.4155. The causes of the crash and recovery are known. It can be useful to look back and visually see how different versions affected the user experience.
+These set of graphs show the apdex score for different versions and licenses. The licenses are Cloud, On Premise, Trial, and Overall.  The first graph indicates that the trial subscription has suffered a slight dip in Apdex performance between the last few versions. On the x.y level, the cloud and on premise licenses appear to be the most consistent, with the trial license suffering from more dipsin performance.
+
+The apdex scores can be filtered at an x.y.z and license level. The orange, blue and purple graph show the on premise, cloud and trial license. This confirms that the cloud license was the most consistent license, maintaining a value of around 90 over multiple versions. The on premise license displayed higher peaks along with more frequent dips than the cloud license. The trial license experienced significant troughs which lowered its average apdex score. This indicates that the on premise and trial licenses have been more prone to performance fluctuations across different versions. 
+
+An admin can look at these graphs and conduct investigations into making the on premise and trial license expereince more consistent like the cloud license. 
 
 ![Apdex by Version](apdex-by-version.png "Apdex by Version")
 
@@ -61,22 +67,35 @@ The deployment server is the internal Octopus instance. The graph indicates a ma
 
 ![Apdex by Version](apdex-by-version-z-trial.png "Apdex by Version")
 
-The first graph displays the average value for different versions of Octopus Deploy and for different licenses. The licenses are Cloud, On Premise, Trial, and Overall. These values can be filtered to show only specific versions or licenses. The second graph shows versions at an x.y.z level and for the on premise license.
 
-This graph can be used to compare the user experience of the different subscriptions across licenses. The trial subscription has suffered a slight dip in Apdex performance between the last few versions. The cloud and on premise version appear to be more consistent over versions
+### Apdex customer view
 
 ![Apdex Customer View](apdex-customer.png "Apdex Customer View")
 
+### Apdex overall score
+
+Each customer is given an overall apdex score. This can be linked to a threshold level. At apdex scores below a certain level, resources are depoloyed to identify and fix any faults causing the poor score.
+
 ![Apdex Score](apdex-score.png "Apdex Score")
 
-Crows nest can zoom in on a specific customer to analyze Apdex scores across versions and date ranges. The Octopus Deploy customer view is shown. Here we see that the customer experienced an Apdex drop from versions 2021.1.2048 to 2021.2.20455 confirming the results from the cloud deploy graph.
+### Apdex routes
+
+Every web request has an endpoint. The endpoint is the subject of the request. The path to fulfil these requests are known as routes. The performance of individual routes can be seen in a customers view. This shows metrics such as the mean, median and highest value of a request. These metrics can be used to idenfiy the worst performing routes in a later version.
 
 ![Apdex Routes](apdex-route.png "Apdex Routes")
 
+#### Apdex route difference
+
+Crow's nest can be used to view the differences in routes across different versions. The project routes have been improved between 2020.6 and 2021.1. This tool can also be used to idenfiy routes that have regressed between versions.
+
+![Apdex Routes Difference](apdex-route-diff.png "Apdex Routes Difference")
+
+#### Apdex route view
+
+Individual routes can be opened to view its historical performance. This is useful when assessing whether updated versions of Octopus Deploy have improved or worsened the route. The performance of the certificates route above degrated in performance from 2020.2 to 2020.6. The apdex score decreased from 62 to 16. In 2021.1 this route was inmproved leading to an apdex score of 77.
+
 ![Apdex Route View](apdex-route-view.png "Apdex Route View")
 
-Every web request has an endpoint. The endpoint is the subject of the request. These are known as routes. The performance of individual routes can be seen in a customers view. This shows metrics such as the mean, median and highest value of a request. 
-
-Individual routes can be opened to view its historical performance. This is useful when assessing whether updated versions of Octopus Deploy have improved or worsened the route.
-
 ## Application
+
+The net effect of the apdex data is full visibility of each user and each route. Performance can be compared historically across different versions and licenses. This allows the effect of each update to be assessed against another. Poor performing routes can be identified on a per user basis or across the Octopus Deploy platform.
