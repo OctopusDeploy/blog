@@ -19,7 +19,7 @@ This post is part 2 of my Safe Schema Updates series. The other posts in this se
 
 !include <safe-schema-updates-posts>
 
-In part 1, we reviewed the common death-spiral associated with traditional attitudes toward database administration and design. Over the next few posts, we'll explore a few important theoretical concepts that help explain why it’s often the most risk-averse organizations who create the most dangerous databases. We’ll also imagine what a safer data architecture and development culture might look like.
+In part 1, we reviewed the common downward spiral associated with traditional attitudes toward database administration and design. Over the next few posts, we'll explore a few important theoretical concepts that help explain why it’s often the most risk-averse organizations who create the most dangerous databases. We’ll also imagine what a safer data architecture and development culture might look like.
 
 After we've armed ourselves with a deeper understanding about why some systems are systematically more reliable than others, we'll discuss a few technical changes that teams can make, that should lead to significantly better database reliability and improved business outcomes, as well as more humane working conditions.
 
@@ -140,7 +140,7 @@ First, we need to recognize that *change introduces new forms of failure*. That�
 
 We should also be designing effective fire breaks. One bad database update should not be causing cascading failures. Failures need to be contained so that their impact is minimized. This means we need to be avoiding monolithic shared databases and we should be trying to split them up into smaller, simpler systems that are capable of running independently, even if they need to temporarily run in some degraded capacity. We’ll look more closely at that in the later posts about loose coupling and the Strangler Pattern.
 
-The outcome of these changes should be significantly reduced risk associated with any database update. This reduced risk should reduce the need for overly bureaucratic change management processes, allowing the more frequent delivery of smaller, safer updates, reversing the death spiral discussed in the last post, and leading to a period of continuous improvement.
+The outcome of these changes should be significantly reduced risk associated with any database update. This reduced risk should reduce the need for overly bureaucratic change management processes, allowing the more frequent delivery of smaller, safer updates, reversing the downward spiral discussed in the last post, and leading to a period of continuous improvement.
 
 ## Next Time
 
