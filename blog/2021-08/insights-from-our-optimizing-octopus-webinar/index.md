@@ -87,8 +87,8 @@ If you have many Projects, you can group them to help reduce visual noise on you
 To create a project group:
 
 1.	Click **Projects** in Octopus’s top menu.
-1.	Click **ADD GROUP** in the top right.
-1.	Give your group a name and description, then click **SAVE**.
+1. Click **ADD GROUP** in the top right.
+1. Give your group a name and description, then click **SAVE**.
 
 To add an existing project to a group:
 
