@@ -3,9 +3,11 @@ title: Request for Comments - ECS integration with Octopus milestone two
 description: Provide your feedback on the proposed second ECS integration milestone in Octopus
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2999-01-01
+published: 2021-08-09-1400
 metaImage: 
 bannerImage: 
+bannerImageAlt:
+isFeatured: false
 tags:
  - Octopus
 ---
