@@ -3,7 +3,7 @@ title: Insights from our Optimizing Octopus webinar
 description: Learn how to keep Octopus running smoothly and easily see what’s happening, with a little planning, maintenance and smart use of Octopus features.
 author: andrew.corrigan@octopus.com
 visibility: private
-published: 2021-08-09-1400
+published: 2021-08-17-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt:
@@ -12,7 +12,7 @@ tags:
   - DevOps
 ---
 
-In [our recent webinar](https://octopus.com/events/optimizing-octopus-deploy-with-clear-measure), Clear Measure’s Chris Thomas joined Derek Campbell to talk about ways to optimize Octopus Deploy for the best possible experience.
+In our recent webinar, Clear Measure’s Chris Thomas joined Derek Campbell to talk about ways to optimize Octopus Deploy for the best possible experience.
 
 With a little planning, maintenance and smart use of its features, you can keep Octopus running smoothly and make it easier to see what’s happening.
 
@@ -24,7 +24,7 @@ Watch the webinar below or keep scrolling for the webinar’s key insights.
 
 As Chris notes in the webinar, it’s easy to forget Octopus Server runs on a SQL database. Some basic housekeeping with tools like **Microsoft SQL Server Management Studio (SSMS)** can boost speed for those battling a slow instance.
 
-If you’re on [Octopus Cloud](https://octopus.com/docs/octopus-cloud), database maintenance is something you never need to worry about. See how to best [organize Octopus](#organize-octopus) instead.
+If you’re on [Octopus Cloud](https://octopus.com/docs/octopus-cloud), database maintenance is something you never need to worry about. Skip ahead for how to best [organize Octopus](#organize-octopus) instead.
 
 ### Check SQL reports for problems
 
@@ -62,7 +62,7 @@ If you prefer using scripts, try [Ola Hallengren’s SQL Server maintenance solu
 
 ## Organize Octopus
 
-Keeping Octopus well organized not only helps performance, but also makes it easier for teams to read and navigate the dashboard. Here are a few suggestions for a good practice setup.
+Keeping Octopus well organized not only helps performance, but also makes it easier for teams to read and navigate the dashboard. Here are a few suggestions to keep your dashboard lean and easy to navigate.
 
 ### Don’t use more environments than you need
 
@@ -130,7 +130,7 @@ To check your retention policies:
 
 Here you can change retention policies for existing and default Lifecycles, or create new ones.
 
-By setting retention policies, files will disappear after the number of days or releases you set, saving you valuable disk space.
+By setting retention policies, Octopus will delete the files after the number of days or releases you set, saving you valuable disk space.
 
 ![Screenshot showing a lifecycle's retention policy in Octopus](retention.png "width=500")
 
