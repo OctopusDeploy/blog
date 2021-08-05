@@ -2,7 +2,7 @@
 title: Request for Comments - ECS integration with Octopus milestone two
 description: Provide your feedback on the proposed second ECS integration milestone in Octopus.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2021-08-09-1400
 metaImage: blogimage-feedback_2021_01.png
 bannerImage: blogimage-feedback_2021_01.png
@@ -45,7 +45,9 @@ An ECS deployment to an existing task definition and service will then execute t
 
 ### Linking to load balancers
 
-Most services deployed to ECS are exposed to network traffic, which means they receive traffic from a load balancer. Milestone two updates the step introduced in milestone one to link a service to an existing load balancer:
+Most services deployed to ECS are exposed to network traffic, which means they receive traffic from a load balancer. 
+
+Milestone two updates the step introduced in milestone one to link a service to an existing load balancer:
 
 ![](loadbalancermockup.png)
 
