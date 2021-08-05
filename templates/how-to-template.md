@@ -6,6 +6,8 @@ visibility: private
 published: 3020-01-01
 metaImage: to-be-added-by-marketing
 bannerImage: to-be-added-by-marketing
+bannerImageAlt:
+isFeatured: false
 tags:
  - DevOps
  - Company
