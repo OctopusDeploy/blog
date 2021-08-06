@@ -123,8 +123,9 @@ Next, you will set up an [Azure web application](#web-application-setup) and con
 
 1. In your **Resource group** click **{{Create, Web App}}**
 2. Create a Windows Node Application under runtime stack and operating system.
-2. Once the web app is setup, route the path of the web application to default to the home path by navigating to **{{Configuration, Path Mappings, Virtual applications and directories}}**
-3. Set the Physical path to ```site\wwwroot\guide``` and the Virtual Path to ```/``` 
+3. Take note of your Azure app name. This will be your address: [your-site].azurewebsites.net
+4. Once the web app is setup, route the path of the web application to default to the home path by navigating to **{{Configuration, Path Mappings, Virtual applications and directories}}**
+5. Set the Physical path to ```site\wwwroot\guide``` and the Virtual Path to ```/``` 
 
 Now that we have the Azure account set up in Azure and Octopus, we will upload the package for Azure.
 
@@ -158,26 +159,9 @@ With Octopus, you can deploy software to Windows servers, Linux servers, Microso
 
 Now that we've imported a project, set up the Azure account, set up the deployment target, and uploaded the package, we will deploy the application.
 
-1. Go to **{{Projects, HTML, create release}}** and step through to deploy the web application to Azure from Test to Development to Production.
-2. Deployment variables have been set up to notify the tasklog of which environment is being deployed. A Hello, [Environment] log message will be displayed
+1. Go to **{{Projects, HTML, create release}}** and step through to deploy the web application to Azure from the Azure production environment.
 
 ![Deploy Success](deploy-success.png "Deploy Success")
-
-![Variable](variable.png "Variable")
-
-Octopus Deploy provides a runbook feature to run scripts for tasks that lie outside of deploying releases. This project provides a sample runbook that runs on each environment to display a 'Hello, [Environment] Runbook' message.
-
-1. Go to the **{{HTML Project, Operations, Runbooks, Run}}**
-2. Select all three environments and runs
-3. You will see a success message and a log message of Hello, [Environment] Runbook for each environment.
-
-![Runbook Run](runbook-run.png "Runbook Run")
-
-![Runbook Success](runbook-success.png "Runbook Success")
-
-![Runbook Log](runbook-log.png "Runbook Log")
-
-Runbooks are a helpful way to automate tasks that are not part of a release. Examples include updating databases, switching off and on servers, patching software, and more.
 
 Check your application by going to [your-site].azurewebsites.net where you will see the following page:
 
