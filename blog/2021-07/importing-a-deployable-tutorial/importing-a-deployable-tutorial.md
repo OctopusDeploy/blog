@@ -35,7 +35,7 @@ When your Octopus instance is ready, the first step is to import an existing pro
 
 ## Import an existing project
 
-The Export/Import feature can export one or more projects into a zip file which can then be import into other spaces. The target space can be in a different Octopus Server instance, and they can even be moved between self-hosted and Octopus Cloud instances.
+The Export/Import feature can export one or more projects into a zip file which can then be imported into other spaces. The target space can be in a different Octopus Server instance, and they can even be moved between self-hosted and Octopus Cloud instances.
 
 :::hint
 If you haven't upgraded to Octopus Deploy 2021.1 now is a great time to do so to use the Export/Import Project features
@@ -123,7 +123,7 @@ Next, you will set up an [Azure web application](#web-application-setup) and con
 
 1. In your **Resource group** click **{{Create, Web App}}**
 2. Create a Windows Node Application under runtime stack and operating system.
-3. Take note of your Azure app name. This will be your address: [your-site].azurewebsites.net
+3. Take note of your Azure app name. This will the address of your web application: [your-site].azurewebsites.net
 4. Once the web app is setup, route the path of the web application to default to the home path by navigating to **{{Configuration, Path Mappings, Virtual applications and directories}}**
 5. Set the Physical path to ```site\wwwroot\guide``` and the Virtual Path to ```/``` 
 
