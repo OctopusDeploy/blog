@@ -22,7 +22,7 @@ In this post, I look at how to deploy a sample application to GAE and manipulate
 
 GAE offers two kinds of deployments for Java: 
 
-- Deploying source code to be compile by GAE
+- Deploying source code to be compiled by GAE
 - Deploying compiled applications 
 
 Allowing GAE to compile your source code is convenient, although for this example I use a JAR file that's already been compiled by our CI system.
@@ -67,7 +67,7 @@ service: default
 instance_class: F2
 ```
 
-The runtime is a required defining the platform that will host your code. I couldn't find a definite list of runtimes, but `java`, `java8`, and `java11` are all included in various places in the documentation and examples. I use `java11` here as Java 11 is part of the GAE [second generation](https://cloud.google.com/appengine/docs/standard/runtimes).
+The runtime is a required property defining the platform that will host your code. I couldn't find a definite list of runtimes, but `java`, `java8`, and `java11` are all included in various places in the documentation and examples. I use `java11` here as Java 11 is part of the GAE [second generation](https://cloud.google.com/appengine/docs/standard/runtimes).
 
 The first service that's deployed to GAE must be called `default`, so I defined that name in the `service` field.
 
@@ -89,7 +89,7 @@ Compile the Java application with the command:
 
 This creates a JAR file under the `target` directory. 
 
-At the time of writing the sample application is at version 0.1.9, so the JAR file is called `target/randomquotes.0.1.9.jar`. 
+At the time of writing, the sample application is at version 0.1.9, so the JAR file is called `target/randomquotes.0.1.9.jar`. 
 
 To deploy the web app, run the following command, replacing the name of the project to match your environment:
 
@@ -144,7 +144,7 @@ You can now open the feature branch at the URL https://\[projectname\].uc.r.apps
 
 ## Traffic splitting, canary, and blue/green deployments
 
-Let's now look at how we can use traffic splitting to implement canary and blue/green deployments. 
+Let's now look at how you can use traffic splitting to implement canary and blue/green deployments. 
 
 For this, you need to bump the version of the application in the `pom.xml` file to `0.1.10`:
 
