@@ -12,7 +12,7 @@ tags:
  - Product
 ---
 
-The [first ECS integration milestone in Octopus](https://octopus.com/blog/rfc-ecs-integration-with-octopus) is being developed, and will deliver a new step and target making it easy to deploy your first ECS service through Octopus. 
+The [first Amazon Elastic Container Service (ECS) integration milestone in Octopus](https://octopus.com/blog/rfc-ecs-integration-with-octopus) is being developed, and will deliver a new step and target, making it easy to deploy your first ECS service through Octopus. 
 
 This first milestone will create and manage an ECS service and task definitions for you via CloudFormation. This frees developers and administrators from writing verbose templates for themselves.
 
