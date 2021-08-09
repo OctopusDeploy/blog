@@ -12,7 +12,7 @@ tags:
  - DevOps
 ---
 
-Google App Engine (GAE) is one of the original Platform as a Service (PasS) offerings provided by the Google Cloud Platform (GCP). 
+Google App Engine (GAE) is one of the original Platform as a Service (PaaS) offerings provided by the Google Cloud Platform (GCP). 
 
 GAE hosts web applications written in a variety of different languages. It also provides network routing, job scheduling, persistent data storage, and task queues.
 
