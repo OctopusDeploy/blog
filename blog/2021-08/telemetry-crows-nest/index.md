@@ -47,7 +47,7 @@ There are several ways to visualize Apdex. The following graphs are how we use C
 
 ### Apdex for cloud and deploy
 
-The blue line shows the Apdex performance of recent versions in Octopus Cloud and the deployment server. The cloud Apdex performance has been consistent at around 90 for this period. The deployment server is the internal Octopus instance not released to customers. The orange graph indicates a significant dip in Apdex from 2021.2.2048, where it recovered in 2021.2.4155. Octopus Deploy knows the causes of this crash and recovery. It can be helpful to look back and see how different versions affected the user experience. If there is any significant dip in performance, admin users can conduct a root cause analysis to identify and address causes.
+The blue line shows the Apdex performance of recent versions in Octopus Cloud and the deployment server. The cloud Apdex performance has been consistent at around 90 for this period. The deployment server is the internal Octopus instance not released to customers. The orange graph indicates a significant dip in Apdex from 2021.2.2048, where it recovered in 2021.2.4155. Octopus Deploy has fixed the causes of this crash and recovery. It can be helpful to look back and see how different versions affected the user experience. If there is any significant dip in performance, admin users can conduct a root cause analysis to identify and address causes.
 
 ![Apdex Cloud and Deploy](apdex-cloud-deploy.png "Apdex Cloud and Deploy")
 
@@ -98,7 +98,7 @@ Historical performance is visible on every route. This is useful when assessing 
 
 #### Future improvements
 
-There have been several improvements to poor-performing routes over many versions. Through the Crows Nest tool, we are aware of routes that still need more work. The dashboard route below currently has an average response time of 786ms. The Apdex score of 22 shows that it is not where we want to be. Other routes fall into this category, such as the progression and infrastructure/summary route. We aim to improve the Apdex scores of all underperforming routes in later releases. 
+There have been several improvements to poor-performing routes over many versions. Through the Crow's Nest tool, we are aware of routes that still need more work. The dashboard route below currently has an average response time of 786ms. The Apdex score of 22 shows that it is not where we want to be. Other routes fall into this category, such as the progression and infrastructure/summary route. We aim to improve the Apdex scores of all underperforming routes in later releases. 
 
 ![Apdex Routes Difference](apdex-route-dashboard.png "Apdex Routes Difference")
 
