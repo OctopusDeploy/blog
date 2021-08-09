@@ -4,9 +4,9 @@ description: Learn how to deploy functions to the Google Cloud Platform.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2021-08-11-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt:
+metaImage: blogimage-deploygooglecloudfunction.png
+bannerImage: blogimage-deploygooglecloudfunction.png
+bannerImageAlt: laptop with code on screen sits behind a rocket ship that is launching towards Google Cloud Functions logo above
 isFeatured: false
 tags:
  - DevOps
