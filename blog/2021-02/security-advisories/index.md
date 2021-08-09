@@ -25,7 +25,7 @@ When we discover or are notified of a security vulnerability in our products we 
 
 In terms of notifying our customers of security vulnerabilities we have always assumed our customers are either reading the release notes or are periodically checking CVE databases for any security vulnerabilities. However, we believe we can do more to help our customers have the information they need to ensure their environments remain secure.
 
-To address this we're introducing Octopus Security Advisories.
+To address this we're introducing Octopus security advisories.
 
 ## Octopus security advisories
 
