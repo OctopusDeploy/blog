@@ -4,8 +4,10 @@ description: Learn how to deploy a compiled application to Google App Engine.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2021-08-10-1400
-metaImage: 
-bannerImage: 
+metaImage: blogimage-deploygoogleappengine.png
+bannerImage: blogimage-deploygoogleappengine.png
+bannerImageAlt: A box containing the Java logo with an arrow towards the Google App Engine logo
+isFeatured: false
 tags:
  - DevOps
 ---
