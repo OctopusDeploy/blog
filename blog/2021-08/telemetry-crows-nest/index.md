@@ -18,7 +18,7 @@ The Crow's Nest symbolizes a tool with a high-level overview of how users are ex
 
 Only web requests with a 2xx status are in the calculations. A 2xx status indicates a successful web request. Versions with less than 50 instances sending telemetry on any given data get filtered out to remove outliers. The response times of these web requests estimate how satisfied a customer is with their service. 
 
-### Apdex
+## Apdex
 
 Apdex (Application Performance Index) aims to convert measurements into insights about user satisfaction. The formula is:
 
@@ -103,6 +103,5 @@ There have been several improvements to poor-performing routes over many version
 ![Apdex Routes Difference](apdex-route-dashboard.png "Apdex Routes Difference")
 
 Telemetry is a powerful tool that can enable businesses to gain a complete picture of user experiences. Telemetry and Apdex give full visibility of each user and the performance of each route. Administrators can compare performance across different versions and licenses. Comparing versions quantifies the effect of each update. Poor-performing routes are visible on a per-user basis or across the Octopus Deploy platform. Our Crow's Nest tool helps to improve the customer experience, leading to customer satisfaction.
-
 
 
