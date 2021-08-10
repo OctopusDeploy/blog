@@ -41,7 +41,7 @@ Most people miss the answer that’s staring them in the face. CI is about reduc
 
 Those builds exists purely to validate that our regular integrations work. After all, if we only integrate code once every three months, perhaps a one week testing phase isn't such a pain? However, if we plan to integrate multiple times a day, a one-week testing phase isn't going to be practical. Those builds don't just exist to catch bugs - they exist to enable the *continuous integration* of deployable changes to the main source control branch - multiple times a day.
 
-The implication is that any true continuous integration practitioner, will also be practicing some form of [trunk-based development](https://trunkbaseddevelopment.com/).
+The implication is that any true Continuous Integration practitioner, will also be practicing some form of [trunk-based development](https://trunkbaseddevelopment.com/).
 
 There will be some who object to the idea of trunk-based development. They may want to keep the delivery of different features/work items/tickets isolated from each other for reasons along the lines of conflicting business goals, scheduling, or co-ordination etc. For example:
 
@@ -89,11 +89,11 @@ Of course, automated builds and tests are necessary. However, the problems CI pr
 - How do we manage relationships with customers/users if they still plan in terms of annual budgets, quarterly releases and infrequent software updates? What about senior management and shareholders?
 - How do we manage situations where business, legal or contractual obligations necessitate infrequent, large releases?
 - What does an appropriate review process look like, when we are shipping changes multiple times a day?
-- How do we practice continuous integration at scale? How would we manage this in extremely large IT functions packed full of developers committing changes multiple times a day?
+- How do we practice Continuous Integration at scale? How would we manage this in extremely large IT functions packed full of developers committing changes multiple times a day?
 
 In order to solve these problems, we need to think carefully about our software architectures and the way we manage dependencies. We need ways to integrate our code and deploy changes frequently, while reserving the ability to release/reveal those updates to users on a different schedule which is optimized for commercial objectives, rather than pure engineering concerns. We need bureaucratic processes that are based on the frequent delivery of many small changes with short lead times, rather than infrequent big changes with long lead times. We need to ensure that the delta between dev and prod remains small at all times.
 
-That’s a short paragraph with a whole bunch of big ideas. I’m not going to attempt to unpack them all in this post. This is an 8-part series and over the coming posts you can expect to see techniques to deal with many of those challenges. The point of this post is to highlight that continuous builds are only the tip of the continuous integration iceberg. And continuous integration is important.
+That’s a short paragraph with a whole bunch of big ideas. I’m not going to attempt to unpack them all in this post. This is an 8-part series and over the coming posts you can expect to see techniques to deal with many of those challenges. The point of this post is to highlight that continuous builds are only the tip of the Continuous Integration iceberg. And Continuous Integration is important.
 
 For now, surmise to say:
 - If you are running automated builds on your feature branch, but you aren’t merging your big feature with the main branch because it’s not ready yet… I’m sorry, that’s not CI.
@@ -103,12 +103,12 @@ For now, surmise to say:
 
 ## How does all this relate to safe database updates?
 
-This mini-rant about CI might sound like a bit of a tangent, but it’s important that we understand CI properly before we go deep on loose coupling in the next two posts. Sure, smaller systems are easier to test, but there’s more to it than that, and it would be useful to go into our discussions about loose coupling and Domain-Driven Development (DDD) armed with a clear appreciation of the broader meaning and value of resilience and continuous integration.
+This mini-rant about CI might sound like a bit of a tangent, but it’s important that we understand CI properly before we go deep on loose coupling in the next two posts. Sure, smaller systems are easier to test, but there’s more to it than that, and it would be useful to go into our discussions about loose coupling and Domain-Driven Development (DDD) armed with a clear appreciation of the broader meaning and value of resilience and Continuous Integration.
 
-Additionally, DDD is fundamentally about breaking up data models, and databases are often a shared dependency for many other systems. Loose coupling requires the decoupling of the data associated with independent services. Hence, when we start talking about the value of splitting up databases with respect to CI concerns, it’s useful to appreciate continuous integration in its fullest sense, rather than the shallow but widespread “continuous build” misinterpretation.
+Additionally, DDD is fundamentally about breaking up data models, and databases are often a shared dependency for many other systems. Loose coupling requires the decoupling of the data associated with independent services. Hence, when we start talking about the value of splitting up databases with respect to CI concerns, it’s useful to appreciate Continuous Integration in its fullest sense, rather than the shallow but widespread “continuous build” misinterpretation.
 
 ## Next Time
 
-In the next two posts, we are going to switch gears and talk about database architecture - from both a technical and a human perspective. We’ll talk about loose coupling and domain-driven development, and how these principles help us to practice continuous integration and produce safe, resilient IT systems.
+In the next two posts, we are going to switch gears and talk about database architecture - from both a technical and a human perspective. We’ll talk about loose coupling and domain-driven development, and how these principles help us to practice Continuous Integration and produce safe, resilient IT systems.
 
 !include <safe-schema-updates-posts>
