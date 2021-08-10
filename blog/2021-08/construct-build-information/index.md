@@ -47,11 +47,11 @@ Click **Access Tokens** in the left-hand menu. Give your token a name and at lea
 
 The **Expiration date** is optional. Leaving it blank creates a token that never expires.  
 
-Click the **Create personal access token** button.  When the token is displayed, store it in a safe place - this value is only displayed once.
+Click **Create personal access token**.  When the token is displayed, store it in a safe place - this value is only displayed once.
 
 ![](gitlab-access-token.png)
 
-##### Create Variable for Personal Access Token
+##### Creating a Variable for Personal Access Token
 Now you have the token, navigate back to the project and click **Settings** then **CI/CD**.
 
 ![](gitlab-settings-cicd.png)
@@ -67,7 +67,7 @@ Tick the **Mask variable** option to ensure the token doesn't get displayed in a
 ![](gitlab-add-variable.png)
 
 #### Octopus variables
-Repeat the `Add variable` process from above for the Octopus variables.  This post assumes you're already familiar with [creating an API key](https://octopus.com/docs/octopus-rest-api/how-to-create-an-api-key):
+Repeat the **Add variable** process from above for the Octopus variables.  This post assumes you're familiar with [creating an API key](https://octopus.com/docs/octopus-rest-api/how-to-create-an-api-key):
 
 - Octopus Deploy API Key
 - Octopus Deploy Server URL
@@ -211,7 +211,7 @@ push-build-information:
         - octo build-information --package-id=OctoPetShop.Web --version=1.0.21132.111113 --file=BuildInformation.json --server="$OCTOPUS_SERVER_URL" --apiKey="$OCTOPUS_API_KEY" --space="$OCTOPUS_SPACE_NAME"
 ```
 ## Executing the build
-When the build is triggered, you should see something like this (images show last part of log for brevity):
+After the build is triggered, you'll see something like this (images show the last part of the log for brevity):
 
 build-information
 ![](gitlab-build-information-stage.png)
