@@ -123,7 +123,7 @@ Next, you will set up an [Azure web application](#web-application-setup) and con
 
 1. In your **Resource group** click **{{Create, Web App}}**
 2. Create a Windows Node Application under runtime stack and operating system.
-3. Take note of your Azure app name. This will the address of your web application: [your-site].azurewebsites.net
+3. Take note of your Azure app name. This will be the address of your web application: [your-site].azurewebsites.net
 4. Once the web app is setup, route the path of the web application to default to the home path by navigating to **{{Configuration, Path Mappings, Virtual applications and directories}}**
 5. Set the Physical path to ```site\wwwroot\guide``` and the Virtual Path to ```/``` 
 
@@ -168,4 +168,3 @@ Check your application by going to [your-site].azurewebsites.net where you will 
 ![Deployed Application](deployed-application.png "Deployed Application")
 
 Well done! You have taken a preexisting project and deployed a package to an Azure web application through Octopus Deploy. You can share this with other company members to teach them how to deploy their own Octopus Deployments.
-
