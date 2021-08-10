@@ -19,8 +19,6 @@ You have imported an exported project and deployed a package to an Azure web app
  - projects
  - releases
  - deployments
- - variables
- - runbooks
 
 The blog post represented a simple example. Production level solutions are more complex, with many deployment steps and deployment targets. There are other advanced Octopus Deploy features that developers can use. These include tenants, the Octopus REST API, and more. See comprehensive documentation of all Octopus Deploy [features](https://octopus.com/docs).
 
