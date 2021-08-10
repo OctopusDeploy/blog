@@ -3,7 +3,7 @@ title: Workers explained
 description: Learn about Workers, how they operate and how they help with tasks executing directly on the server.
 author: shawn.sesna@octopus.com
 visibility: public
-published: 2021-08-18-1400
+published: 2021-08-23-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt: 
