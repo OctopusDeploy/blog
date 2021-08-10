@@ -21,9 +21,9 @@ In this post, I address common questions about Workers and how they operate.
 In essence, a Worker is a Tentacle.  It runs the same Tentacle software as a deployment target, however, it's registered with the server in Worker Pools.  Worker Pools are a collection of Worker Machines.
 
 ### If a Worker is a Tentacle, does it count as a target for licensing?
-Despite running the Tentacle software, Workers are viewed as an extension of the Octopus Server, and therefore not counted as targets.  
+Despite running the Tentacle software, Workers are viewed as an extension of the Octopus Server, therefore not counted as targets.  
 
-Under the current licensing model, there is no limit to how many Worker Machines you can have.
+Under the current licensing model, there's no limit to how many Worker Machines you can have.
 
 ## What is the Built-in Worker?
 All Octopus instances come with a **Default Worker Pool** defined.  Any step that selects the **Default Worker Pool** executes on the Built-in Worker, which is the Octopus Server.  If, however, a Worker Machine is added to the **Default Worker Pool**, the Built-in Worker is no longer used.
@@ -39,8 +39,12 @@ Workers can be used with steps that don't _need_ to be executed on a target.  Th
 ### Database deployments
 Deploying database updates only requires a connection string to the database server, and database you're working with.  Workers help perform database deployments without having to install additional software on the database server.
 
-### API or Web Service calls
-Slack notifications, Microsoft Teams messages, or deploying SQL Server Reporting Services reports can be done by calling APIs or a Web service and don't need a target to run on.  These are perfect use cases for using Workers.
+### API or Web service calls
+Workers are perfect for calling APIs or a Web service that don’t need a target to run on. Examples include:
+
+- Slack notifications
+- Microsoft Teams messages
+- Deploying SQL Server Reporting Services reports
 
 ### Running scripts
 Running scripts is another use case for Workers.  Process intensive operations can be offloaded to run on a Worker instead of slowing down the Octopus Server.
@@ -57,10 +61,10 @@ Workers offer two major advantages:
 - Ability to run customized software
 
 ### Offload processes from the Octopus Server
-Long running or intensive processes can hinder performance of the Octopus Server.  These tasks can be offloaded to a Worker Machine, freeing up resources to allow the Octopus Server to perform optimally.
+Long running or intensive processes can hinder performance of the Octopus Server.  These tasks can be offloaded to a Worker Machine, freeing up resources and allowing the Octopus Server to perform optimally.
 
 ### Customized software
-The bundled software that ships with Octopus might not include everything a customer needs for a process.  With a Worker, you have the ability to install custom software packages to aid the deployment or runbook process.
+The bundled software that ships with Octopus might not include everything you need for a process.  With a Worker, you have the ability to install custom software packages to aid the deployment or runbook process.
 
 :::info
 If the Worker has Docker installed, they can use the [Execution containers](https://octopus.com/docs/projects/steps/execution-containers-for-workers) feature to use customized containers versus installing software directly on the Worker.
@@ -74,7 +78,9 @@ When defining a step in a [Runbook](https://octopus.com/docs/runbooks) or [Proje
 ![](octopus-step-worker-pool.png)
 
 ### Worker Pool variable
-You might have noticed there's a second selection for the **Worker Pool** section,**Runs on a Worker from a pool selected via a variable**.  The [Worker Pool variable](https://octopus.com/docs/projects/variables/worker-pool-variables) was created for customers who need a different Worker Pool for different situations, such as environments.  Some customers have security segregated so that Workers in Development are not allowed to touch resources in Test.  Using a Worker Pool variable, you can scope pools to environments or even [Tenant Tags](https://octopus.com/docs/deployments/patterns/multi-tenant-deployments/tenant-tags) denoting things like specific Azure regions.
+You might have noticed there's a second selection for the **Worker Pool** section,**Runs on a Worker from a pool selected via a variable**.  We created the [Worker Pool variable](https://octopus.com/docs/projects/variables/worker-pool-variables) for when you need a different Worker Pool for different situations, such as environments.  
+
+Some people have security segregated so that Workers in Development are not allowed to touch resources in Test.  Using a Worker Pool variable, you can scope pools to environments or even [Tenant Tags](https://octopus.com/docs/deployments/patterns/multi-tenant-deployments/tenant-tags) denoting things like specific Azure regions.
 
 ![](octopus-worker-pool-variable.png)
 
@@ -150,7 +156,7 @@ However, if the ordering of the packages is different, Octopus selects different
 When a [Manual Intervention](https://octopus.com/docs/projects/built-in-step-templates/manual-intervention-and-approvals) step is encountered, it's removed from the task queue.  After the intervention has been acted on, the task is added back into the queue which forces Worker selection to occur again.
 
 ## I'm using Octopus Cloud, how do Dynamic Workers work?
-Octopus Deploy maintains a set of Workers (VMs) that customers can use on demand as Dynamic Workers.  These Workers are available in the following pools:
+Octopus Deploy maintains a set of Workers (VMs) that you can use on demand as Dynamic Workers.  These Workers are available in the following pools:
 
 - Default Worker Pool (Windows Server 2016)
 - Hosted Windows (Windows Server 2019`*`)
