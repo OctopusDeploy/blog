@@ -3,10 +3,10 @@ title: Request for Comments - ECS integration with Octopus milestone two
 description: Provide your feedback on the proposed second ECS integration milestone in Octopus.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2021-08-09-1400
+published: 2021-08-11-1400
 metaImage: blogimage-feedback_2021_01.png
 bannerImage: blogimage-feedback_2021_01.png
-bannerImageAlt:Octopus salesperson at laptop with headset and icons representing customer feedback
+bannerImageAlt: Octopus salesperson at laptop with headset and icons representing customer feedback
 isFeatured: false
 tags:
  - Product
@@ -75,7 +75,7 @@ The limitations from [milestone one](https://octopus.com/blog/rfc-ecs-integratio
 
 ## When will this be released?
 
-Work on milestone two is scheduled to start once milestone one has been completed. We don't have a release date yet, so keep an eye on the [blog](https://octopus.com/blog/) for further announcements.
+Work on milestone two is scheduled to start after milestone one has been completed. We don't have a release date yet, so keep an eye on the [blog](https://octopus.com/blog/) for further announcements.
 
 ## We want your feedback
 
