@@ -1,6 +1,6 @@
 ## Welcome!
 
-Well done! You have deployed your first application through Octopus Deploy! This overview provides some more context and information about Octopus Deploy. It will also point you in the right direction to learn more.
+Well done! You have deployed your first application with Octopus Deploy! This overview provides some additional context and information about Octopus Deploy. It will also point you in the right direction to learn more.
 
 ## What is Octopus Deploy and who is it for?
 
@@ -22,22 +22,17 @@ You have imported an exported project and deployed a package to an Azure web app
  - variables
  - runbooks
 
-The blog post represented a simple example. Production level solutions are more complex, with many deployment steps and deployment targets. There are other advanced Octopus Deploy features that developers can use. These include tenants, the Octopus REST API, and more. See comprehensive documentation of all Octopus Deploy [features.](https://octopus.com/docs)
-
+The blog post represented a simple example. Production level solutions are more complex, with many deployment steps and deployment targets. There are other advanced Octopus Deploy features that developers can use. These include tenants, the Octopus REST API, and more. See comprehensive documentation of all Octopus Deploy [features](https://octopus.com/docs).
 
 ## How does this help me?
 
-You are now able to use the Octopus Deploy platform for continuous deployment. We have a wide range of example use cases for customers that have used Octopus Deploy. Some or a mixture of these likely apply to you. Read more about specific [use cases.](https://octopus.com/company/customers) 
+You are now able to use the Octopus Deploy platform for continuous deployment. We have a wide range of example use cases for customers that have used Octopus Deploy. Some or a mixture of these likely apply to you. Read more about specific [use cases](https://octopus.com/company/customers).
 
-The customers that have signed up with us experience an 'a-ha!' moment. Over time, customers come to understand how Octopus Deploy can help them. This post will provide resources for you to test whether Octopus Deploy can meet your needs.
-
-## How much does it cost?
-
-Octopus is free for up to 10 deployment targets or less. This applies to both the Octopus Cloud and self-hosted versions. For deployments that need more targets than this, there is a pricing [guide.](https://octopus.com/pricing/overview) There are definitive use cases for the free tier.  Customers have used the free tier license to orchestrate their more complex deployment that uses the paid license.
+This page provides further resources to help you get the most out of Octopus Deploy.
 
 ## Where can I learn more?
 
-Octopus Deploy can be a lot to take in for a new user. Octopus Deploy is a product that sits between several other third-party tools. This requires knowledge of different tools and how it integrates with Octopus. Resources to learn more are available below.
+Octopus Deploy is a product that sits between several other third-party tools. This requires knowledge of different tools and how it integrates with Octopus. Resources to learn more are available below.
 
 ### Introduction to Octopus Deploy
 
@@ -79,7 +74,7 @@ We have a dedicated support team that is here to answer any questions you may ha
 
 #### Sales
 
- Every business is different and licensing needs may vary. Our sales team help businesses deploy the right Octopus Deploy services to meet their needs. If you need advice on licensing, pricing options, or upgrading your account, [our sales team is happy to help!](https://octopus.com/company/contact)
+Every business is different and licensing needs may vary. Our sales team help businesses deploy the right Octopus Deploy services to meet their needs. If you need advice on licensing, pricing options, or upgrading your account, [our sales team is happy to help!](https://octopus.com/company/contact)
 
 
 #### Demos & Samples
