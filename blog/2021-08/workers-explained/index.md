@@ -1,100 +1,108 @@
 ---
-title: Demystifying workers
-description: Learn about workers and how they work.
+title: Workers explained
+description: Learn about Workers, how they operate and how they help with tasks executing directly on the server.
 author: shawn.sesna@octopus.com
-visibility: private
-published: 2022-06-16-1400
+visibility: public
+published: 2021-08-18-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt: 
+isFeatured: false
 tags:
- - 
+ - DevOps
+ - Workers
 ---
 
-As the Octopus Deploy product evolved, more and more demands were being made on the server in which it was installed.  In those early days, any step that didn't execute directly on a [Target](https://octopus.com/docs/infrastructure/deployment-targets) was executed on the server itself.  To address the growing list of tasks executing directly on the server, Octopus came up with the concept of workers.  In this post, I'll address some common questions about workers and how they operate.
+In the early days of Octopus Deploy, as the product evolved, increasing demands were being made on the server it was installed on.  Any step that didn't execute directly on a [Target](https://octopus.com/docs/infrastructure/deployment-targets) was executed on the server itself.  To address the growing list of tasks executing directly on the server, Octopus came up with the concept of Workers.  
 
-## What exactly is a worker?
-In essence, a worker is a tentacle.  It runs the same tentacle software as a deployment target, however, is registered with the server in worker pools.  Worker pools are a collection of worker machines.
+In this post, I address common questions about Workers and how they operate.
 
-### If a worker is a tentacle, does it count as a target for licensing?
-Despite running the tentacle software, workers are viewed as an extension of the Octopus Server and are therefore not counted as targets.  Under the current licensing model, there is no limit to how many worker machines you can have.
+## What exactly is a Worker?
+In essence, a Worker is a Tentacle.  It runs the same Tentacle software as a deployment target, however, it's registered with the server in Worker Pools.  Worker Pools are a collection of Worker Machines.
 
-## What is the built-in worker?
-All Octopus instances come with a `Default Worker Pool` defined.  Any step that selects the `Default Worker Pool` will execute on the built-in worker, which is the Octopus Server.  If, however, a worker machine is added to the `Default Worker Pool`, the built-in worker is no longer used.
+### If a Worker is a Tentacle, does it count as a target for licensing?
+Despite running the Tentacle software, Workers are viewed as an extension of the Octopus Server, and therefore not counted as targets.  
 
-## What can a worker be used for?
+Under the current licensing model, there is no limit to how many Worker Machines you can have.
+
+## What is the Built-in Worker?
+All Octopus instances come with a **Default Worker Pool** defined.  Any step that selects the **Default Worker Pool** executes on the Built-in Worker, which is the Octopus Server.  If, however, a Worker Machine is added to the **Default Worker Pool**, the Built-in Worker is no longer used.
+
+## What can a Worker be used for?
 Workers can be used with steps that don't _need_ to be executed on a target.  The most common use cases are:
+
 - Database deployments 
-- API or Web Service calls
+- API or Web service calls
 - Running scripts
 - Kubernetes deployments
 
 ### Database deployments
-Deploying database updates only requires a connection string to the database server and database you are working with.  Workers provide a means to performing database deployments without having to install any additional software on the database server.
+Deploying database updates only requires a connection string to the database server, and database you're working with.  Workers help perform database deployments without having to install additional software on the database server.
 
 ### API or Web Service calls
-Slack notifications, Microsoft Teams messages, or deploying SQL Server Reporting Services reports can be done by calling APIs or a Web Serice and don't need a target to run on.  This is a perfect use case for using workers.
+Slack notifications, Microsoft Teams messages, or deploying SQL Server Reporting Services reports can be done by calling APIs or a Web service and don't need a target to run on.  These are perfect use cases for using Workers.
 
 ### Running scripts
-Running scripts is another use case that workers can be used for.  Process intensive operations can be offloaded to run on a worker instead of bogging down the Octopus Server.
+Running scripts is another use case for Workers.  Process intensive operations can be offloaded to run on a Worker instead of slowing down the Octopus Server.
 
 ### Kubernetes deployments
-Kubernetes (K8s) targets are the only target type that require the use of workers. Workers for K8s targets have a requirement of the `kubectl` CLI installed.  For this reason, you have the ability to select a worker pool to use during Health Check operations on the K8s target screen.  
+Kubernetes (K8s) targets are the only target type that require Workers. Workers for K8s targets require that the `kubectl` CLI is installed.  For this reason, you have the ability to select a Worker Pool to use during health check operations on the K8s target screen.  
 
-Kubernetes Deployments interact with an API, providing instructions to the K8s cluster rather than deploying files directly to it.  This makes a perfect use case for workers.
+Kubernetes deployments interact with an API, providing instructions to the K8s cluster rather than deploying files directly to it.  This makes a perfect use case for Workers.
 
-## What are some advantages of using workers?
+## Advantages of using Workers
 Workers offer two major advantages:
+
 - Offload processes from the Octopus Server
 - Ability to run customized software
 
 ### Offload processes from the Octopus Server
-Long running or intensive processes could hinder performance of the Octopus Server.  These tasks can be offloaded to a worker machine, freeing up resources to allow Octopus Server to perform optimally.
+Long running or intensive processes can hinder performance of the Octopus Server.  These tasks can be offloaded to a Worker Machine, freeing up resources to allow the Octopus Server to perform optimally.
 
 ### Customized software
-The bundled software that ships with Octopus may not include everything needed by a customer for a process.  With a worker, you have the ability to install custom software packages to aid in the deployment or runbook process.
+The bundled software that ships with Octopus might not include everything a customer needs for a process.  With a Worker, you have the ability to install custom software packages to aid the deployment or runbook process.
 
 :::info
-If the worker has Docker installed, they can use the [Execution containers](https://octopus.com/docs/projects/steps/execution-containers-for-workers) feature to use customized containers versus installing directly software directly on the worker.
+If the Worker has Docker installed, they can use the [Execution containers](https://octopus.com/docs/projects/steps/execution-containers-for-workers) feature to use customized containers versus installing software directly on the Worker.
 :::
 
 ![](octopus-worker-execution-containers.png)
 
-## How do I specify a step to use a worker?
-When defining a step in a [Runbook](https://octopus.com/docs/runbooks) or [Project Deployment Process](https://octopus.com/docs/projects/deployment-process), you are able to tell Octopus that this step will run on a worker and select a pool.
+## How do I specify a step to use a Worker?
+When defining a step in a [Runbook](https://octopus.com/docs/runbooks) or [Project Deployment Process](https://octopus.com/docs/projects/deployment-process), you're able to tell Octopus that this step runs on a Worker and select a pool.
 
 ![](octopus-step-worker-pool.png)
 
-### Worker pool variable
-The keen eyed observer would have noticed there is a second selection for the `Worker Pool` section, `Runs on a worker from a pool selected via a variable`.  The [worker pool variable](https://octopus.com/docs/projects/variables/worker-pool-variables) was created to solve issues where customers needed a different worker pool for different situations, such as environments.  Some customers have security segregated in such a way that workers in Development were not allowed to touch resources in Test.  Using a worker pool variable, you can scope pools to environments or even [Tenant Tags](https://octopus.com/docs/deployments/patterns/multi-tenant-deployments/tenant-tags) denoting things like specific Azure regions
+### Worker Pool variable
+You might have noticed there's a second selection for the **Worker Pool** section,**Runs on a Worker from a pool selected via a variable**.  The [Worker Pool variable](https://octopus.com/docs/projects/variables/worker-pool-variables) was created for customers who need a different Worker Pool for different situations, such as environments.  Some customers have security segregated so that Workers in Development are not allowed to touch resources in Test.  Using a Worker Pool variable, you can scope pools to environments or even [Tenant Tags](https://octopus.com/docs/deployments/patterns/multi-tenant-deployments/tenant-tags) denoting things like specific Azure regions.
 
 ![](octopus-worker-pool-variable.png)
 
-## How do workers execute differently than targets?
-If you've ever attempted to execute two deployments against the same target machine, you may have noticed that the deployments seem to bounce back and forth between the tasks, executing one step at a time.  This behavior is by design to protect the target from multiple deployments attempting to update the same resource at the same time, such as an IIS metabase.  Workers, on the other hand, are configured to be able to handle multiple tasks simultaneously.
+## How do Workers execute differently from targets?
+If you've ever attempted to execute two deployments against the same target machine, you may have noticed the deployments seem to bounce back and forth between the tasks, executing one step at a time.  This behavior is by design to protect the target from multiple deployments attempting to update the same resource at the same time, such as an IIS metabase.  Workers, on the other hand, are configured to handle multiple tasks simultaneously.
 
 :::information
-Activities such as `Acquire Packages` will result in a worker being locked and any other deployment/runbook using the same worker will be in a wait state.
+Activities such as `Acquire Packages` result in a Worker being locked and any other deployment/runbook using the same Worker is in a wait state.
 :::
 
-## How is a worker selected from the pool?
-Workers are selected from a pool in a round-robin fashion.  It is important to note that the workers are selected at the **beginning** of a deployment or runbook run.  There are some caveats to worker selection that I will explain later in this post.
+## How is a Worker selected from the pool?
+Workers are selected from a pool in a round-robin fashion.  It's important to note that Workers are selected at the *beginning* of a deployment or runbook run.  There are caveats to Worker selection that I explain later in this post.
 
 :::info
-It is safest to assume that each step will be executed by a different worker in the pool.
+It's safest to assume that each step is executed by a different Worker in the pool.
 :::
 
-Consider the following scenario:
-Worker Pool `Setup` consists of
+Consider the following scenario where Worker Pool `Setup` consists of:
+
 - worker1
 - worker2
 - worker3
 
-Runbook `Unleash the kraken` calls the runbook `Create AWS RDS` for environments Development, Test, Staging, and Production.
+Runbook **Unleash the kraken** calls the runbook `Create AWS RDS` for environments Development, Test, Staging, and Production.
 
 ![](octopus-runbook-unleash-the-kraken.png)
 
-All steps in the process execute sequentually, but are configured not to wait for the runbook to complete before moving on to the next step (see [Run Octopus Deploy Runbook step](https://library.octopus.com/step-templates/0444b0b3-088e-4689-b755-112d1360ffe3/actiontemplate-run-octopus-deploy-runbook) for details).  Worker selection would be as follows
+All steps in the process execute sequentially, but are configured not to wait for the runbook to complete before moving on to the next step (see [Run Octopus Deploy Runbook step](https://library.octopus.com/step-templates/0444b0b3-088e-4689-b755-112d1360ffe3/actiontemplate-run-octopus-deploy-runbook) for details).  Worker selection would be as follows:
 
 ```
 Unleash the kraken
@@ -118,39 +126,41 @@ Unleash the kraken
      +-- worker1
 ```
 ### Worker selection caveats
-There are scenarios which can affect how Octopus selects workers:
+There are scenarios which can affect how Octopus selects Workers:
+
 - Steps that reference packages
 - Package reference ordering
 - Manual interventions
 
 #### Steps that reference packages
-Any step that uses the same package(s) will execute on the same worker machine.  For example, runbook `Create Region workers` deploys the same image to a Kubernetes clusters in different Azure regions.  Because steps 2 through 6 all use the same package (image), they will all use the same worker
+Any step that uses the same package(s) executes on the same Worker Machine.  For example, runbook **Create Region Workers** deploys the same image to Kubernetes clusters in different Azure regions.  Because steps 2 to 6 use the same package (image), they all use the same Worker.
 
 ![](octopus-worker-k8s-deploy.png)
 
 #### Referenced package ordering
-Package reference ordering will also affect worker selection.  For example, if you have two steps that reference the same packages in the same order, Octopus will run both steps on the same woker.
+Package reference ordering also affects Worker selection.  For example, if you have two steps that reference the same packages in the same order, Octopus runs both steps on the same Worker.
 
 ![](octopus-reference-package1.png)
 
-However, if the ordering of the packages are different, Octopus will select different workers for each step.
+However, if the ordering of the packages is different, Octopus selects different Workers for each step.
 
 ![](octopus-reference-package2.png)
 
 #### Manual intervention
-When a [Manual Intervention](https://octopus.com/docs/projects/built-in-step-templates/manual-intervention-and-approvals) step is encountered, it is removed from the task queue.  Once the intervention has been acted upon, the task is added back into the queue which forces worker selection to occur again.
+When a [Manual Intervention](https://octopus.com/docs/projects/built-in-step-templates/manual-intervention-and-approvals) step is encountered, it's removed from the task queue.  After the intervention has been acted on, the task is added back into the queue which forces Worker selection to occur again.
 
-## I'm using Octopus Cloud, how do dynamic workers work?
-Octopus Deploy maintains a set of workers (VMs) that customers can use on demand as dyanamic workers.  These workers are available in the following pools:
-- Default worker pool (Windows Server 2016)
+## I'm using Octopus Cloud, how do Dynamic Workers work?
+Octopus Deploy maintains a set of Workers (VMs) that customers can use on demand as Dynamic Workers.  These Workers are available in the following pools:
+
+- Default Worker Pool (Windows Server 2016)
 - Hosted Windows (Windows Server 2019`*`)
 - Hosted Ubuntu (Ubuntu 18.04`*`)
 
 `*` Pool can use the Execution Containers feature.
 
-Each cloud instance can lease one worker per pool and is exclusive to that cloud instance.  Once the lease has expired, the worker is destroyed (see [this](https://help.octopus.com/t/how-do-dynamic-workers-work-in-octopus-cloud/25228/2) kb article for time expiration.)  Once destroyed, a new worker is provisioned and added to the pool of available workers for cloud instances to lease.
+Each cloud instance can lease one Worker per pool and is exclusive to that cloud instance.  After the lease expires, the Worker is destroyed (see [this kb article](https://help.octopus.com/t/how-do-dynamic-workers-work-in-octopus-cloud/25228/2) for time expiration.)  After being destroyed, a new Worker is provisioned and added to the pool of available Workers for cloud instances to lease.
 
 ## Conclusion
-I hope that this post clarifies what workers are and how they are used and selected.  I certainly learned quite a bit writing this post!
+I hope this post clarifies what Workers are, and how they're used and selected.  I certainly learned a lot writing this post.
 
-Happy Deployments!
+Happy deployments!
