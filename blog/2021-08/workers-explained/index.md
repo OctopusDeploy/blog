@@ -13,7 +13,7 @@ tags:
  - Workers
 ---
 
-In the early days of Octopus Deploy, as the product evolved, increasing demands were being made on the server it was installed on.  Any step that didn't execute directly on a [Target](https://octopus.com/docs/infrastructure/deployment-targets) was executed on the server itself.  To address the growing list of tasks executing directly on the server, Octopus came up with the concept of Workers.  
+In the early days of Octopus Deploy, as the product evolved, increasing demands were being made on the server it was installed on.  Any step that didn't execute directly on a [target](https://octopus.com/docs/infrastructure/deployment-targets) was executed on the server itself.  To address the growing list of tasks executing directly on the server, Octopus came up with the concept of Workers.  
 
 In this post, I address common questions about Workers and how they operate.
 
@@ -61,34 +61,34 @@ Workers offer two major advantages:
 - Ability to run customized software
 
 ### Offload processes from the Octopus Server
-Long running or intensive processes can hinder performance of the Octopus Server.  These tasks can be offloaded to a Worker Machine, freeing up resources and allowing the Octopus Server to perform optimally.
+Long running or intensive processes can hinder performance of the Octopus Server.  These tasks can be offloaded to a Worker Machine, freeing resources and allowing the Octopus Server to perform optimally.
 
 ### Customized software
-The bundled software that ships with Octopus might not include everything you need for a process.  With a Worker, you have the ability to install custom software packages to aid the deployment or runbook process.
+The bundled software that ships with Octopus might not include everything you need for a process.  With a Worker, you can install custom software packages to aid the deployment or runbook process.
 
 :::info
-If the Worker has Docker installed, they can use the [Execution containers](https://octopus.com/docs/projects/steps/execution-containers-for-workers) feature to use customized containers versus installing software directly on the Worker.
+If the Worker has Docker installed, it can use the [Execution containers](https://octopus.com/docs/projects/steps/execution-containers-for-workers) feature for customized containers versus installing software directly on the Worker.
 :::
 
 ![](octopus-worker-execution-containers.png)
 
 ## How do I specify a step to use a Worker?
-When defining a step in a [Runbook](https://octopus.com/docs/runbooks) or [Project Deployment Process](https://octopus.com/docs/projects/deployment-process), you're able to tell Octopus that this step runs on a Worker and select a pool.
+When defining a step in a [Runbook](https://octopus.com/docs/runbooks) or [Project Deployment Process](https://octopus.com/docs/projects/deployment-process), you can tell Octopus that this step runs on a Worker and select a pool.
 
 ![](octopus-step-worker-pool.png)
 
 ### Worker Pool variable
-You might have noticed there's a second selection for the **Worker Pool** section,**Runs on a Worker from a pool selected via a variable**.  We created the [Worker Pool variable](https://octopus.com/docs/projects/variables/worker-pool-variables) for when you need a different Worker Pool for different situations, such as environments.  
+You might have noticed there's a second selection for the **Worker Pool** section, **Runs on a Worker from a pool selected via a variable**.  We created the [Worker Pool variable](https://octopus.com/docs/projects/variables/worker-pool-variables) for when you need a different Worker Pool for different situations, such as environments.  
 
 Some people have security segregated so that Workers in Development are not allowed to touch resources in Test.  Using a Worker Pool variable, you can scope pools to environments or even [Tenant Tags](https://octopus.com/docs/deployments/patterns/multi-tenant-deployments/tenant-tags) denoting things like specific Azure regions.
 
 ![](octopus-worker-pool-variable.png)
 
 ## How do Workers execute differently from targets?
-If you've ever attempted to execute two deployments against the same target machine, you may have noticed the deployments seem to bounce back and forth between the tasks, executing one step at a time.  This behavior is by design to protect the target from multiple deployments attempting to update the same resource at the same time, such as an IIS metabase.  Workers, on the other hand, are configured to handle multiple tasks simultaneously.
+If you've ever attempted to execute two deployments against the same target machine, you may have noticed the deployments seem to bounce back and forth between the tasks, executing one step at a time.  This behavior was designed to protect the target from multiple deployments attempting to update the same resource at the same time, such as an IIS metabase.  Workers, on the other hand, are configured to handle multiple tasks simultaneously.
 
 :::information
-Activities such as `Acquire Packages` result in a Worker being locked and any other deployment/runbook using the same Worker is in a wait state.
+Activities such as `Acquire Packages` result in a Worker being locked, and any other deployment/runbook using the same Worker is in a wait state.
 :::
 
 ## How is a Worker selected from the pool?
