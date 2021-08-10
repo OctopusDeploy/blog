@@ -139,13 +139,13 @@ Manual deployments will skip steps 1 and 2 and run steps 3 and 4 on all deployme
 
 In some of my practice deployments I noticed the deployment target trigger would run a second deployment within a minute of the first deployment finishing.  That happened despite the fact the previous deployment deployed to all the machines.  
 
-[Example of a duplicate run](duplicate-run-happening.png)
+![Example of a duplicate run](duplicate-run-happening.png)
 
 That can be problematic; the last thing you'd want is to redeploy and cause an outage.  Thankfully the [Check VMSS Provision Status](https://library.octopus.com/step-templates/e04c5cd8-0982-44b8-9cae-0a4b43676adc/actiontemplate-check-vmss-provision-status-(deployment-targets)) handles that.  It can detect a duplicate run by calculating taking the difference between the queue time of the current deployment minus the finish time of the previous deployment.  If that difference is less than three minutes it is a duplicate run.  You can configure the step template to cancel the current deployment or let it proceed.
 
 But that isn't needed!  We configured the step earlier to remove pre-existing machines.  A pre-existing deployment target is one that existed 3 minutes before the trigger fired.  Unless your deployments take less than three minutes, all the existing deployment targets from the first run will be excluded.  
 
-[Duplicate run skipping pre-existing machines](duplicate-run-all-machines-skipped.png)
+![Duplicate run skipping pre-existing machines](duplicate-run-all-machines-skipped.png)
 
 Our pre-existing combination of the new variable filters combined with output variables and run conditions handled this scenario without additional configuration.  For you it might be a moot point.  In my testing, this tended to happen when I added more than ten virtual machines to a virtual machine scale set.  
 
