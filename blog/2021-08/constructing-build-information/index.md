@@ -221,7 +221,7 @@ push-build-information
 
 Navigating to the build information for OctoPetShop.Web in Octopus Deploy, you can see your build information has been uploaded.
 
-![Octopus dashboard showing build information for OctoPetShop.Web with list of commits.](octopus-build-information.png)
+![Octopus Build Information Repository dashboard showing build information for OctoPetShop.Web with list of commits.](octopus-build-information.png)
 
 ## Conclusion
 In this post, I demonstrated how to construct the file for build information and how to upload it using the Octopus Deploy CLI.
