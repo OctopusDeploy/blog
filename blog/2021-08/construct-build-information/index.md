@@ -41,7 +41,7 @@ To gather the commits for the build that you're executing, you need to make an A
 ##### Creating a Personal Access Token
 To create an Access Token, click your profile in the upper right-hand corner and select **Edit profile**.
 
-![](gitlab-edit-profile.png)
+![GitLab dashboard showing profile menu open and Edit profile highlighted in the drop down.](gitlab-edit-profile.png)
 
 Click **Access Tokens** in the left-hand menu. Give your token a name and at least **read_api** permissions.  
 
@@ -49,22 +49,22 @@ The **Expiration date** is optional. Leaving it blank creates a token that never
 
 Click **Create personal access token**.  When the token is displayed, store it in a safe place - this value is only displayed once.
 
-![](gitlab-access-token.png)
+![GitLab dashboard open on Access Tokens page with Token name field and read_api fields highlighted.](gitlab-access-token.png)
 
 ##### Creating a Variable for Personal Access Token
 Now you have the token, navigate back to the project and click **Settings** then **CI/CD**.
 
-![](gitlab-settings-cicd.png)
+![GitLab dashboard drop down menu open, with Settings highlighted and Settings drop down menu with CI?CD highlighted.](gitlab-settings-cicd.png)
 
 Scroll to the **Variables** section and click **Expand**.
 
-![](gitlab-variables-expand.png)
+![GitLab dashboard open with the Expand button highlighted in the Variables section.](gitlab-variables-expand.png)
 
 Click **Add variable** and fill in the details.  For this example, I'm using `GITLAB_PAT` as the **Key** and the token we generated above for the **Value**.  
 
 Tick the **Mask variable** option to ensure the token doesn't get displayed in any messages during the build.
 
-![](gitlab-add-variable.png)
+![GitLab dashboard open on the Add variable section with Mask variable tick box selected and highlighted.](gitlab-add-variable.png)
 
 #### Octopus variables
 Repeat the **Add variable** process from above for the Octopus variables.  This post assumes you're familiar with [creating an API key](https://octopus.com/docs/octopus-rest-api/how-to-create-an-api-key):
@@ -214,16 +214,16 @@ push-build-information:
 After the build is triggered, you'll see something like this (images show the last part of the log for brevity):
 
 build-information
-![](gitlab-build-information-stage.png)
+![GitLab build information log](gitlab-build-information-stage.png)
 
 push-build-information
-![](gitlab-push-build-information-stage.png)
+![GitLab build information log](gitlab-push-build-information-stage.png)
 
 Navigating to the build information for OctoPetShop.Web in Octopus Deploy, you can see your build information has been uploaded.
 
-![](octopus-build-information.png)
+![Octopus dashboard showing build information for OctoPetShop.Web with list of commits.](octopus-build-information.png)
 
 ## Conclusion
-In this post, I demonstrated how to construct the file for build information and uploading it using the Octopus Deploy CLI.
+In this post, I demonstrated how to construct the file for build information and how to upload it using the Octopus Deploy CLI.
 
 Happy deployments!
