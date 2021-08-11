@@ -4,9 +4,10 @@ description: Find out about Octopus Deploy and where to learn more
 author: terence.wong@octopus.com
 visibility: public
 published: 2021-07-14-1400
-metaImage: 
-bannerImage: 
+metaImage: octopus-dashboard.png
+bannerImage: octopus-dashboard.png
 tags:
+ - Octopus
 ---
 
 
