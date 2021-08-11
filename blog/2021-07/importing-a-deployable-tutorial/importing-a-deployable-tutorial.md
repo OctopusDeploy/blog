@@ -4,9 +4,10 @@ description: Import your first project in Octopus Deploy and deploy a tutorial t
 author: terence.wong@octopus.com
 visibility: public
 published: 2021-07-14-1400
-metaImage: 
-bannerImage: 
+metaImage: deploy-success.png
+bannerImage: deploy-success.png
 tags:
+ - Octopus
 ---
 
 Setting up your first deployment can be a challenging process. There are new systems and many configurations to get right. In this blog post, I guide you through your first deployment. 
