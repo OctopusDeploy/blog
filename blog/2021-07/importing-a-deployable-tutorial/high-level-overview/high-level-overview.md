@@ -4,8 +4,8 @@ description: Find out about Octopus Deploy and where to learn more
 author: terence.wong@octopus.com
 visibility: public
 published: 2021-07-14-1400
-metaImage: blogimage-config-as-code-explanation_2020.png
-bannerImage: blogimage-config-as-code-explanation_2020.png
+metaImage: 
+bannerImage: 
 tags:
 ---
 
