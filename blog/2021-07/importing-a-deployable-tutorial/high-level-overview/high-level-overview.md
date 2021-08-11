@@ -72,7 +72,7 @@ We have a dedicated support team that is here to answer any questions you may ha
 
 #### Sales
 
-Every business is different and licensing needs may vary. Our sales team help businesses deploy the right Octopus Deploy services to meet their needs. If you need advice on licensing, pricing options, or upgrading your account, [our sales team is happy to help!](https://octopus.com/company/contact)
+Every business is different and licensing needs may vary. Our sales team help businesses deploy the right Octopus Deploy services to meet their needs. If you need advice on licensing, pricing options, or upgrading your account, you can email our helpful sales team at customersuccess@octopus.com
 
 
 #### Demos & Samples
