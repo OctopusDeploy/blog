@@ -98,9 +98,9 @@ Historical performance is visible on every route. This is useful when assessing 
 
 #### Future improvements
 
-There have been several improvements to poor-performing routes over many versions. Through the Crow's Nest tool, we are aware of routes that still need more work. The dashboard route below currently has an average response time of 786ms. The Apdex score of 22 shows that it is not where we want to be. Other routes fall into this category, such as the progression and infrastructure/summary route. We aim to improve the Apdex scores of all underperforming routes in later releases. 
+We have found this tool to be a source of information that can highlight routes for improvement. This lets us hone in on areas where we can improve the apdex scores, improving the quality of the Octopus Deploy product. 
 
-![Apdex Routes Difference](apdex-route-dashboard.png "Apdex Routes Difference")
+<!--![Apdex Routes Difference](apdex-route-dashboard.png "Apdex Routes Difference")-->
 
 Telemetry is a powerful tool that can enable businesses to gain a complete picture of user experiences. Telemetry and Apdex give full visibility of each user and the performance of each route. Administrators can compare performance across different versions and licenses. Comparing versions quantifies the effect of each update. Poor-performing routes are visible on a per-user basis or across the Octopus Deploy platform. Our Crow's Nest tool helps to improve the customer experience, leading to customer satisfaction.
 
