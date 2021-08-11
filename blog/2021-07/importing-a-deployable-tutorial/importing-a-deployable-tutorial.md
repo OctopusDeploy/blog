@@ -4,11 +4,9 @@ description: Import your first project in Octopus Deploy and deploy a tutorial t
 author: terence.wong@octopus.com
 visibility: public
 published: 2021-07-14-1400
-metaImage: blogimage-config-as-code-explanation_2020.png
-bannerImage: blogimage-config-as-code-explanation_2020.png
+metaImage: 
+bannerImage: 
 tags:
- - DevOps
- - Configuration as Code
 ---
 
 Setting up your first deployment can be a challenging process. There are new systems and many configurations to get right. In this blog post, I guide you through your first deployment. 
@@ -28,7 +26,7 @@ These are the steps in Octopus to deploy the web application:
 If you haven't set up an Octopus Deploy instance, please do so by selecting one of the following options:
 
 - [Octopus Cloud](https://octopus.com/start/cloud): we host the Octopus Deploy instance for you, it connects to your servers.
-- [Self-hosted on a Windows Server](https://octopus.com/start/server): you host it on your infrastructure by [downloading our MSI](https://octopus.com/download) and installing it on Windows Server with a SQL Server backend.  Learn more about [our installation requirements](/docs/installation/requirements.md).
+- [Self-hosted on a Windows Server](https://octopus.com/start/server): you host it on your infrastructure by [downloading our MSI](https://octopus.com/download) and installing it on Windows Server with a SQL Server backend.  Learn more about [our installation requirements](https://octopus.com/docs/installation/requirements).
 - [Self-hosted as a Docker container](https://octopus.com/blog/introducing-linux-docker-image): you run Octopus in a docker container (currently EAP).  You will still need a [free license](https://octopus.com/start/server).
 
 When your Octopus instance is ready, the first step is to import an existing project.
@@ -102,7 +100,7 @@ Now that you have the following values, you can add your account to Octopus:
 5. Add your Azure Subscription ID. This is found in the Azure portal under **Subscriptions**.
 6. Add the **Application ID**, the **Tenant ID**, and the **Application Password/Keyword**.
 
-Click **SAVE AND TEST** to confirm the account can interact with Azure. Octopus will then attempt to use the account credentials to access the Azure Resource Management (ARM) API and list the Resource Groups in that subscription. You may need to whitelist the IP Addresses for the Azure Data Center you are targeting. See [deploying to Azure via a Firewall](/docs/deployments/azure/index.md) for more details.
+Click **SAVE AND TEST** to confirm the account can interact with Azure. Octopus will then attempt to use the account credentials to access the Azure Resource Management (ARM) API and list the Resource Groups in that subscription. You may need to whitelist the IP Addresses for the Azure Data Center you are targeting. See [deploying to Azure via a Firewall](https://octopus.com/docs/deployments/azure) for more details.
 
 :::hint
 A newly created Service Principal may take several minutes before the credential test passes. If you have double checked your credential values, wait 15 minutes and try again.
