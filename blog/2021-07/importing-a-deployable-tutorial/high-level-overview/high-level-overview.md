@@ -1,3 +1,15 @@
+---
+title: "High level overview of Octopus Deploy"
+description: Find out about Octopus Deploy and where to learn more
+author: terence.wong@octopus.com
+visibility: public
+published: 2021-07-14-1400
+metaImage: blogimage-config-as-code-explanation_2020.png
+bannerImage: blogimage-config-as-code-explanation_2020.png
+tags:
+---
+
+
 ## Welcome!
 
 Well done! You have deployed your first application with Octopus Deploy! This overview provides some additional context and information about Octopus Deploy. It will also point you in the right direction to learn more.
