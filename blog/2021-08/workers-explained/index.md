@@ -164,7 +164,7 @@ Octopus Deploy maintains a set of Workers (VMs) that you can use on demand as Dy
 
 `*` Pool can use the Execution Containers feature.
 
-Each cloud instance can lease one Worker per pool and is exclusive to that cloud instance.  After the lease expires, the Worker is destroyed (see [this article about Dynamic Workers](https://help.octopus.com/t/how-do-dynamic-workers-work-in-octopus-cloud/25228/2) for time expiration.)  After being destroyed, a new Worker is provisioned and added to the pool of available Workers for cloud instances to lease.
+Each cloud instance can lease one Worker per pool, that's exclusive to that cloud instance.  After the lease expires, the Worker is destroyed (see [this article about Dynamic Workers](https://help.octopus.com/t/how-do-dynamic-workers-work-in-octopus-cloud/25228/2) for time expiration.)  After being destroyed, a new Worker is provisioned and added to the pool of available Workers for cloud instances to lease.
 
 ## Conclusion
 I hope this post clarifies what Workers are, and how they're used and selected.  I certainly learned a lot writing this post.
