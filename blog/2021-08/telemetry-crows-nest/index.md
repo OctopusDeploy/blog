@@ -12,7 +12,7 @@ tags:
 
 As Octopus Deploy has grown, it now covers a large software surface area. A given user may need to interface with many different touchpoints across Octopus Deploy. These may be viewing the dashboard, signing on through certificates, or viewing the projects page. To serve our customers better, we want to tell whether users accessing these touchpoints receive their content on time.
 
-Telemetry is collecting usage statistics and forwarding them to IT systems where they for analysis. Many software companies use it to gather data on how their customers use and experience their products. Octopus Deploy has implemented a telemetry tool named Crow's Nest. Crow's Nest tracks how quickly customers receive web requests. Telemetry is opt-in by default unless users choose to opt-out. 
+Telemetry is collecting usage statistics and forwarding them to IT systems for analysis. Many software companies use it to gather data on how their customers use and experience their products. Octopus Deploy has implemented a telemetry tool named Crow's Nest. Crow's Nest tracks how quickly customers receive web requests. Telemetry is opt-in by default unless users choose to opt-out. 
 
 The Crow's Nest symbolizes a tool with a high-level overview of how users are experiencing the product. A web request triggers when a customer wants to visit a page or poll an endpoint. These requests get tracked over several versions. 
 
