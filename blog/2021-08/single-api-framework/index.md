@@ -12,10 +12,9 @@ tags:
   - tag
 ---
 
-Octopus Deploy was [first announced](https://paulstovell.com/octopus-intro/) in 2011, and back then the low-ceremony approach of [NancyFx](https://github.com/NancyFx/Nancy) made it an ideal framework to use for our API layer. On top of Nancy, we added a bespoke layer which made it easy to add new routes which conformed to our conventions.
+When Octopus Deploy was first announced in 2011, the low-ceremony approach of [NancyFx](https://github.com/NancyFx/Nancy) made it an ideal framework to use for our API layer. On top of Nancy, we added a bespoke layer to make it easy to add new routes which conformed to our conventions.
 
-But as we continue to grow, we’re finding that this bespoke layer has been a source of confusion for new starters. The world has also changed around us, and as of 2020, Nancy is no longer being maintained. So it is time to migrate Octopus Deploy to a new, more standardised way of writing an API. One that leverages existing knowledge of developers who join the company. We have chosen ASP.NET controllers.
-
+But as we continue to grow, we’re finding this bespoke layer has become a source of confusion for new starters. The world has also changed around us, and as of 2020, Nancy is no longer being maintained. So it's time to migrate Octopus Deploy to a new, more standardized way of writing an API. One that leverages the existing knowledge of developers who join the company. We've chosen ASP.NET controllers.
 
 The Octopus Deploy API contains 426 different endpoints spread across 73 Nancy modules (a collection of endpoints grouped into a single class), where each module defines endpoints that relate to a specific resource type. It was clear to us this was going to be a significant undertaking.
 
