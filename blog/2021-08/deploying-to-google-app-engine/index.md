@@ -10,6 +10,7 @@ bannerImageAlt: A box containing the Java logo with an arrow towards the Google 
 isFeatured: false
 tags:
  - DevOps
+ - Java
 ---
 
 Google App Engine (GAE) is one of the original Platform as a Service (PaaS) offerings provided by the Google Cloud Platform (GCP). 
