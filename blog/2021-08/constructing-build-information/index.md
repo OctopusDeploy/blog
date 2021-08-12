@@ -4,9 +4,9 @@ description: Learn how to create the build information file to push to Octopus D
 author: shawn.sesna@octopus.com
 visibility: public
 published: 2021-08-16-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt:
+metaImage: blogimage-construction-build-information_2021.png
+bannerImage: blogimage-construction-build-information_2021.png
+bannerImageAlt: CI CD infinity loop with Octopus logo and GitLab logo
 isFeatured: false
 tags:
  - DevOps
@@ -25,7 +25,7 @@ In this post, I demonstrate how to build the file needed to push the build infor
 ## GitLab
 For this post, I'm using GitLab as the build server simply because I haven't used it before. 
 
-This post focuses on the single task of generating [Build Information](https://octopus.com/docs/packaging-applications/build-servers/build-information) and uploading it to Octopus Deploy. It doesn't cover building an application using GitLab. 
+This post focuses on the single task of generating [build information](https://octopus.com/docs/packaging-applications/build-servers/build-information) and uploading it to Octopus Deploy. It doesn't cover building an application using GitLab. 
 
 ### Variables
 Before getting started on the build definition, you need to create variables that you're going to use in your process:
