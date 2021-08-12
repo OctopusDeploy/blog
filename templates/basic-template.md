@@ -6,7 +6,7 @@ visibility: private
 published: 3020-01-01
 metaImage: 
 bannerImage: 
-bannerImageAlt:
+bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags:
   - tag
@@ -31,8 +31,9 @@ Write-Host "Hello, World!"
 Use the following (minus the backtics) to include images:
 
 ```
-![Description of the image](/path/to/image.png "width=500")
+![Mandatory alt text, a description of the image](/path/to/image.png "width=500")*Optional caption text*
 ```
+If including images, please include alt text. Alt text is primarily used to describe images to people unable to see them, and can be 125 characters max including spaces. You can also include an image caption if the reader would benefit from additional information or context.
 
 ## Conclusion
 
