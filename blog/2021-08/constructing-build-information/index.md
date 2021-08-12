@@ -14,11 +14,11 @@ tags:
 
 Build servers were traditionally an on-premises tool, however, many organizations are deciding to offload their builds to the cloud.  
 
-The big names such as Azure DevOps, Jenkins (CloudBees), and recently, TeamCity, have created cloud versions of their popular build platforms.  Online-only technologies like AppVeyor, Travis CI, Circle CI, GitHub Actions, and GitLab have also increased in popularity.  
+The big names, such as Azure DevOps, Jenkins (CloudBees), and recently, TeamCity, have created cloud versions of their popular build platforms.  Online-only technologies like AppVeyor, Travis CI, Circle CI, GitHub Actions, and GitLab have also increased in popularity.  
 
 For the technologies where plugins or integrations have been developed, pushing build information is as simple as adding the task to the process.  
 
-For technologies where the only option is to integrate the Octopus CLI (runtime or container), it can be confusing getting the commit information to show up.  
+For technologies where the only option is to integrate the Octopus CLI (runtime or container), it can be confusing getting the commit information to show.  
 
 In this post, I demonstrate how to build the file needed to push the build information to Octopus Deploy.
 
@@ -28,7 +28,7 @@ For this post, I'm using GitLab as the build server simply because I haven't use
 This post focuses on the single task of generating [build information](https://octopus.com/docs/packaging-applications/build-servers/build-information) and uploading it to Octopus Deploy. It doesn't cover building an application using GitLab. 
 
 ### Variables
-Before getting started on the build definition, you need to create variables that you're going to use in your process:
+Before starting the build definition, you need to create variables to use in your process:
 
 - GitLab Personal Access Token
 - Octopus Deploy API Key
@@ -52,7 +52,7 @@ Click **Create personal access token**.  When the token is displayed, store it i
 ![GitLab dashboard open on Access Tokens page with Token name field and read_api fields highlighted.](gitlab-access-token.png)
 
 ##### Creating a Variable for Personal Access Token
-Now you have the token, navigate back to the project and click **Settings** then **CI/CD**.
+After you have the token, navigate back to the project and click **Settings** then **CI/CD**.
 
 ![GitLab dashboard drop down menu open, with Settings highlighted and Settings drop down menu with CI?CD highlighted.](gitlab-settings-cicd.png)
 
@@ -98,7 +98,7 @@ $headers = @{ "PRIVATE-TOKEN" = $env:GITLAB_PAT}
 $commits = (Invoke-RestMethod -Method Get -Uri "https://gitlab.com/api/v4/projects/$($env:CI_PROJECT_ID)/repository/commits?first_parent=true" -Headers $headers)
 ```
 
-##### Build Information object
+##### Build information object
 To store the build information, create a PowerShell [Hashtable](https://docs.microsoft.com/en-us/powershell/scripting/learn/deep-dives/everything-about-hashtable) object.  The `Commits` portion is defined as an array within the Hashtable:
 
 ```powershell
