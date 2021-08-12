@@ -84,7 +84,7 @@ You might have noticed there's a second selection for the **Worker Pool** sectio
 
 Some people have security segregated so that Workers in Development are not allowed to touch resources in Test.  Using a Worker Pool variable, you can scope pools to environments or even [Tenant Tags](https://octopus.com/docs/deployments/patterns/multi-tenant-deployments/tenant-tags) denoting things like specific Azure regions.
 
-![Octopus dashboard showing Project.Worker.Pool environments with multiple values.](octopus-worker-pool-variable.png)
+![Octopus dashboard showing Project.Worker.Pool variable with multiple values.](octopus-worker-pool-variable.png)
 
 ## How do Workers execute differently from targets?
 If you've ever attempted to execute two deployments against the same target machine, you may have noticed the deployments seem to bounce back and forth between the tasks, executing one step at a time.  This behavior was designed to protect the target from multiple deployments attempting to update the same resource at the same time, such as an IIS metabase.  Workers, on the other hand, are configured to handle multiple tasks simultaneously.
@@ -143,7 +143,7 @@ There are scenarios which can affect how Octopus selects Workers:
 #### Steps that reference packages
 Any step that uses the same package(s) executes on the same Worker Machine.  For example, runbook **Create Region Workers** deploys the same image to Kubernetes clusters in different Azure regions.  Because steps 2 to 6 use the same package (image), they all use the same Worker.
 
-![Octopus dashboard open on Runbooks section then Create Region Workers showing steps 1 to 6 of process.](octopus-worker-k8s-deploy.png)
+![Octopus dashboard open on Runbooks section then Create Region Workers showing steps 1 to 6 of process creating workers in specific Azure regions.](octopus-worker-k8s-deploy.png)
 
 #### Referenced package ordering
 Package reference ordering also affects Worker selection.  For example, if you have two steps that reference the same packages in the same order, Octopus runs both steps on the same Worker.
@@ -152,7 +152,7 @@ Package reference ordering also affects Worker selection.  For example, if you h
 
 However, if the ordering of the packages is different, Octopus selects different Workers for each step.
 
-![Octopus dashboard showing Referenced Packages](octopus-reference-package2.png)
+![Octopus dashboard showing Referenced Packages in opposite order](octopus-reference-package2.png)
 
 #### Manual intervention
 When a [Manual Intervention](https://octopus.com/docs/projects/built-in-step-templates/manual-intervention-and-approvals) step is encountered, it's removed from the task queue.  After the intervention has been acted on, the task is added back into the queue which forces Worker selection to occur again.
