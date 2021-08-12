@@ -130,13 +130,13 @@ foreach ($commit in $commits)
 }
 ```
 
-Finally, convert the PowerShell Hashtable to a JSON string and write it to a file.
+Finally, convert the PowerShell Hashtable to a JSON string and write it to a file:
 
 ```powershell
 Add-Content -Path "BuildInformation.json" -Value "$($jsonPayload | ConvertTo-JSON -Depth 10)"
 ```
 
-You need to include the file as an artifact that can be used later in the process.  Do this by including an `artifacts` component to the stage YAML.
+You need to include the file as an artifact that can be used later in the process.  Do this by including an `artifacts` component to the stage YAML:
 
 ```yaml
 artifacts:
@@ -144,7 +144,7 @@ artifacts:
 ```
 
 #### push-build-information
-Pushing the build information to Octopus consists of a single command in the script and uses the `BuildInformation.json` created in the previous stage.
+Pushing the build information to Octopus consists of a single command in the script and uses the `BuildInformation.json` created in the previous stage:
 
 ```yaml
 push-build-information:
