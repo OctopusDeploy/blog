@@ -13,12 +13,17 @@ tags:
 ---
 
 This blog post will use Octopus Deploy, Github actions, and Docker to deploy a sample web application to Azure. The application will update on new code changes. To complete the steps, you will need:
+
 - an active Octopus Deploy instance
-- a Docker Hub account
 - a Github account
+- a Docker Hub account
 - an Azure account
 
-First, let's fork this [repository](https://github.com/OctopusSamples/RandomQuotes-JS). This web application generates random historical quotes on a button press.
+The deployment flow begins with Github. Github hosts the web application code. Github Actions automatically detects changes to the code base, builds the code, and deploys a Docker image to Docker Hub. Octopus Deploy uses this image in an orchestration step to deploy the web application to Azure.
+
+![Deploy Flow](deploy-flow.png "Deploy Flow")
+
+First, let's fork [this repository](https://github.com/OctopusSamples/RandomQuotes-JS). This web application generates random historical quotes on a button press.
 
 ![Random Quotes fork](random-quotes-fork.png "Random Quotes fork")
 
@@ -148,8 +153,6 @@ Next, you will set up an [Azure web application](#web-application-setup) and con
 
 In your Octopus Deploy instance, go to **{{Library, External feeds}}** and add the docker container registry feed by entering your docker credentials. Click save and test to confirm the connection.
 
-Create a project by navigating to **{{Projects, Add Project}}**
-
 ## Adding deployment targets
 
 With Octopus, you can deploy software to Windows servers, Linux servers, Microsoft Azure, AWS, Kubernetes clusters, cloud regions, or an offline package drop. Regardless of where you're deploying your software, these machines and services are known as your deployment targets. Octopus organizes your deployment targets (the VMs, servers, and services where you deploy your software) into environments.
@@ -160,7 +163,7 @@ With Octopus, you can deploy software to Windows servers, Linux servers, Microso
 4. Fill out the environment and target roles
 5. Select the Azure Account and Web App created earlier
 
-Navigate to the created project. Under variables, add the following variables with their values:
+Create a project by navigating to **{{Projects, Add Project}}**. These steps assume a project named 'docker'. Add an environment named 'Production' by going to **{{Infrastructure,Environments,Add Environment}}**. Navigate to the created project. Under variables, add the following variables with their values:
 
 - app-service-plan
 - resource-group
