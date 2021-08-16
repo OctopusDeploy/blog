@@ -74,7 +74,7 @@ Repeat the **Add variable** process from above for the Octopus variables.  This 
 - Octopus Deploy Space Name
 
 ### Build YAML
-For GitLab, builds are defined using YAML in a special file, `.gitlab-ci.yml` located in the root of your repository.  Your process will consist of a `before_script` and two stages:
+For GitLab, builds are defined using YAML in a special file, `.gitlab-ci.yml` located in the root of your repository.  Your process will consist of two stages:
 
 - build-information
 - push-build-information
