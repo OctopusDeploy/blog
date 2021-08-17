@@ -87,9 +87,11 @@ terraform {
 
 With support for GCP service accounts, GCR feeds, GKE authentication options, a dedicated GCP script step, and Google authentication support in Terraform, Octopus 2021.2 makes it easy to deploy to and manage your GCP infrastructure.
 
-But we would love to hear your feedback! We have a [GitHub issue where you can post a comment](https://github.com/OctopusDeploy/StepsFeedback/issues/7) about how these new features worked, or didn't work, for you, as well an any suggestions for future GCP features. All feedback is welcome, and we would love to know:
+But we would love to hear your feedback! We have a [GitHub issue where you can post a comment](https://github.com/OctopusDeploy/StepsFeedback/issues/7) about how these new features worked, or didn't work, for you, as well as any suggestions for future GCP features. All feedback is welcome, and we would love to know:
 
 * What deployments or operations tasks do you perform to GCP today?
 * What are the pain points when deploying to or managing GCP?
 * Do you use platforms like Google Kubernetes Engine, Google App Engine, Google Cloud Functions, Google Cloud Run, or others?
 * Do the new features work for you? If not, what suggestions do you have that could improve them?
+
+Happy deployments!
