@@ -4,9 +4,9 @@ description: Learn how to keep Octopus running smoothly, and easily see what’s
 author: andrew.corrigan@octopus.com
 visibility: private
 published: 2021-08-18-1400
-metaImage: blogimage-Insights-from-our-optimizing-octopus-webinar-2021.png
-bannerImage: blogimage-Insights-from-our-optimizing-octopus-webinar-2021.png
-bannerImageAlt: clipboard and pen in front of desktop monitor with octopus logo and settings icons on screen, and green tick icon
+metaImage: blogimage-insights-from-our-optimizing-octopus-webinar-2021.png
+bannerImage: blogimage-insights-from-our-optimizing-octopus-webinar-2021.png
+bannerImageAlt: clipboard and pen in front of desktop monitor with octopus logo and settings icons on screen and green tick icon
 isFeatured: false
 tags:
   - DevOps
