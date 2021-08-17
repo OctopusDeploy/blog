@@ -28,11 +28,11 @@ If you’re on [Octopus Cloud](https://octopus.com/docs/octopus-cloud), database
 
 ### Check SQL reports for problems
 
-First, we recommend running a ‘Index Physical Statistics’ report in SSMS to look for problems. 
+First, we recommend running an ‘Index Physical Statistics’ report in SSMS to look for problems. 
 
 To run the report, right-click your database from the list and select **{{Reports > Standard Reports > Index Physical Statistics}}**.
 
-When the report opens, check the **Operation Recommended** column for suggestions.
+After the report has opened, check the **Operation Recommended** column for suggestions.
 
 You can also expand items in the **# Partitions** column to see fragmentation information. 
 
