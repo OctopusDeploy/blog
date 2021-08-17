@@ -10,7 +10,7 @@ tags:
  - Octopus
 ---
 
-Octopus 2021.2 brings a number of features to support teams deploying to the Google Cloud Platform (GCP). With 2021.2 Octopus has first class support for the AWS, Azure, and Google cloud platforms.
+Octopus 2021.2 brings a number of features to support teams deploying to the Google Cloud Platform (GCP). With 2021.2, Octopus has first class support for the AWS, Azure, and Google cloud platforms.
 
 This post introduces the new features in Octopus supporting GCP deployments and provides some tips on how they can be used in your own deployment processes.
 
@@ -22,7 +22,9 @@ Octopus includes a new account type called **Google Cloud Account**. This accoun
 
 ## Inheriting VM service accounts
 
-For teams that prefer to manage credentials outside of Octopus, each integration with GCP allows a service account to be inherited from a worker. Here is a Google Compute Engine (GCE) VM with an associated service account:
+For teams that prefer to manage credentials outside of Octopus, each integration with GCP allows a service account to be inherited from a worker. 
+
+Here is a Google Compute Engine (GCE) VM with an associated service account:
 
 ![](vm-service-account.png "width=500")
 
@@ -30,7 +32,7 @@ This VM has a worker Tentacle installed on it and linked to the **GCP** worker p
 
 ![](worker.png "width=500")
 
-We can then use the service account associated with the VM service account. Here is an example of a Kubernetes target configured to inherit the credentials of the worker it is run on:
+We can then use the service account associated with the VM. Here is an example of a Kubernetes target configured to inherit the credentials of the worker it is run on:
 
 ![](assume-service-account.png "width=500")
 
@@ -38,9 +40,9 @@ Note that the target must be configured with the worker pool containing the GCE 
 
 ![](workerpool.png "width=500")
 
-Operations like health checks are performed with the credentials assigned to the worker VM, removing the need to store those details in Octopus:
+Operations like health checks an deployments are performed with the credentials assigned to the worker VM, removing the need to store those details in Octopus:
 
-![](vm-service-account.png "width=500")
+![](healthcheck.png "width=500")
 
 ## Google Container Registry support
 
