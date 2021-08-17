@@ -29,7 +29,7 @@ There are several reasons for this sense of impending doom. For fun, I’m going
 
 **Level 0: Data Hell**
 
-The unique challenge with databases is the data. That business-critical information is not saved in source control, so it’s impossible to cancel and redeploy the database in the same way we might remove a troublesome web server.
+The unique challenge with databases is the data. That business-critical information is not saved in source control, so it’s impossible to delete and redeploy the database in the same way we might remove a troublesome web server.
 
 Hence, database rollbacks aren’t easy. Arguably, there’s no such thing as a database rollback. If a production deployment goes bad, it might be necessary to restore a backup. That’s going to result in downtime and (possibly) data loss. That could be a disaster for your users and expensive for the business.
 
@@ -131,6 +131,6 @@ Wherever you are on your journey, it’s critical to recognize your trajectory a
 
 ## Next time…
 
-In the next post (part 2) we’ll start to imagine what a safer software architecture, delivery process, and development culture might look like. We'll begin by exploring the nature of failure within complex systems, and we'll move on to discuss the concepts of resilience and robustness. This post will be the first of five posts intended to help folks to re-evaluate the way they view and assess safety within complex IT systems.
+In the next post (part 2) we’ll start to imagine what a safer software architecture, delivery process, and development culture might look like. We'll begin by exploring the nature of failure within complex systems, and we'll move on to discuss the concepts of resilience and robustness. This post will be the first of 4 posts intended to help folks to re-evaluate the way they view and assess safety within complex IT systems.
 
 !include <safe-schema-updates-posts>
