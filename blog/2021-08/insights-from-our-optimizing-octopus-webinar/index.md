@@ -1,12 +1,12 @@
 ---
 title: Insights from our Optimizing Octopus webinar
-description: Learn how to keep Octopus running smoothly and easily see what’s happening, with a little planning, maintenance and smart use of Octopus features.
+description: Learn how to keep Octopus running smoothly, and easily see what’s happening, all with a little planning, maintenance and smart use of Octopus features.
 author: andrew.corrigan@octopus.com
 visibility: private
 published: 2021-08-18-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt:
+metaImage: blogimage-Insights-from-our-optimizing-octopus-webinar-2021.png
+bannerImage: blogimage-Insights-from-our-optimizing-octopus-webinar-2021.png
+bannerImageAlt: clipboard and pen in front of desktop monitor with octopus logo and settings icons on screen, and green tick icon
 isFeatured: false
 tags:
   - DevOps
