@@ -46,7 +46,7 @@ Operations like health checks an deployments are performed with the credentials 
 
 ## Google Container Registry support
 
-Google Container Registry (GCR) support has been included in the existing Docker feed type. Define the feed URL as one of the [regional GCR URLs](https://cloud.google.com/container-registry/docs/pushing-and-pulling#add-registry) and supply a service account JSON file for authentication:
+Google Container Registry (GCR) support has been included in the existing Docker feed type. Define the feed URL as one of the [regional GCR URLs](https://cloud.google.com/container-registry/docs/pushing-and-pulling#add-registry) and supply a service account JSON key for authentication:
 
 :::hint
 To query GCR feeds, the **Cloud Resource Manager** API must be enabled. This can be done [here](https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com/overview). Without this API, image searches return no results in Octopus.
@@ -54,19 +54,19 @@ To query GCR feeds, the **Cloud Resource Manager** API must be enabled. This can
 
 ![](gcr.png "width=500")
 
-Images are then available from GCR repositories:
+Images are then available from the GCR feed:
 
 ![](gcr-test.png "width=500")
 
 ## Gcloud script support
 
-A new script step called **Run gcloud in a Script** is available to run scripts within the context of a GCP account. Any scripts run as part of this step can take advantage of the fact that Octopus has already performed a login, allowing the script to focus on the operations it needs to perform rather than the boilerplate process of logging in:
+A new step called **Run gcloud in a Script** is available to run scripts within the context of a GCP account. Any scripts run as part of this step can take advantage of the login process managed by Octopus, allowing the script to focus on the operations it needs to perform rather than the boilerplate process of logging in:
 
 ![](gcloud-script.png "width=500")
 
 ## Terraform support
 
-The Terraform steps include the ability to establish a context with the selected Google credentials, lifting this context from the Terraform template an into the step:
+The Terraform steps include the ability to establish a context with the selected Google credentials, lifting this concern from the Terraform template an into the step:
 
 :::hint
 Deploying Terraform requires the ability to persist state. A convenient solution for Google users is to [save Terraform state in a Google Cloud Storage (GCS) bucket](https://www.terraform.io/docs/language/settings/backends/gcs.html):
