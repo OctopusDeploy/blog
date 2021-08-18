@@ -67,7 +67,7 @@ We learned a few things:
 
 - Due to the performance improvements of ASP.NET, it wasn't necessary to continue testing for performance regressions.
 - Snapshot-based tests can be challenging to write because you have to account for and “scrub” data that changes between invocations of an endpoint, such as timestamps or IDs.
-- For tests that are checking edge cases, it can be simpler to just assert on the parts of the response that you really care about, such as response code and error text.
+- For tests checking edge cases, it's simpler to assert on the parts of the response that you really care about, such as response code and error text.
 - Tests need data, which can be nontrivial to create, so it’s important to separate this concern from the specifics of your tests.
 - It's vital to establish (and document) repeatable patterns for how you migrate, so others in the engineering team can do migrations as well.
 - Understanding the domain that is specific to an endpoint can be the hardest part of a migration.
