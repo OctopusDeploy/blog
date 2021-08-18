@@ -46,7 +46,7 @@ For a simple GET endpoint, the migration could be trivial. For endpoints which m
 
 ### Verify
 
-The previously-added tests were re-run in CI, alerting us to any performance regressions, functional changes or alterations of the response content. Objective decisions were then made about changes and whether they were acceptable or not.
+The previously-added tests were re-run in CI, alerting us to any performance regressions, functional changes, or alterations to the response content. Objective decisions were then made about changes and whether they were acceptable or not.
 
 ## Enable
 
