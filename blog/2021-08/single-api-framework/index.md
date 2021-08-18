@@ -1,6 +1,6 @@
 ---
 title: A single API framework
-description: We've migrated Octopus Deploy to a new, more standardized way of writing an API, using ASP.NET controllers. Learn about our strategy to implement this: Derisk, Enable, Finish.
+description: We migrated Octopus Deploy to a more standardized way of writing an API, using ASP.NET controllers. Learn about our implementation strategy: Derisk, Enable, Finish.
 author: richard.everett@octopus.com
 visibility: public
 published: 2021-08-25-1400
@@ -16,7 +16,7 @@ When Octopus Deploy was announced in 2011, the low-ceremony approach of [NancyFx
 
 As we grew though, this bespoke layer became a source of confusion for new starters. The world also changed around us, and as of 2020, Nancy was no longer being maintained. 
 
-So we've migrated Octopus Deploy to a new, more standardized way of writing an API. One that leverages the existing knowledge of developers who join the company. We've chosen ASP.NET controllers.
+So we've migrated Octopus Deploy to a new, more standardized way of writing an API. It's one that leverages the existing knowledge of developers who join the company. We chose ASP.NET controllers.
 
 The Octopus Deploy API contains 426 different endpoints spread across 73 Nancy modules (a collection of endpoints grouped into a single class). Each module defines endpoints that relate to a specific resource type. 
 
@@ -26,9 +26,9 @@ It was clear to us this was going to be a significant undertaking. So we adopted
 
 We devised a way to allow ASP.NET to live side-by-side with Nancy:
 
-- Incoming requests would be passed to ASP.NET middleware. 
-- If the request matched an ASP.NET route, then the relevant controller would be called. 
-- If a match wasn’t found, then the request would be passed on to Nancy.
+- Incoming requests were passed to ASP.NET middleware. 
+- If the request matched an ASP.NET route, then the relevant controller was called. 
+- If a match wasn’t found, then the request was passed on to Nancy.
 
 Next we started with a single Nancy module and migrated the endpoints one-by-one. This was done in three steps per endpoint:
 
@@ -46,17 +46,20 @@ For a simple GET endpoint, the migration could be trivial. For endpoints which m
 
 ### Verify
 
-The previously-added tests were re-run in CI, alerting us to any performance regressions, functional changes or alterations of the response content. Objective decisions were then made about any changes and whether they were acceptable or not.
+The previously-added tests were re-run in CI, alerting us to any performance regressions, functional changes or alterations of the response content. Objective decisions were then made about changes and whether they were acceptable or not.
 
 ## Enable
 
 This approach was successful and proved that migrating the entire Octopus Deploy API was possible. 
 
-It also showed us that while Nancy endpoints typically took around 100ms to return a response, the first call to an ASP.NET endpoint would return in around 200ms but subsequent calls took 30-40ms.
+It also showed us:
+
+- Nancy endpoints typically took around 100ms to return a response.
+- The first call to an ASP.NET endpoint would return in around 200ms but subsequent calls took only 30 – 40ms.
 
 A team of 4 engineers spent six months focussing on migrations.
 
-To refine our approach to migrating, we targeted endpoints which were similar and less-complex. To find out which endpoints met these criteria we wrote a C# script, executed in LINQPad, which reflected over the Octopus Deploy codebase and grouped endpoints by common code and base classes. 
+To refine migrations, we targeted endpoints which were similar and less-complex. To find out which endpoints met these criteria we wrote a C# script, executed in LINQPad, which reflected over the Octopus Deploy codebase and grouped endpoints by common code and base classes. 
 
 To get a measure of relative complexity, we sorted by a metric based on lines of code and cyclomatic complexity. This grouping and sorting allowed us to focus on the mechanism of migration while avoiding too much domain complexity.
 
@@ -64,12 +67,12 @@ We learned a few things:
 
 - Due to the performance improvements of ASP.NET, it wasn't necessary to continue testing for performance regressions.
 - Snapshot-based tests can be challenging to write because you have to account for and “scrub” data that changes between invocations of an endpoint, such as timestamps or IDs.
-- For tests that are checking edge cases, it can be simpler to just assert on the parts of the response that you really care about, such as response code and any error text.
+- For tests that are checking edge cases, it can be simpler to just assert on the parts of the response that you really care about, such as response code and error text.
 - Tests need data, which can be nontrivial to create, so it’s important to separate this concern from the specifics of your tests.
 - It's vital to establish (and document) repeatable patterns for how you migrate, so others in the engineering team can do migrations as well.
 - Understanding the domain that is specific to an endpoint can be the hardest part of a migration.
 
-We also found this type of work can be repetitive, risking dips in developer motivation. To combat this, we observed milestones along the way, such as % endpoints migrated and migration of all endpoints of a specific grouping or type.
+We also found this type of work can be repetitive, risking dips in developer motivation. To combat this, we celebrated milestones along the way. These included percentage of endpoints migrated, and migration of all endpoints of a specific grouping or type.
 
 
 We also tracked our progress with a variation on the classic burndown chart.
@@ -90,7 +93,7 @@ This approach leverages developer domain knowledge and spreads the migration wor
 - A migration like this can be done, but it's a significant investment of time.
 - It’s important to quantify the work, and find the most effective way to organize efforts.
 - This is very parallelizable work.
-- Establishing (and documenting) patterns allows any developer in an organization to help.
+- Establishing (and documenting) patterns allows any developer in your organization to help.
 - You have to accept a certain level of risk.
 - Measuring progress allows you to celebrate key milestones along the way.
 
