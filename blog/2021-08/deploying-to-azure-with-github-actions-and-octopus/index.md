@@ -125,7 +125,7 @@ Next, you will set up an [Azure web application](#web-application-setup) and con
 
 ### Web application setup {#web-application-setup}
 
-1. If a resource group doesn't exist, create one by going to **{{Home,Resource groups, Create}}. When created, take note of the Azure subscription ID of the resource group
+1. If a resource group doesn't exist, create one by going to **{{Home,Resource groups, Create}}. When created, take note of the Azure subscription ID of the resource group.
 2. In your **Resource group** click **{{Create, Web App}}**
 3. Create a Windows Node Application under runtime stack and operating system.
 4. Take note of your Azure app name. This will be the address of your web application: [webapp-name].azurewebsites.net
