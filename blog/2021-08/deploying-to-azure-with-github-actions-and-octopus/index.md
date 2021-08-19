@@ -112,6 +112,27 @@ You now have the following:
 
 Now, you can [add the Service Principal Account in Octopus](#add-service-principal-account).
 
+Next, you need to configure your [resource permissions](#resource-permissions).
+
+### Resource permissions {#resource-permissions}
+
+Resource permissions ensure your registered app has permission to work with your Azure resources.
+
+1. In the Azure Portal navigate to **Resource groups** and select the resource group(s) that you want the registered app to access.
+2. Next, click the **Access Control (IAM)** option. Under **Role assignments**, if your app isn't listed, click **Add role assignment**. Select the appropriate role (**Contributor** is a common option) and search for your new application name. Select it from the search results and then click **Save**.
+
+Next, you will set up an [Azure web application](#web-application-setup) and configure its properties.
+
+### Web application setup {#web-application-setup}
+
+1. If a resource group doesn't exist, create one by going to **{{Home,Resource groups, Create}}. When created, take note of the Azure subscription ID of the resource group
+2. In your **Resource group** click **{{Create, Web App}}**
+3. Create a Windows Node Application under runtime stack and operating system.
+4. Take note of your Azure app name. This will be the address of your web application: [webapp-name].azurewebsites.net
+5. Take note of the app service plan and resource group when setting up the application.
+
+In your Octopus Deploy instance, go to **{{Library, External feeds}}** and add the docker container registry feed by entering your docker credentials. Click save and test to confirm the connection.
+
 ### Add the Service Principal account in Octopus {#add-service-principal-account}
 
 Now that you have the following values, you can add your account to Octopus:
@@ -133,26 +154,6 @@ Click **SAVE AND TEST** to confirm the account can interact with Azure. Octopus 
 A newly created Service Principal may take several minutes before the credential test passes. If you have double checked your credential values, wait 15 minutes and try again.
 :::
 
-Next, you need to configure your [resource permissions](#resource-permissions).
-
-### Resource permissions {#resource-permissions}
-
-Resource permissions ensure your registered app has permission to work with your Azure resources.
-
-1. In the Azure Portal navigate to **Resource groups** and select the resource group(s) that you want the registered app to access.
-2. Next, select the **Access Control (IAM)** option and if your app isn't listed, click **Add**. Select the appropriate role (**Contributor** is a common option) and search for your new application name. Select it from the search results and then click **Save**.
-
-Next, you will set up an [Azure web application](#web-application-setup) and configure its properties.
-
-### Web application setup {#web-application-setup}
-
-1. In your **Resource group** click **{{Create, Web App}}**
-2. Create a Windows Node Application under runtime stack and operating system.
-3. Take note of your Azure app name. This will be the address of your web application: [webapp-name].azurewebsites.net
-4. Take note of the app service plan and resource group when setting up the application.
-
-In your Octopus Deploy instance, go to **{{Library, External feeds}}** and add the docker container registry feed by entering your docker credentials. Click save and test to confirm the connection.
-
 ## Adding deployment targets
 
 With Octopus, you can deploy software to Windows servers, Linux servers, Microsoft Azure, AWS, Kubernetes clusters, cloud regions, or an offline package drop. Regardless of where you're deploying your software, these machines and services are known as your deployment targets. Octopus organizes your deployment targets (the VMs, servers, and services where you deploy your software) into environments.
@@ -163,7 +164,13 @@ With Octopus, you can deploy software to Windows servers, Linux servers, Microso
 4. Fill out the environment and target roles
 5. Select the Azure Account and Web App created earlier
 
-Create a project by navigating to **{{Projects, Add Project}}**. These steps assume a project named 'docker'. Add an environment named 'Production' by going to **{{Infrastructure,Environments,Add Environment}}**. Navigate to the created project. Under variables, add the following variables with their values:
+## Create the project environemnts
+
+Create a project by navigating to **{{Projects, Add Project}}**. These steps assume a project named 'docker'. 
+
+Add an environment named 'Production' by going to **{{Infrastructure,Environments,Add Environment}}**. 
+
+Navigate to the created project. Under variables, add the following variables with their values:
 
 - app-service-plan
 - resource-group
