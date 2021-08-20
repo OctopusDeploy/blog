@@ -41,7 +41,10 @@ Go to your Octopus instance, then **{{profile,my API keys}}** and create an API 
 
 In the Random Quotes repository that you forked, go to **{{settings, Secret}}** and add the following repository secrets:
 
-![Github secrets](github-secrets.png "Github secrets")
+    DOCKER_HUB_ACCESS_TOKEN
+    DOCKER_HUB_USERNAME
+    OCTOPUS_APIKEY
+    OCTOPUS_SERVER
 
 Navigate to .github/workflows where you will see a node.yml file. This file gives instructions to Github on how to deploy the code. Replace the contents of the file with the following code:
 
@@ -81,10 +84,11 @@ Navigate to .github/workflows where you will see a node.yml file. This file give
               tags: ${{ secrets.DOCKER_HUB_USERNAME }}/randomquotes-js:latest
 
 
-This code builds and pushes the code as a docker image to Docker Hub on every new push to master. After the build is complete, navigate to Docker Hub to see the image.
+This code builds and pushes the code as a docker image to Docker Hub on every new push to master. Go to the Github actions tab to view the steps. 
 
 ![Github Success Initial](github-success-initial.png "Github Success Initial")
 
+After the build is complete, navigate to Docker Hub to see the image.
 
 ![Docker Hub Image](docker-hub-image.png "Docker Hub Image")
 
