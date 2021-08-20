@@ -4,9 +4,9 @@ description: Learn how to deploy an Azure web application with Github actions an
 author: terence.wong@octopus.com
 visibility: public
 published: 2021-08-02-1400
-metaImage: blogimage-deploying-to-google-cloud-run-2021-02.png
-bannerImage: blogimage-deploying-to-google-cloud-run-2021-02.png
-bannerImageAlt: A Docker branded box of images moving towards the Google Cloud Run logo
+metaImage: deploy-flow.png
+bannerImage: deploy-flow.png
+bannerImageAlt: A flow to continuously deploy a web app
 isFeatured: false
 tags:
  - DevOps
