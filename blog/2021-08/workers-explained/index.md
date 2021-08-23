@@ -39,10 +39,10 @@ Workers can be used with steps that don't _need_ to be executed on a target.  Th
 - Kubernetes deployments
 
 ### Database deployments
-Deploying database updates only requires a connection string to the database server, and database you're working with.  Workers help perform database deployments without having to install additional software on the database server.
+Deploying database updates only requires a connection string to the database server and database you're working with.  Workers help perform database deployments without having to install additional software on the database server.
 
 ### API or Web service calls
-Workers are perfect for calling APIs, or a Web service that doesn’t need a target to run on. Examples include:
+Workers are perfect for calling an API, or a Web service that doesn’t need a target to run on. Examples include:
 
 - Slack notifications
 - Microsoft Teams messages
@@ -52,7 +52,9 @@ Workers are perfect for calling APIs, or a Web service that doesn’t need a tar
 Running scripts is another use case for Workers.  Process intensive operations can be offloaded to run on a Worker instead of slowing down the Octopus Server.
 
 ### Kubernetes deployments
-Kubernetes (K8s) targets are the only target type that require Workers. Workers for K8s targets require that the `kubectl` CLI is installed.  For this reason, you have the ability to select a Worker Pool to use during health check operations on the K8s target screen.  
+Kubernetes (K8s) targets are the only target type that require Workers. 
+
+Workers for K8s targets require that the `kubectl` CLI is installed.  For this reason, you have the ability to select a Worker Pool to use during health check operations on the K8s target screen.  
 
 Kubernetes deployments interact with an API, providing instructions to the K8s cluster rather than deploying files directly to it.  This makes a perfect use case for Workers.
 
@@ -89,7 +91,7 @@ Some people have security segregated so that Workers in Development are not allo
 ## How do Workers execute differently from targets?
 If you attempt to execute two deployments against the same target machine, you may notice the deployments seem to bounce back and forth between the tasks, executing one step at a time.  This behavior was designed to protect the target from multiple deployments attempting to update the same resource at the same time, such as an IIS metabase.  Workers, on the other hand, are configured to handle multiple tasks simultaneously.
 
-:::information
+:::hint
 Activities such as `Acquire Packages` result in a Worker being locked, and any other deployment/runbook using the same Worker is in a wait state.
 :::
 
@@ -110,7 +112,7 @@ Runbook **Unleash the kraken** calls the runbook `Create AWS RDS` for environmen
 
 ![Octopus dashboard showing Runbooks process for Unleash the kraken.](octopus-runbook-unleash-the-kraken.png)
 
-All steps in the process execute sequentially, but are configured not to wait for the runbook to complete before moving on to the next step (see [Run Octopus Deploy Runbook step](https://library.octopus.com/step-templates/0444b0b3-088e-4689-b755-112d1360ffe3/actiontemplate-run-octopus-deploy-runbook) for details).  Worker selection runs like this:
+All steps in the process execute sequentially, but are configured not to wait for the runbook to complete before moving on to the next step (see [Run Octopus Deploy Runbook step](https://library.octopus.com/step-templates/0444b0b3-088e-4689-b755-112d1360ffe3/actiontemplate-run-octopus-deploy-runbook) for details).  Worker selection executes like this:
 
 ```
 Unleash the kraken
