@@ -38,7 +38,7 @@ You’ve probably already interacted with our Support team, but a team you might
 
 The next team we really started to build up in 2020 is our sales and sales engineering team. This team consists of 15 people who also span across the US, UK, and Australia. If you work with them, you’ll usually find yourself talking to two people: a sales engineer who understands our product deeply and can show you how Octopus works, and an account manager or customer success manager who aims to ensure that Octopus is the right fit, that you’re getting value from the product, and to help with the evaluation and purchasing process. 
 
-Interestingly, nobody in our sales team is commissioned and they work as a team. While we make it no secret that we think Octopus is great and can help you, if it’s not a good fit, rest assured that nobody is going to push otherwise; there’s no agenda. I think this makes our sales team stand out when compared to other software vendors. Honestly, as an engineer myself, it’s the kind of sales team I’d want to work with. 
+Interestingly, nobody in sales is commissioned and they work as a team. While we make it no secret that we think Octopus is great and can help you, if it’s not a good fit, rest assured that nobody is going to push otherwise; there’s no agenda. I think this makes our sales team stand out when compared to other software vendors. Honestly, as an engineer myself, it’s the kind of sales team I’d want to work with. 
 
 ## We’re here to help!
 
