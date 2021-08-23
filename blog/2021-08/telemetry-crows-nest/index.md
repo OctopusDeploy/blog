@@ -10,9 +10,9 @@ tags:
  - Octopus
 ---
 
-As Octopus Deploy has grown, it now covers a large software surface area. A given user may need to interface with many different touchpoints across Octopus Deploy. These may be viewing the dashboard, signing on through certificates, or viewing the projects page. To serve our customers better, we want to tell whether users accessing these touchpoints receive their content on time.
+As Octopus Deploy has grown, it now covers a large surface area. A given user may need to use different features across Octopus Deploy. These may be viewing the dashboard, creating or deploying releases, authoring projects or running runbooks against their infrastructure. To serve our customers better, we want to tell whether users receive a fast and responsive experience.
 
-Telemetry is collecting usage statistics and forwarding them to IT systems for analysis. Many software companies use it to gather data on how their customers use and experience their products. Octopus Deploy has developed a telemetry tool named Crow's Nest. We use Crow's Nest to track how quickly customers are served.
+Octopus Deploy, like many software companies, collect telemetry to measure how customers experience the product. Some of the telemetry we collect is the timing of API calls and database operations, which we call 'Performance Telemetry'. We surface this telemetry in our engineering dashboard (code named Crow's Nest).
 
 The Crow's Nest symbolizes a tool with a high-level overview of how users are experiencing the product. A web request triggers when a customer wants to visit a page or poll an endpoint. These requests get tracked over several versions. 
 
@@ -32,13 +32,6 @@ Unless in a more specific context (e.g., on individual data records or group of 
 - A Satisfied Threshold of <= 50ms
 - A Tolerating Threshold of > 50ms and <= 200ms
 
-Apdex has a range of 0-100. The scale is:
-- 94-100: excellent
-- 85-94: good
-- 70-85: fair
-- below 70: poor
-- below 50: unacceptable
-
 Apdex gives a uniform scale to test the customer experience. A higher number indicates a more positive user experience.  We can vary thresholds to experiment with Apdex scores given a specific appetite for tolerance. The examples in this blog display the default threshold values. These are configurable in real-time in the application to view Apdex scores against different criteria.
  
 ## Visualizing Apdex and Octopus Deploy
@@ -47,26 +40,15 @@ There are several ways to visualize Apdex. The following graphs are how we use C
 
 ### Apdex for cloud and deploy
 
-The blue line shows the Apdex performance of recent versions in Octopus Cloud and the deployment server. The cloud Apdex performance has been consistent at around 90 for this period. The deployment server is the internal Octopus instance not released to customers. The orange graph indicates a significant dip in Apdex from 2021.2.2048, where it recovered in 2021.2.4155. Octopus Deploy has fixed the causes of this crash and recovery. It can be helpful to look back and see how different versions affected the user experience. If there is any significant dip in performance, we can conduct a root cause analysis to identify and address causes.
+The blue line shows the Apdex performance of recent versions in Octopus Cloud and the deployment server. The cloud Apdex performance has been consistent at around 90 for this period. The deployment server is the internal Octopus instance not released to customers. The orange graph indicates a significant dip in Apdex from 2021.2.2048, where it recovered in 2021.2.4155 as we fixed the regressions. It can be helpful to look back and see how different versions affected the user experience. If there is any significant dip in performance, we can conduct a root cause analysis to identify and address causes.
 
 ![Apdex Cloud and Deploy](apdex-cloud-deploy.png "Apdex Cloud and Deploy")
 
 ### Apdex by version and license
 
-This set of graphs show the Apdex score for different versions and licenses. The licenses are cloud, on-premise, trial, and overall.  The first graph below indicates that the trial subscription suffered a slight dip in Apdex performance. The performance drop was between 2020.3 and 2020.4 and between 2020.5 and 2020.6. On the x.y level, the cloud and on-premise licenses appear to be the most consistent, with the trial license suffers from more dips in performance. Overall, all licenses have Apdex levels around 85 or above, which indicates good performance.
-
-We can filter the Apdex scores at an x.y.z and license level. The orange, blue and purple graphs below show the on-premise, cloud, and trial licenses. The blue graph confirms that the cloud license was the most consistent, maintaining around 90 over many versions. The on-premise license displayed higher peaks along with more frequent dips than the cloud license. The trial license experienced significant dips, which lowered its average Apdex score. The orange and purple graphs indicate that the on-premise and trial licenses have been less consistent than the cloud license. Trial licenses are often used for experimentation and would not be optimized for production. We are less concerned with the results of the trial license. 
-
-We can view these graphs and conduct a usability analysis between the licenses. The goal would be to bring up the usability of the on-premise licenses to match the cloud license. The latest results show the overall score above 85 and all licenses are close to one another, which is a good result.
+We can compare the Apdex score for different versions and licenses. The licenses are cloud, on-premise, trial, and overall. There is a lot of variability in these numbers as they are representative of all customers. 
 
 ![Apdex by Version](apdex-by-version.png "Apdex by Version")
-
-![Apdex by Version](apdex-by-version-z-onprem.png "Apdex by Version")
-
-![Apdex by Version](apdex-by-version-z-cloud.png "Apdex by Version")
-
-![Apdex by Version](apdex-by-version-z-trial.png "Apdex by Version")
-
 
 <!--### Apdex customer view
 
@@ -74,13 +56,13 @@ We can view these graphs and conduct a usability analysis between the licenses. 
 
 ### Apdex overall score
 
-Each customer has an overall Apdex score. Apdex scores below a certain level prompt engineers to fix any faults causing the poor score.
+Each customer has an overall Apdex score. This score gives an indication of the responsiveness of the customer experience.
 
 ![Apdex Score](apdex-score.png "Apdex Score")
 
 ### Apdex routes
 
-Every web request has an endpoint. The endpoint is the subject of the request. The path to fulfilling these requests are routes. The performance of individual routes can are in the customer's view. The view shows metrics such as the mean, median and highest value of a request. We can use these metrics to identify the worst-performing routes in a later version.
+The performance of individual routes can are in the customer's view. We time web request and group the results on the route (path). From these timings we show the mean, median and 95th percentile time. By bucketing the requests by route, we avoid sending up huge amounts of data. We can use these metrics to identify the worst-performing routes in a later version. 
 
 ![Apdex Routes](apdex-route.png "Apdex Routes")
 
@@ -92,13 +74,13 @@ We can use Crow's Nest to view the differences in routes across different versio
 
 #### Apdex route view
 
-Historical performance is visible on every route. This is useful when assessing whether updated versions of Octopus Deploy have improved or worsened the route. The performance of the certificates route above degraded from 2020.2 to 2020.6. The Apdex score decreased from 62 to 16. In 2021.1, this route improved, leading to an Apdex score of 77.
+Historical performance is visible on every route. This allows us to see how the performance of a route has changed in each release. For example, the performance of the certificates route above degraded from 2020.2 to 2020.6. The Apdex score decreased from 62 to 16. In 2021.1, this cause of this slowness was resolved, leading to an Apdex score of 77.
 
 ![Apdex Route View](apdex-route-view.png "Apdex Route View")
 
 #### Future improvements
 
-We have found this tool to be a source of information that can highlight routes for improvement. This lets us hone in on areas where we can improve the apdex scores, improving the quality of the Octopus Deploy product. 
+We have found that this tool helps us plan on what to work on next. It highlights the areas that need the most attention and should be addressed first. Also it gives us another signal when monitoring our overall application health.
 
 <!--![Apdex Routes Difference](apdex-route-dashboard.png "Apdex Routes Difference")-->
 
