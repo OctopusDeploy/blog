@@ -4,9 +4,9 @@ description: Learn about Workers, how they operate and how they help with tasks 
 author: shawn.sesna@octopus.com
 visibility: public
 published: 2021-08-23-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: blogimage-demystifying-workers_2021.png
+bannerImage: blogimage-demystifying-workers_2021.png
+bannerImageAlt: four workmen in hardhats in blue uniforms, one holding an octopus deploy branded laptop 
 isFeatured: false
 tags:
  - DevOps
@@ -42,7 +42,7 @@ Workers can be used with steps that don't _need_ to be executed on a target.  Th
 Deploying database updates only requires a connection string to the database server, and database you're working with.  Workers help perform database deployments without having to install additional software on the database server.
 
 ### API or Web service calls
-Workers are perfect for calling APIs or a Web service that don’t need a target to run on. Examples include:
+Workers are perfect for calling APIs, or a Web service that doesn’t need a target to run on. Examples include:
 
 - Slack notifications
 - Microsoft Teams messages
@@ -69,7 +69,7 @@ Long running or intensive processes can hinder performance of the Octopus Server
 The bundled software that ships with Octopus might not include everything you need for a process.  With a Worker, you can install custom software packages to aid your deployment or runbook process.
 
 :::info
-If the Worker has Docker installed, it can use the [Execution containers](https://octopus.com/docs/projects/steps/execution-containers-for-workers) feature for customized containers versus installing software directly on the Worker.
+If the Worker has Docker installed, it can use the [execution containers](https://octopus.com/docs/projects/steps/execution-containers-for-workers) feature for customized containers versus installing software directly on the Worker.
 :::
 
 ![Octopus dashboard showing Container Image section with Runs inside a container, on worker selected.](octopus-worker-execution-containers.png)
@@ -87,7 +87,7 @@ Some people have security segregated so that Workers in Development are not allo
 ![Octopus dashboard showing Project.Worker.Pool variable with multiple values.](octopus-worker-pool-variable.png)
 
 ## How do Workers execute differently from targets?
-If you've ever attempted to execute two deployments against the same target machine, you may have noticed the deployments seem to bounce back and forth between the tasks, executing one step at a time.  This behavior was designed to protect the target from multiple deployments attempting to update the same resource at the same time, such as an IIS metabase.  Workers, on the other hand, are configured to handle multiple tasks simultaneously.
+If you attempt to execute two deployments against the same target machine, you may notice the deployments seem to bounce back and forth between the tasks, executing one step at a time.  This behavior was designed to protect the target from multiple deployments attempting to update the same resource at the same time, such as an IIS metabase.  Workers, on the other hand, are configured to handle multiple tasks simultaneously.
 
 :::information
 Activities such as `Acquire Packages` result in a Worker being locked, and any other deployment/runbook using the same Worker is in a wait state.
@@ -110,7 +110,7 @@ Runbook **Unleash the kraken** calls the runbook `Create AWS RDS` for environmen
 
 ![Octopus dashboard showing Runbooks process for Unleash the kraken.](octopus-runbook-unleash-the-kraken.png)
 
-All steps in the process execute sequentially, but are configured not to wait for the runbook to complete before moving on to the next step (see [Run Octopus Deploy Runbook step](https://library.octopus.com/step-templates/0444b0b3-088e-4689-b755-112d1360ffe3/actiontemplate-run-octopus-deploy-runbook) for details).  Worker selection would be as follows:
+All steps in the process execute sequentially, but are configured not to wait for the runbook to complete before moving on to the next step (see [Run Octopus Deploy Runbook step](https://library.octopus.com/step-templates/0444b0b3-088e-4689-b755-112d1360ffe3/actiontemplate-run-octopus-deploy-runbook) for details).  Worker selection runs like this:
 
 ```
 Unleash the kraken
@@ -166,9 +166,9 @@ Octopus Deploy maintains a set of Workers (VMs) that you can use on demand as Dy
 
 `*` Pool can use the Execution Containers feature.
 
-Each cloud instance can lease one Worker per pool, that's exclusive to that cloud instance.  After the lease expires, the Worker is destroyed (see [this article about Dynamic Workers](https://help.octopus.com/t/how-do-dynamic-workers-work-in-octopus-cloud/25228/2) for time expiration.)  After being destroyed, a new Worker is provisioned and added to the pool of available Workers for cloud instances to lease.
+Each cloud instance can lease one Worker per pool, exclusive to that cloud instance.  After the lease expires, the Worker is destroyed (see [this article about Dynamic Workers](https://help.octopus.com/t/how-do-dynamic-workers-work-in-octopus-cloud/25228/2) for time expiration.)  After being destroyed, a new Worker is provisioned and added to the pool of available Workers for cloud instances to lease.
 
 ## Conclusion
-I hope this post clarifies what Workers are, and how they're used and selected.  I certainly learned a lot writing this post.
+I hope this post clarifies what Workers are, how they're used and selected.  I certainly learned a lot writing this post.
 
 Happy deployments!
