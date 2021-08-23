@@ -173,6 +173,6 @@ Each cloud instance can lease one Worker per pool, exclusive to that cloud insta
 ## Conclusion
 I hope this post clarifies what Workers are, how they're used and selected.  I certainly learned a lot writing this post.
 
-If you need help or would like to learn more about using Workers, you can contact our Customer Success Team on [customersuccess@octopus.com](mailto:customersuccess@octopus.com). 
+If you need help or would like to learn more about using Workers, you can contact our customer success team at [customersuccess@octopus.com](mailto:customersuccess@octopus.com). 
 
 Happy deployments!
