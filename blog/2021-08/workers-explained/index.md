@@ -6,7 +6,7 @@ visibility: public
 published: 2021-08-23-1400
 metaImage: blogimage-demystifying-workers_2021.png
 bannerImage: blogimage-demystifying-workers_2021.png
-bannerImageAlt: four workmen in hardhats in blue uniforms, one holding an octopus deploy branded laptop 
+bannerImageAlt: four people in hardhats in blue uniforms, one holding an octopus deploy branded laptop 
 isFeatured: false
 tags:
  - DevOps
