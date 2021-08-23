@@ -112,7 +112,7 @@ Runbook **Unleash the kraken** calls the runbook `Create AWS RDS` for environmen
 
 ![Octopus dashboard showing Runbooks process for Unleash the kraken.](octopus-runbook-unleash-the-kraken.png)
 
-All steps in the process execute sequentially, but are configured not to wait for the runbook to complete before moving on to the next step (see [Run Octopus Deploy Runbook step](https://library.octopus.com/step-templates/0444b0b3-088e-4689-b755-112d1360ffe3/actiontemplate-run-octopus-deploy-runbook) for details).  Worker selection executes like this:
+All steps in the process execute sequentially, but are configured not to wait for the runbook to complete before moving on to the next step (see [Run Octopus Deploy Runbook step](https://library.octopus.com/step-templates/0444b0b3-088e-4689-b755-112d1360ffe3/actiontemplate-run-octopus-deploy-runbook) for details).  Worker selection would be as follows:
 
 ```
 Unleash the kraken
