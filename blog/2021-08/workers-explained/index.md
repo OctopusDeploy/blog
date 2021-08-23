@@ -15,7 +15,7 @@ tags:
 
 In the early days of Octopus Deploy, as the product evolved, increasing demands were being made on the server it was installed on.  Any step that didn't execute directly on a [target](https://octopus.com/docs/infrastructure/deployment-targets) was executed on the server itself.  
 
-To address the growing list of tasks executing directly on the server, Octopus came up with the concept of Workers.  
+To address the growing list of tasks executing directly on the server, we created the concept of Workers.  
 
 In this post, I address common questions about Workers and how they operate.
 
