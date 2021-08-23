@@ -44,4 +44,4 @@ Interestingly, nobody in sales is commissioned and they work as a team. While we
 
 As I said at the start, we often make a big deal about new product releases, but looking back over the last couple of years, the improvements we've made to customer service have been a high point for us.
 
-The reason I am writing this is to say: if you ever find yourself stuck with anything - a bug, don't know how to do something, found a gap in the product/integrations, unsure what the best practices are, or need to convince your boss Octopus is the right solution, please reach out to us! There’s a huge group of people here just itching to demonstrate how helpful they can be. 
+The reason I am writing this is to say: if you ever find yourself stuck with anything - a bug, don't know how to do something, found a gap in the product/integrations, unsure what the best practices are, or need to convince your boss Octopus is the right solution, please [reach out to us](https://octopus.com/support)! There’s a huge group of people here just itching to demonstrate how helpful they can be. 
