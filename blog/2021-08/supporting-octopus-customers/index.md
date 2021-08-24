@@ -32,9 +32,9 @@ Our support team isn’t the only group providing customer service. Today there 
 
 ## Solutions
 
-You’ve probably already interacted with our Support team, but a team you might not have met yet is our Solutions team. This is a team of 7 senior engineers or operations folks based in the US and UK who specialize not only in Octopus but in all of the CI/CD tools that Octopus integrates with. They can advise you on how to make Octopus sing with other tools, get an understanding of your overall CI/CD objectives and how to help you achieve them even if the advice relates to other tools in your pipeline. They can also help with custom integrations, for example making deep use of our API to accomplish something that’s not typically supported.
+You’ve probably already interacted with our support team, but a team you might not have met yet is our solutions team. This is a team of 7 senior engineers or operations folks based in the US and UK who specialize not only in Octopus but in all of the CI/CD tools that Octopus integrates with. They can advise you on how to make Octopus sing with other tools, get an understanding of your overall CI/CD objectives and how to help you achieve them even if the advice relates to other tools in your pipeline. They can also help with custom integrations, for example making deep use of our API to accomplish something that’s not typically supported.
 
-## Sales & Sales Engineering
+## Sales & sales engineering
 
 The next team we really started to build up in 2020 was our sales and sales engineering team. This team consists of 15 people who also span across the US, UK, and Australia. If you work with them, you’ll usually find yourself talking to two people: a sales engineer who understands our product deeply and can show you how Octopus works, and an account manager or customer success manager who aims to ensure that Octopus is the right fit, that you’re getting value from the product, and to help with the evaluation and purchasing process. 
 
