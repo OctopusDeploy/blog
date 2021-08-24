@@ -131,9 +131,10 @@ Next, you will set up an [Azure web application](#web-application-setup) and con
 
 1. If a resource group doesn't exist, create one by going to **{{Home,Resource groups, Create}}. When created, take note of the Azure subscription ID of the resource group.
 2. In your **Resource group** click **{{Create, Web App}}**
-3. Create a Windows Node Application under runtime stack and operating system.
-4. Take note of your Azure app name. This will be the address of your web application: [webapp-name].azurewebsites.net
-5. Take note of the app service plan and resource group when setting up the application.
+3. For the publish setting, choose Docker container.
+4. For the operating system, choose linux.
+5. Take note of your Azure app name. This will be the address of your web application: [webapp-name].azurewebsites.net
+6. Take note of the app service plan and resource group when setting up the application.
 
 In your Octopus Deploy instance, go to **{{Library, External feeds}}** and add the docker container registry feed by entering your docker credentials. Click save and test to confirm the connection.
 
