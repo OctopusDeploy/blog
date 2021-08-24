@@ -82,6 +82,21 @@ pipeline{
 
 The pipeline is pretty straightforward - we are cleaning the workspace, checking out the latest tip of main, and then using the dotnet tools to build and publish the app. With everything compiled, we are packing it all into a ZIP folder and pushing it to our Octopus server. Worth noting are the 4 parameters at the top of the pipeline, which are useful for quickly updating parts of the pipeline that may change - in this case, they are all set to relatively sane defaults for our sample application, and shouldn't need modification. However, you may want to update the `gitUrl` or `octopusServerId` if you're following along and using your own repository/Jenkins instance.
 
+### Creating the Jenkinsfile project in Jenkins
+
+Now that we have a starting pipeline, let's create the build definition in Jenkins to use it for building our application. 
+
+1. From the Jenkins dashboard, click **New Item**, then create a new Pipeline named *RandomQuotes*
+2. Then, in the general settings, mark the pipeline as a **GitHub project** and enter the repository URL
+
+![jenkins definition general configuration tab](jenkins-general-config.png)
+
+3. For the **Pipeline Definition**, select *Pipeline script from SCM* in the dropdown and fill out the repository information: Repository URL, Credentials, and the Script Path 
+
+![jenkins definition pipeline configuration tab](jenkins-pipeline-config.png)
+
+With these items configured, your Jenkins instance should be set to build the RandomQuotes app and send it over to your Octopus server so it can be deployed - after saving the configuration, click the **Build Now** button in the left menu to test it out!
+
 ## Deploying RandomQuotes using Octopus Deploy and configuration as code
 
 Now that we have our application built, published, and pushed into our Octopus instance, let's get it deployed! The process for standing up a project using configuration as code is reasonably close to the current process for standard Octopus usage, but we'll cover all the new steps for the process below.
@@ -98,8 +113,8 @@ With that option selected, you'll be taken to a new **Project Settings** page to
 
 Let's walk through filling those values out:
 
-- **Git Repository**: This is the URL to your git repository, ending in `.git`. From GitHub, you can click the green **Code** button and get the web URL from the HTTPS selector on the dropdown. For this example, our URL is <!--ADD URL HERE-->
-- **Default Branch Name**: Since we're backing our deployment process in source control, we need to define the default branch that our deployment process will pull from. For this example, we'll be using the `main` branch.
+- **Git Repository**: This is the URL to your git repository, ending in `.git`. From GitHub, you can click the green **Code** button and get the web URL from the HTTPS selector on the dropdown. For this example, our URL is `https://github.com/OctopusSamples/RandomQuotes.git`
+- **Default Branch Name**: Since we're backing our deployment process in source control, we need to define the default branch that our deployment process will pull from. For this example, we'll be using the `config-as-code-walkthrough` branch.
 - **Authentication**: There are two options for authentication - Username/Password and Personal Access Token. Personally, I've always preferred using PATs with GitHub, and will do so here as well. For instructions on creating a Personal Access Token, GitHub has a guide published [here](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token).
 - **Git File Storage Directory**: This is the location in your repository where the deployment process files will be stored. It defaults to a folder called `.octopus` and a subfolder titled after the project name. We'll leave the default for now, but you could also customize it to contain your `.jenkins` and `.octopus` folders under a shared CI/CD directory in your repository for easy organization!
 
@@ -134,7 +149,7 @@ This allows you to choose the branch of your repository that you want to use the
 
 Beyond the branch selector, the set up for deployment process steps is exactly like the Octopus experience without configuration as code. For this application, we're going to set up an intentionally simple IIS deployment to test this against a Windows deployment target. The configuration for our IIS step looks like this:
 
-![completed deployment process step](process-screenshot.png)
+![completed deployment process step](deployment-process-screenshot.png)
 
 A couple of quick notes about the IIS deployment configuration:
 
