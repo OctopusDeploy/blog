@@ -4,10 +4,10 @@ description: Over the last few years we've doubled down on providing the best su
 author: paul.stovell@octopus.com
 visibility: public
 published: 2021-08-24
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
-isFeatured: false
+metaImage: blogimage-supportingoctopuscustomers.png
+bannerImage: blogimage-supportingoctopuscustomers.png
+bannerImageAlt: Three Octopus support workers at their computers with a clock above each, one showing US time, one UK time and one AUS time.
+isFeatured: true
 tags:
   - Company
 ---
@@ -22,9 +22,9 @@ We often talk about improvements to our product, but the one thing I don’t thi
 
 ## Support
 
-If you emailed our support team in 2019, you would have received a very helpful, informed reply but if you’re in the US or UK, the response probably arrived when you were asleep because the support team was based in Australia. In fact, back then, there was only a 20% chance that you would have received that reply within 2 hours. 
+If you emailed our support team in 2018, you would have received a very helpful, informed reply but if you’re in the US or UK, the response probably arrived when you were asleep because the support team was based in Australia. In fact, back then, there was only a 20% chance that you would have received that reply within 2 hours. 
 
-In 2019, we started to deliberately grow our support team in the US and UK. Today, our support team consists of 17 people who are full-time Octopus employees; we don’t outsource or subcontract any of them. There’s a 63% chance you’ll get a reply within 1 hour and a 90% chance that you’ll get a reply within 2 hours. And I don’t think we’ve sacrificed on quality at all. Here’s a recent quote from a customer:
+In 2018, we started to deliberately grow our support team in the US and UK. Today, our support team consists of 17 people who are full-time Octopus employees; we don’t outsource or subcontract any of them. There’s a 63% chance you’ll get a reply within 1 hour and a 90% chance that you’ll get a reply within 2 hours. And I don’t think we’ve sacrificed on quality at all. Here’s a recent quote from a customer:
 
 > “I must say this has been an outstanding support interaction, it's such a nice change to deal with someone who can actually investigate and resolve the issue. Kudos to you and Octopus!”
 
