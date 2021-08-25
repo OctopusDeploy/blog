@@ -4,9 +4,9 @@ description: This post opens a series about safe schema updates with a brief tou
 author: alex.yates@dlmconsultants.com
 visibility: private
 published: 2022-07-21-1400
-metaImage: blogimage-databasedeliveryhell01.png
-bannerImage: blogimage-databasedeliveryhell01.png
-bannerImageAlt: nine level database server as a devil character with fire on the top level
+metaImage: blogimage-database-delivery-hell_2021.png
+bannerImage: blogimage-database-delivery-hell_2021.png
+bannerImageAlt: nine level database server with fire on the top level
 tags:
  - DevOps
  - Database Deployments
