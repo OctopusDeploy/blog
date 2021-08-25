@@ -4,9 +4,9 @@ description: Learn about the nature of failure in complex IT systems, and the be
 author: alex.yates@dlmconsultants.com
 visibility: private
 published: 2022-07-28-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt:
+metaImage: blogimage-resilient-vs-robust-it-systems-2021.png
+bannerImage: blogimage-resilient-vs-robust-it-systems-2021.png
+bannerImageAlt: nine level database server with fire on the top two levels
 isFeatured: false
 tags:
  - DevOps
