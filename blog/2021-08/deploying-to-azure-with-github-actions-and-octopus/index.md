@@ -169,7 +169,7 @@ With Octopus, you can deploy software to Windows servers, Linux servers, Microso
 4. Fill out the environment and target roles
 5. Select the Azure Account and Web App created earlier
 
-## Create the project environemnts
+## Create the project environment
 
 Create a project by navigating to **{{Projects, Add Project}}**. These steps assume a project named 'docker'. 
 
