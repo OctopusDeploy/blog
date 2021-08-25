@@ -1,16 +1,15 @@
 ---
 title: Deploying a JavaScript bundle project with octopus
-description: Handle cache busting and config of a shared JavaScript bundle and make it easy to reference in other Octopus projects.
+description: Learn how to handle cache busting and config of a shared JavaScript bundle and make it easy to reference in other Octopus projects.
 author: lee.meyer@octopus.com
 visibility: private
 published: 2025-08-23-1400
-metaImage: blogimage-demystifying-workers_2021.png
-bannerImage: blogimage-demystifying-workers_2021.png
-bannerImageAlt: four people in hardhats in blue uniforms, one holding an octopus deploy branded laptop 
 isFeatured: false
 tags:
  - DevOps
- - Workers
+ - Frontend
+ - Variable sets
+ - Amazon S3
 ---
 
 In the early days of Octopus Deploy, as the product evolved, increasing demands were being made on the server it was installed on.  Any step that didn't execute directly on a [target](https://octopus.com/docs/infrastructure/deployment-targets) was executed on the server itself.  
