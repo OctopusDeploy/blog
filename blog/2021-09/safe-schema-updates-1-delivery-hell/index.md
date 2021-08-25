@@ -1,9 +1,9 @@
 ---
 title: Safe Schema Updates - Database Delivery Hell
-description: This post opens a series about safe schema updates with a brief tour through Dante's 9 level's of Database Delivery Hell.
+description: This post opens a series about safe schema updates with a brief tour through Dante's 9 levels of Database Delivery Hell.
 author: alex.yates@dlmconsultants.com
-visibility: private
-published: 2022-07-21-1400
+visibility: public
+published: 2021-09-01-1400
 metaImage: blogimage-database-delivery-hell_2021.png
 bannerImage: blogimage-database-delivery-hell_2021.png
 bannerImageAlt: nine level database server with fire on the top level
