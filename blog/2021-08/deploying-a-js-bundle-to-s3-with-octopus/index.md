@@ -18,8 +18,7 @@ A frontend dev pattern I've seen at many companies starts with the best of inten
 
 Our finished deployment process will look like this in Octopus.
 
-![A brief description of the image](images/image-name.png)
-
+![deployment process](aws bundle process.png)
 
 
 ## How do we do cache busting?
