@@ -103,19 +103,19 @@ Next, you need to configure your [resource permissions](#resource-permissions).
 
 Resource permissions ensure your registered app has permission to work with your Azure resources.
 
-1. In the Azure Portal navigate to **Resource groups** and select the resource group(s) that you want the registered app to access.
+1. In the Azure Portal navigate to **Resource groups** and select the resource group(s) that you want the registered app to access. If a resource group doesn't exist, create one by going to **{{Home > Resource groups > Create}}**. When created, take note of the Azure subscription ID of the resource group.
 2. Click the **Access Control (IAM)** option. Under **Role assignments**, if your app isn't listed, click **Add role assignment**. Select the appropriate role (**Contributor** is a common option) and search for your new application name. Select it from the search results and then click **Save**.
 
 Next, you set up an [Azure web application](#web-application-setup) and configure its properties.
 
 ### Web application setup {#web-application-setup}
 
-1. If a resource group doesn't exist, create one by going to **{{Home > Resource groups > Create}}**. When created, take note of the Azure subscription ID of the resource group.
-2. In your **Resource group** click **{{Create > Web App}}**
-3. Create a Windows Node Application under runtime stack and operating system.
-4. Take note of your Azure app name. This will be the address of your web application: [your-site].azurewebsites.net
-5. After the web app is set up, route the path of the web application to default to the home path by navigating to **{{Configuration > Path Mappings > Virtual applications and directories}}**
-6. Set the Physical path to ```site\wwwroot\guide``` and the Virtual Path to ```/``` 
+
+1. In your **Resource group** click **{{Create > Web App}}**
+2. Create a Windows Node Application under runtime stack and operating system.
+3. Take note of your Azure app name. This will be the address of your web application: [your-site].azurewebsites.net
+4. After the web app is set up, route the path of the web application to default to the home path by navigating to **{{Configuration > Path Mappings > Virtual applications and directories}}**
+5. Set the Physical path to ```site\wwwroot\guide``` and the Virtual Path to ```/``` 
 
 ### Add the Service Principal account in Octopus {#add-service-principal-account}
 
