@@ -1,9 +1,9 @@
 ---
-title: Workers explained
-description: Learn about Workers, how they operate and how they help with tasks executing directly on the server.
-author: shawn.sesna@octopus.com
-visibility: public
-published: 2021-08-23-1400
+title: Deploying a JavaScript bundle project with octopus
+description: Handle cache busting and config of a shared JavaScript bundle and make it easy to reference in other Octopus projects.
+author: lee.meyer@octopus.com
+visibility: private
+published: 2025-08-23-1400
 metaImage: blogimage-demystifying-workers_2021.png
 bannerImage: blogimage-demystifying-workers_2021.png
 bannerImageAlt: four people in hardhats in blue uniforms, one holding an octopus deploy branded laptop 
