@@ -18,7 +18,7 @@ A frontend dev pattern I've seen at many companies starts with the best of inten
 
 Our finished deployment process will look like this in Octopus.
 
-![deployment process](aws bundle process.png)
+![deployment process](aws%20bundle%20process.png)
 
 I'll explain the reason for each step and how they work.
 
