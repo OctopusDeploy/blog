@@ -51,7 +51,7 @@ You could get more sophisticated with CORS as needed, but since in my example I'
 
 ## Upload bundle to S3
 
-There are a few prerequisites for this next AWS CLI step to work as desired, which I'll explain before showing how it's set up in Octopus. I'll be showing how it was achieved in Vue, and the steps will be different for other frameworks, but the explanation should least point you in the right direction.
+There are a few prerequisites for this next AWS CLI step to work as desired, which I'll explain before showing how it's set up in Octopus. I'll be showing how it was achieved in Vue, and the steps will be different for other frameworks, but the explanation should point you in the right direction.
 
 ### One JavaScript file to rule them all
 
