@@ -170,7 +170,7 @@ $variables.AddOrUpdateVariableValue("BundleUrl", $bucketUrl + 'release_' + $rele
 $repository.VariableSets.Modify($variables)
 ```
 
-That's it! Now any number of other projects can reference our shared JavaScript bundle by including the "BundleVariables" library variable set.
+That's it! Now any number of other projects can reference our shared JavaScript bundle by including the "BundleVariables" library variable set and making use of the BundleUrl variable.
 
 ## Conclusion
 I hope this post clarifies how we can apply the concepts of scoped variables, servers as cattle, and variable sets to achieve sane management of a shared JavaScript project.
