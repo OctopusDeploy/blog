@@ -62,7 +62,7 @@ Octopus makes it easy to manage repeatable deployments by separating design and 
 
 ## Iterate individually or progress collectively
 
-Microservices are an increasingly popular development strategy that allows focused teams to deliver small changes quickly within larger ecosystem.
+Microservices are an increasingly popular development strategy that allows focused teams to deliver small changes quickly within a larger ecosystem.
 
 However, it is not an uncommon requirement to progress a set of individual microservices with known versions to the next environment. While such dependencies are discouraged in microservice architectures, company testing or external regulations may demand that your environments be in a well known state at any point in time.
 
@@ -82,7 +82,7 @@ Using Octopus to manage your Kubernetes deployments gives you the freedom to ite
 
 ## Managing the cloud and migrating from on-premises
 
-Kubernetes is an excellent tool to have in your toolbox, but it is likely not the only tool you will choose to use. Is Kubernetes really the best choice for hosting static files, or is S3 or Azure Storage more suitable? Do you still have to work with your on-premises database? Is RDS a better option that a containerized database?
+Kubernetes is an excellent tool to have in your toolbox, but it is likely not the only tool you will choose to use. Is Kubernetes really the best choice for hosting static files, or is S3 or Azure Storage more suitable? Do you still have to work with your on-premises database? Is RDS a better option than a containerized database?
 
 Incremental migrations, legacy systems and robust PaaS offerings often mean your deployment strategy won’t be limited to your Kubernetes cluster. Because Octopus already supports a wide range of cloud and on-premises platforms, you can seamlessly integrate deployment processes across Kubernetes and existing services.
 
@@ -109,7 +109,7 @@ Have you ever sent a config file via email or Slack? Have you ever been asked to
 
 These scenarios are unfortunately quite common. As your Kubernetes cluster grows in complexity, it can become increasingly difficult to manage credentials and understand the impact of changes.
 
-Octopus offers a solution through the Script Console. By using the Script Console, developers and administrators can interact with the Kubernetes cluster without having to share credentials. Ad-hoc commands can be run against one or more Kubernetes targets, and the command that was run, who ran it, and the result are all saved in an audit log that can be reviewed at a later time.
+Octopus offers a solution through the Script Console. By using the Script Console, developers and administrators can interact with the Kubernetes cluster without having to share credentials. Ad hoc commands can be run against one or more Kubernetes targets, and the command that was run, who ran it, and the result are all saved in an audit log that can be reviewed at a later time.
 
 ![The Script Console](scriptconsole.png "width=500")
 
