@@ -4,9 +4,9 @@ description: Import your first project in Octopus Deploy and deploy a tutorial t
 author: terence.wong@octopus.com
 visibility: public
 published: 2021-09-01-1400
-metaImage: deploy-success.png
-bannerImage: deploy-success.png
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-importing-a-deployable-tutorial-with-octopus-deploy-and-azure-web-applications-2021.png
+bannerImage: blogimage-importing-a-deployable-tutorial-with-octopus-deploy-and-azure-web-applications-2021.png
+bannerImageAlt: Octopus package traveling on conveyer belt towards Azure logo
 isFeatured: false
 tags:
  - DevOps
