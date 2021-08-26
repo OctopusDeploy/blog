@@ -53,7 +53,7 @@ You could get more sophisticated with CORS as needed, but since in my example I'
 
 There a few prequisites for this next AWS CLI step to work as desired, that I'll explain before showing how it's setup in Octopus. I'll be showing how it was achieved in Vue, and the steps will be different for other frameworks, but the expanation should least point you in the right direction.
 
-# One JavaScript file to rule them all
+### One JavaScript file to rule them all
 
 By default Vue will create a separate CSS file, a production sourcemap file, and a vendor libraries file that's an optimisation webpack performs by default for better caching of common dependencies that don't change often. These are sensible defaults, but for a shared JS bundle, assuming it isn't massive, we can start with the simplest thing that could possibly work, allowing cosumers to reference the one JS file that will work as expected. We can always introduce support for optimistations and sourcemaps and external CSS as needed later on. 
 
@@ -73,7 +73,7 @@ To tell Vue to build just one JavaScript file, you can add the following vue.con
 }
 ```
 
-# A separate config.json file 
+### A separate config.json file 
 
 [Octopus variable subsitutions](https://octopus.com/docs/projects/variables/variable-substitutions) are powerful stuff, but in order to take advantage of them for our frontend project, we'd like to be able to tell Octopus about a config.json file that sits next to our bundle for Octopus to have its way with. To make Vue CLI include such a file in its dist folder that will be zipped to create the package sent to octopus, we can create "js\config.json" in the "public" folder Vue creates for us on initialization of a new project. Now if we run 
 
