@@ -24,7 +24,7 @@ I'll explain the reason for each step and how they work.
 
 ## Create an S3 bucket if it does not exist
 
-In the spirit of treating servers like cattle and not pets, I don't assume much about our deployment target, beyond having an AWS account with appropriate permissions. In a specific case, I had dedicated buckets for combinations of different regions and the environments of test, staging, and production, so I appreciated a build process that only needs me to name the bucket and region in scoped variables and will set it up correctly if required. This is achieved with an [AWS CLI Step](https://octopus.com/docs/deployments/custom-scripts/aws-cli-scripts) that runs the following PowerShell script, which uses the AWS CLI to see if we get a non-error result trying to list the contents of the bucket. Otherwise, it creates the bucket, then polls to confirm the buckets exist before the step finishes.
+In the spirit of treating servers like cattle and not pets, I don't assume much about our deployment target, beyond having an AWS account with appropriate permissions. In a specific case, I had dedicated buckets for combinations of different regions and the environments of test, staging, and production, so I appreciated a build process that only needs me to name the bucket and region in scoped variables and will set it up correctly if required. This is achieved with an [AWS CLI Step](https://octopus.com/docs/deployments/custom-scripts/aws-cli-scripts) that runs the following PowerShell script, which uses the AWS CLI to see if we get a non-error result trying to list the contents of the bucket. Otherwise, it creates the bucket, then polls to confirm the bucket exists before the step finishes.
 
 ```ps
 $bucket = $OctopusParameters["s3-bucket-name"]
