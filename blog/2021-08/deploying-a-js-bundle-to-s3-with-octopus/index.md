@@ -121,10 +121,9 @@ export default {
   },
 }
 </script>
-​```
+```
 
-Sidenote: you will indeed need to tell any images our other references to external files where to find them as shown above with the "bucketUrl" setting, as the relative paths Vue produces by default won't work if you want to reference shared assets that have been uploaded to S3 together with your bundle. 
-
+Sidenote: you will need to tell any images our other references to external files where to find them as shown above with the "bucketUrl" setting, as the relative paths Vue produces by default won't work if you want to reference shared assets that have been uploaded to S3 together with your bundle. 
 
 
 
