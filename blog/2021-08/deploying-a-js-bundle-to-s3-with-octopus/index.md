@@ -18,7 +18,7 @@ A frontend dev pattern I've seen at many companies starts with the best of inten
 
 Our finished deployment process will look like this in Octopus.
 
-![deployment process](aws%20bundle%20process.png)
+![deployment process](aws_bundle_process.png)
 
 I'll explain the reason for each step and how they work.
 
@@ -47,7 +47,7 @@ aws s3api put-bucket-cors --bucket bundle-s3 --cors-configuration file://cors.js
 
 You could get more sophisticated with CORS as needed, but since in my example I'm assuming our bundles live in their own dedicated bucket, it makes sense to have a simplistic "allow all GET requests." The encoding step was important rather than just echoing straight to a file. I don't really know why the [CLI command](https://docs.aws.amazon.com/cli/latest/reference/s3api/put-bucket-cors.html) for setting CORS insists on reading from a file and won't just let me pass JSON through the command line, but if you desire a more complicated CORS policy, it might be cleaner to choose the "Script file inside a package" option and have the .ps1 and cors.json files source controlled in your bundle repo, rather than the inline option I've used here.
 
-![script options](cors%20script.png)
+![script options](cors_script.png)
 
 ## Upload bundle to S3
 
@@ -127,11 +127,11 @@ Sidenote: you will need to give a base URL to any images or other references to 
 
 Now to tell Octopus to substitute variables in our config.json file, we can click the "Configure Features" button and enable "Structured configuration variables."
 
-![config variables](config%20variables.png)
+![config variables](config_variables.png)
 
 And tell Octopus to replace variables in "MyBundle\js\config.json" where "MyBundle" is the ID of your package.
 
-![config variables 2](config%20variables%202.png)
+![config variables 2](config_variables_2.png)
 
 ### Upload your bundle!
 
