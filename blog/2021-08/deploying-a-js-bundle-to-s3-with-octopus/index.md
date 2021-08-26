@@ -141,7 +141,7 @@ Finally, we can give the step the CLI command to upload our bundle, config.json,
 aws s3 cp MyBundle s3://#{s3-bucket-name}/release_#{Octopus.Release.Number} --recursive --exclude index.html --acl public-read
 ```
 
-I skip uploading the index.html file that Vue CLI produces because legacy consumers of our bundle won't be able to use that index.html and will need the URL to the uniquely named bundle file instead. Providing the URL of the newest bundle for the environment to anyone who wants it is the focus of the next, final step.
+I skip uploading the index.html file that Vue CLI produces because legacy consumers of our bundle won't be able to use that index.html and will need the URL to the uniquely named bundle file instead. Providing the URL of the newest bundle for the environment to any project that wants it is the focus of the next, final step.
 
 ## Update the bundle URL in a variable set
 
