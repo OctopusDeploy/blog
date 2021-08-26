@@ -26,7 +26,7 @@ I'll explain the reason for each step and how they work.
 
 In the spirit of treating servers as cattle and not pets, I don't assume much about our deployment target, beyond having an AWS account with appropriate permissions. In a specific case I had dedicated buckets for combinations of different regions and the environments of test, staging, and production, so I appreciated a build process that only needs me to name the bucket and region in scoped variables and will set it up correctly if required. This is achieved with an [AWS CLI Step](https://octopus.com/docs/deployments/custom-scripts/aws-cli-scripts) that runs the following PowerShell script, which uses the AWS CLI to see if we get a non-error result trying to list the contents of the bucket. Otherwise it creates the bucket, then polls to confirm the buckets exist before the step finishes.
 
-​```ps
+```ps
 $bucket = $OctopusParameters["s3-bucket-name"] 
 $region = $OctopusParameters["s3-region"]
 $found = aws s3 ls s3://$bucket/ --recursive --summarize | Select-String -Pattern 'Total Objects:'
@@ -34,16 +34,16 @@ if ([string]::IsNullOrWhiteSpace($found)) {
     aws s3api create-bucket --bucket $bucket --region $region
     aws s3api wait bucket-exists --bucket $bucket
 }
-​```
+```
 
 ## Set S3 CORS policy
 
 This is another AWS CLI script with the following PowerShell inline.
 
-​```ps
+```ps
 echo '{"CORSRules": [ { "AllowedOrigins": ["*"], "AllowedHeaders": [],"AllowedMethods": ["GET"] } ] }' | out-file -encoding ASCII cors.json
 aws s3api put-bucket-cors --bucket bundle-s3 --cors-configuration file://cors.json
-​```
+```
 
 You could get more sophisticated with CORS as needed, but since in my example I'm assuming our bundles live in their own dedicated bucket, it makes sense to have a simplistic "allow all GET requests." The encoding step was important rather than just echoing straight to a file. I don't really know why the [CLI command](https://docs.aws.amazon.com/cli/latest/reference/s3api/put-bucket-cors.html) for setting CORS insists on reading from a file and won't just let me pass JSON through the command line, but if you desire a more complicated CORS policy, it might be cleaner to choose the "Script file inside a package option" and have the .ps1 and cors.json files source controlled in your bundle repo, rather than the inline option I've used here. 
 
