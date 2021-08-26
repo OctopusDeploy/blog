@@ -75,7 +75,7 @@ To tell Vue to build just one JavaScript file, you can add the following vue.con
 
 ### A separate config.json file
 
-[Octopus variable subsitutions](https://octopus.com/docs/projects/variables/variable-substitutions) are powerful stuff, but to take advantage of them for our frontend project, we'd like to be able to tell Octopus about a config.json file that sits next to our bundle for Octopus to have its way with. To make Vue CLI include such a file in its dist folder that will be zipped to create the package sent to octopus, we can create "js\config.json" in the "public" folder Vue creates for us on initialization of a new project. Now if we run
+[Octopus variable subsitutions](https://octopus.com/docs/projects/variables/variable-substitutions) are powerful stuff, but to take advantage of them for our frontend project, we'd like to be able to tell Octopus about a config.json file that sits next to our bundle for Octopus to have its way with. To make Vue CLI include such a file in its dist folder that will be zipped to create the package sent to Octopus, we can create "js\config.json" in the "public" folder Vue creates for us on initialization of a new project. Now if we run
 
 ```console
 npm run build      
