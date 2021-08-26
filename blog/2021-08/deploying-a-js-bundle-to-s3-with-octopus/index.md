@@ -10,6 +10,7 @@ tags:
  - Frontend
  - Variable sets
  - Amazon S3
+ - Vue JS
 ---
 
 A frontend dev pattern I've seen at many companies starts with the best of intentions, but it can lead to pain if not handled with care. You see a need for reuse of frontend code across multiple projects, maintained by different teams using different techs. You create a shared JavaScript library project with its own repo and release process. It's a sensible idea, but it opens questions that need good answers, to stop our little bundle of joy from growing into a monster. In this post, I'll explain a simple example of how to manage the deployment process for a shared JavaScript project that is simple to reference from other Octopus projects. My example uses a Vue JS bundle deployed to Amazon S3, but I hope you'll see how the same principles can be applied to any combination of frontend framework and hosting provider.
