@@ -12,7 +12,7 @@ tags:
  - Amazon S3
 ---
 
-A frontend dev pattern I've seen at many companies starts with the best of intentions, but it can lead to pain if not handled with care. You see a need for reuse of frontend code across multiple projects, possibly maintained by different teams using different tech on the server. You create a shared JavaScript library project with its own repo and release process. It's a sensible idea, but it opens questions that need good answers, to stop our little bundle of joy from growing into a monster. In this post, I'll explain a simple example of how to manage the deployment process for a shared JavaScript project that is simple to reference from other Octopus projects. My example uses a Vue JS bundle deployed to Amazon S3, but I hope you'll see how the same principles can be applied to any combination of frontend framework and hosting provider.
+A frontend dev pattern I've seen at many companies starts with the best of intentions, but it can lead to pain if not handled with care. You see a need for reuse of frontend code across multiple projects, maintained by different teams using different techs. You create a shared JavaScript library project with its own repo and release process. It's a sensible idea, but it opens questions that need good answers, to stop our little bundle of joy from growing into a monster. In this post, I'll explain a simple example of how to manage the deployment process for a shared JavaScript project that is simple to reference from other Octopus projects. My example uses a Vue JS bundle deployed to Amazon S3, but I hope you'll see how the same principles can be applied to any combination of frontend framework and hosting provider.
 
 ## The process
 
@@ -123,7 +123,7 @@ export default {
 </script>
 ```
 
-Sidenote: you will need to tell any images or other references to external assets where to find them as shown above with the use of the "bucketUrl" setting, because the relative paths Vue produces by default won't work on the consumer for assets in S3.
+Sidenote: you will need to give a base URL to any images or other references to external assets with something like the "bucketUrl" setting, because the relative paths Vue produces by default won't work on the consumer for assets in S3.
 
 Now to tell Octopus to substitute variables in our config.json file, we can click the "Configure Features" button and enable "Structured configuration variables."
 
