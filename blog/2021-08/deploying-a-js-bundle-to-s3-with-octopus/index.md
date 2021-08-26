@@ -55,7 +55,7 @@ There are a few prerequisites for this next AWS CLI step to work as desired, whi
 
 ### One JavaScript file to rule them all
 
-By default, Vue will create a separate CSS file, a production source map file, and a vendor libraries file that's an optimization webpack performs by default for better caching of common dependencies that don't change often. These are sensible defaults, but for a shared JS bundle, assuming it isn't massive, we can start with the simplest thing that could work, allowing consumers to reference the one JS file to get all styling and behavior. We can always introduce support for optimizations and source maps and external CSS as needed later on.
+By default, Vue will create a separate CSS file, a production source map file, and a vendor libraries file that's an optimization webpack performs for better caching of common dependencies that don't change often. These are sensible defaults, but for a shared JS bundle, assuming it isn't massive, we can start with the simplest thing that could work, allowing consumers to reference the one JS file to get all styling and behavior. We can always introduce support for optimizations and source maps and external CSS as needed later on.
 
 To tell Vue to build just one JavaScript file, you can add the following vue.config.js at the root of your Vue project next to pacakage.json.
 
