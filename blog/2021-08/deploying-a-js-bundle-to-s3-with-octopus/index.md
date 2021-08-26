@@ -1,5 +1,5 @@
 ---
-title: Deploying a JavaScript bundle project with octopus
+title: Deploying a JavaScript library project with octopus
 description: Learn how to handle cache busting and config of a shared JavaScript bundle and make it easy to reference in other Octopus projects.
 author: lee.meyer@octopus.com
 visibility: private
@@ -12,7 +12,7 @@ tags:
  - Amazon S3
 ---
 
-A frontend dev pattern I've seen at many companies starts with the best of intentions, but it can lead to pain if not handled with care. You see a need for reuse of frontend code across multiple projects, possibly maintained by different teams using different tech on the server. You create a shared JavaScript bundle project with its own repo and release process. It's a sensible idea, but it opens questions that need good answers, to stop our little bundle of joy growing into a monster. In this post, I'll explain a simple example of how to manage the deployment process for a shared JavaScript project that is simple to reference from other Octopus projects. My example is using a Vue JS bundle deployed to an Amazon S3 bucket, but I hope you'll see how the same principles could be applied to any combination of frontend framework and hosting provider. 
+A frontend dev pattern I've seen at many companies starts with the best of intentions, but it can lead to pain if not handled with care. You see a need for reuse of frontend code across multiple projects, possibly maintained by different teams using different tech on the server. You create a shared JavaScript library project with its own repo and release process. It's a sensible idea, but it opens questions that need good answers, to stop our little bundle of joy growing into a monster. In this post, I'll explain a simple example of how to manage the deployment process for a shared JavaScript project that is simple to reference from other Octopus projects. My example is using a Vue JS bundle deployed to an Amazon S3 bucket, but I hope you'll see how the same principles could be applied to any combination of frontend framework and hosting provider. 
 
 ## The process
 
