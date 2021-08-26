@@ -95,7 +95,7 @@ Our Community Slack allows users to interact with other Octopus Deploy users, an
 
 #### Support
 
-We have a dedicated support team to answer any questions you have. They update their knowledge to support Octopus Deploy its software integrations. Their goal is to give accurate and timely answers to all support questions. If you need help you can contact support at [support@octopus.com](mailto:support@octopus.com) for Octopus-specific technical issues, or you can email [advice@octopus.com](advice@octopus.com) for more complex CI/CD and integration questions.
+We have a dedicated support team to answer any questions you have. They are able to answer questions about Octopus Deploy and the software that it integrates with. Their goal is to give accurate and timely answers to all support questions. If you need help you can contact support at [support@octopus.com](mailto:support@octopus.com) for Octopus-specific technical issues, or you can email [advice@octopus.com](advice@octopus.com) for more complex CI/CD and integration questions.
 
 #### Sales
 
