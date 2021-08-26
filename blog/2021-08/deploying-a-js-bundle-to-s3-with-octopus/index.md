@@ -12,7 +12,7 @@ tags:
  - Amazon S3
 ---
 
-A frontend dev pattern I've seen at many companies starts with the best of intentions, but it can lead to pain if not handled with care. You see a need for reuse of frontend code across multiple projects, possibly maintained by different teams using different tech on the server. You create a shared JavaScript bundle project with its own repo and release process. It's a sensible idea, but it opens questions we need good answers for, to stop our little bundle of joy growing into a monster. In this post, I'll explain a simple example of how to manage the deployment process for a shared JavaScript project that is simple to reference from other Octopus projects. My example is using a Vue JS bundle deployed to an Amazon S3 bucket, but I hope you'll see how the same principles could be applied to any combination of frontend framework and hosting provider. 
+A frontend dev pattern I've seen at many companies starts with the best of intentions, but it can lead to pain if not handled with care. You see a need for reuse of frontend code across multiple projects, possibly maintained by different teams using different tech on the server. You create a shared JavaScript bundle project with its own repo and release process. It's a sensible idea, but it opens questions that need good answers, to stop our little bundle of joy growing into a monster. In this post, I'll explain a simple example of how to manage the deployment process for a shared JavaScript project that is simple to reference from other Octopus projects. My example is using a Vue JS bundle deployed to an Amazon S3 bucket, but I hope you'll see how the same principles could be applied to any combination of frontend framework and hosting provider. 
 
 ## The process
 
@@ -24,7 +24,7 @@ I'll explain the reason for each step and how they work.
 
 ## Create S3 bucket if it does not exist
 
-In the spirit of treating servers as cattle and not pets, I don't want to assume much about our deployment target, beyond having an AWS account with appropriate permissions. In a specific case I had dedicated buckets for combinations of different regions and the environments of test, staging, and production, so I appreciated a build process that only needs me to name the bucket in a scoped variable and will set it up correctly if required. This is achieved with an [AWS CLI Step](https://octopus.com/docs/deployments/custom-scripts/aws-cli-scripts) that runs the following PowerShell script, which uses the AWS CLI to see if we get a non-error result trying to list the contents of the bucket. Otherwise it creates the bucket, then polls to confirm the buckets exist before the step finishes.
+In the spirit of treating servers as cattle and not pets, I don't assume much about our deployment target, beyond having an AWS account with appropriate permissions. In a specific case I had dedicated buckets for combinations of different regions and the environments of test, staging, and production, so I appreciated a build process that only needs me to name the bucket in a scoped variable and will set it up correctly if required. This is achieved with an [AWS CLI Step](https://octopus.com/docs/deployments/custom-scripts/aws-cli-scripts) that runs the following PowerShell script, which uses the AWS CLI to see if we get a non-error result trying to list the contents of the bucket. Otherwise it creates the bucket, then polls to confirm the buckets exist before the step finishes.
 
 ​```ps
 $bucket = $OctopusParameters["s3-bucket-name"] 
@@ -125,23 +125,56 @@ export default {
 
 Sidenote: you will need to tell any images our other references to external files where to find them as shown above with the "bucketUrl" setting, as the relative paths Vue produces by default won't work if you want to reference shared assets that have been uploaded to S3 together with your bundle. 
 
+Now to tell Octopus to substitute variables in our config.json file, we can click the "Configure Features" button and enable "Structured configuration variables."
 
+![config variables](config%20variables.png)
 
+And tell Octopus to replace variables in "MyBundle\js\config.json" where "MyBundle" is the ID of your package. 
 
+![config variables 2](config%20variables%202.png)
 
+### Upload your bundle!
 
+Finally, we can give the step the CLI command to upload our bundle, config.json and assets to a folder named after the current release.
 
-## How do we do cache busting?
-The CLIs that come with the major frontend frameworks will generate an index file that references our hash-named production bundle. Unfortunately, we probably cannot use that index file in legacy systems that want to consume our bundle. It can be unclear [which of the many cache busting strategies](https://css-tricks.com/strategies-for-cache-busting-css/) will suit best. You want to avoid anything that requires the consumer to know too much about the bundle, or the bundler to know too much about the consumer. The whole point is reuse - the last thing you need is each consumer implementing its own way of referencing the latest bundle. We also don't want the build process for our JavaScript containing special casing for the sake of different consumers. You'll score bonus pain points if you try to introduce runtime logic in the consumer to figure out which bundle to use. In my opinion, the perfect world is one where consumers know only that they have a config setting with a bundle URL.
+```ps
+aws s3 cp MyBundle s3://#{s3-bucket-name}/release_#{Octopus.Release.Number} --recursive --exclude index.html --acl public-read
+```
 
-Octopus Deploy can provide us with just that with using variable sets.
+I skip uploading the index.html file that Vue CLI produces, because legacy consumers of our bundle won't be able to use that index.html and will need the URL to the uniquely named bundle file instead. Providing the URL of the newest bundle for the environment to anyone who wants it is the focus of the next, final step. 
 
-### What about configuration?
-The boring issue of config might not be front of mind when you are in the honeymoon phase of your relationship with a shiny new JavaScript framework, but it's going to be less fun to work with if  
+## Update the bundle URL in a variable set
+
+Being able to tell other projects where to get the cache busted shared bundle through a config setting is one of the big advantages of building an Octopus process for this type of JavaScript project. There's an [https://css-tricks.com/strategies-for-cache-busting-css/](astonishing variety) of strategies for cache busting and in my experience, many will lead to pain. The pain I have experienced on past projects that attempted this stemmed from either the consumer knowing too much about the bundling process or the bundler knowing too much about the consumer. In my opinion, the ideal world is where any project that consumes the bundle only needs to know to read a config setting with the URL of the bundle. It is too cool that Octopus allows us to automatically achieve this at deployment without writing too much custom code.
+
+After deployment this custom script step will update the bundle URL for the scoped "BundleUrl" variable in a [library variable set](https://octopus.com/docs/projects/variables/library-variable-sets) that can be referenced by other projects. To do that, we reference the Octopus.Client nuget package within the step as explained [here](https://octopus.com/docs/octopus-rest-api/octopus.client/using-client-in-octopus). The step also needs a reference to the package we deployed, as that's where it will find the name of the JavaScript file we uploaded. Then it can run the following PowerShell:
+
+```ps
+Add-Type -Path 'Octopus.Client/lib/net452/Octopus.Client.dll'
+
+$bundle = Get-ChildItem -Path MyBundle/js/*.js | Select-Object -First 1
+
+$endpoint = new-object Octopus.Client.OctopusServerEndpoint $octopusURI,$octopusApiKey
+$repository = new-object Octopus.Client.OctopusRepository $endpoint
+
+$scope = New-Object Octopus.Client.Model.ScopeSpecification
+$enviornmentName = $OctopusParameters["Octopus.Environment.Name"]
+$envID = $repository.Environments.FindByName($enviornmentName).Id
+$scope.Add([Octopus.Client.Model.Scopefield]::Environment,(New-Object Octopus.Client.Model.ScopeValue($envID)))
+
+$libraryVariableSetId = $repository.LibraryVariableSets.FindByName('BundleVariables').Id
+$libraryVariableSet = $repository.LibraryVariableSets.Get($libraryVariableSetId);
+$variables = $repository.VariableSets.Get($libraryVariableSet.VariableSetId);
+$releaseId = $OctopusParameters["Octopus.Release.Number"]
+$variables.AddOrUpdateVariableValue("BundleUrl", $bucketUrl + 'release_' + $releaseId + '/js/' + $bundle.Name,$scope)
+$repository.VariableSets.Modify($variables)
+```
+
+That's it! Now any number of other projects can reference our shared JavaScript bundle by including the "BundleVariables" library variable set.
 
 ## Conclusion
 I hope this post clarifies how we can apply the concepts of scoped variables, servers as cattle, and variable sets to achieve sane management of a shared JavaScript project. 
 
-I've had good results following this strategy in production compared to other solutions I have tried for managing JavaScript projects. I did find myself explaining a few times to frontend specialists that they have to re-release the consumer project on test server to make it upgrade itself to the latest version of the bundle, but it's logical once they get the hang of it, but I've had very good feedback from the frontend specialists on my team on the way this deployment process pattern works.
+I've had good results following this strategy in production compared to other solutions I have tried for managing JavaScript projects. I did find myself explaining a few times to frontend specialists that they have to re-release the consumer project to make it upgrade itself to the latest version of the bundle, but it's logical once people get the hang of it, and I've had good feedback from the frontend specialists on my team about the way this deployment process pattern works.
 
 Happy bundling!
