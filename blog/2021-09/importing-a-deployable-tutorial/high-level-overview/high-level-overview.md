@@ -4,8 +4,10 @@ description: Find out about Octopus Deploy and where to learn more
 author: terence.wong@octopus.com
 visibility: public
 published: 2021-07-14-1400
-metaImage: octopus-dashboard.png
-bannerImage: octopus-dashboard.png
+metaImage: blogimage-importing-a-deployable-tutorial-with-octopus-deploy-and-azure-web-applications-2021-01.png
+bannerImage: blogimage-importing-a-deployable-tutorial-with-octopus-deploy-and-azure-web-applications-2021-01.png
+bannerImageAlt: ci cd pipeline infinite loop with release, deploy, operate written over three sections and octopus logo inside one loop
+isFeatured: false
 tags:
  - Octopus
 ---
