@@ -26,7 +26,7 @@ I'll explain the reason for each step and how they work.
 
 In the spirit of treating servers as cattle and not pets, I don't want to assume much about our deployment target, beyond having an AWS account with appropriate permissions. In a specific case I had dedicated buckets for combinations of different regions and the environments of test, staging, and production, so I appreciated a build process that only needs me to name the bucket in a scoped variable and will set it up correctly if required. This is achieved with an [AWS CLI Step](https://octopus.com/docs/deployments/custom-scripts/aws-cli-scripts) that runs the following PowerShell script, which uses the AWS CLI to see if we get a non-error result trying to list the contents of the bucket. Otherwise it creates the bucket, then polls to confirm the buckets exist before the step finishes.
 
-​```ps PowerShell
+​```ps
 $bucket = $OctopusParameters["s3-bucket-name"] 
 $region = $OctopusParameters["s3-region"]
 $found = aws s3 ls s3://$bucket/ --recursive --summarize | Select-String -Pattern 'Total Objects:'
@@ -57,7 +57,7 @@ By default Vue will create a separate CSS file, a production sourcemap file, and
 
 To tell Vue to build just one JavaScript file, you can add the following vue.config.js at the root of your Vue project next to pacakage.json.
 
-​```js
+```js
  module.exports = {
   configureWebpack: {
     optimization: {
@@ -69,26 +69,26 @@ To tell Vue to build just one JavaScript file, you can add the following vue.con
   },
   productionSourceMap: false
 }
-​```
+```
 
 # A separate config.json file 
 
 [Octopus variable subsitutions](https://octopus.com/docs/projects/variables/variable-substitutions) are powerful stuff, but in order to take advantage of them for our frontend project, we'd like to be able to tell Octopus about a config.json file that sits next to our bundle for Octopus to have its way with. To make Vue CLI include such a file in its dist folder that will be zipped to create the package sent to octopus, we can create "js\config.json" in the "public" folder Vue creates for us on initialization of a new project. Now if we run 
 
-​```console
+```console
 npm run build       
-​```
+```
 
 we see that Vue has dutifully copied the config.json as a separate file in the output folder. To tell Vue to use it, we can create the following helper module.
 
-​```js
+```js
 const configUrl = document.currentScript.src.substring(0, document.currentScript.src.lastIndexOf('/')) + '/config.json'
 
 module.exports = async function() { 
     const response = await fetch(configUrl);
     return await response.json();
 };
-​```
+```
 
 Now when we call this function, the bundle will fetch its neighbouring config.json in the S3 folder it has been deployed to.
 
