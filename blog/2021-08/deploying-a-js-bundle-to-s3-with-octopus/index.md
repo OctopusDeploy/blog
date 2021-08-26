@@ -123,7 +123,7 @@ export default {
 </script>
 ```
 
-Sidenote: you will need to tell any images our other references to external files where to find them as shown above with the "bucketUrl" setting, as the relative paths Vue produces by default won't work if you want to reference shared assets that have been uploaded to S3 together with your bundle.
+Sidenote: you will need to tell any images or other references to external assets where to find them as shown above with the use of the "bucketUrl" setting, because the relative paths Vue produces by default won't work on the consumer for assets in S3.
 
 Now to tell Octopus to substitute variables in our config.json file, we can click the "Configure Features" button and enable "Structured configuration variables."
 
