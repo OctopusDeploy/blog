@@ -162,7 +162,7 @@ This command will create a service named 'my-service' that will generate a publi
 
     kubectl get services
 
-Run this command, and you will see <pending> under the External-IP. Wait 1 minute, run again, and you should see a public IP in that field. Go to the IP address in the browser to view your Web Application.
+Run this command, and you will see "pending" under the External-IP. Wait 1 minute, run again, and you should see a public IP in that field. Go to the IP address in the browser to view your Web Application.
 
 ![RandomQuotes](random-quotes.png "RandomQuotes")
 
