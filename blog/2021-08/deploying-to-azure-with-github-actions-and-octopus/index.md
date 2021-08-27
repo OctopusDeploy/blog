@@ -35,8 +35,6 @@ Go to **{{Docker Hub account, account settings, security}}** and create a new ac
 
 Go to your Octopus instance, then **{{profile,my API keys}}** and create an API key. Save this key value. Take note of your Octopus server URL.
 
-![Octopus Profile](octopus-profile.png "Octopus Profile")
-
 ![Octopus API key](octopus-api-key.png "Octopus API key")
 
 In the Random Quotes repository that you forked, go to **{{settings, Secret}}** and add the following repository secrets:
@@ -88,9 +86,7 @@ This code builds and pushes the code as a docker image to Docker Hub on every ne
 
 ![Github Success Initial](github-success-initial.png "Github Success Initial")
 
-After the build is complete, navigate to Docker Hub to see the image.
-
-![Docker Hub Image](docker-hub-image.png "Docker Hub Image")
+After the build is complete, navigate to [Docker Hub](https://hub.docker.com/) to see the image.
 
 ## Configure an Azure Account
 
