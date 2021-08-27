@@ -144,9 +144,7 @@ Make sure to add the 'kube' role under the on behalf of option to trigger the bu
 
 ![Edit YAML](edit-yaml.png "Edit YAML")
 
-Click create a release to deploy the release
-
-Now that the deployment is successful, we will access the Web Application by exposing the cluster to the internet. Go to the Azure portal and bring up the Azure CLI.
+Click create a release and click the deploy steps to deploy the release. Wait for the success message. Now that the deployment is successful, we will access the Web Application by exposing the cluster to the internet. Go to the Azure portal and bring up the Azure CLI.
 
 ![Azure CLI](azure-cli.png "Azure CLI")
 
