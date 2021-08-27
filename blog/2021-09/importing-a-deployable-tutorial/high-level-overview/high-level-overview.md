@@ -23,9 +23,9 @@ This overview provides some additional context and information about Octopus Dep
 
 Octopus Deploy was founded in 2012, to simplify the hardest parts of continuous delivery and operations processes. We create happy deployments, and by extension, happy software teams. 
 
-Octopus focuses on three main parts of continuous delivery: Deploy, Release and Operate.
+Octopus focuses on three main parts of continuous delivery: Deploy, Release, and Operate.
 
-Our tool sits in the middle of the CI/CD toolchain, acting as an orchestrator. This orchestration requires several software integrations from coding frameworks to cloud providers. Octopus Deploy chooses to do a smaller number of things at high quality, over doing everything. 
+Octopus sits in the middle of the CI/CD toolchain, acting as an orchestrator. This orchestration requires several software integrations from coding frameworks to cloud providers. Octopus Deploy chooses to do a smaller number of things at high quality, over doing everything. 
 
 By focusing on orchestration and enabling these integrations, Octopus provides best-in-class tooling. 
 
@@ -43,11 +43,11 @@ You imported an exported project and deployed a package to an Azure web applicat
  - Releases
  - Deployments
 
-The blog post represented a simple example. Production level solutions are more complex though, with multiple deployment steps and deployment targets. There are other advanced Octopus Deploy features that developers can use. These include tenants, the Octopus REST API, and more. To learn about these, you can read our comprehensive [documentation of all the Octopus Deploy features](https://octopus.com/docs).
+The blog post represented a simple example. Production level solutions are typically more complex though, with multiple deployment steps and deployment targets. There are other advanced Octopus Deploy features that developers can use. These include tenants, the Octopus REST API, and more. To learn about these, you can read our comprehensive [documentation of all the Octopus Deploy features](https://octopus.com/docs).
 
 ## How does this help me?
 
-You can now use the Octopus Deploy platform for continuous deployment. We have a wide range of example use cases for customers that have used Octopus Deploy. Some or a mixture of these likely apply to you. Read more about specific [use cases](https://octopus.com/company/customers).
+You can now use Octopus Deploy for continuous deployment. We have a wide range of example use cases for customers that have used Octopus Deploy. Some or a mixture of these likely apply to you. Read more about specific [use cases](https://octopus.com/company/customers).
 
 This page provides further resources to help you get the most out of Octopus Deploy.
 
