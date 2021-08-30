@@ -7,6 +7,7 @@ published: 2021-09-01-1400
 bannerImage: blogimage-kubernetes.png
 metaImage: blogimage-kubernetes.png
 bannerImageAlt: Octopus character in a sailors hat in a boat on the ocean headed towards Kubernetes-branded buoy
+isFeatured: false
 tags:
 - Product
 - Kubernetes
