@@ -1,5 +1,5 @@
 ---
-title: Why use Octopus for Kubernetes deployments?
+title: "Why use Octopus for Kubernetes deployments?"
 description: Understanding the value that Octopus brings to your Kubernetes deployments.
 author: matthew.casperson@octopus.com
 visibility: public
