@@ -42,7 +42,7 @@ We used [Assent](https://github.com/droyad/Assent) tests to snapshot the entire 
 
 ### Migrate
 
-For a simple GET endpoint, the migration could be trivial. For endpoints that mutated state, things could be more time consuming. Rules such as validation were considered, understood, and ported over to the ASP.NET controller pattern.
+For a simple GET endpoint, the migration could be trivial. For endpoints that mutated the state, things could be more time consuming. Rules such as validation were considered, understood, and ported over to the ASP.NET controller pattern.
 
 ### Verify
 
