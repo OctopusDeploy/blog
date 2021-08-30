@@ -69,7 +69,7 @@ We learned a few things:
 - Snapshot-based tests can be challenging to write because you have to account for and “scrub” data that changes between invocations of an endpoint, such as timestamps or IDs.
 - For tests checking edge cases, it's simpler to assert on the parts of the response that you really care about, such as response code and error text.
 - Tests need data, which can be nontrivial to create, so it’s important to separate this concern from the specifics of your tests.
-- It's vital to establish (and document) repeatable patterns for how you migrate, so others in the engineering team can do migrations as well.
+- It's vital to establish and document repeatable patterns for how you migrate, so others in the engineering team can do migrations as well.
 - Understanding the domain that is specific to an endpoint can be the hardest part of a migration.
 
 We also found this type of work can be repetitive, risking dips in developer motivation. To combat this, we celebrated milestones along the way. These included percentage of endpoints migrated, and migration of all endpoints of a specific grouping or type.
