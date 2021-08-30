@@ -72,7 +72,7 @@ The simplified deployment process is:
 3. Configure server
 4. Deploy the application
 
-![High-Level View of Deployment Process](images/high-level-deployment-process.png)
+![High-Level View of Deployment Process](high-level-deployment-process.png)
 
 All the steps in this deployment process use a variable run condition.  Steps 1 and 2 only need to run when a deployment target trigger causes the deployment.  I'll get to steps 3 and 4 in the next section.
 
@@ -90,7 +90,7 @@ Check VMSS Provision Status is a new step template with the following functional
 
 Add that step to the top of the deployment process.
 
-![Check VMSS Provision Status](images/check-vmss-provision-status-step.png)
+![Check VMSS Provision Status](check-vmss-provision-status-step.png)
 
 Don't forget to set the run condition to the value from earlier!
 
@@ -105,7 +105,7 @@ Set the following options:
 - Health Check Errors: skip the deployment targets that are unavailable.
 - New Deployment Targets: Include new deployment targets in the deployment.
 
-![Health Check Step](images/health-check-step.png)
+![Health Check Step](health-check-step.png)
 
 ## Skipping Existing Virtual Machines
 
