@@ -3,10 +3,10 @@ title: A single API framework
 description: We migrated Octopus Deploy to a more standardized way of writing an API, using ASP.NET controllers. Learn about our implementation strategy: Derisk, Enable, Finish.
 author: richard.everett@octopus.com
 visibility: public
-published: 2021-08-25-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt:
+published: 2021-08-30-1400
+metaImage: blogimage-asingleapiframework-2021.png
+bannerImage: blogimage-asingleapiframework-2021.png
+bannerImageAlt: Messy ports passing through Octopus and coming out as a neat and faster API
 isFeatured: false
 tags:
   - Engineering
