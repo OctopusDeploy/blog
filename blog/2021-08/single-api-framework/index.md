@@ -77,7 +77,7 @@ We also found this type of work can be repetitive, risking dips in developer mot
 
 We also tracked our progress with a variation on the classic burndown chart.
 
-![NancyEndpoints burndown chart](NancyEndpointsBurndown 2021-07-26.png "width=500")
+![NancyEndpoints burndown chart](nancyendpointsburndown-2021-07-26.png "width=500")
 
 ## Finish
 
