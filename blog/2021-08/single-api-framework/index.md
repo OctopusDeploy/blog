@@ -93,7 +93,7 @@ This approach leverages developer domain knowledge and spreads the migration wor
 - A migration like this can be done, but it's a significant investment of time.
 - It’s important to quantify the work, and find the most effective way to organize efforts.
 - This is very parallelizable work.
-- Establishing (and documenting) patterns allows any developer in your organization to help.
+- Establishing and documenting patterns allows any developer in your organization to help.
 - You have to accept a certain level of risk.
 - Measuring progress allows you to celebrate key milestones along the way.
 
