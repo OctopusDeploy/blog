@@ -4,9 +4,9 @@ description: Find out about Octopus Deploy and where to learn more
 author: terence.wong@octopus.com
 visibility: public
 published: 2021-07-14-1400
-metaImage: blogimage-importing-a-deployable-tutorial-with-octopus-deploy-and-azure-web-applications-2021-01.png
-bannerImage: blogimage-importing-a-deployable-tutorial-with-octopus-deploy-and-azure-web-applications-2021-01.png
-bannerImageAlt: ci cd pipeline infinite loop with release, deploy, operate written over three sections and octopus logo inside one loop
+metaImage: blogimage-highleveloverviewofoctopusdeploy-2021.png
+bannerImage: bblogimage-highleveloverviewofoctopusdeploy-2021.png
+bannerImageAlt: overhead view of 6 people sitting around a betting table with octopus logo in the centre
 isFeatured: false
 tags:
  - Product
