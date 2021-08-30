@@ -55,7 +55,7 @@ This approach was successful and proved that migrating the entire Octopus Deploy
 It also showed us:
 
 - Nancy endpoints typically took around 100ms to return a response.
-- The first call to an ASP.NET endpoint would return in around 200ms but subsequent calls took only 30 – 40ms.
+- The first call to an ASP.NET endpoint would return in around 200ms but subsequent calls took only 30–40ms.
 
 A team of 4 engineers spent six months focussing on migrations.
 
