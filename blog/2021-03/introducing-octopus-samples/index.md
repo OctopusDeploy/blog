@@ -13,7 +13,7 @@ tags:
 
 ![An image of people moving Octopus components](blogimage-octopus-samples.png)
 
-Though it may not seem like it at first glance, Octopus Deploy is a huge product.  The product is so large that people who have worked at Octopus for years still don't know it all.  To address the vastness of our product, we have developed extensive documentation and produced a wide variety of videos demonstrating common usage.  However, not everyone enjoys pouring through documentation or searching videos that might address what they're trying to accomplish.  Some people just want to get their hands on the product to figure things out. To that end, we've created the [Octopus Samples](https://samples.octopus.app) instance.
+Though it may not seem like it at first glance, Octopus Deploy is a huge product.  The product is so large that people who have worked at Octopus for years still don't know it all.  To address the vastness of our product, we have developed extensive documentation and produced a wide variety of videos demonstrating common usage.  However, not everyone enjoys poring through documentation or searching videos that might address what they're trying to accomplish.  Some people just want to get their hands on the product to figure things out. To that end, we've created the [Octopus Samples](https://samples.octopus.app) instance.
 
 ## Samples
 
