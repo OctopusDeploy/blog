@@ -29,7 +29,7 @@ Apdex (Application Performance Index) aims to convert measurements into insights
 Unless in a more specific context (e.g., on individual data records or group of records), the Apdex is calculated using:
 
 - API (Web) Requests that return a 2xx response
-- Excluding certain requests that are called often and are cached (e.g., ServerStatus)
+- Excludes certain requests that are called often and are cached
 - A Satisfied Threshold of <= 50ms
 - A Tolerating Threshold of > 50ms and <= 200ms
 
