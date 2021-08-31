@@ -79,6 +79,13 @@ I had some difficulties getting the correct permissions using the UI, but I foun
 C:\Users\Shawn.Sesna\.kube>oc.exe policy add-role-to-user cluster-admin -z octopusdeploy
 ```
 
+:::hint
+Ensure you're in the correct project by running,
+```
+C:\Users\Shawn.Sesna\.kube>oc project <project name>
+```
+:::
+
 #### Service account token
 
 OpenShift will automatically create a token for your service account.  This token is how the service account authenticates to OpenShift from Octopus Deploy.  To retrieve the value of the token:
