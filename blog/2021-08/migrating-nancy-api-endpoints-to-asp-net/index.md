@@ -1,5 +1,5 @@
 ---
-title: A single API framework
+title: Migrating 426 Nancy API endpoints to ASP.NET Core controllers
 description: "We migrated Octopus Deploy to a more standardized way of writing an API, using ASP.NET controllers. Learn about our implementation strategy: Derisk, Enable, Finish."
 author: richard.everett@octopus.com
 visibility: public
