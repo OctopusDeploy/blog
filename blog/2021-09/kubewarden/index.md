@@ -16,7 +16,7 @@ This flexibility is a blessing and a curse. Kubernetes has the ability to run al
 
 Kubernetes security policies provide some level of control over the resources hosted by a cluster. However, security policies can only allow top level resources, like deployments or pods, to be created. A pod can host almost anything, so teams that need a greater level of control will need to look beyond security policies.
 
-[Admission controllers](https://kubernetes.io/blog/2019/03/21/a-guide-to-kubernetes-admission-controllers/) go one step further by allowing each new resource being created or updated to be inspected, modified, accepted, or rejected by a custom service. This provides a very fine grained level of control over resources created in a cluster, and ensure only those resources that meet your particular requirements are deployed.
+[Admission controllers](https://kubernetes.io/blog/2019/03/21/a-guide-to-kubernetes-admission-controllers/) go one step further by allowing each new resource being created or updated to be inspected, modified, accepted, or rejected by a custom service. This provides a very fine grained level of control over resources created in a cluster, and ensures only those resources that meet your particular requirements are deployed.
 
 In this post we'll look at the [Kubewarden](https://www.kubewarden.io/) admission controller, which is an early project providing the ability to define admission policies written in a number of languages compiled down to WebAssembly. We'll create a number of runbooks and deployments in Octopus to manage Kubewarden and deploy pods to Kubernetes.
 
