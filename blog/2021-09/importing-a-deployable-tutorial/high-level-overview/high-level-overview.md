@@ -117,6 +117,6 @@ We hope this overview is helpful for getting started with Octopus Deploy. Octopu
 
 We want you to test whether Octopus Deploy is right for you. If it’s not a good fit, rest assured that nobody is going to push otherwise; there’s no agenda. If it's the right solution for you, we want to give you all the resources you need to solve your CI/CD problems faster.  
 
-Contact our [support team](mailto:support@octopus.com) for any help you need. We look forward to helping you achieve your CI/CD goals.
+Contact our [support team](mailto:customersuccess@octopus.com) for any help you need. We look forward to helping you achieve your CI/CD goals.
 
 Happy deployments!
