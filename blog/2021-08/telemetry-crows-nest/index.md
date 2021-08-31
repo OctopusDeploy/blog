@@ -1,6 +1,6 @@
 ---
-title: Telemetry in Octopus Crows Nest
-description: Learn how Octopus is using telemetry data to identify performance metrics for our customers
+title: How we use Telemetry to improve Octopus Deploy
+description: Learn how Octopus is using telemetry data to identify performance metrics and improve Octopus Deploy for our customers
 author: terence.wong@octopus.com
 visibility: private # DO NOT CHANGE THIS!!!! This is not a public post!
 published: 2999-01-01
@@ -10,9 +10,9 @@ tags:
  - Octopus
 ---
 
-As Octopus Deploy has grown, it now covers a large surface area. A given user may need to use different features across Octopus Deploy. These may be viewing the dashboard, creating or deploying releases, authoring projects or running runbooks against their infrastructure. To serve our customers better, we want to tell whether users receive a fast and responsive experience.
+Over the years, Octopus Deploy has grown to include many new features and areas within the app.  Users may need to use different features across Octopus Deploy, including viewing the dashboard, creating or deploying releases, authoring projects or running runbooks against their infrastructure. To serve our customers better, we want to know how   fast and responsive the experience is.
 
-Octopus Deploy, like many software companies, collect telemetry to measure how customers experience the product. Some of the telemetry we collect is the timing of API calls and database operations, which we call 'Performance Telemetry'. We surface this telemetry in our engineering dashboard (code named Crow's Nest).
+Octopus Deploy, like many software companies, collect telemetry to measure how customers use and experience the product. Some of the telemetry we collect is the timing of API calls and database operations, which we call 'Performance Telemetry'. We surface this telemetry in our engineering dashboard (code named Crow's Nest).
 
 Crow's Nest provides us with a high-level overview of how users are experiencing the product. A web request triggers when a customer wants to visit a page or poll an endpoint, and Crows Nest measure how long the request takes. 
 
@@ -21,21 +21,21 @@ We also track these requests over several versions to ensure Octopus Deploy's re
 
 ## Apdex
 
-Apdex (Application Performance Index) aims to convert measurements into insights about user satisfaction. The formula is:
+We calculate an Apdex (Application Performance Index) score, which aims to convert measurements into insights about user satisfaction. The formula is:
 
 
     Apdex = (SatisfiedCount + ToleratingCount * 0.5) / TotalCount
  
-Unless in a more specific context (e.g., on individual data records or group of records), the Apdex is calculated using:
+The Apdex is calculated using:
 
 - API (Web) Requests that return a 2xx response
 - Excludes certain requests that are called often and are cached
-- A Satisfied Threshold of <= 50ms
-- A Tolerating Threshold of > 50ms and <= 200ms
+- Requests that are returned in less than or equal to 50ms are considered to be within the satisfied threshold
+- Requests that are greater than 50ms and less than 200ms are considered to be within a tolerated threshold
 
 Apdex gives a uniform scale to test the customer experience. A higher number indicates a more positive user experience.  We can vary thresholds to experiment with Apdex scores given a specific appetite for tolerance. The examples in this blog display the default threshold values. These are configurable in real-time in the application to view Apdex scores against different criteria.
 
-Only web requests with a 2xx status are in the calculations. A 2xx status indicates a successful web request. Versions with less than 50 instances sending telemetry on any given data get filtered out to remove outliers. The response times of these web requests estimate how satisfied a customer is with their service. 
+Only web requests with a 2xx status are included in the calculations. A 2xx status indicates a successful web request. Versions with less than 50 instances sending telemetry on any given data get filtered out to remove outliers. The response times of these web requests estimate how satisfied a customer is with their service. 
 ## Visualizing Apdex and Octopus Deploy
 
 There are several ways to visualize Apdex. The following graphs are how we use Crow's Nest to display Apdex and gain valuable insights.
@@ -64,7 +64,7 @@ Each customer has an overall Apdex score. This score gives an indication of the 
 
 ### Apdex routes
 
-The performance of individual routes can are in the customer's view. We time web request and group the results on the route (path). From these timings we show the mean, median and 95th percentile time. By bucketing the requests by route, we avoid sending up huge amounts of data. We can use these metrics to identify the worst-performing routes in a later version. 
+The performance of individual routes are in the customer view. We time web request and group the results on the route. From these timings we show the mean, median and 95th percentile time. By bucketing the requests by route, we avoid transmitting huge amounts of data. We can use these metrics to identify the worst-performing routes in a later version. 
 
 ![Apdex Routes](apdex-route.png "Apdex Routes")
 
@@ -76,7 +76,7 @@ We can use Crow's Nest to view the differences in routes across different versio
 
 #### Apdex route view
 
-Historical performance is visible on every route. This allows us to see how the performance of a route has changed in each release. For example, the performance of the certificates route above degraded from 2020.2 to 2020.6. The Apdex score decreased from 62 to 16. In 2021.1, this cause of this slowness was resolved, leading to an Apdex score of 77.
+Historical performance is visible on every route. This allows us to see how the performance of a route has changed in each release. For example, the performance of the certificates route above degraded from 2020.2 to 2020.6. The Apdex score decreased from 62 to 16. In 2021.1, we identified the cause of this decrease in Apdex score and resolved the issue, leading to an Apdex score of 77.
 
 ![Apdex Route View](apdex-route-view.png "Apdex Route View")
 
