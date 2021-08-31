@@ -13,13 +13,13 @@ tags:
 - Kubernetes
 ---
 
-:::hint
-Octopus 2021 Q3 includes updated support for Kubernetes deployments and runbooks for Google Cloud, AWS and Azure users. Watch [Twitter](https://twitter.com/OctopusDeploy) and check [our blog](https://octopus.com/blog) for updates on our upcoming release.
-:::
-
 Back in Octopus 2018.9, we introduced a raft of features that made Kubernetes a first-class citizen in Octopus. 
 
 In this post, I go through some of the benefits of using Octopus to manage your Kubernetes deployments. After all, Kubernetes already has a rich declarative model for all of its resources, a fully functional command-line tool, and more dashboards than you can poke a stick at.
+
+:::hint
+Octopus 2021 Q3 includes updated support for Kubernetes deployments and runbooks for Google Cloud, AWS and Azure users. Watch [Twitter](https://twitter.com/OctopusDeploy) and check [our blog](https://octopus.com/blog) for updates on our upcoming 2021 Q3 release.
+:::
 
 ## Modeling your development environments
 
