@@ -10,5 +10,5 @@ blog/2017-11/maven-versions-explained.md -> blog/2020-09/maven-versioning-explai
 blog/2018-02/deploy-maven-zip-files.md -> blog/2020-05/deploy-and-consume-zip-files-from-maven/index.md
 blog/2018-11/why-k8s-and-octo/index.md -> blog/2020-09/why-kubernetes-and-octopus-deploy/index.md
 blog/2021-08/support-for-octopus-customers/index.md -> blog/2021-08/supporting-octopus-customers/index.md
-blog/2021-08/single-api-framework -> blog/2021-08/migrating-nancy-api-endpoints-to-asp-net
-blog/2021-08/single-api-frameworkg -> blog/2021-08/migrating-nancy-api-endpoints-to-asp-net
+blog/2021-08/single-api-framework/index.md -> blog/2021-08/migrating-nancy-api-endpoints-to-asp-net/index.md
+blog/2021-08/single-api-frameworkg/index.md -> blog/2021-08/migrating-nancy-api-endpoints-to-asp-net/index.md
