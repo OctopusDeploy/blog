@@ -82,7 +82,7 @@ Historical performance is visible on every route. This allows us to see how the 
 
 #### Future improvements
 
-We have found that this tool helps us plan on what to work on next. It highlights the areas that need the most attention and should be addressed first. Also it gives us another signal when monitoring our overall application health.
+We have found that Crow's Nest helps us plan what to work on next. It highlights the areas that need the most attention and should be addressed first. It also gives us another signal when monitoring our overall application health.
 
 <!--![Apdex Routes Difference](apdex-route-dashboard.png "Apdex Routes Difference")-->
 
