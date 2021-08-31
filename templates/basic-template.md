@@ -1,6 +1,6 @@
 ---
 title: Title
-description: A brief summary of the post.
+description: A brief summary of the post, 170 characters max including spaces.
 author: Joan Smith
 visibility: private
 published: 3020-01-01
