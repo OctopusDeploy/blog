@@ -14,7 +14,9 @@ As Octopus Deploy has grown, it now covers a large surface area. A given user ma
 
 Octopus Deploy, like many software companies, collect telemetry to measure how customers experience the product. Some of the telemetry we collect is the timing of API calls and database operations, which we call 'Performance Telemetry'. We surface this telemetry in our engineering dashboard (code named Crow's Nest).
 
-Crow's Nest provides us with a high-level overview of how users are experiencing the product. A web request triggers when a customer wants to visit a page or poll an endpoint. These requests get tracked over several versions. 
+Crow's Nest provides us with a high-level overview of how users are experiencing the product. A web request triggers when a customer wants to visit a page or poll an endpoint, and Crows Nest measure how long the request takes. 
+
+We also track these requests over several versions to ensure Octopus Deploy's responsiveness continues to improve. 
 
 
 ## Apdex
