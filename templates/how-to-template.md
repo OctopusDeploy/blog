@@ -1,6 +1,6 @@
 ---
 title: How to do X
-description: A brief summary of the content.
+description: A brief summary of the content, 170 characters max including spaces.
 author: Joan Smith
 visibility: private
 published: 3020-01-01
