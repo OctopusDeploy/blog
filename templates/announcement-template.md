@@ -1,6 +1,6 @@
 ---
 title: Title
-description: A brief summary of the announcement.
+description: A brief summary of the announcement, 170 characters max including spaces.
 author: Joan Smith
 visibility: private
 published: 3020-01-01
