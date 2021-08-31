@@ -16,7 +16,6 @@ Octopus Deploy, like many software companies, collect telemetry to measure how c
 
 Crow's Nest provides us with a high-level overview of how users are experiencing the product. A web request triggers when a customer wants to visit a page or poll an endpoint. These requests get tracked over several versions. 
 
-Only web requests with a 2xx status are in the calculations. A 2xx status indicates a successful web request. Versions with less than 50 instances sending telemetry on any given data get filtered out to remove outliers. The response times of these web requests estimate how satisfied a customer is with their service. 
 
 ## Apdex
 
