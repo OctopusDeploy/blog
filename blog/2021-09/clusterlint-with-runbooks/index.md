@@ -1,9 +1,9 @@
 ---
 title: Linting your Kubernetes cluster with Clusterlint and runbooks
-description: Learn how Clusterlint can be built into your workflow with runbooks
+description: Learn how Clusterlint can be built into your workflow with runbooks.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2020-01-30
+published: 2021-09-14-1400
 metaImage: k8s-clusterlint-runbook.png
 bannerImage: k8s-clusterlint-runbook.png
 bannerImageAlt: Kuberentes DevOps Runbook example with clusterlint
@@ -18,11 +18,15 @@ tags:
 Operations Runbooks in Octopus put the Ops in DevOps. This post is part of a series:
 
 - [Operations Runbooks overview](/blog/2020-01/operations-runbooks/index.md)
-- [DevOps, Runbooks and kubectl](/blog/2020-09/devops-runbooks-and-kubectl/index.md)
-- [Chaos engineering and runbooks](/blog/2020-01/chaos-engineering-and-runbooks/index.md)
+- [DevOps, Runbooks and kubectl](/blog/2021-09/devops-runbooks-and-kubectl/index.md)
+- [Chaos engineering and runbooks](/blog/2021-09/chaos-engineering-and-runbooks/index.md)
 - **Linting your Kubernetes cluster with Clusterlint and runbooks**
 
 ---
+
+:::hint
+Octopus 2021 Q3 includes updated support for Kubernetes deployments and runbooks for Google Cloud, AWS and Azure users. Watch [Twitter](https://twitter.com/OctopusDeploy) and check [our blog](https://octopus.com/blog) for updates on our upcoming 2021 Q3 release.
+:::
 
 *Kubernetes made the simple things hard and the hard things possible.* This is an apt statement. You only need to look at the number of best practice guides available for Kubernetes and the surrounding ecosystem to understand that running even a single pod *properly* is a daunting task.
 
