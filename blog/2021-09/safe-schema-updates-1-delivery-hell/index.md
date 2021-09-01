@@ -7,6 +7,7 @@ published: 2021-09-07-1400
 metaImage: blogimage-database-delivery-hell_2021.png
 bannerImage: blogimage-database-delivery-hell_2021.png
 bannerImageAlt: nine level database server with fire on the top level
+isFeatured: false
 tags:
  - DevOps
  - Database Deployments
