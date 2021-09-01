@@ -7,24 +7,23 @@ published: 2021-09-08-1400
 metaImage: runbooks-chaos-toolkit.png
 bannerImage: runbooks-chaos-toolkit.png
 bannerImageAlt: Chaos engineering and runbooks
+isFeatured: false
 tags:
  - DevOps
  - Runbooks
 ---
-
-![Chaos engineering and runbooks](runbooks-chaos-toolkit.png)
 
 Operations Runbooks in Octopus put the Ops in DevOps. This post is part of a series:
 
 - [Operations Runbooks overview](/blog/2020-01/operations-runbooks/index.md)
 - [DevOps, Runbooks and kubectl](/blog/2021-09/devops-runbooks-and-kubectl/index.md)
 - **Chaos engineering and runbooks**
-- [Linting your Kubernetes cluster with Clusterlint and runbooks](/blog/2020-01/clusterlint-with-runbooks/index.md)
+- [Linting your Kubernetes cluster with Clusterlint and runbooks](/blog/2021-09/clusterlint-with-runbooks/index.md)
 
 ---
 
 :::hint
-Octopus 2021 Q3 includes updated support for Kubernetes deployments and runbooks for Google Cloud, AWS and Azure users. Watch [Twitter](https://twitter.com/OctopusDeploy) and check [our blog](https://octopus.com/blog) for updates on our upcoming 2021 Q3 release.
+Octopus 2021 Q3 includes updated support for Kubernetes deployments, and runbooks for Google Cloud, AWS, and Azure users. Watch [Twitter](https://twitter.com/OctopusDeploy) and check [our blog](https://octopus.com/blog) for updates on our upcoming 2021 Q3 release.
 :::
 
 The promise of declarative systems that automatically reconfigure themselves to a desired state is:
@@ -138,7 +137,7 @@ From a convenience point of view, this means there is:
 
 From a management point of view, there is a single project to configure security rules against and a consolidated audit log.
 
-![](filtered-audit-log.png "width=500")
+![Octopus dashboard open on Configuration tab and Audit page showing audit log](filtered-audit-log.png "width=500")
 
 Runbooks keeps the management tasks you run against deployments alongside the deployments themselves. This makes it easy to run, review and track the state of your infrastructure.
 
