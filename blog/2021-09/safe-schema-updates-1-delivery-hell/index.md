@@ -3,7 +3,7 @@ title: Safe Schema Updates - Database Delivery Hell
 description: This post opens a series about safe schema updates with a brief tour through Dante's 9 levels of Database Delivery Hell.
 author: alex.yates@dlmconsultants.com
 visibility: public
-published: 2021-09-01-1400
+published: 2021-09-07-1400
 metaImage: blogimage-database-delivery-hell_2021.png
 bannerImage: blogimage-database-delivery-hell_2021.png
 bannerImageAlt: nine level database server with fire on the top level
@@ -131,6 +131,6 @@ Wherever you are on your journey, it’s critical to recognize your trajectory a
 
 ## Next time…
 
-In the next post (part 2) we’ll start to imagine what a safer software architecture, delivery process, and development culture might look like. We'll begin by exploring the nature of failure within complex systems, and we'll move on to discuss the concepts of resilience and robustness. This post will be the first of 4 posts intended to help folks to re-evaluate the way they view and assess safety within complex IT systems.
+In the next post (part 2) we start to imagine what a safer software architecture, delivery process, and development culture might look like. We begin by exploring the nature of failure within complex systems, and we move on to discuss the concepts of resilience and robustness. This post will be the first of 4 posts intended to help folks to re-evaluate the way they view and assess safety within complex IT systems.
 
 !include <safe-schema-updates-posts>
