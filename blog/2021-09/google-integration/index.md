@@ -24,7 +24,7 @@ Octopus includes a new account type called **Google Cloud Account**. This accoun
 
 ## Inheriting VM service accounts
 
-For teams that prefer to manage credentials outside of Octopus, each integration with GCP allows a service account to be inherited from a worker. 
+For teams that prefer to manage credentials outside of Octopus, each integration with GCP allows a service account to be inherited from a Worker. 
 
 Here is a Google Compute Engine (GCE) VM with an associated service account:
 
@@ -51,7 +51,7 @@ Operations like health checks an deployments are performed with the credentials 
 Google Container Registry (GCR) support has been included in the existing Docker feed type. Define the feed URL as one of the [regional GCR URLs](https://cloud.google.com/container-registry/docs/pushing-and-pulling#add-registry) and supply a service account JSON key for authentication:
 
 :::hint
-To query GCR feeds, the **Cloud Resource Manager** API must be enabled. This can be done [here](https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com/overview). Without this API, image searches return no results in Octopus.
+To query GCR feeds, the **Cloud Resource Manager** API must be enabled. This can be done [in the Google Cloud Platform dashboard](https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com/overview). Without this API, image searches return no results in Octopus.
 :::
 
 ![Octopus dashboard open on Library page showing External Feeds](gcr.png "width=500")
