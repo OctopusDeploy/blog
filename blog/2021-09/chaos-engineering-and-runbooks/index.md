@@ -11,6 +11,7 @@ isFeatured: false
 tags:
  - DevOps
  - Runbooks
+ - Kubernetes
 ---
 
 Operations Runbooks in Octopus put the Ops in DevOps. This post is part of a series:
