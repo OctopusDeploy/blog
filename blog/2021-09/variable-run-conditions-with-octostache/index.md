@@ -3,9 +3,11 @@ title: Leveraging Octostache with Variable Run Conditions
 description: How to leverage new filters in Octostache with Variable Run Conditions
 author: bob.walker@octopus.com
 visibility: public 
-published: 2999-01-01
-metaImage: 
-bannerImage: 
+published: 2021-09-29-1400
+metaImage: blogimage-loveragineoctostachewithvariablerunconditions-2021-FA.png
+bannerImage: blogimage-loveragineoctostachewithvariablerunconditions-2021-FA.png
+bannerImageAlt: Octopus tentacle as a mustache. On the left side is a run condition symbol and the right side is a variable.
+isFeatured: false
 tags:
  - Octopus
 ---
