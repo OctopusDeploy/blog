@@ -7,13 +7,12 @@ published: 2021-09-06-1400
 metaImage: k8s-devops-runbook.png
 bannerImage: k8s-devops-runbook.png
 bannerImageAlt: Kubernetes DevOps Runbook example with kubectl
+isFeatured: false
 tags:
  - DevOps
  - Runbooks
  - Kubernetes
 ---
-
-![Kubernetes DevOps Runbook example with kubectl](k8s-devops-runbook.png)
 
 It's safe to say the sentiment that [Devs shouldn’t have to learn Docker, K8s, or 30 other things to deploy an app](https://www.theregister.co.uk/2018/02/22/ibm_java_cto_john_duimovich_interview/) is something many of us agree with.
 
@@ -22,7 +21,7 @@ Let’s be honest, Kubernetes isn’t easy. But there are ways to make supportin
 In this blog post, we look at a simple runbook and highlight the advantages of creating reusable runbooks over manual scripting and ad-hoc debugging.
 
 :::hint
-Octopus 2021 Q3 includes updated support for Kubernetes deployments and runbooks for Google Cloud, AWS and Azure users. Watch [Twitter](https://twitter.com/OctopusDeploy) and check [our blog](https://octopus.com/blog) for updates on our upcoming 2021 Q3 release.
+Octopus 2021 Q3 includes updated support for Kubernetes deployments, and runbooks for Google Cloud, AWS and Azure users. Watch [Twitter](https://twitter.com/OctopusDeploy) and check [our blog](https://octopus.com/blog) for updates on our upcoming 2021 Q3 release.
 :::
 
 ## A simple Kubernetes runbook example
@@ -65,7 +64,7 @@ We start the script by building up an array of arguments to be passed to `kubect
 
 The `New-OctopusArtifact` Cmdlet takes the file and saves it as an Octopus artifact, which is then available from the task summary after the process has completed.
 
-![](task-summary.png)
+![Screenshot of Task Summary page in Octopus showing Step 1 Get Pods](task-summary.png)
 
 The script then calls `kubectl` again, this time looking for pods that are not in the running state. Any pods found are listed in the output.
 
