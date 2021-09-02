@@ -79,11 +79,11 @@ For newer users, this Octopus 101 webinar is a great place to start:
 
 Our blog contains helpful information for new and existing users. Some topics we cover are:
 
-- General advice and insights about continuous integration, for instance, [Continuous Integration vs Continuous Deployment](https://octopus.com/blog/difference-between-ci-and-cd)
-- Specific solutions to common customer problems, [Configure team members’ machines with Chocolatey, PowerShell, and Octopus Runbooks](https://octopus.com/blog/chocolatey-powershell-and-runbooks)
-- An explanation of the new features we are pushing out, [Announcing GitHub Actions for Octopus Deploy](https://octopus.com/blog/github-actions-for-octopus-deploy)
-- Tool specific guides, such as [Deploying a Ruby web application](https://octopus.com/blog/deploying-ruby)
-- An ebook about Kubernetes deployments, [10 pillars of pragmatic Kubernetes deployments](https://octopus.com/blog/10-pillars-kubernetes-deployments)
+- General advice and insights about continuous integration, for instance, [Continuous Integration vs Continuous Deployment](https://octopus.com/blog/difference-between-ci-and-cd).
+- Specific solutions to common customer problems, [Configure team members’ machines with Chocolatey, PowerShell, and Octopus Runbooks](https://octopus.com/blog/chocolatey-powershell-and-runbooks).
+- An explanation of the new features we are pushing out, [Announcing GitHub Actions for Octopus Deploy](https://octopus.com/blog/github-actions-for-octopus-deploy).
+- Tool specific guides, such as [Deploying a Ruby web application](https://octopus.com/blog/deploying-ruby).
+- An ebook about Kubernetes deployments, [10 pillars of pragmatic Kubernetes deployments](https://octopus.com/blog/10-pillars-kubernetes-deployments).
 
 You'll also find release notes, company announcements, and more. Customers tell us they enjoy engaging with the blog and find it helpful and informative, and we hope you do too. 
 
