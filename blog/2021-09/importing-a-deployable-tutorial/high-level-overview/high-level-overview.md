@@ -97,7 +97,7 @@ Our Community Slack allows users to interact with other Octopus Deploy users, an
 
 We have a dedicated support team to answer any questions you have. They are able to answer questions about Octopus Deploy and the software that it integrates with. Their goal is to give accurate and timely answers to all support questions. If you need help you can contact support at [customersuccess@octopus.com](mailto:customersuccess@octopus.com) for Octopus-specific technical issues, or you can email [advice@octopus.com](advice@octopus.com) for more complex CI/CD and integration questions.
 
-Every business is different and licensing needs may vary. Our sales team help businesses deploy the right Octopus Deploy services to meet their needs. If you need advice on licensing, pricing options, or upgrading your account, you can email our helpful sales team at [customersuccess@octopus.com(mailto:customersuccess@octopus.com)
+Every business is different and licensing needs may vary. Our sales team help businesses deploy the right Octopus Deploy services to meet their needs. If you need advice on licensing, pricing options, or upgrading your account, you can email our helpful sales team at [customersuccess@octopus.com](mailto:customersuccess@octopus.com)
 
 
 #### Demos & samples
