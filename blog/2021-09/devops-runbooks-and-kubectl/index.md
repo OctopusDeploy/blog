@@ -16,12 +16,12 @@ tags:
 
 It's safe to say the sentiment that [Devs shouldn’t have to learn Docker, K8s, or 30 other things to deploy an app](https://www.theregister.co.uk/2018/02/22/ibm_java_cto_john_duimovich_interview/) is something many of us agree with.
 
-Let’s be honest, Kubernetes isn’t easy. But there are ways to make supporting it less painful. The runbook feature in Octopus lets you script the same processes that have been powering Octopus deployments for years, to manage routine maintenance and emergency ops (incident response) tasks across your environments without creating deployments.
+Let’s be honest, Kubernetes isn’t easy. But there are ways to make supporting it less painful. The Runbook feature in Octopus lets you script the same processes that have been powering Octopus deployments for years, to manage routine maintenance and emergency ops (incident response) tasks across your environments without creating deployments.
 
 In this blog post, we look at a simple runbook and highlight the advantages of creating reusable runbooks over manual scripting and ad-hoc debugging.
 
 :::hint
-Octopus 2021 Q3 includes updated support for Kubernetes deployments, and runbooks for Google Cloud, AWS and Azure users. Watch [Twitter](https://twitter.com/OctopusDeploy) and check [our blog](https://octopus.com/blog) for updates on our upcoming 2021 Q3 release.
+Octopus 2021 Q3 includes updated support for Kubernetes deployments, and runbooks for Google Cloud, AWS, and Azure users. Watch [Twitter](https://twitter.com/OctopusDeploy) and check [our blog](https://octopus.com/blog) for updates on our upcoming 2021 Q3 release.
 :::
 
 ## A simple Kubernetes runbook example
