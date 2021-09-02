@@ -18,11 +18,11 @@ This blog post is part 4 of my Safe Schema Updates series. The other posts in th
 
 !include <safe-schema-updates-posts>
 
-In part 2 of this series I discussed the idea of resilience vs robustness. I talked about the value of designing systems where failure is acknowledged, contained and rapidly resolvable. 
+In part 2 of this series we discussed the idea of resilience vs robustness. We talked about the value of designing systems where failure is acknowledged, contained and rapidly resolvable. 
 
-In part 3 I explore the true meaning of "continuous integration", beyond automated builds. The central idea is to reduce the amount of work in progress and the need for complicated integrations or merges.
+In part 3 we explore the true meaning of "continuous integration", beyond automated builds. The central idea is to reduce the amount of work in progress and the need for complicated integrations or merges.
 
-In this post I imagine a software and database architecture that intrinsically supports both the development and maintenance of resilient systems. This architecture is also a great enabler of continuous integration, since it significantly reduces the amount of concurrent work on any one component. Hence, this architecture naturally results in safer systems that are easier to develop, test, deploy and maintain.
+In this post we imagine a software and database architecture that intrinsically supports both the development and maintenance of resilient systems. This architecture is also a great enabler of continuous integration, since it significantly reduces the amount of concurrent work on any one component. Hence, this architecture naturally results in safer systems that are easier to develop, test, deploy and maintain.
 
 This post will focus on technical details. However, arguably the human and cultural consequences of adopting this architecture are of equal or greater significance. I’m going to leave out the human aspects in this post, not because I don’t think they are important, but because I feel they are so fundamental that they deserve their own dedicated post. You can look forward to that in part 5.
 
@@ -104,6 +104,6 @@ In this post (post 4) we imagined a more loosely coupled architecture. This arch
 
 Additionally, the more granular nature of the system made it easier to manage different flows of work. The significant reduction in concurrent work streams for any given service reduces the project management/release management/branching overheads.
 
-Taken alone, these points will result in significantly safer database releases. However, the benefits are compounded by human factors. In the next post (post 5), I look at those human factors in more detail. 
+Taken alone, these points will result in significantly safer database releases. However, the benefits are compounded by human factors. In the next post (post 5), we look at those human factors in more detail. 
 
 !include <safe-schema-updates-posts>
