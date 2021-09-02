@@ -45,7 +45,7 @@ The role of a build server is to take raw code, build it, and package it into a 
 
 ### Octopus Deploy
 
-
+ 
 ### Built-in repository
 
 ![Built-in Repository](built-in-repository.png "width=500")
