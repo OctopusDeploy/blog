@@ -107,7 +107,7 @@ We hosted some demo and sample instances of Octopus Deploy:
 - [This is a demo version of Octopus Deploy](https://demo.octopus.com/).
 - [This is an instance with sample projects](https://samples.octopus.app/).
 
-Use these instances as sandbox environments to play with once you understand the basics. We encourage trial and experimentation. We'd love if you could let us know via [support](mailto:support@octopus.com) or [Slack](https://octopus.com/slack) if there's any samples you'd like to see.
+Use these instances as sandbox environments to play with once you understand the basics. We encourage trial and experimentation. We'd love if you could let us know via [support](mailto:customersuccess@octopus.com) or [Slack](https://octopus.com/slack) if there's any samples you'd like to see.
 
 ## What next?
 
