@@ -16,10 +16,10 @@ tags:
 
 Operations Runbooks in Octopus put the Ops in DevOps. This post is part of a series:
 
-- [Operations Runbooks overview](/blog/2020-01/operations-runbooks/index.md)
-- [DevOps, Runbooks and kubectl](/blog/2021-09/devops-runbooks-and-kubectl/index.md)
+- [Operations Runbooks overview](https://octopus.com/blog/operations-runbooks)
+- [DevOps, Runbooks and kubectl](https://octopus.com/blog/devops-runbooks-and-kubectl)
 - **Chaos engineering and runbooks**
-- [Linting your Kubernetes cluster with Clusterlint and runbooks](/blog/2021-09/clusterlint-with-runbooks/index.md)
+- [Linting your Kubernetes cluster with Clusterlint and runbooks](https://octopus.com/blog/clusterlint-with-runbooks)
 
 ---
 
