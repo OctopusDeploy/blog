@@ -1,6 +1,6 @@
 ---
 title: Octopus Deploy integration for Google Cloud Platform
-description: Octopus Deploy now includes native integration for Google Cloud Platform including built-in accounts, gcloud scripts, Terraform and Kubernetes.
+description: Octopus Deploy now includes integration for Google Cloud Platform including built-in accounts, gcloud scripts, Terraform and Kubernetes.
 author: andreia.virmond@octopus.com
 visibility: public
 published: 2022-07-21-1400
@@ -12,9 +12,9 @@ tags:
  - DevOps
 ---
 
-In line with our [public roadmap](https://octopus.com/company/roadmap), we've introduced native support for [Google Cloud Platform (GCP)](https://cloud.google.com/).
+In line with our [public roadmap](https://octopus.com/company/roadmap), we've introduced built-in support for [Google Cloud Platform (GCP)](https://cloud.google.com/).
 
-With this addition, Octopus now offers native support to the three major cloud providers:
+With this addition, Octopus now offers built-in support to the three major cloud providers:
  
 - [AWS](https://aws.amazon.com)
 - [Azure](https://azure.microsoft.com/)
@@ -22,7 +22,7 @@ With this addition, Octopus now offers native support to the three major cloud p
 
 This meets the evolving needs of our customers, particularly those who have GCP Kubernetes clusters and are running tentacles on GCP virtual machines.
 
-This native integration of Octopus with GCP allows you to:
+This built-in integration of Octopus with GCP allows you to:
 
 - Connect and authenticate with GCP via a dedicated account type. This allows you to centralize and secure your GCP authentication and use it in your deployments and runbooks.
 - Use [gcloud](https://cloud.google.com/sdk/gcloud), the GCP command-line tool, in custom scripts out-of-the-box.
