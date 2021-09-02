@@ -79,11 +79,11 @@ For newer users, this Octopus 101 webinar is a great place to start:
 
 Our blog contains helpful information for new and existing users. Some topics we cover are:
 
-- [General advice and insights about continuous integration](https://octopus.com/blog/difference-between-ci-and-cd)
-- [Specific solutions to common customer problems](https://octopus.com/blog/chocolatey-powershell-and-runbooks)
-- [An explanation of new features](https://octopus.com/blog/github-actions-for-octopus-deploy)
-- [Tool specific guides](https://octopus.com/blog/deploying-ruby)
-- [Kubernetes deployments](https://octopus.com/blog/10-pillars-kubernetes-deployments)
+- General advice and insights about continuous integration, for instance, [Continuous Integration vs Continuous Deployment](https://octopus.com/blog/difference-between-ci-and-cd)
+- Specific solutions to common customer problems, [Configure team members’ machines with Chocolatey, PowerShell, and Octopus Runbooks](https://octopus.com/blog/chocolatey-powershell-and-runbooks)
+- An explanation of the new features we are pushing out, [Announcing GitHub Actions for Octopus Deploy](https://octopus.com/blog/github-actions-for-octopus-deploy)
+- Tool specific guides, such as [Deploying a Ruby web application](https://octopus.com/blog/deploying-ruby)
+- An ebook about Kubernetes deployments, [10 pillars of pragmatic Kubernetes deployments](https://octopus.com/blog/10-pillars-kubernetes-deployments)
 
 You'll also find release notes, company announcements, and more. Customers tell us they enjoy engaging with the blog and find it helpful and informative, and we hope you do too. 
 
@@ -93,13 +93,11 @@ You'll also find release notes, company announcements, and more. Customers tell 
 
 Our Community Slack allows users to interact with other Octopus Deploy users, and with us. [Come join us!](https://octopus.com/slack)
 
-#### Support
+#### Contact
 
-We have a dedicated support team to answer any questions you have. They are able to answer questions about Octopus Deploy and the software that it integrates with. Their goal is to give accurate and timely answers to all support questions. If you need help you can contact support at [support@octopus.com](mailto:support@octopus.com) for Octopus-specific technical issues, or you can email [advice@octopus.com](advice@octopus.com) for more complex CI/CD and integration questions.
+We have a dedicated support team to answer any questions you have. They are able to answer questions about Octopus Deploy and the software that it integrates with. Their goal is to give accurate and timely answers to all support questions. If you need help you can contact support at [customersuccess@octopus.com](mailto:customersuccess@octopus.com) for Octopus-specific technical issues, or you can email [advice@octopus.com](advice@octopus.com) for more complex CI/CD and integration questions.
 
-#### Sales
-
-Every business is different and licensing needs may vary. Our sales team help businesses deploy the right Octopus Deploy services to meet their needs. If you need advice on licensing, pricing options, or upgrading your account, you can email our helpful sales team at [customersuccess@octopus.com](customersuccess@octopus.com).
+Every business is different and licensing needs may vary. Our sales team help businesses deploy the right Octopus Deploy services to meet their needs. If you need advice on licensing, pricing options, or upgrading your account, you can email our helpful sales team at [customersuccess@octopus.com(mailto:customersuccess@octopus.com)
 
 
 #### Demos & samples
