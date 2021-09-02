@@ -26,8 +26,6 @@ IT folk often shudder at those words. Years of experience have taught them to ex
 
 There are several reasons for this sense of impending doom. For fun, I’m going to borrow a little artistic license from Dante. *(For the record, I totally stole this idea from Gianluca Sartori ([b](https://spaghettidba.com/)|[t](https://twitter.com/spaghettidba)), check out [his devilishly stylish database “infernals” talk here](https://www.youtube.com/watch?v=p1qQlmoj0sE))*.
 
-**GRAPHIC DESIGNERS: I’D LOVE AN ITERATION ON SOME CLASSICAL GOTHIC ART FOR MY 9 LEVELS OF DATABASE DELIVERY HELL… (IF YOU DON’T KNOW WHAT I’M TALKING ABOUT, GOOGLE IMAGE SEARCH FOR DANTE’S INFERNO.) ;-P**
-
 **Level 0: Data Hell**
 
 The unique challenge with databases is the data. That business-critical information is not saved in source control, so it’s impossible to delete and redeploy the database in the same way we might remove a troublesome web server.
