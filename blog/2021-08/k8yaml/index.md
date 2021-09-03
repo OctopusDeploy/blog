@@ -50,7 +50,18 @@ There are several configurable options in a Kubernetes YAML file. Rather than ex
 
 To show the YAML file in action, I will use it to deploy a Web Application to an Azure Kubernetes Service with Octopus Deploy.  Feel free to follow along!
 
-Fill out the fields according to the image by populating the left-hand side. The text on the right is the YAML file we will use to deploy to Azure. Copy this file for use later.
+Fill out the fields according to the image by populating the left-hand side. 
+
+Deployment - Change the value of the app to randomquotes
+
+Containers - Delete the nginx default container and add a new container with 
+- Name: randomquotes
+- Package Image: terenceocto/randomquotes-js
+- Add Port: TCP:80
+
+Clik OK to confirm
+
+The text on the right is the YAML file we will use to deploy to Azure. Copy this file for use later.
 
 ![YAML generator](yaml-generator.png "YAML generator")
 
@@ -128,7 +139,7 @@ Next, we will set up Octopus Deploy to load the YAML file to set up a Kubernetes
 Create a project with a production environment in your Octopus Deploy instance. To do this, go to **{{Infrastructure, Environments, Add Environments}}** to add the production environment. Then, go to **{{Projects, Add Project}}** to add a project.
 
 
-Go to **{{Infrastructure, External Feeds}}** and set up a docker registry. Since we are using the public repository, you can leave credentials blank.
+Go to **{{Library, External Feeds}}** and set up a docker registry. Since we are using the public repository, you can leave credentials blank.
 
 ![Docker registry](docker-registry.png "Docker registry")
 
@@ -144,7 +155,7 @@ Make sure to add the 'kube' role under the on behalf of option to trigger the bu
 
 ![Edit YAML](edit-yaml.png "Edit YAML")
 
-Click create a release and click the deploy steps to deploy the release. Wait for the success message. Now that the deployment is successful, we will access the Web Application by exposing the cluster to the internet. Go to the Azure portal and bring up the Azure CLI.
+Click create a release and click the deploy steps to deploy the release. Wait for the success message. Now that the deployment is successful, we will access the Web Application by exposing the cluster to the internet. Go to the Azure portal and bring up the Powershell Azure CLI.
 
 ![Azure CLI](azure-cli.png "Azure CLI")
 
