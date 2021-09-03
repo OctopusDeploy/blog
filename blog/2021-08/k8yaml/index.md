@@ -4,9 +4,9 @@ description: Learn how to use the k8's YAML generator and deploy a Kubernetes Cl
 author: terence.wong@octopus.com
 visibility: public
 published: 2021-08-10-1400
-metaImage: blogimage-deploygooglecloudfunction.png
-bannerImage: blogimage-deploygooglecloudfunction.png
-bannerImageAlt: laptop with code on screen sits behind a rocket ship that is launching towards Google Cloud Functions logo above
+metaImage: live-update-deployment.png
+bannerImage: live-update-deployment.png
+bannerImageAlt: empty
 isFeatured: false
 tags:
  - DevOps
