@@ -54,7 +54,7 @@ Fill out the fields according to the image by populating the left-hand side.
 
 Deployment - Change the value of the app to randomquotes
 
-Containers - Delete the nginx default container and add a new container with 
+Containers - Delete the nginx default container and add a new container with: 
 - Name: randomquotes
 - Package Image: terenceocto/randomquotes-js
 - Add Port: TCP:80
