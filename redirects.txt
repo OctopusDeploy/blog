@@ -12,3 +12,4 @@ blog/2018-11/why-k8s-and-octo/index.md -> blog/2021-09/why-kubernetes-and-octopu
 blog/2021-08/support-for-octopus-customers/index.md -> blog/2021-08/supporting-octopus-customers/index.md
 blog/2021-08/single-api-framework/index.md -> blog/2021-08/migrating-nancy-api-endpoints-to-asp-net/index.md
 blog/2021-08/single-api-frameworkg/index.md -> blog/2021-08/migrating-nancy-api-endpoints-to-asp-net/index.md
+blog/2021-08/migrating-nancy-api-endpoints-to-asp-netg/index.md -> blog/2021-08/migrating-nancy-api-endpoints-to-asp-net/index.md
