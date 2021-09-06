@@ -4,9 +4,9 @@ description: On loose coupling and domain-driven development, and the benefits o
 author: alex.yates@dlmconsultants.com
 visibility: public
 published: 2021-09-27-1400
-metaImage: to-be-added-by-marketing
-bannerImage: to-be-added-by-marketing
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-loosecouplingmitigatestechproblems-2021.png
+bannerImage: blogimage-loosecouplingmitigatestechproblems-2021.png
+bannerImageAlt: Nine level database server with fire on the ground and on the top four levels with billowing smoke.
 isFeatured: false
 tags:
  - DevOps
