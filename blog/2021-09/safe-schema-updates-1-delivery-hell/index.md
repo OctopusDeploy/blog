@@ -4,8 +4,8 @@ description: This post opens a series about safe schema updates with a brief tou
 author: alex.yates@dlmconsultants.com
 visibility: public
 published: 2021-09-07-1400
-metaImage: blogimage-database-delivery-hell_2021.png
-bannerImage: blogimage-database-delivery-hell_2021.png
+metaImage: blogimage-databasedeliveryhell-2021.png
+bannerImage: blogimage-databasedeliveryhell-2021.png
 bannerImageAlt: nine level database server with fire on the top level
 isFeatured: false
 tags:
