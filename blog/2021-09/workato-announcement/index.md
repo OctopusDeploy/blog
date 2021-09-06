@@ -43,16 +43,7 @@ You can find Octopus in the [Workato Integrations](https://www.workato.com/integ
 
 Below we show a simple example of an integration between Slack and Octopus Deploy using the Octopus Deploy Workato connector:
 
-
-EXAMPLE ONLY TEXT BELOW
-
-![Project dashboard](individual.png "width=500")
-
-To promote a set of microservices with known versions and in a predictable order, a project can use the [Deploy a release step](https://octopus.com/blog/deploy-release-step/deploy-release-step). By treating the deployments of other projects as deployable resources, the **Deploy a release** step allows teams to capture the state of an environment at a given point in time, and deploy that state to the next environment.
-
-In the screenshot below you can see an example of an Octopus project that includes a sequence of **Deploy a release** steps. The order of these steps ensures that the microservices are deployed in a fixed order, and the set of **Deploy a release** steps represents a complete microservice ecosystem that is deployed as a single unit to new environments. 
-
-You can see this project configured on our [demo server](https://demo.octopus.com/app#/projects/coordinate-deployment/process).
+xxxxxx
 
 
 
