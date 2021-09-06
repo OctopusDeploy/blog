@@ -2,11 +2,11 @@
 title: Safe Schema Updates - Continuous Integration is misunderstood
 description: Learn about the principles that define Continuous Integration, and why you should avoid adopting specific practices, without knowing how to use them effectively.
 author: alex.yates@dlmconsultants.com
-visibility: private
-published: 2022-08-04-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt:
+visibility: public
+published: 2021-09-20-1400
+metaImage: blogimage-continuousintegrationismisunderstood_2021.png
+bannerImage: blogimage-continuousintegrationismisunderstood_2021.png
+bannerImageAlt: nine level database server with fire on the top three levels
 isFeatured: false
 tags:
  - DevOps
