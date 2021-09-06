@@ -3,7 +3,7 @@ title: Safe Schema Updates - Resilient vs Robust IT Systems
 description: Learn about the nature of failure in complex IT systems, and the benefits and drawbacks of designing for resilience vs robustness.
 author: alex.yates@dlmconsultants.com
 visibility: private
-published: 2022-07-28-1400
+published: 2021-07-28-1400
 metaImage: blogimage-resilient-vs-robust-it-systems-2021.png
 bannerImage: blogimage-resilient-vs-robust-it-systems-2021.png
 bannerImageAlt: nine level database server with fire on the top two levels
