@@ -68,7 +68,7 @@ The text on the right is the YAML file we will use to deploy to Azure. Copy this
 
 ## Configuring an Azure Account
 
-You need to configure an Azure account and web application to act as a target for the deployment from Octopus. Other targets are possible, such as AWS or local.
+You need to configure an Azure account and web application to act as a target for the deployment from Octopus. Other targets are possible, such as AWS, or Windows or Linux servers.
 
 Next, you need to create an account in Azure, by navigating to the [Azure portal](https://portal.azure.com/). 
 
