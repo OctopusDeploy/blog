@@ -1,9 +1,9 @@
 **Critiquing existing systems:**
-- Part 1: Database Delivery Hell
+- Part 1: Database delivery hell
 
 **Imagining better systems:**
-- Part 2: Resilient vs Robust IT Systems
-- Part 3: Continuous Integration is Misunderstood 
-- Part 4: Loose Coupling Mitigates Tech Problems 
-- Part 5: Loose Coupling Mitigates Human Problems 
+- Part 2: Resilient vs robust IT systems
+- Part 3: Continuous Integration is misunderstood 
+- Part 4: Loose coupling mitigates tech problems 
+- Part 5: Loose coupling mitigates human problems 
 
