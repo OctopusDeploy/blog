@@ -15,7 +15,7 @@ tags:
 
 ## Welcome
 
-Well done! You've deployed your first application with Octopus Deploy! 
+Well done! You deployed your first application with Octopus Deploy! 
 
 This overview provides some additional context and information about Octopus Deploy. It also points you in the right direction to learn more.
 
