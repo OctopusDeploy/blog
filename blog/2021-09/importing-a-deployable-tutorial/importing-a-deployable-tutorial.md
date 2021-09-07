@@ -115,7 +115,7 @@ The next step is setting up an [Azure web application](#web-application-setup) a
 
 1. In your **Resource group** click **{{Create > Web App}}**
 2. Create a Windows Node Application under runtime stack and operating system
-3. Take note of your Azure app name - this will be the address of your web application: [your-site].azurewebsites.net
+3. Take note of your Azure app name, as this will be the address of your web application: [your-site].azurewebsites.net
 4. After the web app is set up, route the path of the web application to default to the home path by navigating to **{{Configuration > Path Mappings > Virtual applications and directories}}**
 5. Set the Physical path to ```site\wwwroot\guide``` and the Virtual Path to ```/``` 
 
