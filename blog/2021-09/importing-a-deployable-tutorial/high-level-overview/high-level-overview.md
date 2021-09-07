@@ -91,7 +91,7 @@ Our Community Slack allows users to interact with other Octopus Deploy users, an
 
 We have a dedicated support team to answer your questions and help you succeed. 
 
-If you need advice on licensing or upgrading your account, or have technical issues or complex CI/CD and integration questions, you can email our team at [customersuccess@octopus.com](mailto:customersuccess@octopus.com).
+If you need advice on anything from licensing or upgrading your account, to technical issues or complex CI/CD and integration questions, you can email our team at [customersuccess@octopus.com](mailto:customersuccess@octopus.com).
 
 
 #### Demos & samples
