@@ -1,5 +1,5 @@
 ---
-title: Safe Schema Updates - Resilient vs Robust IT Systems
+title: Safe schema updates - Resilient vs robust IT systems
 description: Learn about the nature of failure in complex IT systems, and the benefits and drawbacks of designing for resilience vs robustness.
 author: alex.yates@dlmconsultants.com
 visibility: public
