@@ -146,4 +146,6 @@ The outcome of these changes should be significantly reduced risk associated wit
 
 In the next post (part 3) we’ll talk about Continuous Integration (CI). Specifically, we’ll discuss how it’s been misunderstood and the harm that misunderstanding can cause, as well as the benefits of embracing “proper” CI for any IT system – including any relational database. 
 
+We'll add links to the other posts in this series as they become available.
+
 !include <safe-schema-updates-posts>
