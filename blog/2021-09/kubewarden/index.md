@@ -101,6 +101,6 @@ Error from server: error when creating "customresource.yml": admission webhook "
 
 Kubewarden is an example of an admission controller that accepts, rejects, or modifies resources as they are created based on the values assigned to individual resource properties. This allows operations teams to ensure only those resources that meet their specific requirements can be deployed, and provides a much greater level of control than standard Kubernetes RBAC.
 
-In this post you deployed Kubewarden using a Helm chart, deployed a policy with the **Deploy raw Kubernetes YAML** step, and saw how a pod deployment that failing the policy's rules was rejected, thus ensuring pods with a known invalid configuration could not be applied to the cluster.
+In this post you deployed Kubewarden using a Helm chart, deployed a policy with the **Deploy raw Kubernetes YAML** step, and saw how a pod deployment that failed the policy's rules was rejected, thus ensuring pods with a known invalid configuration could not be applied to the cluster.
 
 Happy deployments!
