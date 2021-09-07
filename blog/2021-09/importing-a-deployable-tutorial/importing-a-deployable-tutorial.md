@@ -131,7 +131,7 @@ With the following values, you can add your account to Octopus:
 2. Select **{{ADD ACCOUNT > Azure Subscriptions}}**
 3. Give the account the name you want it to be known by in Octopus
 4. Give the account a description
-5. Add your Azure Subscription ID. This is found in the Azure portal under **Subscriptions**
+5. Add your Azure Subscription ID - this is found in the Azure portal under **Subscriptions**
 6. Add the **Application ID**, the **Tenant ID**, and the **Application Password/Keyword**
 
 Click **SAVE AND TEST** to confirm the account can interact with Azure. Octopus will attempt to use the account credentials to access the Azure Resource Management (ARM) API and list the Resource Groups in that subscription. 
