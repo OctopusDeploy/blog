@@ -12,7 +12,9 @@ tags:
  - DevOps
 ---
 
-Octopus Deploy has released a tool that will help developers build YAML files for deployment to Kubernetes clusters. Find it at https://k8syaml.com/.
+Kubernetes is a powerful container orchestration tool. 
+
+Kubernetes reads YAML files that define the resources you are deploying to. Of course, not everybody loves writing YAML. To help make this easier, we've released a tool that helps developers build YAML files for Kubernetes cluster deployments. You can find the tool at https://k8syaml.com/.
 
 ## Overview
 
