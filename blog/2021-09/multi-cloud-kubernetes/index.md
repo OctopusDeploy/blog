@@ -26,7 +26,7 @@ You will need to configure an External Feed to a Docker Registry such as Docker 
 :::
 
 ### Azure
-To work with AKS, you'll first need to create and Azure Service Principal.  This post assumes you are framiliar with how to create an Azure Service Principal, so this topic will not be covered.  Once the Service Principal has been created, it needs to be added as an Azure Account within Octopus Deploy.  You will need the following pieces of information to add it to Octopus:
+To work with AKS, you'll first need to [create an Azure Service Principal](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal).  This post assumes you are framiliar with how to create an Azure Service Principal, so this topic will not be covered.  Once the Service Principal has been created, it needs to be added as an Azure Account within Octopus Deploy.  You will need the following pieces of information to add it to Octopus:
 - Subscription ID
 - Directory (tenant) ID
 - Application (client) ID
@@ -94,7 +94,7 @@ New-OctopusKubernetesTarget -Name "<Display name of target>" -clusterName $clust
 ```
 
 ### AWS
-Similar to Azure, the first thing you'll need to do is create an AWS account in Octopus Deploy to interact with your AWS resources. This post assumes you are framiliar with how to create AWS IAM users.  To create the AWS account within Octopus, you will need the following:
+Similar to Azure, the first thing you'll need to do is create an AWS account in Octopus Deploy to interact with your AWS resources. This post assumes you are framiliar with how to [create AWS IAM users](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html).  To create the AWS account within Octopus, you will need the following:
 - Access Key
 - Secret Key
 
@@ -162,7 +162,7 @@ New-OctopusKubernetesTarget -Name "<Display name of target" -clusterName $cluste
 ```
 
 ### GCP
-Just like the other two methods, we'll first need to create a Google Cloud Account in Octopus Deploy.  This post assumes that you are framiliar with how to create a Service Account in GCP and will not be covering that part.  To create a Google Cloud Account, you will need the JSON key file generated when adding a `Key` to a Service Account.
+Just like the other two methods, we'll first need to create a Google Cloud Account in Octopus Deploy.  This post assumes that you are framiliar with how to [create a Service Account](https://cloud.google.com/iam/docs/creating-managing-service-accounts) in GCP and will not be covering that part.  To create a Google Cloud Account, you will need the JSON key file generated when adding a `Key` to a Service Account.
 
 :::warning
 GCP integration was released in Octopus Depoloy 2021.2.  At the time of this writing, 2021.2 has not been released for the self-hosted version of Octopus Deploy.
