@@ -1,7 +1,7 @@
 ## Safe Schema Updates series
 
 **Critiquing existing systems:**
-- [Part 1: Database Delivery Hell](blog/2021-09/safe-schema-updates-1-delivery-hell/index.md)
+- Part 1: Database Delivery Hell
 
 **Imagining better systems:**
 - Part 2: Resilient vs Robust IT Systems
