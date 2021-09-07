@@ -24,7 +24,7 @@ In order to understand why it’s necessary to make a change, it’s useful to r
 
 IT folk often shudder at those words. Years of experience have taught them to expect an uphill battle to get *that* feature shipped to production.
 
-There are several reasons for this sense of impending doom. For fun, I’m going to borrow a little artistic license from Dante. *(For the record, I totally stole this idea from Gianluca Sartori ([b](https://spaghettidba.com/)|[t](https://twitter.com/spaghettidba)), check out [his devilishly stylish database “infernals” talk here](https://www.youtube.com/watch?v=p1qQlmoj0sE))*.
+There are several reasons for this sense of impending doom. For fun, I’m going to borrow a little artistic license from Dante. *(For the record, I totally stole this idea from [Gianluca Sartori](https://spaghettidba.com/) - he's on [Twitter](https://twitter.com/spaghettidba), and you can check out [his devilishly stylish database “infernals” talk](https://www.youtube.com/watch?v=p1qQlmoj0sE))*.
 
 **Level 0: Data Hell**
 
@@ -130,6 +130,8 @@ Wherever you are on your journey, it’s critical to recognize your trajectory a
 
 ## Next time…
 
-The next post (part 2) will be the first of four posts intended to help folks to re-evaluate the way they view and assess safety within complex IT systems. We’ll start to imagine what a safer software architecture, delivery process, and development culture might look like. We'll begin by exploring the nature of failure within complex systems, before moving on to discuss the concepts of resilience, robustness and loose-coupling.
+The next post (part 2) will be the first of four posts intended to help folks to re-evaluate the way they view and assess safety within complex IT systems. We’ll start to imagine what a safer software architecture, delivery process, and development culture might look like. We'll begin by exploring the nature of failure within complex systems, before moving on to discuss the concepts of resilience, robustness and loose-coupling. 
+
+We'll add links to the other posts in this series as they become available.
 
 !include <safe-schema-updates-posts>
