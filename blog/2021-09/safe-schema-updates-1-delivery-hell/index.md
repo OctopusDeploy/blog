@@ -1,5 +1,5 @@
 ---
-title: Safe Schema Updates - Database Delivery Hell
+title: Safe schema updates - Database delivery hell
 description: This post opens a series about safe schema updates with a brief tour through Dante's 9 levels of Database Delivery Hell.
 author: alex.yates@dlmconsultants.com
 visibility: public
@@ -14,7 +14,7 @@ tags:
  - Deployment Patterns
 ---
 
-This blog post is part 1 of a new series about Safe Schema Updates. We'll add links to the other posts in this series as they become available.
+This blog post is part 1 of a new series about safe schema updates. We'll add links to the other posts in this series as they become available.
 
 !include <safe-schema-updates-posts>
 
@@ -24,11 +24,11 @@ In order to understand why it’s necessary to make a change, it’s useful to r
 
 IT folk often shudder at those words. Years of experience have taught them to expect an uphill battle to get *that* feature shipped to production.
 
-There are several reasons for this sense of impending doom. For fun, I’m going to borrow a little artistic license from Dante. *(For the record, I totally stole this idea from [Gianluca Sartori](https://spaghettidba.com/) - he's on [Twitter](https://twitter.com/spaghettidba), and you can check out [his devilishly stylish database “infernals” talk](https://www.youtube.com/watch?v=p1qQlmoj0sE))*.
+There are several reasons for this sense of impending doom. For fun, I’m going to borrow a little artistic license from Dante. (For the record, I totally stole this idea from [Gianluca Sartori](https://spaghettidba.com/) - he's on [Twitter](https://twitter.com/spaghettidba), and you can check out [his devilishly stylish database “infernals” talk](https://www.youtube.com/watch?v=p1qQlmoj0sE)).
 
-**Level 0: Data Hell**
+**Level 0: Data hell**
 
-The unique challenge with databases is the data. That business-critical information is not saved in source control, so it’s impossible to delete and redeploy the database in the same way we might remove a troublesome web server.
+The unique challenge with databases is the data. Business-critical information is not saved in source control, so it’s impossible to delete and redeploy the database in the same way we might remove a troublesome web server.
 
 Hence, database rollbacks aren’t easy. Arguably, there’s no such thing as a database rollback. If a production deployment goes bad, it might be necessary to restore a backup. That’s going to result in downtime and (possibly) data loss. That could be a disaster for your users and expensive for the business.
 
@@ -36,11 +36,11 @@ But this isn’t just a story about production. The dev/test databases rarely ha
 
 When we fail to make representative and safe test data available in dev/test environments and when we fail to test for data issues in deployments, we disrespect our data. This sin has consequences.
 
-**Level 1: Dependency Hell**
+**Level 1: Dependency hell**
 
 Far too often “the database” becomes a shared back-end service for a myriad of dependent systems. Battle-worn engineers have learned the hard way that changing the schema can have unintended consequences on those dependent systems. It’s impossible for an engineer to be confident about a change when they don’t even know what their dependent systems are. Unfortunately, these dependencies are rarely well documented or tested.
 
-This is especially bad when dependencies start to crop up between databases, for example, through Stored Procedures, Views or *(shudder)* Linked Servers. The worst offenders might even see dependencies between their dev, test and production environments. 
+This is especially bad when dependencies start to crop up between databases, for example, through Stored Procedures, Views or (shudder) Linked Servers. The worst offenders might even see dependencies between their dev, test and production environments. 
 
 Production deployment issues are exacerbated by the fact that, thanks to all the dependencies, dev/test environments are very hard to provision and maintain. 
 
@@ -48,7 +48,7 @@ In an ideal world, dev/test environments would mostly be disposable, dedicated e
 
 These shared dev/test “wild-west” dumpster fires quickly become inconsistent with the production systems. Hence, they cannot be trusted as realistic representations of production, and any dev/test work conducted on them is fundamentally unreliable. 
 
-**Level 2: Global Failure Hell**
+**Level 2: Global failure hell**
 
 The schema deployment itself is especially risky because, thanks to the dependencies, the database has become a single-point-of-failure for so many services. A single forgotten WHERE clause or performance-draining CURSOR could have global consequences.
 
@@ -62,7 +62,7 @@ I’ll back up that fictional disaster with a very real one. I once worked for a
 
 All those developers were twiddling their thumbs for a week. I’m nervous to imagine what the typical annual budget of a 100+ dev team in the finance sector looks like, but I imagine a week of thumb twiddling didn’t go down well with the shareholders. 
 
-**Level 3: Release Coordination Hell**
+**Level 3: Release coordination hell**
 
 It would be bad enough if you were just deploying the database change. However, due to the dependencies, you may also need to deploy new versions of a collection of dependent systems at the same time, or in a specific order. The entire process needs to be orchestrated carefully and an issue with just one part could jeopardize the whole exercise. 
 
@@ -70,9 +70,9 @@ This issue is exacerbated by poor source control practices and the use of shared
 
 When releases of dependent objects/systems need to be carefully orchestrated, it’s a sign that you are suffering from the combination of a dependency nightmare in your code, as well as your team/project management structures. [Team Topologies](https://octopus.com/blog/devops-reading-list#tt) talks about these issues in more detail.
 
-**Level 4: Downtime Window Hell**
+**Level 4: Downtime window hell**
 
-Due to all the dependencies and the coordination effort above, you need to take the entire system offline for a period to complete the update. Negotiating downtime with users/customers/*[“The Business”](https://twitter.com/paulstovell/status/1323552178091433984)* is not easy, so you are forced to do it during unsociable hours. You might not be fully awake, and support is less likely to be available. *(The developers who wrote the code might be asleep!)* If you miss your deadline, there will be consequences.
+Due to all the dependencies and the coordination effort above, you need to take the entire system offline for a period to complete the update. Negotiating downtime with users/customers/[“The Business”](https://twitter.com/paulstovell/status/1323552178091433984) is not easy, so you are forced to do it during unsociable hours. You might not be fully awake, and support is less likely to be available. (The developers who wrote the code might be asleep!) If you miss your deadline, there will be consequences.
 
 To make matters worse, since you are only offered a limited number of downtime windows, you are under additional pressure to deliver as many changes as possible during each window. Deployments get larger, more complicated, and more risky.
 
@@ -80,7 +80,7 @@ To make matters worse, since you are only offered a limited number of downtime w
 A variation of this hell is caused by naïve business assumptions about 100% uptime. 100% uptime is both practically impossible and unimaginably expensive. [Oftentimes senior management do not realize this](https://www.brentozar.com/archive/2011/12/letters-that-get-dbas-fired/). Through poor communication, tech folks are often left in a hopeless position, being measured against absurd expectations. This causes its own frustrating politicking and bad decisions.
 :::
 
-**Level 5: Bureaucracy Hell**
+**Level 5: Bureaucracy hell**
 
 Given the number of people who are potentially affected by any change to a monolithic back-end database, coupled with the severe consequences of failure, a lot of stakeholders want a veto on the deployment. Engineers are forced to spend as much time demonstrating that they have done the testing as they spend actually doing the testing. 
 
@@ -88,19 +88,19 @@ While this abundant caution might sound wise, it is usually ineffective when imp
 
 According to [Accelerate](https://octopus.com/blog/devops-reading-list#accelerate), data from the State of DevOps reports demonstrates that Change Advisory Boards are on average “worse than having no change approval process at all”. Despite good intentions, these safety measures result in demonic deployments that are more complicated and riskier.
 
-**Level 6: Disobedience of Bureaucracy Hell**
+**Level 6: Disobedience of bureaucracy hell**
 
 Under pressure to release on time, and through personal desire to complete a job, engineers attempt to circumvent official processes. Middle managers play politics to protect their teams’ changes. People massage the truth to avoid bureaucracy. Shadow IT emerges because using the officially sanctioned systems is frustratingly tedious, hampering a team’s ability to hit their deadlines.
 
 Senior managers may even support and congratulate such “innovation”, without acknowledging that they are contributing to a [big ball of mud](https://en.wikipedia.org/wiki/Big_ball_of_mud). Such short-term progress normally comes at the expense of long-term performance. 
 
-**Level 7: Negligence Hell**
+**Level 7: Negligence hell**
 
 As the business becomes more desperate to hit ever more impossible deadlines on increasingly stretched budgets, it becomes harder to invest in anything that isn’t directly related to narrow and specific objectives. At first this might not be so bad. It focuses energy on the most important work. However, inevitably this leads to under-investment in critical infrastructure. 
 
 To use the “four types of work” terminology from [The Phoenix Project](https://octopus.com/blog/devops-reading-list#phoenix): This is the point that IT folks are under so much pressure to complete “Business Projects” and “Unplanned Work” that they have no time left to focus on “Internal Projects” or even routine “Changes” (like patching servers).
 
-As [my fellow brits might put it](https://twitter.com/DavidJPoole/status/1361340954700107786), senior managers become *“penny-wise, pound-foolish”*. Improvement work and even routine maintenance is delayed or scrapped. Firefighting becomes commonplace. The team has stopped actively working on improving. They don’t have time.
+As [my fellow brits might put it](https://twitter.com/DavidJPoole/status/1361340954700107786), senior managers become “penny-wise, pound-foolish”. Improvement work and even routine maintenance is delayed or scrapped. Firefighting becomes commonplace. The team has stopped actively working on improving. They don’t have time.
 
 One common engineering consequence is the short-sighted cheat to avoid refactoring or deleting anything in the database. Database deployments are certainly easier if you never clean up after yourself.
 
@@ -110,11 +110,11 @@ I once worked for a company where all the tables had unintelligible four-charact
 
 This database is crucial for many important services, but using and maintaining it is almost impossible, especially for new recruits. No-one knows what the “QACD” or the “FFFG” tables are for. And those 5-table joins are impossible to decipher.
 
-Without refactoring our databases as our software and business needs evolve, we are sure to produce monolithic, big-ball-of-mud databases which are difficult to work with and full of *(supposedly)* deprecated code and unnecessary dependencies.
+Without refactoring our databases as our software and business needs evolve, we are sure to produce monolithic, big-ball-of-mud databases which are difficult to work with and full of (supposedly) deprecated code and unnecessary dependencies.
 
 This is a one-way ticket to…
 
-**Level 8: The Technical Debt Singularity**
+**Level 8: The technical debt singularity**
 
 “Unplanned Work” has devoured everything.
 
