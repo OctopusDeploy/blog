@@ -15,7 +15,7 @@ tags:
  - Testing
 ---
 
-This post is part 2 of my Safe Schema Updates series. The other posts in this series are available at the following links:
+This post is part 2 of my Safe Schema Updates series. We'll add links to the other posts in this series as they become available.
 
 !include <safe-schema-updates-posts>
 
