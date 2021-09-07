@@ -24,15 +24,13 @@ A YAML file is a human-readable configuration file that will tell Kubernetes how
 
 When changing fields on the left-hand side of the tool, the YAML file on the right-hand side will also update to match. Changing the resource type from Deployment to StatefulSet on the left-hand side will change the YAML file to match the new option. Live updates can add new options to the YAML file that were not there before.
 
-![Live Update Deployment](live-update-deployment.png "Live Update Deployment")
+![Live Update Deployment](live-update-deployment.png "Live Update Deployment")*Deployment resource type*
 
-![Live Update Stateful](live-update-stateful.png "Live Update Stateful")
+![Live Update Stateful](live-update-stateful.png "Live Update Stateful")*Stateful set resource type*
 
 ## Two-way sync
 
-The k8yaml tool allows you to edit the YAML via the EDIT YAML button.
-
-![Two Way Sync Edit Button](two-way-sync-edit-button.png "Two Way Sync Edit Button")
+You can edit the YAML in the k8yaml tool by selecting the  **EDIT YAML** button.
 
 In the edit pane, you can edit any field. Here I will edit the name of the deployment to test-deployment and click done.
 
@@ -56,12 +54,12 @@ Fill out the fields according to the image by populating the left-hand side.
 
 Deployment - Change the value of the app to randomquotes
 
-Containers - Delete the nginx default container and add a new container with: 
-- Name: randomquotes
-- Package Image: terenceocto/randomquotes-js
-- Add Port: TCP:80
+**Containers** - Delete the nginx default container and add a new container with: 
+- **Name**: `randomquotes`
+- **Package Image**: `terenceocto/randomquotes-js`
+- **Add Port**: `TCP:80`
 
-Clik OK to confirm
+Click **OK** to confirm.
 
 The text on the right is the YAML file we will use to deploy to Azure. Copy this file for use later.
 
