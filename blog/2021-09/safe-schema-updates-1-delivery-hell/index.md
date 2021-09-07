@@ -24,7 +24,7 @@ In order to understand why it’s necessary to make a change, it’s useful to r
 
 IT folk often shudder at those words. Years of experience have taught them to expect an uphill battle to get *that* feature shipped to production.
 
-There are several reasons for this sense of impending doom. For fun, I’m going to borrow a little artistic license from Dante. (For the record, I totally stole this idea from [Gianluca Sartori](https://spaghettidba.com/) - he's on [Twitter](https://twitter.com/spaghettidba), and you can check out [his devilishly stylish database “infernals” talk](https://www.youtube.com/watch?v=p1qQlmoj0sE)).
+There are several reasons for this sense of impending doom. For fun, I’m going to borrow a little artistic license from Dante. (For the record, I totally stole this idea from [Gianluca Sartori](https://spaghettidba.com/) - he's on [Twitter](https://twitter.com/spaghettidba), and you can check out [his devilishly stylish database “infernals” talk](https://www.youtube.com/watch?v=p1qQlmoj0sE).)
 
 **Level 0: Data hell**
 
@@ -50,15 +50,15 @@ These shared dev/test “wild-west” dumpster fires quickly become inconsistent
 
 **Level 2: Global failure hell**
 
-The schema deployment itself is especially risky because, thanks to the dependencies, the database has become a single-point-of-failure for so many services. A single forgotten WHERE clause or performance-draining CURSOR could have global consequences.
+The schema deployment itself is especially risky because, thanks to the dependencies, the database has become a single point of failure for so many services. A single forgotten WHERE clause or performance-draining CURSOR could have global consequences.
 
 As mentioned above, due to the complexity of dependencies, there’s rarely a fit-for-purpose testing environment. What’s more, having a reliable automated test suite for each dependent service is unlikely and (probably) unfeasible. This makes it impossible to have confidence that nothing is going to break when the deployment is executed.
 
-These problems are real and significant. These first three levels are tied together nicely in one of the massive deployment failures in [The Phoenix Project](https://octopus.com/blog/devops-reading-list#phoenix). There was a missing Index on a giant Table in a single-point-of-failure database, at the centre of a tangled web of dependencies. This was probably missed either because the dev/test databases didn’t match production, or because they did not have representative data, so the performance issues weren’t spotted.
+These problems are real and significant. These first three levels are tied together nicely in one of the massive deployment failures in [The Phoenix Project](https://octopus.com/blog/devops-reading-list#phoenix). There was a missing index on a giant table in a single-point-of-failure database, at the centre of a tangled web of dependencies. This was probably missed either because the dev/test databases didn’t match production, or because they did not have representative data, so the performance issues weren’t spotted.
 
 The update was running agonizingly slow, and it couldn’t be cancelled. They missed their downtime window and, due to the enormous number of dependent services, they caused enormous disruption to thousands of internal users and customers when the systems did not come back online on Monday morning.
 
-I’ll back up that fictional disaster with a very real one. I once worked for a company that had one of these wild-west, single point of failure, shared databases underpinning their dev environment. It was critical for the 100+ developers to test the stuff they were working on with realistic data. One time, someone accidentally dropped all the SQL Logins. The entire dev function, as well as the dependent services, were locked out. It took the DBAs over a week to fix it, because there was a show-stopping issue in production at the same time.
+I’ll back up that fictional disaster with a very real one. I once worked for a company that had one of these wild-west, single-point-of-failure, shared databases underpinning their dev environment. It was critical for the 100+ developers to test the stuff they were working on with realistic data. One time, someone accidentally dropped all the SQL logins. The entire dev function, as well as the dependent services, were locked out. It took the DBAs over a week to fix it, because there was a show-stopping issue in production at the same time.
 
 All those developers were twiddling their thumbs for a week. I’m nervous to imagine what the typical annual budget of a 100+ dev team in the finance sector looks like, but I imagine a week of thumb twiddling didn’t go down well with the shareholders. 
 
