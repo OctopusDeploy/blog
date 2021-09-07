@@ -52,7 +52,7 @@ To show the YAML file in action, I will use it to deploy a Web Application to an
 
 Fill out the fields according to the image by populating the left-hand side. 
 
-Deployment - Change the value of the app to randomquotes
+**Deployment** - Change the value of the app to `randomquotes`.
 
 **Containers** - Delete the nginx default container and add a new container with: 
 - **Name**: `randomquotes`
