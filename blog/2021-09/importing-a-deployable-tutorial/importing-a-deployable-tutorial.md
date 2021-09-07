@@ -57,7 +57,7 @@ The **Export/Import features** are accessed from the overflow menu on the **Proj
 
 You need to import the following project into your Octopus instance:
 
-> [guide.1.0.0.zip](https://octopus.com/images/docs/hello-world.1.0.0.zip)
+> [project-export-latest.zip](https://octopus.com/images/blog/deployable-blog-post/project-export-latest.zip)
 
 In the Octopus Web Portal, navigate to **{{Projects > Import Project > Select zip file}}** and upload the project zip. Click **IMPORT** to complete.
 
@@ -152,7 +152,7 @@ A package is code that will deploy to a target. In this case, it will be a deplo
 
 The package system makes it convenient to interchange or update packages for redeployment at a later stage. The following is the package that you'll be using to deploy with Octopus Deploy:
 
-> [guide.1.0.0.zip](https://octopus.com/images/docs/hello-world.1.0.0.zip)
+> [guide.1.0.0.zip](https://octopus.com/images/blog/deployable-blog-post/guide.1.0.0.zip)
 
 You can manually upload the package to the Octopus built-in repository in the Octopus Web Portal.
 
