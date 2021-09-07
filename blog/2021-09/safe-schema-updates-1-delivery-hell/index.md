@@ -14,7 +14,7 @@ tags:
  - Deployment Patterns
 ---
 
-This blog post is part 1 of my Safe Schema Updates series. The other posts in this series are available at the following links:
+This blog post is part 1 of a new series about Safe Schema Updates. We'll add links to the other posts in this series as they become available.
 
 !include <safe-schema-updates-posts>
 
