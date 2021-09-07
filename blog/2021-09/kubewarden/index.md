@@ -12,13 +12,13 @@ tags:
 
 Kubernetes is fast becoming the operating system of the cloud. Every major cloud provider has a supported Kubernetes platform, Kubernetes can be run on-premises, and Kubernetes even has a package manager with Helm. And thanks to the [operator pattern](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/), Kubernetes can natively describe and manage almost [any kind of workload](https://operatorhub.io/).
 
-This flexibility is a blessing and a curse. Kubernetes has the ability to run almost anything, and yet it would be all but impossible to maintain any real world production cluster hosting anything that was thrown at it.
+This flexibility is a blessing and a curse. Kubernetes has the ability to run almost anything, and yet it would be all but impossible to maintain any real world production cluster hosting anything random thing that was thrown at it.
 
 Kubernetes Role Based Access Controls (RBAC) provide some level of control over the resources hosted by a cluster. However, RBAC can only allow top level resources, like deployments or pods, to be created. A pod can host almost anything, so it is often not enough to allow or disallow the deployment of a pod. Instead, teams need to inspect the properties of a given pod before allowing or denying them.
 
 [Admission controllers](https://kubernetes.io/blog/2019/03/21/a-guide-to-kubernetes-admission-controllers/) provide the ability to inspect, modify, accept, or reject new resources by passing it to a custom service. This allows a fine grained level of control over resources created in a cluster, and ensures only those resources that meet your particular requirements are deployed.
 
-This post looks at the [Kubewarden](https://www.kubewarden.io/) admission controller, which is an early project with admission policies written in a number of languages compiled down to WebAssembly. You'll create a number of runbooks and deployments in Octopus to manage Kubewarden and deploy pods to Kubernetes testing out custom admission policies.
+This post looks at the [Kubewarden](https://www.kubewarden.io/) admission controller, which is an early project supporting admission policies written in a number of languages compiled down to WebAssembly. You'll create a number of runbooks and deployments in Octopus to manage Kubewarden and deploy pods to Kubernetes, testing out custom admission policies.
 
 ## Installing Kubewarden
 
@@ -26,7 +26,7 @@ The easiest way to install Kubewarden is via its Helm chart. Create a new Helm F
 
 ![](helm-feed.png "width=500")
 
-Kubewarden is installed via a runbook. Runbooks are useful for administration tasks, such as deploying cross-cutting services, because they are not bound by a lifecycle progression. This allows a new cluster to be spun up in an environment late in the deployment lifecycle (like a new production cluster) without first deploying services to earlier lifecycles:
+Kubewarden is installed via a runbook. Runbooks are useful for administration tasks, such as deploying cross-cutting services, because they are not bound by a lifecycle progression. This allows a new cluster to be spun up in an environment late in the deployment lifecycle (like a new production cluster) without first deploying services to earlier environments in the lifecycle:
 
 ![](helm-deployment.png "width=500")
 
@@ -34,7 +34,7 @@ Kubewarden is installed via a runbook. Runbooks are useful for administration ta
 
 To demonstrate how Kubewarden can keep your cluster secure deploy the following pod, which gives itself the `SYS_TIME` capability and uses the `date` command to set the system time within the container.
 
-There is almost no reason for a pod should to set the system time, and it is easy to imagine how changing the time could lead applications to malfunction. For example, a warehouse stock service could place multiple orders if the date was wound back, or a task scheduler could trigger jobs at the incorrect time.
+There is almost no reason for a pod to set the system time, and it is easy to imagine how changing the time could lead applications to malfunction. For example, a warehouse stock service could place multiple orders if the date was wound back, or a task scheduler could trigger jobs at the incorrect time.
 
 Although the pod below only sets the date and exits, the fact that it can do so is in indication that other pods may be deployed with the ability to set the date:
 
