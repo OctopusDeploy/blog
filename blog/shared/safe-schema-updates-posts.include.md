@@ -1,5 +1,3 @@
-## Safe Schema Updates series
-
 **Critiquing existing systems:**
 - Part 1: Database Delivery Hell
 
