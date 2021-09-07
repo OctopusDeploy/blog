@@ -106,7 +106,7 @@ One common engineering consequence is the short-sighted cheat to avoid refactori
 
 The idea that you shouldn’t delete stuff in the database is widespread in tech, and it needs to be challenged. This hack considers the most important part of your IT infrastructure to be a dumping ground for all your obsolete or misguided design choices from years past. This might save you a bit of time in the short term, but it’s going to bite. Refactoring is an essential part of software development. 
 
-I once worked for a company where all the tables had unintelligible four-character names. I asked why this was. Apparently, some previous database technology from decades-past had this limitation. Their current RBDMS was not restricted in this way, but they were so afraid of making changes that some developers still persisted with the four-character convention - even for new tables. It sure looks pretty if all your tables line up neatly in your IDE. 
+I once worked for a company where all the tables had unintelligible four-character names. I asked why this was. Apparently, some previous database technology from decades-past had this limitation. Their current RDBMS was not restricted in this way, but they were so afraid of making changes that some developers still persisted with the four-character convention - even for new tables. It sure looks pretty if all your tables line up neatly in your IDE. 
 
 This database is crucial for many important services, but using and maintaining it is almost impossible, especially for new recruits. No-one knows what the “QACD” or the “FFFG” tables are for. And those 5-table joins are impossible to decipher.
 
