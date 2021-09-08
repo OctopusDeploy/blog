@@ -52,6 +52,10 @@ Below we show a simple example of an integration between Slack and Octopus Deplo
 
 ## Conclusion
 
-XXXXX
+[Workato](https://www.workato.com/)'s automated recipes allows users to construct workflows through a visual designer, providing a low-code tool for system integrations.
+
+Apart from triggering a runbook automation in systems such as Slack, Microsoft teams, Jira or others, Workato makes it easy for Octopus and Workato users to publish updates to other systems after development, test or production deployments. This could be simple notifications or update tickets in third party systems.
+
+The power of Workato is its ability to easily integrate other systems with Octopus.
 
 Happy deployments!
