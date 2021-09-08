@@ -57,7 +57,7 @@ The **Export/Import features** are accessed from the overflow menu on the **Proj
 
 You need to import the following project into your Octopus instance:
 
-> [project_export_latest.zip](https://octopus.com/images/blog/deployable-blog-post/project-export-latest.zip)
+> [project_export_latest.zip](https://octopus.com/images/blog/deployable-blog-post/project_export_latest.zip)
 
 In the Octopus Web Portal, navigate to **{{Projects > Import Project > Select zip file}}** and upload the project zip. Click **IMPORT** to complete.
 
