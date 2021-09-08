@@ -1,9 +1,13 @@
 ---
 title: Safe Schema Updates - Loose Coupling Mitigates Human Problems
-description: On the human challenges associated with monolithic architectures, and how looser coupling mitigates these challenges.
+description: On loose coupling and domain-driven development, and how they mitigate human problems that are commonly associated with monolithic architectures.
 author: alex.yates@dlmconsultants.com
-visibility: private
-published: 2022-08-18-1400
+visibility: public
+published: 2021-10-06-1400
+metaImage: 
+bannerImage: 
+bannerImageAlt: 125 characters max, describes image to people unable to see it.
+isFeatured: false
 tags:
  - DevOps
  - Database Deployments
@@ -17,7 +21,7 @@ This blog post is part 5 of my Safe Schema Updates series. The other posts in th
 > *“No matter what the problem is, it’s always a people problem.”*
 > *Gerald Weinberg*
 
-In the previous post (part 4) we focussed on technical issues associated with software/database architecture. In this post we’ll focus on the human issues.
+In the previous post (part 4) we focussed on technical issues associated with software/database architecture. In this post we focus on the human issues.
 
 [Conway’s Law](https://en.wikipedia.org/wiki/Conway%27s_law) dictates that organisations are limited to design systems that mirror their internal communication patterns. As Eric S Raymond so eloquently put it in [The New Hacker’s Dictionary](https://www.goodreads.com/book/show/104746.The_New_Hacker_s_Dictionary), *“if you have four groups working on a compiler, you'll get a 4-pass compiler”*. 
 
