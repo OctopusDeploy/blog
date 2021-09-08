@@ -1,6 +1,6 @@
 ---
 title: Safe Schema Updates - Loose Coupling Mitigates Tech Problems
-description: On loose coupling and domain-driven development, and the benefits of common technical problems associated with monolithic architectures.
+description: On loose coupling and domain-driven development, and how they mitigate technical problems that are commonly associated with monolithic architectures.
 author: alex.yates@dlmconsultants.com
 visibility: public
 published: 2021-09-27-1400
