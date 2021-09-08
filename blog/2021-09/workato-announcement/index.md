@@ -13,39 +13,42 @@ tags:
 - xxxx
 ---
 
-A [Workato connector](https://www.workato.com/integrations) that integrates with Octopus Deploy is now available. Workato is an Integration-Platform-as-a-Service (iPaaS) that integrates apps and automates business workflows. Its connectors contain the building blocks for recipes; including methods of authentication, triggers, and actions for a specific app. 
+A [Workato connector for Octopus Deploy](https://www.workato.com/integrations/community/octopus-deploy) is now available!
 
-The Octopus Deploy connector now enables Workato users to:
-Quickly integrate Octopus Deploy as part of their workflows. 
-Perform operations against Octopus Deploy, such as:
+[Workato](https://www.workato.com/) is an enterprise integration Platform-as-a-Service (iPaaS) that enables you to build workflow automation. Users construct workflows through a visual designer, providing a low-code tool for system integrations.
 
-- Add Build Information
-- Create Release
-- Deploy Release
-- Get Deployment Process
-- Get Spaces
-- Get Projects
-- Get Spaces
-- Promote Release
-- Push Package
+The Workato connector for Octopus Deploy enables you to quickly integrate Octopus Deploy with your workflows. It support performing numerous actions with Octopus Deploy, such as:
+
+- Create release
+- Create resources such as accounts, channels, deployments, environments, projects, etc.
+- Deploy release
+- Get deployment process
+- Get resources (i.e. deployment targets, feeds, runbooks, teams, tenants)
 - Run Runbook
-- Create recipes that respond to events in Octopus through a trigger.
 
-Additional actions may be added to the connector if/when required. 
+Create recipes that respond to events in Octopus through a trigger.
+
+Additional actions may be added to the connector if/when required.
 
 Built in Ruby, Workato connectors are defined as a JSON configuration and registered through the Workato development environment.
 
 According to Workato, while various teams within IT still play a significant role in [workflow automations](https://www.workato.com/the-connector/work-automation-index/), product teams and business operations teams are getting more and more involved in the process, requiring quick implementations, which can be optimised with Workato’s low-code interface.
 
-## How to get started with Workato
+## Getting Started
+
+![](octopus-deploy-connection.png)
 
 You can find Octopus in the [Workato Integrations](https://www.workato.com/integrations) page, or in the Community Library>Community connectors as a logged-in user.
 
 Below we show a simple example of an integration between Slack and Octopus Deploy using the Octopus Deploy Workato connector:
 
-xxxxxx
+## Example: Notify Slack Channel when Events Raised from Octopus Deploy
 
+![](octopus-deploy-and-slack.png)
 
+## Example: Run Runbook  from Octopus Deploy
+
+![](new-project-trigger.png)
 
 ## Conclusion
 
