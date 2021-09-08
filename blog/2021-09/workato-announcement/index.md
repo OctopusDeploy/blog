@@ -1,16 +1,16 @@
 ---
-title: "Workato connector for Octopus Deploy"
+title: 'Workato connector for Octopus Deploy'
 description: A Workato connector that integrates with Octopus Deploy is now available.
 author: andreia.virmond@octopus.com
 visibility: private
 published: 2022-09-01-1400
-bannerImage: 
-metaImage: 
-bannerImageAlt: 
+bannerImage:
+metaImage:
+bannerImageAlt:
 isFeatured: false
 tags:
-- xxx
-- xxxx
+  - xxx
+  - xxxx
 ---
 
 A [Workato connector for Octopus Deploy](https://www.workato.com/integrations/community/octopus-deploy) is now available!
@@ -36,9 +36,11 @@ According to Workato, while various teams within IT still play a significant rol
 
 ## Getting Started
 
-![](octopus-deploy-connection.png)
+![](octopus-deploy-in-community-library.png)
 
 You can find Octopus in the [Workato Integrations](https://www.workato.com/integrations) page, or in the Community Library>Community connectors as a logged-in user.
+
+![](octopus-deploy-connection.png)
 
 Below we show a simple example of an integration between Slack and Octopus Deploy using the Octopus Deploy Workato connector:
 
@@ -46,7 +48,7 @@ Below we show a simple example of an integration between Slack and Octopus Deplo
 
 ![](octopus-deploy-and-slack.png)
 
-## Example: Run Runbook  from Octopus Deploy
+## Example: Run Runbook from Octopus Deploy
 
 ![](new-project-trigger.png)
 
