@@ -19,12 +19,12 @@ A [Workato connector for Octopus Deploy](https://www.workato.com/integrations/co
 
 The Workato connector for Octopus Deploy enables you to quickly integrate Octopus Deploy with your workflows. It support performing numerous actions with Octopus Deploy, such as:
 
-- Create release
+- Create a release
 - Create resources such as accounts, channels, deployments, environments, projects, etc.
-- Deploy release
-- Get deployment process
-- Get resources (i.e. deployment targets, feeds, runbooks, teams, tenants)
-- Run Runbook
+- Deploy a release
+- Get a deployment process
+- Get various resources from Octopus Deploy (i.e. deployment targets, feeds, runbooks, teams, tenants)
+- Run a runbook
 
 Create recipes that respond to events in Octopus through a trigger.
 
