@@ -54,6 +54,7 @@ The schema deployment itself is especially risky because, thanks to the dependen
 
 As mentioned above, due to the complexity of dependencies, there’s rarely a fit-for-purpose testing environment. What’s more, having a reliable automated test suite for each dependent service is unlikely and (probably) unfeasible. This makes it impossible to have confidence that nothing is going to break when the deployment is executed.
 
+:::hint
 These problems are real and significant. These first three levels are tied together nicely in one of the massive deployment failures in [The Phoenix Project](https://octopus.com/blog/devops-reading-list#phoenix). There was a missing index on a giant table in a single-point-of-failure database, at the centre of a tangled web of dependencies. This was probably missed either because the dev/test databases didn’t match production, or because they did not have representative data, so the performance issues weren’t spotted.
 
 The update was running agonizingly slow, and it couldn’t be cancelled. They missed their downtime window and, due to the enormous number of dependent services, they caused enormous disruption to thousands of internal users and customers when the systems did not come back online on Monday morning.
@@ -61,6 +62,7 @@ The update was running agonizingly slow, and it couldn’t be cancelled. They mi
 I’ll back up that fictional disaster with a very real one. I once worked for a company that had one of these wild-west, single-point-of-failure, shared databases underpinning their dev environment. It was critical for the 100+ developers to test the stuff they were working on with realistic data. One time, someone accidentally dropped all the SQL logins. The entire dev function, as well as the dependent services, were locked out. It took the DBAs over a week to fix it, because there was a show-stopping issue in production at the same time.
 
 All those developers were twiddling their thumbs for a week. I’m nervous to imagine what the typical annual budget of a 100+ dev team in the finance sector looks like, but I imagine a week of thumb twiddling didn’t go down well with the shareholders. 
+:::
 
 **Level 3: Release coordination hell**
 
@@ -106,9 +108,11 @@ One common engineering consequence is the short-sighted cheat to avoid refactori
 
 The idea that you shouldn’t delete stuff in the database is widespread in tech, and it needs to be challenged. This hack considers the most important part of your IT infrastructure to be a dumping ground for all your obsolete or misguided design choices from years past. This might save you a bit of time in the short term, but it’s going to bite. Refactoring is an essential part of software development. 
 
+:::hint
 I once worked for a company where all the tables had unintelligible four-character names. I asked why this was. Apparently, some previous database technology from decades-past had this limitation. Their current RDBMS was not restricted in this way, but they were so afraid of making changes that some developers still persisted with the four-character convention - even for new tables. It sure looks pretty if all your tables line up neatly in your IDE. 
 
 This database is crucial for many important services, but using and maintaining it is almost impossible, especially for new recruits. No-one knows what the “QACD” or the “FFFG” tables are for. And those 5-table joins are impossible to decipher.
+:::
 
 Without refactoring our databases as our software and business needs evolve, we are sure to produce monolithic, big-ball-of-mud databases which are difficult to work with and full of (supposedly) deprecated code and unnecessary dependencies.
 
