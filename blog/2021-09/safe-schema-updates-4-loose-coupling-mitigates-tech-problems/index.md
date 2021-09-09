@@ -1,5 +1,5 @@
 ---
-title: Safe Schema Updates - Loose Coupling Mitigates Tech Problems
+title: Safe schema updates - Loose coupling mitigates tech problems
 description: On loose coupling and domain-driven development, and how they mitigate technical problems that are commonly associated with monolithic architectures.
 author: alex.yates@dlmconsultants.com
 visibility: public
@@ -14,7 +14,9 @@ tags:
  - Deployment Patterns
 ---
 
-This blog post is part 4 of my Safe Schema Updates series. The other posts in this series are available at the following links:
+This blog post is part 4 of my safe schema updates series. 
+
+We'll add links to the other posts in this series as they become available.
 
 !include <safe-schema-updates-posts>
 
@@ -68,9 +70,9 @@ These two services are probably just two of many, so the overall size of the dev
 
 This smaller dev environment is faster and cheaper to deploy. Data masking, privacy and storage concerns are significantly reduced. The overall complexity of the system is much easier to manage and dependencies on other systems are explicit and testable.
 
-## Loose coupling enables continuous integration
+## Loose coupling enables Continuous Integration
 
-As discussed in part 3, continuous integration (CI) teaches us that we should prioritize the completion and integration/deployment of existing work in progress (WIP) over the creation of new WIP. That goes for any and all dev work that exists in any place and has not yet been successfully merged, deployed to production and validated. Without the prioritization of merging over diverging, we end up with ever-increasing amounts of WIP, which has enormous hidden costs.
+As discussed in part 3, Continuous Integration (CI) teaches us that we should prioritize the completion and integration/deployment of existing work in progress (WIP) over the creation of new WIP. That goes for any and all dev work that exists in any place and has not yet been successfully merged, deployed to production and validated. Without the prioritization of merging over diverging, we end up with ever-increasing amounts of WIP, which has enormous hidden costs.
 
 When we have a large, monolithic system, perhaps with a hundred developers across a dozen teams, our CI problems are significant. With so many tasks being performed in parallel on the same codebase, it’s difficult to manage everything. This is often where we see complicated branching plans and jumbled up dev environments, containing a mess of half-finished or long-since abandoned dev and test code.
 
@@ -105,5 +107,7 @@ In this post (post 4) we imagined a more loosely coupled architecture. This arch
 Additionally, the more granular nature of the system made it easier to manage different flows of work. The significant reduction in concurrent work streams for any given service reduces the project management/release management/branching overheads.
 
 Taken alone, these points will result in significantly safer database releases. However, the benefits are compounded by human factors. In the next post (post 5), we look at those human factors in more detail. 
+
+We'll add links to the other posts in this series as they become available.
 
 !include <safe-schema-updates-posts>
