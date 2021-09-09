@@ -1,5 +1,5 @@
 ---
-title: Safe Schema Updates - Continuous Integration is misunderstood
+title: Safe schema updates - Continuous Integration is misunderstood
 description: Learn about the principles that define Continuous Integration, and why you should avoid adopting specific practices, without knowing how to use them effectively.
 author: alex.yates@dlmconsultants.com
 visibility: public
@@ -17,7 +17,9 @@ tags:
  - Continuous Integration
 ---
 
-This blog post is part 3 of my Safe Schema Updates series. The other posts in this series are available at the following links:
+This blog post is part 3 of my safe schema updates series. 
+
+We'll add links to the other posts in this series as they become available.
 
 !include <safe-schema-updates-posts>
 
@@ -33,7 +35,7 @@ Regular, automated builds are reasonably uncontroversial and generally accepted.
 
 Most people are likely to respond with answers along the lines of “to catch bugs”, or “fast feedback”. And yes, those are great. However, that’s still only part of the story. These answers still miss the fundamental point.
 
-**Continuous *Integration* is about *Integration*.**
+**Continuous *Integration* is about *integration*.**
 
 It’s, literally, as simple as that. (Word choice is intentional, and accurate.)
 
@@ -107,8 +109,10 @@ This mini-rant about CI might sound like a bit of a tangent, but it’s importan
 
 Additionally, DDD is fundamentally about breaking up data models, and databases are often a shared dependency for many other systems. Loose coupling requires the decoupling of the data associated with independent services. Hence, when we start talking about the value of splitting up databases with respect to CI concerns, it’s useful to appreciate Continuous Integration in its fullest sense, rather than the shallow but widespread “continuous build” misinterpretation.
 
-## Next Time
+## Next time
 
 In the next two posts, we are going to switch gears and talk about database architecture - from both a technical and a human perspective. We’ll talk about loose coupling and domain-driven development, and how these principles help us to practice Continuous Integration and produce safe, resilient IT systems.
+
+We'll add links to the other posts in this series as they become available.
 
 !include <safe-schema-updates-posts>
