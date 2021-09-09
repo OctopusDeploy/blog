@@ -15,7 +15,9 @@ tags:
  - Testing
 ---
 
-This post is part 2 of my safe schema updates series. We'll add links to the other posts in this series as they become available.
+This post is part 2 of my safe schema updates series. 
+
+We'll add links to the other posts in this series as they become available.
 
 !include <safe-schema-updates-posts>
 
@@ -142,7 +144,7 @@ We should also be designing effective fire breaks. One bad database update shoul
 
 The outcome of these changes should be significantly reduced risk associated with any database update. This reduced risk should reduce the need for overly bureaucratic change management processes, allowing the more frequent delivery of smaller, safer updates, reversing the downward spiral discussed in the last post, and leading to a period of continuous improvement.
 
-## Next Time
+## Next time
 
 In the next post (part 3) we’ll talk about Continuous Integration (CI). Specifically, we’ll discuss how it’s been misunderstood and the harm that misunderstanding can cause, as well as the benefits of embracing “proper” CI for any IT system – including any relational database. 
 
