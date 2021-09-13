@@ -52,7 +52,11 @@ Workato is a flexible and powerful integration platform and you can build endles
 
 **Example: Notify Slack Channel when Events Raised from Octopus Deploy**
 
+A typical example of a workflow used frequently by customers is to notify a Slack channel whenever a particular event occurrs in Octopus Deploy:
+
 ![](octopus-deploy-and-slack.png)
+
+This can be accomplished through the new subscription event trigger that responds to real-time events raised by Octopus Deploy. Whenever this occurs, a Slack channel is notified with details of the event (i.e. new deployment created).
 
 **Example: Run Runbook from Octopus Deploy**
 
