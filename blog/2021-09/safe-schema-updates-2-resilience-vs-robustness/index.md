@@ -27,14 +27,16 @@ After we've armed ourselves with a deeper understanding about why some systems a
 
 In this post we review the concept of resilience vs robustness within software systems. Here's my favorite short articulation of the difference: 
 
-> “There has been much discussion over the past decade about building resilient systems that have three specific traits:
-> - Low MTTR *[Mean Time To Recovery]* due to automated remediation to well-monitored failure scenarios.
-> - Low impact during failures due to distributed and redundant environments.
-> - The ability to treat failure as a normal scenario in the system, ensuring that automated and manual remediation is well documented, solidly engineered, practiced, and integrated into normal day-to-day operations.
-> 
-> Note that there is not a focus on eliminating failures. Systems without failures, although robust, become brittle and fragile. When failures occur, it is more likely that the teams responding will be unprepared, and this could dramatically increase the impact of the incident. Additionally, reliable but fragile systems can lead users to expect greater reliability than the SLO *[Service Level Objective]* indicates and for which the service has been engineered. This means that even if an SLO has not been violated, customers might be quite upset when an outage does occur.”
-> 
-> *From  [Database Reliability Engineering](https://octopus.com/blog/devops-reading-list#dre) by Laine Campbell and Charity Majors.*
+:::hint  
+ “There has been much discussion over the past decade about building resilient systems that have three specific traits:
+ - Low MTTR *[Mean Time To Recovery]* due to automated remediation to well-monitored failure scenarios.
+ - Low impact during failures due to distributed and redundant environments.
+ - The ability to treat failure as a normal scenario in the system, ensuring that automated and manual remediation is well documented, solidly engineered, practiced, and integrated into normal day-to-day operations.
+ 
+Note that there is not a focus on eliminating failures. Systems without failures, although robust, become brittle and fragile. When failures occur, it is more likely that the teams responding will be unprepared, and this could dramatically increase the impact of the incident. Additionally, reliable but fragile systems can lead users to expect greater reliability than the SLO *[Service Level Objective]* indicates and for which the service has been engineered. This means that even if an SLO has not been violated, customers might be quite upset when an outage does occur.”
+
+*From  [Database Reliability Engineering](https://octopus.com/blog/devops-reading-list#dre) by Laine Campbell and Charity Majors.*
+:::
 
 I’m sure that any database administrators reading this can think of times where an outage has annoyed some stakeholders, even if, technically, their SLOs were never breached. (Assuming they had a well-defined SLO in the first place.)
 
@@ -101,16 +103,17 @@ Rather than automobile manufacturing and supply chain management, Safety 2.0 was
 
 Time for another definition, shamelessly lifted from excellent work by other people:
 
-> Most people think of safety as the absence of accidents and incidents (or as an acceptable level of risk). In this perspective, which we term Safety-I, safety is defined as a state where as few things as possible go wrong. A Safety-I approach presumes that things go wrong because of identifiable failures or malfunctions of specific components: technology, procedures, the human workers and the organizations in which they are embedded. Humans — acting alone or collectively — are therefore viewed predominantly as a liability or hazard, principally because they are the most variable of these components. The purpose of accident investigation in Safety-I is to identify the causes and contributory factors of adverse outcomes, while risk assessment aims to determine their likelihood. The safety management principle is to respond when something happens or is categorized as an unacceptable risk, usually by trying to eliminate causes or improve barriers, or both.
-> 
-> [...]
-> 
-> Crucially, the Safety-I view does not stop to consider why human performance practically always goes right. Things do not go right because people behave as they are supposed to, but because people can and do adjust what they do to match the conditions of work. As systems continue to develop and introduce more complexity, these adjustments become increasingly important to maintain acceptable performance. The challenge for safety improvement is therefore to understand these adjustments — in other words, to understand how performance usually goes right in spite of the uncertainties, ambiguities, and goal conflicts that pervade complex work situations. Despite the obvious importance of things going right, traditional safety management has paid little attention to this.
-> 
-> Safety management should therefore move from ensuring that ‘as few things as possible go wrong’ to ensuring that ‘as many things as possible go right’. We call this perspective Safety-II; it relates to the system’s ability to succeed under varying conditions. A Safety-II approach assumes that everyday performance variability provides the adaptations that are needed to respond to varying conditions, and hence is the reason why things go right. Humans are consequently seen as a resource necessary for system flexibility and resilience. In Safety-II the purpose of investigations changes to become an understanding of how things usually go right, since that is the basis for explaining how things occasionally go wrong. Risk assessment tries to understand the conditions where performance variability can become difficult or impossible to monitor and control. The safety management principle is to facilitate everyday work, to anticipate developments and events, and to maintain the adaptive capacity to respond effectively to the inevitable surprises (Finkel 2011).
-> 
-> Hollnagel E., Wears R.L. and Braithwaite J. From Safety-I to Safety-II: A White Paper. The Resilient Health Care Net: Published simultaneously by the University of Southern Denmark, University of Florida, USA, and Macquarie University, Australia.
-> [Available online here.](https://www.england.nhs.uk/signuptosafety/wp-content/uploads/sites/16/2015/10/safety-1-safety-2-whte-papr.pdf)
+:::hint Most people think of safety as the absence of accidents and incidents (or as an acceptable level of risk). In this perspective, which we term Safety-I, safety is defined as a state where as few things as possible go wrong. A Safety-I approach presumes that things go wrong because of identifiable failures or malfunctions of specific components: technology, procedures, the human workers and the organizations in which they are embedded. Humans — acting alone or collectively — are therefore viewed predominantly as a liability or hazard, principally because they are the most variable of these components. The purpose of accident investigation in Safety-I is to identify the causes and contributory factors of adverse outcomes, while risk assessment aims to determine their likelihood. The safety management principle is to respond when something happens or is categorized as an unacceptable risk, usually by trying to eliminate causes or improve barriers, or both.
+ 
+[...]
+ 
+Crucially, the Safety-I view does not stop to consider why human performance practically always goes right. Things do not go right because people behave as they are supposed to, but because people can and do adjust what they do to match the conditions of work. As systems continue to develop and introduce more complexity, these adjustments become increasingly important to maintain acceptable performance. The challenge for safety improvement is therefore to understand these adjustments — in other words, to understand how performance usually goes right in spite of the uncertainties, ambiguities, and goal conflicts that pervade complex work situations. Despite the obvious importance of things going right, traditional safety management has paid little attention to this.
+
+Safety management should therefore move from ensuring that ‘as few things as possible go wrong’ to ensuring that ‘as many things as possible go right’. We call this perspective Safety-II; it relates to the system’s ability to succeed under varying conditions. A Safety-II approach assumes that everyday performance variability provides the adaptations that are needed to respond to varying conditions, and hence is the reason why things go right. Humans are consequently seen as a resource necessary for system flexibility and resilience. In Safety-II the purpose of investigations changes to become an understanding of how things usually go right, since that is the basis for explaining how things occasionally go wrong. Risk assessment tries to understand the conditions where performance variability can become difficult or impossible to monitor and control. The safety management principle is to facilitate everyday work, to anticipate developments and events, and to maintain the adaptive capacity to respond effectively to the inevitable surprises (Finkel 2011).
+ 
+Hollnagel E., Wears R.L. and Braithwaite J. From Safety-I to Safety-II: A White Paper. The Resilient Health Care Net: Published simultaneously by the University of Southern Denmark, University of Florida, USA, and Macquarie University, Australia.
+[Available online here.](https://www.england.nhs.uk/signuptosafety/wp-content/uploads/sites/16/2015/10/safety-1-safety-2-whte-papr.pdf)
+:::
 
 The biggest lesson I take from this, is that safety is something you actively build and refine, rather than a gatekeeper who catches mistakes. It's healthier to add systems that create safety, than it is to try to catch all the mistakes. After all, given enough time, it's hopelessly unrealistic to expect that you'll catch them all.
 
