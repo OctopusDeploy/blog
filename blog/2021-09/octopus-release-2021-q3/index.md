@@ -143,7 +143,7 @@ In 2021.2, we added the comparison filters `Contains`, `Match`, `EndsWith`, and 
 
 These filters are useful for specifying the condition in an `#{if}` block. They return `true` or `false` depending on the result of the comparison.
 
-Learn more about variable substitution [comparison filters](https://octopus.com/docs/projects/variables/variable-filters#VariableSubstitutionSyntax-ComparisonFilters) in our documentation, or check out our post [Leveraging Octostache with variable run conditions](https://octopus.com/blog).
+Learn more about variable substitution [comparison filters](https://octopus.com/docs/projects/variables/variable-filters#VariableSubstitutionSyntax-ComparisonFilters) in our documentation, or check out our post [Creating dynamic run conditions with new Octostache filters](https://octopus.com/blog).
 
 ## Breaking changes
 
