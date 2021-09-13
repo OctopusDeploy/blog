@@ -54,7 +54,7 @@ Dedicated integration with Google Cloud Platform (GCP) means you can:
 - Store and secure your Docker images in the Google Container Registry (GCR)
 - Deploy, scale, and manage containerized applications on GCP with Octopus and Kubernetes 
 
-Learn how to get started in our post [Octopus Deploy integration for Google Cloud Platform](link).
+Learn how to get started in our post [Octopus Deploy integration for Google Cloud Platform](https://octopus.com/blog).
 
 ## Kubernetes deployments and runbooks on Google Cloud
 
@@ -121,7 +121,7 @@ Here are some ideas to get you started:
   - Push notifications to Slack
   - Automatically update tickets in other systems such as Jira, Zendesk, and ServiceNow
 
-Learn how to get started in our post [Announcing the Workato connector for Octopus Deploy](link).
+Learn how to get started in our post [Announcing the Workato connector for Octopus Deploy](https://octopus.com/blog).
 
 ## LDAP provider
 
@@ -133,7 +133,7 @@ Our LDAP authentication provider opens up more use cases for Octopus customers:
 - Interact with other directory servers like OpenLDAP
 - Support users with non-Windows clients, including macOS
 
-Learn how to [get started with the LDAP auth provider for Octopus Deploy](link).
+Learn how to [get started with the LDAP auth provider for Octopus Deploy](https://octopus.com/blog).
 
 ## New variable substitution filters
 
