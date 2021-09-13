@@ -35,7 +35,7 @@ Creating workflows in Workato with the Octopus Deploy connector is easy; simply 
 
 ![](octopus-deploy-in-community-library.png)
 
-Before you use the connector, you'll need to establish an API key in Octopus Deploy. The connector uses this API key to perform operations against Octopus Deploy on your behalf. Documentation on how to do this is provided in our documentation: [How to Create an API Key](https://octopus.com/docs/octopus-rest-api/how-to-create-an-api-key).
+Before configuring the connector, you'll need to create an API key in Octopus Deploy. The connector uses this API key to perform operations against Octopus Deploy on your behalf. Documentation on how to do this is provided in our documentation: [How to Create an API Key](https://octopus.com/docs/octopus-rest-api/how-to-create-an-api-key).
 
 After creating an API key, the next step will be to establish a connection between the Octopus Deploy connector in Workato and the instance of Octopus Deploy you wish to integrate within a workflow:
 
@@ -57,6 +57,6 @@ The host address is the URL that points to Octopus Deploy. Please also include t
 
 Apart from triggering a runbook automation in systems such as Slack, Microsoft teams, Jira or others, Workato makes it easy for Octopus and Workato users to publish updates to other systems after development, test or production deployments. This could be simple notifications or update tickets in third party systems.
 
-The power of Workato is its ability to easily integrate other systems with Octopus.
+The power of Workato is its ability to easily integrate other systems with Octopus Deploy.
 
 Happy deployments!
