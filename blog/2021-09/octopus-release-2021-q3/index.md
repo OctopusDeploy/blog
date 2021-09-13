@@ -68,7 +68,7 @@ We've supported Kubernetes deployments for 3 years and added Runbooks in 2020. F
    - Use built-in service accounts for simple and secure authentication
    - Implement deployment patterns like blue/green, canary, and rolling deployments
 - Automate routine maintenance and respond more quickly to emergencies:
-   - Octopus Runbooks and Projects share the same variables and accounts to interact with your clusters
+   - Octopus runbooks and projects share the same variables and accounts to interact with your clusters
    - Use pre-approved kubectl scripts
 
 ### Get started with Kubernetes and Octopus or manage a complex setup
