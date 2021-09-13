@@ -81,7 +81,7 @@ Our Kubernetes automation supports three approaches:
 
 All three methods:
 
-- Are compatible with Octopus Runbooks, Environments, and shared variables
+- Are compatible with Octopus runbooks, environments, and shared variables
 - Include robust config file support for repeatable and reliable deployments across multiple environments
 
 #### Structured UI step without YAML input
