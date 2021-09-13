@@ -14,7 +14,7 @@ tags:
  - Deployment Patterns
  - Testing
 ---
-
+ 
 This post is part 2 of my safe schema updates series. 
 
 We'll add links to the other posts in this series as they become available.
