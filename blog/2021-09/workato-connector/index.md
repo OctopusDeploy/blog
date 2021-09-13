@@ -4,14 +4,17 @@ description: A Workato connector that integrates with Octopus Deploy is now avai
 author: andreia.virmond@octopus.com
 visibility: private
 published: 2022-09-01-1400
-bannerImage:
-metaImage:
-bannerImageAlt:
+bannerImage: workato-octopus.png
+metaImage: workato-octopus.png
+bannerImageAlt: 'Workato connector for Octopus Deploy'
 isFeatured: false
 tags:
-  - xxx
-  - xxxx
+  - DevOps
+  - no-code
+  - low-code
 ---
+
+![Workato connector for Octopus Deploy](workato-octopus.png)
 
 A [Workato connector for Octopus Deploy](https://www.workato.com/integrations/community/octopus-deploy) is now available!
 
@@ -31,7 +34,7 @@ Additional actions may be added to the connector if/when required.
 
 ## Getting Started
 
-Creating workflows in Workato with the Octopus Deploy connector is easy; simply search for "Octopus" to the **Custom Connectors** section of the **Community Library**. Navigating to the connector will provide its description along with its source code. To use it, simply click the button, "Install connector".
+Creating workflows in Workato with the Octopus Deploy connector is easy; simply search for "Octopus" in the **Custom Connectors** section of the **Community Library**. Navigating to the connector will provide its description along with its source code. To use it, simply click the button, "Install connector".
 
 ![](octopus-deploy-in-community-library.png)
 
@@ -43,11 +46,15 @@ After creating an API key, the next step will be to establish a connection betwe
 
 The host address is the URL that points to Octopus Deploy. Please also include the space you wish to target in the configuration. After you click the button, "Connect" you'll be ready to start creating workflows in Workato!
 
-## Example: Notify Slack Channel when Events Raised from Octopus Deploy
+## Octopus Deploy Workato examples
+
+Workato is a flexible and powerful integration platform and you can build endless workflows to suit your teams needs. The following are two examples of what is possible and we're keen to see this used in real world environments.
+
+**Example: Notify Slack Channel when Events Raised from Octopus Deploy**
 
 ![](octopus-deploy-and-slack.png)
 
-## Example: Run Runbook from Octopus Deploy
+**Example: Run Runbook from Octopus Deploy**
 
 ![](new-project-trigger.png)
 
