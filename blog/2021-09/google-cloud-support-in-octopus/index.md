@@ -4,15 +4,15 @@ description: Learn how Octopus supports your deployments to Google Cloud and pro
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2021-09-28-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-introducinggooglecloudsupportinoctopus-2021.png
+bannerImage: blogimage-introducinggooglecloudsupportinoctopus-2021.png
+bannerImageAlt: Octopus and Google Cloud logo on a laptop surrounded by logos of features that support GCP deployments
 isFeatured: false
 tags:
  - Product
 ---
 
-Octopus 2021.2 brings a number of features to support teams deploying to the Google Cloud Platform (GCP). With 2021.2, Octopus has first class support for the AWS, Azure, and Google cloud platforms.
+Octopus 2021.2 brings a number of features to support teams deploying to the Google Cloud Platform (GCP). With 2021.2, Octopus has core support for the AWS, Azure, and Google cloud platforms.
 
 This post introduces the new features in Octopus supporting GCP deployments and provides some tips on how they can be used in your own deployment processes.
 
@@ -42,7 +42,7 @@ Note that the target must be configured with the Worker Pool containing the GCE 
 
 ![Octopus dashboard open on Infrastructure tab and Worker Pools page with Settings selected and optional Worker Pool set to GCP](workerpool.png "width=500")
 
-Operations like health checks an deployments are performed with the credentials assigned to the worker VM, removing the need to store those details in Octopus:
+Operations like health checks and deployments are performed with the credentials assigned to the worker VM, removing the need to store those details in Octopus:
 
 ![Octopus dashboard showing Check GKE health](healthcheck.png "width=500")
 
@@ -62,7 +62,7 @@ Images are then available from the GCR feed:
 
 ## Gcloud script support
 
-A new step called **Run gcloud in a Script** is available to run scripts within the context of a GCP account. 
+A new step called **Run gcloud in a Script** is available to run scripts in the context of a GCP account. 
 
 Any scripts run as part of this step can take advantage of the login process managed by Octopus. This allows the script to focus on the operations it needs to perform, rather than the boilerplate process of logging in:
 
