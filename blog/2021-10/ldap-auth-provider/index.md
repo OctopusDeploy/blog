@@ -150,7 +150,7 @@ In our testing we noticed less reliable results using `user@domain`; however you
 
 ![Updated User Filter](updated-ldap-user-filter.png)
 
-I chose `userPrincipalName` because fully qualified name that is where `professor.octopus@devopswalker.local` is stored in my domain controller.  Your directory server might be different.
+I chose `userPrincipalName` because that is where the fully qualified name, `professor.octopus@devopswalker.local`, is stored in my domain controller.  Your directory server might be different.
 
 ![user principal vs user id](user-id-vs-principal.png)
 
@@ -158,6 +158,6 @@ I chose `userPrincipalName` because fully qualified name that is where `professo
 
 Unlike the Active Directory authentication provider, the LDAP authentication provider is more flexible, because LDAP is more flexible.  This adaptability does make the LDAP authentication provider more complex though, so it might take some trial and error to dial in your settings. I recommend setting up a test instance to test all your LDAP authentication settings.  
 
-After you have the settings right, the LDAP authentication provider offers great benefits. It’s useful having active directory authentication and you no longer have to dread turning it on.  If you have multiple user accounts on your local active directory, each with different permissions in Octopus, logging out and logging in on your computer for testing is no longer an issue.  LDAP solves those problems, along with a host of others.
+After you dialed in your settings, the LDAP authentication provider offers a number of benefits.  You can use the Octopus Linux Container with Active Directory, or you don't have to use Active Directory at all.  If you are using Active Directory, I found the LDAP provider was easier to use than Active Directory because it is an open standard.  I don't have to worry about picking NTLM or Kerberos, or how the Windows Server hosting Octopus/Active Directory/Domain Controller relationship is managed.  If you have multiple user accounts on your local active directory, each with different permissions in Octopus, logging out and logging in on your computer for testing is no longer an issue.  LDAP solves those problems, along with a host of others.
 
 Happy deployments!
