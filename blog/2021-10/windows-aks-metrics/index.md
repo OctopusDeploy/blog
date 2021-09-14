@@ -223,5 +223,4 @@ After connecting up all of the above, we're now able to monitor (for example) th
 
 ## Learn more
 
-- [link](https://www.example.com/resource)
 - [Our AKS Windows Exporter repo](https://github.com/OctopusDeploy/aks-prometheus-windows-exporter)
