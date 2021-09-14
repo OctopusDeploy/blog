@@ -4,8 +4,8 @@ description: Learn how to leverage new filters in Octostache with variable run c
 author: bob.walker@octopus.com
 visibility: public 
 published: 2021-09-29-1400
-metaImage: blogimage-loveragineoctostachewithvariablerunconditions-2021-FA.png
-bannerImage: blogimage-loveragineoctostachewithvariablerunconditions-2021-FA.png
+metaImage: loveragineoctostachewithvariablerunconditions-2021.png
+bannerImage: loveragineoctostachewithvariablerunconditions-2021.png
 bannerImageAlt: Octopus tentacle as a mustache. On the left side is a run condition symbol and the right side is a variable.
 isFeatured: false
 tags:
