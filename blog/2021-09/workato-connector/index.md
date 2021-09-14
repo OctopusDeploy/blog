@@ -1,5 +1,5 @@
 ---
-title: Workato connector for Octopus Deploy
+title: Introducing the Workato connector for Octopus Deploy
 description: Learn how the new Workato connector lets you easily integrate other systems with Octopus Deploy.
 author: andreia.virmond@octopus.com
 visibility: public
@@ -12,29 +12,29 @@ tags:
   - Product
 ---
 
-A [Workato connector for Octopus Deploy](https://www.workato.com/integrations/community/octopus-deploy) is now available. Our support for Workato will enable a wide variety of workflow scenarios for Octopus Deploy customers.
+A [Workato connector for Octopus Deploy](https://www.workato.com/integrations/community/octopus-deploy) is now available. Our support for Workato will make a wide variety of workflow scenarios possible for Octopus Deploy customers.
 
-[Workato](https://www.workato.com/) is an enterprise integration Platform-as-a-Service (iPaaS) that helps you to build workflow automation. You construct workflows through a low-code/no-code visual designer, supporting hundreds of different platforms and systems. Built in Ruby, Workato connectors are defined as a JSON configuration and registered through the Workato development environment.
+[Workato](https://www.workato.com/) is an enterprise integration Platform-as-a-Service (iPaaS) that helps you to build workflow automations. You construct workflows through a low-code/no-code visual designer, supporting hundreds of different platforms and systems. Built in Ruby, Workato connectors are defined as a JSON configuration and registered through the Workato development environment.
 
 We know IT teams still play a significant role in [workflow automations](https://www.workato.com/the-connector/work-automation-index/), but product teams and business operations teams are becoming more involved. This requires quick implementations, which can be optimized with Workato's low-code interface.
 
 The Workato connector for Octopus lets you quickly integrate Octopus with your workflows. It supports performing numerous actions with Octopus Deploy, including:
 
 - Creating a release
-- Creating resources such as accounts, channels, deployments, environments, projects
+- Creating resources such as accounts, channels, deployments, environments, and projects
 - Deploying a release
 - Fetching a deployment process
-- Fetching various resources from Octopus Deploy (including deployment targets, feeds, runbooks, teams, tenants)
+- Fetching various resources from Octopus Deploy (including deployment targets, feeds, runbooks, teams, and tenants)
 - Running a runbook
 - Creating recipes that respond to events in Octopus through a trigger
 
 Additional actions can also be added to the connector if you need them.
 
-## Getting Started
+## Getting started
 
 Creating workflows in Workato with the Octopus Deploy connector is simple:
 
-- Search for `Octopus` in the **Custom connectors** section of the **Community library**. Navigating to the connector will provide its description along with its source code.
+- Search for `Octopus` in the **Custom connectors** section of the Workato **Community library**. Navigating to the connector will provide its description along with its source code.
 - To use the connector, click the **Install connector** button.
 
 ![](octopus-deploy-in-community-library.png)
@@ -53,13 +53,13 @@ After you click **Connect** you can start creating workflows in Workato.
 
 Workato is a flexible and powerful integration platform and you can build endless workflows to suit your team's needs. The following are two examples of what's possible, and we're keen to see this used in real world environments.
 
-### Example: Notify Slack channel when events raised from Octopus Deploy
+### Example: Notify a Slack channel when events occur in Octopus Deploy
 
 A workflow used frequently by customers is to notify a Slack channel when a particular event occurs in Octopus Deploy:
 
 ![](octopus-deploy-and-slack.png)
 
-This is achieved through the new subscription event trigger that responds to real-time events raised by Octopus Deploy. When this occurs, a Slack channel is notified with details of the event (e.g. new deployment created).
+This is achieved through the new subscription event trigger that responds to real-time events raised by Octopus Deploy. When this occurs, a Slack channel is notified with details of the event (for example, new deployment created).
 
 ### Example:Approval in ServiceNow; Build with Jenkins; Deploy with Octopus Deploy
 
@@ -67,7 +67,7 @@ This scenario provides a more elaborate example of the kinds of workflows you ca
 
 ![](approval-workflow.png)
 
-In this workflow, real-time approval events from an instance of ServiceNow trigger a series of actions to commence. Specifically, a build in Jenkins starts, followed by the creation of a release in Octopus Deploy. Conditions may be checked, and used to drive decisions as part of the workflow. These are similar to control flow statements like `if`-`then`-`else` statements in programming languages like C#.
+In this workflow, real-time approval events from an instance of ServiceNow trigger a series of actions to commence. Specifically, a build in Jenkins starts, followed by the creation of a release in Octopus Deploy. Conditions may be checked and used to drive decisions as part of the workflow. These are similar to control flow statements like `if`-`then`-`else` statements in programming languages.
 
 ## Conclusion
 
