@@ -18,7 +18,7 @@ A [Workato connector for Octopus Deploy](https://www.workato.com/integrations/co
 
 We know IT teams still play a significant role in [workflow automations](https://www.workato.com/the-connector/work-automation-index/), but product teams and business operations teams are becoming more involved. This requires quick implementations, which can be optimized with Workato's low-code interface. 
 
-The Workato connector for Octopus Deploy lets you to quickly integrate Octopus Deploy with your workflows. It supports performing numerous actions with Octopus Deploy, including:
+The Workato connector for Octopus Deploy lets you quickly integrate Octopus Deploy with your workflows. It supports performing numerous actions with Octopus Deploy, including:
 
 - Creating a release
 - Creating resources such as accounts, channels, deployments, environments, projects
