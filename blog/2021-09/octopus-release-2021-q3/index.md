@@ -160,7 +160,7 @@ Octopus Cloud users are already running this release, and self-hosted Octopus cu
 
 <span><a class="btn btn-success" href="https://octopus.com/downloads/2021.2.0">Download the latest version</a></span>
 
-We encourage you to review the [steps for upgrading Octopus Server](https://octopus.com/docs/administration/upgrading). Please see the [release notes](https://octopus.com/downloads/compare?to=2021.2.0) for further information.
+We encourage you to review the [steps for upgrading Octopus Server](https://octopus.com/docs/administration/upgrading). Please see the [release notes](https://octopus.com/downloads/whatsnew/2021.2) for further information.
 
 If you've never used Octopus before, [sign up](https://octopus.com/start) for a free trial or [email our Sales team](mailto:sales@octopus.com) to see a demo and learn more.
 
