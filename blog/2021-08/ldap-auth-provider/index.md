@@ -4,8 +4,8 @@ description: Learn how to configure your Self-Hosted Octopus Deploy instance to 
 author: bob.walker@octopus.com
 visibility: private 
 published: 2999-01-01
-metaImage: 
-bannerImage: 
+metaImage: blogimage-security.png
+bannerImage: blogimage-security.png
 tags:
  - Octopus
 ---
