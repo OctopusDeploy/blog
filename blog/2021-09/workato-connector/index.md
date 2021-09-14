@@ -14,9 +14,9 @@ tags:
 
 A [Workato connector for Octopus Deploy](https://www.workato.com/integrations/community/octopus-deploy) is now available. Our support for Workato will facilitate a wide variety of workflow scenarios for Octopus Deploy customers.
 
-[Workato](https://www.workato.com/) is an enterprise integration Platform-as-a-Service (iPaaS) that enables you to build workflow automation. You construct workflows through a low-code/no-code visual designer, supporting hundreds of different platforms and systems. Built in Ruby, Workato connectors are defined as a JSON configuration and registered through the Workato development environment. 
+[Workato](https://www.workato.com/) is an enterprise integration Platform-as-a-Service (iPaaS) that enables you to build workflow automation. You construct workflows through a low-code/no-code visual designer, supporting hundreds of different platforms and systems. Built in Ruby, Workato connectors are defined as a JSON configuration and registered through the Workato development environment.
 
-We know IT teams still play a significant role in [workflow automations](https://www.workato.com/the-connector/work-automation-index/), but product teams and business operations teams are becoming more involved. This requires quick implementations, which can be optimized with Workato's low-code interface. 
+We know IT teams still play a significant role in [workflow automations](https://www.workato.com/the-connector/work-automation-index/), but product teams and business operations teams are becoming more involved. This requires quick implementations, which can be optimized with Workato's low-code interface.
 
 The Workato connector for Octopus Deploy lets you quickly integrate Octopus with your workflows. It supports performing numerous actions with Octopus Deploy, including:
 
@@ -33,8 +33,8 @@ Additional actions can also be added to the connector if you need them.
 ## Getting Started
 
 Creating workflows in Workato with the Octopus Deploy connector is simple:
- 
-- Search for `Octopus` in the **Custom connectors** section of the **Community library**. Navigating to the connector will provide its description along with its source code. 
+
+- Search for `Octopus` in the **Custom connectors** section of the **Community library**. Navigating to the connector will provide its description along with its source code.
 - To use it, click the **Install connector** button.
 
 ![](octopus-deploy-in-community-library.png)
@@ -45,7 +45,7 @@ After creating an API key, you need to establish a connection between the Octopu
 
 ![](octopus-deploy-connection.png)
 
-The host address is the URL that points to Octopus Deploy. Make sure to include the space you wish to target in the configuration. 
+The host address is the URL that points to Octopus Deploy. Make sure to include the space you wish to target in the configuration.
 
 After you click **Connect** you can start creating workflows in Workato.
 
@@ -61,9 +61,13 @@ A workflow used frequently by customers is to notify a Slack channel when a part
 
 This is accomplished through the new subscription event trigger that responds to real-time events raised by Octopus Deploy. When this occurs, a Slack channel is notified with details of the event (e.g. new deployment created).
 
-### Example: Run Runbook from Octopus Deploy
+### Example:Approval in ServiceNow; Build with Jenkins; Deploy with Octopus Deploy
 
-![](new-project-trigger.png)
+This scenario is provides a more elaborate example of the kinds of workflows you can create with Workato:
+
+![](approval-workflow.png)
+
+In this workflow, real-time approval events from an instance of ServiceNow will trigger a series of actions to commence; specifically, a build in Jenkins will start, followed by the creation of a release in Octopus Deploy. Conditions may be checked and used to drive decisions as part of the workflow. These are similar to control flow statements like `if`-`then`-`else` statements in programming languages like C#.
 
 ## Conclusion
 
