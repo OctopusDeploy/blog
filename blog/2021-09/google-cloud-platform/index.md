@@ -11,7 +11,7 @@ isFeatured: false
 tags:
  - Product
 ---
-
+ 
 In line with our [public roadmap](https://octopus.com/company/roadmap), we introduced built-in support for [Google Cloud Platform (GCP)](https://cloud.google.com/).
 
 With this addition, Octopus now offers built-in support for the three major cloud providers:
