@@ -73,7 +73,7 @@ In this workflow, real-time approval events from an instance of ServiceNow trigg
 
 Workato's automated recipes allow you to construct workflows through a visual designer, providing a low-code tool for system integrations.
 
-As well as triggering a runbook automation in systems such as Slack, Microsoft teams, Jira or others, Workato makes it easy for Octopus and Workato users to publish updates to other systems after development, test or production deployments. These could be simple notifications, or update tickets in third party systems.
+As well as triggering a runbook automation in systems such as Slack, Microsoft Teams, Jira or others, Workato makes it easy for Octopus and Workato users to publish updates to other systems after development, test or production deployments. These could be simple notifications, or update tickets in third party systems.
 
 The power of Workato is its ability to easily integrate other systems with Octopus Deploy.
 
