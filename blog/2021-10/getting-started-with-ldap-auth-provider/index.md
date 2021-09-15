@@ -30,7 +30,7 @@ It's easy to confuse LDAP with a directory server such as Active Directory.  LDA
 
 The default configuration for Active Directory enables LDAP support.  If you have Active Directory running on-premises, you probably already have an LDAP server.
 
-## Why LDAP
+## Why LDAP?
 
 There are three primary use cases that explain why we added LDAP support:
 
@@ -46,14 +46,14 @@ By default, LDAP traffic is not encrypted.  By monitoring network traffic, an ea
 
 Before configuring the LDAP provider in Octopus Deploy, please consult the vendor documentation for your directory server for communicating over SSL or TLS.  
 
-Securing an LDAP server is outside the scope of this blog post, and is unique to each vendor.  The rest of this post assumes you worked with your system administrators on securing your LDAP server.
+Securing an LDAP server is outside the scope of this post, and is unique to each vendor.  The rest of this post assumes you worked with your system administrators on securing your LDAP server.
 
 ## Understanding DNs
 
 In LDAP, a DN (distinguished name), uniquely identifies an entry and the position in a directory information tree, like a path to a file on a file system.
 
 As mentioned, my domain is `devopswalker.local`.  
-Translating that to a DN LDAP can understand is `dc=devopswalker,dc=local`.  
+Translating that to a DN that LDAP can understand is `dc=devopswalker,dc=local`.  
 
 All users and groups where my directory server are stored have a common DN of `cn=users,dc=devopswalker,dc=local`.  
 
@@ -66,7 +66,7 @@ Before configuring LDAP, you need the following:
 - The fully qualified domain name, or FQDN, of the server to query.  In my example it's `DC01.devopswalker.local`.
 - The port number and security protocol to use.  I'm using the standard secure LDAP port 636 for my domain controller and SSL.
 - The username and password of a service account that can perform user and group lookups.  In my example it's `cn=Octopus Service,cn=users,dc=devopswalker,dc=local`.
-- The root DN you wish to use for user and group look up.  In my example, both are `cn=users,dc=devopswalker,dc=local`.
+- The root DN you wish to use for user and group lookup.  In my example, both are `cn=users,dc=devopswalker,dc=local`.
 
 :::hint
 Use a tool such as ldp.exe for Windows or [LDAP Administrator](https://www.ldapadministrator.com/download.htm#browser) to find the highest part on the tree / forest you want to start at.  Starting at the root, for example `dc=devopswalker,dc=local` could lead to performance problems as the LDAP query is forced to traverse hundreds or thousands of records.  The less data to go through, the faster the query will be.  Because of my active directory configuration, all users and groups are stored in `cn=users,dc=devopswalker,dc=local`.  Your server might be different.
@@ -101,7 +101,7 @@ After I configured the LDAP authentication provider, I made the mistake of loggi
 
 For the External User Lookup, go to {{Configuration > Users}} and select a user account.  After the screen loads, expand the LDAP section under logins and click the **Add Login** button.  
 
-If everything is working correctly, you see a modal window similar to this.
+If everything is working correctly, you see a modal window similar to this:
 
 ![successful user lookup](successful-user-lookup.png)
 
@@ -109,7 +109,7 @@ I didn't see that screen at first. Instead, I saw this:
 
 ![failed user lookup](failed-user-lookup.png)
 
-The error, "Unable to connect to the LDAP server.  Please see your administrator if this re-occurs.  Error Code 49 Invalid Credentials", is an LDAP lookup error.  I mistyped the password for the lookup user.  
+The error, "Unable to connect to the LDAP server.  Please see your administrator if this re-occurs.  Error Code 49 Invalid Credentials", is an LDAP lookup error.  I mistyped the password for the Lookup User.  
 
 LDAP also returns a data code for each error code.  To find that information, open your Octopus Server logs.
 
@@ -122,7 +122,7 @@ For errors you can't explain, perform a similar action using an LDAP explorer on
 The External Group Lookup is similar to the External User Lookup.  
 
 - Go to {{Configuration > Teams}} and select a team.  
-- Click the button `Add LDAP Group` and perform a search.  
+- Click the button **Add LDAP Group** and perform a search.  
 
 If configured correctly, you see this message:
 
