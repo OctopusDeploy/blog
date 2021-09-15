@@ -116,7 +116,7 @@ LDAP also returns a data code for each error code.  To find that information, op
 ![data error code](ldap-error-data.png)
 
 :::hint
-For errors you can't explain, perform a similar action using an LDAP explorer on the same server hosting Octopus Deploy.  Take Octopus out of the equation, get everything working via the explorer tool, then configure Octopus Deploy.  If everything works via the explorer and something still isn't working with Octopus Deploy, reach out to [support@octopus.com](mailto:support@octopus.com) for more help.
+For errors you can't explain, perform a similar action using an LDAP explorer on the same server hosting Octopus Deploy.  Take Octopus out of the equation, get everything working via the explorer tool, then configure Octopus Deploy.  If everything works via the explorer and something still isn't working with Octopus Deploy, reach out to [customersuccess@octopus.com](mailto:customersuccess@octopus.com) for more help.
 :::
 
 The External Group Lookup is similar to the External User Lookup.  
@@ -158,6 +158,10 @@ I chose `userPrincipalName` because that is where the fully qualified name, `pro
 
 Unlike the Active Directory authentication provider, the LDAP authentication provider is more flexible, because LDAP is more flexible.  This adaptability does make the LDAP authentication provider more complex though, so it might take some trial and error to dial in your settings. I recommend setting up a test instance to test all your LDAP authentication settings.  
 
-After you dialed in your settings, the LDAP authentication provider offers a number of benefits.  You can use the Octopus Linux Container with Active Directory, or you don't have to use Active Directory at all.  If you are using Active Directory, I found the LDAP provider was easier to use than Active Directory because it is an open standard.  I don't have to worry about picking NTLM or Kerberos, or how the Windows Server hosting Octopus/Active Directory/Domain Controller relationship is managed.  If you have multiple user accounts on your local active directory, each with different permissions in Octopus, logging out and logging in on your computer for testing is no longer an issue.  LDAP solves those problems, along with a host of others.
+After you've dialed in your settings, the LDAP authentication provider offers a number of benefits.  You can use the Octopus Linux Container with Active Directory, or you don't have to use Active Directory at all.  
+
+If you are using Active Directory, I found the LDAP provider was easier to use than Active Directory because it's an open standard.  I don't have to worry about picking NTLM or Kerberos, or how the Windows Server hosting Octopus/Active Directory/Domain Controller relationship is managed.  
+
+If you have multiple user accounts on your local active directory, each with different permissions in Octopus, logging out and logging in on your computer for testing is no longer an issue.  LDAP solves these problems, along with a host of others.
 
 Happy deployments!
