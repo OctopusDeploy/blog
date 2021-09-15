@@ -70,18 +70,11 @@ We've supported Kubernetes deployments for 3 years and added Runbooks in 2020. F
 - Use pre-approved kubectl scripts
 - Automate routine maintenance and respond more quickly to emergencies
 
-### Get started with Kubernetes and Octopus or manage a complex setup
-
 Our Kubernetes automation supports three approaches:
 
 1. A structured UI step that guides you through the configuration without any YAML input
 2. A fully flexible step configured with raw YAML
 3. Helm chart automation steps
-
-All three methods:
-
-- Are compatible with runbooks, environments, and shared variables in Octopus
-- Include robust config file support for repeatable and reliable deployments across multiple environments
 
 Learn more about our [Kubernetes support](https://octopus.com/docs/deployments/kubernetes) in our documentation.
 
