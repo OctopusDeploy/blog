@@ -20,15 +20,15 @@ With this addition, Octopus now offers built-in support for the three major clou
 - [Azure](https://azure.microsoft.com/)
 - [GCP](https://cloud.google.com/)
 
-This meets the evolving needs of our customers, particularly those who have GCP Kubernetes clusters and are running tentacles on GCP virtual machines.
+This meets the evolving needs of our customers, particularly those who have GCP Kubernetes clusters and are running Tentacles on GCP virtual machines.
 
 Built-in integration of Octopus with GCP allows you to:
 
-- Connect and authenticate with GCP via a dedicated account type. This allows you to centralize and secure your GCP authentication and use it in your deployments and runbooks.
-- Use [gcloud](https://cloud.google.com/sdk/gcloud), the GCP command-line tool, in custom scripts out-of-the-box.
-- Create and tear down GCP infrastructure with [Terraform](https://www.terraform.io/).
-- Access Docker images hosted with [Google Container Registry (GCR)](https://cloud.google.com/container-registry).
-- Deploy, scale and manage containerized applications on GCP with Octopus and Kubernetes.
+- Connect and authenticate with GCP via a dedicated account type. This allows you to centralize and secure your GCP authentication and use it in your deployments and runbooks
+- Use [gcloud](https://cloud.google.com/sdk/gcloud), the GCP command-line tool, in custom scripts out-of-the-box
+- Create and tear down GCP infrastructure with [Terraform](https://www.terraform.io/)
+- Access Docker images hosted with [Google Container Registry (GCR)](https://cloud.google.com/container-registry)
+- Deploy, scale and manage containerized applications on GCP with Octopus and Kubernetes
 
 GCP integration is available in Octopus Deploy 2021.2 and newer. Octopus Cloud customers are already running this version, and on-premises customers can [download it now](https://octopus.com/downloads).
 
@@ -46,7 +46,7 @@ Octopus manages the GCP credentials used by the Google Cloud steps. This means y
 
 Google Cloud accounts are secured by the JSON credentials key file, which can be retrieved from the service account assigned to the instance that is executing the deployment.
 
-Learn more about [creating a Google Cloud account](https://octopus.com/docs/infrastructure/accounts/google-cloud) and see the [Google Cloud documentation](https://cloud.google.com/iam/docs/creating-managing-service-account-keys) for instructions to create a service account and download the key file.
+Learn more about [creating a Google Cloud account](https://octopus.com/docs/infrastructure/accounts/google-cloud) and see the [Google Cloud documentation](https://cloud.google.com/iam/docs/creating-managing-service-account-keys) for instructions on creating a service account and downloading the key file.
 
 ### Google Cloud account variable
 
@@ -58,7 +58,7 @@ Learn more about setting up [Google Cloud account variables](https://octopus.com
 
 #### Running gcloud scripts
 
-Octopus Deploy helps you run scripts on targets with the Google Cloud Platform. In this example, we create a new Kubernetes Cluster.
+Octopus Deploy helps you run scripts on targets with the Google Cloud Platform. In this example, we create a new Kubernetes cluster.
 
 These scripts typically rely on tools being available on the target Workers, however there are a few options to get started quickly: 
 
