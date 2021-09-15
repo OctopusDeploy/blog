@@ -101,7 +101,7 @@ Here are some ideas to get you started:
   - Push notifications to Slack
   - Automatically update tickets in other systems such as Jira, Zendesk, and ServiceNow
 
-Learn how to get started in our post [Announcing the Workato connector for Octopus Deploy](https://octopus.com/blog/introducing-workato-connector).
+Learn how to get started in our post [Introducing the Workato connector for Octopus Deploy](https://octopus.com/blog/introducing-workato-connector).
 
 ## LDAP provider
 
