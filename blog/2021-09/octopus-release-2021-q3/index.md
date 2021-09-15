@@ -63,14 +63,14 @@ Octopus Deploy makes it easy to manage your Kubernetes resources, whether you're
 
 We've supported Kubernetes deployments for 3 years and added Runbooks in 2020. Fully-featured support for GCP in 2021.2 delivers the ultimate Kubernetes experience for engineers and operations professionals.
 
-![Three screenshots from Octopus, showing the Google Cloud account configuration, Kubernetes deployment process, and a successful deployment to production.](image-octopus-gcp-kubernetes-2021-q3.png "width=500")
-
 - Centralize your Kubernetes clusters and resources in a single place so you can focus on your applications and customers
 - Use built-in service accounts for simple and secure authentication
 - Streamline your deployments and runbooks with shared variables
 - Implement deployment patterns like blue/green, canary, and rolling deployments
 - Use pre-approved kubectl scripts
 - Automate routine maintenance and respond more quickly to emergencies
+
+![Three screenshots from Octopus, showing the Google Cloud account configuration, Kubernetes deployment process, and a successful deployment to production.](image-octopus-gcp-kubernetes-2021-q3.png "width=500")
 
 Our Kubernetes automation supports three approaches:
 
