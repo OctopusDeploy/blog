@@ -2,8 +2,8 @@
 title: "Octopus 2021 Q3: Google Cloud support with centralized Kubernetes deployments and runbooks"
 description: "Octopus 2021 Q3: Built-in support for Google Cloud Platform, Workato, LDAP, and new Octostache filters."
 author: kathryn.marks@octopus.com
-visibility: private
-published: 9999-09-15-1400
+visibility: public
+published: 2021-09-15-1400
 metaImage: octopus-release-2021-q3-summary-card.png
 bannerImage: release-octopus-2021-q3.png
 bannerImageAlt: A box labelled 2021 Q3 sits on a conveyor belt against a backdrop of party favors and fireworks.
