@@ -192,6 +192,6 @@ Our pre-existing combination of the new variable filters combined with output va
 
 When you combine Octostache, output variables, and run conditions, you get a robust deployment process.  The addition of the `Contains` and `Match` filters in Octostache has made the combination even more powerful.  Instead of index matching or looping, you can use easier to maintain `Contains` comparisons.
 
-If you have questions on how to combine Octostache, output variables, and run conditions in your deployment process, reach out to the Customer Sucess team at [customersuccess@octopus.com](mailto:customersuccess@octopus.com).  We'd love to help.
+If you have questions on how to combine Octostache, output variables, and run conditions in your deployment process, reach out to the Customer Success team at [customersuccess@octopus.com](mailto:customersuccess@octopus.com).  We'd love to help.
 
 Happy deployments!
