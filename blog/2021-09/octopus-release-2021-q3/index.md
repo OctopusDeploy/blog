@@ -28,7 +28,7 @@ Other features allow you to:
 - Octopus Server 2021.2 ([release notes](https://octopus.com/downloads/whatsnew/2021.2))
 - Workato connector for Octopus Deploy 5
 - Tentacle 6.1.736
-- Terraform Provider for Octopus Deploy 0.7.56
+- Terraform Provider for Octopus Deploy 0.7.58
 
 ## Long term support
 
