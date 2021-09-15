@@ -1,6 +1,6 @@
 ---
 title: Creating dynamic run conditions with new Octostache filters
-description: Learn how to leverage new filters in Octostache with variable run conditions.
+description: Learn how to use new filters in Octostache with variable run conditions.
 author: bob.walker@octopus.com
 visibility: public 
 published: 2021-09-29-1400
@@ -20,7 +20,7 @@ In this post, I walk you through how to combine variable run conditions with out
 
 ## The scenario
 
-I've been helping a customer leverage Octopus Deploy with [Azure virtual machine scale sets](https://docs.microsoft.com/en-us/azure/virtual-machine-scale-sets/overview).  Virtual machines can be added or removed on a schedule or based on metrics.  An example of a metric-based rule is, if CPU usage is 60% for 10 minutes, then add more virtual machines.  
+I've been helping a customer use Octopus Deploy with [Azure virtual machine scale sets](https://docs.microsoft.com/en-us/azure/virtual-machine-scale-sets/overview).  Virtual machines can be added or removed on a schedule or based on metrics.  An example of a metric-based rule is, if CPU usage is 60% for 10 minutes, then add more virtual machines.  
 
 For our customer's scenario, the items to note are:
 
@@ -28,7 +28,7 @@ For our customer's scenario, the items to note are:
 - In the morning, they add 10+ virtual machines to the scale set
 - They use a standard image, but each application installs and configures additional back-end software (IIS, MSMQ, .NET, etc.)
 
-The customer leverages [deployment target triggers](https://octopus.com/docs/projects/project-triggers/deployment-target-triggers), to trigger a deployment when a new deployment target is added.
+The customer uses [deployment target triggers](https://octopus.com/docs/projects/project-triggers/deployment-target-triggers), to trigger a deployment when a new deployment target is added.
 
 ## The problem to solve
 
@@ -73,8 +73,8 @@ I knew solving this would use the new [Check VMSS Provision Status](https://libr
 
 The simplified deployment process is:
 
-1. **Check VMSS Provision Status** -> only run when a deployment target causes the deployment
-2. **Health Check step** -> only run when a deployment target causes the deployment
+1. **Check VMSS Provision Status**: only run when a deployment target causes the deployment
+2. **Health Check step**: only run when a deployment target causes the deployment
 3. **Configure Web Server**
 4. Deploy the application
 
