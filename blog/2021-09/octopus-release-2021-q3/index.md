@@ -99,7 +99,7 @@ Here are some ideas to get you started:
   - Push notifications to Slack
   - Automatically update tickets in other systems such as Jira, Zendesk, and ServiceNow
 
-Learn how to get started in our post [Announcing the Workato connector for Octopus Deploy](https://octopus.com/blog).
+Learn how to get started in our post [Announcing the Workato connector for Octopus Deploy](https://octopus.com/blog/introducing-workato-connector).
 
 ## LDAP provider
 
@@ -111,7 +111,7 @@ Our LDAP authentication provider opens up more use cases for Octopus customers:
 - Interact with other directory servers like OpenLDAP
 - Support users with non-Windows clients, including macOS
 
-Learn how to [get started with the LDAP auth provider for Octopus Deploy](https://octopus.com/blog).
+Learn how to [get started with the LDAP auth provider for Octopus Deploy](https://octopus.com/blog/getting-started-with-ldap-auth-provider).
 
 ## New variable substitution filters
 
@@ -121,7 +121,7 @@ In 2021.2, we added the comparison filters `Contains`, `Match`, `EndsWith`, and 
 
 These filters are useful for specifying the condition in an `#{if}` block. They return `true` or `false` depending on the result of the comparison.
 
-Learn more about variable substitution [comparison filters](https://octopus.com/docs/projects/variables/variable-filters#VariableSubstitutionSyntax-ComparisonFilters) in our documentation, or check out our post [Creating dynamic run conditions with new Octostache filters](https://octopus.com/blog).
+Learn more about variable substitution [comparison filters](https://octopus.com/docs/projects/variables/variable-filters#VariableSubstitutionSyntax-ComparisonFilters) in our documentation, or check out our post [Creating dynamic run conditions with new Octostache filters](https://octopus.com/blog/variable-run-conditions-with-octostache).
 
 ## Breaking changes
 
