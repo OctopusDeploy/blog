@@ -1,9 +1,9 @@
 ---
-title: "Multi-cloud Kubernetes with Octopus Deploy"
+title: Multi-cloud Kubernetes with Octopus Deploy
 description: Learn how Octopus Deploy works with Kubernetes on cloud platforms.
 author: shawn.sesna@octopus.com
-visibility: private
-published: 2021-09-01-1400
+visibility: public
+published: 2021-10-04-1400
 bannerImage: 
 metaImage: 
 bannerImageAlt: 
@@ -13,32 +13,48 @@ tags:
 - Kubernetes
 ---
 
-Containerizing applications on cloud platforms is a hot topic.  The big three cloud providers (Azure, Amazon Web Services (AWS), and Google Cloud Platform (GCP)) have all implemented Kubernetes (K8s) platform services; Azure Kubernetes Service (AKS), Elastic Kubernetes Service (EKS), and Google Kubernetes Engine (GKE).  In this post, I'll demonstrate how easy it is to move from K8s cloud platform to another using Octopus Deploy.
+Containerizing applications on cloud platforms is a hot topic.  The big three cloud providers (Azure, Amazon Web Services (AWS), and Google Cloud Platform (GCP)) have all implemented Kubernetes (K8s) platform services:
+
+- Azure Kubernetes Service (AKS)
+- Elastic Kubernetes Service (EKS)
+- Google Kubernetes Engine (GKE)
+
+In this post, I demonstrate how easy it is to move from one K8s cloud platform to another using Octopus Deploy.
 
 ## Creating clusters
-Before diving into deployments, create a cluster in each of the cloud providers previously mentioned.  Each provider has a command-line interface (CLI) available for you to use.  We'll utilize the [Runbooks](https://octopus.com/docs/runbooks) feature of Octopus Deploy to create the clusters.  In addition, we'll be using the [Execution Containers for Workers](https://octopus.com/docs/projects/steps/execution-containers-for-workers) feature as the [worker tools](https://hub.docker.com/r/octopusdeploy/worker-tools) image contains the CLI for all three platforms as well as kubectl.
+Before diving into deployments, create a cluster in each of the cloud providers mentioned above.  Each provider has a command-line interface (CLI) available for you to use.  
 
-(The following screenshot is using Octopus Cloud, self-hosted instances of Octopus will need to create a worker with Docker installed to use this feature.)
+We'll utilize the [Runbooks](https://octopus.com/docs/runbooks) feature of Octopus Deploy to create the clusters.  In addition, we'll use the [Execution Containers for Workers](https://octopus.com/docs/projects/steps/execution-containers-for-workers) feature as the [Worker tools](https://hub.docker.com/r/octopusdeploy/worker-tools) image contains the CLI for all three platforms as well as kubectl.
+
+(The following screenshot is using Octopus Cloud. Self-hosted instances of Octopus will need to create a Worker with Docker installed to use this feature.)
 ![](octopus-step-use-worker-tools.png)
 
 :::hint
-You will need to configure an External Feed to a Docker Registry such as Docker Hub to use the Execution Containers feature
+You need to configure an External Feed to a Docker Registry such as Docker Hub to use the Execution Containers feature.
 :::
 
 ### Azure
-To work with AKS, you'll first need to [create an Azure Service Principal](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal).  This post assumes you are framiliar with how to create an Azure Service Principal, so this topic will not be covered.  Once the Service Principal has been created, it needs to be added as an Azure Account within Octopus Deploy.  You will need the following pieces of information to add it to Octopus:
+To work with AKS, you first need to [create an Azure Service Principal](https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal).  
+
+This post assumes you're familiar with creating an Azure Service Principal, so won't be covered.  
+
+After the Service Principal is created, it needs to be added as an Azure Account within Octopus Deploy.  
+
+You need the following pieces of information to add it to Octopus:
+
 - Subscription ID
 - Directory (tenant) ID
 - Application (client) ID
 - Application Key/Password (client secret for an App Registration)
 
-Microsoft has developed the [az CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) that can be used to interface with all of your Azure resources.  Using the CLI, we're able to create a K8s cluster and add it to Octopus Deploy in 3 steps:
-- Create Resource group
-- Create K8s cluster
-- Add cluster as deployment target
+Microsoft developed the [az CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) that can be used to interface with all of your Azure resources.  Using the CLI, we can create a K8s cluster and add it to Octopus Deploy in 3 steps:
+
+1. Create Resource group
+1. Create K8s cluster
+1. Add cluster as deployment target
 
 #### Create Resource group
-The first two steps in your process will use the `Run an Azure Script` step template.  Add a step to your runbook, choose the Azure category, and select the `Run an Azure Script` step
+The first two steps in your process will use the **Run an Azure Script** step template.  Add a step to your runbook, choose the Azure category, and select the `Run an Azure Script` step
 
 ![](octopus-add-azure-script.png)
 
