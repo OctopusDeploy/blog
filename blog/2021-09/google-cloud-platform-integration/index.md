@@ -115,7 +115,7 @@ gcloud container \
 
 ## Conclusion
 
-We hope you enjoy deploying infrastructure to GCP. 
+We hope you enjoy deploying infrastructure to Google Cloud Platform. 
 
 Try it and let us know what you think. If you have any questions or comments, we’d love to hear them. Please use the comments section below or join the conversation in the [Octopus community Slack](https://octopus.com/slack).
 
