@@ -41,9 +41,9 @@ The following table shows the Octopus Server releases with long term support.
 | Octopus 2020.6        | Yes (until 30 September 2021)  |
 | Octopus 2020.5        | Expired                        |
 
-<!--- ## Release Tour -->
+## Release Tour
 
-<!--- <iframe width="560" height="315" src="TODO" frameborder="0" allowfullscreen></iframe> -->
+<iframe width="560" height="315" src="https://youtu.be/j3jTawfQuJo" frameborder="0" allowfullscreen></iframe>
 
 ## Google Cloud Platform
 
