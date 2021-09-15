@@ -55,7 +55,7 @@ Dedicated integration with Google Cloud Platform (GCP) means you can:
 - Store and secure your Docker images in the Google Container Registry (GCR)
 - Deploy, scale, and manage containerized applications on GCP with Octopus and Kubernetes 
 
-Learn how to get started in our post [Octopus Deploy integration for Google Cloud Platform](https://octopus.com/blog).
+Learn how to get started in our post [Octopus Deploy integration for Google Cloud Platform](https://octopus.com/blog/google-cloud-platform-integration).
 
 ## Kubernetes deployments and runbooks on Google Cloud
 
