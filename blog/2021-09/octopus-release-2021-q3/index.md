@@ -141,7 +141,7 @@ Octopus Cloud users are already running this release, and self-hosted Octopus cu
 
 We encourage you to review the [steps for upgrading Octopus Server](https://octopus.com/docs/administration/upgrading). Please see the [release notes](https://octopus.com/downloads/whatsnew/2021.2) for further information.
 
-If you've never used Octopus before, [sign up](https://octopus.com/start) for a free trial or [email our Sales team](mailto:sales@octopus.com) to see a demo and learn more.
+If you've never used Octopus before, [sign up](https://octopus.com/start) for a free trial or [email our Customer Success team](mailto:customersuccess@octopus.com) to see a demo and learn more.
 
 ## What's coming in future releases?
 
