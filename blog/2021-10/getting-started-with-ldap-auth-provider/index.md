@@ -1,5 +1,5 @@
 ---
-title: Getting Started with LDAP auth provider
+title: Getting started with LDAP auth provider
 description: Learn how to configure your self-hosted Octopus Deploy instance to work with the new LDAP auth provider.
 author: bob.walker@octopus.com
 visibility: public 
