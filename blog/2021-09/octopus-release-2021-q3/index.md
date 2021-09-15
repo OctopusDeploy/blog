@@ -43,7 +43,7 @@ The following table shows the Octopus Server releases with long term support.
 
 ## Release Tour
 
-<iframe width="560" height="315" src="https://youtu.be/j3jTawfQuJo" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/j3jTawfQuJo" frameborder="0" allowfullscreen></iframe>
 
 ## Google Cloud Platform
 
