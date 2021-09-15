@@ -24,7 +24,7 @@ This meets the evolving needs of our customers, particularly those who have GCP 
 
 Built-in integration of Octopus with GCP allows you to:
 
-- Connect and authenticate with GCP via a dedicated account type. This allows you to centralize and secure your GCP authentication and use it in your deployments and runbooks
+- Connect and authenticate with GCP via a dedicated account type - this allows you to centralize and secure your GCP authentication and use it in your deployments and runbooks
 - Use [gcloud](https://cloud.google.com/sdk/gcloud), the GCP command-line tool, in custom scripts out-of-the-box
 - Create and tear down GCP infrastructure with [Terraform](https://www.terraform.io/)
 - Access Docker images hosted with [Google Container Registry (GCR)](https://cloud.google.com/container-registry)
