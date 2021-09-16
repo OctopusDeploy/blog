@@ -37,7 +37,7 @@ The following table shows the Octopus Server releases with long term support.
 | Release               | Long term support              |
 | --------------------- | ---------------------------    |
 | Octopus 2021.2        | Yes                            |
-| Octopus 2020.1        | Yes                            |
+| Octopus 2021.1        | Yes                            |
 | Octopus 2020.6        | Yes (until 30 September 2021)  |
 | Octopus 2020.5        | Expired                        |
 
