@@ -146,7 +146,7 @@ A multi-region pattern is when you deploy a release to more than one worldwide t
 There are 3 ways to set up multi-region deployments in Octopus:
 
 - [environments and lifecycles](#environments-and-lifecycles)
-- [cloud regions with a rolling pattern](#cloud-regions-and-variables-with-a-rolling-patterns)
+- [cloud regions with a rolling pattern](#cloud-regions-and-variables-with-a-rolling-pattern)
 - [tenants](#tenants)
 
 #### Environments and lifecycles
@@ -244,7 +244,7 @@ You should also use variable templates to prompt you for needed variables for ea
    - Help text – describe the action needed
    - Control type – what type of option the variable will prompt for 
    - Default value (optional)
-There may be other options depending on what you select for the control type.
+   There may be other options depending on what you select for the control type.
 1. Click **SAVE** when back on the **Variable Sets** screen.
 
 Now you must connect the variable to your project:
