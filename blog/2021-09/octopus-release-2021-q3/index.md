@@ -109,7 +109,7 @@ Octopus 2021.2 includes support for the Lightweight Directory Access Protocol (L
 
 Our LDAP authentication provider opens up more use cases for Octopus customers:
 
-- Authenticate to Microsoft's Active Directory when self-hosting Octopus in a Linux container
+- Authenticate to Microsoft's Active Directory when self-hosting Octopus on Windows or in a Linux container
 - Interact with other directory servers like OpenLDAP
 - Support users with non-Windows clients, including macOS
 
