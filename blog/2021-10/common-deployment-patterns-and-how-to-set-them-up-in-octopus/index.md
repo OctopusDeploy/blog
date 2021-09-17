@@ -54,7 +54,7 @@ A blue-green pattern uses 2 production environments that swap roles between ‘l
 
 For example, if the live version of an application is on your blue server, you use the green server for staging and testing before redirecting traffic to it. After cutover, the blue server then acts as the new staging area.
 
-The blue-green pattern has the easiest rollback solution on this list - just redirect your traffic back to the original server. Blue-green can be costly and complex though, given the need to clone your production environment.
+The blue-green pattern has the easiest rollback solution on this list - just redirect your traffic back to the original server. Blue-green can be costly and complex though, given the need to clone your entire production environment.
 
 ### Set up a blue-green pattern in Octopus
 
@@ -72,7 +72,7 @@ We also recommend creating a new [lifecycle](https://octopus.com/docs/releases/l
 1. Click **ADD LIFECYCLE** from the top right.
 1. Enter a name and description for your new lifecycle, then click **ADD PHASE**.
 1. If adding your full development pipeline (recommended): 
-   - Enter the name of your earliest phase here (‘Development’, for example).
+   - Enter the name of your earliest phase (‘Development’, for example).
    - Click the **ADD ENVIRONMENT** button and select the related environment from the dropdown. Decide if you want to deploy automatically and click **OK**.
    - Click **ADD PHASE** to add another and repeat these steps.
 1. When adding the phase for Production, add both your blue and green environments.
@@ -137,7 +137,7 @@ Complete the other options as needed and click **SAVE**.
 
 ## Multi-region Deployments
 
-A multi-region pattern is when you deploy a release to more than one worldwide target, such as overseas servers or data centers. While we consider it a deployment pattern itself, it’s an outlier as it uses other patterns as part of the process.
+A multi-region pattern is when you deploy a release to multiple overseas targets, such as servers or data centers. While we consider it a deployment pattern itself, it’s an outlier as it uses other patterns as part of the process.
 
 ### Set up a multi-region deployment pattern in Octopus
 
@@ -173,13 +173,13 @@ To create a suitable lifecycle:
    - deploy to one environment, then the others when you’re ready.
 1. Click **SAVE** when happy with your lifecycle.
 
+![Examples of multi-region setups with Octopus lifecycles](multiregionlifecycles.png)
+
 To assign the lifecycle:
 
 1. Click **PROJECTS** in the top menu, select your project from the list, then click **Process** from the left.
 1. Click **CHANGE** on the right, under the **Lifecycle** heading.
 1. Select your lifecycle from the dropdown and click **SAVE**.
-
-![Examples of multi-region setups with Octopus lifecycles](multiregionlifecycles.png)
 
 You can also use scheduled deployments to deploy during low-usage timeframes:
 
@@ -193,7 +193,7 @@ You can also use scheduled deployments to deploy during low-usage timeframes:
 
 #### Cloud regions and variables with a rolling pattern
 
-Cloud regions are perfect if you don’t care what order you deploy to your regions.
+Cloud regions are perfect if you don’t care about the order you deploy to your regions.
 
 To set up your cloud regions:
 
@@ -204,6 +204,7 @@ To set up your cloud regions:
    - Display name
    - Environments
    - Target Roles
+   
 Repeat for all your cloud regions.
 
 To use the cloud regions, you must use region-specific variables. To set these:
@@ -213,7 +214,7 @@ To use the cloud regions, you must use region-specific variables. To set these:
    - Name – you only need this for the first variable
    - Value – enter the value that defines your variable
    - Scope – click the field and select your cloud region with the **Select targets** option.
-Click **ADD ANOTHER VALUE** to add more, creating a value for each cloud region.
+1. Click **ADD ANOTHER VALUE** to add more, creating a value for each cloud region.
 1. Click **SAVE** when ready.
 
 ![Examples of a cloud region deployment targets](cloudregions.png)
@@ -236,7 +237,7 @@ You should also use variable templates to prompt you for needed variables for ea
 1. Click **Library** in the top menu, select **Variable Sets** from the left. 
 1. Click **ADD VARIABLE SET**, enter a name and description and click **SAVE**.
 1. Click the **VARIABLE TEMPLATES** tab on your new set, then click **ADD TEMPLATE**.
-1. Complete the following fields and click **ADD** (There may be other options depending on what you select for the control type):
+1. Complete the following fields and click **ADD** (there may be other options depending on what you select for the control type):
    - Variable name – enter a name, such as ‘Tenant.Alias’
    - Label – what’s shown when prompting for data
    - Help text – describe the action needed
@@ -255,7 +256,9 @@ Now your tenants will alert you if they’re missing information. To set the val
 1. Click **Tenants** in the top menu, select your tenant from the list, then click **Variables** from the left.
 1. Click the **COMMON VARIABLES** tab, complete the information needed and click **SAVE**.
 
-![A project using tenants in Octopus for a multi-region deployment](tenantlogs.png)
+Now you can see how many tenants a project has deployed to on the Octopus dashboard.
+
+![A project using tenants in Octopus for a multi-region deployment](tenantdashboard.png)
 
 ## More reading
 
