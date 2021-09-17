@@ -43,9 +43,7 @@ If you need to run a series of steps on a target before deploying to another, us
 
 ![The 'Add child step' option in an Octopus deployment process](rollingdeploy2.png)
 
-Read our [rolling deployments documentation](https://octopus.com/docs/deployments/patterns/rolling-deployments) for more information, including using guided failures and variable run conditions.
-
-For more reading on blue-green deployments, take a look at more of our blog posts:
+Read our [rolling deployments documentation](https://octopus.com/docs/deployments/patterns/rolling-deployments) for more information, including how to use guided failures and variable run conditions. And for more reading on blue-green deployments, take a look at some of our other blog posts:
 
 - [The ultimate guide to rolling deployments](https://octopus.com/blog/ultimate-guide-to-rolling-deployments)
 - [Convert an existing application to use rolling deployments](https://octopus.com/blog/convert-to-rolling-deployments)
@@ -92,7 +90,7 @@ When readying a new release for staging, check your Octopus dashboard and deploy
 
 ![A blue-green setup on the Octopus dashboard](bluegreendash.png)
 
-For more reading on blue-green deployments, take a look at more of our blog posts:
+For more reading on blue-green deployments, take a look at some of our other blog posts:
 
 - [What is the difference between blue-green and red-black deployments?](https://octopus.com/blog/blue-green-red-black)
 - [Automated blue-green database deployments](https://octopus.com/blog/databases-with-blue-green-deployments)
@@ -238,13 +236,12 @@ You should also use variable templates to prompt you for needed variables for ea
 1. Click **Library** in the top menu, select **Variable Sets** from the left. 
 1. Click **ADD VARIABLE SET**, enter a name and description and click **SAVE**.
 1. Click the **VARIABLE TEMPLATES** tab on your new set, then click **ADD TEMPLATE**.
-1. Complete the following fields and click **ADD**:
+1. Complete the following fields and click **ADD** (There may be other options depending on what you select for the control type):
    - Variable name – enter a name, such as ‘Tenant.Alias’
    - Label – what’s shown when prompting for data
    - Help text – describe the action needed
    - Control type – what type of option the variable will prompt for 
    - Default value (optional)
-   There may be other options depending on what you select for the control type.
 1. Click **SAVE** when back on the **Variable Sets** screen.
 
 Now you must connect the variable to your project:
@@ -259,3 +256,7 @@ Now your tenants will alert you if they’re missing information. To set the val
 1. Click the **COMMON VARIABLES** tab, complete the information needed and click **SAVE**.
 
 ![A project using tenants in Octopus for a multi-region deployment](tenantlogs.png)
+
+## More reading
+
+See our [patterns and practices documentation](https://octopus.com/docs/deployments/patterns) for more information about deployment patterns.
