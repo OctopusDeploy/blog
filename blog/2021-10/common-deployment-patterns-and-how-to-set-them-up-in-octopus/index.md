@@ -1,6 +1,6 @@
 ---
 title: Common deployment patterns and how to use them in Octopus
-description: A brief summary of the post, 170 characters max including spaces.
+description: Deployment patterns are important to any development pipeline. This blog looks at some common deployment patterns and explains how to set them up in Octopus.
 author: Andy Corrigan
 visibility: private
 published: 3020-01-01
@@ -9,7 +9,8 @@ bannerImage:
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags:
-  - tag
+  - DevOps
+  - Deployment Patterns
 ---
 
 A deployment pattern is important to any development pipeline, helping to reduce downtime and other problems for your teams and customers. There are many approaches to deployment patterns, though, and one might suit your needs more than others.
@@ -18,7 +19,7 @@ In this blog we look at some of the most common deployment patterns and explain 
 
 ## Rolling deployments
 
-A rolling pattern delivers releases to one target (or batch of targets) at a time.
+A rolling pattern delivers releases to one target (or batch of targets) at a time to reduce the load across your production environment.
 
 As one of the simpler options, rolling deployments can be slow but are reliable, low risk and easy to roll back.
 
@@ -262,4 +263,4 @@ Now you can see how many tenants a project has deployed to on the Octopus dashbo
 
 ## More reading
 
-See our [patterns and practices documentation](https://octopus.com/docs/deployments/patterns) for more information about deployment patterns.
+See our [patterns and practices documentation](https://octopus.com/docs/deployments/patterns) for more information deployment patterns and Octopus.
