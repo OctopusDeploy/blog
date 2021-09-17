@@ -33,12 +33,21 @@ Here you can force a rolling pattern when defining your deployment process:
    - a window size of ‘1’ will deploy to 1 machine at a time
    - a window size of ‘3’ will deploy to 3 machines at the same time.
 
+![The 'CONFIGURE A ROLLING DEPLOYMENT' option in an Octopus deployment process](rollingdeploy1.png)
+
 If you need to run a series of steps on a target before deploying to another, use child steps. You also add child steps in the Process Editor:
 
 1. Click the 3 vertical dots next to the intended ‘parent’ step and select **Add child step**.
 1. Complete the child step as you did with the parent (select the step type and complete the fields) and click **SAVE**. Repeat for as many steps as you need.
 
+![The 'Add child step' option in an Octopus deployment process](rollingdeploy2.png)
+
 Read our [rolling deployments documentation](https://octopus.com/docs/deployments/patterns/rolling-deployments) for more information, including using guided failures and variable run conditions.
+
+For more reading on blue-green deployments, take a look at more of our blog posts:
+
+- [The ultimate guide to rolling deployments](https://octopus.com/blog/ultimate-guide-to-rolling-deployments)
+- [Convert an existing application to use rolling deployments](https://octopus.com/blog/convert-to-rolling-deployments)
 
 ## Blue-green deployments
 
@@ -70,6 +79,8 @@ We also recommend creating a new [lifecycle](https://octopus.com/docs/releases/l
 1. When adding the phase for Production, add both your blue and green environments.
 1. Click **SAVE** when happy with your lifecycle.
 
+![An example of a blue-green lifecycle in Octopus, with both production environments in the same phase](bluegreenlifecycle.png)
+
 To assign a lifecycle:
 
 1. Click **PROJECTS** in the top menu, select your project from the list, then click **Process** from the left.
@@ -77,6 +88,13 @@ To assign a lifecycle:
 1. Select your lifecycle from the dropdown and click **SAVE**.
 
 When readying a new release for staging, check your Octopus dashboard and deploy to the environment not acting as your live service.
+
+![A blue-green setup on the Octopus dashboard](bluegreendash.png)
+
+For more reading on blue-green deployments, take a look at more of our blog posts:
+
+- [What is the difference between blue-green and red-black deployments?](https://octopus.com/blog/blue-green-red-black)
+- [Automated blue-green database deployments](https://octopus.com/blog/databases-with-blue-green-deployments)
 
 ## Canary deployments
 
@@ -119,6 +137,13 @@ Complete the other options as needed and click **SAVE**.
 
 1. Click **ADD STEP** and recreate the first step, but this time deploy to the target roles for the rest of your production targets.
 
+![An example of a canary deployment in an Octopus deployment process](canaryprocess.png)
+
+For more reading on blue-green deployments, take a look at more of our blog posts:
+
+- [What is the difference between blue-green and red-black deployments?](https://octopus.com/blog/kubernetes-canary-deployments)
+- [Automated blue-green database deployments](https://octopus.com/blog/databases-with-blue-green-deployments)
+
 ## Multi-region Deployments
 
 A multi-region pattern is when you deploy a release to more than one worldwide target, such as overseas servers or data centers. While we consider it a deployment pattern itself, it’s an outlier as it uses other patterns as part of the process.
@@ -127,13 +152,14 @@ A multi-region pattern is when you deploy a release to more than one worldwide t
 
 There are 3 ways to set up multi-region deployments in Octopus:
 
-- environments and lifecycles
-- cloud regions with a rolling pattern
-- tenants.
+- [environments and lifecycles](#environments-and-lifecycles)
+- [cloud regions with a rolling pattern](#cloud-regions-and-variables-with-a-rolling-patterns)
+- [tenants](#tenants)
 
 #### Environments and lifecycles
 
 You can use this solution to force the order of deployments through your regions.
+
 To create an environment:
 
 1. Click **Infrastructure** in the top menu, then select Environments from the left.
@@ -162,6 +188,8 @@ To assign the lifecycle:
 1. Click **CHANGE** on the right, under the **Lifecycle** heading.
 1. Select your lifecycle from the dropdown and click **SAVE**.
 
+![Examples of multi-region setups with Octopus lifecycles](multiregionlifecycles.png)
+
 You can also use scheduled deployments to deploy during low-usage timeframes:
 
 1. Click **Projects** in the top menu, select your project from the list, then click **Releases** from the left.
@@ -169,6 +197,8 @@ You can also use scheduled deployments to deploy during low-usage timeframes:
 1. Click the **DEPLOY TO…* button
 1. Click **When** to expand the menu and select **Later**.
 1. Choose a date and time that best suits the region and click **DEPLOY**.
+
+![Examples of a multi-region deployment using environments](multiregionenv.png)
 
 #### Cloud regions and variables with a rolling patterns
 
@@ -194,6 +224,8 @@ To use the cloud regions, you must use region-specific variables. To set these:
    - Scope – click the field and select your cloud region with the **Select targets** option.
 Click **ADD ANOTHER VALUE** to add more, creating a value for each cloud region.
 1. Click **SAVE** when ready.
+
+![Examples of a cloud region deployment targets](cloudregions.png)
 
 #### tenants
 
@@ -232,3 +264,5 @@ Now your tenants will alert you if they’re missing information. To set the val
 
 1. Click **Tenants** in the top menu, select your tenant from the list, then click **Variables** from the left.
 1. Click the **COMMON VARIABLES** tab, complete the information needed and click **SAVE**.
+
+![A project using tenants in Octopus for a multi-region deployment](tenantlogs.png)
