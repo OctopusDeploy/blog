@@ -30,6 +30,7 @@ Here you can force a rolling pattern when defining your deployment process:
 
 1. Under the **On Targets in Roles** section in the Process Editor, click **CONFIGURE A ROLLING DEPLOYMENT**.
 1. In the **Rolling Deployment** section, set how many machines you’d like to deploy to at a time with the **Window size** field. For example:
+
    - a window size of ‘1’ will deploy to 1 machine at a time
    - a window size of ‘3’ will deploy to 3 machines at the same time.
 
@@ -125,24 +126,16 @@ Now we can create the deployment process:
 1. Click **ADD STEP**, select the type of step and complete the details for the deployment. Select your canary target role in the **On Targets in Roles** section. Click **SAVE** when done.
 1. Click **ADD STEP** again and use the **Choose Step Template** field to search for ‘manual intervention’. Hover your cursor over the **Manual Intervention Required** box and click **ADD**.
 1. Complete the following fields and click **SAVE**:
-
    - Step Name
    - Notes – describe the purpose of the manual step
    - Instructions – enter what needs to happen, such as testing or awaiting user feedback
    - Responsible Teams – select the team responsible for testing or monitoring feedback
    - Block Deployments – select **Prevent other deployments while awaiting intervention**
    - Required – make this a required step
-   
 Complete the other options as needed and click **SAVE**.
-
 1. Click **ADD STEP** and recreate the first step, but this time deploy to the target roles for the rest of your production targets.
 
 ![An example of a canary deployment in an Octopus deployment process](canaryprocess.png)
-
-For more reading on blue-green deployments, take a look at more of our blog posts:
-
-- [What is the difference between blue-green and red-black deployments?](https://octopus.com/blog/kubernetes-canary-deployments)
-- [Automated blue-green database deployments](https://octopus.com/blog/databases-with-blue-green-deployments)
 
 ## Multi-region Deployments
 
@@ -194,13 +187,13 @@ You can also use scheduled deployments to deploy during low-usage timeframes:
 
 1. Click **Projects** in the top menu, select your project from the list, then click **Releases** from the left.
 1. Click **CREATE RELEASE**.
-1. Click the **DEPLOY TO…* button
+1. Click the **DEPLOY TO...** button
 1. Click **When** to expand the menu and select **Later**.
 1. Choose a date and time that best suits the region and click **DEPLOY**.
 
 ![Examples of a multi-region deployment using environments](multiregionenv.png)
 
-#### Cloud regions and variables with a rolling patterns
+#### Cloud regions and variables with a rolling pattern
 
 Cloud regions are perfect if you don’t care what order you deploy to your regions.
 
@@ -227,7 +220,7 @@ Click **ADD ANOTHER VALUE** to add more, creating a value for each cloud region.
 
 ![Examples of a cloud region deployment targets](cloudregions.png)
 
-#### tenants
+#### Tenants
 
 Though we developed Tenants for those providing Software as a Service (SaaS), you can also use it to manage multi-region deployments. This is a great option for those who want more control and clarity on the Octopus dashboard.
 
