@@ -4,6 +4,6 @@
 
 **Imagining better systems:**
 - [Part 2: Resilient vs robust IT systems](blog/2021-09/safe-schema-updates-2-resilience-vs-robustness/index.md)
-- Part 3: Continuous Integration is misunderstood 
+- [Part 3: Continuous Integration is misunderstood](blog/2021-09/safe-schema-updates-3-ci-is-misunderstood/index.md) 
 - Part 4: Loose coupling mitigates tech problems 
 - Part 5: Loose coupling mitigates human problems 
