@@ -54,7 +54,7 @@ There will be some who object to the idea of trunk-based development. They may w
 
 Well, this is why Continuous Integration is fundamentally a project management issue, and why those fancy build tools are just one implementation detail, along with many other technical and management practices.
 
-We need to manage our development, testing and deployment efforts in such a manner that the issues above simply disappear. And we need to do this because the benefits of true *Continuous Integration*, dwarf the benefits of mere *Continuous Build*.
+We need to manage our development, testing, and deployment efforts in such a manner that the issues above simply disappear. And we need to do this because the benefits of true *Continuous Integration*, dwarf the benefits of mere *Continuous Build*.
 
 ## Why do we need Continuous *Integration*?
 
@@ -95,7 +95,7 @@ Of course, automated builds and tests are necessary. However, the problems CI pr
 
 In order to solve these problems, we need to think carefully about our software architectures and the way we manage dependencies. We need ways to integrate our code and deploy changes frequently, while reserving the ability to release/reveal those updates to users on a different schedule which is optimized for commercial objectives, rather than pure engineering concerns. We need bureaucratic processes that are based on the frequent delivery of many small changes with short lead times, rather than infrequent big changes with long lead times. We need to ensure that the delta between dev and prod remains small at all times.
 
-That’s a short paragraph with a whole bunch of big ideas. I’m not going to attempt to unpack them all in this post. This is an 8-part series and over the coming posts you can expect to see techniques to deal with many of those challenges. The point of this post is to highlight that continuous builds are only the tip of the Continuous Integration iceberg. And Continuous Integration is important.
+That’s a short paragraph with a whole bunch of big ideas. I’m not going to attempt to unpack them all in this post. Over the coming posts you can expect to see techniques to deal with many of those challenges. The point of this post is to highlight that continuous builds are only the tip of the Continuous Integration iceberg. And Continuous Integration is important.
 
 For now, surmise to say:
 - If you are running automated builds on your feature branch, but you aren’t merging your big feature with the main branch because it’s not ready yet… I’m sorry, that’s not CI.
