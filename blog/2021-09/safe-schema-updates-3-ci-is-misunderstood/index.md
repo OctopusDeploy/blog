@@ -6,7 +6,7 @@ visibility: public
 published: 2021-09-20-1400
 metaImage: blogimage-continuousintegrationismisunderstood_2021.png
 bannerImage: blogimage-continuousintegrationismisunderstood_2021.png
-bannerImageAlt: nine level database server with fire on the top three levels
+bannerImageAlt: Happy team merging small changes in short order vs unhappy disorganized team doing lots of work but not delivering anything
 isFeatured: false
 tags:
  - DevOps
