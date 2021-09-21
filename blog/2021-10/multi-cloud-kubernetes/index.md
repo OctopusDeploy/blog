@@ -24,7 +24,7 @@ In this post, I demonstrate how easy it is to move from one K8s cloud platform t
 ## Creating clusters
 Before diving into deployments, create a cluster in each of the cloud providers mentioned above.  Each provider has a command-line interface (CLI) available for you to use.  
 
-We'll use the [Runbooks](https://octopus.com/docs/runbooks) feature of Octopus Deploy to create the clusters.  In addition, we'll use the [Execution Containers for Workers](https://octopus.com/docs/projects/steps/execution-containers-for-workers) feature as the [Worker tools](https://hub.docker.com/r/octopusdeploy/worker-tools) image contains the CLI for all three platforms as well as kubectl.
+Use the [Runbooks](https://octopus.com/docs/runbooks) feature of Octopus Deploy to create the clusters.  In addition, you need to use the [Execution Containers for Workers](https://octopus.com/docs/projects/steps/execution-containers-for-workers) feature as the [Worker tools](https://hub.docker.com/r/octopusdeploy/worker-tools) image contains the CLI for all three platforms as well as kubectl.
 
 (The following screenshot is using Octopus Cloud. Self-hosted instances of Octopus will need to create a Worker with Docker installed to use this feature.)
 
@@ -48,7 +48,7 @@ You need the following pieces of information to add it to Octopus:
 - Application (client) ID
 - Application key/password (client secret for an App Registration)
 
-Microsoft developed the [az CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) to interface with all of your Azure resources.  Using the CLI, we can create a K8s cluster and add it to Octopus Deploy in 3 steps:
+Microsoft developed the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) to interface with all of your Azure resources.  Using the CLI, you can create a K8s cluster and add it to Octopus Deploy in 3 steps:
 
 1. Create **Resource group**
 1. Create K8s cluster
@@ -73,7 +73,9 @@ if ((az group exists --name $resourceGroupName) -eq $false)
 ```
 
 #### Create K8s cluster
-With a **Resource group** created, you can now create the K8s cluster.  Repeat the steps for Create Resource group to add another **Run an Azure Script** to the runbook process.  Add the following script:
+With a **Resource group** created, you can now create the K8s cluster.  Repeat the steps for Create Resource group to add another **Run an Azure Script** to the runbook process.  
+
+Add the following script:
 
 ```powershell
 # Get the variables
@@ -92,7 +94,7 @@ $azureKubernetesCluster = $azureKubernetesCluster | ConvertFrom-JSON
 $azureKubernetesCluster
 ```
 :::hint
-If you add an Azure account as a variable, you can retrieve the Client ID and Key/Password directly from the variable without entering it again.  For example, if you create the variable with the name `Azure.Account.Name` you can use the following syntax:
+If you add an Azure account as a variable, you can retrieve the Client ID and key/password directly from the variable without entering it again.  For example, if you create the variable with the name `Azure.Account.Name` you can use the following syntax:
 
 ```powershell
 $clientId = $OctopusParameters['Azure.Account.Name.Client']
@@ -126,10 +128,10 @@ To create the AWS account in Octopus, you need the following:
 - Access key
 - Secret key
 
-Amazon developed the [aws CLI](https://aws.amazon.com/cli/) that can be used to interface with all of your AWS resources.  Using the CLI, you can create a K8s cluster and add it to Octopus Deploy in 2 steps:
+Amazon developed the [AWS CLI](https://aws.amazon.com/cli/) that can be used to interface with all of your AWS resources.  Using the CLI, you can create a K8s cluster and add it to Octopus Deploy in 2 steps:
 
-- Create EKS cluster
-- Add cluster as deployment target
+1. Create EKS cluster
+1. Add cluster as deployment target
 
 :::hint
 An alternative to creating an AWS account is to use an IAM Role on a VM to perform the creation of the cluster.  Using an IAM Role will be specified in the **Create EKS cluster** step.
@@ -191,15 +193,11 @@ New-OctopusKubernetesTarget -Name "<Display name of target" -clusterName $cluste
 ```
 
 ### GCP
-Like the other two methods, you first need to create a Google Cloud Account in Octopus Deploy.  
+Like the other two methods, you first need to create a Google Cloud account in Octopus Deploy.  
 
 This post assumes you're familiar with how to [create a service account](https://cloud.google.com/iam/docs/creating-managing-service-accounts) in GCP so won't cover that part.  
 
-To create a Google Cloud Account, you need the JSON key file generated when adding a `Key` to a service account.
-
-:::warning
-GCP integration was released in Octopus Deploy 2021.2.  At the time of this writing, 2021.2 has not been released for the self-hosted version of Octopus Deploy.
-:::
+To create a Google Cloud account, you need the JSON key file generated when adding a `Key` to a service account.
 
 Google developed the [gcloud CLI](https://cloud.google.com/sdk) that can interface with all of your GCP resources.  Using the CLI, you can create a K8s cluster and add it to Octopus Deploy in 2 steps:
 
@@ -211,7 +209,7 @@ To create a GKE cluster, you need to add a **Run gcloud in a Script** step to yo
 
 ![](octopus-add-gcloud-script.png)
 
-Similar to AWS, the **Run gcloud in a Script** step can use a VM service account to perform operations as well as impersonating.  For this post, use the Google Account you created previously.  
+Similar to AWS, the **Run gcloud in a Script** step can use a VM service account to perform operations as well as impersonating.  For this post, use the Google account you created previously.  
 
 Fill in the following:
 
@@ -240,7 +238,7 @@ Set-OctopusVariable -name "GKEURL" -value $gkeCluster.Endpoint
 
 #### Add cluster as deployment target
 
-Add a **Run a Script** step to your runbook (see screenshot in Azure section for reference).  At the time of this writing, the `New-OctopusKubernetesTarget` cmdlet has not been updated to work the GCP, so the script to register the target is going to look a bit different.
+Add a **Run a Script** step to your runbook (see screenshot in Azure section for reference).  At the time of writing, the `New-OctopusKubernetesTarget` cmdlet had not been updated to work the GCP, so the script to register the target will look a bit different.
 
 ```powershell
 
@@ -295,9 +293,9 @@ Consider the following scenario: your organization chose to use AWS as its cloud
 - **Deploy petclinic web with load balancer**: this step creates a deployment for the PetClinic web front-end and places a load balancer in front of it.
 - **Deploy Kubernetes ingress resource**: this step creates an NGINX ingress controller in front of the load balancer.
 
-Your organization has just been acquired by another company and you must adhere to their standards, including cloud providers.  The new parent company uses GCP for all of their applications and it's now your job to convert PetClinic from EKS to GKE.
+Your organization has just been acquired by another company and you must adhere to their standards, including cloud providers.  The new parent company uses GCP for all their applications and it's now your job to convert PetClinic from EKS to GKE.
 
-Unlike Azure Web App or AWS Elastic Beanstalk, Octopus Deploy steps for K8s deployments are not provider specific.  The same process will work for any K8s cluster registered as a deployment target.
+Unlike Azure Web App or AWS Elastic Beanstalk, the Octopus Deploy steps for K8s deployments are not provider specific.  The same process will work for any K8s cluster registered as a deployment target.
 
 Most migrations to new platforms start off by deploying to both the old and the new, so you can ensure they both function the same.  Run your GKE runbook to create a K8s cluster in GCP.  After the cluster has been registered with Octopus and is showing as healthy, create a new release or re-deploy an existing release.  
 
