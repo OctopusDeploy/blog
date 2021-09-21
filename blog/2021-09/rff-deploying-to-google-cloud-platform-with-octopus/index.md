@@ -1,5 +1,5 @@
 ---
-title: Introducing Google Cloud Platform support in Octopus
+title: Request for feedback - Deploying to Google Cloud Platform with Octopus
 description: Learn how Octopus supports your deployments to Google Cloud Platform and provide feedback on our GCP features.
 author: matthew.casperson@octopus.com
 visibility: public
@@ -16,6 +16,8 @@ tags:
 Octopus 2021.2 brings a number of features to support teams deploying to the Google Cloud Platform (GCP). With 2021.2, Octopus has core support for the AWS, Azure, and Google Cloud platforms.
 
 This post introduces the new features in Octopus supporting GCP deployments and provides tips on how they can be used in your own deployment processes.
+
+At the end of the post, you also have the opportunity to provide your feedback about how these new features work, or don't work, for you, and to suggest future GCP features.
 
 ## Service account support
 
@@ -94,7 +96,7 @@ With support for GCP service accounts, GCR feeds, GKE authentication options, a 
 
 ## We want your feedback
 
-We would love to hear your feedback! We have a [GitHub issue where you can post a comment](https://github.com/OctopusDeploy/StepsFeedback/issues/7) about how these new features worked, or didn't work, for you, as well as any suggestions for future GCP features. All feedback is welcome, and we'd love to know:
+We would love to hear your feedback! We have a [GitHub issue where you can post a comment](https://github.com/OctopusDeploy/StepsFeedback/issues/7) about how these new features work, or don't work, for you, as well as any suggestions for future GCP features. All feedback is welcome, and we'd love to know:
 
 - What deployments or operations tasks do you perform to GCP today?
 - What are the pain points when deploying to or managing GCP?
