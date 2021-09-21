@@ -61,7 +61,7 @@ Images are then available from the GCR feed:
 
 ![Octopus dashboard open on Library page showing External Feeds Test GCR](gcr-test.png "width=500")
 
-## Gcloud script support
+## Support for gcloud script
 
 A new step called **Run gcloud in a Script** is available to run scripts in the context of a GCP account. 
 
