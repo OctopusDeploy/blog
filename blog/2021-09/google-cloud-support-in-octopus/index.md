@@ -1,6 +1,6 @@
 ---
-title: Introducing Google Cloud support in Octopus
-description: Learn how Octopus supports your deployments to Google Cloud and provide feedback on our GCP features.
+title: Introducing Google Cloud Platform support in Octopus
+description: Learn how Octopus supports your deployments to Google Cloud Platform and provide feedback on our GCP features.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2021-09-28-1400
@@ -10,11 +10,12 @@ bannerImageAlt: Octopus and Google Cloud logo on a laptop surrounded by logos of
 isFeatured: false
 tags:
  - Product
+ - Google Cloud Platform
 ---
 
-Octopus 2021.2 brings a number of features to support teams deploying to the Google Cloud Platform (GCP). With 2021.2, Octopus has core support for the AWS, Azure, and Google cloud platforms.
+Octopus 2021.2 brings a number of features to support teams deploying to the Google Cloud Platform (GCP). With 2021.2, Octopus has core support for the AWS, Azure, and Google Cloud platforms.
 
-This post introduces the new features in Octopus supporting GCP deployments and provides some tips on how they can be used in your own deployment processes.
+This post introduces the new features in Octopus supporting GCP deployments and provides tips on how they can be used in your own deployment processes.
 
 ## Service account support
 
@@ -34,7 +35,7 @@ This VM has a Worker Tentacle installed on it and linked to the **GCP** Worker P
 
 ![Octopus dashboard open on Infrastructure tab and Worker Pools page showing GCP Worker Pool](worker.png "width=500")
 
-We can then use the service account associated with the VM. Here is an example of a Kubernetes target configured to inherit the credentials of the Worker it is run on:
+We can then use the service account associated with the VM. Here's an example of a Kubernetes target configured to inherit the credentials of the Worker it's run on:
 
 ![Octopus dashboard open on Infrastructure tab and Settings page showing Authentication for Google Cloud Account](assume-service-account.png "width=500")
 
@@ -48,7 +49,7 @@ Operations like health checks and deployments are performed with the credentials
 
 ## Google Container Registry support
 
-Google Container Registry (GCR) support has been included in the existing Docker feed type. Define the feed URL as one of the [regional GCR URLs](https://cloud.google.com/container-registry/docs/pushing-and-pulling#add-registry) and supply a service account JSON key for authentication:
+Google Container Registry (GCR) support has been included in the existing Docker feed type. Define the feed URL as one of the [regional GCR URLs](https://cloud.google.com/container-registry/docs/pushing-and-pulling#add-registry) and supply a service account JSON key for authentication.
 
 :::hint
 To query GCR feeds, the **Cloud Resource Manager** API must be enabled. This can be done [in the Google Cloud Platform dashboard](https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com/overview). Without this API, image searches return no results in Octopus.
@@ -70,7 +71,7 @@ Any scripts run as part of this step can take advantage of the login process man
 
 ## Terraform support
 
-The Terraform steps include the ability to establish a context with the selected Google credentials, lifting this concern from the Terraform template and into the step:
+The Terraform steps include the ability to establish a context with the selected Google credentials, lifting this concern from the Terraform template and into the step.
 
 :::hint
 Deploying Terraform requires the ability to persist state. A convenient solution for Google users is to [save Terraform state in a Google Cloud Storage (GCS) bucket](https://www.terraform.io/docs/language/settings/backends/gcs.html):
