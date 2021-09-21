@@ -24,7 +24,7 @@ In this post, I demonstrate how easy it is to move from one K8s cloud platform t
 ## Creating clusters
 Before diving into deployments, create a cluster in each of the cloud providers mentioned above.  Each provider has a command-line interface (CLI) available for you to use.  
 
-Use the [Runbooks](https://octopus.com/docs/runbooks) feature of Octopus Deploy to create the clusters.  In addition, you need to use the [Execution Containers for Workers](https://octopus.com/docs/projects/steps/execution-containers-for-workers) feature as the [Worker tools](https://hub.docker.com/r/octopusdeploy/worker-tools) image contains the CLI for all three platforms as well as kubectl.
+Use the [Runbooks](https://octopus.com/docs/runbooks) feature of Octopus Deploy to create the clusters.  In addition, you need to use the [Execution Containers for Workers](https://octopus.com/docs/projects/steps/execution-containers-for-workers) feature, because the [Worker tools](https://hub.docker.com/r/octopusdeploy/worker-tools) image contains the CLI for all three platforms as well as kubectl.
 
 (The following screenshot is using Octopus Cloud. Self-hosted instances of Octopus will need to create a Worker with Docker installed to use this feature.)
 
