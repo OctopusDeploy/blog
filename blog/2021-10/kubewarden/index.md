@@ -3,22 +3,25 @@ title: Securing your Kubernetes cluster with Kubewarden
 description: Learn how to use custom Kubewarden security policies to restrict resources in your Kubernetes cluster
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2999-01-01
+published: 2021-10-05-1400
 metaImage: 
 bannerImage: 
+bannerImageAlt: 125 characters max, describes image to people unable to see it.
+isFeatured: false
 tags:
- - Octopus
+ - Product
+ - Kubernetes
 ---
 
 Kubernetes is fast becoming the operating system of the cloud. Every major cloud provider has a supported Kubernetes platform, Kubernetes can be run on-premises, and Kubernetes even has a package manager with Helm. And thanks to the [operator pattern](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/), Kubernetes can natively describe and manage almost [any kind of workload](https://operatorhub.io/).
 
-This flexibility is a blessing and a curse. Kubernetes has the ability to run almost anything, and yet it would be all but impossible to maintain any real world production cluster hosting anything random thing that was thrown at it.
+This flexibility is a blessing and a curse. Kubernetes has the ability to run almost anything, and yet it would be all but impossible to maintain any real world production cluster hosting any random thing that was thrown at it.
 
-Kubernetes Role Based Access Controls (RBAC) provide some level of control over the resources hosted by a cluster. However, RBAC can only allow top level resources, like deployments or pods, to be created. A pod can host almost anything, so it is often not enough to allow or disallow the deployment of a pod. Instead, teams need to inspect the properties of a given pod before allowing or denying them.
+Kubernetes Role Based Access Controls (RBAC) provide some level of control over the resources hosted by a cluster. However, RBAC can only allow top level resources, like deployments or pods, to be created. A pod can host almost anything, so it's often not enough to allow or disallow the deployment of a pod. Instead, teams need to inspect the properties of a given pod before allowing or denying them.
 
 [Admission controllers](https://kubernetes.io/blog/2019/03/21/a-guide-to-kubernetes-admission-controllers/) provide the ability to inspect, modify, accept, or reject new resources by passing it to a custom service. This allows a fine grained level of control over resources created in a cluster, and ensures only those resources that meet your particular requirements are deployed.
 
-This post looks at the [Kubewarden](https://www.kubewarden.io/) admission controller, which is an early project supporting admission policies written in a number of languages compiled down to WebAssembly. You'll create a number of runbooks and deployments in Octopus to manage Kubewarden and deploy pods to Kubernetes, testing out custom admission policies.
+This post looks at the [Kubewarden](https://www.kubewarden.io/) admission controller, which is an early project supporting admission policies written in a number of languages compiled down to WebAssembly. I walk you through creating a number of runbooks and deployments in Octopus to manage Kubewarden, and deploying pods to Kubernetes, testing out custom admission policies.
 
 ## Installing Kubewarden
 
