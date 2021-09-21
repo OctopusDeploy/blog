@@ -17,7 +17,7 @@ Octopus 2021.2 brings a number of features to support teams deploying to the Goo
 
 This post introduces the new features in Octopus supporting GCP deployments and provides tips on how they can be used in your own deployment processes.
 
-At the end of the post, you also have the opportunity to provide your feedback about how these new features work, or don't work, for you, and to suggest future GCP features.
+At the end of the post, you can provide your feedback about how these new features work, or don't work, for you, and suggest future GCP features.
 
 ## Service account support
 
