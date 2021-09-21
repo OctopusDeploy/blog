@@ -10,6 +10,7 @@ bannerImageAlt: Octopus Deploy integrating with Google Cloud Platform
 isFeatured: false
 tags:
  - Product
+ - Google Cloud Platform
 ---
  
 In line with our [public roadmap](https://octopus.com/company/roadmap), we introduced built-in support for [Google Cloud Platform (GCP)](https://cloud.google.com/).
