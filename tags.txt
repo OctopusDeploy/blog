@@ -14,6 +14,7 @@ Configuration as Code
 Database Deployments
 Deployment Patterns
 Docker
+Google Cloud Platform
 Java
 Jira
 Jenkins
