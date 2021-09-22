@@ -29,7 +29,9 @@ I walk you through creating a number of runbooks and deployments in Octopus to m
 
 ## Installing Kubewarden
 
-The easiest way to install Kubewarden is via its Helm chart. Create a new Helm Feed in Octopus pointing to https://charts.kubewarden.io:
+The easiest way to install Kubewarden is via its Helm chart. 
+
+Create a new Helm Feed in Octopus pointing to https://charts.kubewarden.io:
 
 ![Octopus dashboard open on External Feeds showing Kubewarden Helm](helm-feed.png "width=500")
 
