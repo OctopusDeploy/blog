@@ -14,7 +14,9 @@ tags:
  - Deployment Patterns
 ---
 
-This blog post is part 5 of my safe schema updates series. The other posts in this series are available at the following links:
+This blog post is part 5 of my safe schema updates series. 
+
+We'll add links to the other posts in this series as they become available.
 
 !include <safe-schema-updates-posts>
 
@@ -35,7 +37,9 @@ Patrick Lencioni talks about conflict, commitment, and accountability in [The Fi
 
 *Image source: [https://medium.com/taskworld-blog/lencionis-5-dysfunctions-of-a-team-330d58b2cd81](https://medium.com/taskworld-blog/lencionis-5-dysfunctions-of-a-team-330d58b2cd81)*
 
-In [part 2](https://octopus.com/blog/safe-schema-updates-2-resilience-vs-robustness) of this series, as part of our discussion into reliability vs robustness, we discussed Richard Cook’s insightful research into [how complex systems fail](https://how.complexsystems.fail/). In particular, we looked at the problems with traditional views about accountability or blame and “root cause analysis” within complex systems, where failures are often caused by many, seemingly unrelated factors. These challenges are inescapable, but we can help ourselves by designing systems that are easier to observe and where relationships, dependencies, and expectations are more clearly defined.
+In [part 2](https://octopus.com/blog/safe-schema-updates-2-resilience-vs-robustness) of this series, as part of our discussion into reliability vs robustness, we discussed Richard Cook’s insightful research into [how complex systems fail](https://how.complexsystems.fail/). 
+
+In particular, we looked at the problems with traditional views about accountability or blame and “root cause analysis” within complex systems, where failures are often caused by many, seemingly unrelated factors. These challenges are inescapable, but we can help ourselves by designing systems that are easier to observe and where relationships, dependencies, and expectations are more clearly defined.
 
 When we break our complicated, monolithic architectures up into sets of smaller, more loosely coupled systems, it helps everyone to take responsibility for their own subsystems. These subsystems should be designed to run independently of other systems such that if one system fails, the failure is generally isolated to that system. There's no need to waste time investigating the wider system or pointing fingers. An appropriate team of engineers can focus their attention directly at the misbehaving subsystem, while others can monitor other subsystems to ensure that they are coping with the disruption as intended.
 
@@ -61,11 +65,11 @@ By publishing both the SLO and performance metrics for each service, teams becom
 
 In an ideal world, where reviews are necessary, they should be carried out by someone who is able to read the code while it’s still fresh, understand the consequences, and provide insightful recommendations about improvements. Where regulatory compliance is concerned, the review should (as a minimum) be carried out by an engineer who understands the systems well enough to spot any potentially fraudulent changes. (Note: this often requires a great deal of technical skill as well as some hands on experience working with the codebase.) Preventing fraud, after all, is the entire point of the Sarbanes-Oxley (SOX) Act.
 
-Since continuous integration teaches us to prioritize merging over diverging (see part 3), the reviewer should also prioritize the code review (merging) over any new changes they are currently working on (diverging). Ideally, within minutes of the change being submitted for approval, the reviewer(s) should pause whatever they are doing and review the change.
+Since Continuous Integration teaches us to prioritize merging over diverging (see part 3), the reviewer should also prioritize the code review (merging) over any new changes they are currently working on (diverging). Ideally, within minutes of the change being submitted for approval, the reviewer(s) should pause whatever they are doing and review the change.
 
 That’s right. It should be *expected* that reviewers take a break from any new development work, in order to prioritize the merging and deployment of “dev-complete” work.
 
-From this stance the idea of a weekly Change Advisory Board (CAB) meeting should sound as poisonous and inefficient as it is. The audacity of any CAB member to think that any WIP should sit around, festering for a week, to fit in with their own schedule, should be considered egregiously arrogant. What else are they doing with their time that is more important to the business than merging a week’s worth of putrid divergence? Delivering reliable updates is *literally the point of the job* – not a task to be put off until the end of the week. (I talked in more detail about why [Change Advisory Boards Don’t Work](https://octopus.com/blog/change-advisory-boards-dont-work) last year, so I won’t repeat myself further here.)
+From this stance, the idea of a weekly Change Advisory Board (CAB) meeting should sound as poisonous and inefficient as it is. The audacity of any CAB member to think that any WIP should sit around, festering for a week, to fit in with their own schedule, should be considered egregiously arrogant. What else are they doing with their time that is more important to the business than merging a week’s worth of putrid divergence? Delivering reliable updates is *literally the point of the job* – not a task to be put off until the end of the week. (I talked in more detail about why [Change Advisory Boards Don’t Work](https://octopus.com/blog/change-advisory-boards-dont-work) last year, so I won’t repeat myself further here.)
 
 It’s clear that senior managers should not be reviewing deployments. They probably will not be able to drop whatever they are working on whenever someone submits a new pull request. Their role is to support healthy review practices, not to personally conduct the reviews.
 
@@ -103,8 +107,12 @@ We started this series with a look at traditional database delivery hell, and th
 
 In my next post (part 6), we’ll switch gears. We’ll move from theory into practice, with the first of three technical posts intended to aid you to develop three important capabilities that will support your transition to a loosely coupled architecture.
 
-In the first of these three posts we’ll talk about the replacement of shared dev/test instances with the self-service and on-demand provisioning of useable and regulatory compliant dev/test environments. After that, we’ll finish this series with two posts that discuss near-zero downtime releases and a safe process for breaking monoliths up into smaller services.
+In the first of these three posts we’ll talk about the replacement of shared dev/test instances with the self-service and on-demand provisioning of useable and regulatory compliant dev/test environments. 
+
+After that, we’ll finish this series with two posts that discuss near-zero downtime releases and a safe process for breaking monoliths up into smaller services.
 
 While each of these capabilities is individually valuable, it’s in the combination of all three that the benefits of each are multiplied.
+
+We'll add links to the other posts in this series as they become available.
 
 !include <safe-schema-updates-posts>
