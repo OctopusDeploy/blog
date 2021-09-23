@@ -13,7 +13,7 @@ tags:
  - Kubernetes
 ---
 
-Kubernetes is fast becoming the operating system of the cloud. Every major cloud provider has a supported Kubernetes platform, Kubernetes can be run on-premises, and Kubernetes even has a package manager with Helm. And thanks to the [operator pattern](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/), Kubernetes can natively describe and manage almost [any kind of workload](https://operatorhub.io/).
+Kubernetes is fast becoming the operating system of the cloud. Every major cloud provider has a supported Kubernetes platform, Kubernetes can be run on-premises, and Kubernetes even has a package manager with Helm. And thanks to the [operator pattern](https://kubernetes.io/docs/concepts/extend-kubernetes/operator/), Kubernetes has built-in support to describe and manage almost [any kind of workload](https://operatorhub.io/).
 
 This flexibility is a blessing and a curse. Kubernetes can run almost anything, and yet it would be nearly impossible to maintain any real world production cluster hosting any random thing that was thrown at it.
 
