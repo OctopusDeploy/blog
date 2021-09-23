@@ -11,6 +11,8 @@ isFeatured: true
 tags:
 - Product
 - DevOps
+- Google Cloud Platform
+- Kubernetes
 ---
 
 The Octopus 2021 Q3 release is now available.
