@@ -26,7 +26,7 @@ Before diving into deployments, create a cluster in each of the cloud providers 
 
 Use the [Runbooks](https://octopus.com/docs/runbooks) feature of Octopus Deploy to create the clusters.  In addition, you need to use the [Execution Containers for Workers](https://octopus.com/docs/projects/steps/execution-containers-for-workers) feature, because the [Worker tools](https://hub.docker.com/r/octopusdeploy/worker-tools) image contains the CLI for all three platforms as well as kubectl.
 
-(The following screenshot is using Octopus Cloud. Self-hosted instances of Octopus will need to create a Worker with Docker installed to use this feature.)
+(The following screenshot is using Octopus Cloud. Self-hosted instances of Octopus will need to create a Worker with Docker installed, to use this feature.)
 
 ![Octopus Cloud dashboard with Hosted Ubuntu Worker Pool and Docker Hub Container Registry selected.](octopus-step-use-worker-tools.png)
 
@@ -208,7 +208,7 @@ Google developed the [gcloud CLI](https://cloud.google.com/sdk) that can interfa
 - Create GKE cluster
 - Add cluster as deployment target
 
-#### Create GKE Cluster
+#### Create GKE cluster
 To create a GKE cluster, you need to add a **Run gcloud in a Script** step to your runbook.  Choose the **{{Google Cloud Category > Run gcloud in a Script step.}}**
 
 ![](octopus-add-gcloud-script.png)
