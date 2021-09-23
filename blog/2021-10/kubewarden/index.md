@@ -9,7 +9,7 @@ bannerImage:
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags:
- - Product
+ - DevOps
  - Kubernetes
 ---
 
