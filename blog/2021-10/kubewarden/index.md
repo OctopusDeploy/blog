@@ -21,7 +21,7 @@ Kubernetes Role Based Access Controls (RBAC) provide some level of control over 
 
 A pod can host almost anything, so it's often not enough to allow or disallow the deployment of a pod. Instead, teams need to inspect the properties of a given pod before allowing or denying them.
 
-[Admission controllers](https://kubernetes.io/blog/2019/03/21/a-guide-to-kubernetes-admission-controllers/) provide the ability to inspect, modify, accept, or reject new resources by passing it to a custom service. This allows a fine grained level of control over resources created in a cluster, and ensures only those resources that meet your particular requirements are deployed.
+[Admission controllers](https://kubernetes.io/blog/2019/03/21/a-guide-to-kubernetes-admission-controllers/) provide the ability to inspect, modify, accept, or reject new resources by passing it to a custom service. This allows a fine-grained level of control over resources created in a cluster, and ensures only those resources that meet your particular requirements are deployed.
 
 This post looks at the [Kubewarden](https://www.kubewarden.io/) admission controller, which is an early project supporting admission policies written in a number of languages compiled down to WebAssembly. 
 
@@ -72,7 +72,7 @@ This pod is deployed with a **Deploy raw Kubernetes YAML** step:
 
 Sure enough, the pod is deployed and updates the time within its container. This is not a desirable outcome, and so the next step is to add a Kubewarden policy to prevent resources like this from being deployed.
 
-## Deploying a admission policy
+## Deploying an admission policy
 
 Like all Kubernetes resources, a Kubewarden policy can be defined in YAML. The example below uses the [psp-capabilities](https://github.com/kubewarden/psp-capabilities) policy to strip the `SYS_TIME` capability from all pods as they're created or updated:
 
@@ -124,6 +124,6 @@ We're running three sessions of the webinar:
 - Thurs 7 Oct, 2021
 - Mon 11 Oct, 2021
 
-<span><a class="btn btn-success" href="/events/gcp-kubernetes-deployments-and-provisioning-with-octopus">Register now</a></span>
+<span><a class="btn btn-success" href="https://octopus.com/events/gcp-kubernetes-deployments-and-provisioning-with-octopus">Register now</a></span>
 
 Happy deployments!
