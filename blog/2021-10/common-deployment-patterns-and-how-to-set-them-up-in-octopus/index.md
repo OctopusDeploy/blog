@@ -19,7 +19,7 @@ In this blog we look at some of the most common deployment patterns and explain 
 
 ## Rolling deployments
 
-A rolling pattern delivers releases to one target (or batch of targets) at a time to reduce the load across your production environment.
+A rolling pattern delivers releases to one target (or batch of targets) at a time. This reduces downtime and traffic congestion on your environment during deployment.
 
 As one of the simpler options, rolling deployments can be slow but are reliable, low risk and easy to roll back.
 
