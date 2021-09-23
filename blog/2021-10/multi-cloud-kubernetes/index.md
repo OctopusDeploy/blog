@@ -9,7 +9,7 @@ metaImage:
 bannerImageAlt: 
 isFeatured: false
 tags:
-- Product
+- DevOps
 - Kubernetes
 ---
 
@@ -22,7 +22,7 @@ Containerizing applications on cloud platforms is a hot topic.  The big three cl
 In this post, I demonstrate how easy it is to move from one K8s cloud platform to another using Octopus Deploy.
 
 ## Creating clusters
-Before diving into deployments, create a cluster in each of the cloud providers mentioned above.  Each provider has a command-line interface (CLI) available for you to use.  
+Before diving into deployments, create a cluster in each of the cloud providers mentioned above (Azure, AWS, and GCP).  Each provider has a command-line interface (CLI) available for you to use.  
 
 Use the [Runbooks](https://octopus.com/docs/runbooks) feature of Octopus Deploy to create the clusters.  In addition, you need to use the [Execution Containers for Workers](https://octopus.com/docs/projects/steps/execution-containers-for-workers) feature, because the [Worker tools](https://hub.docker.com/r/octopusdeploy/worker-tools) image contains the CLI for all three platforms as well as kubectl.
 
@@ -39,7 +39,7 @@ To work with AKS, you first need to [create an Azure service principal](https://
 
 This post assumes you're familiar with creating an Azure service principal, so that won't be covered.  
 
-After the service principal is created, add it as an Azure account within Octopus Deploy.  
+After the service principal is created, add it as an Azure account in Octopus Deploy.  
 
 You need the following pieces of information to add it to Octopus:
 
@@ -55,7 +55,9 @@ Microsoft developed the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/i
 1. Add cluster as deployment target
 
 #### Create Resource group
-The first two steps in your process use the **Run an Azure Script** step template.  Add a step to your runbook, choose the Azure category, and select the **Run an Azure Script** step.
+The first two steps in your process use the **Run an Azure Script** step template.  
+
+Add a step to your runbook, choose the Azure category, and select the **Run an Azure Script** step.
 
 ![](octopus-add-azure-script.png)
 
@@ -73,7 +75,9 @@ if ((az group exists --name $resourceGroupName) -eq $false)
 ```
 
 #### Create K8s cluster
-With a **Resource group** created, you can now create the K8s cluster.  Repeat the steps for Create Resource group to add another **Run an Azure Script** to the runbook process.  
+With a **Resource group** created, you can now create the K8s cluster.  
+
+Repeat the steps for Create Resource group to add another **Run an Azure Script** to the runbook process.  
 
 Add the following script:
 
@@ -215,9 +219,7 @@ Fill in the following:
 
 - Google Cloud account
 - Project (Google Cloud Project)
-- Region
--or-
-- Zone
+- Region OR Zone
 
 Next, paste in the following script:
 
@@ -238,14 +240,14 @@ Set-OctopusVariable -name "GKEURL" -value $gkeCluster.Endpoint
 
 #### Add cluster as deployment target
 
-Add a **Run a Script** step to your runbook (see screenshot in Azure section for reference).  At the time of writing, the `New-OctopusKubernetesTarget` cmdlet had not been updated to work the GCP, so the script to register the target will look a bit different.
+Add a **Run a Script** step to your runbook (see screenshot in Azure section for reference).  At the time of writing, the `New-OctopusKubernetesTarget` cmdlet had not been updated to work with GCP, so the script to register the target will look a bit different.
 
 ```powershell
 
 # Get the variables
 $clusterName = "<Cluster name>"
 $octopusUrl = "<Url of your Octopus server>"
-$apiKey = "<API Key for registerting target>"
+$apiKey = "<API Key for registering target>"
 $spaceId = $OctopusParameters['Octopus.Space.Id']
 $headers = @{ "X-Octopus-ApiKey" = $apiKey }
 
@@ -278,7 +280,7 @@ $newMachine = @{
 Invoke-RestMethod -Method Post -Uri "$octopusUrl/api/$spaceId/machines" -Body ($newMachine | ConvertTo-JSON -Depth 10) -Headers $headers
 ```
 :::info
-Note that in the case of GKE, you specify a Worker Pool to be used for health checks as well as using the Execution Containers feature.  This is because the `Hosted Windows` Worker Pool in Octopus Cloud does not have the gcloud CLI installed and will fail when attempting to check the health of a GKE cluster.
+In the case of GKE, you need to specify a Worker Pool to be used for health checks and use the Execution Containers feature.  This is because the `Hosted Windows` Worker Pool in Octopus Cloud does not have the gcloud CLI installed and will fail when attempting to check the health of a GKE cluster.
 :::
 
 If all three runbooks are executed, you should have 3 Kubernetes clusters.
@@ -288,7 +290,7 @@ If all three runbooks are executed, you should have 3 Kubernetes clusters.
 ## Switching cloud provider K8s services
 Consider the following scenario: your organization chose to use AWS as its cloud provider.  You deployed your application, PetClinic, to EKS using the following process:
 
-- **Deploy MySQL**: this step deploys a MySQL container to the K8s cluster to be used as the database back end.
+- **Deploy MySQL**: this step deploys a MySQL container to the K8s cluster to be used as the database back-end.
 - **Run flyway**: this step executes a K8s job that will create and seed the database on the MySQL container.
 - **Deploy petclinic web with load balancer**: this step creates a deployment for the PetClinic web front-end and places a load balancer in front of it.
 - **Deploy Kubernetes ingress resource**: this step creates an NGINX ingress controller in front of the load balancer.
@@ -297,7 +299,7 @@ Your organization has just been acquired by another company and you must adhere 
 
 Unlike Azure Web App or AWS Elastic Beanstalk, the Octopus Deploy steps for K8s deployments are not provider specific.  The same process will work for any K8s cluster registered as a deployment target.
 
-Most migrations to new platforms start off by deploying to both the old and the new, so you can ensure they both function the same.  Run your GKE runbook to create a K8s cluster in GCP.  After the cluster has been registered with Octopus and is showing as healthy, create a new release or re-deploy an existing release.  
+Most migrations to new platforms start by deploying to both the old and the new, so you can ensure they function the same.  Run your GKE runbook to create a K8s cluster in GCP.  After the cluster has been registered with Octopus and is showing as healthy, create a new release or re-deploy an existing release.  
 
 In the screenshot below, you can see the deployment to both targets was successful without changing anything in the deployment process:
 
@@ -322,6 +324,6 @@ We're running three sessions of the webinar:
 - Thurs 7 Oct, 2021
 - Mon 11 Oct, 2021
 
-<span><a class="btn btn-success" href="/events/gcp-kubernetes-deployments-and-provisioning-with-octopus">Register now</a></span>
+<span><a class="btn btn-success" href="https://octopus.com/events/gcp-kubernetes-deployments-and-provisioning-with-octopus">Register now</a></span>
 
 Happy deployments!
