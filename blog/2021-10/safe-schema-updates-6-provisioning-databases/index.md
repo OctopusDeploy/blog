@@ -107,17 +107,17 @@ For the purposes of this post, I’m going to propose that the ideal data for mo
 
 To achieve this, first we need to conduct a data audit and create a data inventory/dictionary/map. Data needs to be classified based on the level of data sensitivity. (This is already a requirement of many data privacy laws including the GDPR. You cannot protect your sensitive data if you don’t know where it is!)
 
-In SQL Server there are a couple of ways to do this. For example, you could enforce a policy that all columns use an Extended Property to define the level of data sensitivity. These properties are relatively easy to put in source control and query. Further, since 2016, SQL Server, data classification has been added as a first class citizen.
+In SQL Server there are a couple of ways to do this. For example, you could enforce a policy that all columns use an [Extended Property](https://docs.microsoft.com/en-us/sql/relational-databases/system-stored-procedures/sp-addextendedproperty-transact-sql?view=sql-server-ver15) to define the level of data sensitivity. These properties are relatively easy to put in source control [and query](http://workingwithdevs.com/query-return-sensitive-data-sql-server/). Further, since 2016, SQL Server, [data classification has been added as a first class citizen](https://docs.microsoft.com/en-us/sql/relational-databases/security/sql-data-discovery-and-classification?view=sql-server-ver15&tabs=t-sql).
 
 Next, we need to create copies of the database with all the sensitive data scrubbed out. I propose using your environment creation scripts (above) to spin up a temporary “staging” instance somewhere behind your production firewall. Then, on a regular schedule, you can restore your most recent production backups to this staging area and run some script or tool to remove all the sensitive data. (Bonus: regularly testing your backups is an important practice anyway.)
 
-The data masking process might be as simple as replacing all names with “John Doe”, or you might use a more sophisticated process to create realistic but fake data. For example, you might like to look at the dbatools Invoke-dbaDbDataMasking cmdlet (open source, simple, free) or Redgate Data Masker for SQL Server / Oracle (3rd party, sophisticated, not free. Investing effort here to create more realistic test data will result in better quality dev and test work later on.
+The data masking process might be as simple as replacing all names with “John Doe”, or you might use a more sophisticated process to create realistic but fake data. For example, you might like to look at the [dbatools Invoke-dbaDbDataMasking cmdlet](https://docs.dbatools.io/#Invoke-DbaDbDataMasking) (open source, simple, free) or [Redgate Data Masker for SQL Server / Oracle](https://www.red-gate.com/products/dba/data-masker/) (3rd party, sophisticated, not free. Investing effort here to create more realistic test data will result in better quality dev and test work later on.
 
 If you are nervous about sensitive production data slipping through, here are a few suggestions:
 
 - Add a test to your deployment pipeline that ensures all columns have a data classification in source control.
 - Add a test to your deployment pipeline that ensures all sensitive columns have a corresponding masking script or rule.
-- Add a check to your deployment pipeline that any changes to data privacy classifications or masking scripts get flagged for review by a senior developer or (if you must) a database administrator, security team, data privacy officer or *[through gritted teeth]* a Change Advisory Board. (Yo! “Separation of roles” enforcement brigade: I see you.) All I ask is that steps are taken to ensure these reviews are conducted swiftly, without creating long delays.
+- Add a check to your deployment pipeline that any changes to data privacy classifications or masking scripts get flagged for review by a senior developer or (if you must) a database administrator, security team, data privacy officer or *[through gritted teeth](https://octopus.com/blog/change-advisory-boards-dont-work)* a Change Advisory Board. (Yo! “Separation of roles” enforcement brigade: I see you.) All I ask is that steps are taken to ensure these reviews are conducted swiftly, without creating long delays.
 
 Following the masking scripts, developers/testers might like to provide their own scripts to run on the staging instance. For example, to add a set of known test cases to the database or to add a SQL login with admin rights for the dev/test group.
 
@@ -137,7 +137,7 @@ This being said, your developers and testers could really benefit from access to
 
 This is where database cloning can help.
 
-Tools like dbaclone (open source, free) and Redgate SQL Clone (3rd party, not free) use the virtualisation features already built into the Windows operating system to create cheap, editable virtual copies of large files. 
+Tools like [dbaclone](https://github.com/sqlcollaborative/dbaclone) (open source, free) and [Redgate SQL Clone](https://www.red-gate.com/products/dba/sql-clone/) (3rd party, not free) use the virtualisation features already built into the Windows operating system to create cheap, editable virtual copies of large files. 
 
 Within a SQL Server development setting, typically an operations team would start by creating a dev-safe “image” of a large database (up to 64TB) in a shared location. Later, the developers can create “clones” as required. These clones are effectively pointers back to the original “image”. When first created, each clone only requires a few megabytes (regardless of the size of the source image). Hence, we can create almost limitless clones of the source image, almost instantly, on cheap, commodity hardware. 
 
@@ -145,15 +145,15 @@ The clever bit is a “differencing disk” which captures any changes a develop
 
 The main gotcha is that the size of the “differencing disk” will grow as you modify the file. Hence, changes to small objects, like views, procedures, or updates to a single row of data, are unlikely to make a big difference. However, if you reindex a large table, you could quickly run out of diskspace.  Clones are an ideal tool to use on small, disposable infrastructure, where the clones are located physically close to the source images.
 
-As a party trick, I used to run this cloning tech on a loop at the end of a demo in my conference sessions. Within a few minutes I had over a thousand, editable copies of the full StackOverflow database running on my laptop. My local SQL Server instance thought I had almost a petabyte worth of SSD storage on my 13-inch HP Spectre!
+As a party trick, I used to run this cloning tech on a loop at the end of a demo in my conference sessions. Within a few minutes I had over a thousand, editable copies of [the full StackOverflow database](https://www.brentozar.com/archive/2015/10/how-to-download-the-stack-overflow-database-via-bittorrent/) running on my laptop. My local SQL Server instance thought I had almost a petabyte worth of SSD storage on my 13-inch HP Spectre!
 
 If you’d like to learn more about how to use containers and clones together, you might like to start by watching a session I delivered last year with Sander Stad, the maintainer of the dbaclone project:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/masJxBmgfqo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-And, if all this wasn’t cool enough, check out Redgate Spawn. It’s a hosted version of SQL Clone. While it’s still in preview, and I’ve not yet had the chance to use it myself, I’m really excited about the potential! It has the potential to replace a significant portion of the steps in this post with a single command.
+And, if all this wasn’t cool enough, check out [Redgate Spawn](https://spawn.cc/). It’s a hosted version of SQL Clone. While it’s still in preview, and I’ve not yet had the chance to use it myself, I’m really excited about the potential! It has the potential to replace a significant portion of the steps in this post with a single command.
 
-If you’d like to get started, I wrote in more detail about database cloning last year, and I included a much more detailed walkthrough.
+If you’d like to get started, [I wrote in more detail about database cloning last year](https://octopus.com/blog/self-service-database-provisioning-with-octopus-runbooks-and-redgate-sql-clone), and I included a much more detailed walkthrough.
 
 ## Schema deployment
 
@@ -165,9 +165,9 @@ Before we can use our new dev environment, we need to deploy our latest source c
 
 I’m not going to talk through the process of automating the database deployment here, but the following resources might help:
 
-- Database Deployment Automation Approaches
-- SQL Server deployment options for Octopus Deploy
-- Comparison Review: Microsoft SSDT vs Redgate SQL Source Control
+- [Database Deployment Automation Approaches](https://octopus.com/blog/database-deployment-automation-approaches)
+- [SQL Server deployment options for Octopus Deploy](https://octopus.com/blog/sql-server-deployment-options-for-octopus-deploy)
+- [Comparison Review: Microsoft SSDT vs Redgate SQL Source Control](https://www.brentozar.com/archive/2018/12/comparison-review-microsoft-ssdt-vs-red-gate-sql-source-control/)
 
 ## Speeding it all up
 
@@ -175,7 +175,7 @@ Our provisioning process is now complete. It has two parts. First, on a schedule
 
 However, the “git, clone, f5” experience is still likely to be a bit frustrating for the developers.
 
-When a developer wants to run their code, it’s relatively quick to clone the repo, and it’s possible for them to run their script (or perhaps use an Octopus Runbook) to build a development environment. However, that process is likely to be slow.
+When a developer wants to run their code, it’s relatively quick to clone the repo, and it’s possible for them to run their script (or perhaps use an [Octopus Runbook](https://octopus.com/docs/runbooks)) to build a development environment. However, that process is likely to be slow.
 
 As a developer, I do not want to have to wait more than a minute, and ideally not more than a few seconds, to start running my code. However, my environment provisioning script has to do all of the following:
 
@@ -190,7 +190,7 @@ We might be able to speed this up with VM snapshotting. Alternatively, we could 
 
 ## Summary
 
-According to Gene Kim, the first delivery bottleneck that most folks hit in their DevOps transformation is environment creation. Many of the issues we witnessed in Database Delivery Hell were the result of shared and inconsistent development environments. We’ve learned that failure is normal, so it’s important to create systems where failure is safe.
+According to Gene Kim, the first delivery bottleneck that most folks hit in their DevOps transformation is environment creation. Many of the issues we witnessed in [Database Delivery Hell](https://octopus.com/blog/safe-schema-updates-1-delivery-hell) were the result of shared and inconsistent development environments. We’ve learned that failure is normal, so it’s important to create systems where failure is safe.
 
 It’s my hope, that the sorts of technical practices outlined in this post will allow you, dear reader, to move as much development and testing off your big, shared development/test environments onto dedicated environments where changes can be tested in isolation and merged as soon as they are ready for deployment.
 
