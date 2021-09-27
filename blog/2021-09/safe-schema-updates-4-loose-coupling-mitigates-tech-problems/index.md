@@ -14,13 +14,13 @@ tags:
  - Deployment Patterns
 ---
 
-This blog post is part 4 of my safe schema updates series. 
+This blog post is part 4 of my safe schema updates series.
 
 We'll add links to the other posts in this series as they become available.
 
 !include <safe-schema-updates-posts>
 
-In part 2 of this series we discussed the idea of resilience vs robustness. We talked about the value of designing systems where failure is acknowledged, contained and rapidly resolvable. 
+In part 2 of this series we discussed the idea of resilience vs robustness. We talked about the value of designing systems where failure is acknowledged, contained and rapidly resolvable.
 
 In part 3 we explore the true meaning of "continuous integration", beyond automated builds. The central idea is to reduce the amount of work in progress and the need for complicated integrations or merges.
 
@@ -30,27 +30,27 @@ This post will focus on technical details. However, arguably the human and cultu
 
 I’m also not going to talk about the practicalities associated with building or refactoring existing systems into shape. For now we’ll just imagine what better might look like, and we’ll worry about how to deliver it in later posts.
 
-In part 1 of this series I described the creation of a typical monolithic database, which supports a myriad of critical services. If you’ve worked with databases for a while, you’ve probably dealt with one of these before. I won’t repeat the problems they cause here, so if you’d like a recap, this would be a good point to [re-read part 1](https://octopus.com/blog/safe-schema-updates-1-delivery-hell). Surmise to say, it’s difficult to deliver updates regularly and reliably to monolithic systems. When these systems fail, and they often fail, it’s usually a disaster.
+In part 1 of this series I described the creation of a typical monolithic database, which supports a myriad of critical services. If you’ve worked with databases for a while, you’ve probably dealt with one of these before. I won’t repeat the problems they cause here, so if you’d like a recap, this would be a good point to [re-read part 1](https://octopus.com/blog/safe-schema-updates-1-delivery-hell). Suffice to say, it’s difficult to deliver updates regularly and reliably to monolithic systems. When these systems fail, and they often fail, it’s usually a disaster.
 
 ## Loosely coupled databases for faster, safer delivery
 
 What if each service managed its own data?
 
 For example, whenever our imaginary “Support” service needed to access data from our equally imaginary “Sales” service, the services could communicate using some API or other communication tier, rather than direct database calls. This would enable the teams who look after each service to be responsible for their own data, so long as their API remains available.
- 
+
 ![Example loosely-coupled software architecture](ssu4-loose-coupling.png)
 
 The database administration concerns for each service are isolated from each other. Large datasets are split into smaller, more manageable datasets. The complexity of releases to any one service are significantly reduced since dependency management just got a lot simpler. It’s relatively easy to create simple tests for any API calls that each subsystem needs to support, without needing to concern ourselves with which dependent systems are actually using them.
 
-Of course, the API chatter might grow, and that’s a new problem that needs to be managed. However, through patterns like infrastructure as code, automatic scaling and chaos engineering, those issues are easier and safer to manage than the challenges associated with monolithic, single-point-of-failure database refactors. 
+Of course, the API chatter might grow, and that’s a new problem that needs to be managed. However, through patterns like infrastructure as code, automatic scaling and chaos engineering, those issues are easier and safer to manage than the challenges associated with monolithic, single-point-of-failure database refactors.
 
 ## Domain-driven design and bounded contexts
 
 Some readers will think this architecture is unrealistic. For example, both the sales and the support systems need access to similar customer data. If they need access to the same data, how can the databases be split up?
 
-For these people, I recommend taking an evening to read Vaughn Vernon’s [Domain-Driven Design Distilled](https://octopus.com/blog/devops-reading-list#ddd), a short and more accessible version of Eric Evans more thorough [Domain-Driven Design](https://www.goodreads.com/book/show/179133.Domain_Driven_Design). 
+For these people, I recommend taking an evening to read Vaughn Vernon’s [Domain-Driven Design Distilled](https://octopus.com/blog/devops-reading-list#ddd), a short and more accessible version of Eric Evans more thorough [Domain-Driven Design](https://www.goodreads.com/book/show/179133.Domain_Driven_Design).
 
-Vernon and Evans describe a process for data modeling that puts the concept of bounded contexts front and center. In fact, my sales and support example above, as well as the image below, are both taken from [Martin Fowlers excellent BoundedContext blog post](https://martinfowler.com/bliki/BoundedContext.html):
+Vernon and Evans describe a process for data modeling that puts the concept of bounded contexts front and center. In fact, my sales and support example above, as well as the image below, are both taken from [Martin Fowler's excellent BoundedContext blog post](https://martinfowler.com/bliki/BoundedContext.html):
 
 ![Example bounded contexts diagram, with explicit customer and product schema](ssu4-bounded-contexts.png)
 
@@ -62,9 +62,9 @@ In this example, the teams who look after the sales and support applications hav
 
 Now that the sales and support databases *do not* interact directly, many engineering challenges become easier to solve.
 
-When a developer for the support system wishes to provision a dev environment to complete a task, they do not need to provision the entire global system and all the dependencies - all they need is the support system. 
+When a developer for the support system wishes to provision a dev environment to complete a task, they do not need to provision the entire global system and all the dependencies - all they need is the support system.
 
-If they need data from the sales system, in most cases it could be mocked, but where both systems really are required, that’s no issue. 
+If they need data from the sales system, in most cases it could be mocked, but where both systems really are required, that’s no issue.
 
 These two services are probably just two of many, so the overall size of the dev environment is still considerably reduced compared to deploying the entire monolith.
 
@@ -76,13 +76,13 @@ As discussed in part 3, Continuous Integration (CI) teaches us that we should pr
 
 When we have a large, monolithic system, perhaps with a hundred developers across a dozen teams, our CI problems are significant. With so many tasks being performed in parallel on the same codebase, it’s difficult to manage everything. This is often where we see complicated branching plans and jumbled up dev environments, containing a mess of half-finished or long-since abandoned dev and test code.
 
-However, if those ten teams are generally working on separate, loosely coupled services, each in their own repository, the complexity associated with managing the changes for any given service is exponentially reduced. Each service will only ever have a handful of concurrent tasks under development at any one time. 
+However, if those ten teams are generally working on separate, loosely coupled services, each in their own repository, the complexity associated with managing the changes for any given service is exponentially reduced. Each service will only ever have a handful of concurrent tasks under development at any one time.
 
 This level of complexity could, for example, be practically comprehended and managed during a short daily team stand-up. Branch plans become simpler and release co-ordination concerns evaporate, as long as all the required APIs remain available.
 
 With more loosely coupled systems it’s much easier for developers to integrate their work, continuously. This significantly reduces challenges associated with WIP, environment drift, branch hell, politics and project management overheads.
 
-What’s more, loosely coupled systems scale up in a manageable way. If the idea of a dozen teams working on the same monolithic backend terrifies you, imagine the challenges associated with Amazon or Google scale systems. 
+What’s more, loosely coupled systems scale up in a manageable way. If the idea of a dozen teams working on the same monolithic backend terrifies you, imagine the challenges associated with Amazon or Google scale systems.
 
 If you anticipate that your system is likely to grow (and as long as companies stay in business, their critical systems tend to grow), it’s wise to design your systems with loose coupling in mind from the very beginning.
 
