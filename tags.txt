@@ -2,7 +2,6 @@
 Product
 Engineering
 DevOps
-Events and Webinars
 Company
 
 # Optional tags to help with discoverability and internal links (Don't over do it with these, apply the one or two tags that are the best fit)
@@ -11,15 +10,17 @@ AWS
 Azure
 Continuous Integration
 Continuous Deployment
-Config as Code
+Configuration as Code
 Database Deployments
 Deployment Patterns
 Docker
+Google Cloud Platform
 Java
 Jira
 Jenkins
 Kubernetes
 Linux
+Multi-Tenancy
 Octopus Cloud
 PowerShell
 Reporting

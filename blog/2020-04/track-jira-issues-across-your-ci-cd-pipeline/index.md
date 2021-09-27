@@ -6,6 +6,7 @@ visibility: public
 published: 2020-04-20
 metaImage: jira-octopus.png
 bannerImage: jira-octopus.png
+bannerImageAlt: Track Jira issues across your CI/CD pipeline
 tags:
  - DevOps
  - Jira

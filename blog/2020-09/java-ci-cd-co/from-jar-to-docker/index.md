@@ -6,6 +6,7 @@ visibility: public
 published: 2020-10-12
 metaImage: blogimage-java-blog-series-2.png
 bannerImage: blogimage-java-blog-series-2.png
+bannerImageAlt: Java CI/CD From JAR to Docker
 tags:
  - DevOps
  - Java

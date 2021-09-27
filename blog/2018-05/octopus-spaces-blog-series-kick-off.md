@@ -5,6 +5,7 @@ author: nick.josevski@octopus.com
 visibility: public
 metaImage: metaimage-spaces.png
 bannerImage: blogimage-spaces.png
+bannerImageAlt: Octopus Spaces blog series kick off
 published: 2018-05-04
 tags:
  - Engineering

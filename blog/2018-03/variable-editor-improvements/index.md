@@ -6,6 +6,7 @@ visibility: public
 published: 2018-03-09
 metaImage: metaimage-variables.png
 bannerImage: blogimage-variables.png
+bannerImageAlt: Octo-Scientist improving variables
 tags:
  - Engineering
 ---

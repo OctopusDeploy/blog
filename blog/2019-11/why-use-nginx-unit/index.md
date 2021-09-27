@@ -6,6 +6,7 @@ visibility: public
 published: 2019-11-04
 metaImage: nginx-unit.png
 bannerImage: nginx-unit.png
+bannerImageAlt: NGINX Unit web server
 tags:
  - DevOps
  - Kubernetes

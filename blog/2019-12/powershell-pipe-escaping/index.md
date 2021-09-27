@@ -6,6 +6,7 @@ visibility: public
 published: 2019-12-16
 metaImage: powershell-escape-pipe-character.png
 bannerImage: powershell-escape-pipe-character.png
+bannerImageAlt: Escaping the pipe character in PowerShell commands
 tags:
  - Octopus
  - PowerShell

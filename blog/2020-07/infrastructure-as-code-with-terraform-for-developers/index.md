@@ -6,6 +6,7 @@ visibility: public
 published: 2020-07-01
 metaImage: terraform-for-developers.png
 bannerImage: terraform-for-developers.png
+bannerImageAlt: Infrastructure as code with Terraform for developers
 tags:
  - DevOps
  - Terraform

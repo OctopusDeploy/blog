@@ -6,6 +6,7 @@ visibility: public
 published: 2018-09-07
 metaImage: metaimage-kubernetes.png
 bannerImage: blogimage-kubernetes.png
+bannerImageAlt: Octopus steering the Kubernetes ship illustration
 tags:
  - Product
 ---

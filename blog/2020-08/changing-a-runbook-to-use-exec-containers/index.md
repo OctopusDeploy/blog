@@ -6,6 +6,7 @@ visibility: public
 published: 2020-08-05
 metaImage: execution-workers.png
 bannerImage: execution-workers.png
+bannerImageAlt: Changing a runbook process to use execution containers
 tags:
   - DevOps
   - Docker

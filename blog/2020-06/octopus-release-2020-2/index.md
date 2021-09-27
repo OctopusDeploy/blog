@@ -4,6 +4,7 @@ description: "Octopus 2020.2 includes execution containers for workers, better r
 author: rob.pearson@octopus.com
 visibility: public
 bannerImage: release-2020.2.png
+bannerImageAlt: Octopus 2020.2 Execution containers for workers
 metaImage: release-2020.2.png
 published: 2020-06-01
 tags:

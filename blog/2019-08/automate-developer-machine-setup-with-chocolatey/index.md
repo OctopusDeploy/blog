@@ -5,6 +5,7 @@ author: bob.walker@octopus.com
 visibility: public
 metaImage: automate_machine_chocolately.png
 bannerImage: automate_machine_chocolately.png
+bannerImageAlt: Illustration showing Chocolately packages being installed on a developer machine
 published: 2019-08-26
 tags:
  - Engineering

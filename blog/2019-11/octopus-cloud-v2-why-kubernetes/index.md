@@ -6,6 +6,7 @@ visibility: public
 published: 2019-11-18
 metaImage: octopus-cloud-why-kubernetes.png
 bannerImage: octopus-cloud-why-kubernetes.png
+bannerImageAlt: Why we chose Kubernetes, Linux, and .NET Core for Octopus Cloud
 tags:
  - Engineering
  - Octopus Cloud

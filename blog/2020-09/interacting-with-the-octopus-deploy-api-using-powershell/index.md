@@ -6,7 +6,9 @@ visibility: public
 published: 2020-09-08
 metaImage: octopus-api-powershell.png
 bannerImage: octopus-api-powershell.png
+bannerImageAlt: Interacting with the Octopus Deploy API using PowerShell
 tags:
+ - DevOps
  - PowerShell
 ---
 

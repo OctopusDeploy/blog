@@ -6,6 +6,7 @@ visibility: public
 published: 2021-02-03
 metaImage: canary-deployments.png
 bannerImage: canary-deployments.png
+bannerImageAlt: Canary deployments with ECS
 tags:
  - DevOps
  - Deployment Patterns

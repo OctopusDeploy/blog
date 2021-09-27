@@ -4,6 +4,7 @@ description: Octopus Server 2018.10 LTS is the first release with six months of 
 author: michael.noonan@octopus.com
 visibility: public
 bannerImage: blogimage-ltsrelease.png
+bannerImageAlt: Cars on slow lane and fast lane
 metaImage: blogimage-ltsrelease.png
 published: 2018-12-19
 tags:

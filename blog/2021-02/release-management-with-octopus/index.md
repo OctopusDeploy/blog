@@ -6,6 +6,7 @@ visibility: public
 published: 2021-02-15
 metaImage: blogimage-deploy-release-step.png
 bannerImage: blogimage-deploy-release-step.png
+bannerImageAlt: Better Release Management with Octopus Deploy
 tags:
  - Engineering
 ---

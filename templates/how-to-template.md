@@ -1,11 +1,13 @@
 ---
 title: How to do X
-description: A brief summary of the content.
+description: A brief summary of the content, 170 characters max including spaces.
 author: Joan Smith
 visibility: private
 published: 3020-01-01
 metaImage: to-be-added-by-marketing
 bannerImage: to-be-added-by-marketing
+bannerImageAlt: 125 characters max, describes image to people unable to see it.
+isFeatured: false
 tags:
  - DevOps
  - Company
@@ -32,9 +34,9 @@ Break the steps the user needs to take into logical groups:
 
 Let the users know they're on the right track by telling them the outcome of the procedure they just completed. Include as many procedures as are necessary for the user to achieve the goal of the post, and try to avoid saying things like Configure X without providing the actual steps the users need to take.
 
-Use screenshots to help orient the user if they're moving between screens/systems and/or if screenshots will provide additionally clarity (or they're cool and you want to show them off):
+Use screenshots to help orient the user if they're moving between screens/systems and/or if screenshots will provide additionally clarity (or they're cool and you want to show them off). If including screenshots or images, please include alt text. Alt text is primarily used to describe images to people unable to see them, and can be 125 characters max including spaces. You can also include an image caption if the reader would benefit from additional information or context.:
 
-![Description of the screenshot][image-name.png]
+![Alt text, a description of the screenshot][image-name.png]*Optional caption text*
 
 ### Configure Y
 

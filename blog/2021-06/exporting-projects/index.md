@@ -6,6 +6,7 @@ visibility: public
 published: 2021-06-01-1400
 metaImage: blogimage-project-bento-2021.png
 bannerImage: blogimage-project-bento-2021.png
+bannerImageAlt: octopus branded bento box filled with sushi
 tags:
  - Product 
 ---

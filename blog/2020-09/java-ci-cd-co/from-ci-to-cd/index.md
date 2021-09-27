@@ -6,6 +6,7 @@ visibility: public
 published: 2020-10-15
 metaImage: blogimage-java-blog-series-5.png
 bannerImage: blogimage-java-blog-series-5.png
+bannerImageAlt: Java CI/CD From Continuous Integration to release management
 tags:
  - DevOps
  - Java

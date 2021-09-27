@@ -6,6 +6,7 @@ visibility: public
 published: 2021-06-30-1400
 metaImage: blogimage-database-deployments-flyway-octopus-execution-containers.png
 bannerImage: blogimage-database-deployments-flyway-octopus-execution-containers.png
+bannerImageAlt: flyway logo inside execution container in front of laptop
 tags:
  - DevOps
  - Docker

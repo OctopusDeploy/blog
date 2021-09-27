@@ -6,6 +6,7 @@ visibility: public
 published: 2019-11-20
 metaImage: kubernetes-template-files.png
 bannerImage: kubernetes-template-files.png
+bannerImageAlt: Using template files in Kubernetes
 tags:
  - Engineering
  - Kubernetes

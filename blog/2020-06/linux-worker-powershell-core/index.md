@@ -6,6 +6,7 @@ visibility: public
 published: 2020-06-24
 metaImage: powershell-linux.png
 bannerImage: powershell-linux.png
+bannerImageAlt: Linux worker for PowerShell templates
 tags:
  - DevOps
  - Linux

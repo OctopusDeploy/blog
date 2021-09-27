@@ -6,6 +6,7 @@ visibility: public
 published: 2020-12-03
 metaImage: blogimage-exposing-octopus-variables-kubernetes-container-2020.png
 bannerImage: blogimage-exposing-octopus-variables-kubernetes-container-2020.png
+bannerImageAlt: Exposing Octopus variables to a Kubernetes container
 tags:
  - DevOps
  - Kubernetes

@@ -6,6 +6,7 @@ visibility: public
 published: 2021-03-29-1400
 metaImage: blogimage-scripting-api-key-creation-2021.png
 bannerImage: blogimage-scripting-api-key-creation-2021.png
+bannerImageAlt: Octopus keyring
 tags:
  - DevOps
  - PowerShell

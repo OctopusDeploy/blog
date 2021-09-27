@@ -6,6 +6,7 @@ visibility: public
 published: 2021-06-21-1400
 metaImage: devops_documentation_2020.png
 bannerImage: devops_documentation_2020.png
+bannerImageAlt: DevOps practices power Octopus documentation
 tags:
  - DevOps
 ---

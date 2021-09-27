@@ -1,11 +1,13 @@
 ---
 title: Title
-description: A brief summary of the announcement.
+description: A brief summary of the announcement, 170 characters max including spaces.
 author: Joan Smith
 visibility: private
 published: 3020-01-01
 metaImage: to-be-added-by-marketing
 bannerImage: to-be-added-by-marketing
+bannerImageAlt:
+isFeatured: false
 tags:
   - DevOps
   - Company
@@ -21,6 +23,10 @@ State the subject of the announcement as plainly and directly as you can.
 Body and Conclusion headings might be unnecessary for short posts.
 
 If the announcement is likely to be controversial, acknowledge that and explain the reasons that helped inform the decision.
+
+If including images, please include alt text. Alt text is primarily used to describe images to people unable to see them, and can be 125 characters max including spaces. You can also include an image caption if the reader would benefit from additional information or context.
+Here's an example of authoring alt text and an image caption:
+![Alt text](image.png)*Caption text*
 
 ## Conclusion
 

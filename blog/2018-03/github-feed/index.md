@@ -6,6 +6,7 @@ visibility: public
 published: 2018-03-06
 metaImage: metaimage-githubfeeds.png
 bannerImage: blogimage-githubfeeds.png
+bannerImageAlt: Blog Image
 tags:
  - Product
 ---

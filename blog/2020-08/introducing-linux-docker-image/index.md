@@ -6,6 +6,7 @@ visibility: public
 published: 2020-08-03
 metaImage: octopus-linux-docker-image.png
 bannerImage: octopus-linux-docker-image.png
+bannerImageAlt: Introducing the Octopus Server Linux Docker image
 tags:
  - Product
  - Docker

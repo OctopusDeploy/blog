@@ -6,6 +6,7 @@ visibility: public
 published: 2020-11-10
 metaImage: octopus-java.png
 bannerImage: octopus-java.png
+bannerImageAlt: Java deployments to Tomcat with YAML and XML configuration file replacements
 tags:
  - Java
  - Product

@@ -4,6 +4,7 @@ description: How to get started using PowerShell Desired State Configuration (DS
 author: shawn.sesna@octopus.com
 visibility: public
 bannerImage: getting-started-powershell-dsc.png
+bannerImageAlt: Octopus learning how to configure a server with PowerShell DSC
 metaImage: getting-started-powershell-dsc.png
 published: 2019-10-21
 tags:

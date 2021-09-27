@@ -6,6 +6,7 @@ visibility: public
 published: 2021-05-17-1400
 metaImage: feature-branching.png
 bannerImage: feature-branching.png
+bannerImageAlt: octopus hanging off a branch in a pot plant
 tags:
  - DevOps
  - Azure

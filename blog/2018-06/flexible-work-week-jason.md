@@ -5,6 +5,7 @@ author: jason.brown@octopus.com
 visibility: public
 metaImage: metaimage-flexiblework.png
 bannerImage: blogimage-flexiblework.png
+bannerImageAlt: Octo-flexi
 published: 2018-06-22
 tags:
  - Company

@@ -6,6 +6,7 @@ visibility: public
 published: 2021-03-01-1400
 metaImage: blogimage-octopus-samples.png
 bannerImage: blogimage-octopus-samples.png
+bannerImageAlt: An image of people moving Octopus components
 tags:
  - Product
 ---

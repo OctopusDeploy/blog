@@ -6,6 +6,7 @@ visibility: public
 published: 2020-05-11
 metaImage: tekton-pipelines.png
 bannerImage: tekton-pipelines.png
+bannerImageAlt: A first look at Tekton Pipelines
 tags:
  - DevOps
 ---

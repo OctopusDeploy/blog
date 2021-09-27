@@ -6,6 +6,7 @@ visibility: public
 published: 2020-07-08
 metaImage: community-library.png
 bannerImage: community-library.png
+bannerImageAlt: Contributing a step template to the Octopus Deploy Community Library
 tags:
  - Product
 ---

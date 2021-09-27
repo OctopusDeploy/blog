@@ -6,6 +6,7 @@ visibility: public
 published: 2021-06-23-1400
 metaImage: blogimage-azure-key-vault-step-template-2021.jpg
 bannerImage: blogimage-azure-key-vault-step-template-2021.jpg
+bannerImageAlt: Using Azure Key Vault with Octopus Deploy
 tags:
  - Product
  - Security

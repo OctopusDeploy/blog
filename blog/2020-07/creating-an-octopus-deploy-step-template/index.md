@@ -6,6 +6,7 @@ visibility: public
 published: 2020-07-07
 metaImage: octopus-step-template.png
 bannerImage: octopus-step-template.png
+bannerImageAlt: Creating an Octopus Deploy step template
 tags:
  - Product
 ---

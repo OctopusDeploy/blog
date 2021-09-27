@@ -6,6 +6,7 @@ visibility: public
 published: 2020-10-28
 metaImage: blogimage-awsiam.png
 bannerImage: blogimage-awsiam.png
+bannerImageAlt: Using AWS IAM roles in Octopus
 tags:
  - DevOps
  - AWS

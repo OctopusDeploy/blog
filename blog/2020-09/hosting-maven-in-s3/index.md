@@ -6,6 +6,7 @@ visibility: public
 published: 2020-09-30
 metaImage: maven-repo-s3.png
 bannerImage: maven-repo-s3.png
+bannerImageAlt: Hosting a Maven repo in Amazon S3
 tags:
  - DevOps
  - Java

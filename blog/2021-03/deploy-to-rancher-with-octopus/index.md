@@ -6,6 +6,7 @@ visibility: public
 published: 2021-03-22-1400
 metaImage: blogimage-rancher-octopus.png
 bannerImage: blogimage-rancher-octopus.png
+bannerImageAlt: Deploy to Rancher with Octopus Deploy
 tags:
  - Kubernetes
  - DevOps

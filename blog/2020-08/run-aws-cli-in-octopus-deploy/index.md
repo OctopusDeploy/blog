@@ -6,6 +6,7 @@ visibility: public
 published: 2020-08-25
 metaImage: octopus-aws-cli.png
 bannerImage: octopus-aws-cli.png
+bannerImageAlt: Run the AWS CLI in Octopus Deploy
 tags:
  - DevOps
  - AWS

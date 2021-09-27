@@ -6,6 +6,7 @@ visibility: public
 published: 2019-10-08
 metaImage: sql_server_docker_linux_container.png
 bannerImage: sql_server_docker_linux_container.png
+bannerImageAlt: SQL Server database in a Linux-based Docker container on an iceberg with a Docker container ship in the background
 tags:
  - Engineering
  - Database Deployments

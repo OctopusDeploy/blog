@@ -6,6 +6,7 @@ visibility: private
 published: 3021-07-01-1400
 metaImage: blogimage-community-youtube-2021.png
 bannerImage: blogimage-community-youtube-2021.png
+bannerImageAlt: Community Image
 tags:
  - Company
  - Community

@@ -6,6 +6,7 @@ visibility: public
 published: 2020-10-14
 metaImage: blogimage-java-blog-series-4.png
 bannerImage: blogimage-java-blog-series-4.png
+bannerImageAlt: Java CI/CD From Continuous Integration to Kubernetes deployments
 tags:
  - DevOps
  - Java

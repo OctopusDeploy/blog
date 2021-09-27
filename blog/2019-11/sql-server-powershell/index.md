@@ -4,6 +4,7 @@ description: SQL Server database administration using PowerShell
 author: james.chatmas@octopus.com
 visibility: public
 bannerImage: sql-server-powershell-examples.png
+bannerImageAlt: SQL Server and PowerShell Practical Examples
 metaImage: sql-server-powershell-examples.png
 published: 2019-11-26
 tags:

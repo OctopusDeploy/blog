@@ -4,6 +4,7 @@ description: Performing docker-compose is easy with the new script running capab
 author: robert.erez@octopus.com
 visibility: public
 bannerImage: blogimage-docker-compose.png
+bannerImageAlt: Octopus working with Docker Compose illustration
 metaImage: metaimage-docker-compose.png
 published: 2018-09-05
 tags:

@@ -5,6 +5,7 @@ author: phil.stephenson@octopus.com
 visibility: public
 metaImage: blogimage-automating-next-js-with-github-actions-2021.png
 bannerImage: blogimage-automating-next-js-with-github-actions-2021.png
+bannerImageAlt: CI/CD with Next.js, GitHub Actions, and Octopus Deploy
 published: 2021-03-03-1400
 tags:
  - DevOps

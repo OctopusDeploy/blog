@@ -6,6 +6,7 @@ visibility: public
 published: 2020-10-13
 metaImage: blogimage-java-blog-series-3.png
 bannerImage: blogimage-java-blog-series-3.png
+bannerImageAlt: Java CI/CD From local build to Jenkins Continuous Integration
 tags:
  - DevOps
  - Java

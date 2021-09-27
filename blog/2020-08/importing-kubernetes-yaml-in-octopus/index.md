@@ -6,6 +6,7 @@ visibility: public
 published: 2020-08-11
 metaImage: kubernetes-yaml-octopus.png
 bannerImage: kubernetes-yaml-octopus.png
+bannerImageAlt: Importing Kubernetes YAML in Octopus
 tags:
  - DevOps
  - Kubernetes

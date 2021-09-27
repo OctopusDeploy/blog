@@ -6,6 +6,7 @@ visibility: public
 published: 2019-10-30
 metaImage: eksctl-kubernetes-clusters.png
 bannerImage: eksctl-kubernetes-clusters.png
+bannerImageAlt: Illustration showing an EKS Kubernetes cluster
 tags:
  - DevOps
  - Kubernetes

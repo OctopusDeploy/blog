@@ -2,6 +2,14 @@
 
 This is a post about...
 
+# Release
+
+Is this post for a specific release? If so which one?
+
+# Blog image idea
+
+The design team will work on a design for the blog image. Add any ideas you have about the graphic image here.
+
 # Pre-requisites
 
 - [ ] The draft is complete and this post is ready to be reviewed.

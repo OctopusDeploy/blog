@@ -5,6 +5,7 @@ author: jason.brown@octopus.com
 visibility: public
 metaImage: metaimage-octopuscloudlaunch.png
 bannerImage: blogimage-octopuscloudlaunch.png
+bannerImageAlt: Octopus Clouds launch fireworks illustration
 published: 2018-07-02
 tags:
  - Product

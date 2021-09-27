@@ -6,6 +6,7 @@ visibility: public
 published: 2021-02-17-1400
 metaImage: blogimage-how-to-start-and-refactor-automation-repositories-2021.png
 bannerImage: blogimage-how-to-start-and-refactor-automation-repositories-2021.png
+bannerImageAlt: How to structure your Git repository for DevOps automation
 tags:
  - DevOps
  - Automation

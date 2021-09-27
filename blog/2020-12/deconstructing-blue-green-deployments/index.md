@@ -6,6 +6,7 @@ visibility: public
 published: 2020-12-01
 metaImage: blogimage-blue-green-deployments-in-kubernetes_2020.png
 bannerImage: blogimage-blue-green-deployments-in-kubernetes_2020.png
+bannerImageAlt: Deconstructing blue/green deployments in Kubernetes
 tags:
  - DevOps
  - Kubernetes

@@ -5,6 +5,7 @@ author: michael.richardson@octopus.com
 visibility: public
 metaImage: 4.0deployments_metaimage.png
 bannerImage: 4.0deployments_blogimage.png
+bannerImageAlt: Octopus 4.0 new create release page
 published: 2017-11-07
 tags:
  - Engineering

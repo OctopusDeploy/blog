@@ -4,6 +4,7 @@ description: Using Cake’s C# makefiles to script your application build proces
 author: ryan.rousseau@octopus.com
 visibility: public
 bannerImage: blogimage-cakebuild.png
+bannerImageAlt: Illustration showing building a cake w/ code, markdown and images in a mixing bowl
 metaImage: blogimage-cakebuild.png
 published: 2019-10-09
 tags:

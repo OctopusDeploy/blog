@@ -6,6 +6,7 @@ visibility: public
 published: 2021-04-26
 metaImage: blogimage-security.png
 bannerImage: blogimage-security.png
+bannerImageAlt: Octopus on shield to represent security
 tags:
   - Product
   - Trust and Security

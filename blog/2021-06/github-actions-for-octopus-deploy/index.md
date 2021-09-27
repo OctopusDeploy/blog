@@ -6,6 +6,7 @@ visibility: public
 published: 2021-06-02-1400
 metaImage: github-actions-integration.png
 bannerImage: github-actions-integration.png
+bannerImageAlt: GitHub actions integrating with Octopus Deploy build
 tags:
  - DevOps
  - GitHub Actions

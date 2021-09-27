@@ -6,6 +6,7 @@ visibility: public
 published: 2020-08-04
 metaImage: dsc-with-aws-cloudformation.png
 bannerImage: dsc-with-aws-cloudformation.png
+bannerImageAlt: Installing Tentacles with DSC in AWS CloudFormation templates
 tags:
  - DevOps
  - AWS

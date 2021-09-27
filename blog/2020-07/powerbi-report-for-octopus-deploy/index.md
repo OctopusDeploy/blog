@@ -6,6 +6,7 @@ visibility: public
 published: 2020-07-15
 metaImage: octopus-power-bi-report.png
 bannerImage: octopus-power-bi-report.png
+bannerImageAlt: How to build a PowerBI report for Octopus Deploy
 tags:
   - DevOps
   - Reporting
