@@ -15,7 +15,7 @@ tags:
 
 ![Octopus keyring](blogimage-scripting-api-key-creation-2021.png)
 
-Advanced users of Octopus will already be familiar with the robust [Octopus REST API](https://octopus.com/docs/octopus-rest-api). Octopus is designed API first, so anything you can do in the Octopus Web Portal, you can do with the API. Before you can interact with the API however, you need to create an Octopus [API key](https://octopus.com/docs/octopus-rest-api/how-to-create-an-api-key). These steps require a human, but it's possible to automate the process. 
+Advanced users of Octopus will already be familiar with the robust [Octopus REST API](https://octopus.com/docs/octopus-rest-api). Octopus is designed API first, so anything you can do in the Octopus Web Portal, you can do with the API. Before you can interact with the API, however, you need to create an Octopus [API key](https://octopus.com/docs/octopus-rest-api/how-to-create-an-api-key). These steps require a human, but it's possible to automate the process. 
 
 In this blog post, I walk through scripting the creation of an API key for use with the Octopus REST API.
 
