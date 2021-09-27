@@ -1,0 +1,219 @@
+---
+title: Safe Schema Updates - Provisioning Dev/Test Databases
+description: The first step towards safe production releases... safe dev/test deployments
+author: alex.yates@dlmconsultants.com
+visibility: public
+published: 2021-10-11-1400
+metaImage: 
+bannerImage: 
+bannerImageAlt: 
+isFeatured: false
+tags:
+ - DevOps
+ - Database Deployments
+ - Deployment Patterns
+---
+
+This blog post is part 6 of my safe schema updates series. We'll add links to the other posts in this series as they become available:
+
+!include <safe-schema-updates-posts>
+
+~
+
+We’re more than half-way through this series and so far we’ve kept it pretty theoretical. We’ve imagined a better world, but we’ve not yet discussed the practical steps required to get there.
+
+That changes now.
+
+From now on, we’ll be explicitly discussing the process of taking the sort of hellscape I discussed in part 1, and iteratively refactoring it such that it’s safer to make changes and improvements. For the record, this journey probably isn’t going to be quick or easy. We’ll be discussing technologies, processes and ideas that are likely to be new to a lot of your existing team. Learning is hard and it takes most people some time to accept, learn and embrace new technologies and processes.
+
+We aren’t going to get bogged down in tutorials, code snippets or other fine details, but there will be plenty of links to more detailed materials.
+
+## We never have enough environments
+
+First things first: provisioning dev and test environments. As we learned in part two, ["failure free operations require experience with failure"](https://octopus.com/blog/safe-schema-updates-2-resilience-vs-robustness#appreciating-the-nature-of-failure-in-complex-systems). It’s unlikely your team will be able to build resilient production systems if they can’t easily access a realistic development space where they can safely practice failure.
+
+By beginning with rapidly deployable and disposable development and test systems, we nurture the capability to better test and rehearse the risky refactors that will become necessary later. What’s more, with respect to delivery lead times: 
+
+*** BLOCKQUOTE ***
+The first place where the constraint almost invariably resides, especially for traditional IT organizations that have shared operations […] is environment creation. We can never get enough of them, and whenever we really need one, we still have to wait forty weeks.
+*Gene Kim, [Beyond the Phoenix Project](https://octopus.com/blog/devops-reading-list#beyond-the-phoenix-project)*
+*** BLOCKQUOTE ***
+
+Thinking back to what we’ve learned in the prior posts:
+
+- Personal, rapidly deployable environments are more resilient because they are disposable and they isolate failure. If a developer breaks one, the failure does not affect anyone else, and the environment can be terminated and respawned with ease. What’s more, if a developer’s personal dev instance is broken, they know they’ve discovered either a problem that already exists in production, or there’s an issue with their own code. This leads to less doubt and finger pointing.
+- Self-service environments reduce “it worked on my machine/worked in dev” issues, since all environments are built from a standard image, which is as “production-like” as possible. 
+- Personal dev environments encourage continuous integration since changes do not need to be batched together as they progress through the various shared dev/test environments. Changes are decoupled from each other. This results in smaller integrations, safer deployments, better quality, less bureaucracy, and faster lead times.
+
+If we want to reap these benefits, it’s essential that environment provisioning is fast and painless. It’s critical to avoid any delays created by dependencies on operations teams or approvers. Our goal is to create a form of realistic, off-the-shelf, pre-approved environment that developers and testers can rapidly spin up and throw away as needed. It should feel like “git clone f5” and take roughly as many seconds and keystrokes.
+
+This goal applies to every component of any system. Since the database is so often a shared dependency on which everything else is built, in this post we will focus on the rapid, self-service provisioning of databases. However, some of these ideas and technologies may also help folks to spin up additional dependent systems at the same time, allowing either humans or automated test runs to build whichever bits are necessary to complete the task at hand.
+
+Using the techniques in this post will result in generally lower administration/management overheads and a safer product. However, cost-saving should not be the primary goal. In fact, the dev/test hosting bill (taken in isolation) may well increase somewhat. For those who fear skyrocketing infrastructure costs, consider that most hosting platforms allow for spending caps. The budget approval process should be concerned with where to set the cap, rather than micromanaging any specific compute minutes.
+
+Let’s get started.
+
+## Infrastructure as code
+
+If using a cloud database such as Azure SQL Database or Amazon RDS, this step may not be necessary. However, for the purposes of this post, we’ll assume our monolithic backend database is a SQL Server database running on some virtual infrastructure, either in some private cloud or a hosting provider such as AWS, Azure or GCP.
+
+In this case, you’ll need to version control some script that allows a developer to spin up a new virtual machine or container, either on their own dev workstation, a private cloud or a hosting provider.
+
+Rather than attempting to teach the entire topic of infrastructure as code in a few paragraphs, for any readers who are unfamiliar with the concept, I recommend you read Bob’s excellent series here which starts here:
+
+Using Infrastructure as Code with Operations Runbooks
+
+Your objective is to provide each developer or tester with an easy means with which to spin up the necessary infrastructure on which to build a test database.
+
+## SQL Server
+
+Once you have your server, you need to install SQL Server. I recommend you start by reading another one of Bob’s posts (which I’m forever referring back to!):
+
+Automating SQL Server Developer installation
+
+In that post, Bob explains how to automate the SQL Server installer and version control your SQL Server configuration using the Configuration.ini file generated by the installer. (You want this in source control to avoid “works on my machine”.)
+
+Once you’ve read that, if you are running on Windows, I encourage you to look at Chocolatey. It’s basically Windows’ answer to Linux’s apt-get. It achieves the same as Bob’s automation scripts with less code:
+
+> choco install sql-server-2019 --params="'/CONFIGURATIONFILE:c:\git\myrepo\iac\ConfigurationFile.ini'"
+
+Finally, it would be remiss not to talk about Docker containers.
+
+You can run SQL Server on a Linux container on either Windows or Linux OS. Docker allows folks to spin up new SQL instances much more quickly and efficiently than installing it on the OS. This allows developers to spin up and tear down instances much more frequently and liberally, without provisioning a new dev machine. Apart from speeding things up, this potentially simplifies the whole process by removing the need to spin up and tear down new servers every time a developer wants to rebuild their environment.
+
+In my opinion, the best place to get started with SQL Server containers is Andrew Pruski’s excellent blog series, which takes you from zero to chaos engineering with Kubernetes (and… Space Invaders). 
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/HCy3sjMRvlI?start=1642" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+## Databases/Data
+
+By now, we’ve automated our infrastructure and our SQL Server install, but we’ve not yet set up our databases or any test data. It’s no wonder that developers who lack effective test data tend to write poorly performing code. They never see the consequences until it’s too late.
+
+Before we go any further, we need to address two immediate problems with production data: privacy and scale.
+
+### Data Privacy: Making useful but safe test data available
+
+Most people would consider it an invasion of privacy if all the developers that worked for their bank, health care provider or supermarket had access to their personal financial, health or purchasing data. It’s also worth considering that hackers are often more likely to attack dev databases than production databases. Phishing emails can be remarkably convincing these days. Once the bad folks have gained access to a developer machine, the dev databases are often much easier targets.
+
+In response to these concerns, data privacy legislation is trending stricter almost everywhere. Quite apart from legal sanctions, both traditional and social media love to pile on whenever the next business suffers a data breach. No-one wants to be the next Equifax.
+
+Ask yourself: “Imagine someone uploads your dev database to a popular hacker site… are you worried?” If so, it’s likely that either you know there is sensitive data where it shouldn’t be, or you don’t know whether the dev database contains sensitive data. Neither is acceptable under many of the latest data privacy laws.
+
+This is true regardless of whether you maintain a single, shared dev environment, or whether you are using many disposable environments. However, if going down the disposable infrastructure route, it’s important to recognise we are likely to be creating many copies of the dev data.
+
+Data Scale: Making the production data smaller, faster and cheaper
+
+Let’s imagine we’ve solved the data privacy problem: We probably still have a significant practical challenge. Most production databases are pretty big.
+
+It’s likely that the production database will be too big to reproduce in full on a dev environment. If the production database is measured in the terabytes, it’s unlikely you want to pay for many dev and test servers, each large enough to host the entire thing.
+
+On the other hand, your developers and testers could really benefit from access to large-scale and relatively recent data. If they never test their code against large, representative datasets, how can they be expected to anticipate the sorts of unintuitive performance issues that can take down the production databases that underpin your entire production estate?
+
+Let’s deal with these two problems one at a time.
+
+### Data Privacy: Making useful but safe test data available
+
+There are various types of data you might want to include in your development databases. To summarise in a tweet:
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">People often ask me how to manage data on dev databases.<br><br>Here is my answer on a Post-It. What do you think?<br><br>Also, would you find it valuable if I wrote a blog post on this topic or should I write about something else instead? <a href="https://t.co/Yj0esIwEZE">pic.twitter.com/Yj0esIwEZE</a></p>&mdash; Alex Yates (He/Him) (@_AlexYates_) <a href="https://twitter.com/_AlexYates_/status/991334539132796931?ref_src=twsrc%5Etfw">May 1, 2018</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+For the purposes of this post, I’m going to propose that the ideal data for most dev and test purposes is production data, but with any sensitive records either removed or replaced in some way. This way, procedures can be tested with a representative scale and distribution of data, better highlighting potential issues in disposable environments. This should result in more problems being caught in advance and fewer production issues.
+
+To achieve this, first we need to conduct a data audit and create a data inventory. Columns in the database need to be classified based on the level of data sensitivity. (This is already a requirement of many data privacy laws including the GDPR. You cannot protect your sensitive data if you don’t know where it is!)
+
+In SQL Server there are a couple of ways to do this. For example, you could enforce a policy that all columns use an Extended Property to define the level of data sensitivity. These properties are relatively easy to put in source control and query. Further, since 2016, SQL Server, data classification has been added as a first class citizen.
+
+Next, we need to create copies of the database with all the sensitive data scrubbed out. I propose using your environment creation scripts (above) to spin up a temporary “staging” instance somewhere behind your production firewall. Then, on a regular schedule, you can restore your most recent production backups to this staging area and run some script or tool to remove all the sensitive data. (Bonus: regularly testing your backups is an important practice anyway.)
+
+The data masking process might be as simple as replacing all names with “John Doe”, or you might use a more sophisticated process to create realistic but fake data. For example, you might like to look at the dbatools Invoke-dbaDbDataMasking cmdlet (open source, simple, free) or Redgate Data Masker for SQL Server / Oracle (3rd party, sophisticated, not free). Effort invested here to create more realistic test data will result in better quality dev and test work later on.
+
+If you are nervous about sensitive production data slipping through, here are a few suggestions:
+
+- Add a test to your deployment pipeline that ensures all columns have a data classification.
+- Add a test to your deployment pipeline that ensures all sensitive columns have a corresponding masking script or rule.
+- Add a flag to your deployment pipeline that any changes to data privacy classifications or masking scripts get flagged for review by a senior developer or (if you must) a database administrator, security team, data privacy officer or *[through gritted teeth]* a Change Advisory Board. (Yo! “Separation of roles” enforcement brigade: I see you.) All I ask is that steps are taken to ensure these reviews are conducted swiftly, without creating long delays.
+
+In addition to masking scripts, developers/testers might like to provide their own scripts to run on the staging instance to add a set of known test cases to the database or to change the security settings etc for dev environments.
+
+When all these scripts have completed, we can backup the new “dev-safe” databases on the staging server and copy the backups to some shared location in the dev domain. (Then we can drop the staging database. It’s served its purpose.)
+
+Note: data masking scripts can take a long time to run and may require a lot of compute resource. This is especially true if working through large tables, row by row, and creating temporary tables all over the place to maintain complicated foreign key references. Hence, the whole thing needs to be run as a scheduled job, creating fresh “dev-safe” backups each night/week/sprint etc.
+
+Now, by the time a developer starts work in the morning, the “dev-safe” backups should be ready for them to use. The scripts they already created to spin up their dev environments can now be extended to restore the latest masked production backups. Now their dev environments are complete with relatively recent versions of the production databases.
+
+### Data Scale: Making the production data smaller, faster and cheaper
+
+By now we already have a process to spin up realistic, “dev-safe” environments. However, production databases can be pretty big. Big environments can be expensive to host and restoring large backups can take a long time. As a developer, I want the process to take no more than a few seconds, and I don’t want to have the auditors on my back about my AWS bill every time I want to test my code.
+
+This is where database cloning can help.
+
+Tools like dbaclone (open source, free) and Redgate SQL Clone (3rd party, not free) use the virtualisation features already built into the Windows operating system to create cheap, editable virtual copies of large files. 
+
+Within a SQL Server development setting, typically an operations team would start by creating a dev-safe “image” of a large database (up to 64TB) in a shared location. Later, the developers can create “clones” as required. These clones are effectively pointers back to the original “image”. When first created, each clone only requires a few megabytes (regardless of the size of the source image). Hence, we can create almost limitless clones of the source image, almost instantly, on cheap, commodity hardware. 
+
+The clever bit is a “differencing disk” which captures any changes a developer makes on a clone. This is the magic, since each clone feels like its own editable copy of the 64 TB source image, even if the clones are running on a much smaller drive.
+
+The main gotcha is that the size of the “differencing disk” will grow as you modify the file. Hence, changes to small objects, like views, procedures, or updates to a single row of data, are unlikely to make a big difference. However, if you reindex a large table, you could quickly run out of diskspace.  Clones are an ideal tool to use on small, disposable infrastructure, where the consequences of failure are limited.
+
+As a party trick I used to run this cloning tech on a loop during my conference sessions. Within a few minutes I had over a thousand, editable copies of the full StackOverflow database running on my laptop. My local SQL Server instance thought I had almost a petabyte worth of SSD storage on my 13-inch HP Spectre!
+
+If you’d like to learn more about how to use containers and clones together, you might like to start by watching a session I delivered last year with Sander Stad, the maintainer of the dbaclone project.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/masJxBmgfqo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+And, if all this wasn’t cool enough, check out Redgate Spawn. It’s a hosted version of SQL Clone. While it’s still in preview, and I’ve not yet had the chance to use it myself, I’m really excited about the potential!
+
+If you’d like to get started, I wrote in more detail about database cloning last year, and I included a much more detailed walkthrough.
+
+## Schema deployment
+
+By now, we’ve hopefully got a regular batch job producing dev-safe data images for each of our databases and a bunch of automation scripts allowing developers to spin up SQL instances with realistic data on-demand. However, those databases will probably be a bit out of date.
+
+The databases are not based on the latest version from source control, they are based on production. (And production may not yet have the latest dev changes). What’s more, since the new dev images are created in advance, they might be a few days or weeks old.
+
+Before we can use our new dev environment, we need to deploy our latest source code from our main branch in source control over the top of the most recent versions of the “dev-safe” databases. Apart from this being a necessary step to bring our dev environment up to date, I love this exercise because every time a developer builds a new environment, they are effectively testing the next production deployment. Hence, if there are any issues brewing, you are likely to spot them well in advance.
+
+I’m not going to talk through the process of automating the database deployment here, but the following resources might help:
+
+- Database Deployment Automation Approaches
+- SQL Server deployment options for Octopus Deploy
+- Comparison Review: Microsoft SSDT vs Redgate SQL Source Control
+
+## Speeding it all up
+
+Our provisioning process is now complete. It has two parts. First, on a schedule, we have a process that creates new dev-safe databases for developers to use. Second, developers can spin up their own dev environments as and when they need them.
+
+However, the “git, clone, f5” experience is still likely to be a bit frustrating for the developers.
+
+When a developer wants to run their code, it’s relatively quick to clone the repo, and it’s possible for them to run their script (or perhaps use an Octopus Runbook) to build a development environment. However, that process is likely to be slow.
+
+As a developer, I do not want to have to wait more than a minute, and ideally not more than a few seconds, to start running my code. However, my environment provisioning script has to do all of the following:
+
+1.	Build me a new instance and boot it up. (This, at best, is likely to take a few minutes.)
+2.	Install SQL Server, and whatever else is needed. (Probably another 5-10 minutes. Much less if using containers.)
+3.	Restore my database backups or clone the databases. (If using backups, could take a while.)
+4.	Deploy the latest source code. (Depending on the deployment tool/process, this could take a few minutes.)
+
+It wouldn’t be surprising if that all took a good 15 to 30 minutes, and potentially much more for large databases. That’s a lot of thumb-twiddling and it’s likely to make the developer nervous about breaking their dev playground. Do they really want to risk such a long delay to respawn if they make a mistake? Iterating over a design or testing our multiple implementation options could take a long time if each evolution took so long.
+
+We might be able to speed this up with VM snapshotting. Alternatively, we could create a queue of dev environments in advance. I like the queue option best since it saves all the VM wizardry and is potentially faster. The dev environment is already ready before the developer even requests it!
+
+## Summary
+
+According to Gene Kim, the first bottleneck that most folks hit in their DevOps transformation is environment creation. Many of the issues we witnessed in Database Delivery Hell were the result of shared and inconsistent development environments. We’ve learned that failure is normal, so it’s important to create systems where failure is safe.
+
+It’s my hope, that the sorts of technical practices outlined in this post will allow you, dear reader, to move as much development and testing off your big, shared development environments onto dedicated environments where changes can be tested in isolation and merged as soon as they are ready for deployment.
+
+This improved testing capability will come in handy as we move on to the next posts about near-zero downtime deployment and the strangler pattern for breaking up monolithic systems into more loosely coupled architectures.
+
+## Next time
+
+In the next post we’ll turn our focus to deployment patterns.
+
+Throughout this series I’ve been advocating for smaller, safer, more frequent deployments. However, if those deployments require periods of downtime, it’s unlikely that we’ll be allowed to deploy as often as we wish. There’s no point deploying 10 times a day if each deployment requires an hour of downtime!
+
+Next time, we’ll talk about the importance of near-zero downtime deployment patterns, how these effect the database, and how minimal downtime can be a real enabler for continuous integration.
+
+We'll add links to the other posts in this series as they become available.
+
+!include <safe-schema-updates-posts>
