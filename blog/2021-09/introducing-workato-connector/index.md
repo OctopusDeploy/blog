@@ -30,6 +30,8 @@ The Workato connector for Octopus lets you quickly integrate Octopus with your w
 
 Additional actions can also be added to the connector if you need them.
 
+!include <octopus-2021-q3>
+
 ## Getting started
 
 Creating workflows in Workato with the Octopus Deploy connector is simple:
