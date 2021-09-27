@@ -180,9 +180,9 @@ When a developer wants to run their code, it’s relatively quick to clone the r
 As a developer, I do not want to have to wait more than a minute, and ideally not more than a few seconds, to start running my code. However, my environment provisioning script has to do all of the following:
 
 1.	Build me a new instance and boot it up. (This, at best, is likely to take a few minutes.)
-2.	Install SQL Server, and whatever else is needed. (Probably another 5-10 minutes. Much less if using containers.)
-3.	Restore my database backups or clone the databases. (If using large backups, could take a while.)
-4.	Deploy the latest source code. (Depending on the size/complexity of the schema and the deployment tool/process, this could take a few minutes.)
+1.	Install SQL Server, and whatever else is needed. (Probably another 5-10 minutes. Much less if using containers.)
+1.	Restore my database backups or clone the databases. (If using large backups, could take a while.)
+1.	Deploy the latest source code. (Depending on the size/complexity of the schema and the deployment tool/process, this could take a few minutes.)
 
 It wouldn’t be surprising if that all took a good 15 to 30 minutes, and potentially much more for large databases. That’s a lot of thumb-twiddling and it’s likely to make the developer nervous about breaking their dev playground. Do they really want to risk such a long delay to respawn if they make a mistake? Iterating over a design or testing multiple implementation options could take a long time if each evolution takes hours.
 
