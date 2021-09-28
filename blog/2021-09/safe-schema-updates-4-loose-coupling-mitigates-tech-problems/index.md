@@ -6,7 +6,7 @@ visibility: public
 published: 2021-09-27-1400
 metaImage: blogimage-loosecouplingmitigatestechproblems-2021.png
 bannerImage: blogimage-loosecouplingmitigatestechproblems-2021.png
-bannerImageAlt: Nine level database server with fire on the ground and on the top four levels with billowing smoke.
+bannerImageAlt: A monolithic tech stack with one database and tightly coupled components (status red), next to a loosely coupled system with one database per component (status green)
 isFeatured: false
 tags:
  - DevOps
