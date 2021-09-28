@@ -26,7 +26,7 @@ First we will create a project in Google Cloud Platform
 
 ![Create Project](create-project.png "width=500")
 
-One the project is created, create a service account in the project and give it the editor role. You will need to click create and continue and select the editor role.
+When the project is created, create a service account in the project and give it the editor role. You will need to click create and continue and select the editor role.
 
 ![Create Service Account](create-service-account.png "width=500")
 
