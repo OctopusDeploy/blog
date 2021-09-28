@@ -40,7 +40,7 @@ We need to enable the Google Compute Engine API to allow the VPC to be created i
 
 ![GCP Enable Compute API](gcp-enable-compute-api.png "width=500")
 
-Select the project drop down mtnu and take note of the Google project ID for use later
+Select the project drop down menu and take note of the Google project ID for use later.
 
 ![GCP Project ID](gcp-project-id.png "width=500")
 
