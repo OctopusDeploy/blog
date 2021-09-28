@@ -58,7 +58,7 @@ In your project, go to Variables and add the following variables. I have given t
 | GCP-zone   |  australia-southeast1-a |    
 |  GCP-Variable  |Change type &rarr; Google Cloud Account &rarr; Select your Google Account |   
 
-Runbooks are a way to automate processes that aren't part of a deployment. In this case, creating a VPC network. Go to Operations Runbooks and add a runbook with a 'Apply a Terraform template' step.
+Runbooks are a way to automate processes that aren't part of a deployment. In this case, creating a VPC network. Go to **{{Operations,Runbooks}}** and add a runbook with the **apply a Terraform template** step.
 
 ![Octopus Add Terraform Step](octopus-add-terraform-step.png "width=500")
 
