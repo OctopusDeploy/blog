@@ -245,7 +245,7 @@ To create your tenants:
 1. We recommend adding a logo or icon to tenants to make their purpose clearer. Click **Settings** from the left menu, upload an image in the Logo section and click **SAVE**.
 1. Click **Tenants** in the top menu and repeat the steps to create your other tenants.
 
-You should also use [common variable templates](https://octopus.com/docs/tenants/tenant-variables#common-variables) to prompt you for information needed for each region (storage account details, for example). Unlike [project variables](https://octopus.com/docs/tenants/tenant-variables#project-variables), you can reuse common variables across all projects, and they're not scoped to specific environments.
+You should also use [common variable templates](https://octopus.com/docs/tenants/tenant-variables#common-variables) to prompt you for data needed for each region (storage account details, for example). Unlike [project variables](https://octopus.com/docs/tenants/tenant-variables#project-variables), you can reuse common variables across all tenants. Plus, they're not scoped to specific environments.
 
 1. Click **Library** in the top menu, select **Variable Sets** from the left. 
 1. Click **ADD VARIABLE SET**, enter a name and description and click **SAVE**.
