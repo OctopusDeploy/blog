@@ -19,15 +19,15 @@ In this blog we look at some of the most common deployment patterns and explain 
 
 ## Rolling deployments
 
-A rolling pattern delivers releases to one target (or batch of targets) at a time. This reduces downtime and traffic congestion on your environment during deployment.
+A rolling pattern delivers releases to one [deployment target](https://octopus.com/docs/infrastructure/deployment-targets) (or batch of targets) at a time. This reduces downtime and traffic congestion on your environment during deployment.
 
 As one of the simpler options, rolling deployments can be slow but are reliable, low risk and easy to roll back.
 
 ### Set up a rolling deployment pattern in Octopus
 
-A deployment process in Octopus only starts a new step when the previous one ends. However, if a step deploys to a target role with more than one target (a server farm, for example), you’ll hit all targets at the same time.
+By default, a deployment process in Octopus only starts a new step when the previous one ends. However, if a step deploys to a [target role](https://octopus.com/docs/getting-started/best-practices/environments-and-deployment-targets-and-roles#deployment-target-environment-and-role-relationship) with more than one target (a server farm, for example), you’ll hit up to 10 targets at the same time.
 
-Here you can force a rolling pattern when defining your deployment process:
+Instead you can force a rolling pattern when defining your deployment process:
 
 1. Under the **On Targets in Roles** section in the Process Editor, click **CONFIGURE A ROLLING DEPLOYMENT**.
 1. In the **Rolling Deployment** section, set how many machines you’d like to deploy to at a time with the **Window size** field. For example:
@@ -44,7 +44,11 @@ If you need to run a series of steps on a target before deploying to another, us
 
 ![The 'Add child step' option in an Octopus deployment process](rollingdeploy2.png)
 
-Read our [rolling deployments documentation](https://octopus.com/docs/deployments/patterns/rolling-deployments) for more information, including how to use guided failures and variable run conditions. And for more reading on blue-green deployments, take a look at some of our other blog posts:
+### More information on rolling deployments
+
+Take a look around at an [example rolling deployment setup](https://samples.octopus.app/app#/Spaces-45) in our Octopus Samples instance.
+
+Also, check out our [rolling deployments documentation](https://octopus.com/docs/deployments/patterns/rolling-deployments) for more information, including how to use guided failures and variable run conditions. For even more reading on blue-green deployments, take a look at some of our other blog posts:
 
 - [The ultimate guide to rolling deployments](https://octopus.com/blog/ultimate-guide-to-rolling-deployments)
 - [Convert an existing application to use rolling deployments](https://octopus.com/blog/convert-to-rolling-deployments)
@@ -59,7 +63,7 @@ The blue-green pattern has the easiest rollback solution on this list - just red
 
 ### Set up a blue-green pattern in Octopus
 
-A blue-green pattern in Octopus is easy using [environments](https://octopus.com/docs/infrastructure/environments). Create 2 production environments with clear labels and assign the needed deployment targets to them.
+You can set up a blue-green pattern in Octopus using [environments](https://octopus.com/docs/infrastructure/environments). Create 2 production environments with clear labels and assign the needed deployment targets to them.
 
 To create an environment:
 
@@ -90,6 +94,10 @@ To assign a lifecycle:
 When readying a new release for staging, check your Octopus dashboard and deploy to the environment not acting as your live service.
 
 ![A blue-green setup on the Octopus dashboard](bluegreendash.png)
+
+### More information on blue-green deployments
+
+Take a look around at an [example blue-green deployment setup](https://samples.octopus.app/app#/Spaces-302) in our Octopus Samples instance.
 
 For more reading on blue-green deployments, take a look at some of our other blog posts:
 
@@ -136,6 +144,10 @@ Complete the other options as needed and click **SAVE**.
 
 ![An example of a canary deployment in an Octopus deployment process](canaryprocess.png)
 
+### More information on canary deployments
+
+Take a look around at an [example canary deployment setup](https://samples.octopus.app/app#/Spaces-542) in our Octopus Samples instance.
+
 ## Multi-region Deployments
 
 A multi-region pattern is when you deploy a release to multiple overseas targets, such as servers or data centers. While we consider it a deployment pattern itself, it’s an outlier as it uses other patterns as part of the process.
@@ -145,7 +157,7 @@ A multi-region pattern is when you deploy a release to multiple overseas targets
 There are 3 ways to set up multi-region deployments in Octopus:
 
 - [environments and lifecycles](#environments-and-lifecycles)
-- [cloud regions with a rolling pattern](#cloud-regions-and-variables-with-a-rolling-pattern)
+- [cloud regions and variables](#cloud-regions-and-variables-with-a-rolling-pattern)
 - [tenants](#tenants)
 
 #### Environments and lifecycles
@@ -192,7 +204,7 @@ You can also use scheduled deployments to deploy during low-usage timeframes:
 
 ![Examples of a multi-region deployment using environments](multiregionenv.png)
 
-#### Cloud regions and variables with a rolling pattern
+#### Cloud regions and variables
 
 Cloud regions are perfect if you don’t care about the order you deploy to your regions.
 
@@ -233,7 +245,7 @@ To create your tenants:
 1. We recommend adding a logo or icon to tenants to make their purpose clearer. Click **Settings** from the left menu, upload an image in the Logo section and click **SAVE**.
 1. Click **Tenants** in the top menu and repeat the steps to create your other tenants.
 
-You should also use variable templates to prompt you for needed variables for each region (stored account details, for example).
+You should also use [common variable templates](https://octopus.com/docs/tenants/tenant-variables#common-variables) to prompt you for information needed for each region (storage account details, for example). Unlike [project variables](https://octopus.com/docs/tenants/tenant-variables#project-variables), you can reuse common variables across all projects, and they're not scoped to specific environments.
 
 1. Click **Library** in the top menu, select **Variable Sets** from the left. 
 1. Click **ADD VARIABLE SET**, enter a name and description and click **SAVE**.
@@ -246,7 +258,7 @@ You should also use variable templates to prompt you for needed variables for ea
    - Default value (optional)
 1. Click **SAVE** when back on the **Variable Sets** screen.
 
-Now you must connect the variable to your project:
+Now you can connect the variable to your project:
 
 1. Click **PROJECTS** in the top menu, select your project from the list, then click **Variables** from the left.
 1. Click **Library Sets** from the left and click **INCLUDE LIBRARY VARIABLE SETS** from the top right.
@@ -260,7 +272,3 @@ Now your tenants will alert you if they’re missing information. To set the val
 Now you can see how many tenants a project has deployed to on the Octopus dashboard.
 
 ![A project using tenants in Octopus for a multi-region deployment](tenantdashboard.png)
-
-## More reading
-
-See our [patterns and practices documentation](https://octopus.com/docs/deployments/patterns) for more information deployment patterns and Octopus.
