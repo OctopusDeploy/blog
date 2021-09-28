@@ -32,7 +32,7 @@ When the project is created, create a service account in the project and give it
 
 <!--![Create Service Account Editor](create-service-account-editor.png "width=500")-->
 
-Once the service account is created, add a key so that Octopus Deploy can access the account. Download the  JSON file as it will be used later to authenticate Octopus Deploy to Google Cloud Platform.
+After the service account is created, add a key so that Octopus Deploy can access the account. Download the  JSON file as it will be used later to authenticate Octopus Deploy to Google Cloud Platform.
 
 ![GCP Service Account Key](gcp-service-account-key.png "width=500")
 
