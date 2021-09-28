@@ -36,7 +36,7 @@ After the service account is created, add a key so that Octopus Deploy can acces
 
 ![GCP Service Account Key](gcp-service-account-key.png "width=500")
 
-We need to enable the Google Compute Engine API to allow the VPC to be created in the project. You can search for this setting in the search bar or fine it under **{{Menu, Compute}}**
+We need to enable the Google Compute Engine API to allow the VPC to be created in the project. You can search for this setting in the search bar or find it under **{{Menu, Compute}}**.
 
 ![GCP Enable Compute API](gcp-enable-compute-api.png "width=500")
 
@@ -58,7 +58,7 @@ In your project, go to Variables and add the following variables. I have given t
 | GCP-zone   |  australia-southeast1-a |    
 |  GCP-Variable  |Change type &rarr; Google Cloud Account &rarr; Select your Google Account |   
 
-Runbooks are a way to automate processes that would lie outside a deployment. In this case, creating a VPC network. Go to Operations Runbooks and add a runbook with a 'Apply a Terraform template' step.
+Runbooks are a way to automate processes that aren't part of a deployment. In this case, creating a VPC network. Go to Operations Runbooks and add a runbook with a 'Apply a Terraform template' step.
 
 ![Octopus Add Terraform Step](octopus-add-terraform-step.png "width=500")
 
