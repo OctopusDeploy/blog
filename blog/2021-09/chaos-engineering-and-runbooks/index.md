@@ -24,7 +24,7 @@ Operations Runbooks in Octopus put the Ops in DevOps. This post is part of a ser
 ---
 
 :::hint
-Octopus 2021 Q3 includes updated support for Kubernetes deployments, and runbooks for Google Cloud, AWS, and Azure users. Watch [Twitter](https://twitter.com/OctopusDeploy) and check [our blog](https://octopus.com/blog) for updates on our upcoming 2021 Q3 release.
+Octopus 2021 Q3 includes updated support for Kubernetes deployments, and runbooks for Google Cloud, AWS, and Azure users. Learn more in our [release announcement](https://octopus.com/blog/octopus-release-2021-q3).
 :::
 
 The promise of declarative systems that automatically reconfigure themselves to a desired state is:
