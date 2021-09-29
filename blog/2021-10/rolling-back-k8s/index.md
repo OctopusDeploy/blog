@@ -12,7 +12,7 @@ tags:
  - 
 ---
 
-For various reasons, not every deployment goes as smoothly as we would like.  Bugs, unforseen circumstances, or hardware limitations can dictate whether an application will run once deployed to a Kubernetes cluster.  In the scenarios where the fix isn't easy or the application is unresponsive, you need to go back to the previous version, often referred to as a rollback.  In this post, I'll describe some general and Kubernetes specific rollback strategies using Octopus Deploy.
+For various reasons, not every deployment goes as smoothly as we would like when deploying to Kubernetes.  Bugs, container environment variables, and/or hardware limitations can dictate whether an application will run once deployed to a Kubernetes cluster.  In the scenarios where the fix isn't easy or the application is unresponsive, you need to go back to the previous version, often referred to as a rollback.  In this post, I'll describe some general and Kubernetes specific rollback strategies using Octopus Deploy.
 
 ## Example deployment process
 This post uses the built-in `Deploy Kubernetes Containers` to deploy a containerized version of the PetClinic, Java-based application.  This application consists of a web front-end and a MySQL back-end.  The MySQL back-end is also deployed as a container with the database updates being performed as a Kuberentes Job using Flyway.  The example process looks like this:
@@ -33,7 +33,7 @@ Perhaps the easiest way to recover from a failed deployment is to simply redeplo
 ![](octopus-redeploy-release.png)
 
 ## Conditionally execute steps during a rollback
-The redeploy method will execute the deployment exactly how it was deployed the first time, executing all steps within the process.  However, there may be steps you do not want to run during a rollback, such as the MySQL and Flyway steps.  For this, you need a way to determine what type of activity is occurring; a deploy, redeploy, or rollback and conditionally control which steps get executed.  In addition, you may also want to block the release your rolling back to progress to any other environments.  The updated process would look something like this:
+The redeploy method will execute the deployment exactly how it was deployed the first time, executing all steps within the process.  However, there may be steps you do not want to run during a rollback, such as the database steps.  For this, you need a way to determine what type of activity is occurring; a deploy, redeploy, or rollback and conditionally control which steps get executed.  In addition, you may also want to block the release your rolling back to progress to any other environments.  The updated process would look something like this:
 
 1. Calculate Deployment Mode
 1. Deploy MySQL container (only in Deployment mode)
@@ -54,8 +54,8 @@ You'll note that the process now shows which modes this step will run in.  This 
 ### Calculate Deployment Mode
 To determine which mode the deployment is in, the Octopus Solutions team developed the [Calculate Deployment Mode](https://library.octopus.com/step-templates/d166457a-1421-4731-b143-dd6766fb95d5/actiontemplate-calculate-deployment-mode) step template.  This template compares the release number of what's being deployed to what was previously deployed to the environment to determine what activity is occurring. For convenience, it also sets [output variables](https://octopus.com/docs/projects/variables/output-variables) which can then be used as [conditions](https://octopus.com/docs/projects/steps/conditions) on steps.
 
-### Deploy MySQL container and Run Flyway job
-To make sure these steps only execute during a deployment, add the following output variable from `Calculate Deployment Mode` as the variable run condition
+### Skipping database steps during rollback
+To make sure the MySQL and Flyway steps only execute during a deployment, add the following output variable from `Calculate Deployment Mode` as the variable run condition
 
 ```
 #{Octopus.Action[Calculate Deployment Mode].Output.RunOnDeploy}
@@ -64,7 +64,7 @@ To make sure these steps only execute during a deployment, add the following out
 ![](octopus-run-condition.png)
 
 ### Block Release Progression
-The ability to block a release from progressing has been in the Octopus Deploy product for quite some time.  However, this has to be done manually or with an API call.  The Octopus Solutions team developed the [Block Release Progression](https://library.octopus.com/step-templates/78a182b3-5369-4e13-9292-b7f991295ad1/actiontemplate-block-release-progression) step template to block the specified release from progressing.
+The ability to block a release from progressing has been in the Octopus Deploy product for quite some time.  However, this has to be done manually or with an API call.  The Octopus Solutions team developed the [Block Release Progression](https://library.octopus.com/step-templates/78a182b3-5369-4e13-9292-b7f991295ad1/actiontemplate-block-release-progression) step template to block the specified release from progressing within a deployment process.
 
 To ensure that this step doesn't run during a deployment, you'll want to add the following variable run condition
 
@@ -72,8 +72,8 @@ To ensure that this step doesn't run during a deployment, you'll want to add the
 #{Octopus.Action[Calculate Deployment Mode].Output.RunOnRollback}
 ```
 
-## Use Kubernetes revision history
-Kubernetes keeps a rolling revision history for pods allowing you to rollback to any stored revision (the default number of revisions to keep is 10).  For a deployment, the command `kubectl rollout history deployment.v1.apps/<deploymentname>` lists all the stored revisions.
+## Rolling back using Kubernetes revision history
+Kubernetes keeps a rolling revision history for pods, allowing you to rollback to any stored revision (the number of revisions is configurable with a default value of 10).  The command `kubectl rollout history deployment.v1.apps/<deploymentname>` lists all the stored revisions for a Kubernetes deployment.
 
 ```
 REVISION  CHANGE-CAUSE
@@ -168,6 +168,8 @@ else
 	Write-Error "Version $rollbackVersion not found in cluster revision history."
 }
 ```
+
+Other than container startup time, this operation can be completed in mere seconds!
 
 ## Conclusion
 Using the strategies discussed in this post, you can configure rollback functionality directly within your deployment process!  Happy deployments!
