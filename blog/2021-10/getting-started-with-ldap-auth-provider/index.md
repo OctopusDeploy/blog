@@ -12,7 +12,9 @@ tags:
  - Product
 ---
 
-In Octopus Deploy 2021.2, we added the [Lightweight Directory Access Protocol (LDAP)](https://ldap.com/) authentication provider.  
+In Octopus Deploy 2021.2, we added the [Lightweight Directory Access Protocol (LDAP)](https://ldap.com/) authentication provider. 
+
+!include <octopus-2021-q3>
 
 Many customers want to migrate to the Octopus Linux Container, but they have to authenticate via Active Directory.  Active Directory is also an LDAP server, meaning with the new LDAP provider you can now use the Octopus Linux Container **and** authenticate to Active Directory.  
 
