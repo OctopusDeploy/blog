@@ -4,9 +4,9 @@ description: Learn how to use custom Kubewarden security policies to restrict re
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2021-10-05-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-securingyourkubernetesclusterwithkubewarden.png
+bannerImage: blogimage-securingyourkubernetesclusterwithkubewarden.png
+bannerImageAlt: A bouncer standing in front of a cluster of hexagons
 isFeatured: false
 tags:
  - DevOps
@@ -17,19 +17,19 @@ Kubernetes is fast becoming the operating system of the cloud. Every major cloud
 
 This flexibility is a blessing and a curse. Kubernetes can run almost anything, and yet it would be nearly impossible to maintain any real world production cluster hosting any random thing that was thrown at it.
 
-Kubernetes Role Based Access Controls (RBAC) provide some level of control over the resources hosted by a cluster. However, RBAC can only allow top level resources, like deployments or pods, to be created. 
+Kubernetes Role Based Access Controls (RBAC) provide some level of control over the resources hosted by a cluster. However, RBAC can only allow top level resources, like deployments or pods, to be created.
 
 A pod can host almost anything, so it's often not enough to allow or disallow the deployment of a pod. Instead, teams need to inspect the properties of a given pod before allowing or denying them.
 
 [Admission controllers](https://kubernetes.io/blog/2019/03/21/a-guide-to-kubernetes-admission-controllers/) provide the ability to inspect, modify, accept, or reject new resources by passing it to a custom service. This allows a fine-grained level of control over resources created in a cluster, and ensures only those resources that meet your particular requirements are deployed.
 
-This post looks at the [Kubewarden](https://www.kubewarden.io/) admission controller, which is an early project supporting admission policies written in a number of languages compiled down to WebAssembly. 
+This post looks at the [Kubewarden](https://www.kubewarden.io/) admission controller, which is an early project supporting admission policies written in a number of languages compiled down to WebAssembly.
 
 I walk you through creating a number of runbooks and deployments in Octopus to manage Kubewarden, and deploying pods to Kubernetes, testing out custom admission policies.
 
 ## Installing Kubewarden
 
-The easiest way to install Kubewarden is via its Helm chart. 
+The easiest way to install Kubewarden is via its Helm chart.
 
 Create a new Helm Feed in Octopus pointing to https://charts.kubewarden.io:
 
@@ -63,7 +63,7 @@ spec:
     securityContext:
      capabilities:
        add:
-       - SYS_TIME 
+       - SYS_TIME
 ```
 
 This pod is deployed with a **Deploy raw Kubernetes YAML** step:
@@ -103,7 +103,7 @@ The resource is deployed with the  **Deploy raw Kubernetes YAML** step in a runb
 Now deploy the pod again. This time the deployment fails, as the Kubewarden policy prevents pods with the `SYS_TIME` capability from being deployed with the following error:
 
 ```bash
-Error from server: error when creating "customresource.yml": admission webhook "psp-capabilities.kubewarden.admission" denied the request: PSP capabilities policies doesn't allow these capabilities to be added: {"SYS_TIME"} 
+Error from server: error when creating "customresource.yml": admission webhook "psp-capabilities.kubewarden.admission" denied the request: PSP capabilities policies doesn't allow these capabilities to be added: {"SYS_TIME"}
 ```
 
 ## Conclusion
