@@ -4,8 +4,8 @@ description: Learn how Octopus Deploy works with Kubernetes on cloud platforms.
 author: shawn.sesna@octopus.com
 visibility: public
 published: 2021-10-04-1400
-bannerImage: 
-metaImage: 
+bannerImage: blogimage-multicloudk8.png
+metaImage: blogimage-multicloudk8.png
 bannerImageAlt: 
 isFeatured: false
 tags:
@@ -70,7 +70,7 @@ $resourceGroupLocation = "<ResourceGroupRegionCode>"
 if ((az group exists --name $resourceGroupName) -eq $false)
 {
 	Write-Output "Creating resource group $resourceGroupName in $resourceGroupLocation"
-    az group create --location $resourceGroupLocation --name $resourceGroupName 
+    az group create --location $resourceGroupLocation --name $resourceGroupName
 }
 ```
 
@@ -88,8 +88,8 @@ $resourceGroupName = "<Resource group name you created from previous step>"
 $azureLocation = "<Azure region code>"
 $dnsPrefix = "<DNS prefix>"
 $azureNodeSize = "<VM size to be used for nodes>"
-$azureServicePrincipalClientId = "<Client ID>" 
-$azureServicePrincipalSecretKey = "<Key/Password for Service Principal Account>" 
+$azureServicePrincipalClientId = "<Client ID>"
+$azureServicePrincipalSecretKey = "<Key/Password for Service Principal Account>"
 
 # Create the Azure Kubernetes cluster
 $azureKubernetesCluster = az aks create --name $clusterName --resource-group $resourceGroupName --dns-name-prefix $dnsPrefix --location $azureLocation --node-count 1 --node-vm-size $azureNodeSize --generate-ssh-keys --service-principal $azureServicePrincipalClientId --client-secret $azureServicePrincipalSecretKey
@@ -123,10 +123,10 @@ New-OctopusKubernetesTarget -Name "<Display name of target>" -clusterName $clust
 ```
 
 ### AWS
-Similar to Azure, first create an AWS account in Octopus Deploy to interact with your AWS resources. 
+Similar to Azure, first create an AWS account in Octopus Deploy to interact with your AWS resources.
 
 This post assumes you're familiar with how to [create AWS IAM users](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_create.html).
-  
+
 To create the AWS account in Octopus, you need the following:
 
 - Access key
@@ -173,7 +173,7 @@ while ($eksCluster.Cluster.Status -eq "CREATING")
 }
 
 # Display the final status of the cluster
-Write-Host "Status of cluster: $($eksCluster.Cluster.Status)" 
+Write-Host "Status of cluster: $($eksCluster.Cluster.Status)"
 
 Write-Host "Creating node group..."
 aws eks create-nodegroup --cluster-name $clusterName --nodegroup-name "$clusterName-workers" --subnets $subnet1Id $subnet2Id --instance-types "t3.medium" --node-role $nodeRoleArn
