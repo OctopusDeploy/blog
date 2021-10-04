@@ -18,15 +18,15 @@ tags:
 
 We have listened to our customers and have revised our SQL Server requirement to SQL Server 2016+, down from SQL Server 2017+
 
-This has taken affect from the following versions
-2020.1.x (SQL Version change was not enforced in 2020.1.x)
-2020.2.18 ➜ 2020.2.latest
-2020.3.6 ➜ 2020.3.latest
-2020.4.0 ➜ latest
+This has taken affect from the following versions:
+- 2020.1.x *(SQL Version change was not enforced in 2020.1.x)*
+- 2020.2.18 ➜ 2020.2.latest
+- 2020.3.6 ➜ 2020.3.latest
+- 2020.4.0 ➜ latest
 
 Any versions that are in the following version ranges still have the SQL Server 2017+ version requirement enforced
-2020.2.0 ➜ 2020.2.17 
-2020.3.0 ➜ 2020.3.5
+- 2020.2.0 ➜ 2020.2.17 
+- 2020.3.0 ➜ 2020.3.5
 :::
 
 ## Original post
