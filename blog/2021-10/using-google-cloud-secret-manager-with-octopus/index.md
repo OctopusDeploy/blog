@@ -33,7 +33,7 @@ Before you can retrieve secrets from Secret Manager, you must authenticate with 
 > Accessing a secret version requires the **Secret Manager Secret Accessor** role (`roles/secretmanager.secretAccessor`) on the secret, project, folder, or organization. IAM roles can't be granted on a secret version.
 
 :::hint
-To learn more about the different roles you can use with Secret Manager, read the [access control documentation](https://cloud.google.com/secret-manager/docs/access-control) on how to provide permissions to access to sensitive passwords, certificates, and other secrets.
+To learn more about the different roles you can use with Secret Manager, read the [access control documentation](https://cloud.google.com/secret-manager/docs/access-control) on how to provide permissions to access sensitive passwords, certificates, and other secrets.
 :::
 
 In Octopus, authentication with Google Cloud Platform can be achieved with a [Google Cloud Account](https://octopus.com/docs/infrastructure/accounts/google-cloud) that was added in version **2021.2**.
@@ -46,7 +46,7 @@ For each secret, you must provide a version of the secret to retrieve, and optio
 
 :::hint
 **Always choose a specific secret version**
-Google recommends that for Production appliations, you should always retrieve secrets with a specific version, and not with the *latest* version specifier.
+Google recommends that for Production applications, you should always retrieve secrets with a specific version, and not with the *latest* version specifier.
 :::
 
 Retrieving a single secret requires:
@@ -66,7 +66,7 @@ The step template uses the following parameters:
 - **Google Cloud Project**: Specify the default project. This sets the `CLOUDSDK_CORE_PROJECT` environment variable.
 - **Google Cloud Region**: Specify the default region. This sets the `CLOUDSDK_COMPUTE_REGION` environment variable.
 - **Google Cloud Zone**: Specify the default zone. This sets the `CLOUDSDK_COMPUTE_ZONE` environment variable.
-- **Secret names to retrieve**: Specify the names of the secrets to be returned from Secret Manager in Google Cloud, in the format: `SecretName SecretVersion | OutputVariableName` where:
+- **Secret names to retrieve**: Specify the names of the secrets to return from Secret Manager in Google Cloud, in the format: `SecretName SecretVersion | OutputVariableName` where:
 
     - `SecretName` is the name of the Secret to retrieve.
     - `SecretVersion` is the version of the secret to retrieve. *If this value isn't specified, the latest version will be retrieved*.
@@ -113,6 +113,6 @@ In both cases, the step template will emit a warning to the task log:
 
 ## Conclusion
 
-The step template covered in this post demonstrates that it's easy to integrate with Google Cloud Secret Manager, and make use of secrets stored there with your Octopus deployments or runbooks.
+The step template covered in this post demonstrates that it's easy to integrate with Google Cloud Secret Manager and make use of secrets stored there with your Octopus deployments or runbooks.
 
 Happy deployments!
