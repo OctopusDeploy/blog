@@ -15,7 +15,7 @@ tags:
 
 Infrastructure as Code (IaC) allows teams to create infrastructure resources through a configuration file.  Hashicorp's Terraform is one of the most popular IaC solutions. 
 
-In this blog post, I will show you how to deploy a VPC network in Google Cloud Platform using Terraform in Octopus Deploy.
+In this blog post, I will show you how to deploy a Virtual Private Cloud (VPC) network in Google Cloud Platform using Terraform in Octopus Deploy. A VPC provides connectivity for Compute Engine virtual machine instances.
 
 To do this, you will need: 
 
@@ -113,6 +113,6 @@ Click run to run the runbook. When complete, the VPC network will be deployed to
 
 ![GPC VPC Created](gcp-vpc-created.png "width=500")
 
-In this blog post, you have created VPC network in a Google Cloud Project using Terraform. You did this by running an Octopus Deploy runbook with variables.
+In this blog post, you have created VPC network in a Google Cloud Project using Terraform. You did this by running an Octopus Deploy runbook with variables. This can be used to connect different virtual machines together in a network.
 
 Happy Deployments!
