@@ -91,7 +91,7 @@ When the build starts, you can navigate to the build number and inspect it's pro
 ![Jenkins Success](jenkins-success.png "width=500")
 
 
-The package will now be uploaded to the Octopus Deploy instance under **{{Library, packages}}**. THe package version corresponds to the latest build number in Jenkins.
+The package will now be uploaded to the Octopus Deploy instance under **{{Library, packages}}**. The package version corresponds to the latest build number in Jenkins.
 
 ![Octopus Package](octopus-package.png "width=500")
 
@@ -161,9 +161,9 @@ You may need to whitelist the IP addresses for the Azure Data Center that you're
 A newly created Service Principal can take several minutes before the credential test passes. If you've double-checked your credential values, wait 15 minutes and try again.
 :::
 
-In your Octopus instance, add a Production environemnt by going to **{{Infrastructure, ENvironemnts, Add Environment}}**
+In your Octopus instance, add a Production environment by going to **{{Infrastructure, Environments, Add Environment}}**
 
-Go to **{{Infrastructure, Deployment Targets}}** and add an Azure Web App. Assign the Production environment and set a role (eg. jenkins) for the target. Choose the Azure acount set up earlier and select your Azure Web application. Click SAVE.
+Go to **{{Infrastructure, Deployment Targets}}** and add an Azure Web App. Assign the Production environment and set a role (eg. jenkins) for the target. Choose the Azure account set up earlier and select your Azure Web application. Click SAVE.
 
 Create a project by going to **{{Projects, Add Project}}**  
 
@@ -184,13 +184,13 @@ Go to your project and create a release. Click **{{SAVE, Deploy to Production, D
 
 ![Octopus Success](octopus-success.png "width=500")
 
-Go to your site URL [your-site].azurewebsites.net) to see the deploye Web application
+Go to your site URL [your-site].azurewebsites.net) to see the deployed Web application
 
 ![Random Quotes](randomquotes.png "width=500")
 
 ## Post-Build
 
-The Octopud Deploy Jenkins plugin can also be used to create releases and deployments from within Jenkins.
+The Octopus Deploy Jenkins plugin can also be used to create releases and deployments from within Jenkins.
 
 In the dashboard of your Jenkins job, go to configure and add the following steps:
 
@@ -202,7 +202,7 @@ In the dashboard of your Jenkins job, go to configure and add the following step
     Release Version - 0.0.i
     Deploy this release after it is created?  Check
 
-Click SAVE, go back to the job dashboard and click build now. This wil trigger the build of the package and trigger the post-build release and deploy steps in Octopus Deploy.
+Click SAVE, go back to the job dashboard and click build now. This will trigger the build of the package and trigger the post-build release and deploy steps in Octopus Deploy.
 
 In this blog post, you have set up and used a Jenkins VM to build and push a package to Octopus Deploy. This package was used to deploy a Web application to an Azure Web App. You have seen how Jenkins integrates with Octopus Deploy to manage releases and deployments automatically.
 
