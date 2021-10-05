@@ -209,7 +209,7 @@ Google developed the [gcloud CLI](https://cloud.google.com/sdk) that can interfa
 - Add cluster as deployment target
 
 #### Create GKE cluster
-To create a GKE cluster, you need to add a **Run gcloud in a Script** step to your runbook.  Choose the **{{Google Cloud Category > Run gcloud in a Script step.}}**
+To create a GKE cluster, you need to add a **Run gcloud in a Script** step to your runbook.  Choose the **{{Google Cloud Category,Run gcloud in a Script step.}}**
 
 ![](octopus-add-gcloud-script.png)
 
