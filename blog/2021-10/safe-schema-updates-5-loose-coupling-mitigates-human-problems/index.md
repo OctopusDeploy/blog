@@ -4,9 +4,9 @@ description: On loose coupling and domain-driven development, and how they mitig
 author: alex.yates@dlmconsultants.com
 visibility: public
 published: 2021-10-06-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-loosecouplinghumanproblems.png
+bannerImage: blogimage-loosecouplinghumanproblems.png
+bannerImageAlt: A graph with x-axis for speed of delivery and y-axis for size of team, with multiple connected teams with slower speed of delivery, and smaller teams with faster speed of delivery.
 isFeatured: false
 tags:
  - DevOps
