@@ -13,40 +13,40 @@ tags:
  - Jenkins
 ---
 
-Jenkins is an open source automation server which enables developers to automate building, testing and deploying software. This blog post will show you how to configure a Jenkins VM, push a package to an Octopus Deploy instance, and deploy a web application to Azure.
+Jenkins is an open-source automation server that enables developers to automate building, testing, and deploying software. This blog post will show you how to configure a Jenkins VM, push a package to an Octopus Deploy instance, and deploy a web application to Azure.
 
-To do this you will need:
+To do this, you will need:
 
 - An Octopus Deploy instance
 - An Azure account
 - A Jenkins VM
 
-The Jenkins VM can set up in many ways. One way is to follow this guide, completing steps 1-4. This will give you a live Jenkins instance on Azure.
+You can set up the Jenkins VM in many ways. One way is to follow this guide, completing steps 1-4. The guide will give you a live Jenkins instance on Azure.
 
 https://docs.microsoft.com/en-us/azure/developer/jenkins/configure-on-linux-vm
 
 ## Jenkins
 
-With Jenkins set up, go to the public url to access the UI. In the UI, go to **{{Manage Jenkins, Manage Plugins}}** and search for the Octopus Deploy Plug in under Available. Install the plugin.
+With Jenkins set up, go to the public URL to access the UI. In the UI, go to **{{Manage Jenkins, Manage Plugins}}** and search for the Octopus Deploy Plugin under Available. Install the plugin.
 
 ![Octopus Plugin](octopus-plugin.png "width=500")
 
 
-Make an API key in the Octopus Deploy instance To to this, in the Octopus Deploy instance, go to your **{{username, Profile, My API Keys}}** and create a key. This value is used in Jenkins
+Make an API key in the Octopus Deploy instance. To do this, in the Octopus Deploy instance, go to your **{{username, Profile, My API Keys}}** and create a key. Jenkins will use this value.
 
 ![Octopus API Key](octopus-api-key.png "width=500")
 
 
 Go to **{{Manage Jenkins, Configure system}}**
 
-Under the Octopus Deploy Plugin setting set the URL to the Octopus Deploy instance and use the API set earlier.
+Under the Octopus Deploy Plugin setting, set the URL to the Octopus Deploy instance and use the API set earlier.
 
 ![Octopus URL](octopus-url.png "width=500")
 
 
 
 
-Jenkins is now setup to use the Octopus build commands. Let's create a new job by going to the Jenkins home page new item, freestyle project and assign the following settings:
+Jenkins can now use the Octopus build commands. Let's create a new job by going to the Jenkins home page new item, freestyle project, and assign the following settings:
 
 ### Source Code Management
 
@@ -59,7 +59,7 @@ Jenkins is now setup to use the Octopus build commands. Let's create a new job b
 
 ### Build step - Execute shell
 
-You will have to install npm and nodejs on the VM
+You will have to install npm and nodejs on the VM.
 
     npm install
     npm tests
@@ -86,19 +86,19 @@ Go back to the job dashboard and click Build now to start the job.
 
 ![Jenkins Build Now](jenkins-build-now.png "width=500")
 
-When the build starts, you can navigate to the build number and inspect it's progress. If every step passes you will see a success status.
+When the build starts, you can navigate to the build number and inspect its progress. If every step passes, you will see a success status.
 
 ![Jenkins Success](jenkins-success.png "width=500")
 
 
-The package will now be uploaded to the Octopus Deploy instance under **{{Library, packages}}**. The package version corresponds to the latest build number in Jenkins.
+Jenkins will now upload the package to the Octopus Deploy instance under **{{Library, packages}}**. The package version corresponds to the latest build number in Jenkins.
 
 ![Octopus Package](octopus-package.png "width=500")
 
 
 ## Configuring an Azure Account
 
-You need to configure an Azure account and web application to act as a target for the deployment from Octopus. Other targets are possible, such as AWS, or Linux and Windows servers.
+You need to configure an Azure account and web application to act as a target for the deployment from Octopus. Other targets are possible, such as AWS or Linux and Windows servers.
 
 Next, you need to create an account in Azure by navigating to the [Azure portal](https://portal.azure.com/). 
 
@@ -110,7 +110,7 @@ Next, you need to create an account in Azure by navigating to the [Azure portal]
 1. Next you need your **Application ID**.
   - If you created an AAD registered application, navigate to **{{Azure Active Directory > App Registrations}}**, click **View all applications**, select the app and copy the **Application ID**.  Please note, the Azure UI defaults to **Owned Applications** tab.  Click the **All Applications** tab to view all app registrations. 
   - If you haven't created a registered app, navigate to **{{Azure Active Directory > App Registrations}}**, click on **New registration** and add the details for your app, and click **Save**. Make note of the **Application ID**.
-1. Generate a one-time password by navigating to **{{Certificates & Secrets > New client secret}}**. Add a new **secret**, enter a description, and click **Save**. Make note of the displayed application password for use in Octopus. You can change the expiry date, if you don’t want to accept the default one-year expiry for the password.
+1. Generate a one-time password by navigating to **{{Certificates & Secrets > New client secret}}**. Add a new **secret**, enter a description, and click **Save**. Make note of the displayed application password for use in Octopus. You can change the expiry date, if you don't want to accept the default one-year expiry for the password.
 
 You now have the following:
 
@@ -167,7 +167,7 @@ Go to **{{Infrastructure, Deployment Targets}}** and add an Azure Web App. Assig
 
 Create a project by going to **{{Projects, Add Project}}**  
 
-Go to the Process section. Add a `Deploy an Azure App Service step`
+Go to the Process section. Add a `Deploy an Azure App Service step.`
 
 ### On Behalf of
 
@@ -176,9 +176,9 @@ Go to the Process section. Add a `Deploy an Azure App Service step`
 ### Deployments
 
     Deploy from a zip, Java WAR, or NuGet package
-    Choose the package from the built in Library
+    Choose the package from the built-in Library
     
-Leave everything else as default
+Leave everything else as default.
 
 Go to your project and create a release. Click **{{SAVE, Deploy to Production, Deploy}}** and wait for the deployment to complete
 
@@ -202,9 +202,9 @@ In the dashboard of your Jenkins job, go to configure and add the following step
     Release Version - 0.0.i
     Deploy this release after it is created?  Check
 
-Click SAVE, go back to the job dashboard and click build now. This will trigger the build of the package and trigger the post-build release and deploy steps in Octopus Deploy.
+Click SAVE, go back to the job dashboard, and click build now. Jenkins will trigger the package's build and start the post-build release and deploy steps in Octopus Deploy.
 
-In this blog post, you have set up and used a Jenkins VM to build and push a package to Octopus Deploy. This package was used to deploy a Web application to an Azure Web App. You have seen how Jenkins integrates with Octopus Deploy to manage releases and deployments automatically.
+In this blog post, you have set up and used a Jenkins VM to build and push a package to Octopus Deploy. You used this package to deploy a Web application to an Azure Web App. You have seen how Jenkins integrates with Octopus Deploy to manage releases and deployments automatically.
 
 
 
