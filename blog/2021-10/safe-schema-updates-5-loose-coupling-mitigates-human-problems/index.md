@@ -25,7 +25,7 @@ We'll add links to the other posts in this series as they become available.
 
 In the previous post (part 4) we focussed on technical issues associated with software/database architecture. In this post we focus on the human issues.
 
-[Conway’s Law](https://en.wikipedia.org/wiki/Conway%27s_law) dictates that organizations are limited to design systems that mirror their internal communication patterns. As Eric S Raymond so eloquently put it in [The New Hacker’s Dictionary](https://www.goodreads.com/book/show/104746.The_New_Hacker_s_Dictionary), *“if you have four groups working on a compiler, you'll get a 4-pass compiler”*. 
+[Conway’s law](https://en.wikipedia.org/wiki/Conway%27s_law) dictates that organizations are limited to design systems that mirror their internal communication patterns. As Eric S Raymond so eloquently put it in [The New Hacker’s Dictionary](https://www.goodreads.com/book/show/104746.The_New_Hacker_s_Dictionary), *“if you have four groups working on a compiler, you'll get a 4-pass compiler”*. 
 
 Our team structures measurably affect our software architectures… but the reverse can also be true: complicated architectures can foster painful and toxic bureaucracy and working cultures. Together, left unchecked, it's possible for them to form a vicious circle. 
 
