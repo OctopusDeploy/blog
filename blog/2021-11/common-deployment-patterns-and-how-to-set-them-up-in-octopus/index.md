@@ -4,9 +4,9 @@ description: Deployment patterns are important to any development pipeline. This
 author: Andy Corrigan
 visibility: private
 published: 3020-01-01
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-commondeploymentpatternsandhowtousetheminoctopus-2021.png
+bannerImage: blogimage-commondeploymentpatternsandhowtousetheminoctopus-2021.png
+bannerImageAlt: Octopus logo surrounded by four blocks, representing deployments types of blue/green, canary, rolling/lighthouse, and multi-region.
 isFeatured: false
 tags:
   - DevOps
