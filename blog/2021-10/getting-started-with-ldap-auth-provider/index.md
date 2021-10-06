@@ -146,7 +146,7 @@ Changing the username to just `professor.octopus` worked as expected.  This is b
 
 ![Successful sign in](new-user-created.png)
 
-I prefer to use `professor.octopus@devopswalker.local` to log in.  If you have a similar preference (or company policy), change the User Filter to be `(&(objectClass=person)(userPrincipalName=*))`.  
+I prefer to use `professor.octopus@devopswalker.local` to log in.  If you have a similar preference (or company policy), change the **User Filter** to be `(&(objectClass=person)(userPrincipalName=*))`.  
 
 In our testing we noticed less reliable results using `user@domain`; however your configuration might be different to our testing environment.
 
