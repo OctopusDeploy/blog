@@ -29,12 +29,7 @@ We calculate an Apdex (Application Performance Index) score, which aims to conve
 
     Apdex = (SatisfiedCount + ToleratingCount * 0.5) / TotalCount
  
-The Apdex is calculated using:
-
-- API (Web) requests that return a 2xx response
-- Excludes certain requests that are called often and are cached
-- Requests that are returned in less than or equal to 50ms are considered to be within the satisfied threshold
-- Requests that are greater than 50ms and less than 200ms are considered to be within a tolerated threshold
+Apdex uses API (Web) requests that return a 2xx response. Apdex excludes certain requests that are called often and are cached. Requests that are returned in less than or equal to 50ms are considered to be within the satisfied threshold. Requests that are greater than 50ms and less than 200ms are considered to be within a tolerated threshold
 
 Apdex gives a uniform scale to test the customer experience. A higher number indicates a more positive user experience.  We can vary thresholds to experiment with Apdex scores given a specific appetite for tolerance. The examples in this blog display the default threshold values. These are configurable in real-time in the application to view Apdex scores against different criteria.
 
