@@ -14,6 +14,8 @@ tags:
 
 Introductory paragraph that tells the reader why they should read on.
 
+Testing syntax without capitalization: **{{manage jenkins > configure system}}** 
+
 ## Body
 
 The body of the post is where you share your hypothesis, how-to, or story.
