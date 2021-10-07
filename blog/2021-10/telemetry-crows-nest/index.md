@@ -9,7 +9,6 @@ bannerImage:
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags:
- - Product
  - Engineering
 ---
 
@@ -29,24 +28,24 @@ We calculate an Apdex (Application Performance Index) score, which aims to conve
 
     Apdex = (SatisfiedCount + ToleratingCount * 0.5) / TotalCount
  
-Apdex uses API (Web) requests that return a 2xx response. Apdex excludes certain requests that are called often and are cached. 
+Apdex uses API (web) requests that return a 2xx response. Apdex excludes certain requests that are called often and are cached. 
 
 - Requests that are returned in less than or equal to 50ms are considered to be within the satisfied threshold. 
 - Requests that are greater than 50ms and less than 200ms are considered to be within a tolerated threshold.
 
 Apdex gives a uniform scale to test the customer experience. A higher number indicates a more positive user experience. We can vary thresholds to experiment with Apdex scores given a specific appetite for tolerance. 
 
-The examples in this blog display the default threshold values. These are configurable in real-time in the application to view Apdex scores against different criteria.
+The examples in this post display the default threshold values. These are configurable in real-time in the application to view Apdex scores against different criteria.
 
 Only web requests with a 2xx status are included in the calculations. A 2xx status indicates a successful web request. Versions with less than 50 instances sending telemetry on any given data get filtered out to remove outliers. The response times of these web requests estimate how satisfied a customer is with their service. 
 
 ## Visualizing Apdex and Octopus Deploy
 
-There are several ways to visualize Apdex. The following graphs are how we use Crow's Nest to display Apdex and gain valuable insights.
+There are several ways to visualize Apdex. The following graphs show how we use Crow's Nest to display Apdex and gain valuable insights.
 
 ### Apdex for Cloud and Deploy
 
-The blue line shows the Apdex performance of recent versions in Octopus Cloud and the deployment server. The Cloud Apdex performance has been consistent at around 90 for this period. The deployment server is the internal Octopus instance not released to customers. 
+The blue line indicates the Apdex performance of recent versions in Octopus Cloud and the deployment server. The Cloud Apdex performance has been consistent at around 90 for this period. The deployment server is the internal Octopus instance not released to customers. 
 
 The orange graph indicates a significant dip in Apdex from 2021.2.2048, where it recovered in 2021.2.4155 as we fixed the regressions. 
 
@@ -56,7 +55,7 @@ It's helpful to look back and see how different versions affected the user exper
 
 ### Apdex by version and license
 
-We can compare the Apdex score for different versions and licenses. The licenses are cloud, on-premise, trial, and overall. There's a lot of variability in these numbers, as they're representative of all customers. 
+We can compare the Apdex score for different versions and licenses. The licenses are Cloud, On Premise, Trial, and Overall. There's a lot of variability in these numbers, as they're representative of all customers. 
 
 ![Apdex by Version](apdex-by-version.png "Apdex by Version")
 
@@ -66,7 +65,7 @@ We can compare the Apdex score for different versions and licenses. The licenses
 
 ### Apdex overall score
 
-Each customer has an overall Apdex score. This score indicates the responsiveness of the customer experience.
+Each customer has an overall Apdex score, which indicates the responsiveness of the customer experience.
 
 ![Apdex Score](apdex-score.png "Apdex Score")
 
@@ -80,7 +79,7 @@ By bucketing the requests by route, we avoid transmitting large amounts of data.
 
 #### Apdex route difference
 
-We can use Crow's Nest to view the differences in routes across different versions. The project routes improved between 2020.6 and 2021.1, as indicated by the green difference indicators for the Apdex score.
+We can use Crow's Nest to view the differences in routes across different versions. The project routes improved between 2020.6 and 2021.1, as denoted by the green difference indicators for the Apdex score.
 
 ![Apdex Routes Difference](apdex-route-diff.png "Apdex Routes Difference")
 
@@ -102,10 +101,10 @@ Crow's Nest helps us plan what to work on next. It highlights areas needing the 
 
 ## Conclusion
 
-Telemetry is a powerful tool that can enable businesses to gain a complete picture of user experiences. 
+Telemetry is a powerful tool that offers businesses a complete picture of user experiences. 
 
 Telemetry and Apdex give full visibility of each user and the performance of each route. We can compare performance across different versions and licenses. Comparing versions quantifies the effect of each update. Poor-performing routes are visible on a per-user basis or across the Octopus Deploy platform. 
 
-Our Crow's Nest tool helps to improve the customer experience, leading to a more responsive experience, and happier deployments.
+Our Crow's Nest tool helps to improve the customer experience, leading to more responsive interactions, and happier deployments.
 
 
