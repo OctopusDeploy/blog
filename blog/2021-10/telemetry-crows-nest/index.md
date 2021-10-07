@@ -1,6 +1,6 @@
 ---
 title: How we use telemetry to improve Octopus Deploy
-description: Learn how Octopus is using telemetry data to identify performance metrics and improve Octopus Deploy for our customers
+description: Learn how Octopus is using telemetry data to identify performance metrics and improve Octopus Deploy for our customers.
 author: terence.wong@octopus.com
 visibility: public
 published: 2021-10-12-1400
@@ -13,7 +13,7 @@ tags:
  - Engineering
 ---
 
-Over the years, Octopus Deploy has grown to include many new features and areas within the app.  Customers may need to view the dashboard, create or deploy releases, author projects or run runbooks against their infrastructure. To serve our customers better, we want to know how fast and responsive the experience is.
+Over the years, Octopus Deploy has grown to include many new features and areas within the app.  Customers use these to view the dashboard, create or deploy releases, author projects or run runbooks against their infrastructure. To serve our customers better, we want to know how fast and responsive the experience is.
 
 Like many software companies, we collect telemetry to measure how customers use and experience the product. Some of the telemetry we collect is the timing of API calls and database operations, which we call 'performance telemetry'. We surface this telemetry in our engineering dashboard, code-named Crow's Nest.
 
@@ -29,9 +29,14 @@ We calculate an Apdex (Application Performance Index) score, which aims to conve
 
     Apdex = (SatisfiedCount + ToleratingCount * 0.5) / TotalCount
  
-Apdex uses API (Web) requests that return a 2xx response. Apdex excludes certain requests that are called often and are cached. Requests that are returned in less than or equal to 50ms are considered to be within the satisfied threshold. Requests that are greater than 50ms and less than 200ms are considered to be within a tolerated threshold
+Apdex uses API (Web) requests that return a 2xx response. Apdex excludes certain requests that are called often and are cached. 
 
-Apdex gives a uniform scale to test the customer experience. A higher number indicates a more positive user experience.  We can vary thresholds to experiment with Apdex scores given a specific appetite for tolerance. The examples in this blog display the default threshold values. These are configurable in real-time in the application to view Apdex scores against different criteria.
+- Requests that are returned in less than or equal to 50ms are considered to be within the satisfied threshold. 
+- Requests that are greater than 50ms and less than 200ms are considered to be within a tolerated threshold.
+
+Apdex gives a uniform scale to test the customer experience. A higher number indicates a more positive user experience. We can vary thresholds to experiment with Apdex scores given a specific appetite for tolerance. 
+
+The examples in this blog display the default threshold values. These are configurable in real-time in the application to view Apdex scores against different criteria.
 
 Only web requests with a 2xx status are included in the calculations. A 2xx status indicates a successful web request. Versions with less than 50 instances sending telemetry on any given data get filtered out to remove outliers. The response times of these web requests estimate how satisfied a customer is with their service. 
 
@@ -51,7 +56,7 @@ It's helpful to look back and see how different versions affected the user exper
 
 ### Apdex by version and license
 
-We can compare the Apdex score for different versions and licenses. The licenses are cloud, on-premise, trial, and overall. There is a lot of variability in these numbers as they are representative of all customers. 
+We can compare the Apdex score for different versions and licenses. The licenses are cloud, on-premise, trial, and overall. There's a lot of variability in these numbers, as they're representative of all customers. 
 
 ![Apdex by Version](apdex-by-version.png "Apdex by Version")
 
@@ -61,15 +66,15 @@ We can compare the Apdex score for different versions and licenses. The licenses
 
 ### Apdex overall score
 
-Each customer has an overall Apdex score. This score gives an indication of the responsiveness of the customer experience.
+Each customer has an overall Apdex score. This score indicates the responsiveness of the customer experience.
 
 ![Apdex Score](apdex-score.png "Apdex Score")
 
 ### Apdex routes
 
-The performance of individual routes are in the customer view. We time web request and group the results on the route. From these timings we show the mean, median and 95th percentile time. 
+The performance of individual routes are in the customer view. We time web requests and group the results on the route. From these timings we show the mean, median and 95th percentile time. 
 
-By bucketing the requests by route, we avoid transmitting huge amounts of data. We can use these metrics to identify the worst-performing routes in a later version. 
+By bucketing the requests by route, we avoid transmitting large amounts of data. We can use these metrics to identify the worst-performing routes in a later version. 
 
 ![Apdex Routes](apdex-route.png "Apdex Routes")
 
@@ -83,13 +88,15 @@ We can use Crow's Nest to view the differences in routes across different versio
 
 Historical performance is visible on every route. This allows us to see how the performance of a route has changed in each release. 
 
-For example, the performance of the certificates route above degraded from 2020.2 to 2020.6. The Apdex score decreased from 62 to 16. In 2021.1, we identified the cause of this decrease in Apdex score and resolved the issue, leading to an Apdex score of 77.
+For example, the performance of the certificates route above degraded from 2020.2 to 2020.6. The Apdex score decreased from 62 to 16. 
+
+In 2021.1, we identified the cause of this decrease in Apdex score and resolved the issue, leading to an Apdex score of 77.
 
 ![Apdex Route View](apdex-route-view.png "Apdex Route View")
 
 #### Future improvements
 
-Crow's Nest helps us plan what to work on next. It highlights the areas that need the most attention and should be addressed first. It also gives us another signal when monitoring our overall application health.
+Crow's Nest helps us plan what to work on next. It highlights areas needing the most attention, that should be addressed first. It also gives us another signal when monitoring our overall application health.
 
 <!--![Apdex Routes Difference](apdex-route-dashboard.png "Apdex Routes Difference")-->
 
