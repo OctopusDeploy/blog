@@ -63,7 +63,7 @@ A workflow used frequently by customers is to notify a Slack channel when a part
 
 This is achieved through the new subscription event trigger that responds to real-time events raised by Octopus Deploy. When this occurs, a Slack channel is notified with details of the event (for example, new deployment created).
 
-### Example: Approval in ServiceNow; Build with Jenkins; Deploy with Octopus Deploy
+### Example: Approve in ServiceNow; Build with Jenkins; Release with Octopus Deploy
 
 This scenario provides a more elaborate example of the kinds of workflows you can create with Workato:
 
