@@ -3,7 +3,10 @@ title: Deploying a JavaScript library project with octopus
 description: Learn how to handle cache busting and config of a shared JavaScript library bundle and make it easy to reference in other Octopus projects.
 author: lee.meyer@octopus.com
 visibility: private
-published: 2025-08-23-1400
+published: 2021-10-25-1400
+metaImage: blogimage-deployingajavascriptlibraryprojectwithoctopus-2021.png
+bannerImage: blogimage-deployingajavascriptlibraryprojectwithoctopus-2021.png
+bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags:
  - DevOps
