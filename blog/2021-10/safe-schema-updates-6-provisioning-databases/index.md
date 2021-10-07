@@ -36,10 +36,10 @@ First things first: provisioning dev and test environments. As we learned in par
 
 By beginning with rapidly deployable and disposable development and test systems, we nurture the capability to better test and rehearse the risky refactors that will become necessary later. What’s more, with respect to delivery lead times: 
 
-*** BLOCKQUOTE ***
-The first place where the constraint almost invariably resides, especially for traditional IT organizations that have shared operations […] is environment creation. We can never get enough of them, and whenever we really need one, we still have to wait forty weeks.
+
+> The first place where the constraint almost invariably resides, especially for traditional IT organizations that have shared operations […] is environment creation. We can never get enough of them, and whenever we really need one, we still have to wait forty weeks.
+
 *Gene Kim, [Beyond the Phoenix Project](https://octopus.com/blog/devops-reading-list#beyond-the-phoenix-project)*
-*** BLOCKQUOTE ***
 
 Thinking back to what we learned in the prior posts:
 
