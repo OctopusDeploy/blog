@@ -243,7 +243,7 @@ You should:
 
 ### Step 1: Enable maintenance mode
 
-Once everything’s backed up, you should put your instance into maintenance mode. This ensures only Octopus admins can start deployments.
+Once everything’s backed up, you should put your instance into maintenance mode. This will mean only Octopus admins can deploy.
 
 To set maintenance mode, click **Configuration** in the top menu and select **Maintenance** from the left. Toggle **Maintenance mode** to **ON** and click **Save**.
 
@@ -315,6 +315,6 @@ You can now reinstall your original version of Octopus.
 1. Open the Octopus Web Portal. You may get caching-related errors when the Web Portal open the first time after the reinstall. If this happens, refresh the tab and Octopus should load fine.
 1. Run a deployment to check everything still works.
 
-## We can help if you still have concerns
+## We can help if you still have concerns!
 
 If you have any concerns or need help plotting your best upgrade approach, we’re always available to help. Our customer success team can provide instance reviews, and support with planning or post-upgrade problems – we’re only [an email](customersuccess@octopus.com) away.
