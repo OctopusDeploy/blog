@@ -29,16 +29,15 @@ In this blog I run through:
 
 ## Features we’ve introduced since Octopus 3.1
 
-If still on an Octopus 3.X version, you're missing out on Octopus’s evolution alongside modern deployment standards and a heap of useful features.
+If still on an Octopus 3.X version, you're missing out on Octopus’s evolution alongside modern deployment standards, plus a heap of new features.
 
 Here’s a taste of what’ve added between Octopus 3.1 and 2021.2:
 
-- I NEED EARLIER STUFF – PLEASE HELP
-- Spaces
-- Runbooks
-- Tenants
-- Project exports and imports
-- Configuration as Code
+- [Spaces](https://octopus.com/docs/administration/spaces) - a way for different teams to only see and use what they need
+- [Runbooks](https://octopus.com/docs/administration/spaces) - allows you to automate routine maintenance and operations tasks
+- [Tenants](https://octopus.com/docs/tenants) - create customer-specific pipelines for Software as a Service (SaaS) or multi-region deployments
+- [Project exports and imports](https://octopus.com/docs/projects/export-import) - export one or more projects to import into other spaces or instances
+- [Configuration as Code](https://octopus.com/docs/projects/version-control) - version control for Octopus projects (early access preview)
 
 ## Choose your method
 
@@ -111,8 +110,7 @@ Read our upgrade documentation to see [this method’s steps](https://octopus.co
 
 With older versions of Octopus, you can only export all data using Octopus Manager, though you can get partial exports with a command line. Run the following command for each project you’d like to export for testing:
 
-'''Octopus.Migrator.exe partial-export --instance=OctopusServer --project=AcmeWebStore --password=5uper5ecret --directory=C:\Temp\AcmeWebStore --ignore-history --ignore-deployments --ignore-machines
-'''
+'''Octopus.Migrator.exe partial-export --instance=OctopusServer --project=AcmeWebStore --password=5uper5ecret --directory=C:\Temp\AcmeWebStore --ignore-history --ignore-deployments --ignore-machines'''
 
 :::hint In the latest versions of Octopus, we’ve added a feature to easily export and import projects between instances.:::
 
