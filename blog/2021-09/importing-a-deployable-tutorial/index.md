@@ -1,5 +1,5 @@
 ---
-title: Importing a deployable package with Octopus Deploy and Azure web applications
+title: Importing and deploying your first Octopus project
 description: Import your first project in Octopus Deploy and deploy a tutorial to an Azure web application for your organization.
 author: terence.wong@octopus.com
 visibility: public
