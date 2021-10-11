@@ -319,6 +319,14 @@ You can now reinstall your original version of Octopus.
 1. Open the Octopus Web Portal. You may get caching-related errors when the Web Portal open the first time after the reinstall. If this happens, refresh the tab and Octopus should load fine.
 1. Run a deployment to check everything still works.
 
+## What next?
+
+Once you've upgraded your Octopus instance, you have a couple of options to help reduce the workload of upgrades in the future.
+
+The first  is to [automate your Octopus upgrades](https://octopus.com/docs/administration/upgrading/guide/automate-upgrades). This allows Octopus to deploy new versions to itself, performing all essential steps and reducing downtime.
+
+If an on-premises instance of Octopus Server is not a business need, you should also consider [migrating to Octopus Cloud](https://octopus.com/docs/octopus-cloud/migrations). Using Octopus Cloud means you'll never have to worry about upgrades, and you'll get access to all our new features as soon as they're available.
+
 ## We can help if you still have concerns!
 
 If you have any concerns or need help plotting your best upgrade approach, we’re always available to help. Our customer success team can provide instance reviews, and support with planning or post-upgrade problems – we’re only [an email](customersuccess@octopus.com) away.
