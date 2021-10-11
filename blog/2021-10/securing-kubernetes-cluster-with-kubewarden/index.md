@@ -112,18 +112,10 @@ Kubewarden is an example of an admission controller that accepts, rejects, or mo
 
 In this post you deployed Kubewarden using a Helm chart, deployed a policy with the **Deploy raw Kubernetes YAML** step, and saw how a pod deployment that failed the policy's rules was rejected, thus ensuring pods with a known invalid configuration could not be applied to the cluster.
 
-## Register for the webinar: GCP Kubernetes deployments and provisioning with Octopus
+## Watch the webinar
 
-Octopus has had fully-featured Kubernetes deployments as a concept for 3 years. We recently added full support for the Google Cloud Platform (GCP), and in 2020 we released Runbooks.
+<iframe width="560" height="315" src="https://www.youtube.com/embed/qlsk8zdTcLA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Join Matthew Casperson, Senior Product Manager, and Shawn Sesna, Senior Solutions Architect, to learn why Runbooks, GCP, and Octopus Deploy are the ultimate Kubernetes experience for engineers.
-
-We're running three sessions of the webinar:
-
-- Wed 6 Oct, 2021
-- Thurs 7 Oct, 2021
-- Mon 11 Oct, 2021
-
-<span><a class="btn btn-success" href="https://octopus.com/events/gcp-kubernetes-deployments-and-provisioning-with-octopus">Register now</a></span>
+We host webinars regularly. See the [webinars page](https://octopus.com/events) for past webinars and details about upcoming webinars. 
 
 Happy deployments!
