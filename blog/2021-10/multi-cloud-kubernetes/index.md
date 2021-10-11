@@ -312,18 +312,10 @@ If you run the runbook to create the AKS cluster, you can see the deployment is 
 ## Conclusion
 Octopus Deploy only requires the API endpoint to deploy to a Kubernetes cluster.  It doesn't matter if the K8s cluster is on-premises, a cloud provider K8s service, or a VM in the cloud running Kubernetes. If Octopus Deploy can communicate to the K8s API endpoint, it can deploy to the target without having to change the process.
 
-## Register for the webinar: GCP Kubernetes deployments and provisioning with Octopus
+## Watch the webinar
 
-Octopus has had fully-featured Kubernetes deployments as a concept for 3 years. We recently added full support for the Google Cloud Platform (GCP), and in 2020 we released Runbooks.
+<iframe width="560" height="315" src="https://www.youtube.com/embed/qlsk8zdTcLA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Join Matthew Casperson, Senior Product Manager, and Shawn Sesna, Senior Solutions Architect, to learn why Runbooks, GCP, and Octopus Deploy are the ultimate Kubernetes experience for engineers.
-
-We're running three sessions of the webinar:
-
-- Wed 6 Oct, 2021
-- Thurs 7 Oct, 2021
-- Mon 11 Oct, 2021
-
-<span><a class="btn btn-success" href="https://octopus.com/events/gcp-kubernetes-deployments-and-provisioning-with-octopus">Register now</a></span>
+We host webinars regularly. See the [webinars page](https://octopus.com/events) for past webinars and details about upcoming webinars. 
 
 Happy deployments!
