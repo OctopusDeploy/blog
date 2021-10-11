@@ -110,9 +110,13 @@ Read our upgrade documentation to see [this method’s steps](https://octopus.co
 
 With older versions of Octopus, you can only export all data using Octopus Manager, though you can get partial exports with a command line. Run the following command for each project you’d like to export for testing:
 
-'''Octopus.Migrator.exe partial-export --instance=OctopusServer --project=AcmeWebStore --password=5uper5ecret --directory=C:\Temp\AcmeWebStore --ignore-history --ignore-deployments --ignore-machines'''
+```
+Octopus.Migrator.exe partial-export --instance=OctopusServer --project=AcmeWebStore --password=5uper5ecret --directory=C:\Temp\AcmeWebStore --ignore-history --ignore-deployments --ignore-machines
+```
 
-:::hint In the latest versions of Octopus, we’ve added a feature to easily export and import projects between instances.:::
+:::hint
+In the latest versions of Octopus, we’ve added a feature to easily export and import projects between spaces and instances.
+:::
 
 ## Other things to think about before Upgrading
 
@@ -199,9 +203,11 @@ For example, to back up a database in Microsoft’s SQL Server Management Studio
 
 For those who prefer T-SQL commands, you can use the following command to save a backup to NAS or file share:
 
-'''BACKUP DATABASE [OctopusDeploy]
+```
+BACKUP DATABASE [OctopusDeploy]
           TO DISK = '\\SomeServer\SomeDrive\OctopusDeploy.bak'
-             WITH FORMAT;'''
+             WITH FORMAT;
+```
 
 Always check with your database administrator if unsure.
 
