@@ -1,9 +1,9 @@
 ---
-title: Deploying to Azure with Github actions and Octopus Deploy
-description: Learn how to deploy an Azure web application with Github actions and Octopus Deploy
+title: Deploying to Azure with GitHub Actions and Octopus Deploy
+description: Learn how to deploy an Azure web application with GitHub Actions and Octopus Deploy.
 author: terence.wong@octopus.com
 visibility: public
-published: 2021-08-02-1400
+published: 2021-10-19-1400
 metaImage: deploy-flow.png
 bannerImage: deploy-flow.png
 bannerImageAlt: A flow to continuously deploy a web app
@@ -12,22 +12,22 @@ tags:
  - DevOps
 ---
 
-This blog post will use Octopus Deploy, Github actions, and Docker to deploy a sample web application to Azure. The application will update on new code changes. To complete the steps, you will need:
+This post uses Octopus Deploy, GitHub Actions, and Docker to deploy a sample web application to Azure. The application will update on new code changes. To complete the steps, you will need:
 
-- an active Octopus Deploy instance
-- a Github account
-- a Docker Hub account
-- an Azure account
+- An active Octopus Deploy instance
+- Aa GitHub account
+- A Docker Hub account
+- An Azure account
 
-The deployment flow begins with Github. Github hosts the web application code. Github Actions automatically detects changes to the code base, builds the code, and deploys a Docker image to Docker Hub. Octopus Deploy uses this image in an orchestration step to deploy the web application to Azure.
+The deployment flow begins with GitHub. GitHub hosts the web application code. GitHub Actions automatically detects changes to the code base, builds the code, and deploys a Docker image to Docker Hub. Octopus Deploy uses this image in an orchestration step to deploy the web application to Azure.
 
 ![Deploy Flow](deploy-flow.png "Deploy Flow")
 
-First, let's fork [this repository](https://github.com/OctopusSamples/RandomQuotes-JS). This web application generates random historical quotes on a button press.
+First, you need to fork [this Random Quotes repository](https://GitHub.com/OctopusSamples/RandomQuotes-JS). This web application generates random historical quotes on a button press.
 
 ![Random Quotes fork](random-quotes-fork.png "Random Quotes fork")
 
-Next, we need to set up Github actions to automate the build, push and deploy process. To do this, we need to retrieve some credentials from Docker and Octopus.
+Next, you need to set up GitHub Actions to automate the build, push and deploy process. To do this, you need to retrieve some credentials from Docker and Octopus.
 
 Go to **{{Docker Hub account, account settings, security}}** and create a new access token. Save this token as you can only view it once.
 
@@ -44,7 +44,7 @@ In the Random Quotes repository that you forked, go to **{{settings, Secret}}** 
     OCTOPUS_APIKEY
     OCTOPUS_SERVER
 
-Navigate to .github/workflows where you will see a node.yml file. This file gives instructions to Github on how to deploy the code. Replace the contents of the file with the following code:
+Navigate to .GitHub/workflows where you will see a node.yml file. This file gives instructions to GitHub on how to deploy the code. Replace the contents of the file with the following code:
 
     name: deploytoazure
 
@@ -82,9 +82,9 @@ Navigate to .github/workflows where you will see a node.yml file. This file give
               tags: ${{ secrets.DOCKER_HUB_USERNAME }}/randomquotes-js:latest
 
 
-This code builds and pushes the code as a docker image to Docker Hub on every new push to master. Go to the Github actions tab to view the steps. 
+This code builds and pushes the code as a docker image to Docker Hub on every new push to master. Go to the GitHub actions tab to view the steps. 
 
-![Github Success Initial](github-success-initial.png "Github Success Initial")
+![GitHub Success Initial](github-success-initial.png "Github Success Initial")
 
 After the build is complete, navigate to [Docker Hub](https://hub.docker.com/) to see the image.
 
@@ -92,7 +92,7 @@ After the build is complete, navigate to [Docker Hub](https://hub.docker.com/) t
 
 We need to configure an Azure account and web application to act as a target for the deployment from Octopus. Other targets are possible such as AWS or local.
 
-Next, you'll create an account in Azure, by navigating to the [portal](https://portal.azure.com/). 
+Next, create an account in Azure, by navigating to the [portal](https://portal.azure.com/). 
 
 ### Create an Azure Service Principal with the Azure Portal {#create-service-principal-account-in-azure}
 
@@ -197,7 +197,7 @@ Add a referenced package under the script step by navigating to the docker feed 
 
 ![Referenced package](referenced-package.png "Referenced package")
 
-We want to ask Github actions to automatically build the docker image, push it to Docker Hub, create a release, and deploy it in the Github code. The update will happen on every commit to master. Update node.yml to the following:
+We want to ask GitHub actions to automatically build the docker image, push it to Docker Hub, create a release, and deploy it in the GitHub code. The update will happen on every commit to master. Update node.yml to the following:
 
     name: deploytoazure
 
@@ -250,7 +250,7 @@ We want to ask Github actions to automatically build the docker image, push it t
 
 The changes have installed the Octopus Deploy CLI onto the machine to run commands on behalf of your Octopus Deploy instance. On every push to Docker, the script waits 60 seconds and then creates a new deployment for Azure. Commit the changes and navigate to the actions tab to confirm the deployments.
 
-![Github success](github-success.png "Github success")
+![GitHub success](GitHub-success.png "GitHub success")
 
 Navigate to Octopus Deploy **{{Projects,Releases}}** to see the latest deployments
 
@@ -260,17 +260,17 @@ Go to [webapp-name].azurewebsites.net to see your web application:
 
 ![Random Quotes 2018](random-quotes-2018.png "Random Quotes 2018")
 
-Let's make a change to confirm that the deployment is automatically updated. In Github, edit the file:
+Let's make a change to confirm that the deployment is automatically updated. In GitHub, edit the file:
 
     RandomQuotes-JS/source/www/index.html
  
 ![Random Quotes year change](random-quotes-year-change.png "Random Quotes year change")
 
-Change the year to 2021 and commit the code to GitHub. The commit and push will trigger the Github actions build. After the deployment is complete, navigate to your web app where the year has changed.
+Change the year to 2021 and commit the code to GitHub. The commit and push will trigger the GitHub actions build. After the deployment is complete, navigate to your web app where the year has changed.
 
 ![Random Quotes 2021](random-quotes-2021.png "Random Quotes 2021")
 
-This tutorial set up a continuous delivery flow with Octopus Deploy, Github Actions, Docker, and Azure. Github automatically detects changes to the code and triggers a build and push to Docker. Octopus Deploy then creates a new release and deploys the Azure Web Application. 
+This tutorial set up a continuous delivery flow with Octopus Deploy, GitHub Actions, Docker, and Azure. GitHub automatically detects changes to the code and triggers a build and push to Docker. Octopus Deploy then creates a new release and deploys the Azure Web Application. 
 
 Happy deployments!
 
