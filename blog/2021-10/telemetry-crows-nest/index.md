@@ -3,7 +3,7 @@ title: How we use telemetry to improve Octopus Deploy
 description: Learn how Octopus is using telemetry data to identify performance metrics and improve Octopus Deploy for our customers.
 author: terence.wong@octopus.com
 visibility: public
-published: 2021-10-12-1400
+published: 2021-10-13-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
