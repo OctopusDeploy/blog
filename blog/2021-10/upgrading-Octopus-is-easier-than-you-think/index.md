@@ -321,11 +321,11 @@ You can now reinstall your original version of Octopus.
 
 ## What next?
 
-Once you've upgraded your Octopus instance, you have a couple of options to help reduce the workload of upgrades in the future.
+Once you've upgraded your Octopus instance, there are options to save yourself some work for future upgrades.
 
-The first  is to [automate your Octopus upgrades](https://octopus.com/docs/administration/upgrading/guide/automate-upgrades). This allows Octopus to deploy new versions to itself, performing all essential steps and reducing downtime.
+The first is to [automate Octopus upgrade](https://octopus.com/docs/administration/upgrading/guide/automate-upgrades). This allows Octopus to deploy new versions to itself, performing all essential steps and reducing downtime.
 
-If an on-premises instance of Octopus Server is not a business need, you should also consider [migrating to Octopus Cloud](https://octopus.com/docs/octopus-cloud/migrations). Using Octopus Cloud means you'll never have to worry about upgrades, and you'll get access to all our new features as soon as they're available.
+If an on-premises instance of Octopus Server is not a business need, you should also consider [migrating to Octopus Cloud](https://octopus.com/docs/octopus-cloud/migrations). Using Octopus Cloud means you'll never have to worry about upgrading, and you'll get access to all our new features as soon as they're available.
 
 ## We can help if you still have concerns!
 
