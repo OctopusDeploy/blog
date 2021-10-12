@@ -29,19 +29,19 @@ You can set up Jenkins in many ways. One way is to follow [this guide](https://d
 
 ## Jenkins
 
-With Jenkins set up, go to the public URL to access the UI. In the UI, go to **{{Manage Jenkins, Manage Plugins}}** and search for the Octopus Deploy Plugin under Available. Install the plugin.
+With Jenkins set up, go to the URL for your Jenkins instance to access the UI. In the UI, go to **{{Manage Jenkins, Manage Plugins}}** and search for the Octopus Deploy Plugin under Available, and install the plugin.
 
 ![Octopus Plugin](octopus-plugin.png "width=500")
 
 
-Make an API key in the Octopus Deploy instance. To do this, in the Octopus Deploy instance, go to your **{{username, Profile, My API Keys}}** and create a key. Jenkins will use this value.
+Generate an API key in the Octopus Deploy instance. To do this, in the Octopus Deploy instance, go to your **{{username, Profile, My API Keys}}** and create a key. Jenkins will use this value.
 
 ![Octopus API Key](octopus-api-key.png "width=500")
 
 
 Go to **{{Manage Jenkins, Configure system}}**
 
-Under the Octopus Deploy Plugin setting, set the URL to the Octopus Deploy instance and use the API set earlier.
+Under the Octopus Deploy Plugin setting, set the URL to the Octopus Deploy instance and add the API key.
 
 ![Octopus URL](octopus-url.png "width=500")
 
