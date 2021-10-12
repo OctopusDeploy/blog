@@ -57,7 +57,7 @@ Jenkins can now make your compile packages available in Octopus to be deployed. 
 
 ### Build Triggers
 
-    Poll SCM - H/5 * * * *
+Poll SCM: `H/5 * * * *`
 
 ### Build step - Execute shell
 
