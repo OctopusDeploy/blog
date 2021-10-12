@@ -84,7 +84,7 @@ You will have to install npm and nodejs on the VM.
     
 Click **SAVE**.
 
-Go back to the job dashboard and click Build now to start the job.
+Go back to the job dashboard and click **Build now** to start the job.
 
 ![Jenkins Build Now](jenkins-build-now.png "width=500")
 
