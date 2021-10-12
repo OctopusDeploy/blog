@@ -1,6 +1,6 @@
 ---
-title: Configure a Jenkins VM in Azure and deploy with Octopus Deploy 
-description: Learn how configure a Jenkins VM in Azure and deploy with Octopus Deploy
+title: Configure Jenkins in Azure and deploy with Octopus Deploy 
+description: Learn how configure a Jenkins instance in Azure and deploy with Octopus Deploy
 author: terence.wong@octopus.com
 visibility: public 
 published: 2021-10-11
