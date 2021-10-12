@@ -167,7 +167,7 @@ A newly created Service Principal can take several minutes before the credential
 
 In your Octopus instance, add a Production environment by going to **{{Infrastructure, Environments, Add Environment}}**
 
-Go to **{{Infrastructure, Deployment Targets}}** and add an Azure Web App. Assign the Production environment and set a role (eg. azure) for the target. Choose the Azure account set up earlier and select your Azure Web application. Click **SAVE**.
+Go to **{{Infrastructure, Deployment Targets}}** and add an Azure Web App. Assign the Production environment and set a role (for example, azure) for the target. Choose the Azure account set up earlier and select your Azure Web application. Click **SAVE**.
 
 Create a project by going to **{{Projects, Add Project}}**  
 
@@ -175,7 +175,7 @@ Go to the Process section. Add a `Deploy an Azure App Service step.`
 
 ### On Behalf of
 
-    Choose the role (e.g jenkins)
+    Choose the role (for example, azure)
 
 ### Deployments
 
