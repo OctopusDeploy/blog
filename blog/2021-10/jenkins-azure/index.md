@@ -82,7 +82,7 @@ You will have to install npm and nodejs on the VM.
     Octopus Deploy Connection - Octo-Jenkins - Can be changed
     Package paths - ${WORKSPACE}/RandomQuotes.1.0.${BUILD_NUMBER}.zip
     
-Click SAVE.
+Click **SAVE**.
 
 Go back to the job dashboard and click Build now to start the job.
 
