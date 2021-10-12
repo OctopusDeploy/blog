@@ -179,8 +179,8 @@ Go to the Process section. Add a `Deploy an Azure App Service step.`
 
 ### Deployments
 
-    Deploy from a zip, Java WAR, or NuGet package
-    Choose the package from the built-in Library
+2. Select deploy from a zip, Java WAR, or NuGet package
+3. Choose the package from the built-in Library
     
 Leave everything else as default.
 
