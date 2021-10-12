@@ -4,9 +4,9 @@ description: Learn how Octopus is using telemetry data to identify performance m
 author: terence.wong@octopus.com
 visibility: public
 published: 2021-10-13-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-crowsnesttelemetry-2021.png
+bannerImage: blogimage-crowsnesttelemetry-2021.png
+bannerImageAlt: crows nest telemetry
 isFeatured: false
 tags:
  - Engineering
