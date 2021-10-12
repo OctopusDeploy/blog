@@ -182,7 +182,7 @@ Go to the Process section. Add a `Deploy an Azure App Service step.`
 2. Select deploy from a zip, Java WAR, or NuGet package
 3. Choose the package from the built-in Library
     
-Leave everything else as default.
+Leave everything else with the defaults.
 
 Go to your project and create a release. Click **{{SAVE, Deploy to Production, Deploy}}** and wait for the deployment to complete
 
