@@ -175,7 +175,7 @@ Go to the Process section. Add a `Deploy an Azure App Service step.`
 
 ### On Behalf of
 
-    Choose the role (for example, azure)
+1. Choose the role (for example, azure)
 
 ### Deployments
 
