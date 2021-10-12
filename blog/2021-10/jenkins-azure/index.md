@@ -21,9 +21,9 @@ To do this, you will need:
 - An Azure account
 - A Jenkins VM
 
-You can set up the Jenkins VM in many ways. One way is to follow this guide, completing steps 1-4. The guide will give you a live Jenkins instance on Azure.
+You can set up the Jenkins VM in many ways. One way is to follow [this guide](https://docs.microsoft.com/en-us/azure/developer/jenkins/configure-on-linux-vm), completing steps 1-4. The guide will give you a live Jenkins instance on Azure.
 
-https://docs.microsoft.com/en-us/azure/developer/jenkins/configure-on-linux-vm
+
 
 ## Jenkins
 
