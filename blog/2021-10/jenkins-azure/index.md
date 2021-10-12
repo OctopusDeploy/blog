@@ -48,7 +48,7 @@ Under the Octopus Deploy Plugin setting, set the URL to the Octopus Deploy insta
 
 
 
-Jenkins can now make your compile packages available in Octopus to be deployed. Let's create a new job by going to the Jenkins home page and clicking the **new item &rarr; freestyle project**, and assign the following settings:
+Jenkins can now make your compile packages available in Octopus to be deployed. Let's create a new job by going to the Jenkins home page and click **new item &rarr; freestyle project**, and assign the following settings:
 
 ### Source Code Management
 
