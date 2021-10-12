@@ -14,7 +14,7 @@ tags:
 
 Over the years, Octopus Deploy has grown to include many new features and areas within the app.  Customers use these to view the dashboard, create or deploy releases, author projects, or run runbooks against their infrastructure. To serve our customers better, we want to know how fast and responsive the experience is.
 
-Like many software companies, we collect telemetry to measure how customers use and experience the product. Some of the telemetry we collect is the timing of API calls and database operations, which we call 'performance telemetry'. We surface this telemetry in our engineering dashboard, code-named Crow's Nest.
+Like many software companies, we collect telemetry to measure how customers use and experience the product. Some of the telemetry we collect is the timing of API calls and database operations, which we call performance telemetry. We surface this telemetry in our engineering dashboard, code-named Crow's Nest.
 
 Crow's Nest provides a high-level overview of how users are experiencing the product. A web request triggers when a customer wants to visit a page or poll an endpoint, and Crow's Nest measures how long the request takes. 
 
