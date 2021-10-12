@@ -163,6 +163,8 @@ You may need to whitelist the IP addresses for the Azure Data Center that you're
 A newly created Service Principal can take several minutes before the credential test passes. If you've double-checked your credential values, wait 15 minutes and try again.
 :::
 
+## Configure Octopus to deploy to Azure
+
 In your Octopus instance, add a Production environment by going to **{{Infrastructure, Environments, Add Environment}}**
 
 Go to **{{Infrastructure, Deployment Targets}}** and add an Azure Web App. Assign the Production environment and set a role (eg. jenkins) for the target. Choose the Azure account set up earlier and select your Azure Web application. Click SAVE.
