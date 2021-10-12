@@ -52,8 +52,8 @@ Jenkins can now make your compile packages available in Octopus to be deployed. 
 
 ### Source Code Management
 
-    Git - https://github.com/OctopusSamples/RandomQuotes-JS.git
-    Build specifier - */master
+Git: `https://github.com/OctopusSamples/RandomQuotes-JS.git`
+Build specifier: `*/master`
 
 ### Build Triggers
 
@@ -69,18 +69,18 @@ You will have to install npm and nodejs on the VM.
 
 ### Build step Octopus Deploy: Package Application
 
-    Octopus Deploy CLI - default
-    Package ID - RandomQuotes
-    Version Number - 1.0.${BUILD_NUMBER}
-    Package format - zip
-    Package include paths - ${WORKSPACE}/**
-    Package output folder - ${WORKSPACE}
+Octopus Deploy CLI: default
+Package ID: `RandomQuotes`
+Version Number: `1.0.${BUILD_NUMBER}`
+Package format: zip
+Package include paths: `${WORKSPACE}/**`
+Package output folder: `${WORKSPACE}`
 
 ### Build step Octopus Deploy: Push packages
 
-    Octopus Deploy CLI - default
-    Octopus Deploy Connection - Octo-Jenkins - Can be changed
-    Package paths - ${WORKSPACE}/RandomQuotes.1.0.${BUILD_NUMBER}.zip
+Octopus Deploy CLI: default
+Octopus Deploy Connection: Octo-Jenkins
+Package paths: `${WORKSPACE}/RandomQuotes.1.0.${BUILD_NUMBER}.zip`
     
 Click **SAVE**.
 
