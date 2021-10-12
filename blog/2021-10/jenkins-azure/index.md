@@ -184,11 +184,11 @@ Go to the Process section. Add a `Deploy an Azure App Service step.`
     
 Leave everything else with the defaults.
 
-Go to your project and create a release. Click **{{SAVE, Deploy to Production, Deploy}}** and wait for the deployment to complete
+Go to your project and create a release. Click **{{SAVE, Deploy to Production, Deploy}}** and wait for the deployment to complete.
 
 ![Octopus Success](octopus-success.png "width=500")
 
-Go to your site URL [your-site].azurewebsites.net) to see the deployed Web application
+Go to your site URL [your-site].azurewebsites.net) to see the deployed Web application.
 
 ![Random Quotes](randomquotes.png "width=500")
 
@@ -200,15 +200,15 @@ In the dashboard of your Jenkins job, go to configure and add the following step
 
 ### Post-build action: Create Release
 
-    Octopus Deploy CLI - default
-    Octopus Server - Octo-Jenkins - can be changed
-    Project Name - jenkins - can be changed
-    Release Version - 0.0.i
-    Deploy this release after it is created?  Check
+Octopus Deploy CLI: default
+Octopus Server: `Octo-Jenkins`
+Project Name: `jenkins`
+Release Version: `0.0.i`
+Deploy this release after it is created?  Check the box
 
-Click SAVE, go back to the job dashboard, and click build now. Jenkins will trigger the package's build and start the post-build release and deploy steps in Octopus Deploy.
+Click **SAVE**, go back to the job dashboard, and click **build now**. Jenkins will trigger the package's build and start the post-build release and deploy steps in Octopus Deploy.
 
-In this blog post, you have set up and used a Jenkins VM to build and push a package to Octopus Deploy. You used this package to deploy a Web application to an Azure Web App. You have seen how Jenkins integrates with Octopus Deploy to manage releases and deployments automatically.
+In this blog post, you have set up and used a Jenkins instance to build and push a package to Octopus Deploy. You used this package to deploy a Web application to an Azure Web App. You have seen how Jenkins integrates with Octopus Deploy to manage releases and deployments automatically.
 
 
 
