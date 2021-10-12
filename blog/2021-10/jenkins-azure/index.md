@@ -13,15 +13,15 @@ tags:
  - Jenkins
 ---
 
-Jenkins is an open-source automation server that enables developers to automate building, testing, and deploying software. This blog post will show you how to configure a Jenkins VM, push a package to an Octopus Deploy instance, and deploy a web application to Azure.
+Jenkins is an open-source automation server that enables developers to automate building, testing, and deploying software. This blog post will show you how to configure a Jenkins instance, push a package to an Octopus Deploy instance, and deploy a web application to Azure.
 
 To do this, you will need:
 
 - An Octopus Deploy instance
 - An Azure account
-- A Jenkins VM
+- A Jenkins instance
 
-You can set up the Jenkins VM in many ways. One way is to follow [this guide](https://docs.microsoft.com/en-us/azure/developer/jenkins/configure-on-linux-vm), completing steps 1-4. The guide will give you a live Jenkins instance on Azure.
+You can set up Jenkins in many ways. One way is to follow [this guide](https://docs.microsoft.com/en-us/azure/developer/jenkins/configure-on-linux-vm), completing steps 1-4. The guide will give you a live Jenkins instance on Azure.
 
 
 
