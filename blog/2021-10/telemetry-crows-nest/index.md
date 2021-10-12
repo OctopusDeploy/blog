@@ -6,7 +6,7 @@ visibility: public
 published: 2021-10-13-1400
 metaImage: blogimage-crowsnesttelemetry-2021.png
 bannerImage: blogimage-crowsnesttelemetry-2021.png
-bannerImageAlt: crows nest telemetry
+bannerImageAlt: Circular maze with blue line starting in the center leading to the exit, next to a bar graph with six columns of differing widths and heights.
 isFeatured: false
 tags:
  - Engineering
