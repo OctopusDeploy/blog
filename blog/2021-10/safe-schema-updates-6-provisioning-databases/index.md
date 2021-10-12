@@ -183,7 +183,7 @@ Our provisioning process is now complete. It has two parts:
 
 However, the “git, clone, f5” experience is still likely to be a bit frustrating for the developers.
 
-When a developer wants to run their code, it’s relatively quick to clone the repo, and it’s possible for them to run their script (or perhaps use an [Octopus Runbook](https://octopus.com/docs/runbooks)) to build a development environment. However, that process is likely to be slow.
+When a developer wants to run their code, it’s relatively quick to clone the repo, and it’s possible for them to run their script (or perhaps use an [Octopus Runbook](https://octopus.com/docs/runbooks)) to build a development environment. However, that script is likely to take a while to complete.
 
 As a developer, I do not want to wait more than a minute, and ideally not more than a few seconds, to start running my code. However, my environment provisioning script has to do all of the following:
 
