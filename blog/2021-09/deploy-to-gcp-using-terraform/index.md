@@ -22,7 +22,7 @@ To do this, you will need:
 - an Octopus instance with a project
 - a Google Cloud Platform Account
 
-First we will create a project in Google Cloud Platform
+First we will create a project in Google Cloud Platform. This is found by going to the Google Cloud Platform, clicking the dropdown menu next to Google Cloud Platform and clicking **New Project**.
 
 ![Create Project](create-project.png "width=500")
 
@@ -56,11 +56,19 @@ In your project, go to Variables and add the following variables. I have given t
 | GCP-region  | australia-southeast1  |
 | GCP-VPC-name  |  terraform-network-test-octopus-deploy |
 | GCP-zone   |  australia-southeast1-a |    
-|  GCP-Variable  |Change type &rarr; Google Cloud Account &rarr; Select your Google Account |   
+|  GCP-Variable  |Change type &rarr; Google Cloud Account &rarr; Select your Google Account | 
+
+### Configure Docker external feed
+
+We will use docker to access some resources for our proess step Go to **{{Library, External Feeds, Add Feed}}**. For feed type, select **Docker Container Registry**, give the feed a name, accept default settings and save.
 
 Runbooks are a way to automate processes that aren't part of a deployment. In this case, creating a VPC network. Go to **{{Operations,Runbooks}}** and add a runbook with the **apply a Terraform template** step.
 
 ![Octopus Add Terraform Step](octopus-add-terraform-step.png "width=500")
+
+Under worker pool, check **runs on a worker from a specific worker pool** and select the **Hosted Ubuntu** pool.
+
+Under container image, check **runs inside a container, on a worker** and use the docker container registry you set up earlier. Use the octopusdeploy/worker-tools:3.0.0-ubuntu.18.04 worker tool.
 
 Add the Google Cloud Platform account and pass the project-id, region and zone parameters to authenticate Octopus Deploy with Google. 
 
@@ -108,6 +116,8 @@ resource "google_compute_network" "vpc_network" {
 We tell terraform about the project, region, zone, and resource variables. Because we are not specifying a default value for the variables, we need to link them to the Octopus variables defined earlier.
 
 ![Octopus Runbook Variable](octopus-runbook-variable.png "width=500")
+
+
 
 Click run to run the runbook. When complete, the VPC network will be deployed to Google Cloud Platform. We can confirm this by going to the VPC network section and searching for the network.
 
