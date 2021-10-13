@@ -72,6 +72,8 @@ Under worker pool, check **runs on a worker from a specific worker pool** and se
 
 Under container image, check **runs inside a container, on a worker** and use the docker container registry you set up earlier. Use the octopusdeploy/worker-tools:3.0.0-ubuntu.18.04 worker tool.
 
+![Octopus Worker Tools](octopus-worker-tools.png "width=500")
+
 Add the Google Cloud Platform account and pass the project-id, region and zone parameters to authenticate Octopus Deploy with Google. 
 
 ![Octopus GCP Settings](octopus-gcp-settings.png "width=500")
