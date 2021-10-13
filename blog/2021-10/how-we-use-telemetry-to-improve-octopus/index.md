@@ -89,7 +89,7 @@ Historical performance is visible on every route. This allows us to see how the 
 
 For example, the performance of the certificates route above degraded from 2020.2 to 2020.6. The Apdex score decreased from 62 to 16. 
 
-In 2021.1, we identified the cause of this decrease in Apdex score and resolved the issue, leading to an Apdex score of 77.
+In 2021.1, we identified the cause of this decrease in the Apdex score and resolved the issue, leading to an improved Apdex score of 77.
 
 ![Apdex Route View](apdex-route-view.png "Apdex Route View")
 
