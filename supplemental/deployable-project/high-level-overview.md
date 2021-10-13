@@ -29,7 +29,7 @@ Octopus focuses on three main parts of continuous delivery:
 - Release
 - Operate
 
-Octopus sits in the middle of the CI/CD toolchain, acting as an orchestrator. This orchestration requires several software integrations from coding frameworks to cloud providers. Octopus Deploy chooses to do a smaller number of things at high quality, over doing everything.
+Octopus sits in the middle of the CI/CD toolchain, acting as an orchestrator. This orchestration requires several software integrations from coding frameworks to cloud providers. We choose to do a smaller number of things at high quality, over doing everything.
 
 By focusing on orchestration and enabling these integrations, Octopus provides best-in-class tooling.
 
