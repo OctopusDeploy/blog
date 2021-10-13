@@ -62,6 +62,8 @@ In your project, go to Variables and add the following variables. I have given t
 
 We will use docker to access some resources for our proess step Go to **{{Library, External Feeds, Add Feed}}**. For feed type, select **Docker Container Registry**, give the feed a name, accept default settings and save.
 
+### Configure runbook step
+
 Runbooks are a way to automate processes that aren't part of a deployment. In this case, creating a VPC network. Go to **{{Operations,Runbooks}}** and add a runbook with the **apply a Terraform template** step.
 
 ![Octopus Add Terraform Step](octopus-add-terraform-step.png "width=500")
@@ -116,8 +118,6 @@ resource "google_compute_network" "vpc_network" {
 We tell terraform about the project, region, zone, and resource variables. Because we are not specifying a default value for the variables, we need to link them to the Octopus variables defined earlier.
 
 ![Octopus Runbook Variable](octopus-runbook-variable.png "width=500")
-
-
 
 Click run to run the runbook. When complete, the VPC network will be deployed to Google Cloud Platform. We can confirm this by going to the VPC network section and searching for the network.
 
