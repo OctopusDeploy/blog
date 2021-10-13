@@ -48,7 +48,7 @@ In your Octopus instance, go to **{{Infrastructure,Accounts}}** and add a Google
 
 ![Octopus Add GCP Account](octopus-add-gcp-account.png "width=500")
 
-In your project, go to Variables and add the following variables. I have given the example values I used.
+In your project, go to Variables and add the following variables. I have given the example values I used. For the region and zone variables, you can change them to [locations closer to you](https://cloud.google.com/compute/docs/regions-zones), however the VPC can be set up in any zone.
 
 |  Variable | Example Value |
 |---|---|
