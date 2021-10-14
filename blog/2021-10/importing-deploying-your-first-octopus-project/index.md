@@ -99,8 +99,6 @@ You now have the following:
 - **Application ID**
 - **Application Password/secret**
 
-This means you can [add the Service Principal Account in Octopus](#add-service-principal-account).
-
 Next, you need to configure your [resource permissions](#resource-permissions).
 
 ### Resource permissions {#resource-permissions}
