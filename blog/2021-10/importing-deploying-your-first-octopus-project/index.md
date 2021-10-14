@@ -57,9 +57,11 @@ The **Export/Import features** are accessed from the overflow menu on the **Proj
 
 You need to import the following project into your Octopus instance:
 
-> [project_export_latest.zip](https://octopus.com/images/blog/deployable-blog-post/project_export_latest.zip)
+:::success  
+[project_export_latest.zip](https://octopus.com/images/blog/deployable-blog-post/project_export_latest.zip)
+::: 
 
-In the Octopus Web Portal, navigate to **Projects > Import Project > Select zip file** and upload the project zip. Click **IMPORT** to complete.
+In the Octopus Web Portal, navigate to **Projects > Import Projects > SELECT ZIP FILE** and upload the project zip. Click **IMPORT** to complete.
 
 :::hint 
 The password for this project is `html`.
@@ -68,7 +70,7 @@ The password for this project is `html`.
 ![Summary](summary-zip.png "Summary")
 
 :::hint 
-Importing the project means you don't have to configure the environment or deployment steps of your project manually. This is only a small project, but some projects are large and include complex deployment steps, and importing the project is much easier than recreating it. Using the Export/Import feature ensures your environments and deployment steps persist across spaces.
+Importing the project means you don't have to configure the environment or deployment steps of your project manually. This is only a small project, but some projects are large and include complex deployment steps, so importing the project is much easier than recreating it. Using the Export/Import feature ensures your environments and deployment steps persist across spaces.
 ::: 
 
 Congratulations, you successfully imported the project! 
@@ -85,7 +87,7 @@ Create an account in Azure by navigating to the [Azure portal](https://portal.az
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/QDwDi17Dkfs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-1. In the Azure portal, open the menu, ![hamburger menu](menu.png), navigate to **Azure Active Directory > Properties** and copy the value from the **Tenant ID** field. This is your **Tenant ID**.
+1. In the Azure portal, open the menu, ![hamburger menu icon](menu.png), navigate to **Azure Active Directory > Properties** and copy the value from the **Tenant ID** field. This is your **Tenant ID**.
 1. Next you need your **Application ID**.
   - If you created an AAD registered application, navigate to **Azure Active Directory > App registrations**, click **View all applications**, select the app and copy the **Application ID**.  Please note, the Azure UI defaults to the **Owned applications** tab.  Click the **All applications** tab to view all app registrations. 
   - If you haven't created a registered app, navigate to **Azure Active Directory > App registrations**, click on **New registration** and add the details for your app, and click **Save**. Make note of the **Application ID**.
@@ -105,7 +107,7 @@ Next, you need to configure your [resource permissions](#resource-permissions).
 
 Resource permissions ensure your registered app has permission to work with your Azure resources.
 
-1. In the Azure Portal navigate to **Resource groups** and select the resource group(s) that you want the registered app to access. If a resource group doesn't exist, create one by going to **Home > Resource groups > Create**. After it's created, take note of the Azure subscription ID of the resource group.
+1. In the Azure portal navigate to **Resource groups** and select the resource group(s) that you want the registered app to access. If a resource group doesn't exist, create one by going to **Home > Resource groups > Create**. After it's created, take note of the Azure subscription ID of the resource group.
 2. Click the **Access control (IAM)** option. Under **Role assignments**, if your app isn't listed, click **Add role assignment**. Select the appropriate role (**Contributor** is a common option) and search for your new application name. Select it from the search results, then click **Save**.
 
 The next step is setting up an [Azure web application](#web-application-setup) and configuring its properties.
@@ -136,7 +138,7 @@ With the following values, you can add your account to Octopus:
 
 Click **SAVE AND TEST** to confirm the account can interact with Azure. Octopus will attempt to use the account credentials to access the Azure Resource Management (ARM) API and list the Resource Groups in that subscription. 
 
-You may need to safelist the IP addresses for the Azure Data Center that you're targeting. See [deploying to Azure via a Firewall](https://octopus.com/docs/deployments/azure) for more details.
+You may need to safelist the IP addresses for the Azure Data Center that you're targeting. See [deploying to Azure via a firewall](https://octopus.com/docs/deployments/azure/deploying-to-azure-via-a-firewall) for more details.
 
 :::hint
 A newly created Service Principal can take several minutes before the credential test passes. If you've double-checked your credential values, wait 15 minutes and try again.
@@ -152,9 +154,11 @@ A package is code that will deploy to a target. In this case, it will be a deplo
 
 The package system makes it convenient to interchange or update packages for redeployment at a later stage. The following is the package that you'll be using to deploy with Octopus Deploy:
 
-> [guide.1.0.0.zip](https://octopus.com/images/blog/deployable-blog-post/guide.1.0.0.zip)
+:::success  
+[guide.1.0.0.zip](https://octopus.com/images/blog/deployable-blog-post/guide.1.0.0.zip)
+:::
 
-You can manually upload the package to the Octopus built-in repository in the Octopus Web Portal.
+You can manually upload the package to the Octopus built-in repository in the Octopus web portal.
 
 1. Navigate to the **Library** tab
 1. Click **UPLOAD PACKAGE**
