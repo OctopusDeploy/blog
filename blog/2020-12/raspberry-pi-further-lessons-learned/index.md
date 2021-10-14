@@ -97,4 +97,4 @@ This project continues to be quite fun as I learn more and more about Linux, Doc
 
 ![](rpi-cluster.jpg)
 
-PS. I'm aware that my cable management skill leave a bit to be desired ;)
+P.S. I'm aware that my cable management skill leave a bit to be desired ;)
