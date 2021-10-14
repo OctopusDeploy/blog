@@ -171,6 +171,7 @@ In the next step, you set up the deployment target that the application will be 
 3. Enter a **Display Name**
 4. Fill out the **Environments** and **Target Roles**
 5. Select the Azure account and web app created earlier
+6. Click **SAVE**
 
 ![Azure Web App Settings](azure-web-app-settings.png "Azure Web App Settings")
 
@@ -178,7 +179,7 @@ In the next step, you set up the deployment target that the application will be 
 
 You can deploy the application after you've imported a project, set up the Azure account, set up the deployment target, and uploaded the package.
 
-- Go to **Projects > HTML > Create release** and step through to deploy the web application to Azure from the Azure production environment.
+- Go to **Projects > HTML > CREATE RELEASE** and step through to deploy the web application to Azure from the Azure production environment.
 
 ![Deploy Success](deploy-success.png "Deploy Success")
 
