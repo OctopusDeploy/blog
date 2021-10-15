@@ -173,4 +173,6 @@ To be honest, we feel like the choice of configuration language is far from the 
 
 ## What’s next?
 
-The next step is to get this into your hands. We are very keen to get feedback on the real thing.  We hope to have a public release in early 2021 (for those who may have seen previous mention of a November 2020 release, yes, we are as bad at estimating software projects as everyone else). In the meantime, if you have any questions or comments, please enter them below or join the conversation in the [Octopus community Slack](https://octopus.com/slack). 
+The next step is to get this into your hands. We are very keen to get feedback on the real thing.  We hope to have a public release in early 2021 (for those who may have seen previous mention of a November 2020 release, yes, we are as bad at estimating software projects as everyone else). In the meantime, if you have any questions or comments, please enter them below or join the conversation in the [Octopus community Slack](https://octopus.com/slack).
+
+!include <octopus-cac-deep-dive-video>
