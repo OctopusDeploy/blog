@@ -114,6 +114,25 @@ Chocolatey is a Windows package manager, and it [provides an option to install J
 
 Jenkins may be updated on Chocolatey by the time you read this post, but I would warn against using Chocolatey to install Jenkins as it does have a history of being unmaintained.
 
+### Windows service configuration
+
+Windows services have a [unique entry point](https://docs.microsoft.com/en-au/windows/win32/api/winsvc/nc-winsvc-lpservice_main_functiona?redirectedfrom=MSDN) to respond to Service Control Manager (SCM) commands. Java applications, like Jenkins, do not expose this interface. This means that Java applications must be run inside a wrapper to be managed as a Windows service.
+
+This wrapper is found at `C:\Program Files\Jenkins\jenkins.exe` by default, and is configured by the `C:\Program Files\Jenkins\jenkins.xml` file:
+
+![Jenkins Wrapper Configuration](jenkins-wrapper.png "width=500")
+
+This XML file contains the `service.arguments` element, which defines the command line arguments passed to Jenkins when it is executed. It also includes `service.env` elements to define the environment variables made available to Jenkins.
+
+Advanced Jenkins configuration options often require passing arguments or defining environment variables. As an example, disable Cross-Site Request Forgery (CSRF) protection in Jenkins requires passing the `-Dhudson.security.csrf.GlobalCrumbIssuerConfiguration.DISABLE_CSRF_PROTECTION=true` argument, which is configured in the `service.arguments` element:
+
+![Jenkins Wrapper Configuration](jenkins-wrapper-2.png "width=500")
+
+
+### JENKINS_HOME directory on Windows
+
+The `JENKINS_HOME` directory includes all the configuration, plugins, and working directory for any builds executed on the Jenkins server. On Windows this directory is located at `%LocalAppData%\Jenkins\.jenkins` by default, which will resolve ti `C:\Users\jenkins\AppData\Local\Jenkins\.jenkins` when using the `jenkins` user created above to run the Jenkins service.
+
 ## Installing Jenkins on Ubuntu and Debian
 
 Jenkins provides a [package repository for installing the software on Debian and Ubuntu](https://pkg.jenkins.io/debian-stable/).
