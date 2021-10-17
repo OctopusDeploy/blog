@@ -14,6 +14,16 @@ The traditional method of installing Jenkins is via the installers made availabl
 
 The installation process is generally simple, but there are a few tricks to be aware of. In this post we'll run through the installation of Jenkins on Windows and Linux, and provide some insights into customizing the installation.
 
+## Choosing between LTS and weekly releases
+
+Jenkins offers two channels: Long Term Support (LTS) and weekly releases.
+
+LTS releases tend to be more stable and predictable, with less features in each release, but including any important bug and security fixes.
+
+The weekly releases include all the latest features, but will have less "bake time" in the community to find bugs.
+
+If you prefer stability and don't require all the latest features right away, go with the LTS releases. If you want the latest features as soon as possible and don't mind encountering the occasional glitch, go with the weekly releases.
+
 ## Installing Jenkins on Windows
 
 Jenkins provides an MSI download that allows it to be installed as a Windows service through the traditional Windows wizard style installation process. But before we start the installation there are a number of prerequisites we must address.
@@ -97,3 +107,55 @@ All the installation values are now configured, so click the **Install** button:
 Once the installation is complete, click the **Finish** button:
 
 ![Jenkins Windows Installer](win-install-9.png "width=500")
+
+### A note on Chocolaty
+
+Chocolatey is a Windows package manager, and it [provides an option to install Jenkins](https://community.chocolatey.org/packages/jenkins). However, at the time of writing the latest version of Jenkins available on Chocolatey is 2.222.4, which was well over a year old. In fact, the version was so old that most of the recommended plugins presented during the initial Jenkins configuration failed to install!
+
+Jenkins may be updated on Chocolatey by the time you read this post, but I would warn against using Chocolatey to install Jenkins as it does have a history of being unmaintained.
+
+## Installing Jenkins on Ubuntu and Debian
+
+Jenkins provides a [package repository for installing the software on Debian and Ubuntu](https://pkg.jenkins.io/debian-stable/).
+
+First, install the repository key:
+
+```bash
+wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+```
+
+Then add a Jenkins apt repository entry:
+
+```bash
+sudo sh -c 'echo deb https://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+```
+
+Update your local package index, then finally install Jenkins:
+
+```bash
+sudo apt-get update
+sudo apt-get install jenkins
+```
+
+## Installing Jenkins on RHEL and Fedora
+
+Jenkins provides a [package repository for installing the software on RHEL and Fedora](https://pkg.jenkins.io/redhat-stable/).
+
+First, install the repository key:
+
+```bash
+sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
+```
+
+Then install OpenJDK and Jenkins:
+
+```
+sudo yum install epel-release
+sudo yum install java-11-openjdk-devel
+sudo yum install jenkins
+```
+
+## Install Jenkins on other Linux distributions and macOS
+
+The [Jenkins website](https://www.jenkins.io/download/) includes instructions for other Linux distributions and macOS.
