@@ -74,7 +74,7 @@ Grant-CPrivilege -Identity "jenkins" -Privilege SeServiceLogonRight
 
 ### Installing Jenkins
 
-Start by downloading the MSI from the [Jenkins download page](https://www.jenkins.io/download/). Double-click the MSI file to begin the Jenkins installation, and Click the **Next** button:
+Download the MSI from the [Jenkins download page](https://www.jenkins.io/download/), double-click the MSI file to begin the Jenkins installation, and click the **Next** button:
 
 ![Jenkins Windows Installer](win-install-1.png "width=500")
 
@@ -82,7 +82,7 @@ The default installation directory is fine, so click the **Next** button:
 
 ![Jenkins Windows Installer](win-install-2.png "width=500")
 
-You are now prompted to select the user that runs the Windows service. Enter the credentials for the user you created earlier and click the **Test Credentials** button. Once the test passes, click the **Next** button:
+You are now prompted to define the user that runs the Windows service. Enter the credentials for the user you created earlier and click the **Test Credentials** button. Once the test passes, click the **Next** button:
 
 ![Jenkins Windows Installer](win-install-3.png "width=500")
 
@@ -90,7 +90,7 @@ The default port of **8080** is fine. Click the **Test Port** button to ensure t
 
 ![Jenkins Windows Installer](win-install-4.png "width=500")
 
-You are now prompted to enter the path to the Java distribution you installer earlier. The default path for the Zulu 11 distribution is `C:\Program Files\Zulu\zulu-11`. Enter the appropriate path for you chosen distribution, and click the **Next** button:
+You are now prompted to enter the path to the Java distribution you installed earlier. The default path for the Zulu 11 distribution is `C:\Program Files\Zulu\zulu-11`. Enter the appropriate path for your chosen distribution, and click the **Next** button:
 
 ![Jenkins Windows Installer](win-install-6.png "width=500")
 
@@ -108,7 +108,7 @@ Once the installation is complete, click the **Finish** button:
 
 ## A note on Chocolatey
 
-Chocolatey is a Windows package manager, and it [provides an option to install Jenkins](https://community.chocolatey.org/packages/jenkins). However, at the time of writing the latest version of Jenkins available on Chocolatey is 2.222.4, which was well over a year old. In fact, the version was so old that most of the recommended plugins presented during the initial Jenkins configuration failed to install!
+Chocolatey is a Windows package manager, and it [provides an option to install Jenkins](https://community.chocolatey.org/packages/jenkins). However, at the time of writing, the latest version of Jenkins available on Chocolatey is 2.222.4, which was well over a year old. In fact, the version was so old that most of the recommended plugins presented during the initial Jenkins configuration failed to install!
 
 Jenkins may be updated on Chocolatey by the time you read this post, but I would warn against using Chocolatey to install Jenkins as it does have a history of being unmaintained.
 
@@ -120,16 +120,16 @@ This wrapper is found at `C:\Program Files\Jenkins\jenkins.exe` by default, and 
 
 ![Jenkins Wrapper Configuration](jenkins-wrapper.png "width=500")
 
-This XML file contains the `service.arguments` element, which defines the command line arguments passed to Jenkins when it is executed. It also includes `service.env` elements to define the environment variables made available to Jenkins.
+This XML file contains the `service/arguments` element, which defines the command line arguments passed to Jenkins when it is executed. It also includes `service/env` elements to define the environment variables made available to Jenkins.
 
-Advanced Jenkins configuration options often require passing arguments or defining environment variables. As an example, [disabling Cross-Site Request Forgery (CSRF) protection](https://www.jenkins.io/doc/book/security/csrf-protection/) in Jenkins requires passing the `-Dhudson.security.csrf.GlobalCrumbIssuerConfiguration.DISABLE_CSRF_PROTECTION=true` argument, which is configured in the `service.arguments` element:
+Advanced Jenkins configuration options often require passing arguments or defining environment variables. As an example, [disabling Cross-Site Request Forgery (CSRF) protection](https://www.jenkins.io/doc/book/security/csrf-protection/) in Jenkins requires passing the `-Dhudson.security.csrf.GlobalCrumbIssuerConfiguration.DISABLE_CSRF_PROTECTION=true` argument, which is configured in the `service/arguments` element:
 
 ![Jenkins Wrapper Configuration](jenkins-wrapper-2.png "width=500")
 
 
 ## JENKINS_HOME directory on Windows
 
-The `JENKINS_HOME` directory includes all the configuration, plugins, and working directory for any builds executed on the Jenkins server. On Windows this directory is located at `%LocalAppData%\Jenkins\.jenkins` by default, which will resolve ti `C:\Users\jenkins\AppData\Local\Jenkins\.jenkins` when using the `jenkins` user created above to run the Jenkins service.
+The `JENKINS_HOME` directory includes all the configuration, plugins, and working directory for any builds executed on the Jenkins server. On Windows, this directory is located at `%LocalAppData%\Jenkins\.jenkins` by default, which will resolve to `C:\Users\jenkins\AppData\Local\Jenkins\.jenkins` when using the `jenkins` user created above to run the Jenkins service.
 
 ## Installing Jenkins on Ubuntu and Debian
 
@@ -157,7 +157,7 @@ sudo apt-get install jenkins
 
 ## Installing Jenkins on RHEL and Fedora
 
-Jenkins provides a [package repository for installing the software on RHEL and Fedora](https://pkg.jenkins.io/redhat-stable/).
+Jenkins provides a [package repository for installing the software on Red Hat Enterprise Linux (RHEL) and Fedora](https://pkg.jenkins.io/redhat-stable/).
 
 First, install the repository key:
 
@@ -176,19 +176,19 @@ sudo yum install jenkins
 
 ## Linux service configuration
 
-While all modern versions of Ubuntu, Debian, RHEL, and Fedora use systemd, the Jenkins service is still provided as an old init script under `/etc/init.d/jenkins`. So, to start the service, we run the `service` command:
+While all modern versions of Ubuntu, Debian, RHEL, and Fedora use [systemd](https://systemd.io/), the Jenkins service is still provided as an old init script under `/etc/init.d/jenkins`. So, to start the service, we run the `service` command:
 
 ```bash
 sudo service jenkins start
 ```
 
-The init script `/etc/init.d/jenkins` contains quite a bit of bash scripting, but from an administrators point of view this is the most interesting line:
+The init script `/etc/init.d/jenkins` contains quite a bit of bash scripting, but from an administrator's point of view this is the most interesting line:
 
 ```bash
 eval "daemonize -u \"$JENKINS_USER\" -p \"$JENKINS_PID_FILE\" \"$JENKINS_JAVA_CMD\" $JENKINS_JAVA_OPTIONS \"-DJENKINS_HOME=$JENKINS_HOME\" -jar \"$JENKINS_WAR\" $PARAMS"
 ```
 
-What you can determine from this code is that Java options to be passed to Jenkins are contained in the `JENKINS_JAVA_OPTIONS` variable. To populate this variable, add a line of code like the following just after `### END INIT INFO`, which [disables CSRF protection](https://www.jenkins.io/doc/book/security/csrf-protection/):
+What you can determine from the code above is that Java options to be passed to Jenkins are contained in the `JENKINS_JAVA_OPTIONS` variable. To populate this variable, add a line of code like the following after `### END INIT INFO`. This example [disables CSRF protection](https://www.jenkins.io/doc/book/security/csrf-protection/):
 
 ```bash
 ###############################################################################
@@ -220,13 +220,13 @@ The [Jenkins website](https://www.jenkins.io/download/) includes instructions fo
 
 ## Completing the Jenkins installation
 
-Once Jenkins is installed it must be configured for the first time.
+Once Jenkins is installed, it must be configured for the first time.
 
-Open [http://localhost:8080](http://localhost:8080) to view the Jenkins web console. You will be prompted to enter a randomly generated password saved in a file on the local machine. Open this file, copy the password, paste it into the **Administrator password** text box, and click the **Continue** button:
+Open [http://localhost:8080](http://localhost:8080) to view the Jenkins web console. You are be prompted to enter a randomly generated password saved in a file on the local machine. Open this file, copy the password, paste it into the **Administrator password** text box, and click the **Continue** button:
 
 ![Jenkins Configuration](jenkins-config-1.png "width=500")
 
-Most of the functionality provided by Jenkins comes by way of plugins. You are prompted with an option to install a curated list of common plugins as part of the initial configuration. These plugins are useful, so click the **Install suggested plugins** button:
+Most of the functionality provided by Jenkins comes by way of [plugins](https://plugins.jenkins.io/). You are prompted with an option to install a curated list of common plugins as part of the initial configuration. These plugins are useful, so click the **Install suggested plugins** button:
 
 ![Jenkins Configuration](jenkins-config-2.png "width=500")
 
@@ -248,6 +248,6 @@ Jenkins is now configured and ready to use. Click the **Start using Jenkins** bu
 
 ## Conclusion
 
-In this post you examined the installation process for Jenkins in Windows and major Linux distributions, as well as learning tips for administering the Jenkins service.
+In this post you examined the installation process for Jenkins in Windows and major Linux distributions, and learned tips for administering the Jenkins service.
 
 Traditional installations are just one method for getting a Jenkins server up and running though. In the next post you'll learn how to install Jenkins with Docker.
