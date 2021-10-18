@@ -126,6 +126,8 @@ Advanced Jenkins configuration options often require passing arguments or defini
 
 ![Jenkins Wrapper Configuration](jenkins-wrapper-2.png "width=500")
 
+A list of Jenkins system properties can be found in the [Jenkins documentation](https://www.jenkins.io/doc/book/managing/system-properties/).
+
 
 ## JENKINS_HOME directory on Windows
 
@@ -213,6 +215,8 @@ What you can determine from the code above is that Java options to be passed to 
 
 # Rest of the init script
 ```
+
+A list of Jenkins system properties can be found in the [Jenkins documentation](https://www.jenkins.io/doc/book/managing/system-properties/).
 
 ## Install Jenkins on other Linux distributions and macOS
 

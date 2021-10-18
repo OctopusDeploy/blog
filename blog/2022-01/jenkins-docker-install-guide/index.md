@@ -78,7 +78,7 @@ That random string of numbers and letters is the initial administrator password,
 
 Open [http://localhost:8080](http://localhost:8080) when you see the following message in the logs:
 
-```
+```bash
 Jenkins is fully up and running
 ```
 
@@ -103,7 +103,7 @@ RUN apt update && \
 USER jenkins
 ```
 
-Dockerfiles are used to build new Docker images. You can find a complete reference of the commands available in a `Dockerfile` from the [Docker documentation](https://docs.docker.com/engine/reference/builder/). The example above uses a small subset of the commands, but demonstrate a typical custom image based on the image provided by Jenkins.
+`Dockerfile` files are used to build new Docker images. You can find a complete reference of the commands available in a `Dockerfile` from the [Docker documentation](https://docs.docker.com/engine/reference/builder/). The example above uses a small subset of the commands, but demonstrate a typical custom image based on the image provided by Jenkins.
 
 The file starts with the `FROM` command, which instructs Docker to build the new image from the supplied image. This means your new image will have Jenkins and any supporting tooling already installed and configured:
 
@@ -178,3 +178,36 @@ RUN jenkins-plugin-cli --plugins octopusdeploy:3.1.6
 The plugin ID (`octopusdeploy`) and version (`3.1.6`) are found from the [Jenkins plugin website](https://plugins.jenkins.io/octopusdeploy/):
 
 ![Jenkins Plugin Website](jenkins-plugin.png "width=500")
+
+## Passing Java arguments
+
+Advanced Jenkins configuration is often performed by passing Java arguments, typically in the form of system properties.
+
+The Jenkins Docker image allows Java arguments to be defined in the `JAVA_OPTS` environment variable. This environment variable is read by the [Docker image script that launches Jenkins](https://github.com/jenkinsci/docker/blob/master/jenkins.sh) and passed as Java arguments.
+
+To define the `JAVA_OPTS` environment variable, pass the `--env` argument to the `docker run` command:
+
+```bash
+docker run -p 8080:8080 -p 50000:50000 --env JAVA_OPTS=-Dhudson.footerURL=http://mycompany.com jenkins/jenkins:lts-jdk11
+```
+
+A list of Jenkins system properties can be found in the [Jenkins documentation](https://www.jenkins.io/doc/book/managing/system-properties/).
+
+## Passing Jenkins arguments
+
+In addition to system properties, Jenkins also accepts a number of application arguments.
+
+Application arguments are defined by appending them to the end of the Docker run command. The example below passes the `--httpPort` argument configuring Jenkins to list on port 8081:
+
+```bash
+docker run -p 8080:8081 -p 50000:50000 jenkins/jenkins:lts-jdk11 --httpPort=8081
+```
+
+Application arguments may also be defined in the `JENKINS_OPTS` environment variable:
+
+```bash
+docker run -p 8080:8081 -p 50000:50000 --env JENKINS_OPTS=--httpPort=8081 jenkins/jenkins:lts-jdk11 
+```
+
+A list of application arguments can be found in the [Winstone GitHub repository](https://github.com/jenkinsci/winstone#command-line-options). Winstone is the default embedded servlet container in Jenkins.
+
