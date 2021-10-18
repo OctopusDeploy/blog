@@ -235,6 +235,52 @@ This command can be run when the Jenkins container running because Docker volume
 
 > Even though Jenkins takes advantage of COW, it is recommended that you stop Jenkins if possible before performing a backup because the pipeline workflow XML files may get captured in an inconsistent state (for example if the backup does not take an 'instant snapshot' of every file at that exact moment).
 
+## Running Docker images as services
+
+A production instance of Jenkins must be automatically restarted when the operating system is restarted. However, this is not the default behavior of the containers you have launched using the Docker commands shown above, so any Jenkins containers will remain stopped after an OS restart.
+
+To resolve this issue you can run a Docker container as a systemd service. This allows you to manage a Jenkins container in much the same way you would manage a Jenkins instance installed with a package manager.
+
+To create a new systemd service, save the following contents to the file `/etc/systemd/system/docker-jenkins.service`:
+
+```
+[Unit]
+Description=Jenkins
+
+[Service]
+SyslogIdentifier=docker-jenkins
+ExecStartPre=-/usr/bin/docker create -m 0b -p 8080:8080 -p 50000:50000 --restart=always --name jenkins jenkins/jenkins:lts-jdk11
+ExecStart=/usr/bin/docker start -a jenkins
+ExecStop=-/usr/bin/docker stop --time=0 jenkins
+
+[Install]
+WantedBy=multi-user.target
+```
+
+To load the new service file, run:
+
+```bash
+sudo systemctl daemon-reload
+```
+
+To start the service, run the command:
+
+```bash
+sudo systemctl start docker-jenkins
+```
+
+To enable the service to run on restart, run the command:
+
+```bash
+sudo systemctl enable docker-jenkins
+```
+
+To view the service logs, run the command:
+
+```bash
+sudo journalctl -u docker-jenkins -f
+```
+
 ## Conclusion
 
 Running Jenkins from a Docker image provides a convenient method for launching Jenkins in a self-contained and preconfigured environment. In this post you learned how to:
@@ -243,5 +289,6 @@ Running Jenkins from a Docker image provides a convenient method for launching J
 * Install additional tools and plugins.
 * Pass Java system properties and Jenkins application arguments.
 * Backup the Docker volume.
+* Configure a Docker container as a systemd service.
 
 Running Docker images on a workstation or server is just the beginning though. In the next post you'll learn how to deploy Jenkins to a Kubernetes cluster.
