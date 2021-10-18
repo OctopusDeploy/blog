@@ -247,3 +247,9 @@ The default URL is fine, so click the **Save and Finish** button:
 Jenkins is now configured and ready to use. Click the **Start using Jenkins** button:
 
 ![Jenkins Configuration](jenkins-config-6.png "width=500")
+
+## Conclusion
+
+In this post you examined the installation process for Jenkins in Windows and major Linux distributions, as well as learning tips for administering the Jenkins service.
+
+Traditional installations are just one method for getting a Jenkins server up and running though. In the next post you'll learn how to install Jenkins with Docker.
