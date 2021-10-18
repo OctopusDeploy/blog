@@ -83,3 +83,69 @@ Jenkins is fully up and running
 ```
 
 You are now given the opportunity to complete the initial configuration of the Jenkins instance. Take a look at the [previous post](blog/2022-01/jenkins-install-guide/index.md) for more details on completing this initial configuration.
+
+## Adding additional software
+
+Because Jenkins is written in Java, the default server created by running the Jenkins Docker image has most of the software required to compile and test Java applications.
+
+To build applications written in other languages, you connect external Jenkins agents with the required software and run jobs on those. Using agents is a scalable solution, and one that you should consider if using Jenkins in a production environment.
+
+For local testing though a more convenient solution is to build a custom Docker image with the required tools baked in. To do this, you need to create a file called `Dockerfile` with contents similar to the following:
+
+```dockerfile
+FROM jenkins/jenkins:lts-jdk11
+USER root
+RUN apt update && \
+    apt install -y --no-install-recommends gnupg curl ca-certificates apt-transport-https && \
+    curl -sSfL https://apt.octopus.com/public.key | apt-key add - && \
+    sh -c "echo deb https://apt.octopus.com/ stable main > /etc/apt/sources.list.d/octopus.com.list" && \
+    apt update && sudo apt install -y octopuscli
+USER jenkins
+```
+
+Dockerfiles are used to build new Docker images. You can find a complete reference of the commands available in a `Dockerfile` from the [Docker documentation](https://docs.docker.com/engine/reference/builder/). The example above uses a small subset of the commands, but demonstrate a typical custom image based on the image provided by Jenkins.
+
+The file starts with the `FROM` command, which instructs Docker to build the new image from the supplied image. This means your new image will have Jenkins and any supporting tooling already installed and configured:
+
+```dockerfile
+FROM jenkins/jenkins:lts-jdk11
+```
+
+In order to install new software, you must switch to the `root` user. Just as with a regular Linux OS, only privileged users can install new software from a package manager:
+
+```dockerfile
+USER root
+```
+
+The next command performs the software installation. This example installs the Octopus CLI using the instructions from the [Octopus website](https://octopus.com/downloads/octopuscli#linux):
+
+```dockerfile
+RUN apt update && \
+    apt install -y --no-install-recommends gnupg curl ca-certificates apt-transport-https && \
+    curl -sSfL https://apt.octopus.com/public.key | apt-key add - && \
+    sh -c "echo deb https://apt.octopus.com/ stable main > /etc/apt/sources.list.d/octopus.com.list" && \
+    apt update && sudo apt install -y octopuscli
+```
+
+It is considered best practice to have a regular user account run the application in the Docker container. The `jenkins` user was created in the base image, and so you switch back to that user as that final command:
+
+```dockerfile
+USER jenkins
+```
+
+To build a new Docker image with the `Dockerfile`, run:
+
+```bash
+docker build . -t myjenkins
+```
+
+This command builds a new image called `myjenkins`. To run the new image, first stop any existing container using the `jenkins_home` volume:
+
+```bash
+docker container stop nostalgic_tharp
+```
+
+```bash
+docker run -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home myjenkins
+```
+
