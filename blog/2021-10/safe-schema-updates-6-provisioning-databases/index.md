@@ -4,9 +4,9 @@ description: The first step towards safe production releases... safe dev/test de
 author: alex.yates@dlmconsultants.com
 visibility: public
 published: 2021-10-18-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: blogimage-provisioningdevtestdatabase-2021.png
+bannerImage: blogimage-provisioningdevtestdatabase-2021.png
+bannerImageAlt: Four developers working on one database causing failure, next to 4 developers working on a database each, with  only 1 failing
 isFeatured: false
 tags:
  - DevOps
@@ -87,7 +87,7 @@ In my opinion, the best place to get started with SQL Server containers is [Andr
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/HCy3sjMRvlI?start=1642" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-## Databases/Data
+## Databases/data
 
 By now, we’ve automated our infrastructure and our SQL Server install, but we’ve not yet set up our databases or any test data. It’s no wonder that developers who lack realistic test data tend to write poorly performing queries. The first time their code is tested at scale is in production!
 
