@@ -145,7 +145,36 @@ This command builds a new image called `myjenkins`. To run the new image, first 
 docker container stop nostalgic_tharp
 ```
 
+And run your new image mounting the existing `jenkins_home` volume to retain all your existing Jenkins configuration:
+
 ```bash
 docker run -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home myjenkins
 ```
 
+## Installing additional Jenkins plugins
+
+The easiest way to install new plugins is to use the Jenkins web UI. Any new plugins are saved to the external volume, and so will be available even as you create, destroy, and update containers.
+
+You can also automate the process of installing plugins by calling the `jenkins-plugin-cli` script included in the base Jenkins image as part of your custom Docker image. Here is an example `Dockerfile` that installs the [Octopus Jenkins plugin](https://plugins.jenkins.io/octopusdeploy/):
+
+```dockerfile
+FROM jenkins/jenkins:lts-jdk11
+USER root
+RUN apt update && \
+    apt install -y --no-install-recommends gnupg curl ca-certificates apt-transport-https && \
+    curl -sSfL https://apt.octopus.com/public.key | apt-key add - && \
+    sh -c "echo deb https://apt.octopus.com/ stable main > /etc/apt/sources.list.d/octopus.com.list" && \
+    apt update && apt install -y octopuscli
+RUN jenkins-plugin-cli --plugins octopusdeploy:3.1.6
+USER jenkins
+```
+
+This `Dockerfile` is similar to the previous example, but includes a new `RUN` statement to install the Octopus plugin:
+
+```dockerfile
+RUN jenkins-plugin-cli --plugins octopusdeploy:3.1.6
+```
+
+The plugin ID (`octopusdeploy`) and version (`3.1.6`) are found from the [Jenkins plugin website](https://plugins.jenkins.io/octopusdeploy/):
+
+![Jenkins Plugin Website](jenkins-plugin.png "width=500")
