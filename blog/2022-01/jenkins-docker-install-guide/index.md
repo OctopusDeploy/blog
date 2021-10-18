@@ -191,6 +191,37 @@ The plugin ID (`octopusdeploy`) and version (`3.1.6`) are found from the [Jenkin
 
 ![Jenkins Plugin Website](jenkins-plugin.png "width=500")
 
+## Publishing the custom Docker image
+
+To publish your custom Docker image you need an account with a Docker registry. [DockerHub](https://hub.docker.com) is a popular choice, and provides free hosting of public images.
+
+[Create a free account](https://hub.docker.com/signup), and then login with the command:
+
+```bash
+docker login
+```
+
+To build an image that can be published to DOckerHub, run the following command, replacing `username` with your DockerHub username:
+
+```bash
+docker build . -t username/myjenkins
+```
+
+Then you publish the image with this command:
+
+```
+docker push username/myjenkins
+```
+
+My DockerHub username is `mcasperson`, so I run this:
+
+```bash
+docker build . -t mcasperson/myjenkins
+docker push mcasperson/myjenkins
+```
+
+My custom Docker image is then available from [DockerHub](https://hub.docker.com/r/mcasperson/myjenkins).
+
 ## Passing Java arguments
 
 Advanced Jenkins configuration is often performed by passing Java arguments, typically in the form of system properties.
