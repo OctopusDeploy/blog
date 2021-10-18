@@ -63,6 +63,12 @@ CONTAINER ID   IMAGE                       COMMAND                  CREATED     
 801f4e834173   jenkins/jenkins:lts-jdk11   "/sbin/tini -- /usr/…"   About a minute ago   Up About a minute   0.0.0.0:8080->8080/tcp, :::8080->8080/tcp, 0.0.0.0:50000->50000/tcp, :::50000->50000/tcp   nostalgic_tharp
 ```
 
+To define the container name, pass the `--name` argument:
+
+```bash
+docker run -d --name jenkins -p 8080:8080 -p 50000:50000 jenkins/jenkins:lts-jdk11
+```
+
 The first time you boot Jenkins, the Docker logs will contain a message like this:
 
 ```bash
@@ -83,6 +89,12 @@ Jenkins is fully up and running
 ```
 
 You are now given the opportunity to complete the initial configuration of the Jenkins instance. Take a look at the [previous post](blog/2022-01/jenkins-install-guide/index.md) for more details on completing this initial configuration.
+
+You may have noticed that running the Docker with the command above attaches your terminal to the container output stream. To [run the Docker image in the background](https://docs.docker.com/language/nodejs/run-containers/#run-in-detached-mode), use the `-d` or `--detach` argument:
+
+```bash
+docker run -d -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts-jdk11
+```
 
 ## Adding additional software
 
@@ -188,7 +200,7 @@ The Jenkins Docker image allows Java arguments to be defined in the `JAVA_OPTS` 
 To define the `JAVA_OPTS` environment variable, pass the `--env` argument to the `docker run` command:
 
 ```bash
-docker run -p 8080:8080 -p 50000:50000 --env JAVA_OPTS=-Dhudson.footerURL=http://mycompany.com jenkins/jenkins:lts-jdk11
+docker run -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home --env JAVA_OPTS=-Dhudson.footerURL=http://mycompany.com jenkins/jenkins:lts-jdk11
 ```
 
 A list of Jenkins system properties can be found in the [Jenkins documentation](https://www.jenkins.io/doc/book/managing/system-properties/).
@@ -200,14 +212,36 @@ In addition to system properties, Jenkins also accepts a number of application a
 Application arguments are defined by appending them to the end of the Docker run command. The example below passes the `--httpPort` argument configuring Jenkins to list on port 8081:
 
 ```bash
-docker run -p 8080:8081 -p 50000:50000 jenkins/jenkins:lts-jdk11 --httpPort=8081
+docker run -p 8080:8081 -p 50000:50000 -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts-jdk11 --httpPort=8081
 ```
 
 Application arguments may also be defined in the `JENKINS_OPTS` environment variable:
 
 ```bash
-docker run -p 8080:8081 -p 50000:50000 --env JENKINS_OPTS=--httpPort=8081 jenkins/jenkins:lts-jdk11 
+docker run -p 8080:8081 -p 50000:50000 -v jenkins_home:/var/jenkins_home --env JENKINS_OPTS=--httpPort=8081 jenkins/jenkins:lts-jdk11 
 ```
 
 A list of application arguments can be found in the [Winstone GitHub repository](https://github.com/jenkinsci/winstone#command-line-options). Winstone is the default embedded servlet container in Jenkins.
 
+## Backup the Docker volume
+
+You can run the following command to backup the data saved in the Docker volume hosting the `/var/jenkins_home` directory. It mounts the volume in a new container, mounts the current working directory in the container's `/backup` directory, and creates an archive called `backup.tar` containing the contents of the `/var/jenkins` directory:
+
+```bash
+docker run --rm -v jenkins_home:/var/jenkins_home -v $(pwd):/backup ubuntu tar cvf /backup/backup.tar /var/jenkins_home
+```
+
+This command can be run when the Jenkins container running because Docker volumes can be shared between running containers. However, [it is recommended that you stop Jenkins before performing a backup](https://docs.cloudbees.com/docs/admin-resources/latest/backup-restore/best-practices):
+
+> Even though Jenkins takes advantage of COW, it is recommended that you stop Jenkins if possible before performing a backup because the pipeline workflow XML files may get captured in an inconsistent state (for example if the backup does not take an 'instant snapshot' of every file at that exact moment).
+
+## Conclusion
+
+Running Jenkins from a Docker image provides a convenient method for launching Jenkins in a self-contained and preconfigured environment. In this post you learned how to:
+
+* Launch Jenkins in a Docker container.
+* Install additional tools and plugins.
+* Pass Java system properties and Jenkins application arguments.
+* Backup the Docker volume.
+
+Running Docker images on a workstation or server is just the beginning though. In the next post you'll learn how to deploy Jenkins to a Kubernetes cluster.
