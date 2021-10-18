@@ -177,7 +177,7 @@ $ kubectl get svc --namespace default myjenkins --template "{{ range (index .sta
 a84aa6226d6e5496882cfafdd6564a35-901117307.us-west-1.elb.amazonaws.com
 ```
 
-To access Jenkins, open [http://service ip or hostname:8080](http://service ip or hostname:8080).
+To access Jenkins, open [http://service_ip_or_hostname:8080](http://service_ip_or_hostname:8080).
 
 ## Installing additional plugins
 
@@ -193,3 +193,4 @@ The plugin ID and version are found on the [Jenkins plugin website](https://plug
 
 ![Jenkins Plugin Website](jenkins-plugin.png "width=500")
 
+This approach is convenient, but does have the downside of requiring the Jenkins instance to contact the Jenkins update site to retrieve them. A more robust approach is to download the plugins as part of a custom image. This ensures the plugins are baked into the Docker image. The [previous post](blog/2022-01/jenkins-docker-install-guide/index.md) has details on building custom Docker images.
