@@ -108,13 +108,13 @@ Once the installation is complete, click the **Finish** button:
 
 ![Jenkins Windows Installer](win-install-9.png "width=500")
 
-### A note on Chocolaty
+## A note on Chocolatey
 
 Chocolatey is a Windows package manager, and it [provides an option to install Jenkins](https://community.chocolatey.org/packages/jenkins). However, at the time of writing the latest version of Jenkins available on Chocolatey is 2.222.4, which was well over a year old. In fact, the version was so old that most of the recommended plugins presented during the initial Jenkins configuration failed to install!
 
 Jenkins may be updated on Chocolatey by the time you read this post, but I would warn against using Chocolatey to install Jenkins as it does have a history of being unmaintained.
 
-### Windows service configuration
+## Windows service configuration
 
 Windows services have a [unique entry point](https://docs.microsoft.com/en-au/windows/win32/api/winsvc/nc-winsvc-lpservice_main_functiona?redirectedfrom=MSDN) to respond to Service Control Manager (SCM) commands. Java applications, like Jenkins, do not expose this interface. This means that Java applications must be run inside a wrapper to be managed as a Windows service.
 
@@ -129,7 +129,7 @@ Advanced Jenkins configuration options often require passing arguments or defini
 ![Jenkins Wrapper Configuration](jenkins-wrapper-2.png "width=500")
 
 
-### JENKINS_HOME directory on Windows
+## JENKINS_HOME directory on Windows
 
 The `JENKINS_HOME` directory includes all the configuration, plugins, and working directory for any builds executed on the Jenkins server. On Windows this directory is located at `%LocalAppData%\Jenkins\.jenkins` by default, which will resolve ti `C:\Users\jenkins\AppData\Local\Jenkins\.jenkins` when using the `jenkins` user created above to run the Jenkins service.
 
@@ -153,6 +153,7 @@ Update your local package index, then finally install Jenkins:
 
 ```bash
 sudo apt-get update
+sudo apt-get install openjdk-11-jdk
 sudo apt-get install jenkins
 ```
 
@@ -175,7 +176,9 @@ sudo yum install java-11-openjdk-devel
 sudo yum install jenkins
 ```
 
-Finally, the Jenkins service. Note that while all modern versions of RHEL and Fedora use systemd, the Jenkins service is still provided as an old init script under `/etc/init.d/jenkins`. So, to start the service, we run the `service` command:
+## Linux service configuration
+
+While all modern versions of Ubuntu, Debian, RHEL, and Fedora use systemd, the Jenkins service is still provided as an old init script under `/etc/init.d/jenkins`. So, to start the service, we run the `service` command:
 
 ```bash
 sudo service jenkins start
@@ -183,7 +186,7 @@ sudo service jenkins start
 
 The init script `/etc/init.d/jenkins` contains quite a bit of bash scripting, but from an administrators point of view this is the most interesting line:
 
-```
+```bash
 eval "daemonize -u \"$JENKINS_USER\" -p \"$JENKINS_PID_FILE\" \"$JENKINS_JAVA_CMD\" $JENKINS_JAVA_OPTIONS \"-DJENKINS_HOME=$JENKINS_HOME\" -jar \"$JENKINS_WAR\" $PARAMS"
 ```
 
