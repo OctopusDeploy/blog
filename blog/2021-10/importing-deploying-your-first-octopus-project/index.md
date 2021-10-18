@@ -114,7 +114,7 @@ The next step is setting up an [Azure web application](#web-application-setup) a
 ### Web application setup {#web-application-setup}
 
 
-1. In your **Resource group** click **Create, then Web App**
+1. In your **Resource group** click **Create**, then **Web App**
 2. Create a Windows Node Application under **Runtime stack** and **Operating System**
 3. Take note of your Azure app name, as this will be the address of your web application: [your-site].azurewebsites.net
 4. After the web app is set up, route the path of the web application to default to the home path by navigating to **Configuration**, then **Path mappings**, then **Virtual applications and directories**
