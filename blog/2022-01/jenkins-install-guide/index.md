@@ -124,7 +124,7 @@ This wrapper is found at `C:\Program Files\Jenkins\jenkins.exe` by default, and 
 
 This XML file contains the `service.arguments` element, which defines the command line arguments passed to Jenkins when it is executed. It also includes `service.env` elements to define the environment variables made available to Jenkins.
 
-Advanced Jenkins configuration options often require passing arguments or defining environment variables. As an example, disable Cross-Site Request Forgery (CSRF) protection in Jenkins requires passing the `-Dhudson.security.csrf.GlobalCrumbIssuerConfiguration.DISABLE_CSRF_PROTECTION=true` argument, which is configured in the `service.arguments` element:
+Advanced Jenkins configuration options often require passing arguments or defining environment variables. As an example, [disabling Cross-Site Request Forgery (CSRF) protection](https://www.jenkins.io/doc/book/security/csrf-protection/) in Jenkins requires passing the `-Dhudson.security.csrf.GlobalCrumbIssuerConfiguration.DISABLE_CSRF_PROTECTION=true` argument, which is configured in the `service.arguments` element:
 
 ![Jenkins Wrapper Configuration](jenkins-wrapper-2.png "width=500")
 
@@ -169,12 +169,78 @@ sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
 
 Then install OpenJDK and Jenkins:
 
-```
+```bash
 sudo yum install epel-release
 sudo yum install java-11-openjdk-devel
 sudo yum install jenkins
 ```
 
+Finally, the Jenkins service. Note that while all modern versions of RHEL and Fedora use systemd, the Jenkins service is still provided as an old init script under `/etc/init.d/jenkins`. So, to start the service, we run the `service` command:
+
+```bash
+sudo service jenkins start
+```
+
+The init script `/etc/init.d/jenkins` contains quite a bit of bash scripting, but from an administrators point of view this is the most interesting line:
+
+```
+eval "daemonize -u \"$JENKINS_USER\" -p \"$JENKINS_PID_FILE\" \"$JENKINS_JAVA_CMD\" $JENKINS_JAVA_OPTIONS \"-DJENKINS_HOME=$JENKINS_HOME\" -jar \"$JENKINS_WAR\" $PARAMS"
+```
+
+What you can determine from this code is that Java options to be passed to Jenkins are contained in the `JENKINS_JAVA_OPTIONS` variable. To populate this variable, add a line of code like the following just after `### END INIT INFO`, which [disables CSRF protection](https://www.jenkins.io/doc/book/security/csrf-protection/):
+
+```bash
+###############################################################################
+#
+# chkconfig: 35 99 01
+# description: Jenkins Automation Server
+#
+###############################################################################
+### BEGIN INIT INFO
+# Provides:          jenkins
+# Required-Start:    $local_fs $remote_fs $network $time $named
+# Should-Start: $time sendmail
+# Required-Stop:     $local_fs $remote_fs $network $time $named
+# Should-Stop: $time sendmail
+# Default-Start:     3 5
+# Default-Stop:      0 1 2 6
+# Short-Description: Jenkins Automation Server
+# Description:       Jenkins Automation Server
+### END INIT INFO
+
+[ -n "$JENKINS_JAVA_OPTIONS" ] && JENKINS_JAVA_OPTIONS="-Dhudson.security.csrf.GlobalCrumbIssuerConfiguration.DISABLE_CSRF_PROTECTION=true"
+
+# Rest of the init script
+```
+
 ## Install Jenkins on other Linux distributions and macOS
 
 The [Jenkins website](https://www.jenkins.io/download/) includes instructions for other Linux distributions and macOS.
+
+## Completing the Jenkins installation
+
+Once Jenkins is installed it must be configured for the first time.
+
+Open [http://localhost:8080](http://localhost:8080) to view the Jenkins web console. You will be prompted to enter a randomly generated password saved in a file on the local machine. Open this file, copy the password, paste it into the **Administrator password** text box, and click the **Continue** button:
+
+![Jenkins Configuration](jenkins-config-1.png "width=500")
+
+Most of the functionality provided by Jenkins comes by way of plugins. You are prompted with an option to install a curated list of common plugins as part of the initial configuration. These plugins are useful, so click the **Install suggested plugins** button:
+
+![Jenkins Configuration](jenkins-config-2.png "width=500")
+
+The plugins take a few minutes to install:
+
+![Jenkins Configuration](jenkins-config-3.png "width=500")
+
+You are prompted to enter the details of the Jenkins administrator. Populate the fields, and click the **Save and Continue** button:
+
+![Jenkins Configuration](jenkins-config-4.png "width=500")
+
+The default URL is fine, so click the **Save and Finish** button:
+
+![Jenkins Configuration](jenkins-config-5.png "width=500")
+
+Jenkins is now configured and ready to use. Click the **Start using Jenkins** button:
+
+![Jenkins Configuration](jenkins-config-6.png "width=500")
