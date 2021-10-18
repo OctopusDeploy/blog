@@ -12,3 +12,5 @@
 **Building better systems:**
 
 - [Part 6: Provisioning dev/test databases](/blog/2021-10/safe-schema-updates-6-provisioning-databases/index.md)
+- Part 7: Near-zero downtime deploys
+- Part 8: Strangling the monolith
