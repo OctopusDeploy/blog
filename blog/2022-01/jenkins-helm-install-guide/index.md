@@ -15,3 +15,166 @@ Kubernetes has grown in popularity to become one of the most popular platforms f
 One of those supporting tools is Helm, which provides package management functionality for Kubernetes. Applications deployed by Helm are captured as charts, and Jenkins [provides a Helm chart](https://github.com/jenkinsci/helm-charts/blob/main/charts/jenkins/README.md) to deploy a Jenkins instance to Kubernetes.
 
 In this post you'll learn how to install a Jenkins instance with Helm to Kubernetes, and connect a number of agents to perform build tasks.
+
+## Prerequisites
+
+To follow along with this post you need a Kubernetes cluster and the Helm client.
+
+All the major cloud providers offer hosted Kubernetes clusters: AWS has [EKS](https://aws.amazon.com/eks/), Azure has [AKS](https://azure.microsoft.com/en-au/services/kubernetes-service/), and Google Cloud has [GKE](https://cloud.google.com/kubernetes-engine).
+
+If you wish to run a development Kubernetes cluster on your local PC, kind provides the ability to easily create and destroy clusters for testing. The post [Creating test Kubernetes clusters with Kind](/blog/2020-09/testing-with-kind) provides instructions on creating a test Kubernetes cluster.
+
+You must also have the helm client installed. The [helm documentation](https://helm.sh/docs/intro/install/ provides installation instructions.
+
+## Adding the Jenkins chart repository
+
+Jenkins helm charts are provided at [https://charts.jenkins.io](https://charts.jenkins.io). To make this chart repository available, run the following commands:
+
+```bash
+helm repo add jenkins https://charts.jenkins.io
+helm repo update
+```
+
+## Deploying a simple Jenkins instance
+
+To deploy a Jenkins instance with the default settings, run the command:
+
+```bash
+helm upgrade --install myjenkins jenkins/jenkins
+```
+
+The `helm upgrade` command is typically used to upgrade an existing release. However, the `--install` argument ensures the release is created is it does not exist. This means `helm upgrade --install` can create *and* update a release, removing the need to juggle installation and upgrade commands depending on whether or not the release exists.
+
+The name of the release is `myjenkins`, and the final argument of `jenkins/jenkins` defines the chart to be installed.
+
+The output looks something like this:
+
+```bash
+$ helm upgrade --install myjenkins jenkins/jenkins
+
+Release "myjenkins" does not exist. Installing it now.
+NAME: myjenkins
+LAST DEPLOYED: Tue Oct 19 08:13:11 2021
+NAMESPACE: default
+STATUS: deployed
+REVISION: 1
+NOTES:
+1. Get your 'admin' user password by running:
+  kubectl exec --namespace default -it svc/myjenkins -c jenkins -- /bin/cat /run/secrets/chart-admin-password && echo
+2. Get the Jenkins URL to visit by running these commands in the same shell:
+  echo http://127.0.0.1:8080
+  kubectl --namespace default port-forward svc/myjenkins 8080:8080
+
+3. Login with the password from step 1 and the username: admin
+4. Configure security realm and authorization strategy
+5. Use Jenkins Configuration as Code by specifying configScripts in your values.yaml file, see documentation: http:///configuration-as-code and examples: https://github.com/jenkinsci/configuration-as-code-plugin/tree/master/demos
+
+For more information on running Jenkins on Kubernetes, visit:
+https://cloud.google.com/solutions/jenkins-on-container-engine
+
+For more information about Jenkins Configuration as Code, visit:
+https://jenkins.io/projects/jcasc/
+
+
+NOTE: Consider using a custom image with pre-installed plugins
+```
+
+Steps 1 and 2 provide the information required to retrieve the initial `admin` password and tunnel traffic to the service exposing the Jenkins pod.
+
+The first command returns the password for the `admin` user:
+
+``` bash
+$ kubectl exec --namespace default -it svc/myjenkins -c jenkins -- /bin/cat /run/secrets/chart-admin-password && echo
+PlrLsazcErQvbPIjtxAROj
+```
+
+The second command creates a tunnel to the service in the Kubernetes cluster:
+
+```bash
+$ kubectl --namespace default port-forward svc/myjenkins 8080:8080
+Forwarding from 127.0.0.1:8080 -> 8080
+Forwarding from [::1]:8080 -> 8080
+```
+
+Once the tunnel is established, open [http://localhost:8080](http://localhost:8080) on your local PC, and you will be directed to the Jenkins instance in the Kubernetes cluster. Login with the username `admin` and the password returned from the first command.
+
+You now have a functional, if basic, Jenkins instance running in Kubernetes.
+
+## Exposing Jenkins through a public IP address
+
+Accessing Jenkins through a tunnel is useful for debugging, but not a great experience for a production server. To access Jenkins through a publicly available IP address, you must override some of the default configuration defined in the chart. There are hundreds of values that can be defined, and the complete list is available by running the command:
+
+```bash
+helm show values jenkins/jenkins
+```
+
+The easiest way to access Jenkins publicly is to configure the service that exposes the Jenkins pod as a `LoadBalancer`.
+
+In Kubernetes, a service is a resource that configures the cluster's network to expose one or more pods. The default service type is `ClusterIP`, which only exposes pods via a private IP address. It is this private IP address that we tunnelled into previously in order to access the Jenkins web UI.
+
+A Kubernetes pod is a resource that hosts one or more containers. This means the Jenkins instance is running as a container inside a pod.
+
+A service of type `LoadBalancer` exposes pods via a public IP address. Exactly how that public IP address is created is left to the cluster. For example, hosted Kubernetes platforms like EKS, AKS, and GKE will create a network load balancer to direct traffic into the Kubernetes cluster.
+
+Note that `LoadBalancer` services require additional configuration when using a local test Kubernetes cluster, such as those clusters created by kind. Refer to the [kind documentation](https://kind.sigs.k8s.io/docs/user/loadbalancer/) for more information.
+
+To configure the service as a `LoadBalancer`, you create a file called `values.yaml` with the following contents:
+
+```yaml
+controller:
+  serviceType: LoadBalancer
+```
+
+Then you upgrade the helm release using the values defined in `values.yaml` with the command:
+
+```bash
+helm upgrade --install -f values.yaml myjenkins jenkins/jenkins
+```
+
+The output is changed subtly to include new instructions to get the service's public IP:
+
+```bash
+$ helm upgrade --install -f values.yaml myjenkins jenkins/jenkins
+Release "myjenkins" has been upgraded. Happy Helming!
+NAME: myjenkins
+LAST DEPLOYED: Tue Oct 19 08:45:23 2021
+NAMESPACE: default
+STATUS: deployed
+REVISION: 4
+NOTES:
+1. Get your 'admin' user password by running:
+  kubectl exec --namespace default -it svc/myjenkins -c jenkins -- /bin/cat /run/secrets/chart-admin-password && echo
+2. Get the Jenkins URL to visit by running these commands in the same shell:
+  NOTE: It may take a few minutes for the LoadBalancer IP to be available.
+        You can watch the status of by running 'kubectl get svc --namespace default -w myjenkins'
+  export SERVICE_IP=$(kubectl get svc --namespace default myjenkins --template "{{ range (index .status.loadBalancer.ingress 0) }}{{ . }}{{ end }}")
+  echo http://$SERVICE_IP:8080/login
+
+3. Login with the password from step 1 and the username: admin
+4. Configure security realm and authorization strategy
+5. Use Jenkins Configuration as Code by specifying configScripts in your values.yaml file, see documentation: http:///configuration-as-code and examples: https://github.com/jenkinsci/configuration-as-code-plugin/tree/master/demos
+
+For more information on running Jenkins on Kubernetes, visit:
+https://cloud.google.com/solutions/jenkins-on-container-engine
+
+For more information about Jenkins Configuration as Code, visit:
+https://jenkins.io/projects/jcasc/
+
+
+NOTE: Consider using a custom image with pre-installed plugins
+```
+
+Using the new instructions in step 2, run the following command to get the service's public IP address or hostname:
+
+```bash
+kubectl get svc --namespace default myjenkins --template "{{ range (index .status.loadBalancer.ingress 0) }}{{ . }}{{ end }}"
+```
+
+I have deployed Jenkins to an EKS cluster, and this is the result of the command for my infrastructure:
+
+```bash
+$ kubectl get svc --namespace default myjenkins --template "{{ range (index .status.loadBalancer.ingress 0) }}{{ . }}{{ end }}"
+a84aa6226d6e5496882cfafdd6564a35-901117307.us-west-1.elb.amazonaws.com
+```
+
+To access Jenkins, open [http://<service ip or hostname>:8080](http://<service ip or hostname>:8080).
