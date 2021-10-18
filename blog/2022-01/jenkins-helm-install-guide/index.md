@@ -177,4 +177,19 @@ $ kubectl get svc --namespace default myjenkins --template "{{ range (index .sta
 a84aa6226d6e5496882cfafdd6564a35-901117307.us-west-1.elb.amazonaws.com
 ```
 
-To access Jenkins, open [http://<service ip or hostname>:8080](http://<service ip or hostname>:8080).
+To access Jenkins, open [http://service ip or hostname:8080](http://service ip or hostname:8080).
+
+## Installing additional plugins
+
+List any additional plugins to be installed in the `controller.additionalPlugins` array:
+
+```yaml
+controller:
+    additionalPlugins:
+    - octopusdeploy:3.1.6
+```
+
+The plugin ID and version are found on the [Jenkins plugin website](https://plugins.jenkins.io/octopusdeploy/):
+
+![Jenkins Plugin Website](jenkins-plugin.png "width=500")
+
