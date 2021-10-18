@@ -18,13 +18,11 @@ This blog post is part 6 of my safe schema updates series. We'll add links to th
 
 !include <safe-schema-updates-posts>
 
-~
-
 We’re more than half-way through this series and so far we’ve kept it pretty theoretical. We’ve imagined a better world, but we’ve not yet discussed the practical steps required to get there.
 
 That changes now.
 
-From now on, we’ll be explicitly discussing the process of taking the sort of hellscape I discussed in part 1, and iteratively refactoring it such that it’s safer to make changes and improvements. 
+From now on, we’ll be explicitly discussing the process of taking the sort of hellscape I discussed in part 1, and iteratively refactoring it so it’s safer to make changes and improvements. 
 
 For the record, this journey probably isn’t going to be quick or easy. We’ll be discussing technologies, processes and ideas that are likely to be new to a lot of your existing team. Learning is hard and it takes most people some time to accept, learn, and embrace new technologies and processes.
 
