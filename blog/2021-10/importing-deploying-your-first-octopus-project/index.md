@@ -61,7 +61,7 @@ You need to import the following project into your Octopus instance:
 [project_export_latest.zip](https://octopus.com/images/blog/deployable-blog-post/project_export_latest.zip)
 ::: 
 
-In the Octopus Web Portal, navigate to **Projects > Import Projects > SELECT ZIP FILE** and upload the project zip. Click **IMPORT** to complete.
+In the Octopus Web Portal, navigate to **Projects**, then **Import Projects**, the click **SELECT ZIP FILE** and upload the project zip. Click **IMPORT** to complete.
 
 :::hint 
 The password for this project is `html`.
@@ -87,12 +87,12 @@ Create an account in Azure by navigating to the [Azure portal](https://portal.az
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/QDwDi17Dkfs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-1. In the Azure portal, open the menu, ![hamburger menu icon](menu.png), navigate to **Azure Active Directory > Properties**. 
+1. In the Azure portal, open the top left menu and navigate to **Azure Active Directory**, then **Properties**. 
 2. Copy the value from the **Tenant ID** field. This is your **Tenant ID**.
 3. Next you need your **Application ID**.
-  - If you created an AAD registered application, navigate to **Azure Active Directory > App registrations**, click **View all applications**, select the app and copy the **Application ID**.  Please note, the Azure UI defaults to the **Owned applications** tab.  Click the **All applications** tab to view all app registrations. 
-  - If you haven't created a registered app, navigate to **Azure Active Directory > App registrations**, click on **New registration** and add the details for your app, and click **Save**. Make note of the **Application ID**.
-4. Generate a one-time password by navigating to **Certificates & Secrets > New client secret**. Add a new **secret**, enter a description, and click **Save**. Make note of the displayed application password for use in Octopus. You can change the expiry date, if you don’t want to accept the default one-year expiry for the password.
+  - If you created an AAD registered application, navigate to **Azure Active Directory**, then select **App registrations**, click **View all applications**, select the app and copy the **Application ID**.  Please note, the Azure UI defaults to the **Owned applications** tab.  Click the **All applications** tab to view all app registrations. 
+  - If you haven't created a registered app, navigate to **Azure Active Directory**, then select **App registrations**, click on **New registration** and add the details for your app, and click **Save**. Make note of the **Application ID**.
+4. Generate a one-time password by navigating to **Certificates & Secrets**, then **New client secret**. Add a new **secret**, enter a description, and click **Save**. Make note of the displayed application password for use in Octopus. You can change the expiry date, if you don’t want to accept the default one-year expiry for the password.
 
 You now have the following:
 
@@ -106,7 +106,7 @@ Next, you need to configure your [resource permissions](#resource-permissions).
 
 Resource permissions ensure your registered app has permission to work with your Azure resources.
 
-1. In the Azure portal navigate to **Resource groups** and select the resource group(s) that you want the registered app to access. If a resource group doesn't exist, create one by going to **Home > Resource groups > Create**. After it's created, take note of the Azure subscription ID of the resource group.
+1. In the Azure portal navigate to **Resource groups** and select the resource group(s) that you want the registered app to access. If a resource group doesn't exist, create one by going to **Home**, then **Resource groups**, then select **Create**. After it's created, take note of the Azure subscription ID of the resource group.
 2. Click the **Access control (IAM)** option. Under **Role assignments**, if your app isn't listed, click **Add role assignment**. Select the appropriate role (**Contributor** is a common option) and search for your new application name. Select it from the search results, then click **Save**.
 
 The next step is setting up an [Azure web application](#web-application-setup) and configuring its properties.
@@ -114,10 +114,10 @@ The next step is setting up an [Azure web application](#web-application-setup) a
 ### Web application setup {#web-application-setup}
 
 
-1. In your **Resource group** click **Create > Web App**
+1. In your **Resource group** click **Create, then Web App**
 2. Create a Windows Node Application under **Runtime stack** and **Operating System**
 3. Take note of your Azure app name, as this will be the address of your web application: [your-site].azurewebsites.net
-4. After the web app is set up, route the path of the web application to default to the home path by navigating to **Configuration > Path mappings > Virtual applications and directories**
+4. After the web app is set up, route the path of the web application to default to the home path by navigating to **Configuration**, then **Path mappings**, then **Virtual applications and directories**
 5. Set the Physical path to ```site\wwwroot\guide``` and the Virtual Path to ```/``` 
 
 ### Add the Service Principal account in Octopus {#add-service-principal-account}
@@ -128,8 +128,8 @@ With the following values, you can add your account to Octopus:
 - Tenant ID
 - Application Password/Key
 
-1. Navigate to **Infrastructure > Accounts**
-2. Select **ADD ACCOUNT > Azure Subscription**
+1. Navigate to **Infrastructure**, then select **Accounts**
+2. Select **ADD ACCOUNT**, then click **Azure Subscription**
 3. Give the account the name you want it to be known by in Octopus
 4. Give the account a description
 5. Add your Azure Subscription ID - this is found in the Azure portal under **Subscriptions**
@@ -167,7 +167,7 @@ In the next step, you set up the deployment target that the application will be 
 
 ## Adding deployment targets
 
-1. Go to **Infrastructure > Deployment Targets**
+1. Go to **Infrastructure**, then select **Deployment Targets**
 2. Select an Azure Web App
 3. Enter a **Display Name**
 4. Fill out the **Environments** and **Target Roles**
@@ -180,7 +180,7 @@ In the next step, you set up the deployment target that the application will be 
 
 You can deploy the application after you've imported a project, set up the Azure account, set up the deployment target, and uploaded the package.
 
-- Go to **Projects > HTML > CREATE RELEASE** and step through to deploy the web application to Azure from the Azure production environment.
+- Go to **Projects**, then select **HTML**, then click **CREATE RELEASE** and step through to deploy the web application to Azure from the Azure production environment.
 
 ![Deploy Success](deploy-success.png "Deploy Success")
 
