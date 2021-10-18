@@ -121,7 +121,7 @@ If you are nervous about sensitive production data slipping through, here are a 
 
 - Add a test to your deployment pipeline that ensures all columns have a data classification in source control.
 - Add a test to your deployment pipeline that ensures all sensitive columns have a corresponding masking script or rule.
-- Add a smoke-test after your masking process to scan for sensitive looking data, such as social security, credit card or phone numbers.
+- Add a smoke-test after your masking process to scan for sensitive-looking data, such as social security, credit card, or phone numbers.
 - Add a check to your deployment pipeline that any changes to data privacy classifications or masking scripts get flagged for review by a senior developer or (if you must) a database administrator, security team, data privacy officer or *[through gritted teeth](https://octopus.com/blog/change-advisory-boards-dont-work)* a Change Advisory Board. (Yo! “Separation of roles” enforcement brigade: I see you.) All I ask is that steps are taken to ensure these reviews are conducted swiftly, without creating long delays.
 
 Following the masking scripts, developers/testers might like to provide their own scripts to run on the staging instance. For example, to add a set of known test cases to the database or to add a SQL login with admin rights for the dev/test group.
