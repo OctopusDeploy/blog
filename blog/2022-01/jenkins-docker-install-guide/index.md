@@ -99,7 +99,7 @@ RUN apt update && \
     apt install -y --no-install-recommends gnupg curl ca-certificates apt-transport-https && \
     curl -sSfL https://apt.octopus.com/public.key | apt-key add - && \
     sh -c "echo deb https://apt.octopus.com/ stable main > /etc/apt/sources.list.d/octopus.com.list" && \
-    apt update && sudo apt install -y octopuscli
+    apt update && apt install -y octopuscli
 USER jenkins
 ```
 
@@ -124,7 +124,7 @@ RUN apt update && \
     apt install -y --no-install-recommends gnupg curl ca-certificates apt-transport-https && \
     curl -sSfL https://apt.octopus.com/public.key | apt-key add - && \
     sh -c "echo deb https://apt.octopus.com/ stable main > /etc/apt/sources.list.d/octopus.com.list" && \
-    apt update && sudo apt install -y octopuscli
+    apt update && apt install -y octopuscli
 ```
 
 It is considered best practice to have a regular user account run the application in the Docker container. The `jenkins` user was created in the base image, and so you switch back to that user as that final command:
