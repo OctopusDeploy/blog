@@ -168,7 +168,7 @@ Before we can use our new dev environment, we need to deploy our latest source c
 
 I’m not going to talk through the process of automating the database deployment here, but the following resources might help:
 
-- [Database Deployment Automation Approaches](https://octopus.com/blog/database-deployment-automation-approaches)
+- [Database deployment automation approaches](https://octopus.com/blog/database-deployment-automation-approaches)
 - [SQL Server deployment options for Octopus Deploy](https://octopus.com/blog/sql-server-deployment-options-for-octopus-deploy)
 - [Comparison Review: Microsoft SSDT vs Redgate SQL Source Control](https://www.brentozar.com/archive/2018/12/comparison-review-microsoft-ssdt-vs-red-gate-sql-source-control/)
 
