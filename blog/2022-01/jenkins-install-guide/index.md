@@ -10,37 +10,37 @@ tags:
  - Octopus
 ---
 
-The traditional method of installing Jenkins is via the installers made available on the [Jenkins website](https://www.jenkins.io/download/) or using your local operating system's package manager.
+The traditional method to install Jenkins is via the installers made available on the [Jenkins website](https://www.jenkins.io/download/), or using your local operating system's package manager.
 
-The installation process is generally simple, but there are a few tricks to be aware of. In this post we'll run through the installation of Jenkins on Windows and Linux, and provide some insights into customizing the installation.
+The installation process is generally simple, but there are a few tricks to be aware of. In this post you'll run through the installation of Jenkins on Windows and Linux, and provide some insights into customizing the installation.
 
 ## Choosing between LTS and weekly releases
 
-Jenkins offers two channels: Long Term Support (LTS) and weekly releases.
+Jenkins offers two release channels: Long Term Support (LTS) and weekly releases.
 
-LTS releases tend to be more stable and predictable, with less features in each release, but including any important bug and security fixes.
+LTS releases tend to be more stable and predictable, with fewer features in each release, but include any important bug and security fixes.
 
 The weekly releases include all the latest features, but will have less "bake time" in the community to find bugs.
 
-If you prefer stability and don't require all the latest features right away, go with the LTS releases. If you want the latest features as soon as possible and don't mind encountering the occasional glitch, go with the weekly releases.
+If you prefer stability and don't require all the latest features right away, go with an LTS release. If you want the latest features as soon as possible and don't mind encountering the occasional glitch, go with the a weekly release.
 
 ## Installing Jenkins on Windows
 
-Jenkins provides an MSI download that allows it to be installed as a Windows service through the traditional Windows wizard style installation process. But before we start the installation there are a number of prerequisites we must address.
+Jenkins provides an MSI download allowing it to be installed as a Windows service through the traditional Windows wizard style installation process. But before you start the installation there are a number of prerequisites you must address.
 
 ### Installing OpenJDK
 
-Jenkins requires Java to to run. In recent years Oracle changed the licensing terms of their Java Runtime Environment (JRE) and Java Development Kit (JDK) to restrict commercial usage to paying customers. Fortunately, the OpenJDK project provides a free and open source alternative that you can use to run Jenkins.
+Jenkins requires Java to run. In recent years Oracle changed the licensing terms of their Java Runtime Environment (JRE) and Java Development Kit (JDK) to restrict commercial usage to paying customers. Fortunately, the OpenJDK project provides a free and open source alternative that you can use to run Jenkins.
 
-There are many OpenJDK distributions to choose from including [OpenJDK](https://openjdk.java.net), [AdoptOpenJDK](https://adoptopenjdk.net), [Azul Zulu](https://www.azul.com/downloads/), [Red Hat OpenJDK](https://developers.redhat.com/products/openjdk/download), and more. I typically use the Azul Zulu distribution, although any distribution would do.
+There are many OpenJDK distributions to choose from including [OpenJDK](https://openjdk.java.net), [AdoptOpenJDK](https://adoptopenjdk.net), [Azul Zulu](https://www.azul.com/downloads/), [Red Hat OpenJDK](https://developers.redhat.com/products/openjdk/download), and more. I typically use the Azul Zulu distribution, although any distribution will do.
 
-Download and install JDK 11 from your chosen OpenJDK distribution, and make a note of the directory it was installed to as you'll need that during the Jenkins installation.
+Download and install JDK 11 from your chosen OpenJDK distribution, and make a note of the directory it was installed to, as you'll need that during the Jenkins installation.
 
 ### Adding a Jenkins Windows service account
 
-Jenkins runs as a Windows service, and to do so requires a Windows account to run the service under. The installer provides the option to use the existing [LocalService](https://docs.microsoft.com/en-us/windows/win32/services/localservice-account) account, but notes that this option is not recommended. So it is recommended that you create a new account specifically for running Jenkins.
+Jenkins runs as a Windows service, and to do so requires a Windows account to run the service under. The installer provides the option to use the existing [LocalService](https://docs.microsoft.com/en-us/windows/win32/services/localservice-account) account, but notes that this option is not recommended. The recommended solution is to create a new account specifically for running Jenkins.
 
-To do this task from the command line you must first install the Carbon PowerShell module. Carbon provides many useful CMDLets for managing Windows, and you'll use one of these to grant the new Jenkins user the rights to log on as a service.
+To do this task from the command line you must first install the [Carbon PowerShell module](http://get-carbon.org/). Carbon provides many useful CMDLets for managing Windows, and you'll use one of these to grant the new Jenkins user the rights to log on as a service.
 
 Run the following PowerShell command to install Carbon from the PowerShell Gallery:
 
@@ -72,11 +72,9 @@ Finally, you must grant the `jenkins` user the permission to log on as a service
 Grant-CPrivilege -Identity "jenkins" -Privilege SeServiceLogonRight
 ```
 
-Start by downloading the MSI from the [Jenkins download page](https://www.jenkins.io/download/)
-
 ### Installing Jenkins
 
-Double-click the MSI file to begin the Jenkins installation. Click the **Next** button:
+Start by downloading the MSI from the [Jenkins download page](https://www.jenkins.io/download/). Double-click the MSI file to begin the Jenkins installation, and Click the **Next** button:
 
 ![Jenkins Windows Installer](win-install-1.png "width=500")
 
