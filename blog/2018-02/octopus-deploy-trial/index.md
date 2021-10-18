@@ -9,7 +9,7 @@ tags:
  - Product
 ---
 
-Octopus offers a no obligation 30 day free trial to give you a chance to evaluate the software and make sure it meets your application deployment needs.  If you've ever thought about spinning up your own Octopus and kicking the tentacles (please don't kick any tentacles), this blog post will help you set up a local evaluation instance so you can run through the process of automating a deployment without hooking it up to any critical infrastructure. In this post, I’m setting everything up in a single VM running Windows 10.
+Octopus offers a no obligation trial to give you a chance to evaluate the software and make sure it meets your application deployment needs.  If you've ever thought about spinning up your own Octopus and kicking the tentacles (please don't kick any tentacles), this blog post will help you set up a local evaluation instance so you can run through the process of automating a deployment without hooking it up to any critical infrastructure. In this post, I’m setting everything up in a single VM running Windows 10.
 
 ## Downloads
 
