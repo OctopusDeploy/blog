@@ -99,3 +99,22 @@ The **Test Result Trend** graph tracks the passed, failed, and skipped tests acr
 
 ![Test Result Trend](test-result-trend.png "width=500")
 
+To this point you have only run builds with successful tests. To simulate a failing test, change the `Checkout` stage to checkout the `failing-test` branch:
+
+```groovy
+    stage('Checkout') {
+      steps {
+        script {
+            checkout([$class: 'GitSCM', branches: [[name: '*/failing-test']], userRemoteConfigs: [[url: 'https://github.com/OctopusSamples/RandomQuotes-Java.git']]])
+        }
+      }
+    }
+```
+
+The build is marked as unstable, and the **Test Result Trend** graph shows a new failing test:
+
+![Failing Tests](failing-test.png "width=500")
+
+To view the details of the tests, click into the build task and click the **Test Result** link. Here you can drill into each test, view the test result, and view the logs:
+
+![Test results](test-result.png "width=500")
