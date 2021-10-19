@@ -22,7 +22,7 @@ To follow along with this post you need a Kubernetes cluster and the Helm client
 
 All the major cloud providers offer hosted Kubernetes clusters: AWS has [EKS](https://aws.amazon.com/eks/), Azure has [AKS](https://azure.microsoft.com/en-au/services/kubernetes-service/), and Google Cloud has [GKE](https://cloud.google.com/kubernetes-engine).
 
-If you wish to run a development Kubernetes cluster on your local PC, kind provides the ability to easily create and destroy clusters for testing. The post [Creating test Kubernetes clusters with Kind](/blog/2020-09/testing-with-kind/index.md) provides instructions on creating a test Kubernetes cluster.
+If you wish to run a development Kubernetes cluster on your local PC, [kind](https://kind.sigs.k8s.io/docs/user/quick-start/) provides the ability to easily create and destroy clusters for testing. The post [Creating test Kubernetes clusters with Kind](/blog/2020-09/testing-with-kind/index.md) provides instructions on creating a test Kubernetes cluster.
 
 You must also have the helm client installed. The [helm documentation](https://helm.sh/docs/intro/install/) provides installation instructions.
 
