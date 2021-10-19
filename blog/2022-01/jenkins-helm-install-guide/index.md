@@ -243,10 +243,12 @@ The first command executes the `tar` command inside the pod to backup the `/var/
 kubectl exec -c jenkins myjenkins-0 -- tar czf /tmp/backup.tar.gz /var/jenkins_home
 ```
 
-The second command copies the backup archive from the pod to you local machine:
+The second command copies the backup archive from the pod to your local machine:
 
 ```
 kubectl cp -c jenkins myjenkins-0:/tmp/backup.tar.gz ./backup.tar.gz
 ```
 
-At this point the `backup.tar.gz` can be backed up to a more permanent location.
+At this point `backup.tar.gz` can be copied to a more permanent location.
+
+## Adding Jenkins agents
