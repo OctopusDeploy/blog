@@ -6,7 +6,7 @@ visibility: public
 published: 2021-10-25-1400
 metaImage: blogimage-deployingajavascriptlibraryprojectwithoctopus-2021.png
 bannerImage: blogimage-deployingajavascriptlibraryprojectwithoctopus-2021.png
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+bannerImageAlt: Javascript files on a conveyor belt entering an Octopus deployment process machine. They come out bundled with a reference variable.
 isFeatured: false
 tags:
  - DevOps
