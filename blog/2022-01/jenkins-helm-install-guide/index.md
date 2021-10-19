@@ -109,7 +109,7 @@ Accessing Jenkins through a tunnel is useful for debugging, but not a great expe
 helm show values jenkins/jenkins
 ```
 
-Configuring the service that exposes the Jenkins pod as a `LoadBalancer` is the easiest way to access Jenkins publicly.
+Configuring the service exposing the Jenkins pod as a `LoadBalancer` is the easiest way to access Jenkins publicly.
 
 A service of type `LoadBalancer` exposes pods via a public IP address. Exactly how that public IP address is created is left to the cluster. For example, hosted Kubernetes platforms like EKS, AKS, and GKE create a network load balancer to direct traffic into the Kubernetes cluster.
 
@@ -184,7 +184,7 @@ It appears that your reverse proxy set up is broken.
 
 ![Jenkins error message](reverse-proxy-error.png "width=500")
 
-This can be resolved by defining the public URL in the `controller.jenkinsUrl` property:
+This can be resolved by defining the public URL in the `controller.jenkinsUrl` property, replacing `a84aa6226d6e5496882cfafdd6564a35-901117307.us-west-1.elb.amazonaws.com` with the IP address or hostname of your Jenkins instance:
 
 ```yaml
 controller:
