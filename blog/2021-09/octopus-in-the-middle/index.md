@@ -4,9 +4,9 @@ description: Understand how Octopus Deploy can be the central orchestrator for a
 author: terence.wong@octopus.com
 visibility: public
 published: 2021-09-01-1400
-bannerImage: 
-metaImage:
-bannerImageAlt: 
+bannerImage: blogimage-octopusmakesforeasierdeployments-2021.png
+metaImage: blogimage-octopusmakesforeasierdeployments-2021.png
+bannerImageAlt: Octopus tentacles slither out from an Octopus website window. Each tentacle holds a logo: Docker, AWS, GCP and CircleCI.
 isFeatured: false
 tags:
 - Product
@@ -19,7 +19,6 @@ This blog demonstrates how Octopus can work with a range of build servers, cloud
 
 ## Flow Diagram
 
-![Flow Diagram](flow-diagram.png "width=500")
 
 ## Build Servers
 
