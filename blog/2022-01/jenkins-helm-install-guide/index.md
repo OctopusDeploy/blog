@@ -269,7 +269,7 @@ Even this simple example highlights the benefits of JCasC:
 
 * Each JCasC property is documented at http://jenkinshost/configuration-as-code/reference (replace `jenkinshost` with the hostname of your own Jenkins instance), whereas the Groovy script requires knowledge of the [Jenkins API](https://javadoc.jenkins-ci.org/jenkins/model/Jenkins.html). 
 * JCasC configuration is vanilla YAML, which is much more approachable that scripts written in Groovy.
-* JCasC is opinionated, providing consistency for common configuration. Groovy scripts can solve the same problem multiple different way, meaning scripts with more than a few lines of code require software engineering expertise to understand.
+* JCasC is opinionated, providing a consistent approach for common configuration. Groovy scripts can solve the same problem multiple different way, meaning scripts with more than a few lines of code require software engineering expertise to understand.
 
 ## Backup Jenkins volume
 
