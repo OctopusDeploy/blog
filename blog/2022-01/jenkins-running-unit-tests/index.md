@@ -118,3 +118,64 @@ The build is marked as unstable, and the **Test Result Trend** graph shows a new
 To view the details of the tests, click into the build task and click the **Test Result** link. Here you can drill into each test, view the test result, and view the logs:
 
 ![Test results](test-result.png "width=500")
+
+## Unit testing in DotNET Core
+
+There are a number of popular unit testing frameworks for DotNET Core including MSTest, NUnit, and xUnit. You'll use the [RandomQuotes](https://github.com/OctopusSamples/RandomQuotes) sample application to demonstrate runing NUnit tests from a Jenkins pipeline.
+
+### Installing the Jenkins plugins
+
+You'll use the [MSTest](https://plugins.jenkins.io/mstest/) plugin to process the test results.
+
+Install the [MSTest](https://plugins.jenkins.io/mstest/) plugin to process the result of NUnit tests. To install the plugin, click {{Manage Jenkins,Manage Plugins,Available}}, enter `mstest` in the search box, select the **MSTest** option, and click **Install without restart**:
+
+![MSTest Plugin](mstest-plugin.png "width=500")
+
+### Creating the project
+
+To create a new pipeline project, click **New Item**, enter **RandomQuotes-DotNET** for the item name, select the **Pipeline** option, and click the **OK** button:
+
+![New DotNET Project](dotnet-project.png "width=500")
+
+Paste the following pipeline script into the **Pipeline** section, and click the **Save** button:
+
+```groovy
+pipeline {
+  // This pipeline requires the following plugins:
+  // * Git: https://plugins.jenkins.io/git/
+  // * Workflow Aggregator: https://plugins.jenkins.io/workflow-aggregator/
+  // * MSTest: https://plugins.jenkins.io/mstest/
+  agent 'any'
+  stages {
+    stage('Environment') {
+      steps {
+          echo "PATH = ${PATH}"
+      }
+    }
+    stage('Checkout') {
+      steps {
+
+        script {
+            checkout([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/OctopusSamples/RandomQuotes.git']]])
+        }
+      }
+    }
+    stage('Dependencies') {
+      steps {
+        sh(script: 'dotnet restore')
+      }
+    }
+    stage('Build') {
+      steps {
+        sh(script: 'dotnet build --configuration Release', returnStdout: true)
+      }
+    }
+    stage('Test') {
+      steps {
+        sh(script: 'dotnet test -l:trx')
+        mstest(testResultsFile: '**/*.trx', failOnError: false, keepLongStdio: true)
+      }
+    }
+  }
+}
+```
