@@ -205,16 +205,16 @@ The plugin ID and version are found on the [Jenkins plugin website](https://plug
 
 ![Jenkins Plugin Website](jenkins-plugin.png "width=500")
 
-This approach is convenient, but does have the downside of requiring the Jenkins instance to contact the Jenkins update site to retrieve them. A more robust approach is to download the plugins as part of a custom image, which ensures the plugins are baked into the Docker image. It also has the advantage of allowing additional tools to be installed on the Jenkins controller. The [previous post](blog/2022-01/jenkins-docker-install-guide/index.md) has details on building and publishing custom Docker images.
+This approach is convenient, but does have the downside where the Jenkins instance is required to contact the Jenkins update site to retrieve them. A more robust approach is to download the plugins as part of a custom image, which ensures the plugins are baked into the Docker image. It also has the advantage of allowing additional tools to be installed on the Jenkins controller. The [previous post](blog/2022-01/jenkins-docker-install-guide/index.md) has details on building and publishing custom Docker images.
 
 Note that the custom Docker image must have the following plugins installed in addition to any custom plugins. These plugins are required for the helm chart to function properly:
 
-* kubernetes:1.29.2
-* workflow-aggregator:2.6
-* git:4.7.1
-* configuration-as-code:1.52
+* kubernetes
+* workflow-aggregator
+* git
+* configuration-as-code
 
-So an example `Dockerfile` may look like this:
+Here is an example `Dockerfile` including the mandatory plugins:
 
 ```dockerfile
 FROM jenkins/jenkins:lts-jdk11
