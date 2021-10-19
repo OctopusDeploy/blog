@@ -228,7 +228,7 @@ RUN jenkins-plugin-cli --plugins octopusdeploy:3.1.6 kubernetes:1.29.2 workflow-
 USER jenkins
 ```
 
-To use the custom image you define it in the `values.yml` with the following properties. This example uses the custom Jenkins image [pushed to my DockerHub account](https://hub.docker.com/r/mcasperson/myjenkins):
+To use the custom image, you define it in the `values.yml` with the following properties. This example uses the custom Jenkins image [pushed to my DockerHub account](https://hub.docker.com/r/mcasperson/myjenkins):
 
 ```yaml
 controller:
@@ -239,17 +239,17 @@ controller:
 
 ## Backup Jenkins volume
 
-Volumes in Kubernetes are a little more complicated than regular Docker as Kubernetes volumes tend to be hosted outside of the node that runs the pod. This is because pods can be relocated between nodes, and so are required to be able to access volumes from any node.
+Volumes in Kubernetes are a little more complicated than those found in regular Docker because Kubernetes volumes tend to be hosted outside of the node that runs the pod. This is because pods can be relocated between nodes, and so are required to be able to access volumes from any node.
 
-To complicate matters, unlike Docker volumes, only specialized volumes can be shared between pods. These shared volumes are referred to as `ReadWriteMany` volumes. Typically though, a Kubernetes volume is used only by a single pod, and are known as `ReadWriteOnce` volumes.
+To complicate matters, unlike Docker volumes, only specialized volumes can be shared between pods. These shared volumes are referred to as `ReadWriteMany` volumes. Typically though, a Kubernetes volume is only used by a single pod, and are known as `ReadWriteOnce` volumes.
 
-The Jenkins helm chart configures a `ReadWriteOnce` volume to host the Jenkins home directory. Because this volume can only be accessed by the single pod it is mounted by, all backup operations must be performed by that pod.
+The Jenkins helm chart configures a `ReadWriteOnce` volume to host the Jenkins home directory. Because this volume can only be accessed by the pod it is mounted into, all backup operations must be performed by that pod.
 
-Fortunately, the helm chart offers [comprehensive backup options](https://github.com/jenkinsci/helm-charts/blob/main/charts/jenkins/README.md#backup) with the ability to perform backup and save them to cloud storage providers.
+Fortunately, the helm chart offers [comprehensive backup options](https://github.com/jenkinsci/helm-charts/blob/main/charts/jenkins/README.md#backup), with the ability to perform backup and save them to cloud storage providers.
 
 However, you can orchestrate simple, cloud agnostic backups with two commands.
 
-The first command executes the `tar` command inside the pod to backup the `/var/jenkins_home` directory to the `/tmp/backup.tar.gz` archive. Note that the pod name `myjenkins-0` is derived from the name of the helm release called `myjenkins`:
+The first command executes `tar` inside the pod to backup the `/var/jenkins_home` directory to the `/tmp/backup.tar.gz` archive. Note that the pod name `myjenkins-0` is derived from the helm release name `myjenkins`:
 
 ```bash
 kubectl exec -c jenkins myjenkins-0 -- tar czf /tmp/backup.tar.gz /var/jenkins_home
@@ -265,7 +265,7 @@ At this point `backup.tar.gz` can be copied to a more permanent location.
 
 ## Adding Jenkins agents
 
-In addition to installing Jenkins on a Kubernetes cluster, you are also able to dynamically create Jenkins agents within the cluster. These agents are created when new tasks are created in Jenkins and are automatically cleaned up once the tasks are completed.
+In addition to installing Jenkins on a Kubernetes cluster, you are also able to dynamically create Jenkins agents within the cluster. These agents are created when new tasks are scheduled in Jenkins and are automatically cleaned up once the tasks are completed.
 
 The default settings for agents are defined under the `agent` property in the `values.yaml` file. The example below defines an agent with the Jenkins label `default`, created in pods prefixed with the name `default`, and with CPU and memory limits:
 
@@ -279,7 +279,9 @@ agent:
       memory: "2048Mi"
 ```
 
-More specialized agents are defined under the `additionalAgents` property. The example below defines a second pod template changing the pod name and Jenkins labels to `maven` and specifying a new Docker image `jenkins/jnlp-agent-maven:latest`:
+More specialized agents are defined under the `additionalAgents` property. These pod templates inherit the values from the values defined in the `agent` property.
+
+The example below defines a second pod template changing the pod name and Jenkins labels to `maven` and specifying a new Docker image `jenkins/jnlp-agent-maven:latest`:
 
 ```yaml
 agent:
@@ -297,11 +299,11 @@ additionalAgents:
     tag: latest
 ```
 
-These agent definitions are then available from {{Manage Jenkins,Manage Nodes and Clouds,Configure Clouds}}:
+The agent definitions are then available from {{Manage Jenkins,Manage Nodes and Clouds,Configure Clouds}}:
 
 ![Jenkins K8s Cloud](k8s-cloud.png "width=500")
 
-To use the agents when executing a pipeline, define the `agent` block like this:
+To use the agents to execute a pipeline, define the `agent` block like this:
 
 ```groovy
 pipeline {
@@ -314,7 +316,7 @@ pipeline {
 }
 ```
 
-For example, this is a example pipeline for a Java application that uses the `maven` agent template:
+For example, this example pipeline for a Java application uses the `maven` agent template:
 
 ```groovy
 pipeline {
@@ -458,9 +460,9 @@ myjenkins-0                              2/2     Running             0          
 
 ## Conclusion
 
-Hosting Jenkins and its agents in a Kubernetes cluster provides allows you to create a scalable and responsive build platform that creates and destroys agents on the fly to handle elastic workloads. And thanks to the Jenkins helm chart, installing Jenkins and configuring the nodes requires only a few lines of YAML.
+Hosting Jenkins and its agents in a Kubernetes cluster allows you to create a scalable and responsive build platform creating and destroying agents on the fly to handle elastic workloads. And thanks to the Jenkins helm chart, installing Jenkins and configuring the nodes requires only a few lines of YAML.
 
-In this post you learn how to:
+In this post you learned how to:
 * Deploy Jenkins to Kubernetes.
 * Expose Jenkins on a public IP address.
 * Install additional plugins as part of the installation process.
