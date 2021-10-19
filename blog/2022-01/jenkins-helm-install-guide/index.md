@@ -43,7 +43,7 @@ To deploy a Jenkins instance with the default settings, run the command:
 helm upgrade --install myjenkins jenkins/jenkins
 ```
 
-The `helm upgrade` command is typically used to upgrade an existing release. However, the `--install` argument ensures the release is created if it does not exist. This means `helm upgrade --install` can create *and* update a release, removing the need to juggle installation and upgrade commands depending on whether or not the release exists.
+The `helm upgrade` command is typically used to upgrade an existing release. However, the `--install` argument ensures the release is created if it does not exist. This means `helm upgrade --install` creates *and* updates a release, removing the need to juggle installation and upgrade commands depending on whether or not the release exists.
 
 The name of the release is `myjenkins`, and the final argument `jenkins/jenkins` defines the chart to be installed.
 
@@ -85,9 +85,9 @@ The first command listed in the notes returns the password for the `admin` user:
 $ kubectl exec --namespace default -it svc/myjenkins -c jenkins -- /bin/cat /run/secrets/chart-admin-password && echolrLsazcErQvbPIjtxAROj
 ```
 
-The second command listed in the notes creates a tunnel to the service in the Kubernetes cluster.
+The second command listed in the notes establishes a tunnel to the service in the Kubernetes cluster.
 
-In Kubernetes, a service is a resource that configures the cluster's network to expose one or more pods. The default service type is `ClusterIP`, which only exposes pods via a private IP address. It is this private IP address we tunnel into in order to access the Jenkins web UI.
+In Kubernetes, a service is a resource that configures the cluster's network to expose one or more pods. The default service type is `ClusterIP`, which exposes pods via a private IP address. It is this private IP address we tunnel into to access the Jenkins web UI.
 
 A Kubernetes pod is a resource that hosts one or more containers. This means the Jenkins instance is running as a container inside a pod:
 
@@ -97,19 +97,19 @@ Forwarding from 127.0.0.1:8080 -> 8080
 Forwarding from [::1]:8080 -> 8080
 ```
 
-Once the tunnel is established, open [http://localhost:8080](http://localhost:8080) on your local PC, and you will be directed to the Jenkins instance in the Kubernetes cluster. Login with the username `admin` and the password returned from the first command.
+Once the tunnel is established, open [http://localhost:8080](http://localhost:8080) on your local PC and you will be directed to the Jenkins instance in the Kubernetes cluster. Login with the username `admin` and the password returned by the first command.
 
 You now have a functional, if basic, Jenkins instance running in Kubernetes.
 
 ## Exposing Jenkins through a public IP address
 
-Accessing Jenkins through a tunnel is useful for debugging, but not a great experience for a production server. To access Jenkins through a publicly available IP address, you must override some of the default configuration defined in the chart. There are hundreds of values that can be defined, and the complete list is available by running the command:
+Accessing Jenkins through a tunnel is useful for debugging, but not a great experience for a production server. To access Jenkins through a publicly available IP address, you must override the default configuration defined in the chart. There are hundreds of values that can be defined, and the complete list is available by running the command:
 
 ```bash
 helm show values jenkins/jenkins
 ```
 
-The easiest way to access Jenkins publicly is to configure the service that exposes the Jenkins pod as a `LoadBalancer`.
+Configuring the service that exposes the Jenkins pod as a `LoadBalancer` is the easiest way to access Jenkins publicly.
 
 A service of type `LoadBalancer` exposes pods via a public IP address. Exactly how that public IP address is created is left to the cluster. For example, hosted Kubernetes platforms like EKS, AKS, and GKE create a network load balancer to direct traffic into the Kubernetes cluster.
 
