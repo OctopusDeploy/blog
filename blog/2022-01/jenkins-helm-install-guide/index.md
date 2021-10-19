@@ -10,11 +10,11 @@ tags:
  - Octopus
 ---
 
-Kubernetes has grown in popularity to become one of the most widely used platforms to host Docker containers. Kubernetes offers advanced orchestration features, networking capabilities, high availability, volume management, a wide ecosystem of supporting tools, and much more.
+Kubernetes has grown in popularity to become one of the most widely used platforms to host Docker containers. Kubernetes offers advanced orchestration features, networking capabilities, integrated security, user management, high availability, volume management, a wide ecosystem of supporting tools, and much more.
 
 One of those supporting tools is [Helm](https://helm.sh/), which provides package management functionality for Kubernetes. Applications deployed by Helm are defined in charts, and Jenkins [provides a Helm chart](https://github.com/jenkinsci/helm-charts/blob/main/charts/jenkins/README.md) to deploy a Jenkins instance to Kubernetes.
 
-In this post you'll learn how to install a Jenkins instance with Helm and connect a agents to perform build tasks.
+In this post you'll learn how to install a Jenkins instance with Helm and connect agents to perform build tasks.
 
 ## Prerequisites
 
@@ -24,7 +24,7 @@ All the major cloud providers offer hosted Kubernetes clusters: AWS has [EKS](ht
 
 If you wish to run a development Kubernetes cluster on your local PC, kind provides the ability to easily create and destroy clusters for testing. The post [Creating test Kubernetes clusters with Kind](/blog/2020-09/testing-with-kind/index.md) provides instructions on creating a test Kubernetes cluster.
 
-You must also have the helm client installed. The [helm documentation](https://helm.sh/docs/intro/install/ provides installation instructions.
+You must also have the helm client installed. The [helm documentation](https://helm.sh/docs/intro/install/) provides installation instructions.
 
 ## Adding the Jenkins chart repository
 
