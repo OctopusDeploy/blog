@@ -237,6 +237,36 @@ controller:
   installPlugins: false
 ```
 
+## Configuration as Code
+
+Jenkins Configuration as Code (JCasC) is a [plugin](https://plugins.jenkins.io/configuration-as-code/) providing an opinionated method for configuring Jenkins through yaml files. This provides an alternative to writing [Groovy scripts directly referencing the Jenkins API](https://www.jenkins.io/doc/book/managing/groovy-hook-scripts/), which was powerful, but required administrators to be comfortable writing code.
+
+JCasC configuration is defined under the `controller.JCasC.configScript` property. The child keys under `configScript` have names of your choosing, and serve as a way to summarize the block of text they define. 
+
+The value assigned to these keys are multi-line strings, which in turn define a JCasC YAML file. The pipe (`|`) character provides a convenient method to supply a multi-line string, but is otherwise not significant.
+
+The end result gives the appearance of a continuous YAML document. Just keep in mind that the content appearing after the pipe character is simply a multi-line text value that happens to also be YAML.
+
+The example below configures the number of executors available to the Jenkins controller, with the JCasC YAML defined under an exaggerated key called `thisIsWhereIConfigureTheExecutors` to reinforce the fact that these keys can have any name:
+
+```yaml
+controller:
+  JCasC:
+    configScripts:
+      thisIsWhereIConfigureTheExecutors: |
+        jenkins:
+          numExecutors: 5
+```
+
+For comparison, the same configuration can also be achieved with the following Groovy script saved as `/usr/share/jenkins/ref/init.groovy.d/executors.groovy` in a custom Docker image:
+
+```groovy
+import jenkins.model.*
+Jenkins.instance.setNumExecutors(5)
+```
+
+Even this simple example highlights the benefits of JCasC. Each JCasC property is documented at http://jenkinshost/configuration-as-code/reference (replace `jenkinshost` with the hostname of your own Jenkins instance), whereas the Groovy script requires knowledge of the [Jenkins API](https://javadoc.jenkins-ci.org/jenkins/model/Jenkins.html).
+
 ## Backup Jenkins volume
 
 Volumes in Kubernetes are a little more complicated than those found in regular Docker because Kubernetes volumes tend to be hosted outside of the node that runs the pod. This is because pods can be relocated between nodes, and so are required to be able to access volumes from any node.
