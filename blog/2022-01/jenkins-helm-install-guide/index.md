@@ -28,7 +28,7 @@ You must also have the helm client installed. The [helm documentation](https://h
 
 ## Adding the Jenkins chart repository
 
-Jenkins helm charts are provided at [https://charts.jenkins.io](https://charts.jenkins.io). To make this chart repository available, run the following commands:
+Jenkins helm charts are provided from [https://charts.jenkins.io](https://charts.jenkins.io). To make this chart repository available, run the following commands:
 
 ```bash
 helm repo add jenkins https://charts.jenkins.io
@@ -43,9 +43,9 @@ To deploy a Jenkins instance with the default settings, run the command:
 helm upgrade --install myjenkins jenkins/jenkins
 ```
 
-The `helm upgrade` command is typically used to upgrade an existing release. However, the `--install` argument ensures the release is created is it does not exist. This means `helm upgrade --install` can create *and* update a release, removing the need to juggle installation and upgrade commands depending on whether or not the release exists.
+The `helm upgrade` command is typically used to upgrade an existing release. However, the `--install` argument ensures the release is created if it does not exist. This means `helm upgrade --install` can create *and* update a release, removing the need to juggle installation and upgrade commands depending on whether or not the release exists.
 
-The name of the release is `myjenkins`, and the final argument of `jenkins/jenkins` defines the chart to be installed.
+The name of the release is `myjenkins`, and the final argument `jenkins/jenkins` defines the chart to be installed.
 
 The output looks something like this:
 
@@ -79,16 +79,17 @@ https://jenkins.io/projects/jcasc/
 NOTE: Consider using a custom image with pre-installed plugins
 ```
 
-Steps 1 and 2 provide the information required to retrieve the initial `admin` password and tunnel traffic to the service exposing the Jenkins pod.
-
-The first command returns the password for the `admin` user:
+The first command listed in the notes returns the password for the `admin` user:
 
 ``` bash
-$
-P kubectl exec --namespace default -it svc/myjenkins -c jenkins -- /bin/cat /run/secrets/chart-admin-password && echolrLsazcErQvbPIjtxAROj
+$ kubectl exec --namespace default -it svc/myjenkins -c jenkins -- /bin/cat /run/secrets/chart-admin-password && echolrLsazcErQvbPIjtxAROj
 ```
 
-The second command creates a tunnel to the service in the Kubernetes cluster:
+The second command listed in the notes creates a tunnel to the service in the Kubernetes cluster.
+
+In Kubernetes, a service is a resource that configures the cluster's network to expose one or more pods. The default service type is `ClusterIP`, which only exposes pods via a private IP address. It is this private IP address we tunnel into in order to access the Jenkins web UI.
+
+A Kubernetes pod is a resource that hosts one or more containers. This means the Jenkins instance is running as a container inside a pod:
 
 ```bash
 $ kubectl --namespace default port-forward svc/myjenkins 8080:8080
@@ -109,10 +110,6 @@ helm show values jenkins/jenkins
 ```
 
 The easiest way to access Jenkins publicly is to configure the service that exposes the Jenkins pod as a `LoadBalancer`.
-
-In Kubernetes, a service is a resource that configures the cluster's network to expose one or more pods. The default service type is `ClusterIP`, which only exposes pods via a private IP address. It is this private IP address that we tunnelled into previously in order to access the Jenkins web UI.
-
-A Kubernetes pod is a resource that hosts one or more containers. This means the Jenkins instance is running as a container inside a pod.
 
 A service of type `LoadBalancer` exposes pods via a public IP address. Exactly how that public IP address is created is left to the cluster. For example, hosted Kubernetes platforms like EKS, AKS, and GKE will create a network load balancer to direct traffic into the Kubernetes cluster.
 
