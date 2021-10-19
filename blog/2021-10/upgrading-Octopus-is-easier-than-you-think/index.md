@@ -34,9 +34,9 @@ If still on a 3.X version, you're missing out on Octopus’s evolution alongside
 Here’s a taste of what’ve added between Octopus 3.1 and 2021.2:
 
 - Improved UI - new process editor, dark mode and a global search
-- Better variables, including built-in support for JSON, XML, YAML and property files
+- improvements to config files, including built-in support for JSON, XML, YAML and property files
 - [Spaces](https://octopus.com/docs/administration/spaces) - a way for different teams to only see and use what they need
-- [Runbooks](https://octopus.com/docs/administration/spaces) - allows you to automate routine maintenance and operations tasks
+- [Runbooks](https://octopus.com/docs/administration/spaces) - allows you to automate routine maintenance and emergency operations tasks
 - [Tenants](https://octopus.com/docs/tenants) - create customer-specific pipelines for Software as a Service (SaaS) or multi-region deployments
 - [Project exports and imports](https://octopus.com/docs/projects/export-import) - export one or more projects to import into other spaces or instances
 - [Configuration as Code](https://octopus.com/docs/projects/version-control) - version control for Octopus projects (early access preview)
