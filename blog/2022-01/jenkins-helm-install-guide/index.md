@@ -111,7 +111,7 @@ helm show values jenkins/jenkins
 
 The easiest way to access Jenkins publicly is to configure the service that exposes the Jenkins pod as a `LoadBalancer`.
 
-A service of type `LoadBalancer` exposes pods via a public IP address. Exactly how that public IP address is created is left to the cluster. For example, hosted Kubernetes platforms like EKS, AKS, and GKE will create a network load balancer to direct traffic into the Kubernetes cluster.
+A service of type `LoadBalancer` exposes pods via a public IP address. Exactly how that public IP address is created is left to the cluster. For example, hosted Kubernetes platforms like EKS, AKS, and GKE create a network load balancer to direct traffic into the Kubernetes cluster.
 
 Note that `LoadBalancer` services require additional configuration when using a local test Kubernetes cluster, such as those clusters created by kind. Refer to the [kind documentation](https://kind.sigs.k8s.io/docs/user/loadbalancer/) for more information.
 
@@ -122,13 +122,13 @@ controller:
   serviceType: LoadBalancer
 ```
 
-Then you upgrade the helm release using the values defined in `values.yaml` with the command:
+You then upgrade the helm release using the values defined in `values.yaml` with the command:
 
 ```bash
 helm upgrade --install -f values.yaml myjenkins jenkins/jenkins
 ```
 
-The output is changed subtly to include new instructions to get the service's public IP:
+The output is changed subtly to include new instructions to return the service's public IP:
 
 ```bash
 $ helm upgrade --install -f values.yaml myjenkins jenkins/jenkins
