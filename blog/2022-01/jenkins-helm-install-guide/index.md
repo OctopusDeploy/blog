@@ -84,8 +84,8 @@ Steps 1 and 2 provide the information required to retrieve the initial `admin` p
 The first command returns the password for the `admin` user:
 
 ``` bash
-$ kubectl exec --namespace default -it svc/myjenkins -c jenkins -- /bin/cat /run/secrets/chart-admin-password && echo
-PlrLsazcErQvbPIjtxAROj
+$
+P kubectl exec --namespace default -it svc/myjenkins -c jenkins -- /bin/cat /run/secrets/chart-admin-password && echolrLsazcErQvbPIjtxAROj
 ```
 
 The second command creates a tunnel to the service in the Kubernetes cluster:
@@ -239,16 +239,207 @@ However, you can orchestrate simple, cloud agnostic backups with two commands.
 
 The first command executes the `tar` command inside the pod to backup the `/var/jenkins_home` directory to the `/tmp/backup.tar.gz` archive. Note that the pod name `myjenkins-0` is derived from the name of the helm release called `myjenkins`:
 
-```
+```bash
 kubectl exec -c jenkins myjenkins-0 -- tar czf /tmp/backup.tar.gz /var/jenkins_home
 ```
 
 The second command copies the backup archive from the pod to your local machine:
 
-```
+```bash
 kubectl cp -c jenkins myjenkins-0:/tmp/backup.tar.gz ./backup.tar.gz
 ```
 
 At this point `backup.tar.gz` can be copied to a more permanent location.
 
 ## Adding Jenkins agents
+
+In addition to installing Jenkins on a Kubernetes cluster, you are also able to dynamically create Jenkins agents within the cluster. These agents are created when new tasks are created in Jenkins and are automatically cleaned up once the tasks are completed.
+
+The default settings for agents are defined under the `agent` property in the `values.yaml` file. The example below defines an agent with the Jenkins label `default`, created in pods prefixed with the name `default`, and with CPU and memory limits:
+
+```yaml
+agent:
+  podName: default
+  customJenkinsLabels: default
+  resources:
+    limits:
+      cpu: "1"
+      memory: "2048Mi"
+```
+
+More specialized agents are defined under the `additionalAgents` property. The example below defines a second pod template changing the pod name and Jenkins labels to `maven` and specifying a new Docker image `jenkins/jnlp-agent-maven:latest`:
+
+```yaml
+agent:
+  podName: default
+  customJenkinsLabels: default
+  resources:
+    limits:
+      cpu: "1"
+      memory: "2048Mi"
+additionalAgents:
+  maven:
+    podName: maven
+    customJenkinsLabels: maven
+    image: jenkins/jnlp-agent-maven
+    tag: latest
+```
+
+These agent definitions are then available from {{Manage Jenkins,Manage Nodes and Clouds,Configure Clouds}}:
+
+![Jenkins K8s Cloud](k8s-cloud.png "width=500")
+
+To use the agents when executing a pipeline, define the `agent` block like this:
+
+```groovy
+pipeline {
+  agent {
+      kubernetes {
+          inheritFrom 'maven'
+      }
+  }
+  // ...
+}
+```
+
+For example, this is a example pipeline for a Java application that uses the `maven` agent template:
+
+```groovy
+pipeline {
+  // This pipeline requires the following plugins:
+  // * Pipeline Utility Steps Plugin: https://wiki.jenkins.io/display/JENKINS/Pipeline+Utility+Steps+Plugin
+  // * Git: https://plugins.jenkins.io/git/
+  // * Workflow Aggregator: https://plugins.jenkins.io/workflow-aggregator/
+  // * Octopus Deploy: https://plugins.jenkins.io/octopusdeploy/
+  // * JUnit: https://plugins.jenkins.io/junit/
+  // * Maven Integration: https://plugins.jenkins.io/maven-plugin/
+  parameters {
+    string(defaultValue: 'Spaces-1', description: '', name: 'SpaceId', trim: true)
+    string(defaultValue: 'SampleMavenProject-SpringBoot', description: '', name: 'ProjectName', trim: true)
+    string(defaultValue: 'Dev', description: '', name: 'EnvironmentName', trim: true)
+    string(defaultValue: 'Octopus', description: '', name: 'ServerId', trim: true)
+  }
+  tools {
+    jdk 'Java'
+  }
+  agent {
+      kubernetes {
+          inheritFrom 'maven'
+      }
+  }
+  stages {
+    stage('Environment') {
+      steps {
+          echo "PATH = ${PATH}"
+      }
+    }
+    stage('Checkout') {
+      steps {
+        // If this pipeline is saved as a Jenkinsfile in a git repo, the checkout stage can be deleted as
+        // Jenkins will check out the code for you.
+        script {
+            /*
+              This is from the Jenkins "Global Variable Reference" documentation:
+              SCM-specific variables such as GIT_COMMIT are not automatically defined as environment variables; rather you can use the return value of the checkout step.
+            */
+            def checkoutVars = checkout([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/mcasperson/SampleMavenProject-SpringBoot.git']]])
+            env.GIT_URL = checkoutVars.GIT_URL
+            env.GIT_COMMIT = checkoutVars.GIT_COMMIT
+            env.GIT_BRANCH = checkoutVars.GIT_BRANCH
+        }
+      }
+    }
+    stage('Dependencies') {
+      steps {
+        // Download the dependencies and plugins before we attempt to do any further actions
+        sh(script: './mvnw --batch-mode dependency:resolve-plugins dependency:go-offline')
+        // Save the dependencies that went into this build into an artifact. This allows you to review any builds for vulnerabilities later on.
+        sh(script: './mvnw --batch-mode dependency:tree > dependencies.txt')
+        archiveArtifacts(artifacts: 'dependencies.txt', fingerprint: true)
+        // List any dependency updates.
+        sh(script: './mvnw --batch-mode versions:display-dependency-updates > dependencieupdates.txt')
+        archiveArtifacts(artifacts: 'dependencieupdates.txt', fingerprint: true)
+      }
+    }
+    stage('Build') {
+      steps {
+        // Set the build number on the generated artifact.
+        sh '''
+          ./mvnw --batch-mode build-helper:parse-version versions:set \
+          -DnewVersion=\\${parsedVersion.majorVersion}.\\${parsedVersion.minorVersion}.\\${parsedVersion.incrementalVersion}.${BUILD_NUMBER}
+        '''
+        sh(script: './mvnw --batch-mode clean compile', returnStdout: true)
+        script {
+            env.VERSION_SEMVER = sh (script: './mvnw -q -Dexec.executable=echo -Dexec.args=\'${project.version}\' --non-recursive exec:exec', returnStdout: true)
+            env.VERSION_SEMVER = env.VERSION_SEMVER.trim()
+        }
+      }
+    }
+    stage('Test') {
+      steps {
+        sh(script: './mvnw --batch-mode -Dmaven.test.failure.ignore=true test')
+        junit(testResults: 'target/surefire-reports/*.xml', allowEmptyResults : true)
+      }
+    }
+    stage('Package') {
+      steps {
+        sh(script: './mvnw --batch-mode package -DskipTests')
+      }
+    }
+    stage('Repackage') {
+      steps {
+        // This scans through the build tool output directory and find the largest file, which we assume is the artifact that was intended to be deployed.
+        // The path to this file is saved in and environment variable called JAVA_ARTIFACT, which can be consumed by subsequent custom deployment steps.
+        script {
+            // Find the matching artifacts
+            def extensions = ['jar', 'war']
+            def files = []
+            for(extension in extensions){
+                findFiles(glob: 'target/**.' + extension).each{files << it}
+            }
+            echo 'Found ' + files.size() + ' potential artifacts'
+            // Assume the largest file is the artifact we intend to deploy
+            def largestFile = null
+            for (i = 0; i < files.size(); ++i) {
+            	if (largestFile == null || files[i].length > largestFile.length) { 
+            		largestFile = files[i]
+            	}
+            }
+            if (largestFile != null) {
+            	env.ORIGINAL_ARTIFACT = largestFile.path
+            	// Create a filename based on the repository name, the new version, and the original file extension. 
+            	env.ARTIFACTS = "SampleMavenProject-SpringBoot." + env.VERSION_SEMVER + largestFile.path.substring(largestFile.path.lastIndexOf("."), largestFile.path.length())
+            	echo 'Found artifact at ' + largestFile.path
+            	echo 'This path is available from the ARTIFACTS environment variable.'
+            }
+        }
+        // Octopus requires files to have a specific naming format. So copy the original artifact into a file with the correct name.
+        sh(script: 'cp ${ORIGINAL_ARTIFACT} ${ARTIFACTS}')
+      }
+    }
+    stage('Deployment') {
+      steps {
+        octopusPushPackage(additionalArgs: '', packagePaths: env.ARTIFACTS.split(":").join("\n"), overwriteMode: 'OverwriteExisting', serverId: params.ServerId, spaceId: params.SpaceId, toolId: 'Default')
+        octopusPushBuildInformation(additionalArgs: '', commentParser: 'GitHub', overwriteMode: 'OverwriteExisting', packageId: env.ARTIFACTS.split(":")[0].substring(env.ARTIFACTS.split(":")[0].lastIndexOf("/") + 1, env.ARTIFACTS.split(":")[0].length()).replace("." + env.VERSION_SEMVER + ".zip", ""), packageVersion: env.VERSION_SEMVER, serverId: params.ServerId, spaceId: params.SpaceId, toolId: 'Default', verboseLogging: false, gitUrl: env.GIT_URL, gitCommit: env.GIT_COMMIT, gitBranch: env.GIT_BRANCH)
+        octopusCreateRelease(additionalArgs: '', cancelOnTimeout: false, channel: '', defaultPackageVersion: '', deployThisRelease: false, deploymentTimeout: '', environment: params.EnvironmentName, jenkinsUrlLinkback: false, project: params.ProjectName, releaseNotes: false, releaseNotesFile: '', releaseVersion: env.VERSION_SEMVER, serverId: params.ServerId, spaceId: params.SpaceId, tenant: '', tenantTag: '', toolId: 'Default', verboseLogging: false, waitForDeployment: false)
+        octopusDeployRelease(cancelOnTimeout: false, deploymentTimeout: '', environment: params.EnvironmentName, project: params.ProjectName, releaseVersion: env.VERSION_SEMVER, serverId: params.ServerId, spaceId: params.SpaceId, tenant: '', tenantTag: '', toolId: 'Default', variables: '', verboseLogging: false, waitForDeployment: true)
+      }
+    }
+  }
+}
+```
+
+You can confirm that the agent is created in the cluster during the task execution by running:
+
+```bash
+kubectl get pods
+```
+
+In the example below, the pod `java-9-k0hmj-vcvdz-wknh4` is in the process of being created to execute the example pipeline above:
+
+```bash
+$ kubectl get pods
+NAME                                     READY   STATUS              RESTARTS   AGE
+java-9-k0hmj-vcvdz-wknh4                 0/1     ContainerCreating   0          1s
+myjenkins-0                              2/2     Running             0          49m
+```
