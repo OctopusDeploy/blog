@@ -49,7 +49,7 @@ We've also added a bunch of new platform integrations, including support for:
 - Tentacles for Linux, ARM and ARM64 
 - Octopus Command Line (CLI) with Chocolatey, Homebrew, APT and YUM
 - Plugins for:
-   - [Jenkins](https://plugins.jenkins.io/octopusdeploy/) and full pipeline support
+   - [Jenkins](https://plugins.jenkins.io/octopusdeploy/) (and full pipeline support)
    - [GitHub Actions](https://github.com/marketplace?type=actions&query=Octopus+)
    - [Jira](https://marketplace.atlassian.com/apps/1220376/octopus-deploy-for-jira?hosting=cloud&tab=overview)
 
