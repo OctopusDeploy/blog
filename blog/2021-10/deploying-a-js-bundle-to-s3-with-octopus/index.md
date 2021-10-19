@@ -1,8 +1,8 @@
 ---
-title: Deploying a JavaScript library project with octopus
-description: Learn how to handle cache busting and config of a shared JavaScript library bundle and make it easy to reference in other Octopus projects.
+title: Deploying a JavaScript library project with Octopus
+description: Learn how to handle cache-busting and config of a shared JavaScript library bundle, and make it easy to reference in other Octopus projects.
 author: lee.meyer@octopus.com
-visibility: private
+visibility: public
 published: 2021-10-25-1400
 metaImage: blogimage-deployingajavascriptlibraryprojectwithoctopus-2021.png
 bannerImage: blogimage-deployingajavascriptlibraryprojectwithoctopus-2021.png
@@ -10,25 +10,25 @@ bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags:
  - DevOps
- - Frontend
- - Variable sets
- - Amazon S3
- - Vue JS
+ - AWS
+ - Variables
 ---
 
-A frontend dev pattern I've seen at many companies starts with the best of intentions, but it can lead to pain if not handled with care. You see a need for reuse of frontend code across multiple projects, maintained by different teams using different techs. You create a shared JavaScript library project with its own repo and release process. It's a sensible idea, but it opens questions that need good answers, to stop our little bundle of joy from growing into a monster. In this post, I'll explain a simple example of how to manage the deployment process for a shared JavaScript project that is simple to reference from other Octopus projects. My example uses a Vue JS bundle deployed to Amazon S3, but I hope you'll see how the same principles can be applied to any combination of frontend framework and hosting provider.
+A front-end dev pattern I've seen at many companies starts with the best intentions, but can lead to pain if not handled with care. You see a need to reuse front-end code across multiple projects, maintained by different teams using different techs. You create a shared JavaScript library project with its own repo and release process. It's a sensible idea, but opens questions that need good answers, to stop our bundle of joy from growing into a monster. 
+
+In this post, I explain how to manage the deployment process for a shared JavaScript project that is simple to reference from other Octopus projects. My example uses a Vue JS bundle deployed to Amazon S3, but the same principles can be applied to any combination of front-end framework and hosting provider.
 
 ## The process
 
-Our finished deployment process will look like this in Octopus.
+Our finished deployment process looks like this in Octopus:
 
 ![deployment process](aws_bundle_process.png)
 
-I'll explain the reason for each step and how they work.
+I explain the reason for each step and how they work.
 
-## Create an S3 bucket if it does not exist
+## Create an S3 bucket if it doesn't exist
 
-In the spirit of treating servers like cattle and not pets, I don't assume much about our deployment target, beyond having an AWS account with appropriate permissions. In a specific case, I had dedicated buckets for combinations of different regions and the environments of test, staging, and production, so I appreciated a build process that only needs me to name the bucket and region in scoped variables and will set it up correctly if required. This is achieved with an [AWS CLI Step](https://octopus.com/docs/deployments/custom-scripts/aws-cli-scripts) that runs the following PowerShell script, which uses the AWS CLI to see if we get a non-error result trying to list the contents of the bucket. Otherwise, it creates the bucket, then polls to confirm the bucket exists before the step finishes.
+In the spirit of treating servers like cattle and not pets, I don't assume much about our deployment target, beyond having an AWS account with appropriate permissions. In a specific case, I had dedicated buckets for combinations of different regions and the environments of test, staging, and production, so I appreciate a build process that only needs me to name the bucket and region in scoped variables and will set it up correctly if required. This is achieved with an [AWS CLI Step](https://octopus.com/docs/deployments/custom-scripts/aws-cli-scripts) that runs the following PowerShell script, which uses the AWS CLI to see if you get a non-error result trying to list the contents of the bucket. Otherwise, it creates the bucket, then polls to confirm the bucket exists before the step finishes.
 
 ```ps
 $bucket = $OctopusParameters["s3-bucket-name"]
@@ -42,26 +42,30 @@ if ([string]::IsNullOrWhiteSpace($found)) {
 
 ## Set S3 CORS policy
 
-This is another AWS CLI script with the following PowerShell inline.
+This is another AWS CLI script with the following PowerShell inline:
 
 ```ps
 echo '{"CORSRules": [ { "AllowedOrigins": ["*"], "AllowedHeaders": [],"AllowedMethods": ["GET"] } ] }' | out-file -encoding ASCII cors.json
 aws s3api put-bucket-cors --bucket bundle-s3 --cors-configuration file://cors.json
 ```
 
-You could get more sophisticated with CORS as needed, but since in my example I'm assuming our bundles live in their own dedicated bucket, it makes sense to have a simplistic "allow all GET requests." The encoding step was important rather than just echoing straight to a file. I don't really know why the [CLI command](https://docs.aws.amazon.com/cli/latest/reference/s3api/put-bucket-cors.html) for setting CORS insists on reading from a file and won't just let me pass JSON through the command line, but if you desire a more complicated CORS policy, it might be cleaner to choose the "Script file inside a package" option and have the .ps1 and cors.json files source controlled in your bundle repo, rather than the inline option I've used here.
+You can be more sophisticated with CORS as needed, but in my example, I assume our bundles live in their own dedicated bucket, so a simple `allow all GET requests` makes sense. 
+
+The encoding step is important, rather than echoing straight to a file. I'm unsure why the [CLI command](https://docs.aws.amazon.com/cli/latest/reference/s3api/put-bucket-cors.html) for setting CORS insists on reading from a file and won't let you pass JSON through the command line, but if you need a more complicated CORS policy, it's cleaner to choose **Script file inside a package** and have the .ps1 and cors.json files source controlled in your bundle repo, rather than the inline option I use here.
 
 ![script options](cors_script.png)
 
 ## Upload bundle to S3
 
-There are a few prerequisites for this next AWS CLI step to work as desired, which I'll explain before showing how it's set up in Octopus. I'll be showing how it was achieved in Vue, and the steps will be different for other frameworks, but the explanation should point you in the right direction.
+There are a few prerequisites for the next AWS CLI step, which I explain before showing how it's set up in Octopus. I show how it's achieved in Vue, and although the steps will be different for other frameworks, the explanation will point you in the right direction.
 
 ### One JavaScript file to rule them all
 
-By default, Vue will create a separate CSS file, a production source map file, and a vendor libraries file that's an optimization webpack performs for better caching of common dependencies that don't change often. These are sensible defaults, but for a shared JS bundle, assuming it isn't massive, we can start with the simplest thing that could work, allowing consumers to reference the one JS file to get all styling and behavior. We can always introduce support for optimizations and source maps and external CSS as needed later on.
+By default, Vue creates a separate CSS file, a production source map file, and a vendor libraries file, that's an optimization webpack performs for better caching of common dependencies that don't change often. 
 
-To tell Vue to build just one JavaScript file, you can add the following vue.config.js at the root of your Vue project next to pacakage.json.
+These are sensible defaults, but for a shared JS bundle that's not massive, you can start by allowing consumers to reference the one JS file, to get all styling and behavior. You can always introduce support later, as needed, for optimizations, source maps, and external CSS.
+
+To tell Vue to build just one JavaScript file, you can add the following vue.config.js at the root of your Vue project next to pacakage.json:
 
 ```js
  module.exports = {
@@ -79,13 +83,19 @@ To tell Vue to build just one JavaScript file, you can add the following vue.con
 
 ### A separate config.json file
 
-[Octopus variable subsitutions](https://octopus.com/docs/projects/variables/variable-substitutions) are powerful stuff, but to take advantage of them for our frontend project, we'd like to be able to tell Octopus about a config.json file that sits next to our bundle for Octopus to have its way with. To make Vue CLI include such a file in its dist folder that will be zipped to create the package sent to Octopus, we can create "js\config.json" in the "public" folder Vue creates for us on initialization of a new project. This is a simlar pattern to the configuration examples shown for [React and Angular](https://octopus.com/blog/javascript-configuration) except we are implementing it for Vue, and we'll be showing more about how it fits into a deployment proces.  Now if we run
+[Octopus variable substitutions](https://octopus.com/docs/projects/variables/variable-substitutions) are powerful. To take advantage of them for your front-end project, you need to tell Octopus about a config.json file that sits next to our bundle. 
+
+For Vue CLI to include the file in its dist folder, which will be zipped to create the package sent to Octopus, you need to create `js\config.json` in the public folder that Vue generates when starting a new project. 
+
+This is a similar pattern to the configuration examples shown for [React and Angular](https://octopus.com/blog/javascript-configuration), except you implement it for Vue, and show more about how it fits into a deployment process.  
+
+Now you need to run the following:
 
 ```console
 npm run build      
 ```
 
-we see that Vue has dutifully copied the config.json as a separate file in the output folder. To tell Vue to use it, we can create the following helper module.
+You can see that Vue has copied the config.json as a separate file in the output folder. To tell Vue to use it, create the following helper module:
 
 ```js
 const configUrl = document.currentScript.src.substring(0, document.currentScript.src.lastIndexOf('/')) + '/config.json'
@@ -96,9 +106,9 @@ module.exports = async function() {
 };
 ```
 
-Now when we call this function, the bundle will fetch its neighboring config.json in the S3 folder it has been deployed to.
+Now when you call this function, the bundle will fetch its neighboring config.json in the S3 folder it's deployed to.
 
-Here's how we could use that in a Vue component.
+Here's how you can use that in a Vue component:
 
 ```html
 <template>
@@ -127,31 +137,39 @@ export default {
 </script>
 ```
 
-Sidenote: you will need to give a base URL to any images or other references to external assets with something like the "bucketUrl" setting, because the relative paths Vue produces by default won't work on the consumer for assets in S3.
+:::hint
+You need to give a base URL to any images or other references to external assets, with something like the **bucketUrl** setting. This is because the relative paths Vue produces by default don't work on the consumer for assets in S3.
+:::
 
-Now to tell Octopus to substitute variables in our config.json file, we can click the "Configure Features" button and enable "Structured configuration variables."
+To tell Octopus to substitute variables in our config.json file, click **Configure Features**, and tick **Structured Configuration Variables**.
 
 ![config variables](config_variables.png)
 
-And tell Octopus to replace variables in "MyBundle\js\config.json" where "MyBundle" is the ID of your package.
+Tell Octopus to replace variables in `MyBundle\js\config.json` where `MyBundle` is the ID of your package.
 
 ![config variables 2](config_variables_2.png)
 
-### Upload your bundle!
+### Upload your bundle
 
-Finally, we can give the step the CLI command to upload our bundle, config.json, and assets to a folder named after the current release.
+Finally, you give the step the CLI command to upload your bundle, config.json, and assets to a folder named after the current release.
 
 ```ps
 aws s3 cp MyBundle s3://#{s3-bucket-name}/release_#{Octopus.Release.Number} --recursive --exclude index.html --acl public-read
 ```
 
-I skip uploading the index.html file that Vue CLI produces because legacy consumers of our bundle won't be able to use that index.html and will need the URL to the uniquely named bundle file instead. Providing the URL of the newest bundle for the environment to any project that wants it is the focus of the next, final step.
+I skip uploading the index.html file that Vue CLI produces because legacy consumers of your bundle can't use that index.html, and need the URL to the uniquely named bundle file instead. 
+
+The focus of the next and final step is providing the URL of the newest bundle for the environment to any project that wants it.
 
 ## Update the bundle URL in a variable set
 
-Being able to tell other projects where to get the cache-busted shared bundle through an automatically populated config setting is one of the big advantages of building an Octopus process for this type of JavaScript project. There's an [astonishing variety](https://css-tricks.com/strategies-for-cache-busting-css/) of strategies for cache busting and in my experience, many will lead to pain. The pain I have experienced on past projects that attempted this stemmed from either the consumer knowing too much about the bundling process or the bundler knowing too much about the consumer. In my opinion, the ideal world is where any project that consumes the bundle only needs to know to read a config setting with the URL of the bundle. It is too cool that Octopus allows us to achieve this at deployment time without  too much custom code.
+Being able to tell other projects where to get the cache-busted shared bundle through an automatically populated config setting is an advantage of building an Octopus process for this type of JavaScript project. 
 
-After deployment, this custom script step will update the bundle URL for the scoped "BundleUrl" variable in a [library variable set](https://octopus.com/docs/projects/variables/library-variable-sets) that can be referenced by other projects. To do that, we reference the Octopus.Client NuGet package within the step as explained [here](https://octopus.com/docs/octopus-rest-api/octopus.client/using-client-in-octopus). The step also needs a reference to the package we deployed, as that's where it will find the name of the JavaScript file we uploaded. Then it can run the following PowerShell:
+There's an astonishing [variety of strategies for cache-busting](https://css-tricks.com/strategies-for-cache-busting-css/), and in my experience, many lead to pain. For me, this pain stemmed from either the consumer knowing too much about the bundling process, or the bundler knowing too much about the consumer. In my opinion, ideally any project that consumes the bundle only reads a config setting with the URL of the bundle. Fortunately, Octopus lets you achieve this at deployment time without much custom code.
+
+After deployment, this custom script step updates the bundle URL for the scoped `BundleUrl` variable in a [library variable set](https://octopus.com/docs/projects/variables/library-variable-sets) that can be referenced by other projects. To do that, reference the Octopus.Client NuGet package in the step as explained [in our docs](https://octopus.com/docs/octopus-rest-api/octopus.client/using-client-in-octopus). 
+
+The step also needs a reference to the package you deployed, to find the name of the JavaScript file you uploaded. Then it can run the following PowerShell:
 
 ```ps
 Add-Type -Path 'Octopus.Client/lib/net452/Octopus.Client.dll'
@@ -174,11 +192,12 @@ $variables.AddOrUpdateVariableValue("BundleUrl", $bucketUrl + 'release_' + $rele
 $repository.VariableSets.Modify($variables)
 ```
 
-That's it! Now any number of other projects can reference our shared JavaScript bundle by including the "BundleVariables" library variable set and making use of the BundleUrl variable.
+That's it! Now any number of other projects can reference your shared JavaScript bundle by including the `BundleVariables` library variable set and make use of the `BundleUrl` variable.
 
 ## Conclusion
-I hope this post clarifies how we can apply the concepts of scoped variables, servers as cattle, and variable sets to achieve sane management of a shared JavaScript project.
 
-I've had good results following this strategy in production compared to other solutions I have tried for managing JavaScript projects. I did find myself explaining a few times to frontend specialists that they have to re-release the consumer project to make it upgrade itself to the latest version of the bundle, but it's logical once people get the hang of it, and I've had good feedback from the frontend specialists on my team about the way this deployment process pattern works.
+This post explains how you can apply the concepts of scoped variables, servers as cattle, and variable sets, to achieve sane management of a shared JavaScript project.
 
-Happy bundling!
+I've had good results following this strategy in production, compared to other solutions for managing JavaScript projects. I did find myself explaining to front-end specialists that they need to re-release the consumer project to make it upgrade itself to the latest version of the bundle, but it's logical once people get the hang of it. I've had good feedback from the front-end specialists on my team about the way this deployment process pattern works.
+
+Happy deployments!
