@@ -443,3 +443,14 @@ NAME                                     READY   STATUS              RESTARTS   
 java-9-k0hmj-vcvdz-wknh4                 0/1     ContainerCreating   0          1s
 myjenkins-0                              2/2     Running             0          49m
 ```
+
+## Conclusion
+
+Hosting Jenkins and its agents in a Kubernetes cluster provides allows you to create a scalable and responsive build platform that creates and destroys agents on the fly to handle elastic workloads. And thanks to the Jenkins helm chart, installing Jenkins and configuring the nodes requires only a few lines of YAML.
+
+In this post you learn how to:
+* Deploy Jenkins to Kubernetes.
+* Expose Jenkins on a public IP address.
+* Install additional plugins as part of the installation process.
+* Backup the Jenkins home directory.
+* Create Kubernetes agents that are created and destroyed as needed.
