@@ -239,7 +239,7 @@ controller:
 
 ## Configuration as Code
 
-Jenkins Configuration as Code (JCasC) is a [plugin](https://plugins.jenkins.io/configuration-as-code/) providing an opinionated method for configuring Jenkins through yaml files. This provides an alternative to writing [Groovy scripts directly referencing the Jenkins API](https://www.jenkins.io/doc/book/managing/groovy-hook-scripts/), which was powerful, but required administrators to be comfortable writing code.
+Jenkins Configuration as Code (JCasC) is a [plugin](https://plugins.jenkins.io/configuration-as-code/) providing an opinionated method for configuring Jenkins through yaml files. This provides an alternative to writing [Groovy scripts directly referencing the Jenkins API](https://www.jenkins.io/doc/book/managing/groovy-hook-scripts/), which is powerful, but requires administrators to be comfortable writing code.
 
 JCasC configuration is defined under the `controller.JCasC.configScript` property. The child keys under `configScript` have names of your choosing consisting of lowercase letters, numbers, and hyphens, and serve as a way to summarize the block of text they define. 
 
