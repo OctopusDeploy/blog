@@ -224,3 +224,13 @@ controller:
   tag: "latest"
   installPlugins: false
 ```
+
+## Backup Jenkins volume
+
+```
+kubectl exec -c jenkins myjenkins-0 -- tar czf /tmp/backup.tar.gz /var/jenkins_home
+```
+
+```
+kubectl cp -c jenkins myjenkins-0:/tmp/backup.tar.gz ./backup.tar.gz
+```
