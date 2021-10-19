@@ -30,7 +30,7 @@ Jenkins provides an MSI download allowing it to be installed as a Windows servic
 
 ### Installing OpenJDK
 
-Jenkins requires Java to run. In recent years Oracle changed the licensing terms of their Java Runtime Environment (JRE) and Java Development Kit (JDK) to restrict commercial usage to paying customers. Fortunately, the OpenJDK project provides a free and open source alternative that you can use to run Jenkins.
+Jenkins requires Java to run, and the OpenJDK project provides a free and open source distributions that you can use to run Jenkins.
 
 There are many OpenJDK distributions to choose from including [OpenJDK](https://openjdk.java.net), [AdoptOpenJDK](https://adoptopenjdk.net), [Azul Zulu](https://www.azul.com/downloads/), [Red Hat OpenJDK](https://developers.redhat.com/products/openjdk/download), and more. I typically use the Azul Zulu distribution, although any distribution will do.
 
