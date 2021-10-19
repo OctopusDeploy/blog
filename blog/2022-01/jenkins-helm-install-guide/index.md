@@ -179,6 +179,21 @@ a84aa6226d6e5496882cfafdd6564a35-901117307.us-west-1.elb.amazonaws.com
 
 To access Jenkins, open [http://service_ip_or_hostname:8080](http://service_ip_or_hostname:8080).
 
+You may notice that Jenkins reports the following error when you access it via it's public IP address:
+
+```
+It appears that your reverse proxy set up is broken.
+```
+
+![Jenkins error message](reverse-proxy-error.png "width=500")
+
+This can be resolved by defining the public URL in the `controller.jenkinsUrl` property:
+
+```yaml
+controller:
+  jenkinsUrl: http://a84aa6226d6e5496882cfafdd6564a35-901117307.us-west-1.elb.amazonaws.com:8080/
+```
+
 ## Installing additional plugins
 
 List any additional plugins to be installed in the `controller.additionalPlugins` array:
