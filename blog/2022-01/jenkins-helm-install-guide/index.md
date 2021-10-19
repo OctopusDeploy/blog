@@ -20,15 +20,15 @@ In this post you'll learn how to install a Jenkins instance with Helm and connec
 
 To follow along with this post you need a Kubernetes cluster and the Helm client.
 
-All the major cloud providers offer hosted Kubernetes clusters: AWS has [EKS](https://aws.amazon.com/eks/), Azure has [AKS](https://azure.microsoft.com/en-au/services/kubernetes-service/), and Google Cloud has [GKE](https://cloud.google.com/kubernetes-engine).
+All major cloud providers offer hosted Kubernetes clusters: AWS has [EKS](https://aws.amazon.com/eks/), Azure has [AKS](https://azure.microsoft.com/en-au/services/kubernetes-service/), and Google Cloud has [GKE](https://cloud.google.com/kubernetes-engine).
 
-If you wish to run a development Kubernetes cluster on your local PC, [kind](https://kind.sigs.k8s.io/docs/user/quick-start/) provides the ability to easily create and destroy clusters for testing. The post [Creating test Kubernetes clusters with Kind](/blog/2020-09/testing-with-kind/index.md) provides instructions on creating a test Kubernetes cluster.
+If you wish to run a development Kubernetes cluster on your local PC, [kind](https://kind.sigs.k8s.io/docs/user/quick-start/) provides the ability to create and destroy clusters for testing. The post [Creating test Kubernetes clusters with Kind](/blog/2020-09/testing-with-kind/index.md) provides instructions on creating a test Kubernetes cluster.
 
-You must also have the helm client installed. The [helm documentation](https://helm.sh/docs/intro/install/) provides installation instructions.
+You must also have the Helm client installed. The [Helm documentation](https://helm.sh/docs/intro/install/) provides installation instructions.
 
 ## Adding the Jenkins chart repository
 
-Jenkins helm charts are provided from [https://charts.jenkins.io](https://charts.jenkins.io). To make this chart repository available, run the following commands:
+Jenkins Helm charts are provided from [https://charts.jenkins.io](https://charts.jenkins.io). To make this chart repository available, run the following commands:
 
 ```bash
 helm repo add jenkins https://charts.jenkins.io
@@ -122,7 +122,7 @@ controller:
   serviceType: LoadBalancer
 ```
 
-You then upgrade the helm release using the values defined in `values.yaml` with the command:
+You then upgrade the Helm release using the values defined in `values.yaml` with the command:
 
 ```bash
 helm upgrade --install -f values.yaml myjenkins jenkins/jenkins
@@ -207,7 +207,7 @@ The plugin ID and version are found on the [Jenkins plugin website](https://plug
 
 This approach is convenient, but does have the downside where the Jenkins instance is required to contact the Jenkins update site to retrieve them. A more robust approach is to download the plugins as part of a custom image, which ensures the plugins are baked into the Docker image. It also has the advantage of allowing additional tools to be installed on the Jenkins controller. The [previous post](blog/2022-01/jenkins-docker-install-guide/index.md) has details on building and publishing custom Docker images.
 
-Note that the custom Docker image must have the following plugins installed in addition to any custom plugins. These plugins are required for the helm chart to function properly:
+Note that the custom Docker image must have the following plugins installed in addition to any custom plugins. These plugins are required for the Helm chart to function properly:
 
 * kubernetes
 * workflow-aggregator
@@ -277,13 +277,13 @@ Volumes in Kubernetes are a little more complicated than those found in regular 
 
 To complicate matters, unlike Docker volumes, only specialized volumes can be shared between pods. These shared volumes are referred to as `ReadWriteMany` volumes. Typically though, a Kubernetes volume is only used by a single pod, and are known as `ReadWriteOnce` volumes.
 
-The Jenkins helm chart configures a `ReadWriteOnce` volume to host the Jenkins home directory. Because this volume can only be accessed by the pod it is mounted into, all backup operations must be performed by that pod.
+The Jenkins Helm chart configures a `ReadWriteOnce` volume to host the Jenkins home directory. Because this volume can only be accessed by the pod it is mounted into, all backup operations must be performed by that pod.
 
-Fortunately, the helm chart offers [comprehensive backup options](https://github.com/jenkinsci/helm-charts/blob/main/charts/jenkins/README.md#backup), with the ability to perform backup and save them to cloud storage providers.
+Fortunately, the Helm chart offers [comprehensive backup options](https://github.com/jenkinsci/helm-charts/blob/main/charts/jenkins/README.md#backup), with the ability to perform backup and save them to cloud storage providers.
 
 However, you can orchestrate simple, cloud agnostic backups with two commands.
 
-The first command executes `tar` inside the pod to backup the `/var/jenkins_home` directory to the `/tmp/backup.tar.gz` archive. Note that the pod name `myjenkins-0` is derived from the helm release name `myjenkins`:
+The first command executes `tar` inside the pod to backup the `/var/jenkins_home` directory to the `/tmp/backup.tar.gz` archive. Note that the pod name `myjenkins-0` is derived from the Helm release name `myjenkins`:
 
 ```bash
 kubectl exec -c jenkins myjenkins-0 -- tar czf /tmp/backup.tar.gz /var/jenkins_home
@@ -494,7 +494,7 @@ myjenkins-0                              2/2     Running             0          
 
 ## Conclusion
 
-Hosting Jenkins and its agents in a Kubernetes cluster allows you to create a scalable and responsive build platform creating and destroying agents on the fly to handle elastic workloads. And thanks to the Jenkins helm chart, installing Jenkins and configuring the nodes requires only a few lines of YAML.
+Hosting Jenkins and its agents in a Kubernetes cluster allows you to create a scalable and responsive build platform creating and destroying agents on the fly to handle elastic workloads. And thanks to the Jenkins Helm chart, installing Jenkins and configuring the nodes requires only a few lines of YAML.
 
 In this post you learned how to:
 * Deploy Jenkins to Kubernetes.
