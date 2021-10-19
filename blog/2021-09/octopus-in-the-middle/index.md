@@ -19,6 +19,7 @@ This blog demonstrates how Octopus can work with a range of build servers, cloud
 
 ## Flow Diagram
 
+![Octopus Deploy is centred and connects CircleCI, Docker, Github Actions, Travis CI, GCR, and Zip to GCP, Azure and AWS.](blogimage-octopusmakesforeasierdeployments-supportingimage-2021.png "width=500")
 
 ## Build Servers
 
