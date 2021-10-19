@@ -227,10 +227,26 @@ controller:
 
 ## Backup Jenkins volume
 
+Volumes in Kubernetes are a little more complicated than regular Docker as Kubernetes volumes tend to be hosted outside of the node that runs the pod. This is because pods can be relocated between nodes, and so are required to be able to access volumes from any node.
+
+To complicate matters, unlike Docker volumes, only specialized volumes can be shared between pods. These shared volumes are referred to as `ReadWriteMany` volumes. Typically though, a Kubernetes volume is used only by a single pod, and are known as `ReadWriteOnce` volumes.
+
+The Jenkins helm chart configures a `ReadWriteOnce` volume to host the Jenkins home directory. Because this volume can only be accessed by the single pod it is mounted by, all backup operations must be performed by that pod.
+
+Fortunately, the helm chart offers [comprehensive backup options](https://github.com/jenkinsci/helm-charts/blob/main/charts/jenkins/README.md#backup) with the ability to perform backup and save them to cloud storage providers.
+
+However, you can orchestrate simple, cloud agnostic backups with two commands.
+
+The first command executes the `tar` command inside the pod to backup the `/var/jenkins_home` directory to the `/tmp/backup.tar.gz` archive. Note that the pod name `myjenkins-0` is derived from the name of the helm release called `myjenkins`:
+
 ```
 kubectl exec -c jenkins myjenkins-0 -- tar czf /tmp/backup.tar.gz /var/jenkins_home
 ```
 
+The second command copies the backup archive from the pod to you local machine:
+
 ```
 kubectl cp -c jenkins myjenkins-0:/tmp/backup.tar.gz ./backup.tar.gz
 ```
+
+At this point the `backup.tar.gz` can be backed up to a more permanent location.
