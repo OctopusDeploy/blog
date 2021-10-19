@@ -500,5 +500,6 @@ In this post you learned how to:
 * Deploy Jenkins to Kubernetes.
 * Expose Jenkins on a public IP address.
 * Install additional plugins as part of the installation process.
+* Configure Jenkins through JCasC.
 * Backup the Jenkins home directory.
 * Create Kubernetes agents that are created and destroyed as needed.
