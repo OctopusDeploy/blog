@@ -87,7 +87,7 @@ To tell Vue to build just one JavaScript file, you can add the following vue.con
 
 For Vue CLI to include the file in its dist folder, which will be zipped to create the package sent to Octopus, you need to create `js\config.json` in the public folder that Vue generates when starting a new project. 
 
-This is a similar pattern to the configuration examples shown for [React and Angular](https://octopus.com/blog/javascript-configuration), except you implement it for Vue, and show more about how it fits into a deployment process.  
+This is a similar pattern to the configuration examples shown for [React and Angular](https://octopus.com/blog/javascript-configuration), except implemented for Vue in the context of a complete deployment process.
 
 Now you need to run the following:
 
