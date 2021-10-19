@@ -176,7 +176,7 @@ a84aa6226d6e5496882cfafdd6564a35-901117307.us-west-1.elb.amazonaws.com
 
 To access Jenkins, open [http://service_ip_or_hostname:8080](http://service_ip_or_hostname:8080).
 
-You may notice that Jenkins reports the following error when you access it via it's public IP address:
+You may notice that Jenkins reports the following error when you access it via its public IP address:
 
 ```
 It appears that your reverse proxy set up is broken.
