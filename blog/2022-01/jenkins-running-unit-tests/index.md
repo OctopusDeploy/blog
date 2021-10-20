@@ -230,9 +230,9 @@ pipeline {
   // * JUnit: https://plugins.jenkins.io/junit/
   // * Claim: https://plugins.jenkins.io/claim/
   agent 'any'
-  properties([
+  options{
     allowBrokenBuildClaiming()
-  ])
+  }
   stages {
     stage('Checkout') {
       steps {
