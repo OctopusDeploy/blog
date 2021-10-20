@@ -271,6 +271,8 @@ Even this simple example highlights the benefits of JCasC:
 * JCasC configuration is vanilla YAML, which is much more approachable that scripts written in Groovy.
 * JCasC is opinionated, providing a consistent approach for common configuration. Groovy scripts can solve the same problem multiple different way, meaning scripts with more than a few lines of code require software engineering expertise to understand.
 
+For all the benefits though, JCasC is not a complete replacement for setting system properties or running Groovy scripts. For example, [JCasC will not support the ability to disable CSRF](https://github.com/jenkinsci/configuration-as-code-plugin/issues/1184), with this option only exposed via system properties.
+
 ## Backup Jenkins volume
 
 Volumes in Kubernetes are a little more complicated than those found in regular Docker because Kubernetes volumes tend to be hosted outside of the node that runs the pod. This is because pods can be relocated between nodes, and so are required to be able to access volumes from any node.
