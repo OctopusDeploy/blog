@@ -324,8 +324,7 @@ pipeline {
   // * xUnit: https://plugins.jenkins.io/xunit/
   // * Claim: https://plugins.jenkins.io/claim/
   agent 'any'
-  options{
-    // This option allows broken builds to be claimed
+  options {
     allowBrokenBuildClaiming()
   }
   stages {
@@ -362,8 +361,12 @@ pipeline {
   // This pipeline requires the following plugins:
   // * Git: https://plugins.jenkins.io/git/
   // * Workflow Aggregator: https://plugins.jenkins.io/workflow-aggregator/
-  // * MSTest: https://plugins.jenkins.io/mstest/
+  // * xUnit: https://plugins.jenkins.io/xunit/
+  // * Claim: https://plugins.jenkins.io/claim/
   agent 'any'
+  options {
+    allowBrokenBuildClaiming()
+  }
   stages {
     stage('Environment') {
       steps {
