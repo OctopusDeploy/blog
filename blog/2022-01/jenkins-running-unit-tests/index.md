@@ -220,7 +220,9 @@ To view the details of the tests, click into the build task and click the **Test
 
 ## Managing failed tests
 
-The example pipelines above have gone to some lengths to allow builds to succeed when tests are failing. However, it is expected that test failures are addressed by the engineering team. The [Claim](https://plugins.jenkins.io/claim/) plugin provides
+The example pipelines above have gone to some lengths to allow builds to succeed when tests are failing. However, it is expected that test failures are addressed by the engineering team. The [Claim](https://plugins.jenkins.io/claim/) plugin provides the ability for Jenkins users to claim responsibility for failed tests.
+
+The pipeline below allows failed tests to be claimed:
 
 ```groovy
 pipeline {
@@ -255,3 +257,11 @@ pipeline {
   }
 }
 ```
+
+Failed tests can be claimed through the **Test Result** screen:
+
+![Claim Test](claim-test.png "width=500")
+
+A global report of all claims can be found by opening the **Claim Report** link:
+
+![Claim Report](claim-report.png "width=500")
