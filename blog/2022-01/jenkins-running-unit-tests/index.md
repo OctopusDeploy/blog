@@ -220,7 +220,7 @@ To view the details of the tests, click into the build task and click the **Test
 
 ## Managing failed tests
 
-The example pipelines above have gone to some lengths to allow builds to succeed when tests are failing. However, it is expected that test failures are addressed by the engineering team. The [Claim](https://plugins.jenkins.io/claim/) plugin provides the ability for Jenkins users to claim responsibility for failed tests.
+The example pipelines above have gone to some lengths to allow builds to succeed when tests are failing. However, it is expected that test failures are still addressed by the engineering team. The [Claim](https://plugins.jenkins.io/claim/) plugin provides the ability for Jenkins users to claim responsibility for failed tests.
 
 The pipeline below allows failed tests to be claimed:
 
@@ -265,3 +265,11 @@ Failed tests can be claimed through the **Test Result** screen:
 A global report of all claims can be found by opening the **Claim Report** link:
 
 ![Claim Report](claim-report.png "width=500")
+
+## Conclusion
+
+Unit tests are a common feature found in most large code bases, and by executing unit tests in Jenkins the development team has a central source of truth reporting the current and historical test results. In this post you learned:
+
+* How to run tests in Java and DotNET Core code bases.
+* How to collect and process the test results with the JUnit and MSTest plugins.
+* How to allow Jenkins users to claim failed tests to indicate they will take responsibility for them.
