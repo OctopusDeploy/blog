@@ -25,3 +25,50 @@ The OpenJDK project (and its downstream projects) provide free and open source d
 Cypress must be installed on the Jenkins controller or agents to run browser based E2E tests. The [Cypress documentation](https://docs.cypress.io/guides/getting-started/installing-cypress) provides instructions for installing Cypress.
 
 Newman is the command line tool for running Postman tests and must be installed on the Jenkins controller or agents to run API E2E tests. The [Postman documentation](https://support.postman.com/hc/en-us/articles/115003703325-How-to-install-Newman-) has instructions for installing Newman.
+
+## Running browser tests with Cypress
+
+```groovy
+pipeline {
+  // This pipeline requires the following plugins:
+  // * Git: https://plugins.jenkins.io/git/
+  // * Workflow Aggregator: https://plugins.jenkins.io/workflow-aggregator/
+  // * JUnit: https://plugins.jenkins.io/junit/
+  agent 'any'
+  stages {
+    stage('Checkout') {
+      steps {
+        script {
+            checkout([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/OctopusSamples/RandomQuotes-Java.git']]])
+        }
+      }
+    }
+    stage('Test') {
+      steps {
+        sh(script: './mvnw --batch-mode -Dmaven.test.failure.ignore=true test')
+        
+      }
+    }
+    stage('Package') {
+      steps {
+        sh(script: './mvnw --batch-mode package -DskipTests')
+      }
+    }
+    stage('E2E Test') {
+      steps {
+        dir('cypress') {
+          checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/mcasperson/simple-cypress-test.git']]])
+          sh(script: 'npm install')
+          sh(script: 'NO_COLOR=1 cypress run')
+        }
+      }
+    }
+  }
+  post {
+    always {
+      junit(testResults: 'target/surefire-reports/*.xml', allowEmptyResults : true)
+      junit(testResults: 'cypress/cypress/results/results.xml', allowEmptyResults : true)
+    }
+  }
+}
+```
