@@ -314,7 +314,7 @@ Unfortunately, [the JUnit plugin does not have the ability to fail a build based
 
 An alternative is to use the [xUnit plugin](https://plugins.jenkins.io/xunit/), which supports thresholds for skipped and failed tests. 
 
-The example pipeline below replaces the JUnit plugin for xUnit:
+The example pipeline below replaces the JUnit plugin with xUnit:
 
 ```groovy
 pipeline {
@@ -354,7 +354,7 @@ pipeline {
 }
 ```
 
-The example pipeline below replaces the MSTest plugin for xUnit:
+The example pipeline below replaces the MSTest plugin with xUnit:
 
 ```groovy
 pipeline {
