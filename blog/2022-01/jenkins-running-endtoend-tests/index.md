@@ -48,14 +48,48 @@ pipeline {
     }
     stage('Test') {
       steps {
-        sh(script: 'NO_COLOR=1 cypress run')
-        archiveArtifacts(artifacts: 'cypress/videos/sample_spec.js.mp4', fingerprint: true)   
+        sh(script: 'NO_COLOR=1 cypress run || true')          
       }
     }
   }
   post {
     always {
       junit(testResults: 'cypress/results/results.xml', allowEmptyResults : true)
+      archiveArtifacts(artifacts: 'cypress/videos/sample_spec.js.mp4', fingerprint: true) 
+    }
+  }
+}
+```
+
+```groovy
+pipeline {
+  // This pipeline requires the following plugins:
+  // * Git: https://plugins.jenkins.io/git/
+  // * Workflow Aggregator: https://plugins.jenkins.io/workflow-aggregator/
+  // * JUnit: https://plugins.jenkins.io/junit/
+  agent 'any'
+  stages {
+    stage('Checkout') {
+      steps {
+        script {
+            checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/OctopusSamples/junit-newman-test.git']]])
+        }
+      }
+    }
+    stage('Dependencies') {
+      steps {
+        sh(script: 'npm install')        
+      }
+    }
+    stage('Test') {
+      steps {
+        sh(script: 'node_modules/.bin/newman run GitHubTree.json --reporter-junit-export results.xml --reporters cli,junit || true')          
+      }
+    }
+  }
+  post {
+    always {
+      junit(testResults: 'results.xml', allowEmptyResults : true)
     }
   }
 }
