@@ -60,7 +60,7 @@ pipeline {
     stage('Test') {
       steps {
         sh(script: './mvnw --batch-mode -Dmaven.test.failure.ignore=true test')
-        junit(testResults: 'target/surefire-reports/*.xml', allowEmptyResults : true)
+        
       }
     }
     stage('Package') {
@@ -69,21 +69,23 @@ pipeline {
       }
     }
   }
+  post {
+    always {
+      junit(testResults: 'target/surefire-reports/*.xml', allowEmptyResults : true)
+    }
+  }
 }
 ```
 
 ![Jenkins Pipeline](pipeline.png "width=500")
 
-
-The important part of this pipeline, as it relates to testing, is the `Test` stage.
-
-The first step runs the maven `test` goal passing `--batch-mode` to avoid unnecessary logging that shows each dependency being downloaded and `-Dmaven.test.failure.ignore=true` to allow the step to pass successfully even if there were failing tests.
+The `Test` stage contains a step running the maven `test` goal, passing `--batch-mode` to avoid unnecessary logging that shows each dependency being downloaded and `-Dmaven.test.failure.ignore=true` to allow the step to pass successfully even if there were failing tests.
 
 ```groovy
 sh(script: './mvnw --batch-mode -Dmaven.test.failure.ignore=true test')
 ```
 
-The next step processes the test results with the JUnit plugin:
+The `post` section contains the `always` condition block processing the test results with the JUnit plugin:
 
 ```groovy
 junit(testResults: 'target/surefire-reports/*.xml', allowEmptyResults : true)
@@ -152,17 +154,19 @@ pipeline {
     }
     stage('Test') {
       steps {
-        sh(script: 'dotnet test -l:trx || true')
-        mstest(testResultsFile: '**/*.trx', failOnError: false, keepLongStdio: true)
+        sh(script: 'dotnet test -l:trx || true')        
       }
+    }
+  }
+  post {
+    always {
+      mstest(testResultsFile: '**/*.trx', failOnError: false, keepLongStdio: true)
     }
   }
 }
 ```
 
-The `Test` stage includes the steps required to run and process unit tests.
-
-You call `dotnet test` to run the unit tests, and the argument `-l:trx` writes the test results in a Visual Studio Test Results (TRX) file.
+The `Test` stage calls `dotnet test` to run the unit tests passing the argument `-l:trx` to write the test results in a Visual Studio Test Results (TRX) file.
 
 This command will return a non-zero exit code if any tests failed. To ensure the pipeline continues to be processed in the event of a failed test, you return `true` if `dotnet test` indicates a failure:
 
@@ -170,7 +174,7 @@ This command will return a non-zero exit code if any tests failed. To ensure the
 sh(script: 'dotnet test -l:trx || true')
 ```
 
-The test results are then processed by the MSTest plugin:
+You then process the test results with the MSTest plugin in the `post` section:
 
 ```bash
 mstest(testResultsFile: '**/*.trx', failOnError: false, keepLongStdio: true)
@@ -198,13 +202,17 @@ pipeline {
     stage('Test') {
       steps {
         sh(script: './mvnw --batch-mode -Dmaven.test.failure.ignore=true test')
-        junit(testResults: 'target/surefire-reports/*.xml', allowEmptyResults : true)
       }
     }
     stage('Package') {
       steps {
         sh(script: './mvnw --batch-mode package -DskipTests')
       }
+    }
+  }
+  post {
+    always {
+      junit(testResults: 'target/surefire-reports/*.xml', allowEmptyResults : true)
     }
   }
 }
@@ -220,7 +228,7 @@ To view the details of the tests, click into the build task and click the **Test
 
 ## Managing failed tests
 
-The example pipelines above have gone to some lengths to allow builds to succeed when tests are failing. However, it is expected that test failures are still addressed by the engineering team. The [Claim](https://plugins.jenkins.io/claim/) plugin provides the ability for Jenkins users to claim responsibility for failed tests.
+The example pipelines above have gone to some lengths to allow builds to succeed when tests are failing. This ensures that the test results are processed by the JUnit or MSTest plugins even when tests fail. However, it is expected that test failures are still addressed by the engineering team. The [Claim](https://plugins.jenkins.io/claim/) plugin provides the ability for Jenkins users to claim responsibility for failed tests.
 
 The pipeline below allows failed tests to be claimed:
 
@@ -247,14 +255,18 @@ pipeline {
     stage('Test') {
       steps {
         sh(script: './mvnw --batch-mode -Dmaven.test.failure.ignore=true test')
-        // The testDataPublishers argument allows failed tests to be claimed
-        junit(testDataPublishers: [[$class: 'ClaimTestDataPublisher']], testResults: 'target/surefire-reports/*.xml', allowEmptyResults : true)
       }
     }
     stage('Package') {
       steps {
         sh(script: './mvnw --batch-mode package -DskipTests')
       }
+    }
+  }
+  post {
+    always {
+      // The testDataPublishers argument allows failed tests to be claimed
+      junit(testDataPublishers: [[$class: 'ClaimTestDataPublisher']], testResults: 'target/surefire-reports/*.xml', allowEmptyResults : true)
     }
   }
 }
@@ -267,6 +279,75 @@ Failed tests can be claimed through the **Test Result** screen:
 A global report of all claims can be found by opening the **Claim Report** link:
 
 ![Claim Report](claim-report.png "width=500")
+
+## Failing the build when tests fail
+
+You generally have two options to fail the build if any tests fail.
+
+The first is to allow the command that ran the tests to fail. Most test runners will return a non-zero exit code if tests fail, which will cause the build to fail.
+
+You can use the following Maven command to fail if any tests fail. The absence of the `-Dmaven.test.failure.ignore=true` argument reverts the command to its default behavior:
+
+```bash
+sh(script: './mvnw --batch-mode test')
+```
+
+The following DotNET Core command also fails if any test fails. The absence of the `|| true` command chain ensures the `dotnet` exit code is returned:
+
+```bash
+sh(script: 'dotnet test -l:trx') 
+```
+
+The second option is to allow the test processor to determine if the build failed or not.
+
+The MSTest plugin provides the `failOnError` argument to fail the step if any tests fail:
+
+```groovy
+mstest(testResultsFile: '**/*.trx', failOnError: true, keepLongStdio: true)
+```
+
+Unfortunately, [the JUnit plugin does not have the ability to fail a build based on the test results](https://issues.jenkins.io/browse/JENKINS-2734?page=com.atlassian.jira.plugin.system.issuetabpanels%3Aall-tabpanel).
+
+An alternative is to use the [xUnit plugin](https://plugins.jenkins.io/xunit/), which supports thresholds for skipped and failed tests. The example pipeline below replaces the JUnit plugin for xUnit:
+
+```groovy
+pipeline {
+  // This pipeline requires the following plugins:
+  // * Git: https://plugins.jenkins.io/git/
+  // * Workflow Aggregator: https://plugins.jenkins.io/workflow-aggregator/
+  // * xUnit: https://plugins.jenkins.io/xunit/
+  // * Claim: https://plugins.jenkins.io/claim/
+  agent 'any'
+  options{
+    // This option allows broken builds to be claimed
+    allowBrokenBuildClaiming()
+  }
+  stages {
+    stage('Checkout') {
+      steps {
+        script {
+            checkout([$class: 'GitSCM', branches: [[name: '*/failing-test']], userRemoteConfigs: [[url: 'https://github.com/OctopusSamples/RandomQuotes-Java.git']]])
+        }
+      }
+    }
+    stage('Test') {
+      steps {
+        sh(script: './mvnw --batch-mode -Dmaven.test.failure.ignore=true test')
+      }
+    }
+    stage('Package') {
+      steps {
+        sh(script: './mvnw --batch-mode package -DskipTests')
+      }
+    }
+  }
+  post {
+    always {
+      xunit (testDataPublishers: [[$class: 'ClaimTestDataPublisher']], thresholds: [ skipped(failureThreshold: '0'), failed(failureThreshold: '0')], tools: [[$class: 'JUnitType', pattern: '**/surefire-reports/*.xml']])
+    }
+  }
+}
+```
 
 ## Conclusion
 
