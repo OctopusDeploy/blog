@@ -282,21 +282,25 @@ A global report of all claims can be found by opening the **Claim Report** link:
 
 ## Failing the build when tests fail
 
-You generally have two options to fail the build if any tests fail.
+You may require that builds fail rather than being marked as unstable in the event of a test failure. You generally have two options to achieve this.
+
+### Failing the test command
 
 The first is to allow the command that ran the tests to fail. Most test runners will return a non-zero exit code if tests fail, which will cause the build to fail.
 
-You can use the following Maven command to fail if any tests fail. The absence of the `-Dmaven.test.failure.ignore=true` argument reverts the command to its default behavior:
+You can use the following Maven command execute tests and return a non-zero exit code if any fail. The absence of the `-Dmaven.test.failure.ignore=true` argument reverts the command to its default behavior:
 
 ```bash
 sh(script: './mvnw --batch-mode test')
 ```
 
-The following DotNET Core command also fails if any test fails. The absence of the `|| true` command chain ensures the `dotnet` exit code is returned:
+The following DotNET Core command also returns an non-zero exit code if any test fails. The absence of the `|| true` command chain ensures the `dotnet` exit code is returned:
 
 ```bash
 sh(script: 'dotnet test -l:trx') 
 ```
+
+### Failing the test processing
 
 The second option is to allow the test processor to determine if the build failed or not.
 
@@ -308,7 +312,9 @@ mstest(testResultsFile: '**/*.trx', failOnError: true, keepLongStdio: true)
 
 Unfortunately, [the JUnit plugin does not have the ability to fail a build based on the test results](https://issues.jenkins.io/browse/JENKINS-2734?page=com.atlassian.jira.plugin.system.issuetabpanels%3Aall-tabpanel).
 
-An alternative is to use the [xUnit plugin](https://plugins.jenkins.io/xunit/), which supports thresholds for skipped and failed tests. The example pipeline below replaces the JUnit plugin for xUnit:
+An alternative is to use the [xUnit plugin](https://plugins.jenkins.io/xunit/), which supports thresholds for skipped and failed tests. 
+
+The example pipeline below replaces the JUnit plugin for xUnit:
 
 ```groovy
 pipeline {
@@ -344,6 +350,53 @@ pipeline {
   post {
     always {
       xunit (testDataPublishers: [[$class: 'ClaimTestDataPublisher']], thresholds: [ skipped(failureThreshold: '0'), failed(failureThreshold: '0')], tools: [[$class: 'JUnitType', pattern: '**/surefire-reports/*.xml']])
+    }
+  }
+}
+```
+
+The example pipeline below replaces the MSTest plugin for xUnit:
+
+```groovy
+pipeline {
+  // This pipeline requires the following plugins:
+  // * Git: https://plugins.jenkins.io/git/
+  // * Workflow Aggregator: https://plugins.jenkins.io/workflow-aggregator/
+  // * MSTest: https://plugins.jenkins.io/mstest/
+  agent 'any'
+  stages {
+    stage('Environment') {
+      steps {
+          echo "PATH = ${PATH}"
+      }
+    }
+    stage('Checkout') {
+      steps {
+
+        script {
+            checkout([$class: 'GitSCM', branches: [[name: '*/failing-tests']], userRemoteConfigs: [[url: 'https://github.com/OctopusSamples/RandomQuotes.git']]])
+        }
+      }
+    }
+    stage('Dependencies') {
+      steps {
+        sh(script: 'dotnet restore')
+      }
+    }
+    stage('Build') {
+      steps {
+        sh(script: 'dotnet build --configuration Release', returnStdout: true)
+      }
+    }
+    stage('Test') {
+      steps {
+        sh(script: 'dotnet test -l:trx || true')
+      }
+    }
+  }
+  post {
+    always {
+      xunit (testDataPublishers: [[$class: 'ClaimTestDataPublisher']], thresholds: [ skipped(failureThreshold: '0'), failed(failureThreshold: '0')], tools: [[$class: 'XUnitDotNetTestType', pattern: '**/*.trx']])
     }
   }
 }
