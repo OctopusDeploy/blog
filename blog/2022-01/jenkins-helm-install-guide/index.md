@@ -271,7 +271,7 @@ Even this simple example highlights the benefits of JCasC:
 * JCasC configuration is vanilla YAML, which is much more approachable that scripts written in Groovy.
 * JCasC is opinionated, providing a consistent approach for common configuration. Groovy scripts can solve the same problem multiple different way, meaning scripts with more than a few lines of code require software engineering expertise to understand.
 
-For all the benefits though, JCasC is not a complete replacement for setting system properties or running Groovy scripts. For example, [JCasC will not support the ability to disable CSRF](https://github.com/jenkinsci/configuration-as-code-plugin/issues/1184), with this option only exposed via system properties.
+For all the benefits though, JCasC is not a complete replacement for setting system properties or running Groovy scripts. For example, [JCasC will not support the ability to disable CSRF](https://github.com/jenkinsci/configuration-as-code-plugin/issues/1184), meaning this option is only exposed via system properties.
 
 ## Backup Jenkins volume
 
