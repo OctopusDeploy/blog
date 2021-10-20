@@ -1,9 +1,9 @@
 ---
 title: Rollbacks with Octopus Deploy
-description: Learn about how to implement a rollback strategy with Octopus Deploy without having to implement advanced deployment patterns.
+description: Learn about how to implement a rollback strategy with Octopus Deploy, without having to implement advanced deployment patterns.
 author: bob.walker@octopus.com
 visibility: public 
-published: 2099-12-31
+published: 2021-10-27-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt: 
@@ -12,62 +12,70 @@ tags:
  - Product
 ---
 
-Whenever the topic of rollbacks comes up, inevitably, the conversation will turn to blue/green, red/black, or canary deployment patterns.  Those patterns are fantastic and make rollbacks much easier.  However, they require a lot of time and effort to implement.  At times, they are overkill.  Maybe you pushed out an API change to **Test**, and you want to get back to a known good state.  If you haven't implemented those patterns, it is not the right time to do so when that scenario happens.  In this post, I will walk through a rollback strategy you can implement today without implementing those deployment patterns.
+Whenever the topic of rollbacks comes up, the conversation turns to blue/green, red/black, or canary deployment patterns. Those patterns make rollbacks much easier, however, they're time intensive to implement, and sometimes they're not necessary. Maybe you pushed out an API change to Test, and you want to get back to a known good state.  That's not when you should attempt to implement those patterns for the first time.  
+
+In this post, I walk through a rollback strategy you can execute today, without implementing advanced deployment patterns.
 
 :::hint
 **Out of scope**
-Rolling back database changes is out of scope for this article because doing them **successfully** [is a complex topic with many pitfalls](https://octopus.com/blog/database-rollbacks-pitfalls).  This article is focused on code-only rollbacks and will show you how to skip database deployment steps during a rollback.  In practice, code and UI changes are much more frequent than database changes.  Especially in the **Test** environment.  Most schema changes happen at the start of a new feature, with minor tweaks made during testing.
+Rolling back database changes is out of scope for this article because doing them successfully [is a complex topic with many pitfalls](https://octopus.com/blog/database-rollbacks-pitfalls).  This post focuses on code-only rollbacks. It demonstrates how to skip database deployment steps during a rollback.  In practice, code and UI changes are much more frequent than database changes, especially in the test environment.  Most schema changes happen at the start of a new feature, with minor tweaks during testing.
 :::
 
 # What is a rollback?
 
-This article will help you modify your existing (working and tested) deployment process to support rollbacks.  Before doing that, let's examine what a rollback is trying to accomplish.  
+This post will help you modify your existing (working and tested) deployment process to support rollbacks.  
+
+First, let's examine what a rollback is trying to accomplish.  
 
 Consider these scenarios:
 
-- The QA team is blocked because of a bug introduced in a recent deployment **Test**, and the fix is hours away from being checked in.
-- During a **Production** deployment verification, a showstopping bug is found and will require over a day to fix and test.
+- The QA team is blocked because of a bug introduced in a recent deployment test, and the fix is hours from being checked in.
+- During a production deployment verification, a show-stopping bug is found that will require over a day to fix and test.
 
-The end goal is the same in both scenarios; the application needs to get back to a known good state right away.
+The goal is the same in both scenarios; quickly return the application to a known good state.
 
 :::hint
-Ironically, most customers I talk to are focused on the **Production** scenario, yet the **Test** scenario happens much more often and has a bigger impact than most people realize.  If you follow Octopus' core rule of [build once, deploy everywhere](https://octopus.com/blog/build-your-binaries-once), the chances of a showstopping bug making to **Production** is rare (but not impossible).  However, **Test** is different; I've seen the mindset of "eh; it's **Test**, only a few people are affected."  That is untrue; deadlines will slip if QA is blocked for hours at a time.  
+Ironically, many customers are focused on the production scenario, yet the test scenario occurs more often, and has a bigger impact than most people realize.  If you follow Octopus Deploy's core rule of [build once, deploy everywhere](https://octopus.com/blog/build-your-binaries-once), the chance of a show-stopping bug making to **Production** is rare (but not impossible).  However, test is different; I've seen the mindset that only a few people are affected.  That's untrue though, as deadlines will slip if QA is blocked for hours at a time.  
 :::
 
-The goal is to get back to a known good state, but that is different from a deployment.  Skipping specific steps can make rollback faster.  Many deployment processes I've seen and written have been created with the assumption that none of the dependent software or infrastructure has been configured.  For example, a deployment process could trigger a runbook to create a database if it didn't already exist.  Or, install the latest version of Node.js.  During a rollback, those additional steps are not needed.  If you just checked to see if the database existed when deploying `2021.2.3` of your application, you won't need to check again when rolling back to `2021.2.1`.  
+The goal is to get back to a known good state, but that's different from a deployment.  Skipping specific steps can make rollback faster.  Many deployment processes are created with the assumption that none of the dependent software or infrastructure has been configured.  For example, a deployment process could trigger a runbook to create a database if it didn't already exist.  Or, install the latest version of Node.js.  During a rollback, those additional steps are not needed.  If you check to see if the database existed when deploying `2021.2.3` of your application, you won't need to check again when rolling back to `2021.2.1`.  
 
 For this article: 
 
 > A rollback is getting back to a known good state by running a modified version of the original deployment process.  
 
-# Rollfoward or Rollback
+# Rolling forward or rolling back
 
-Let's get this out of the way; not all releases can and should be rolled back.  My scenarios from above specifically mention a fix is hours or days away.  In a lot of cases, rolling forward is typically less risky and time-consuming.  A minor fix can be easier to test and deploy than rolling back a major release.  
+Not all releases can and should be rolled back.  The scenarios above specifically mention a fix is hours or days away.  In many cases, rolling forward is typically less risky and time-consuming.  A minor fix can be easier to test and deploy than rolling back a major release.  
 
 Here are some typical reasons why we recommend rolling forward.
 
-- You cannot pick and choose which piece of code to roll back in a binary.  It either all rolls back, or nothing rolls back.  A team on a once a month or once a quarter release schedule will have dozens if not 100s of changes.  That is why we also recommend smaller changesets released at a greater frequency.
-- Often, database and code changes are tightly coupled together.  Safely rolling back a database **without data loss** is [extremely difficult](https://octopus.com/blog/database-rollbacks-pitfalls), if not impossible.
+- You cannot choose which piece of code to roll back in a binary.  It either all rolls back, or nothing rolls back.  A team on a once a month or once a quarter release schedule will have dozens if not 100s of changes.  That's why we also recommend smaller changesets released at a greater frequency.
+- Often, database and code changes are tightly coupled together.  Safely rolling back a database without data loss is [extremely difficult](https://octopus.com/blog/database-rollbacks-pitfalls), if not impossible.
 - Users will notice when something is changed and then changed back, especially for custom business applications used all day by the same user base.  
-- With the proliferation of [Service Oriented Architecture](https://en.wikipedia.org/wiki/Service-oriented_architecture)(SOA) and its cousin [Microservices](https://en.wikipedia.org/wiki/Microservices) code changes are rarely made in isolation.  "Proper" SOA and Microservices architecture are loosely coupled to each other and their clients.  However, in the real world, coupling exists.  A rollback to a back-end service could have downstream impacts.
+- With the proliferation of [service-oriented architecture](https://en.wikipedia.org/wiki/Service-oriented_architecture) (SOA) and its cousin [microservices](https://en.wikipedia.org/wiki/Microservices) code changes are rarely made in isolation.  "Proper" SOA and microservices architecture are loosely coupled to each other and their clients.  However, in the real world, coupling exists.  A rollback to a back-end service can have downstream impacts.
 
 Despite that, there are several scenarios when a rollback can be the right solution.  A legacy monolith application with a large database can be successfully rolled back in specific circumstances.  Some of those scenarios include (but are not limited to):
 
-- Styling or markup only changes.
-- Back-end code changes with no public interface or model changes.
-- Zero to minimal coupling with external services or applications.
-- Zero to minimal database changes (new index, changing a stored procedure for performance improvements, tweaked view including additional columns on already joined tables).
-- Number of changes since the last release is small.
+- Styling or markup only changes
+- Back-end code changes with no public interface or model changes
+- Zero to minimal coupling with external services or applications
+- Zero to minimal database changes (new index, changing a stored procedure for performance improvements, tweaked view including additional columns on already joined tables)
+- Number of changes since the last release is small
 
 While we recommend rolling forward, having a rollback process in place is a valuable option in your CI/CD pipeline, even if a rollback occurs once a month.
 
 # Test your rollback process
 
-About ten years ago, a few hours after **Production** deployment, I was informed about a showstopping bug.  That was a bit of a shock as that release had gone through weeks of verification by QA.  We could not figure out what was causing it and concluded a rollback was needed.  That was the first rollback in years.  The rollback plan defined in the deployment Word doc was always "rollback to the previous version of code."  That is more of a wish than a detailed plan.  Immediately the issue was escalated, causing everyone involved with the release to be paged (QA, Business Owners, Managers, etc.).  
+About ten years ago, a few hours after a production deployment, I was informed about a show-stopping bug.  I was surprised as the release had gone through weeks of verification by QA.  We couldn't establish the cause and concluded a rollback was needed.  That was the first rollback in years.  The rollback plan defined in the deployment Word doc was always "rollback to the previous version of code."  That is more of a wish than a detailed plan.  Immediately the issue was escalated, causing everyone involved with the release to be paged (from QA, to business owners, and managers).  
 
-A new rollback plan had to be created from scratch.  Even with a new plan, we pegged the odds of a successful rollback at 10%. It was a no-win scenario, we had a showstopping bug we couldn't repro (and therefore fix), or we could roll back and take our chances.  It was still better than 0% (which is what we had in our current state). Each person was assigned a task, me getting the task of going through the changelog item by item and documenting the impact of rolling back.  Fifteen minutes before we made the final rollback decision, I came across a small block of code that looked suspicious.  I ran some tests I knew hit that block of code, and to my surprise, that is what was causing the showstopping bug.  We aborted the rollback plans, implemented a fix, and pushed it out later that day.  Everyone was relieved, as we didn't have to test an unproven rollback process.
+A new rollback plan had to be created from scratch.  Even with a new plan, we pegged the odds of a successful rollback at 10%. It was a no-win situation. We had a show-stopping bug we couldn't repro (and therefore fix), or we could roll back and take our chances.  
 
-I'm telling you this story because you should test your rollback processed multiple times.  In a perfect world, it should be tested and verified once a week.  During a ** Production ** outage, the last thing you want to do is develop a new rollback process or run an untested rollback process.  
+Rolling back offered at least some chance as opposed to none (which is what we had in our current state). Each person was assigned a task. I went through the changelog item by item, and documented the impact of rolling back.  
+
+Fifteen minutes before we made the final rollback decision, I discovered a small block of code that looked suspicious.  I ran tests to hit that block of code, and established it was causing the show-stopping bug.  We aborted the rollback plans, implemented a fix, and pushed it out later that day.  Everyone was relieved tat we didn't have to test an unproven rollback process.
+
+I'm telling you this story because you should test your rollback processes multiple times.  In a perfect world, it should be tested and verified once a week.  During a production outage, the last thing you want to do is develop a new rollback process or run an untested rollback process.  
 
 # Example Deployment Process
 
@@ -261,4 +269,13 @@ I'll be the first to admit it; I've been bullish on adopting advanced deployment
 
 My previous "adopt advanced deployment patterns or roll-forward only" is an extreme point of view.  It doesn't have to be all or nothing.  You can create a rollback process with a few tweaks to your existing deployment process using [variable run condition](https://octopus.com/docs/projects/steps/conditions#variable-expressions) and the new step templates, [Calculate Deployment Mode](https://library.octopus.com/step-templates/d166457a-1421-4731-b143-dd6766fb95d5/actiontemplate-calculate-deployment-mode) and [Block Release Progression](https://library.octopus.com/step-templates/78a182b3-5369-4e13-9292-b7f991295ad1/actiontemplate-block-release-progression).  While it won't support every possible rollback scenario, it will give you another option when a bug is found.
 
-Until next time, happy deployments!
+
+## Register for the webinar: Rollback strategies with Octopus Deploy
+
+A robust rollback strategy is key to any deployment strategy. In this webinar, we’ll cover best practices for IIS deployments, Tomcat, and full stack applications with a database. We’ll also discuss how to get the rollback strategy right for your situation. 
+
+We're running 3 sessions of the webinar over 2 days, from Wed 4 Nov – Thurs 5 Nov, 2021.
+
+<span><a class="btn btn-success" href="/events/rollback-strategies-with-octopus-deploy">Register now</a></span>
+
+Happy deployments!
