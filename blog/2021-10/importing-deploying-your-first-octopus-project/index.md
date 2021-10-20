@@ -100,7 +100,7 @@ You now have the following:
 - **Application ID**
 - **Application Password/secret**
 
-Next, you need to configure your [resource permissions](#resource-permissions).
+Next, you need to configure your resource permissions.
 
 ### Resource permissions {#resource-permissions}
 
