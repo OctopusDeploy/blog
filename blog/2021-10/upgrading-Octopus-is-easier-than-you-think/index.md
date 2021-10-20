@@ -202,8 +202,6 @@ To back up the license key:
 
 If you can’t find or don’t know your license key, [email us](customersuccess@octopus.com) and we can help recover it.
 
-![The License screen in Octopus Web Portal](license.png)
-
 ### Database
 
 You should always back up your database before upgrading Octopus. Most database management tools have wizards to help you.
@@ -255,7 +253,7 @@ Thankfully, the upgrade process doesn’t take very long regardless of the Octop
 
 You should:
 
--	make sure you’ve [backed up everything already we outlined](#What-to-back-up-and-how)
+-	make sure you’ve [backed up everything we already outlined](#What-to-back-up-and-how)
 -	set up a project to test your deployments after each upgrade (in my test, I used a simple file delivery to another computer’s C:\ drive).
 -	download both [Octopus 3.17](https://octopus.com/downloads/3.17.14) and the [latest version](https://octopus.com/downloads) from the Octopus website.
 
