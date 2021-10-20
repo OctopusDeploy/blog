@@ -226,7 +226,7 @@ To view the details of the tests, click into the build task and click the **Test
 
 ![Test results](test-result.png "width=500")
 
-## Managing failed tests
+### Claiming failed tests
 
 The example pipelines above have gone to some lengths to allow builds to succeed when tests are failing. This ensures that the test results are processed by the JUnit or MSTest plugins even when tests fail. However, it is expected that test failures are still addressed by the engineering team. The [Claim](https://plugins.jenkins.io/claim/) plugin provides the ability for Jenkins users to claim responsibility for failed tests.
 
@@ -280,11 +280,11 @@ A global report of all claims can be found by opening the **Claim Report** link:
 
 ![Claim Report](claim-report.png "width=500")
 
-## Failing the build when tests fail
+### Failing the build when tests fail
 
 You may require that builds fail rather than being marked as unstable in the event of a test failure. You generally have two options to achieve this.
 
-### Failing the test command
+#### Failing the test command
 
 The first is to allow the command that ran the tests to fail. Most test runners will return a non-zero exit code if tests fail, which will cause the build to fail.
 
@@ -300,7 +300,7 @@ The following DotNET Core command also returns an non-zero exit code if any test
 sh(script: 'dotnet test -l:trx') 
 ```
 
-### Failing the test processing
+#### Failing the test processing
 
 The second option is to allow the test processor to determine if the build failed or not.
 
@@ -412,3 +412,4 @@ Unit tests are a common feature found in most large code bases, and by executing
 * How to run tests in Java and DotNET Core code bases.
 * How to collect and process the test results with the JUnit and MSTest plugins.
 * How to allow Jenkins users to claim failed tests to indicate they will take responsibility for them.
+* How to fail a build when the tests fail.
