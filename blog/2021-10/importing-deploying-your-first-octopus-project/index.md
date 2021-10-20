@@ -89,9 +89,9 @@ Create an account in Azure by navigating to the [Azure portal](https://portal.az
 
 1. In the Azure portal, open the top left menu and navigate to **Azure Active Directory**, then **Properties**. 
 2. Copy the value from the **Tenant ID** field. This is your **Tenant ID**.
-3. Next you need your **Application ID**.
-  - If you created an AAD registered application, navigate to **Azure Active Directory**, then select **App registrations**, click **View all applications**, select the app and copy the **Application ID**.  Please note, the Azure UI defaults to the **Owned applications** tab.  Click the **All applications** tab to view all app registrations. 
-  - If you haven't created a registered app, navigate to **Azure Active Directory**, then select **App registrations**, click on **New registration** and add the details for your app, and click **Save**. Make note of the **Application ID**.
+3. Next you need your **Application ID**:
+   - If you created an AAD registered application, navigate to **Azure Active Directory**, then select **App registrations**, click **View all applications**, select the app and copy the **Application ID**.  Please note, the Azure UI defaults to the **Owned applications** tab.  Click the **All applications** tab to view all app registrations. 
+   - If you haven't created a registered app, navigate to **Azure Active Directory**, then select **App registrations**, click on **New registration** and add the details for your app, and click **Save**. Make note of the **Application ID**.
 4. Generate a one-time password by navigating to **Certificates & Secrets**, then **New client secret**. Add a new **secret**, enter a description, and click **Save**. Make note of the displayed application password for use in Octopus. You can change the expiry date, if you don’t want to accept the default one-year expiry for the password.
 
 You now have the following:
