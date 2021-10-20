@@ -10,27 +10,27 @@ tags:
  - Octopus
 ---
 
-Verifying code changes with unit tests is a critical process in the development workflow. Jenkins provides a number of plugins to collect and process the results of tests allowing developers to browse the results, debug failed tests, ignore flakey or faulty tests, and generate reports on the history of tests over time.
+Verifying code changes with unit tests is a critical process in typical development workflows. Jenkins provides a number of plugins to collect and process the results of tests allowing developers to browse the results, debug failed tests, ignore flakey or faulty tests, and generate reports on the history of tests over time.
 
 In this post you'll learn how to add unit tests to a Jenkins project and configure plugins to process the results.
 
 ## Prerequisites
 
-To follow along with this post you'll need Jenkins instance. The [Traditional Jenkins Installation](/blog/2022-01/jenkins-install-guide/index.md), [Docker Jenkins Installation](/blog/2022-01/jenkins-docker-install-guide/index.md), or [Helm Jenkins Installation](/blog/2022-01/jenkins-helm-install-guide/index.md) guides provide instructions on installing Jenkins in your chosen environment.
+To follow along with this post you'll need a Jenkins instance. The [Traditional Jenkins Installation](/blog/2022-01/jenkins-install-guide/index.md), [Docker Jenkins Installation](/blog/2022-01/jenkins-docker-install-guide/index.md), or [Helm Jenkins Installation](/blog/2022-01/jenkins-helm-install-guide/index.md) guides provide instructions to install Jenkins in your chosen environment.
 
 The sample applications you'll build are written in Java and DotNET Core, so the Java Development Kit (JDK) and DotNET Core SDK must be installed on the Jenkins controller or agents that perform the builds.
 
 You can find instructions on installing the DotNET Core SDK from the [Microsoft website](https://dotnet.microsoft.com/download/dotnet/3.1). The sample project is written against DotNET Core 3.1.
 
-The OpenJDK project provides a free and open source distributions that you can use to compile Java applications. There are many OpenJDK distributions to choose from including [OpenJDK](https://openjdk.java.net), [AdoptOpenJDK](https://adoptopenjdk.net), [Azul Zulu](https://www.azul.com/downloads/), [Red Hat OpenJDK](https://developers.redhat.com/products/openjdk/download), and more. I typically use the Azul Zulu distribution, although any distribution will do.
+The OpenJDK project (and its downstream projects) provide free and open source distributions that you can use to compile Java applications. There are many OpenJDK distributions to choose from including [OpenJDK](https://openjdk.java.net), [AdoptOpenJDK](https://adoptopenjdk.net), [Azul Zulu](https://www.azul.com/downloads/), [Red Hat OpenJDK](https://developers.redhat.com/products/openjdk/download), and more. I typically use the Azul Zulu distribution, although any distribution will do.
 
 ## Unit testing in Java
 
 There are many unit testing frameworks available for Java, but the [most popular](https://www.overops.com/blog/the-top-100-java-libraries-in-2016-after-analyzing-47251-dependencies/) is [JUnit](https://junit.org). You'll use the [RandomQuotes](https://github.com/OctopusSamples/RandomQuotes-Java) sample application to demonstrate JUnit tests running in a Jenkins project.
 
-### Installing the Jenkins plugins
+### Installing the Jenkins plugin
 
-Install the [JUnit](https://plugins.jenkins.io/junit/) plugin to process the result of JUnit tests. To install the plugin, click {{Manage Jenkins,Manage Plugins,Available}}, enter `junit` in the search box, select the **JUnit** option, and click **Install without restart**:
+You must install the [JUnit](https://plugins.jenkins.io/junit/) plugin to process the result of JUnit tests. To install the plugin, click {{Manage Jenkins,Manage Plugins,Available}}, enter `junit` in the search box, select the **JUnit** option, and click **Install without restart**:
 
 ![Junit Plugin](junit-plugin.png "width=500")
 
@@ -77,7 +77,7 @@ pipeline {
 
 The important part of this pipeline, as it relates to testing, is the `Test` stage.
 
-The first step runs the maven `test` goal passing `--batch-mode` to avoid some unnecessary logging that shows each dependency being downloaded and `-Dmaven.test.failure.ignore=true` to allow the step to pass successfully even if there were failing tests.
+The first step runs the maven `test` goal passing `--batch-mode` to avoid unnecessary logging that shows each dependency being downloaded and `-Dmaven.test.failure.ignore=true` to allow the step to pass successfully even if there were failing tests.
 
 ```groovy
 sh(script: './mvnw --batch-mode -Dmaven.test.failure.ignore=true test')
@@ -89,7 +89,7 @@ The next step processes the test results with the JUnit plugin:
 junit(testResults: 'target/surefire-reports/*.xml', allowEmptyResults : true)
 ```
 
-The `Package` stage has been configured to package the application while skipping any tests with the `-DskipTests` argument. Testing is handled in a subsequent stage:
+The `Package` stage packages the application while skipping any tests with the `-DskipTests` argument, as testing was handled in the previous stage:
 
 ```groovy
 sh(script: './mvnw --batch-mode -Dmaven.test.skip=true clean package', returnStdout: true)
@@ -101,11 +101,11 @@ The **Test Result Trend** graph tracks the passed, failed, and skipped tests acr
 
 ## Unit testing in DotNET Core
 
-There are a number of popular unit testing frameworks for DotNET Core including MSTest, NUnit, and xUnit. You'll use the [RandomQuotes](https://github.com/OctopusSamples/RandomQuotes) sample application to demonstrate runing NUnit tests from a Jenkins pipeline.
+There are a number of popular unit testing frameworks for DotNET Core including MSTest, NUnit, and xUnit. You'll use the [RandomQuotes](https://github.com/OctopusSamples/RandomQuotes) sample application to demonstrate running NUnit tests from a Jenkins pipeline.
 
-### Installing the Jenkins plugins
+### Installing the Jenkins plugin
 
-You'll use the [MSTest](https://plugins.jenkins.io/mstest/) plugin to process the test results.
+You'll use the [MSTest](https://plugins.jenkins.io/mstest/) plugin to process DotNET Core test results.
 
 Install the [MSTest](https://plugins.jenkins.io/mstest/) plugin to process the result of NUnit tests. To install the plugin, click {{Manage Jenkins,Manage Plugins,Available}}, enter `mstest` in the search box, select the **MSTest** option, and click **Install without restart**:
 
@@ -160,11 +160,11 @@ pipeline {
 }
 ```
 
-The `Test` stage includes the steps required to run and process the tests.
+The `Test` stage includes the steps required to run and process unit tests.
 
-You call `dotnet test` to run the unit tests, and the argument `-l:trx` writes the test results in a  Visual Studio Test Results (TRX) file.
+You call `dotnet test` to run the unit tests, and the argument `-l:trx` writes the test results in a Visual Studio Test Results (TRX) file.
 
-This command will return a non-zero exit code if any tests failed. To ensure the pipeline continues to be processed in the event of failed tests, you return `true` if `dotnet test` indicates a failure:
+This command will return a non-zero exit code if any tests failed. To ensure the pipeline continues to be processed in the event of a failed test, you return `true` if `dotnet test` indicates a failure:
 
 ```bash
 sh(script: 'dotnet test -l:trx || true')
@@ -178,7 +178,7 @@ mstest(testResultsFile: '**/*.trx', failOnError: false, keepLongStdio: true)
 
 ## Handling failed tests
 
-To this point you have only run builds with successful tests. To simulate a failing test, change the `Checkout` stage to checkout the `failing-test` branch of the Java Random Quotes application:
+To this point you have only run builds with successful tests. To simulate a failing test, modify the `Checkout` stage to point to the `failing-test` branch of the Java Random Quotes application:
 
 ```groovy
 pipeline {
@@ -210,7 +210,7 @@ pipeline {
 }
 ```
 
-The build is marked as unstable, and the **Test Result Trend** graph shows a new failing test:
+This branch has tests that always fail. Builds from this branch are marked as unstable, and the **Test Result Trend** graph shows a new failing test:
 
 ![Failing Tests](failing-test.png "width=500")
 
