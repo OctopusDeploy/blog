@@ -233,6 +233,7 @@ pipeline {
   // * Claim: https://plugins.jenkins.io/claim/
   agent 'any'
   options{
+    // This option allows broken builds to be claimed
     allowBrokenBuildClaiming()
   }
   stages {
@@ -246,6 +247,7 @@ pipeline {
     stage('Test') {
       steps {
         sh(script: './mvnw --batch-mode -Dmaven.test.failure.ignore=true test')
+        // The testDataPublishers argument allows failed tests to be claimed
         junit(testDataPublishers: [[$class: 'ClaimTestDataPublisher']], testResults: 'target/surefire-reports/*.xml', allowEmptyResults : true)
       }
     }
