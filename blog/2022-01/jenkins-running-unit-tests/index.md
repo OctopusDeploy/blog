@@ -99,26 +99,6 @@ The **Test Result Trend** graph tracks the passed, failed, and skipped tests acr
 
 ![Test Result Trend](test-result-trend.png "width=500")
 
-To this point you have only run builds with successful tests. To simulate a failing test, change the `Checkout` stage to checkout the `failing-test` branch:
-
-```groovy
-    stage('Checkout') {
-      steps {
-        script {
-            checkout([$class: 'GitSCM', branches: [[name: '*/failing-test']], userRemoteConfigs: [[url: 'https://github.com/OctopusSamples/RandomQuotes-Java.git']]])
-        }
-      }
-    }
-```
-
-The build is marked as unstable, and the **Test Result Trend** graph shows a new failing test:
-
-![Failing Tests](failing-test.png "width=500")
-
-To view the details of the tests, click into the build task and click the **Test Result** link. Here you can drill into each test, view the test result, and view the logs:
-
-![Test results](test-result.png "width=500")
-
 ## Unit testing in DotNET Core
 
 There are a number of popular unit testing frameworks for DotNET Core including MSTest, NUnit, and xUnit. You'll use the [RandomQuotes](https://github.com/OctopusSamples/RandomQuotes) sample application to demonstrate runing NUnit tests from a Jenkins pipeline.
@@ -172,8 +152,104 @@ pipeline {
     }
     stage('Test') {
       steps {
-        sh(script: 'dotnet test -l:trx')
+        sh(script: 'dotnet test -l:trx || true')
         mstest(testResultsFile: '**/*.trx', failOnError: false, keepLongStdio: true)
+      }
+    }
+  }
+}
+```
+
+The `Test` stage includes the steps required to run and process the tests.
+
+You call `dotnet test` to run the unit tests, and the argument `-l:trx` writes the test results in a  Visual Studio Test Results (TRX) file.
+
+This command will return a non-zero exit code if any tests failed. To ensure the pipeline continues to be processed in the event of failed tests, you return `true` if `dotnet test` indicates a failure:
+
+```bash
+sh(script: 'dotnet test -l:trx || true')
+```
+
+The test results are then processed by the MSTest plugin:
+
+```bash
+mstest(testResultsFile: '**/*.trx', failOnError: false, keepLongStdio: true)
+```
+
+## Handling failed tests
+
+To this point you have only run builds with successful tests. To simulate a failing test, change the `Checkout` stage to checkout the `failing-test` branch of the Java Random Quotes application:
+
+```groovy
+pipeline {
+  // This pipeline requires the following plugins:
+  // * Git: https://plugins.jenkins.io/git/
+  // * Workflow Aggregator: https://plugins.jenkins.io/workflow-aggregator/
+  // * JUnit: https://plugins.jenkins.io/junit/
+  agent 'any'
+  stages {
+    stage('Checkout') {
+      steps {
+        script {
+            checkout([$class: 'GitSCM', branches: [[name: '*/failing-test']], userRemoteConfigs: [[url: 'https://github.com/OctopusSamples/RandomQuotes-Java.git']]])
+        }
+      }
+    }
+    stage('Test') {
+      steps {
+        sh(script: './mvnw --batch-mode -Dmaven.test.failure.ignore=true test')
+        junit(testResults: 'target/surefire-reports/*.xml', allowEmptyResults : true)
+      }
+    }
+    stage('Package') {
+      steps {
+        sh(script: './mvnw --batch-mode package -DskipTests')
+      }
+    }
+  }
+}
+```
+
+The build is marked as unstable, and the **Test Result Trend** graph shows a new failing test:
+
+![Failing Tests](failing-test.png "width=500")
+
+To view the details of the tests, click into the build task and click the **Test Result** link. Here you can drill into each test, view the test result, and view the logs:
+
+![Test results](test-result.png "width=500")
+
+## Managing failed tests
+
+The example pipelines above have gone to some lengths to allow builds to succeed when tests are failing. However, it is expected that test failures are addressed by the engineering team. The [Claim](https://plugins.jenkins.io/claim/) plugin provides
+
+```groovy
+pipeline {
+  // This pipeline requires the following plugins:
+  // * Git: https://plugins.jenkins.io/git/
+  // * Workflow Aggregator: https://plugins.jenkins.io/workflow-aggregator/
+  // * JUnit: https://plugins.jenkins.io/junit/
+  // * Claim: https://plugins.jenkins.io/claim/
+  agent 'any'
+  properties([
+    allowBrokenBuildClaiming()
+  ])
+  stages {
+    stage('Checkout') {
+      steps {
+        script {
+            checkout([$class: 'GitSCM', branches: [[name: '*/failing-test']], userRemoteConfigs: [[url: 'https://github.com/OctopusSamples/RandomQuotes-Java.git']]])
+        }
+      }
+    }
+    stage('Test') {
+      steps {
+        sh(script: './mvnw --batch-mode -Dmaven.test.failure.ignore=true test')
+        junit(testDataPublishers: [[$class: 'ClaimTestDataPublisher']], testResults: 'target/surefire-reports/*.xml', allowEmptyResults : true)
+      }
+    }
+    stage('Package') {
+      steps {
+        sh(script: './mvnw --batch-mode package -DskipTests')
       }
     }
   }
