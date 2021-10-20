@@ -57,7 +57,7 @@ pipeline {
     stage('E2E Test') {
       steps {
         dir('cypress') {
-          checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/mcasperson/simple-cypress-test.git']]])
+          checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/OctopusSamples/junit-cypress-test.git']]])
           sh(script: 'npm install')
           sh(script: 'NO_COLOR=1 cypress run')
         }
