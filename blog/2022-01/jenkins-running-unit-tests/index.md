@@ -410,6 +410,6 @@ pipeline {
 Unit tests are a common feature found in most large code bases, and by executing unit tests in Jenkins the development team has a central source of truth reporting the current and historical test results. In this post you learned:
 
 * How to run tests in Java and DotNET Core code bases.
-* How to collect and process the test results with the JUnit and MSTest plugins.
+* How to collect and process the test results with the JUnit, MSTest, and xUnit plugins.
 * How to allow Jenkins users to claim failed tests to indicate they will take responsibility for them.
 * How to fail a build when the tests fail.
