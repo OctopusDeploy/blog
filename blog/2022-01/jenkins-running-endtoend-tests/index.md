@@ -18,11 +18,7 @@ In this post you'll learn how to run E2E tests with Cypress, to validate interac
 
 To follow along with this post you'll need a Jenkins instance. The [Traditional Jenkins Installation](/blog/2022-01/jenkins-install-guide/index.md), [Docker Jenkins Installation](/blog/2022-01/jenkins-docker-install-guide/index.md), or [Helm Jenkins Installation](/blog/2022-01/jenkins-helm-install-guide/index.md) guides provide instructions to install Jenkins in your chosen environment.
 
-Both Cypress and Newman require Node.js to be installed. The [Node.js website](https://nodejs.org/en/download/) provides downloads, or offers [installation instructions for package managers](https://nodejs.org/en/download/package-manager/).
-
-Cypress must be installed on the Jenkins controller or agents to run browser based E2E tests. The [Cypress documentation](https://docs.cypress.io/guides/getting-started/installing-cypress) provides instructions for installing Cypress.
-
-Newman is the command line tool for running Postman tests and must be installed on the Jenkins controller or agents to run API E2E tests. The [Postman documentation](https://support.postman.com/hc/en-us/articles/115003703325-How-to-install-Newman-) has instructions for installing Newman.
+Both Cypress and Newman (the Postman command line test runner) require Node.js to be installed. The [Node.js website](https://nodejs.org/en/download/) provides downloads, or offers [installation instructions for package managers](https://nodejs.org/en/download/package-manager/).
 
 ## Running browser tests with Cypress
 
@@ -48,7 +44,7 @@ pipeline {
     }
     stage('Test') {
       steps {
-        sh(script: 'NO_COLOR=1 cypress run || true')          
+        sh(script: 'NO_COLOR=1 node_modules/.bin/cypress run || true')          
       }
     }
   }
@@ -60,6 +56,8 @@ pipeline {
   }
 }
 ```
+
+## Running API tests with Newman
 
 ```groovy
 pipeline {
@@ -94,3 +92,5 @@ pipeline {
   }
 }
 ```
+
+## Conclusion
