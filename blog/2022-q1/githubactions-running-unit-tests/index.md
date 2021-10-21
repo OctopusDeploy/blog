@@ -110,6 +110,10 @@ The test results are displayed as a link under the original workflow results:
 
 ![Java Tests Results](java-test-results.png "width=500")
 
+Failing tests show additional details such as the name of the test, the test result, and the raw test output:
+
+![Failed test](failing-test.png "width=500")
+
 ## Unit testing in DotNET
 
 ```yaml
