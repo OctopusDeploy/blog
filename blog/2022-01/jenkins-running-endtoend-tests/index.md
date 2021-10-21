@@ -133,6 +133,10 @@ You can then drill into the test results using the same interface that exposes u
 
 ![Cypress test results](cypress-test-result.png "width=500")
 
+The video artifact captures the test output:
+
+![Cypress video](cypress-video.png "width=500")
+
 ## Running API tests with Newman
 
 Newman is the command line test runner for Postman. The test scripts are exported from Postman as JSON files. An example that queries the GitHub API has been saved in the [junit-newman-test GitHub Repo](https://github.com/OctopusSamples/junit-newman-test):
