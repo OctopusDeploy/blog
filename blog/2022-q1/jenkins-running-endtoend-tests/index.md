@@ -16,7 +16,7 @@ In this post you'll learn how to run E2E tests with Cypress, to validate interac
 
 ## Prerequisites
 
-To follow along with this post you'll need a Jenkins instance. The [Traditional Jenkins Installation](/blog/2022-01/jenkins-install-guide/index.md), [Docker Jenkins Installation](/blog/2022-01/jenkins-docker-install-guide/index.md), or [Helm Jenkins Installation](/blog/2022-01/jenkins-helm-install-guide/index.md) guides provide instructions to install Jenkins in your chosen environment.
+To follow along with this post you'll need a Jenkins instance. The [Traditional Jenkins Installation](/blog/2022-q1/jenkins-install-guide/index.md), [Docker Jenkins Installation](/blog/2022-q1/jenkins-docker-install-guide/index.md), or [Helm Jenkins Installation](/blog/2022-q1/jenkins-helm-install-guide/index.md) guides provide instructions to install Jenkins in your chosen environment.
 
 Both [Cypress](https://www.cypress.io) and [Newman](https://learning.postman.com/docs/running-collections/using-newman-cli/command-line-integration-with-newman) (the Postman command line test runner) require Node.js to be installed. The [Node.js website](https://nodejs.org/en/download/) provides downloads, or offers [installation instructions for package managers](https://nodejs.org/en/download/package-manager/).
 
@@ -108,7 +108,7 @@ The `Dependencies` stage downloads Cypress to the project directory:
 
 The `Test` stage sets the `NO_COLOR` environment variable to `1` to strip an ANSI color codes from the output, and then runs Cypress. Cypress returns a non-zero exit code if any tests fail, but we defer the decision to pass or fail the build to the test processor by ensuring this command always returns true by appending `|| true`.
 
-You can learn more about processing failed test in [Running unit tests in Jenkins](/blog/2022-01/jenkins-running-unit-tests/index.md):
+You can learn more about processing failed test in [Running unit tests in Jenkins](/blog/2022-q1/jenkins-running-unit-tests/index.md):
 
 ```groovy
     stage('Test') {
@@ -257,7 +257,7 @@ The `Test` stage runs Newman, enabling the JUnit reporter with the `--reporters 
 
 Newman will return a non-zero exit code if any tests fail, so to defer the success or failure of the build to the test processor, you ensure the command always returns true with `|| true'`.
 
-You can learn more about processing failed test in [Running unit tests in Jenkins](/blog/2022-01/jenkins-running-unit-tests/index.md):
+You can learn more about processing failed test in [Running unit tests in Jenkins](/blog/2022-q1/jenkins-running-unit-tests/index.md):
 
 ```groovy
     stage('Test') {

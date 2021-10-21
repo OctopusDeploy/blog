@@ -88,7 +88,7 @@ Open [http://localhost:8080](http://localhost:8080) when you see the following m
 Jenkins is fully up and running
 ```
 
-You are now given the opportunity to complete the initial configuration of the Jenkins instance. Take a look at the [previous post](blog/2022-01/jenkins-install-guide/index.md) for more details on completing this initial configuration.
+You are now given the opportunity to complete the initial configuration of the Jenkins instance. Take a look at the [previous post](blog/2022-q1/jenkins-install-guide/index.md) for more details on completing this initial configuration.
 
 You may have noticed that running the Docker with the command above attaches your terminal to the container output stream. To [run the Docker image in the background](https://docs.docker.com/language/nodejs/run-containers/#run-in-detached-mode), use the `-d` or `--detach` argument:
 
