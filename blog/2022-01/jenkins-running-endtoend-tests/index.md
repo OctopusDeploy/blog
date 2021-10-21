@@ -143,56 +143,57 @@ Newman is the command line test runner for Postman. The test scripts are exporte
 
 ```json
 {
-	"info": {
-		"_postman_id": "f9b1443b-c23d-4738-901d-092cba2fc3d6",
-		"name": "GitHub",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-	},
-	"item": [
-		{
-			"name": "GitHub API",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.test(\"response must be valid and have a body\", ",
-							"function () {\n",
-							" pm.response.to.be.ok;\n",
-							" pm.response.to.be.withBody;\n",
-							" pm.response.to.be.json;\n",
-							"\n",
-							" pm.expect(pm.response.json().quote != \"\").to.be.true;\n",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://api.github.com/repos/OctopusSamples/junit-newman-test/git/trees/main",
-					"protocol": "http",
-					"host": [
-						"api",
-						"github",
-						"com"
-					],
-					"path": [
-						"repos",
-						"OctopusSamples",
-						"junit-newman-test",
-						"git",
-						"trees",
-						"main"
-					]
-				}
-			},
-			"response": []
-		}
-	]
+{
+  "info": {
+    "_postman_id": "f9b1443b-c23d-4738-901d-092cba2fc3d6",
+    "name": "GitHub",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GitHub API",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"response must be valid and have a body\", ",
+              "function () {\n",
+              " pm.response.to.be.ok;\n",
+              " pm.response.to.be.withBody;\n",
+              " pm.response.to.be.json;\n",
+              "\n",
+              " pm.expect(pm.response.json().quote != \"\").to.be.true;\n",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://api.github.com/repos/OctopusSamples/junit-newman-test/git/trees/main",
+          "protocol": "http",
+          "host": [
+            "api",
+            "github",
+            "com"
+          ],
+          "path": [
+            "repos",
+            "OctopusSamples",
+            "junit-newman-test",
+            "git",
+            "trees",
+            "main"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
 }
 ```
 
