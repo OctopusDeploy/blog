@@ -241,7 +241,7 @@ Then head to our [download archives](https://octopus.com/downloads/previous) to 
 
 ![Where to check the Octopus version in old and new versions](versioncheck.png)
 
-## An example in-place upgrade from 3.X
+## An example in-place upgrade from 3.1
 
 Regardless of your method, an in-place upgrade of Octopus on your test or production instances is the same.
 
