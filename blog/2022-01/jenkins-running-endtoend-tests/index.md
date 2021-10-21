@@ -231,7 +231,7 @@ pipeline {
     }
     stage('Test') {
       steps {
-        sh(script: 'node_modules/.bin/newman run GitHubTree.json --reporter-junit-export results.xml --reporters cli,junit || true')          
+        sh(script: 'node_modules/.bin/newman run GitHubTree.json --reporters cli,junit --reporter-junit-export results.xml || true')          
       }
     }
   }
