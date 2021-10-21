@@ -47,3 +47,39 @@ jobs:
           reporter: java-junit
           fail-on-error: true
 ```
+
+```yaml
+name: .NET Core
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout  
+      uses: actions/checkout@v1
+      
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.402
+        
+    - name: Build
+      run: dotnet build --configuration Release
+      
+    - name: Test
+      run: dotnet test --logger "trx;LogFileName=test-results.trx" || true
+      
+    - name: Test Report
+      uses: dorny/test-reporter@v1
+      if: always()
+      with:
+        name: DotNET Tests
+        path: "**/test-results.trx"                            
+        reporter: dotnet-trx
+```
