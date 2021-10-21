@@ -129,7 +129,7 @@ Octopus.Migrator.exe partial-export --instance=OctopusServer --project=AcmeWebSt
 ```
 
 :::hint
-In the latest versions of Octopus, we’ve added a feature to easily export and import projects between spaces and instances.
+In the latest versions of Octopus, we added a feature to easily export and import projects between spaces and instances.
 :::
 
 ## Other things to think about before Upgrading
