@@ -18,9 +18,48 @@ In this post you'll learn how to run E2E tests with Cypress, to validate interac
 
 To follow along with this post you'll need a Jenkins instance. The [Traditional Jenkins Installation](/blog/2022-01/jenkins-install-guide/index.md), [Docker Jenkins Installation](/blog/2022-01/jenkins-docker-install-guide/index.md), or [Helm Jenkins Installation](/blog/2022-01/jenkins-helm-install-guide/index.md) guides provide instructions to install Jenkins in your chosen environment.
 
-Both Cypress and Newman (the Postman command line test runner) require Node.js to be installed. The [Node.js website](https://nodejs.org/en/download/) provides downloads, or offers [installation instructions for package managers](https://nodejs.org/en/download/package-manager/).
+Both [Cypress](https://www.cypress.io) and [Newman](https://learning.postman.com/docs/running-collections/using-newman-cli/command-line-integration-with-newman) (the Postman command line test runner) require Node.js to be installed. The [Node.js website](https://nodejs.org/en/download/) provides downloads, or offers [installation instructions for package managers](https://nodejs.org/en/download/package-manager/).
 
 ## Running browser tests with Cypress
+
+Cypress is a browser automation tool that allows you to interact with web pages in much the same way an end user would by clicking on buttons and links, filling in forms, scrolling the page etc. You can also verify the content of a page to ensure the correct results have been displayed.
+
+The [Cypress documentation provides an example first test](https://docs.cypress.io/guides/getting-started/writing-your-first-test) which has been saved to the [junit-cypress-test GitHub repo](https://github.com/OctopusSamples/junit-cypress-test). The test is shown below:
+
+```javascript
+describe('My First Test', () => {
+  it('Does not do much!', () => {
+    expect(true).to.equal(true)
+  })
+})
+```
+
+This test is configured to generate a JUnit report file in the `cypress.json` file:
+
+```json
+{
+  "reporter": "junit",
+   "reporterOptions": {
+      "mochaFile": "cypress/results/results.xml",
+      "toConsole": true
+   }
+}
+```
+
+Cypress is included as a development dependency in the `package.json` file:
+
+```json
+{
+  "name": "cypress-test",
+  "version": "0.0.1",
+  "description": "A simple cypress test",
+  "devDependencies": {
+    "cypress": "8.6.0"
+  }
+}
+```
+
+You can run the Cypress test with the pipeline below:
 
 ```groovy
 pipeline {
@@ -57,7 +96,113 @@ pipeline {
 }
 ```
 
+The `Dependencies` stage downloads Cypress to the project directory:
+
+```groovy
+    stage('Dependencies') {
+      steps {
+        sh(script: 'npm install')        
+      }
+    }
+```
+
+The `Test` stage sets the `NO_COLOR` environment variable to `1` to strip an ANSI color codes from the output, and then runs Cypress. Cypress returns a non-zero exit code if any tests fail, but we defer the decision to pass or fail the build to the test processor by ensuring this command always returns true by appending `|| true`.
+
+You can learn more about processing failed test in [Running unit tests in Jenkins](/blog/2022-01/jenkins-running-unit-tests/index.md):
+
+```groovy
+    stage('Test') {
+      steps {
+        sh(script: 'NO_COLOR=1 node_modules/.bin/cypress run || true')          
+      }
+    }
+```
+
+The `post` stage processes the JUnit report file and saves the generated video of the test as an artifact:
+
+```groovy
+  post {
+    always {
+      junit(testResults: 'cypress/results/results.xml', allowEmptyResults : true)
+      archiveArtifacts(artifacts: 'cypress/videos/sample_spec.js.mp4', fingerprint: true) 
+    }
+  }
+```
+
+You can then drill into the test results using the same interface that exposes unit tests:
+
+![Cypress test results](cypress-test-result.png "width=500")
+
 ## Running API tests with Newman
+
+Newman is the command line test runner for Postman. The test scripts are exported from Postman as JSON files. An example that queries the GitHub API has been saved in the [junit-newman-test GitHub Repo](https://github.com/OctopusSamples/junit-newman-test):
+
+```json
+{
+	"info": {
+		"_postman_id": "f9b1443b-c23d-4738-901d-092cba2fc3d6",
+		"name": "GitHub",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GitHub API",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"response must be valid and have a body\", ",
+							"function () {\n",
+							" pm.response.to.be.ok;\n",
+							" pm.response.to.be.withBody;\n",
+							" pm.response.to.be.json;\n",
+							"\n",
+							" pm.expect(pm.response.json().quote != \"\").to.be.true;\n",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://api.github.com/repos/OctopusSamples/junit-newman-test/git/trees/main",
+					"protocol": "http",
+					"host": [
+						"api",
+						"github",
+						"com"
+					],
+					"path": [
+						"repos",
+						"OctopusSamples",
+						"junit-newman-test",
+						"git",
+						"trees",
+						"main"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
+```
+
+Newman is saved as a development dependency in the `package.json` file:
+
+```json
+{
+  "devDependencies": {
+    "newman": "^5.3.0"
+  }
+}
+```
+
+You can run the Newman test with the pipeline below:
 
 ```groovy
 pipeline {
@@ -93,4 +238,45 @@ pipeline {
 }
 ```
 
+The `Dependencies` stage downloads Newman the project directory:
+
+```groovy
+    stage('Dependencies') {
+      steps {
+        sh(script: 'npm install')        
+      }
+    }
+```
+
+The `Test` stage run Newman saving the result as a JUnit report file:
+
+```groovy
+    stage('Test') {
+      steps {
+        sh(script: 'node_modules/.bin/newman run GitHubTree.json --reporter-junit-export results.xml --reporters cli,junit || true')          
+      }
+    }
+```
+
+The `post` stage processes the JUnit report file:
+
+```groovy
+  post {
+    always {
+      junit(testResults: 'results.xml', allowEmptyResults : true)
+    }
+  }
+```
+
+The test results are then made available through the Jenkins web UI:
+
+![Newman Test Results](newman-test-results.png "width=500")
+
 ## Conclusion
+
+You can use E2E tests to validate applications through their public interfaces as the final level of automated testing. In this post you learned how to:
+
+* Run a Cypress browser based test.
+* Run a Newman API test.
+* Collect the results as JUnit report files.
+* Process the test results.
