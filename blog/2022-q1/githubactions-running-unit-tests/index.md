@@ -153,4 +153,6 @@ jobs:
         fail-on-error: true
 ```
 
+![DotNET Core Test Results](dotnet-test-results.png "width=500")
+
 ## Conclusion
