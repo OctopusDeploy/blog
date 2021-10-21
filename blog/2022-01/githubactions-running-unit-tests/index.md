@@ -65,7 +65,7 @@ jobs:
 
       - name: Report
         uses: dorny/test-reporter@v1
-        if: ${{ always() }}
+        if: always()
         with:
           name: Maven Tests
           path: target/surefire-reports/*.xml
@@ -73,9 +73,9 @@ jobs:
           fail-on-error: true
 ```
 
-The `Build`, `Test`, and `Report` steps are important for the testing process.
+The `Build`, `Test`, and `Report` steps are important to the testing process.
 
-You start by building the application, but skipping the tests.
+You start by building the application, but skipping the tests:
 
 ```yaml
       - name: Build
@@ -98,7 +98,7 @@ The `fail-on-error` property is set to `true` to fail this workflow if there wer
 ```yaml
       - name: Report
         uses: dorny/test-reporter@v1
-        if: ${{ always() }}
+        if: always()
         with:
           name: Maven Tests
           path: target/surefire-reports/*.xml
@@ -148,3 +148,5 @@ jobs:
         reporter: dotnet-trx
         fail-on-error: true
 ```
+
+## Conclusion
