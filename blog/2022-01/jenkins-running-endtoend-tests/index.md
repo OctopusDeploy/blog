@@ -283,7 +283,9 @@ The test results are then made available through the Jenkins web UI:
 
 ## Conclusion
 
-You can use E2E tests to validate applications through their public interfaces as the final level of automated testing. In this post you learned how to:
+E2E tests provide you the ability to validate applications through their public interfaces as the final stage of automated testing. Unlike unit tests, E2E tests are often orchestrated with external tools. For example, Cypress provides the ability to automate interactions through a web browser, and Newman provides the ability to script and verify interactions with HTTP APIs. 
+
+In this post you learned how to:
 
 * Run a Cypress browser based test.
 * Run a Newman API test.
