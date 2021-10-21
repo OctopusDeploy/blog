@@ -253,12 +253,16 @@ The `Dependencies` stage downloads Newman the project directory:
     }
 ```
 
-The `Test` stage run Newman saving the result as a JUnit report file:
+The `Test` stage runs Newman, enabling the JUnit reporter with the `--reporters cli,junit` argument, and saving the result as a JUnit report file with the `--reporter-junit-export results.xml` argument. 
+
+Newman will return a non-zero exit code if any tests fail, so to defer the success or failure of the build to the test processor, you ensure the command always returns true with `|| true'`.
+
+You can learn more about processing failed test in [Running unit tests in Jenkins](/blog/2022-01/jenkins-running-unit-tests/index.md):
 
 ```groovy
     stage('Test') {
       steps {
-        sh(script: 'node_modules/.bin/newman run GitHubTree.json --reporter-junit-export results.xml --reporters cli,junit || true')          
+        sh(script: 'node_modules/.bin/newman run GitHubTree.json --reporters cli,junit --reporter-junit-export results.xml || true')          
       }
     }
 ```
