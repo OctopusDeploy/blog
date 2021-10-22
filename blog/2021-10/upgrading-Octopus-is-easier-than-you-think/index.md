@@ -1,6 +1,6 @@
 ---
-title: Upgrading Octopus is easier than you think
-description: A brief summary of the post, 170 characters max including spaces.
+title: Upgrading from Octopus 3.X is easier than you think
+description: Why and how to upgrade from Octopus 3.X.
 author: Andy Corrigan
 visibility: private
 published: 3020-01-01
@@ -12,7 +12,7 @@ tags:
   - tag
 ---
 
-We find the phrase *‘if it ain’t broke, don’t fix it’* doesn’t always work in the world of development. Octopus is no different, which is why we aim to improve how you deliver releases with major releases of our own. If not up to date with Octopus, you could be missing features that make deployments easier, more efficient and help how your teams coordinate.
+We find the phrase ‘if it ain’t broke, don’t fix it’ doesn’t always work in the world of development. Octopus is no different, which is why we aim to improve how you deliver releases with major releases of our own. If not up to date with Octopus, you could be missing features that make deployments easier, more efficient and help how your teams coordinate.
 
 That said, we understand why some prefer to stick with older versions of Octopus. You may feel your current version does as much as you need, or a company policy could dictate staying a few versions behind to avoid risk. Maybe you’ve just fallen behind on updates and worry about the time and resources needed to get back up to date.
 
