@@ -20,7 +20,13 @@ GitHub Actions are a hosted service, so the only prerequisite is a GitHub accoun
 
 ## Selecting an action
 
-GitHub Actions relies heavily on third party actions contributed by the community. A quick Google search shows at least half a dozen actions for processing unit test results.
+GitHub Actions relies heavily on third party actions contributed by the community. A quick Google search shows at least half a dozen actions for processing unit test results, including:
+
+* [action-junit-report](https://github.com/mikepenz/action-junit-report)
+* [publish-unit-test-results](https://github.com/marketplace/actions/publish-unit-test-results)
+* [junit-report-action](https://github.com/marketplace/actions/junit-report-action)
+* [test-reporter](https://github.com/marketplace/actions/test-reporter)
+* [report-junit-annotations-as-github-actions-annotations](https://github.com/marketplace/actions/report-junit-annotations-as-github-actions-annotations)
 
 To narrow down the selection, you need to consider the following functionality:
 
@@ -28,6 +34,7 @@ To narrow down the selection, you need to consider the following functionality:
 * Does the action allow you to fail the workflow based on the presence of failed tests?
 * Does the action annotate the source code with details of test results?
 * Does the action generate a useful report?
+* How many stars does the project have?
 
 After some trail and error, I settled on the [test-reporter](https://github.com/marketplace/actions/test-reporter) action, which is demonstrated in this post.
 
@@ -116,6 +123,8 @@ Failing tests show additional details such as the name of the test, the test res
 
 ## Unit testing in DotNET
 
+The workflow file shown below run tests with the DotNET Core CLI and processes the results with the test-reporter action:
+
 ```yaml
 name: .NET Core
 
@@ -153,6 +162,36 @@ jobs:
         fail-on-error: true
 ```
 
+The tests are executed by the DotNET Core CLI saving the results in as a  Visual Studio Test Results (TRX) report file.
+
+The `test` command returns a non-zero exit code if any tests fail, but we'll defer the defer responsibility for responding to failed tests to the test processor. By chaining `|| true` to the command you ensure the step always passes:
+
+```yaml
+    - name: Test
+      run: dotnet test --logger "trx;LogFileName=test-results.trx" || true
+```
+
+The test-reporter action then processes the report file, and sets `fail-on-error` to `true` to fail the build if there are any failed tests:
+
+```yaml
+    - name: Test Report
+      uses: dorny/test-reporter@v1
+      if: always()
+      with:
+        name: DotNET Tests
+        path: "**/test-results.trx"                            
+        reporter: dotnet-trx
+        fail-on-error: true
+```
+
 ![DotNET Core Test Results](dotnet-test-results.png "width=500")
 
 ## Conclusion
+
+GitHub actions is primarily a task execution environment designed to verify and build code, and publish the resulting artifacts. There are a number of third party actions that allow you to generate test reports and respond to failed tests, but GitHub actions has some gaps in terms of tracking test results over time. Still, the reporting functionality available today is useful, and will only improve over time.
+
+In this post you learned:
+
+* Some of the questions to ask when evaluating third party actions to process test results.
+* How to write basic workflows for testing Java and DotNET Core applications.
+* How to process test results and display the generated reports.
