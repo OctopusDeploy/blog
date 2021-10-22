@@ -1,12 +1,12 @@
 ---
-title: Safe schema updates - Provisioning dev/test databases
-description: The first step towards safe production releases... safe dev/test deployments.
+title: Safe schema updates - Near-Zero Downtime Database Deployments
+description: Because we can only deploy often, if we can do it without disruption.
 author: alex.yates@dlmconsultants.com
 visibility: public
-published: 2021-10-18-1400
-metaImage: blogimage-provisioningdevtestdatabase-2021.png
-bannerImage: blogimage-provisioningdevtestdatabase-2021.png
-bannerImageAlt: Four developers working on one database causing failure, next to 4 developers working on a database each, with  only 1 failing
+published: 2021-10-25-1400
+metaImage: 
+bannerImage: 
+bannerImageAlt: 
 isFeatured: false
 tags:
  - DevOps
