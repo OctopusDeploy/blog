@@ -292,7 +292,7 @@ Good luck!
 ---
 
 **Edit: 22nd Oct 2021**
-If you would like to learn more about database environment creation, as well as how it fits into broader DevOps strategy, you may enjoy my latest blog series. It starts [here](https://octopus.com/blog/safe-schema-updates-1-delivery-hell).
+If you would like to learn more about database environment creation, and how it fits into the broader DevOps strategy, you may enjoy my latest blog series about safe schema updates. It starts with [Database delivery hell](https://octopus.com/blog/safe-schema-updates-1-delivery-hell).
 
 In particular, you may be interested in [Part 6](https://octopus.com/blog/safe-schema-updates-6-provisioning-databases), which tackles database environment provisioning.
 
