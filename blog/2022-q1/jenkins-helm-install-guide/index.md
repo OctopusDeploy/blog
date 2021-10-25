@@ -22,7 +22,7 @@ To follow along with this post you need a Kubernetes cluster and the Helm client
 
 All major cloud providers offer hosted Kubernetes clusters: AWS has [EKS](https://aws.amazon.com/eks/), Azure has [AKS](https://azure.microsoft.com/en-au/services/kubernetes-service/), and Google Cloud has [GKE](https://cloud.google.com/kubernetes-engine).
 
-If you wish to run a development Kubernetes cluster on your local PC, [kind](https://kind.sigs.k8s.io/docs/user/quick-start/) provides the ability to create and destroy clusters for testing. The post [Creating test Kubernetes clusters with Kind](/blog/2020-09/testing-with-kind/index.md) provides instructions on creating a test Kubernetes cluster.
+If you wish to run a development Kubernetes cluster on your local PC, [kind](https://kind.sigs.k8s.io/docs/user/quick-start/) provides the ability to create and destroy clusters for testing. The post [Creating test Kubernetes clusters with Kind](/blog/2020-09/testing-with-kind/index.md) provides instructions on running Kubernetes locally.
 
 You must also have the Helm client installed. The [Helm documentation](https://helm.sh/docs/intro/install/) provides installation instructions.
 
@@ -82,12 +82,12 @@ NOTE: Consider using a custom image with pre-installed plugins
 The first command listed in the notes returns the password for the `admin` user:
 
 ``` bash
-$ kubectl exec --namespace default -it svc/myjenkins -c jenkins -- /bin/cat /run/secrets/chart-admin-password && echolrLsazcErQvbPIjtxAROj
+$ kubectl exec --namespace default -it svc/myjenkins -c jenkins -- /bin/cat /run/secrets/chart-admin-password && echo
 ```
 
 The second command listed in the notes establishes a tunnel to the service in the Kubernetes cluster.
 
-In Kubernetes, a service is a resource that configures the cluster's network to expose one or more pods. The default service type is `ClusterIP`, which exposes pods via a private IP address. It is this private IP address we tunnel into to access the Jenkins web UI.
+In Kubernetes, a service is a resource that configures the cluster's network to expose one or more pods. The default service type is `ClusterIP`, which exposes pods via a private IP address. It is this private IP address we tunnel into in order to gain access to the Jenkins web UI.
 
 A Kubernetes pod is a resource that hosts one or more containers. This means the Jenkins instance is running as a container inside a pod:
 
@@ -128,7 +128,7 @@ You then upgrade the Helm release using the values defined in `values.yaml` with
 helm upgrade --install -f values.yaml myjenkins jenkins/jenkins
 ```
 
-The output is changed subtly to include new instructions to return the service's public IP:
+The output is changed subtly with the addition of new instructions to return the service's public IP:
 
 ```bash
 $ helm upgrade --install -f values.yaml myjenkins jenkins/jenkins
@@ -205,7 +205,7 @@ The plugin ID and version are found on the [Jenkins plugin website](https://plug
 
 ![Jenkins Plugin Website](jenkins-plugin.png "width=500")
 
-This approach is convenient, but does have the downside where the Jenkins instance is required to contact the Jenkins update site to retrieve them. A more robust approach is to download the plugins as part of a custom image, which ensures the plugins are baked into the Docker image. It also has the advantage of allowing additional tools to be installed on the Jenkins controller. The [previous post](blog/2022-q1/jenkins-docker-install-guide/index.md) has details on building and publishing custom Docker images.
+This approach is convenient, but does have the downside where the Jenkins instance is required to contact the Jenkins update site to retrieve them as part of the first boot. A more robust approach is to download the plugins as part of a custom image, which ensures the plugins are baked into the Docker image. It also has the advantage of allowing additional tools to be installed on the Jenkins controller. The [previous post](blog/2022-q1/jenkins-docker-install-guide/index.md) has details on building and publishing custom Docker images.
 
 Note that the custom Docker image must have the following plugins installed in addition to any custom plugins. These plugins are required for the Helm chart to function properly:
 
@@ -239,11 +239,11 @@ controller:
 
 ## Configuration as Code
 
-Jenkins Configuration as Code (JCasC) is a [plugin](https://plugins.jenkins.io/configuration-as-code/) providing an opinionated method for configuring Jenkins through yaml files. This provides an alternative to writing [Groovy scripts directly referencing the Jenkins API](https://www.jenkins.io/doc/book/managing/groovy-hook-scripts/), which is powerful, but requires administrators to be comfortable writing code.
+Jenkins Configuration as Code (JCasC) is a [plugin](https://plugins.jenkins.io/configuration-as-code/) providing an opinionated method for configuring Jenkins through YAML files. This provides an alternative to writing [Groovy scripts directly referencing the Jenkins API](https://www.jenkins.io/doc/book/managing/groovy-hook-scripts/), which is powerful, but requires administrators to be comfortable writing code.
 
 JCasC configuration is defined under the `controller.JCasC.configScript` property. The child keys under `configScript` have names of your choosing consisting of lowercase letters, numbers, and hyphens, and serve as a way to summarize the block of text they define. 
 
-The value assigned to these keys are multi-line strings, which in turn define a JCasC YAML file. The pipe (`|`) character provides a convenient method to supply a multi-line string, but is otherwise not significant.
+The value assigned to these keys are multi-line strings, which in turn define a JCasC YAML file. The pipe (`|`) character provides a convenient method for defining a multi-line string, but is otherwise not significant.
 
 The end result gives the appearance of a continuous YAML document. Just keep in mind that the content appearing after the pipe character is simply a multi-line text value that happens to also be YAML.
 
@@ -267,9 +267,9 @@ Jenkins.instance.setNumExecutors(5)
 
 Even this simple example highlights the benefits of JCasC:
 
-* Each JCasC property is documented at http://jenkinshost/configuration-as-code/reference (replace `jenkinshost` with the hostname of your own Jenkins instance), whereas the Groovy script requires knowledge of the [Jenkins API](https://javadoc.jenkins-ci.org/jenkins/model/Jenkins.html). 
+* Each JCasC property is documented at http://jenkinshost/configuration-as-code/reference (replace `jenkinshost` with the hostname of your own Jenkins instance), whereas writing a Groovy script requires knowledge of the [Jenkins API](https://javadoc.jenkins-ci.org/jenkins/model/Jenkins.html). 
 * JCasC configuration is vanilla YAML, which is much more approachable that scripts written in Groovy.
-* JCasC is opinionated, providing a consistent approach for common configuration. Groovy scripts can solve the same problem multiple different way, meaning scripts with more than a few lines of code require software engineering expertise to understand.
+* JCasC is opinionated, providing a consistent approach for common configuration. Groovy scripts can solve the same problem multiple different ways, meaning scripts with more than a few lines of code require software engineering expertise to understand.
 
 For all the benefits though, JCasC is not a complete replacement for setting system properties or running Groovy scripts. For example, [JCasC will not support the ability to disable CSRF](https://github.com/jenkinsci/configuration-as-code-plugin/issues/1184), meaning this option is only exposed via system properties.
 
@@ -277,11 +277,11 @@ For all the benefits though, JCasC is not a complete replacement for setting sys
 
 Volumes in Kubernetes are a little more complicated than those found in regular Docker because Kubernetes volumes tend to be hosted outside of the node that runs the pod. This is because pods can be relocated between nodes, and so are required to be able to access volumes from any node.
 
-To complicate matters, unlike Docker volumes, only specialized volumes can be shared between pods. These shared volumes are referred to as `ReadWriteMany` volumes. Typically though, a Kubernetes volume is only used by a single pod, and are known as `ReadWriteOnce` volumes.
+To complicate matters, unlike Docker volumes, only specialized Kubernetes volumes can be shared between pods. These shared volumes are referred to as `ReadWriteMany` volumes. Typically though, a Kubernetes volume is only used by a single pod, and are referred to as `ReadWriteOnce` volumes.
 
 The Jenkins Helm chart configures a `ReadWriteOnce` volume to host the Jenkins home directory. Because this volume can only be accessed by the pod it is mounted into, all backup operations must be performed by that pod.
 
-Fortunately, the Helm chart offers [comprehensive backup options](https://github.com/jenkinsci/helm-charts/blob/main/charts/jenkins/README.md#backup), with the ability to perform backup and save them to cloud storage providers.
+Fortunately, the Helm chart offers [comprehensive backup options](https://github.com/jenkinsci/helm-charts/blob/main/charts/jenkins/README.md#backup), with the ability to perform backups and save them to cloud storage providers.
 
 However, you can orchestrate simple, cloud agnostic backups with two commands.
 
@@ -315,7 +315,7 @@ agent:
       memory: "2048Mi"
 ```
 
-More specialized agents are defined under the `additionalAgents` property. These pod templates inherit the values from the values defined in the `agent` property.
+More specialized agents are defined under the `additionalAgents` property. These pod templates inherit the values from those defined in the `agent` property.
 
 The example below defines a second pod template changing the pod name and Jenkins labels to `maven` and specifying a new Docker image `jenkins/jnlp-agent-maven:latest`:
 
@@ -352,7 +352,7 @@ pipeline {
 }
 ```
 
-For example, this example pipeline for a Java application uses the `maven` agent template:
+For example, this pipeline for a Java application uses the `maven` agent template:
 
 ```groovy
 pipeline {
