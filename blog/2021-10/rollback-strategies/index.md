@@ -35,7 +35,7 @@ Consider these scenarios:
 The goal is the same in both scenarios; quickly return the application to a known good state.
 
 :::hint
-Many customers are focused on the production scenario, yet the test scenario occurs more often, and has a bigger impact.  If you follow Octopus Deploy's core rule of [build once, deploy everywhere](https://octopus.com/blog/build-your-binaries-once), the chance of a show-stopping bug making it to production is rare (but not impossible).  However, test is different; I've seen the mindset that only a few people are affected, but that's untrue, as deadlines will slip if QA is blocked for hours at a time.  
+Many customers are focused on the production scenario, yet the test scenario occurs more often and has a bigger impact.  If you follow Octopus Deploy's core rule of [build once, deploy everywhere](https://octopus.com/blog/build-your-binaries-once), the chance of a show-stopping bug making it to production is rare (but not impossible).  However, test is different; I've seen the mindset that only a few people are affected, but that's untrue, as deadlines will slip if QA is blocked for hours at a time.  
 :::
 
 The goal is to get back to a known good state, but that's different from a deployment.  Skipping specific steps can make rollback faster.  Many deployment processes are created assuming that none of the dependent software or infrastructure has been configured.  For example, a deployment process could trigger a runbook to create a database if it didn't already exist; or install the latest version of Node.js.  During a rollback, those additional steps aren't needed.  If you check the database existed when deploying `2021.2.3` of your application, you won't need to check again when rolling back to `2021.2.1`.  
@@ -46,7 +46,7 @@ For this article:
 
 # Rolling forward or rolling back
 
-Not all releases can and should be rolled back.  The scenarios above mention a fix is hours or days away.  In many cases, rolling forward is typically less risky and time-consuming.  A minor fix can be easier to test and deploy than rolling back a major release.  
+Not all releases can and should be rolled back.  The scenarios above mention a fix is hours or days away.  Often, rolling forward is less risky and time-consuming.  A minor fix can be easier to test and deploy than rolling back a major release.  
 
 Here are some typical reasons why we recommend rolling forward:
 
@@ -55,7 +55,7 @@ Here are some typical reasons why we recommend rolling forward:
 - Users will notice when something changes and then changes back, especially custom business applications used all day by the same users.  
 - With the proliferation of [service-oriented architecture](https://en.wikipedia.org/wiki/Service-oriented_architecture) (SOA) and its cousin [microservices](https://en.wikipedia.org/wiki/Microservices), code changes are rarely made in isolation.  "Proper" SOA and microservices architectures are loosely coupled to each other and their clients.  However, in the real world, coupling exists.  A rollback to a back-end service can have downstream impacts.
 
-There are several scenarios when a rollback can be the right solution though.  A legacy monolith application with a large database can be successfully rolled back in specific circumstances.  Some of those scenarios include (but are not limited to):
+There are several scenarios when a rollback can be the right solution though.  A legacy monolith application with a large database can be successfully rolled back in specific circumstances.  Some of these scenarios include (but are not limited to):
 
 - Styling or markup only changes
 - Back-end code changes with no public interface or model changes
@@ -69,9 +69,9 @@ While we recommend rolling forward, having a rollback process in place is a valu
 
 Many years ago, a few hours after a production deployment, I was informed about a show-stopping bug.  I was surprised as the release had gone through weeks of verification by QA.  We couldn't establish the cause and concluded a rollback was needed - the first in years.  
 
-The rollback plan in the deployment document was "rollback to the previous version of code".  Unfortunately, that's more a wish than a detailed plan.  The issue was escalated, and everyone involved with the release was paged (from QA, to business owners, and managers).  
+The rollback plan in the deployment document was: "rollback to the previous version of code".  Unfortunately, that's more a wish than a detailed plan.  We escalated the issue, and paged everyone involved with the release (from QA, to business owners, and managers).  
 
-A new rollback plan was created from scratch.  Despite a new plan, we estimated the odds of a successful rollback at 10%. It was a no-win situation. We had a show-stopping bug we couldn't repro (and therefore fix), or we could roll back and take our chances.  
+We created a new rollback plan from scratch.  Despite a new plan, we estimated the odds of a successful rollback at 10%. It was a no-win situation. We had a show-stopping bug we couldn't repro (and therefore fix), or we could roll back and take our chances.  
 
 Rolling back offered some chance as opposed to none though. Each person was assigned a task. I went through the changelog, item by item, and documented the impact of rolling back.  
 
@@ -79,11 +79,11 @@ Fifteen minutes before we made the final rollback decision, I discovered a block
 
 We aborted the rollback plans, implemented a fix, and pushed the fix out later that day. We were relieved we didn't have to test an unproven rollback process.
 
-This story highlights the importance of testing your rollback processes multiple times.  Ideally, it should be tested and verified weekly.  During a production outage, the last thing you want to do is develop a new rollback process or run an untested rollback process.  
+This story highlights the importance of testing your rollback processes multiple times.  Ideally, it should be tested and verified weekly.  During a production outage, the last thing you want to do is develop a new rollback process or run an untested one.  
 
 # Example deployment process
 
-Now I'll explain how to update an existing deployment process to support rollbacks.  
+Now I explain how to update an existing deployment process to support rollbacks.  
 
 I chose [OctoFX Sample Application](https://github.com/OctopusSamples/OctoFX) for this example because it's similar to many applications I've seen and worked on.  It has the following components:
 
@@ -102,11 +102,11 @@ The deployment process for this application is:
 
 ![Original Windows Deployment Process](original-deployment-process.png)
 
-Your database platform, back-end service, and front-end might be using different technology.  In this post, I'll update the process to skip specific steps and run additional steps during a rollback.  
+Your database platform, back-end service, and front-end might be using different technology.  In this post, I update the process to skip specific steps and run additional steps during a rollback.  
 
 # Re-deploy previous release
 
-The core concept of my rollback process is re-deploying a previous release.  That can be done by:
+The core concept of my rollback process is re-deploying a previous release. You can do that by:
 
 Selecting the release you want to re-deploy to your target environment.  In my example, I re-deploy `2021.9.9.3` to **Test**.
 
@@ -116,7 +116,7 @@ Click the overflow menu and select **Re-deploy...**.
 
 ![Selecting re-deploy from overflow menu](overflow-redeploy-menu.png)
 
-You'll be sent to the deployment screen.  Click **DEPLOY** to kick off the redeployment.
+You'll be sent to the deployment screen.  Click **DEPLOY** to start the redeployment.
 
 ![Deployment screen from the previous deployment](previous-version-deployment-screen.png)
 
@@ -128,7 +128,7 @@ Redeploying a previous release as-is means _all_ the steps from the previous dep
 Your rollback process will be different from the example; I use the database steps as the example.  The goal is to show you _how_ to disable the steps, rather than _what_ is being disabled.
 :::
 
-To disable specific steps for a rollback, we need to know a rollback is occurring.  But we are going to be redeploying an existing release.  The tricky thing is redeploying the same release to the current environment is a valid use case.  What we need to know is the "deployment mode".
+To disable specific steps for a rollback, we need to know a rollback is occurring.  But we are going to redeploy an existing release.  Redeploying the same release to the current environment is a valid use case though.  What we need to know is the "deployment mode".
 
 - **Deployment**: First time a release is deployed to a specific environment to add new features, fix bugs, and more to the application.
 - **Rollback**: Redeploying a previous release in a specific environment to return to a known good state.
@@ -161,23 +161,23 @@ For my application, I only redeploy when the web farm is scaled out.  I never sc
 1. ~~Pause the deployment and verify the application~~
 1. Notify stakeholders the deployment is complete
 
-We need the ability to calculate the "deployment mode".  Octopus provides the system variables to do that:
+We need the ability to calculate the "deployment mode".  Octopus provides the system variables:
 
 - `Octopus.Release.Number`: The current release's number (`1.2.2`).
 - `Octopus.Release.CurrentForEnvironment.Number`: The ID (`1.1.1`) of the last **successful** release, deployed to the current environment.
 
 To calculate "deployment mode" you compare `Octopus.Release.Number` with `Octopus.Release.CurrentForEnvironment.Number`.  
 
-- If it's greater, then it's a deployment
-- If it's less, then it's a rollback
-- If they're the same, then it's a redeployment
+- If it's greater, it's a deployment
+- If it's less, it's a rollback
+- If they're the same, it's a redeployment
 
 # Calculate Deployment Mode step template
 
-I created the step template, [Calculate Deployment Mode](https://library.octopus.com/step-templates/d166457a-1421-4731-b143-dd6766fb95d5/actiontemplate-calculate-deployment-mode), to perform that calculation for you.  Using that result, it will set several output variables.
+I created the step template, **[Calculate Deployment Mode](https://library.octopus.com/step-templates/d166457a-1421-4731-b143-dd6766fb95d5/actiontemplate-calculate-deployment-mode)**, to perform the calculation for you.  Using that result, it will set several output variables.
 
  - **DeploymentMode**: Will be `Deploy`, `Rollback`, or `Redeploy`
- - **Trigger**: This indicates if the deployment was caused by a deployment target trigger or a scheduled trigger.  It will be `True` or `False`
+ - **Trigger**: Indicates if the deployment was caused by a deployment target trigger or a scheduled trigger -  it will be `True` or `False`
  - **VersionChange**: Will be `Identical`, `Major`, `Minor`, `Build`, or `Revision`
 
 Working on the step template, I realized most people would use the **DeploymentMode** output variable in a [variable run condition](https://octopus.com/docs/projects/steps/conditions#variable-expressions).  Because of error handling, the syntax for the run condition can be tricky to get right.  Octopus always evaluates the variable run condition to determine if the step should run, even if an error occurs in a previous step.  If we don't include error handling in the run condition, it could evaluate to `True` and run the step.  We don't want that. 
@@ -194,7 +194,7 @@ I added the following output variables with the necessary error handling and com
 - **RunOnRollback**: Only run the step when the DeploymentMode is **Rollback**
 - **RunOnRedeploy**: Only run the step when the DeploymentMode is **Redeploy**
 - **RunOnDeployOrRollback**: Only run the step when the DeploymentMode is **Deploy** or **Rollback**
-- **RunOnDeployOrRedeploy**: Only run the step when the DeploymentMode is **Deploy** or ** Re-deploy**
+- **RunOnDeployOrRedeploy**: Only run the step when the DeploymentMode is **Deploy** or **Re-deploy**
 - **RunOnRedeployOrRollback**: Only run the step when the DeploymentMode is **Redeploy** or **Rollback**
 - **RunOnMajorVersionChange**: Only run the step when the VersionChange is **Major**
 - **RunOnMinorVersionChange**: Only run the step when the VersionChange is **Minor**
@@ -267,9 +267,11 @@ In addition, `2021.9.9.6` has had the release progression blocked. Users will se
 
 # Automatic rollbacks
 
-The next logical step is to think about triggering the rollback.  I recommend manually triggering the rollback, and logging an explanation.  When you see a pattern, add in automated tests to detect if a specific condition is met.  The concern I have is getting a "false positive," and a release is rolled back in production when it shouldn't be.  
+Next you need to think about triggering the rollback.  I recommend manually triggering the rollback, and logging an explanation.  When you see a pattern, you should add in automated tests to detect if a specific condition is met.  The concern I have is receiving a "false positive", causing a release to roll back in production when it shouldn't.  
 
-In this scenario, I don't trigger the rollback automatically until I have automated all the steps to make a rollback decision.  For example, if one of your conditions has no database changes, you should have a script check the SQL Scripts for schema changes (add table, add column, etc.).  If a schema change is found, then a rollback isn't possible.
+In this scenario, I don't trigger the rollback automatically until I have automated all the steps to make a rollback decision.  
+
+For example, if one of your conditions has no database changes, you should have a script check the SQL Scripts for schema changes (add table, add column, etc.).  If a schema change is found, then a rollback isn't possible.
 
 After you have done that, automatically trigger the rollbacks for all your non-production environments.  After several successful rollback decisions have been made, turn it on for production.  
 
