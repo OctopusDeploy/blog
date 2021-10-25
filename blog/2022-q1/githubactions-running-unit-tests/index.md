@@ -10,13 +10,13 @@ tags:
  - Octopus
 ---
 
-Verifying code changes with unit tests is a critical process in typical development workflows. GitHub Actions provides a number of plugins to collect and process the results of tests allowing developers to browse the results, debug failed tests, and generate reports.
+Verifying code changes with unit tests is a critical process in typical development workflows. GitHub Actions provides a number of custom actions to collect and process the results of tests allowing developers to browse the results, debug failed tests, and generate reports.
 
-In this post you'll learn how to add unit tests to a GitHub Actions workflow and configure plugins to process the results.
+In this post you'll learn how to add unit tests to a GitHub Actions workflow and configure custom actions to process the results.
 
 ## Prerequisites
 
-GitHub Actions are a hosted service, so the only prerequisite is a GitHub account. All other dependencies like Software Development Kits (SDKs) are installed during the execution of the GitHub Actions workflow.
+GitHub Actions is a hosted service, so the only prerequisite is a GitHub account. All other dependencies like Software Development Kits (SDKs) are installed during the execution of the GitHub Actions workflow.
 
 ## Selecting an action
 
@@ -30,13 +30,13 @@ GitHub Actions relies heavily on third party actions contributed by the communit
 
 To narrow down the selection, you need to consider the following functionality:
 
-* Does the action support your testing framework? For example, some actions only process JUnit test results, while others include other formats like TRX.
+* Does the action support your testing framework? For example, some actions only process JUnit test results, while others include additional formats like TRX.
 * Does the action allow you to fail the workflow based on the presence of failed tests?
 * Does the action annotate the source code with details of test results?
 * Does the action generate a useful report?
 * How many stars does the project have?
 
-After some trail and error, I settled on the [test-reporter](https://github.com/marketplace/actions/test-reporter) action, which is demonstrated in this post.
+After some trial and error, I settled on the [test-reporter](https://github.com/marketplace/actions/test-reporter) action, which is demonstrated in this post.
 
 ## Unit testing in Java
 
@@ -98,7 +98,7 @@ Next you run the tests, allowing the command to pass even if there are failing t
 
 In the final step you generate a report from the JUnit XML file. 
 
-The `if` property is set to always run this step, allowing you to generate the report even if the `Test` step above was set to fail in the event of a failed tests.
+The `if` property is set to always run this step, allowing you to generate the report even if the `Test` step above was set to fail in the event of failed tests.
 
 The `fail-on-error` property is set to `true` to fail this workflow if there were failed tests. This is an example of deferring the response to failed tests to the test processing action:
 
@@ -123,7 +123,7 @@ Failing tests show additional details such as the name of the test, the test res
 
 ## Unit testing in DotNET
 
-The workflow file shown below run tests with the DotNET Core CLI and processes the results with the test-reporter action:
+The workflow file shown below runs tests with the DotNET Core CLI and processes the results with the test-reporter action:
 
 ```yaml
 name: .NET Core
@@ -162,7 +162,7 @@ jobs:
         fail-on-error: true
 ```
 
-The tests are executed by the DotNET Core CLI saving the results in as a  Visual Studio Test Results (TRX) report file.
+The tests are executed by the DotNET Core CLI saving the results in as a Visual Studio Test Results (TRX) report file.
 
 The `test` command returns a non-zero exit code if any tests fail, but we'll defer the defer responsibility for responding to failed tests to the test processor. By chaining `|| true` to the command you ensure the step always passes:
 
@@ -188,7 +188,7 @@ The test-reporter action then processes the report file, and sets `fail-on-error
 
 ## Conclusion
 
-GitHub actions is primarily a task execution environment designed to verify and build code, and publish the resulting artifacts. There are a number of third party actions that allow you to generate test reports and respond to failed tests, but GitHub actions has some gaps in terms of tracking test results over time. Still, the reporting functionality available today is useful, and will only improve over time.
+GitHub actions is primarily a task execution environment designed to verify and build code, and publish the resulting artifacts. There are a number of third party actions that allow you to generate test reports and respond to failed tests, but GitHub actions has some gaps in terms of tracking test results over time. Still, the reporting functionality available today is useful, and will only improve.
 
 In this post you learned:
 
