@@ -51,7 +51,7 @@ Two-way sync updates the left-hand side of the tool to match the edits.
 
 ![Two Way Sync Test](two-way-sync-test.png "Two Way Sync Test")
 
-## More information
+### More information
 
 There are several configurable options in a Kubernetes YAML file. Rather than explaining them in detail, the tool links to the official Kubernetes documentation. Most options have a **More information** link that takes you directly to the documentation.
 
