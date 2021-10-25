@@ -226,11 +226,11 @@ The [Jenkins website](https://www.jenkins.io/download/) includes instructions fo
 
 Once Jenkins is installed, it must be configured for the first time.
 
-Open [http://localhost:8080](http://localhost:8080) to view the Jenkins web console. You are be prompted to enter a randomly generated password saved in a file on the local machine. Open this file, copy the password, paste it into the **Administrator password** text box, and click the **Continue** button:
+Open [http://localhost:8080](http://localhost:8080) to view the Jenkins web console. You are prompted to enter a randomly generated password saved in a file on the local machine. Open this file, copy the password, paste it into the **Administrator password** text box, and click the **Continue** button:
 
 ![Jenkins Configuration](jenkins-config-1.png "width=500")
 
-Most of the functionality provided by Jenkins comes by way of [plugins](https://plugins.jenkins.io/). You are prompted with an option to install a curated list of common plugins as part of the initial configuration. These plugins are useful, so click the **Install suggested plugins** button:
+Most of the functionality provided by Jenkins comes by way of [plugins](https://plugins.jenkins.io/). You are prompted with the option to install a curated list of common plugins as part of the initial configuration. These plugins are generally useful, so click the **Install suggested plugins** button:
 
 ![Jenkins Configuration](jenkins-config-2.png "width=500")
 
@@ -238,7 +238,7 @@ The plugins take a few minutes to install:
 
 ![Jenkins Configuration](jenkins-config-3.png "width=500")
 
-You are prompted to enter the details of the Jenkins administrator. Populate the fields, and click the **Save and Continue** button:
+You are prompted to supply the details of the Jenkins administrator. Populate the fields, and click the **Save and Continue** button:
 
 ![Jenkins Configuration](jenkins-config-4.png "width=500")
 
