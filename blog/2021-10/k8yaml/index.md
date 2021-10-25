@@ -116,9 +116,9 @@ The next step is setting up an Azure web application and configuring its propert
 ### Web application setup {#web-application-setup}
 
 
-1. In your **Resource group** click **Create** then **Kubernetes Service**
+1. In your **Resource group** click **Create**, then **Kubernetes Service**
 2. Give the cluster a name and select an appropriate region 
-3. Accept the default options and click through to Create
+3. Click **Review + create**
 4. The cluster name will be the AKS cluster name in Octopus Deploy - make note of the resource group name
 
 ### Add the service principal account in Octopus {#add-service-principal-account}
