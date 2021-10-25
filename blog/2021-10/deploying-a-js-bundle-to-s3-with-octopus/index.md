@@ -14,7 +14,7 @@ tags:
  - Variables
 ---
 
-There’s a common front-end dev pattern that starts with the best intentions, but can lead to pain if not handled with care. You see a need to reuse front-end code across multiple projects, maintained by different teams using different tech. You create a shared JavaScript library project with its own repo and release process. It's a sensible idea, but opens questions that need good answers, to stop our bundle of joy from growing into a monster. 
+There’s a common front-end dev pattern that starts with the best intentions but can lead to pain if not handled with care. You see a need to reuse front-end code across multiple projects, maintained by different teams using different tech. You create a shared JavaScript library project with its own repo and release process. It's a sensible idea but opens questions that need good answers, to stop our bundle of joy from growing into a monster. 
 
 In this post, I explain how to manage the deployment process for a shared JavaScript project that is simple to reference from other Octopus projects. My example uses a Vue JS bundle deployed to Amazon S3, but the same principles can be applied to any combination of front-end framework and hosting provider.
 
