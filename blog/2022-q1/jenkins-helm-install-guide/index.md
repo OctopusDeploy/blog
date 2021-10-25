@@ -496,7 +496,7 @@ myjenkins-0                              2/2     Running             0          
 
 ## Conclusion
 
-Hosting Jenkins and its agents in a Kubernetes cluster allows you to create a scalable and responsive build platform creating and destroying agents on the fly to handle elastic workloads. And thanks to the Jenkins Helm chart, installing Jenkins and configuring the nodes requires only a few lines of YAML.
+Hosting Jenkins and its agents in a Kubernetes cluster allows you to create a scalable and responsive build platform, creating and destroying agents on the fly to handle elastic workloads. And thanks to the Jenkins Helm chart, installing Jenkins and configuring the nodes requires only a few lines of YAML.
 
 In this post you learned how to:
 * Deploy Jenkins to Kubernetes.
