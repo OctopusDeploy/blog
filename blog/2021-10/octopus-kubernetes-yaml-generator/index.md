@@ -179,7 +179,7 @@ In your new project, create a **Deploy Kubernetes** container step by going to *
 
 ![Kubernetes deployment step](add-kubernetes-deployment-step.png "Kubernetes deployment step")
 
-Make sure to add the `kube` role under the **on behalf of** option to trigger the build for the Kubernetes deployment target. Paste the YAML file from the K8s YAML tool into the **Edit YAML** section. Click **SAVE** to finish.
+Make sure to add the `kube` role under the **on behalf of** option to trigger the build for the Kubernetes deployment target. Paste the YAML file from the K8s YAML tool into the **Edit YAML** section. Leave everything else as default and click **SAVE** to finish.
 
 ![Edit YAML](edit-yaml.png "Edit YAML")
 
