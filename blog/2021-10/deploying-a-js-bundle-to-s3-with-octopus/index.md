@@ -57,7 +57,7 @@ The encoding step is important, rather than echoing straight to a file. I'm unsu
 
 ## Upload bundle to S3
 
-There are a few prerequisites for the next AWS CLI step, which I explain before showing how it's set up in Octopus. I demonstrate how it's achieved in Vue. The steps will be different for other frameworks, but the explanation will point you in the right direction.
+There are a few prerequisites for the next **AWS CLI step**, which I explain before showing how it's set up in Octopus. I demonstrate how it's achieved in Vue. The steps will be different for other frameworks, but the explanation will point you in the right direction.
 
 ### One JavaScript file to rule them all
 
