@@ -167,9 +167,9 @@ docker run -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home myjenki
 
 ## Installing additional Jenkins plugins
 
-The easiest way to install new plugins is to use the Jenkins web UI. Any new plugins are saved to the external volume, and so will be available even as you create, destroy, and update containers.
+The easiest way to install new plugins is to use the Jenkins web UI. Any new plugins are saved to the external volume, and so are available even as you create, destroy, and update containers.
 
-You can also automate the process of installing plugins by calling the `jenkins-plugin-cli` script included in the base Jenkins image as part of your custom Docker image. Here is an example `Dockerfile` that installs the [Octopus Jenkins plugin](https://plugins.jenkins.io/octopusdeploy/):
+You can also automate the process of installing plugins by calling the `jenkins-plugin-cli` script, included in the base Jenkins image, as part of your custom Docker image. Here is an example `Dockerfile` that installs the [Octopus Jenkins plugin](https://plugins.jenkins.io/octopusdeploy/):
 
 ```dockerfile
 FROM jenkins/jenkins:lts-jdk11
@@ -195,7 +195,7 @@ The plugin ID (`octopusdeploy`) and version (`3.1.6`) are found from the [Jenkin
 
 ## Publishing the custom Docker image
 
-To publish your custom Docker image you need an account with a Docker registry. [DockerHub](https://hub.docker.com) is a popular choice, and provides free hosting of public images.
+To publish your custom Docker image, you need an account with a Docker registry. [DockerHub](https://hub.docker.com) is a popular choice, and provides free hosting of public images.
 
 [Create a free account](https://hub.docker.com/signup), and then login with the command:
 
@@ -203,19 +203,19 @@ To publish your custom Docker image you need an account with a Docker registry. 
 docker login
 ```
 
-To build an image that can be published to DOckerHub, run the following command, replacing `username` with your DockerHub username:
+To build an image that can be published to DockerHub, run the following command, replacing `username` with your DockerHub username:
 
 ```bash
 docker build . -t username/myjenkins
 ```
 
-Then you publish the image with this command:
+Publish the image with this command:
 
 ```
 docker push username/myjenkins
 ```
 
-My DockerHub username is `mcasperson`, so I run this:
+My DockerHub username is `mcasperson`, so I run these commands to build and publish an image:
 
 ```bash
 docker build . -t mcasperson/myjenkins
@@ -242,7 +242,7 @@ A list of Jenkins system properties can be found in the [Jenkins documentation](
 
 In addition to system properties, Jenkins also accepts a number of application arguments.
 
-Application arguments are defined by appending them to the end of the Docker run command. The example below passes the `--httpPort` argument configuring Jenkins to list on port 8081:
+Application arguments are defined by appending them to the end of the Docker run command. The example below passes the `--httpPort` argument configuring Jenkins to listen on port 8081:
 
 ```bash
 docker run -p 8080:8081 -p 50000:50000 -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts-jdk11 --httpPort=8081
@@ -264,13 +264,13 @@ You can run the following command to backup the data saved in the Docker volume 
 docker run --rm -v jenkins_home:/var/jenkins_home -v $(pwd):/backup ubuntu tar cvf /backup/backup.tar /var/jenkins_home
 ```
 
-This command can be run when the Jenkins container running because Docker volumes can be shared between running containers. However, [it is recommended that you stop Jenkins before performing a backup](https://docs.cloudbees.com/docs/admin-resources/latest/backup-restore/best-practices):
+This command can be run when while Jenkins container is running because Docker volumes can be shared between running containers. However, [it is recommended that you stop Jenkins before performing a backup](https://docs.cloudbees.com/docs/admin-resources/latest/backup-restore/best-practices):
 
 > Even though Jenkins takes advantage of COW, it is recommended that you stop Jenkins if possible before performing a backup because the pipeline workflow XML files may get captured in an inconsistent state (for example if the backup does not take an 'instant snapshot' of every file at that exact moment).
 
 ## Running Docker images as services
 
-A production instance of Jenkins must be automatically restarted when the operating system is restarted. However, this is not the default behavior of the containers you have launched using the Docker commands shown above, so any Jenkins containers will remain stopped after an OS restart.
+A production instance of Jenkins must be automatically restarted when the underlying operating system is restarted. However, this is not the default behavior of the containers you have launched using the Docker commands shown above, so any Jenkins containers will remain stopped after an OS restart.
 
 To resolve this issue you can run a Docker container as a systemd service. This allows you to manage a Jenkins container in much the same way you would manage a Jenkins instance installed with a package manager.
 
@@ -290,7 +290,7 @@ ExecStop=-/usr/bin/docker stop --time=0 jenkins
 WantedBy=multi-user.target
 ```
 
-To load the new service file, run:
+To load the new service file, run the command:
 
 ```bash
 sudo systemctl daemon-reload
