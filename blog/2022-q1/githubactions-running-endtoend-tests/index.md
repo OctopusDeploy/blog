@@ -10,7 +10,7 @@ tags:
  - Octopus
 ---
 
-GitHub Actions has a wide ecosystem of high quality third-party actions as well as native support for executing build steps inside Docker containers. This means it is easy to run end-to-end tests as part of a workflow, often only requiring a single step to run testing tools with all the require dependencies.
+GitHub Actions has a large ecosystem of high quality third-party actions as well as native support for executing build steps inside Docker containers. This means it is easy to run end-to-end tests as part of a workflow, often only requiring a single step to run testing tools with all the require dependencies.
 
 In this post you'll learn how to run browser tests with Cypress and API tests with Postman as part of a GitHub Actions workflow.
 
@@ -100,7 +100,7 @@ Cypress generates a video file capturing the browser as the tests are run. You s
 
 The test results are process by the `dorny/test-reporter` action.
 
-Note that test-reporter has the ability to process Mocha JSON files, and Cypress uses Mocha for reporting, so an arguably more idiomatic solution would be to have Cypress generate Mocha JSON reports. Unfortunately there is a [bug in Cypress](https://github.com/cypress-io/cypress/issues/18014) that prevents the JSON reporter from saving results as a file. Generating JUnit report files is a useful workaround until this issue is resolved:
+Note that test-reporter has the ability to process Mocha JSON files, and Cypress uses Mocha for reporting, so an arguably more idiomatic solution would be to have Cypress generate Mocha JSON reports. Unfortunately, there is a [bug in Cypress](https://github.com/cypress-io/cypress/issues/18014) that prevents the JSON reporter from saving results as a file. Generating JUnit report files is a useful workaround until this issue is resolved:
 
 ```yaml
 
@@ -122,7 +122,7 @@ The video file artifact is listed in the **Summary** page:
 
 ![Artifacts](github-actions-artifacts.png "width=500")
 
-Not all testing platforms provide a GitHub action, in which case you can execute steps against a standard Docker image, which is demonstrated in the the next section.
+Not all testing platforms provide a GitHub action, in which case you can execute steps against a standard Docker image. This is demonstrated in the next section.
 
 ## Running API tests with Newman
 
@@ -201,7 +201,7 @@ The `--workdir /github/workspace` argument overrides the working directory of th
 
 ![Docker image command](github-action-docker-command.png "width=500")
 
-Because every major testing tool provides a supported Docker image, the process you used to run Newman can be used to run most other testing platform.
+Because every major testing tool provides a supported Docker image, the process you used to run Newman can be used to run most other testing platforms.
 
 ## Conclusion
 
