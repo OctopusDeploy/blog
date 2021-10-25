@@ -165,7 +165,7 @@ The focus of the next and final step is providing the URL of the newest bundle f
 
 Being able to tell other projects where to get the cache-busted shared bundle through an automatically populated config setting is an advantage of building an Octopus process for this type of JavaScript project. 
 
-There's an astonishing [variety of strategies for cache-busting](https://css-tricks.com/strategies-for-cache-busting-css/), and in my experience, many lead to pain. For me, this pain stemmed from either the consumer knowing too much about the bundling process, or the bundler knowing too much about the consumer. Ideally, any project that consumes the bundle only reads a config setting with the URL of the bundle. Fortunately, Octopus lets you achieve this at deployment time without much custom code.
+There's an astonishing [variety of strategies for cache-busting](https://css-tricks.com/strategies-for-cache-busting-css/) and, in my experience, many lead to pain. For me, this pain stemmed from either the consumer knowing too much about the bundling process, or the bundler knowing too much about the consumer. Ideally, any project that consumes the bundle only reads a config setting with the URL of the bundle. Fortunately, Octopus lets you achieve this at deployment time without much custom code.
 
 After deployment, this custom script step updates the bundle URL for the scoped `BundleUrl` variable in a [library variable set](https://octopus.com/docs/projects/variables/library-variable-sets) that can be referenced by other projects. To do that, reference the Octopus.Client NuGet package in the step as explained [in our docs](https://octopus.com/docs/octopus-rest-api/octopus.client/using-client-in-octopus). 
 
