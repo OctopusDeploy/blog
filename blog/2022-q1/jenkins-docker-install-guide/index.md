@@ -10,15 +10,15 @@ tags:
  - Octopus
 ---
 
-Docker has emerged victorious in the battle for universal application packages. Every major operating system supports Docker images, every cloud provider supports deploying Docker images, and every major platform offers an official Docker image. Jenkins is no exception, providing the image [jenkins/jenkins](https://hub.docker.com/r/jenkins/jenkins).
+Docker emerged victorious in the battle for universal application packages. Every major operating system supports Docker images, all cloud providers support deploying Docker images, and every major tool or platform offers an official Docker image. Jenkins is no exception, providing the image [jenkins/jenkins](https://hub.docker.com/r/jenkins/jenkins).
 
-In this post you'll learn how to run Jenkins from a Docker image, configure it, customize it, and use the image as a replacement for the traditional package based installation.
+In this post you'll learn how to run Jenkins from a Docker image, configure it, customize it, and use the image as a replacement for a [traditional package based installation](blog/2022-q1/jenkins-install-guide/index.md).
 
 ## Prerequisites
 
-To run a Docker image, you must have Docker installed. [Docker provides details instructions](https://docs.docker.com/get-docker/) for installation on Linux, macOS, and Windows.
+To run a Docker image, you must have Docker installed. [Docker provides detailed instructions](https://docs.docker.com/get-docker/) for installation on Linux, macOS, and Windows.
 
-Note that while recent versions of Windows have gained [native support for running Docker images](https://www.docker.com/products/windows-containers), Jenkins only provides Linux based Docker images. Windows and macOS can run Linux Docker images through virtualization, so most of the commands shown here apply equally to all operating systems, but this post will focus on Linux.
+Note that while recent versions of Windows gained [native support for running Docker images](https://www.docker.com/products/windows-containers), Jenkins only provides Linux based Docker images. Windows and macOS can run Linux Docker images through virtualization, so most of the commands shown here apply equally to all operating systems, but this post will focus on Linux.
 
 ## Getting started with the Jenkins Docker image
 
@@ -32,23 +32,25 @@ Let's break this command down to understand what it is doing.
 
 `docker run` is used to run a Docker image as a container.
 
-You can think of an image as a read only artifact containing the files necessary to run a particular application. Unlike most application artifacts, a Docker image contains a complete operating system and all associated system tools required to support the core application being run. In the case of Jenkins, this means the Docker image contains a the files required to support a minimal Linux operating system, along with the version of Java required to run Jenkins.
+You can think of a Docker image as a read only artifact containing the files necessary to run a particular application. Unlike most application artifacts, a Docker image contains a complete operating system and all associated system tools required to support the core application being run. In the case of Jenkins, this means the Docker image contains the files required to support a minimal Linux operating system, along with the version of Java required to run Jenkins.
 
 A container is an isolated environment within the OS where the Docker image is executed. Although Docker doesn't typically provide the same kind of isolation guarantees that virtual machines do, containers do provide a way to easily run trusted code side by side.
 
-The `-p` arguments map a local port to a port exposed by the Docker container. The first argument is the local port, followed by a colon, and then the container port. So the argument `-p 8080:8080` maps local port 8080 to the container port 8080 (which is the [web port](https://www.jenkins.io/doc/book/security/services/#web-ui)), and `-p 50000:50000` maps local port 50000 to the container port 50000 (which is the [agent port](https://www.jenkins.io/doc/book/security/services/#tcp-agent-listener-port)). This means we can open http://localhost:8080 on our local machine, and Docker directs the traffic into the webserver hosted by the container.
+The `-p` arguments map a local port to a port exposed by the Docker container. The first argument is the local port, followed by a colon, and then the container port. So the argument `-p 8080:8080` maps local port 8080 to the container port 8080 (which is the [web port](https://www.jenkins.io/doc/book/security/services/#web-ui)), and `-p 50000:50000` maps local port 50000 to the container port 50000 (which is the [agent port](https://www.jenkins.io/doc/book/security/services/#tcp-agent-listener-port)). This means you can open http://localhost:8080 on your local machine, and Docker directs the traffic into the webserver hosted by the container.
 
-The argument `-v jenkins_home:/var/jenkins_home` create a volume called `jenkins_home` if it does not already exists and mounts it under the path `/var/jenkins_home` inside the container. 
+The argument `-v jenkins_home:/var/jenkins_home` creates a volume called `jenkins_home` if it does not already exists and mounts it under the path `/var/jenkins_home` inside the container. 
 
-While Docker images are read only, Docker containers expose a read/write filesystem that allows any running application to persist changes. The changes are local to the container though, and if the container is destroyed, the changes are lost. Or, if you want to use a different container, like you must in order to upgrade to a newer version of Jenkins, the changes to your old container are also lost.
+While Docker images are read only, Docker containers expose a read/write filesystem allowing any running application to persist changes. The changes are local to the container though, and if the container is destroyed, the changes are lost. Or, if you want to use a different container, like you must in order to upgrade to a newer version of Jenkins, the changes to your old container are also lost.
 
-Docker volumes allow containers to persist data outside of the container's lifecycle and share data with different containers. You can think of volumes as being like network drives you would typically see mounted into your session when logging into an enterprise network. By saving mutable data to a volume, you are able to destroy and recreate your Jenkins container or create a new container based on a newer Docker image while retaining any changes you have made to the Jenkins configuration. 
+Docker volumes allow containers to persist data outside of the container's lifecycle and share it with different containers. You can think of volumes as being like network drives you would typically see mounted into your session when logging into an enterprise network. By saving mutable data to a volume, you are able to destroy and recreate your Jenkins container, or create a new container based on a newer Docker image, while retaining any changes you have made to the Jenkins configuration. 
 
 The final argument `jenkins/jenkins:lts-jdk11` is the name of the Docker image. [This particular image can be found on Dockerhub](https://hub.docker.com/r/jenkins/jenkins), which is one of many Docker registries available to host Docker images. 
 
 The first segment of the image name, `jenkins`, is the [name of the Docker repository](https://hub.docker.com/u/jenkins). The second segment of the image name, also `jenkins`, is the [name of the image](https://hub.docker.com/r/jenkins/jenkins). The third segment, `lts-jdk11`, is the [tag (or version) of the image](https://hub.docker.com/r/jenkins/jenkins/tags). A registry can contain multiple repositories, and a repository can have many tags.
 
-Note that the image associated with a Docker tag can change over time. Many registries use a "floating" tag to represent the latest version of image. In the case of the Jenkins image, the image with the tag `lts-jdk11` is updated with each LTS release. To ensure your local machine has the latest image, you must manually run `docker pull jenkins/jenkins:lts-jdk11`. Be aware though that any existing containers will continue to use the old image, and you must create a new container to reference any updated images. More specific tags, like `2.303.2-lts-jdk11`, are generally not overwritten, and so there is no reason to run `docker pull` on these images.
+Note that the image associated with a Docker tag can change over time. Many registries use a "floating" tag to represent the latest version of an image. In the case of the Jenkins image, the image with the tag `lts-jdk11` is updated with each LTS release. To ensure your local machine has the latest image, you must manually run `docker pull jenkins/jenkins:lts-jdk11`. Be aware though that any existing containers will continue to use the old image, and you must create a new container to reference any updated images. 
+
+More specific tags, like `2.303.2-lts-jdk11`, are generally not overwritten, and so there is no reason to run `docker pull` on these images.
 
 To view the container this command created, run:
 
@@ -90,7 +92,7 @@ Jenkins is fully up and running
 
 You are now given the opportunity to complete the initial configuration of the Jenkins instance. Take a look at the [previous post](blog/2022-q1/jenkins-install-guide/index.md) for more details on completing this initial configuration.
 
-You may have noticed that running the Docker with the command above attaches your terminal to the container output stream. To [run the Docker image in the background](https://docs.docker.com/language/nodejs/run-containers/#run-in-detached-mode), use the `-d` or `--detach` argument:
+You may have noticed that running Docker with the command above attaches your terminal to the container output stream. To [run the Docker image in the background](https://docs.docker.com/language/nodejs/run-containers/#run-in-detached-mode), use the `-d` or `--detach` argument:
 
 ```bash
 docker run -d -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts-jdk11
@@ -139,7 +141,7 @@ RUN apt update && \
     apt update && apt install -y octopuscli
 ```
 
-It is considered best practice to have a regular user account run the application in the Docker container. The `jenkins` user was created in the base image, and so you switch back to that user as that final command:
+It is considered best practice to have a regular user account run the application in the Docker container. The `jenkins` user was created in the base image, and so you switch back to that user with the final command:
 
 ```dockerfile
 USER jenkins
@@ -157,7 +159,7 @@ This command builds a new image called `myjenkins`. To run the new image, first 
 docker container stop nostalgic_tharp
 ```
 
-And run your new image mounting the existing `jenkins_home` volume to retain all your existing Jenkins configuration:
+Then run your new image mounting the existing `jenkins_home` volume to retain all your existing Jenkins configuration:
 
 ```bash
 docker run -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home myjenkins
