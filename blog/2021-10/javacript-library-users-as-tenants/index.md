@@ -32,7 +32,7 @@ Maybe you created a widget that users add to their website by copy-pasting a cod
 
 Navigate to the **Library** tab and then the **Variable Sets** section. Then click **ADD NEW VARIABLE SET**
 
-##Setup your project
+## Setup your project
 
 ![bundle tenants overview](bundle-tenants.gif)
 
