@@ -1,4 +1,4 @@
----
+edge---
 title: Running unit tests in Jenkins
 description: Learn how to run unit tests in Jenkins and capture the results
 author: matthew.casperson@octopus.com
@@ -10,7 +10,7 @@ tags:
  - Octopus
 ---
 
-Verifying code changes with unit tests is a critical process in typical development workflows. Jenkins provides a number of plugins to collect and process the results of tests allowing developers to browse the results, debug failed tests, ignore flakey or faulty tests, and generate reports on the history of tests over time.
+Verifying code changes with unit tests is a critical process in typical development workflows. Jenkins provides a number of plugins to collect and process the results of tests allowing developers to browse the results, debug failed tests, ignore some test failures, and generate reports on the history of tests over time.
 
 In this post you'll learn how to add unit tests to a Jenkins project and configure plugins to process the results.
 
@@ -26,7 +26,7 @@ The OpenJDK project (and its downstream projects) provide free and open source d
 
 ## Unit testing in Java
 
-There are many unit testing frameworks available for Java, but the [most popular](https://www.overops.com/blog/the-top-100-java-libraries-in-2016-after-analyzing-47251-dependencies/) is [JUnit](https://junit.org). You'll use the [RandomQuotes](https://github.com/OctopusSamples/RandomQuotes-Java) sample application to demonstrate JUnit tests running in a Jenkins project.
+There are many unit testing frameworks available for Java, but the [most popular](https://www.overops.com/blog/the-top-100-java-libraries-in-2016-after-analyzing-47251-dependencies/) is [JUnit](https://junit.org). You'll use the [Random Quotes](https://github.com/OctopusSamples/RandomQuotes-Java) sample application to demonstrate JUnit tests running in a Jenkins project.
 
 ### Installing the Jenkins plugin
 
@@ -79,13 +79,13 @@ pipeline {
 
 ![Jenkins Pipeline](pipeline.png "width=500")
 
-The `Test` stage contains a step running the maven `test` goal, passing `--batch-mode` to avoid unnecessary logging that shows each dependency being downloaded and `-Dmaven.test.failure.ignore=true` to allow the step to pass successfully even if there were failing tests.
+The `Test` stage contains a step running the maven `test` goal, passing `--batch-mode` to avoid unnecessary logging showing each dependency being downloaded and `-Dmaven.test.failure.ignore=true` to allow the step to pass successfully even if there were failing tests.
 
 ```groovy
 sh(script: './mvnw --batch-mode -Dmaven.test.failure.ignore=true test')
 ```
 
-The `post` section contains the `always` condition block processing the test results with the JUnit plugin:
+The `post` section contains the `always` condition block, which processes the test results with the JUnit plugin:
 
 ```groovy
 junit(testResults: 'target/surefire-reports/*.xml', allowEmptyResults : true)
@@ -166,7 +166,7 @@ pipeline {
 }
 ```
 
-The `Test` stage calls `dotnet test` to run the unit tests passing the argument `-l:trx` to write the test results in a Visual Studio Test Results (TRX) file.
+The `Test` stage calls `dotnet test` to run the unit tests, passing the argument `-l:trx` to write the test results in a Visual Studio Test Results (TRX) file.
 
 This command will return a non-zero exit code if any tests failed. To ensure the pipeline continues to be processed in the event of a failed test, you return `true` if `dotnet test` indicates a failure:
 
@@ -286,7 +286,7 @@ You may require that builds fail rather than being marked as unstable in the eve
 
 #### Failing the test command
 
-The first is to allow the command that ran the tests to fail. Most test runners will return a non-zero exit code if tests fail, which will cause the build to fail.
+The first option is to allow the command that ran the tests to fail. Most test runners will return a non-zero exit code if tests fail, which in turn will cause the build to fail.
 
 You can use the following Maven command execute tests and return a non-zero exit code if any fail. The absence of the `-Dmaven.test.failure.ignore=true` argument reverts the command to its default behavior:
 
