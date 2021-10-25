@@ -37,7 +37,7 @@ When changing fields on the left-hand side of the tool, the YAML file on the rig
 
 ![Live Update Stateful](live-update-stateful.png "Live Update Stateful")*Stateful set resource type*
 
-## Two-way sync
+### Two-way sync
 
 You can edit the YAML in the tool by selecting the **EDIT YAML** button.
 
@@ -47,13 +47,13 @@ Below, I edited the name of the deployment to `test-deployment` and clicked **DO
 
 ![Two Way Sync Edit](two-way-sync-edit.png "Two Way Sync Edit")
 
-Two-way sync will update the left-hand side of the tool to match the edits. 
+Two-way sync updates the left-hand side of the tool to match the edits. 
 
 ![Two Way Sync Test](two-way-sync-test.png "Two Way Sync Test")
 
 ## More information
 
-There are several configurable options in a Kubernetes YAML file. Rather than explaining them in detail here, the tool links to the official Kubernetes documentation. Most options have a **More information** link that takes you directly to the documentation.
+There are several configurable options in a Kubernetes YAML file. Rather than explaining them in detail, the tool links to the official Kubernetes documentation. Most options have a **More information** link that takes you directly to the documentation.
 
 ![Kubernetes More Information](kubernetes-more-info.png "Kubernetes More Information")
 
@@ -113,7 +113,7 @@ Resource permissions ensure your registered app has permission to work with your
 
 The next step is setting up an Azure web application and configuring its properties.
 
-### Web application setup {#web-application-setup}
+### Web application set up {#web-application-set-up}
 
 
 1. In your **Resource group** click **Create**, then **Kubernetes Service**
