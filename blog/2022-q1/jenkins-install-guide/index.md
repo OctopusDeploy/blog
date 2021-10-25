@@ -10,37 +10,37 @@ tags:
  - Octopus
 ---
 
-The traditional method to install Jenkins is via the installers made available on the [Jenkins website](https://www.jenkins.io/download/), or using your local operating system's package manager.
+The traditional Jenkins installation method is to use the installers made available on the [Jenkins website](https://www.jenkins.io/download/), or through your local operating system's package manager.
 
-The installation process is generally simple, but there are a few tricks to be aware of. In this post you'll run through the installation of Jenkins on Windows and Linux, and provide some insights into customizing the installation.
+The installation process is generally simple, but there are a few tricks to be aware of. In this post you'll run through the installation of Jenkins on Windows and Linux, and gain some insights into customizing the installation.
 
 ## Choosing between LTS and weekly releases
 
 Jenkins offers two release channels: Long Term Support (LTS) and weekly releases.
 
-LTS releases tend to be more stable and predictable, with fewer features in each release, but include any important bug and security fixes.
+LTS releases tend to be more stable and predictable, with fewer features in each minor release, but include any important bug and security fixes.
 
 The weekly releases include all the latest features, but will have less "bake time" in the community to find bugs.
 
-If you prefer stability and don't require all the latest features right away, go with an LTS release. If you want the latest features as soon as possible and don't mind encountering the occasional glitch, go with the a weekly release.
+If you prefer stability and don't require all the latest features right away, go with an LTS release. If you want the latest features as soon as possible and don't mind encountering the occasional glitch, go with the weekly releases.
 
 ## Installing Jenkins on Windows
 
-Jenkins provides an MSI download allowing it to be installed as a Windows service through the traditional Windows wizard style installation process. But before you start the installation there are a number of prerequisites you must address.
+Jenkins provides an MSI download allowing it to be installed as a Windows service through the traditional Windows wizard style installation process. But before you start the installation there are a number of prerequisites you must satisfy.
 
 ### Installing OpenJDK
 
-Jenkins requires Java to run, and the OpenJDK project provides a free and open source distributions that you can use to run Jenkins.
+Jenkins requires Java to run, and the OpenJDK project provides a free and open source distribution that you can use to run Jenkins.
 
 There are many OpenJDK distributions to choose from including [OpenJDK](https://openjdk.java.net), [AdoptOpenJDK](https://adoptopenjdk.net), [Azul Zulu](https://www.azul.com/downloads/), [Red Hat OpenJDK](https://developers.redhat.com/products/openjdk/download), and more. I typically use the Azul Zulu distribution, although any distribution will do.
 
-Download and install JDK 11 from your chosen OpenJDK distribution, and make a note of the directory it was installed to, as you'll need that during the Jenkins installation.
+Download and install JDK 11 from your chosen OpenJDK distribution, and make a note of the directory it was installed to, as you'll need that path during the Jenkins installation.
 
 ### Adding a Jenkins Windows service account
 
 Jenkins runs as a Windows service, and to do so requires a Windows account to run the service under. The installer provides the option to use the existing [LocalService](https://docs.microsoft.com/en-us/windows/win32/services/localservice-account) account, but notes that this option is not recommended. The recommended solution is to create a new account specifically for running Jenkins.
 
-To do this task from the command line you must first install the [Carbon PowerShell module](http://get-carbon.org/). Carbon provides many useful CMDLets for managing Windows, and you'll use one of these to grant the new Jenkins user the rights to log on as a service.
+To perform this task from the command line you must first install the [Carbon PowerShell module](http://get-carbon.org/). Carbon provides many useful CMDLets for managing Windows, and you'll use one of these to grant the new Jenkins user the rights to log on as a service.
 
 Run the following PowerShell command to install Carbon from the PowerShell Gallery:
 
@@ -48,7 +48,7 @@ Run the following PowerShell command to install Carbon from the PowerShell Galle
 Install-Module -Name 'Carbon' -AllowClobber
 ```
 
-By default PowerShell will prevent you from running code from an external source. To remove this warning, run the following command:
+By default, PowerShell will prevent you from running code from an external source. To remove this warning, run the following command:
 
 ```powershell
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
@@ -66,7 +66,7 @@ The next step is to create a user called `jenkins` to run the Jenkins Windows se
 net user jenkins Password01! /ADD
 ```
 
-Finally, you must grant the `jenkins` user the permission to log on as a service:
+Finally, you must grant the `jenkins` user permission to log on as a service:
 
 ```powershell
 Grant-CPrivilege -Identity "jenkins" -Privilege SeServiceLogonRight
@@ -82,7 +82,7 @@ The default installation directory is fine, so click the **Next** button:
 
 ![Jenkins Windows Installer](win-install-2.png "width=500")
 
-You are now prompted to define the user that runs the Windows service. Enter the credentials for the user you created earlier and click the **Test Credentials** button. Once the test passes, click the **Next** button:
+You are now prompted to supply the details of the user that runs the Windows service. Enter the credentials for the user you created earlier and click the **Test Credentials** button. Once the test passes, click the **Next** button:
 
 ![Jenkins Windows Installer](win-install-3.png "width=500")
 
