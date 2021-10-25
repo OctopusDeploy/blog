@@ -212,7 +212,7 @@ We'll add links to the other posts in this series as they become available.
 
 !include <safe-schema-updates-posts>
 
- ## Register for the webinar: Safe schema updates, part 1: Imagining better systems
+## Register for the webinar: Safe schema updates, part 1: Imagining better systems
 
 Alex Yates will discuss why DevOps is more challenging for mature systems, and why newer systems typically adopt a different architecture.
 
