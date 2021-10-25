@@ -4,9 +4,9 @@ description: Learn how to use our Kubernetes YAML generator, and deploy a Kubern
 author: terence.wong@octopus.com
 visibility: public
 published: 2021-10-26-1400
-metaImage: live-update-deployment.png
-bannerImage: live-update-deployment.png
-bannerImageAlt: empty
+metaImage: blogimage-octopusdeployk8syamlgenerator-2021.png
+bannerImage: blogimage-octopusdeployk8syamlgenerator-2021.png
+bannerImageAlt: Octopus website window with a cog icon connecting it to another window generating the K8 YAML file
 isFeatured: false
 tags:
  - DevOps
@@ -19,11 +19,11 @@ Kubernetes reads YAML files that define the resources you're deploying to. Of co
 
 You can find the tool at [https://k8syaml.com/](https://k8syaml.com/).
 
-## Overview
+## Overview of our K8s YAML generator
 
 A YAML file is a human-readable configuration file that tells Kubernetes how to provision and deploy a service. 
 
-The left-hand side of the tool contains the various options for the YAML file. Each option has a drop-down menu that is populated. 
+The left-hand side of our tool contains the various options for the YAML file. Each option has a drop-down menu that is populated. 
 
 The right-hand side contains the YAML file that Kubernetes will use. 
 
@@ -47,7 +47,7 @@ Below, I edited the name of the deployment to `test-deployment` and clicked **DO
 
 ![Two Way Sync Edit](two-way-sync-edit.png "Two Way Sync Edit")
 
-Two-way sync will update the left-hand side of the tool to match the edits made. 
+Two-way sync will update the left-hand side of the tool to match the edits. 
 
 ![Two Way Sync Test](two-way-sync-test.png "Two Way Sync Test")
 
@@ -57,9 +57,9 @@ There are several configurable options in a Kubernetes YAML file. Rather than ex
 
 ![Kubernetes More Information](kubernetes-more-info.png "Kubernetes More Information")
 
-## Use Case
+## Use case
 
-To show the YAML file in action, I'll use it to deploy a Web Application to an Azure Kubernetes Service with Octopus Deploy.  Feel free to follow along.
+To show the YAML file in action, I use it to deploy a web application to an Azure Kubernetes Service with Octopus Deploy.  Feel free to follow along.
 
 Fill out the fields according to the image, by populating the left-hand side. 
 
@@ -78,7 +78,7 @@ The text on the right is the YAML file we use to deploy to Azure. Copy this file
 ![YAML generator](yaml-generator.png "YAML generator")
 
 
-## Configuring an Azure Account
+## Configuring an Azure account
 
 You need to configure an Azure account and web application to act as a target for the deployment from Octopus. Other targets are possible, such as AWS, or Windows or Linux servers.
 
@@ -91,9 +91,9 @@ Next, you need to create an account in Azure, by navigating to the [Azure portal
 1. In the Azure Portal, open the menu, and navigate to **Azure Active Directory**, then **Properties**. 
 1. Copy the value from the **Tenant ID** field. This is your **Tenant ID**.
 1. Next you need your **Application ID**:
-   - If you created an AAD registered application, navigate to **Azure Active Directory** , **App Registrations**, click **View all applications**, select the app and copy the **Application ID**.  Please note, the Azure UI defaults to **Owned applications** tab.  Click the **All applications** tab to view all app registrations. 
+   - If you created an AAD registered application, navigate to **Azure Active Directory**, **App Registrations**, click **View all applications**, select the app and copy the **Application ID**.  Please note, the Azure UI defaults to **Owned applications** tab.  Click the **All applications** tab to view all app registrations. 
    - If you haven't created a registered app, navigate to **Azure Active Directory**, **App registrations**, click on **New registration** and add the details for your app, and click **Save**. Make note of the **Application ID**.
-1. Generate a one-time password by navigating to **Certificates & Secrets** then **New client secret**. Add a new **secret**, enter a description, and click **Save**. Make note of the displayed application password for use in Octopus. You can change the expiry date, if you don’t want to accept the default one-year expiry for the password.
+1. Generate a one-time password by navigating to **Certificates & Secrets** then **New client secret**. Add a new secret, enter a description, and click **Save**. Make note of the displayed application password for use in Octopus. You can change the expiry date, if you don’t want to accept the default one-year expiry for the password.
 
 You now have the following:
 
@@ -108,7 +108,7 @@ Next, you need to configure your resource permissions.
 
 Resource permissions ensure your registered app has permission to work with your Azure resources.
 
-1. In the Azure Portal navigate to **Resource groups** and select the resource group(s) that you want the registered app to access. If a resource group doesn't exist, create one by going to **Home**, then **Resource groups** then select **Create**. After it's created, take note of the Azure subscription ID of the resource group.
+1. In the Azure Portal navigate to **Resource groups** and select the resource group(s) that you want the registered app to access. If a resource group doesn't exist, create one by going to **Home**, then **Resource groups** and selecting **Create**. After it's created, take note of the Azure subscription ID of the resource group.
 2. Click the **Access control (IAM)** option. Under **Role assignments**, if your app isn't listed, click **Add role assignment**. Select the appropriate role (**Contributor** is a common option) and search for your new application name. Select it from the search results and then click **Save**.
 
 The next step is setting up an Azure web application and configuring its properties.
@@ -119,7 +119,7 @@ The next step is setting up an Azure web application and configuring its propert
 1. In your **Resource group** click **Create** then **Kubernetes Service**
 2. Give the cluster a name and select an appropriate region 
 3. Accept the default options and click through to Create
-4. The cluster name will be the AKS cluster name in Octopus Deploy. Make note of the resource group name.
+4. The cluster name will be the AKS cluster name in Octopus Deploy - make note of the resource group name
 
 ### Add the service principal account in Octopus {#add-service-principal-account}
 
@@ -158,7 +158,9 @@ Go to **Library**, then **External Feeds** and set up a docker registry. Since w
 
 ![Docker registry](docker-registry.png "Docker registry")
 
-Set up the Kubernetes target by going to **Infrastructure Deployment Targets**, then **Add Deployment Target**, then **Kubernetes Cluster**. Fill out the step according to the image below, replacing the account, AKS cluster name, and resource group with your values. Click **SAVE** to finish.
+Set up the Kubernetes target by going to **Infrastructure Deployment Targets**, then **Add Deployment Target**, then **Kubernetes Cluster**. 
+
+Fill out the step according to the image below, replacing the account, AKS cluster name, and resource group with your values. Click **SAVE** to finish.
 
 ![Kubernetes target](octopus-kubernetes-target.png "Kubernetes target")
 
@@ -172,7 +174,7 @@ Make sure to add the `kube` role under the **on behalf of** option to trigger th
 
 Click **Create a release**, and then click the deploy steps to deploy the release. Wait for the success message. 
 
-After the deployment is successful, access the Web Application by exposing the cluster to the internet. Go to the Azure portal and bring up the Powershell Azure CLI.
+After the deployment is successful, access the web application by exposing the cluster to the internet. Go to the Azure portal and bring up the PowerShell Azure CLI.
 
 ![Azure CLI](azure-cli.png "Azure CLI")
 
@@ -182,15 +184,15 @@ This command will point the CLI to your cluster:
 
     kubectl get deployments
 
-Running this command will get the list of deployments on the cluster. You should see the deployment `octopus-deployment`. Use this name to expose the Web Application:
+Running this command will get the list of deployments on the cluster. You should see the deployment `octopus-deployment`. Use this name to expose the web application:
 
     kubectl expose deployment octopus-deployment --type=LoadBalancer --name=my-service
     
-This command creates a service named 'my-service' that generates a public IP to view the Web Application:
+This command creates a service named 'my-service' that generates a public IP to view the web application:
 
     kubectl get services
 
-Run this command, and you will see "pending" under the External-IP. Wait 1 minute, run again, and you should see a public IP in that field. Go to the IP address in the browser to view your Web Application.
+Run this command, and you will see "pending" under the External-IP. Wait one minute, run again, and you should see a public IP in that field. Go to the IP address in the browser to view your web application.
 
 ![RandomQuotes](random-quotes.png "RandomQuotes")
 
