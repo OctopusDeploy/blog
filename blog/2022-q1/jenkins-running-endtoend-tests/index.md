@@ -10,9 +10,9 @@ tags:
  - Octopus
 ---
 
-End-to-end (E2E) tests represent the of the final stages of automated testing. E2E are long running (certainly with respect to unit tests that can complete thousands of tests in seconds), and are typically executed by external tools which interact with the application under test through public interfaces like web pages or HTTP APIs.
+End-to-end (E2E) tests represent the final stages of automated testing. E2E are long running (certainly with respect to unit tests that can complete thousands of tests in seconds), and are typically executed by external tools which interact with the application under test through public interfaces like web pages or HTTP APIs.
 
-In this post you'll learn how to run E2E tests with Cypress, to validate interactions with web pages, and Postman, to validate HTTP APIs.
+In this post you'll learn how to run E2E tests with Cypress to validate interactions with web pages, and Postman to validate HTTP APIs.
 
 ## Prerequisites
 
@@ -108,7 +108,7 @@ The `Dependencies` stage downloads Cypress to the project directory:
 
 The `Test` stage sets the `NO_COLOR` environment variable to `1` to strip an ANSI color codes from the output, and then runs Cypress. Cypress returns a non-zero exit code if any tests fail, but we defer the decision to pass or fail the build to the test processor by ensuring this command always returns true by appending `|| true`.
 
-You can learn more about processing failed test in [Running unit tests in Jenkins](/blog/2022-q1/jenkins-running-unit-tests/index.md):
+You can learn more about processing failed tests in [Running unit tests in Jenkins](/blog/2022-q1/jenkins-running-unit-tests/index.md):
 
 ```groovy
     stage('Test') {
@@ -142,7 +142,6 @@ The video artifact captures the test output:
 Newman is the command line test runner for Postman. The test scripts are exported from Postman as JSON files. An example that queries the GitHub API has been saved in the [junit-newman-test GitHub Repo](https://github.com/OctopusSamples/junit-newman-test):
 
 ```json
-{
 {
   "info": {
     "_postman_id": "f9b1443b-c23d-4738-901d-092cba2fc3d6",
@@ -243,7 +242,7 @@ pipeline {
 }
 ```
 
-The `Dependencies` stage downloads Newman the project directory:
+The `Dependencies` stage downloads Newman to the working directory:
 
 ```groovy
     stage('Dependencies') {
@@ -255,7 +254,7 @@ The `Dependencies` stage downloads Newman the project directory:
 
 The `Test` stage runs Newman, enabling the JUnit reporter with the `--reporters cli,junit` argument, and saving the result as a JUnit report file with the `--reporter-junit-export results.xml` argument. 
 
-Newman will return a non-zero exit code if any tests fail, so to defer the success or failure of the build to the test processor, you ensure the command always returns true with `|| true'`.
+Newman will return a non-zero exit code if any tests fail, so to defer the success or failure of the build to the test processor, you ensure the command always returns true with `|| true`.
 
 You can learn more about processing failed test in [Running unit tests in Jenkins](/blog/2022-q1/jenkins-running-unit-tests/index.md):
 
