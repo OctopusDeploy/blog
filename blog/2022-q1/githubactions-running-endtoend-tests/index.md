@@ -44,7 +44,7 @@ This test is configured to generate a JUnit report file in the `cypress.json` fi
 }
 ```
 
-The workflow file below executes this test with the [Cypress GitHub Action](https://docs.cypress.io/guides/continuous-integration/github-actions#Cypress-GitHub-Action), saves the generated video file as an artifact, and processes the test results:
+The workflow file below executes this test with the [Cypress GitHub Action](https://docs.cypress.io/guides/continuous-integration/github-actions#Cypress-GitHub-Action), saves the generated video file as an artifact, and processes the test results. You can find an example of this workflow in the [junit-cypress-test repository](https://github.com/OctopusSamples/junit-cypress-test/actions):
 
 ```yaml
 name: Cypress
@@ -126,7 +126,7 @@ Not all testing platforms provide a GitHub action, in which case you can execute
 
 ## Running API tests with Newman
 
-Unlike Cypress, [Postman](https://www.postman.com/) does not provide an official GitHub action. However, you can use the [postman/newman](https://hub.docker.com/r/postman/newman/) Docker image directly inside a workflow:
+Unlike Cypress, [Postman](https://www.postman.com/) does not provide an official GitHub action. However, you can use the [postman/newman](https://hub.docker.com/r/postman/newman/) Docker image directly inside a workflow. You can find an example of the workflow in the [junit-newman-test repository](https://github.com/OctopusSamples/junit-newman-test/actions):
 
 ```yaml
 name: Cypress
