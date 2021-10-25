@@ -150,11 +150,11 @@ Next, set up Octopus Deploy to load the YAML file to set up a Kubernetes cluster
 
 Create a project with a production environment in your Octopus Deploy instance. 
 
-To do this, go to **Infrastructure**, then **Environments**, the **Add Environments** to add the production environment. 
+To do this, go to **Infrastructure**, then **Environments**, then **Add Environments** to add the production environment. 
 Then, go to **Projects**, **Add Project** to add a project.
 
 
-Go to **Library**, then **External Feeds** and set up a docker registry. Since we're using the public repository, you can leave credentials blank.
+Go to **Library**, then **External Feeds** and set up a docker registry. Since we're using the public repository, you can leave **Credentials** blank.
 
 ![Docker registry](docker-registry.png "Docker registry")
 
