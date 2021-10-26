@@ -80,7 +80,7 @@ If you are using an account variable, you will find there is an extra step to al
 
 ### Add a new deployment step to update bundle URLs for each tenant
 
-To take control of the bundle URL each tenant references, your new process must upload to the root of your S3 bucket a small JSON file for each combination of tenant and environment. The name of that file is in the form `consumerkey.enivornment.json`. Here is an example of contents for `Customer.production.json`:
+To take control of the bundle URL each tenant references, your new process uploads to the root of your S3 bucket a small JSON file for each combination of tenant and environment. The name of that file is in the form `consumerkey.enivornment.json`. Here is an example of contents for `Customer.production.json`:
 
 ```json
 {
