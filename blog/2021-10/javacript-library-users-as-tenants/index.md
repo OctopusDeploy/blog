@@ -32,11 +32,11 @@ Maybe you created a widget that users add to their website by copy-pasting a cod
 
 Navigate to the **Library** tab and then the **Variable Sets** section. Then click **ADD NEW VARIABLE SET** and fill out the dialog as follows:
 
-[create consumer variable](consumer_variable.png)
+![create consumer variable](consumer_variable.png)
 
 Click on your newly created variable set, then click **VARIABLE TEMPLATES**, then the **ADD TEMPLATE** button. Fill out the details as follows:
 
-[create consumer variable_template](consumer_template.png)
+![create consumer variable_template](consumer_template.png)
 
 
 
