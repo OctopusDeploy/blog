@@ -161,13 +161,13 @@ Set up the Kubernetes target by going to **Infrastructure Deployment Targets**, 
 
 Fill out the step:
 
-**Environments** - The environment you set up in Octopus
-**Target Roles** - kube
-**Authentication** - Azure Service Principal
-- **Select Account** - The Azure account you set up in Octopus
-- **AKS cluster name** - The name of your Kubernetes Cluster
-- **AKS resource group name** - The name of your Azure resource group
-- **Login with administrator credentials** - Check this box
+- **Environments** - The environment you set up in Octopus
+- **Target Roles** - kube
+- **Authentication** - Azure Service Principal
+   - **Select Account** - The Azure account you set up in Octopus
+   - **AKS cluster name** - The name of your Kubernetes Cluster
+   - **AKS resource group name** - The name of your Azure resource group
+   - **Login with administrator credentials** - Check this box
 
 Leave everything else as default and click **SAVE** to finish.
 
