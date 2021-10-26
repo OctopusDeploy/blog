@@ -1,15 +1,16 @@
 ---
-title: Rolling back a Kubernets deployment
+title: Rolling back a Kubernetes deployment
 description: Learn how to rollback an application deployed to Kubernetes.
 author: shawn.sesna@octopus.com
-visibility: private 
-published: 2022-10-11
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+visibility: public
+published: 2021-11-02-1400
+metaImage: blogimage-rollingbackkubernetesdeployment-2021.png
+bannerImage: blogimage-rollingbackkubernetesdeployment-2021.png
+bannerImageAlt: Kubernetes logo as a steering wheel in the front of a ship, steering to the left.
 isFeatured: false
 tags:
- - 
+ - DevOps
+ - Kubernetes
 ---
 
 For various reasons, not every deployment goes as smoothly as we would like when deploying to Kubernetes.  Bugs, container environment variables, and/or hardware limitations can dictate whether an application will run once deployed to a Kubernetes cluster.  In the scenarios where the fix isn't easy or the application is unresponsive, you need to go back to the previous version, often referred to as a rollback.  In this post, I'll describe some general and Kubernetes specific rollback strategies using Octopus Deploy.
