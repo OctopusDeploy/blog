@@ -169,7 +169,7 @@ Fill out the step:
 - **Select Account** - The Azure account you set up in Octopus
 - **AKS cluster name** - The name of your Kubernetes Cluster
 - **AKS resource group name** - The name of your Azure resource group
-- **Login with administrator credentials** - Check
+- **Login with administrator credentials** - Check this box
 
 Leave everything else as default and click **SAVE** to finish.
 
