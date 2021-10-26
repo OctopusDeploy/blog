@@ -65,7 +65,7 @@ By default, Vue creates a separate CSS file, a production source map file, and a
 
 These are sensible defaults, but for a shared JS bundle that's not massive, you can start by allowing consumers to reference the one JS file, to get all styling and behavior. You can always introduce support later, as needed, for optimizations, source maps, and external CSS.
 
-To instruct Vue to build just one JavaScript file, you can add the following vue.config.js at the root of your Vue project next to pacakage.json:
+To instruct Vue to build just one JavaScript file, you can add the following vue.config.js at the root of your Vue project next to package.json:
 
 ```js
  module.exports = {
