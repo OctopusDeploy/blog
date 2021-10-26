@@ -289,7 +289,7 @@ You can create a rollback process with a few tweaks to your existing deployment 
 
 A robust rollback strategy is key to any deployment strategy. In this webinar, we’ll cover best practices for IIS deployments, Tomcat, and full stack applications with a database. We’ll also discuss how to get the rollback strategy right for your situation. 
 
-We're running 3 sessions of the webinar over 2 days, Wed 4 Nov – Thurs 5 Nov, 2021.
+We're running 3 sessions of the webinar over 2 days, Wed 3 Nov – Thurs 4 Nov, 2021.
 
 <span><a class="btn btn-success" href="/events/rollback-strategies-with-octopus-deploy">Register now</a></span>
 
