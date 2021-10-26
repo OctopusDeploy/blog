@@ -119,3 +119,14 @@ Here is the source of `bundle-loader.js`:
    }
 )();
 ```
+
+Consumers now reference `bundle-loader.js` instead of directly referencing the bundle. It will fetch the small JSON file without caching and then dynamically add a new script tag to reference the correct version of the bundle for the tenant and enivronment, which are specified in data attributes on the script tag that references `bundle-loader.js`. Here is an example of a consumer page implemented in ASP.NET Core MVC.
+
+```razor-cshtml
+@page
+
+@inject BundleSettings bundleSettings
+
+<script src="@bundleSettings.BaseUrl/bundle-loader.js" data-consumer-key="@bundleSettings.ConsumerKey" data-environment="@bundleSettings.EnvironmentName"></script>
+<div id="app"></div>
+```
