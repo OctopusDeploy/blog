@@ -70,7 +70,7 @@ Navigate to the **Settings** of your project and select the option to require a 
 
 For each of your tenants, click the **CONNECT PROJECT** button and connect your JavaScript project to the tenant for the `test` and `production` environments.
 
-![connect tenant ot project](connect_to_project.gif)
+![connect tenant to project](connect_to_project.gif)
 
 ### Allow all tenants to use your Amazon S3 account
 
@@ -78,4 +78,34 @@ If you are using an account variable, you will find there is an extra step to al
 
 ![account restrictions](account_restrictions.png)
 
-###  moo
+### Add a new deployment step to update bundle URLs for each tenant
+
+To get control over which bundle each tenant references, your new process will upload to the root of your S3 bucket a small JSON file for each combination of tenant and environment. The name of that file is in the format `consumerkey.enivornment.json`. Here is an example of contents for `Customer.production.json`:
+
+```json
+{
+  "url": "https://bundle-s3.s3.ap-southeast-2.amazonaws.com/release_0.0.112/js/app.69e902e8.js" 
+}
+```
+
+To generate these JSON files in the final step of your deployment process, add a `Run an AWS CLI Script` step that references your package, and is configured to use your S3 account. Now add the following PowerShell script:
+
+```ps
+$bundle = Get-ChildItem -Path MyBundle/js/*.js | Select-Object -First 1
+$releaseId = $OctopusParameters["Octopus.Release.Number"]
+$bundleUrl = $bucketUrl + 'release_' + $releaseId + '/js/' + $bundle.Name
+$env = $OctopusParameters["Octopus.Environment.Name"];
+echo "{""url"":""$bundleUrl""}" | aws s3 cp - "s3://#{s3-bucket-name}/#{BundleConsumerKey}.$env.json" --acl public-read
+aws s3 cp MyBundle/bundle-loader.js s3://#{s3-bucket-name}/bundle-loader.js --acl public-read
+```
+
+This won't be able to run successfully yet because we have to add `bundle-loader.js` to the source code for our package.
+
+## Dynamic cache-busting
+
+You want `bundle-loader.js` to sit at the root of your package. To achieve that in Vue JS, create it under the `public` folder in your Vue project. 
+ `bundle-loader.js`: 
+Here is the source of  `bundle-loader.js`: 
+
+
+
