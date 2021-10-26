@@ -58,7 +58,7 @@ You can deploy to your tenants using the following process.
 
 ![process](bundle-tenants-process.gif)
 
-This is a modified version of the process explained in my [previous post](https://octopus.com/blog/deploying-javascript-library-project-with-octopus). If you haven't read that, this is a good time to follow its instructions, but please omit step 4, because the final step of this tenanted deployment process is different. Now you have the basis for a project that uploads a JS bundle, you need to make modifications to enable tenanted deployments.
+This is a modified version of the process explained in my [previous post](https://octopus.com/blog/deploying-javascript-library-project-with-octopus). If you haven't read that, this is a good time to follow its instructions, but please omit step 4, because the final step of this tenanted deployment process is different. Now you have the basis for a project that uploads a JavaScript bundle, you need to make modifications to enable tenanted deployments.
 
 ### Require tenants for all deployments of your project
 
@@ -80,7 +80,7 @@ If you are using an account variable, you will find there is an extra step to al
 
 ### Add a new deployment step to update bundle URLs for each tenant
 
-To get control of the bundle URL each tenant references, your new process will upload to the root of your S3 bucket a small JSON file for each combination of tenant and environment. The name of that file is in the form `consumerkey.enivornment.json`. Here is an example of contents for `Customer.production.json`:
+To take control of the bundle URL each tenant references, your new process will upload to the root of your S3 bucket a small JSON file for each combination of tenant and environment. The name of that file is in the form `consumerkey.enivornment.json`. Here is an example of contents for `Customer.production.json`:
 
 ```json
 {
