@@ -74,7 +74,7 @@ For each of your tenants, click the **CONNECT PROJECT** button and connect your 
 
 ### Allow all tenants to use your Amazon S3 account
 
-If you are using an account variable, you will find there is an extra step to allow using it to release to any of your tenants. The ability to restrict accounts to tenants exists to help prevent accidentally using the wrong account for the wrong customer, but for simplicity, assume you are releasing to one S3 bucket referenced by all consumers. 
+If you are using an account variable, you will find there is an extra step to allow using it to release to any of your tenants. The ability to restrict accounts to tenants can be important to help prevent accidentally using the wrong account for the wrong customer, but for simplicity, assume you are releasing to one S3 bucket referenced by all consumers. 
 
 ![account restrictions](account_restrictions.png)
 
