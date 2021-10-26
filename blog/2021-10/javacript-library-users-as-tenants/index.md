@@ -14,7 +14,7 @@ tags:
  - Tenants
 ---
 
-In my [previous post](https://octopus.com/blog/deploying-javascript-library-project-with-octopus), you learned how to use Octopus to deploy a hash-named JavaScript library bundle to cloud storage, where it could be referenced by other projects via an automatically updated variable within a [Library Variable Set](https://octopus.com/docs/projects/variables/library-variable-sets). That's a solid start for managing reusable front-end code in Octopus. It keeps every consumer of your bundle on the latest version of your library as releases happen, which might be the exact behavior you need, especially if you have only a few internal projects referencing a small or medium-sized JavaScript library. However, if you continue this pattern as your organisation scales up, you might face certain dilemmas.
+In my [previous post](https://octopus.com/blog/deploying-javascript-library-project-with-octopus), you learned how to use Octopus to deploy a hash-named JavaScript library bundle to cloud storage, where it could be referenced by other projects via an automatically updated variable within a [Library Variable Set](https://octopus.com/docs/projects/variables/library-variable-sets). That's a solid start for managing reusable front-end code in Octopus. It keeps every consumer of your bundle on the latest version of your library as releases happen, which might be the exact behavior you need, especially if you have only a few internal projects referencing a small or medium-sized JavaScript library. However, if you continue this pattern as your organisation scales up, you might hit some dilemmas.
 
 ### What if a team using your library needs to deploy an update to their project, but doesn't want to retest against the latest version?
 
