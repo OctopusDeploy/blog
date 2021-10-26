@@ -58,7 +58,7 @@ You can deploy to your tenants using the following process.
 
 ![process](bundle-tenants-process.gif)
 
-This is a modified version of the process explained in my [previous post](https://octopus.com/blog/deploying-javascript-library-project-with-octopus). If you haven't read that, now would be a good time to follow its instructions, but please omit step 4, because the final step of this tenanted deployment process is different. Now you have the basis for a project that uploads a JS bundle, you need to make modifications to enable tenanted deployments.
+This is a modified version of the process explained in my [previous post](https://octopus.com/blog/deploying-javascript-library-project-with-octopus). If you haven't read that, this is a good time to follow its instructions, but please omit step 4, because the final step of this tenanted deployment process is different. Now you have the basis for a project that uploads a JS bundle, you need to make modifications to enable tenanted deployments.
 
 ### Require tenants for all deployments of your project
 
