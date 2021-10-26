@@ -54,15 +54,20 @@ We'll need a project to interact with these tenants.
 
 ## Setup your project
 
-## The deployment process
-
 We can deploy to our three tenants using the following process.
 
 ![process](bundle-tenants-process.gif)
 
-If you've read my [previous post](https://octopus.com/blog/deploying-javascript-library-project-with-octopus) on deploying a JavaScript library, you'll note that this is a modified version of the process you built in that post. If you haven't read that post, now would be a good time to follow its instructions, but skip creating step 4, as you will be controlling which tenant uses which release in a very different way. Now that we have the basis for a project that uploads a JS bundle, we need several changes to make it ready for tenanted deployments.
+If you've read my [previous post](https://octopus.com/blog/deploying-javascript-library-project-with-octopus) on deploying a JavaScript library, you'll note that this is a modified version of the process you built in that post. If you haven't read that post, now would be a good time to follow its instructions, but skip creating step 4, because the final step of this process controls which tenant uses which release in a different way. Now we have the basis for a project that uploads a JS bundle, we need to make modifications to enable tenanted deployments.
 
-## 
+## Require tenants for all deployments of your project
 
+Navigate to the **Settings** of your project and select the option to require a tenant for all deployments.
 
+![require tenants](require_tenants.gif)
 
+## Connect all consumer tenants to your project
+
+For each of your tenants, click the **CONNECT PROJECT** button and connect your JavaScript project to the tenant for the `test` and `production` environments.
+
+![connect_to_project.gif](connect_to_project.gif)
