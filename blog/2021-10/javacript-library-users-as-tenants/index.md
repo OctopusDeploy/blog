@@ -44,7 +44,7 @@ Click on your newly created variable set, then click **VARIABLE TEMPLATES**, the
 
 ## Create a consumer for each tenant
 
-Navigate to the **Tenants** tab, click the **ADD TENANT** button, and create a tenant named `Blog`. Click on your newly created tenant, go to the **Variables** section, then click on the **COMMON VARIABLES** tab, and set the variable for `Bundle Consumer Key` to the value `Blog`.
+Navigate to the **Tenants** tab, click the **ADD TENANT** button, and create a tenant named `Blog`. Click on your newly created tenant, navigate to its **Variables** section, then click on the **COMMON VARIABLES** tab, and set the variable for `Bundle Consumer Key` to the value `Blog`.
 
 ![setting the tenant variable](tenant_variable.gif)
 
