@@ -26,7 +26,11 @@ Maybe you created a widget that users add to their website by copy-pasting a cod
 
 ## Tenants to the rescue
 
-[Tenants](https://octopus.com/docs/tenants) are a good conceptual fit for representing consumers of your JavaScript library. Tenants are often used to represent customers of your application. Your customers in this case might be internal, but here at Octopus scaling up our engineering team has shown it's helpful to think of other teams as internal customers. You are updating script dependencies on different websites instead of deploying software to different customers' infrastructure, but all the requirements for how you manage that in Octopus are the same as if you were deploying appropriate versions of a server-side app for different customers. Here's an example of the dashboard you end up with after following the instructions in this post. In this example, imagine you are deploying your shared script to a company WordPress blog, an external customer, and your company's main website. Each of these is represented as a tenant which we will assign a unique idenitifier using a [Common Variable](https://octopus.com/docs/tenants/tenant-variables#common-variables), since those are not scoped per environment, and this consumer key can be constant for all environments.
+[Tenants](https://octopus.com/docs/tenants) are a good conceptual fit for representing consumers of your JavaScript library. Tenants are often used to represent customers of your application. Your customers in this case might be internal, but here at Octopus scaling up our engineering team has shown it's helpful to think of other teams as internal customers. You are updating script dependencies on different websites instead of deploying software to different customers' infrastructure, but all the requirements for how you manage that in Octopus are the same as if you were deploying appropriate versions of a server-side app for different customers. Here's an example of the dashboard you end up with after following the instructions in this post. In this example, imagine you are deploying your shared script to a company WordPress blog, an external customer, and your company's main website. 
+
+![bundle tenants overview](bundle-tenants.gif)
+
+Each of these is represented as a tenant which we will assign a unique idenitifier using a [Common Variable](https://octopus.com/docs/tenants/tenant-variables#common-variables), since those are not scoped per environment, and this consumer key can be constant for all environments.
 
 ### Setup your consumer key variable
 
@@ -39,12 +43,7 @@ Click on your newly created variable set, then click **VARIABLE TEMPLATES**, the
 ![create consumer variable_template](consumer_template.png)
 
 
-
-
-
 ## Setup your project
-
-![bundle tenants overview](bundle-tenants.gif)
 
 ## The deployment process
 
