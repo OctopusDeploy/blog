@@ -99,13 +99,24 @@ echo "{""url"":""$bundleUrl""}" | aws s3 cp - "s3://#{s3-bucket-name}/#{BundleCo
 aws s3 cp MyBundle/bundle-loader.js s3://#{s3-bucket-name}/bundle-loader.js --acl public-read
 ```
 
-This won't be able to run successfully yet because we have to add `bundle-loader.js` to the source code for our package.
+This won't run successfully yet because we have to add `bundle-loader.js` to the source code for our package.
 
 ## Dynamic cache-busting
 
 You want `bundle-loader.js` to sit at the root of your package. To achieve that in Vue JS, create it under the `public` folder in your Vue project. 
- `bundle-loader.js`: 
-Here is the source of  `bundle-loader.js`: 
 
+Here is the source of `bundle-loader.js`: 
 
-
+```js
+(async () => 
+	{
+        const { consumerKey, environment } = document.currentScript.dataset;
+        const redirectFileUrl = `${document.currentScript.src.substring(0, document.currentScript.src.lastIndexOf('/'))}/${consumerKey}.${environment}.json`;
+        const response = await fetch(redirectFileUrl, {cache: "no-store"});
+        const bundleInfo = await response.json();
+        var script = document.createElement('script');
+        script.src = bundleInfo.url
+        document.head.appendChild(script);
+	}
+)();
+```
