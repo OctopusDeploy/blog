@@ -42,6 +42,10 @@ Click on your newly created variable set, then click **VARIABLE TEMPLATES**, the
 
 ![create consumer variable_template](consumer_template.png)
 
+
+
+
+
 ## Setup your project
 
 ## The deployment process
