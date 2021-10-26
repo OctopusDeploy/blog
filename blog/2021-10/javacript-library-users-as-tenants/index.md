@@ -101,7 +101,7 @@ aws s3 cp MyBundle/bundle-loader.js s3://#{s3-bucket-name}/bundle-loader.js --ac
 
 This won't run successfully yet because we have to add `bundle-loader.js` to the source code for our package.
 
-## Dynamic cache-busting
+## Dynamic cache busting
 
 You want `bundle-loader.js` to sit at the root of your package. To achieve that in Vue JS, create it under the `public` folder in your Vue project. 
 
