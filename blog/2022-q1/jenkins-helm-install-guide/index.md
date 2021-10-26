@@ -237,6 +237,8 @@ controller:
   installPlugins: false
 ```
 
+You can find an example `Dockerfile` installing tools for Java, DotNET Core, PHP, Python, Ruby, and Go in the [jenkins-complete-image repoistory](https://github.com/OctopusSamples/jenkins-complete-image).
+
 ## Configuration as Code
 
 Jenkins Configuration as Code (JCasC) is a [plugin](https://plugins.jenkins.io/configuration-as-code/) providing an opinionated method for configuring Jenkins through YAML files. This provides an alternative to writing [Groovy scripts directly referencing the Jenkins API](https://www.jenkins.io/doc/book/managing/groovy-hook-scripts/), which is powerful, but requires administrators to be comfortable writing code.
