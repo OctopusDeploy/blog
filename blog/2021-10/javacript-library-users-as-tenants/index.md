@@ -120,7 +120,7 @@ Here is the source for `bundle-loader.js`:
 )();
 ```
 
-Consumers now reference `bundle-loader.js` instead of directly referencing the bundle. It will fetch the small JSON file without caching, then dynamically add a new `script` tag to reference the correct version of the bundle for the tenant and enivronment. These are specified in data attributes on the script tag that references `bundle-loader.js`. Here is an example of a consumer page implemented in ASP.NET Core MVC. Now there is no need to make any modifications to consumers to update their JavaScript references when we release new versions of our library!
+Consumers now reference `bundle-loader.js` instead of directly referencing the bundle. It will fetch the small JSON file without caching, then dynamically add a new `script` tag to reference the correct version of the bundle for the tenant and enivronment. These are specified in data attributes on the `script` tag that references `bundle-loader.js`. Here is an example of a consumer page implemented in ASP.NET Core MVC. Now there is no need to make any modifications to consumers to update their JavaScript references when we release new versions of our library!
 
 ```razor
 @page
