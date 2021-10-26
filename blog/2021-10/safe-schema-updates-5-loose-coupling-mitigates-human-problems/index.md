@@ -121,7 +121,7 @@ We'll add links to the other posts in this series as they become available.
 
 Alex Yates will discuss why DevOps is more challenging for mature systems, and why newer systems typically adopt a different architecture.
 
-We're running 3 sessions of the webinar, Thurs 18 Nov – Fri 19 Nov, 2021.
+We're running 3 sessions of the webinar, Wed 17 Nov – Thurs 18 Nov, 2021.
 
 <span><a class="btn btn-success" href="/events/safe-schema-updates-part-1-imagining-better-systems">Register now</a></span>
 
