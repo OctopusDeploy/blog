@@ -14,15 +14,15 @@ tags:
  - Tenants
 ---
 
-In my [previous post](https://octopus.com/blog/deploying-javascript-library-project-with-octopus), you learned how to use Octopus to deploy a hash-named JavaScript library bundle to cloud storage, where it could be referenced by other projects via an automatically updated variable within a [Library Variable Set](https://octopus.com/docs/projects/variables/library-variable-sets). That's a solid start for managing reusable front-end code in Octopus. It keeps every consumer of your bundle on the latest version of your library as releases happen, which might be the exact behavior you need, especially if you have only a few internal projects referencing a small or medium-sized JavaScript library. However, if you continue this pattern as your organisation scales up, you might hit some dilemmas.
+In my [previous post](https://octopus.com/blog/deploying-javascript-library-project-with-octopus), you learned how to use Octopus to deploy a hash-named JavaScript library bundle to cloud storage, where it could be referenced by other projects via an automatically updated variable within a [library variable set](https://octopus.com/docs/projects/variables/library-variable-sets). That's a good start for managing reusable front-end code in Octopus. It keeps every consumer of your bundle on the latest version of your library as releases happen, which might be the exact behavior you need, especially if you have only a few internal projects referencing a small or medium-sized JavaScript library. However, if you continue this pattern as your organisation scales up, you might hit some dilemmas.
 
 ### What if a team using your library needs to deploy an update to their project, but doesn't want to retest against the latest version?
 
-This might happen when a hotfix is needed. As your front-end library grows, you won't want to rush upgrading it for the sake of releasing an unrelated fix. You could override the Library Variable at the project level. This would be a reasonable solution once in a while, but if it's normal development flow, and multiple teams reference your script and want to be able to upgrade when it's convenient, then clear visibility into which consumer is on which version of your library is helpful. You'd also like to be able to roll back a change that inadvertently broke one consumer, or upgrade some website that's failing due to a known bug in an old version of your library. In these situations, you want to release not only to a specific environment, but also to a specific set of consumers.  
+This might happen when a hotfix is needed. As your front-end library grows, you won't want to rush upgrading it for the sake of an unrelated fix. You could override the library variable at the project level. This would be a reasonable solution if the situation occurs occasionally, but if it's normal development flow, and multiple teams reference your script and want to be able to upgrade when it's convenient, then clear visibility into which consumer is on which version of your library is helpful. You'd also like to be able to roll back a change that inadvertently broke one consumer, or upgrade a different website that's failing due to a known bug in an old version of your library. In these situations, you want to release not only to a specific environment, but also to a specific set of consumers.  
 
 ### What if the consumer of your library isn't an internal project?
 
-Maybe you created a widget that users add to their website by copy-pasting a code snippet from your website. Or a library started life as internal, but turned out to be general-purpose enough for your company to make it available to the world via a CDN. In these cases, it becomes impossible for you to update the HTML references to your script, so you have to separate the concept of releasing your JavaScript and releasing the code that uses it, and you have to solve cache busting in a new way.
+Maybe you created a widget that users add to their website by copy-pasting a code snippet from your website. Or a library started life as internal, but turned out to be general-purpose enough for your company to make it available to the world via a CDN. In these cases, it becomes impossible for you to modify the HTML references to your script. You have to separate the concept of releasing your JavaScript from releasing the code that uses it, and you have to solve cache busting in a new way.
 
 ## Tenants to the rescue
 
@@ -30,7 +30,7 @@ Maybe you created a widget that users add to their website by copy-pasting a cod
 
 ![bundle tenants overview](bundle-tenants.gif)
 
-Each of these is represented as a tenant which we will assign a unique idenitifier using a [Common Variable](https://octopus.com/docs/tenants/tenant-variables#common-variables), since those are not scoped per environment, and this consumer key can be constant for all environments.
+Each of these is represented as a tenant which we will assign a unique idenitifier using a [Common Variable](https://octopus.com/docs/tenants/tenant-variables#common-variables), since those are not scoped per environment.
 
 ### Setup your consumer key variable
 
@@ -44,21 +44,21 @@ Click on your newly created variable set, then click **VARIABLE TEMPLATES**, the
 
 ## Create a consumer for each tenant
 
-Navigate to the **Tenants** tab, click the **ADD TENANT** button, and create a tenant named `Blog`. Click on your newly created tenant, navigate to its **Variables** section, then click on the **COMMON VARIABLES** tab, and set the variable for `Bundle Consumer Key` to the value `Blog`.
+Navigate to the **Tenants** tab, click the **ADD TENANT** button, and create a tenant named `Blog`. Click on your newly created tenant, navigate to its **Variables** section, then click on  **COMMON VARIABLES**. Set the variable for `Bundle Consumer Key` to the value `Blog`.
 
 ![setting the tenant variable](tenant_variable.gif)
 
 Repeat this process to create the `External customer` tenant with `Bundle Consumer Key` value of `Customer`, and the `Main Website` tenant with `Bundle Consumer Key` of `Mainsite`.
 
-We'll need a project to interact with these tenants. 
+Now you need a project to interact with these tenants. 
 
 ## Setup your project
 
-You can deploy to the three tenants using the following process.
+You can deploy to your tenants using the following process.
 
 ![process](bundle-tenants-process.gif)
 
-This is a modified version of the process explained in my [previous post](https://octopus.com/blog/deploying-javascript-library-project-with-octopus). If you haven't read that, now would be a good time to follow its instructions, but please omit step 4, because the final step of this tenanted deployment process is completely different. Now you have the basis for a project that uploads a JS bundle, you need to make modifications to enable tenanted deployments.
+This is a modified version of the process explained in my [previous post](https://octopus.com/blog/deploying-javascript-library-project-with-octopus). If you haven't read that, now would be a good time to follow its instructions, but please omit step 4, because the final step of this tenanted deployment process is different. Now you have the basis for a project that uploads a JS bundle, you need to make modifications to enable tenanted deployments.
 
 ### Require tenants for all deployments of your project
 
@@ -74,13 +74,13 @@ For each of your tenants, click the **CONNECT PROJECT** button and connect your 
 
 ### Allow all tenants to use your Amazon S3 account
 
-If you are using an account variable, you will find there is an extra step to allow using it to release to any of your tenants. The ability to restrict accounts to tenants can be important to help prevent accidentally using the wrong account for the wrong customer, but for simplicity, assume you are releasing to one S3 bucket referenced by all consumers. 
+If you are using an account variable, you will find there is an extra step to allow using it to release to any of your tenants. The ability to restrict accounts to tenants can be important to help prevent using the wrong account for the wrong customer, but for simplicity, assume you are releasing to one S3 bucket referenced by all consumers. 
 
 ![account restrictions](account_restrictions.png)
 
 ### Add a new deployment step to update bundle URLs for each tenant
 
-To get control over which bundle each tenant references, your new process will upload to the root of your S3 bucket a small JSON file for each combination of tenant and environment. The name of that file is in the format `consumerkey.enivornment.json`. Here is an example of contents for `Customer.production.json`:
+To get control of the bundle URL each tenant references, your new process will upload to the root of your S3 bucket a small JSON file for each combination of tenant and environment. The name of that file is in the form `consumerkey.enivornment.json`. Here is an example of contents for `Customer.production.json`:
 
 ```json
 {
@@ -99,13 +99,13 @@ echo "{""url"":""$bundleUrl""}" | aws s3 cp - "s3://#{s3-bucket-name}/#{BundleCo
 aws s3 cp MyBundle/bundle-loader.js s3://#{s3-bucket-name}/bundle-loader.js --acl public-read
 ```
 
-This won't run successfully yet because we have to add `bundle-loader.js` to the source code for our package.
+This won't run successfully yet, because we have to add `bundle-loader.js` to the code in our package.
 
 ## Dynamic cache busting
 
-You want `bundle-loader.js` to sit at the root of your package. To achieve that in Vue JS, create it under the `public` folder in your Vue project. 
+You want `bundle-loader.js` to sit at the root of your package. To achieve that in Vue JS, create the file at the root of the `public` folder in your Vue project. 
 
-Here is the source of `bundle-loader.js`: 
+Here is the source for `bundle-loader.js`: 
 
 ```js
 (async () => {
@@ -120,7 +120,7 @@ Here is the source of `bundle-loader.js`:
 )();
 ```
 
-Consumers now reference `bundle-loader.js` instead of directly referencing the bundle. It will fetch the small JSON file without caching and then dynamically add a new script tag to reference the correct version of the bundle for the tenant and enivronment, which are specified in data attributes on the script tag that references `bundle-loader.js`. Here is an example of a consumer page implemented in ASP.NET Core MVC.
+Consumers now reference `bundle-loader.js` instead of directly referencing the bundle. It will fetch the small JSON file without caching, then dynamically add a new `script` tag to reference the correct version of the bundle for the tenant and enivronment. These are specified in data attributes on the script tag that references `bundle-loader.js`. Here is an example of a consumer page implemented in ASP.NET Core MVC. Now there is no need to make any modifications to consumers to update their JavaScript references when we release new versions of our library!
 
 ```razor
 @page
@@ -130,3 +130,9 @@ Consumers now reference `bundle-loader.js` instead of directly referencing the b
 <script src="@bundleSettings.BaseUrl/bundle-loader.js" data-consumer-key="@bundleSettings.ConsumerKey" data-environment="@bundleSettings.EnvironmentName"></script>
 <div id="app"></div>
 ```
+
+## Conclusion
+
+Tenants are a powerful and versatile feature of Octopus. We've shown in this post that they are well-suited to modelling consumers that share a JavaScript library. The flexibility that comes with tenants and tenant variables opens the door to advanced scenarios, like publishing an NPM package, or releasing custom builds of your JavaScript library for different consumers. The flexibility does come with a slight increase in complexity, and if you only want all your consumers to use the latest version of a JavaScript dependency that doesn't change that often, multi-tenanted deployments might be overkill. We've proven that it's not much effort to adapt a simpler deployment process to be multi-tenanted when you need it. It's valid to start with a simpler deployment process for your JavaScript library, and keep in the back of your mind that tenants have you covered if you should need the added control and flexibility.
+
+Happy deployments!
