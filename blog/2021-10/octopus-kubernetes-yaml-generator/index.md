@@ -162,7 +162,6 @@ Set up the Kubernetes target by going to **Infrastructure Deployment Targets**, 
 Fill out the step:
 
 **Environments** - The environment you set up in Octopus
-
 **Target Roles** - kube
 
 **Authentication** - Azure Service Principal
