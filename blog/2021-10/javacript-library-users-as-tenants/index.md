@@ -42,12 +42,13 @@ Click on your newly created variable set, then click **VARIABLE TEMPLATES**, the
 
 ![create consumer variable_template](consumer_template.png)
 
-
 ## Setup your project
 
 ## The deployment process
 
 You'll need a project to connect You can represent bundling for the three consumers using the following process:
+
+![process](bundle-tenants-process.gif)
 
 
 
