@@ -110,13 +110,13 @@ Here is the source of `bundle-loader.js`:
 ```js
 (async () => 
 	{
-        const { consumerKey, environment } = document.currentScript.dataset;
-        const redirectFileUrl = `${document.currentScript.src.substring(0, document.currentScript.src.lastIndexOf('/'))}/${consumerKey}.${environment}.json`;
-        const response = await fetch(redirectFileUrl, {cache: "no-store"});
-        const bundleInfo = await response.json();
-        var script = document.createElement('script');
-        script.src = bundleInfo.url
-        document.head.appendChild(script);
+   const { consumerKey, environment } = document.currentScript.dataset;
+   const redirectFileUrl = `${document.currentScript.src.substring(0, document.currentScript.src.lastIndexOf('/'))}/${consumerKey}.${environment}.json`;
+   const response = await fetch(redirectFileUrl, {cache: "no-store"});
+   const bundleInfo = await response.json();
+   var script = document.createElement('script');
+   script.src = bundleInfo.url
+   document.head.appendChild(script);
 	}
 )();
 ```
