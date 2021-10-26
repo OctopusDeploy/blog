@@ -159,7 +159,7 @@ Go to **Library**, then **External Feeds** and set up a docker registry. Since w
 
 Set up the Kubernetes target by going to **Infrastructure Deployment Targets**, then **Add Deployment Target**, then **Kubernetes Cluster**. 
 
-Fill out the step according to the steps below:
+Fill out the step:
 
 **Environments** - The environment you set up in Octopus
 
