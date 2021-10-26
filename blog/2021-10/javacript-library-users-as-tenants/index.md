@@ -22,7 +22,7 @@ This might happen when a hotfix is needed. As your front-end library grows, you 
 
 ### What if the consumer of your library isn't an internal project?
 
-Maybe you created a widget that users add to their website by copy-pasting a code snippet from your website. Or a library started life as internal, but turned out to be general-purpose enough for your company to make it available to the world via a CDN. In these cases, it becomes impossible for you to update the HTML references to your script, so you have to separate the concept of releasing your JavaScript and releasing the code that uses it, and you will have to solve cache busting in a new way.
+Maybe you created a widget that users add to their website by copy-pasting a code snippet from your website. Or a library started life as internal, but turned out to be general-purpose enough for your company to make it available to the world via a CDN. In these cases, it becomes impossible for you to update the HTML references to your script, so you have to separate the concept of releasing your JavaScript and releasing the code that uses it, and you have to solve cache busting in a new way.
 
 ## Tenants to the rescue
 
