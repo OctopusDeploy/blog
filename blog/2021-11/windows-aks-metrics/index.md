@@ -1,12 +1,12 @@
 ---
 title: How to export metrics from Windows Kubernetes nodes in AKS
 description: A guide to setting up Prometheus metric exporting from Windows nodes in your Azure Kubernetes Service cluster.
-author: Cail Young
-visibility: private
+author: cail.young@octopus.com
+visibility: public
 published: 2021-11-03-1400
 metaImage: blogimage-howtoexportmetricsfromwindowskubernetesnodesinAKS.png
 bannerImage: blogimage-howtoexportmetricsfromwindowskubernetesnodesinAKS.png
-bannerImageAlt: 2 people surrounded by various graphs, one studying her laptop, the other leaning against the giant needle of a speedometer he stands in front of.
+bannerImageAlt: 2 people surrounded by various graphs, one studying their laptop, one leaning against the giant needle of a speedometer they stand in front of.
 isFeatured: false
 tags:
  - DevOps
@@ -15,33 +15,34 @@ tags:
  - Azure
 ---
 
-At Octopus Deploy we use Azure Kubernetes Service ([AKS](https://azure.microsoft.com/en-au/services/kubernetes-service/)) to manage a [Kubernetes](https://kubernetes.io) cluster that we use for a range of internal tools, as well as build and test workloads.
+At Octopus, we use Azure Kubernetes Service ([AKS](https://azure.microsoft.com/en-au/services/kubernetes-service/)) to manage a [Kubernetes](https://kubernetes.io) cluster that we use for a range of internal tools, as well as build and test workloads.
 
-In order to efficiently use this resource, we need to be able to monitor how much it's being used along a number of dimensions – CPU, memory, disk, network bandwidth, and more.
+To efficiently use this resource, we need to monitor how much it's being used, along a number of dimensions – CPU, memory, disk, network bandwidth, and more.
 
-For Linux [nodes](https://kubernetes.io/docs/concepts/architecture/nodes/) we use [Sumologic's solution for metric gathering from Kubernetes](https://github.com/SumoLogic/sumologic-kubernetes-collection), but it doesn't currently support gathering metrics from Windows. We use Windows nodes in our cluster, so we needed a way to monitor them too.
+For Linux [nodes](https://kubernetes.io/docs/concepts/architecture/nodes/) we use [Sumologic's solution for metric gathering from Kubernetes](https://github.com/SumoLogic/sumologic-kubernetes-collection), but it doesn't currently support gathering metrics from Windows. We use Windows nodes in our cluster, so we need a way to monitor them too.
 
-I'm going to walk you through our solution, and if you also need Windows node metrics I hope you can use this to find a solution that works for you.
+In this post, I walk you through our solution. If you also need Windows node metrics, I hope you can use this post to find a solution that works for you.
 
 ## Gathering metrics on Windows hosts
 
-Gathering metrics about a Kubernetes node has an established pattern for Linux nodes:
+Gathering metrics about a Kubernetes (K8s) node has an established pattern for Linux nodes:
 
-- run a DaemonSet of privileged pods on all Linux nodes and gather host-level metrics with [node_exporter](https://github.com/prometheus/node_exporter)
-- have them labelled with something that Prometheus will scrape automatically
+- Run a DaemonSet of privileged pods on all Linux nodes and gather host-level metrics with [node_exporter](https://github.com/prometheus/node_exporter)
+- Have them labeled with something that Prometheus will scrape automatically
 
-This doesn't work on Windows because Windows Containers cannot ([currently](https://github.com/Azure/AKS/issues/1975)) be privileged - i.e. they are not able to see the 'outside world' of the host VM. So we need some other way to peek into the host.
+This doesn't work on Windows because Windows Containers can't ([currently](https://github.com/Azure/AKS/issues/1975)) be privileged - meanning they can't see the 'outside world' of the host VM. So we need some other way to peek into the host.
 
-So, based on a fantastic [solution](https://github.com/aidapsibr/aks-prometheus-windows-exporter) by GitHub user aidapsibr, we built a way to mimic the standard pattern for Linux fairly closely, so that other folks working in our cluster can understand how the monitoring pipeline works without too much confusion.
+Based on a fantastic [solution](https://github.com/aidapsibr/aks-prometheus-windows-exporter) by GitHub user aidapsibr, we built a way to mimic the standard pattern for Linux fairly closely, so that other folks working in our cluster can understand how the monitoring pipeline works without too much confusion.
 
 There are three components:
+
 1. A Virtual Machine Scale Set Extension, which installs the [windows-exporter](https://github.com/prometheus-community/windows_exporter) Windows service on each instance as it's created
-2. A [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) container used to expose the windows-exporter running on the node as a Service in the cluster
-3. Two remote-write rules for Prometheus to forward some Windows metrics into the Sumologic pipeline
+1. A [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) container used to expose the windows-exporter running on the node as a service in the cluster
+1. Two remote-write rules for Prometheus to forward some Windows metrics into the Sumologic pipeline
 
 ### A Virtual Machine Scale Set Extension
 
-aidapsibr's solution uses a PowerShell script for installing the extension once, but as we deploy our AKS cluster using Terraform and Continuous Deployment, we need a way to ensure that any VM in any of the Windows node pools ends up with this extension. Fortunately, the [Azure provider for Terraform](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_machine_scale_set_extension) already has a resource for scale set extensions, so we add the below to our Terraform file:
+aidapsibr's solution uses a PowerShell script for installing the extension once, but as we deploy our AKS cluster using Terraform and continuous deployment, we need a way to ensure that any VM in any of the Windows node pools ends up with this extension. Fortunately, the [Azure provider for Terraform](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_machine_scale_set_extension) already has a resource for scale set extensions, so we add the below to our Terraform file:
 
 ```terraform
 data "azurerm_virtual_machine_scale_set" "blue_bldwin" {
@@ -78,9 +79,9 @@ resource "azurerm_virtual_machine_scale_set_extension" "blue_windows_exporter" {
 }
 ```
 
-We seperately build a DSC .zip file, referenced above as `var.vmss_metrics_extension_zip`, and host it as a GitHub release artifact. This .zip file contains the windows-exporter .msi installer, and a PowerShell DSC module file that the extension will invoke once the VM is up and running. The module just installs the .msi installer.
+We separately build a DSC .zip file, referenced above as `var.vmss_metrics_extension_zip`, and host it as a GitHub release artifact. This .zip file contains the windows-exporter .msi installer, and a PowerShell DSC module file that the extension will invoke once the VM is up and running. The module just installs the .msi installer.
 
-Once this is deployed, we can now scrape our Windows nodes manually from inside our cluster and get back Prometheus-formatted metrics:
+After this is deployed, we scrape our Windows nodes manually from inside our cluster and get back Prometheus-formatted metrics:
 
 ```
 # curl 10.240.0.4:9100/metrics | grep windows_cpu_time
@@ -95,9 +96,10 @@ windows_cpu_time_total{core="0,0",mode="user"} 5324.1875
 ```
 
 Now, we need a way to allow Kubernetes Services (and Prometheus ServiceMonitors) to discover and scrape these metrics – an equivalent of the DaemonSet used for Linux nodes.
+
 ### A reverse proxy
 
-We package up nginx (a widely-used [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy)) as a container, with an entrypoint that takes in an environment variable and uses it as the upstream server in this configuration file:
+We package up nginx (a widely-used [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy)) as a container, with an entry point that takes in an environment variable and uses it as the upstream server in this configuration file:
 
 ```nginx
 http {
@@ -174,7 +176,7 @@ spec:
         kubernetes.io/os: windows
 ```
 
-As long as your `labels` match your existing Linux node metrics pipeline's `ServiceMonitor` Prometheus will automatically pick up these for scraping. For Sumologic, that means this:
+As long as your labels match your existing Linux node metrics pipeline's `ServiceMonitor` Prometheus will automatically pick these up for scraping. For Sumologic, that means the following:
 
 ```yaml
 labels:
@@ -182,12 +184,13 @@ labels:
   release: collection
 ```
 
-Now that the Prometheus instance inside the cluster is gathering metrics, we need to send them off to Sumologic for longer-term retention.
+Now the Prometheus instance inside the cluster is gathering metrics, we need to send them off to Sumologic for longer-term retention.
+
 ## Forwarding to Sumologic
 
-The Sumologic collection solution is a Helm chart that installs everything you need to gather all sorts of Kubernetes monitoring data (not just metrics, but events and logs and all sorts of things). We upgrade the chart as part of our continuous deployment of the cluster infrastructure.
+The Sumologic collection solution is a Helm chart that installs everything you need to gather Kubernetes monitoring data (not just metrics, but events and logs and all sorts of things). We upgrade the chart as part of our continuous deployment of the cluster infrastructure.
 
-The chart allows us to specify additional remote write rules that tell Prometheus to send metrics to an instance of fluentd that the chart also installs - so we added two rules in our `values.yaml` override file to send these new Windows metrics to the same places that the Linux ones go. This wouldn't have been necessary if the windows-exporter used the same metric names as the Linux exporter.
+The chart allows us to specify additional remote-write rules that tell Prometheus to send metrics to an instance of fluentd that the chart also installs - so we add two rules in our `values.yaml` override file to send these new Windows metrics to the same places that the Linux ones go. This isn't necessary if the windows-exporter uses the same metric names as the Linux exporter.
 
 ```yaml
 prometheus:
@@ -213,13 +216,15 @@ prometheus:
 
 ```
 
-Note: We needed to include all of the other `remoteWrite` rules from the original chart, otherwise they were no longer present if we just used the above values.
+Note: We need to include all of the other `remoteWrite` rules from the original chart, because they no longer present if we just use the above values.
 
 ## Conclusion
 
-After connecting up all of the above, we're now able to monitor (for example) the node disk consumption across our entire cluster in one place, which makes it significantly easier to experiment with changes to our workloads because we no longer risk exhausting resources in the cluster.
+Connecting everything above allows us to monitor (for example) the node disk consumption across our entire cluster in one place. This makes it significantly easier to experiment with changes to our workloads, because we no longer risk exhausting resources in the cluster.
 
 ![A screenshot of the Sumologic monitoring dashboard showing Windows and Linux disk metrics on one graph](node-metrics-graph.png)
+
+Happy deployments!
 
 ## Learn more
 
