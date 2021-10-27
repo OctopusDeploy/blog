@@ -133,7 +133,7 @@ Set the variable run condition to only run during rollback:
 #{Octopus.Action[Calculate Deployment Mode].Output.RunOnRollback}
 ```
 
-If you want the step to execute whenever it detects something has already been deployed to the environment and stop it, use:
+Alternatively, you can use the [system variable](https://octopus.com/docs/projects/variables/system-variables) `Octopus.Release.CurrentForEnvironment.Number` to check if there was a previously deployed release:
 
 ```
 #{if Octopus.Release.CurrentForEnvironment.Number}True#{/if}
