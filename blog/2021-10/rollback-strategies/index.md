@@ -19,7 +19,7 @@ In this post, I walk through a rollback strategy you can execute today, without 
 
 :::hint
 **Out of scope**
-Rolling back database changes is out of scope for this article because doing them successfully [is a complex topic with many pitfalls](https://octopus.com/blog/database-rollbacks-pitfalls).  This post focuses on code-only rollbacks. It demonstrates how to skip database deployment steps during a rollback.  In practice, code and UI changes are much more frequent than database changes, especially in a test environment.  Most schema changes happen at the start of a new feature, with minor tweaks during testing.
+Rolling back database changes are out of scope for this post because doing them successfully [is a complex topic with many pitfalls](https://octopus.com/blog/database-rollbacks-pitfalls).  This post focuses on code-only rollbacks. It demonstrates how to skip database deployment steps during a rollback.  In practice, code and UI changes are much more frequent than database changes, especially in a test environment.  Most schema changes happen at the start of a new feature, with minor tweaks during testing.
 :::
 
 ## What is a rollback?
@@ -39,10 +39,9 @@ The goal of a rollback is the same in both scenarios; quickly return the applica
 Many customers focus on the production scenario, yet the test scenario occurs more often and has a bigger impact.  If you follow Octopus Deploy's core rule of [build once, deploy everywhere](https://octopus.com/blog/build-your-binaries-once), the chance of a show-stopping bug making it to production is rare.  However, test is different; there's a mindset that only a few people are affected, but that's untrue because deadlines will slip if QA is blocked for hours at a time.  
 :::
 
-The goal is to get back to a known good state, but that's different from a deployment.  Skipping specific steps can make rollback faster.  Many deployment processes are created assuming none of the dependent software or infrastructure has been configured.  For example, a deployment process could trigger a runbook to create a database if it didn't already exist; or install the latest version of Node.js.  During a rollback, those additional steps aren't needed.  If you check the database existed when deploying `2021.2.3` of your application, you won't need to check again when rolling back to `2021.2.1`.  
+The goal is to get back to a known good state, but that's different from a deployment.  Skipping specific steps can make rollbacks faster.  Many deployment processes are created assuming none of the dependent software or infrastructure has been configured.  For example, a deployment process could trigger a runbook to create a database if it didn't already exist; or install the latest version of Node.js.  During a rollback, those additional steps aren't needed.  If you check the database existed when deploying `2021.2.3` of your application, you won't need to check again when rolling back to `2021.2.1`.  
 
-For this article: 
-
+For this post: 
 > A rollback is getting back to a known good state by running a modified version of the original deployment process.  
 
 ## Rolling forward or rolling back
@@ -86,7 +85,7 @@ This story highlights the importance of testing your rollback processes multiple
 
 Now I explain how to update an existing deployment process to support rollbacks.  
 
-I chose [OctoFX Sample Application](https://github.com/OctopusSamples/OctoFX) for this example because it's similar to many applications I see and work on.  It has the following components:
+I chose [OctoFX sample application](https://github.com/OctopusSamples/OctoFX) for this example because it's similar to many applications I see and work on.  It has the following components:
 
 - SQL Server Database
 - Windows Service
@@ -165,9 +164,9 @@ For my application, I only redeploy when the web farm is scaled out.  I never sc
 We need the ability to calculate the "deployment mode".  Octopus provides the system variables:
 
 - `Octopus.Release.Number`: The current release's number (`1.2.2`).
-- `Octopus.Release.CurrentForEnvironment.Number`: The ID (`1.1.1`) of the last **successful** release, deployed to the current environment.
+- `Octopus.Release.CurrentForEnvironment.Number`: The ID (`1.1.1`) of the last *successful* release, deployed to the current environment.
 
-To calculate "deployment mode" you compare `Octopus.Release.Number` with `Octopus.Release.CurrentForEnvironment.Number`.  
+To calculate deployment mode you compare `Octopus.Release.Number` with `Octopus.Release.CurrentForEnvironment.Number`.  
 
 - If it's greater, it's a deployment
 - If it's less, it's a rollback
@@ -231,7 +230,7 @@ Using the [Calculate Deployment Mode](https://library.octopus.com/step-templates
 ![Windows simple deployment process](windows-simple-rollback-process.png)
 
 :::hint
-Use the step notes feature to indicate which step runs during deployments, rollbacks, or always.
+Use the step **Notes** feature to indicate which step runs during deployments, rollbacks, or always.
 
 ![Step notes feature](step-notes-feature.png)
 :::
@@ -268,7 +267,7 @@ In addition, `2021.9.9.6` has had the release progression blocked. Users will se
 
 ## Automatic rollbacks
 
-Next you need to think about triggering the rollback.  I recommend manually triggering the rollback, and logging an explanation.  When you see a pattern, you should add in automated tests to detect if a specific condition is met.  The concern I have is receiving a "false positive", causing a release to roll back in production when it shouldn't.  
+Next you need to think about triggering the rollback.  I recommend manually triggering the rollback and logging an explanation.  When you see a pattern, you should add in automated tests to detect if a specific condition is met.  The concern I have is receiving a "false positive", causing a release to roll back in production when it shouldn't.  
 
 In this scenario, I don't trigger the rollback automatically until I have automated all the steps to make a rollback decision.  
 
@@ -280,7 +279,7 @@ Next, automatically trigger the rollbacks for all your non-production environmen
 
 I was bullish adopting advanced deployment patterns such as blue/green, red/black, or canary as the only way to roll back.  I used to believe you should only roll forward if you couldn't adopt those patterns, to save time and money on existing applications.  There are legitimate business reasons to adopt advanced deployment patterns, for example, Google can never have an outage, so a canary-style deployment makes sense.  
 
-But an internal business application used by a few dozen people from 6 AM EST to 10 PM PST won't get the same benefits for the cost.
+But an internal business application used by a few dozen people from 6am EST to 10pm PST won't get the same benefits for the cost.
 
 You can create a rollback process with a few tweaks to your existing deployment process using [variable run conditions](https://octopus.com/docs/projects/steps/conditions#variable-expressions) and the new step templates, **[Calculate Deployment Mode](https://library.octopus.com/step-templates/d166457a-1421-4731-b143-dd6766fb95d5/actiontemplate-calculate-deployment-mode)** and **[Block Release Progression](https://library.octopus.com/step-templates/78a182b3-5369-4e13-9292-b7f991295ad1/actiontemplate-block-release-progression)**.  While they won't support every possible rollback scenario, they give you other options if you find a bug.
 
