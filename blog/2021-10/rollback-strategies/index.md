@@ -1,6 +1,6 @@
 ---
 title: Rollback strategies with Octopus Deploy
-description: Learn how to implement a rollback strategy with Octopus Deploy, without having to implement advanced deployment patterns.
+description: Learn how to implement a rollback strategy with Octopus Deploy, without having to use advanced deployment patterns.
 author: bob.walker@octopus.com
 visibility: public 
 published: 2021-10-27-1400
