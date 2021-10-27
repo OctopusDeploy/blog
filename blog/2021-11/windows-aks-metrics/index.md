@@ -3,10 +3,10 @@ title: How to export metrics from Windows Kubernetes nodes in AKS
 description: A guide to setting up Prometheus metric exporting from Windows nodes in your Azure Kubernetes Service cluster.
 author: Cail Young
 visibility: private
-published: 3020-01-01
-metaImage: to-be-added-by-marketing
-bannerImage: to-be-added-by-marketing
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+published: 2021-11-03-1400
+metaImage: blogimage-howtoexportmetricsfromwindowskubernetesnodesinAKS.png
+bannerImage: blogimage-howtoexportmetricsfromwindowskubernetesnodesinAKS.png
+bannerImageAlt: 2 people surrounded by various graphs, one studying her laptop, the other leaning against the giant needle of a speedometer he stands in front of.
 isFeatured: false
 tags:
  - DevOps
