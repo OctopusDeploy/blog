@@ -12,7 +12,7 @@ tags:
  - DevOps
 ---
 
-The DevOps feedback loop usually has automated processes in place to capture issues as early in the pipeline as possible.  While these automated processes allow for early detection, bugs can still find their way into production code.  Some bugs are severe enough to warrant backing out of the recently deployed version.  The process of reverting changes is often referred to as a rollback.  
+The DevOps feedback loop usually has automated processes to capture issues as early in the pipeline as possible.  While these automated processes allow for early detection, bugs can still find their way into production code.  Some bugs are severe enough to warrant backing out of the recently deployed version.  The process of reverting changes is referred to as a rollback.  
 
 In this post, I discuss different rollback strategies when using an Apache Tomcat web server.
 
@@ -28,21 +28,21 @@ The example process looks like this:
 1. Verify deployment
 1. Notify Stakeholders
 
-![](octopus-original-deployment-process.png)
+![Octopus UI showing Process and 5 steps to deploy PetClinic application](octopus-original-deployment-process.png)
 
-This post assumes you're already familiar with the steps included in this deployment process and will not go into detail for each step.
+This post assumes you're familiar with the steps included in this deployment process and won't go into detail for each step.
 
 ## Deploying the previous version
-Using Octopus Deploy, you can roll back by redeploying the previous release of the application.  This is as easy as selecting the previous release from the **Releases** screen, then clicking the **REDEPLOY** button next to the desired environment.
+Using Octopus Deploy, you can roll back by redeploying the previous release of the application.  You simply select the previous release from the **Releases** screen and click the **REDEPLOY** button next to the desired environment.
 
-![](octopus-redeploy-release.png)
+![Octopus dashboard showing progression of Development lifecycle with REDEPLOY button highlighted](octopus-redeploy-release.png)
 
 All steps in the deployment process are executed, as they were configured when the release was created.  For Apache Tomcat, the package will be re-extracted on the Tomcat server, a variable substitution performed, and it will be repackaged before being sent to the Tomcat Manager for deployment.  The size of the package will determine how long it takes.
 
 ## Simple rollback
 As mentioned, all steps in the deployment process will be re-executed as they did the first time.  While the built-in method of redeployment is effective, there may be steps you don't want executed when performing a rollback.  
 
-You usually roll back if something was wrong with the release.  In these cases, it's a good idea to mark the release being rolled back as bad, and block it from being promoted to other environments.  To conditionally skip steps and mark the release as bad, the process needs to be modified:
+You usually roll back if something was wrong with the release.  In this case, it's a good idea to mark the release being rolled back as bad, and block it from being promoted to other environments.  To conditionally skip steps and mark the release as bad, the process needs to be modified:
 
 1. Calculate Deployment Mode
 1. Create Database If Not exists (skip during rollback)
@@ -53,17 +53,17 @@ You usually roll back if something was wrong with the release.  In these cases, 
 1. Block Release Progression (only during rollback)
 
 :::info
-Using the `Notes` field of a deployment step, we can provide documentation for the steps and which mode they'll run in.
+Using the **Notes** field in a deployment step, you can provide documentation for the steps and which mode they'll run in.
 :::
 
-![](octopus-simple-rollback-process.png)
+![Octopus UI showing Process and steps 1 to 7.](octopus-simple-rollback-process.png)
 
-You'll notice two new steps (`Calculate Deployment Mode` and `Block Release Progression`), plus some conditions applied to existing steps.  Let's look at those in more detail.
+You'll notice two new steps, **Calculate Deployment Mode** and **Block Release Progression**, plus some conditions applied to existing steps.  Let's look at those in more detail.
 
 ### Calculate Deployment Mode
 The first part of a rollback process is determining if it's a deployment, a rollback, or a redeployment operation.  
 
-Our team developed the community step template **[Calculate Deployment Mode](https://library.octopus.com/step-templates/d166457a-1421-4731-b143-dd6766fb95d5/actiontemplate-calculate-deployment-mode)** which determines which mode the deployment is in, and produces a number of [output variables](https://octopus.com/docs/projects/variables/output-variables) containing variable [run condition](https://octopus.com/docs/projects/steps/conditions#run-condition) syntax (see the documentation in the description of the step for more details).
+Our team developed the community step template **[Calculate Deployment Mode](https://library.octopus.com/step-templates/d166457a-1421-4731-b143-dd6766fb95d5/actiontemplate-calculate-deployment-mode)** which determines which mode the deployment is in, and produces a number of [output variables](https://octopus.com/docs/projects/variables/output-variables) containing a variable [run condition](https://octopus.com/docs/projects/steps/conditions#run-condition) syntax (see the documentation in the description of the step for more details).
 
 ### Database steps
 The **Create Database If Not Exists** and **Deploy Database Changes** steps do not need to be run in a rollback. They need to be configured to be skipped.  The `RunOnDeploy` output variable from the **Calculate Deployment Mode** can be applied to the variable run condition of these steps to skip them
@@ -72,12 +72,12 @@ The **Create Database If Not Exists** and **Deploy Database Changes** steps do n
 #{Octopus.Action[Calculate Deployment Mode].Output.RunOnDeploy}
 ```
 
-![](octopus-variable-run-condition.png)
+![Octopus UI showing Run Condition section with Variable section highlighted](octopus-variable-run-condition.png)
 
 ### Block Release Progression
 Blocking the progression of a release is not new in Octopus Deploy, however, it needs to be done via the UI or an API call.  
 
-Our Solutions team recognized that automating this activity is critical when dealing with rollbacks and developed the **[Block Release Progression](https://library.octopus.com/step-templates/78a182b3-5369-4e13-9292-b7f991295ad1/actiontemplate-block-release-progression)** template which automates the blocking of a release. 
+Our team recognized that automating this activity is critical when dealing with rollbacks and developed the **[Block Release Progression](https://library.octopus.com/step-templates/78a182b3-5369-4e13-9292-b7f991295ad1/actiontemplate-block-release-progression)** template which automates the blocking of a release. 
 
 This step should only run during a rollback operation. Use the following output variable from **Calculate Deployment Mode** as the variable run condition to ensure this:
 
@@ -108,13 +108,13 @@ To implement a rollback process using the parallel deployments feature, you need
 1. Notify Stakeholders
 1. Block Release Progression (only during rollback)
 
-![](octopus-complex-rollback-process.png)
+![Octopus UI showing rollback process with 10 steps](octopus-complex-rollback-process.png)
 
 Let's go over the changes to the process to make this work.
 
 #### Rollback reason
 
-The **Rollack reason** step is a manual intervention that prompts you for the reason for the rollback.  The reason specified is used for the **Reason** field in the **Block Release Progression** step further down in the process.  This step only runs during a rollback so it needs to have the variable run condition set to the following:
+The **Rollack reason** step is a manual intervention that prompts you for the reason for the rollback.  The reason you specify is used in the **Reason** field in the **Block Release Progression** step further down in the process.  This step only runs during a rollback so it needs to have the variable run condition set to the following:
 
 ```
 #{Octopus.Action[Calculate Deployment Mode].Output.RunOnRollback}
@@ -123,7 +123,7 @@ The **Rollack reason** step is a manual intervention that prompts you for the re
 #### Stop App in Tomcat 
 Both the **Stop** and **Start** steps use the **Start\Stop App in Tomcat** step.  The **Stop** step is optional when in **Deployment Mode**, but required in **Rollback Mode** as Tomcat will funnel new sessions to the most recent version of the deployed application that's running.  
 
-When rolling back, we need to stop the version that is bad so the previously deployed version will now get the sessions.  
+When rolling back, we need to stop the version that's bad so the previously deployed version will now get the sessions.  
 
 Set the variable run condition to only run during rollback: 
 
@@ -143,19 +143,19 @@ The version number for the **Advanced Options** for the Tomcat step is below wit
 #{Octopus.Release.CurrentForEnvironment.Number}
 ```
 
-![](octopus-tomcat-stop-advanced.png)
+![Octopus UI showing Advances Options with Deployment version highlighted](octopus-tomcat-stop-advanced.png)
 
 #### Start App in Tomcat {#start-app-in-tomcat}
 During a rollback, this process stops the version being rolled back.  
 
-You need to have a step that starts the version being rolled back to.
+You need a step that starts the version you're rolling back to.
 The version number specified in the **Advanced Options** for the Tomcat step is below with the selection action of **Leave the application running**:
 
 ```
 #{Octopus.Release.Number}
 ```
 
-![](octopus-tomcat-advanced.png)
+![Octopus UI showing Advances Options with Deployment version highlighted](octopus-tomcat-advanced.png)
 
 This step needs to be configured to run in `Rollback Mode` only using the following variable run condition:
 
@@ -167,7 +167,9 @@ This step needs to be configured to run in `Rollback Mode` only using the follow
 This step needs the same **Advanced Options** set as the **Start App in Tomcat** step, supplying `#{Octopus.Release.Number}` for the version being deployed.  (See image in [Start App in Tomcat](#start-app-in-tomcat) for reference.)
 
 #### Block Release Progression
-In the Simple Rollback scenario, the **Reason** field for the Block Progression is being statically set.  The **Rollback reason** step prompts you for the reason for the rollback, the **Notes** output variable can be used as the input of **Reason** to have a more meaningful message for the blocked release.  Modify the **Reason** field to use the **Notes** output variable from the **Rollback reason** step like this:
+In the simple rollback scenario, the **Reason** field for the **Block Progression** is being statically set.  The **Rollback reason** step prompts you for the reason for the rollback, the **Notes** output variable can be used as the input of **Reason** to have a more meaningful message for the blocked release.  
+
+Modify the **Reason** field to use the **Notes** output variable from the **Rollback reason** step like this:
 
 ```
 #{Octopus.Action[Rollback reason].Output.Manual.Notes}
@@ -179,11 +181,11 @@ Enabling the [undeployOldVersions](https://tomcat.apache.org/tomcat-9.0-doc/conf
 
 Parallel deployments will appear similar to this in the Tomcat Manager:
 
-![](tomcat-manager-multiple.png)
+![Screen shot from Tomcat Manager showing Application paths and versions](tomcat-manager-multiple.png)
 
 ### Cleaning up old versions
 
-The retention policies of Octopus Deploy help keep your targets clean, removing old versions that have been deployed.  However, the Tomcat Manager places the `.war` files in its own folder which is unknown to Octopus Deploy. 
+The retention policies of Octopus Deploy help keep your targets clean by removing old versions that have been deployed.  However, the Tomcat Manager places the `.war` files in its own folder which is unknown to Octopus Deploy. 
 
 If you're not using the parallel deployment feature, the `.war` is simply overwritten with the new version and the application is deployed.  The parallel deployments feature of Tomcat renames the `.war` to `<contextpath>##<version>.war` so they are unique.  These files will continue to accumulate unless an `undeploy` operation is executed against the versioned application entry.  
 
@@ -191,7 +193,7 @@ To assist in Tomcat maintenance, our team developed **[Undeploy Tomcat Applicati
 
 ## Conclusion
 
-In this post I walked through a few ways that you can roll back an application deployment to an Apache Tomcat web server.  I hope one of these methods will help you in your DevOps journey.  
+In this post I walked through several ways you can roll back an application deployment to an Apache Tomcat web server.  I hope one of these methods will help you in your DevOps journey.  
 
 ## Register for the webinar: Rollback strategies with Octopus Deploy
 
