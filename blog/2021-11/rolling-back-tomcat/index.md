@@ -37,7 +37,7 @@ Using Octopus Deploy, you can roll back by redeploying the previous release of t
 
 ![Octopus dashboard showing progression of Development lifecycle with REDEPLOY button highlighted](octopus-redeploy-release.png)
 
-All steps in the deployment process are executed, as they were configured when the release was created.  For Apache Tomcat, the package will be re-extracted on the Tomcat server, a variable substitution performed, and it will be repackaged before being sent to the Tomcat Manager for deployment.  The size of the package will determine how long it takes.
+All steps in the deployment process are executed as they were configured when the release was created.  For Apache Tomcat, the package will be re-extracted on the Tomcat server, a variable substitution performed, and it will be repackaged before being sent to the Tomcat Manager for deployment.  The size of the package will determine how long it takes.
 
 ## Simple rollback
 As mentioned, all steps in the deployment process will be re-executed as they did the first time.  While the built-in method of redeployment is effective, there may be steps you don't want executed when performing a rollback.  
@@ -66,7 +66,7 @@ The first part of a rollback process is determining if it's a deployment, a roll
 Our team developed the community step template **[Calculate Deployment Mode](https://library.octopus.com/step-templates/d166457a-1421-4731-b143-dd6766fb95d5/actiontemplate-calculate-deployment-mode)** which determines which mode the deployment is in, and produces a number of [output variables](https://octopus.com/docs/projects/variables/output-variables) containing a variable [run condition](https://octopus.com/docs/projects/steps/conditions#run-condition) syntax (see the documentation in the description of the step for more details).
 
 ### Database steps
-The **Create Database If Not Exists** and **Deploy Database Changes** steps do not need to be run in a rollback. They need to be configured to be skipped.  The `RunOnDeploy` output variable from the **Calculate Deployment Mode** can be applied to the variable run condition of these steps to skip them
+The **Create Database If Not Exists** and **Deploy Database Changes** steps do not need to be run in a rollback. They need to be configured to be skipped.  The `RunOnDeploy` output variable from the **Calculate Deployment Mode** can be applied to the variable run condition of these steps to skip them:
 
 ```
 #{Octopus.Action[Calculate Deployment Mode].Output.RunOnDeploy}
@@ -91,7 +91,9 @@ Both the built-in and simple rollback methods will extract and repackage the `.w
 
 ### Tomcat parallel deployments
 
-The parallel deployments feature was introduced in Tomcat version 7.  The parallel deployments feature allows you to deploy multiple versions of the same application to a Tomcat server.  After a newer version of the application is in a running state, new sessions will run on the new version and existing sessions will continue to run on the older version until they expire.  This feature requires that you supply a version number with the context path.  The Tomcat server will combine the version number and context path and rename the deployed `.war` to `<contextpath>##<version>.war`
+The parallel deployments feature was introduced in Tomcat version 7.  The parallel deployments feature allows you to deploy multiple versions of the same application to a Tomcat server.  
+
+After a newer version of the application is in a running state, new sessions will run on the new version and existing sessions will continue to run on the older version until they expire.  This feature requires that you supply a version number with the context path.  The Tomcat server will combine the version number and context path and rename the deployed `.war` to `<contextpath>##<version>.war`
 
 ### Complex rollback process
 
@@ -187,7 +189,9 @@ Parallel deployments will appear similar to this in the Tomcat Manager:
 
 The retention policies of Octopus Deploy help keep your targets clean by removing old versions that have been deployed.  However, the Tomcat Manager places the `.war` files in its own folder which is unknown to Octopus Deploy. 
 
-If you're not using the parallel deployment feature, the `.war` is simply overwritten with the new version and the application is deployed.  The parallel deployments feature of Tomcat renames the `.war` to `<contextpath>##<version>.war` so they are unique.  These files will continue to accumulate unless an `undeploy` operation is executed against the versioned application entry.  
+If you're not using the parallel deployment feature, the `.war` is simply overwritten with the new version and the application is deployed.  
+
+The parallel deployments feature of Tomcat renames the `.war` to `<contextpath>##<version>.war` so they are unique.  These files will continue to accumulate unless an `undeploy` operation is executed against the versioned application entry.  
 
 To assist in Tomcat maintenance, our team developed **[Undeploy Tomcat Application via Manager](https://library.octopus.com/step-templates/34f13b4c-64e1-42b4-ad1a-4599f25a850e/actiontemplate-undeploy-tomcat-application-via-manager)**, a community step template that performs undeploy operations on a Tomcat server, currently available in Bash syntax.
 
