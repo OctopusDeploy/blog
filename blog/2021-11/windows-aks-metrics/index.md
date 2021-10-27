@@ -30,14 +30,14 @@ Gathering metrics about a Kubernetes (K8s) node has an established pattern for L
 - Run a DaemonSet of privileged pods on all Linux nodes and gather host-level metrics with [node_exporter](https://github.com/prometheus/node_exporter)
 - Have them labeled with something that Prometheus will scrape automatically
 
-This doesn't work on Windows because Windows Containers can't ([currently](https://github.com/Azure/AKS/issues/1975)) be privileged - meanning they can't see the 'outside world' of the host VM. So we need some other way to peek into the host.
+This doesn't work on Windows because Windows Containers can't ([currently](https://github.com/Azure/AKS/issues/1975)) be privileged - meaning they can't see the 'outside world' of the host VM. So we need some other way to peek into the host.
 
 Based on a fantastic [solution](https://github.com/aidapsibr/aks-prometheus-windows-exporter) by GitHub user aidapsibr, we built a way to mimic the standard pattern for Linux fairly closely, so that other folks working in our cluster can understand how the monitoring pipeline works without too much confusion.
 
 There are three components:
 
 1. A Virtual Machine Scale Set Extension, which installs the [windows-exporter](https://github.com/prometheus-community/windows_exporter) Windows service on each instance as it's created
-1. A [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) container used to expose the windows-exporter running on the node as a service in the cluster
+1. A [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) container used to expose the windows-exporter running on the node as a Service in the cluster
 1. Two remote-write rules for Prometheus to forward some Windows metrics into the Sumologic pipeline
 
 ### A Virtual Machine Scale Set Extension
@@ -99,7 +99,7 @@ Now, we need a way to allow Kubernetes Services (and Prometheus ServiceMonitors)
 
 ### A reverse proxy
 
-We package up nginx (a widely-used [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy)) as a container, with an entry point that takes in an environment variable and uses it as the upstream server in this configuration file:
+We package up nginx (a widely-used [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy)) as a container, with an entrypoint that takes in an environment variable and uses it as the upstream server in this configuration file:
 
 ```nginx
 http {
@@ -190,7 +190,7 @@ Now the Prometheus instance inside the cluster is gathering metrics, we need to 
 
 The Sumologic collection solution is a Helm chart that installs everything you need to gather Kubernetes monitoring data (not just metrics, but events and logs and all sorts of things). We upgrade the chart as part of our continuous deployment of the cluster infrastructure.
 
-The chart allows us to specify additional remote-write rules that tell Prometheus to send metrics to an instance of fluentd that the chart also installs - so we add two rules in our `values.yaml` override file to send these new Windows metrics to the same places that the Linux ones go. This isn't necessary if the windows-exporter uses the same metric names as the Linux exporter.
+The chart allows us to specify additional remote-write rules that tell Prometheus to send metrics to an instance of fluentd that the chart also installs - so we add two rules in our `values.yaml` override file to send these new Windows metrics to the same places that the Linux ones go. This is only necessary because the windows-exporter doesn't use the same metric names as the Linux exporter.
 
 ```yaml
 prometheus:
