@@ -166,7 +166,7 @@ We need the ability to calculate the "deployment mode".  Octopus provides the sy
 - `Octopus.Release.Number`: The current release's number (`1.2.2`).
 - `Octopus.Release.CurrentForEnvironment.Number`: The ID (`1.1.1`) of the last *successful* release, deployed to the current environment.
 
-To calculate deployment mode you compare `Octopus.Release.Number` with `Octopus.Release.CurrentForEnvironment.Number`.  
+To calculate deployment mode you compare `Octopus.Release.Number` with `Octopus.Release.CurrentForEnvironment.Number`:  
 
 - If it's greater, it's a deployment
 - If it's less, it's a rollback
