@@ -26,7 +26,7 @@ You can also read about:
 
 ## Example deployment process
 
-This post uses the built-in **Deploy Kubernetes Containers** to deploy a containerized version of the Java-based PetClinic application.  
+This post uses the built-in **Deploy Kubernetes Containers** to deploy a containerized version of the Java-based [PetClinic application](https://bitbucket.org/octopussamples/petclinic/src/master/).  
 
 This application consists of a web front-end and a MySQL back-end.  The MySQL back-end is also deployed as a container with the database updates being performed as a Kubernetes job using Flyway.  The example process looks like this:
 
