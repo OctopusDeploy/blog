@@ -13,16 +13,18 @@ tags:
  - Kubernetes
 ---
 
-Not every deployment goes as smoothly as we'd like when deploying to Kubernetes.  Bugs, container environment variables, and/or hardware limitations can dictate whether an application will run once deployed to a Kubernetes cluster.  When a fix isn't easy or the application is unresponsive, you need to go back to the previous version, referred to as a rollback.  
+Not every deployment goes as smoothly as we'd like when deploying to Kubernetes.  Bugs, container environment variables, and hardware limitations can dictate whether an application will run once deployed to a Kubernetes cluster.  When a fix isn't easy or the application is unresponsive, you need to go back to the previous version. This process is called a rollback.  
 
 In this post, I describe some general and Kubernetes-specific rollback strategies using Octopus Deploy.
 
 ## Example deployment process
 
-This post uses the built-in **Deploy Kubernetes Containers** to deploy a containerized version of the PetClinic, Java-based application.  This application consists of a web front-end and a MySQL back-end.  The MySQL back-end is also deployed as a container with the database updates being performed as a Kubernetes job using Flyway.  The example process looks like this:
+This post uses the built-in **Deploy Kubernetes Containers** to deploy a containerized version of the Java-based PetClinic application.  
+
+This application consists of a web front-end and a MySQL back-end.  The MySQL back-end is also deployed as a container with the database updates being performed as a Kubernetes job using Flyway.  The example process looks like this:
 
 1. Deploy MySQL container
-1. Deploy PetClinic web
+1. Deploy PetClinic Web
 1. Run Flyway job
 1. Verify deployment
 1. Notify stakeholders
@@ -39,13 +41,13 @@ It's easy to recover from a failed deployment by redeploying the previous versio
 ## Conditionally execute steps during a rollback
 The redeploy method executes the deployment exactly how it was deployed the first time, executing all steps in the process.  However, you might want to skip steps during a rollback, for example database steps.  
 
-To skip steps, you need to determine what activity is occurring; a deploy, redeploy, or rollback, then conditionally control which steps are executed.  You may also want to block the release you're rolling back to progress to any other environments.  
+To skip steps, you need to determine what activity is occurring; a deploy, redeploy, or rollback, then conditionally control which steps are executed.  You may also want the release you're rolling back to be blocked from progressing to other environments.
 
 The updated process looks something like this:
 
 1. Calculate Deployment Mode
 1. Deploy MySQL container (only in Deploy mode)
-1. Deploy PetClinic web
+1. Deploy PetClinic Web
 1. Run Flyway job (only in Deploy mode)
 1. Verify deployment
 1. Notify Stakeholders
@@ -95,7 +97,7 @@ You need to modify your deployment process to tie a revision to a specific relea
 1. Calculate Deployment Mode
 1. Rollback Reason (only in Rollback mode)
 1. Deploy MySQL container (only in Deployment mode)
-1. Deploy PetClinic web
+1. Deploy PetClinic Web
 1. Run Flyway job (only in Deployment mode)
 1. Verify deployment
 1. Notify Stakeholders
@@ -107,9 +109,9 @@ You need to modify your deployment process to tie a revision to a specific relea
 Let's go through the newly added and updated steps.
 
 ### Rollback reason
-This is a **[Manual Intervention](https://octopus.com/docs/projects/built-in-step-templates/manual-intervention-and-approvals)** step that prompts the user for the reason they're rolling back.  The reason specified can be used for the **Reason** field in the **Block Release Progression** step.  Add the variable run condition so it only executes during a rollback.
+This is a **[Manual Intervention](https://octopus.com/docs/projects/built-in-step-templates/manual-intervention-and-approvals)** step that prompts you for the reason you're rolling back.  The reason specified can be used for the **Reason** field in the **Block Release Progression** step.  Add the variable run condition so it only executes during a rollback.
 
-### Deploy PetClinic web
+### Deploy PetClinic Web
 There are two modifications you need to make on this step
 - Add a run condition so that it runs only in Deploy mode
 - Add a deployment annotation to tie the release to a revision
@@ -122,7 +124,7 @@ In the **Deploy Kubernetes Containers** step, go to **Deployment Annotations** a
 
 ![](octopus-kubernetes-deployment-annotation.png)
 
-Running `kubectl rollout history deployment.v1.apps/<deploymentname>` will now show
+Running `kubectl rollout history deployment.v1.apps/<deploymentname>` will now show:
 
 ```
 REVISION  CHANGE-CAUSE
@@ -131,7 +133,7 @@ REVISION  CHANGE-CAUSE
 3         2021.09.23.2
 ```
 
-### Rollback to previous version for PetClinic web
+### Rollback to previous version for PetClinic Web
 Now the `CHANGE-CAUSE` column contains the release the revision came from, you can use the **Run a Kubectl CLI Script** step to parse the rollout history to determine which version to roll back to.
 
 ```powershell
