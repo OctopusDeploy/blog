@@ -19,7 +19,7 @@ In this post, I discuss different rollback strategies when using an Apache Tomca
 :::hint
 You can also read about:
 
-- [Rollback strategies with Octopus that you can execute without implementing advanced deployment patterns](https://octopus.com/blog/rollback-strategies)
+- [Rollback strategies that don’t require advanced deployment patterns](https://octopus.com/blog/rollback-strategies)
 :::
 
 
