@@ -16,6 +16,13 @@ The DevOps feedback loop usually has automated processes to capture issues as ea
 
 In this post, I discuss different rollback strategies when using an Apache Tomcat web server.
 
+:::hint
+You can also read about:
+
+- [Rollback strategies with Octopus that you can execute without implementing advanced deployment patterns](https://octopus.com/blog/rollback-strategies)
+:::
+
+
 ## Initial deployment process
 
 This post uses the [PetClinic application](https://bitbucket.org/octopussamples/petclinic/src/master/) to deploy to an Apache Tomcat web server.  The PetClinic application requires a database back-end and uses Flyway to perform database migrations.  
