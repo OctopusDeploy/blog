@@ -95,14 +95,28 @@ jobs:
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 ```
 
+The yml file is triggered by a push or pull request on the main branch. The steps checks out the code, authenticates and logs into AWS, then builds, tags and pushes the image to Amazon ECR. A similar step template could be used to push to other cloud repositories like Google or Microsoft. 
+
 Commit your changes and go to the **Actions** tab and click the title of your commit message. You will see the various stages of the workflow as it reaches completion.
 
 ![GitHub Actions Success](githubactions-success.png)
 
-Go to your Amazon ECR repository to confirm that the image has been pushed successfully.
+Go to your Amazon ECR repository to confirm that the image has been pushed successfully. This image can now be deployed to a deployment target with a tool like Octopus Deploy.
 
 ![ECR Success](ecr-success.png)
 
-In this blog, you have set up a GitHub Actions workflow to build and push an image to Amazon ECR. GitHub actions has several pre-built step templates that can help you perform many types of operations on a code repository.
+## GitHub Step Templates
+
+If you want to experiment with different workflows, GitHub Actions has a workflow builder. Go to **Actions &rarr; New Workflow** where you can use pre-built step templates. GitHub suggests templates based on your repository but you can manually select the steps that are relevant to you. 
+
+![Build Workflow](build-workflow.png)
+
+Select **set up a workflow yourself** and you can use a template and add code snippets from the GitHub Marketplace. The marketplace contains several community built templates for different kinds of operations. Use the search box to search for the steps that you need.
+
+Each yml file created in the workflow folder is a separate job. They will each trigger separately depending on the trigger conditions of the workflow. You could have one workflow to push to AWS and another to push to Google for example.
+
+![Build Your Workflow](build-your-workflow.png)
+
+In this blog, you have set up a GitHub Actions workflow to build and push an image to Amazon ECR. GitHub actions has several pre-built step templates that can help you perform many types of operations on a code repository. 
 
 Happy Deployments!
