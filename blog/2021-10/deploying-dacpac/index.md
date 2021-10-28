@@ -2,7 +2,7 @@
 title: Deploy SQL Server DACPAC with Octopus Deploy.
 description: Learn how to deploy SQL Server DACPAC using Octopus Depoloy.
 author: shawn.sesna@octopus.com
-visibility: priovate
+visibility: private
 published: 2022-10-25-1400
 metaImage: 
 bannerImage: 
