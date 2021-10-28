@@ -13,9 +13,16 @@ tags:
  - Kubernetes
 ---
 
-Not every deployment goes as smoothly as we'd like when deploying to Kubernetes.  Bugs, container environment variables, and hardware limitations can dictate whether an application will run once deployed to a Kubernetes cluster.  When a fix isn't easy or the application is unresponsive, you need to go back to the previous version. This process is called a rollback.  
+Not every deployment goes as smoothly as we'd like when deploying to Kubernetes.  Bugs, container environment variables, and hardware limitations can dictate whether an application will run after it’s deployed to a Kubernetes cluster.  When a fix isn't easy or the application is unresponsive, you need to go back to the previous version. This process is called a rollback.  
 
 In this post, I describe some general and Kubernetes-specific rollback strategies using Octopus Deploy.
+
+:::hint
+You can also read about:
+
+- [Rollback strategies with Octopus that you can execute without implementing advanced deployment patterns](https://octopus.com/blog/rollback-strategies)
+- [Different rollback strategies when using an Apache Tomcat web server](https://octopus.com/blog/rolling-back-tomcat-deployment) 
+:::
 
 ## Example deployment process
 
@@ -24,7 +31,7 @@ This post uses the built-in **Deploy Kubernetes Containers** to deploy a contain
 This application consists of a web front-end and a MySQL back-end.  The MySQL back-end is also deployed as a container with the database updates being performed as a Kubernetes job using Flyway.  The example process looks like this:
 
 1. Deploy MySQL container
-1. Deploy PetClinic Web
+1. Deploy PetClinic web
 1. Run Flyway job
 1. Verify deployment
 1. Notify stakeholders
@@ -47,7 +54,7 @@ The updated process looks something like this:
 
 1. Calculate Deployment Mode
 1. Deploy MySQL container (only in Deploy mode)
-1. Deploy PetClinic Web
+1. Deploy PetClinic web
 1. Run Flyway job (only in Deploy mode)
 1. Verify deployment
 1. Notify Stakeholders
@@ -97,11 +104,11 @@ You need to modify your deployment process to tie a revision to a specific relea
 1. Calculate Deployment Mode
 1. Rollback Reason (only in Rollback mode)
 1. Deploy MySQL container (only in Deployment mode)
-1. Deploy PetClinic Web
+1. Deploy PetClinic web
 1. Run Flyway job (only in Deployment mode)
 1. Verify deployment
 1. Notify Stakeholders
-1. Rollback to previous version for PetClinic Web (only in Rollback mode)
+1. Rollback to previous version for PetClinic web (only in Rollback mode)
 1. Block Release Progression (only in Rollback mode)
 
 ![Octopus UI showing Process](octopus-complex-rollback-process.png)
@@ -109,9 +116,9 @@ You need to modify your deployment process to tie a revision to a specific relea
 Let's go through the newly added and updated steps.
 
 ### Rollback reason
-This is a **[Manual Intervention](https://octopus.com/docs/projects/built-in-step-templates/manual-intervention-and-approvals)** step that prompts you for the reason you're rolling back.  The reason specified can be used for the **Reason** field in the **Block Release Progression** step.  Add the variable run condition so it only executes during a rollback.
+**Rollback reason** is a **[Manual Intervention](https://octopus.com/docs/projects/built-in-step-templates/manual-intervention-and-approvals)** step that prompts you for the reason you're rolling back.  The reason specified can be used for the **Reason** field in the **Block Release Progression** step.  Add the variable run condition so it only executes during a rollback.
 
-### Deploy PetClinic Web
+### Deploy PetClinic web
 There are two modifications you need to make on this step
 - Add a run condition so that it runs only in Deploy mode
 - Add a deployment annotation to tie the release to a revision
@@ -133,7 +140,7 @@ REVISION  CHANGE-CAUSE
 3         2021.09.23.2
 ```
 
-### Rollback to previous version for PetClinic Web
+### Rollback to previous version for PetClinic web
 Now the `CHANGE-CAUSE` column contains the release the revision came from, you can use the **Run a Kubectl CLI Script** step to parse the rollout history to determine which version to roll back to.
 
 ```powershell
