@@ -127,7 +127,7 @@ node {
 }
 ```
 
-Commit your code to GitHub. The commit will trigger a build job in Jenkins. Go to your Jenkins instance URL to see the build.
+The Jenkinsfile consists of different stages. Each of these stages will be run in order in Jenkins and if the build fails, you will be able to see which stage failed. Commit your code to GitHub. The commit will trigger a build job in Jenkins. Go to your Jenkins instance URL to see the build.
 
 ![Jenkins Success](jenkins-success.png)
 
