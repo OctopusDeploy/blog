@@ -2,7 +2,7 @@
 title: Rolling back a Tomcat deployment
 description: Learn how to roll back an application deployed to an Apache Tomcat server.
 author: shawn.sesna@octopus.com
-visibility: public 
+visibility: public
 published: 2021-11-01-1400
 metaImage: blogimage-rollingbackatomcatdeployment-2021.png
 bannerImage: blogimage-rollingbackatomcatdeployment-2021.png
