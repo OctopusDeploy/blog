@@ -20,7 +20,7 @@ In this post, I describe some general and Kubernetes-specific rollback strategie
 :::hint
 You can also read about:
 
-- [Rollback strategies with Octopus that you can execute without implementing advanced deployment patterns](https://octopus.com/blog/rollback-strategies)
+- [Rollback strategies that don’t require advanced deployment patterns](https://octopus.com/blog/rollback-strategies)
 - [Different rollback strategies when using an Apache Tomcat web server](https://octopus.com/blog/rolling-back-tomcat-deployment) 
 :::
 
