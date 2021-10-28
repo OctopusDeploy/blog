@@ -87,13 +87,13 @@ This step should only run during a rollback operation. Use the following output 
 
 ## Complex rollbacks
 
-Both the built-in and simple rollback methods will extract and repackage the `.war` file before delivering it to the Tomcat server for deployment.  If your application is large it could take some time.  Using the Tomcat [Parallel Deployment](https://tomcat.apache.org/tomcat-7.0-doc/config/context.html#Parallel_deployment) feature, it's possible to perform a rollback in seconds.
+Both the built-in and simple rollback methods will extract and repackage the `.war` file before delivering it to the Tomcat server for deployment.  If your application is large it could take some time.  Using the Tomcat [parallel deployment](https://tomcat.apache.org/tomcat-7.0-doc/config/context.html#Parallel_deployment) feature, it's possible to perform a rollback in seconds.
 
 ### Tomcat parallel deployments
 
-The parallel deployments feature was introduced in Tomcat version 7.  The parallel deployments feature allows you to deploy multiple versions of the same application to a Tomcat server.  
+The parallel deployments feature was introduced in Tomcat version 7 and allows you to deploy multiple versions of the same application to a Tomcat server.  
 
-After a newer version of the application is in a running state, new sessions will run on the new version and existing sessions continue to run on the older version until they expire.  This feature requires that you supply a version number with the context path.  The Tomcat server combines the version number and context path and rename the deployed `.war` to `<contextpath>##<version>.war`
+After a newer version of the application is in a running state, new sessions will run on the new version and existing sessions continue to run on the older version until they expire. You need to supply a version number with the context path.  The Tomcat server combines the version number and context path and renames the deployed `.war` to `<contextpath>##<version>.war`
 
 ### Complex rollback process
 
@@ -165,7 +165,7 @@ This step needs to be configured to run in `Rollback Mode` only using the follow
 #{Octopus.Action[Calculate Deployment Mode].Output.RunOnRollback}
 ```
 
-#### Deploy PetClinic web app
+#### Deploy PetClinic Web App
 This step needs the same **Advanced Options** set as the **Start App in Tomcat** step, supplying `#{Octopus.Release.Number}` for the version being deployed.  (See image in [Start App in Tomcat](#start-app-in-tomcat) for reference.)
 
 #### Block Release Progression
