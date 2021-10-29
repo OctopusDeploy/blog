@@ -21,7 +21,7 @@ This blog will build a docker image in a GitHub Actions workflow and publish the
 
 ## Amazon Web Services setup
 
-To set up AWS for Jenkins, we need to create an access key and an ECR repository to store the image.
+To set up AWS for GitHub Actions, we need to create an access key and an ECR repository to store the image.
 
 To create an access key, go to **Amazon Console &rarr; IAM &rarr; Users &rarr; [your user] &rarr; Security credentials &rarr; Create Access Key**
 
