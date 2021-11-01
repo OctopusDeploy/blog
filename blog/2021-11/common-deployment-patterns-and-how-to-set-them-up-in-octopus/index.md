@@ -1,7 +1,7 @@
 ---
 title: Common deployment patterns and how to use them in Octopus
 description: Deployment patterns are important to any development pipeline. This post looks at some common deployment patterns and explains how to set them up in Octopus.
-author: Andy Corrigan
+author: andrew.corrigan@octopus.com
 visibility: public
 published: 2021-11-08-1400
 metaImage: blogimage-commondeploymentpatternsandhowtousetheminoctopus-2021.png
@@ -48,22 +48,22 @@ If you need to run a series of steps on a target before deploying to another, us
 
 Take a look at an [example rolling deployment setup](https://samples.octopus.app/app#/Spaces-45) in our Octopus Samples instance.
 
-Also, check out our [rolling deployments documentation](https://octopus.com/docs/deployments/patterns/rolling-deployments) for more information, including how to use guided failures and variable run conditions. For even more reading on blue-green deployments, take a look at some of our other blog posts:
+Also, check out our [rolling deployments documentation](https://octopus.com/docs/deployments/patterns/rolling-deployments) for more information, including how to use guided failures and variable run conditions. For even more reading on blue/green deployments, take a look at some of our other blog posts:
 
 - [The ultimate guide to rolling deployments](https://octopus.com/blog/ultimate-guide-to-rolling-deployments)
 - [Convert an existing application to use rolling deployments](https://octopus.com/blog/convert-to-rolling-deployments)
 
-## Blue-green deployments
+## Blue/green deployments
 
-A blue-green pattern uses 2 production environments that swap roles between ‘live’ and ‘staging’ with each release.
+A blue/green pattern uses 2 production environments that swap roles between ‘live’ and ‘staging’ with each release.
 
 For example, if the live version of an application is on your blue server, you use the green server for staging and testing before redirecting traffic to it. After cutover, the blue server then acts as the new staging area.
 
-The blue-green pattern has the easiest rollback solution on this list - just redirect your traffic back to the original server. Blue-green can be costly and complex though, given the need to clone your entire production environment.
+The blue/green pattern has the easiest rollback solution on this list - just redirect your traffic back to the original server. Blue/green can be costly and complex though, given the need to clone your entire production environment.
 
-### Set up a blue-green pattern in Octopus
+### Set up a blue/green pattern in Octopus
 
-You can set up a blue-green pattern in Octopus using [environments](https://octopus.com/docs/infrastructure/environments). 
+You can set up a blue/green pattern in Octopus using [environments](https://octopus.com/docs/infrastructure/environments). 
 
 Create 2 production environments with clear labels and assign the needed deployment targets to them.
 
@@ -85,7 +85,7 @@ We also recommend creating a new [lifecycle](https://octopus.com/docs/releases/l
 1. When adding the phase for Production, add both your blue and green environments.
 1. Click **SAVE** when happy with your lifecycle.
 
-![An example of a blue-green lifecycle in Octopus, with both production environments in the same phase](bluegreenlifecycle.png)
+![An example of a blue/green lifecycle in Octopus, with both production environments in the same phase](bluegreenlifecycle.png)
 
 To assign a lifecycle:
 
@@ -95,16 +95,16 @@ To assign a lifecycle:
 
 When readying a new release for staging, check your Octopus dashboard and deploy to the environment not acting as your live service.
 
-![A blue-green setup on the Octopus dashboard](bluegreendash.png)
+![A blue/green setup on the Octopus dashboard](bluegreendash.png)
 
-### More information on blue-green deployments
+### More information on blue/green deployments
 
-Take a look around at an [example blue-green deployment setup](https://samples.octopus.app/app#/Spaces-302) in our Octopus Samples instance.
+Take a look around at an [example blue/green deployment setup](https://samples.octopus.app/app#/Spaces-302) in our Octopus Samples instance.
 
-For more reading on blue-green deployments, take a look at some of our other blog posts:
+For more reading on blue/green deployments, take a look at some of our other blog posts:
 
-- [What is the difference between blue-green and red-black deployments?](https://octopus.com/blog/blue-green-red-black)
-- [Automated blue-green database deployments](https://octopus.com/blog/databases-with-blue-green-deployments)
+- [What is the difference between blue/green and red/black deployments?](https://octopus.com/blog/blue-green-red-black)
+- [Automated blue/green database deployments](https://octopus.com/blog/databases-with-blue-green-deployments)
 
 ## Canary deployments
 
