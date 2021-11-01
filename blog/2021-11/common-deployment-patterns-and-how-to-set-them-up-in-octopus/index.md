@@ -1,9 +1,9 @@
 ---
 title: Common deployment patterns and how to use them in Octopus
-description: Deployment patterns are important to any development pipeline. This blog looks at some common deployment patterns and explains how to set them up in Octopus.
+description: Deployment patterns are important to any development pipeline. This post looks at some common deployment patterns and explains how to set them up in Octopus.
 author: Andy Corrigan
-visibility: private
-published: 3020-01-01
+visibility: public
+published: 2021-11-08-1400
 metaImage: blogimage-commondeploymentpatternsandhowtousetheminoctopus-2021.png
 bannerImage: blogimage-commondeploymentpatternsandhowtousetheminoctopus-2021.png
 bannerImageAlt: Octopus logo surrounded by four blocks, representing deployments types of blue/green, canary, rolling/lighthouse, and multi-region.
@@ -15,29 +15,29 @@ tags:
 
 A deployment pattern is important to any development pipeline, helping to reduce downtime and other problems for your teams and customers. There are many approaches to deployment patterns, though, and one might suit your needs more than others.
 
-In this blog we look at some of the most common deployment patterns and explain how to set them up in Octopus.
+In this post we look at some of the most common deployment patterns and explain how to set them up in Octopus.
 
 ## Rolling deployments
 
 A rolling pattern delivers releases to one [deployment target](https://octopus.com/docs/infrastructure/deployment-targets) (or batch of targets) at a time. This reduces downtime and traffic congestion on your environment during deployment.
 
-As one of the simpler options, rolling deployments can be slow but are reliable, low risk and easy to roll back.
+As one of the simpler options, rolling deployments can be slow but are reliable, low risk, and easy to roll back.
 
-### Set up a rolling deployment pattern in Octopus
+### Setting up a rolling deployment pattern in Octopus
 
-By default, a deployment process in Octopus only starts a new step when the previous one ends. However, if a step deploys to a [target role](https://octopus.com/docs/getting-started/best-practices/environments-and-deployment-targets-and-roles#deployment-target-environment-and-role-relationship) with more than one target (a server farm, for example), you’ll hit up to 10 targets at the same time.
+By default, a deployment process in Octopus only starts a new step when the previous one ends. However, if a step deploys to a [target role](https://octopus.com/docs/getting-started/best-practices/environments-and-deployment-targets-and-roles#deployment-target-environment-and-role-relationship) with more than one target (a server farm, for example), you hit up to 10 targets at the same time.
 
-Instead you can force a rolling pattern when defining your deployment process:
+Instead, you can force a rolling pattern when defining your deployment process:
 
 1. Under the **On Targets in Roles** section in the Process Editor, click **CONFIGURE A ROLLING DEPLOYMENT**.
-1. In the **Rolling Deployment** section, set how many machines you’d like to deploy to at a time with the **Window size** field. For example:
+1. In the **Rolling Deployment** section, set how many machines you want to deploy to at a time with the **Window size** field. For example:
 
-   - a window size of ‘1’ will deploy to 1 machine at a time
-   - a window size of ‘3’ will deploy to 3 machines at the same time.
+   - A window size of ‘1’ will deploy to 1 machine at a time
+   - A window size of ‘3’ will deploy to 3 machines at the same time
 
 ![The 'CONFIGURE A ROLLING DEPLOYMENT' option in an Octopus deployment process](rollingdeploy1.png)
 
-If you need to run a series of steps on a target before deploying to another, use child steps. You also add child steps in the Process Editor:
+If you need to run a series of steps on a target before deploying to another, use child steps. You also add child steps in the **Process Editor**:
 
 1. Click the 3 vertical dots next to the intended ‘parent’ step and select **Add child step**.
 1. Complete the child step as you did with the parent (select the step type and complete the fields) and click **SAVE**. Repeat for as many steps as you need.
@@ -46,7 +46,7 @@ If you need to run a series of steps on a target before deploying to another, us
 
 ### More information on rolling deployments
 
-Take a look around at an [example rolling deployment setup](https://samples.octopus.app/app#/Spaces-45) in our Octopus Samples instance.
+Take a look at an [example rolling deployment setup](https://samples.octopus.app/app#/Spaces-45) in our Octopus Samples instance.
 
 Also, check out our [rolling deployments documentation](https://octopus.com/docs/deployments/patterns/rolling-deployments) for more information, including how to use guided failures and variable run conditions. For even more reading on blue-green deployments, take a look at some of our other blog posts:
 
@@ -63,7 +63,9 @@ The blue-green pattern has the easiest rollback solution on this list - just red
 
 ### Set up a blue-green pattern in Octopus
 
-You can set up a blue-green pattern in Octopus using [environments](https://octopus.com/docs/infrastructure/environments). Create 2 production environments with clear labels and assign the needed deployment targets to them.
+You can set up a blue-green pattern in Octopus using [environments](https://octopus.com/docs/infrastructure/environments). 
+
+Create 2 production environments with clear labels and assign the needed deployment targets to them.
 
 To create an environment:
 
@@ -116,7 +118,7 @@ That said, Octopus is all about automation, and you can build a canary pattern i
 
 1. Deploys to your ‘canary’ targets
 1. Waits for manual approval with a [manual intervention step](https://octopus.com/docs/projects/built-in-step-templates/manual-intervention-and-approvals) while you test or invite user feedback
-1. Deploys to the rest of your production targets once you’re happy.
+1. Deploys to the rest of your production targets once you’re happy
 
 First, you should create target roles to make sure you hit the right deployment targets at the right phases:
 
@@ -125,9 +127,9 @@ First, you should create target roles to make sure you hit the right deployment 
 1. Click the **Target Roles** section under the **Deployment** heading to expand.
 1. Enter a name in the **Roles** field (‘canary’, for example) and click **SAVE**.
 
-Repeat the steps and create target roles for the remaining deployment targets if they don’t already exist. Once you’ve created a target role, you can reuse it for other deployment targets.
+Repeat the steps and create target roles for the remaining deployment targets if they don’t already exist. After you create a target role, you can reuse it for other deployment targets.
 
-Now we can create the deployment process:
+Now you can create the deployment process:
 
 1. Click **PROJECTS** from the top menu, select your project from the list, then click **Process** from the left.
 1. Click **ADD STEP**, select the type of step and complete the details for the deployment. Select your canary target role in the **On Targets in Roles** section. Click **SAVE** when done.
@@ -156,9 +158,9 @@ A multi-region pattern is when you deploy a release to multiple overseas targets
 
 There are 3 ways to set up multi-region deployments in Octopus:
 
-- [environments and lifecycles](#environments-and-lifecycles)
-- [cloud regions and variables](#cloud-regions-and-variables-with-a-rolling-pattern)
-- [tenants](#tenants)
+- [Environments and lifecycles](#environments-and-lifecycles)
+- [Cloud regions and variables](#cloud-regions-and-variables-with-a-rolling-pattern)
+- [Tenants](#tenants)
 
 #### Environments and lifecycles
 
@@ -178,12 +180,12 @@ To create a suitable lifecycle:
 1. Click **ADD LIFECYCLE** from the top right.
 1. Enter a name and description for your new lifecycle, then click **ADD PHASE**.
 1. If adding your full development pipeline (recommended):
-   - Enter the name of your earliest phase (‘Development’, for example).
+   - Enter the name of your earliest phase (`Development`, for example).
    - Click the **ADD ENVIRONMENT** button and select the related environment from the dropdown. Decide if you want to deploy automatically and click **OK**.
    - Click **ADD PHASE** to add another and repeat these steps.
 1. When adding the phases for Production, add all your regional environments. Here your lifecycle could:
-   - deploy to all your environments consecutively
-   - deploy to one environment, then the others when you’re ready.
+   - Deploy to all your environments consecutively
+   - Deploy to one environment, then the others when you’re ready
 1. Click **SAVE** when happy with your lifecycle.
 
 ![Examples of multi-region setups with Octopus lifecycles](multiregionlifecycles.png)
@@ -272,3 +274,5 @@ Now your tenants will alert you if they’re missing information. To set the val
 Now you can see how many tenants a project has deployed to on the Octopus dashboard.
 
 ![A project using tenants in Octopus for a multi-region deployment](tenantdashboard.png)
+
+Happy deployments!
