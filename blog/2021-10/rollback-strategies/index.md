@@ -17,9 +17,15 @@ When discussing rollbacks, the conversation inevitably turns to blue/green, red/
 
 In this post, I walk through a rollback strategy you can execute today, without implementing advanced deployment patterns.
 
-:::hint
+:::warning
 **Out of scope**
 Rolling back database changes are out of scope for this post because doing them successfully [is a complex topic with many pitfalls](https://octopus.com/blog/database-rollbacks-pitfalls).  This post focuses on code-only rollbacks. It demonstrates how to skip database deployment steps during a rollback.  In practice, code and UI changes are much more frequent than database changes, especially in a test environment.  Most schema changes happen at the start of a new feature, with minor tweaks during testing.
+:::
+
+:::hint
+You can also read about:
+
+- [Rollback strategies when using an Apache Tomcat web server](https://octopus.com/blog/rolling-back-tomcat-deployment) 
 :::
 
 ## What is a rollback?
