@@ -39,7 +39,7 @@ There are three components:
 1. A [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) container used to expose the windows-exporter running on the node as a Service in the cluster
 1. Two remote-write rules for Prometheus to forward some Windows metrics into the Sumologic pipeline
 
-### A Virtual Machine Scale Set Extension
+### A Virtual Machine Scale Set extension
 
 aidapsibr's solution uses a PowerShell script for installing the extension once, but as we deploy our AKS cluster using Terraform and continuous deployment, we need a way to ensure that any VM in any of the Windows node pools ends up with this extension. Fortunately, the [Azure provider for Terraform](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/virtual_machine_scale_set_extension) already has a resource for scale set extensions, so we add the below to our Terraform file:
 
