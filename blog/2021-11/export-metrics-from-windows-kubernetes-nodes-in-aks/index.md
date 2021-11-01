@@ -9,7 +9,6 @@ bannerImage: blogimage-howtoexportmetricsfromwindowskubernetesnodesinaks.png
 bannerImageAlt: 2 people surrounded by various graphs, one studying their laptop, one leaning against the giant needle of a speedometer.
 isFeatured: false
 tags:
- - DevOps
  - Engineering
  - Kubernetes
  - Azure
@@ -17,9 +16,9 @@ tags:
 
 At Octopus, we use Azure Kubernetes Service ([AKS](https://azure.microsoft.com/en-au/services/kubernetes-service/)) to manage a [Kubernetes](https://kubernetes.io) cluster that we use for a range of internal tools, as well as build and test workloads.
 
-To efficiently use this resource, we need to monitor how much it's being used, along a number of dimensions – CPU, memory, disk, network bandwidth, and more.
+To efficiently use this resource, we need to monitor how much it's being used along with several dimensions – CPU, memory, disk, network bandwidth, and more.
 
-For Linux [nodes](https://kubernetes.io/docs/concepts/architecture/nodes/) we use [Sumologic's solution for metric gathering from Kubernetes](https://github.com/SumoLogic/sumologic-kubernetes-collection), but it doesn't currently support gathering metrics from Windows. We use Windows nodes in our cluster, so we need a way to monitor them too.
+For Linux [nodes](https://kubernetes.io/docs/concepts/architecture/nodes/), we use [Sumologic's solution for metric gathering from Kubernetes](https://github.com/SumoLogic/sumologic-kubernetes-collection), but it doesn't currently support gathering metrics from Windows. We use Windows nodes in our cluster, so we need a way to monitor them too.
 
 In this post, I walk you through our solution. If you also need Windows node metrics, I hope you can use this post to find a solution that works for you.
 
@@ -32,7 +31,7 @@ Gathering metrics about a Kubernetes (K8s) node has an established pattern for L
 
 This doesn't work on Windows because Windows containers can't ([currently](https://github.com/Azure/AKS/issues/1975)) be privileged - meaning they can't see the 'outside world' of the host VM. So we need some other way to peek into the host.
 
-Based on a fantastic [solution](https://github.com/aidapsibr/aks-prometheus-windows-exporter) by GitHub user aidapsibr, we built a way to mimic the standard pattern for Linux fairly closely. Other folks working in our cluster can now understand how the monitoring pipeline works without too much confusion.
+Based on a fantastic [solution by GitHub user aidapsibr](https://github.com/aidapsibr/aks-prometheus-windows-exporter), we built a way to mimic the standard pattern for Linux fairly closely. Other folks working in our cluster can now understand how the monitoring pipeline works without too much confusion.
 
 There are three components:
 
@@ -169,7 +168,7 @@ spec:
         kubernetes.io/os: windows
 ```
 
-As long as your labels match your existing Linux node metrics pipeline's `ServiceMonitor` Prometheus will automatically pick these up for scraping. For Sumologic, that means the following:
+If your labels match your existing Linux node metrics pipeline's `ServiceMonitor` Prometheus will automatically pick these up for scraping. For Sumologic, that means the following:
 
 ```yaml
 labels:
@@ -177,7 +176,7 @@ labels:
   release: collection
 ```
 
-Now the Prometheus instance inside the cluster is gathering metrics, we need to send them off to Sumologic for longer-term retention.
+Now the Prometheus instance inside the cluster is gathering metrics, we send them off to Sumologic for longer-term retention.
 
 ## Forwarding to Sumologic
 
