@@ -16,11 +16,11 @@ tags:
 
 In my [previous post](https://octopus.com/blog/deploying-javascript-library-project-with-octopus), you learned how to use Octopus to deploy a hash-named JavaScript library bundle to cloud storage, where it was referenced by other projects via an automatically updated variable within a [library variable set](https://octopus.com/docs/projects/variables/library-variable-sets). That's a good start for managing reusable front-end code in Octopus. It keeps every consumer of your bundle on the latest version of your library as releases happen, which might be the exact behavior you need, especially if you only have a few internal projects that reference a small to medium-sized JavaScript library. However, if you continue this pattern as your organization scales up, some scenarios can create dilemmas.
 
-### A release needs the old version of your library
+### A release needs the old library
 
 This might happen when a hotfix is needed. As your front-end library grows, you won't want to rush upgrading it for the sake of an unrelated fix. You could override the library variable at the project level. This would be a reasonable solution if the situation occurs occasionally, but if it's normal development flow, and multiple teams reference your script and want to upgrade when convenient, then clear visibility of who is on which version of your library is helpful. You'd also like to be able to roll back a change that  broke one consumer, or upgrade a different website that's failing due to a known bug in an old version of your library. In these cases, you want to release not only to a specific environment but also to a specific set of consumers.  
 
-### The consumer of your library isn't internal
+### The consumer isn't internal
 
 Maybe you created a widget that users add to their website by copy-pasting a code snippet from your website. Or a library started life as internal but turned out to be general-purpose enough for your company to make it available to the world via a CDN. In these cases, it becomes impossible for you to modify the HTML references to your script. You have to separate the concept of releasing your JavaScript from releasing the code that uses it, and you have to solve cache-busting in a new way.
 
