@@ -3,7 +3,7 @@ title: Safe schema updates - Near-Zero Downtime Database Deployments
 description: Because we can only deploy often, if we can do it without disruption.
 author: alex.yates@dlmconsultants.com
 visibility: public
-published: 2021-10-25-1400
+published: 2021-11-10-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt: 
@@ -20,7 +20,7 @@ This blog post is part 7 of my safe schema updates series. We'll add links to th
 
 Small, frequent, and simple changes are safer. Big, infrequent, and complex changes are more dangerous. If you disagree, re-read this series from [the beginning](https://octopus.com/blog/safe-schema-updates-1-delivery-hell).
 
-Databases rarely exist in isolation. When making database schema changes, we usually need to consider dependencies. Databases typically serve “front-end” applications/services, which means schema changes often need to be co-ordinated with changes to other systems.
+Databases rarely exist in isolation. When making database schema changes, we usually need to consider dependencies. Databases typically serve front-end applications/services, which means schema changes often need to be coordinated with changes to other systems.
 
 A period of downtime is probably required because we can’t risk serving mismatched versions:
 
@@ -38,32 +38,31 @@ Our goal is to enable the schema to evolve safely. Therefore, we need to ensure 
 
 Unfortunately, the more downtime is required for each deployment, the less frequently we’ll be able to do it. We’ll never be deploying 10 times a day if each deployment requires an hour of downtime.
 
-More likely, engineers will need to plan well-ahead and play politics to negotiate some downtime window. Probably overnight. (Tired workers aren’t known for their reliability, attention to detail or problem-solving skills.)
+More likely, engineers will need to plan well-ahead and play politics to negotiate some downtime window. Probably overnight. (Tired workers aren’t known for their reliability, attention to detail, or problem-solving skills.)
 
 Since these opportunities don’t come often, changes will be batched up. As many changes as possible will be crammed into the shortest possible window.
 
 This… is stupid. (See opening paragraph.)
 
-The inescapable conclusion: It’s essential that we perform schema changes with as little downtime as possible. Only through minimizing downtime, can we increase deployment frequency, decrease deployment size/complexity and deliver safer schema updates.
+The inescapable conclusion: It’s essential that we perform schema changes with as little downtime as possible. Only through minimizing downtime, can we increase deployment frequency, decrease deployment size/complexity, and deliver safer schema updates.
 
-In my experience, for all the talk about source control and deployment automation, the necessity to minimise downtime is underappreciated by those who have database schemas and wish to keep them safe.
+In my experience, for all the talk about source control and deployment automation, the necessity to minimize downtime is under-appreciated by those who have database schemas and wish to keep them safe.
 
 This post is not about the automation or execution of schema updates – there are [many other posts about that](https://octopus.com/blog/tag/Database Deployments). This post is about patterns for minimizing downtime.
 
-## Overloaded terminology: Deployments and Releases
+## Overloaded terminology: deployments and releases
 
 Many people use the words “release” and “deployment” interchangeably, without considering the difference between them.
 
-If you use Octopus Deploy (or a similar product) your idea of what “release” means may well be the result of common naming conventions within your tooling. In most deployment automation tools a “release” is a specific version of your source code, a bunch of configuration variables and a set of steps that need to be run to execute a “deployment”. You might consider a “release” to be something that gets “deployed”. The release happens first, 
-and the deployment comes later. That probably feels completely natural to you.
+If you use Octopus Deploy (or a similar product) your idea of what “release” means may well be the result of common naming conventions in your tooling. In most deployment automation tools a “release” is a specific version of your source code, a bunch of configuration variables, and a set of steps that need to be run to execute a “deployment”. You might consider a “release” to be something that gets “deployed”. The release happens first, and the deployment comes later. That probably feels completely natural to you.
 
 You are in the minority.
 
 To most people, and specifically to anyone in marketing, a “release” is something different. “Releasing” a new version of your software, or the latest iPhone, or the new Adele album, is about making it available and telling people about it. The thing is created in advance, and released later. The latest James Bond film was produced in 2020, but the release was delayed until 2021.
 
-When talking about zero downtime deployments, we tend to use “release” in this second way. Deployments are about making changes, but releases are about revealing those changes to our users. When I use “release” in this blog post, I am not referring to the preparation of a deployment, I am talking about making updates visible to users.
+When talking about zero downtime deployments, we tend to use “release” in this second way. Deployments are about making changes, but releases are about revealing those changes to our users. When I use “release” in this blog post, I'm not referring to the preparation of a deployment, I'm talking about making updates visible to users.
 
-It is crucial to differentiate between deploying changes and releasing/revealing those changes to users. These two things do not need to happen at the same time. In fact, it’s the ability to separate these events that enables zero downtime releases, as well as all sorts of other exciting practices, such as testing in production and some rapid roll-back patterns.
+It is crucial to differentiate between deploying changes and releasing/revealing those changes to users. These two things do not need to happen at the same time. In fact, it’s the ability to separate these events that enables zero downtime releases, as well as all sorts of other exciting practices, such as testing in production and some rapid rollback patterns.
 
 ## Application zero downtime patterns
 
