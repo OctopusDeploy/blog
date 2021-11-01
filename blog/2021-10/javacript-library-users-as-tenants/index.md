@@ -14,7 +14,7 @@ tags:
  - Tenants
 ---
 
-In my [previous post](https://octopus.com/blog/deploying-javascript-library-project-with-octopus), you learned how to use Octopus to deploy a hash-named JavaScript library bundle to cloud storage, where it was referenced by other projects via an automatically updated variable within a [library variable set](https://octopus.com/docs/projects/variables/library-variable-sets). That's a good start for managing reusable front-end code in Octopus. It keeps every consumer of your bundle on the latest version of your library as releases happen, which might be the exact behavior you need, especially if you only have a few internal projects that reference a small to medium-sized JavaScript library. However, if you continue this pattern as your organization scales up, you might hit some scenarios that create dilemmas.
+In my [previous post](https://octopus.com/blog/deploying-javascript-library-project-with-octopus), you learned how to use Octopus to deploy a hash-named JavaScript library bundle to cloud storage, where it was referenced by other projects via an automatically updated variable within a [library variable set](https://octopus.com/docs/projects/variables/library-variable-sets). That's a good start for managing reusable front-end code in Octopus. It keeps every consumer of your bundle on the latest version of your library as releases happen, which might be the exact behavior you need, especially if you only have a few internal projects that reference a small to medium-sized JavaScript library. However, if you continue this pattern as your organization scales up, some scenarios can create dilemmas.
 
 ### A release needs the old version of your library
 
