@@ -25,7 +25,8 @@ Rolling back database changes are out of scope for this post because doing them 
 :::hint
 You can also read about:
 
-- [Rollback strategies when using an Apache Tomcat web server](https://octopus.com/blog/rolling-back-tomcat-deployment) 
+- [Rollback strategies when using an Apache Tomcat web server](https://octopus.com/blog/rolling-back-tomcat-deployment)
+- [General and Kubernetes-specific rollback strategies using Octopus Deploy](https://octopus.com/blog/rolling-back-kubernetes-deployment)
 :::
 
 ## What is a rollback?
