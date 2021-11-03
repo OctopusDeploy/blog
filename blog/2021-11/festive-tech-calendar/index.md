@@ -25,7 +25,7 @@ Use ARM Templates, PowerShell, Terraform, GitHub Actions, be as creative as you 
 
 We want you to have fun, learn something during this Hackathon.  
 
-Once you’ve completed the Hackathon exercise, head over to our [submission page](https://github.com/OctopusSamples/OctoPetShop) and let us know; before December 15, 2021 (5:00 pm Greenwich Mean Time). We’ll be randomly picking three winners from the submissions. We have three swag bundles to give away: 
+Once you’ve completed the Hackathon exercise, head over to our [submission page](https://forms.gle/PeGkA92uhnGsHy268) and let us know; before December 15, 2021 (5:00 pm Greenwich Mean Time). We’ll be randomly picking three winners from the submissions. We have three swag bundles to give away: 
 
 **insert image here**
 
