@@ -20,6 +20,7 @@ In this post, I discuss different rollback strategies when using an Apache Tomca
 You can also read about:
 
 - [Rollback strategies that don’t require advanced deployment patterns](https://octopus.com/blog/rollback-strategies)
+- [General and Kubernetes-specific rollback strategies using Octopus Deploy](https://octopus.com/blog/rolling-back-kubernetes-deployment)
 :::
 
 
