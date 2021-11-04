@@ -115,10 +115,10 @@ Copy and store the following folders and all their data:
 
 ### Download the same version of Octopus you're already using
 
-You’ll need your existing Octopus version to:
+You need your existing Octopus version to:
 
 - [roll back if there's a problem](#Roll-back-if-something-goes-wrong)
-- install on clone or test environment if using one of our recommended [strategies to avoid risk](#Strategies-to-avoid-risk).
+- install on a clone or test environment if using one of our recommended [strategies to avoid risk](#Strategies-to-avoid-risk).
 
 To check your version, open the Octopus Web Portal and click the question mark in Octopus’s top right. The version number is at the top of the dropdown.
 
@@ -248,7 +248,7 @@ With high availability, the Octopus data folders are also likely stored on a net
 
 ## An example in-place upgrade from 3.1
 
-An in-place upgrade of Octopus is the same regardless of if it's on your clone, test, or production instances.
+An in-place upgrade of Octopus is the same regardless of whether it's on your clone, test, or production instances.
 
 If upgrading from a 3.X version, you should upgrade to 3.17 before making the jump to our latest version. This provides the most reliable upgrade path as there's a big difference between versions 3.1 and 3.17.
 
