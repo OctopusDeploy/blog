@@ -349,4 +349,4 @@ If an on-premises instance of Octopus Server is not a business need, you could [
 
 ## We can help if you still have concerns!
 
-If you have any concerns or need help plotting your best upgrade approach, we’re always available to help. Our customer success team can provide instance reviews, and support with planning or post-upgrade problems – we’re only [an email](customersuccess@octopus.com) away.
+If you have any concerns or need help plotting your best upgrade approach, we’re always available to help. Our customer success team can provide instance reviews, and support with planning or post-upgrade problems – we’re only [an email](customersuccess@octopus.com)  away.
