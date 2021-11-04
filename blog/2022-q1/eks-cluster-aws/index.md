@@ -154,9 +154,9 @@ Now that your clusters are live, you can perform operations on them, such as dep
 
 ## Deleting the clusters
 
-You can delete a cluster using the CLI by running this command and replacing the name with the name of your cluster:
+You can delete a cluster using the CLI by running this command and replacing the name with the name of your cluster and the region with the region of your cluster:
 
-    eksctl delete cluster --name my-cluster --region us-west-2
+    eksctl delete cluster --name my-cluster --region us-east-2
 
 You can delete a cluster using the console by ticking the cluster, clicking delete, and typing the name of the cluster to delete.
 
