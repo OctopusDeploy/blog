@@ -275,4 +275,12 @@ Now you can see how many tenants a project has deployed to on the Octopus dashbo
 
 ![A project using tenants in Octopus for a multi-region deployment](tenantdashboard.png)
 
+Why not watch our [Webinar on multi-tenant deployment patterns](https://octopus.com/events/octopus-101-multi-tenant-deployment-patterns-2020-02)?
+
+## Conclusion
+
+As you can see, Octopus can help manage a range of deployment patterns to suit your team, projects, and customers.
+
+Make sure you check out [our documentation](https://octopus.com/docs) for more help with deployment patterns, plus everything else Octopus.
+
 Happy deployments!
