@@ -75,7 +75,7 @@ Application deployment patterns that support zero downtime (more accurately, nea
 
 ### Infrastructure-based deployment patterns
 
-**Infrastructure-based** techniques include [blue/green](https://martinfowler.com/bliki/BlueGreenDeployment.html) deployments, [canary releases](https://martinfowler.com/bliki/CanaryRelease.html), and cluster immune systems. They are typically based on clever load balancing tricks. The new code is deployed on new infrastructure, tested and added into rotation.
+**Infrastructure-based** techniques include [blue/green](https://martinfowler.com/bliki/BlueGreenDeployment.html) deployments, [canary releases](https://martinfowler.com/bliki/CanaryRelease.html), and cluster immune systems. They are typically based on clever load balancing tricks. The new code is deployed on new infrastructure, tested, and added into rotation.
 
 By changing settings in our load balancer we can send traffic to either the new or old infra. This potentially allows us to “release” the new version gradually. First to 1% of our production traffic, then 5%, 10%, gradually throttling it as we watch the telemetry, our social media channels, and/or our support tickets to check everything is running smoothly.
 
@@ -124,14 +124,14 @@ Now the database supports both versions.
 **Rollout:**
 
 1.	When the data is reliably in sync in both the old and new columns, any read stored procedures can be pointed at the new columns.
-1.	If the applications reference the columns directly, rather than going through stored procedures, rollout out the new application versions using one of the infrastructure or application-based patterns described above.
+1.	If the applications reference the columns directly, rather than going through stored procedures, rollout the new application versions using one of the infrastructure or application-based patterns described above.
 
 Now the new stuff is released globally.
 
 **Contract:**
 
-1.	In theory, we can delete the old columns. However, in systems with many poorly documented dependencies, there’s always the possibility that we missed something. Better to rename the old column first. (And update any stored procedures that updated the old columns.) If anyone complains, we can immediately fix it with another rename and by restoring the old version of any stored procedures.
-1.	In either case, after some period of time, we should schedule the deletion of the old columns. No-one needs to see hundreds of objects appended with “_toDelete”. (Tip: try “_ToDeleteOn2021-12-01” instead. It somewhat focuses the mind, and we could even wrap some automated processes to backup and cull old objects.)
+1.	In theory, we can delete the old columns. However, in systems with many poorly documented dependencies, there’s always the possibility that we missed something. Better to rename the old column first. (And update any stored procedures that updated the old columns.) If anyone complains, we can immediately fix it with another rename by restoring the old version of any stored procedures.
+1.	In either case, after some period of time, we should schedule the deletion of the old columns. No one needs to see hundreds of objects appended with `_toDelete`. (Tip: try `_ToDeleteOn2021-12-01` instead. It somewhat focuses the mind, and we could even wrap some automated processes to backup and cull old objects.)
 
 Refactor complete. As long as the steps are followed in this order, each step could be taken individually. None of these steps created an enormous risk. If there ever was a mistake, each step could be easily reverted.
 
@@ -145,7 +145,7 @@ Forget all that.
 
 If this refactor needs approval, it should be reviewed as a whole, even if it’s executed in steps. And most of the testing and deployment pipeline should be automated.
 
-Yes: This is harder. No-one said this was going to be easy. We’re optimizing for safety, and that requires rigor and effort.
+Yes: This is harder. No one said this was going to be easy. We’re optimizing for safety, and that requires rigor and effort.
 
 Of course, with more dependencies, this is harder. Some might think it’s unfeasible. Certainly this process requires a certain level of defensive programming and testing/telemetry in any dependent systems.
 
@@ -155,7 +155,7 @@ If your system is tightly-coupled, perhaps by now you are seeing the enormous be
 
 ## Next time
 
-Next time, we’ll finish this series by exploring the Strangler pattern. A method for safely refactoring complex, tightly-coupled systems.
+Next time, we finish this series by exploring the Strangler pattern. A method for safely refactoring complex, tightly-coupled systems.
 
 We'll add links to the other posts in this series as they become available:
 
