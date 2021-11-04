@@ -260,8 +260,8 @@ For this example upgrade, you should:
 
 -	double check you’ve [backed up everything we already outlined](#What-to-back-up-and-how)
 -	set up a project to test your deployments after each upgrade.
--	download the following versions of Octopus from our website:
-   - [the version you're already using](#Download-the-same-version-of-Octopus-you're-already-using)
+-	download the following Octopus versions from our website:
+   - [the version you're already using](#Download-the-same-version-of-Octopus-you-re-already-using)
    - [Octopus 3.17](https://octopus.com/downloads/3.17.14)
    - [our latest version](https://octopus.com/downloads).
 
