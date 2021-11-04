@@ -1,15 +1,16 @@
 ---
-title: "From Zero to Octopus Hero - Part 1 - Getting familiar with Octopus Deploy"
-description: "Join Sarah as she goes on her learning journey with Octopus Deploy."
+title: From Zero to Octopus Hero - Part 1 - Getting familiar with Octopus Deploy
+description: Join Sarah as she goes on her learning journey with Octopus Deploy.
 author: sarah.lean@octopus.com
-visibility: private
+visibility: public
 published: 9999-09-15-1400
-metaImage: .png
-bannerImage: .png
+metaImage: 
+bannerImage: 
 bannerImageAlt: 
+isFeatured: false
 tags:
-- Product
-- DevOps
+ - DevOps
+ - Product
 ---
 
 Hey everyone, my name is [Sarah Lean](https://twitter.com/Techielass). Recently, I joined the Octopus Deploy team as a Senior Solutions Architect within the Community team. 
