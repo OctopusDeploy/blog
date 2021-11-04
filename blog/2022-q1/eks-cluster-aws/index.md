@@ -13,7 +13,7 @@ tags:
  - AWS
 ---
 
-This blog will set up an Elastic Kubernetes Service (EKS) cluster in Amazon Web Services (AWS). EKS is a managed container service to run and scale Kubernetes in the cloud or on-premises. AWS is a cloud computing platform by Amazon that contains 
+This blog will set up an Elastic Kubernetes Service (EKS) cluster in Amazon Web Services (AWS). EKS is a managed container service to run and scale Kubernetes in the cloud or on-premises. 
 
 You will need:
 
@@ -78,7 +78,7 @@ Paste the following policy into the **JSON** box.
 
 Click **Next** and give the policy a name. Click **Add Policy**
 
-Amazon will then show you the Access Key ID and Secret Access Key. Download this file for reference later.
+Amazon will then show you the **Access Key ID** and **Secret Access Key**. Download this file for reference later.
 
 ## Command-line interface
 
