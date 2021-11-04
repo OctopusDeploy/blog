@@ -1,9 +1,9 @@
 ---
-title: Converting many existing environments to tenants via the Octopus API
-description: Learn how to use the Octopus api to automate the creation of multiple tenants from many existing environments.
+title: Converting many environments to tenants via the Octopus API
+description: Learn how to use the Octopus API to automate the creation of multiple tenants from many existing environments.
 author: mark.butler@octopus.com
 visibility: public
-published: 3020-01-01
+published: 2021-11-15-1400
 metaImage: 
 bannerImage:
 bannerImageAlt:
@@ -13,24 +13,29 @@ tags:
  - Multi-Tenancy
 ---
 
-## Introduction
-In a previous post, a colleague of mine, wrote about the [benefits of multi-tenancy](https://octopus.com/blog/better-multi-tenancy-with-octopus#using-multiple-environments) in Octopus. Designing an application to fit multi-tenancy is arguably much easier when you start, but where do you start with an existing application? I've often seen some of our customers take the initial approach of creating customer-specific environments when deploying multiple instances of the same application to each of their customers. This often leads to complicated lifecycles, unclear release dashboards, and complex variable scoping for projects.
+In a previous post, Mark Harrison wrote about the [benefits of multi-tenancy](https://octopus.com/blog/better-multi-tenancy-with-octopus#using-multiple-environments) in Octopus. Designing an application to fit multi-tenancy is arguably easier when you start, but where do you start with an existing application? I often see customers initially create customer-specific environments when deploying multiple instances of the same application, to each of their customers. This can lead to complicated lifecycles, unclear release dashboards, and complex variable scoping for projects.
 
-Fortunately, since Octopus 2.0, the Octopus REST API has been available to help us out. Using a fake project called Vet Clinic, I will show you how you can leverage the Octopus REST API to get started with automating your conversion to multi-tenancy.
-## Initial Project State
-Taking a look at the overview screen of the Vet Clinic project, we can see that I have a variety of different environments I can deploy the project to. Some of the environments available are customer-specific and include the customer name. These are the environments that I will convert to tenants.
+Fortunately, since Octopus 2.0, the Octopus REST API has been available to help us out. Using a sample project called Vet Clinic, I show you how you can leverage the Octopus REST API and start automating your conversion to multi-tenancy.
+
+## Initial project state
+
+The overview screen of the Vet Clinic project shows a variety of environments I can deploy the project to. Some of the available environments are customer-specific and include the customer name. These are the environments I'll convert to tenants.
 
 ![Vet Clinic project overview](vet-clinic-overview.png)
 
-The project has multiple variables being scoped to each environment to specify the value for the customer. The variables that are scoped to customer environments we will convert to project templates to provide each tenant we create with the specific variable values for tenanted deployments. Variables scoped to generic environments such as *Development* and *Test* will be kept as project-specific variables for un-tenanted deployments.
+The project has multiple variables being scoped to each environment to specify the value for the customer. It's the variables scoped to customer environments that we'll convert to project templates, to provide each tenant we create with the specific variable values for tenanted deployments. Variables scoped to generic environments such as *Development* and *Test* will be kept as project-specific variables for untenanted deployments.
 
 ![Vet Clinic project variables](vet-clinic-project-variables.png)
 
-The last piece we will take a look at is the project's lifecycle. Since each customer has their specific environment, each phase in the lifecycle has multiple environments to which I can deploy the project. We will create a new lifecycle with a single environment for each phase that the project can deploy to. The old lifecycle will determine what environments each new tenant can have the project deployed to.
+The last piece is the project's lifecycle. Each customer has their specific environment, and each phase in the lifecycle has multiple environments to which we can deploy the project. We create a new lifecycle with a single environment for each phase that the project can deploy to. The old lifecycle will determine what environments each new tenant can have the project deployed to.
 
 ![Vet Clinic lifecycle](vet-clinic-lifecycle.png)
-## Getting Started
-To get started with my conversion process, I decided to create a new project alongside my existing Vet Clinic project to test out my changes in parallel without worrying about any mishaps disrupting my current project's deployments. I accomplished this by [cloning the existing project](https://octopus.com/docs/projects#clone-a-project). Once I was happy with the results, I could remove the new project and run the conversions scripts on the old project or move everything else to the new project and eventually retire the old project.
+
+## Getting started
+
+To start the conversion process, I create a new project alongside my existing Vet Clinic project. I do this by [cloning the existing project](https://octopus.com/docs/projects#clone-a-project). The clone allows me to test changes in parallel, without worrying about mishaps disrupting my current project's deployments. 
+
+After I’m happy with results on the cloned project, I can remove it and run the conversions scripts on the original project. Alternatively I can move everything to the new, cloned project and eventually retire the original project.
 
 :::hint
 For any project that you would like to connect tenants to you will need to enable tenanted deployments on that project. Documentation on how to do that can be found [here](https://octopus.com/docs/tenants/tenant-creation/tenanted-deployments).
@@ -38,21 +43,33 @@ For any project that you would like to connect tenants to you will need to enabl
 
 ![Vet Clinic tenanted project overview](vet-clinic-tenanted-overview.png)
 
-Next, I created a new simplified lifecycle for the project to use once the conversion is complete. Each phase in the lifecycle will have a single environment to deploy to, which will allow us to have a more comprehensive view of what release has deployed to which environment and tenant.
+Next, I create a new simplified lifecycle for the project to use after the conversion is complete. Each phase in the lifecycle has a single environment to deploy to, which offers a more comprehensive view of what release has deployed to which environment and tenant.
 
 ![Vet Clinic tenanted lifecycle](vet-clinic-tenanted-lifecycle.png)
-## Creating the Scripts
 
-:::hint The examples provided are for reference and should be modified and tested prior to using in a production Octopus instance. :::
+## Creating the scripts
 
-With those two pieces in place, I was able to start creating my scripts. The first script I created the tenants from the old environments. It requires you to specify the following inputs:
-- `$projectnames`: The project(s) you would like to attach your tenants to.
-- `$tenantTags`: Tenant tags to apply to all newly created tenants. 
-- `$spaceName`: The Octopus space name your project is in.
-- `$lifecycleName`: The name of the old lifecycle your untenanted project is using. 
-- `$newEnvironmentNames`: A list of environments to not convert to tenants.
+:::hint The examples provided are for reference and should be modified and tested prior to using in a production Octopus instance. 
+:::
 
-With those inputs set, the script gets a list of *old environments* to convert. While looping through the list of *old environments* a few things happen. Since my environment names follow the convention of *EnvironmentName-CustomerName*, it parses out the desired tenant name. From the new tenant name, there is then a check to see if the tenant already exists. To determine which new environments each tenant should deploy to the script loops through each of the phases in the old lifecycle. The project(s) from the input get combined with the environments that the tenant should deploy to. If the tenant doesn't exist, the script will call the API to create a new tenant with the gathered data. If the tenant doesn't exist, the script will send a request to up the tenant with the environments it should deploy to for the project(s).
+With those two pieces in place, I can start creating my scripts. The first script I create the tenants from the old environments. It requires me to specify the following inputs:
+
+- `$projectnames`: The project(s) you would like to attach your tenants to
+- `$tenantTags`: Tenant tags to apply to all newly created tenants
+- `$spaceName`: The Octopus space name your project is in
+- `$lifecycleName`: The name of the old lifecycle your untenanted project is using 
+- `$newEnvironmentNames`: A list of environments to not convert to tenants
+
+With those inputs set, the script gets a list of *old environments* to convert. 
+
+While looping through the list of *old environments* a few things happen: 
+
+- Since my environment names follow the convention of *EnvironmentName-CustomerName*, it parses out the desired tenant name. 
+- From the new tenant name, there is then a check to see if the tenant already exists. 
+- To determine which new environments each tenant should deploy to, the script loops through each of the phases in the old lifecycle. 
+- The project(s) from the input get combined with the environments that the tenant should deploy to. 
+- If the tenant doesn't exist, the script will call the API to create a new tenant with the gathered data. 
+- If the tenant doesn't exist, the script will send a request to up the tenant with the environments it should deploy to, for the project(s).
 
 <details>
 <summary>Full script create_tenants_from_environments.ps1</summary>
@@ -171,15 +188,23 @@ foreach($oldEnv in $oldEnvionments) {
 
 ***
 
-With the tenants created, I made the following script that turns the old project variables into [variable templates](https://octopus.com/docs/projects/variables/variable-templates) to provide a value for each tenant. The script requires you to provide the following inputs:
+After the tenants are created, I make the following script that turns the old project variables into [variable templates](https://octopus.com/docs/projects/variables/variable-templates) to provide a value for each tenant. The script requires the following inputs:
 
 - `$projectNames`: The *old* project name that contains the current project variables along with the *new* name of the project you would like to create the variable templates for.
 - `$$newEnvironmentNames`: A list of environment names used to scope project variables and template variables per tenant.
 - `$spaceName`: The Octopus space name that contains the project(s).
 
-A list of the project variables from the specified *old project* is retrieved. The script then loops through each variable and each environment scope the variable has. If the scoped environment is one of the new environments we will use for tenanted deployments, a project variable gets created. Otherwise, the script will create a variable template. There will be a check to see if the project variable or variable template already exists for the project in both cases. When they don't exist, details from the old variables are used to create the new variable types and added to their respective collections retrieved at the beginning of the script. Once the loop finishes, there is a call to the API to update the project's variable collection and another call to update the project variable templates.
+A list of the project variables from the specified *old project* is retrieved. The script then loops through each variable and each environment scope the variable has. 
 
-After the API call that creates the variable templates for the project, the script loops back through each variable to provide values to the templates for each tenant. The old variable's environment scopes get looped through to parse out the name of the environment and tenant that the value will belong to. The parsed tenant name retrieves the tenant data. From the tenant data, the script then loops through each project environment attached to the tenant and then through each template until the name of the old variable matches the name of the template and the project environment matches the environment scope. An API call gets made to update the variables for the tenant with the new value.
+If the scoped environment is one of the new environments we will use for tenanted deployments, a project variable gets created. Otherwise, the script will create a variable template. 
+
+There will be a check to see if the project variable or variable template already exists for the project in both cases. When they don't exist, details from the old variables are used to create the new variable types and are added to their respective collections, retrieved at the beginning of the script. 
+
+After the loop finishes, there's a call to the API to update the project's variable collection, and another call to update the project variable templates.
+
+After the API call that creates the variable templates for the project, the script loops back through each variable to provide values to the templates for each tenant. The old variable's environment scopes get looped through to parse out the name of the environment and tenant that the value will belong to. The parsed tenant name retrieves the tenant data. 
+
+From the tenant data, the script then loops through each project environment attached to the tenant and then through each template until the name of the old variable matches the name of the template and the project environment matches the environment scope. An API call gets made to update the variables for the tenant with the new value.
 
 <details>
 <summary>Full script create_project_variables_and_templates.ps1</summary>
@@ -342,9 +367,9 @@ foreach ($oldVariable in $oldVariableSet.Variables) {
 </p>
 </details>
 
-## End Result
+## End result
 
-After running the two scripts against the Vet Clinic project, we can see the new items that the scripts created. On the tenant dashboard, we can see that I now have three different tenants.
+After running the two scripts against the Vet Clinic project, you can see the new items that the scripts created. On the tenant dashboard, you can see I now have three different tenants.
 
 ![Vet Clinic Tenants](vet-clinic-tenants.png)
 
@@ -361,18 +386,20 @@ Inside each new tenant, the variable values have been updated for each environme
 ![Vet Clinic tenant variable values](vet-clinic-tenant-variable-values.png)
 
 :::hint
-To start using your new tenants with your deployments, you will need to set up your [infrastructure](https://octopus.com/docs/tenants/tenant-infrastructure) and any [tenant tags](https://octopus.com/docs/tenants/tenant-tags) you might want to use to manage groups of tenants.
+To start using your new tenants with your deployments, you need to set up your [infrastructure](https://octopus.com/docs/tenants/tenant-infrastructure) and any [tenant tags](https://octopus.com/docs/tenants/tenant-tags) you might want to use to manage groups of tenants.
 :::
 
 ## Conclusion
-Multi-tenancy within Octopus is a powerful feature that you can leverage to create scalable, reusable, simplified deployments. Converting a sizeable existing project to multi-tenancy to reap these benefits can seem like a momentous task. 
 
-What I've shown here is just a couple of the steps needed to convert an existing project to multi-tenancy. Still, I hope it shows how with the help of the Octopus api, you can automate the steps in the process, saving you time and your fingers from the possibility of 100s of mouse clicks in the UI.
+Multi-tenancy in Octopus is a powerful feature that you can leverage to create scalable, reusable, simplified deployments. Converting a sizable existing project to multi-tenancy can seem like a momentous task though. 
+
+This post shows a few of the steps to convert an existing project to multi-tenancy. I hope it demonstrates how the Octopus API helps you automate the steps in the process, saving you time and the possibility of hundreds of mouse clicks in the UI.
+
 ## Learn more
 
 - [Multi-tenancy documentation](https://octopus.com/docs/tenants)
 - [Multi-tenancy guides](https://octopus.com/docs/tenants/guides)
-- [Better Multi-Tenancy with Octopus](https://octopus.com/blog/better-multi-tenancy-with-octopus#using-multiple-environments)
+- [Better multi-tenancy with Octopus](https://octopus.com/blog/better-multi-tenancy-with-octopus#using-multiple-environments)
 
 ## Watch the webinar: Better multi-tenancy deployments using Octopus Deploy
 
