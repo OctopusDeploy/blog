@@ -16,16 +16,16 @@ We find the phrase ‘if it ain’t broke, don’t fix it’ doesn’t always wo
 
 That said, we understand why some prefer to stick with older versions of Octopus. You may feel your current version does as much as you need, or a company policy could dictate staying a few versions behind to avoid risk. Maybe you’ve just fallen behind on updates and worry about the time and resources needed to get back up to date.
 
-For those in that last category especially, let’s see if we can’t ease your fears. With a little planning and the right method for your business, we’re certain you can have confidence in upgrading from any of our modern versions.
+For those in that last category especially, let’s see if we can’t ease your fears. With a little planning and the right method for your business, we’re certain you can have confidence in upgrading from even our oldest 'modern' version.
 
 In this blog I run through:
 
-- what you’re missing out on by not upgrading
-- our recommended methods for upgrading to the latest versions of Octopus
-- things to consider before upgrading, such as what to back up and download in advance
-- a simple in-place upgrade from 3.X to our latest version
+- features you’re missing out on by not upgrading
+- what to back up before an upgrade, plus other things to consider
+- ways to avoid risk when planning your upgrade
+- an example in-place upgrade from 3.X to our latest version
 - how to roll back should something go wrong
-- how we can help if you still have concerns.
+- how we can help if you have concerns or problems.
 
 ## Features we’ve introduced since Octopus 3.1
 
@@ -53,9 +53,99 @@ We've also added a bunch of new platform integrations, including support for:
    - [GitHub Actions](https://github.com/marketplace?type=actions&query=Octopus+)
    - [Jira](https://marketplace.atlassian.com/apps/1220376/octopus-deploy-for-jira?hosting=cloud&tab=overview)
 
-## Choose your method
+## What to back up and how
+      
+### Master key
+   
+The master key is a unique security string that protects sensitive data held in the Octopus Deploy database. Without it, you can’t restore backups on a clean operating system.
 
-There are 2 recommended methods for upgrading Octopus. Both are simple enough, but you should consider which is best for your business before you start.
+:::warning
+Aside from your database, this is the most important thing to back up before an upgrade. We cannot recover a lost master key.
+:::
+   
+To back up the master key:
+   
+1. Open Octopus Manager on your server.
+1. Click **View master key** under the **Storage** heading.
+1. Here you can click either:
+   - **Save** to store the master key in a text file
+   - **Copy to clipboard** to paste it somewhere safe, such a password manager.
+   
+![The master key screen in Octopus Manager](masterkey.png)
+ 
+### License key
+   
+You also need your license key to restore your instance.
+   
+To back up the license key:
+   
+1. Open the Octopus Web Portal and click **Configuration** in the top menu.
+1. Select **License** from the left menu. Copy all the text from the XML box and paste it somewhere safe.
+   
+If you can’t find or don’t know your license key, [email us](customersuccess@octopus.com) and we can help recover it.
+   
+### Database
+   
+You should always back up your database before upgrading Octopus. Most database management tools have wizards to help you.
+For example, to back up a database in Microsoft’s SQL Server Management Studio (SSMS):
+   
+1. Expand the **Databases** folder on your database server.
+1. Right-click the database, select **Tasks** and click **Back Up…**
+1. Use the **Destination** section to set where you want to store the backup and click **OK**.
+   
+![The backup and restore options in SQL Server Management Studio](database.png)
+   
+For those who prefer T-SQL commands, you can use the following command to save a backup to NAS or file share:
+   
+```
+BACKUP DATABASE [OctopusDeploy]
+          TO DISK = '\\SomeServer\SomeDrive\OctopusDeploy.bak'
+             WITH FORMAT;
+```
+   
+Always check with your database administrator if unsure.
+   
+### Data folders
+   
+Copy and store the following folders and all their data:
+   
+- C:\Octopus\Artifacts
+- C:\Octopus\Packages
+- C:\Octopus\Tasklogs
+
+### Download the same version of Octopus you're already using
+
+You’ll need your existing Octopus version to:
+
+- [roll back if there's a problem](#Roll-back-if-something-goes-wrong)
+- install on clone or test environment if using one of our recommended [strategies to avoid risk](#Strategies-to-avoid-risk).
+
+To check your version, open the Octopus Web Portal and click the question mark in Octopus’s top right. The version number is at the top of the dropdown.
+
+Then head to our [download archives](https://octopus.com/downloads/previous) to redownload that version.
+
+![Where to check the Octopus version in old and new versions](versioncheck.png)
+
+## Other things to think about before Upgrading
+
+### Octopus licensing
+
+You can use your Octopus license on 3 unique instances (determined by the database it connects to). If you think you’ll exceed your Octopus instance limit, [email our customer success team](customersuccess@octopus.com) for your options.
+
+### Don't do too much at once
+
+Though it could be tempting to use downtime from an Octopus upgrade for other tasks (such as changing your Octopus server's operating system or moving to a high-availability instance), we recommend focusing only on the upgrade.
+
+Doing so will:
+
+- ensure the upgrade runs as smooth as possible
+- prevent other tasks complicating the upgrade
+- reduce impact on your Octopus users
+- make the other tasks a little easier if you’re already on our latest versions.
+
+## Strategies to avoid risk
+
+There are 2 recommended ways to avoid risk when upgrading Octopus. Both are simple enough, but you should consider which is best for your business before you start.
 
 Let’s break down the options.
 
@@ -83,7 +173,7 @@ The main steps for this method are:
 
 Read our upgrade documentation to see [this method’s steps](https://octopus.com/docs/administration/upgrading/guide/upgrading-from-octopus-3.x-to-modern#recommended-approach-create-a-cloned-instance) in more detail.
 
-#### Considerations for this methods
+#### Considerations for this method
 
 While the best bet for a smooth transition, this method can be time-intensive and needs downtime during migration. It can also be costly, as you must clone your entire environment. This means double the cost of hardware, licensing or cloud services.
 
@@ -132,23 +222,6 @@ Octopus.Migrator.exe partial-export --instance=OctopusServer --project=AcmeWebSt
 In the latest versions of Octopus, we added a feature to easily export and import projects between spaces and instances.
 :::
 
-## Other things to think about before Upgrading
-
-### Octopus licensing
-
-You can use your Octopus license on 3 unique instances (determined by the database it connects to). If you think you’ll exceed your Octopus instance limit, [email our customer success team](customersuccess@octopus.com) for your options.
-
-### Don't do too much at once
-
-Though it could be tempting to use downtime from an Octopus upgrade for other tasks (such as changing your Octopus server's operating system or moving to a high-availability instance), we recommend focusing only on the upgrade.
-
-Doing so will:
-
-- ensure the upgrade runs as smooth as possible
-- avoid risk of the other tasks complicating the upgrade
-- reduce impact on your Octopus users
-- make the other tasks a little easier if you’re already on our latest versions.
-
 ### If upgrading a high availability Octopus setup
 
 Upgrading a high availability instance of Octopus isn't that different from a normal upgrade, but there are things to note due to the extra nodes.
@@ -173,77 +246,9 @@ With high availability, the Octopus data folders are also likely stored on a net
 -	Packages
 -	Tasklogs
 
-## What to back up and how
-
-Before you do anything, it’s important to back up your Octopus master and license keys. Depending on your upgrade method, you’ll also make backups of your database and Octopus files at different stages.
-
-### Master key
-
-The master key is a unique security string that protects sensitive data held in the Octopus Deploy database. Without it, you can’t restore backups on a clean operating system. Aside from your database, this is the most important thing to back up before an upgrade. 
-
-To back up the master key:
-
-1. Open Octopus Manager on your server.
-1. Click **View master key** under the **Storage** heading.
-1. Here you can click either:
-   - **Save** to store the master key in a text file
-   - **Copy to clipboard** to paste it somewhere safe, such a password manager.
-
-![The Master Key screen in Octopus Manager](masterkey.png)
-
-### License key
-
-You also need your license key to restore your instance.
-
-To back up the license key:
-
-1. Open the Octopus Web Portal and click **Configuration** in the top menu.
-1. Select **License** from the left menu. Copy all the text from the XML box and paste it somewhere safe.
-
-If you can’t find or don’t know your license key, [email us](customersuccess@octopus.com) and we can help recover it.
-
-### Database
-
-You should always back up your database before upgrading Octopus. Most database management tools have wizards to help you.
-For example, to back up a database in Microsoft’s SQL Server Management Studio (SSMS):
-
-1. Expand the **Databases** folder on your database server.
-1. Right-click the database, select **Tasks** and click **Back Up…**
-1. Use the **Destination** section to set where you want to store the backup and click **OK**.
-
-![The backup and restore options in SQL Server Management Studio](database.png)
-
-For those who prefer T-SQL commands, you can use the following command to save a backup to NAS or file share:
-
-```
-BACKUP DATABASE [OctopusDeploy]
-          TO DISK = '\\SomeServer\SomeDrive\OctopusDeploy.bak'
-             WITH FORMAT;
-```
-
-Always check with your database administrator if unsure.
-
-### Data folders
-
-Copy and store the following folders and all their data:
-
-- C:\Octopus\Artifacts
-- C:\Octopus\Packages
-- C:\Octopus\Tasklogs
-
-## Download the same version of Octopus you're already using
-
-Regardless of your chosen method, you should always use the same version of Octopus as your main instance for clone or test setups. Plus, you’ll need it if you need to roll back. 
-
-To check your version, open the Octopus Web Portal and click the question mark in Octopus’s top right. The version number is at the top of the dropdown.
-
-Then head to our [download archives](https://octopus.com/downloads/previous) to redownload that version.
-
-![Where to check the Octopus version in old and new versions](versioncheck.png)
-
 ## An example in-place upgrade from 3.1
 
-Regardless of your method, an in-place upgrade of Octopus on your test or production instances is the same.
+An in-place upgrade of Octopus is the same regardless of if it's on your clone, test, or production instances.
 
 If upgrading from a 3.X version, you should upgrade to 3.17 before making the jump to our latest version. This provides the most reliable upgrade path as there's a big difference between versions 3.1 and 3.17.
 
@@ -251,11 +256,14 @@ Thankfully, the upgrade process doesn’t take very long regardless of the Octop
 
 ### Before you start
 
-You should:
+For this example upgrade, you should:
 
--	make sure you’ve [backed up everything we already outlined](#What-to-back-up-and-how)
--	set up a project to test your deployments after each upgrade (in my test, I used a simple file delivery to another computer’s C:\ drive).
--	download both [Octopus 3.17](https://octopus.com/downloads/3.17.14) and the [latest version](https://octopus.com/downloads) from the Octopus website.
+-	double check you’ve [backed up everything we already outlined](#What-to-back-up-and-how)
+-	set up a project to test your deployments after each upgrade.
+-	download the following versions of Octopus from our website:
+   - [the version you're already using](#Download-the-same-version-of-Octopus-you're-already-using)
+   - [Octopus 3.17](https://octopus.com/downloads/3.17.14)
+   - [our latest version](https://octopus.com/downloads).
 
 ### Step 1: Enable maintenance mode
 
@@ -331,13 +339,13 @@ You can now reinstall your original version of Octopus.
 1. Open the Octopus Web Portal. You may get caching-related errors when the Web Portal open the first time after the reinstall. If this happens, refresh the tab and Octopus should load fine.
 1. Run a deployment to check everything still works.
 
-## What next?
+## What's next?
 
 Once you've upgraded your Octopus instance, there are options to save yourself some work for future upgrades.
 
 The first is to [automate Octopus upgrade](https://octopus.com/docs/administration/upgrading/guide/automate-upgrades). This allows Octopus to deploy new versions to itself, performing all essential steps and reducing downtime.
 
-If an on-premises instance of Octopus Server is not a business need, you should also consider [migrating to Octopus Cloud](https://octopus.com/docs/octopus-cloud/migrations). Using Octopus Cloud means you'll never have to worry about upgrading, and you'll get access to all our new features as soon as they're available.
+If an on-premises instance of Octopus Server is not a business need, you could [migrate to Octopus Cloud](https://octopus.com/docs/octopus-cloud/migrations). Using Octopus Cloud means you'll never have to worry about upgrading, and you'll get access to all our new features as soon as they're available.
 
 ## We can help if you still have concerns!
 
