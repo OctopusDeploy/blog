@@ -13,21 +13,25 @@ tags:
  - Multi-Tenancy
 ---
 
-In a previous post, Mark Harrison wrote about the [benefits of multi-tenancy](https://octopus.com/blog/better-multi-tenancy-with-octopus#using-multiple-environments) in Octopus. Designing an application to fit multi-tenancy is arguably easier when you start, but where do you start with an existing application? I often see customers initially create customer-specific environments when deploying multiple instances of the same application, to each of their customers. This can lead to complicated lifecycles, unclear release dashboards, and complex variable scoping for projects.
+In a previous post, Mark Harrison wrote about the [benefits of multi-tenancy](https://octopus.com/blog/better-multi-tenancy-with-octopus#using-multiple-environments) in Octopus. Designing an application to fit multi-tenancy from the start is arguably easier than retrofitting one, but what should you do with an existing application? I often see people initially create customer-specific environments when deploying multiple instances of the same application to each of their customers. This can lead to complicated lifecycles, unclear release dashboards, and complex variable scoping for projects.
 
-Fortunately, since Octopus 2.0, the Octopus REST API has been available to help us out. Using a sample project called Vet Clinic, I show you how you can leverage the Octopus REST API and start automating your conversion to multi-tenancy.
+Fortunately, since Octopus 2.0, the Octopus REST API has been available to help manage multi-tenancy. 
+
+Using a sample project called Vet Clinic, I show you how you can leverage the Octopus REST API and start automating your conversion to multi-tenancy.
 
 ## Initial project state
 
-The overview screen of the Vet Clinic project shows a variety of environments I can deploy the project to. Some of the available environments are customer-specific and include the customer name. These are the environments I'll convert to tenants.
+The overview screen of the Vet Clinic project shows a variety of environments where I can deploy the project. Some of the available environments are customer-specific and include the customer name. These are the environments I'll convert to tenants.
 
 ![Vet Clinic project overview](vet-clinic-overview.png)
 
-The project has multiple variables being scoped to each environment to specify the value for the customer. It's the variables scoped to customer environments that we'll convert to project templates, to provide each tenant we create with the specific variable values for tenanted deployments. Variables scoped to generic environments such as *Development* and *Test* will be kept as project-specific variables for untenanted deployments.
+The project has multiple variables being scoped to each environment to specify the value for the customer. It's the variables scoped to customer environments that we'll convert to project templates, to provide each tenant we create with the specific variable values for tenanted deployments. Variables scoped to generic environments, such as Development and Test, will be kept as project-specific variables for untenanted deployments.
 
 ![Vet Clinic project variables](vet-clinic-project-variables.png)
 
-The last piece is the project's lifecycle. Each customer has their specific environment, and each phase in the lifecycle has multiple environments to which we can deploy the project. We create a new lifecycle with a single environment for each phase that the project can deploy to. The old lifecycle will determine what environments each new tenant can have the project deployed to.
+The last piece is the project's lifecycle. Each customer has their specific environment, and each phase in the lifecycle has multiple environments to which we can deploy the project. 
+
+We create a new lifecycle with a single environment for each phase the project can deploy to. The old lifecycle determines which environments each new tenant can have the project deployed to.
 
 ![Vet Clinic lifecycle](vet-clinic-lifecycle.png)
 
@@ -38,7 +42,7 @@ To start the conversion process, I create a new project alongside my existing Ve
 After I’m happy with results on the cloned project, I can remove it and run the conversions scripts on the original project. Alternatively I can move everything to the new, cloned project and eventually retire the original project.
 
 :::hint
-For any project that you would like to connect tenants to you will need to enable tenanted deployments on that project. Documentation on how to do that can be found [here](https://octopus.com/docs/tenants/tenant-creation/tenanted-deployments).
+To connect tenants to a project, you need to enable tenanted deployments on that project. You can read our [documentation on tenanted deployment](https://octopus.com/docs/tenants/tenant-creation/tenanted-deployments) to learn how.
 :::
 
 ![Vet Clinic tenanted project overview](vet-clinic-tenanted-overview.png)
@@ -52,7 +56,7 @@ Next, I create a new simplified lifecycle for the project to use after the conve
 :::hint The examples provided are for reference and should be modified and tested prior to using in a production Octopus instance. 
 :::
 
-With those two pieces in place, I can start creating my scripts. The first script I create the tenants from the old environments. It requires me to specify the following inputs:
+With those two pieces in place, I can start creating my scripts. For the first script, I create the tenants from the old environments. I need to specify the following inputs:
 
 - `$projectnames`: The project(s) you would like to attach your tenants to
 - `$tenantTags`: Tenant tags to apply to all newly created tenants
@@ -64,7 +68,7 @@ With those inputs set, the script gets a list of *old environments* to convert.
 
 While looping through the list of *old environments* a few things happen: 
 
-- Since my environment names follow the convention of *EnvironmentName-CustomerName*, it parses out the desired tenant name. 
+- Since my environment names follow the convention of `EnvironmentName-CustomerName`, it parses out the desired tenant name. 
 - From the new tenant name, there is then a check to see if the tenant already exists. 
 - To determine which new environments each tenant should deploy to, the script loops through each of the phases in the old lifecycle. 
 - The project(s) from the input get combined with the environments that the tenant should deploy to. 
@@ -369,7 +373,7 @@ foreach ($oldVariable in $oldVariableSet.Variables) {
 
 ## End result
 
-After running the two scripts against the Vet Clinic project, you can see the new items that the scripts created. On the tenant dashboard, you can see I now have three different tenants.
+After running the two scripts against the Vet Clinic project, you can see the new items the scripts created. On the tenant dashboard, you can now see three different tenants.
 
 ![Vet Clinic Tenants](vet-clinic-tenants.png)
 
