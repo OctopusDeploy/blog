@@ -3,10 +3,10 @@ title: Using the Octopus API with Bash and jq
 description: Learn how to work with the Octopus API using Bash and jq
 author: shawn.sesna@octopus.com
 visibility: private 
-published: 2022-10-11
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+published: 2021-11-29-1400
+metaImage: blogimage-usingtheoctopusapiwithbashandjql.png
+bannerImage: blogimage-usingtheoctopusapiwithbashandjql.png
+bannerImageAlt: Arrow shaped like a sideways horseshoe, with the middle section highlighted containing a square for curl and a square for jq 
 isFeatured: false
 tags:
  - 
