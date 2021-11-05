@@ -193,12 +193,10 @@ Other than container start up time, this operation can be completed in seconds.
 
 Using the strategies discussed in this post, you can configure rollback functionality directly in your deployment process, including for an application deployed to Kubernetes.
 
-## Register for the webinar: Rollback strategies with Octopus Deploy
+## Watch the webinar: Rollback strategies with Octopus Deploy
 
-A robust rollback strategy is key to any deployment strategy. In this webinar, we’ll cover best practices for IIS deployments, Tomcat, and full stack applications with a database. We’ll also discuss how to get the rollback strategy right for your situation. 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/F_V7r80aDbo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-We're running 3 sessions of the webinar over 2 days, Wed 3 Nov – Thurs 4 Nov, 2021.
-
-<span><a class="btn btn-success" href="/events/rollback-strategies-with-octopus-deploy">Register now</a></span>
+We host webinars regularly. See the [webinars page](https://octopus.com/events) for details about upcoming events, and live stream recordings.
 
 Happy deployments!
