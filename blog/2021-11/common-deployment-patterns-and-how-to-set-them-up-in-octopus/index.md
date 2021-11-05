@@ -15,7 +15,7 @@ tags:
 
 A deployment pattern is important to any development pipeline, helping to reduce downtime and other problems for your teams and customers. There are many approaches to deployment patterns, though, and one might suit your needs more than others.
 
-In this post we look at some of the most common deployment patterns and explain how to set them up in Octopus.
+This post looks at some of the most common deployment patterns and explains how to set them up in Octopus.
 
 ## Rolling deployments
 
@@ -71,7 +71,7 @@ To create an environment:
 
 1. Click **Infrastructure** in the top menu, then select **Environments** from the left.
 1. Click **ADD ENVIRONMENT**.
-1. Enter the environment name (‘Production – Blue’, for example) and click **SAVE**.
+1. Enter the environment name (`Production – Blue`, for example) and click **SAVE**.
 
 We also recommend creating a new [lifecycle](https://octopus.com/docs/releases/lifecycles) (or changing an existing one) so the blue and green environments sit in a shared phase. To create a lifecycle like this:
 
@@ -79,7 +79,7 @@ We also recommend creating a new [lifecycle](https://octopus.com/docs/releases/l
 1. Click **ADD LIFECYCLE** from the top right.
 1. Enter a name and description for your new lifecycle, then click **ADD PHASE**.
 1. If adding your full development pipeline (recommended): 
-   - Enter the name of your earliest phase (‘Development’, for example).
+   - Enter the name of your earliest phase (`Development`, for example).
    - Click the **ADD ENVIRONMENT** button and select the related environment from the dropdown. Decide if you want to deploy automatically and click **OK**.
    - Click **ADD PHASE** to add another and repeat these steps.
 1. When adding the phase for Production, add both your blue and green environments.
@@ -159,7 +159,7 @@ A multi-region pattern is when you deploy a release to multiple overseas targets
 There are 3 ways to set up multi-region deployments in Octopus:
 
 - [Environments and lifecycles](#environments-and-lifecycles)
-- [Cloud regions and variables](#cloud-regions-and-variables-with-a-rolling-pattern)
+- [Cloud regions and variables](#cloud-regions-and-variables)
 - [Tenants](#tenants)
 
 #### Environments and lifecycles
@@ -170,7 +170,7 @@ To create an environment:
 
 1. Click **Infrastructure** in the top menu, then select Environments from the left.
 1. Click **ADD ENVIRONMENT**.
-1. Enter the environment name (‘US-West’ for example) and click **SAVE**.
+1. Enter the environment name (`US-West` for example) and click **SAVE**.
 
 Repeat for each of your worldwide servers.
 
@@ -216,9 +216,9 @@ To set up your cloud regions:
 1. Click **Add deployment** target and select **CLOUD REGION**.
 1. Hover your cursor over the **Cloud Region** box and click **ADD**.
 1. Complete the following fields and click **SAVE**:
-   - Display name
-   - Environments
-   - Target Roles
+   - **Display name**
+   - **Environments**
+   - **Target Roles**
    
 Repeat for all your cloud regions.
 
@@ -253,11 +253,11 @@ You should also use [common variable templates](https://octopus.com/docs/tenants
 1. Click **ADD VARIABLE SET**, enter a name and description and click **SAVE**.
 1. Click the **VARIABLE TEMPLATES** tab on your new set, then click **ADD TEMPLATE**.
 1. Complete the following fields and click **ADD** (there may be other options depending on what you select for the control type):
-   - Variable name – enter a name, such as ‘Tenant.Alias’
-   - Label – what’s shown when prompting for data
-   - Help text – describe the action needed
-   - Control type – what type of option the variable will prompt for 
-   - Default value (optional)
+   - **Variable name** – enter a name, such as ‘Tenant.Alias’
+   - **Label** – what’s shown when prompting for data
+   - **Help text** – describe the action needed
+   - **Control type** – what type of option the variable will prompt for 
+   - **Default value** (optional)
 1. Click **SAVE** when back on the **Variable Sets** screen.
 
 Now you can connect the variable to your project:
