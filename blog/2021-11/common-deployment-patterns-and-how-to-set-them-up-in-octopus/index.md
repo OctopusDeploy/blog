@@ -125,7 +125,7 @@ First, you should create target roles to make sure you hit the right deployment 
 1. Click **Infrastructure** in the top menu, then select **Deployment Targets** from the left.
 1. Click on a deployment target you intend to act as a canary.
 1. Click the **Target Roles** section under the **Deployment** heading to expand.
-1. Enter a name in the **Roles** field (‘canary’, for example) and click **SAVE**.
+1. Enter a name in the **Roles** field (`canary`, for example) and click **SAVE**.
 
 Repeat the steps and create target roles for the remaining deployment targets if they don’t already exist. After you create a target role, you can reuse it for other deployment targets.
 
@@ -135,13 +135,13 @@ Now you can create the deployment process:
 1. Click **ADD STEP**, select the type of step and complete the details for the deployment. Select your canary target role in the **On Targets in Roles** section. Click **SAVE** when done.
 1. Click **ADD STEP** again and use the **Choose Step Template** field to search for ‘manual intervention’. Hover your cursor over the **Manual Intervention Required** box and click **ADD**.
 1. Complete the following fields and click **SAVE**:
-   - Step Name
-   - Notes – describe the purpose of the manual step
-   - Instructions – enter what needs to happen, such as testing or awaiting user feedback
-   - Responsible Teams – select the team responsible for testing or monitoring feedback
-   - Block Deployments – select **Prevent other deployments while awaiting intervention**
-   - Required – make this a required step
-Complete the other options as needed and click **SAVE**.
+   - **Step Name**
+   - **Notes** – describe the purpose of the manual step
+   - **Instructions** – enter what needs to happen, such as testing or awaiting user feedback
+   - **Responsible Teams** – select the team responsible for testing or monitoring feedback
+   - **Block Deployments** – select **Prevent other deployments while awaiting intervention**
+   - **Required** – make this a required step
+   - Complete the other options as needed and click **SAVE**.
 1. Click **ADD STEP** and recreate the first step, but this time deploy to the target roles for the rest of your production targets.
 
 ![An example of a canary deployment in an Octopus deployment process](canaryprocess.png)
@@ -150,7 +150,7 @@ Complete the other options as needed and click **SAVE**.
 
 Take a look around at an [example canary deployment setup](https://samples.octopus.app/app#/Spaces-542) in our Octopus Samples instance.
 
-## Multi-region Deployments
+## Multi-region deployments
 
 A multi-region pattern is when you deploy a release to multiple overseas targets, such as servers or data centers. While we consider it a deployment pattern itself, it’s an outlier as it uses other patterns as part of the process.
 
@@ -275,7 +275,7 @@ Now you can see how many tenants a project has deployed to on the Octopus dashbo
 
 ![A project using tenants in Octopus for a multi-region deployment](tenantdashboard.png)
 
-Why not watch our [Webinar on multi-tenant deployment patterns](https://octopus.com/events/octopus-101-multi-tenant-deployment-patterns-2020-02)?
+To learn more, you can watch our [webinar on multi-tenancy deployments](https://octopus.com/events/better-multi-tenancy-deployments-using-octopus-deploy).
 
 ## Conclusion
 
