@@ -3,7 +3,7 @@ title: Title
 description: A brief summary of the post, 170 characters max including spaces.
 author: Joan Smith
 visibility: private
-published: 3020-01-01
+published: 3020-01-01-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
