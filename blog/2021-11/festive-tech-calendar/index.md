@@ -39,8 +39,8 @@ If you’ve never used Octopus Deploy before, we have great [Getting Started Doc
 ## Hackathon Rules:
 
 ### How to Enter
-- Hackathon participants must sign up for the [Azure free trial](https://azure.microsoft.com/free) or use an existing Azure. New accounts will automatically receive $200 in Azure credits to use. 
-- You must also sign up for the [Octopus Deploy Cloud free trial](https://octopus.com/start/cloud). 
+- Hackathon participants can sign up for a [Azure free trial](https://azure.microsoft.com/free) or use an existing Azure. For those signing up for an Azure free trial you'll automatically receive $200 in Azure credits for the first 30 days and a limited quantity of additional free services for 12 months.
+- You can sign up for a [Octopus Deploy Cloud free trial](https://octopus.com/start/cloud) or use an existing Octopus Deploy environment you have. 
 - We would love you to deploy an Azure Web App using Octopus Deploy. 
 - Complete and enter all required fields in the Hackathon submission form before the Hackathon Submission Period ends.
 
