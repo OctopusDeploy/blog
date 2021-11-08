@@ -3,7 +3,7 @@ title: Festive Tech Calendar Octopus Deploy Hackathon
 description: Get involved with the Octopus Deploy Hackathon
 author: sarah.lean@octopus.com
 visibility: public
-published: 9999-09-15-1400
+published: 2021-11-23-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt: 
