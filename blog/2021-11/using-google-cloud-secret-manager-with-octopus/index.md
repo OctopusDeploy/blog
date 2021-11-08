@@ -1,18 +1,16 @@
 ---
 title: Using Google Cloud Secret Manager with Octopus
-description: Introducing a new step template to allow secrets stored in Google Cloud Secret Manager to be used in deployments or runbooks.
+description: Introducing a new step template that allows secrets stored in Google Cloud Secret Manager to be used in deployments or runbooks.
 author: mark.harrison@octopus.com
-visibility: private
-published: 2021-12-31-1400
-metaImage: blogimage-google-cloud-secret-manager-step-template-2021.jpg
-bannerImage: blogimage-google-cloud-secret-manager-step-template-2021.jpg
-bannerImageAlt: Using Google Cloud Secret Manager with Octopus Deploy
+visibility: public
+published: 2021-11-17-1400
+metaImage: logimage-usinggooglecloudsecretmanagerwithoctopus-2021.png
+bannerImage: logimage-usinggooglecloudsecretmanagerwithoctopus-2021.png
+bannerImageAlt: Google Cloud Secret Manager logo and Octopus Deploy logo sit in front of a blue CI/CD infinite loop symbol
 tags:
  - Product
  - Security
 ---
-
-![Using Google Cloud Secret Manager with Octopus Deploy](blogimage-google-cloud-secret-manager-step-template-2021.jpg)
 
 I've written previously about extending the functionality of Octopus to integrate with both [HashiCorp Vault](https://octopus.com/blog/using-hashicorp-vault-with-octopus-deploy) and [Azure Key Vault](https://octopus.com/blog/using-azure-key-vault-with-octopus) using step templates. As part of our commitment to provide more ways for our customers to be successful with Octopus, we're continuing to invest time in expanding our range of step templates that integrate with other secret managers.
 
