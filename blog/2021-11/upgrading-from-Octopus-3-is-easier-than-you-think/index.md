@@ -3,10 +3,10 @@ title: Upgrading from Octopus 3.X is easier than you think
 description: Why and how to upgrade from Octopus 3.X.
 author: Andy Corrigan
 visibility: private
-published: 3020-01-01
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+published: 2021-11-24-1400
+metaImage: blogimage-upgradingoctopusiseasierthanyouthink-2021.png
+bannerImage: blogimage-upgradingoctopusiseasierthanyouthink-2021.png
+bannerImageAlt: Laptop screen showing Octopus logo surrounded by circle of lines indicating update in progress, with the words “Update…” below the logo
 isFeatured: false
 tags:
   - tag
