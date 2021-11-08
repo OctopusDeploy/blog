@@ -4,8 +4,8 @@ description: Introducing a new step template that allows secrets stored in Googl
 author: mark.harrison@octopus.com
 visibility: public
 published: 2021-11-17-1400
-metaImage: logimage-usinggooglecloudsecretmanagerwithoctopus-2021.png
-bannerImage: logimage-usinggooglecloudsecretmanagerwithoctopus-2021.png
+metaImage: blogimage-usinggooglecloudsecretmanagerwithoctopus-2021.png
+bannerImage: blogimage-usinggooglecloudsecretmanagerwithoctopus-2021.png
 bannerImageAlt: Google Cloud Secret Manager logo and Octopus Deploy logo sit in front of a blue CI/CD infinite loop symbol
 tags:
  - DevOps
