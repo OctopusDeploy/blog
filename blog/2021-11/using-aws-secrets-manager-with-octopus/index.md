@@ -2,11 +2,11 @@
 title: Using AWS Secrets Manager with Octopus
 description: Introducing a new step template to allow secrets stored in AWS Secrets Manager to be used in deployments or runbooks.
 author: mark.harrison@octopus.com
-visibility: private
+visibility: public
 published: 2021-11-22-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: blogimage-usingawssecretsmanagerwithoctopus-2021.png
+bannerImage: blogimage-usingawssecretsmanagerwithoctopus-2021.png
+bannerImageAlt: AWS secrets manager logo and Octopus Deploy logo joined together with a connector
 tags:
  - Product
  - Security
