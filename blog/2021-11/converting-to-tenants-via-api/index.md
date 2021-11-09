@@ -4,8 +4,8 @@ description: Learn how to use the Octopus API to automate the creation of multip
 author: mark.butler@octopus.com
 visibility: public
 published: 2021-11-17-1400
-metaImage: blogimage-convertingmanyexistingenvironmentstotenantsviatheoctopusapi-2021.png
-bannerImage: blogimage-convertingmanyexistingenvironmentstotenantsviatheoctopusapi-2021.png
+metaImage: blogimage-convertingenvironmentstotenantsviaoctopusapi-2021.png
+bannerImage: blogimage-convertingenvironmentstotenantsviaoctopusapi-2021.png
 bannerImageAlt: Environments as 3 colored circles enter a cog API, and come out the other side as tenants represented by people icons in colored circles
 isFeatured: false
 tags:
