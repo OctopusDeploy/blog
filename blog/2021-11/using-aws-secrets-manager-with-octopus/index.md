@@ -6,7 +6,7 @@ visibility: public
 published: 2021-11-22-1400
 metaImage: blogimage-usingawssecretsmanagerwithoctopus-2021.png
 bannerImage: blogimage-usingawssecretsmanagerwithoctopus-2021.png
-bannerImageAlt: AWS secrets manager logo and Octopus Deploy logo joined together with a connector
+bannerImageAlt: AWS secrets manager logo and Octopus Deploy logo joined together by a connector
 tags:
  - DevOps
  - Security
