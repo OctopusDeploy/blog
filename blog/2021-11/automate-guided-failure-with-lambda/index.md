@@ -425,7 +425,7 @@ This uses the same step template as above, I'll list only the fields that are di
 - Runtime: dotnetcore 3.1
 - Handler: process_message::process_message.Function::FunctionHandler
 - Environment Variables: OCTOPUS_SERVER_URL=[Octopus server URL],OCTOPUS_API_KEY=[API Key]
-- Timeout: 30
+- Timeout: 30 (default timeout is 3 seconds which isn't enough time for the Lambda to process completely)
 
 ### AWS - Configure Access Message Lambda Alias
 AWS supports having multiple versions of a Lambda deployed at the same time.  In addition, they support a canary-style process where you can assign a percentage of traffic to different versions of a Lambda.  This is done by configuring an Alias to a version and telling Lambda how much traffic to route to it.  
