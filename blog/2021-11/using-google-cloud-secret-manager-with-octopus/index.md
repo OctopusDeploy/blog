@@ -25,7 +25,7 @@ In addition, this post doesn't go into great detail about Secret Manager concept
 
 The step template in this post retrieves secrets from [Secret Manager](https://cloud.google.com/secret-manager) using [gcloud](https://cloud.google.com/sdk/gcloud), the GCP command-line tool. The gcloud tool, version **338.0.0** or higher must be installed on the deployment target or Worker before the step can retrieve secrets successfully. 
 
-The step also requires Octopus **2021.2** or newer as it makes use of our recently added built-in support for [Google Cloud Platform](https://octopus.com/blog/google-cloud-platform-integration). The step template has been tested on both Windows and Linux (with `PowerShell Core` installed).
+The step also requires Octopus **2021.2** or newer as it makes use of our recently added built-in support for [Google Cloud Platform](https://octopus.com/blog/google-cloud-platform-integration). The step template has been tested on both Windows and Linux (with PowerShell Core installed).
 
 ## Authentication {#authentication}
 
@@ -52,7 +52,7 @@ Google recommends that for production applications, you should always retrieve s
 
 Retrieving a single secret requires:
 
-- A Google Cloud account with permission to access the secret, including details of the default [Project](https://g.octopushq.com/GCPDefaultProject), [Region, and Zone](https://g.octopushq.com/GCPDefaultRegionAndZone)
+- A Google Cloud account with permission to access the secret, including details of the default [project](https://g.octopushq.com/GCPDefaultProject), [region, and zone](https://g.octopushq.com/GCPDefaultRegionAndZone)
 - The name of the secret to retrieve
 
 An advanced feature of the step template offers support for retrieving multiple secrets at once. This requires entering each secret on a new line.
