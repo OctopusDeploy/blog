@@ -17,13 +17,20 @@ I've written several step templates that extend the functionality of Octopus to 
 
 In this post, I walk through a new step template, [AWS Secrets Manager - Retrieve Secrets](https://library.octopus.com/step-templates/5d5bd3ae-09a0-41ac-9a45-42a96ee6206a/actiontemplate-aws-secrets-manager-retrieve-secrets), designed to retrieve secrets from AWS Secrets Manager for use in your deployments or runbooks.
 
+:::hint
+You can also read about:
+
+- [Using Azure Key Vault with Octopus](https://octopus.com/blog/using-azure-key-vault-with-octopus)
+- [Using HashiCorp Vault with Octopus Deploy](https://octopus.com/blog/using-hashicorp-vault-with-octopus-deploy)
+:::
+
 ## Getting started
 
 This post assumes some familiarity with [custom step templates](https://octopus.com/docs/projects/custom-step-templates) and the Octopus [Community Library](https://octopus.com/docs/projects/community-step-templates). 
 
 In addition, this post doesn't go into great detail about AWS Secrets Manager concepts or how to set up Secrets Manager. You can learn more by reading the [User Guide](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html) from Amazon.
 
-The step template in this post retrieves secrets from [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) using `aws`, the AWS command-line tool. The `aws` tool must be available on the deployment target or Worker before the step can retrieve secrets successfully. The step template has been tested on both Windows and Linux (with `PowerShell Core` installed).
+The step template in this post retrieves secrets from [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) using **AWS Command Line Interface** (AWS CLI), the AWS command-line tool. The **AWS CLI** tool must be available on the deployment target or Worker before the step can retrieve secrets successfully. The step template has been tested on both Windows and Linux (with PowerShell Core installed).
 
 ## Authentication {#authentication}
 
