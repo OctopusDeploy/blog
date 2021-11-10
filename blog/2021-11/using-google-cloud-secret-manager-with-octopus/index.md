@@ -3,7 +3,7 @@ title: Using Google Cloud Secret Manager with Octopus
 description: Introducing a new step template that allows secrets stored in Google Cloud Secret Manager to be used in deployments or runbooks.
 author: mark.harrison@octopus.com
 visibility: public
-published: 2021-11-17-1400
+published: 2021-11-10-1400
 metaImage: blogimage-usinggooglecloudsecretmanagerwithoctopus-2021.png
 bannerImage: blogimage-usinggooglecloudsecretmanagerwithoctopus-2021.png
 bannerImageAlt: Google Cloud Secret Manager logo and Octopus Deploy logo sit in front of a blue CI/CD infinite loop symbol
@@ -13,7 +13,7 @@ tags:
  - Step Templates
 ---
 
-I've written previously about extending the functionality of Octopus to integrate with both [HashiCorp Vault](https://octopus.com/blog/using-hashicorp-vault-with-octopus-deploy) and [Azure Key Vault](https://octopus.com/blog/using-azure-key-vault-with-octopus) using step templates. We're committed to providing many ways for our customers to succeed with Octopus, so we're creating more step templates that integrate with other secret managers.
+I've written previously about extending the functionality of Octopus to integrate with [HashiCorp Vault](https://octopus.com/blog/using-hashicorp-vault-with-octopus-deploy) and [Azure Key Vault](https://octopus.com/blog/using-azure-key-vault-with-octopus) using step templates. We're committed to providing many ways for our customers to succeed with Octopus, so we're creating more step templates that integrate with other secret managers.
 
 In this post, I walk through a new step template, [GCP Secret Manager - Retrieve Secrets](https://library.octopus.com/step-templates/9f5a9e3c-76b1-462f-972a-ae91d5deaa05/actiontemplate-gcp-secret-manager-retrieve-secrets). This step template retrieves secrets from Secret Manager on Google Cloud Platform (GCP) for use in your deployments or runbooks.
 
@@ -108,7 +108,7 @@ Alternatively, you can use the *latest* version specifier like this:
 OctoSecrets-password latest | password-latest
 ```
 
-In both cases, the step template will emit a warning to the task log:
+In both cases, the step template will send a warning to the task log:
 
 ![GCP Secret Manager - Retrieve secret using latest version specifier warning](gcp-secret-manager-retrieve-secrets-step-latest-version-specifier-warning.png)
 
