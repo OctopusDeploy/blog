@@ -17,11 +17,11 @@ In a previous post, Mark Harrison wrote about the [benefits of multi-tenancy](ht
 
 Fortunately, since Octopus 2.0, the Octopus REST API has been available to help manage multi-tenancy. 
 
-Using a sample project called Vet Clinic, I demonstrate how you can leverage the Octopus REST API and start automating your conversion to multi-tenancy.
+Using a sample project called [Vet Clinic](https://samples.octopus.app/app#/Spaces-682/projects/vet-clinic/deployments), I demonstrate how you can leverage the Octopus REST API and start automating your conversion to multi-tenancy.
 
 ## Initial project state
 
-The overview screen of the Vet Clinic project shows a variety of environments where you can deploy the project. Some of the environments are customer-specific and include the customer name. These are the environments you convert to tenants.
+The overview screen of the [Vet Clinic project](https://samples.octopus.app/app#/Spaces-682/projects/vet-clinic/deployments) shows a variety of environments where you can deploy the project. Some of the environments are customer-specific and include the customer name. These are the environments you convert to tenants.
 
 ![Vet Clinic project overview](vet-clinic-overview.png)
 
@@ -39,7 +39,7 @@ You create a new lifecycle with a single environment for each phase the project 
 
 ## Getting started
 
-To start the conversion process,you create a new project alongside your existing Vet Clinic project. Do this by [cloning the existing project](https://octopus.com/docs/projects#clone-a-project). The clone allows you to test changes in parallel, without worrying about mishaps disrupting our current project's deployments. 
+To start the conversion process, you create a new project alongside your existing Vet Clinic project. Do this by [cloning the existing project](https://octopus.com/docs/projects#clone-a-project). The clone allows you to test changes in parallel, without worrying about mishaps disrupting our current project's deployments. 
 
 After you're happy with results on the cloned project, remove it and run the conversions scripts on the original project. Alternatively, you can move everything to the new, cloned project and eventually retire the original project.
 
