@@ -21,7 +21,7 @@ In this post, I walk through a new step template, [AWS Secrets Manager - Retriev
 You can also read about:
 
 - [Using Azure Key Vault with Octopus](https://octopus.com/blog/using-azure-key-vault-with-octopus)
-- [Using HashiCorp Vault with Octopus Deploy](https://octopus.com/blog/using-hashicorp-vault-with-octopus-deploy)
+- [Using HashiCorp Vault with Octopus](https://octopus.com/blog/using-hashicorp-vault-with-octopus-deploy)
 :::
 
 ## Getting started
