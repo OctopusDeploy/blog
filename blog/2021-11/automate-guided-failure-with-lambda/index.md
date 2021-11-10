@@ -18,13 +18,13 @@ tags:
 With Guided failure specifically designed to pause an action and wait for guidance, automating the response seems counterintuitive.  Here are a couple of use cases where it makes sense to automate the response.
 
 ### Exclude machine from deployment
-Consider the scenario where you are deploying to thousands of machines.  At this scale, it is not uncommon for deployment to fail for small portion of machines (usually not Octopus related).  Guided failure provides the option of excluding a machine from the deployment thus allowing the deployment to continue to the remaining targets.  Rather than having babysit the process, you could automate the `Exclude machine from deployment` response and deal with the failed machines later.
+Consider the scenario where you are deploying to thousands of machines.  At this scale, it is not uncommon for deployment to fail for a small portion of machines (usually not Octopus related).  Guided failure provides the option of excluding a machine from the deployment thus allowing the deployment to continue to the remaining targets.  Rather than having to babysit the process, you could automate the `Exclude machine from deployment` response and deal with the failed machines later.
 
 ### Automatically retry
 Another scenario was experienced by my own team; when the [Samples](https://samples.octopus.app) instance tears down resources at night, so many requests were being made to AWS at the same time that it experienced request rate throttling and would fail.  In this instance, retrying the runbook is all that was needed.  Implementing an automated `Retry` response to Guided Failure ensures that all the resources are deprovisioned.
 
 ## Solution
-As previously mentioned, this post demonstrates how to automate a response to a Guided failure event using the Subscriptions feature of Octopus to call an AWS Lambda function.  To get started, you will need to provision some AWS resources. (The [OctoSubscriber](https://github.com/OctopusSamples/OctoSubscriber) repo contains the source code this solution will implement.)
+This post demonstrates how to automate a response to a Guided failure event using the Subscriptions feature of Octopus to call an AWS Lambda function.  To get started, you will need to provision some AWS resources. (The [OctoSubscriber](https://github.com/OctopusSamples/OctoSubscriber) repo contains the source code for the solution described in this post.)
 
 ### Scaffolding AWS resources
 The solution presented in this post will make use of the following AWS resources
@@ -36,9 +36,7 @@ The solution presented in this post will make use of the following AWS resources
   - AWSLambdaBasicExecutionRole
   - AWSLambda_FullAccess
 
-:::info
 It may be possible for the IAM Role to have lesser permissions, this is what the solution was tested with.
-:::
 
 :::warning
 Working with AWS resources may incur costs to you or your organization.
@@ -204,7 +202,7 @@ exports.handler = function(event, context) {
 The querystring parameters are attached to the message as MessageAttributes.
 
 #### process-message
-This function reads messages off the SQS queue and uses the Octopus.Client Nuget Package reference to automate the response to the interruption.  The full solution can be found on the OctoSubscriber repo.
+This function reads messages off the SQS queue and uses the [Octopus.Client Nuget Package reference](https://octopus.com/docs/octopus-rest-api/octopus.client) to automate the response to the interruption.  The full solution can be found in the OctoSubscriber repo.
 
 ```csharp
 using System;
@@ -331,7 +329,7 @@ namespace process_message
 ```
 
 ## Building and packaging the Lambdas
-Only the `process-message` Lambda needs to be built, however, they both need to be packaged for deployment.  The OctoSubscriber project uses GitHub Actions for these operations, 
+Only the `process-message` Lambda needs to be built, however, they both need to be packaged for deployment.  The OctoSubscriber project uses GitHub Actions for these operations.
 ```yaml
 # This is a basic workflow to help you get started with Actions
 
@@ -401,7 +399,7 @@ The deployment process for the Lambdas will consist of the following steps
 
 ![](octopus-deployment-process.png)
 
-### AWS - Deploy Accept Messgage Lambda Function
+### AWS - Deploy Accept Message Lambda Function
 Add a AWS - Deploy Lambda Function step to your deployment process.  Click **ADD STEP**, then search by `aws`
 
 ![](octopus-add-aws-deploy-lambda-step.png)
@@ -539,7 +537,7 @@ The deployment will enter guided failure immediately and wait for guidance,
 
 ![](octopus-guided-failure.png)
 
-After a few seconds the subscription will proess and the deployment will be failed
+After a few seconds Octopus Deploy will process the subscription event and will fail the deployment
 
 ![](octopus-guidance-received.png)
 
@@ -551,5 +549,5 @@ Hopping over to the AWS Console, you can view the CloudWatch logs to see that th
 This posts walks you through how to utilize an Octopus Deploy Subscription to call an AWS Lambda to automatically respond to a guided failure incident.  Though the demonstration specifically targeted guided failure, the same Lambda can be used to automate responses to Manual Intervention as well.
 
 :::info
-An alternative approach to the Lambda method is the [Automate Manual Intervention Response](https://library.octopus.com/step-templates/54f95528-aa1e-4c97-8c16-b2e0d737c43e/actiontemplate-automate-manual-intervention-response) community step template.
+An alternative approach to the Lambda method is to use the [Automate Manual Intervention Response](https://library.octopus.com/step-templates/54f95528-aa1e-4c97-8c16-b2e0d737c43e/actiontemplate-automate-manual-intervention-response) community step template in a runbook that has a trigger to run periodically.
 :::
