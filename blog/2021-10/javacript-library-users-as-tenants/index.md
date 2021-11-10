@@ -80,7 +80,7 @@ If you are using an account variable, you will find there is an extra step to al
 
 ![account restrictions](account_restrictions.png)
 
-### Add a new deployment step to update bundle URLs for each tenant
+### A new deployment step to update bundle URLs
 
 To take control of the bundle URL each tenant references, your new process uploads to the root of your S3 bucket a small JSON file for each combination of tenant and environment. The name of that file is in the form `consumerkey.enivornment.json`. Here is an example of contents for `Customer.production.json`:
 
@@ -103,7 +103,7 @@ aws s3 cp MyBundle/bundle-loader.js s3://#{s3-bucket-name}/bundle-loader.js --ac
 
 This won't run successfully yet, because we have to add `bundle-loader.js` to the code in our package.
 
-## Dynamic cache busting
+### Dynamic cache busting
 
 You want `bundle-loader.js` to sit at the root of your package. To achieve that in Vue JS, create the file at the root of the `public` folder in your Vue project.
 
