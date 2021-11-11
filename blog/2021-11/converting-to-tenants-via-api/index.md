@@ -79,9 +79,9 @@ While looping through the list of *old environments* a few things happen:
 - If the tenant doesn't exist, the script will call the API to create a new tenant with the gathered data. 
 - If the tenant doesn't exist, the script will send a request to up the tenant with the environments it should deploy to, for the project(s).
 
-<details>
-<summary>Full script create_tenants_from_environments.ps1</summary>
-<p>
+## Full script create_tenants_from_environments.ps1
+
+
 
 ```powershell
 $ErrorActionPreference = "Stop";
@@ -191,10 +191,8 @@ foreach($oldEnv in $oldEnvionments) {
 }
 
 ```
-</p>
-</details>
 
-***
+
 
 After the tenants are created, you need to make the following script that turns the old project variables into [variable templates](https://octopus.com/docs/projects/variables/variable-templates) to provide a value for each tenant. 
 
