@@ -83,7 +83,7 @@ While looping through the list of *old environments* a few things happen:
 <summary>Full script create_tenants_from_environments.ps1</summary>
 <p>
 
-```powershell
+```ps
 $ErrorActionPreference = "Stop";
 
 # Define working variables
