@@ -3,7 +3,7 @@ title: Converting many environments to tenants via the Octopus API
 description: Learn how to use the Octopus API to automate the creation of multiple tenants from many existing environments.
 author: mark.butler@octopus.com
 visibility: public
-published: 2021-11-17-1400
+published: 2022-11-17-1400
 metaImage: blogimage-convertingenvironmentstotenantsviaoctopusapi-2021.png
 bannerImage: blogimage-convertingenvironmentstotenantsviaoctopusapi-2021.png
 bannerImageAlt: Environments as 3 colored circles enter a cog API, and come out the other side as tenants represented by people icons in colored circles
