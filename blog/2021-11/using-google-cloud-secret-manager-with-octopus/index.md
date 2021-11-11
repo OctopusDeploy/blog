@@ -9,6 +9,7 @@ bannerImage: blogimage-usinggooglecloudsecretmanagerwithoctopus-2021.png
 bannerImageAlt: Google Cloud Secret Manager logo and Octopus Deploy logo sit in front of a blue CI/CD infinite loop symbol
 tags:
  - DevOps
+ - Google Cloud Platform
  - Security
  - Step Templates
 ---
