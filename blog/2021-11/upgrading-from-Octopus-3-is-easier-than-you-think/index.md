@@ -1,53 +1,53 @@
 ---
 title: Upgrading from Octopus 3.X is easier than you think
 description: Why and how to upgrade from Octopus 3.X.
-author: Andy Corrigan
-visibility: private
+author: andrew.corrigan@octopus.com
+visibility: public
 published: 2021-11-24-1400
 metaImage: blogimage-upgradingoctopusiseasierthanyouthink-2021.png
 bannerImage: blogimage-upgradingoctopusiseasierthanyouthink-2021.png
 bannerImageAlt: Laptop screen showing Octopus logo surrounded by circle of lines indicating update in progress, with the words “Update…” below the logo
 isFeatured: false
 tags:
-  - tag
+  - DevOps
 ---
 
-We find the phrase ‘if it ain’t broke, don’t fix it’ doesn’t always work in the world of development. Octopus is no different, which is why we aim to improve how you deliver releases with major releases of our own. If not up to date with Octopus, you could be missing features that make deployments easier, more efficient and help how your teams coordinate.
+The phrase "if it ain’t broke, don’t fix it" doesn’t always work in the world of development. Octopus is no different, which is why we aim to improve how you deliver releases with major releases of our own. If not up to date with Octopus, you could be missing features that make deployments easier, more efficient, and help how your teams coordinate.
 
-That said, we understand why some prefer to stick with older versions of Octopus. You may feel your current version does as much as you need, or a company policy could dictate staying a few versions behind to avoid risk. Maybe you’ve just fallen behind on updates and worry about the time and resources needed to get back up to date.
+That said, we understand why some prefer to stick with older versions of Octopus. You may feel your current version does what you need, or a company policy could dictate staying a few versions behind to avoid risk. Maybe you fell behind on updates and worry about the time and resources to get back up to date.
 
-For those in that last category especially, let’s see if we can’t ease your fears. With a little planning and the right method for your business, we’re certain you can have confidence in upgrading from even our oldest 'modern' version.
+For those in that last category especially, let’s see if we can ease your fears. With planning and the right method for your business, you can have confidence in upgrading from even our oldest 'modern' version.
 
 In this blog I run through:
 
-- features you’re missing out on by not upgrading
-- what to back up before an upgrade, plus other things to consider
-- ways to avoid risk when planning your upgrade
-- an example in-place upgrade from 3.X to our latest version
-- how to roll back should something go wrong
-- how we can help if you have concerns or problems.
+- Features you’re missing out on by not upgrading
+- What to back up before an upgrade, plus other things to consider
+- Ways to avoid risk when planning your upgrade
+- An example in-place upgrade from 3.X to our latest version
+- How to roll back should something go wrong
+- How we can help if you have concerns or problems
 
 ## Features we’ve introduced since Octopus 3.1
 
 If still on a 3.X version, you're missing out on Octopus’s evolution alongside modern deployment standards, plus a heap of new features.
 
-Here’s a taste of what’ve added between Octopus 3.1 and 2021.2:
+Here’s a taste of what we added between Octopus 3.1 and 2021.2:
 
 - Improved UI - new process editor, dark mode and a global search
-- improvements to config files, including built-in support for JSON, XML, YAML and property files
+- Improvements to config files, including built-in support for JSON, XML, YAML and property files
 - [Spaces](https://octopus.com/docs/administration/spaces) - a way for different teams to only see and use what they need
 - [Runbooks](https://octopus.com/docs/administration/spaces) - allows you to automate routine maintenance and emergency operations tasks
 - [Tenants](https://octopus.com/docs/tenants) - create customer-specific pipelines for Software as a Service (SaaS) or multi-region deployments
 - [Project exports and imports](https://octopus.com/docs/projects/export-import) - export one or more projects to import into other spaces or instances
 - [Configuration as Code](https://octopus.com/docs/projects/version-control) - version control for Octopus projects (early access preview)
 
-We've also added a bunch of new platform integrations, including support for:
+We also added new platform integrations, including support for:
 
-- Major cloud providers - Microsoft Azure, Amazon Web Service (AWS) and Google Cloud Platform (GCP)
+- Major cloud providers - Microsoft Azure, Amazon Web Service (AWS), and Google Cloud Platform (GCP)
 - Kubernetes and AWS Elastic Container Service (ECS)
 - Self-hosted Octopus on Linux
-- Tentacles for Linux, ARM and ARM64 
-- Octopus Command Line (CLI) with Chocolatey, Homebrew, APT and YUM
+- Tentacles for Linux, ARM, and ARM64 
+- Octopus Command Line (CLI) with Chocolatey, Homebrew, APT, and YUM
 - Plugins for:
    - [Jenkins](https://plugins.jenkins.io/octopusdeploy/) (and full pipeline support)
    - [GitHub Actions](https://github.com/marketplace?type=actions&query=Octopus+)
