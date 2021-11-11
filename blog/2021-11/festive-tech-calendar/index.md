@@ -1,6 +1,6 @@
 ---
-title: Festive Tech Calendar Octopus Deploy Hackathon
-description: Get involved with the Octopus Deploy Hackathon
+title: "Festive Tech Calendar - Octopus Deploy hackathon"
+description: Get involved with the Octopus Deploy hackathon competition and you could win one of three Octopus swag bundles.
 author: sarah.lean@octopus.com
 visibility: public
 published: 2021-11-23-1400
@@ -11,44 +11,71 @@ isFeatured: false
 tags:
  - DevOps
 ---
-Octopus Deploy is excited to be part of this year’s Festive Tech Calendar and support this tremendous community-run initiative. 
+Octopus Deploy is excited to be part of this year’s [Festive Tech Calendar](https://festivetechcalendar.com), running a hackathon competition.
 
-We are running a Hackathon competition from December 1, 2021, until December 15, 2021, where you can win some awesome Octopus Deploy swag!
+## What is the Festive Tech Calendar?
 
-The Hackathon will focus on Octopus Deploy and Microsoft Azure.  We would love you to deploy an Azure Web App using Octopus Deploy. 
+The Festive Tech Calendar is a free, month-long, community-run tech event. People from all tech communities are invited to submit talks, content, and competitions, and participate in the activities.
 
-It can be as straightforward or as complex as you’d like; we have no preference on how you configure the deployment or what the web app is. 
+## The Octopus hackathon
 
-You could use one of the Octopus Sample Web Apps like [OctoPetShop](https://github.com/OctopusSamples/OctoPetShop) or [Random Quotes](https://github.com/OctopusSamples/OctoPetShop) or make your own. 
+**When**: Wednesday, 1 December - Wednesday, 15 December 2021
+**Prize**: One of three Octopus Deploy swag bundles
 
-Use ARM Templates, PowerShell, Terraform, GitHub Actions, be as creative as you want.  Pick a new technology or use ones you are already familiar with.  The choice is entirely yours. As long as you have successfully deployed an Azure Web App using Octopus Deploy at the end of the Hackathon, you will have completed the Hackathon! 
+### Hackathon guidelines
 
-We want you to have fun, learn something during this Hackathon.  
+Our guidelines are loose:
 
-Once you’ve completed the Hackathon exercise, head over to our [submission page](https://forms.gle/PeGkA92uhnGsHy268) and let us know; before December 15, 2021 (5:00 pm Greenwich Mean Time). We’ll be randomly picking three winners from the submissions. We have three swag bundles to give away: 
+- We have no preference on how you configure your deployment or what the web app is
+- It doesn’t matter how complex or straightforward your app and process are
+- You can build a new web app or use one of the Octopus samples: 
+   - [OctoPetShop](https://github.com/OctopusSamples/OctoPetShop)
+   - [Random Quotes](https://github.com/OctopusSamples/RandomQuotes)
+- You can use technologies that are new to you, or those you’re familiar with, anything from ARM templates, PowerShell, and Terraform, to GitHub Actions and more.
+
+Primarily, we just want you to have fun and learn something!
+
+### How to enter
+
+- Use an existing Azure account or sign up for an [Azure free account](https://azure.microsoft.com/free) 
+   - If you're signing up for an Azure free account you automatically receive $200 in Azure credits for 30 days and a limited quantity of additional free services for 12 months
+- Use an existing Octopus Deploy environment or sign up for an [Octopus Cloud free trial](https://octopus.com/start/cloud)
+- Deploy an Azure Web App using Octopus Deploy 
+- After completing the hackathon, fill out all required fields in our [hackathon submission form](https://forms.gle/PeGkA92uhnGsHy268) before 5 pm GMT, Wednesday, 15 December 2021.
+
+### Winners
+
+We'll randomly select three winners from the submissions. 
+
+Our winners will receive one of three swag bundles: 
 
 **insert image here**
 
-We will announce the winners On or around December 20, 2021 (2:00 pm Greenwich Mean Time). 
+We'll announce the winners on or around 2 pm GMT, Monday, 20 December 2021.
 
-Please feel free to write a blog post, or create a video, or tweet about your Hackathon implementation and be sure to tag [@OctopusDeploy](https://www.twitter.com/OctopusDeploy); we’d love to hear from you.  This part is optional and doesn’t get you extra credit, but it will spread some community spirit. 
+### Spreading the community spirit
+
+Feel free to write a blog post, create a video, or tweet about your hackathon implementation, tagging [@OctopusDeploy](https://www.twitter.com/OctopusDeploy); we’d love to hear from you.  
+
+These optional activities don't get you extra credit but will spread some community spirit. 
+
+
+#### The fine print
+
+- A purchase or payment isn't necessary and doesn't increase your chances of winning. 
+- We'll only consider one entry per person. 
+- The hackathon is not open to employees, representatives, or agents of Octopus Deploy, including all members of their immediate family or household.
+- The hackathon is not open to any other individual involved with the design, production, promotion, execution, or distribution of the hackathon, including all members of their immediate family or household.
+- Hackathon submission period:   8 am GMT, 1 December 2021 – 5 pm GMT, 15 December 2021. 
+- Winners announced: on or around 2 pm GMT, Monday, 20 December 2021.
 
 ## Getting started with Octopus Deploy
-If you’ve never used Octopus Deploy before, we have great [Getting Started Docs](https://octopus.com/docs/getting-started) or [YouTube videos](https://www.youtube.com/playlist?list=PLAGskdGvlaw268i2ZTPC1ZrxwFjjKIdKH). We also have a [Community Slack space](http://octopususergroup.slack.com) to ask questions and meet other people from the Octopus community. 
 
-## Hackathon Rules:
+If you haven't used Octopus Deploy before, check out the following resources:
 
-### How to Enter
-- Hackathon participants can sign up for a [Azure free trial](https://azure.microsoft.com/free) or use an existing Azure. For those signing up for an Azure free trial you'll automatically receive $200 in Azure credits for the first 30 days and a limited quantity of additional free services for 12 months.
-- You can sign up for a [Octopus Deploy Cloud free trial](https://octopus.com/start/cloud) or use an existing Octopus Deploy environment you have. 
-- We would love you to deploy an Azure Web App using Octopus Deploy. 
-- Complete and enter all required fields in the Hackathon submission form before the Hackathon Submission Period ends.
+- [Getting Started docs](https://octopus.com/docs/getting-started)
+- [Getting Started YouTube videos](https://www.youtube.com/playlist?list=PLAGskdGvlaw268i2ZTPC1ZrxwFjjKIdKH)
+- [Our blog](https://octopus.com/blog)
+- The [Octopus Community Slack space](http://octopususergroup.slack.com) - to ask questions and meet others from the Octopus community 
 
-## The Small Print
-
-- No purchase or payment is necessary.  A purchase or payment of any kind will not increase your chances of winning. 
-- Only one entry is allowed per person. 
-- The Hackathon is not open to employees, representatives, and agents of Octopus Deploy and all members of their immediate family or household.
-- Any other individual involved with the design, production, promotion, execution, or distribution of the Hackathon and each member of their immediate family or household.
-- Hackathon Submission Period:  December 1, 2021 (8:00 am Greenwich Mean Time) – December 15, 2021 (5:00 pm Greenwich Mean Time) (the “Hackathon Submission Period”).
-- Winners Announced: On or around December 20, 2021 (2:00 pm Greenwich Mean Time)
+Happy deployments!
