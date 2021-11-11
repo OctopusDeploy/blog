@@ -34,21 +34,13 @@ This working group recently released version 1 of their [principals](https://git
 
 > The desired state of a GitOps managed system must be:
 >
->    Declarative
+>    Declarative- A system managed by GitOps must have its desired state expressed declaratively.
 >
->    A system managed by GitOps must have its desired state expressed declaratively.
+>    Versioned and Immutable - Desired state is stored in a way that enforces immutability, versioning and retains a complete version history.
 >
->    Versioned and Immutable
+>    Pulled Automatically - Software agents automatically pull the desired state declarations from the source.
 >
->    Desired state is stored in a way that enforces immutability, versioning and retains a complete version history.
->
->    Pulled Automatically
->
->    Software agents automatically pull the desired state declarations from the source.
->
->    Continuously Reconciled
->
->    Software agents continuously observe actual system state and attempt to apply the desired state.
+>    Continuously Reconciled - Software agents continuously observe actual system state and attempt to apply the desired state.
 
 The contrast between low level descriptions of GitOps found in most blog posts and the high level ideals of a GitOps system described by the working group is worth some discussion, as the differences between them is a source of much confusion.
 
@@ -62,23 +54,23 @@ This distinction is important, because many teams are fixated on the "Git" part 
 
 ## GipOps doesn't imply the use of Kubernetes
 
-Kubernetes was the first widely used platform to combine the ideas of declarative state and continuous reconciliation along with the ability to host running applications. It really is magic to watch a Kubernetes cluster reconfigure itself to match the latest templates applied to the system. So it is no surprise that Kubernetes is the foundation of GitOps tools like Flux and Argo CD, while posts like [30+ Tools List for GitOps](https://dzone.com/articles/30-tools-list-for-gitops) mention Kubernetes 20 times.
+Kubernetes was the first widely used platform to combine the ideas of declarative state and continuous reconciliation along with an execution environment to execute the reconciliation and host running applications. It really is magic to watch a Kubernetes cluster reconfigure itself to match the latest templates applied to the system. So it is no surprise that Kubernetes is the foundation of GitOps tools like Flux and Argo CD, while posts like [30+ Tools List for GitOps](https://dzone.com/articles/30-tools-list-for-gitops) mention Kubernetes 20 times.
 
 While continuous reconciliation is impressive, it is not really magic. Behind the scenes Kubernetes runs a number of [operators](https://octopus.com/blog/operators-with-kotlin) that are notified of configuration changes and execute custom logic to bring the cluster back to the desired state.
 
-The key requirements of continuous reconciliation is:
+The key requirements of continuous reconciliation are:
 
 * Access to the configuration or templates declaratively expressing the desired state.
 * The ability to execute a process capable of reconciling a system when configuration is changed.
 * An environment in which the process can run.
 
-Kubernetes bakes these requires into the platform, making it very easy to achieve continuous reconciliation. But these requirements can also be met with some simple orchestration, Infrastructure as Code (IaC) tools like Terraform, Ansible, Puppet, Chef, CloudFormation, Arm Templates etc, and an execution environment like a CI server or Octopus:
+Kubernetes bakes these requirements into the platform, making it very easy to achieve continuous reconciliation. But these requirements can also be met with some simple orchestration, Infrastructure as Code (IaC) tools like Terraform, Ansible, Puppet, Chef, CloudFormation, Arm Templates etc, and an execution environment like a CI server or Octopus:
 
 * IaC templates can be stored in git, file hosting platforms like S3 or Azure Blob Storage, complete with immutable audit histories.
 * CI/CD systems can poll the storage, are notified of changes via webhooks, or have builds or deployments triggered via platforms like GitHub Actions.
 * The IaC tooling is then executed, bringing the system in line with the desired state.
 
-Indeed, real world end-to-end GitOps system will inevitably have to incorporate some orchestration outside of Kubernetes. For example, Kubernetes is unlikely to manage your DNS records, centralized authentication platforms, or messaging systems like Slack. You will also likely find at least one managed service for things like databases, message queues, scheduling, reporting etc more compelling than attempting to replicate them in a Kubernetes cluster. Also, any established I.T. department is guaranteed to have non-Kubernetes systems that would benefit from GitOps.
+Indeed, a real world end-to-end GitOps system will inevitably have to incorporate some orchestration outside of Kubernetes. For example, Kubernetes is unlikely to manage your DNS records, centralized authentication platforms, or messaging systems like Slack. You will also likely find at least one managed service for things like databases, message queues, scheduling, reporting etc more compelling than attempting to replicate them in a Kubernetes cluster. Also, any established I.T. department is guaranteed to have non-Kubernetes systems that would benefit from GitOps.
 
 So while the initial selection of specialized GitOps tools tend to be tightly integrated into Kubernetes, achieving the functional requirements of GitOps across established infrastructure will inevitably require orchestrating one or more IaC tools.
 
@@ -88,18 +80,18 @@ While GitOps describes many desirable traits of well managed infrastructure and 
 
 * Verifiable - infrastructure and applications must be testable once they are deployed.
 * Recoverable - teams must be able to recover from an undesirable state.
-* Visible - the state of the infrastructure and the applications deploy to it must be surfaced in an easily consumed summary.
+* Visible - the state of the infrastructure and the applications deployed to it must be surfaced in an easily consumed summary.
 * Secure - rules must exist around who can make what changes to which systems.
 * Measurable - meaningful metrics must be collected and exposed in an easily consumed format.
 * Standardized - applications and infrastructure must be described in a consistent manner.
 * Maintainable - support teams must be able to query and interact with the system, often in non-declarative ways.
-* Coordinated - changes to applications and infrastructure must be able to be coordinated between teams.
+* Coordinated - changes to applications and infrastructure must be coordinated between teams.
 
 GitOps offers little advice or insight into what happens before configuration is committed to a git repo or other versioned and immutable storage, but it is "left of the repo" where the bulk of your engineering process will be defined. 
 
-If you git repo is the authoritative representation of your system, then anyone who can edit a repo essentially has administrative rights. However, git repos don't provide a natural security boundary for the kind of nuanced segregation of responsibility you'll find in established infrastructure. This means you'll end up creating one repo per app per environment per role. Gaining visibility over each of these repos and ensuring they have the correct permissions is no trivial undertaking.
+If your git repo is the authoritative representation of your system, then anyone who can edit a repo essentially has administrative rights. However, git repos don't provide a natural security boundary for the kind of nuanced segregation of responsibility you'll find in established infrastructure. This means you'll end up creating one repo per app per environment per role. Gaining visibility over each of these repos and ensuring they have the correct permissions is no trivial undertaking.
 
-You will also quickly find that just because you can save anything in git doesn't mean you should. It is not hard to imagine a rule that says development teams must create Kubernetes deployment resources instead of individual pods, use ingress rules that respond to very specific hostnames, and always include a standard security policy. This kind of standarization is tedious to enforce through pull requests, so a much better solution is to give teams standard resource templates that they populate with their specific configuration. But this is not a feature inherent to git or GitOps.
+You will also quickly find that just because you can save anything in git doesn't mean you should. It is not hard to imagine a rule that says development teams must create Kubernetes deployment resources instead of individual pods, use ingress rules that respond to very specific hostnames, and always include a standard security policy. This kind of standardization is tedious to enforce through pull requests, so a much better solution is to give teams standard resource templates that they populate with their specific configuration. But this is not a feature inherent to git or GitOps.
 
 We then have those processes "right of the cluster" where management and support tasks are defined.
 
