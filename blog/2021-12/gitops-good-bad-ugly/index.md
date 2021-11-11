@@ -97,7 +97,7 @@ If you git repo is the authoritative representation of your system, then anyone 
 
 You will also quickly find that just because you can save anything in git doesn't mean you should. It is not hard to imagine a rule that says development teams must create Kubernetes deployment resources instead of individual pods, use ingress rules that respond to very specific hostnames, and always include a standard security policy. This kind of standarization is tedious to enforce through pull requests, so a much better solution is to give teams standard resource templates that they populate with their specific configuration. But this is not a feature inherent to git or GitOps.
 
-We then have those processes "right of the git repo" where management and support tasks are defined.
+We then have those processes "right of the cluster" where management and support tasks are defined.
 
 Reporting on the intent of a git commit is almost impossible. If you were to look at a diff between two commits and saw that a deployment image tag was increased, new secret values were added, and a config map was deleted, how would you describe the intent of that change? The easy answer is to read the commit message, but this is not a viable option for reporting tools that must map high level events like "deployed a new app version" or "bugfix release" (which are critical if you want to measure yourself against standard metrics like those presented in the [DORA report](https://www.devops-research.com/research.html)) to the diff between two commits. Even if you could divine an algorithm that understood the intent of a git commit, a git repo was never meant to be used as a timeseries database.
 
@@ -115,8 +115,32 @@ I'd like to present you with a theory and a thought experiment to apply it to:
 
 You start your GitOps journey using the common combination of git and Kubernetes. All changes are reviewed by pull request, committed to a git repo, consumed by a tool like Argo CD or Flux, and deployed to your cluster. You have satisfied all the functional requirements of GitOps, and enjoy the benefits of a single source of truth, immutable change history, and continuous reconciliation.
 
-But it starts to become tedious to have a person open a pull request to bump the image property in a deployment resource every time a new image is built and published. So you instruct your build server to pull the git repo, edit the deployment resource YAML file, and commit the changes. You now have GitOps and CI/CD.
+But it becomes tedious to have a person open a pull request to bump the image property in a deployment resource every time a new image is published. So you instruct your build server to pull the git repo, edit the deployment resource YAML file, and commit the changes. You now have GitOps and CI/CD.
 
-You now need to measure the performance of your engineering teams. How often are new releases deployed to production? You quickly realize that extracting this information from git commits is inefficient at best, and that the Kubernetes API was not designed to frequent and complex queries, so you choose to populate a more appropriate datastore like a database with deployment events.
+You now need to measure the performance of your engineering teams. How often are new releases deployed to production? You quickly realize that extracting this information from git commits is inefficient at best, and that the Kubernetes API was not designed for frequent and complex queries, so you choose to populate a more appropriate database with deployment events.
 
-As the complexity of your cluster grows, you find you need to implement standards around what kind of resources can be deployed. Engineering teams can only create deployment, secrets, and configmaps. The deployment resources must include resource limits, a set of standard labels, and the pods must not be privileged. Meanwhile the security team can create roles, role bindings, and security policies. In fact, it turns out that of the hundreds of lines of YAML that make up the resources deployed to the cluster, only about 10 should be customized. Combined with the fact that you already have automated processes that expect to find a deployment YAML file with a given name so the image tag can be updated, you implement a rule that 
+As the complexity of your cluster grows, you find you need to implement standards regarding what kind of resources can be deployed. Engineering teams can only create deployment, secrets, and configmaps. The deployment resources must include resource limits, a set of standard labels, and the pods must not be privileged. Meanwhile the security team can create roles, role bindings, and security policies. In fact, it turns out that of the hundreds of lines of YAML that make up the resources deployed to the cluster, only about 10 should be customized. As you did with the image tag updates, you lift the editing of resources from manual git commits to an automated process where templates have a strictly controlled subset of properties updated with each deployment.
+
+Now that your CI/CD is doing most of the commits to git, you realize that you no longer need to use git repos as a means of enforcing security rules. You consolidate the dozens of repos that were created to represent individual applications and environments to a single repo that only the CI/CD system interacts with on a day to day basis.
+
+You find yourself having to roll back a failed deployment, only to find that the notion of reverting a git commit is way too simplistic. The changes to the one application you wanted to revert have been mixed in with a dozen other deployments. Not that anyone should be touching the git repo directly anyway, because merge conflicts can have catastrophic consequences. But you can use your CI/CD server to redeploy an old version of the application, and because the CI/CD server has the context of what makes up a single application, the redeployment only changes the files relating to that application.
+
+At this point you concede that your git repo is a structured database:
+
+* Humans aren't to touch it.
+* All changes are made by automated tools.
+* The automated tools require known files of specific formats in specific locations.
+* The git history now reads "Deployment #X.Y.Z", and other commit information only makes sense to those that wrote the automated tools.
+* Pull requests are no longer used.
+* You have consolidated your git repos, meaning you have limited ability to segregate access to humans even if you wanted to.
+
+You also realize that the parts of you GitOps process that are really adding unique business value are "left of the repo" with metrics collection, standardized templates, release orchestration, rollbacks, and deployment automation, and "right of the cluster" with reports, dashboards, and support scripts. The process between the git repo and cluster is now so automated and reliable that it is not something you need to think about.
+
+## Conclusion
+
+GitOps has come to encapsulate a subset of desirable functional requirements that are likely to provide a great deal of benefit for any teams that fulfill them. While neither git nor Kubernetes are required to satisfy GitOps, they are the logical platforms on which to start your GitOps journey, as they are well supported by the the more mature GitOps tools available today.
+
+But GitOps tooling tends to be heavily focused on what happens between a commit to a git repo and the Kubernetes cluster. While this is no doubt a critical component of any deployment pipeline, there much work to be done "left of the repo" and "right of the cluster" to implement a robust CI/CD pipeline and DevOps workflows.
+
+As you project the natural evolution of a GitOps workflow, you are likely to conclude that so many automated processes rely on the declarative configuration being in a specific location and format that manual updates must be treated in much the same way as a database migration. At this point the processing between the git repo and cluster should be automated, rendering much of what we talk about as GitOps today as simply the last hop in a specialized CI/CD pipelines or DevOps workflows.
+
