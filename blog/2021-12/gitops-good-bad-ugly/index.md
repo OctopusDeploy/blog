@@ -17,9 +17,13 @@ GitOps is a relatively new addition to the growing list of "Ops" paradigms takin
 The term GitOps was originally coined in a blog post by WeaveWorks called [GitOps - Operations by Pull Request](https://www.weave.works/blog/gitops-operations-by-pull-request), which described how WeaveWorks utilized git as a source of truth, leading to the following benefits:
 
 >    Our provisioning of AWS resources and deployment of k8s is declarative
+>
 >    Our entire system state is under version control and described in a single Git repository   
+>
 >    Operational changes are made by pull request (plus build & release pipelines)
+>
 >    Diff tools detect any divergence and notify us via Slack alerts; and sync tools enable convergence
+>
 >    Rollback and audit logs are also provided via Git  
 
 Since that original blog post, initiatives like the [GitOps Working Group](https://github.com/gitops-working-group/gitops-working-group) have been organized to:
