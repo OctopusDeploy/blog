@@ -137,7 +137,7 @@ You also realize that the parts of your GitOps process that are adding unique bu
 
 GitOps has come to encapsulate a subset of desirable functional requirements that are likely to provide a great deal of benefit for any teams that fulfill them. While neither git nor Kubernetes are required to satisfy GitOps, they are the logical platforms on which to start your GitOps journey, as they are well supported by the more mature GitOps tools available today.
 
-But GitOps tooling tends to be heavily focused on what happens between a commit to a git repo and the Kubernetes cluster. While this is no doubt a critical component of any deployment pipeline, there is much work to be done "left of the repo" and "right of the cluster" to implement a robust CI/CD pipeline and DevOps workflows.
+But GitOps tooling tends to be heavily focused on what happens between a commit to a git repo and the Kubernetes cluster. While this is no doubt a critical component of any deployment pipeline, there is much work to be done "left of the repo" and "right of the cluster" to implement a robust CI/CD pipeline and DevOps workflow.
 
 As you project the natural evolution of a GitOps workflow, you are likely to conclude that so many automated processes rely on the declarative configuration being in a specific location and format that git commits must be treated in much the same way as a database migration. The inputs to a GitOps process must be managed and orchestrated, and the outputs must be tested, measured, and maintained. Meanwhile the processing between the git repo and cluster should be automated, rendering much of what we talk about as GitOps today as simply an intermediate step in a specialized CI/CD pipeline or DevOps workflow.
 
