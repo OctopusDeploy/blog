@@ -54,7 +54,7 @@ This distinction is important, because many teams are fixated on the "Git" part 
 
 ## GipOps doesn't imply the use of Kubernetes
 
-Kubernetes was the first widely used platform to combine the ideas of declarative state and continuous reconciliation along with an execution environment to execute the reconciliation and host running applications. It really is magic to watch a Kubernetes cluster reconfigure itself to match the latest templates applied to the system. So it is no surprise that Kubernetes is the foundation of GitOps tools like Flux and Argo CD, while posts like [30+ Tools List for GitOps](https://dzone.com/articles/30-tools-list-for-gitops) mention Kubernetes 20 times.
+Kubernetes was the first widely used platform to combine the ideas of declarative state and continuous reconciliation along with an execution environment to implement the reconciliation and host running applications. It really is magic to watch a Kubernetes cluster reconfigure itself to match the latest templates applied to the system. So it is no surprise that Kubernetes is the foundation of GitOps tools like Flux and Argo CD, while posts like [30+ Tools List for GitOps](https://dzone.com/articles/30-tools-list-for-gitops) mention Kubernetes 20 times.
 
 While continuous reconciliation is impressive, it is not really magic. Behind the scenes Kubernetes runs a number of [operators](https://octopus.com/blog/operators-with-kotlin) that are notified of configuration changes and execute custom logic to bring the cluster back to the desired state.
 
