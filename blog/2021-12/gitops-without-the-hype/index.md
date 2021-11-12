@@ -121,7 +121,7 @@ Now that your CI/CD is doing most of the commits to git, you realize that you no
 
 You find yourself having to roll back a failed deployment, only to find that the notion of reverting a git commit is way too simplistic. The changes to the one application you wanted to revert have been mixed in with a dozen other deployments. Not that anyone should be touching the git repo directly anyway, because merge conflicts can have catastrophic consequences. But you can use your CI/CD server to redeploy an old version of the application, and because the CI/CD server has the context of what makes up a single application, the redeployment only changes the files relating to that application.
 
-At this point you concede that your git repo is a structured database:
+At this point you concede that your git repo is a structured database, and just one aspect of the source of truth:
 
 * Humans aren't to touch it.
 * All changes are made by automated tools.
