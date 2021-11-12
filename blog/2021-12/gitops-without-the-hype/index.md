@@ -107,7 +107,7 @@ This is not to say that GitOps is flawed or incomplete, but rather that it solve
 
 I'd like to present you with a theory and a thought experiment to apply it to:
 
-**In any sufficiently complex GitOps process, a git repo is indistinguishable from a structured database.**
+**In any sufficiently complex GitOps process, a git repo is just one more structured database.**
 
 You start your GitOps journey using the common combination of git and Kubernetes. All changes are reviewed by pull request, committed to a git repo, consumed by a tool like Argo CD or Flux, and deployed to your cluster. You have satisfied all the functional requirements of GitOps, and enjoy the benefits of a single source of truth, immutable change history, and continuous reconciliation.
 
