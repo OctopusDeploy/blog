@@ -128,6 +128,7 @@ At this point you concede that your git repo is a structured database:
 * The automated tools require known files of specific formats in specific locations.
 * The git history now reads "Deployment #X.Y.Z", and other commit information only makes sense to those that wrote the automated tools.
 * Pull requests are no longer used.
+* The "source of truth" is now found in the git repo, the CI/CD platform, and the metrics database.
 * You have consolidated your git repos, meaning you have limited ability to segregate access to humans even if you wanted to.
 
 You also realize that the parts of your GitOps process that are adding unique business value are "left of the repo" with metrics collection, standardized templates, release orchestration, rollbacks, and deployment automation, and "right of the cluster" with reports, dashboards, and support scripts. The process between the git repo and cluster is now so automated and reliable that it is not something you need to think about.
