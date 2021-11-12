@@ -48,7 +48,7 @@ The contrast between low level descriptions of GitOps found in most blog posts a
 
 Most discussions around GitOps center on how building processes on git give rise to many of the benefits ascribed to the GitOps paradigm. Git naturally provides an (almost) immutable history of changes, with changes annotated and approved via pull requests, and where the current state of the git repository naturally represents the desired state of a system, thus acting as a source of truth. The overlap between git and GitOps is undeniable.
 
-However, you may have noticed that git was never mentioned as a requirement of GitOps by the working group. So while git is a natural component of a GitOps solution, GitOps itself is concerned with the functional requirements of a system rather than checking your declarative templates into git.
+However, you may have noticed that git was never mentioned as a requirement of GitOps by the working group. So while git is a convenient component of a GitOps solution, GitOps itself is concerned with the functional requirements of a system rather than checking your declarative templates into git.
 
 This distinction is important, because many teams are fixated on the "Git" part of GitOps. The term GitOps is an unfortunate name for the concept it is trying to convey, leading many to believe git is the central aspect of GitOps. But GitOps has won the marketing battle and gained mind share within I.T. departments, so while it may be a proscriptive term to describe functional requirements unrelated to git, GitOps is now the shorthand for describing processes that implement a set of high level concerns.
 
