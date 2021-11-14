@@ -34,7 +34,7 @@ This working group recently released version 1 of their [principals](https://git
 
 > The desired state of a GitOps managed system must be:
 >
->    Declarative- A system managed by GitOps must have its desired state expressed declaratively.
+>    Declarative - A system managed by GitOps must have its desired state expressed declaratively.
 >
 >    Versioned and Immutable - Desired state is stored in a way that enforces immutability, versioning and retains a complete version history.
 >
@@ -73,6 +73,24 @@ Kubernetes bakes these requirements into the platform, making it very easy to ac
 Indeed, a real world end-to-end GitOps system will inevitably have to incorporate some orchestration outside of Kubernetes. For example, Kubernetes is unlikely to manage your DNS records, centralized authentication platforms, or messaging systems like Slack. You will also likely find at least one managed service for things like databases, message queues, scheduling, reporting etc more compelling than attempting to replicate them in a Kubernetes cluster. Also, any established I.T. department is guaranteed to have non-Kubernetes systems that would benefit from GitOps.
 
 So while the initial selection of specialized GitOps tools tend to be tightly integrated into Kubernetes, achieving the functional requirements of GitOps across established infrastructure will inevitably require orchestrating one or more IaC tools.
+
+## Continuous Reconciliation is half the battle
+
+Continuous reconciliation as described by the working group describes responses to two types of system changes.
+
+The first is what you would expect, where deliberate changes to the configuration held in git or other versioned storage is detected and applied to the system. This is the logical flow of configuration change and represents the normal operation of a correctly configured GitOps workflow.
+
+The second is where an agent detects undesirable changes to the system that are not described in the source configuration. In this case your git repo is no longer the source of truth, and the agent is expected to reconcile the system back to the desired state.
+
+This second situation is a neat technical ability, but represents an incomplete business process.
+
+Imagine the security guards from your front desk reporting that they had evicted an intruder. As a once off occurrence, this report would be mildly concerning, but the security team did their job and resolved the issue. But now imagine that you were receiving these reports every week. Obviously there is a more significant problem the is forcing the security team to respond to weekly intrusions.
+
+In the same manner, a system that continually removes undesirable system state is an incomplete solution to a more fundamental root problem. The real question to ask is who is making those changes, why are the changes being made, and why are they not being made through the correct process?
+
+The fact that your system *can* respond to undesirable states is evidence of a robust process able to adapt to unpredictable events, and this ability should not be underestimated. It is a long established best practice that teams should exercise their recovery processes, so in the event of disaster, teams are able to run through a well rehearsed restoration. Continuous reconciliation can be viewed as a kind of automated restoration process, allowing the process to be tested and verified with ease.
+
+But the fact that it *has to* respond to undesirable states is evidence of a flawed process where people have access that they shouldn't or are not following established processes. An overreliance on a system that can undo undesirable changes once they have been made runs the risk of masking a more significant underlying problem.
 
 ## GitOps is not a complete solution
 
