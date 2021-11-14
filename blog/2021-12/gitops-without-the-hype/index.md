@@ -80,11 +80,11 @@ Continuous reconciliation as described by the working group describes responses 
 
 The first is what you would expect, where deliberate changes to the configuration held in git or other versioned storage is detected and applied to the system. This is the logical flow of configuration change and represents the normal operation of a correctly configured GitOps workflow.
 
-The second is where an agent detects undesirable changes to the system that are not described in the source configuration. In this case your git repo is no longer the source of truth, and the agent is expected to reconcile the system back to the desired state.
+The second is where an agent detects undesirable changes to the system that are not described in the source configuration. In this case your system no longer reflects the desired state, and the agent is expected to reconcile the system back to the configuration maintained in git.
 
-This second situation is a neat technical ability, but represents an incomplete business process.
+This ability to resolve the second situation is a neat technical ability, but represents an incomplete business process.
 
-Imagine the security guards from your front desk reporting that they had evicted an intruder. As a once off occurrence, this report would be mildly concerning, but the security team did their job and resolved the issue. But now imagine that you were receiving these reports every week. Obviously there is a more significant problem the is forcing the security team to respond to weekly intrusions.
+Imagine the security guards from your front desk reporting they had evicted an intruder. As a once off occurrence, this report would be mildly concerning, but the security team did their job and resolved the issue. But now imagine that you were receiving these reports every week. Obviously there is a more significant problem that is forcing the security team to respond to weekly intrusions.
 
 In the same manner, a system that continually removes undesirable system state is an incomplete solution to a more fundamental root problem. The real question to ask is who is making those changes, why are the changes being made, and why are they not being made through the correct process?
 
