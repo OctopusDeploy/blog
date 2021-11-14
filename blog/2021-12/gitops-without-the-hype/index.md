@@ -76,7 +76,7 @@ So while the initial selection of specialized GitOps tools tend to be tightly in
 
 ## Continuous reconciliation is half the battle
 
-Continuous reconciliation as described by the working group describes responses to two types of system changes.
+Continuous reconciliation, as described by the working group, describes responses to two types of system changes.
 
 The first is what you would expect, where deliberate changes to the configuration held in git or other versioned storage is detected and applied to the system. This is the logical flow of configuration change and represents the normal operation of a correctly configured GitOps workflow.
 
