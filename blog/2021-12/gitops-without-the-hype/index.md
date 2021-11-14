@@ -90,7 +90,7 @@ In the same manner, a system that continually removes undesirable system state i
 
 The fact that your system *can* respond to undesirable states is evidence of a robust process able to adapt to unpredictable events, and this ability should not be underestimated. It is a long established best practice that teams should exercise their recovery processes, so in the event of disaster, teams are able to run through a well rehearsed restoration. Continuous reconciliation can be viewed as a kind of automated restoration process, allowing the process to be tested and verified with ease.
 
-But if your system *has to* respond to undesirable states is evidence of a flawed process where people have access that they shouldn't or are not following established processes. An overreliance on a system that can undo undesirable changes once they have been made runs the risk of masking a more significant underlying problem.
+But if your system *has to* respond to undesirable states, it is evidence of a flawed process where people have access that they shouldn't or are not following established processes. An overreliance on a system that can undo undesirable changes once they have been made runs the risk of masking a more significant underlying problem.
 
 ## GitOps is not a complete solution
 
