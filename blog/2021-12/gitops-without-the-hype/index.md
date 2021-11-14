@@ -74,7 +74,7 @@ Indeed, a real world end-to-end GitOps system will inevitably have to incorporat
 
 So while the initial selection of specialized GitOps tools tend to be tightly integrated into Kubernetes, achieving the functional requirements of GitOps across established infrastructure will inevitably require orchestrating one or more IaC tools.
 
-## Continuous Reconciliation is half the battle
+## Continuous reconciliation is half the battle
 
 Continuous reconciliation as described by the working group describes responses to two types of system changes.
 
