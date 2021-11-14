@@ -10,7 +10,7 @@ tags:
  - Octopus
 ---
 
-GitOps is a relatively new addition to the growing list of "Ops" paradigms taking shape in our industry. It all started with DevOps, and while the term DevOps has been around for some years now, it seems we still can't agree whether it is a process, mindset, job title, set of tools, or some combination of them all. The term GitOps suffers from the same ambiguity, and so in this post you'll look at the history of GitOps, its goals and ideals, the tools that support it, and the practical implications of adopting GitOps in your own organization.
+GitOps is a relatively new addition to the growing list of "Ops" paradigms taking shape in our industry. It all started with DevOps, and while the term DevOps has been around for some years now, it seems we still can't agree whether it is a process, mindset, job title, set of tools, or some combination of them all. The term GitOps suffers from the same ambiguity, and so in this post you'll look at the history of GitOps, its goals and ideals, its limitations, the tools that support it, and the practical implications of adopting GitOps in your own organization.
 
 ## The origins of GitOps
 
