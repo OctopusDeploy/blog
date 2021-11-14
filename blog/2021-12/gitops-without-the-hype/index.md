@@ -52,7 +52,7 @@ However, you may have noticed that git was never mentioned as a requirement of G
 
 This distinction is important, because many teams are fixated on the "Git" part of GitOps. The term GitOps is an unfortunate name for the concept it is trying to convey, leading many to believe git is the central aspect of GitOps. But GitOps has won the marketing battle and gained mind share within I.T. departments, so while it may be a proscriptive term to describe functional requirements unrelated to git, GitOps is now the shorthand for describing processes that implement a set of high level concerns.
 
-## GipOps doesn't imply the use of Kubernetes
+## GitOps doesn't imply the use of Kubernetes
 
 Kubernetes was the first widely used platform to combine the ideas of declarative state and continuous reconciliation along with an execution environment to implement the reconciliation and host running applications. It really is magic to watch a Kubernetes cluster reconfigure itself to match the latest templates applied to the system. So it is no surprise that Kubernetes is the foundation of GitOps tools like Flux and Argo CD, while posts like [30+ Tools List for GitOps](https://dzone.com/articles/30-tools-list-for-gitops) mention Kubernetes 20 times.
 
