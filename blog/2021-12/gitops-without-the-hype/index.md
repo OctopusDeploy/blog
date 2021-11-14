@@ -82,7 +82,7 @@ The first is what you would expect, where deliberate changes to the configuratio
 
 The second is where an agent detects undesirable changes to the system that are not described in the source configuration. In this case your system no longer reflects the desired state, and the agent is expected to reconcile the system back to the configuration maintained in git.
 
-This ability to resolve the second situation is a neat technical ability, but represents an incomplete business process.
+This ability to resolve the second situation is a neat technical capability, but represents an incomplete business process.
 
 Imagine the security guards from your front desk reporting they had evicted an intruder. As a once off occurrence, this report would be mildly concerning, but the security team did their job and resolved the issue. But now imagine that you were receiving these reports every week. Obviously there is a more significant problem that is forcing the security team to respond to weekly intrusions.
 
