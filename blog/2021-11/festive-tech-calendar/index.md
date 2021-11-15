@@ -10,6 +10,8 @@ bannerImageAlt:
 isFeatured: false
 tags:
  - DevOps
+ - Community
+ - Hackathon
 ---
 Octopus Deploy is excited to be part of this year’s [Festive Tech Calendar](https://festivetechcalendar.com), running a hackathon competition.
 
