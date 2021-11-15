@@ -454,7 +454,7 @@ Site Reliability Engineering (SRE) details the way that Google approaches the co
 
 Reading this book is a reasonable time investment, so for those who are new to SRE, I recommend that before you buy it, you explore the following links:
 
-1.	This blog post by Google: [SRE vs DevOps: Competing standards or close friends?](https://cloud.google.com/blog/products/gcp/sre-vs-devops-competing-standards-or-close-friends)
+1.	This blog post by Google: [SRE vs DevOps: Competing standards or close friends?](https://www.googblogs.com/sre-vs-devops-competing-standards-or-close-friends/)
 1.	Thomas A. Limoncelli’s 2012 session at USENIX NYC: [SRE@Google: Thousands of DevOps Since 2004](https://www.youtube.com/watch?v=iIuTnhdTzK0)
 
 That 10 minute read / 45 minute watch should give you a great primer on Google’s approach, covering important topics, including the difference between DevOps and SRE, as well as some of the core components of SRE, including SLOs, error budgets, and Customer Reliability Engineering.
