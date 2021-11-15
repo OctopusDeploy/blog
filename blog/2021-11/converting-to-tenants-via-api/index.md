@@ -39,7 +39,7 @@ You create a new lifecycle with a single environment for each phase the project 
 
 ## Getting started
 
-To start the conversion process, you create a new project alongside your existing Vet Clinic project. Do this by [cloning the existing project](https://octopus.com/docs/projects#clone-a-project). The clone allows you to test changes in parallel, without worrying about mishaps disrupting our current project's deployments. 
+To start the conversion process, you create a new project alongside your existing Vet Clinic project. Do this by [cloning the existing project](https://octopus.com/docs/projects#clone-a-project). The clone allows you to test changes in parallel, without worrying about mishaps disrupting your current project's deployments. 
 
 After you're happy with results on the cloned project, remove it and run the conversions scripts on the original project. Alternatively, you can move everything to the new, cloned project and eventually retire the original project.
 
@@ -75,7 +75,7 @@ While looping through the list of *old environments* a few things happen:
 
 - Since the environment names follow the convention of `EnvironmentName-CustomerName`, it parses out the desired tenant name. 
 - From the new tenant name, there is then a check to see if the tenant already exists. 
-- To determine which new environments each tenant should deploy to, the script loops through each of the phases in the old lifecycle. 
+- To determine which new environments each tenant should deploy to, the script loops through each phase in the old lifecycle. 
 - The project(s) from the input get combined with the environments that the tenant should deploy to. 
 - If the tenant doesn't exist, the script will call the API to create a new tenant with the gathered data. 
 - If the tenant doesn't exist, the script will send a request to up the tenant with the environments it should deploy to, for the project(s).
@@ -201,7 +201,7 @@ After the tenants are created, you need to make the following script that turns 
 
 The script requires the following inputs:
 
-- `$projectNames`: The *old* project name that contains the current project variables along with the *new* name of the project you would like to create the variable templates for.
+- `$projectNames`: The *old* project name that contains the current project variables along with the *new* name of the project you'd like to create the variable templates for.
 - `$$newEnvironmentNames`: A list of environment names used to scope project variables and template variables per tenant.
 - `$spaceName`: The Octopus space name that contains the project(s).
 
@@ -209,13 +209,13 @@ A list of the project variables from the specified *old project* is retrieved. T
 
 If the scoped environment is one of the new environments you'll use for tenanted deployments, a project variable gets created. Otherwise, the script will create a variable template. 
 
-There will be a check to see if the project variable or variable template already exists for the project in both cases. When they don't exist, details from the old variables are used to create the new variable types and they're added to their respective collections, retrieved at the beginning of the script. 
+There is a check to see if the project variable or variable template already exists for the project in both cases. When they don't exist, details from the old variables are used to create the new variable types and they're added to their respective collections, retrieved at the beginning of the script. 
 
 After the loop finishes, there's a call to the API to update the project's variable collection, and another call to update the project variable templates.
 
 After the API call that creates the variable templates for the project, the script loops back through each variable to provide values to the templates for each tenant. The old variable's environment scopes get looped through to parse out the name of the environment and tenant that the value will belong to. The parsed tenant name retrieves the tenant data. 
 
-From the tenant data, the script then loops through each project environment attached to the tenant and then through each template until the name of the old variable matches the name of the template and the project environment matches the environment scope. An API call gets made to update the variables for the tenant with the new value.
+From the tenant data, the script then loops through each project environment attached to the tenant and then through each template until the name of the old variable matches the name of the template, and the project environment matches the environment scope. An API call gets made to update the variables for the tenant with the new value.
 
 <details>
 <summary>Full script create_project_variables_and_templates.ps1</summary>
@@ -380,15 +380,17 @@ foreach ($oldVariable in $oldVariableSet.Variables) {
 
 ## End result
 
-After running the two scripts against the Vet Clinic project, you can see the new items the scripts created. On the tenant dashboard, you can now see three different tenants.
+After running the two scripts against the Vet Clinic project, you can see the new items the scripts created. 
 
-![Vet Clinic Tenants](vet-clinic-tenants.png)
+On the tenant dashboard, you can now see three different tenants:
 
-The *Vet Clinic - Tenanted* project now only has project variables scoped to new environments.
+![Vet Clinic tenants](vet-clinic-tenants.png)
+
+The *Vet Clinic - Tenanted* project now only has project variables scoped to new environments:
 
 ![Vet Clinic Tenanted project variables](vet-clinic-tenanted-project-variables.png)
 
-The project also includes the new variable templates to provide a value for each tenant.
+The project also includes the new variable templates to provide a value for each tenant:
 
 ![Vet Clinic Tenanted project variable templates](vet-clinic-tenanted-project-variable-templates.png)
 
@@ -397,7 +399,7 @@ Inside each new tenant, the variable values have been updated for each environme
 ![Vet Clinic tenant variable values](vet-clinic-tenant-variable-values.png)
 
 :::hint
-To start using your new tenants with your deployments, you need to set up your [infrastructure](https://octopus.com/docs/tenants/tenant-infrastructure) and any [tenant tags](https://octopus.com/docs/tenants/tenant-tags) you might want to use to manage groups of tenants.
+To start using your new tenants with your deployments, you need to set up your [infrastructure](https://octopus.com/docs/tenants/tenant-infrastructure) and any [tenant tags](https://octopus.com/docs/tenants/tenant-tags) you want to use to manage groups of tenants.
 :::
 
 ## Conclusion
