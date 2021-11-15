@@ -3,10 +3,10 @@ title: Safe schema updates - Near-zero downtime database deployments
 description: This post discusses how we can only deploy often if we can do it without disruption.
 author: alex.yates@dlmconsultants.com
 visibility: public
-published: 2021-11-10-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+published: 2021-11-15-1400
+metaImage: blogimage-nearzerodowntimedatabasedeployments.png
+bannerImage: blogimage-nearzerodowntimedatabasedeployments.png
+bannerImageAlt: Man sitting with open laptop, in front of cityscape in the background and 24hr icon. Below are icons of 2 people deploying to a web server.
 isFeatured: false
 tags:
  - DevOps
