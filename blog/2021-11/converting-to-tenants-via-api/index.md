@@ -27,7 +27,7 @@ The overview screen of the [Vet Clinic project](https://samples.octopus.app/app#
 
 The project has multiple variables being scoped to each environment to specify the value for the customer. It's the variables scoped to customer environments that you convert to project templates, to provide each tenant you create with the specific variable values for tenanted deployments. 
 
-Variables scoped to generic environments, such as Development and Test, will be kept as project-specific variables for untenanted deployments.
+Variables scoped to generic environments, such as Development and Test, are kept as project-specific variables for untenanted deployments.
 
 ![Vet Clinic project variables](vet-clinic-project-variables.png)
 
