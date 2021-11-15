@@ -11,6 +11,7 @@ isFeatured: false
 tags:
 - DevOps
 - Kubernetes
+- Google Cloud Platform
 ---
 
 Containerizing applications on cloud platforms is a hot topic.  The big three cloud providers (Azure, Amazon Web Services (AWS), and Google Cloud Platform (GCP)) have all implemented Kubernetes (K8s) platform services:
@@ -168,7 +169,7 @@ Write-Host "Waiting for cluster to be done creating..."
 while ($eksCluster.Cluster.Status -eq "CREATING")
 {
 	# Wait for cluster to be done creating
-	$eksCluster = aws eks describe-cluster --name $clusterName --instance-type "t3.medium" --instance-count 1
+	$eksCluster = aws eks describe-cluster --name $clusterName --instance-types "t3.medium" --instance-count 1
 	$eksCluster = $eksCluster | ConvertFrom-JSON
 }
 

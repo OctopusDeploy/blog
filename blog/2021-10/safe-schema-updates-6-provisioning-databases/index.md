@@ -211,3 +211,13 @@ Throughout this series I’ve been advocating for smaller, safer, more frequent 
 We'll add links to the other posts in this series as they become available.
 
 !include <safe-schema-updates-posts>
+
+## Register for the webinar: Safe schema updates, part 1: Imagining better systems
+
+Alex Yates will discuss why DevOps is more challenging for mature systems, and why newer systems typically adopt a different architecture.
+
+We're running 3 sessions of the webinar, Wed 17 Nov – Thurs 18 Nov, 2021.
+
+<span><a class="btn btn-success" href="/events/safe-schema-updates-part-1-imagining-better-systems">Register now</a></span>
+
+In part two, Alex will discuss how to transition a mature system from one architecture to another. [Learn more and register for the second webinar.](https://octopus.com/events/safe-schema-updates-part-2-building-better-systems)
