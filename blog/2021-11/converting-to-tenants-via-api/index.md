@@ -13,7 +13,7 @@ tags:
  - Multi-Tenancy
 ---
 
-In a previous post, Mark Harrison wrote about the [benefits of multi-tenancy](https://octopus.com/blog/better-multi-tenancy-with-octopus#using-multiple-environments) in Octopus. Designing an application to fit multi-tenancy from the start is easier than retrofitting one, but what should you do with an existing application? I often see people create customer-specific environments when deploying multiple instances of the same application to each of their customers. This can lead to complicated lifecycles, unclear release dashboards, and complex variable scoping for projects.
+In a previous post, Mark Harrison wrote about the [benefits of multi-tenancy](https://octopus.com/blog/better-multi-tenancy-with-octopus#using-multiple-environments) in Octopus. Designing an application to fit multi-tenancy from the start is easier than retrofitting one, but what should you do with an existing application? I often see people create customer-specific environments when they're deploying multiple instances of the same application to each of their customers. This can lead to complicated lifecycles, unclear release dashboards, and complex variable scoping for projects.
 
 Fortunately, since Octopus 2.0, the Octopus REST API has been available to help manage multi-tenancy. 
 
