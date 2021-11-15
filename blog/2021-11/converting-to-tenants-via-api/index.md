@@ -44,7 +44,7 @@ To start the conversion process, you create a new project alongside your existin
 After you're happy with results on the cloned project, remove it and run the conversions scripts on the original project. Alternatively, you can move everything to the new, cloned project and eventually retire the original project.
 
 :::hint
-To connect tenants to a project, you need to enable tenanted deployments on that project. You can read our [documentation on tenanted deployment](https://octopus.com/docs/tenants/tenant-creation/tenanted-deployments) to learn how.
+To connect tenants to a project, you need to enable tenanted deployments on that project. You can read our [documentation on tenanted deployments](https://octopus.com/docs/tenants/tenant-creation/tenanted-deployments) to learn how.
 :::
 
 ![Vet Clinic tenanted project overview](vet-clinic-tenanted-overview.png)
@@ -201,9 +201,9 @@ After the tenants are created, you need to make the following script that turns 
 
 The script requires the following inputs:
 
-- `$projectNames`: The *old* project name that contains the current project variables along with the *new* name of the project you'd like to create the variable templates for.
-- `$$newEnvironmentNames`: A list of environment names used to scope project variables and template variables per tenant.
-- `$spaceName`: The Octopus space name that contains the project(s).
+- `$projectNames`: The *old* project name that contains the current project variables along with the *new* name of the project you'd like to create the variable templates for
+- `$$newEnvironmentNames`: A list of environment names used to scope project variables and template variables per tenant
+- `$spaceName`: The Octopus space name that contains the project(s)
 
 A list of the project variables from the specified *old project* is retrieved. The script then loops through each variable and each environment scope the variable has. 
 
