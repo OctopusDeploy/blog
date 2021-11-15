@@ -8,6 +8,7 @@ Company
 Automation
 AWS
 Azure
+Community
 Continuous Integration
 Continuous Deployment
 Configuration as Code
