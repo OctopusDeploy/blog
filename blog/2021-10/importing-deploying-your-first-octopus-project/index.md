@@ -11,6 +11,7 @@ isFeatured: false
 tags:
  - DevOps
  - Azure
+ - Getting Started
 ---
 
 Setting up your first deployment can be challenging. There are new systems to learn and multiple configurations to get right.
