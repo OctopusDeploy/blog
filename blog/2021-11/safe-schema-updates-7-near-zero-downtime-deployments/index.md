@@ -48,7 +48,7 @@ The inescapable conclusion: It’s essential that we perform schema changes with
 
 In my experience, for all the talk about source control and deployment automation, the necessity to minimize downtime is under-appreciated by those who have database schemas and wish to keep them safe.
 
-This post is not about the automation or execution of schema updates – there are [many other posts about that](https://octopus.com/blog/tag/Database Deployments). This post is about patterns for minimizing downtime.
+This post is not about the automation or execution of schema updates – there are [many other posts about that](https://octopus.com/blog/tag/Database%20Deployments). This post is about patterns for minimizing downtime.
 
 ## Overloaded terminology: deployments and releases
 
@@ -60,7 +60,7 @@ You are in the minority.
 
 To most people, and specifically to anyone in marketing, a “release” is something different. “Releasing” a new version of your software, or the latest iPhone, or the new Adele album, is about making it available and telling people about it. The thing is created in advance, and released later. The latest James Bond film was produced in 2020, but the release was delayed until 2021.
 
-When talking about zero downtime deployments, we tend to use “release” in this second way. Deployments are about making changes, but releases are about revealing those changes to our users. When I use “release” in this blog post, I'm not referring to the preparation of a deployment, I'm talking about making updates visible to users.
+When talking about zero downtime deployments, we tend to use “release” in this second way. Deployments are about making changes, but releases are about revealing those changes to our users. When I use “release” in this post, I'm not referring to the preparation of a deployment, I'm talking about making updates visible to users.
 
 It is crucial to differentiate between deploying changes and releasing/revealing those changes to users. These two things do not need to happen at the same time. In fact, it’s the ability to separate these events that enables zero downtime releases, as well as all sorts of other exciting practices, such as testing in production and some rapid rollback patterns.
 
@@ -151,7 +151,7 @@ Of course, with more dependencies, this is harder. Some might think it’s unfea
 
 In an ideal world we’d be working with loosely coupled systems (see [part 4]( https://octopus.com/blog/safe-schema-updates-4-loose-coupling-mitigates-tech-problems) and [part 5](https://octopus.com/blog/safe-schema-updates-5-loose-coupling-mitigates-human-problems) of my series). These are coded defensively by default and database dependencies are significantly reduced. Attributes that make all this a lot easier.
 
-If your system is tightly-coupled, perhaps by now you are seeing the enormous benefits of loose-coupling? Perhaps you are also daunted by the perceived enormity of the challenge ahead: evolving your tangled web of dependencies into something safer.
+If your system is tightly-coupled, perhaps by now you are seeing the enormous benefits of loose-coupling. Perhaps you are also daunted by the perceived enormity of the challenge ahead: evolving your tangled web of dependencies into something safer.
 
 ## Next time
 
