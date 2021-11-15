@@ -394,7 +394,7 @@ The project also includes the new variable templates to provide a value for each
 
 ![Vet Clinic Tenanted project variable templates](vet-clinic-tenanted-project-variable-templates.png)
 
-Inside each new tenant, the variable values have been updated for each environment using the scope and value from the old project variables.
+Inside each new tenant, the variable values have been updated for each environment using the scope and value from the old project variables:
 
 ![Vet Clinic tenant variable values](vet-clinic-tenant-variable-values.png)
 
