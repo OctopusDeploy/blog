@@ -4,9 +4,9 @@ description: Learn how to deploy database change to a Cassandra server using Oct
 author: shawn.sesna@octopus.com
 visibility: private
 published: 2022-10-25-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: blogimage-deploydatabasechangestocassandra-2021.png
+bannerImage: blogimage-deploydatabasechangestocassandra-2021.png
+bannerImageAlt: A blue rocket branded with the Liquibase logo is headed towards a purple tower which is a stylized and oversized database icon
 isFeatured: false
 tags:
  - 
