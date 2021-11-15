@@ -169,7 +169,7 @@ Write-Host "Waiting for cluster to be done creating..."
 while ($eksCluster.Cluster.Status -eq "CREATING")
 {
 	# Wait for cluster to be done creating
-	$eksCluster = aws eks describe-cluster --name $clusterName --instance-type "t3.medium" --instance-count 1
+	$eksCluster = aws eks describe-cluster --name $clusterName --instance-types "t3.medium" --instance-count 1
 	$eksCluster = $eksCluster | ConvertFrom-JSON
 }
 
