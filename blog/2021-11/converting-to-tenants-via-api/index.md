@@ -59,7 +59,7 @@ Next, you create a new, simplified lifecycle for the project to use after the co
 The examples provided are for reference and should be modified and tested prior to using in a production Octopus instance. 
 :::
 
-With those two pieces in place, you can start creating our scripts. For the first script, you create the tenants from the old environments. 
+With those two pieces in place, you can start creating your scripts. For the first script, you create the tenants from the old environments. 
 
 You need to specify the following inputs:
 
