@@ -12,7 +12,7 @@ tags:
   - DevOps
   - Continuous Integration
   - Jenkins
-  - GitHub
+  - GitHub Actions
   - Testing
 ---
 
