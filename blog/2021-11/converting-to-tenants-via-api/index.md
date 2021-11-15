@@ -49,7 +49,7 @@ To connect tenants to a project, you need to enable tenanted deployments on that
 
 ![Vet Clinic tenanted project overview](vet-clinic-tenanted-overview.png)
 
-Next, you create a new simplified lifecycle for the project to use after the conversion is complete. Each phase in the lifecycle has a single environment to deploy to, which offers a more comprehensive view of what release has deployed to which environment and tenant.
+Next, you create a new, simplified lifecycle for the project to use after the conversion is complete. Each phase in the lifecycle has a single environment to deploy to, which offers a more comprehensive view of what release has deployed to which environment and tenant.
 
 ![Vet Clinic tenanted lifecycle](vet-clinic-tenanted-lifecycle.png)
 
