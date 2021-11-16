@@ -82,7 +82,7 @@ To back up the license key:
 1. Open the Octopus Web Portal and click **Configuration** in the top menu.
 1. Select **License** from the left menu. Copy all the text from the XML box and paste it somewhere safe.
    
-If you can’t find or don’t know your license key, [email our customer success team](customersuccess@octopus.com) and we can help recover it.
+If you can’t find or don’t know your license key, [email our customer success team](mailto:customersuccess@octopus.com) and we can help recover it.
    
 ### Database
    
@@ -131,7 +131,7 @@ Then head to our [download archives](https://octopus.com/downloads/previous) to 
 
 ### Octopus licensing
 
-You can use your Octopus license on 3 unique instances (determined by the database it connects to). If you think you’ll exceed your Octopus instance limit, [email our customer success team](customersuccess@octopus.com) for your options.
+You can use your Octopus license on 3 unique instances (determined by the database it connects to). If you think you’ll exceed your Octopus instance limit, [email our customer success team](mailto:customersuccess@octopus.com) for your options.
 
 ### Don't do too much at once
 
@@ -350,6 +350,6 @@ If an on-premises instance of Octopus Server is not a business need, you could [
 
 ## We can help if you still have concerns
 
-If you have any concerns or need help plotting your best upgrade approach, we’re always available to help. Our customer success team can provide instance reviews, and support with planning or post-upgrade problems – we’re only [an email](customersuccess@octopus.com) away.
+If you have any concerns or need help plotting your best upgrade approach, we’re always available to help. Our customer success team can provide instance reviews, and support with planning or post-upgrade problems – we’re only [an email](mailto:customersuccess@octopus.com) away.
 
 Happy deployments!
