@@ -4,8 +4,8 @@ description: Why and how to upgrade from Octopus 3.X.
 author: andrew.corrigan@octopus.com
 visibility: public
 published: 2021-11-24-1400
-metaImage: blogimage-upgradingoctopusiseasierthanyouthink-2021.png
-bannerImage: blogimage-upgradingoctopusiseasierthanyouthink-2021.png
+metaImage: blogimage-upgradingoctopusiseasierthanyouthink1-2021.png
+bannerImage: blogimage-upgradingoctopusiseasierthanyouthink1-2021.png
 bannerImageAlt: Laptop screen showing Octopus logo surrounded by circle of lines indicating update in progress, with the words “Update…” below the logo
 isFeatured: false
 tags:
@@ -71,7 +71,7 @@ To back up the master key:
    - **Save** to store the master key in a text file
    - **Copy to clipboard** to paste it somewhere safe, such a password manager
    
-![The master key screen in Octopus Manager](masterkey.png)
+![The master key screen in Octopus Manager](masterkey1.png)
  
 ### License key
    
@@ -94,7 +94,7 @@ For example, to back up a database in Microsoft’s SQL Server Management Studio
 1. Right-click the database, select **Tasks** and click **Back Up…**
 1. Use the **Destination** section to set where you want to store the backup and click **OK**
    
-![The backup and restore options in SQL Server Management Studio](database.png)
+![The backup and restore options in SQL Server Management Studio](database1.png)
    
 For those who prefer T-SQL commands, you can use the following command to save a backup to NAS or file share:
    
@@ -125,7 +125,7 @@ To check your version, open the Octopus web portal and click the question mark i
 
 Then head to our [download archives](https://octopus.com/downloads/previous) to redownload that version.
 
-![Where to check the Octopus version in old and new versions](versioncheck.png)
+![Where to check the Octopus version in old and new versions](versioncheck1.png)
 
 ## Other things to think about before Upgrading
 
@@ -304,7 +304,7 @@ If the unexpected does happen, you can easily roll back to your old version of O
 1. Find Octopus Manager in the Windows Start menu or search using the Task Bar, right-click and select **Uninstall**.
 1. Select Octopus from your list of applications and click **Uninstall**.
 
-![The uninstall option in Windows' Programs and Features screen](uninstall.png)
+![The uninstall option in Windows' Programs and Features screen](uninstall1.png)
 
 ### Step 2: Restore the database
 
@@ -315,7 +315,7 @@ Use your database management tool to restore the database to its original state 
 1. Use the wizard to select the correct backup or file. In my case, it defaulted to my last backup. Click **OK** when ready.
 1. Click **OK** on the **Database restored successfully** popup to finish.
 
-![The Restore Database screen in SQL Server Management Studio](restore.png)
+![The Restore Database screen in SQL Server Management Studio](restore1.png)
 
 ### Step 3: Restore Octopus folders
 
