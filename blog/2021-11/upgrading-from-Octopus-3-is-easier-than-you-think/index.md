@@ -12,7 +12,7 @@ tags:
   - DevOps
 ---
 
-The phrase "if it ain’t broke, don’t fix it" doesn’t always work in the world of development. Octopus is no different, which is why we aim to improve how you deliver releases with major releases of our own. If not up to date with Octopus, you could be missing features that make deployments easier, more efficient, and help how your teams coordinate.
+The phrase "if it ain’t broke, don’t fix it" doesn’t always work in the world of development. Octopus is no different, which is why we aim to improve how you deliver releases with major releases of our own. If you're not up to date with Octopus, you could be missing features that make deployments easier, more efficient, and help your teams to coordinate.
 
 That said, we understand why some prefer to stick with older versions of Octopus. You may feel your current version does what you need, or a company policy could dictate staying a few versions behind to avoid risk. Maybe you fell behind on updates and worry about the time and resources to get back up to date.
 
@@ -21,7 +21,7 @@ For those in that last category especially, let’s see if we can ease your fear
 In this blog I run through:
 
 - Features you’re missing out on by not upgrading
-- What to back up before an upgrade, plus other things to consider
+- What to back up before an upgrade, plus other considerations
 - Ways to avoid risk when planning your upgrade
 - An example in-place upgrade from 3.X to our latest version
 - How to roll back should something go wrong
@@ -34,12 +34,12 @@ If still on a 3.X version, you're missing out on Octopus’s evolution alongside
 Here’s a taste of what we added between Octopus 3.1 and 2021.2:
 
 - Improved UI - new process editor, dark mode and a global search
-- Improvements to config files, including built-in support for JSON, XML, YAML and property files
+- Improvements to config files, including built-in support for JSON, XML, YAML, and property files
 - [Spaces](https://octopus.com/docs/administration/spaces) - a way for different teams to only see and use what they need
 - [Runbooks](https://octopus.com/docs/administration/spaces) - allows you to automate routine maintenance and emergency operations tasks
 - [Tenants](https://octopus.com/docs/tenants) - create customer-specific pipelines for Software as a Service (SaaS) or multi-region deployments
 - [Project exports and imports](https://octopus.com/docs/projects/export-import) - export one or more projects to import into other spaces or instances
-- [Configuration as Code](https://octopus.com/docs/projects/version-control) - version control for Octopus projects (early access preview)
+- [Configuration as Code](https://octopus.com/docs/projects/version-control) - version control for Octopus projects (this is currently an early access preview)
 
 We also added new platform integrations, including support for:
 
@@ -65,11 +65,11 @@ Aside from your database, this is the most important thing to back up before an 
    
 To back up the master key:
    
-1. Open Octopus Manager on your server.
-1. Click **View master key** under the **Storage** heading.
+1. Open Octopus Manager on your server
+1. Click **View master key** under the **Storage** heading
 1. Here you can click either:
    - **Save** to store the master key in a text file
-   - **Copy to clipboard** to paste it somewhere safe, such a password manager.
+   - **Copy to clipboard** to paste it somewhere safe, such a password manager
    
 ![The master key screen in Octopus Manager](masterkey.png)
  
@@ -82,16 +82,17 @@ To back up the license key:
 1. Open the Octopus Web Portal and click **Configuration** in the top menu.
 1. Select **License** from the left menu. Copy all the text from the XML box and paste it somewhere safe.
    
-If you can’t find or don’t know your license key, [email us](customersuccess@octopus.com) and we can help recover it.
+If you can’t find or don’t know your license key, [email our customer success team](customersuccess@octopus.com) and we can help recover it.
    
 ### Database
    
 You should always back up your database before upgrading Octopus. Most database management tools have wizards to help you.
+
 For example, to back up a database in Microsoft’s SQL Server Management Studio (SSMS):
    
-1. Expand the **Databases** folder on your database server.
+1. Expand the **Databases** folder on your database server
 1. Right-click the database, select **Tasks** and click **Back Up…**
-1. Use the **Destination** section to set where you want to store the backup and click **OK**.
+1. Use the **Destination** section to set where you want to store the backup and click **OK**
    
 ![The backup and restore options in SQL Server Management Studio](database.png)
    
@@ -117,10 +118,10 @@ Copy and store the following folders and all their data:
 
 You need your existing Octopus version to:
 
-- [roll back if there's a problem](#Roll-back-if-something-goes-wrong)
-- install on a clone or test environment if using one of our recommended [strategies to avoid risk](#Strategies-to-avoid-risk).
+- [Roll back if there's a problem](#Roll-back-if-something-goes-wrong)
+- Install on a clone or test environment if using one of our recommended [strategies to avoid risk](#Strategies-to-avoid-risk)
 
-To check your version, open the Octopus Web Portal and click the question mark in Octopus’s top right. The version number is at the top of the dropdown.
+To check your version, open the Octopus web portal and click the question mark in Octopus’s top right. The version number is at the top of the dropdown.
 
 Then head to our [download archives](https://octopus.com/downloads/previous) to redownload that version.
 
@@ -138,14 +139,14 @@ Though it could be tempting to use downtime from an Octopus upgrade for other ta
 
 Doing so will:
 
-- ensure the upgrade runs as smooth as possible
-- prevent other tasks complicating the upgrade
-- reduce impact on your Octopus users
-- make the other tasks a little easier if you’re already on our latest versions.
+- Ensure the upgrade runs as smooth as possible
+- Prevent other tasks complicating the upgrade
+- Reduce impact on your Octopus users
+- Make the other tasks a little easier if you’re already on our latest version
 
 ## Strategies to avoid risk
 
-There are 2 recommended ways to avoid risk when upgrading Octopus. Both are simple enough, but you should consider which is best for your business before you start.
+There are 2 recommended ways to avoid risk when upgrading Octopus. Both are simple, but you should consider which is best for your business before you start.
 
 Let’s break down the options.
 
@@ -153,34 +154,34 @@ Let’s break down the options.
 
 Cloning your instance and upgrading the clone is our recommended method because it allows you to:
 
-- leave your main instance available while testing.
-- have full confidence in the upgrade before committing to it.
-- not worry about rolling back should something go wrong.
+- Leave your main instance available while testing
+- Have full confidence in the upgrade before committing to it
+- Not worry about rolling back should something go wrong
 
 The main steps for this method are:
 
-1. Put your instance into maintenance mode.
-1. Back up the database.
-1. Take the instance out of maintenance.
-1. Restore the backup as a new database on the desired SQL Server.
-1. Download the same version of Octopus as your main instance and install it on a new server.
-1. Configure the new instance to point to the new copy of the database.
-1. Copy all files from backed-up folders from the main instance.
-1. Optional: Disable all deployment targets.
-1. Upgrade the cloned instance.
-1. Test cloned instance. Check all API scripts, CI integrations, and deployments work.
-1. Decide whether to migrate to the new instance or perform new backups and upgrade your main instance.
+1. Put your instance into maintenance mode
+1. Back up the database
+1. Take the instance out of maintenance
+1. Restore the backup as a new database on the desired SQL Server
+1. Download the same version of Octopus as your main instance and install it on a new server
+1. Configure the new instance to point to the new copy of the database
+1. Copy all files from backed-up folders from the main instance
+1. Optional: Disable all deployment targets
+1. Upgrade the cloned instance
+1. Test cloned instance, then check all API scripts, CI integrations, and deployments work
+1. Decide whether to migrate to the new instance or perform new backups and upgrade your main instance
 
 Read our upgrade documentation to see [this method’s steps](https://octopus.com/docs/administration/upgrading/guide/upgrading-from-octopus-3.x-to-modern#recommended-approach-create-a-cloned-instance) in more detail.
 
 #### Considerations for this method
 
-While the best bet for a smooth transition, this method can be time-intensive and needs downtime during migration. It can also be costly, as you must clone your entire environment. This means double the cost of hardware, licensing or cloud services.
+While the best bet for a smooth transition, this method can be time-intensive and needs downtime during migration. It can also be costly, as you must clone your entire environment. This means double the cost of hardware, licensing, or cloud services.
 
-You also have the risk of ‘drift’ as teams continue to use the main instance during testing. If you think you’ll need more than a week to figure things out, you could:
+You also have the risk of ‘drift’ as teams continue to use the main instance during testing. If you think you need more than a week to figure things out, you could:
 
-- opt for method 2 instead
-- figure out any problems on the cloned instance and then restart on a fresh instance when comfortable.
+- Opt for method 2 instead
+- Figure out any problems on the cloned instance and then restart on a fresh instance when comfortable
 
 ### Method 2: Create a new instance to test the process, then update with confidence
 
@@ -188,25 +189,25 @@ Some customers may not have the time or resources to complete the first method. 
 
 This method:
 
-- saves time and resources
-- has a shorter downtime
-- removes the risk of drift
-- is easy to roll back if something goes wrong.
+- Saves time and resources
+- Has a shorter downtime
+- Removes the risk of drift
+- Is easy to roll back if something goes wrong
 
 The main steps for this method are:
 
-1. Download the same version of Octopus as your main instance and install it on a new virtual machine.
-1. Export some projects from the main instance and import them into the test instance.
-1. Download the latest version of Octopus.
-1. Back up the test instance database.
-1. Upgrade the test instance to the latest Octopus version.
-1. Test and verify the test instance.
-1. Put your main instance into maintenance mode.
-1. Back up the database on the main instance.
-1. Back up all folders on the main instance.
-1. Do an in-place upgrade of your main instance.
-1. Test the upgraded main instance.
-1. Take the main instance out of maintenance mode.
+1. Download the same version of Octopus as your main instance and install it on a new virtual machine
+1. Export some projects from the main instance and import them into the test instance
+1. Download the latest version of Octopus
+1. Back up the test instance database
+1. Upgrade the test instance to the latest Octopus version
+1. Test and verify the test instance
+1. Put your main instance into maintenance mode
+1. Back up the database on the main instance
+1. Back up all folders on the main instance
+1. Do an in-place upgrade of your main instance
+1. Test the upgraded main instance
+1. Take the main instance out of maintenance mode
 
 Read our upgrade documentation to see [this method’s steps](https://octopus.com/docs/administration/upgrading/guide/upgrading-from-octopus-3.x-to-modern#alternative-approach-create-a-test-instance) in more detail.
 
@@ -219,7 +220,7 @@ Octopus.Migrator.exe partial-export --instance=OctopusServer --project=AcmeWebSt
 ```
 
 :::hint
-In the latest versions of Octopus, we added a feature to easily export and import projects between spaces and instances.
+In the latest versions of Octopus, we added a feature to easily [export and import projects between spaces and instances](https://octopus.com/blog/exporting-projects).
 :::
 
 ### If upgrading a high availability Octopus setup
@@ -230,17 +231,17 @@ You must only upgrade 1 node before upgrading the others. The Octopus installer 
 
 The main steps for a high availability upgrade are:
 
-1. Download the latest version of Octopus.
-1. Enable maintenance mode.
-1. Stop all the nodes.
-1. Back up the database and Octopus folders.
-1. Upgrade 1 node.
-1. Upgrade remaining nodes.
-1. Start all stopped nodes.
-1. Test upgraded instance.
-1. Disable maintenance mode.
+1. Download the latest version of Octopus
+1. Enable maintenance mode
+1. Stop all the nodes
+1. Back up the database and Octopus folders
+1. Upgrade 1 node
+1. Upgrade remaining nodes
+1. Start all stopped nodes
+1. Test upgraded instance
+1. Disable maintenance mode
 
-With high availability, the Octopus data folders are also likely stored on a network drive rather than on a node. You’ll need to know this location to back up your files before the upgrade. Remember, the folders you should back up are:
+With high availability, the Octopus data folders are also likely stored on a network drive rather than on a node. You need to know this location to back up your files before the upgrade. Remember, the folders you should back up are:
 
 -	Artifacts
 -	Packages
@@ -258,12 +259,12 @@ Thankfully, the upgrade process doesn’t take very long regardless of the Octop
 
 For this example upgrade, you should:
 
-- double check you’ve [backed up everything we already outlined](#What-to-back-up-and-how)
-- set up a project to test your deployments after each upgrade.
-- download the following Octopus versions from our website:
-   - [the version you're already using](#Download-the-same-version-of-Octopus-you-already-use)
+- Double check you’ve [backed up everything we already outlined](#What-to-back-up-and-how)
+- Set up a project to test your deployments after each upgrade.
+- Download the following Octopus versions from our website:
+   - [The version you're already using](#Download-the-same-version-of-Octopus-you-already-use)
    - [Octopus 3.17](https://octopus.com/downloads/3.17.14)
-   - [our latest version](https://octopus.com/downloads).
+   - [Our latest version](https://octopus.com/downloads)
 
 ### Step 1: Enable maintenance mode
 
@@ -273,18 +274,18 @@ To set maintenance mode, click **Configuration** in the top menu and select **Ma
 
 ### Step 2: Install Octopus 3.17
 
-1. Close Octopus Manager and the Octopus Web Portal.
+1. Close Octopus Manager and the Octopus web portal.
 1. Run the installer for Octopus 3.17 and click **Finish** once complete.
 1. Octopus will auto-update your config and SQL database, then open Octopus Manager.
-1. Open the Octopus Web Portal and check the version is now 3.17 by clicking the question mark in the top right. The version is at the top of the menu.
+1. Open the Octopus web portal and check the version is now 3.17 by clicking the question mark in the top right. The version is at the top of the menu.
 1. Run a test deployment to check everything still works.
 
 ### Step 3: Install the latest version of Octopus
 
-1. Close both Octopus Manager and the Octopus Web Portal.
+1. Close both Octopus Manager and the Octopus web portal.
 1. Run the installer for Octopus’s latest version and click **Finish** once complete.
 1. Octopus will auto-update your config and SQL database, then open Octopus.
-1. Open the Octopus Web Portal and check the version is now the most recent by clicking your username in the top right. The version is at the top of the menu.
+1. Open the Octopus web portal and check the version is now the most recent by clicking your username in the top right. The version is at the top of the menu.
 1. Run a test deployment to check everything still works.
 
 ### Step 4: Take Octopus out of maintenance mode
@@ -312,13 +313,13 @@ Use your database management tool to restore the database to its original state 
 1. Expand the **Databases** folder on your database server.
 1. Right-click the database, select **Tasks**, **Restore**, and select **Database**.
 1. Use the wizard to select the correct backup or file. In my case, it defaulted to my last backup. Click **OK** when ready.
-1. Click **OK** on the ‘Database restored successfully’ popup to finish.
+1. Click **OK** on the **Database restored successfully** popup to finish.
 
 ![The Restore Database screen in SQL Server Management Studio](restore.png)
 
 ### Step 3: Restore Octopus folders
 
-If rolling back on the original server, you should copy the upgraded Octopus folders to a new location before restoring the originals. You can delete them once you know the rollback is a success. 
+If rolling back on the original server, we recommend you copy the upgraded Octopus folders to a new location before restoring the originals. You can delete them once you know the rollback is a success. 
 
 To restore the original versions:
 
@@ -326,7 +327,7 @@ To restore the original versions:
    -	C:\Octopus\Artifacts
    -	C:\Octopus\Packages
    -	C:\Octopus\Tasklogs
-1. Copy the old versions of your files back into the same locations.
+1. Copy the old versions of your files back into the same locations
 
 If restoring to a clean server, you only need to copy the folders to C:\Octopus\.
 
@@ -341,12 +342,14 @@ You can now reinstall your original version of Octopus.
 
 ## What's next?
 
-Once you've upgraded your Octopus instance, there are options to save yourself some work for future upgrades.
+After you've upgraded your Octopus instance, there are options to save yourself some work for future upgrades.
 
 The first is to [automate Octopus upgrade](https://octopus.com/docs/administration/upgrading/guide/automate-upgrades). This allows Octopus to deploy new versions to itself, performing all essential steps and reducing downtime.
 
-If an on-premises instance of Octopus Server is not a business need, you could [migrate to Octopus Cloud](https://octopus.com/docs/octopus-cloud/migrations). Using Octopus Cloud means you'll never have to worry about upgrading, and you'll get access to all our new features as soon as they're available.
+If an on-premises instance of Octopus Server is not a business need, you could [migrate to Octopus Cloud](https://octopus.com/docs/octopus-cloud/migrations). Using Octopus Cloud means you never have to worry about upgrading, and you get access to all our new features as soon as they're available.
 
-## We can help if you still have concerns!
+## We can help if you still have concerns
 
 If you have any concerns or need help plotting your best upgrade approach, we’re always available to help. Our customer success team can provide instance reviews, and support with planning or post-upgrade problems – we’re only [an email](customersuccess@octopus.com) away.
+
+Happy deployments!
