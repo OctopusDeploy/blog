@@ -13,15 +13,16 @@ tags:
  - Step Templates
 ---
 
-I've written several step templates that extend the functionality of Octopus to integrate with secrets managers, the last being [Google Cloud Secret Manager](https://octopus.com/blog/using-google-cloud-secret-manager-with-octopus). One major cloud provider I hadn't covered until now was Amazon Web Services (AWS).
+I've written several step templates that extend the functionality of Octopus to integrate with secrets managers, the last being [Google Cloud Secret Manager](https://octopus.com/blog/using-google-cloud-secret-manager-with-octopus). In this post, I cover another major cloud provider, Amazon Web Services (AWS).
 
-In this post, I walk through a new step template, [AWS Secrets Manager - Retrieve Secrets](https://library.octopus.com/step-templates/5d5bd3ae-09a0-41ac-9a45-42a96ee6206a/actiontemplate-aws-secrets-manager-retrieve-secrets), designed to retrieve secrets from AWS Secrets Manager for use in your deployments or runbooks.
+I walk through a new step template, [AWS Secrets Manager - Retrieve Secrets](https://library.octopus.com/step-templates/5d5bd3ae-09a0-41ac-9a45-42a96ee6206a/actiontemplate-aws-secrets-manager-retrieve-secrets), designed to retrieve secrets from AWS Secrets Manager for use in your deployments or runbooks.
 
 :::hint
 You can also read about:
 
 - [Using Azure Key Vault with Octopus](https://octopus.com/blog/using-azure-key-vault-with-octopus)
 - [Using HashiCorp Vault with Octopus](https://octopus.com/blog/using-hashicorp-vault-with-octopus-deploy)
+- [Using Google Cloud Secret Manager with Octopus](https://octopus.com/blog/using-google-cloud-secret-manager-with-octopus)
 :::
 
 ## Getting started
@@ -50,7 +51,7 @@ The [AWS Secrets Manager - Retrieve Secrets](https://library.octopus.com/step-te
 
 - Retrieves one or more secrets from AWS Secrets Manager 
 - Extracts one or more key/value pairs from each of those secrets
-- Creates sensitive output variables for each key/value pair retrieved.
+- Creates sensitive output variables for each key/value pair retrieved
 
 Like most cloud providers, AWS Secrets Manager supports [versioned secrets](https://docs.aws.amazon.com/secretsmanager/latest/userguide/getting-started.html#term_version) with the use of a version identifier and one or more Staging labels. This is useful as it enables regular rotation for your secrets.
 
@@ -121,7 +122,7 @@ Here are some of the ways you can retrieve a secret and its key/value pairs:
 
 2. `OctoSamples-usercredentials | Username Password | octocreds`
    
-   This retrieve the secret and extracts the values from the key/values named `Username` and `Password` and saves them to two sensitive output variables named `octocreds.Username` and `octocreds.Password`.
+   This retrieves the secret and extracts the values from the key/values named `Username` and `Password` and saves them to two sensitive output variables named `octocreds.Username` and `octocreds.Password`.
 
 3. `OctoSamples-usercredentials | * | octocreds`
    
