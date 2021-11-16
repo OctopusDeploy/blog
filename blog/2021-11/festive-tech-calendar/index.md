@@ -28,7 +28,7 @@ The Festive Tech Calendar is a free, month-long, community-run tech event. Peopl
 
 Our guidelines are loose:
 
-- We have no preference on how you configure your deployment or what the web app is
+- We don't mind how you configure your deployment or what the web app is
 - It doesn’t matter how complex or straightforward your app and process are
 - You can build a new web app or use one of the Octopus samples: 
    - [OctoPetShop](https://github.com/OctopusSamples/OctoPetShop)
@@ -40,22 +40,22 @@ Primarily, we just want you to have fun and learn something!
 ### How to enter
 
 - Use an existing Azure account or sign up for an [Azure free account](https://azure.microsoft.com/free) 
-   - If you're signing up for an Azure free account you automatically receive $200 in Azure credits for 30 days and a limited quantity of additional free services for 12 months
+   - If you're signing up for an Azure free account, you automatically receive $200 in Azure credits for 30 days and a limited quantity of additional free services for 12 months
 - Use an existing Octopus Deploy environment or sign up for an [Octopus Cloud free trial](https://octopus.com/start/cloud)
-- Deploy an Azure Web App using Octopus Deploy 
+- Deploy an Azure web app using Octopus Deploy 
 - After completing the hackathon, fill out all required fields in our [hackathon submission form](https://forms.gle/PeGkA92uhnGsHy268) before 5 pm GMT, Wednesday, 15 December 2021.
 
 ### Winners
 
 We'll randomly select three winners from the submissions. 
 
-Our winners will receive one of three swag bundles: 
+They'll receive one of three swag bundles: 
 
 **insert image here**
 
 We'll announce the winners on or around 2 pm GMT, Monday, 20 December 2021.
 
-### Spreading the community spirit
+### Spreading community spirit
 
 Feel free to write a blog post, create a video, or tweet about your hackathon implementation, tagging [@OctopusDeploy](https://www.twitter.com/OctopusDeploy); we’d love to hear from you.  
 
@@ -68,7 +68,7 @@ These optional activities don't get you extra credit but will spread some commun
 - We'll only consider one entry per person. 
 - The hackathon is not open to employees, representatives, or agents of Octopus Deploy, including all members of their immediate family or household.
 - The hackathon is not open to any other individual involved with the design, production, promotion, execution, or distribution of the hackathon, including all members of their immediate family or household.
-- Hackathon submission period:   8 am GMT, 1 December 2021 – 5 pm GMT, 15 December 2021. 
+- Hackathon submission period: 8 am GMT, 1 December 2021 – 5 pm GMT, 15 December 2021. 
 - Winners announced: on or around 2 pm GMT, Monday, 20 December 2021.
 
 ## Getting started with Octopus Deploy
