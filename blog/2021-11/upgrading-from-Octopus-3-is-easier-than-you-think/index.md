@@ -1,5 +1,5 @@
 ---
-title: Upgrading from Octopus 3.X is easier than you think
+title: "Upgrading from Octopus 3.X is easier than you think"
 description: Why and how to upgrade from Octopus 3.X.
 author: andrew.corrigan@octopus.com
 visibility: public
