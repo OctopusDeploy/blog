@@ -200,7 +200,7 @@ According to Gene Kim, the first delivery bottleneck that most folks hit in thei
 
 It’s my hope, that the sorts of technical practices outlined in this post will allow you, dear reader, to move as much development and testing off your big, shared development/test environments onto dedicated environments where changes can be tested in isolation and merged as soon as they are ready for deployment.
 
-This improved testing capability will come in handy as we move on to the next posts about near-zero downtime deployment and the strangler pattern for breaking up monolithic systems into more loosely coupled architectures. It's a lot easier to commit to complicated and risky refactors if you can test and rehearse the changes in safe, disposable dev and test and environments.
+This improved testing capability will come in handy as we move on to the next posts about near-zero downtime deployment and the strangler pattern for breaking up monolithic systems into more loosely coupled architectures. It's a lot easier to commit to complicated and risky refactors if you can test and rehearse the changes in safe, disposable dev and test environments.
 
 ## Next time
 
