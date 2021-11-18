@@ -15,7 +15,7 @@ tags:
 
 I've written several step templates that extend the functionality of Octopus to integrate with secrets managers, the last being [Google Cloud Secret Manager](https://octopus.com/blog/using-google-cloud-secret-manager-with-octopus). In this post, I cover another major cloud provider, Amazon Web Services (AWS).
 
-I walk through a new step template, [AWS Secrets Manager - Retrieve Secrets](https://library.octopus.com/step-templates/5d5bd3ae-09a0-41ac-9a45-42a96ee6206a/actiontemplate-aws-secrets-manager-retrieve-secrets), designed to retrieve secrets from AWS Secrets Manager for use in your deployments or runbooks.
+I walk through the [AWS Secrets Manager - Retrieve Secrets](https://library.octopus.com/step-templates/5d5bd3ae-09a0-41ac-9a45-42a96ee6206a/actiontemplate-aws-secrets-manager-retrieve-secrets) step template, designed to retrieve secrets from AWS Secrets Manager for use in your deployments or runbooks.
 
 :::hint
 You can also read about:
@@ -109,7 +109,7 @@ The step template uses the following parameters:
 
 ### Secret retrieval examples {#secret-retrieval-examples}
 
-Given a secret stored in AWS Secrets Manager named **OctoSamples-usercredentials** with two key/value pairs:
+Let's use the example of a secret stored in AWS Secrets Manager named **OctoSamples-usercredentials** with two key/value pairs:
 
 - Username
 - Password
