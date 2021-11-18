@@ -121,6 +121,9 @@ Click **SAVE
 
 Make a change to the code on GitHub and the build will trigger in Jenkins and Octopus
 
+![Jenkins Octopus Icon](jenkins-octo-icon.png "Jenkins Octopus Icon")
+
+You can navigate directly to the Octopus Deploy instance and deployment through the Octopus Icon.
 
 
 This command will point the CLI to your cluster:
