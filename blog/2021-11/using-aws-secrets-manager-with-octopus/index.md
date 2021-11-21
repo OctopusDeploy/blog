@@ -11,6 +11,7 @@ tags:
  - DevOps
  - Security
  - Step Templates
+ - AWS
 ---
 
 I've written several step templates that extend the functionality of Octopus to integrate with secrets managers, the last being [Google Cloud Secret Manager](https://octopus.com/blog/using-google-cloud-secret-manager-with-octopus). In this post, I cover another major cloud provider, Amazon Web Services (AWS).
