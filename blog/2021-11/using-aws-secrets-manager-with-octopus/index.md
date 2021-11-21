@@ -32,9 +32,9 @@ This post assumes some familiarity with [custom step templates](https://octopus.
 
 In addition, this post doesn't go into great detail about AWS Secrets Manager concepts or how to set up Secrets Manager. You can learn more by reading the [User Guide](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html) from Amazon.
 
-The step template in this post retrieves secrets from [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) using **AWS Command Line Interface** (AWS CLI), the AWS command-line tool. The **AWS CLI** tool must be available on the deployment target or Worker before the step can retrieve secrets successfully. The step template has been tested on both Windows and Linux (with PowerShell Core installed).
+The step template in this post retrieves secrets from [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) using **AWS Command Line Interface** (AWS CLI), which is the AWS command-line tool. The **AWS CLI** tool must be available on the deployment target or Worker before the step can retrieve secrets successfully. The step template has been tested on both Windows and Linux (with PowerShell Core installed).
 
-## Authentication {#authentication}
+## Authenticating with AWS {#authenticating-with-aws}
 
 Before you can retrieve secrets from AWS Secrets Manager, you must authenticate with AWS. In their [authentication and access control guide](https://docs.aws.amazon.com/secretsmanager/latest/userguide/auth-and-access.html), Amazon describes how they use [IAM permissions](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) to control access to secrets:
 
@@ -54,7 +54,7 @@ The [AWS Secrets Manager - Retrieve Secrets](https://library.octopus.com/step-te
 - Extracts one or more key/value pairs from each of those secrets
 - Creates sensitive output variables for each key/value pair retrieved
 
-Like most cloud providers, AWS Secrets Manager supports [versioned secrets](https://docs.aws.amazon.com/secretsmanager/latest/userguide/getting-started.html#term_version) with the use of a version identifier and one or more Staging labels. This is useful as it enables regular rotation for your secrets.
+Like most cloud providers, AWS Secrets Manager supports [versioned secrets](https://docs.aws.amazon.com/secretsmanager/latest/userguide/getting-started.html#term_version) with the use of a version identifier and one or more staging labels. This is useful as it enables regular rotation for your secrets.
 
 :::hint
 Staging labels keep track of different versions during the rotation process. An AWS secret always has a version with the staging label `AWSCURRENT`, which is the current secret value.
