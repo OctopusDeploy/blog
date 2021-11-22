@@ -16,7 +16,7 @@ Octopus Deploy has supported the Azure Command Line Interface (CLI) as part of i
 
 Using the Azure tools bundled with Octopus Deploy is not recommended. Octopus bundles versions of the Azure Resource Manager Powershell modules (AzureRM) and Azure CLI. These were convenience mechanisms for users wanting to run scripts against Azure targets.
 
-Instead, we recommend maintaining your worker container with the versioning you need to run your deployments. This way, the tooling provided matches the requirements specified by the deployment.
+The Azure tools bundled with Octopus Deploy have been provided as a convenience for users who need to run scripts against Azure targets. Octopus bundles versions of the Azure Resource Manager Powershell modules (AzureRM) and Azure CLI. However, since Octopus 2021.1, we recommend maintaining your worker container with the versioning you need to run your deployments. This way, the tooling provided matches the requirements specified by the deployment.
 
 This blog post will run through an example of creating a custom docker image with the latest Azure CLI version, hosting it on Docker Hub, and using it in an Octopus Deploy deployment.
 
