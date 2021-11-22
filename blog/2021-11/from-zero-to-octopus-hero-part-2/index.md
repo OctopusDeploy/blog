@@ -45,7 +45,7 @@ The power that you have for deployment within Octopus Deploy is impressive.  You
  
 These step templates mean, you don’t have to code. You don’t have to know the exact scripting syntax for doing tasks like importing a certificate into your Windows Server. You select the step template and then answer some basic questions and Octopus Deploy takes care of everything else.
 
-**insert picture of deployment process with steps**
+![An example of an Octopus Deploy Continuous Deployment pipeline](octopus-deployment-process.png)
 
 As someone who isn’t a coder, this has made getting started with Octopus Deploy and having a working CD pipeline a fast process.  Don’t get me wrong, I’ve had my fair share of failures setting the pipeline up.  Mostly that was due to my misunderstanding of how to configure the steps. 
 
@@ -73,7 +73,7 @@ Taking the basic pipeline that I had built earlier and adapting it to a rolling 
 
 It takes something that comes across as complex and simplifies it right down. 
 
-**insert picture of rolling deployment**
+![An example of an Octopus Deploy Rolling Deployment](octopus-rolling-deployment.png)
  
 ## Lessons Learned
 The ease with which I’ve created and had deployments with Octopus Deploy working is a testament to the work the team has put into the product, and not my skills!  I’ve heard Derek Campbell speak at conferences and sung the virtues of how easy Octopus Deploy is to set up and was always skeptical (I’m Scottish after all), but I am now well and part of that camp. 
