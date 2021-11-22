@@ -41,7 +41,7 @@ Octopus Deploy can work in conjunction with continuous integration servers (or b
  
 And it’s been eye-opening over the last few weeks. I've been working on getting an ASP.NET Application built using the CI pipeline capabilities in Azure DevOps. Then passing it to Octopus Deploy to deploy to my cloud platform.
  
-The power that you have for deployment within Octopus Deploy is impressive.  You configure your CD pipeline using something called Step Templates. The step templates you have access to range from being able to run a script to steps such as importing a certificate into your Windows Server.
+The power that you have for deployment within Octopus Deploy is impressive.  You configure your CD pipeline using something called [Step Templates](https://octopus.com/docs/projects/built-in-step-templates). The step templates you have access to range from being able to run a script to steps such as importing a certificate into your Windows Server.
  
 These step templates mean, you don’t have to code. You don’t have to know the exact scripting syntax for doing tasks like importing a certificate into your Windows Server. You select the step template and then answer some basic questions and Octopus Deploy takes care of everything else.
 
@@ -49,7 +49,7 @@ These step templates mean, you don’t have to code. You don’t have to know th
 
 As someone who isn’t a coder, this has made getting started with Octopus Deploy and having a working CD pipeline a fast process.  Don’t get me wrong, I’ve had my fair share of failures setting the pipeline up.  Mostly that was due to my misunderstanding of how to configure the steps. 
 
-Bringing in the power of Octopus Deploy’s Runbooks’ into my deployment pipeline has been game-changing. 
+Bringing in the power of Octopus Deploy’s [Runbooks’](https://octopus.com/docs/runbooks) into my deployment pipeline has been game-changing. 
 
 Using the runbook process I’ve been able to build up a process that deploys all my infrastructure components, resources groups within Azure, Web Apps, and SQL Databases.  And actually have that as part of my CD pipeline. 
 
@@ -76,7 +76,7 @@ It takes something that comes across as complex and simplifies it right down.
 ![An example of an Octopus Deploy Rolling Deployment](octopus-rolling-deployment.png)
  
 ## Lessons Learned
-The ease with which I’ve created and had deployments with Octopus Deploy working is a testament to the work the team has put into the product, and not my skills!  I’ve heard Derek Campbell speak at conferences and sung the virtues of how easy Octopus Deploy is to set up and was always skeptical (I’m Scottish after all), but I am now well and part of that camp. 
+The ease with which I’ve created and had deployments with Octopus Deploy working is a testament to the work the team has put into the product, and not my skills!  I’ve heard [Derek Campbell](https://twitter.com/DevOpsDerek) speak at conferences and sung the virtues of how easy Octopus Deploy is to set up and was always skeptical (I’m Scottish after all), but I am now well and part of that camp. 
  
 The one I would say is if your logic is flawed then no matter how easy it is to put in place with Octopus Deploy, your deployments aren’t going to be successful.  So take the time to sit down and plan how your deployment process.  Think about the steps that need to happen before each other. What variables do you need?  When do you need to put in manual checks and what can be fully automated?  That planning will set you up for success when you configure the steps within Octopus Deploy. 
  
@@ -85,7 +85,7 @@ I’ll be honest and say I worried that my lack of development experience would 
 So never be frightened to test your knowledge and learn something new, you might surprise yourself.  
  
 ## Next Steps
-I want to start looking at more complex deployments using Octopus Deploy, especially Tenants, and how they solve problems with different features branches, customers, or even geographic data centers. 
+I want to start looking at more complex deployments using Octopus Deploy, especially [Tenants](https://octopus.com/docs/tenants), and how they solve problems with different features branches, customers, or even geographic data centers. 
  
 This learning journey is really exciting and things are starting to click and I’m excited about expanding on that knowledge and testing it!
 
