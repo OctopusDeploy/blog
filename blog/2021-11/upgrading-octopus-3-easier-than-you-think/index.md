@@ -119,7 +119,7 @@ Copy and store the following folders and all their data:
 You need your existing Octopus version to:
 
 - [Roll back if there's a problem](#rolling-back-if-something-goes-wrong)
-- Install on a clone or test environment if using one of our recommended [strategies to avoid risk](#Strategies-to-avoid-risk)
+- Install on a clone or test environment if using one of our recommended [strategies to avoid risk](#strategies-to-avoid-risk)
 
 To check your version, open the Octopus Web Portal and click the question mark in Octopus’s top right. The version number is at the top of the dropdown.
 
