@@ -36,10 +36,10 @@ Here’s a taste of what we added between Octopus 3.1 and 2021.2:
 - Improved UI - new process editor, dark mode and a global search
 - Improvements to config files, including built-in support for JSON, XML, YAML, and property files
 - [Spaces](https://octopus.com/docs/administration/spaces) - a way for different teams to only see and use what they need
-- [Runbooks](https://octopus.com/docs/administration/spaces) - allows you to automate routine maintenance and emergency operations tasks
+- [Runbooks](https://octopus.com/docs/runbooks) - allows you to automate routine maintenance and emergency operations tasks
 - [Tenants](https://octopus.com/docs/tenants) - create customer-specific pipelines for Software as a Service (SaaS) or multi-region deployments
 - [Project exports and imports](https://octopus.com/docs/projects/export-import) - export one or more projects to import into other spaces or instances
-- [Configuration as Code](https://octopus.com/docs/projects/version-control) - version control for Octopus projects (this is currently an early access preview)
+- [Configuration as Code](https://octopus.com/docs/projects/version-control) - version control for Octopus projects (this is an early access preview)
 
 We also added new platform integrations, including support for:
 
@@ -91,7 +91,7 @@ You should always back up your database before upgrading Octopus. Most database 
 For example, to back up a database in Microsoft’s SQL Server Management Studio (SSMS):
    
 1. Expand the **Databases** folder on your database server
-1. Right-click the database, select **Tasks** and click **Back Up…**
+1. Right-click the database, select **Tasks**, and click **Back Up…**
 1. Use the **Destination** section to set where you want to store the backup and click **OK**
    
 ![The backup and restore options in SQL Server Management Studio](database1.png)
@@ -118,16 +118,16 @@ Copy and store the following folders and all their data:
 
 You need your existing Octopus version to:
 
-- [Roll back if there's a problem](#Roll-back-if-something-goes-wrong)
+- [Roll back if there's a problem](#Rolling-back-if-something-goes-wrong)
 - Install on a clone or test environment if using one of our recommended [strategies to avoid risk](#Strategies-to-avoid-risk)
 
-To check your version, open the Octopus web portal and click the question mark in Octopus’s top right. The version number is at the top of the dropdown.
+To check your version, open the Octopus Web Portal and click the question mark in Octopus’s top right. The version number is at the top of the dropdown.
 
-Then head to our [download archives](https://octopus.com/downloads/previous) to redownload that version.
+Then head to our [download archives](https://octopus.com/downloads/previous) to re-download that version.
 
 ![Where to check the Octopus version in old and new versions](versioncheck1.png)
 
-## Other things to think about before Upgrading
+## Other things to think about before upgrading
 
 ### Octopus licensing
 
@@ -139,14 +139,14 @@ Though it could be tempting to use downtime from an Octopus upgrade for other ta
 
 Doing so will:
 
-- Ensure the upgrade runs as smooth as possible
+- Ensure the upgrade runs as smoothly as possible
 - Prevent other tasks complicating the upgrade
 - Reduce impact on your Octopus users
 - Make the other tasks a little easier if you’re already on our latest version
 
 ## Strategies to avoid risk
 
-There are 2 recommended ways to avoid risk when upgrading Octopus. Both are simple, but you should consider which is best for your business before you start.
+There are 2 recommended ways to avoid risk when upgrading Octopus. Both are simple but you should consider which is best for your business before you start.
 
 Let’s break down the options.
 
@@ -169,7 +169,7 @@ The main steps for this method are:
 1. Copy all files from backed-up folders from the main instance
 1. Optional: Disable all deployment targets
 1. Upgrade the cloned instance
-1. Test cloned instance, then check all API scripts, CI integrations, and deployments work
+1. Test the cloned instance, then check all API scripts, CI integrations, and deployments work
 1. Decide whether to migrate to the new instance or perform new backups and upgrade your main instance
 
 Read our upgrade documentation to see [this method’s steps](https://octopus.com/docs/administration/upgrading/guide/upgrading-from-octopus-3.x-to-modern#recommended-approach-create-a-cloned-instance) in more detail.
@@ -274,25 +274,25 @@ To set maintenance mode, click **Configuration** in the top menu and select **Ma
 
 ### Step 2: Install Octopus 3.17
 
-1. Close Octopus Manager and the Octopus web portal.
+1. Close Octopus Manager and the Octopus Web Portal.
 1. Run the installer for Octopus 3.17 and click **Finish** once complete.
 1. Octopus will auto-update your config and SQL database, then open Octopus Manager.
-1. Open the Octopus web portal and check the version is now 3.17 by clicking the question mark in the top right. The version is at the top of the menu.
+1. Open the Octopus Web Portal and check the version is now 3.17 by clicking the question mark in the top right. The version is at the top of the menu.
 1. Run a test deployment to check everything still works.
 
 ### Step 3: Install the latest version of Octopus
 
-1. Close both Octopus Manager and the Octopus web portal.
+1. Close both Octopus Manager and the Octopus Web Portal.
 1. Run the installer for Octopus’s latest version and click **Finish** once complete.
 1. Octopus will auto-update your config and SQL database, then open Octopus.
-1. Open the Octopus web portal and check the version is now the most recent by clicking your username in the top right. The version is at the top of the menu.
+1. Open the Octopus Web Portal and check the version is now the most recent by clicking your username in the top right. The version is at the top of the menu.
 1. Run a test deployment to check everything still works.
 
 ### Step 4: Take Octopus out of maintenance mode
 
 To remove maintenance mode, click **Configuration** in the top menu and select **Maintenance** from the left. Click **DISABLE MAINTENANCE MODE**.
 
-## Roll back if something goes wrong
+## Rolling back if something goes wrong
 
 While we’re confident in Octopus’s upgrade process from modern versions, we know problems can still happen, particularly with complex setups.
 
@@ -300,9 +300,9 @@ If the unexpected does happen, you can easily roll back to your old version of O
 
 ### Step 1: Uninstall the new Octopus version
 
-1. Close the Octopus Web Portal and Octopus Manager.
-1. Find Octopus Manager in the Windows Start menu or search using the Task Bar, right-click and select **Uninstall**.
-1. Select Octopus from your list of applications and click **Uninstall**.
+1. Close the Octopus Web Portal and Octopus Manager
+1. Find Octopus Manager in the Windows Start menu or search using the Task Bar, right-click and select **Uninstall**
+1. Select Octopus from your list of applications and click **Uninstall**
 
 ![The uninstall option in Windows' Programs and Features screen](uninstall1.png)
 
