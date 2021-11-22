@@ -146,7 +146,7 @@ We'll add links to the other posts in this series as they become available.
 
 ## Register for the second webinar: Database DevOps: Building better systems
 
-Our first webinar, Database DevOps: Imagining better systems, discussed how loosely coupled architectures lead to maintainability, innovation, and safety. Join us for part two and learn how to transition a mature system from one architecture to another. 
+Our first webinar discussed how loosely coupled architectures lead to maintainability, innovation, and safety. Join us for part two and learn how to transition a mature system from one architecture to another. 
 
 We're running 3 sessions of the webinar, from Wed 1 Dec – Thurs 2 Dec, 2021.
 
