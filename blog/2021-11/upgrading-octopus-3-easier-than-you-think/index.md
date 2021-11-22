@@ -1,6 +1,6 @@
 ---
-title: "Upgrading from Octopus 3.X is easier than you think"
-description: Why and how to upgrade from Octopus 3.X.
+title: "Upgrading from Octopus 3.x is easier than you think"
+description: Why and how to upgrade from Octopus 3.x.
 author: andrew.corrigan@octopus.com
 visibility: public
 published: 2021-11-24-1400
@@ -18,22 +18,22 @@ That said, we understand why some prefer to stick with older versions of Octopus
 
 For those in that last category especially, let’s see if we can ease your fears. With planning and the right method for your business, you can have confidence in upgrading from even our oldest 'modern' version.
 
-In this blog I run through:
+In this post I run through:
 
 - Features you’re missing out on by not upgrading
 - What to back up before an upgrade, plus other considerations
 - Ways to avoid risk when planning your upgrade
-- An example in-place upgrade from 3.X to our latest version
+- An example in-place upgrade from 3.x to our latest version
 - How to roll back should something go wrong
 - How we can help if you have concerns or problems
 
 ## Features we’ve introduced since Octopus 3.1
 
-If still on a 3.X version, you're missing out on Octopus’s evolution alongside modern deployment standards, plus a heap of new features.
+If still on a 3.x version, you're missing out on Octopus’s evolution alongside modern deployment standards, plus a heap of new features.
 
 Here’s a taste of what we added between Octopus 3.1 and 2021.2:
 
-- Improved UI - new process editor, dark mode and a global search
+- Improved UI - new process editor, dark mode, and a global search
 - Improvements to config files, including built-in support for JSON, XML, YAML, and property files
 - [Spaces](https://octopus.com/docs/administration/spaces) - a way for different teams to only see and use what they need
 - [Runbooks](https://octopus.com/docs/runbooks) - allows you to automate routine maintenance and emergency operations tasks
@@ -53,7 +53,7 @@ We also added new platform integrations, including support for:
    - [GitHub Actions](https://github.com/marketplace?type=actions&query=Octopus+)
    - [Jira](https://marketplace.atlassian.com/apps/1220376/octopus-deploy-for-jira?hosting=cloud&tab=overview)
 
-## What to back up and how
+## What to back up and how {#what-to-back-up-and-how}
       
 ### Master key
    
@@ -118,7 +118,7 @@ Copy and store the following folders and all their data:
 
 You need your existing Octopus version to:
 
-- [Roll back if there's a problem](#Rolling-back-if-something-goes-wrong)
+- [Roll back if there's a problem](#rolling-back-if-something-goes-wrong)
 - Install on a clone or test environment if using one of our recommended [strategies to avoid risk](#Strategies-to-avoid-risk)
 
 To check your version, open the Octopus Web Portal and click the question mark in Octopus’s top right. The version number is at the top of the dropdown.
@@ -144,7 +144,7 @@ Doing so will:
 - Reduce impact on your Octopus users
 - Make the other tasks a little easier if you’re already on our latest version
 
-## Strategies to avoid risk
+## Strategies to avoid risk {#strategies-to-avoid-risk}
 
 There are 2 recommended ways to avoid risk when upgrading Octopus. Both are simple but you should consider which is best for your business before you start.
 
@@ -223,11 +223,11 @@ Octopus.Migrator.exe partial-export --instance=OctopusServer --project=AcmeWebSt
 In the latest versions of Octopus, we added a feature to easily [export and import projects between spaces and instances](https://octopus.com/blog/exporting-projects).
 :::
 
-### If upgrading a high availability Octopus setup
+### Upgrading a high availability Octopus setup
 
 Upgrading a high availability instance of Octopus isn't that different from a normal upgrade, but there are things to note due to the extra nodes.
 
-You must only upgrade 1 node before upgrading the others. The Octopus installer updates the database so upgrading all nodes at once can cause database problems.
+You must only upgrade one node before upgrading the others. The Octopus installer updates the database so upgrading all nodes at once can cause database problems.
 
 The main steps for a high availability upgrade are:
 
@@ -259,10 +259,10 @@ Thankfully, the upgrade process doesn’t take very long regardless of the Octop
 
 For this example upgrade, you should:
 
-- Double check you’ve [backed up everything we already outlined](#What-to-back-up-and-how)
+- Double check you’ve [backed up everything we already outlined](#what-to-back-up-and-how)
 - Set up a project to test your deployments after each upgrade.
 - Download the following Octopus versions from our website:
-   - [The version you're already using](#Download-the-same-version-of-Octopus-you-already-use)
+   - [The version you're already using](#download-the-same-version-of-Octopus-you-already-use)
    - [Octopus 3.17](https://octopus.com/downloads/3.17.14)
    - [Our latest version](https://octopus.com/downloads)
 
@@ -292,7 +292,7 @@ To set maintenance mode, click **Configuration** in the top menu and select **Ma
 
 To remove maintenance mode, click **Configuration** in the top menu and select **Maintenance** from the left. Click **DISABLE MAINTENANCE MODE**.
 
-## Rolling back if something goes wrong
+## Rolling back if something goes wrong {#rolling-back-if-something-goes-wrong}
 
 While we’re confident in Octopus’s upgrade process from modern versions, we know problems can still happen, particularly with complex setups.
 
@@ -337,7 +337,7 @@ You can now reinstall your original version of Octopus.
 
 1. Run the installer for your original Octopus version and click **Finish** once complete. If rolling back on a clean operating system, the Octopus Setup Wizard will prompt for your license key and master key before the install.
 1. Octopus Manager should open automatically. You may need to manually start the Octopus server - just click **Start** on the left.
-1. Open the Octopus Web Portal. You may get caching-related errors when the Web Portal open the first time after the reinstall. If this happens, refresh the tab and Octopus should load fine.
+1. Open the Octopus Web Portal. You may get caching-related errors when the Web Portal opens the first time after the reinstall. If this happens, refresh the tab and Octopus should load fine.
 1. Run a deployment to check everything still works.
 
 ## What's next?
@@ -348,7 +348,7 @@ The first is to [automate Octopus upgrade](https://octopus.com/docs/administrati
 
 If an on-premises instance of Octopus Server is not a business need, you could [migrate to Octopus Cloud](https://octopus.com/docs/octopus-cloud/migrations). Using Octopus Cloud means you never have to worry about upgrading, and you get access to all our new features as soon as they're available.
 
-## We can help if you still have concerns
+## We can help
 
 If you have any concerns or need help plotting your best upgrade approach, we’re always available to help. Our customer success team can provide instance reviews, and support with planning or post-upgrade problems – we’re only [an email](mailto:customersuccess@octopus.com) away.
 
