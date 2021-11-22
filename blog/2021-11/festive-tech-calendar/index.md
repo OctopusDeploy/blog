@@ -15,7 +15,7 @@ tags:
 ---
 Octopus Deploy is excited to be part of this year’s [Festive Tech Calendar](https://festivetechcalendar.com), running a hackathon competition. 
 
-The aim of the hackathon is to deploy an Azure web app using Octopus Deploy.
+The aim of the hackathon is to deploy an Azure Web App using Octopus Deploy.
 
 ## What is the Festive Tech Calendar?
 
@@ -23,8 +23,8 @@ The Festive Tech Calendar is a free, month-long, community-run tech event. Peopl
 
 ## The Octopus hackathon
 
-**What**: Deploy an Azure web app using Octopus Deploy, then fill out our [hackathon submission form](https://forms.gle/PeGkA92uhnGsHy268) 
-**When**: Complete the exercise between Wednesday, 1 December – Wednesday, 15 December 2021
+**What**: Deploy an Azure Web App using Octopus Deploy, then fill out our [hackathon submission form](https://forms.gle/PeGkA92uhnGsHy268) 
+**When**: Complete the exercise between Wednesday 1 December – Wednesday 15 December, 2021
 **Prize**: One of three Octopus Deploy swag bundles
 
 ### Hackathon guidelines
@@ -33,7 +33,7 @@ Our guidelines are loose:
 
 - We don't mind how you configure your deployment or what the resulting web application is, provided you deploy with Azure using Octopus Deploy 
 - It doesn’t matter how simple or complex your app and process are
-- You can build a new web app or use one of the Octopus samples: 
+- You can build a new web application or use one of the Octopus samples: 
    - [OctoPetShop](https://github.com/OctopusSamples/OctoPetShop)
    - [Random Quotes](https://github.com/OctopusSamples/RandomQuotes)
 - You can use technologies that are new to you, or those you’re familiar with, anything from ARM templates, PowerShell, and Terraform, to GitHub Actions and more.
@@ -45,7 +45,7 @@ Primarily, we just want you to have fun and learn something!
 - Use an existing Azure account or sign up for an [Azure free account](https://azure.microsoft.com/free) 
    - If you're signing up for an Azure free account, you automatically receive $200 in Azure credits for 30 days and a limited quantity of additional free services for 12 months
 - Use an existing Octopus Deploy environment or sign up for an [Octopus Cloud free trial](https://octopus.com/start/cloud)
-- Deploy an Azure web app using Octopus Deploy 
+- Deploy an Azure Web App using Octopus Deploy 
 - After completing the hackathon, fill out all required fields in our [hackathon submission form](https://forms.gle/PeGkA92uhnGsHy268) before 5 pm GMT, Wednesday, 15 December 2021.
 
 ### Winners
