@@ -140,4 +140,3 @@ This command creates a service named 'my-service' that generates a public IP to 
 
 Run this command, and you will see "pending" under the External-IP. Wait one minute, run again, and you should see a public IP in that field. Go to the IP address in the browser to view your web application.
 
-![RandomQuotes](random-quotes.png "RandomQuotes")
