@@ -34,7 +34,7 @@ Life without a build server means time bogged down with manual processes and the
 - Once that deadline passes, no one can commit again until someone has manually created and tested a build.
 - If there are problems with code, the team must address those problems instead of moving forward.
 
-As you can see, in this scenario the team battles time limits and manual interventions that don't need to exist because of automation. A build server will repeatedly do all this for you throughout the day, and without those human-caused delays.
+As you can see, in this scenario the team battles hurdles that don't need to exist because of automation. A build server will repeatedly do all this for you throughout the day, and without those human-caused delays.
 
 But CI doesn’t just mean less time spent on manual tasks or the death of arbitrary deadlines, either. By automatically taking these steps many times a day, you’ll fix problems sooner and your results will become far more predictable. This, ultimately, helps you deploy through your pipeline with more confidence.
 
@@ -55,7 +55,6 @@ That means it’s not only flexible enough to cover your CI needs, but you can a
 Where’s the catch? While public repositories can use GitHub Actions for free, it’s pay-as-you-go for everyone else, billed by the minutes workflows take to run. All users get free monthly minutes, though, and you’re only charged if you exceed the number allowed by your plan.
 
 Like Jenkins, [GitHub also has an actions marketplace](https://github.com/marketplace) brimming with community-created apps and workflows to help with CI and more.
-
 
 ## What's next?
 
