@@ -77,6 +77,10 @@ Click **RUN** to run the runbook in the environment of your choice.
 
 After the runbook has completed successfully, select the **Infrastructure** tab and you will see workers have been added to **Worker Pools**.
 
+:::warning
+When not using the `TargetName` Environment Variable, the Hostname is used.  The Hostname will be defined as the Deployment Name plus a GUID-like set of random characters with the last 5 being unique per replica.  Windows Hostnames are limited to 16 characters, if you're using a Windows K8s cluster, the Worker will register itself with a truncated name.  If the truncation of the name results in a non-unique name, you may not see all replicas in your worker pool
+:::
+
 ![Octopus worker pool](octopus-worker-pool.png)
 
 We can verify functionality by upgrading Calamari on our workers. Choose the **Upgrade Calamari on 3 Workers** option using the ellipsis menu.
