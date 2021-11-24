@@ -68,6 +68,11 @@ Click **ADD CONTAINER** and fill in the following components:
   - **ServerPort**: `10943` (setting this environment variable configures the worker for Polling mode)
   - **Space**: Name of the space to add the worker to (the OctoStache variable of `#{Octopus.Space.Name}` will retrieve the name of the current space)
 
+  :::info
+  Windows K8s clusters limit the Hostname to 16 characters.  If you're using Windows K8s, use the Downstream API feature and add an additional Environment Variable, **TargetName**: metadata.name
+  ![](octopus-container-targetname.png)
+  :::
+
 Anything not listed above uses the form defaults.  
 
 ## Execute the runbook
@@ -76,10 +81,6 @@ Click **RUN** to run the runbook in the environment of your choice.
 ![Successful execution of an Octopus runbook](octopus-runbook-success.png)
 
 After the runbook has completed successfully, select the **Infrastructure** tab and you will see workers have been added to **Worker Pools**.
-
-:::warning
-When not using the `TargetName` Environment Variable, the Hostname is used.  The Hostname will be defined as the Deployment Name plus a GUID-like set of random characters with the last 5 being unique per replica.  Windows Hostnames are limited to 16 characters, if you're using a Windows K8s cluster, the Worker will register itself with a truncated name.  If the truncation of the name results in a non-unique name, you may not see all replicas in your worker pool
-:::
 
 ![Octopus worker pool](octopus-worker-pool.png)
 
