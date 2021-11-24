@@ -3,10 +3,10 @@ title: Automate guided failures with an AWS Lambda and subscriptions
 description: Learn how to automate the response to Guided Failure using an AWS Lambda with an Octopus subscription
 author: shawn.sesna@octopus.com
 visibility: private
-published: 2022-11-08-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+published: 2022-12-20-1400
+metaImage: blogimage-automateguidedfailureswithanawslambdaandsubscriptions-2021.png
+bannerImage: blogimage-automateguidedfailureswithanawslambdaandsubscriptions-2021.png
+bannerImageAlt: Boxes representing deployments between Octopus and AWS on a conveyer belt, with a failed deployment box marked with a cross being removed by a claw
 isFeatured: false
 tags:
   - DevOps
