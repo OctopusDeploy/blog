@@ -38,7 +38,7 @@ As you can see, in this scenario the team battles hurdles that don't need to exi
 
 But CI doesn’t just mean less time spent on manual tasks or the death of arbitrary deadlines, either. By automatically taking these steps many times a day, you’ll fix problems sooner and your results will become far more predictable. This, ultimately, helps you deploy through your pipeline with more confidence.
 
-We’re taking deep dives into 2 CI platforms in the coming weeks, looking at how [Jenkins](https://www.jenkins.io/) or [GitHub Actions](https://github.com/features/actions) could help with your automation processes, plus how they complement Octopus.
+We’re taking deep dives into 2 CI platforms in the coming weeks, looking at how [Jenkins](https://www.jenkins.io/) or [GitHub Actions](https://github.com/features/actions) could help with your processes, plus how they complement Octopus.
 
 ## A little about Jenkins
 
@@ -50,7 +50,7 @@ That means it’s not only flexible enough to cover your CI needs, but you can a
 
 ## A little about GitHub Actions
 
-[GitHub Actions](https://github.com/features/actions) is one of the newer CI platforms. It replaces the need for a separate build server by using repository events to trigger automation workflows on virtual ‘runners’. The good news for those using GitHub as their code repository is that you already have access - GitHub Actions is included in your existing repos.
+[GitHub Actions](https://github.com/features/actions) is one of the newer CI platforms. It removes the need for a separate build server by using repository events to trigger automation workflows on virtual ‘runners’. The good news for those using GitHub as their code repository is that you already have access - GitHub Actions is included in your existing repos.
 
 Where’s the catch? While public repositories can use GitHub Actions for free, it’s pay-as-you-go for everyone else, billed by the minutes workflows take to run. All users get free monthly minutes, though, and you’re only charged if you exceed the number allowed by your plan.
 
@@ -68,4 +68,4 @@ In the meantime, why not check out some of our older blogs on build servers, CI,
 - [Java CI/CD: Octopus, Jenkins, Java, Kubernetes, and the DevOps lifecycle (series)](https://octopus.com/blog/java-ci-cd-co/)
 - [The ten pillars of pragmatic deployments](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments)
 
-Happy deployments! 
+Happy deployments!
