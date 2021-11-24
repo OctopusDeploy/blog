@@ -23,7 +23,7 @@ In this blog we explore those differences, looking at why they might make GitHub
 
 ## Actions is CI already built into GitHub
 
-One of the biggest advantages GitHub Actions has over traditional CI platforms is its delivery. GitHub Actions is ‘CI as a Service’, and already included with every repository and for all customers (more on the pricing shortly). 
+One of the biggest advantages GitHub Actions has over traditional CI platforms is its delivery. GitHub Actions is ‘CI as a Service’, and already included with every repository for all customers (more on the pricing shortly). 
 
 Simply put: if you have an account with GitHub, you can use GitHub Actions.
 
@@ -37,9 +37,9 @@ That said, it’s worth mentioning that other code repository services like GitL
 
 ## You don’t need your own hardware for CI (unless you really want to)
 
-By default, actions use ‘runners’ to complete the workflow’s jobs. Runners are GitHub-hosted virtual machines using Windows, Linux and MacOS. This means you don’t need to maintain your own infrastructure to perform CI. There’s no hardware to house, no operating systems to maintain, no installs, updates, or patches. GitHub takes care of all this for you.
+By default, actions use ‘runners’ to complete a workflow’s jobs. Runners are GitHub-hosted virtual machines using Windows, Linux and MacOS. This means you don’t need to maintain your own infrastructure to perform CI. There’s no hardware to house, no operating systems to maintain, no installs, updates, or patches. GitHub takes care of all this for you.
 
-That said, you can [self-host your own runners](https://docs.github.com/en/actions/hosting-your-own-runners) if you need specific setups for CI and GitHub’s runners aren’t up to the task or you want more control.
+That said, you can [self-host your own runners](https://docs.github.com/en/actions/hosting-your-own-runners) if you need specific setups for CI and GitHub’s runners aren’t up to the task, or you want more control.
 
 ##Licensing and pricing
 
@@ -49,7 +49,7 @@ GitHub Actions, for example, [adopts a pay-as-you-go approach](https://docs.gith
 
 All users get free monthly minutes and storage for jobs, with the numbers scaled alongside your plan. If you exceed your free minutes, you get billed per-minute, weighted against the operating system the runner needs for the job.
 
-Depending on GitHub Actions is entirely free for those with public repos or using self-hosted runners.
+GitHub Actions is entirely free for those with public repos or using self-hosted runners.
 
 ## How GitHub Actions automates with events and workflows
 
