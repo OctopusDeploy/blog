@@ -13,7 +13,7 @@ tags:
  - Community
  - Hackathon
 ---
-Octopus Deploy is excited to be part of this year’s [Festive Tech Calendar](https://festivetechcalendar.com), running a hackathon competition. 
+Octopus Deploy is part of this year’s [Festive Tech Calendar](https://festivetechcalendar.com), running a hackathon competition. 
 
 The aim of the hackathon is to deploy an Azure Web App using Octopus Deploy.
 
