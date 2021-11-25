@@ -4,9 +4,9 @@ description: Get involved with the Octopus Deploy hackathon and you could win on
 author: sarah.lean@octopus.com
 visibility: public
 published: 2021-11-29-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: blogimage-festivetech-2021.png
+bannerImage: blogimage-festivetech-2021.png
+bannerImageAlt: A festive snow globe featuring a person at a computer using the Octopus website.
 isFeatured: false
 tags:
  - DevOps
@@ -52,9 +52,9 @@ Primarily, we just want you to have fun and learn something!
 
 We'll randomly select three winners from the submissions and they'll receive one of our swag bundles: 
 
-**insert image here**
+![1st prize comprising octopus hoodie, tee and hat, 2nd prize comprising octopus hoodie and hat, 3rd prize comprising octopus tee and hat](blogimage-festivetechsupportingimage-2021.png "width=500")
 
-We'll announce the winners on or around 2 pm GMT, Monday, December 20, 2021.
+We'll announce the winners around 2 pm GMT, Monday, December 20, 2021.
 
 ### Spreading community spirit
 
