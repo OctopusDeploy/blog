@@ -89,7 +89,7 @@ Here are some ideas to get you started:
 - Automate production deployment approvals
 - Trigger deployments and runbooks from build servers and other systems
 
-Learn more about the [TypeScript API client](todo) in our documentation. You can download the client [through npm](https://www.npmjs.com/package/@octopusdeploy/api-client).
+Learn more about the [TypeScript API client](https://octopus.com/docs/octopus-rest-api) in our documentation. You can download the client [through npm](https://www.npmjs.com/package/@octopusdeploy/api-client).
 
 ## Early access to Config as Code and Octopus Deploy for Visual Studio Code {#config-as-code-early-access}
 
