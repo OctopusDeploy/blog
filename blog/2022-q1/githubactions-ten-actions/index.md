@@ -37,23 +37,25 @@ Supported frameworks:
 
 ## 2: Build and push docker images
 
-Doing what the title says, the [build and push Docker images action](https://github.com/marketplace/actions/build-and-push-docker-images) lets you use BuildX to (unsurprisingly) build and push Docker images. Using all the features that the Moby BuildKit offers, you can create multi-platform builds, add secrets and way more.
+Doing what the title says, the [build and push Docker images action](https://github.com/marketplace/actions/build-and-push-docker-images) lets you build and push Docker images.
 
-Check out the action’s page for more information, including [advanced use](https://github.com/marketplace/actions/build-and-push-docker-images#advanced-usage) and how to [customize it](https://github.com/marketplace/actions/build-and-push-docker-images#customizing).
+Using [Buildx](https://github.com/docker/buildx) and [Moby BuildKit](https://github.com/moby/buildkit) features, you can create multi-platform builds, test images, customize inputs and outputs, and way more.
+
+Check out the action’s page for the full list of features, including [advanced use](https://github.com/marketplace/actions/build-and-push-docker-images#advanced-usage) and how to [customize it](https://github.com/marketplace/actions/build-and-push-docker-images#customizing).
 
 ## 3: Setup PHP
 
 The [Setup PHP action](https://github.com/marketplace/actions/setup-php-action) allows you to setup PHP extensions and.ini files for application testing on all major operating systems.
 
-It’s also compatible with a heap of tools.
+It’s also compatible with a heap of tools like GitHub’s composer, PHP-config, symfony and more. See the marketplace page for the [full list of compatible tools](https://github.com/marketplace/actions/setup-php-action#wrench-tools-support).
 
 ## 4: GitTools actions
 
 The [GitTools Action](https://github.com/marketplace/actions/gittools) allows you to use both [GitVersion](https://gitversion.net/) and [GitReleaseManager](https://github.com/GitTools/GitReleaseManager) in your pipeline.
 
-GitVersion helps solve common problems with semantic versioning (also known as ‘Semver’), for consistency across your projects. GitVersion helps avoid duplication, saves rebuilding time and way more. Benefiting CI, it creates version numbers that labels builds and makes variables available to the rest of your pipeline.
+GitVersion helps solve common versioning problems with semantic versioning (also known as ‘Semver’), for consistency across your projects. GitVersion helps avoid duplication, saves rebuilding time and way more. Benefiting CI, it creates version numbers that labels builds and makes variables available to the rest of your pipeline.
 
-GitReleaseManager, though, will automatically create, attach, and publish exportable release notes.
+Meanwhile, GitReleaseManager automatically creates, attaches, and publishes exportable release notes.
 
 If you only need the versioning of GitVersion, there is an alternative action with the same name later in this list.
 
