@@ -44,7 +44,7 @@ Primarily, we just want you to have fun and learn something!
 
 - Use an existing Azure account or sign up for an [Azure free account](https://azure.microsoft.com/free) 
    - If you're signing up for an Azure free account, you automatically receive $200 in Azure credits for 30 days and a limited quantity of additional free services for 12 months
-- Use an existing Octopus Deploy environment or sign up for an [Octopus Cloud free trial](https://octopus.com/start/cloud)
+- Use an existing Octopus Deploy instance or sign up for an [Octopus Cloud free trial](https://octopus.com/start/cloud)
 - Deploy an Azure Web App using Octopus Deploy 
 - After completing the hackathon, fill out all required fields in our [hackathon submission form](https://forms.gle/PeGkA92uhnGsHy268) before 5 pm GMT, Wednesday, December 15, 2021.
 
