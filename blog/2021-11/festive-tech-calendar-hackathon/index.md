@@ -1,6 +1,6 @@
 ---
 title: "Festive Tech Calendar - Octopus Deploy hackathon"
-description: Get involved with the Octopus Deploy hackathon competition and you could win one of three Octopus swag bundles.
+description: Get involved with the Octopus Deploy hackathon and you could win one of three Octopus swag bundles.
 author: sarah.lean@octopus.com
 visibility: public
 published: 2021-11-29-1400
