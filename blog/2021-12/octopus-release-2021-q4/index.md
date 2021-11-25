@@ -138,7 +138,7 @@ Learn more about this change in our [SSH target requirements](https://octopus.co
 
 We recommend 11.3.3453 as the minimum version of the Octopus .NET API client for interacting with Octopus Server 2021.3.
 
-Customers who use the Octopus .NET API client to work with teams, roles, and permissions must use version 11.3.3453 of the client to ensure compatibility with Octopus Server 2021.3.7491 and newer.
+Customers who use the Octopus .NET API client to work with teams, roles, and permissions must use version 11.3.3453 of the client (or newer) to ensure compatibility with Octopus Server 2021.3.7491 and newer.
 
 Learn more about this change [in the GitHub issue](https://github.com/OctopusDeploy/Issues/issues/7190).
 
