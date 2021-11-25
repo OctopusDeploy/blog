@@ -15,9 +15,9 @@ tags:
   - Testing
 ---
 
-Although a relative newcomer to the world of continuous integration (CI), GitHub’s adding of ‘Actions’ has seen its already strong community build useful tasks that plug directly into your repository.
+Although a relative newcomer to the world of continuous integration (CI), GitHub’s adding of ‘Actions’ has seen its already strong community build useful tasks that plug right into your repository.
 
-These workflows allow you to run all manner of non-standard tasks to help you test, build and push your work to your deployment tools.
+These workflows allow you to run all kinds of non-standard tasks to help you test, build and push your work to your deployment tools.
 
 In no particular order, here are 10 of our favorites, plus how to install them.
 
