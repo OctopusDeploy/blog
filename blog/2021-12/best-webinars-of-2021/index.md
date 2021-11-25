@@ -16,7 +16,7 @@ tags:
 
 Webinars are a way for us to share and deep dive into a specific topic for our customers and the broader DevOps community. In this post, I'll be looking at how we run our webinars, how we improved them in 2021, and our top recommendations if you're working through the holiday period and looking for some company.
 
-You can find all 55 of our webinars on the YouTube [Webinar playlist](https://www.youtube.com/watch?v=AjQhW5lC4Qs&list=PLAGskdGvlaw2ph_YPvMquJlzgYd7bEDba).
+You can find all 55 of our webinars on the YouTube [Webinar playlist](hhttps://www.youtube.com/playlist?list=PLAGskdGvlaw2ph_YPvMquJlzgYd7bEDba).
 
 ## Top webinars of 2021
 
@@ -24,11 +24,11 @@ In this section, I'll list some of my personal favorites and others that Octopod
 
 ### Technical deep dive into Config as Code
 
-Configuration as Code has been an Octopus concept for a while, allowing you to store your scripts in source control and run them on your deployment targets or Workers. 
+[Configuration as Code](https://octopus.com/blog/config-as-code-what-is-it-how-is-it-beneficial) has been an Octopus concept for a while, allowing you to store your scripts in source control and run them on your deployment targets or Workers. 
 
 In 2021, we've launched Config as Code as an early access preview, giving you native support for Config as Code with Git. In this webinar we start a project from scratch using Config as Code, and talk you through using this new feature.
 
-In this webinar you learn: 
+We cover the following topics: 
 
 - What is Config as Code and how to use it
 - How to set up your first project in Octopus using Config as Code
@@ -36,13 +36,13 @@ In this webinar you learn:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/oZfxlbpSP14" frameborder="0" allowfullscreen></iframe>
 
-### Continuous Delivery with Dave Farley
+### Continuous Delivery with Dave Farley: Using fast feedback to get high quality releases
 
-Continuous Delivery is well established in modern development teams, however, no two teams do it the same way. One of the key benefits of shipping software regularly is the feedback loop that leads to high-quality releases. Most teams are doing this to some extent, but how can you maximize this?
+[Continuous Delivery](https://www.continuous-delivery.co.uk/) is well established in modern development teams, however, no two teams do it the same way. One of the key benefits of shipping software regularly is the feedback loop that leads to high-quality releases. Most teams are doing this to some extent, but how can you maximize this?
 
-Join Bob Walker, the VP of Customer Solutions at Octopus, and Dave Farley, consultant and co-author of Continuous Delivery, for a discussion about how to get the most out of your CI/CD pipelines and optimize for fast feedback that results in high-quality releases.
+In this webinar, Bob Walker and Dave Farley, consultant and co-author of Continuous Delivery, discuss how to get the most out of your CI/CD pipelines and optimize for fast feedback that results in high-quality releases.
 
-What you’ll learn:
+We cover the following topics: 
 
 - Fundamentals of Continuous Delivery
 - Common problems that can impact the feedback cycle
@@ -57,7 +57,7 @@ Very few people enjoy doing manual deployments, especially database deployments.
 
 In this webinar you will learn how to get started with Database DevOps to save time and frustration.  
 
-What you’ll learn:   
+We cover the following topics:   
 
 - What is DevOps and how can it be applied to the database
 - How to get started with Database DevOps 
@@ -67,9 +67,9 @@ What you’ll learn:
 
 ### CI/CD in the cloud with Octopus and TeamCity
 
-We launched Octopus Cloud in 2018, and have iterated on it for the past three years. Our favorite build server, TeamCity (which we use internally at Octopus) now has a cloud product, eliminating the need for local virtual machines on-premises. You can now use both Octopus and TeamCity on a fully-managed cloud offering.
+We launched Octopus Cloud in 2018, and have iterated on it for the past three years. Our favorite build server, [TeamCity](https://www.jetbrains.com/teamcity/) (which we use internally at Octopus) now has a cloud product, eliminating the need for local virtual machines on-premises. You can now use both Octopus and TeamCity on a fully-managed cloud offering.
 
-In this webinar you will learn:
+We cover the following topics: 
 
 - How to use TeamCity Cloud.
 - How to use Octopus Cloud.
@@ -81,9 +81,9 @@ In this webinar you will learn:
 
 Octopus Deploy is designed as an API-first application meaning anything you can do in the Octopus Web Portal, you can do with the REST API.   
 
-Join Lianne and Mark from our Solutions team to learn more about the Octopus REST API and how it can save you time by automating custom or repetitive tasks. 
+In this webinar learn more about the Octopus REST API and how it can save you time by automating custom or repetitive tasks. 
 
-What you’ll learn:  
+We cover the following topics: 
 
 - An overview of the Octopus API and why it’s useful 
 - How to manage access with API keys  
@@ -94,6 +94,6 @@ What you’ll learn:
 
 ## Summary
 
-We've run some world-class webinars in 2021, and I'm excited about what we're going to do in 2022 with some great new features landing as well some really interesting things we are aiming to do in the Community.
+We've run some world-class webinars in 2021, that we're really proud of and I'm excited about what we're going to do in 2022 with some great new people on the team, new features landing as well some really interesting things we are aiming to do in the Community.
 
 Our pipeline for the first quarter of 2021 is already looking full, and if you have an idea for a webinar that you'd like to see or even an improvement we can make on webinars, please email us at <webinars@Octopus.com>.
