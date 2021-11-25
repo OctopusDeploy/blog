@@ -1,7 +1,7 @@
 ---
-title: Title in sentence case
-description: A brief summary of the post, 170 characters max including spaces.
-author: name.surname@octopus.com
+title: 10 of our favourite GitHub Actions
+description: GitHub Actions is a newcomer to continuous integration and provides CI as a Service. Here are 10 of our favorite actions to install from the GitHub Marketplace.
+author: andy.corrigan@octopus.com
 visibility: private
 published: 3020-01-01-1400
 metaImage: 
