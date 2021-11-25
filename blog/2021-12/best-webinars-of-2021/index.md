@@ -16,7 +16,7 @@ tags:
 
 Webinars are a way for us to share and deep dive into a specific topic for our customers and the broader DevOps community. In this post, I'll be looking at top recommendations if you're working through the holiday period and looking for some company.
 
-You can find all 55 of our webinars on the YouTube [Webinar playlist](hhttps://www.youtube.com/playlist?list=PLAGskdGvlaw2ph_YPvMquJlzgYd7bEDba).
+You can find all 55 of our webinars on the YouTube [Webinar playlist](https://www.youtube.com/playlist?list=PLAGskdGvlaw2ph_YPvMquJlzgYd7bEDba).
 
 ## Top webinars of 2021
 
