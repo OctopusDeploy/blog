@@ -1,5 +1,5 @@
 ---
-title: "Festive Tech Calendar - Octopus Deploy hackathon"
+title: "Festive Tech Calendar - Octopus hackathon"
 description: Get involved with the Octopus Deploy hackathon and you could win one of three Octopus swag bundles.
 author: sarah.lean@octopus.com
 visibility: public
