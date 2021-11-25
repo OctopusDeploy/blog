@@ -23,8 +23,10 @@ The [Festive Tech Calendar](https://festivetechcalendar.com) is a free, month-lo
 
 ## The Octopus hackathon
 
-**What**: Deploy an Azure Web App using Octopus Deploy, then fill out our [hackathon submission form](https://forms.gle/PeGkA92uhnGsHy268) 
+**What**: Deploy an Azure Web App using Octopus Deploy, then fill out our [hackathon submission form](https://forms.gle/PeGkA92uhnGsHy268)
+
 **When**: Complete the exercise between Wednesday, December 1 – Wednesday, December 15, 2021
+
 **Prize**: One of three Octopus Deploy swag bundles
 
 ### Hackathon guidelines
@@ -67,8 +69,8 @@ These optional activities don't get you extra credit but will spread some commun
 
 - A purchase or payment isn't necessary and doesn't increase your chances of winning. 
 - We'll only consider one entry per person. 
-- The hackathon is not open to employees, representatives, or agents of Octopus Deploy, including all members of their immediate family or household.
-- The hackathon is not open to any other individual involved with the design, production, promotion, execution, or distribution of the hackathon, including all members of their immediate family or household.
+- The hackathon is not open to employees, representatives, or agents of Octopus Deploy, including all members of their immediate family and household.
+- The hackathon is not open to any other individual involved with the design, production, promotion, execution, or distribution of the hackathon, including all members of their immediate family and household.
 - Hackathon submission period: 8 am GMT, December 1, 2021 – 5 pm GMT, December 15, 2021. 
 - Winners announced on or around 2 pm GMT, Monday, December 20, 2021.
 
