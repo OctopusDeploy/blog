@@ -140,3 +140,15 @@ This command creates a service named 'my-service' that generates a public IP to 
 
 Run this command, and you will see "pending" under the External-IP. Wait one minute, run again, and you should see a public IP in that field. Go to the IP address in the browser to view your web application.
 
+![RandomQuotes](random-quotes.png "RandomQuotes")
+
+
+## The benefits of a dedicated CD tool
+
+Octopus is a dedicated continuous delivery tool. It natively supports release management. In Jenkins, environments are defined through the pipeline file. They are just dividers to the pipeline code. In Octopus, environments are dedicated, seperated spaces where deployments can be deployed to. This makes it easy to stop a deployment at a staging environment before it gets pushed to production. The following dashboard shows how this capability is visualised. Different releases are present in different environemnts, and it is easy to see the stage where releases are at.
+
+Jenkins is a continous integration tool. It can be used to build and push an image to a central repository. Octopus Deploy can interface with several different repositories and manage the deployment process. This seperation of concerns allows both Jenkins and Octopus Deploy to focus on what they are good at, enabling happier deployments.
+
+
+
+![Release Management](release-management.png "Release Management")

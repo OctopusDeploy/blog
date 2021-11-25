@@ -130,6 +130,14 @@ jobs:
 
 ![GitHub Success](github-success.png)
 
+## GitHub Actions as a CD tool
+
+GitHub Actions is able to build, push and deploy a GitHub repository to a Kubernetes cloud platform like EKS. To integrate with cloud platforms and other tools, it relies on community built step templates. In my experience with the tools, these step templates are not standardised. I tried several different templates. Some worked slightly differently to another depending on the variables it was calling.
+
+A tool like Octopus also uses step templates, but they are standardised across the Octopus Deploy application. Gaining familiarity with the Octopus Deploy application translates when using newer step templates as the expereince is designed to be consistent.
+
+I found that using a new step template in GitHub required a layer of learning each time.
+
 
 
 

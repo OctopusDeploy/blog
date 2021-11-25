@@ -186,3 +186,9 @@ This command creates a service named 'my-service' that generates a public IP to 
     kubectl get services
 
 Run this command, and you will see "pending" under the External-IP. Wait one minute, run again, and you should see a public IP in that field. Go to the IP address in the browser to view your web application.
+
+![RandomQuotes](random-quotes.png "RandomQuotes")
+
+## Octopus as a CD tool
+
+When you use Octopus Deploy as a stage in your CI/CD toolchain, you get the benefit of a dedicated continous delivery tool. Octopus Deploy integrates with several cloud repositories, and natively supports release management.  GitHub Actions has several comminity developed step templates, but the expereince with these may vary from template to template. Octopus Deploy provides a standardised experience with integration to repositories or cloud providers through its UI.
