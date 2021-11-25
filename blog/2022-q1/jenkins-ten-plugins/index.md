@@ -19,7 +19,7 @@ As an open-source continuous integration (CI) platform, one of our absolute favo
 
 There are over 1800 user-created plugins in the Index, allowing you to extend Jenkins’ features and change your instance to meet your team’s needs.
 
-So, here’s 10 of our favorite Jenkins plugins, what they can bring to your pipeline and [how to install them](#install).
+So, here’s 10 of our favorite Jenkins plugins, what they can bring to your pipeline and [how to install them](#install-plugins).
 
 ## Before we start
 
@@ -114,7 +114,7 @@ See our documentation for more on [using Jenkins with Octopus](https://octopus.c
 -	[Using Jenkins Pipelines with Octopus](https://octopus.com/blog/using-jenkins-pipelines)
 -	[Deploying to Octopus from Jenkins using Pipelines](https://octopus.com/blog/deploying-to-octopus-from-jenkins)
 
-## How to install Jenkins plugins {#install}
+## How to install Jenkins plugins {#install-plugins}
 
 You can install plugins with either the Jenkins web UI or the [Jenkins CLI (command line interface)](https://www.jenkins.io/doc/book/managing/cli/) using the `install-plugin` command.
 

@@ -19,7 +19,7 @@ Although a relative newcomer to the world of continuous integration (CI), GitHub
 
 These workflows allow you to run all kinds of non-standard tasks to help you test, build and push your work to your deployment tools.
 
-In no particular order, here are 10 of our favorites, plus [how to install them](#install).
+In no particular order, here are 10 of our favorites, plus [how to install them](#install-actions).
 
 ## 1: Test reporter
 
@@ -49,7 +49,7 @@ The [Setup PHP action](https://github.com/marketplace/actions/setup-php-action) 
 
 It’s also compatible with a heap of tools like GitHub’s composer, PHP-config, symfony and more. See the marketplace page for the [full list of compatible tools](https://github.com/marketplace/actions/setup-php-action#wrench-tools-support).
 
-## 4: GitTools actions {#gittools}
+## 4: GitTools actions {#git-tools}
 
 The [GitTools Action](https://github.com/marketplace/actions/gittools) allows you to use both [GitVersion](https://gitversion.net/) and [GitReleaseManager](https://github.com/GitTools/GitReleaseManager) in your pipeline.
 
@@ -57,7 +57,7 @@ GitVersion helps solve common versioning problems with semantic versioning (also
 
 Meanwhile, GitReleaseManager automatically creates, attaches, and publishes exportable release notes.
 
-If you only need the versioning of GitVersion, there is an [alternative action with the same name](#gitversionaction) later in this list.
+If you only need the versioning of GitVersion, there is an [alternative action with the same name](#gitversion-action) later in this list.
 
 ## 5: Action automatic releases
 
@@ -89,9 +89,9 @@ The only thing you should be aware of, however, is that you’ll need to buy a l
 
 The [ReportGenerator action](https://github.com/marketplace/actions/reportgenerator) can extract the most useful parts of coverage reports into easier to read formats. It allows you to read your data in the likes of HTML, XML, plus various text summaries and language-specific formats.
 
-## 9: Git version {#gitversionaction}
+## 9: Git version {#gitversion-action}
 
-While a little like the [GitVersion ***tool***](#gittools) enabled by the GitTools action, this [Git version](https://github.com/marketplace/actions/git-version) is an action itself.
+While a little like the [GitVersion ***tool***](#git-tools) enabled by the GitTools action, this [Git version](https://github.com/marketplace/actions/git-version) is an action itself.
 
 Like the external tool, however, it offers simple Semver versioning to help track your different releases. This is useful if you only want help versioning and don’t need GitReleaseManager.
 
@@ -112,7 +112,7 @@ We’ve created 4 useful plugins for those using Octopus to deploy through their
 
 And, given the nature of GitHub Actions as a service, other users have [contributed some Octopus-related actions too](https://github.com/marketplace?type=&verification=&query=Octopus+). Check those out if you’re after even more integration with Octopus.
 
-## How to install actions {#install}
+## How to install actions {#install-actions}
 
 Installing actions in GitHub is simple:
 
