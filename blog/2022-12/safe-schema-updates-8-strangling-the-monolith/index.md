@@ -30,6 +30,8 @@ There’s no such thing as a free lunch.
 ## The Strangler Pattern
 
 Let’s imagine a typical dependency nightmare.
+
+![Example monolithic architecture](Strangler00.png)
  
 This architecture was the result of many years of accumulated tight deadlines, short-term planning, [technical debt](TECH DEBT BLOG POST), knowledge hoarding and staff turnover. Information sharing is hard at the best of times, but the existing team is looking at this without the benefits of perfect knowledge, reliable docs, or a mature test suite.
 
@@ -38,22 +40,32 @@ This system is valuable. Somewhere within that tangled web is the company’s �
 We need to wrap this monolith in a strangler application. Like the Australian fig tree that inspired this architecture, our strangler application is a parasite that will smother its host, eventually killing it in the process.
 
 We’ll start with a simple proxy. 
+
+![Monolith behind a proxy](Strangler01.png)
  
 At first this proxy does nothing more than capture all inbound calls and redirect them back to the intended destination. Functionally we’ve not made any changes, but we are increasing the load on your network. Given that loosely coupled architectures put much more stress on your network, it’s a really good idea to discover and resolve any network challenges early, before we start doing anything more exciting.
 
 Next, we decide on a slice of functionality we want to spin out into a separate service. Ideally we’ve used domain driven design to inform our choice (see post 4 and post 5 in this series for a recap on “DDD”). Perhaps the functionality we are building broadly (or completely) replaces functionality in one or more of the old components of the monolith. In either case, this is brand new code, with the internal code implementation hidden from other systems.
+
+![Dark lanch of new service](Strangler02.png)
  
 Note, at this point we have “deployed” the service in production, but it has not yet been “released”. (I’m using the definition of “deployment” and “release” from part 7, where deployments are associated with copying files, but releases are about making changes available to end users.) This allows us to test our new code in production, without exposing it to our users, while the production traffic is still handled safely by the old code.
 
 When we’ve tested the new code, we can “release” our new service with a config change in the proxy. If we detect any issues, we can roll our change back instantly by reverting our proxy config.
  
+![Service still coupled at DB layer](Strangler03.png)
+
 Also note that for now, we are still using the original database. Our service will not truly be decoupled until we’ve broken that dependency. We now need to break up the database, using [the expand contract pattern discussed in part 7](LINK).
 
 As a temporary measure we may need to set both the old and new versions of the application to update both the old database and the new database. Alternatively, we might need to create an additional data sync service to ensure that both databases are kept in sync.
- 
+
+![Two databases linked by a data sync service](Strangler04.png)
+
 When we are confident that we will not need to perform a fast rollback using the proxy trick, we can start to carefully clean up after ourselves. If we can easily determine which parts of the monolith are now obsolete, we should try to remove them. 
 
 We only need to keep the data for our newly decoupled service in the old database (and any data sync applications) until we are confident that the new service is healthy and fully uncoupled. For example, we could monitor for reads/writes in the old database. Assuming all is quiet, we could then rename our columns or tables and wait for the phone to ring. If no-one calls for a week or two, it’s probably reasonably safe to backup and drop the old columns as well as any data sync services. 
+
+![Our first fully decoupled service](Strangler05.png)
 
 Now, our new service can be managed independently. It’s easier to work on because developers are free from the constant fear of breaking dependencies and the cognitive overhead associated with the rest of the system. They can run the service wherever they like and plan their deployment schedule independently, free from any bureaucracy associated with the broader monolith.
 
@@ -64,7 +76,9 @@ So far so good, but what if the application I want to extract is buried deep wit
 ## Branch by abstraction
 
 In our first example, we used a proxy to strangle the whole monolith, but for some internal component we could use some other application, module or class etc as an abstraction point to capture all the internal requests. Then, as with our original proxy, we can use our abstraction application it to determine where to divert the traffic to.
- 
+
+![Using an abstraction application to dark launch another service](Strangler06.png)
+
 In this example, even once we’ve cleaned up the old application and database, we still have a challenge. Our databases are still dependent upon each other. Hopefully we can refactor the system such that these dependencies are handled through the communication tier and the data crunching is done by the application itself. This would be hugely advantageous for all the reasons discussed in this series. However, it’s not without trade-offs.
 
 ## Data consistency vs availability
@@ -104,7 +118,9 @@ Do you sell the toy? On the one hand, you’ll lose sales if you don’t process
 For many, the performance and consistency problems will be a painful pill to swallow. Honestly, this architecture may not suit all systems. These can be very nasty problems to work through.
 
 However, before giving up on the idea of loose coupling, consider the benefits. Remember the horrors of Dante’s Database Hell? Remind yourself of the original diagram of our monolith from this post. Imagine how much easier it would be if we only managed to extract half of the functionality of your monolith into something that looked more like this.
- 
+
+![A loosely coupled software architecture](Strangler07.png)
+
 ## Series summary
 
 Thanks for sticking with me!
