@@ -19,9 +19,9 @@ This blog post is part 8 of my safe schema updates series. We'll add links to th
 
 So far in this series we’ve talked at length about the benefits of embracing a more loosely coupled architecture, where sub-systems manage their own data. By hiding the database internals for each sub-system, and forcing all communication to go through some messaging bus or API gateway, we avoid the dependency nightmares discussed in database delivery hell. We also allow sub-systems to be managed and updated independently, reducing governance overhead and simplifying both provisioning and delivery challenges.
 
-In the last post [we discussed patterns for safe, near-zero downtime releases](LINK!!!!), with fast and reliable rollback options. You’ve been armed with the motivation and tooling, but we’ve not discussed any guiding strategy for planning the refactor from tight coupling to loose coupling.
+In the last post [we discussed patterns for safe, near-zero downtime releases](https://octopus.com/blog/safe-schema-updates-1-delivery-hell), with fast and reliable rollback options. You’ve been armed with the motivation and tooling, but we’ve not discussed any guiding strategy for planning the refactor from tight coupling to loose coupling.
 
-This post aims to provide a broad overview about how to manage the whole process. As the title suggests, we will discuss [the strangler pattern](MARTING FOWLER BLOG POST), but we’ll also touch on other patterns including [domain driven design](BOOK LINK), [branching by abstraction](FOWLER BLOG) and [dark launching](Deploy != Release).
+This post aims to provide a broad overview about how to manage the whole process. As the title suggests, we will discuss [the strangler pattern](MARTING FOWLER BLOG POST), but we’ll also touch on other patterns including [domain driven design](https://octopus.com/blog/devops-reading-list#ddd), [branching by abstraction](https://martinfowler.com/bliki/BranchByAbstraction.html) and [dark launching](https://martinfowler.com/bliki/DarkLaunching.html).
 
 Before we go any further, let’s set some expectations: This isn’t easy, and it’s not a silver bullet. This is going to require plenty of time/investment, it’s something you’ll probably pick away at in phases, and there are trade-offs that need to be considered.
 
@@ -33,7 +33,7 @@ Let’s imagine a typical dependency nightmare.
 
 ![Example monolithic architecture](Strangler00.png)
  
-This architecture was the result of many years of accumulated tight deadlines, short-term planning, [technical debt](TECH DEBT BLOG POST), knowledge hoarding and staff turnover. Information sharing is hard at the best of times, but the existing team is looking at this without the benefits of perfect knowledge, reliable docs, or a mature test suite.
+This architecture was the result of many years of accumulated tight deadlines, short-term planning, [technical debt](https://martinfowler.com/bliki/TechnicalDebt.html), knowledge hoarding and staff turnover. Information sharing is hard at the best of times, but the existing team is looking at this without the benefits of perfect knowledge, reliable docs, or a mature test suite.
 
 This system is valuable. Somewhere within that tangled web is the company’s “cash cow” product and a bunch of critical internal systems, but there’s also a long tail of forgotten, half-baked “side-projects”, abandoned business projects and retired functionality. It’s hard to see the wood for the trees.
 
@@ -45,7 +45,7 @@ We’ll start with a simple proxy.
  
 At first this proxy does nothing more than capture all inbound calls and redirect them back to the intended destination. Functionally we’ve not made any changes, but we are increasing the load on your network. Given that loosely coupled architectures put much more stress on your network, it’s a really good idea to discover and resolve any network challenges early, before we start doing anything more exciting.
 
-Next, we decide on a slice of functionality we want to spin out into a separate service. Ideally we’ve used domain driven design to inform our choice (see post 4 and post 5 in this series for a recap on “DDD”). Perhaps the functionality we are building broadly (or completely) replaces functionality in one or more of the old components of the monolith. In either case, this is brand new code, with the internal code implementation hidden from other systems.
+Next, we decide on a slice of functionality we want to spin out into a separate service. Ideally we’ve used domain driven design to inform our choice (see [post 4](https://octopus.com/blog/safe-schema-updates-4-loose-coupling-mitigates-tech-problems) and [post 5](https://octopus.com/blog/safe-schema-updates-5-loose-coupling-mitigates-human-problems) in this series for a recap on “DDD”). Perhaps the functionality we are building broadly (or completely) replaces functionality in one or more of the old components of the monolith. In either case, this is brand new code, with the internal code implementation hidden from other systems.
 
 ![Dark lanch of new service](Strangler02.png)
  
@@ -55,7 +55,7 @@ When we’ve tested the new code, we can “release” our new service with a co
  
 ![Service still coupled at DB layer](Strangler03.png)
 
-Also note that for now, we are still using the original database. Our service will not truly be decoupled until we’ve broken that dependency. We now need to break up the database, using [the expand contract pattern discussed in part 7](LINK).
+Also note that for now, we are still using the original database. Our service will not truly be decoupled until we’ve broken that dependency. We now need to break up the database, using [the expand contract pattern discussed in part 7](https://octopus.com/blog/safe-schema-updates-7-near-zero-downtime-deployments).
 
 As a temporary measure we may need to set both the old and new versions of the application to update both the old database and the new database. Alternatively, we might need to create an additional data sync service to ensure that both databases are kept in sync.
 
@@ -83,7 +83,7 @@ In this example, even once we’ve cleaned up the old application and database, 
 
 ## Data consistency vs availability
 
-By fully decoupling these databases, in many ways our system will become safer and easier to manage. Smaller databases, with more firebreaks, that can be updated independently. We are climbing out of [Dante’s Database Hell](link).
+By fully decoupling these databases, in many ways our system will become safer and easier to manage. Smaller databases, with more firebreaks, that can be updated independently. We are climbing out of [Dante’s Database Hell](https://octopus.com/blog/safe-schema-updates-1-delivery-hell).
 
 However, aside from the development costs associated with the refactor, there is a not insignificant set of drawbacks with this architecture.
 
@@ -97,7 +97,7 @@ We can write our own foreign keys to allow us to perform joins across different 
 
 (And, for some use cases, we should be holding on to it.)
 
-Our existing monolith might be built based on the assumption of referential integrity. (Because why not in the era of RDBMS market dominance?) But it probably would have also been possible to build a more resilient system, rather than one that prioritises robustness. ([See part 2 for more detail on resilience vs robustness](LINK).) 
+Our existing monolith might be built based on the assumption of referential integrity. (Because why not in the era of RDBMS market dominance?) But it probably would have also been possible to build a more resilient system, rather than one that prioritises robustness. ([See part 2 for more detail on resilience vs robustness](https://octopus.com/blog/safe-schema-updates-2-resilience-vs-robustness).) 
 
 If our system was built to handle broken dependencies gracefully, could we accept the occasional broken record, in exchange for broader benefits associated with loose coupling? How could we handle those broken records? Perhaps there are some things we could to find, monitor, fix or kill them?
 
@@ -105,11 +105,11 @@ Before we go too far down that road, let’s take a moment to consider how we mi
 
 ## Partitioning
 
-Let’s imagine an e-commerce system with separate services for the shopping cart, stock inventory and payment gateway. Let’s imagine a customer has added [a cuddly Octopus toy](link) to their cart. The shopping cart service is running and the payment service is running so we can transact the order. However, the stock inventory service is down. We don’t know if we have it in stock.
+Let’s imagine an e-commerce system with separate services for the shopping cart, stock inventory and payment gateway. Let’s imagine a customer has added [a cuddly Octopus toy](https://www.amazon.co.uk/Octopus-Reversible-Plushie-Double-Sided-Expressing/dp/B08XK1WZHK/) to their cart. The shopping cart service is running and the payment service is running so we can transact the order. However, the stock inventory service is down. We don’t know if we have it in stock.
 
 This is a partition. This could not have occurred in a monolith. This is a problem unique to loosely coupled systems that hide their data.
 
-*(Attribution: This example, along with much of the inspiration for this post, comes from a talk by Sam Newman, the author of [Building Microservices](LINK), at GoTo 2019.)*
+*(Attribution: This example, along with much of the inspiration for this post, comes from a talk by Sam Newman, the author of [Building Microservices](https://www.goodreads.com/en/book/show/22512931-building-microservices), at GoTo 2019.)*
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/9I9GdSQ1bbM?start=2401" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -131,7 +131,7 @@ It helped me to break my ideas down into manageable chunks.
 
 Monoliths certainly have their benefits. (Perhaps I should write a book?) Microservices should not be seen as some perfect solution. They are not a golden bullet. As we discussed, they present a very real set of challenges, especially regarding data. The journey from Monolith to Microservices can be long and expensive. If you give up halfway you might be left in some horrible hybrid with all the challenges and few of the benefits.
 
-However, the benefits are also enormous. Thinking back to [Database Delivery Hell, way back in part one](link), the status quo probably isn’t sustainable either. We need to use our own judgement to decide how far we want to go down this path.
+However, the benefits are also enormous. Thinking back to [Database Delivery Hell, way back in part one](https://octopus.com/blog/safe-schema-updates-1-delivery-hell), the status quo probably isn’t sustainable either. We need to use our own judgement to decide how far we want to go down this path.
 
 Regardless, of the architecture we strive toward, the technical practices discussed in this series should help. Self-service provisioning and near-zero downtime deployment patterns bring significant benefits with respect to service resilience, both in tightly coupled and loosely coupled systems. (But like most things, they are especially beneficial and practical in smaller and more loosely coupled systems.) 
 
@@ -144,22 +144,22 @@ If you would like to learn more about the topics in this post, I recommend watch
 If you’d like to go deeper into the concepts discussed during this series, the following books are a great place to start:
 
 - **The business case for making these changes**
-[Accelerate](link)
+[Accelerate](https://octopus.com/blog/devops-reading-list#accelerate)
 
 - **Managing data in the era of resilience over robustness** 
-[Database Reliability Engineering](link)
+[Database Reliability Engineering](https://octopus.com/blog/devops-reading-list#dre)
 
 - **For more information about CI/CD** 
-[Continuous Delivery](link)
+[Continuous Delivery](https://octopus.com/blog/devops-reading-list#cd)
 
 - **Putting Domain-driven design into practice, to enable loose coupling**
-[Domain Driven Design Distilled](link)
+[Domain Driven Design Distilled](https://octopus.com/blog/devops-reading-list#ddd)
 
 - **Beyond expand/contract: database refactoring patterns** 
-[Refactoring Databases](link)
+[Refactoring Databases: Evolutionary Database Design](https://www.goodreads.com/book/show/161302.Refactoring_Databases)
 
 - **For more information about Microservices**
-[Building Microservices: Designing Fine-Grained Systems](link)
+[Building Microservices: Designing Fine-Grained Systems](https://www.goodreads.com/en/book/show/22512931-building-microservices)
 
 !include <safe-schema-updates-posts>
 
@@ -169,4 +169,4 @@ Our first webinar discussed how loosely coupled architectures lead to maintainab
 
 <span><a class="btn btn-success" href="https://octopus.com/events/safe-schema-updates-part-2-building-better-systems">Catch up now</a></span>
 
-Happy deployments!
+Deploy often, and stay safe!
