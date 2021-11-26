@@ -146,3 +146,11 @@ If you’d like to go deeper into the concepts discussed during this series, the
 [Building Microservices: Designing Fine-Grained Systems](link)
 
 !include <safe-schema-updates-posts>
+
+## Check out the webinar series: Database DevOps: Building better systems
+
+Our first webinar discussed how loosely coupled architectures lead to maintainability, innovation, and safety. Join us for part two and learn how to transition a mature system from one architecture to another. 
+
+<span><a class="btn btn-success" href="https://octopus.com/events/safe-schema-updates-part-2-building-better-systems">Catch up now</a></span>
+
+Happy deployments!
