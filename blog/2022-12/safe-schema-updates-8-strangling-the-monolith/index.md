@@ -143,22 +143,22 @@ If you would like to learn more about the topics in this post, I recommend watch
 
 If you’d like to go deeper into the concepts discussed during this series, the following books are a great place to start:
 
-•	**The business case for making these changes**
+- **The business case for making these changes**
 [Accelerate](link)
 
-•	**Managing data in the era of resilience over robustness** 
+- **Managing data in the era of resilience over robustness** 
 [Database Reliability Engineering](link)
 
-•	**For more information about CI/CD** 
+- **For more information about CI/CD** 
 [Continuous Delivery](link)
 
-•	**Putting Domain-driven design into practice, to enable loose coupling**
+- **Putting Domain-driven design into practice, to enable loose coupling**
 [Domain Driven Design Distilled](link)
 
-•	**Beyond expand/contract: database refactoring patterns** 
+- **Beyond expand/contract: database refactoring patterns** 
 [Refactoring Databases](link)
 
-•	**For more information about Microservices**
+- **For more information about Microservices**
 [Building Microservices: Designing Fine-Grained Systems](link)
 
 !include <safe-schema-updates-posts>
