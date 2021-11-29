@@ -6,13 +6,13 @@ visibility: public
 published: 2021-12-06-1400
 metaImage: blogimage-usingtheoctopusapiwithbashandjql.png
 bannerImage: blogimage-usingtheoctopusapiwithbashandjql.png
-bannerImageAlt: Arrow shaped like a sideways horseshoe, with the middle section highlighted containing a square for curl and a square for jq 
+bannerImageAlt: An arrow turning around represents an API with a cut out section of the arrow showing curl and jq inside the API 
 isFeatured: false
 tags:
  - DevOps
 ---
 
-Octopus Deploy is written API-first, meaning anything you can do in the User Interface (UI), you can do with an API call.  When I interact with the API, I typically use PowerShell because it has the built-in ability to convert JSON into PowerShell objects, making it easy to work with JSON. However, not all Octopus customers use PowerShell, and some need *nix-based solutions using Bash.  
+Octopus Deploy is written API-first, meaning anything you can do in the User Interface (UI), you can do with an API call.  When I interact with the API, I use PowerShell because it has the built-in ability to convert JSON into PowerShell objects, making it easy to work with JSON. However, not all Octopus customers use PowerShell, and some need *nix-based solutions using Bash.  
 
 In this post, I demonstrate how to use Bash with the Octopus API.
 
@@ -25,7 +25,7 @@ To combat this problem, the Linux community developed a powerful command-line ut
 Wget and cURL are the two most used methods for making web requests using Bash.  With so many distributions of Linux available, you can't tell which of these utilities is installed.  The examples in this post use the cURL utility.  Like jq, cURL can be installed using a package manager.
 
 ## Working with paginated data
-Many of the APIs in Octopus return data in a paginated format.  For these API calls, you can provide querystring parameters such as `skip` and `take` to manipulate the results of the call (see https://[YourServer]/api for a list of the API methods and a list of querystring parameters for each).  
+Many of the APIs in Octopus return data in a paginated format.  For these API calls, you can provide querystring parameters such as `skip` and `take` to manipulate the results of the call. See https://[YourServer]/api for a list of the API methods and a list of querystring parameters for each.
 
 There are times you want to return all results for a given call, for example when you're retrieving all projects.  For situations like this, I wrote a Bash function that recursively calls the API until all results are returned.
 
