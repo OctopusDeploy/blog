@@ -70,7 +70,7 @@ The new ECS step guides you through the configuration and produces the CloudForm
 
 When you outgrow the guided UI step or need more flexibility, you can expose the underlying YAML and paste it into the [Deploy an AWS CloudFormation Template](https://octopus.com/docs/deployments/aws/cloudformation) step.
 
-Our goal is to help you achieve repeatable, recoverable, and auditable ECS deployments. Learn how these features can save you time and minimize manual configuration by reading our [AWS documentation](https://octopus.com/docs/deployments/aws/index.md).
+Our goal is to help you achieve repeatable, recoverable, and auditable ECS deployments. Learn how these features can save you time and minimize manual configuration by reading our [AWS documentation](https://octopus.com/docs/deployments/aws).
 
 We're developing more features for [milestone two](https://octopus.com/blog/rfc-second-ecs-integration-with-octopus) and expect to release them next year. Watch [our blog](https://octopus.com/blog) for updates.
 
