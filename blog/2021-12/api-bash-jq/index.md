@@ -12,7 +12,7 @@ tags:
  - DevOps
 ---
 
-Octopus Deploy is written API-first, meaning anything you can do in the User Interface (UI), you can do with an API call.  When I interact with the API, I typically use PowerShell because it has the built-in ability to convert JSON into PowerShell objects, making it easy to work with JSON. However, not all Octopus customers use PowerShell and some need *nix based solutions using Bash.  
+Octopus Deploy is written API-first, meaning anything you can do in the User Interface (UI), you can do with an API call.  When I interact with the API, I typically use PowerShell because it has the built-in ability to convert JSON into PowerShell objects, making it easy to work with JSON. However, not all Octopus customers use PowerShell, and some need *nix-based solutions using Bash.  
 
 In this post, I demonstrate how to use Bash with the Octopus API.
 
