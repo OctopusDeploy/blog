@@ -38,7 +38,7 @@ Our guidelines are loose:
 - You can build a new web application or use one of the Octopus samples: 
    - [OctoPetShop](https://github.com/OctopusSamples/OctoPetShop)
    - [Random Quotes](https://github.com/OctopusSamples/RandomQuotes)
-- You can use technologies that are new to you, or those you’re familiar with, anything from ARM templates, PowerShell, and Terraform, to GitHub Actions and more.
+- You can use technologies that are new to you, or those you’re familiar with, anything from ARM templates, PowerShell, and Terraform, to GitHub Actions and more
 
 Primarily, we just want you to have fun and learn something!
 
@@ -48,7 +48,7 @@ Primarily, we just want you to have fun and learn something!
    - If you’re signing up for an Azure free account, you automatically receive $200 in Azure credits for 30 days and a limited quantity of additional free services for 12 months
 - Use an existing Octopus Deploy instance or sign up for an [Octopus Cloud free trial](https://octopus.com/start/cloud)
 - Deploy an Azure Web App using Octopus Deploy 
-- After completing the hackathon, fill out all required fields in our [hackathon submission form](https://forms.gle/PeGkA92uhnGsHy268) before 5 pm GMT, Wednesday, December 15, 2021.
+- After completing the hackathon, fill out all required fields in our [hackathon submission form](https://forms.gle/PeGkA92uhnGsHy268) before 5 pm GMT, Wednesday, December 15, 2021
 
 ### Winners
 
