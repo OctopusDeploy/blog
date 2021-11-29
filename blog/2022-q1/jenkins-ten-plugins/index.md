@@ -15,15 +15,11 @@ tags:
   - Testing
 ---
 
-As an open-source continuous integration (CI) platform, one of our absolute favorite things about Jenkins is the strong community batting for it. Nowhere is this more evident than in the Jenkins Plugins Index. 
+As an open-source continuous integration (CI) platform, one of our absolute favorite things about Jenkins is the strong community batting for it. Nowhere is this more evident than in the Jenkins Plugins Index.
 
 There are over 1800 user-created plugins in the Index, allowing you to extend Jenkins’ features and change your instance to meet your team’s needs.
 
-So, here’s 10 of our favorite Jenkins plugins, what they can bring to your pipeline and [how to install them](#install-plugins).
-
-## Before we start
-
-If you like the sound of any of these plugins, make sure you read through their Index page on the Jenkins website. Some may need prerequisite action or particular setup.
+So, here’s 10 of our favorite Jenkins plugins, what they can bring to your pipeline and [how to install them](#install).
 
 ## 1: Blue Ocean
 
@@ -114,7 +110,7 @@ See our documentation for more on [using Jenkins with Octopus](https://octopus.c
 -	[Using Jenkins Pipelines with Octopus](https://octopus.com/blog/using-jenkins-pipelines)
 -	[Deploying to Octopus from Jenkins using Pipelines](https://octopus.com/blog/deploying-to-octopus-from-jenkins)
 
-## How to install Jenkins plugins {#install-plugins}
+## How to install Jenkins plugins {#install}
 
 You can install plugins with either the Jenkins web UI or the [Jenkins CLI (command line interface)](https://www.jenkins.io/doc/book/managing/cli/) using the `install-plugin` command.
 
@@ -123,12 +119,12 @@ To install Jenkins plugins, you must:
 - configure the Jenkins controller to allow meta-data downloads from an update center (configured during Jenkins setup)
 - be an admin of your Jenkins instance.
 
-Before you install a plugin, read through its documentation in full. Make sure to note any prerequisites, dependencies, or extra setup.
+Before you install a plugin, read through its documentation in full. Jenkins will install all dependency plugins during an install, but make sure to note any other prerequisites or extra steps needed.
 
 See Jenkins’ documentation for more detail on managing and installing plugins, including:
 
--	advanced install techniques
--	disabling and uninstalling plugins.
+-	[advanced install techniques](https://www.jenkins.io/doc/book/managing/plugins/#advanced-installation)
+-	[disabling and uninstalling plugins.](https://www.jenkins.io/doc/book/managing/plugins/#disabling-a-plugin)
 
 ### Jenkins web UI
 
