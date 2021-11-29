@@ -1,6 +1,6 @@
 ---
 title: Using the Octopus API with Bash and jq
-description: Learn how to work with the Octopus API using Bash and jq
+description: Learn how to work with the Octopus API using Bash and jq.
 author: shawn.sesna@octopus.com
 visibility: public 
 published: 2021-12-06-1400
