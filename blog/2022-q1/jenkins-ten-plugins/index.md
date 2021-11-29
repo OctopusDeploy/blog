@@ -25,7 +25,7 @@ So, here’s 10 of our favorite Jenkins plugins, what they can bring to your pip
 
 Jenkins’ own [Blue Ocean plugin](https://plugins.jenkins.io/blueocean/) freshens up the UI with a modern look and feel.
 
-The simpler, visual-focused design makes it easier to create pipelines, read process statuses and spot problems in your pipeline. Plus, it allows users to create their own dashboards, so they only see what they need.
+The simpler, visual-focused design makes it easier to create pipelines, read process statuses and spot pipeline problems. Plus, it allows users to create their own dashboards, so they only see what they need.
 
 ## 2: Simple Theme
 
@@ -54,7 +54,7 @@ See [the plugin’s Jenkins Index page](https://plugins.jenkins.io/github/) for 
 
 The [Kubernetes plugin](https://plugins.jenkins.io/kubernetes/) helps to automate scaling when running Jenkins in a Kubernetes cluster.
 
-This plugin creates a ‘pod’ for each dynamic agent that connects automatically via variables. One container in the cluster acts as the Jenkins agent, allowing you to run whatever jobs or processes you need in the others.
+This plugin creates a ‘pod’ for each dynamic agent that connects automatically via variables. One container in the cluster acts as the Jenkins agent, allowing you to run whatever jobs or processes you need on the others.
 
 ## 6: Dashboard View
 
@@ -71,7 +71,7 @@ The [Maven plugin](https://plugins.jenkins.io/maven-plugin/) extends Jenkins’ 
 
 ## 8: Folders
 
-Another simple plugin that can be incredibly useful. The [Folders plugin](https://plugins.jenkins.io/cloudbees-folder/) helps you sort your instance by letting you group jobs within nestable folders.
+A simple plugin that's so useful, Jenkins recommends it during setup! The [Folders plugin](https://plugins.jenkins.io/cloudbees-folder/) helps you sort your instance by letting you group jobs within nestable folders.
 
 You can give each folder its own dedicated view depending on its purpose, helping to clean up the clutter in the UI.
 
@@ -104,7 +104,7 @@ Once Jenkins has finished compiling, testing, and packaging your code, our plugi
 - automatically trigger deployments in Octopus when a build completes
 - fail a build in Jenkins if the deployment in Octopus fails.
 
-See our documentation for more on [using Jenkins with Octopus](https://octopus.com/docs/packaging-applications/build-servers/jenkins). Why not also check out some of our other blogs:
+See our documentation for more on [using Jenkins with Octopus](https://octopus.com/docs/packaging-applications/build-servers/jenkins). Also, why not also check out some of our other Jenkins-related blogs:
 
 -	[Octopus plugin for Jenkins: Painless Jenkins integration](https://octopus.com/blog/octopus-jenkins-plugin)
 -	[Using Jenkins Pipelines with Octopus](https://octopus.com/blog/using-jenkins-pipelines)
