@@ -107,7 +107,7 @@ Octopus Deploy for Visual Studio Code is a free extension that makes working wit
 
 This quarter, Octopus Deploy became a verified publisher in the Visual Studio Code Extension Marketplace.
 
-Learn more in our post [Octopus Deploy Config as Code: Early Access Preview](https://octopus.com/blog).
+Learn more in our post [Octopus Deploy Config as Code: Early Access Preview](https://octopus.com/blog/config-as-code-eap).
 
 ## Other integration updates
 
