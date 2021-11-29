@@ -72,7 +72,7 @@ Once set to react to the GitHub events of your choosing (such as commits to your
 
 While GitHub Actions has a lot of events to trigger actions from, the [repository dispatch action](https://github.com/marketplace/actions/repository-dispatch) adds another!
 
-This action adds a ‘repository dispatch’ event, from which you can trigger and chain actions to one or more repository.
+This action adds a ‘repository dispatch’ event, from which you can trigger and chain actions from one or more repository.
 
 You must [create a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) for this action to work as GitHub won’t support it by default.
 
@@ -105,10 +105,10 @@ Once installed, just add your scripts to your repository and kick them off with 
 
 We’ve created 4 useful plugins for those using Octopus to deploy through their environments.
 
--	[Install Octopus CLI](https://github.com/marketplace/actions/install-octopus-cli) – lets you install the [Octopus Command Line Interface](https://octopus.com/docs/octopus-rest-api/octopus-cli) on runners (GitHub-hosted or otherwise). You can extend its use with our other 3 actions too, using the Octopus CLI to:
-   -	Push packages
-   -	Create releases
-   -	Start runbooks
+- [Install Octopus CLI](https://github.com/marketplace/actions/install-octopus-cli) – lets you install the [Octopus Command Line Interface](https://octopus.com/docs/octopus-rest-api/octopus-cli) on runners (GitHub-hosted or otherwise). You can extend its use with our other 3 actions too, using the Octopus CLI to:
+   - [Push packages](https://github.com/marketplace/actions/push-package-to-octopus-deploy)
+   - [Create releases](https://github.com/marketplace/actions/create-release-in-octopus-deploy)
+   - [Start runbooks](https://github.com/marketplace/actions/run-runbook-in-octopus-deploy)
 
 And, given the nature of GitHub Actions as a service, other users have [contributed some Octopus-related actions too](https://github.com/marketplace?type=&verification=&query=Octopus+). Check those out if you’re after even more integration with Octopus.
 
@@ -118,7 +118,7 @@ Installing actions in GitHub is simple:
 
 1. Find the action you want on the [GitHub Marketplace](https://github.com/marketplace?type=actions).
 2. Read the marketplace page to check for prerequisites.
-3. Click Use latest version in the top right (or select an older version if you need).
+3. Click **Use latest version** in the top right (or select an older version if you need).
 4. Copy the code from the pop-up, paste it into your repository’s .yml file and save.
 5. Make sure you read the action’s documentation to check for any extra setup and how to use the action.
 
