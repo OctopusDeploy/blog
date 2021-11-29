@@ -4,8 +4,8 @@ description: Octopus Deploy's Configuration as Code solution is now available as
 author: rob.pearson@octopus.com
 visibility: public
 published: 2021-12-01-1400
-bannerImage: blogimage-config-as-code-explanation_2020.png
-metaImage: blogimage-config-as-code-explanation_2020.png
+bannerImage: blogimage-config-as-code-explanation_2021.png
+metaImage: blogimage-config-as-code-explanation_2021.png
 bannerImageAlt: Edit your automated deployment process in the Octopus Web UI or source code repository. 
 isFeatured: false
 tags:
