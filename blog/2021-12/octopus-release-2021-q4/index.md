@@ -7,6 +7,7 @@ published: 2021-12-01-1400
 metaImage: octopus-release-2021-q4-summary-card.png
 bannerImage: release-octopus-2021-q4.png
 bannerImageAlt: A box labeled 2021 Q4 sits on a conveyor belt against a backdrop of party favors, fireworks, and a rocket on a path between the Octopus and AWS logos.
+isFeatured: true
 tags:
 - Product
 - DevOps
@@ -150,7 +151,7 @@ Octopus Cloud users are already running this release. Self-hosted Octopus custom
 
 We encourage you to review the [steps for upgrading Octopus Server](https://octopus.com/docs/administration/upgrading). Please see the [release notes](https://octopus.com/downloads/whatsnew/2021.3) for further information.
 
-If you've never used Octopus before, [sign up](https://octopus.com/start) for a free trial or [email our Sales team](mailto:sales@octopus.com) to see a demo and learn more.
+If you've never used Octopus before, [sign up](https://octopus.com/start) for a free trial or [email our customer success team](mailto:customersuccess@octopus.com) to see a demo and learn more.
 
 ## What's coming in future releases? {#future-releases}
 
