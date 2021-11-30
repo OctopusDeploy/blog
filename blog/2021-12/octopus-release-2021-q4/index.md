@@ -1,9 +1,9 @@
 ---
 title: "Octopus 2021 Q4: Deploy to ECS with our guided UI step"
-description: "Octopus 2021 Q4: Built-in support for Amazon ECS, a new TypeScript API client and more integrations."
+description: "Octopus 2021 Q4: Built-in support for Amazon ECS, a new TypeScript API client, and more integrations."
 author: kathryn.marks@octopus.com
-visibility: private
-published: 9999-12-01-1400
+visibility: public
+published: 2021-12-01-1400
 metaImage: octopus-release-2021-q4-summary-card.png
 bannerImage: release-octopus-2021-q4.png
 bannerImageAlt: A box labeled 2021 Q4 sits on a conveyor belt against a backdrop of party favors, fireworks, and a rocket on a path between the Octopus and AWS logos.
