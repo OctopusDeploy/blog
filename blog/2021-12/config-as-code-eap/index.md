@@ -40,7 +40,7 @@ Config as Code in Octopus is an early access preview so there might be some roug
 
 ## Why Configuration as Code? 
 
-Many modern IT and DevOps systems offer an "as code" implementation. Common examples are infrastructure as code (IaC) solutions like HashiCorp's [Terraform](https://terraform.io) and [Pulumi](https://pulumi.com) through to CI servers like [Jenkins](https://www.jenkins.io/) and [TeamCity](https://www.jetbrains.com/teamcity/), that allow you to specify your build configuration as code. 
+Many modern IT and DevOps systems offer an "as code" implementation. Common examples are Infrastructure as Code (IaC) solutions like HashiCorp's [Terraform](https://terraform.io) and [Pulumi](https://pulumi.com) through to CI servers like [Jenkins](https://www.jenkins.io/) and [TeamCity](https://www.jetbrains.com/teamcity/), that allow you to specify your build configuration as code. 
 
 These solutions store plain text code/configuration details in a source code repository. This allows you to evolve your system configuration and enjoy the benefits of Git, including branching and history.
 
@@ -52,7 +52,7 @@ We used your feedback to guide the build of our Config as Code solution.
 
 When Config as Code is enabled for a project, you can continue to use the Octopus UI as you always have, or you can edit the text files in your favorite editor. You can work wherever you're the most productive.
 
-Our configuration file format is Octopus Configuration Language (OCL), based on [HashiCorp’s HCL](https://github.com/hashicorp/hcl). We wanted our configuration files to be human readable and to support complex documents like deployment and runbook processes. We like HCL and feel it's the right tool for the job, but we've written our own [parser/serializer](https://github.com/OctopusDeploy/Ocl). This means we're not obligated to follow any direction HashiCorp takes HCL, and there's nothing preventing us from making changes. 
+Our configuration file format is Octopus Configuration Language (OCL), based on [HashiCorp's HCL](https://github.com/hashicorp/hcl). We wanted our configuration files to be human readable and to support complex documents like deployment and runbook processes. We like HCL and feel it's the right tool for the job, but we've written our own [parser/serializer](https://github.com/OctopusDeploy/Ocl). This means we're not obligated to follow any direction HashiCorp takes HCL, and there's nothing preventing us from making changes. 
 
 See Michael Richardson's post about [shaping Config as Code](https://octopus.com/blog/shaping-config-as-code) to learn more about the factors that shaped our Config as Code solution.
 
