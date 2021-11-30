@@ -1,7 +1,7 @@
 ---
 title: An introduction to build servers
 description: A brief overview on the benefits of build servers, focusing on Jenkins, GitHub Actions and what you can expect from us in the next few months
-author: andrew.corrigan@octopus.com
+author: lee.carlon@octopus.com
 visibility: private
 published: 3020-01-01-1400
 metaImage: 
