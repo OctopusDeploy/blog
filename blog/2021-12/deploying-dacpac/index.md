@@ -3,28 +3,33 @@ title: Deploy SQL Server DACPAC with Octopus Deploy
 description: Learn how to deploy SQL Server DACPAC using Octopus Deploy.
 author: shawn.sesna@octopus.com
 visibility: public
-published: 2021-12-06-1400
+published: 2021-12-15-1400
 metaImage: blogimage-deploysqlserverdacpacwithoctopusdeploy-2021.png
 bannerImage: blogimage-deploysqlserverdacpacwithoctopusdeploy-2021.png
 bannerImageAlt: A purple package that says DACPAC traveling between the Octopus Deploy logo and a blue server on a conveyer belt.
 isFeatured: false
 tags:
- - 
+ - DevOps
+ - Database Deployments
 ---
 
-Database Administrators (DBAs) will sometimes cringe at the mere mention of automating a database deployment.  Their job is to make sure that the server and databases remain available and healthy, so any process outside of their control sometimes makes them nervous.  Introducing something that can make wholesale changes to the database structure or data automatically seems like a stark contrast to their duties.  However, using DACPAC with Octopus Deploy to automate deployment to SQL Server can assist you in your DevOps journey.  This post demonstrates automating database updates to Microsoft SQL Server using DACPAC and Octopus Deploy from project creation to deployment.
+Database Administrators (DBAs) often cringe at the mere mention of automating a database deployment.  Their job is to make sure the server and databases remain available and healthy, so processes outside of their control can make them nervous.  Introducing a process that makes wholesale changes to the database structure or data automatically seems like a stark contrast to their duties.  However, using DACPAC with Octopus Deploy to automate deployments to SQL Server can assist you in your DevOps journey.  
 
-## Sakila
-This post will deploy the [sakila](https://bitbucket.org/octopussamples/sakila/src/master/src/dacpac/mssql/) database to a Microsoft SQL Server.  This project contains tables, constraints, stored procedures, views, and user defined functions as to demonstrate the full capabilities of the Microsoft DACPAC technology.
+This post demonstrates automating database updates to Microsoft SQL Server using DACPAC and Octopus Deploy, from project creation to deployment.
+
+## Sample project: Sakila
+This post will deploy the [Sakila](https://bitbucket.org/octopussamples/sakila/src/master/src/dacpac/mssql/) database to a Microsoft SQL Server.  
+
+The Sakila project contains tables, constraints, stored procedures, views, and user defined functions to demonstrate the full capabilities of the Microsoft DACPAC technology.
 
 ::info
-The sakila git repo contains source code for deploying the sakila database to multiple database technologies using different deployment methods.  This post will focus specifically on the Microsoft DACPAC version.
+The Sakila Git repo contains source code for deploying the Sakila database to multiple database technologies using different deployment methods. This post focusses specifically on the Microsoft DACPAC version.
 ::
 
 ## Creating the database project
-Out of the box, Visual Studio does not come with the SQL Server Database Project type.  In order to create them, you must first install the [SQL Server Data Tools](https://docs.microsoft.com/en-us/sql/ssdt/download-sql-server-data-tools-ssdt) (SSDT) extension.  SSDT contains project types for Database Projects, SQL Server Reporting Services (SSRS) projects, and SQL Server Integration Services (SSIS) projects.
+Out-of-the-box, Visual Studio does not come with the SQL Server Database Project type.  To create them, you must first install the [SQL Server Data Tools](https://docs.microsoft.com/en-us/sql/ssdt/download-sql-server-data-tools-ssdt) (SSDT) extension.  SSDT contains project types for database projects, SQL Server Reporting Services (SSRS) projects, and SQL Server Integration Services (SSIS) projects.
 
-Once the extension has been installed, create a new project and choose the SQL Server category, SQL Server Database Project type
+After the extension has been installed, create a new project, and choose the SQL Server category, SQL Server Database Project type.
 
 ![](visual-studio-new-project.png)
 
