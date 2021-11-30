@@ -9,6 +9,7 @@ bannerImageAlt: Octopus Clouds launch fireworks illustration
 published: 2018-07-02
 tags:
  - Product
+ - Octopus Cloud
 ---
 
 ![Octopus Clouds launch fireworks illustration](blogimage-octopuscloudlaunch.png)
