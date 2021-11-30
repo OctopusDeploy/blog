@@ -21,7 +21,7 @@ So far in this series we’ve talked at length about the benefits of embracing a
 
 In the last post [we discussed patterns for safe, near-zero downtime releases](https://octopus.com/blog/safe-schema-updates-1-delivery-hell), with fast and reliable rollback options. You’re armed with the motivation and tooling, but we’ve not discussed any guiding strategy for planning the refactor from tight coupling to loose coupling.
 
-This post aims to provide a broad overview about how to manage the whole process. As the title suggests, we’ll discuss [the strangler pattern](MARTING FOWLER BLOG POST), but we’ll also touch on other patterns including: 
+This post aims to provide a broad overview about how to manage the whole process. As the title suggests, we’ll discuss [the strangler pattern](https://martinfowler.com/bliki/StranglerFigApplication.html), but we’ll also touch on other patterns including: 
 
 - [Domain driven design](https://octopus.com/blog/devops-reading-list#ddd)
 - [Branching by abstraction](https://martinfowler.com/bliki/BranchByAbstraction.html)
@@ -31,7 +31,7 @@ Before we go any further, let’s set some expectations: This isn’t easy, and 
 
 There’s no such thing as a free lunch.
 
-## The Strangler Pattern
+## The strangler pattern
 
 Let’s imagine a typical dependency nightmare.
 
@@ -127,7 +127,7 @@ However, before giving up on the idea of loose coupling, consider the benefits. 
 
 ## Series summary
 
-Thanks for sticking with me!
+Thanks for sticking with me.
 
 This series started as (what I thought was) a simple idea for a short post about zero downtime deployments. But it kept growing, and growing, and growing. I kept getting side-tracked down rabbit holes, adding another two-thousand words here or there. The first draft was ridiculously long and complicated. Apparently, my brain has become its own tangled web of dependencies.
 
