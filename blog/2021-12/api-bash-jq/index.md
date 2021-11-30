@@ -98,7 +98,7 @@ Each call to the API returns an `Items` array.  The JSON that's returned then ha
 
 The `if` statement checks if many arrays are returned by testing the string for `][` and replacing it with `,` if found.  This makes the JSON string a single array, which is easier to work with.  
 
-After all of the project data is returned, you can use more jq commands to retrieve elements such as the ProjectId and do something with it.
+After all of the project data is returned, you can use more jq commands to retrieve elements such as the ProjectId and retrieve project specific data like the deployment process, runbooks, or variables.
 
 ```bash
 # Iterate over returned items
