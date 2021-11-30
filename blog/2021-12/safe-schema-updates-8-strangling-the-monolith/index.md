@@ -1,6 +1,6 @@
 ---
 title: Safe schema updates - Strangling the monolith
-description: This post discusses patterns for migrating from a tightly coupled to a loosely coupled architecture
+description: This post discusses patterns for migrating from a tightly coupled to a loosely coupled architecture.
 author: alex.yates@dlmconsultants.com
 visibility: public
 published: 2021-12-08-1400
