@@ -17,7 +17,7 @@ tags:
 
 Our Configuration as Code early access preview (EAP) is now available. 
  
-Configuration as Code (Config as Code) in Octopus delivers the full power of Git with the usability of Octopus. We built a robust Git-persistent layer alongside the existing database implementation.  This means you can see your deployment process in your Git repo next to your application code and evolve them together. 
+Configuration as Code (Config as Code) in Octopus delivers the full power of Git with the usability of Octopus. We built a robust Git-persistent layer alongside the existing database implementation. This means you can see your deployment process in your Git repo next to your application code and evolve them together. 
 
 Our Config as Code solution allows you to:
 
