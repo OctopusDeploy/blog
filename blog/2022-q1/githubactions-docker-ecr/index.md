@@ -13,7 +13,7 @@ tags:
  - GitHub Actions
 ---
 
-This blog will build a docker image in a GitHub Actions workflow and publish the image to Amazon Elastic Container Registry (ECR). To follow along, you will need:
+This blog will build the Octopus Deploy Underwater Scene app in a GitHub Actions workflow and publish the image to Amazon Elastic Container Registry (ECR). To follow along, you will need:
 
 - An Amazon Web Services Account (AWS)
 - A GitHub account
@@ -25,7 +25,7 @@ To set up AWS for GitHub Actions, we need to create an access key and an ECR rep
 
 To create an access key, go to **Amazon Console &rarr; IAM &rarr; Users &rarr; [your user] &rarr; Security credentials &rarr; Create Access Key**
 
-Your browser will download a file containing the Access Key ID and the Secret Access Key. These values will be used in Jenkins to authenticate to Amazon.
+Your browser will download a file containing the Access Key ID and the Secret Access Key. These values will be used in GitHub to authenticate to Amazon.
 
 To create a repository, go to the **Amazon Console &rarr; ECR &rarr; Create Repository**
 
@@ -35,9 +35,10 @@ Under **Amazon ECR &rarr; Repositories**, you will see your repository. Make a n
 
 ![ECR Repository](ecr-repository.png)
 
+
 ## GitHub setup
 
-For this example, we will use a sample web application that displays an animated underwater Octopus named simple-octo.
+In this blog, we will build the Octopus Deploy Underwater Scene repository and push it to Amazon ECR. These images will be used in later blog posts.
 
 Fork the repository at https://github.com/terence-octo/simple-octo
 
