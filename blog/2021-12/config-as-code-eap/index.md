@@ -31,9 +31,9 @@ Importantly, the Octopus UI still works, so you don’t need to learn a whole ne
 In this post, I introduce our Config as Code solution and explain how to get started.
 
 :::hint
-We're still developing this feature and we appreciate [any feedback](https://octopusdeploy.typeform.com/to/qeW9JGyo) you'd like to share. We also recommend joining the discussion in our [Community Slack](https://octopus.com/slack) in the `#config-as-code` channel.
-
 Config as Code in Octopus is an early access preview so there might be some rough edges. We recommend creating new projects or cloning existing ones to try it out, rather than testing in production.
+
+As we're still developing this feature, we appreciate [any feedback](https://octopusdeploy.typeform.com/to/qeW9JGyo) you'd like to share. We also recommend joining the discussion in our [Community Slack](https://octopus.com/slack) in the `#config-as-code` channel.
 :::
 
 ## Why Configuration as Code? 
