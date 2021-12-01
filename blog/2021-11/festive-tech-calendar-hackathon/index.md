@@ -52,22 +52,22 @@ Primarily, we just want you to have fun and learn something!
 
 ### Winners
 
-We'll randomly select three winners from the submissions and they'll receive one of our swag bundles: 
+We’ll randomly select three winners from the submissions and they’ll receive one of our swag bundles: 
 
 ![1st prize comprising octopus hoodie, tee and hat, 2nd prize comprising octopus hoodie and hat, 3rd prize comprising octopus tee and hat](blogimage-festivetechsupportingimage-2021.png "width=500")
 
-We'll announce the winners around 2 pm GMT, Monday, December 20, 2021.
+We’ll announce the winners around 2 pm GMT, Monday, December 20, 2021.
 
 ### Spreading community spirit
 
 Feel free to write a blog post, create a video, or tweet about your hackathon implementation, tagging [@OctopusDeploy](https://www.twitter.com/OctopusDeploy); we’d love to hear from you.  
 
-These optional activities don't get you extra credit but will spread some community spirit. 
+These optional activities don’t get you extra credit but will spread some community spirit. 
 
 
 #### The fine print
 
-- A purchase or payment isn't necessary and doesn't increase your chances of winning. 
+- A purchase or payment isn’t necessary and doesn’t increase your chances of winning. 
 - We’ll only consider one entry per person. 
 - The hackathon is not open to employees, representatives, or agents of Octopus Deploy, including all members of their immediate family and household.
 - The hackathon is not open to any other individual involved with the design, production, promotion, execution, or distribution of the hackathon, including all members of their immediate family and household.
@@ -76,7 +76,7 @@ These optional activities don't get you extra credit but will spread some commun
 
 ## Getting started with Octopus Deploy
 
-If you haven't used Octopus Deploy before, check out the following resources:
+If you haven’t used Octopus Deploy before, check out the following resources:
 
 - [Getting Started docs](https://octopus.com/docs/getting-started)
 - [Getting Started YouTube videos](https://www.youtube.com/playlist?list=PLAGskdGvlaw268i2ZTPC1ZrxwFjjKIdKH)
