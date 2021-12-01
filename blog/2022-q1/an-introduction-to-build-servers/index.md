@@ -16,7 +16,7 @@ tags:
   - Testing
 ---
 
-Octopus can receive packages by whatever means you want, whether you upload them direct to our in-built package store or import them via a feed. As believers in Continuous Integration/Continuous Delivery (CI/CD), we think they should come from a build server (also known as a 'CI platform').
+Octopus can receive packages by whatever means you want, whether you upload them direct to our in-built package store or import them via a feed. As believers in Continuous Integration/Continuous Delivery (CI/CD), though, we think they should come from a build server (also known as a 'CI platform').
 
 Given they can automate everything that happens between code commits and deployments, build servers are vital to CI as a concept. Let’s dig into exactly why we rate them so highly.
 
@@ -31,8 +31,8 @@ Build servers have 3 main purposes:
 Life without a build server means time bogged down with manual processes and the needless time constraints caused by them. For example, without a build server:
 
 - Your team will likely need to commit code before a daily deadline or during change windows.
-- Once that deadline passes, no one can commit again until someone has manually created and tested a build.
-- If there are problems with code, the team must address those problems instead of moving forward.
+- Once that deadline passes, no one can commit again until someone manually creates and tests a build.
+- If there are problems with code, the previous deadlines and manual processes delay the fixes further.
 
 As you can see, in this scenario the team battles hurdles that don't need to exist because of automation. A build server will repeatedly do all this for you throughout the day, and without those human-caused delays.
 

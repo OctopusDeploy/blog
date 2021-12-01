@@ -70,9 +70,7 @@ Once set to react to the GitHub events of your choosing (such as commits to your
 
 ## 6: Repository dispatch
 
-While GitHub Actions has a lot of events to trigger actions from, the [repository dispatch action](https://github.com/marketplace/actions/repository-dispatch) adds another!
-
-This action adds a ‘repository dispatch’ event, from which you can trigger and chain actions from one or more repository.
+The [repository dispatch action](https://github.com/marketplace/actions/repository-dispatch) makes it much easier to trigger actions from a 'repository dispatch' event. Plus, it lets you trigger and chain the actions from one or more repository.
 
 You must [create a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) for this action to work as GitHub won’t support it by default.
 

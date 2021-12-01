@@ -64,7 +64,7 @@ For example, you could create a workflow that:
 
 With this scenario, the workflow would have 2 separate jobs. If testing on job 1 is successful, that will trigger job 2. Both jobs have their own steps and run on separate, clean runners.
 
-GitHub workflows are reusable and referenceable, so you can use them across projects and repos. Plus, you might not need to create them at all. Though not unique to GitHub Actions, there are thousands of community-made actions and workflows you can use to achieve what you need.
+Thanks to the [GitHub Marketplace](https://github.com/marketplace), you might not need to create the workflows at all. Though not unique to GitHub Actions, there are thousands of community-made actions and workflows you can use to achieve what you need.
 
 Octopus has also created a [tool to help you build GitHub Actions workflows](https://githubactionworkflows.com/). Give it a whirl if unsure where to start.
 
