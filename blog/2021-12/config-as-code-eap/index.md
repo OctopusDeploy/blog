@@ -32,9 +32,7 @@ In this post, I introduce our Config as Code solution and explain how to get sta
 
 :::hint
 We're still developing this feature and we appreciate [any feedback](https://octopusdeploy.typeform.com/to/qeW9JGyo) you'd like to share. We also recommend joining the discussion in our [Community Slack](https://octopus.com/slack) in the `#config-as-code` channel.
-:::
 
-:::warning
 Config as Code in Octopus is an early access preview so there might be some rough edges. We recommend creating new projects or cloning existing ones to try it out, rather than testing in production.
 :::
 
