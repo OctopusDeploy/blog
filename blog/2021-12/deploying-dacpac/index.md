@@ -189,6 +189,7 @@ There are several Community Step Template DACPAC templates to choose from:
 
 All four templates contain the same base functionality in how they deploy the DACPAC, however, they were developed separately to avoid introducing breaking changes for people who were currently using the template.  This post uses the most recent template, **SQL Deploy DACPAC with AAD support**.
 
+:::info
 All four templates support the use of SQL CMD Variables.  Because there can be an N number of SQL CMD Variables, there isn't an input field within the template to define them.  Instead, the code of the templates query the Octopus variables collection for variables named in a specific convention:
 
 - `SqlCmdVariable.Variable1`
@@ -199,7 +200,7 @@ All four templates support the use of SQL CMD Variables.  Because there can be a
 During deployment, you'll see something like the following when being added:
 
 ![](octopus-sql-cmd-variables-log.png)
-
+:::
 
 ![](octopus-add-deploy-dacpac.png)
 
