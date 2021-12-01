@@ -11,7 +11,7 @@ tags:
  - Ask Octopus
 ---
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/giJ6eQQfHoU&t" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/giJ6eQQfHoU" frameborder="0" allowfullscreen></iframe>
 
 In this episode, we cover Environment Approval Gates and Worker Pools per Environment. You can find previous episodes and submit questions on our [Ask Octopus](https://hello.octopus.com/ask-octopus) page.
 

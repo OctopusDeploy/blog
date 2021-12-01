@@ -200,7 +200,7 @@ According to Gene Kim, the first delivery bottleneck that most folks hit in thei
 
 It’s my hope, that the sorts of technical practices outlined in this post will allow you, dear reader, to move as much development and testing off your big, shared development/test environments onto dedicated environments where changes can be tested in isolation and merged as soon as they are ready for deployment.
 
-This improved testing capability will come in handy as we move on to the next posts about near-zero downtime deployment and the strangler pattern for breaking up monolithic systems into more loosely coupled architectures. It's a lot easier to commit to complicated and risky refactors if you can test and rehearse the changes in safe, disposable dev and test and environments.
+This improved testing capability will come in handy as we move on to the next posts about near-zero downtime deployment and the strangler pattern for breaking up monolithic systems into more loosely coupled architectures. It's a lot easier to commit to complicated and risky refactors if you can test and rehearse the changes in safe, disposable dev and test environments.
 
 ## Next time
 
@@ -212,12 +212,16 @@ We'll add links to the other posts in this series as they become available.
 
 !include <safe-schema-updates-posts>
 
-## Register for the webinar: Safe schema updates, part 1: Imagining better systems
+## Watch the webinar: Database DevOps: Imagining better systems
 
-Alex Yates will discuss why DevOps is more challenging for mature systems, and why newer systems typically adopt a different architecture.
+<iframe width="560" height="315" src="https://www.youtube.com/embed/oJAbUMZ6bQY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-We're running 3 sessions of the webinar, Wed 17 Nov – Thurs 18 Nov, 2021.
+## Register for the second webinar: Database DevOps: Building better systems
 
-<span><a class="btn btn-success" href="/events/safe-schema-updates-part-1-imagining-better-systems">Register now</a></span>
+Our first webinar discussed how loosely coupled architectures lead to maintainability, innovation, and safety. Join us for part two and learn how to transition a mature system from one architecture to another. 
 
-In part two, Alex will discuss how to transition a mature system from one architecture to another. [Learn more and register for the second webinar.](https://octopus.com/events/safe-schema-updates-part-2-building-better-systems)
+We're running 3 sessions of the webinar, from Wed 1 Dec – Thurs 2 Dec, 2021.
+
+<span><a class="btn btn-success" href="https://octopus.com/events/safe-schema-updates-part-2-building-better-systems">Register now</a></span>
+
+Happy deployments!

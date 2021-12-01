@@ -17,9 +17,16 @@ When discussing rollbacks, the conversation inevitably turns to blue/green, red/
 
 In this post, I walk through a rollback strategy you can execute today, without implementing advanced deployment patterns.
 
-:::hint
+:::warning
 **Out of scope**
 Rolling back database changes are out of scope for this post because doing them successfully [is a complex topic with many pitfalls](https://octopus.com/blog/database-rollbacks-pitfalls).  This post focuses on code-only rollbacks. It demonstrates how to skip database deployment steps during a rollback.  In practice, code and UI changes are much more frequent than database changes, especially in a test environment.  Most schema changes happen at the start of a new feature, with minor tweaks during testing.
+:::
+
+:::hint
+You can also read about:
+
+- [Rollback strategies when using an Apache Tomcat web server](https://octopus.com/blog/rolling-back-tomcat-deployment)
+- [General and Kubernetes-specific rollback strategies using Octopus Deploy](https://octopus.com/blog/rolling-back-kubernetes-deployment)
 :::
 
 ## What is a rollback?
@@ -284,12 +291,10 @@ But an internal business application used by a few dozen people from 6am EST to 
 You can create a rollback process with a few tweaks to your existing deployment process using [variable run conditions](https://octopus.com/docs/projects/steps/conditions#variable-expressions) and the new step templates, **[Calculate Deployment Mode](https://library.octopus.com/step-templates/d166457a-1421-4731-b143-dd6766fb95d5/actiontemplate-calculate-deployment-mode)** and **[Block Release Progression](https://library.octopus.com/step-templates/78a182b3-5369-4e13-9292-b7f991295ad1/actiontemplate-block-release-progression)**.  While they won't support every possible rollback scenario, they give you other options if you find a bug.
 
 
-## Register for the webinar: Rollback strategies with Octopus Deploy
+## Watch the webinar: Rollback strategies with Octopus Deploy
 
-A robust rollback strategy is key to any deployment strategy. In this webinar, we’ll cover best practices for IIS deployments, Tomcat, and full stack applications with a database. We’ll also discuss how to get the rollback strategy right for your situation. 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/F_V7r80aDbo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-We're running 3 sessions of the webinar over 2 days, Wed 3 Nov – Thurs 4 Nov, 2021.
-
-<span><a class="btn btn-success" href="/events/rollback-strategies-with-octopus-deploy">Register now</a></span>
+We host webinars regularly. See the [webinars page](https://octopus.com/events) for details about upcoming events, and live stream recordings.
 
 Happy deployments!

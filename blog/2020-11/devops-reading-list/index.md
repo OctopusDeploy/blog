@@ -416,11 +416,11 @@ Back: [Book Index](#book-index) / Next: [Honorable Mentions](#hon_mentions)
 
 ### 11. Database Reliability Engineering (Campbell, Majors : 2018) {#dre}
 
-<img alt="Database Reliability Engineering (Campbell, Majors : 2018)" style="float: right; margin: 10px;" src="https://i.octopus.com/blog/2020-11/devops-reading-list/database_reliability_engineering_big.jpg">
-
 > "The book absolutely delivers: it’s a 250-page version of the concepts in Google’s [Site Reliability Engineering](https://octopus.com/blog/devops-reading-list#sre) book (which I love) targeted at people who might currently call themselves database administrators but want to go to work in fast-paced, high-scale companies."
 
 Those are not my words; they were written by Brent Ozar in [his own review of “DRE”](https://www.brentozar.com/archive/2017/11/book-review-database-reliability-engineering-campbell-majors/).
+
+<img alt="Database Reliability Engineering (Campbell, Majors : 2018)" style="float: right; margin: 10px;" src="https://i.octopus.com/blog/2020-11/devops-reading-list/database_reliability_engineering_big.jpg">
 
 As I was compiling this blog post, I came across Brent’s review and, frankly, I love it. He said exactly what I wanted to say, but better. He explains how the reader should approach the book, depending on whether they are a DBA, a manager, or a developer/SysAdmin.
 
@@ -454,7 +454,7 @@ Site Reliability Engineering (SRE) details the way that Google approaches the co
 
 Reading this book is a reasonable time investment, so for those who are new to SRE, I recommend that before you buy it, you explore the following links:
 
-1.	This blog post by Google: [SRE vs DevOps: Competing standards or close friends?](https://cloud.google.com/blog/products/gcp/sre-vs-devops-competing-standards-or-close-friends)
+1.	This blog post by Google: [SRE vs DevOps: Competing standards or close friends?](https://www.googblogs.com/sre-vs-devops-competing-standards-or-close-friends/)
 1.	Thomas A. Limoncelli’s 2012 session at USENIX NYC: [SRE@Google: Thousands of DevOps Since 2004](https://www.youtube.com/watch?v=iIuTnhdTzK0)
 
 That 10 minute read / 45 minute watch should give you a great primer on Google’s approach, covering important topics, including the difference between DevOps and SRE, as well as some of the core components of SRE, including SLOs, error budgets, and Customer Reliability Engineering.
