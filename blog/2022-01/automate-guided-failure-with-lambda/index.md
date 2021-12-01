@@ -2,7 +2,7 @@
 title: Automate guided failures with an AWS Lambda and subscriptions
 description: Learn how to automate the response to guided failure using an AWS Lambda with an Octopus subscription
 author: shawn.sesna@octopus.com
-visibility: private
+visibility: public
 published: 2022-01-05-1400
 metaImage: blogimage-automateguidedfailureswithanawslambdaandsubscriptions-2021.png
 bannerImage: blogimage-automateguidedfailureswithanawslambdaandsubscriptions-2021.png
@@ -10,6 +10,7 @@ bannerImageAlt: Boxes representing deployments between Octopus and AWS on a conv
 isFeatured: false
 tags:
   - DevOps
+  - AWS
 ---
 
 [Manual intervention](https://octopus.com/docs/projects/built-in-step-templates/manual-intervention-and-approvals) and [guided failure](https://octopus.com/docs/releases/guided-failures) are powerful features of the Octopus Deploy product.  Both features pause a deployment or runbook and wait for a user to choose an option. The downside is that someone needs to be present to provide a response.  With Octopus Deploy written API-first, however, it's possible to automate these responses. 
