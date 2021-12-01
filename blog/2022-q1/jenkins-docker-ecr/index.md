@@ -13,7 +13,7 @@ tags:
  - Jenkins
 ---
 
-This blog will build a docker image in a Jenkinsfile and publish the image to Amazon Elastic Container Registry (ECR). To follow along, you will need:
+This blog will build the Octopus Deploy Underwater Scene App in a Jenkinsfile and publish the image to Amazon Elastic Container Registry (ECR). To follow along, you will need:
 
 - An Amazon Web Services Account (AWS)
 - A Jenkins instance
@@ -36,6 +36,10 @@ The ECR requires an image repository set up for each image you want to publish. 
 Under **Amazon ECR &rarr; Repositories**, you will see your repository. Make a note of the zone it is in, which is in the URI field.
 
 ![ECR Repository](ecr-repository.png)
+
+## Octopus Deploy Underwater Scene App
+
+In this blog, we will build the Octopus Deploy Underwater Scene repository and push it to Amazon ECR. These images will be used in later blog posts.
 
 ## Jenkins setup
 
