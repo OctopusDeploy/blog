@@ -13,11 +13,12 @@ tags:
  - Database Deployments
 ---
 
-Database Administrators (DBAs) often cringe at the mere mention of automating a database deployment.  Their job is to make sure the server and databases remain available and healthy, and processes outside of their control can make them nervous.  Introducing a process that makes wholesale changes to the database structure or data automatically seems like a stark contrast to their duties.  However, using DACPAC with Octopus Deploy to automate deployments to SQL Server can assist you in your DevOps journey.  
+Database Administrators (DBAs) often cringe at the mere mention of automating a database deployment.  Their job is to make sure the server and databases remain available and healthy, and processes outside of their control make them nervous.  Introducing a process that makes wholesale changes to the database structure or data automatically seems like a stark contrast to their duties.  However, using DACPAC with Octopus Deploy to automate deployments to SQL Server can assist you in your DevOps journey.  
 
 This post demonstrates automating database updates to Microsoft SQL Server using DACPAC and Octopus Deploy from project creation to deployment.
 
 ## Sample project: Sakila
+
 This post will deploy the [Sakila](https://bitbucket.org/octopussamples/sakila/src/master/src/dacpac/mssql/) database to a Microsoft SQL Server.  
 
 The Sakila project contains tables, constraints, stored procedures, views, and user defined functions to demonstrate the full capabilities of the Microsoft DACPAC technology.
@@ -27,7 +28,7 @@ The Sakila Git repo contains source code for deploying the Sakila database to mu
 ::
 
 ## Creating the database project
-Out-of-the-box, Visual Studio does not come with the SQL Server Database Project type.  To create them, you must first install the [SQL Server Data Tools](https://docs.microsoft.com/en-us/sql/ssdt/download-sql-server-data-tools-ssdt) (SSDT) extension.  SSDT contains project types for database projects, SQL Server Reporting Services (SSRS) projects, and SQL Server Integration Services (SSIS) projects.
+Out-of-the-box, Visual Studio does not come with the SQL Server Database Project type.  To create them, you must install the [SQL Server Data Tools](https://docs.microsoft.com/en-us/sql/ssdt/download-sql-server-data-tools-ssdt)(SSDT) extension.  SSDT contains project types for database projects, SQL Server Reporting Services (SSRS) projects, and SQL Server Integration Services (SSIS) projects.
 
 After the extension has been installed, create a new project, and choose the SQL Server category, SQL Server Database Project type.
 
@@ -74,7 +75,8 @@ Add a **Visual Studio Build** step to your build pipeline.  Setting clean to `tr
 ```
 
 ### Package files
-Add a **Package application for Octopus** step to the pipeline.  This will zip the `.dacpac` file so Octopus Deploy can deploy it.  Include the .dacpac file and the publish profile xml file.
+
+Add a **Package application for Octopus** step to the pipeline.  This will zip the `.dacpac` file so Octopus Deploy can deploy it.  Include the .dacpac file and the publish profile XML file.
 
 ```yaml
 - task: OctopusPack@4
@@ -90,7 +92,7 @@ Add a **Package application for Octopus** step to the pipeline.  This will zip t
 ```
 
 ### Push build information
-It's useful to see the commits and the associated work items associated with this build.  Add a **Push package build information to Octopus Deploy**.
+It's useful to see the commits and the associated work items associated with this build.  Add **Push package build information to Octopus Deploy**.
 
 ```yaml
 - task: OctopusMetadata@4
@@ -159,38 +161,39 @@ steps:
     Replace: 'false'
 ```
 
-## Create deployment process
+## Create the deployment process
 
-This post assumes you are familiar with how to create an Octopus project and doesn't cover that subject.
+This post assumes you know how to create an Octopus project and doesn't cover that subject.
 
 The DACPAC deployment process consists of the following steps:
 - **(Optional) Create database if not exists**: Some people prefer to place this activity within a runbook instead of as part of the deployment process.
 - Deploy the DACPAC to SQL Server.
 
 ### (Optional) Create the database if it doesn't exists
-This step will connect to a SQL server and create a database if it doesn't currently exist.  Click **ADD STEP** and choose **SQL - Create Database If Not exists**.  This step can be run on a worker machine.
+This step connects to a SQL server and creates a database if it doesn't currently exist.  Click **ADD STEP** and choose **SQL - Create Database If Not exists**.  This step can be run on a worker machine.
 
 ![](octopus-add-create-database.png)
 
 Fill in the template fields:
-- **SQL Server**: The server name
-- **SQL Login**: SQL Authentication username, leave blank if using Active Directory authentication
-- **SQL Password**: Password for the SQL Authentication account, leave blank if using Active Directory authentication
-- **Database to create**: Name of the database to create
-- **Command timeout**: Number of seconds to wait for the create database command to complete
-- **Azure database edition**: If using Azure SQL, choose the edition to create.  If left blank (and using Azure SQL), Azure will default to Standard
+- **SQL Server**: The server name.
+- **SQL Login**: SQL Authentication username, leave blank if using Active Directory authentication.
+- **SQL Password**: Password for the SQL Authentication account, leave blank if using Active Directory authentication.
+- **Database to create**: Name of the database to create.
+- **Command timeout**: Number of seconds to wait for the create database command to complete.
+- **Azure database edition**: If you're using Azure SQL, choose the edition to create.  If left blank (and using Azure SQL), Azure will default to Standard.
 
 ### Deploy the DACPAC to SQL Server
-There are several Community Step Template DACPAC templates to choose from:
-- **SQL - Deploy DACPAC**: This version of the template was created before the workers feature of Octopus Deploy.  The template must execute on a target and requires a **Deploy a Package** step that deploys the DACPAC to the target first.
+
+There are several DACPAC community step templates to choose from:
+- **SQL - Deploy DACPAC**: This version of the template was created before the workers feature of Octopus Deploy was available. The template must execute on a target and requires a **Deploy a Package** step that deploys the DACPAC to the target first.
 - **SQL - Deploy DACPAC from Package Parameter**: This template is worker compatible and uses the built-in package selector.  In addition, this template can dynamically download the SQL PowerShell module (if chosen) and does not require any additional software installed on the worker machine.
-- **SQL - Deploy DACPAC from Referenced Package**: This template uses two packages, one contains the binaries necessary to perform an DACPAC deployment and the other is the DACPAC itself.
+- **SQL - Deploy DACPAC from Referenced Package**: This template uses two packages, one contains the binaries necessary to perform a DACPAC deployment and the other is the DACPAC itself.
 - **SQL - Deploy DACPAC with AAD Auth support**: This is the newest of the available templates and contains the ability to use Azure Active Directory authentication to the database server (this blog post demonstrates [how to configure the step template](https://octopus.com/blog/classes-in-custom-step-templates).
 
 All four templates contain the same base functionality in how they deploy the DACPAC, however, they were developed separately to avoid introducing breaking changes for people who were currently using the template.  This post uses the most recent template, **SQL Deploy DACPAC with AAD support**.
 
 :::info
-All four templates support the use of SQL CMD Variables.  Because there can be an N number of SQL CMD Variables, there isn't an input field within the template to define them.  Instead, the code of the templates query the Octopus variables collection for variables named in a specific convention:
+All four templates support the use of SQL CMD Variables.  Because there can be N number of SQL CMD Variables, there isn't an input field within the template to define them.  Instead, the code of the templates query the Octopus variables collection for variables named in a specific convention:
 
 - `SqlCmdVariable.Variable1`
 - `my.sqlcmdvariable.variable2`
@@ -206,7 +209,7 @@ During deployment, you'll see something like the following when being added:
 
 Fill in the template fields:
 - **DACPACPackageName**: Name of the `.dacpac` file within the package.  For this post it is `sakila.mssql.dacpac.dacpac`.
-- **(Optional) Publish profile name**: Name of the Publish Profile xml file.  For this post, it is `sakila.mssql.dacpac.publish.xml`.
+- **(Optional) Publish profile name**: Name of the Publish Profile XML file.  For this post, it is `sakila.mssql.dacpac.publish.xml`.
 - **Report**: Tick this box to generate an HTML report of the changes that will be made.
 - **Script**: Tick this box to generate a `.sql` file containing the SQL that will be executed.
 - **Deploy**: This this box to perform the deployment.
