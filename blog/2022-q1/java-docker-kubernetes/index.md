@@ -15,19 +15,18 @@ tags:
  - Microsoft
 ---
 
-
-I built a Maven Java project and hosted the built image on the Google Container Registry (GCR) in this blog post. I access the GCR through Octopus Deploy and deploy the Java application to Azure Kubernetes Service (AKS). To follow along, you will need:
+In this blog post, I build a Maven Java project and host the built image on the Google Container Registry (GCR). I access the GCR through Octopus Deploy and deploy the Java application to Azure Kubernetes Service (AKS). To follow along, you will need:
 
 - A Google Cloud Platform Account
 - A Microsoft Azure Account
 - An Octopus Deploy instance - to link the [Azure Account to the Octopus Deploy instance](https://octopus.com/docs/infrastructure/accounts/azure#azure-service-principal).
 - Access to a terminal, either locally or in the cloud, with gcloud and the azure command line interface installed
 
-## Spring Initializr
+## The Octopus Deploy Underwater Scene App
 
-To create the Java project, I went to [Spring Initializr](https://start.spring.io/). This tool generates a java project framework. In this project, I configured a custom Java project, displaying a deployable high-level overview of Octopus Deploy.
+The Octopus Deploy Underwater Scene App is a landing page for users who are creating their first deployment. It showcases relevent articles for users as well as links to other resources.
 
-You can find the repository of the web application on [GitHub]().
+You can find the repository of the web application on [GitHub](Octo-scene).
 
 ## Building and pushing to a registry
 
@@ -39,8 +38,8 @@ Configure the gcloud tool to point to my current PROJECT_ID.
 
 Clone the java project repository that we will use to build and deploy to Azure.
 
-    git clone [Java App Repo]
-    cd gs-spring-boot/complete
+    git clone [Octo-scene]
+    cd Octo-scene/complete
 
 Test the application locally by using the run command and visiting http://localhost:8080/ 
 
