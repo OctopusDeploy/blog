@@ -31,7 +31,7 @@ This release includes some other noteworthy updates:
 ## Included in the Q4 release
 
 - Octopus Server 2021.3 ([release notes](https://octopus.com/downloads/whatsnew/2021.3))
-- TypeScript API client for Octopus Deploy 1.1.4
+- TypeScript API client for Octopus Deploy 1.1.5
 - Octopus Deploy for Visual Studio Code 0.0.17
 - TeamCity plugin for Octopus Deploy 6.1.5
 - Go API client for Octopus Deploy 1.7.52
