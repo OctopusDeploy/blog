@@ -98,7 +98,7 @@ The Configuration as Code early access preview (EAP) is available to all custome
 
 ![The branch selector on the deployment process page in Octopus Deploy](octopus-config-as-code-branch-selector.png)
 
-Octopus Deploy for Visual Studio Code is a free extension that makes working with Octopus Configuration Language (OCL) files easier. Features include:
+[Octopus Deploy for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=octopusdeploy.vscode-octopusdeploy) is a free extension that makes working with Octopus Configuration Language (OCL) files easier. Features include:
 
 - Syntax highlighting
 - Code snippets for steps and actions
