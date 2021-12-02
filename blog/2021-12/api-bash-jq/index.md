@@ -27,7 +27,7 @@ Wget and cURL are the two most used methods for making web requests using Bash. 
 ## Working with paginated data
 Many of the APIs in Octopus return data in a paginated format.  For these API calls, you can provide querystring parameters such as `skip` and `take` to manipulate the results of the call. See https://[YourServer]/api for a list of the API methods and a list of querystring parameters for each.
 
-There are times you want to return all results for a given call, for example when you're retrieving all projects.  For situations like this, I wrote a Bash function that recursively calls the API until all results are returned.
+There are times you want to return all results for a given call, for example when you retrieve all projects.  For situations like this, I wrote a Bash function that recursively calls the API until all results are returned.
 
 :::hint
 While this section of the post talks about paginated data, the `Get-OctopusItems` function also works with non-paginated API calls.
@@ -94,7 +94,7 @@ if [[ "$projects" == *"]["* ]]; then
 fi
 ```
 
-Each call to the API returns an `Items` array.  The JSON that's returned then has multiple JSON arrays in it.  
+Each call to the API returns an Items array.  The JSON that's returned then has multiple JSON arrays in it.  
 
 The `if` statement checks if many arrays are returned by testing the string for `][` and replacing it with `,` if found.  This makes the JSON string a single array, which is easier to work with.  
 
@@ -110,8 +110,8 @@ do
 done
 ```
 
-## POSTing to the API with Bash
-The examples above demonstrate how to make GET requests to the API.  While useful, these requests are only part of how you interact with the API. The following example creates a JSON document to POST to the `interruptions` API:
+## Posting to the API with Bash
+The examples above demonstrate how to make GET requests to the API.  While useful, these requests are only part of how you interact with the API. The following example creates a JSON document to POST to the interruptions API:
 
 ```bash
 automaticResponseReasonNotes="Because I said so!"
