@@ -1,19 +1,19 @@
 ---
 title: Use the new Deploy an Azure App Service Step
-description: Learn how to use the new Azure App Service Step in Octopus Deploy
+description: Learn how to use the new Azure App Service Step in Octopus Deploy.
 author: terence.wong@octopus.com
 visibility: public
-published: 2021-10-04-1400
-bannerImage: 
-metaImage:
-bannerImageAlt: 
+published: 2022-01-18-1400
+bannerImage: blogimage-deployazurewebapp.png
+metaImage: blogimage-deployazurewebapp.png
+bannerImageAlt: Four blue 3D boxes on a cloud represent the Azure App Service logo, with one slightly higher container falling into place.
 isFeatured: false
 tags:
+- DevOps
 - Azure
 ---
 
-
-Octopus Deploy provides process steps to deploy to Microsoft Azure. A new step, deploy an Azure App Service, is now available to deploy containers to an Azure App service.
+Octopus Deploy provides process steps to deploy to Microsoft Azure. A new step, **Deploy an Azure App Service**, is now available to deploy containers to an Azure App service.
 
 To do this, you will need:
 
