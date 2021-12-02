@@ -12,14 +12,14 @@ tags:
  - DevOps
 ---
 
-Octopus Deploy is written API-first, meaning anything you can do in the User Interface (UI), you can do with an API call.  When I interact with the API, I use PowerShell because it has the built-in ability to convert JSON into PowerShell objects, making it easy to work with JSON. However, not all Octopus customers use PowerShell, and some need *nix-based solutions using Bash.  
+Octopus Deploy is written API-first, meaning anything you can do in the user interface (UI), you can do with an API call.  When I interact with the API, I use PowerShell because it has the built-in ability to convert JSON into PowerShell objects, making it easy to work with JSON. However, not all Octopus customers use PowerShell, and some need *nix-based solutions using Bash.  
 
 In this post, I demonstrate how to use Bash with the Octopus API.
 
 ## jq
 The Octopus Deploy API returns data in JSON format.  Bash, however, doesn't offer a built-in way to work with JSON data and treats JSON as strings.  While Bash has some sophisticated string manipulation functionality, it's still difficult to work with JSON data.  
 
-To combat this problem, the Linux community developed a powerful command-line utility to parse JSON called jq.  Jq has become the go-to utility for working with JSON data and can be easily installed by using a package manager, such as `apt` or `yum`.
+To combat this problem, the Linux community developed a powerful command-line utility to parse JSON called jq.  Jq has become the go-to utility for working with JSON data and can be easily installed by using a package manager, such as APT or YUM.
 
 ## curl
 Wget and cURL are the two most used methods for making web requests using Bash.  With so many distributions of Linux available, you can't tell which of these utilities is installed.  The examples in this post use the cURL utility.  Like jq, cURL can be installed using a package manager.
@@ -94,7 +94,7 @@ if [[ "$projects" == *"]["* ]]; then
 fi
 ```
 
-Each call to the API returns an Items array.  The JSON that's returned then has multiple JSON arrays in it.  
+Each call to the API returns an items array.  The JSON that's returned then has multiple JSON arrays in it.  
 
 The `if` statement checks if many arrays are returned by testing the string for `][` and replacing it with `,` if found.  This makes the JSON string a single array, which is easier to work with.  
 
