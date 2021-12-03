@@ -125,7 +125,7 @@ The most visible change to the deployment process editor is our new branch selec
 To get started:
 
 1. Push a new branch to your repo
-1. Make a change to your deployment process (for examlple, add a new **Hello world!** script step)
+1. Make a change to your deployment process (for example, add a new **Hello world!** script step)
 1. Commit the change with a description
 1. Navigate to your Git repo and inspect the change 
 
