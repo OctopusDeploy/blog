@@ -6,7 +6,7 @@ visibility: public
 published: 2021-11-24-1400
 metaImage: blogimage-upgradingoctopusiseasierthanyouthink1-2021.png
 bannerImage: blogimage-upgradingoctopusiseasierthanyouthink1-2021.png
-bannerImageAlt: Laptop screen showing Octopus logo surrounded by circle of lines indicating update in progress, with the words “Update…” below the logo
+bannerImageAlt: Laptop screen showing Octopus logo surrounded by circle of lines indicating update in progress, with the words “Upgrade…” below the logo
 isFeatured: false
 tags:
   - DevOps

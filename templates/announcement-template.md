@@ -8,13 +8,15 @@ metaImage: to-be-added-by-marketing
 bannerImage: to-be-added-by-marketing
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
-tags: <!-- see https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags -->
+tags: 
   - DevOps
   - Company
   - Product
   - Events and Webinars
   - Engineering
 ---
+
+See https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags
 
 State the subject of the announcement as plainly and directly as you can.
 
