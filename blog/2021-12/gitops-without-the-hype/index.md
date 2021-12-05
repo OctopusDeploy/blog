@@ -42,7 +42,7 @@ This working group recently released version 1 of their [principals](https://git
 >
 >    Continuously Reconciled - Software agents continuously observe actual system state and attempt to apply the desired state.
 
-The contrast between low level descriptions of GitOps found in most blog posts and the high level ideals of a GitOps system described by the working group is worth some discussion, as the differences between them is a source of much confusion.
+The contrast between low level implementations of GitOps found in most blog posts and the high level ideals of a GitOps system described by the working group is worth some discussion, as the differences between them is a source of much confusion.
 
 ## GitOps doesn't imply the use of git
 
@@ -54,7 +54,7 @@ This distinction is important, because many teams are fixated on the "Git" part 
 
 ## GitOps doesn't imply the use of Kubernetes
 
-Kubernetes was the first widely used platform to combine the ideas of declarative state and continuous reconciliation along with an execution environment to implement the reconciliation and host running applications. It really is magic to watch a Kubernetes cluster reconfigure itself to match the latest templates applied to the system. So it is no surprise that Kubernetes is the foundation of GitOps tools like Flux and Argo CD, while posts like [30+ Tools List for GitOps](https://dzone.com/articles/30-tools-list-for-gitops) mention Kubernetes 20 times.
+Kubernetes was the first widely used platform to combine the ideas of declarative state and continuous reconciliation with an execution environment to implement the reconciliation and host running applications. It really is magic to watch a Kubernetes cluster reconfigure itself to match the latest templates applied to the system. So it is no surprise that Kubernetes is the foundation of GitOps tools like Flux and Argo CD, while posts like [30+ Tools List for GitOps](https://dzone.com/articles/30-tools-list-for-gitops) mention Kubernetes 20 times.
 
 While continuous reconciliation is impressive, it is not really magic. Behind the scenes Kubernetes runs a number of [operators](https://octopus.com/blog/operators-with-kotlin) that are notified of configuration changes and execute custom logic to bring the cluster back to the desired state.
 
@@ -70,7 +70,7 @@ Kubernetes bakes these requirements into the platform, making it very easy to ac
 * CI/CD systems can poll the storage, are notified of changes via webhooks, or have builds or deployments triggered via platforms like GitHub Actions.
 * The IaC tooling is then executed, bringing the system in line with the desired state.
 
-Indeed, a real world end-to-end GitOps system will inevitably have to incorporate some orchestration outside of Kubernetes. For example, Kubernetes is unlikely to manage your DNS records, centralized authentication platforms, or messaging systems like Slack. You will also likely find at least one managed service for things like databases, message queues, scheduling, reporting etc more compelling than attempting to replicate them in a Kubernetes cluster. Also, any established I.T. department is guaranteed to have non-Kubernetes systems that would benefit from GitOps.
+Indeed, a real world end-to-end GitOps system will inevitably incorporate orchestration outside of Kubernetes. For example, Kubernetes is unlikely to manage your DNS records, centralized authentication platforms, or messaging systems like Slack. You will also likely find at least one managed service for things like databases, message queues, scheduling, reporting etc more compelling than attempting to replicate them in a Kubernetes cluster. Also, any established I.T. department is guaranteed to have non-Kubernetes systems that would benefit from GitOps.
 
 So while the initial selection of specialized GitOps tools tend to be tightly integrated into Kubernetes, achieving the functional requirements of GitOps across established infrastructure will inevitably require orchestrating one or more IaC tools.
 
