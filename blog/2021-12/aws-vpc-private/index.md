@@ -100,7 +100,7 @@ Note the VPC has a tag called `Name`. The value of this tag is displayed in the 
         Value: !Ref "Tag"
 ```
 
-Next you define two subnets with [AWS::EC2::Subnet](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html) resources.
+Next, you define two subnets with [AWS::EC2::Subnet](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html) resources.
 
 Subnets are placed in [availability zones](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html) (AZs), which are isolated locations within a region. AZs have codes like `us-east-1` or `ap-southeast-2`, which are based on the region that the AZs are located in. Rather than hard code these AZ names, you can use the [`Select` intrinsic function](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-select.html) to return items from the [`GetAZs` array](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getavailabilityzones.html), which will return an available AZ for the region in which the VPC is being created.
 
