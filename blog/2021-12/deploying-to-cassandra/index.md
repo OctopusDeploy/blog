@@ -18,7 +18,7 @@ NoSQL continues to be a disruptor in the database world.  Names like MongoDB, Co
 This post shows you how to deploy database changes to a Cassandra server using Octopus Deploy and [Liquibase](https://liquibase.org).
 
 ## Sample project: Sakila
-This post uses the [Sakila](https://bitbucket.org/octopussamples/sakila/src/master/) project as the example.  The Sakila project contains examples of deploying the Sakila database to different database servers using different database deployment technologies.  
+This post uses the [Sakila](https://bitbucket.org/octopussamples/sakila/src/master/) sample project.  The Sakila project contains examples of deploying the Sakila database to different database servers using different database deployment technologies.  
 
 The [Cassandra](https://bitbucket.org/octopussamples/sakila/src/master/src/liquibase/cassandra/) folder contains an XML file that has been built for use with Liquibase products to create the tables in the keyspace.
 
