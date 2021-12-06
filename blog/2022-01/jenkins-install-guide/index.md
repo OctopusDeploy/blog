@@ -3,7 +3,7 @@ title: Traditional Jenkins installation
 description: Learn how to install Jenkins via the traditional installers
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2022-01-01-1400
+published: 2022-01-17-1400
 metaImage: 
 bannerImage: 
 tags:
