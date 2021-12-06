@@ -6,7 +6,7 @@ visibility: public
 published: 2021-12-13-1400
 metaImage: blogimage-deploydatabasechangestocassandra-2021.png
 bannerImage: blogimage-deploydatabasechangestocassandra-2021.png
-bannerImageAlt: A blue rocket branded with the Liquibase logo is headed towards a purple tower which is a stylized, oversized database icon
+bannerImageAlt: A blue rocket branded with the Liquibase logo is headed towards a purple, Cassandra-branded tower which is a stylized, oversized database icon
 isFeatured: false
 tags:
  - DevOps
@@ -358,7 +358,7 @@ The **Send start notification** step sends a message in Slack to let the channel
 
 - **Hook URL**: The webhook link for your Slack account
 - **Channel handle**: The channel to post in
-- **Icon URL**: URL to the icon to use when posting
+- **Icon URL**: URL to the icon, to use when posting
 - **Username**: Name of the user the post will be from
 - **Title**: Title of the post
 - **Message**: Detailed message of the post
@@ -378,8 +378,8 @@ A database in Cassandra is referred to as a **keyspace**.  The [Cassandra - Crea
 ### Liquibase - Run updateSQL command
 The `updateSQL` command in Liquibase analyzes the change log and produces a file containing the SQL it will execute when running the `update` command.  The file is then uploaded to the Octopus server as an artifact.
 
-- **Pro license key**: Some Liquibase commands require a pro license key
-- **Database type**: The type of database server* you're deploying to
+- **Pro license key**: Some Liquibase commands require a pro license key.
+- **Database type**: The type of database server* you're deploying to.
 
 :::info
 *The list of database technologies is not a full list of what Liquibase can deploy to, only what has been tested with Octopus Deploy.  Overriding the dropdown will result in failure as the template won't know how to construct the JDBC connection string.
