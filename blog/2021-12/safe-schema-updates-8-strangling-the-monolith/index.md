@@ -179,6 +179,6 @@ Part two, Building better systems, discussed how to transition a mature system f
 
 ### Database DevOps: Building better systems
 
-<ADD PART 2 RECORDING HERE>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/joogIAcqMYo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Happy deployments!
