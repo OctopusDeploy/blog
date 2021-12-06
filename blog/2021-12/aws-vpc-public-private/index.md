@@ -195,4 +195,4 @@ Once created, the VPC contains a mix of public and private subnets. Any instance
 
 Including both public and private subnets in a VPC provides the most flexibility when placing instances that must be accessed from the internet or benefit from the extra security provided by not being exposed to public traffic. Even though private subnets don't allow public traffic to initiate a connection, instances in private subnets can still make outbound network requests via a NAT gateway.
 
-In this post you looked at a sample CloudFormation template that created a VPC with a public and a private subnet. This, along with the templates to create [VPCs with public subnets](../aws-vpc-public/index.md) and [VPCs with private subnets](../aws-vpc-public/index.md), provides you with a quick starting point to create resources in AWS.
+In this post you looked at a sample CloudFormation template that created a VPC with a public and a private subnet. This, along with the templates to create [VPCs with public subnets](../aws-vpc-public/index.md) and [VPCs with private subnets](../aws-vpc-private/index.md), provides you with a quick starting point to create resources in AWS.
