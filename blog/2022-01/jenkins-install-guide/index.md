@@ -1,6 +1,6 @@
 ---
 title: Traditional Jenkins installation
-description: As part of our series on CI platforms, learn how to install Jenkins via the traditional installers.
+description: As part of our series about CI platforms, learn how to install Jenkins via the traditional installers.
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2022-01-17-1400
