@@ -24,8 +24,6 @@ A public subnet has a connection to the internet via an [internet gateway](https
 
 A private subnet does not route traffic to an internet gateway. Resources in a private subnet do not have public IP addresses, and can only communicate with resources in other subnets within the same VPC.
 
-One or mode subnets can be placed within a VPC. It is possible to mix and match public and private subnets within a VPC, allowing some resources in the VPC to access the internet, and some to only access other resources in the VPC.
-
 A VPC with public subnets allows instances to access the internet. If those instances have public IP addresses, they can also be access from the internet.
 
 ## Creating a VPC with public subnets
@@ -106,7 +104,7 @@ Outputs:
     Value: !Ref VPC
 ```
 
-The template above builds on the template presented in the [previous post](../aws-vpc-private/index.md) to add an internet gateway and the route tables required to direct traffic to the internet. Refer to the [previous post](../aws-vpc-private/index.md) to read the details of the VPC, Subnet, and Rout Table resources.
+The template above builds on the template presented in the [previous post](../aws-vpc-private/index.md), adding an internet gateway and the route tables required to direct traffic to the internet. Refer to the [previous post](../aws-vpc-private/index.md) to read the details of the VPC, Subnet, and Rout Table resources.
 
 To connect the VPC to the internet, you must attach an internet gateway, represented by the [AWS::EC2::InternetGateway](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-internetgateway.html) resource. This resource does not support any configuration properties beyond adding custom tags:
 
