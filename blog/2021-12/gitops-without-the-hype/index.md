@@ -150,7 +150,7 @@ At this point you concede that your git repo is another structured database refl
 * The "source of truth" is now found in the git repo (showing changes to files), the CI/CD platform's history (showing the people who initiated the changes, and the scripts that made them), and the metrics database.
 * You have consolidated your git repos, meaning you have limited ability to segregate access to humans even if you wanted to.
 
-You also realize that the parts of your GitOps process that are adding unique business value are "left of the repo" with metrics collection, standardized templates, release orchestration, rollbacks, and deployment automation, and "right of the cluster" with reports, dashboards, and support scripts. The process between the git repo and cluster is now so automated and reliable that it is not something you need to think about.
+You also realize that the parts of your GitOps process that are adding unique business value are "left of the repo" with metrics collection, standardized templates, release orchestration, rollbacks, and deployment automation; and "right of the cluster" with reports, dashboards, and support scripts. The process between the git repo and cluster is now so automated and reliable that it is not something you need to think about.
 
 ## Conclusion
 
@@ -158,7 +158,7 @@ GitOps has come to encapsulate a subset of desirable functional requirements tha
 
 But GitOps tooling tends to be heavily focused on what happens between a commit to a git repo and the Kubernetes cluster. While this is no doubt a critical component of any deployment pipeline, there is much work to be done "left of the repo" and "right of the cluster" to implement a robust CI/CD pipeline and DevOps workflow. 
 
-GitOps tools also tend to assume that because everything is in git, the intent of every change is annotated with commit messages, associated with the author, put through a review process, and is available for future inspection. However, this is overly simplistic, as any team advanced enough to consider implementing GitOps will immediately begin iterating on GitOps by automating manual touch points, usually with respect to how configuration is added to the git repo in the first place.
+GitOps tools also tend to assume that because everything is in git, the intent of every change is annotated with commit messages, associated with the author, put through a review process, and is available for future inspection. However, this is overly simplistic, as any team advanced enough to consider implementing GitOps will immediately begin iterating on the process by automating manual touch points, usually with respect to how configuration is added to the git repo in the first place.
 
 As you project the natural evolution of a GitOps workflow, you are likely to conclude that so many automated processes rely on the declarative configuration being in a specific location and format that git commits must be treated in much the same way as a database migration. The inputs to a GitOps process must be managed and orchestrated, and the outputs must be tested, measured, and maintained. Meanwhile the processing between the git repo and cluster should be automated, rendering much of what we talk about as GitOps today as simply an intermediate step in a specialized CI/CD pipeline or DevOps workflow.
 
