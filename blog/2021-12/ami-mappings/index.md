@@ -49,7 +49,7 @@ chmod +x amimap.sh
 The script is called with the AMI name (or the start of the AMI name) as the first argument:
 
 ```bash
-./amimap.sh amzn2-ami-kernel-5.10-hvm-2.0.20211103.1-x86_64
+./amimap.sh amzn2-ami-kernel-5.10
 ```
 
 The output looks something like this:
