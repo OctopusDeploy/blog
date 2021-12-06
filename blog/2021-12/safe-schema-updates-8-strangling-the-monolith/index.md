@@ -13,7 +13,7 @@ tags:
  - Database Deployments
  - Deployment Patterns
 ---
-This blog post is part 8 of my safe schema updates series. We'll add links to the other posts in this series as they become available:
+This blog post is part 8, and the final post, of my safe schema updates series.
 
 !include <safe-schema-updates-posts>
 
