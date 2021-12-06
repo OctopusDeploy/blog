@@ -34,7 +34,7 @@ regions=$(aws ec2 describe-regions --output text --query 'Regions[*].RegionName'
 for region in $regions; do
     (
      echo "    $region:"
-     AMI=$(aws ec2 describe-images --region $region --filters Name=is-public,Values=true Name=name,Values="$1*" | jq -r '.Images |= sort_by(.CreationDate) | .Images | reverse | .[0].ImageId')
+     AMI=$(aws ec2 describe-images --region $region --filters Name=is-public,Values=true Name=name,Values="$1*" Name=architecture,Values=x86_64 | jq -r '.Images |= sort_by(.CreationDate) | .Images | reverse | .[0].ImageId')
      echo "      ami: $AMI"
     )
 done
@@ -153,8 +153,6 @@ You will notice from the command above that the AMI name must be passed as a par
 An easy solution is to open the **Images** link in the EC2 console. This allows public AMIs to be searched for either their ID or description, and the AMI details page then displays the AMI name:
 
 ![AMI Details page](ami-details.png)
-
-Note that the name often includes the CPU architecture. For example, the AMI named `amzn2-ami-kernel-5.10-hvm-2.0.20210701.0-arm64-gp2` requires an ARM VM to run, while the AMI named `amzn2-ami-kernel-5.10-hvm-2.0.20211103.1-x86_64-gp2` requires an x86 VM. Make sure the name you search for includes the correct architecture for your desired platform.
 
 ## Conclusion
 
