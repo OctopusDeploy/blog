@@ -10,7 +10,7 @@ tags:
  - Octopus
 ---
 
-The [instance type](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html#cfn-ec2-instance-instancetype) is a required parameter when building EC2 instances. While the AWS documentation provides a list of allowed values, it is not in a format that can be easily consumed by your own CloudFormation templates.
+The [instance type](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html#cfn-ec2-instance-instancetype) is a required parameter when building EC2 instances. While the AWS documentation provides a list of allowed values, it is not presented in a format that can be easily consumed by your own CloudFormation templates.
 
 In this post you'll learn how to build a parameter with a complete list of instance types as allowed values to copy and paste into your own templates.
 
