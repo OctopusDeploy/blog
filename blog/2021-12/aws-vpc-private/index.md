@@ -143,4 +143,4 @@ To deploy this template, use the [Deploy an AWS CloudFormation template](https:/
 
 ## Conclusion
 
-VPCs with private subnets are the most simple to create, and this post you looked at a simple CloudFormation template to create a VPC with two private subnets. In the next post you'll learn how to create a VPC with public subnets.
+VPCs with private subnets are the most simple to create, and this post you looked at a simple CloudFormation template to create a VPC with two private subnets. In the [next post](../aws-vpc-public/index.md) you'll learn how to create a VPC with public subnets.
