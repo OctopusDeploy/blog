@@ -3,7 +3,7 @@ title: Continuous Integration vs Continuous Deployment
 description: CI/CD are frequently referred to by a single acronym as if they were a single process. This post looks at the fundamental differences between CI and CD.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2021-04-19-1400
+published: 2022-01-12-1400
 metaImage: img_comparecicd_2019.png
 bannerImage: img_comparecicd_2019.png
 bannerImageAlt: Illustration of two deep sea masks representing CI and CD
@@ -13,23 +13,21 @@ tags:
  - Continuous Deployment
 ---
 
-![Illustration of two deep sea masks representing CI and CD](img_comparecicd_2019.png)
+The terms *Continuous Integration* and *Continuous Deployment* tend to be combined into the acronym CI/CD, often without distinction between the two. CI and CD are distinct processes, even if combining the terms suggests that Continuous Deployment is an extension of Continuous Integration, and the execution of both processes is the responsibility of a single tool.
 
-The terms *Continuous Integration* and *Continuous Deployment* tend to be combined into the acronym CI/CD, often without any distinction between the two. CI and CD are distinct processes, even if this combining of terms suggests that Continuous Deployment is an extension of Continuous Integration, and the execution of both processes is the responsibility of a single tool.
+Assuming CI/CD is *just CI with a deployment step* ignores some fundamental differences between the two processes. In this post, we look at:
 
-Assuming CI/CD is *just CI with a deployment step* ignores some fundamental differences between the two processes. In this blog post, we'll look at:
-
-* The reasons why CI and CD are distinct processes.
-* The features provided by good CD tools.
-* Why you may consider using separate tools for your CI/CD workflow.
+* The reasons why CI and CD are distinct processes
+* The features provided by good CD tools
+* Why you may consider using separate tools for your CI/CD workflow
 
 ## What is Continuous Integration?  
 
 At a high level, CI is all about: 
 
-- Taking the code written by developers and compiling it into an artifact.
-- Running automated tests.
-- Capturing the log files so any failed builds or tests can be resolved. 
+- Taking the code written by developers and compiling it into an artifact
+- Running automated tests
+- Capturing the log files so any failed builds or tests can be resolved 
 
 A CI server facilitates this process by running builds and tests with each commit.
 
@@ -53,17 +51,17 @@ Taken literally, CD takes the compiled artifacts from a successful build perform
 
 Such commit-to-consumer pipelines are common in simple projects. More complex projects can also have a completely automated development pipeline, if the appropriate tests and monitoring systems are in place.
 
-But while fully automated deployments have many benefits, it is not uncommon for deployments to involve human decision making. There are many valid reasons for not automatically deploying every commit to the main branch into production, including:
+But while fully automated deployments have many benefits, it's not uncommon for deployments to involve human decision making. There are many valid reasons for not automatically deploying every commit to the main branch into production, including:
 
-* Coordinating deployments with legacy systems.
-* Acquiring sign-off from product owners.
-* Usability testing that is impossible to automate.
-* Regulatory requirements.
-* Dog-fooding your own product.
-* Integrating deployments with backend changes like databases.
-* Not having 100% confidence in your tests.
+* Coordinating deployments with legacy systems
+* Acquiring sign-off from product owners
+* Usability testing that is impossible to automate
+* Regulatory requirements
+* Dog-fooding your own product
+* Integrating deployments with backend changes like databases
+* Not having 100% confidence in your tests
 
-Where CI is machine-driven for many teams, CD is human-driven. Much of the grunt work of performing a deployment will still be automated, but the decision to promote a release through to production is a human one. Importantly, the decision may not be made by technical employees, but rather product owners, managers, or someone who stayed up until midnight to click the deploy button.
+Where CI is machine-driven for many teams, CD is human-driven. Much of the grunt work of performing a deployment is still automated, but the decision to promote a release through to production is a human one. Importantly, the decision may not be made by technical employees, but rather product owners, managers, or someone who stayed up until midnight to click the deploy button.
 
 ## Why use separate CI and CD tools?
 
@@ -73,18 +71,18 @@ Where CI is machine-driven for many teams, CD is human-driven. Much of the grunt
 
 This slide is from a talk titled [How to build cloud-native CI/CD pipelines with Tekton on Kubernetes](https://developers.redhat.com/blog/2019/07/22/how-to-build-cloud-native-ci-cd-pipelines-with-tekton-on-kubernetes/?sc_cid=701f2000000RtqCAAS]). It's a classic example of how simple projects merge CI and CD into a single process where a production deployment starts as soon as the code has been compiled.
 
-There is nothing wrong with this process, and it works as intended so long as every part of the pipeline remains fully automated. But what happens if a human needs to test and approve the application before it's released?
+There's nothing wrong with this process, and it works as intended if every part of the pipeline remains fully automated. But what happens if a human needs to test and approve the application before it's released?
 
 For this decision to be made, the deployment process must be interrupted. For example, we'd first deploy the application to a test environment, allow the appropriate parties to verify the changes, and when everyone is happy, the release is promoted to production.
 
 This single decision point means our once machine-driven equation now:
 
-* Requires a UI to expose the releases that have been made to the testing environments.
-* Introduces auditing and security concerns so we can limit and then review who promoted which releases to which environments.
-* Requires a UI to allow deployments to be promoted to the next environment.
-* Requires a system that can model environments in a first-class manner so they can be reliably secured and managed through the UI, API, and reporting interfaces.
+* Requires a UI to expose the releases that have been made to the testing environments
+* Introduces auditing and security concerns so we can limit and then review who promoted which releases to which environments
+* Requires a UI to allow deployments to be promoted to the next environment
+* Requires a system that can model environments in a first-class manner so they can be reliably secured and managed through the UI, API, and reporting interfaces
 
-![](dashboard.png "width=500")
+![Octopus dashboard showing Projects overview page with releasesin Dev, Test and Production sometimes approved sometimes failing](dashboard.png "width=500")
 
 *Dashboards with deploy buttons for humans.*
 
