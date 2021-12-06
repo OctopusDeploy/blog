@@ -12,7 +12,7 @@ tags:
 
 In the [previous post](../aws-vpc-private/index.md) you looked at how to create a VPC with private subnets, and then [add an internet gateway](../aws-vpc-public/index.md) to grant internet access inside public subnets.
 
-By mixing both private and public subnets it is possible to create a VPC that exposes some instances publicly, while restitching access to private instances. This is a common configuration for VPCs that host a public web site, and the web site accesses a private database.
+By mixing both private and public subnets it is possible to create a VPC that exposes some instances publicly, while restricting access to private instances. This is a common configuration for VPCs that host a public web site, and the web site accesses a private database.
 
 In this post you'll create a VPC with a mix of public and private subnets.
 
@@ -26,7 +26,7 @@ A public subnet has a connection to the internet via an [internet gateway](https
 
 A private subnet does not route traffic to an internet gateway. Resources in a private subnet do not have public IP addresses, and can only communicate with resources in other subnets within the same VPC.
 
-One or mode subnets can be placed within a VPC. It is possible to mix and match public and private subnets within a VPC, allowing some resources in the VPC to access the internet, and some to only access other resources in the VPC.
+One or more subnets can be placed within a VPC. It is possible to mix and match public and private subnets within a VPC, allowing some resources in the VPC to access the internet, and some to only access other resources in the VPC.
 
 In a VPC with public and private subnets, it is possible to route outgoing internet traffic from the private subnets through a [NAT gateway](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html). Much like your home router, a NAT Gateway allows outbound internet traffic to be established, and for responses to those outbound requests to be routed back to the device in the private subnet. But a connection can not be initiated from an external connection through a NAT Gateway.
 
@@ -34,7 +34,7 @@ A VPC with public and private subnets is the most complicated to build, but offe
 
 ## Creating a VPC with public and private subnets
 
-The following CloudFormation template creates a VPC with on public subnet and one private subnet:
+The following CloudFormation template creates a VPC with one public subnet and one private subnet:
 
 ```yaml
 Parameters:

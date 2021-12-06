@@ -10,7 +10,7 @@ tags:
  - Octopus
 ---
 
-In the [previous post](../aws-vpc-private/index.md) you looked at how to create a VPC with private subnets. Instances in this VPC had no internet access and could only communicate with instances in the subnets within the same VPC.
+In the [first post](../aws-vpc-private/index.md) you looked at how to create a VPC with private subnets. Instances in this VPC had no internet access and could only communicate with instances in the subnets within the same VPC.
 
 In this post you'll create a VPC with public subnets, allowing instances to access, and be accessed from, the internet.
 
