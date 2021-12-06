@@ -3,26 +3,29 @@ title: Our most popular webinars in 2021
 description: Join us as we list out our favorite webinars of 2021. 
 author: derek.campbell@octopus.com
 visibility: public
-published: 2021-12-30
+published: 2021-12-20-1400
 metaImage: webinar.png
 bannerImage: webinar.png
 bannerImageAlt: Webinar of the year
 tags:
- - Webinar
  - Company
+ - Community
+ - Webinar
 ---
 
 ![Webinar of the year](webinar.png)
 
-This year at Octopus, we hosted webinars on a wide variety of topics. Hosting these webinars is a fun way to share our knowledge and deep dive into specific topics for our customers and the broader DevOps community. In this post, I share my favorite webinars to keep you company if you're working through the holiday period.
+This year at Octopus, we hosted webinars on a wide variety of topics. Hosting webinars is a fun way to share our knowledge and deep dive into topics for our customers and the broader DevOps community. 
 
-You can find all 55 of our webinars on our YouTube [Webinar playlist](https://www.youtube.com/playlist?list=PLAGskdGvlaw2ph_YPvMquJlzgYd7bEDba).
+In this post, I share my favorite webinars to keep you company if you're working through the holiday period.
+
+You can find all 55 of our webinars on our YouTube [Webinars playlist](https://www.youtube.com/playlist?list=PLAGskdGvlaw2ph_YPvMquJlzgYd7bEDba).
 
 ## Technical deep dive into Config as Code
 
 [Configuration as Code](https://octopus.com/blog/config-as-code-what-is-it-how-is-it-beneficial) has been an Octopus concept for a while. Config as code allows you to store your scripts in source control and run them on your deployment targets or Workers. 
 
-In 2021, we launched Config as Code as an early access preview, giving you native support for Config as Code with Git. In this webinar we started a project from scratch using Config as Code and talk you through using this new feature.
+In 2021, we launched Config as Code as an early access preview, giving you built-in support for Config as Code with Git. In this webinar, we started a project from scratch using Config as Code and talked you through using this new feature.
 
 We covered the following topics: 
 
@@ -34,7 +37,7 @@ We covered the following topics:
 
 ## Continuous Delivery with Dave Farley: Using fast feedback to get high quality releases
 
-[Continuous Delivery](https://www.continuous-delivery.co.uk/) is well established in modern development teams, however, no two teams do it the same way. One of the key benefits of shipping software regularly is the feedback loop that leads to high-quality releases. Most teams are doing this to some extent, but how can you maximize this?
+[Continuous Delivery](https://www.continuous-delivery.co.uk/) is well established in modern development teams, however, no two teams do it the same way. A key benefit of shipping software regularly is the feedback loop that leads to high-quality releases. Most teams are doing this to some extent, but how can you maximize this?
 
 In this webinar, Bob Walker and Dave Farley, consultant and co-author of Continuous Delivery, discussed how to get the most out of your CI/CD pipelines and optimize for fast feedback that results in high-quality releases.
 
@@ -49,7 +52,7 @@ We covered the following topics:
 
 ## Getting started with Database DevOps
 
-Very few people enjoy executing manual deployments, especially database deployments.  However, a shocking number of people still do their database deployments manually.  Most people agree this is a problem, but how can we solve it?  Is DevOps the answer?
+Very few people enjoy executing manual deployments, especially database deployments.  However, many people still do their database deployments manually.  Most people agree this is a problem, but how can we solve it?  Is DevOps the answer?
 
 In this webinar, we demonstrated how to get started with Database DevOps to save time and frustration.  
 
@@ -57,7 +60,7 @@ We covered the following topics:
 
 - What is DevOps and how can it be applied to the database
 - How to get started with Database DevOps 
-- Common goals to accomplish Common roadblocks and how to overcome them
+- Common roadblocks and how to overcome them
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Ho3p7gP4zW4" frameborder="0" allowfullscreen></iframe>
 
@@ -83,13 +86,15 @@ We covered the following topics:
 
 - An overview of the Octopus API and why it’s useful 
 - How to manage access with API keys  
-- Different ways to make API calls (Octopus.Client, CLI, Custom scripts in the language of your choice) 
+- Different ways to make API calls (Octopus.Client, CLI, custom scripts in the language of your choice) 
 - How to save time by automating custom or repetitive tasks
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ACb2sHWoZto" frameborder="0" allowfullscreen></iframe>
 
 ## Summary
 
-We've run some world-class webinars in 2021 that we're really proud of, and I'm excited about what we're going to do in 2022 with some great new people on the team, new features landing as well as some really interesting things we are aiming to do in the Community.
+We ran some world-class webinars in 2021 that we're really proud of. I'm excited about what we're going to do in 2022 with great new people on the team, new features, and interesting things we're aiming to do in the community.
 
-Our pipeline for the first quarter of 2021 is already looking full, but if you have an idea for a webinar that you'd like to see or even an improvement we can make on webinars, please email us at [webinars@Octopus.com](mailto:webinars@Octopus.com).
+Our pipeline for the first quarter of 2021 is already looking full, but if you have an idea for a webinar you'd like to see, or improvements we can make with out webinars, please email us at [webinars@octopus.com](mailto:webinars@octopus.com).
+
+Happy deployments!
