@@ -21,9 +21,13 @@ To do this, you will need:
 - An Azure Account
 - to link the [Azure Account to the Octopus Deploy instance](https://octopus.com/docs/infrastructure/accounts/azure#azure-service-principal).
 
+## Set up Azure Web App
+
 Set up the Azure Web App that you will deploy by going to your resource group. Click **{{Create, Web App}}**. Give the web app a name and check 'Docker Container' for the publish setting. Select the appropriate location and create the web app. You will see an option to go to the resource. The URL will be the address of the hosted Web App.
 
 ![Azure Web App Home](azure-web-app-home.png)
+
+## Configure Octopus Deploy
 
 In the Octopus Deploy instance, go to **{{infrastructure, Deployment Targets, Add Deployment Target, Azure, Azure Web App}}** 
 
@@ -62,6 +66,8 @@ In this example, we deploy a sample docker image hosted on Docker Hub. The image
 Click Create Release and click through to the deploy button to deploy the Web App to Azure.
 
 ![Deploy Success](deploy-success.png)
+
+## View your Web App
 
 Navigate to the URL of your Web App - [your-url].azurewebsites.net
 
