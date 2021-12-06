@@ -26,8 +26,6 @@ A private subnet does not route traffic to an internet gateway. Resources in a p
 
 One or mode subnets can be placed within a VPC. It is possible to mix and match public and private subnets within a VPC, allowing some resources in the VPC to access the internet, and some to only access other resources in the VPC.
 
-In a VPC with public and private subnets, it is possible to route outgoing internet traffic from the private subnets through a [NAT gateway](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html). Much like your home router, a NAT Gateway allows outbound internet traffic to be established, and for responses to those outbound requests to be routed back to the device in the private subnet. But a connection can not be initiated from an external connection through a NAT Gateway.
-
 A VPC with public subnets allows instances to access the internet. If those instances have public IP addresses, they can also be access from the internet.
 
 ## Creating a VPC with public subnets
