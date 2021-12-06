@@ -10,11 +10,11 @@ tags:
  - Octopus
 ---
 
-Many of the services provided by AWS are specific to individual regions, and Amazon Machine Images (AMIs) are just one example. This means that while common AMIs are published to all regions, the AMI ID is unique per region.
+Many of the services provided by AWS are specific to individual regions, and Amazon Machine Images (AMIs) are just one example. So while common AMIs are published to all regions, the AMI ID is unique per region.
 
 This presents a challenge when writing CloudFormation scripts, as the AMI ID passed to EC2 resources is region specific, making your template region specific as well.
 
-[Mappings](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-findinmap.html) can be used to write generic CloudFormation templates, where AMI IDs are mapped to a region and looked up when the template is deployed. Unfortunately, AMI IDs change frequently, and there are no easy mapping references to include in your templates.
+[Mappings](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-findinmap.html) can be used to write generic CloudFormation templates, allowing AMI IDs are mapped to a region and looked up when the template is deployed. Unfortunately, AMI IDs change frequently, and there are no easy mapping references to include in your templates.
 
 In this post you'll learn how to generate an up to date mapping with the latest regional AMI IDs for inclusion in your CloudFormation templates.
 
@@ -148,7 +148,7 @@ Resources:
 
 ## Finding AMI names
 
-You will notice from the command above that the start of the AMI name must be passed as a parameter. However, the AWS console typically shows the AMI description, which is more user friendly. So how do you find the name from the AMI ID or description?
+You will notice from the command above that the AMI name must be passed as a parameter. However, the AWS console typically shows the AMI description, which is more user friendly. So how do you find the name from the AMI ID or description?
 
 An easy solution is to open the **Images** link in the EC2 console. This allows public AMIs to be searched for either their ID or description, and the AMI details page then displays the AMI name:
 
