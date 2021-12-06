@@ -138,9 +138,9 @@ This template builds on the [previous post](../aws-vpc-public/index.md), so refe
 
 The template above treats `SubnetA` as the public subnet, and `SubnetB` as the private subnet. To make `SubnetB` private, the route association that directed public traffic to the internet gateway has been removed.
 
-However, instances in `SubnetB` will still have internet access via a NAT Gateway.
+However, instances in `SubnetB` will still have internet access via a NAT gateway.
 
-The NAT Gateway requires a public IP, represented by the [AWS::EC2::EIP](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-eip.html) resource:
+The NAT gateway requires a public IP, represented by the [AWS::EC2::EIP](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-eip.html) resource:
 
 ```yaml
   EIP:
@@ -149,7 +149,7 @@ The NAT Gateway requires a public IP, represented by the [AWS::EC2::EIP](https:/
       Domain: "vpc"
 ```
 
-You then create a Nat Gateway, represented by the [AWS::EC2::NatGateway](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-natgateway.html) resource. The NAT Gateway is created in the public subnet to give it internet access:
+You then create a Nat gateway, represented by the [AWS::EC2::NatGateway](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-natgateway.html) resource. The NAT Gateway is created in the public subnet to give it internet access:
 
 ```yaml
   Nat:
