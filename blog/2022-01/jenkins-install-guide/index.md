@@ -1,44 +1,56 @@
 ---
-title: Traditional Jenkins Installation
+title: Traditional Jenkins installation
 description: Learn how to install Jenkins via the traditional installers
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2999-01-01
+published: 2022-01-01-1400
 metaImage: 
 bannerImage: 
 tags:
- - Octopus
+ - DevOps
+ - Continuous Integration
+ - Jenkins
 ---
 
 The traditional Jenkins installation method is to use the installers made available on the [Jenkins website](https://www.jenkins.io/download/), or through your local operating system's package manager.
 
-The installation process is generally simple, but there are a few tricks to be aware of. In this post you'll run through the installation of Jenkins on Windows and Linux, and gain some insights into customizing the installation.
+The installation process is generally simple, but there are a few tricks to be aware of. In this post, we run through the installation of Jenkins on Windows and Linux, and gain insights into customizing the installation.
 
 ## Choosing between LTS and weekly releases
 
-Jenkins offers two release channels: Long Term Support (LTS) and weekly releases.
+Jenkins offers two release channels: 
 
-LTS releases tend to be more stable and predictable, with fewer features in each minor release, but include any important bug and security fixes.
+- Long Term Support (LTS)
+- Weekly releases
 
-The weekly releases include all the latest features, but will have less "bake time" in the community to find bugs.
+LTS releases tend to be more stable and predictable, with fewer features in each minor release, but includes any important bug and security fixes.
+
+The weekly releases include all the latest features, but have less "bake time" in the community to find bugs.
 
 If you prefer stability and don't require all the latest features right away, go with an LTS release. If you want the latest features as soon as possible and don't mind encountering the occasional glitch, go with the weekly releases.
 
 ## Installing Jenkins on Windows
 
-Jenkins provides an MSI download allowing it to be installed as a Windows service through the traditional Windows wizard style installation process. But before you start the installation there are a number of prerequisites you must satisfy.
+Jenkins provides an MSI download, allowing it to be installed as a Windows service through the traditional Windows wizard-style installation process. But before you start the installation there are a number of prerequisites you must satisfy.
 
 ### Installing OpenJDK
 
-Jenkins requires Java to run, and the OpenJDK project provides a free and open source distribution that you can use to run Jenkins.
+Jenkins requires Java to run, and the OpenJDK project provides a free, open source distribution that you can use to run Jenkins.
 
-There are many OpenJDK distributions to choose from including [OpenJDK](https://openjdk.java.net), [AdoptOpenJDK](https://adoptopenjdk.net), [Azul Zulu](https://www.azul.com/downloads/), [Red Hat OpenJDK](https://developers.redhat.com/products/openjdk/download), and more. I typically use the Azul Zulu distribution, although any distribution will do.
+There are many OpenJDK distributions to choose from, including: 
+
+- [OpenJDK](https://openjdk.java.net)
+- [AdoptOpenJDK](https://adoptopenjdk.net)
+- [Azul Zulu](https://www.azul.com/downloads/)
+- [Red Hat OpenJDK](https://developers.redhat.com/products/openjdk/download) 
+
+I typically use the Azul Zulu distribution but any distribution will do.
 
 Download and install JDK 11 from your chosen OpenJDK distribution, and make a note of the directory it was installed to, as you'll need that path during the Jenkins installation.
 
 ### Adding a Jenkins Windows service account
 
-Jenkins runs as a Windows service, and to do so requires a Windows account to run the service under. The installer provides the option to use the existing [LocalService](https://docs.microsoft.com/en-us/windows/win32/services/localservice-account) account, but notes that this option is not recommended. The recommended solution is to create a new account specifically for running Jenkins.
+Jenkins runs as a Windows service, and requires a Windows account to run the service under. The installer provides the option to use the existing [LocalService](https://docs.microsoft.com/en-us/windows/win32/services/localservice-account) account, but notes that this option is not recommended. The recommended solution is to create a new account specifically for running Jenkins.
 
 To perform this task from the command line you must first install the [Carbon PowerShell module](http://get-carbon.org/). Carbon provides many useful CMDLets for managing Windows, and you'll use one of these to grant the new Jenkins user the rights to log on as a service.
 
@@ -76,41 +88,41 @@ Grant-CPrivilege -Identity "jenkins" -Privilege SeServiceLogonRight
 
 Download the MSI from the [Jenkins download page](https://www.jenkins.io/download/), double-click the MSI file to begin the Jenkins installation, and click the **Next** button:
 
-![Jenkins Windows Installer](win-install-1.png "width=500")
+![Jenkins Windows Installer welcome screen](win-install-1.png "width=500")
 
 The default installation directory is fine, so click the **Next** button:
 
-![Jenkins Windows Installer](win-install-2.png "width=500")
+![Jenkins Windows Installer showing Destination Folder screen](win-install-2.png "width=500")
 
-You are now prompted to supply the details of the user that runs the Windows service. Enter the credentials for the user you created earlier and click the **Test Credentials** button. Once the test passes, click the **Next** button:
+You're now prompted to supply the details of the user that runs the Windows service. Enter the credentials for the user you created earlier and click the **Test Credentials** button. Once the test passes, click the **Next** button:
 
-![Jenkins Windows Installer](win-install-3.png "width=500")
+![Jenkins Windows Installer showing Service Logon Credentials screen with Run service as local or domain user selected](win-install-3.png "width=500")
 
 The default port of **8080** is fine. Click the **Test Port** button to ensure the port is available, and then click the **Next** button:
 
-![Jenkins Windows Installer](win-install-4.png "width=500")
+![Jenkins Windows Installer showing Port Selection screen with Port Number 8080 entered in the Port Number field](win-install-4.png "width=500")
 
 You are now prompted to enter the path to the Java distribution you installed earlier. The default path for the Zulu 11 distribution is `C:\Program Files\Zulu\zulu-11`. Enter the appropriate path for your chosen distribution, and click the **Next** button:
 
-![Jenkins Windows Installer](win-install-6.png "width=500")
+![Jenkins Windows Installer open on Select Java home directory screen](win-install-6.png "width=500")
 
 You will likely want to expose Jenkins through the Windows firewall to allow external clients to access it. Change the **Firewall Exception** feature to be installed, and click the **Next** button:
 
-![Jenkins Windows Installer](win-install-7.png "width=500")
+![Jenkins Windows Installer open on Custom Setup screen with Firewall Exception selected](win-install-7.png "width=500")
 
 All the installation values are now configured, so click the **Install** button:
 
-![Jenkins Windows Installer](win-install-8.png "width=500")
+![Jenkins Windows Installer open on Ready To Install Jenkins screen with the Install button highlighted](win-install-8.png "width=500")
 
-Once the installation is complete, click the **Finish** button:
+After the installation is complete, click the **Finish** button:
 
 ![Jenkins Windows Installer](win-install-9.png "width=500")
 
 ## A note on Chocolatey
 
-Chocolatey is a Windows package manager, and it [provides an option to install Jenkins](https://community.chocolatey.org/packages/jenkins). However, at the time of writing, the latest version of Jenkins available on Chocolatey is 2.222.4, which was well over a year old. In fact, the version was so old that most of the recommended plugins presented during the initial Jenkins configuration failed to install!
+Chocolatey is a Windows package manager, and it [provides an option to install Jenkins](https://community.chocolatey.org/packages/jenkins). However, at the time of writing, the latest version of Jenkins available on Chocolatey is 2.222.4, which is well over a year old. In fact, the version is so old that most of the recommended plugins presented during the initial Jenkins configuration failed to install!
 
-Jenkins may be updated on Chocolatey by the time you read this post, but I would warn against using Chocolatey to install Jenkins as it does have a history of being unmaintained.
+Jenkins may be updated on Chocolatey by the time you read this post, but I warn against using Chocolatey to install Jenkins as it does have a history of being unmaintained.
 
 ## Windows service configuration
 
@@ -120,7 +132,7 @@ This wrapper is found at `C:\Program Files\Jenkins\jenkins.exe` by default, and 
 
 ![Jenkins Wrapper Configuration](jenkins-wrapper.png "width=500")
 
-This XML file contains the `service/arguments` element, which defines the command line arguments passed to Jenkins when it is executed. It also includes `service/env` elements to define the environment variables made available to Jenkins.
+This XML file contains the `service/arguments` element, which defines the command line arguments passed to Jenkins when it's executed. It also includes `service/env` elements to define the environment variables made available to Jenkins.
 
 Advanced Jenkins configuration options often require passing arguments or defining environment variables. As an example, [disabling Cross-Site Request Forgery (CSRF) protection](https://www.jenkins.io/doc/book/security/csrf-protection/) in Jenkins requires passing the `-Dhudson.security.csrf.GlobalCrumbIssuerConfiguration.DISABLE_CSRF_PROTECTION=true` argument, which is configured in the `service/arguments` element:
 
@@ -184,13 +196,13 @@ While all modern versions of Ubuntu, Debian, RHEL, and Fedora use [systemd](http
 sudo service jenkins start
 ```
 
-The init script `/etc/init.d/jenkins` contains quite a bit of bash scripting, but from an administrator's point of view this is the most interesting line:
+The init script `/etc/init.d/jenkins` contains quite a bit of Bash scripting, but from an administrator's point of view this is the most interesting line:
 
 ```bash
 eval "daemonize -u \"$JENKINS_USER\" -p \"$JENKINS_PID_FILE\" \"$JENKINS_JAVA_CMD\" $JENKINS_JAVA_OPTIONS \"-DJENKINS_HOME=$JENKINS_HOME\" -jar \"$JENKINS_WAR\" $PARAMS"
 ```
 
-What you can determine from the code above is that Java options to be passed to Jenkins are contained in the `JENKINS_JAVA_OPTIONS` variable. To populate this variable, add a line of code like the following after `### END INIT INFO`. This example [disables CSRF protection](https://www.jenkins.io/doc/book/security/csrf-protection/):
+You can determine from the code above that Java options to be passed to Jenkins are contained in the `JENKINS_JAVA_OPTIONS` variable. To populate this variable, add a line of code like the following after `### END INIT INFO`. This example [disables CSRF protection](https://www.jenkins.io/doc/book/security/csrf-protection/):
 
 ```bash
 ###############################################################################
@@ -224,34 +236,36 @@ The [Jenkins website](https://www.jenkins.io/download/) includes instructions fo
 
 ## Completing the Jenkins installation
 
-Once Jenkins is installed, it must be configured for the first time.
+After Jenkins is installed, you need to configure it for the first time.
 
-Open [http://localhost:8080](http://localhost:8080) to view the Jenkins web console. You are prompted to enter a randomly generated password saved in a file on the local machine. Open this file, copy the password, paste it into the **Administrator password** text box, and click the **Continue** button:
+Open [http://localhost:8080](http://localhost:8080) to view the Jenkins web console. You're prompted to enter a randomly generated password saved in a file on the local machine. 
 
-![Jenkins Configuration](jenkins-config-1.png "width=500")
+Open this file, copy the password, paste it into the **Administrator password** text box, and click the **Continue** button:
 
-Most of the functionality provided by Jenkins comes by way of [plugins](https://plugins.jenkins.io/). You are prompted with the option to install a curated list of common plugins as part of the initial configuration. These plugins are generally useful, so click the **Install suggested plugins** button:
+![Jenkins Configuration open on Unlock Jenkins page](jenkins-config-1.png "width=500")
 
-![Jenkins Configuration](jenkins-config-2.png "width=500")
+Most Jenkins functionality is provided by [plugins](https://plugins.jenkins.io/). As part of the initial configuration, you're prompted with the option to install a curated list of common plugins. These plugins are generally useful, so click the **Install suggested plugins** button:
+
+![Jenkins Configuration showing Customize Jenkins screen with Install suggested plugins selected](jenkins-config-2.png "width=500")
 
 The plugins take a few minutes to install:
 
-![Jenkins Configuration](jenkins-config-3.png "width=500")
+![Jenkins Configuration screen showing Getting started progress bar](jenkins-config-3.png "width=500")
 
 You are prompted to supply the details of the Jenkins administrator. Populate the fields, and click the **Save and Continue** button:
 
-![Jenkins Configuration](jenkins-config-4.png "width=500")
+![Jenkins Configuration screen showing Create First Admin User with Save and Continue button highlighted](jenkins-config-4.png "width=500")
 
 The default URL is fine, so click the **Save and Finish** button:
 
-![Jenkins Configuration](jenkins-config-5.png "width=500")
+![Jenkins Configuration showing Instance Configuration screen](jenkins-config-5.png "width=500")
 
 Jenkins is now configured and ready to use. Click the **Start using Jenkins** button:
 
-![Jenkins Configuration](jenkins-config-6.png "width=500")
+![Jenkins Configuration screen showing Jenkins is ready message](jenkins-config-6.png "width=500")
 
 ## Conclusion
 
-In this post you examined the installation process for Jenkins in Windows and major Linux distributions, and learned tips for administering the Jenkins service.
+This post examined the installation process for Jenkins in Windows and major Linux distributions, and provided tips for administering the Jenkins service.
 
-Traditional installations are just one method for getting a Jenkins server up and running though. In the next post you'll learn how to install Jenkins with Docker.
+Traditional installations are just one method for getting a Jenkins server up and running though. In the next post, you learn how to install Jenkins with Docker.
