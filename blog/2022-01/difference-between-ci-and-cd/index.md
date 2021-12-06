@@ -82,7 +82,7 @@ This single decision point means our once machine-driven equation now:
 * Requires a UI to allow deployments to be promoted to the next environment
 * Requires a system that can model environments in a first-class manner so they can be reliably secured and managed through the UI, API, and reporting interfaces
 
-![Octopus dashboard showing Projects overview page with releasesin Dev, Test and Production sometimes approved sometimes failing](dashboard.png "width=500")
+![Octopus dashboard showing Projects overview page with releases in Dev, Test and Production sometimes approved sometimes failing](dashboard.png "width=500")
 
 *Dashboards with deploy buttons for humans.*
 
