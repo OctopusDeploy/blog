@@ -13,8 +13,6 @@ tags:
  - Webinar
 ---
 
-![Webinar of the year](webinar.png)
-
 This year at Octopus, we hosted webinars on a wide variety of topics. Hosting webinars is a fun way to share our knowledge and deep dive into topics for our customers and the broader DevOps community. 
 
 In this post, I share my favorite webinars to keep you company if you're working through the holiday period.
