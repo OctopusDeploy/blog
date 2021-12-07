@@ -172,7 +172,7 @@ The DACPAC deployment process consists of the following steps:
 - Deploy the DACPAC to SQL Server.
 
 ### (Optional) Create the database if it doesn't exists
-This step connects to a SQL server and creates a database if it doesn't currently exist.  Click **ADD STEP** and choose **SQL - Create Database If Not exists**.  This step can be run on a Worker machine.
+This step connects to a SQL server and creates a database if it doesn't currently exist.  Click **ADD STEP** and choose **SQL - Create Database If Not exists**.  This step can be run on a Worker Machine.
 
 ![](octopus-add-create-database.png)
 
