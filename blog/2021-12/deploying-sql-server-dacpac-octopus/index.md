@@ -55,9 +55,10 @@ Before creating the build, first make sure your build agents are configured to b
 
 ![](visual-studio-build-tools.png)
 
-The remainder of this section uses Microsoft Azure DevOps to configure a build.  If you're using a different build server, as long as the build agents have the above tools installed, you should be able to do the equivalent.
+The remainder of this section uses Microsoft Azure DevOps to configure a build. If you're using a different build server, as long as the build agents have the above tools installed, you should be able to do the equivalent.
 
 The build will consist of the following steps:
+
 - Build the DACPAC solution
 - Package the files
 - Push the build information
@@ -161,11 +162,12 @@ steps:
     Replace: 'false'
 ```
 
-## Create the deployment process
+## Creating the deployment process
 
 This post assumes you know how to create an Octopus project and doesn't cover that subject.
 
 The DACPAC deployment process consists of the following steps:
+
 - **(Optional) Create database if not exists**: Some people prefer to place this activity in a runbook instead of as part of the deployment process.
 - Deploy the DACPAC to SQL Server.
 
@@ -175,6 +177,7 @@ This step connects to a SQL server and creates a database if it doesn't currentl
 ![](octopus-add-create-database.png)
 
 Fill in the template fields:
+
 - **SQL Server**: The server name.
 - **SQL Login**: SQL Authentication username, leave blank if using Active Directory authentication.
 - **SQL Password**: Password for the SQL Authentication account, leave blank if using Active Directory authentication.
@@ -182,9 +185,10 @@ Fill in the template fields:
 - **Command timeout**: Number of seconds to wait for the create database command to complete.
 - **Azure database edition**: If you're using Azure SQL, choose the edition to create.  If left blank (and using Azure SQL), Azure will default to Standard.
 
-### Deploy the DACPAC to SQL Server
+### Deploying the DACPAC to SQL Server
 
 There are several DACPAC community step templates to choose from:
+
 - **SQL - Deploy DACPAC**: This version of the template was created before the Workers feature of Octopus Deploy was available. The template must execute on a target and requires a **Deploy a Package** step that deploys the DACPAC to the target first.
 - **SQL - Deploy DACPAC from Package Parameter**: This template is Worker compatible and uses the built-in package selector.  In addition, this template can dynamically download the SQL PowerShell module (if chosen) and does not require any additional software installed on the Worker machine.
 - **SQL - Deploy DACPAC from Referenced Package**: This template uses two packages, one contains the binaries necessary to perform a DACPAC deployment and the other is the DACPAC itself.
