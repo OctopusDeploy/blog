@@ -1,28 +1,35 @@
 ---
-title: Helm Jenkins Installation
-description: Learn how to install Jenkins via Helm
+title: Helm Jenkins installation
+description: As part of our series about CI platforms, learn how to install Jenkins via Helm.
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2999-01-01
+published: 2022-01-19-1400
 metaImage: 
 bannerImage: 
+bannerImageAlt: 125 characters max, describes image to people unable to see it.
 tags:
- - Octopus
+  - DevOps
+  - Continuous Integration
+  - Jenkins
 ---
 
-Kubernetes has grown in popularity to become one of the most widely used platforms hosting Docker containers. Kubernetes offers advanced orchestration features, networking capabilities, integrated security, user management, high availability, volume management, a wide ecosystem of supporting tools, and much more.
+Kubernetes (K8s) has become one of the most widely used platforms hosting Docker containers. Kubernetes offers advanced orchestration features, networking capabilities, integrated security, user management, high availability, volume management, a wide ecosystem of supporting tools, and much more.
 
 One supporting tool is [Helm](https://helm.sh/), which provides package management functionality for Kubernetes. Applications deployed by Helm are defined in charts, and Jenkins [provides a Helm chart](https://github.com/jenkinsci/helm-charts/blob/main/charts/jenkins/README.md) to deploy a Jenkins instance to Kubernetes.
 
-In this post you'll learn how to install a Jenkins instance with Helm and connect agents to perform build tasks.
+In this post, you'll learn how to install a Jenkins instance with Helm and connect agents to perform build tasks.
 
 ## Prerequisites
 
 To follow along with this post you need a Kubernetes cluster and the Helm client.
 
-All major cloud providers offer hosted Kubernetes clusters: AWS has [EKS](https://aws.amazon.com/eks/), Azure has [AKS](https://azure.microsoft.com/en-au/services/kubernetes-service/), and Google Cloud has [GKE](https://cloud.google.com/kubernetes-engine).
+All major cloud providers offer hosted Kubernetes clusters: 
 
-If you wish to run a development Kubernetes cluster on your local PC, [kind](https://kind.sigs.k8s.io/docs/user/quick-start/) provides the ability to create and destroy clusters for testing. The post [Creating test Kubernetes clusters with Kind](/blog/2020-09/testing-with-kind/index.md) provides instructions on running Kubernetes locally.
+- AWS has [EKS](https://aws.amazon.com/eks/)
+- Azure has [AKS](https://azure.microsoft.com/en-au/services/kubernetes-service/)
+- Google Cloud has [GKE](https://cloud.google.com/kubernetes-engine)
+
+If you wish to run a development Kubernetes cluster on your local PC, [kind](https://kind.sigs.k8s.io/docs/user/quick-start/) lets you create and destroy clusters for testing. The post [Creating test Kubernetes clusters with Kind](https://octopus.com/blog/testing-with-kind) provides instructions on running Kubernetes locally.
 
 You must also have the Helm client installed. The [Helm documentation](https://helm.sh/docs/intro/install/) provides installation instructions.
 
@@ -111,7 +118,7 @@ helm show values jenkins/jenkins
 
 Configuring the service exposing the Jenkins pod as a `LoadBalancer` is the easiest way to access Jenkins publicly.
 
-A service of type `LoadBalancer` exposes pods via a public IP address. Exactly how that public IP address is created is left to the cluster. For example, hosted Kubernetes platforms like EKS, AKS, and GKE create a network load balancer to direct traffic into the Kubernetes cluster.
+A service of type `LoadBalancer` exposes pods via a public IP address. Exactly how that public IP address is created is left to the cluster. For example, hosted Kubernetes platforms like EKS, AKS, and GKE create a network load balancer to direct traffic into the K8s cluster.
 
 Note that `LoadBalancer` services require additional configuration when using a local test Kubernetes cluster, such as those clusters created by kind. Refer to the [kind documentation](https://kind.sigs.k8s.io/docs/user/loadbalancer/) for more information.
 
@@ -203,16 +210,18 @@ controller:
 
 The plugin ID and version are found on the [Jenkins plugin website](https://plugins.jenkins.io/octopusdeploy/):
 
-![Jenkins Plugin Website](jenkins-plugin.png "width=500")
+![Jenkins Plugin Website showing the ID and version number](jenkins-plugin.png "width=500")
 
-This approach is convenient, but does have the downside where the Jenkins instance is required to contact the Jenkins update site to retrieve them as part of the first boot. A more robust approach is to download the plugins as part of a custom image, which ensures the plugins are baked into the Docker image. It also has the advantage of allowing additional tools to be installed on the Jenkins controller. The [previous post](blog/2022-q1/jenkins-docker-install-guide/index.md) has details on building and publishing custom Docker images.
+This approach is convenient, but the downside is the Jenkins instance is required to contact the Jenkins update site to retrieve them as part of the first boot. 
+
+A more robust approach is to download the plugins as part of a custom image, which ensures the plugins are baked into the Docker image. It also allows additional tools to be installed on the Jenkins controller. The [previous post](blog/2022-01/jenkins-docker-install-guide/index.md) has details on building and publishing custom Docker images.
 
 Note that the custom Docker image must have the following plugins installed in addition to any custom plugins. These plugins are required for the Helm chart to function properly:
 
-* kubernetes
-* workflow-aggregator
-* git
-* configuration-as-code
+- kubernetes
+- workflow-aggregator
+- git
+- configuration-as-code
 
 Here is an example `Dockerfile` including the mandatory plugins:
 
@@ -243,7 +252,7 @@ You can find an example `Dockerfile` installing tools for Java, DotNET Core, PHP
 
 Jenkins Configuration as Code (JCasC) is a [plugin](https://plugins.jenkins.io/configuration-as-code/) providing an opinionated method for configuring Jenkins through YAML files. This provides an alternative to writing [Groovy scripts directly referencing the Jenkins API](https://www.jenkins.io/doc/book/managing/groovy-hook-scripts/), which is powerful, but requires administrators to be comfortable writing code.
 
-JCasC configuration is defined under the `controller.JCasC.configScript` property. The child keys under `configScript` have names of your choosing consisting of lowercase letters, numbers, and hyphens, and serve as a way to summarize the block of text they define. 
+JCasC is defined under the `controller.JCasC.configScript` property. The child keys under `configScript` have names of your choosing consisting of lowercase letters, numbers, and hyphens, and serve as a way to summarize the block of text they define. 
 
 The value assigned to these keys are multi-line strings, which in turn define a JCasC YAML file. The pipe (`|`) character provides a convenient method for defining a multi-line string, but is otherwise not significant.
 
@@ -269,19 +278,19 @@ Jenkins.instance.setNumExecutors(5)
 
 Even this simple example highlights the benefits of JCasC:
 
-* Each JCasC property is documented at http://jenkinshost/configuration-as-code/reference (replace `jenkinshost` with the hostname of your own Jenkins instance), whereas writing a Groovy script requires knowledge of the [Jenkins API](https://javadoc.jenkins-ci.org/jenkins/model/Jenkins.html). 
-* JCasC configuration is vanilla YAML, which is much more approachable that scripts written in Groovy.
-* JCasC is opinionated, providing a consistent approach for common configuration. Groovy scripts can solve the same problem multiple different ways, meaning scripts with more than a few lines of code require software engineering expertise to understand.
+- Each JCasC property is documented at http://jenkinshost/configuration-as-code/reference (replace `jenkinshost` with the hostname of your own Jenkins instance), whereas writing a Groovy script requires knowledge of the [Jenkins API](https://javadoc.jenkins-ci.org/jenkins/model/Jenkins.html). 
+- JCasC configuration is vanilla YAML, which is much more approachable that scripts written in Groovy.
+- JCasC is opinionated, providing a consistent approach for common configuration. Groovy scripts can solve the same problem multiple ways, meaning scripts with more than a few lines of code require the expertise of a software engineer to be understood.
 
 For all the benefits though, JCasC is not a complete replacement for setting system properties or running Groovy scripts. For example, [JCasC will not support the ability to disable CSRF](https://github.com/jenkinsci/configuration-as-code-plugin/issues/1184), meaning this option is only exposed via system properties.
 
 ## Backup Jenkins volume
 
-Volumes in Kubernetes are a little more complicated than those found in regular Docker because Kubernetes volumes tend to be hosted outside of the node that runs the pod. This is because pods can be relocated between nodes, and so are required to be able to access volumes from any node.
+Volumes in Kubernetes are a little more complicated than those found in regular Docker because K8s volumes tend to be hosted outside of the node that run the pod. This is because pods can be relocated between nodes, and so need to access volumes from any node.
 
 To complicate matters, unlike Docker volumes, only specialized Kubernetes volumes can be shared between pods. These shared volumes are referred to as `ReadWriteMany` volumes. Typically though, a Kubernetes volume is only used by a single pod, and are referred to as `ReadWriteOnce` volumes.
 
-The Jenkins Helm chart configures a `ReadWriteOnce` volume to host the Jenkins home directory. Because this volume can only be accessed by the pod it is mounted into, all backup operations must be performed by that pod.
+The Jenkins Helm chart configures a `ReadWriteOnce` volume to host the Jenkins home directory. Because this volume can only be accessed by the pod it's mounted into, all backup operations must be performed by that pod.
 
 Fortunately, the Helm chart offers [comprehensive backup options](https://github.com/jenkinsci/helm-charts/blob/main/charts/jenkins/README.md#backup), with the ability to perform backups and save them to cloud storage providers.
 
@@ -303,7 +312,7 @@ At this point `backup.tar.gz` can be copied to a more permanent location.
 
 ## Adding Jenkins agents
 
-In addition to installing Jenkins on a Kubernetes cluster, you are also able to dynamically create Jenkins agents within the cluster. These agents are created when new tasks are scheduled in Jenkins and are automatically cleaned up once the tasks are completed.
+In addition to installing Jenkins on a Kubernetes cluster, you're can also dynamically create Jenkins agents in the cluster. These agents are created when new tasks are scheduled in Jenkins and are automatically cleaned up after the tasks are completed.
 
 The default settings for agents are defined under the `agent` property in the `values.yaml` file. The example below defines an agent with the Jenkins label `default`, created in pods prefixed with the name `default`, and with CPU and memory limits:
 
@@ -501,9 +510,12 @@ myjenkins-0                              2/2     Running             0          
 Hosting Jenkins and its agents in a Kubernetes cluster allows you to create a scalable and responsive build platform, creating and destroying agents on the fly to handle elastic workloads. And thanks to the Jenkins Helm chart, installing Jenkins and configuring the nodes requires only a few lines of YAML.
 
 In this post you learned how to:
-* Deploy Jenkins to Kubernetes.
-* Expose Jenkins on a public IP address.
-* Install additional plugins as part of the installation process.
-* Configure Jenkins through JCasC.
-* Backup the Jenkins home directory.
-* Create Kubernetes agents that are created and destroyed as needed.
+
+- Deploy Jenkins to Kubernetes
+- Expose Jenkins on a public IP address
+- Install additional plugins as part of the installation process
+- Configure Jenkins through JCasC
+- Backup the Jenkins home directory
+- Create Kubernetes agents that are created and destroyed as needed
+
+Happy deployments!
