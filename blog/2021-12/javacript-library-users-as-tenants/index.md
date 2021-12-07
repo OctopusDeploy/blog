@@ -3,7 +3,7 @@ title: Manage all the consumers of your JavaScript library as tenants
 description: Use Octopus tenants to control who references which version of your JavaScript library project.
 author: lee.meyer@octopus.com
 visibility: public
-published: 2025-11-08-1400
+published: 2021-12-22-1400
 metaImage: blogimage-manageconsumersjslibraryastenants-2021.png
 bannerImage: blogimage-manageconsumersjslibraryastenants-2021.png
 bannerImageAlt: Blue octopus using a slingshot that catapults four JS files to people standing at the numbered windows of a four storey building.
@@ -14,15 +14,15 @@ tags:
  - Multi-Tenancy
 ---
 
-In my [previous post](https://octopus.com/blog/deploying-javascript-library-project-with-octopus), you learned how to use Octopus to deploy a hash-named JavaScript library bundle to cloud storage where it was referenced by other projects via an automatically updated variable within a [library variable set](https://octopus.com/docs/projects/variables/library-variable-sets). 
+In my [previous post](https://octopus.com/blog/deploying-javascript-library-project-with-octopus), you learned how to use Octopus to deploy a hash-named JavaScript library bundle to cloud storage. In cloud storage, it was referenced by other projects via an automatically updated variable in a [library variable set](https://octopus.com/docs/projects/variables/library-variable-sets). 
 
-That's a good start for managing reusable front-end code in Octopus. It keeps every consumer of your bundle on the latest version of your library as releases happen, which might be the exact behavior you need, especially if you only have a few internal projects that reference a small to medium-sized JavaScript library. However, if you continue this pattern as your organization scales up, some scenarios can create dilemmas.
+That's a good start for managing reusable front-end code in Octopus. It keeps every consumer of your bundle on the latest version of your library as releases happen. Being on the latest version might be the exact behavior you need, especially if you only have a few internal projects that reference a small to medium-sized JavaScript library. However, if you continue this pattern as your organization scales up, some scenarios can create dilemmas.
 
-## Motivating Examples
+## Motivating examples
 
 ### A backend release needs the old JS library
 
-This might happen when a hotfix is needed. As your front-end library grows, you won't want to rush upgrading it for the sake of an unrelated fix. You could override the library variable at the project level. That would be a reasonable solution if the situation occurs occasionally, but if it's normal development flow, and multiple teams reference your script and want to upgrade when convenient, clear visibility of who is on which version of your library is helpful. You'd also like to be able to roll back a change that broke one consumer, or upgrade a different website that's failing due to a known bug in an old version of your library. In these cases, you want to release your JavaScript not only to a specific environment but also to specific consumers.  
+This might happen when a hotfix is needed. As your front-end library grows, you won't want to rush upgrading for the sake of an unrelated fix. You could override the library variable at the project level. That would be a reasonable solution if the situation occurs occasionally, but if it's normal development flow, and multiple teams reference your script and want to upgrade when convenient, clear visibility of who is on which version of your library is helpful. You'd also like to be able to roll back a change that broke one consumer, or upgrade a different website that's failing due to a known bug in an old version of your library. In these cases, you want to release your JavaScript not only to a specific environment but also to specific consumers.  
 
 ### The consumer isn't internal
 
@@ -36,25 +36,40 @@ In these cases, it becomes impossible for you to modify the HTML references to y
 
 You're updating script dependencies on different websites instead of deploying software to different customers' infrastructure, but all the requirements for how you manage that in Octopus are the same as if you were deploying appropriate versions of a server-side app for different customers. 
 
-Here's an example of the dashboard you end up with after following the instructions in this post. In this example, imagine you are deploying your shared script to a company WordPress blog, an external customer, and your company's main website.
+Here's an example of the dashboard you end up with after following the instructions in this post. In this example, imagine you're deploying your shared script to a company WordPress blog, an external customer, and your company's main website.
 
 ![bundle tenants overview](bundle-tenants.gif)
 
-Each of these is represented as a tenant which we will assign a unique identifier using a [common Variable](https://octopus.com/docs/tenants/tenant-variables#common-variables), since those are not scoped per environment.
+Each of these is represented as a tenant, to which you will assign a unique identifier using a [common variable](https://octopus.com/docs/tenants/tenant-variables#common-variables), since those are not scoped per environment.
 
 ## Setup your consumer key variable
 
-Within the Octopus Web Portal, navigate to the **Library** tab and then the **Variable Sets** section. Then click **ADD NEW VARIABLE SET** and fill out the dialog as follows:
+In the Octopus Web Portal, navigate to the **Library** tab and then the **Variable Sets** section. Then click **ADD NEW VARIABLE SET** and fill out the dialog as follows:
+
+- **New variable set name** - `Consumer`
+- **Variable set description** - `Key string used to identify a consumer of our JavaScript library`
+
+Click **Save**.
 
 ![create consumer variable](consumer_variable.png)
 
-Click on your newly created variable set, then click **VARIABLE TEMPLATES**, then the **ADD TEMPLATE** button. Fill out the details as follows:
+Select your newly created variable set, then click **VARIABLE TEMPLATES**, then the **ADD TEMPLATE** button. Fill out the details as follows:
+
+- **Variable name** - `BundleConsumerKey`
+- **Label** - `Bundle Consumer Key`
+- **Help text** - `This key will be used by the consumer in a data attribute in the script tag, so the script can look up the URL of the bundle to download`
+- **Control type** - `Single-line text box`
+- **The type of control to display** - `Default value`
 
 ![create consumer variable_template](consumer_template.png)
 
 ## Create a consumer for each tenant
 
-Navigate to the **Tenants** tab, click the **ADD TENANT** button, and create a tenant named `Blog`. Click on your newly created tenant, navigate to its **Variables** section, then click on  **COMMON VARIABLES**. Set the variable for `Bundle Consumer Key` to the value `Blog`.
+Navigate to the **Tenants** tab, click the **ADD TENANT** button, and create a tenant named `Blog`. 
+
+Click on your newly created tenant, navigate to its **Variables** section, then click on  **COMMON VARIABLES**. 
+
+Set the variable for `Bundle Consumer Key` to the value `Blog`.
 
 ![setting the tenant variable](tenant_variable.gif)
 
@@ -68,7 +83,7 @@ You can deploy to your tenants using the following process.
 
 ![process](bundle-tenants-process.gif)
 
-We'll use essentially the same process we used in the [previous post](https://octopus.com/blog/deploying-javascript-library-project-with-octopus). But we'll stop before we update the bundle URL in a variable set because the final step of this tenanted deployment process is different. 
+You use essentially the same process used in the [previous post](https://octopus.com/blog/deploying-javascript-library-project-with-octopus). But you'll stop before you update the bundle URL in a variable set because the final step of this tenanted deployment process is different. 
 
 From the previous post, create a process in Octopus Deploy that includes the following steps:
 
@@ -76,7 +91,7 @@ From the previous post, create a process in Octopus Deploy that includes the fol
 2. [Set the S3 CORS policy](https://octopus.com/blog/deploying-javascript-library-project-with-octopus#setting-s3-cors-policy)
 3. [Upload the bundle to S3](https://octopus.com/blog/deploying-javascript-library-project-with-octopus#uploading-bundle-to-s3)
 
-Now you have the basis for a project that uploads a JavaScript bundle, you need to make modifications to enable tenanted deployments.
+Now that you have the basis for a project that uploads a JavaScript bundle, you need to make modifications to enable tenanted deployments.
 
 ### Require tenants for all deployments of your project
 
@@ -119,7 +134,7 @@ echo "{""url"":""$bundleUrl""}" | aws s3 cp - "s3://#{s3-bucket-name}/#{BundleCo
 aws s3 cp MyBundle/bundle-loader.js s3://#{s3-bucket-name}/bundle-loader.js --acl public-read
 ```
 
-This won't run successfully yet, because we have to add `bundle-loader.js` to the code in our package.
+This won't run successfully yet, because you have to add `bundle-loader.js` to the code in your package.
 
 ### Dynamic cache busting
 
@@ -140,7 +155,9 @@ Here is the source for `bundle-loader.js`:
 )();
 ```
 
-Consumers now reference `bundle-loader.js` instead of directly referencing the bundle. It will fetch the small JSON file without caching, then dynamically add a new `script` tag to reference the correct version of the bundle for the tenant and environment. These are specified in data attributes on the `script` tag that references `bundle-loader.js`. Here is an example of a consumer page implemented in ASP.NET Core MVC:
+Consumers now reference `bundle-loader.js` instead of directly referencing the bundle. It will fetch the small JSON file without caching, then dynamically add a new `script` tag to reference the correct version of the bundle for the tenant and environment. These are specified in data attributes on the `script` tag that references `bundle-loader.js`. 
+
+Here is an example of a consumer page implemented in ASP.NET Core MVC:
 
 ```razor
 @page
@@ -151,10 +168,12 @@ Consumers now reference `bundle-loader.js` instead of directly referencing the b
 <div id="app"></div>
 ```
 
-Now there is no need to make any modifications to consumers to update their JavaScript references when you release new versions of your library!
+Now there is no need to make any modifications to consumers to update their JavaScript references when you release new versions of your library.
 
 ## Conclusion
 
-Tenants are a powerful and versatile feature of Octopus. In this post, I demonstrated that they are well-suited to modeling consumers that share a JavaScript library. The flexibility of tenant variables opens the door to advanced scenarios, such as publishing an NPM package or releasing custom builds of your JavaScript library for different consumers. The approach does bring a small increase in complexity, and if you only want all your consumers to use the latest version of a JavaScript dependency that doesn't change often, multi-tenanted deployments might be overkill. I've proven it's not difficult to adapt a simpler deployment process to be multi-tenanted when you need it, so it's fine to start with a simpler deployment process for your JavaScript library, but tenants have you covered if you need complete control over who uses which version of your library.
+Tenants are a powerful and versatile feature of Octopus. In this post, I demonstrated that they are well-suited to modeling consumers that share a JavaScript library. 
+
+The flexibility of tenant variables opens the door to advanced scenarios, such as publishing an NPM package or releasing custom builds of your JavaScript library for different consumers. The approach does bring a small increase in complexity, and if you only want all your consumers to use the latest version of a JavaScript dependency that doesn't change often, multi-tenanted deployments might be overkill. I've proven it's not difficult to adapt a simpler deployment process to be multi-tenanted when you need it, so it's fine to start with a simpler deployment process for your JavaScript library, but tenants have you covered if you need complete control over who uses which version of your library.
 
 Happy deployments!
