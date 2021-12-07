@@ -34,7 +34,7 @@ After the extension has been installed, create a new project, and choose the SQL
 
 ![](visual-studio-new-project.png)
 
-Right click the Solution space, choose **{{Import,Database}}** to connect to an existing database:
+Right click the **Solution** space, choose **Import** , then **Database** to connect to an existing database:
 
 ![](visual-studio-import-database.png)
 
@@ -48,7 +48,7 @@ After the process is complete, your project should look something like this:
 
 ## Creating the build
 
-Before diving into creating the build, you will first want to make sure your build agents are configured to build SQL Server Database projects.  With the exception of SSRS projects, MSBuild is unable to build SSDT projects.  At a minimum, your build agent requires the following:
+Before creating the build, first make sure your build agents are configured to build SQL Server Database projects.  With the exception of SSRS projects, MSBuild is unable to build SSDT projects.  At a minimum, your build agent requires the following:
 
 - [Visual Studio Build Tools](https://visualstudio.microsoft.com/downloads/?q=build+tools#build-tools-for-visual-studio-2019)
 - Data storage and processing build tools workload installed for the Visual Studio Build Tools
@@ -63,7 +63,7 @@ The build will consist of the following steps:
 - Push the build information
 - Push the package to the package feed
 
-### Build the DACPAC solution
+### Building the DACPAC solution
 Add a **Visual Studio Build** step to your build pipeline.  Setting clean to `true` will ensure you don't have any leftover artifacts in the folder when doing subsequent builds.
 
 ```yaml
@@ -74,7 +74,7 @@ Add a **Visual Studio Build** step to your build pipeline.  Setting clean to `tr
     clean: true
 ```
 
-### Package files
+### Packaging files
 
 Add a **Package application for Octopus** step to the pipeline.  This will zip the `.dacpac` file so Octopus Deploy can deploy it.  Include the .dacpac file and the publish profile XML file.
 
@@ -91,8 +91,8 @@ Add a **Package application for Octopus** step to the pipeline.  This will zip t
       sakila.mssql.dacpac.publish.xml
 ```
 
-### Push build information
-It's useful to see the commits and the associated work items associated with this build.  Add **Push package build information to Octopus Deploy**.
+### Pushing build information
+It's useful to see the commits and the work items associated with this build.  Add **Push package build information to Octopus Deploy**.
 
 ```yaml
 - task: OctopusMetadata@4
@@ -108,9 +108,9 @@ It's useful to see the commits and the associated work items associated with thi
 Using the Azure DevOps assistant, you can configure the `OctoConnectedServiceName` used in this step.
 :::
 
-### Push the package to the package feed
+### Pushing the package to the package feed
 
-The final step to the build process is to push the package to a repository.  This post is going to use the built-in repository of Octopus Deploy, however, other external feed types are also supported such as Azure DevOps, Artifactory, Nexus, etc...
+The final step in the build process is to push the package to a repository.  This post is going to use the built-in repository of Octopus Deploy, however, other external feed types are also supported such as Azure DevOps, Artifactory, Nexus, etc...
 
 ```yaml
 - task: OctopusPush@4
@@ -121,7 +121,7 @@ The final step to the build process is to push the package to a repository.  Thi
     Replace: 'false'
 ```
 
-The complete YAML pipeline should look similar to this:
+The complete YAML pipeline will look similar to this:
 
 ```yaml
 trigger:
@@ -166,11 +166,11 @@ steps:
 This post assumes you know how to create an Octopus project and doesn't cover that subject.
 
 The DACPAC deployment process consists of the following steps:
-- **(Optional) Create database if not exists**: Some people prefer to place this activity within a runbook instead of as part of the deployment process.
+- **(Optional) Create database if not exists**: Some people prefer to place this activity in a runbook instead of as part of the deployment process.
 - Deploy the DACPAC to SQL Server.
 
 ### (Optional) Create the database if it doesn't exists
-This step connects to a SQL server and creates a database if it doesn't currently exist.  Click **ADD STEP** and choose **SQL - Create Database If Not exists**.  This step can be run on a worker machine.
+This step connects to a SQL server and creates a database if it doesn't currently exist.  Click **ADD STEP** and choose **SQL - Create Database If Not exists**.  This step can be run on a Worker machine.
 
 ![](octopus-add-create-database.png)
 
@@ -185,15 +185,15 @@ Fill in the template fields:
 ### Deploy the DACPAC to SQL Server
 
 There are several DACPAC community step templates to choose from:
-- **SQL - Deploy DACPAC**: This version of the template was created before the workers feature of Octopus Deploy was available. The template must execute on a target and requires a **Deploy a Package** step that deploys the DACPAC to the target first.
-- **SQL - Deploy DACPAC from Package Parameter**: This template is worker compatible and uses the built-in package selector.  In addition, this template can dynamically download the SQL PowerShell module (if chosen) and does not require any additional software installed on the worker machine.
+- **SQL - Deploy DACPAC**: This version of the template was created before the Workers feature of Octopus Deploy was available. The template must execute on a target and requires a **Deploy a Package** step that deploys the DACPAC to the target first.
+- **SQL - Deploy DACPAC from Package Parameter**: This template is Worker compatible and uses the built-in package selector.  In addition, this template can dynamically download the SQL PowerShell module (if chosen) and does not require any additional software installed on the Worker machine.
 - **SQL - Deploy DACPAC from Referenced Package**: This template uses two packages, one contains the binaries necessary to perform a DACPAC deployment and the other is the DACPAC itself.
 - **SQL - Deploy DACPAC with AAD Auth support**: This is the newest of the available templates and contains the ability to use Azure Active Directory authentication to the database server (this blog post demonstrates [how to configure the step template](https://octopus.com/blog/classes-in-custom-step-templates).
 
 All four templates contain the same base functionality in how they deploy the DACPAC, however, they were developed separately to avoid introducing breaking changes for people who were currently using the template.  This post uses the most recent template, **SQL Deploy DACPAC with AAD support**.
 
 :::info
-All four templates support the use of SQL CMD Variables.  Because there can be N number of SQL CMD Variables, there isn't an input field within the template to define them.  Instead, the code of the templates query the Octopus variables collection for variables named in a specific convention:
+All four templates support the use of SQL CMD Variables.  Because there can be N number of SQL CMD Variables, there isn't an input field in the template to define them.  Instead, the code of the templates query the Octopus variables collection for variables named in a specific convention:
 
 - `SqlCmdVariable.Variable1`
 - `my.sqlcmdvariable.variable2`
@@ -208,11 +208,12 @@ During deployment, you'll see something like the following when being added:
 ![](octopus-add-deploy-dacpac.png)
 
 Fill in the template fields:
-- **DACPACPackageName**: Name of the `.dacpac` file within the package.  For this post it is `sakila.mssql.dacpac.dacpac`.
-- **(Optional) Publish profile name**: Name of the Publish Profile XML file.  For this post, it is `sakila.mssql.dacpac.publish.xml`.
+
+- **DACPACPackageName**: Name of the `.dacpac` file in the package.  For this post, it's `sakila.mssql.dacpac.dacpac`.
+- **(Optional) Publish profile name**: Name of the Publish Profile XML file.  For this post, it's `sakila.mssql.dacpac.publish.xml`.
 - **Report**: Tick this box to generate an HTML report of the changes that will be made.
 - **Script**: Tick this box to generate a `.sql` file containing the SQL that will be executed.
-- **Deploy**: This this box to perform the deployment.
+- **Deploy**: Tick this box to perform the deployment.
 - **Extract target database to dacpac**: Tick this box to extract the target database into a DACPAC and add it as an artifact.
 - **Target Servername**: The name of the database server.
 - **Target Database**: Name of the database to deploy to.
@@ -220,7 +221,7 @@ Fill in the template fields:
 - **Authentication type**: List of authentication options, this post is using SQL Authentication.
 - **Username**: SQL Authentication username.
 - **Password**: Password for the SQL Authentication user.
-- **Enable multi subnet failover**: Whether or not use use multi subnet failover.
+- **Enable multi subnet failover**: Whether or not you use multi subnet failover.
 - **Additional deployment contributors**: Options that you would add if you were using `SqlPackage.exe /p:AdditionalDeploymentContributors=[what you would put here]` command line.
 - **Additional deployment contributor arguments**: Options that you would add if you were using `SqlPackage.exe /p:AdditionalDeploymentContributorArguments=[what you would put here]` command line.
 - **DACPAC Package**: The package to deploy.
@@ -228,7 +229,7 @@ Fill in the template fields:
 
 ![](octopus-dacpac-deployment-process.png)
 
-Your deployment should look something like this:
+Your deployment will look something like this:
 
 ![](octopus-deploy-complete.png)
 
