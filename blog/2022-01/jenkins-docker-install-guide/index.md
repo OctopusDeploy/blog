@@ -1,5 +1,5 @@
 ---
-title: Docker Jenkins Installation
+title: Docker Jenkins installation
 description: As part of our series about CI platforms, learn how to install Jenkins via a Docker image.
 author: matthew.casperson@octopus.com
 visibility: private
