@@ -4,9 +4,9 @@ description: This post discusses patterns for migrating from a tightly coupled t
 author: alex.yates@dlmconsultants.com
 visibility: public
 published: 2021-12-08-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: Octopus strangling a database
+metaImage: blogimage-stranglingthemonolith-2021.png
+bannerImage: blogimage-stranglingthemonolith-2021.png
+bannerImageAlt: 3 people building an unstable looking tower with blue blocks, beside 2 people building a stable, lower tower with blue blocks
 isFeatured: false
 tags:
  - DevOps
