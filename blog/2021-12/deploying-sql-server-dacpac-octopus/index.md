@@ -190,7 +190,7 @@ Fill in the template fields:
 There are several DACPAC community step templates to choose from:
 
 - **SQL - Deploy DACPAC**: This version of the template was created before the Workers feature of Octopus Deploy was available. The template must execute on a target and requires a **Deploy a Package** step that deploys the DACPAC to the target first.
-- **SQL - Deploy DACPAC from Package Parameter**: This template is Worker compatible and uses the built-in package selector.  In addition, this template can dynamically download the SQL PowerShell module (if chosen) and does not require any additional software installed on the Worker machine.
+- **SQL - Deploy DACPAC from Package Parameter**: This template is Worker compatible and uses the built-in package selector.  In addition, this template can dynamically download the SQL PowerShell module (if chosen) and does not require any additional software installed on the Worker Machine.
 - **SQL - Deploy DACPAC from Referenced Package**: This template uses two packages, one contains the binaries necessary to perform a DACPAC deployment and the other is the DACPAC itself.
 - **SQL - Deploy DACPAC with AAD Auth support**: This is the newest of the available templates and contains the ability to use Azure Active Directory authentication to the database server (this blog post demonstrates [how to configure the step template](https://octopus.com/blog/classes-in-custom-step-templates).
 
