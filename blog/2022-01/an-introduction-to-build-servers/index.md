@@ -15,7 +15,7 @@ tags:
   - GitHub Actions
 ---
 
-Octopus can receive packages whether you upload them to our in-built package store or import them via a feed. As believers in Continuous Integration/Continuous Delivery (CI/CD), though, we think packages should come from a build server, also known as a Continuous Integration (CI) platform.
+Octopus can receive packages whether you upload them to our in-built package store or import them via a feed. As believers in Continuous Integration and Continuous Delivery (CI/CD), though, we think packages should come from a build server, also known as a Continuous Integration (CI) platform.
 
 Given build servers can automate everything that happens between code commits and deployments, they're vital to CI as a concept. Let’s dig into why we rate them so highly.
 
@@ -39,7 +39,7 @@ But CI doesn’t just mean less time spent on manual tasks or the death of arbit
 
 We’re taking deep dives into 2 CI platforms in the coming weeks, looking at how [Jenkins](https://www.jenkins.io/) or [GitHub Actions](https://github.com/features/actions) can help with your processes, plus how they complement Octopus.
 
-## A little about Jenkins
+## About Jenkins
 
 [Jenkins](https://www.jenkins.io/) is the most popular CI platform on the market. Open-source and free to use, you can run Jenkins standalone on most operating systems to automate the building and testing of your code.
 
@@ -47,7 +47,7 @@ One of Jenkins biggest benefits is its flexibility. It's a scalable platform, me
  
 That means Jenkins is flexible enough to cover your CI needs and you can tailor it for other automation purposes too.
 
-## A little about GitHub Actions
+## About GitHub Actions
 
 [GitHub Actions](https://github.com/features/actions) is one of the newer CI platforms. It removes the need for a separate build server by using repository events to trigger automation workflows on virtual ‘runners’. 
 
