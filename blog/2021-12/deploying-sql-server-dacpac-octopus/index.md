@@ -34,7 +34,7 @@ After the extension has been installed, create a new project, and choose the SQL
 
 ![](visual-studio-new-project.png)
 
-Right click the **Solution** space, choose **Import** , then **Database** to connect to an existing database:
+Right click the **Solution** space, choose **Import**, then **Database** to connect to an existing database:
 
 ![](visual-studio-import-database.png)
 
