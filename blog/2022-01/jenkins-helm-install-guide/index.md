@@ -11,6 +11,7 @@ tags:
   - DevOps
   - Continuous Integration
   - Jenkins
+  - Kubernetes
 ---
 
 Kubernetes (K8s) has become one of the most widely used platforms hosting Docker containers. Kubernetes offers advanced orchestration features, networking capabilities, integrated security, user management, high availability, volume management, a wide ecosystem of supporting tools, and much more.
@@ -346,9 +347,9 @@ additionalAgents:
     tag: latest
 ```
 
-The agent definitions are then available from {{Manage Jenkins,Manage Nodes and Clouds,Configure Clouds}}:
+To find the agent definitions, navigate to **Manage Jenkins**, then **Manage Nodes and Clouds**, and finally **Configure Clouds**.
 
-![Jenkins K8s Cloud](k8s-cloud.png "width=500")
+![Jenkins K8s Cloud, Configure Clouds screen](k8s-cloud.png "width=500")
 
 To use the agents to execute a pipeline, define the `agent` block like this:
 
