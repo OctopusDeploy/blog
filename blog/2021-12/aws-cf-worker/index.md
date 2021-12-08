@@ -558,7 +558,7 @@ The name of the worker pool to place the worker in is defined in the `OctopusWor
     Description: The Octopus worker pool.
 ```
 
-Each availability zone in AWS has its own unique AMI IDs. The `Mappings` section maps the [Amazon ECS-optimized AMI](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html) to each region. We use the ECS-optimized AMI as this already has Docker installed, which is useful for running deployments in [execution containers](https://octopus.com/docs/projects/steps/execution-containers-for-workers):
+Each availability zone in AWS has its own unique AMI IDs. The `Mappings` section maps the [Amazon ECS-optimized AMI](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html) to each region. You use the ECS-optimized AMI as this already has Docker installed, which is useful for running deployments in [execution containers](https://octopus.com/docs/projects/steps/execution-containers-for-workers):
 
 ```yaml
 Mappings:
