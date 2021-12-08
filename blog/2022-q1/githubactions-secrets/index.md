@@ -119,13 +119,12 @@ Secrets are a great security measure that allow you to protect data and connect 
 
 We recommend you see GitHub’s documentation for:
 
-- more information about secrets
-- GitHub Actions’ contexts
-- GitHub Actions’ syntax
+- [more information about secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets#reviewing-access-to-organization-level-secrets)
+- [GitHub Actions’ contexts](https://docs.github.com/en/actions/learn-github-actions/contexts)
+- [GitHub Actions’ syntax](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#jobsjob_idstepsenv)
 
 If you haven’t already, check out some of our other blogs in this continuous integration series:
 
 - links to Come
 
 Octopus has also built a useful [GitHub Actions workflow generator](https://githubactionworkflows.com/) to help you build a CI pipeline for GitHub.
-
