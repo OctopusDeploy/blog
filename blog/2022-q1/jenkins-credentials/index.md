@@ -59,6 +59,7 @@ The Credentials Binding plugin stores your authentication methods in 2 different
    - Secret files
    - Secret text
    - Certificates
+
 Regardless of the option you select, you should always enter a meaningful **ID** and **Description**.
 
 ### Use global credentials in Jenkins
