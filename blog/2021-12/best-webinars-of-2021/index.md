@@ -93,6 +93,6 @@ We covered the following topics:
 
 We ran some world-class webinars in 2021 that we're really proud of. I'm excited about what we're going to do in 2022 with great new people on the team, new features, and interesting things we're aiming to do in the community.
 
-Our pipeline for the first quarter of 2021 is already looking full, but if you have an idea for a webinar you'd like to see, or improvements we can make with out webinars, please email us at [webinars@octopus.com](mailto:webinars@octopus.com).
+Our pipeline for the first quarter of 2021 is already looking full, but if you have an idea for a webinar you'd like to see, or improvements we can make with our webinars, please email us at [webinars@octopus.com](mailto:webinars@octopus.com).
 
 Happy deployments!
