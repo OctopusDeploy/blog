@@ -46,7 +46,7 @@ The Credentials Binding plugin stores your authentication methods in 2 different
 -	packaging services, like a Docker registry or TeamCity feed
 -	deployment tools, like Octopus.
 
-### Add credentials Jenkins
+### Add credentials in Jenkins
 
 1. Click **Manage Jenkins** from the menu.
 1. Scroll down to the **Security** heading and click **Manage Credentials**.
@@ -75,8 +75,6 @@ The easiest way, though, is to add the credentials when creating your pipeline:
 ![The Jenkins freelstyle project setup screen showing an example of where you can select global credentials](freestyle-project-setup.png)
 
 :::
-#### About Jenkinsfiles
-
 Jenkinsfiles are text files in your code repo that define what your pipeline does and what it connects to. Jenkinsfiles are part of what’s known as ‘Jenkins Pipeline’ - a collection of Jenkins-recommended plugins for continuous integration/continuous delivery (CI/CD).
 
 What this means is you can connect to services via your Jenkinsfile from credentials stored in Jenkins.
@@ -86,7 +84,7 @@ If you’re using the Blue Ocean plugin, which creates a Jenkinsfile for you whe
 See the [Using a Jenkinsfile page](https://www.jenkins.io/doc/book/pipeline/jenkinsfile/) on the Jenkins website for more information.
 :::
 
-## User-tied Credentials
+## User-tied credentials
 
 Depending on what you’re connecting Jenkins to, or the plugin you enter them, Jenkins ties some credentials to the logged-in user. Jenkins only stores these credentials when you first connect it with another service and only that user can ever access them.
 
