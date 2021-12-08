@@ -113,9 +113,9 @@ Outputs:
     Value: !Ref VPC
 ```
 
-The VPC, subnets, and route tables were described in a [previous post](https://octopus.com/blog/aws-vpc-private). 
+The VPC, subnets, and route tables were described in a [previous post](https://octopus.com/blog/aws-vpc-private). This template then places a number of additional resources into the VPC to support or create the RDS instance.
 
-This template then places a number of additional resources into the VPC to support or create the RDS instance.
+RDS instances must have at least two subnets to achieve high availability. These subnets are grouped together in a [AWS::RDS::DBSubnetGroup](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbsubnet-group.html) resource:
 
 ```yaml
   SubnetGroup:
@@ -127,3 +127,62 @@ This template then places a number of additional resources into the VPC to suppo
       - !Ref "SubnetA"
       - !Ref "SubnetB"
 ```
+
+Network access to the RDS instance is defined in a security group, represented by a [AWS::EC2::SecurityGrou](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html) resource. This security group allows all outbound traffic, but does not specify any rules for inbound traffic. Inbound traffic rules are taken care of with another resource:
+
+```yaml
+  InstanceSecurityGroup:
+    Type: "AWS::EC2::SecurityGroup"
+    Properties:
+      GroupName: "Example Security Group"
+      GroupDescription: "RDS traffic"
+      VpcId: !Ref "VPC"
+      SecurityGroupEgress:
+      - IpProtocol: "-1"
+        CidrIp: "0.0.0.0/0"
+```
+
+It is rare that a production database is accessible to public traffic. In fact, RDS solutions like Aurora Serverless (which is what you'll create next) [are only accessible from within a VPC](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.html#aurora-serverless.requirements):
+
+> You can't give an Aurora Serverless v1 DB cluster a public IP address. You can access an Aurora Serverless v1 DB cluster only from within a VPC.
+
+To grant resources in the VPC access to the RDS instance, you create an ingress rule that grants network traffic to any resource that has been assigned the security group defined above. Allowing resources that share a security group to communicate with each other is a convenient way to group related resources without having to partition them in special CIDR blocks.
+
+Ingress rules are represented by the [AWS::EC2::SecurityGroupIngress](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group-ingress.html) resource:
+
+```yaml
+  InstanceSecurityGroupIngress:
+    Type: "AWS::EC2::SecurityGroupIngress"
+    DependsOn: "InstanceSecurityGroup"
+    Properties:
+      GroupId: !Ref "InstanceSecurityGroup"
+      IpProtocol: "tcp"
+      FromPort: "0"
+      ToPort: "65535"
+      SourceSecurityGroupId: !Ref "InstanceSecurityGroup"
+```
+
+You now have everything in place to deploy the RDS instance, represented by the [AWS::RDS::DBCluster](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbcluster.html) resource. The example below creates a [serverless Aurora instance](https://aws.amazon.com/rds/aurora/serverless/):
+
+```yaml
+  RDSCluster:
+    Type: "AWS::RDS::DBCluster"
+    Properties:
+      DBSubnetGroupName: !Ref "SubnetGroup"
+      MasterUsername: !Ref "DBUsername"
+      MasterUserPassword: !Ref "DBPassword"
+      DatabaseName: "products"
+      Engine: "aurora"
+      EngineMode: "serverless"
+      VpcSecurityGroupIds:
+      - !Ref "InstanceSecurityGroup"
+      ScalingConfiguration:
+        AutoPause: true
+        MaxCapacity: 16
+        MinCapacity: 2
+        SecondsUntilAutoPause: 300
+```
+
+## Conclusion
+
+RDS provides a managed, scalable, and highly available database platform supporting a number of popular database providers. This post built on the [previous post](https://octopus.com/blog/aws-vpc-private) describing VPCs with private subnets to deploy a serverless Aurora RDS instance with security groups ready to be attached to any additional resources that required database access.
