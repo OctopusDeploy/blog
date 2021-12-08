@@ -650,7 +650,7 @@ To allow your local workstation to SSH into the EC2 instance, a security group i
 
 Because you will configure a polling tentacle, which establishes an outbound connection from the worker to the Octopus server, there is no need to open any ports to allow traffic from Octopus to the EC2 instance. Security groups will allow the Octopus server to respond to a request made by the worker.
 
-If you were to configure a listening tentacle, where Octopus establishes the network connection to the worker, you would have to open port 10933 to the list of [static IPs associated with your hosted instance](https://octopus.com/docs/octopus-cloud/static-ip), or the IP address of you self hosted Octopus instance.
+If you were to configure a listening tentacle, where Octopus establishes the network connection to the worker, you would have to open port 10933 to the list of [static IPs associated with your hosted instance](https://octopus.com/docs/octopus-cloud/static-ip), or the IP address of your self hosted Octopus instance.
 
 Polling tentacles are easier to configure with firewalls though, and so that is the solution shown here:
 
