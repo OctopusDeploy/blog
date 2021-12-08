@@ -75,7 +75,7 @@ The easiest way, though, is to add the credentials when creating your pipeline:
 
 ![The Jenkins freelstyle project setup screen showing an example of where you can select global credentials](freestyle-project-setup.png)
 
-:::
+:::hint
 Jenkinsfiles are text files in your code repo that define what your pipeline does and what it connects to. Jenkinsfiles are part of what’s known as ‘Jenkins Pipeline’ - a collection of Jenkins-recommended plugins for continuous integration/continuous delivery (CI/CD).
 
 What this means is you can connect to services via your Jenkinsfile from credentials stored in Jenkins.
