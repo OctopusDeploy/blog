@@ -671,7 +671,7 @@ Polling tentacles are easier to configure with firewalls though, and so that is 
           CidrIp: 0.0.0.0/0
 ```
 
-For convenience you can assign a static (or elastic) IP address to the EC2 instance. Without a static IP address, the EC2 instance will receive a new random public IP address if it is shutdown and started again. A static address removes the need to confirm the IP address before SSHing into the EC2.
+For convenience, you can assign a static (or elastic) IP address to the EC2 instance. Without a static IP address, the EC2 instance will receive a new random public IP address if it is shutdown and started again. A static address removes the need to confirm the IP address before SSHing into the EC2.
 
 An elastic IP address is represented by the [AWS::EC2::EIP](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-eip.html) resource:
 
@@ -683,9 +683,9 @@ An elastic IP address is represented by the [AWS::EC2::EIP](https://docs.aws.ama
       InstanceId: !Ref Linux
 ```
 
-All the previous resources were required to gives you a location in which to place an EC2 instance and configure its networking. The final resource is then the EC2 instance itself, represented by the [AWS::EC2::Instance](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html) resource.
+All the previous resources were required to give you a location in which to place an EC2 instance and configure its networking. The final resource is then the EC2 instance itself, represented by the [AWS::EC2::Instance](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html) resource.
 
-This resource references the AMI IDs from the `Mappings`, joins the subnet, links to the security group, and is conigured with the SSH key. It also defines a larger hard disk than is provided by default:
+This resource references the AMI IDs from the `Mappings` section, joins the subnet, links to the security group, and is configured with the SSH key. It also defines a larger hard disk than is provided by default:
 
 ```yaml
   Linux:
@@ -710,7 +710,7 @@ This resource references the AMI IDs from the `Mappings`, joins the subnet, link
           Value: Linux Server
 ```
 
-User data scripts are run once when the instance is provisioned. It is here where we will install any specialized tools commonly required by deployments, install the Octopus tentacle, and configure the tentacle as a worker.
+[User data scripts](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) are run once when the instance is provisioned. It is here where we will install any specialized tools commonly required by deployments, install the Octopus tentacle, and configure the tentacle as a worker.
 
 One issue to watch out for is that the network may not be available when this script is executed. This has been discussed on [StackOverflow](https://stackoverflow.com/questions/54050975/aws-ec2-yum-update-does-not-work-in-autoscaling-launchconfig-userdata).
 
@@ -729,7 +729,7 @@ To ensure any subsequent commands have network access, you must enter a loop wai
             done
 ```
 
-Any operating system updates are applied, and common tools like the AWSCLI, jq, wget, and curl are installed:
+Any operating system updates are applied, and common tools like the AWS CLI, jq, wget, and curl are installed:
 
 ```yaml
             # Update all packages
@@ -738,7 +738,7 @@ Any operating system updates are applied, and common tools like the AWSCLI, jq, 
             sudo yum install jq wget curl awscli -y
 ```
 
-Deployments to a Kubernetes cluster require `kubectl` to be available on the `PATH`. EKS clusters require an additional binary to perform authentication. The `eksctl` tool provides an easy way to create EKS cluster. These executables are downloaded and placed on the path so they can be used by Octopus deployments:
+Deployments to a Kubernetes cluster require `kubectl` to be available on the `PATH`. EKS clusters require an additional binary called `aws-iam-authenticator` to perform authentication. The `eksctl` tool provides an easy way to create EKS clusters. These executables are downloaded and placed on the path so they can be used by Octopus deployments:
 
 ```yaml
             # Install Kubernetes cli tools
