@@ -185,4 +185,4 @@ You now have everything in place to deploy the RDS instance, represented by the 
 
 ## Conclusion
 
-RDS provides a managed, scalable, and highly available database platform supporting a number of popular database providers. This post built on the [previous post](https://octopus.com/blog/aws-vpc-private) describing VPCs with private subnets to deploy a serverless Aurora RDS instance with security groups ready to be attached to any additional resources that required database access.
+RDS provides a managed, scalable, and highly available database platform supporting a number of popular database providers. This post built on the [previous post](https://octopus.com/blog/aws-vpc-private) describing VPCs with private subnets, and demonstrated the resources required to deploy a serverless Aurora RDS instance with security groups ready to be attached to any additional resources that required database access.
