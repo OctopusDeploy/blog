@@ -66,7 +66,7 @@ Regardless of the option you select, you should always enter a meaningful **ID**
 
 Once added, you can call on these credentials to connect to other tools in your pipeline, whether that’s through the UI, a plugin or a Jenkinsfile.
 
-The easiest way, though, is to add the credentials when creating your pipeline:
+A good example of where you can select global credentials is when you create a pipeline:
 
 1. Click **New Item** in the left menu.
 1. Enter an item name, select **Freestyle project**, and click **OK**.
