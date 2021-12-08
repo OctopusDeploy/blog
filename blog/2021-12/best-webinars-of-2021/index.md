@@ -15,7 +15,7 @@ tags:
 
 This year at Octopus, we hosted webinars on a wide variety of topics. Hosting webinars is a fun way to share our knowledge and deep dive into topics for our customers and the broader DevOps community. 
 
-In this post, I share my favorite webinars to keep you company if you're working through the holiday period.
+In this post, I share our favorite and most popular webinars to keep you company if you're working through the holiday period.
 
 You can find all 55 of our webinars on our YouTube [Webinars playlist](https://www.youtube.com/playlist?list=PLAGskdGvlaw2ph_YPvMquJlzgYd7bEDba).
 
