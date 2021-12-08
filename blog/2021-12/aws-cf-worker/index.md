@@ -784,12 +784,12 @@ Outputs:
     Description: Server's PublicIp Address
 ```
 
-Once this template is deployed, a new worker will appear in your Octopus instance, ready to being processing deployments:
+Once this template is deployed, a new worker will appear in your Octopus instance, ready to begin processing deployments:
 
 ![Octopus worker](octopus-worker.png "width=500")
 
 ## Conclusion
 
-Deploying workers as EC2 instances allows you to offload deployment tasks to dedicated VMs, and may improve the efficiency of your deployments by executing them closer to the AWs resources being modified.
+Deploying workers as EC2 instances allows you to offload deployment tasks to dedicated VMs, and may improve the efficiency of your deployments by executing them closer to the AWS resources being modified.
 
 In this post you looked at a CloudFormation template that deployed an EC2 instance in a VPC with public internet access and with initialization scripts that installed and configured an Octopus tentacle as a worker.
