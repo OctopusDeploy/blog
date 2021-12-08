@@ -601,7 +601,7 @@ The internet gateway is attached to the VPC using a [AWS::EC2::VPCGatewayAttachm
       InternetGatewayId: !Ref InternetGateway
 ```
 
-A subnet is attached to the VPC using a [AWS::EC2::Subnet](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html) resource. You can avoid hard coding an available zone by using the `!Select` function to return the first item from the `!GetAZs` array. The CIDR block is set to `10.0.0.0/24`, indicating that the IP addresses for resources in this subnet all start with `10.0.0`. Setting `MapPublicIpOnLaunch` to `true` means any EC2 instances placed in this subnet will receive a dynamic, public IP address, allowing you to SSH into them:
+A subnet is attached to the VPC using a [AWS::EC2::Subnet](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html) resource. You can avoid hard coding an availability zone by using the `!Select` function to return the first item from the `!GetAZs` array. The CIDR block is set to `10.0.0.0/24`, indicating that the IP addresses for resources in this subnet all start with `10.0.0`. Setting `MapPublicIpOnLaunch` to `true` means any EC2 instances placed in this subnet will receive a dynamic, public IP address, allowing you to SSH into them:
 
 ```yaml
   SubnetA:
