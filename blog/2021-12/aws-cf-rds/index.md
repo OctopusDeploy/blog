@@ -10,7 +10,7 @@ tags:
  - Octopus
 ---
 
-[Amazon Relational Database Service](https://aws.amazon.com/rds/) (RDS) provides managed databases supporting a number of platforms such as MySQL, MariaDB, Oracle, Postgres, and SQL Server. Almost every custom application requires persistent data storage, and RDS provides a convenient, scalable, and highly available solution.
+[Amazon Relational Database Service](https://aws.amazon.com/rds/) (RDS) implements managed databases supporting a number of platforms such as MySQL, MariaDB, Oracle, Postgres, and SQL Server. Almost every custom application requires persistent data storage, and RDS provides a convenient, scalable, and highly available solution.
 
 In this post you'll learn how to deploy an RDS instance with a CloudFormation template.
 
@@ -128,7 +128,7 @@ RDS instances must have at least two subnets to achieve high availability. These
       - !Ref "SubnetB"
 ```
 
-Network access to the RDS instance is defined in a security group, represented by a [AWS::EC2::SecurityGrou](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html) resource. This security group allows all outbound traffic, but does not specify any rules for inbound traffic. Inbound traffic rules are taken care of with another resource:
+Network access to the RDS instance is defined in a security group, represented by a [AWS::EC2::SecurityGroup](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html) resource. This security group allows all outbound traffic, but does not specify any rules for inbound traffic. Inbound traffic rules are taken care of with another resource:
 
 ```yaml
   InstanceSecurityGroup:
