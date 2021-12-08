@@ -1,6 +1,6 @@
 ---
 title: Automate guided failures with an AWS Lambda and subscriptions
-description: Learn how to automate the response to guided failure using an AWS Lambda with an Octopus subscription
+description: Learn how to automate the response to guided failure using an AWS Lambda with an Octopus subscription.
 author: shawn.sesna@octopus.com
 visibility: public
 published: 2022-01-05-1400
@@ -21,13 +21,13 @@ This post demonstrates how to automate the response to a guided failure event us
 With guided failure designed to pause an action and wait for guidance, automating the response seems counterintuitive.  Here are a couple of use cases where it makes sense to automate the response.
 
 ### Exclude machine from deployment
-Consider if you're deploying to thousands of machines.  At this scale, it's not uncommon for deployment to fail for a small portion of machines (usually not Octopus related).  Guided failure provides the option of excluding a machine from the deployment, which allows the deployment to continue to the remaining targets.  Rather than babysitting the process, you can automate the `Exclude machine from deployment` response and deal with the failed machines later.
+Consider if you're deploying to thousands of machines.  At this scale, it's not uncommon for deployment to fail for a small portion of machines (usually not Octopus-related).  Guided failure gives you the option to exclude a machine from the deployment, which allows the deployment to continue to the remaining targets.  Rather than babysitting the process, you can automate the `Exclude machine from deployment` response and deal with the failed machines later.
 
 ### Automatically retry
-Our team experienced another scenario; when the [Samples](https://samples.octopus.app) instance was tearing down resources at night, so many requests were being made to AWS at the same time that it experienced request rate throttling and failed.  In this case, retrying the runbook is all that's needed.  Implementing an automated `Retry` response to guided failure ensures all the resources are deprovisioned.
+Our team experienced another scenario; when the [Samples](https://samples.octopus.app) instance was tearing down resources at night, and so many requests were being made to AWS at the same time that it experienced request rate throttling and failed.  In this case, retrying the runbook is all that's needed.  Implementing an automated `Retry` response to guided failure ensures all the resources are deprovisioned.
 
 ## Solution
-This post demonstrates how to automate a response to a guided failure event by using the **Subscriptions** feature of Octopus to call an AWS Lambda function.  
+This post shows you how to automate a response to a guided failure event by using the **Subscriptions** feature of Octopus to call an AWS Lambda function.  
 
 To get started, you need to provision some AWS resources. 
 
@@ -59,7 +59,7 @@ Using a [runbook](https://samples.octopus.app/app#/Spaces-1/projects/aws-octosub
 ![Octopus UI showing Spin Up Subscriber Infrastructure steps in the Runbooks section](octopus-create-aws-resources-runbok.png)
 
 #### Create S3 bucket if not exists
-The Terraform, that creates the other AWS resources, needs a place to store State.  This step uses the AWS CLI to create the backend storage location for the Terraform step:
+The Terraform, that creates the other AWS resources, needs a place to store State.  This step uses the AWS CLI to create the back-end storage location for the Terraform step:
 
 ```powershell
 # Get variables
@@ -145,13 +145,13 @@ api_gateway_name = "#{Project.AWS.API.Gateway.Name}"
 #### Applying a Terraform template
 Using the Terraform from above, create the resources on AWS.
 
-With the resources created, you can focus on the Lambdas.
+After the resources are created, you can focus on the Lambdas.
 
 ### AWS Lambda functions
 This solution consists of two different Lambda functions:
 
-- accept-message: This function places the included payload onto the SQS queue.
-- process-message: This function processes the messages that appear on the SQS queue and submits the requested responses to the Octopus server.
+- `accept-message`: This function places the included payload onto the SQS queue.
+- `process-message`: This function processes the messages that appear on the SQS queue and submits the requested responses to the Octopus server.
 
 #### accept-message
 This function is written in NodeJS and accepts the following querystring parameters:
@@ -454,7 +454,7 @@ Fill in the step form fields:
 - **Region**: The region the Lambda is in
 - **Alias Name**: Name of the Alias to use, this post uses `Live`
 - **Alias Version Percent**: Percentage of traffic this version receives, this post is using 100
-- **Function Version**: The version of the function for the alias, use the output variable from the deploy step - #{Octopus.Action[AWS - Deploy Accept Message Lambda Function].Output.PublishedVersion}
+- **Function Version**: The version of the function for the alias, use the output variable from the deploy step - `#{Octopus.Action[AWS - Deploy Accept Message Lambda Function].Output.PublishedVersion}`
 
 ### AWS - Configure Process Message Lambda Alias
 This step is exactly like the previous step, but configured for the Process Message Lambda.  
@@ -508,7 +508,9 @@ After the stage has been created, it will display the **Invoke URL** which is ne
 ![AWS console showing Stage details with Invoke URL highlighted](aws-api-gateway-stage-created.png)
 
 ### Connect Process Message Lambda to SQS queue
-Now you need to configure the Process Message Lambda to be triggered from an SQS queue.  Navigate to **Lambda** in the AWS Console located under the **Compute** section.
+Now you need to configure the Process Message Lambda to be triggered from an SQS queue.  
+
+Navigate to **Lambda** in the AWS Console located under the **Compute** section.
 
 ![AWS Console showing All services section above Compute section with Lambda menu item highlighted](aws-console-lambda.png)
 
@@ -521,7 +523,9 @@ Select SQS from the dropdown.  Clicking into the **SQS queue** box will bring up
 ![AWS console showing  Trigger configuration section with SQS section and SQS queue section highlighted](aws-lambda-create-trigger.png)
 
 ## Configuring the Octopus Deploy subscription
-You're now ready to configure Octopus Deploy to call your Lambda when a guided failure event occurs.  Navigate to the **Configuration** tab of Octopus Deploy, click **Subscriptions**, then **ADD SUBSCRIPTION**.
+You're now ready to configure Octopus Deploy to call your Lambda when a guided failure event occurs.  
+
+Navigate to the **Configuration** tab of Octopus Deploy, click **Subscriptions**, then **ADD SUBSCRIPTION**.
 
 ![Octopus dashboard open on the Configuration tab with Subscriptions selected from the menu and ADD SUBSCRIPTION highlighted](octopus-subscription.png)
 
@@ -531,12 +535,12 @@ Enter the following for the Subscription
 - **Event Categories**: Guided failure interruption raised
 - **Payload URL**: `[API Gateway Invoke URL]/octopus/webhook?type=Guidance&action=Fail`
 
-When done, it should look something like this:
+When done, it will look something like this:
 
 ![Octopus dashboard open on the Configuration tab with Webhook Notifcations section highlighted and Payload URL showing](octopus-subscription-webhook.png)
 
 ## Testing the solution
-To test this solution we will need to do two things:
+To test this solution we need to do two things:
 
 - Enable guided failure
 - Configure the deployment to fail
@@ -574,3 +578,5 @@ This posts walks you through using an Octopus Deploy **Subscription** to call an
 :::hint
 An alternative approach to the Lambda method is to use the [Automate Manual Intervention Response](https://library.octopus.com/step-templates/54f95528-aa1e-4c97-8c16-b2e0d737c43e/actiontemplate-automate-manual-intervention-response) community step template in a runbook that has a trigger to run periodically.
 :::
+
+Happy deployments!
