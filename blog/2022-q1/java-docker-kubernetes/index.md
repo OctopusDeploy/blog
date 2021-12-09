@@ -26,28 +26,28 @@ In this blog post, I build a Maven Java project and host the built image on the 
 
 The Octopus Deploy Underwater Scene App is a landing page for users who are creating their first deployment. It showcases relevent articles for users as well as links to other resources.
 
-You can find the repository of the web application on [GitHub](Octo-scene).
+You can find the repository of the web application on [GitHub](https://github.com/terence-octo/octopus-underwater-app).
 
 ## Building and pushing to a registry
 
 We will use the command line to build the Java project and use gcloud to push the image to GCR.
 
-Configure the gcloud tool to point to my current PROJECT_ID.
+Configure the gcloud tool to point to your PROJECT_ID.
 
     gcloud config set project <PROJECT_ID>
 
 Clone the java project repository that we will use to build and deploy to Azure.
 
-    git clone [Octo-scene]
-    cd Octo-scene/complete
+    git clone https://github.com/terence-octo/octopus-underwater-app
+    cd octopus-underwater-app
 
 Test the application locally by using the run command and visiting http://localhost:8080/ 
 
-    ./mvnw -DskipTests spring-boot:run
+    ./mvnw spring-boot:run
     
 Running the package step builds the target JAR deployable for the app.
 
-    ./mvnw -DskipTests package
+    ./mvnw package
     
 Enable the container registry to store the container image.
 
@@ -56,11 +56,15 @@ Enable the container registry to store the container image.
     
 The jib tool creates and pushes the image to the container registry.
 
-    ./mvnw -DskipTests com.google.cloud.tools:jib-maven-plugin:build -Dimage=gcr.io/$GOOGLE_CLOUD_PROJECT/high-level-overview:v1
+    ./mvnw com.google.cloud.tools:jib-maven-plugin:build -Dimage=gcr.io/$GOOGLE_CLOUD_PROJECT/octopus-underwater-app:latest
     
 Confirm that the image is present on the GCR by going to the [registry home page](https://cloud.google.com/container-registry).
 
 ![gcr](gcr.png)
+
+## Retrieve Credentials from Azure for Octopus Deploy
+
+We need to retrive some credentials to pass to Octopus Deploy. Follow these steps to [add an Azure Service Principle to Octopus Deploy](https://octopus.com/docs/infrastructure/accounts/azure).
 
     
 ## Create Azure Kubernetes Cluster
@@ -74,10 +78,13 @@ Create a new Kubernetes cluster by going to your resource group and creating a K
 
 ## Octopus Steps
 
+### Add Deployment Target
+
+Go to **Infrastructure &rarr; Deployment Targets &rarr; Add Deployment Target &rarr; Kubernetes Cluster** and fill out the fields using the Azure Service Principle set up earlier. Assign a unique role for the deployment. 
+
 ### Add External Feeds
 
 For Octopus to access the image stored in the GCR, enable the [google feed](https://octopus.com/docs/packaging-applications/package-repositories/guides/google-container-registry).
-
 
 ### Set up deployment steps
 
@@ -93,7 +100,7 @@ Click the Edit YAML box and paste the following YAML file in the box. The YAML f
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: java-web-gs-high-google
+  name: java-web-underwater
   labels:
     app: java-web-app
 spec:
@@ -111,7 +118,7 @@ spec:
     spec:
       containers:
         - name: java-web-app
-          image: gcr.io/<PROJECT_ID>/high-level-overview
+          image: gcr.io/<PROJECT_ID>/octopus-underwater-app
           ports:
             - containerPort: 80
 ```
