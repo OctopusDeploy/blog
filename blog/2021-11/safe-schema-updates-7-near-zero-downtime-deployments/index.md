@@ -14,7 +14,7 @@ tags:
  - Deployment Patterns
 ---
 
-This blog post is part 7 of my safe schema updates series. We'll add links to the other posts in this series as they become available:
+This blog post is part 7 of my safe schema updates series. Links to the other posts in this series are available below:
 
 !include <safe-schema-updates-posts>
 
@@ -157,7 +157,7 @@ If your system is tightly-coupled, perhaps by now you are seeing the enormous be
 
 Next time, we finish this series by exploring the Strangler pattern. A method for safely refactoring complex, tightly-coupled systems.
 
-We'll add links to the other posts in this series as they become available:
+Links to the other posts in this series are available below:
 
 !include <safe-schema-updates-posts>
 
