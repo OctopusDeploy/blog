@@ -1,6 +1,6 @@
 ---
 title: Variable update notification
-description: Learn how to post a message to Slack when a variable has changed using  Azure Functions and Octopus subscriptions.
+description: Learn how to post a message to Slack when a variable has changed using Azure Functions and Octopus subscriptions.
 author: shawn.sesna@octopus.com
 visibility: public
 published: 2022-01-27-1400
