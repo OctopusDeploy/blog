@@ -14,7 +14,7 @@ tags:
  - Deployment Patterns
 ---
 
-This blog post is part 6 of my safe schema updates series. We'll add links to the other posts in this series as they become available:
+This blog post is part 6 of my safe schema updates series. Links to the other posts in this series are available below:
 
 !include <safe-schema-updates-posts>
 
@@ -208,7 +208,7 @@ In the next post we’ll turn our focus to deployment patterns.
 
 Throughout this series I’ve been advocating for smaller, safer, more frequent deployments. However, if those deployments require periods of downtime, it’s unlikely that we’ll be allowed to deploy as often as we wish. There’s no point deploying 10 times a day if each deployment requires an hour of downtime. In my opinion, near-zero downtime deployments should not be seen as some lofty and unrealistic goal. They should be considered a prerequisite for practicing true continuous integration and for the delivery of resilient systems.
 
-We'll add links to the other posts in this series as they become available.
+Links to the other posts in this series are available below:
 
 !include <safe-schema-updates-posts>
 
