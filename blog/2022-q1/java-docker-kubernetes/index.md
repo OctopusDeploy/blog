@@ -22,9 +22,9 @@ In this blog post, I build a Maven Java project and host the built image on the 
 - An Octopus Deploy instance - to link the [Azure Account to the Octopus Deploy instance](https://octopus.com/docs/infrastructure/accounts/azure#azure-service-principal).
 - Access to a terminal, either locally or in the cloud, with gcloud and the azure command line interface installed
 
-## The Octopus Deploy Underwater Scene App
+## The Octopus Deploy Underwater App
 
-The Octopus Deploy Underwater Scene App is a landing page for users who are creating their first deployment. It showcases relevent articles for users as well as links to other resources.
+The Octopus Deploy Underwater App is a landing page for users who are creating their first deployment. It showcases relevent articles for users as well as links to other resources.
 
 You can find the repository of the web application on [GitHub](https://github.com/terence-octo/octopus-underwater-app).
 
