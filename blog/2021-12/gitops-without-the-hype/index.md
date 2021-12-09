@@ -1,5 +1,5 @@
 ---
-title: GitOps with the hype
+title: GitOps without the hype
 description: GitOps is an exciting new paradigm, but it can be hard to understand exactly what the term means.
 author: matthew.casperson@octopus.com
 visibility: private
