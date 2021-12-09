@@ -13,7 +13,7 @@ tags:
  - Jenkins
 ---
 
-This blog will build the Octopus Deploy Underwater Scene App in a Jenkinsfile and publish the image to Amazon Elastic Container Registry (ECR). To follow along, you will need:
+This blog will build the Octopus Deploy Underwater App in a Jenkinsfile and publish the image to Amazon Elastic Container Registry (ECR). To follow along, you will need:
 
 - An Amazon Web Services Account (AWS)
 - A Jenkins instance
@@ -39,7 +39,7 @@ Under **Amazon ECR &rarr; Repositories**, you will see your repository. Make a n
 
 ## Octopus Deploy Underwater Scene App
 
-In this blog, we will build the Octopus Deploy Underwater Scene repository and push it to Amazon ECR. These images will be used in later blog posts.
+In this blog, we will build the Octopus Deploy Underwater App and push it to Amazon ECR. These images will be used in later blog posts.
 
 ## Jenkins setup
 
@@ -72,7 +72,7 @@ Fill out the following fields for the pipeline, leaving everything else as defau
 
 **Definition** - Pipeline script from SCM
 - **SCM** - Git
-- **Repository URL** - https://github.com/terence-octo/simple-octo
+- **Repository URL** - fork this URL: https://github.com/terence-octo/octopus-underwater-app
 - **Credentials** - zone of the repository
 - **Branch Specifier** -*/main
 
@@ -80,9 +80,9 @@ Click **SAVE**
 
 ## GitHub setup
 
-For this example, we will use a sample web application that displays an animated underwater Octopus named simple-octo.
+For this example, we will use a sample web application that displays an animated underwater scene with useful links.
 
-Fork the repository at https://github.com/terence-octo/simple-octo
+Fork the repository at https://github.com/terence-octo/octopus-underwater-app
 
 We want to set up a webhook so that Jenkins can know when the repository is updated. To do this, go to **Settings &rarr; Webhooks**
 
@@ -132,6 +132,8 @@ node {
 ```
 
 The Jenkinsfile consists of different stages. Each of these stages will be run in order in Jenkins and if the build fails, you will be able to see which stage failed. Commit your code to GitHub. The commit will trigger a build job in Jenkins. Go to your Jenkins instance URL to see the build.
+
+I found that I had to manually trigger a Jenkins job via the build now button. After this the webhook triggers would start working.
 
 ![Jenkins Success](jenkins-success.png)
 
