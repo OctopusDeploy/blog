@@ -1,36 +1,56 @@
 ---
 title: Running unit tests in Jenkins
-description: Learn how to run unit tests in Jenkins and capture the results
+description: As part of our series about CI platforms, learn how to run unit tests in Jenkins and capture the results.
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2999-01-01
+published: 2022-02-07-1400
 metaImage: 
 bannerImage: 
+bannerImageAlt: 125 characters max, describes image to people unable to see it.
+isFeatured: false
 tags:
- - Octopus
+  - DevOps
+  - Continuous Integration
+  - Jenkins
+  - Testing
 ---
 
 Verifying code changes with unit tests is a critical process in typical development workflows. Jenkins provides a number of plugins to collect and process the results of tests allowing developers to browse the results, debug failed tests, ignore some test failures, and generate reports on the history of tests over time.
 
-In this post you'll learn how to add unit tests to a Jenkins project and configure plugins to process the results.
+In this post, you'll learn how to add unit tests to a Jenkins project and configure plugins to process the results.
 
 ## Prerequisites
 
-To follow along with this post you'll need a Jenkins instance. The [Traditional Jenkins Installation](/blog/2022-q1/jenkins-install-guide/index.md), [Docker Jenkins Installation](/blog/2022-q1/jenkins-docker-install-guide/index.md), or [Helm Jenkins Installation](/blog/2022-q1/jenkins-helm-install-guide/index.md) guides provide instructions to install Jenkins in your chosen environment.
+To follow along with this post you need a Jenkins instance. The [Traditional Jenkins Installation](/blog/2022-q1/jenkins-install-guide/index.md), [Docker Jenkins Installation](/blog/2022-q1/jenkins-docker-install-guide/index.md), or [Helm Jenkins Installation](/blog/2022-q1/jenkins-helm-install-guide/index.md) guides provide instructions to install Jenkins in your chosen environment.
 
 The sample applications you'll build are written in Java and DotNET Core, so the Java Development Kit (JDK) and DotNET Core SDK must be installed on the Jenkins controller or agents that perform the builds.
 
 You can find instructions on installing the DotNET Core SDK from the [Microsoft website](https://dotnet.microsoft.com/download/dotnet/3.1). The sample project is written against DotNET Core 3.1.
 
-The OpenJDK project (and its downstream projects) provide free and open source distributions that you can use to compile Java applications. There are many OpenJDK distributions to choose from including [OpenJDK](https://openjdk.java.net), [AdoptOpenJDK](https://adoptopenjdk.net), [Azul Zulu](https://www.azul.com/downloads/), [Red Hat OpenJDK](https://developers.redhat.com/products/openjdk/download), and more. I typically use the Azul Zulu distribution, although any distribution will do.
+The OpenJDK project (and its downstream projects) provide free and open source distributions that you can use to compile Java applications. There are many OpenJDK distributions to choose from including: 
+
+- [OpenJDK](https://openjdk.java.net)
+- [AdoptOpenJDK](https://adoptopenjdk.net)
+- [Azul Zulu](https://www.azul.com/downloads/)
+- [Red Hat OpenJDK](https://developers.redhat.com/products/openjdk/download)
+
+I typically use the Azul Zulu distribution, although any distribution will do.
 
 ## Unit testing in Java
 
-There are many unit testing frameworks available for Java, but the [most popular](https://www.overops.com/blog/the-top-100-java-libraries-in-2016-after-analyzing-47251-dependencies/) is [JUnit](https://junit.org). You'll use the [Random Quotes](https://github.com/OctopusSamples/RandomQuotes-Java) sample application to demonstrate JUnit tests running in a Jenkins project.
+There are many unit testing frameworks available for Java, but the [most popular](https://www.overops.com/blog/the-top-100-java-libraries-in-2016-after-analyzing-47251-dependencies/) is [JUnit](https://junit.org). 
+
+You'll use the [Random Quotes](https://github.com/OctopusSamples/RandomQuotes-Java) sample application to demonstrate JUnit tests running in a Jenkins project.
 
 ### Installing the Jenkins plugin
 
-You must install the [JUnit](https://plugins.jenkins.io/junit/) plugin to process the result of JUnit tests. To install the plugin, click {{Manage Jenkins,Manage Plugins,Available}}, enter `junit` in the search box, select the **JUnit** option, and click **Install without restart**:
+You must install the [JUnit](https://plugins.jenkins.io/junit/) plugin to process the result of JUnit tests. 
+
+To install the plugin: 
+
+1. Click **Manage Jenkins**, then **Manage Plugins**, then **Available**
+1. Enter `junit` in the search box 
+1. Select the **JUnit** option, and click **Install without restart**:
 
 ![Junit Plugin](junit-plugin.png "width=500")
 
@@ -107,9 +127,13 @@ There are a number of popular unit testing frameworks for DotNET Core including 
 
 ### Installing the Jenkins plugin
 
-You'll use the [MSTest](https://plugins.jenkins.io/mstest/) plugin to process DotNET Core test results.
+Use the [MSTest](https://plugins.jenkins.io/mstest/) plugin to process DotNET Core test results.
 
-Install the [MSTest](https://plugins.jenkins.io/mstest/) plugin to process the result of NUnit tests. To install the plugin, click {{Manage Jenkins,Manage Plugins,Available}}, enter `mstest` in the search box, select the **MSTest** option, and click **Install without restart**:
+Install the [MSTest](https://plugins.jenkins.io/mstest/) plugin to process the result of NUnit tests. To install the plugin: 
+
+1. Click **Manage Jenkins**, then **Manage Plugins** ,then **Available**
+1. Enter `mstest` in the search box
+1. Select the **MSTest** option, and click **Install without restart**:
 
 ![MSTest Plugin](mstest-plugin.png "width=500")
 
@@ -182,7 +206,7 @@ mstest(testResultsFile: '**/*.trx', failOnError: false, keepLongStdio: true)
 
 ## Handling failed tests
 
-To this point you have only run builds with successful tests. To simulate a failing test, modify the `Checkout` stage to point to the `failing-test` branch of the Java Random Quotes application:
+To this point you've only run builds with successful tests. To simulate a failing test, modify the `Checkout` stage to point to the `failing-test` branch of the Java Random Quotes application:
 
 ```groovy
 pipeline {
@@ -282,7 +306,10 @@ A global report of all claims can be found by opening the **Claim Report** link:
 
 ### Failing the build when tests fail
 
-You may require that builds fail rather than being marked as unstable in the event of a test failure. You generally have two options to achieve this.
+You may require that builds fail rather than being marked as unstable in the event of a test failure. You generally have two options to achieve this:
+
+- Failing the test command
+- Failing the test processing
 
 #### Failing the test command
 
@@ -294,7 +321,7 @@ You can use the following Maven command execute tests and return a non-zero exit
 sh(script: './mvnw --batch-mode test')
 ```
 
-The following DotNET Core command also returns an non-zero exit code if any test fails. The absence of the `|| true` command chain ensures the `dotnet` exit code is returned:
+The following DotNET Core command also returns a non-zero exit code if any test fails. The absence of the `|| true` command chain ensures the `dotnet` exit code is returned:
 
 ```bash
 sh(script: 'dotnet test -l:trx') 
@@ -407,9 +434,13 @@ pipeline {
 
 ## Conclusion
 
-Unit tests are a common feature found in most large code bases, and by executing unit tests in Jenkins the development team has a central source of truth reporting the current and historical test results. In this post you learned:
+Unit tests are a common feature found in most large code bases. By executing unit tests in Jenkins the development team has a central source of truth reporting the current and historical test results. 
 
-* How to run tests in Java and DotNET Core code bases.
-* How to collect and process the test results with the JUnit, MSTest, and xUnit plugins.
-* How to allow Jenkins users to claim failed tests to indicate they will take responsibility for them.
-* How to fail a build when the tests fail.
+In this post you learned:
+
+* How to run tests in Java and DotNET Core code bases
+* How to collect and process the test results with the JUnit, MSTest, and xUnit plugins
+* How to allow Jenkins users to claim failed tests to indicate they will take responsibility for them
+* How to fail a build when the tests fail
+
+Happy deployments!
