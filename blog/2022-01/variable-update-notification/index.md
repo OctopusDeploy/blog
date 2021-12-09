@@ -10,6 +10,7 @@ bannerImageAlt:
 isFeatured: false
 tags:
  - DevOps
+ - Azure
 ---
 
 Communication is paramount to a successful team.  Daily stand-ups, message programs, and email keep everyone up-to-date with how things are progressing. Information can get lost in the shuffle, though, such as when a variable value gets updated.  
