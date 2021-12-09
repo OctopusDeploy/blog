@@ -16,7 +16,7 @@ tags:
 
 This blog post is part 4 of my safe schema updates series.
 
-We'll add links to the other posts in this series as they become available.
+Links to the other posts in this series are available below:
 
 !include <safe-schema-updates-posts>
 
@@ -108,7 +108,7 @@ Additionally, the more granular nature of the system made it easier to manage di
 
 Taken alone, these points will result in significantly safer database releases. However, the benefits are compounded by human factors. In the next post (post 5), we look at those human factors in more detail. 
 
-We'll add links to the other posts in this series as they become available.
+Links to the other posts in this series are available below:
 
 !include <safe-schema-updates-posts>
 
