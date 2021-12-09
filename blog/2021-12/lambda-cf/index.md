@@ -22,6 +22,12 @@ The template below deploys a Lambda into a new VPC with a private and public sub
 Parameters:
   Tag:
     Type: String
+  LambdaS3Bucket:
+    Type: String
+  LambdaS3Key:
+    Type: String
+  LambdaName:
+    Type: String
     
 Resources: 
   VPC:
@@ -128,14 +134,14 @@ Resources:
   AppLogGroupOne:
     Type: "AWS::Logs::LogGroup"
     Properties:
-      LogGroupName: !Sub "/aws/lambda/${EnvironmentName}-${LambdaName}"
+      LogGroupName: !Sub "/aws/lambda/${LambdaName}"
       
   IamRoleLambdaOneExecution:
     Type: "AWS::IAM::Role"
     Properties:
       AssumeRolePolicyDocument:
         Version: "2012-10-17"
-        Statement
+        Statement:
         - Effect: "Allow"
           Principal:
             Service:
@@ -145,7 +151,7 @@ Resources:
       ManagedPolicyArns: 
       - "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
       Policies:
-      - PolicyName: !Sub "${EnvironmentName}-${LambdaName}-policy"
+      - PolicyName: !Sub "${LambdaName}-policy"
         PolicyDocument:
           Version: "2012-10-17"
           Statement:
@@ -155,9 +161,9 @@ Resources:
             - "logs:CreateLogGroup"
             - "logs:PutLogEvents"
           Resource:
-          - !Sub "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${EnvironmentName}-${LambdaName}*:*"
+          - !Sub "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${LambdaName}*:*"
         Path: "/"
-        RoleName: !Sub "${EnvironmentName}-${LambdaName}-role"  
+        RoleName: !Sub "${LambdaName}-role"  
         
   DBMigrationLambda:
     Type: "AWS::Lambda::Function"
@@ -166,7 +172,7 @@ Resources:
           S3Bucket: !Ref "LambdaS3Bucket"
           S3Key: !Ref "LambdaS3Key"
         Description: !Ref "LambdaDescription"
-        FunctionName: !Sub "${EnvironmentName}-${LambdaName}-MyLambda"
+        FunctionName: !Sub "${LambdaName}"
         Handler: "not.used.in.provided.runtime"
         MemorySize: 256
         PackageType: "Zip"
@@ -175,7 +181,7 @@ Resources:
         Timeout: 30
         VpcConfig:
             SecurityGroupIds: !Ref "InstanceSecurityGroup"
-			SubnetIds: 
+            SubnetIds: 
             - !Ref "SubnetB"
             - !Ref "SubnetC"
       
