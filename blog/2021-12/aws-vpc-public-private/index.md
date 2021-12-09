@@ -106,7 +106,7 @@ Resources:
   Nat:
     Type: "AWS::EC2::NatGateway"
     Properties:
-      AllocationId: !GetAttr "EIP.AllocationId"
+      AllocationId: !GetAtt "EIP.AllocationId"
       SubnetId: !Ref "SubnetA"
       
   NatRouteTable:
