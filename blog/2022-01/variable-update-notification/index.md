@@ -1,9 +1,9 @@
 ---
 title: Variable update notification
-description: Learn how to post a message to slack when a variable has changed using Slack, Azure Functions, and Octopus subscriptions.
+description: Learn how to post a message to Slack when a variable has changed using  Azure Functions and Octopus subscriptions.
 author: shawn.sesna@octopus.com
-visibility: private
-published: 2022-11-01-1400
+visibility: public
+published: 2022-01-27-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt: 
@@ -12,21 +12,32 @@ tags:
  - DevOps
 ---
 
-Communication is paramount to a successful team.  Daily standups, message programs, and email are all used to keep everyone up-to-date with how things are progressing.  Try as we might, bits of information can get lost in the shuffle such as when a variable value gets updated.  The [Subscriptions](https://octopus.com/docs/administration/managing-infrastructure/subscriptions) feature of Octopus Deploy can be configured to notify users of when a variable has been updated automatically by either email or a webhook.  In this post, you'll learn how to use the Subscriptions feature to post a message to Slack via Azure Functions.
+Communication is paramount to a successful team.  Daily stand-ups, message programs, and email keep everyone up-to-date with how things are progressing. Information can get lost in the shuffle, though, such as when a variable value gets updated.  
 
-## Create Azure resources
-Before creating the functions, you first need to create some Azure resources to prepare for deployment.  The solution presented in this post uses the following Azure resources.
+The [subscriptions](https://octopus.com/docs/administration/managing-infrastructure/subscriptions) feature of Octopus Deploy can be configured to notify users of when a variable has been updated automatically by either email or a webhook.  
+
+In this post, you'll learn how to use the subscriptions feature to post a message to Slack via Azure Functions.
+
+## Creating Azure resources
+
+Before creating the functions, you first need to create some Azure resources to prepare for deployment.  
+
+The solution presented in this post uses the following Azure resources:
+
 - Resource Group
 - Storage Account
 - Storage Account message Queue
-- Two Azure Functions
+- Two Azure Functions:
   - Accept-Message
   - Process-Message
 
-The source code for this solution can be found in the `azure` folder of the [OctoSubscriber](https://github.com/OctopusSamples/OctoSubscriber) repo on GitHub.
+The source code for this solution can be found in the **azure** folder of the [OctoSubscriber](https://github.com/OctopusSamples/OctoSubscriber) repo on GitHub.
 
-### Resource Group
-The first resource you'll need to create is a resource group to house all of the other resources you will create.  This comes with the added benefit of being easy to clean up, deleting the resource group will delete all resources that are within it.  You can create a resource group through the Azure Portal, or by adding an Azure CLI script to a runbook such as this,
+### Resource group
+
+You first need to create is a resource group to house all of the other resources you'll create.  This comes with the added benefit of being easy to clean up, because deleting the resource group will delete all resources in it.  
+
+You can create a resource group through the Azure Portal, or by adding an Azure CLI script to a runbook such as this:
 
 ```powershell
 $resourceGroupName = "MyResourceGroup"
@@ -40,7 +51,10 @@ if ((az group exists --name $resourceGroupName) -eq $false)
 ```
 
 ### Storage account
-In order to use the queue feature of Azure, you must first create a storage account.  Here is an Azure CLI command to create a storage account
+
+To use the queue feature of Azure, first create a storage account.  
+
+Here is an Azure CLI command to create a storage account:
 
 ```powershell
 # Get variables
@@ -53,7 +67,8 @@ az storage account create --name $storageAccountName --resource-group $resourceG
 ```
 
 ### Storage account message queue
-Message queues exist within storage accounts.  Once the account has been created, create queue using the following
+
+Message queues exist in storage accounts.  After the account has been created, create queue using the following:
 
 ```powershell
 # Get variables
@@ -71,14 +86,20 @@ az storage queue create --name $queueName --account-name $storageAccountName --a
 ```
 
 ### Azure Function Apps
-The solution in this post uses two different Azure Functions; Accept-Message and Process-Message.  Both Functions will need to be registered as targets within Octopus Deploy.
+
+The solution in this post uses two different Azure Functions: 
+
+- Accept-Message
+- Process-Message
+
+Both functions need to be registered as targets in Octopus Deploy.
 
 :::info
-The most common plan to use with Azure Functions is the Consumption Plan (sku Y1), however, I was unable to use the [az functionapp plan create](https://docs.microsoft.com/en-us/cli/azure/functionapp/plan?view=azure-cli-latest#az_functionapp_plan_create) CLI command, `Y1` is not a supported sku.
+The most common plan to use with Azure Functions is the Consumption Plan (sku Y1), however, I was unable to use the [az functionapp plan create](https://docs.microsoft.com/en-us/cli/azure/functionapp/plan?view=azure-cli-latest#az_functionapp_plan_create) CLI command, as `Y1` is not a supported sku.
 :::
 
 #### Accept-Message
-The Azure CLI can also be used to create the Functions as well.  The Accept-Message function is written in nodeJS, be sure to specify `node` for the runtime.
+The Azure CLI can also be used to create the functions as well.  The Accept-Message function is written in nodeJS, so be sure to specify `node` for the runtime.
 
 ```powershell
 # Get variables
@@ -96,7 +117,8 @@ az functionapp create --name $appServiceName --consumption-plan-location $azureL
 ```
 
 #### Process-Message
-Provisioning Process-Message is nearly identical to Accept-Message with the exception that it is written in C#.  You will need to specify `dotnet` as the runtime version.
+
+Provisioning Process-Message is similar to Accept-Message, except that it's written in C#, and you need to specify `dotnet` as the runtime version.
 
 ```powershell
 # Get variables
@@ -114,18 +136,22 @@ az functionapp create --name $appServiceName --consumption-plan-location $azureL
 ```
 
 :::info
-For both functions I received a message indicating that I did not configure Application Insights.  The CLI gives you parameters to configure it, but there doesn't appear to be a way to tell it you don't want Insights.
+For both functions I received a message advising I didn't configure Application Insights.  The CLI gives you parameters to configure it, but there doesn't appear to be a way to tell it you don't want Insights.
 :::
 
-Once you've provisioned all of your resources, the contents of the resource group should look similar to this (screenshot shows resources provisioned for both Test and Production environments)
+After you provision all of your resources, the contents of the resource group should look similar to this:
 
-![](azure-resource-group.png)
+![Screenshot shows 1 to 7 records, with resources provisioned for both Test and Production environments](azure-resource-group.png)*Resources are provisioned for both Test and Production environments*
 
 ## Azure Functions
-The Accept-Message function take the submitted body and places it on the message queue.  Once a message has been placed on the queue, Process-Message will trigger, parsing the message and posting to Slack.
+
+The Accept-Message function takes the submitted body and places it on the message queue.  Once a message has been placed on the queue, Process-Message will trigger, parsing the message and posting to Slack.
 
 ### Accept-Message
-The Accept-Message function is written in nodeJS and is fairly basic.  If you've never created an Azure Function using nodeJS, use [this tutorial](https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-node) from Microsoft to get started.  Add the following to `index.js`
+
+The Accept-Message function is written in nodeJS and is fairly basic.  If you've never created an Azure Function using nodeJS, use [this tutorial from Microsoft](https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-node) to get started.  
+
+Add the following to `index.js`:
 
 ```javascript
 const { QueueClient, QueueServiceClient } = require("@azure/storage-queue");
@@ -156,21 +182,23 @@ module.exports = async function (context, req) {
 };
 ```
 
-Environment variables `AZURE_STORAGE_CONNECTION_STRING` and `QUEUE_NAME` will be provided when we deploy the Function to Azure.
+Environment variables `AZURE_STORAGE_CONNECTION_STRING` and `QUEUE_NAME` are provided when we deploy the Function to Azure.
 
 :::warning
-The tutorial will download all of the `node_modules` necessary to create an Azure Function, however, it will not add them to the `package.json` file.  You will need to add the references to make your function work.
+The tutorial will download all of the `node_modules` necessary to create an Azure Function, however, it will not add them to the `package.json` file.  You need to add the references to make your function work.
 :::
 
 ### Process-Message
-This Function is triggered by messages being placed on the queue.  The message is deserialized from JSON, parsed, then posts to Slack.  Process-Message is written in C# and uses the following NuGet package references
+
+The Process-Message function is triggered by messages being placed on the queue.  The message deserializes from JSON, parses, then posts to Slack.  Process-Message is written in C# and uses the following NuGet package references:
+
 - Microsoft.Azure.WebJobs.Extensions.Storage
 - Microsoft.NET.Sdk.Functions
 - Newtonsoft.Json
 - Slack.Webhooks
 
-Similar to Accept-Message, there isn't a whole lot to Process-Message.  
-
+Similar to Accept-Message, there isn't much complexity to Process-Message:
+  
 ```csharp
 using System;
 using Microsoft.Azure.WebJobs;
@@ -237,8 +265,11 @@ namespace process_message
 
 The environment variables of `SlackUrl` and `SlackChannel` are provided during the deployment process.
 
-## Building and packaging the Functions
-Process-Message is the only one of the two that requires compilation, however, they both need to be packaged.  The GitHub repo contains a GitHub Actions build defintion as an example;
+## Building and packaging the functions
+
+Process-Message is the only one of the two functions that requires compilation, however, they both need to be packaged.  
+
+The GitHub repo contains a GitHub Actions build definition as an example:
 
 ```yaml
 # This is a basic workflow to help you get started with Actions
@@ -300,46 +331,57 @@ jobs:
           octo push --package=OctoSubscriber-ProcessMessage-Function.2021.1.1.$GITHUB_RUN_NUMBER.zip --server=$OCTOPUS_URL --apiKey=$OCTOPUS_API_KEY --space="Target - Serverless"
 ```
 
-## Deploying the Functions
-This post assumes that you are already framiliar with how to create project within Octopus Deploy and will not cover that topic, if you're not, take a look at our [Getting started](https://octopus.com/docs/getting-started) guide.
+## Deploying the functions
+
+This post assumes you know how to create a project in Octopus Deploy and will not cover that topic. If you're not familiar, check out our [Getting started](https://octopus.com/docs/getting-started) guide.
 
 ### Variables
-Both functions have some variables that need to be defined before defining our deployment process
+
+Both functions have some variables that need to be defined before defining our deployment process:
+
 - Project.Azure.Storage.ConnectionString
 - Project.Azure.Storage.Queue.Name
 - Project.Slack.Url
 - Project.Slack.Channel.Name
 
 #### Project.Azure.Storage.ConnectionString
-The functions need the connection string to the Azure storage account to be able to access the queue.  This value can be found by navigating to the Azure storage account -> Access keys.  By default, Azure creates two keys, either one will work.  Click on the `Show keys` button to copy the value of the `Connection string` property.
 
-![](azure-storage-connection-string.png)
+The functions need the connection string to the Azure storage account to be able to access the queue.  This value can be found by navigating to the **Azure storage account**, then **Access keys**.  By default, Azure creates two keys, and either one will work.  Click on **Show keys** to copy the value of the **Connection string** property.
+
+![Microsoft Azure dashboard open on Access keys page with Show keys and Connection string highlighted](azure-storage-connection-string.png)
 
 #### Project.Azure.Storage.Queue.Name
+
 The name of the message queue that you created earlier.
 
 #### Project.Slack.Url
-The integration webookhook url for Slack, it is recommended that you make this variable a Sensitive value.
+
+This is the integration webhook URL for Slack. It's recommended that you make this variable a sensitive value.
 
 #### Project.Slack.Channel.Name
+
 This is the name of the Slack channel you want the Function to post to.
 
 ### Deployment process
-The deployment process for will consist of the following steps:
+
+The deployment process consists of the following steps:
+
 - Deploy Accept-Message Function
 - Deploy Process-Message Function
 
-![](octopus-deployment-process.png)
+![Screenshot of Process in Octopus showing step 1. Deploy Accept-Message Function and step 2. Deploy Process-Message Function](octopus-deployment-process.png)
 
 #### Deploy Accept-Message Function
-Add a `Deploy an Azure App Service` step
 
-![](octopus-add-azure-step.png)
+Add a **Deploy an Azure App Service** step.
+
+![Octopus dashboard showing Deploy an Azure App Service step being selected](octopus-add-azure-step.png)
 
 Fill in the form fields for the step:
-- On Behalf Of: The role that your Azure Web App target has been assigned
-- Package: Package that contains the Accept-Message function
-- Application Settings: Use the following
+
+- **On Behalf Of:** The role that your Azure Web App target has been assigned
+- **Package**: Package that contains the Accept-Message Function
+- **Application Settings**: Use the following:
 
 ```json
 [
@@ -357,11 +399,13 @@ Fill in the form fields for the step:
 ```
 
 #### Deploy Process-Message Function
-This uses the same step template as `Deploy Accept-Message Function`.
+
+This uses the same step template as **Deploy Accept-Message Function**.
 Fill in the form fields for the step:
-- On Behalf Of: The role that your Azure Web App target has been assigned
-- Package: Package that contains the Accept-Message function
-- Application Settings: Use the following
+
+- **On Behalf Of**: The role that your Azure Web App target has been assigned
+- **Package**: Package that contains the Accept-Message Function
+- **Application Settings**: Use the following:
 
 ```json
 [
@@ -384,35 +428,42 @@ Fill in the form fields for the step:
 ```
 
 ## Deployment
-Deploying the functions should look something like this
 
-![](octopus-deploy-successful.png)
+Deploying the functions should look something like this:
 
-In order to call this function, you will need to get the `Function Url` from Azure.  Open the Azure Portal and navigate to your Function.  Click `Functions` then the link to your function
+![Octopus dashboard showing Task Summary with green ticks for every step](octopus-deploy-successful.png)
+
+To call this Function, you need to get the Function URL from Azure.  
+
+Open the Azure Portal and navigate to your **Function**.Click **Functions** then the link to your Function.
 
 ![](azure-portal-function.png)
 
-Click `Get Function Url`, then the copy icon.  Save this for later.
+Click **Get Function Url**, then the copy icon. Save this for later.
 
 ![](azure-function-url.png)
 
 ## Testing notifications
-Now that you have the functions deployed, you can configure a subscription in Octopus deploy to notify you when a variable has changed.
 
-To configure a subscription click on **Configuration** -> **Subscriptions** -> **ADD SUBSCRIPTION**
+After you have the functions deployed, you can configure a subscription in Octopus deploy to notify you when a variable has changed.
+
+To configure a subscription click on **Configuration**, then **Subscriptions**, then **ADD SUBSCRIPTION**.
 
 ![](octopus-create-subscription.png)
 
 Fill in the following fields
-- Name: Give the subscription a name
-- Event Filters: Choose `Variable Set` from the `Document Type` dropdown list.
-- PayloadURL: Paste in Function Url from Azure
 
-Click **SAVE**
+- **Name**: Give the subscription a name
+- **Event Filters**: From the **Document Type** dropdown list, choose **Variable Set** 
+- **PayloadURL**: Paste in Function URL from Azure
 
-And that's it!  You are now ready to receive Slack notifications when a variable has been changed.  To test, update a variable.  After a few seconds, Octopus will process the subscription, calling the Azure Function to place the Octopus payload on the queue.  The Process-Message function will fire and post to Slack!
+Click **SAVE**.
+
+You're now ready to receive Slack notifications when a variable has been changed.  To test this, update a variable.  After a few seconds, Octopus will process the subscription, calling the Azure Function to place the Octopus payload on the queue.  The Process-Message function will fire and post to Slack.
 
 ![](slack-message.png)
 
 ## Conclusion
-This post demonstrates how to use an Octopus Deploy Subscription to call an Azure Function to post a message to Slack whenever a variable has changed.  Happy Deployments!
+This post demonstrates how to use an Octopus Deploy subscription to call an Azure Function to post a message to Slack whenever a variable has changed.  
+
+Happy deployments!
