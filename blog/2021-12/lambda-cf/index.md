@@ -131,6 +131,26 @@ Resources:
       RouteTableId: !Ref NatRouteTable
       SubnetId: !Ref SubnetC
 
+  InstanceSecurityGroup:
+    Type: "AWS::EC2::SecurityGroup"
+    Properties:
+      GroupName: "Example Security Group"
+      GroupDescription: "Lambda Traffic"
+      VpcId: !Ref "VPC"
+      SecurityGroupEgress:
+      - IpProtocol: "-1"
+        CidrIp: "0.0.0.0/0"
+      
+  InstanceSecurityGroupIngress:
+    Type: "AWS::EC2::SecurityGroupIngress"
+    DependsOn: "InstanceSecurityGroup"
+    Properties:
+      GroupId: !Ref "InstanceSecurityGroup"
+      IpProtocol: "tcp"
+      FromPort: "0"
+      ToPort: "65535"
+      SourceSecurityGroupId: !Ref "InstanceSecurityGroup"
+
   AppLogGroupOne:
     Type: "AWS::Logs::LogGroup"
     Properties:
@@ -171,8 +191,8 @@ Resources:
         Code:
           S3Bucket: !Ref "LambdaS3Bucket"
           S3Key: !Ref "LambdaS3Key"
-        Description: !Ref "LambdaDescription"
-        FunctionName: !Sub "${LambdaName}"
+        Description: "My Lambda"
+        FunctionName: !Ref "LambdaName"
         Handler: "not.used.in.provided.runtime"
         MemorySize: 256
         PackageType: "Zip"
