@@ -13,7 +13,7 @@ tags:
 - Azure
 ---
 
-Octopus Deploy provides process steps to deploy to Microsoft Azure. A new step, **Deploy an Azure App Service**, is now available to deploy containers to an Azure App service.
+Octopus Deploy provides process steps to deploy to Microsoft Azure. A new step, **Deploy an Azure App Service**, is available to deploy containers to an Azure App service.
 
 To do this, you'll need:
 
