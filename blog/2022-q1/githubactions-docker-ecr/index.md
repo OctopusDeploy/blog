@@ -40,7 +40,7 @@ Under **Amazon ECR &rarr; Repositories**, you will see your repository. Make a n
 
 In this blog, we will build the Octopus Deploy Underwater Scene repository and push it to Amazon ECR. These images will be used in later blog posts.
 
-Fork the repository at https://github.com/terence-octo/simple-octo
+Fork the repository at https://github.com/terence-octo/octopus-underwater-app-docker
 
 Go to **Settings &rarr; Secrets &rarr; New repository secret**
 
@@ -51,7 +51,7 @@ Go to **Settings &rarr; Secrets &rarr; New repository secret**
 We need to create a workflow file in the repository. A Github Actions workflow contains instructions on how to perform operations on the code repository. There are several pre-built step templates that will allow you to do many different tasks on a code repository. In this example we use a step template that will build and push the code to an AWS ECR repository.
 
 
-Create a file named main.yml in the .github/workflow directory of the root folder. Paste the following code in the main.yml file:
+Create a file named main.yml in the .github/workflows directory of the root folder. Paste the following code in the main.yml file:
 
 ```
 on:
