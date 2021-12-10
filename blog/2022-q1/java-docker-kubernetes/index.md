@@ -15,7 +15,8 @@ tags:
  - Microsoft
 ---
 
-In this blog post, I build a Maven Java project and host the built image on the Google Container Registry (GCR). I access the GCR through Octopus Deploy and deploy the Java application to Azure Kubernetes Service (AKS). To follow along, you will need:
+
+In this blog post, I built a Maven Java project and hosted the image on the Google Container Registry (GCR). I access the GCR through Octopus Deploy and deploy the Java application to Azure Kubernetes Service (AKS). To follow along, you will need:
 
 - A Google Cloud Platform Account
 - A Microsoft Azure Account
@@ -24,9 +25,9 @@ In this blog post, I build a Maven Java project and host the built image on the 
 
 ## The Octopus Deploy Underwater App
 
-The Octopus Deploy Underwater App is a landing page for users who are creating their first deployment. It showcases relevent articles for users as well as links to other resources.
+The Octopus Deploy Underwater App is a landing page for users creating their first deployment. It showcases relevant articles for users as well as links to other resources.
 
-You can find the repository of the web application on [GitHub](https://github.com/terence-octo/octopus-underwater-app).
+You can find the web application repository on [GitHub](https://github.com/terence-octo/octopus-underwater-app).
 
 ## Building and pushing to a registry
 
@@ -64,7 +65,7 @@ Confirm that the image is present on the GCR by going to the [registry home page
 
 ## Retrieve Credentials from Azure for Octopus Deploy
 
-We need to retrive some credentials to pass to Octopus Deploy. Follow these steps to [add an Azure Service Principle to Octopus Deploy](https://octopus.com/docs/infrastructure/accounts/azure).
+We need to retrieve some credentials to pass to Octopus Deploy. Follow these steps to [add an Azure Service Principle to Octopus Deploy](https://octopus.com/docs/infrastructure/accounts/azure).
 
     
 ## Create Azure Kubernetes Cluster
@@ -88,13 +89,13 @@ For Octopus to access the image stored in the GCR, enable the [google feed](http
 
 ### Set up deployment steps
 
-In a project, add the deploy kubernetes containers step.
+In a project, add the deploy Kubernetes containers step.
 
 ![Deploy Kubernetes Containers Step](deploy-kubernetes-containers-step.png "Deploy Success")
 
 ### YAML file
 
-Click the Edit YAML box and paste the following YAML file in the box. The YAML file will populate the various settings in the Octopus UI. You will have to replace the PROJECT_ID with your google PROJECT_ID. You can also use the UI to manually select the container image, using the google external feed credentials set up earlier.
+Click the Edit YAML box and paste the following YAML file in the box. The YAML file will populate the various settings in the Octopus UI. You will have to replace the PROJECT_ID with your google PROJECT_ID. Using the google external feed credentials set up earlier, you can also use the UI to select the container image manually.
 
 ```
 apiVersion: apps/v1
@@ -151,7 +152,7 @@ Run this command, and you will see "pending" under the External-IP. Wait 1 minut
 
 ![Octopus Underwater App](octopus-underwater-app.png)
 
-In this blog post, you have used Spring Initializr to create your own Maven Java project. You have built the project and pushed the image to GCR. You used Octopus Deploy to reference this image and deploy the image to AKS.
+In this blog post, you have built the  Octopus Deploy Underwater App and pushed the image to GCR. You used Octopus Deploy to reference this image and deploy the image to AKS.
 
 Happy Deployments!
 
