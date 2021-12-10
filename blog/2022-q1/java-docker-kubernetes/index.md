@@ -149,7 +149,7 @@ This command creates a service named 'my-service' that generates a public IP to 
         
 Run this command, and you will see "pending" under the External-IP. Wait 1 minute, run again, and you should see a public IP in that field. Go to the IP address in the browser to view your Web Application.
 
-![Deployed Applicationkub](deployed-application.png)
+![Octopus Underwater App](octopus-underwater-app.png)
 
 In this blog post, you have used Spring Initializr to create your own Maven Java project. You have built the project and pushed the image to GCR. You used Octopus Deploy to reference this image and deploy the image to AKS.
 

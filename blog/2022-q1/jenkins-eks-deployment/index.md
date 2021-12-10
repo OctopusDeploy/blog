@@ -100,6 +100,8 @@ To view the deployment, we port forward a local port
  
 Navigate to `127.0.0.1:28008` to see the web app
 
+![Octopus Underwater App](octopus-underwater-app.png)
+
 In this blog, you have deployed a web application to EKS with Jenkins
 
 Happy Deployments!
