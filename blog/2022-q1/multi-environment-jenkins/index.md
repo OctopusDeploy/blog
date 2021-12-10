@@ -14,7 +14,7 @@ tags:
 ---
 
 
-This blog will build a docker image in a Jenkinsfile workflow and publish the image to Amazon Elastic Container Registry (ECR). A deployment will be triggered in Octopus Deploy to deploy to Amazon Elastic Kubernetes Service. To follow along, you will need:
+This blog will build and push the Octopus Underwater App to Amazon Elastic Container Registry (ECR). Jenkins will trigger a deployment in Octopus Deploy. Octopus Deploy will deploy the App to Amazon Elastic Kubernetes Service. To follow along, you will need:
 
 - An Amazon Web Services Account (AWS)
 - A GitHub account
@@ -23,6 +23,7 @@ This blog will build a docker image in a Jenkinsfile workflow and publish the im
 Extend the pipeline with Octopus Release and Deploy commands
 
 ```
+
 
 node {
     def app
@@ -35,7 +36,7 @@ node {
     stage('Build image') {
         /* Referencing the image name in AWS */
 
-        app = docker.build("jenkins-ecr")
+        app = docker.build("underwater-octo")
     }
     
     stage('Test image') {
@@ -52,8 +53,8 @@ node {
     }
     
         stage('Create and Deploy Release') {
-        octopusCreateRelease additionalArgs: '', cancelOnTimeout: false, channel: '', defaultPackageVersion: '', deployThisRelease: false, deploymentTimeout: '', environment: "Production", jenkinsUrlLinkback: false, project: "jenkins-octo", releaseNotes: false, releaseNotesFile: '', releaseVersion: "1.0.${BUILD_NUMBER}", tenant: '', tenantTag: '', toolId: 'Default', verboseLogging: false, waitForDeployment: false
-        octopusDeployRelease cancelOnTimeout: false, deploymentTimeout: '', environment: "Production", project: "jenkins-octo", releaseVersion: "1.0.${BUILD_NUMBER}", tenant: '', tenantTag: '', toolId: 'Default', variables: '', verboseLogging: false, waitForDeployment: true
+        octopusCreateRelease additionalArgs: '', cancelOnTimeout: false, channel: '', defaultPackageVersion: '', deployThisRelease: false, deploymentTimeout: '', environment: "Production", jenkinsUrlLinkback: false, project: "underwater-octo", releaseNotes: false, releaseNotesFile: '', releaseVersion: "1.0.${BUILD_NUMBER}", tenant: '', tenantTag: '', toolId: 'Default', verboseLogging: false, waitForDeployment: false
+        octopusDeployRelease cancelOnTimeout: false, deploymentTimeout: '', environment: "Production", project: "underwater-octo", releaseVersion: "1.0.${BUILD_NUMBER}", tenant: '', tenantTag: '', toolId: 'Default', variables: '', verboseLogging: false, waitForDeployment: true
             
     }
 }
@@ -69,7 +70,7 @@ node {
 
 In your Octopus Deploy instance, create a project called `aws` by going to **Project, Add Project** Add the `aws` title and click **Save**.
 
-Set up a Production Environment by going to **Infrastructure, Environements, Add Environment**. Give it a name and click **Save**
+Set up a Production Environment by going to **Infrastructure, Environments, Add Environment**. Give it a name and click **Save**
 
 We need to set up the Amazon account to deploy to EKS. Go to **Infrastructure, Accounts, Add Account, AWS Account**. Give it a name and fill out the **Access Key ID and Secret Access Key** from earlier.
 
@@ -80,38 +81,35 @@ Set up your AWS Kubernetes cluster as a deployment target in Octopus Deploy by g
 
 In your `aws` project, go to **Process, add deployment step, Kubernetes, Deploy Kubernetes Containers**
 
-Add the following YAML into the YAML section
+Add the following YAML into the YAML section.
 
 ```
-# This YAML exposes the fields defined in the UI. It can be edited directly or have new YAML pasted in.
-# Not all available Kubernetes properties are recognized by the form exposed in the UI, and unrecognized properties are ignored during import.
-# If the required properties are not supported by this step, the 'Deploy raw Kubernetes YAML' step can be used to deploy YAML directly to Kubernetes, and supports all properties.
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ecr-app
+  name: ecr-app-underwater
   labels:
-    app: random-quotes
+    app: octopus-underwater-app
 spec:
   selector:
     matchLabels:
-      octopusexport: OctopusExport
+        app: octopus-underwater-app
   replicas: 3
   strategy:
     type: RollingUpdate
   template:
     metadata:
       labels:
-        app: random-quotes
-        octopusexport: OctopusExport
+        app: octopus-underwater-app
     spec:
       containers:
-        - name: random-quotes
-          image: terence.wong
+        - name: octopus-underwater-app
+          image: 720766170633.dkr.ecr.us-east-2.amazonaws.com/underwater:latest
           ports:
             - containerPort: 80
               protocol: TCP
-
+          imagePullPolicy: Always
 ```
 
 Click **SAVE
@@ -119,11 +117,11 @@ Click **SAVE
 ## Deploy in Jenkins
 
 
-Make a change to the code on GitHub and the build will trigger in Jenkins and Octopus
+Make a change to the code on GitHub, and the build will trigger in Jenkins and Octopus.
 
 ![Jenkins Octopus Icon](jenkins-octo-icon.png "Jenkins Octopus Icon")
 
-You can navigate directly to the Octopus Deploy instance and deployment through the Octopus Icon.
+You can navigate to the Octopus Deploy instance and deployment through the Octopus Icon.
 
 This command will point the CLI to your cluster:
 
@@ -140,9 +138,9 @@ Go to the IP address in the browser to view your web application.
 
 ## The benefits of a dedicated CD tool
 
-Octopus is a dedicated continuous delivery tool. It natively supports release management. In Jenkins, environments are defined through the pipeline file. They are just dividers to the pipeline code. In Octopus, environments are dedicated, seperated spaces where deployments can be deployed to. This makes it easy to stop a deployment at a staging environment before it gets pushed to production. The following dashboard shows how this capability is visualised. Different releases are present in different environemnts, and it is easy to see the stage where releases are at.
+Octopus is a dedicated continuous delivery tool. It natively supports release management. Jenkins defines environments through the pipeline file. They are dividers to the pipeline code. In Octopus, environments are dedicated spaces. Octopus Deploy makes it easy to stop a deployment at a staging environment before it gets pushed to production. The following dashboard shows the capability. Different releases are present in different environments, and it is easy to see the stage where releases are in the lifecycle.
 
-Jenkins is a continous integration tool. It can be used to build and push an image to a central repository. Octopus Deploy can interface with several different repositories and manage the deployment process. This seperation of concerns allows both Jenkins and Octopus Deploy to focus on what they are good at, enabling happier deployments.
+Jenkins is a continuous integration tool. It can do some parts of CD, but not all. Jenkins is commonly used to build and push images to a central repository. Octopus Deploy can interface with several different repositories and manage the deployment process. This separation of concerns allows Jenkins and Octopus Deploy to focus on what they are good at, enabling happier deployments.
 
 
 
