@@ -50,6 +50,7 @@ Go to **Settings &rarr; Secrets &rarr; New repository secret**
 - **REPO_NAME**- the name of the AWS ECR repository you created
 - **AWS_ACCESS_KEY_ID**- the Access Key ID from earlier
 - **AWS_SECRET_ACCESS_KEY**- the Secret Access Key from earlier
+- **AWS_ACCOUNT_ID**- The ID of your amazon account
 
 First, we need to create a deployment YAML file for GitHub actions to deploy to EKS. Create a file named `git-deployment.yml` in the root level of your repository with the following code:
 
@@ -58,32 +59,30 @@ First, we need to create a deployment YAML file for GitHub actions to deploy to 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ecr-app-git
+  name: ecr-app-underwater-github
   labels:
-    app: random-quotes
+    app: octopus-underwater-app
 spec:
   selector:
     matchLabels:
-      octopusexport: OctopusExport
+        app: octopus-underwater-app
   replicas: 3
   strategy:
     type: RollingUpdate
   template:
     metadata:
       labels:
-        app: random-quotes
-        octopusexport: OctopusExport
+        app: octopus-underwater-app
     spec:
       containers:
-        - name: simple-octo
-          image: 720766170633.dkr.ecr.us-east-2.amazonaws.com/github-ecr:latest
+        - name: octopus-underwater-app
+          image: 720766170633.dkr.ecr.us-east-2.amazonaws.com/underwater-github:latest
           ports:
             - containerPort: 80
               protocol: TCP
+          imagePullPolicy: Always
 
 ```
-
-
 
 We need to create a workflow file in the repository. A Github Actions workflow contains instructions on how to perform operations on the code repository. There are several pre-built step templates that will allow you to do many different tasks on a code repository. In this example we use a step template that will build and push the code to an AWS ECR repository and deploy it to EKS.
 
