@@ -199,8 +199,9 @@ Resources:
         Runtime: "provided"
         Timeout: 30
         VpcConfig:
-            SecurityGroupIds: !Ref "InstanceSecurityGroup"
-            SubnetIds: 
+            SecurityGroupIds:
+            - !Ref "InstanceSecurityGroup"
+            SubnetIds:
             - !Ref "SubnetB"
             - !Ref "SubnetC"
       
