@@ -181,8 +181,8 @@ Resources:
             - "logs:CreateLogStream"
             - "logs:CreateLogGroup"
             - "logs:PutLogEvents"
-          Resource:
-          - !Sub "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${LambdaName}*:*"
+            Resource:
+            - !Sub "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${LambdaName}*:*"
         
   DBMigrationLambda:
     Type: "AWS::Lambda::Function"
