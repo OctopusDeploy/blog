@@ -53,9 +53,6 @@ Go to **Settings &rarr; Secrets &rarr; New repository secret**
 - **REPO_NAME**- the name of the AWS ECR repository you created
 - **AWS_ACCESS_KEY_ID**- the Access Key ID from earlier
 - **AWS_SECRET_ACCESS_KEY**- the Secret Access Key from earlier
-- **OCTOPUS_SERVER**- This is the URL of your Octopus Deploy Instance
-- **OCTOPUS_APIKEY**-This is created by going to your Octopus Deploy instance, clicking **your name &rarr; Profile &rarr; My API Keys &rarr; New API Key**
-- **OCTOPUS_PROJECT**- This is the name of your Octopus Deploy Project
 
 We need to create a workflow file in the repository. A Github Actions workflow contains instructions on how to perform operations on the code repository. There are several pre-built step templates that will allow you to do many different tasks on a code repository. In this example we use a step template that will build and push the code to an AWS ECR repository and deploy it from Octopus Deploy.
 
@@ -110,10 +107,10 @@ jobs:
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
         
     - name: create Octopus release
-      run: octo create-release --project ${{ secrets.OCTOPUS_PROJECT }} --version 0.0.i --server=${{ secrets.OCTOPUS_SERVER }} --apiKey=${{ secrets.OCTOPUS_APIKEY }}
+      run: octo create-release --project aws --version 0.0.i --server=${{ secrets.OCTOPUS_SERVER }} --apiKey=${{ secrets.OCTOPUS_APIKEY }}
         
     - name: deploy Octopus release
-      run: octo deploy-release --project ${{ secrets.OCTOPUS_PROJECT }} --version=latest --deployto Production --server=${{ secrets.OCTOPUS_SERVER }} --apiKey=${{ secrets.OCTOPUS_APIKEY }}    
+      run: octo deploy-release --project aws --version=latest --deployto Production --server=${{ secrets.OCTOPUS_SERVER }} --apiKey=${{ secrets.OCTOPUS_APIKEY }}    
       
 ```
 
@@ -180,17 +177,13 @@ This command will point the CLI to your cluster:
 
     kubectl get deployments
 
-Running this command will get the list of deployments on the cluster. You should see the deployment `octopus-deployment`. Use this name to expose the web application:
+Running this command will get the list of deployments on the cluster. You should see the deployment `octopus-underwater-app-octo`. Use this name to expose the web application:
 
-    kubectl expose deployment octopus-deployment --type=LoadBalancer --name=my-service
+    kubectl port-forward deployment/octopus-underwater-app-octo  28019:80
     
-This command creates a service named 'my-service' that generates a public IP to view the web application:
+Go to the IP address in the browser to view your web application.
 
-    kubectl get services
-
-Run this command, and you will see "pending" under the External-IP. Wait one minute, run again, and you should see a public IP in that field. Go to the IP address in the browser to view your web application.
-
-![RandomQuotes](random-quotes.png "RandomQuotes")
+![Octopus Underwater App](octopus-underwater-app.png)
 
 ## Octopus as a CD tool
 
