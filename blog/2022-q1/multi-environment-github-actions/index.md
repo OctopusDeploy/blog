@@ -194,4 +194,4 @@ Run this command, and you will see "pending" under the External-IP. Wait one min
 
 ## Octopus as a CD tool
 
-When you use Octopus Deploy as a stage in your CI/CD toolchain, you get the benefit of a dedicated continous delivery tool. Octopus Deploy integrates with several cloud repositories, and natively supports release management.  GitHub Actions has several comminity developed step templates, but the expereince with these may vary from template to template. Octopus Deploy provides a standardised experience with integration to repositories or cloud providers through its UI.
+When you use Octopus Deploy as a stage in your CI/CD toolchain, you get the benefit of a dedicated continous delivery tool. Octopus Deploy integrates with several cloud repositories, and natively supports release management.  GitHub Actions has several comminity developed step templates, but the experience with these may vary from template to template. Octopus Deploy provides a standardised experience with integration to repositories or cloud providers through its UI.
