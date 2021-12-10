@@ -13,7 +13,7 @@ tags:
  - Jenkins
 ---
 
-This blog will build the Octopus Deploy Underwater App in a Jenkinsfile and publish the image to Amazon Elastic Container Registry (ECR). To follow along, you will need:
+This blog will build and push the Octopus Deploy Underwater App to Amazon Elastic Container Registry (ECR) using Jenkins.  To follow along, you will need:
 
 - An Amazon Web Services Account (AWS)
 - A Jenkins instance
@@ -31,15 +31,15 @@ Your browser will download a file containing the Access Key ID and the Secret Ac
 
 To create a repository, go to the **Amazon Console &rarr; ECR &rarr; Create Repository**
 
-The ECR requires an image repository set up for each image you want to publish. Name the repository the name you want the image to have. 
+The ECR requires an image repository set up for each image you publish. Name the repository the name you want the image to have. 
 
-Under **Amazon ECR &rarr; Repositories**, you will see your repository. Make a note of the zone it is in, which is in the URI field.
+You will see your repository under **Amazon ECR &rarr; Repositories**. Make a note of the zone it is in, in the URI field.
 
 ![ECR Repository](ecr-repository.png)
 
 ## Octopus Deploy Underwater Scene App
 
-In this blog, we will build the Octopus Deploy Underwater App and push it to Amazon ECR. These images will be used in later blog posts.
+In this blog, we will build the Octopus Deploy Underwater App and push it to Amazon ECR. You will use these images in later blog posts.
 
 ## Jenkins setup
 
@@ -80,13 +80,13 @@ Click **SAVE**
 
 ## GitHub setup
 
-For this example, we will use a sample web application that displays an animated underwater scene with useful links.
+We will use a sample web application that displays an animated underwater scene with helpful links for this example.
 
 Fork the repository at https://github.com/terence-octo/octopus-underwater-app
 
 We want to set up a webhook so that Jenkins can know when the repository is updated. To do this, go to **Settings &rarr; Webhooks**
 
-![webhook](webhook.png)
+![web-hook](webhook.png)
 
 Fill out the following fields, leaving everything else as default.
 
@@ -131,17 +131,17 @@ node {
 }
 ```
 
-The Jenkinsfile consists of different stages. Each of these stages will be run in order in Jenkins and if the build fails, you will be able to see which stage failed. Commit your code to GitHub. The commit will trigger a build job in Jenkins. Go to your Jenkins instance URL to see the build.
+The Jenkinsfile consists of different stages. Jenkins will run each of these stages in order in Jenkins, and if the build fails, you will be able to see which stage failed. Commit your code to GitHub. The commit will trigger a build job in Jenkins. Go to your Jenkins instance URL to see the build.
 
-I found that I had to manually trigger a Jenkins job via the build now button. After this the webhook triggers would start working.
+I had to trigger a Jenkins job via the build now button manually. After this, the webhook triggers would start working on every push.
 
 ![Jenkins Success](jenkins-success.png)
 
-After the build finishes, you can go to the Amazon ECR to see a new image built and pushed to the repository. Note that it has tagged the latest push with the Jenkins build number and `latest`.
+After the build finishes, you can go to the Amazon ECR to see a new image built and pushed to the repository. It has tagged the latest push with the Jenkins build number and `latest.`
 
 ![ECR Success](ecr-success.png)
 
-In this blog, you have set up a Jenkins pipeline to build a GitHub repository and push it to Amazon ECR. The Jenkinsfile can push to other repositories such as Google or Microsoft. It can also include additional stages depending on the build requirements. Once the image has been pushed, a tool like Octopus Deploy can be used to deploy the image to a target environment
+In this blog, you have set up a Jenkins pipeline to build a GitHub repository and push it to Amazon ECR. The Jenkinsfile can push to other repositories such as Google or Microsoft. It can also include additional stages depending on the build requirements. Once the image is pushed, you can use a tool like Octopus Deploy to deploy the image to a target environment
 
 Happy Deployments!
 
