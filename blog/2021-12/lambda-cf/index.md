@@ -151,14 +151,16 @@ Resources:
       ToPort: "65535"
       SourceSecurityGroupId: !Ref "InstanceSecurityGroup"
 
-  AppLogGroupOne:
+  AppLogGroup:
     Type: "AWS::Logs::LogGroup"
     Properties:
       LogGroupName: !Sub "/aws/lambda/${LambdaName}"
       
-  IamRoleLambdaOneExecution:
+  IamRoleLambdaExecution:
     Type: "AWS::IAM::Role"
     Properties:
+      Path: "/"
+      RoleName: !Sub "${LambdaName}-role"  
       AssumeRolePolicyDocument:
         Version: "2012-10-17"
         Statement:
@@ -166,8 +168,7 @@ Resources:
           Principal:
             Service:
             - "lambda.amazonaws.com"
-          Action:
-          - "sts:AssumeRole"
+          Action: "sts:AssumeRole"
       ManagedPolicyArns: 
       - "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
       Policies:
@@ -182,8 +183,6 @@ Resources:
             - "logs:PutLogEvents"
           Resource:
           - !Sub "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${LambdaName}*:*"
-        Path: "/"
-        RoleName: !Sub "${LambdaName}-role"  
         
   DBMigrationLambda:
     Type: "AWS::Lambda::Function"
@@ -196,7 +195,7 @@ Resources:
         Handler: "not.used.in.provided.runtime"
         MemorySize: 256
         PackageType: "Zip"
-        Role: !GetAtt "IamRoleLambdaOneExecution.Arn"
+        Role: !GetAtt "IamRoleLambdaExecution.Arn"
         Runtime: "provided"
         Timeout: 30
         VpcConfig:
