@@ -53,6 +53,9 @@ Go to **Settings &rarr; Secrets &rarr; New repository secret**
 - **REPO_NAME**- the name of the AWS ECR repository you created
 - **AWS_ACCESS_KEY_ID**- the Access Key ID from earlier
 - **AWS_SECRET_ACCESS_KEY**- the Secret Access Key from earlier
+- **OCTOPUS_SERVER**- This is the URL of your Octopus Deploy Instance
+- **OCTOPUS_APIKEY**-This is created by going to your Octopus Deploy instance, clicking **your name &rarr; Profile &rarr; My API Keys &rarr; New API Key**
+- **OCTOPUS_PROJECT**- This is the name of your Octopus Deploy Project
 
 We need to create a workflow file in the repository. A Github Actions workflow contains instructions on how to perform operations on the code repository. There are several pre-built step templates that will allow you to do many different tasks on a code repository. In this example we use a step template that will build and push the code to an AWS ECR repository and deploy it from Octopus Deploy.
 
@@ -107,10 +110,10 @@ jobs:
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
         
     - name: create Octopus release
-      run: octo create-release --project aws --version 0.0.i --server=${{ secrets.OCTOPUS_SERVER }} --apiKey=${{ secrets.OCTOPUS_APIKEY }}
+      run: octo create-release --project ${{ secrets.OCTOPUS_PROJECT }} --version 0.0.i --server=${{ secrets.OCTOPUS_SERVER }} --apiKey=${{ secrets.OCTOPUS_APIKEY }}
         
     - name: deploy Octopus release
-      run: octo deploy-release --project aws --version=latest --deployto Production --server=${{ secrets.OCTOPUS_SERVER }} --apiKey=${{ secrets.OCTOPUS_APIKEY }}    
+      run: octo deploy-release --project ${{ secrets.OCTOPUS_PROJECT }} --version=latest --deployto Production --server=${{ secrets.OCTOPUS_SERVER }} --apiKey=${{ secrets.OCTOPUS_APIKEY }}    
       
 ```
 
