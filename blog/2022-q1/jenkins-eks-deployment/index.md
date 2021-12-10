@@ -93,3 +93,13 @@ Jenkins will clone, build, test, push and deploy the image to an EKS cluster. Th
 Jenkins is a continuous integration tool. It is primarily focussed on building and pushing images to a remote repository. Using it as a continuous deployment tool is possible, however it does not have the ability to track a release through various deployment stages. A dedicated continous deployment tool like Octopus Deploy can help in the release management that will arise when managing complex deployments. The next part of the blog series will focus on how Octopus Deploy can be used in the deployment flow to enable the benefits of a dedicated continous deployment tool.
 
 ![Jenkins Success](jenkins-success.png)
+
+To view the deployment, we port forward a local port
+
+ kubectl port-forward deployment/ecr-app-underwater  28015:80
+ 
+Navigate to `127.0.0.1:28008` to see the web app
+
+In this blog, you have deployed a web application to EKS with Jenkins
+
+Happy Deployments!
