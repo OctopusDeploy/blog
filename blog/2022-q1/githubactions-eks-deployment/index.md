@@ -129,6 +129,19 @@ jobs:
 
 ![GitHub Success](github-success.png)
 
+
+This command will point the CLI to your cluster:
+
+    kubectl get deployments
+
+Running this command will get the list of deployments on the cluster. You should see the deployment `octopus-underwater-app-octo`. Use this name to expose the web application:
+
+    kubectl port-forward deployment/octopus-underwater-app-octo  28019:80
+    
+Go to the IP address in the browser to view your web application.
+
+![Octopus Underwater App](octopus-underwater-app.png)
+
 ## GitHub Actions as a CD tool
 
 GitHub Actions is able to build, push and deploy a GitHub repository to a Kubernetes cloud platform like EKS. To integrate with cloud platforms and other tools, it relies on community built step templates. In my experience with the tools, these step templates are not standardised. I tried several different templates. Some worked slightly differently to another depending on the variables it was calling.
