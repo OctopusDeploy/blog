@@ -35,7 +35,7 @@ Click **Next**
 
 Select **Attach existing policies directly &rarr; Create policy**
 
-The IAM policy will allow a EKS cluster to be created from the command line. The actions in the policy are the minimum policies required by eksctl.
+The IAM policy will allow you to create an EKS cluster from the command line. The actions in the policy are the minimum policies required by eksctl.
 
 Paste the following policy into the **JSON** box.
 
@@ -156,7 +156,7 @@ Now that your clusters are live, you can perform operations on them, such as dep
 
 ## Deleting the clusters
 
-You can delete a cluster using the CLI by running this command and replacing the name with the name of your cluster and the region with the region of your cluster:
+You can delete a cluster using the CLI by running this command. Replace the cluster name and region with your values.
 
     eksctl delete cluster --name my-cluster --region us-east-2
 
