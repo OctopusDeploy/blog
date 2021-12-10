@@ -59,55 +59,32 @@ First, we need to create a deployment YAML file for GitHub actions to deploy to 
 
 ```
 
+
 apiVersion: apps/v1
-
 kind: Deployment
-
 metadata:
-
- name: ecr-app-underwater-github
-
- labels:
-
-   app: octopus-underwater-app
-
+  name: ecr-app-underwater
+  labels:
+    app: octopus-underwater-app
 spec:
-
- selector:
-
-   matchLabels:
-
-       app: octopus-underwater-app
-
- replicas: 3
-
- strategy:
-
-   type: RollingUpdate
-
- template:
-
-   metadata:
-
-     labels:
-
-       app: octopus-underwater-app
-
-   spec:
-
-     containers:
-
-       - name: octopus-underwater-app
-
-         image: 720766170633.dkr.ecr.us-east-2.amazonaws.com/underwater-github:latest
-
-         ports:
-
-           - containerPort: 80
-
-             protocol: TCP
-
-         imagePullPolicy: Always
+  selector:
+    matchLabels:
+        app: octopus-underwater-app
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: octopus-underwater-app
+    spec:
+      containers:
+        - name: octopus-underwater-app
+          image: 720766170633.dkr.ecr.us-east-2.amazonaws.com/underwater:latest
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          imagePullPolicy: Always
 
 ```
 
@@ -118,65 +95,36 @@ Create a file named main.yml in the .github/workflow directory of the root folde
 ```
 
 on: push
-
 name: deploy
-
 jobs:
-
  deploy:
-
    name: deploy to cluster
-
    runs-on: ubuntu-latest
-
    steps:
-
    - name: Checkout
-
      uses: actions/checkout@v2
-
    - name: Configure AWS credentials
-
      uses: aws-actions/configure-aws-credentials@v1
-
      with:
-
        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-
        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
        aws-region: us-east-2
-
    - name: Login to Amazon ECR
-
      id: login-ecr
-
      uses: aws-actions/amazon-ecr-login@v1
-
    - name: Push image and deploy
-
      uses: observian/littleci-littlecd-eks@master
 
      with:
-
        access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-
        secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-
        account_id: ${{ secrets.AWS_ACCOUNT_ID }}
-
        repo: github-ecr
-
        region: us-east-2
-
        tags: 0.1.1.${{ github.run_number }},${{ github.sha }}
-
        eks_cluster_name: my-cluster-cli
-
        k8s_manifest: git-deployment.yml
-
        k8s_image_tag: 0.1.1.${{ github.run_number }}
-
 ```
 
 ![GitHub Success](github-success.png)
