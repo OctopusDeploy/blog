@@ -145,17 +145,13 @@ Other languages, like Java, DotNET Core, Python, PHP, Node.js etc, require their
         Role: !GetAtt "IamRoleLambdaExecution.Arn"
         Runtime: "provided"
         Timeout: 30
-        VpcConfig:
-            SecurityGroupIds:
-            - !Ref "InstanceSecurityGroup"
-            SubnetIds:
-            - !Ref "SubnetB"
-            - !Ref "SubnetC"
   ```
 
 ## Placing a Lambda in a VPC
 
-In a more complex scenario, your Lambda will be granted access to a VPC in order to 
+In a more complex scenario, your Lambda will be granted access to a VPC in order to access shared resources like a database or EC2 instance.
+
+The template below builds on a previous example demonstrating a VPC with a mix of [public and private subnets](https://octopus.com/blog/aws-vpc-public-private), and then deploys a Lambda with [VPC access](https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html): 
 
 ```yaml
 Parameters:
@@ -352,7 +348,7 @@ Outputs:
 
 The majority of this template defines the resources required to build a VPC with both a private and public subnet, as well as building the network infrastructure like internet gateways and NAT gateways to provide internet access to any other resources placed in the VPC subnets. These resources are covered in detail in a [previous post](https://octopus.com/blog/aws-vpc-public-private).
 
-you then create a security group, represented by the [AWS::EC2::SecurityGroup](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html) resource, to define the networking rules applied to resources in this VPC. This example includes rules that allow all outbound traffic:
+You then create a security group, represented by the [AWS::EC2::SecurityGroup](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html) resource, to define the networking rules applied to resources in this VPC. This example includes rules that allow all outbound traffic:
 
 ```yaml
   InstanceSecurityGroup:
@@ -380,7 +376,37 @@ Resources that share the security group are allowed to communicate with each oth
       SourceSecurityGroupId: !Ref "InstanceSecurityGroup"
 ```
 
+The log group and IAM role are the same as the simple example described at the start of this post.
 
+The Lambda is changed slightly to include a new `VPCConfig` property granting the Lambda access to resources inside the VPC:
 
-  ## Conclusion
+```yaml
+  MyLambda:
+    Type: "AWS::Lambda::Function"
+    Properties:
+        Code:
+          S3Bucket: !Ref "LambdaS3Bucket"
+          S3Key: !Ref "LambdaS3Key"
+        Description: "My Lambda"
+        FunctionName: !Ref "LambdaName"
+        Handler: "not.used.in.provided.runtime"
+        MemorySize: 256
+        PackageType: "Zip"
+        Role: !GetAtt "IamRoleLambdaExecution.Arn"
+        Runtime: "provided"
+        Timeout: 30
+        VpcConfig:
+            SecurityGroupIds:
+            - !Ref "InstanceSecurityGroup"
+            SubnetIds:
+            - !Ref "SubnetB"
+            - !Ref "SubnetC"
+```
 
+## Conclusion
+
+Lambdas can be quite simple to deploy, requiring a small number of supporting resources like log groups and IAM roles to allow the Lambda to be monitored and debugged.
+
+For more complex scenarios where Lambdas must have access to other resources like databases or EC2 instances inside a VPC, Lambdas can be configured with network access to specified subnets and have network traffic controlled using security groups.
+
+In this post you learned how to perform a simple Lambda deployment, and then saw an more complex example that built a VPC alongside the Lambda.
