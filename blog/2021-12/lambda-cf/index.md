@@ -14,7 +14,7 @@ Lambda is a serverless Function as a Service (FaaS) offering from AWS. Lambda's 
 
 Like most AWS resources, Lambdas can be placed in a VPC to colocate it with other resources like databases or EC2 instances.
 
-In this post you'll deploy a simple Lmabda, and then build on the [VPC with private and public subnets example provided in a previous post](https://octopus.com/blog/aws-vpc-public-private) to deploy a Lambda in a VPC with internet access using CloudFormation.
+In this post you'll deploy a simple Lambda, and then build on the [VPC with private and public subnets example provided in a previous post](https://octopus.com/blog/aws-vpc-public-private) to deploy a Lambda in a VPC with internet access using CloudFormation.
 
 ## A simple Lambda CloudFormation template
 
