@@ -1,6 +1,6 @@
 ---
-title: Docker Jenkins installation
-description: As part of our series about CI platforms, learn how to install Jenkins via a Docker image.
+title: How to install Jenkins on Docker
+description: As part of our series about Continuous Integration and build servers, learn how to install Jenkins via a Docker image.
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2022-01-18-1400
@@ -12,6 +12,7 @@ tags:
   - DevOps
   - Continuous Integration
   - Jenkins
+  - Docker
 ---
 
 Docker emerged victorious in the battle for universal application packages. Every major operating system supports Docker images, all cloud providers support deploying Docker images, and every major tool or platform offers an official Docker image. Jenkins is no exception, providing the image [jenkins/jenkins](https://hub.docker.com/r/jenkins/jenkins).
@@ -109,7 +110,7 @@ You may have noticed that running Docker with the command above attaches your te
 docker run -d -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts-jdk11
 ```
 
-## Adding additional software
+## Adding additional software to the Jenkins server
 
 Because Jenkins is written in Java, the default server created by running the Jenkins Docker image has most of the software required to compile and test Java applications.
 
