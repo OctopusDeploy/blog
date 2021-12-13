@@ -1,6 +1,6 @@
 ---
 title: Running unit tests in Jenkins
-description: As part of our series about CI platforms, learn how to run unit tests in Jenkins and capture the results.
+description: As part of our series about Continuous Integration and build servers, learn how to run unit tests in Jenkins and capture the results.
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2022-02-07-1400
@@ -54,9 +54,9 @@ To install the plugin:
 
 ![Junit Plugin](junit-plugin.png "width=500")
 
-### Creating the project
+### Creating the pipeline project in Jenkins
 
-To create a new pipeline project, click **New Item**, enter **RandomQuotes-Java** for the item name, select the **Pipeline** option, and click the **OK** button:
+To create a new pipeline project, click **New Item**, enter `RandomQuotes-Java` for the item name, select the **Pipeline** option, and click the **OK** button:
 
 ![New Java Project](java-project.png "width=500")
 
@@ -137,9 +137,9 @@ Install the [MSTest](https://plugins.jenkins.io/mstest/) plugin to process the r
 
 ![MSTest Plugin](mstest-plugin.png "width=500")
 
-### Creating the project
+### Creating the pipeline project in Jenkins
 
-To create a new pipeline project, click **New Item**, enter **RandomQuotes-DotNET** for the item name, select the **Pipeline** option, and click the **OK** button:
+To create a new pipeline project, click **New Item**, enter `RandomQuotes-DotNET` for the item name, select the **Pipeline** option, and click the **OK** button:
 
 ![New DotNET Project](dotnet-project.png "width=500")
 
@@ -204,7 +204,7 @@ You then process the test results with the MSTest plugin in the `post` section:
 mstest(testResultsFile: '**/*.trx', failOnError: false, keepLongStdio: true)
 ```
 
-## Handling failed tests
+## How to handle failed tests
 
 To this point you've only run builds with successful tests. To simulate a failing test, modify the `Checkout` stage to point to the `failing-test` branch of the Java Random Quotes application:
 
