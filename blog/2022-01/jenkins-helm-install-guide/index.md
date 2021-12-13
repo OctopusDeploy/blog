@@ -1,6 +1,6 @@
 ---
-title: Helm Jenkins installation
-description: As part of our series about CI platforms, learn how to install Jenkins via Helm.
+title: How to install a Jenkins instance with Helm
+description: As part of our series about Continuous Integration and build servers, learn how to install Jenkins via Helm.
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2022-01-19-1400
@@ -249,7 +249,7 @@ controller:
 
 You can find an example `Dockerfile` installing tools for Java, DotNET Core, PHP, Python, Ruby, and Go in the [jenkins-complete-image repoistory](https://github.com/OctopusSamples/jenkins-complete-image).
 
-## Configuration as Code
+## Jenkins Configuration as Code
 
 Jenkins Configuration as Code (JCasC) is a [plugin](https://plugins.jenkins.io/configuration-as-code/) providing an opinionated method for configuring Jenkins through YAML files. This provides an alternative to writing [Groovy scripts directly referencing the Jenkins API](https://www.jenkins.io/doc/book/managing/groovy-hook-scripts/), which is powerful, but requires administrators to be comfortable writing code.
 
