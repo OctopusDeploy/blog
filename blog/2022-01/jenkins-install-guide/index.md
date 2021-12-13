@@ -1,6 +1,6 @@
 ---
-title: Traditional Jenkins installation
-description: As part of our series about CI platforms, learn how to install Jenkins via the traditional installers.
+title: How to install Jenkins on Windows and Linux
+description: As part of our series about Continuous Integration and build servers, learn how to install Jenkins via the traditional installers.
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2022-01-17-1400
@@ -10,13 +10,14 @@ tags:
  - DevOps
  - Continuous Integration
  - Jenkins
+ - Linux
 ---
 
-The traditional Jenkins installation method is to use the installers made available on the [Jenkins website](https://www.jenkins.io/download/), or through your local operating system's package manager.
+The traditional Jenkins installation method is to use the installers made available on the [Jenkins website](https://www.jenkins.io/download/), or through your local operating system's package manager.The installation process is generally simple, but there are a few tricks to be aware of. 
 
-The installation process is generally simple, but there are a few tricks to be aware of. In this post, we run through the installation of Jenkins on Windows and Linux, and gain insights into customizing the installation.
+In this post, we run through the installation of Jenkins on Windows and Linux, and gain insights into customizing the installation.
 
-## Choosing between LTS and weekly releases
+## Choosing between Jenkins LTS and weekly releases
 
 Jenkins offers two release channels: 
 
@@ -29,7 +30,7 @@ The weekly releases include all the latest features, but have less "bake time" i
 
 If you prefer stability and don't require all the latest features right away, go with an LTS release. If you want the latest features as soon as possible and don't mind encountering the occasional glitch, go with the weekly releases.
 
-## Installing Jenkins on Windows
+## How to install Jenkins on Windows
 
 Jenkins provides an MSI download, allowing it to be installed as a Windows service through the traditional Windows wizard-style installation process. But before you start the installation there are a number of prerequisites you must satisfy.
 
@@ -145,7 +146,7 @@ A list of Jenkins system properties can be found in the [Jenkins documentation](
 
 The `JENKINS_HOME` directory includes all the configuration, plugins, and working directory for any builds executed on the Jenkins server. On Windows, this directory is located at `%LocalAppData%\Jenkins\.jenkins` by default, which will resolve to `C:\Users\jenkins\AppData\Local\Jenkins\.jenkins` when using the `jenkins` user created above to run the Jenkins service.
 
-## Installing Jenkins on Ubuntu and Debian
+## How to install Jenkins on Ubuntu and Debian
 
 Jenkins provides a [package repository for installing the software on Debian and Ubuntu](https://pkg.jenkins.io/debian-stable/).
 
@@ -169,7 +170,7 @@ sudo apt-get install openjdk-11-jdk
 sudo apt-get install jenkins
 ```
 
-## Installing Jenkins on RHEL and Fedora
+## How to install Jenkins on RHEL and Fedora
 
 Jenkins provides a [package repository for installing the software on Red Hat Enterprise Linux (RHEL) and Fedora](https://pkg.jenkins.io/redhat-stable/).
 
@@ -230,7 +231,7 @@ You can determine from the code above that Java options to be passed to Jenkins 
 
 A list of Jenkins system properties can be found in the [Jenkins documentation](https://www.jenkins.io/doc/book/managing/system-properties/).
 
-## Install Jenkins on other Linux distributions and macOS
+## How to install Jenkins on other Linux distributions and macOS
 
 The [Jenkins website](https://www.jenkins.io/download/) includes instructions for other Linux distributions and macOS.
 
