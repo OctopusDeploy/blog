@@ -1,6 +1,6 @@
 ---
 title: Managing credentials in Jenkins
-description: As part of our series about CI platforms, we take a look at the best way to manage credentials in Jenkins with the Credentials Binding plugin.
+description: As part of our series about Continuous Integration and build servers, we take a look at the best way to manage credentials in Jenkins with the Credentials Binding plugin.
 author: andrew.corrigan@octopus.com
 visibility: private
 published: 2022-01-27-1400
@@ -22,7 +22,7 @@ Jenkins’ documentation recommends using the [Credentials Binding plugin](https
 
 In this post, I walk you through how to install the plugin and the different ways the plugin is used.
 
-## Installing the Credentials Binding plugin
+## How to install the Credentials Binding plugin
 
 If you don’t have the Credentials Binding plugin installed, it’s easy to add:
 
@@ -91,7 +91,7 @@ If you’re using the Blue Ocean plugin, which creates a Jenkinsfile for you whe
 See the [Using a Jenkinsfile page](https://www.jenkins.io/doc/book/pipeline/jenkinsfile/) on the Jenkins website for more information.
 :::
 
-## User-tied credentials
+## User-tied credentials in Jenkins
 
 Depending on what you're connecting Jenkins to, or the plugin you're using, Jenkins ties some credentials to the logged-in user. Jenkins only stores these credentials when you first connect it with another service. You can't use these credentials outside of their initial setup and no other user account can access them.
 
@@ -110,6 +110,7 @@ The top section shows all credentials you have access to, including user and glo
 See [Jenkins’ credentials documentation](https://www.jenkins.io/doc/book/using/using-credentials/) for more information.
 
 Check out the other posts about Jenkins in our build server series:
-- I don't have the links for these yet.
+
+- I don't have the links for these yet
 
 Happy deployments!
