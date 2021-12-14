@@ -4,9 +4,9 @@ description: Join Sarah Lean on her learning journey with Octopus Deploy.
 author: sarah.lean@octopus.com
 visibility: public
 published: 2022-02-01-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: blogimage-fromzerotooctopusheropart1.png
+bannerImage: blogimage-fromzerotooctopusheropart1.png
+bannerImageAlt: Mario Kart-style illustration with Sarah winning a fight with a creature over shark infested waters
 isFeatured: false
 tags:
  - DevOps
