@@ -21,7 +21,7 @@ In this post, we share the results of our investigation and our recommended next
 
 ## JetBrains TeamCity plugin
 
-Version 6.1.7 of the JetBrains TeamCity plugin has been updated to use version 2.15.0 of Log4J. However, all versions of the plugin before 6.1.7 are using version 2.14.1 of Log4J and could be vulnerable to remote code execution.
+Version 6.1.7 of the JetBrains TeamCity plugin uses version 2.15.0 of Log4J. However, all versions of the plugin before 6.1.7 are using version 2.14.1 of Log4J and could be vulnerable to remote code execution.
 
 ### What you need to do
 
