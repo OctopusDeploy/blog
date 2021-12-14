@@ -1,18 +1,21 @@
 ---
 title: Generating instance types lists for CloudFormation
-description: Learn how to generate a list of available instance types to include in CloudFormation templates
+description: Learn how to generate a list of available instance types to include in CloudFormation templates.
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2999-01-01
 metaImage: 
 bannerImage: 
+bannerImageAlt: 125 characters max, describes image to people unable to see it.
+isFeatured: false
 tags:
- - Octopus
+ - DevOps
+ - AWS
 ---
 
-The [instance type](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html#cfn-ec2-instance-instancetype) is a required parameter when building EC2 instances. While the AWS documentation provides a list of allowed values, it is not presented in a format that can be easily consumed by your own CloudFormation templates.
+The [instance type](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html#cfn-ec2-instance-instancetype) is a required parameter when building EC2 instances. While the AWS documentation provides a list of allowed values, it's not presented in a format that can be easily consumed by your own CloudFormation templates.
 
-In this post you'll learn how to build a parameter with a complete list of instance types as allowed values to copy and paste into your own templates.
+In this post, you'll learn how to build a parameter with a complete list of instance types as allowed values to copy and paste into your own templates.
 
 ## Prerequisites
 
@@ -358,4 +361,8 @@ When this parameter is included in a template deployed by Octopus, the list of a
 
 ## Conclusion
 
-EC2s have dozens of instance types these days, and providing a list of options to those deploying a CloudFormation template removes the need to refer to external documentation. In this post you learned how to build a CloudFormation parameter in YAML with a complete list of instance types, ready to be copied into your CloudFormation templates.
+EC2s have dozens of instance types these days, and providing a list of options to those deploying a CloudFormation template removes the need to refer to external documentation. 
+
+In this post, you learned how to build a CloudFormation parameter in YAML with a complete list of instance types, ready to be copied into your CloudFormation templates.
+
+Happy deployments!
