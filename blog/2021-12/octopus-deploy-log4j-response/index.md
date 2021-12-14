@@ -25,7 +25,7 @@ Version 6.1.7 of the JetBrains TeamCity plugin uses version 2.15.0 of Log4j. How
 
 ### What you need to do
 
-Version 6.1.7 of the Octopus Deploy plugin for TeamCity is available from the marketplace. If you're a TeamCity user, you should be notified of this update through the Web UI and you're strongly encouraged to update the plugin.
+Version 6.1.7 of the Octopus Deploy plugin for TeamCity is available from the marketplace. If you're a TeamCity user, you should be notified of this update through the Web UI and we strongly encourage you to accept the update.
 
 Follow our [security advisory](https://advisories.octopus.com/adv/2021-12---Octopus-Deploy-TeamCity-Plugin-log4j2-dependency.2306410241.html) for updates.
 
