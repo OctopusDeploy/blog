@@ -1,21 +1,28 @@
 
 ---
-title: Creating an EC2 Octopus worker with CloudFormation
-description: Learn how to deploy an EC2 configured as an Octopus worker via a CloudFormation template
+title: Creating an EC2 Octopus Worker with CloudFormation
+description: Learn how to deploy an EC2 configured as an Octopus Worker via a CloudFormation template.
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2999-01-01
 metaImage: 
-bannerImage: 
+bannerImage:
+bannerImageAlt: 125 characters max, describes image to people unable to see it.
+isFeatured: false
 tags:
- - Octopus
+ - DevOps
+ - AWS
 ---
 
-Workers provide the ability to delegate the execution of a deployment to a machine with privileged access to the resources being modified, with specialized tools installed, or just to remove the burden of executing a deployment from the Octopus server. EC2 instances provide a logical solution to host Octopus workers, and in this post you'll learn how to deploy an Octopus worker onto a new EC2 instance with CloudFormation.
+Workers provide the ability to delegate the execution of a deployment to a machine with privileged access to the resources being modified, with specialized tools installed, or just to remove the burden of executing a deployment from the Octopus Server. 
+
+EC2 instances provide a logical solution to host Octopus Workers. 
+
+In this post, you'll learn how to deploy an Octopus Worker onto a new EC2 instance with CloudFormation.
 
 ## The complete template
 
-The CloudFormation template below deploys an EC2 instance within a public subnet in a new VPC and installs an Octopus tentacle as a worker as part of the VMs initialization:
+The CloudFormation template below deploys an EC2 instance in a public subnet in a new VPC and installs an Octopus Tentacle as a Worker as part of the VMs initialization:
 
 ```yaml
 AWSTemplateFormatVersion: 2010-09-09
@@ -494,9 +501,9 @@ Outputs:
     Description: Server's PublicIp Address
 ```
 
-This template is creating a number of resources, so lets break it down.
+This template is creating a number of resources, so let's break it down.
 
-The available instance types are defined in a parameter called `InstanceType`. While workers don't typically need to be installed on high powered machines, the network capabilities of different EC2 instances may require selecting specific instance types:
+The available instance types are defined in a parameter called `InstanceType`. While Workers don't typically need to be installed on high powered machines, the network capabilities of different EC2 instances may require selecting specific instance types:
 
 ```yaml
 Parameters:
@@ -510,7 +517,7 @@ Parameters:
     # ...
 ```
 
-For additional security, only your local workstation will be able to SSH into the EC2 instance. You can [Google your IP address](https://www.google.com/search?q=what+is+my+ip) and define it in the `WorkstationIp` parameter:
+For additional security, only your local workstation can SSH into the EC2 instance. You can [Google your IP address](https://www.google.com/search?q=what+is+my+ip) and define it in the `WorkstationIp` parameter:
 
 ```yaml
   WorkstationIp:
@@ -526,7 +533,7 @@ The parameter called `Key` defines the SSH key assigned to the EC2 instance. Thi
     Description: The key used to access the instance.
 ```
 
-The URL of the Octopus instance the worker will connect to is defined in the `OctopusURL` parameter. Note that this template creates a polling worker, which means the Octopus instance must be publicly accessible:
+The URL of the Octopus instance the Worker connects to is defined in the `OctopusURL` parameter. Note that this template creates a Polling Worker, which means the Octopus instance must be publicly accessible:
 
 ```yaml
   OctopusURL:
@@ -534,7 +541,7 @@ The URL of the Octopus instance the worker will connect to is defined in the `Oc
     Description: The URL of the Octopus instance to connect to.
 ```
 
-The API key used to authenticate with the Octopus server is defined in the `OctopusAPI` parameter:
+The API key used to authenticate with the Octopus Server is defined in the `OctopusAPI` parameter:
 
 ```yaml
   OctopusAPI:
@@ -542,7 +549,7 @@ The API key used to authenticate with the Octopus server is defined in the `Octo
     Description: The Octopus API key.
 ```
 
-The Octopus space in which to register the worker is defined in the `OctopusSpace` parameter:
+The Octopus space in which to register the Worker is defined in the `OctopusSpace` parameter:
 
 ```yaml
   OctopusSpace:
@@ -550,7 +557,7 @@ The Octopus space in which to register the worker is defined in the `OctopusSpac
     Description: The Octopus space.
 ```
 
-The name of the worker pool to place the worker in is defined in the `OctopusWorkerPool` parameter:
+The name of the Worker Pool to place the Worker in is defined in the `OctopusWorkerPool` parameter:
 
 ```yaml
   OctopusWorkerPool:
@@ -558,7 +565,9 @@ The name of the worker pool to place the worker in is defined in the `OctopusWor
     Description: The Octopus worker pool.
 ```
 
-Each availability zone in AWS has its own unique AMI IDs. The `Mappings` section maps the [Amazon ECS-optimized AMI](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html) to each region. You use the ECS-optimized AMI as this already has Docker installed, which is useful for running deployments in [execution containers](https://octopus.com/docs/projects/steps/execution-containers-for-workers):
+Each availability zone in AWS has its own unique AMI IDs. The `Mappings` section maps the [Amazon ECS-optimized AMI](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ecs-optimized_AMI.html) to each region. 
+
+You use the ECS-optimized AMI as this already has Docker installed, which is useful for running deployments in [execution containers](https://octopus.com/docs/projects/steps/execution-containers-for-workers):
 
 ```yaml
 Mappings:
@@ -572,7 +581,9 @@ Mappings:
     # ...
 ```
 
-All EC2 instances must be placed in a Virtual Private Cloud (VPC), create with a [AWS::EC2::VPC](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpc.html) resource. You define a Classless Inter-Domain Routing (CIDR) block of `10.0.0.0/16`, meaning all subnets assigned to the VPC must have IP addresses starting with `10.0`:
+All EC2 instances must be placed in a Virtual Private Cloud (VPC), create with a [AWS::EC2::VPC](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpc.html) resource. 
+
+You define a Classless Inter-Domain Routing (CIDR) block of `10.0.0.0/16`, meaning all subnets assigned to the VPC must have IP addresses starting with `10.0`:
 
 ```yaml
   VPC:
@@ -601,7 +612,9 @@ The internet gateway is attached to the VPC using a [AWS::EC2::VPCGatewayAttachm
       InternetGatewayId: !Ref InternetGateway
 ```
 
-A subnet is attached to the VPC using a [AWS::EC2::Subnet](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html) resource. You can avoid hard coding an availability zone by using the `!Select` function to return the first item from the `!GetAZs` array. The CIDR block is set to `10.0.0.0/24`, indicating that the IP addresses for resources in this subnet all start with `10.0.0`. Setting `MapPublicIpOnLaunch` to `true` means any EC2 instances placed in this subnet will receive a dynamic, public IP address, allowing you to SSH into them:
+A subnet is attached to the VPC using a [AWS::EC2::Subnet](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html) resource. You can avoid hard-coding an availability zone by using the `!Select` function to return the first item from the `!GetAZs` array. 
+
+The CIDR block is set to `10.0.0.0/24`, indicating that the IP addresses for resources in this subnet all start with `10.0.0`. Setting `MapPublicIpOnLaunch` to `true` means any EC2 instances placed in this subnet receive a dynamic, public IP address, allowing you to SSH into them:
 
 ```yaml
   SubnetA:
@@ -648,11 +661,11 @@ The route table is associated with the subnet using a [AWS::EC2::SubnetRouteTabl
 
 To allow your local workstation to SSH into the EC2 instance, a security group is configured to open port 22 to any traffic originating from your local IP address. The security group also allows traffic sent to any destination. Security groups are represented by the [AWS::EC2::SecurityGroup](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html) resource.
 
-Because you will configure a polling tentacle, which establishes an outbound connection from the worker to the Octopus server, there is no need to open any ports to allow traffic from Octopus to the EC2 instance. Security groups will allow the Octopus server to respond to a request made by the worker.
+Because you'll configure a Polling Tentacle, which establishes an outbound connection from the Worker to the Octopus Server, there is no need to open any ports to allow traffic from Octopus to the EC2 instance. Security groups wallow the Octopus Server to respond to a request made by the Worker.
 
-If you were to configure a listening tentacle, where Octopus establishes the network connection to the worker, you would have to open port 10933 to the list of [static IPs associated with your hosted instance](https://octopus.com/docs/octopus-cloud/static-ip), or the IP address of your self hosted Octopus instance.
+If you configure a Listening Tentacle, where Octopus establishes the network connection to the Worker, you have to open port 10933 to the list of [static IPs associated with your hosted instance](https://octopus.com/docs/octopus-cloud/static-ip), or the IP address of your self hosted Octopus instance.
 
-Polling tentacles are easier to configure with firewalls though, and so that is the solution shown here:
+Polling Tentacles are easier to configure with firewalls though, and so that's the solution shown here:
 
 ```yaml
   InstanceSecurityGroup:
@@ -671,7 +684,7 @@ Polling tentacles are easier to configure with firewalls though, and so that is 
           CidrIp: 0.0.0.0/0
 ```
 
-For convenience, you can assign a static (or elastic) IP address to the EC2 instance. Without a static IP address, the EC2 instance will receive a new random public IP address if it is shutdown and started again. A static address removes the need to confirm the IP address before SSHing into the EC2.
+For convenience, you can assign a static (or elastic) IP address to the EC2 instance. Without a static IP address, the EC2 instance receives a new random public IP address if it's shutdown and started again. A static address removes the need to confirm the IP address before SSHing into the EC2.
 
 An elastic IP address is represented by the [AWS::EC2::EIP](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-eip.html) resource:
 
@@ -710,7 +723,7 @@ This resource references the AMI IDs from the `Mappings` section, joins the subn
           Value: Linux Server
 ```
 
-[User data scripts](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) are run once when the instance is provisioned. It is here where we will install any specialized tools commonly required by deployments, install the Octopus tentacle, and configure the tentacle as a worker.
+[User data scripts](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) are run after when the instance is provisioned. It's here we'll install any specialized tools commonly required by deployments, install the Octopus Tentacle, and configure the Tentacle as a Worker.
 
 One issue to watch out for is that the network may not be available when this script is executed. This has been discussed on [StackOverflow](https://stackoverflow.com/questions/54050975/aws-ec2-yum-update-does-not-work-in-autoscaling-launchconfig-userdata).
 
@@ -752,7 +765,7 @@ Deployments to a Kubernetes cluster require `kubectl` to be available on the `PA
             sudo mv /tmp/eksctl /usr/local/bin
 ```
 
-You then install the Octopus tentacle:
+You then install the Octopus Tentacle:
 
 ```yaml
             # Install Linux Tentacle
@@ -760,9 +773,9 @@ You then install the Octopus tentacle:
             sudo yum install tentacle -y
 ```
 
-A worker is then deployed, connecting to your Octopus instance in polling mode.
+A Worker is then deployed, connecting to your Octopus instance in polling mode.
 
-The script below is shown when you manually configure a tentacle in Linux. So to recreate these commands, run through a manual tentacle installation, and copy the script output generated against your inputs:
+The script below is shown when you manually configure a Tentacle in Linux. To recreate these commands, run through a manual Tentacle installation, and copy the script output generated against your inputs:
 
 ```yaml
             sudo /opt/octopus/tentacle/Tentacle create-instance --instance "Tentacle" --config "/etc/octopus/Tentacle/tentacle-Tentacle.config"
@@ -784,12 +797,14 @@ Outputs:
     Description: Server's PublicIp Address
 ```
 
-Once this template is deployed, a new worker will appear in your Octopus instance, ready to begin processing deployments:
+After this template is deployed, a new Worker appears in your Octopus instance, ready to begin processing deployments:
 
-![Octopus worker](octopus-worker.png "width=500")
+![Octopus Worker](octopus-worker.png "width=500")
 
 ## Conclusion
 
-Deploying workers as EC2 instances allows you to offload deployment tasks to dedicated VMs, and may improve the efficiency of your deployments by executing them closer to the AWS resources being modified.
+Deploying Workers as EC2 instances allows you to offload deployment tasks to dedicated VMs, and may improve the efficiency of your deployments by executing them closer to the AWS resources being modified.
 
-In this post you looked at a CloudFormation template that deployed an EC2 instance in a VPC with public internet access and with initialization scripts that installed and configured an Octopus tentacle as a worker.
+In this post, you looked at a CloudFormation template that deployed an EC2 instance in a VPC with public internet access and with initialization scripts that installed and configured an Octopus Tentacle as a Worker.
+
+Happy deployments!
