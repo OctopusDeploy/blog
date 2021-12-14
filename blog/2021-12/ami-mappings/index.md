@@ -162,3 +162,5 @@ An easy solution is to open the **Images** link in the EC2 console. This allows 
 Keeping your CloudFormation templates up-to-date with the latest AMI IDs is a constant challenge. It's made more complicated by the fact that every region has unique AMI IDs. 
 
 In this post, you learned how to generate up-to-date mappings with regional AMI IDs to copy and paste into your CloudFormation templates.
+
+Happy deployments!
