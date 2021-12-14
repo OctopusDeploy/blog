@@ -1,9 +1,9 @@
 ---
-title: From Zero to Octopus Hero - Part 1 - Getting familiar with Octopus Deploy
-description: Join Sarah as she goes on her learning journey with Octopus Deploy.
+title: From zero to Octopus hero - Getting to know Octopus Deploy
+description: Join Sarah Lean on her learning journey with Octopus Deploy.
 author: sarah.lean@octopus.com
 visibility: public
-published: 9999-09-15-1400
+published: 2022-02-01-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt: 
@@ -11,14 +11,20 @@ isFeatured: false
 tags:
  - DevOps
  - Product
+ - Getting Started
 ---
 
-Hey everyone, my name is [Sarah Lean](https://twitter.com/Techielass). Recently, I joined the Octopus Deploy team as a Senior Solutions Architect within the Community team. 
+My name is [Sarah Lean](https://twitter.com/Techielass) and I recently joined Octopus Deploy as Senior Solutions Architect in the Community team. 
 
-In this blog series, I will be sharing my learning journey.  I am starting from scratch with Octopus Deploy. But over the next 8 weeks, my intention is to go from Zero to Octopus Hero!
+This blog post is part 1 of a series about my learning journey with Octopus. 
+
+I'm starting from scratch with Octopus Deploy, but I intend to go from zero to Octopus hero over the coming weeks.
+
+We'll add links to other posts in the series as they become available.
 
 ## What is Octopus Deploy?
-Deploying software and infrastructure within your environment is something that we all must do.  Whether we are running physical on-premises environments or cloud environments. Introducing automation into the process can help to drive efficiency and consistency. 
+
+Deploying software and infrastructure in your environment is something all software engineers need to do, whether we're running on-premises or cloud environments. Introducing automation into the process can help to drive efficiency and consistency. 
 
 Octopus Deploy is a tool that can help with your infrastructure and software's deployment and release management. 
 
