@@ -4,9 +4,9 @@ description: Learn how to post a message to Slack when a variable has changed us
 author: shawn.sesna@octopus.com
 visibility: public
 published: 2022-01-27-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: blogimage-variablenotificationinslackviaazurefunction.png
+bannerImage: blogimage-variablenotificationinslackviaazurefunction.png
+bannerImageAlt: Person standing knee-deep in the sea, pulling up their fishing line having caught a fish that has a variable update on its body
 isFeatured: false
 tags:
  - DevOps
