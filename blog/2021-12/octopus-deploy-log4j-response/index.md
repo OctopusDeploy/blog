@@ -1,6 +1,6 @@
 ---
-title: Octopus Deploy's response to Log4J
-description: Learn how Octopus Deploy responded to the Log4J vulnerability (CVE-2021-44228).
+title: Octopus Deploy's response to Log4j
+description: Learn how Octopus Deploy responded to the Log4j vulnerability (CVE-2021-44228).
 author: kyle.jackson@octopus.com
 visibility: public
 published: 2021-12-14-1400
@@ -13,7 +13,7 @@ tags:
   - Trust and Security
 ---
 
-On Thursday, December 9, 2021, Octopus Deploy was made aware of a vulnerability in the Log4J logging utility ([CVE-2021-44228](https://cve.mitre.org/cgi-bin/cvename.cgi?name=2021-44228)). We immediately enacted our Security Incident Response Plan to investigate our use of this utility and its impact on our products and infrastructure.
+On Thursday, December 9, 2021, Octopus Deploy was made aware of a vulnerability in the Log4j logging utility ([CVE-2021-44228](https://cve.mitre.org/cgi-bin/cvename.cgi?name=2021-44228)). We immediately enacted our Security Incident Response Plan to investigate our use of this utility and its impact on our products and infrastructure.
 
 Fortunately, Octopus Cloud, Octopus Server, and Octopus Tentacle are not affected. However, there are some related products that are impacted and require updates.
 
@@ -21,17 +21,17 @@ In this post, we share the results of our investigation and our recommended next
 
 ## JetBrains TeamCity plugin for Octopus Deploy
 
-Version 6.1.7 of the JetBrains TeamCity plugin uses version 2.15.0 of Log4J. However, all versions of the plugin before 6.1.7 are using version 2.14.1 of Log4J and could be vulnerable to remote code execution.
+Version 6.1.7 of the JetBrains TeamCity plugin uses version 2.15.0 of Log4j. However, all versions of the plugin before 6.1.7 are using version 2.14.1 of Log4j and could be vulnerable to remote code execution.
 
 ### What you need to do
 
-Version 6.1.7 of the Octopus Deploy plugin for TeamCity is available from the marketplace. If you're a TeamCity user, you should be notified of this update through the Web UI and you're strongly encouraged to update.
+Version 6.1.7 of the Octopus Deploy plugin for TeamCity is available from the marketplace. If you're a TeamCity user, you should be notified of this update through the Web UI and you're strongly encouraged to update the plugin.
 
 Follow our [security advisory](https://advisories.octopus.com/adv/2021-12---Octopus-Deploy-TeamCity-Plugin-log4j2-dependency.2306410241.html) for updates.
 
 ## Octopus Java SDK
 
-Version 0.0.3 of the Java SDK uses version 2.15.0 of Log4J. However, all versions of the Java SDK before 0.0.3 are using version 2.14.1 of Log4J and could be vulnerable to remote code execution.
+Version 0.0.3 of the Java SDK uses version 2.15.0 of Log4j. However, all versions of the Java SDK before 0.0.3 are using version 2.14.1 of Log4j and could be vulnerable to remote code execution.
 
 ### What you need to do
 
@@ -41,11 +41,11 @@ Follow our [security advisory](https://advisories.octopus.com/adv/2021-13---Octo
 
 ## Octopus Cloud, Octopus Server, and Octopus Tentacle
 
-Octopus Cloud, Octopus Server, and Octopus Tentacle are not affected by this vulnerability. They’re built with the .NET framework and don’t use any ported versions of Log4J.
+Octopus Cloud, Octopus Server, and Octopus Tentacle are not affected by this vulnerability. They’re built with the .NET framework and don’t use any ported versions of Log4j.
 
 ## Breakdown of all products
 
-| Product | Vulnerable Log4J version used | Vulnerable product versions | Patched product versions |
+| Product | Vulnerable Log4j version used | Vulnerable product versions | Patched product versions |
 | ------- | ----------------------------- | --------------------------- | ------------------------ |
 | Azure Devops & TFS Extension | No | N/A | N/A |
 | Bamboo Add-on | No | N/A | N/A |
@@ -59,7 +59,7 @@ Octopus Cloud, Octopus Server, and Octopus Tentacle are not affected by this vul
 
 ## Was Octopus Deploy compromised? 
 
-Our internal infrastructure runs products that were using a vulnerable version of Log4J. However, we invested a significant amount of time after the initial announcement on Thursday, December 9, and we believe Octopus Deploy was not compromised.
+Our internal infrastructure runs products that were using a vulnerable version of Log4j. However, we invested a significant amount of time after the initial announcement on Thursday, December 9, and we believe Octopus Deploy was not compromised.
 
 While our engineering teams worked to update our affected products, our Security Operations team analyzed our systems to determine if they'd been exploited. The following sections will go further into our approach.
 
