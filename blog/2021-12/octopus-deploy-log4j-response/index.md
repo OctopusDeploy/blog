@@ -31,7 +31,7 @@ Follow our [security advisory](https://advisories.octopus.com/adv/2021-12---Octo
 
 ## Octopus Java SDK
 
-Version 0.0.3 of the Java SDK has been updated to use version 2.15.0 of Log4J. However, all versions of the Java SDK before 0.0.3 are using version 2.14.1 of Log4J and could be vulnerable to remote code execution.
+Version 0.0.3 of the Java SDK uses version 2.15.0 of Log4J. However, all versions of the Java SDK before 0.0.3 are using version 2.14.1 of Log4J and could be vulnerable to remote code execution.
 
 ### What you need to do
 
