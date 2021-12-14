@@ -19,7 +19,7 @@ Fortunately, Octopus Cloud, Octopus Server, and Octopus Tentacle are not affecte
 
 In this post, we share the results of our investigation and our recommended next steps for customers.
 
-## JetBrains TeamCity plugin
+## JetBrains TeamCity plugin for Octopus Deploy
 
 Version 6.1.7 of the JetBrains TeamCity plugin uses version 2.15.0 of Log4J. However, all versions of the plugin before 6.1.7 are using version 2.14.1 of Log4J and could be vulnerable to remote code execution.
 
