@@ -4,9 +4,9 @@ description: Join us as we list out our favorite webinars of 2021.
 author: derek.campbell@octopus.com
 visibility: public
 published: 2021-12-20-1400
-metaImage: webinar.png
-bannerImage: webinar.png
-bannerImageAlt: Webinar of the year
+metaImage: blogimage-mostpopularwebinarsin2021.png
+bannerImage: blogimage-mostpopularwebinarsin2021.png
+bannerImageAlt: Rear view mirror view of Octopus pulling down sunglasses to look at a 2021 sign
 tags:
  - Company
  - Community
