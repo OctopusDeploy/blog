@@ -13,9 +13,10 @@ The design team will work on a design for the blog image. Add any ideas you have
 # Pre-requisites
 
 - [ ] The draft is complete and this post is ready to be reviewed.
-- [ ] I'm familiar with the [writing for Octopus TL;DR](https://style.octopus.com/writing-at-octopus-tldr).
+- [ ] I'm familiar with the [writing for Octopus TL;DR](https://www.octopus.design/writing/writing-tldr/).
 - [ ] The PR build passes validation, and if it doesn't, I've checked the [common validations errors](https://style.octopus.com/writing-at-octopus-tldr#common-validation-errors) and none of those apply.
-- [ ] The images I've included follow the [rules for working with images](https://style.octopus.com/images#rules-for-screenshots).
+- [ ] The images I've included follow the [rules for working with images](https://www.octopus.design/writing/working-with-images/).
+- [ ] I've added alt text for all the images I've included (alt text describes image to people unable to see it, 125 characters max)
 
 ## How to review this PR
 <!-- If there's anything you'd like reviewers to focus on, mention it here. -->
