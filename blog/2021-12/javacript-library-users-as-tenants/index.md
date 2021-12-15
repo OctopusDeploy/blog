@@ -20,7 +20,7 @@ That's a good start for managing reusable front-end code in Octopus. It keeps ev
 
 ## Motivating examples
 
-### A backend release needs the old JS library
+### A back-end release needs the old JS library
 
 This might happen when a hotfix is needed. As your front-end library grows, you won't want to rush upgrading for the sake of an unrelated fix. You could override the library variable at the project level. That would be a reasonable solution if the situation occurs occasionally, but if it's normal development flow, and multiple teams reference your script and want to upgrade when convenient, clear visibility of who is on which version of your library is helpful. You'd also like to be able to roll back a change that broke one consumer, or upgrade a different website that's failing due to a known bug in an old version of your library. In these cases, you want to release your JavaScript not only to a specific environment but also to specific consumers.  
 
