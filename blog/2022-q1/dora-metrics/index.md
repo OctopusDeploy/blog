@@ -95,7 +95,7 @@ Lead time is a loaded term. The Accelerate authors defined it in a specific way.
 
 They drew a line between the creativity, innovation, research and decision making associated with choosing *what* to build (which they call “the fuzzy front end”) and the practical engineering work required to deliver it. In Accelerate, lead time is defined as the time between when a developer starts work on something, and when that work has been delivered (and validated) in production.
 
-(I.E. They explicitely *don’t* count the amount of time some bug fix or feature request has been waiting behind a long tail of higher priority JIRA tickets.)
+(I.E. They explicitely *don’t* count the amount of time some bug fix or feature request has been waiting on the backlog behind a long tail of higher priority JIRA tickets.)
 
 With poor performers measuring lead time in months, and high performers measuring lead time in hours, it can be mind-boggling for folks in either camp to imagine how the other group delivers software without breaking things. For poor performers, a lot of their long lead time is invested in testing, approvals and validation, so it’s natural for them to assume that moving faster requires sacrifices with respect to quality or safety.
 
