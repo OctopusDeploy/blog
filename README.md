@@ -1,4 +1,4 @@
-# Octopus blog
+# Octopus blog 
 
 This repository contains the [Octopus.com/blog](https://octopus.com/blog/) posts.
 
