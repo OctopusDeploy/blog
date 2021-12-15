@@ -79,7 +79,7 @@ As Chuck Rossi observed while at Facebook: “If we want more changes, we need m
 
 Chuck was under pressure to increase the pace of development. In an effort to deliver more changes, deployments at Facebook were getting bigger and more complicated. However, as deployments grew, they became much less reliable. When they failed, they failed badly. Finding the problem was like searching for a needle in a data center. Facebook was failing to meet its productivity targets by increasing deployment size.
 
-Chuck learned that if the goal is to ship more changes, it’s essential to “scale out” deployments, rather than “scale up”.
+If the goal is to ship more changes, it’s essential to “scale out” deployments, rather than “scale up”.
 
 By focussing on radically increasing deployment frequency, rather than deployment size, Facebook was much more successful. They were able to ship more changes, whilst suffering fewer major deployment failures. When stuff did go wrong, it was easier to diagnose and faster to fix.
 
