@@ -212,4 +212,4 @@ Have you been thinking about using DORA (or similar) metrics to drive improvemen
 
 Help us shape future opportunities for teams to gain insights from their value stream. Sign up for our research program:
 
-<link>
+LINK - (To be added later)
