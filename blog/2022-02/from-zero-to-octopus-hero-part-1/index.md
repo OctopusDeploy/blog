@@ -6,7 +6,7 @@ visibility: public
 published: 2022-02-01-1400
 metaImage: blogimage-fromzerotooctopusheropart1.png
 bannerImage: blogimage-fromzerotooctopusheropart1.png
-bannerImageAlt: Mario Kart-style illustration with Sarah winning a fight with a creature over shark infested waters
+bannerImageAlt: Mario-style illustration with Sarah winning a fight with a creature over shark infested waters
 isFeatured: false
 tags:
  - DevOps
