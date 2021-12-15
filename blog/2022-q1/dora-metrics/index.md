@@ -16,7 +16,7 @@ tags:
 >
 > *From Accelerate, by Nicole Forsgren, Gene Kim, and Jez Humble, 2018.*
 
-In 2009, inspired by [John Allspaw and Paul Hammonds’ talk at Velocity](https://www.youtube.com/watch?v=LdOe18KhtT4), Patrick Bebois organized a conference. In homage to John and Paul, Patrick called his conference “DevOps Days”. In doing so, he unintentionally gave a broad and fragmented coalition of geeks a unified name and identity. “DevOps” was now a thing… But it was notoriously hard to define.
+In 2009, inspired by [John Allspaw and Paul Hammonds’ talk at Velocity](https://www.youtube.com/watch?v=LdOe18KhtT4), Patrick Debois organized a conference. In homage to John and Paul, Patrick called his conference “DevOps Days”. In doing so, he unintentionally gave a broad and fragmented coalition of geeks a unified name and identity. “DevOps” was now a thing… But it was notoriously hard to define.
 
 A passionate and diverse community of tech folks [had converged](https://itrevolution.com/the-convergence-of-devops/). They agreed on some broad ideas (covering a variety of topics) but they struggled to concisely articulate them as a single thing. It’s hard to neatly tie so many ideas about Culture, automation, lean IT, metrics, and sharing into a short and focused elevator pitch.  
 
