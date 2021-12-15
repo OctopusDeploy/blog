@@ -140,7 +140,7 @@ If that sounds reckless, consider which of the following companies delivers a hi
 
 Company B suffers significantly more frequent failures. However, it’s probably considered the more reliable service by its users. Company A had roughly three times more downtime and we’ll remember those frustrating multi-day outages for years to come!
 
-By combining a focus on MTTR (to reduce the impact of failure) with a concerted effort to improve the reliability of deployments (defined by change failure percentage) it’s practical to radically increase deployment frequency while also improving quality. (Even if the toital number of failures actually increases.)
+By combining a focus on MTTR (to reduce the impact of failure) with a concerted effort to improve the reliability of deployments (defined by change failure percentage) it’s practical to radically increase deployment frequency while also improving quality. (Even if the total number of failures actually increases.)
 
 ## How to improve performance
 
