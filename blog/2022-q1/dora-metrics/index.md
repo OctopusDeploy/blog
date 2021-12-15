@@ -91,7 +91,7 @@ If the goal is to increase deployment frequency, we need to understand lead time
 
 ### Lead time
 
-Lead time is a loaded term. The Accelerate authors defined it in specific terms.
+Lead time is a loaded term. The Accelerate authors defined it in a specific way.
 
 They drew a line between the creativity, innovation, research and decision making associated with choosing *what* to build (which they call “the fuzzy front end”) and the practical engineering work required to deliver it. In Accelerate, lead time is defined as the time between when a developer starts work on something, and when that work has been delivered (and validated) in production.
 
