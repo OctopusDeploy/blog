@@ -61,7 +61,7 @@ When teams performed better, specifically against these metrics, they saw a uniq
 -	Market share
 -	Productivity
 
-This link wasn’t just observed in “tech companies” (those who are known for their software products). This was true across all business sectors. By 2018, high-performing technology teams delivered a competitive advantage in every business. What’s more, DORA went on to discuss other “not-profit” organizations, where positive outcomes weren’t solely defined by bank balances. Once again, they found that the DORA metrics were reliable indicators of success.
+This link wasn’t just observed in “tech companies” (those who are known for their software products). This was true across all business sectors. By 2018, high-performing technology teams delivered a competitive advantage in every business. What’s more, DORA went on to discuss other “not-profit” organizations, where positive outcomes weren’t solely defined by bank balances. Once again, they found that the DORA metrics were reliable predictors of success.
 
 Every company is a software company now.
 
