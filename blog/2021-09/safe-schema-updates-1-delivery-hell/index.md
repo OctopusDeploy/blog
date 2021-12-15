@@ -14,7 +14,7 @@ tags:
  - Deployment Patterns
 ---
 
-This blog post is part 1 of a new series about safe schema updates. We'll add links to the other posts in this series as they become available.
+This blog post is part 1 of a series about safe schema updates. Links to the other posts in this series are available below:
 
 !include <safe-schema-updates-posts>
 
@@ -136,20 +136,20 @@ Wherever you are on your journey, it’s critical to recognize your trajectory a
 
 The next post (part 2) will be the first of four posts intended to help folks to re-evaluate the way they view and assess safety within complex IT systems. We’ll start to imagine what a safer software architecture, delivery process, and development culture might look like. We'll begin by exploring the nature of failure within complex systems, before moving on to discuss the concepts of resilience, robustness and loose-coupling. 
 
-We'll add links to the other posts in this series as they become available.
+Links to the other posts in this series are available below:
 
 !include <safe-schema-updates-posts>
  
-## Watch the webinar: Database DevOps: Imagining better systems
+## Watch the webinars 
+
+Our first webinar discussed how loosely coupled architectures lead to maintainability, innovation, and safety. Part two discussed how to transition a mature system from one architecture to another. 
+
+### Database DevOps: Imagining better systems
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/oJAbUMZ6bQY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-## Register for the second webinar: Database DevOps: Building better systems
+### Database DevOps: Building better systems
 
-Our first webinar discussed how loosely coupled architectures lead to maintainability, innovation, and safety. Join us for part two and learn how to transition a mature system from one architecture to another. 
-
-We're running 3 sessions of the webinar, from Wed 1 Dec – Thurs 2 Dec, 2021.
-
-<span><a class="btn btn-success" href="https://octopus.com/events/safe-schema-updates-part-2-building-better-systems">Register now</a></span>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/joogIAcqMYo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 Happy deployments!

@@ -37,9 +37,9 @@ Let’s imagine a typical dependency nightmare.
 
 ![Example monolithic architecture](strangler0.png)
  
-This architecture was the result of many years of accumulated tight deadlines, short-term planning, [technical debt](https://martinfowler.com/bliki/TechnicalDebt.html), knowledge hoarding and staff turnover. Information sharing is hard at the best of times, but the existing team is looking at this without the benefits of perfect knowledge, reliable docs, or a mature test suite.
+This architecture was the result of many years of accumulated tight deadlines, short-term planning, [technical debt](https://martinfowler.com/bliki/TechnicalDebt.html), knowledge hoarding, and staff turnover. Information sharing is hard at the best of times, but the existing team is looking at this without the benefits of perfect knowledge, reliable docs, or a mature test suite.
 
-This system is valuable. Somewhere in that tangled web is the company’s “cash cow” product and a bunch of critical internal systems, but there’s also a long tail of forgotten, half-baked “side-projects”, abandoned business projects and retired functionality. It’s hard to see the wood for the trees.
+This system is valuable. Somewhere in that tangled web is the company’s “cash cow” product and a bunch of critical internal systems, but there’s also a long tail of forgotten, half-baked “side-projects”, abandoned business projects, and retired functionality. It’s hard to see the wood for the trees.
 
 We need to wrap this monolith in a strangler application. Like the Australian fig tree that inspired this architecture, our strangler application is a parasite that will smother its host, eventually killing it in the process.
 
@@ -79,7 +79,7 @@ So far so good, but what if the application I want to extract is buried deep in 
 
 ## Branch by abstraction
 
-In our first example, we used a proxy to strangle the whole monolith, but for some internal component we could use some other application, module or class as an abstraction point to capture all the internal requests. Then, as with our original proxy, we can use our abstraction application it to determine where to divert the traffic to.
+In our first example, we used a proxy to strangle the whole monolith, but for some internal component we could use some other application, module, or class as an abstraction point to capture all the internal requests. Then, as with our original proxy, we can use our abstraction application it to determine where to divert the traffic to.
 
 ![Using an abstraction application to dark launch another service](strangler6.png)
 
@@ -164,6 +164,8 @@ If you’d like to go deeper into the concepts discussed during this series, the
 
 - **For more information about microservices:**
 [Building Microservices: Designing Fine-Grained Systems](https://www.goodreads.com/en/book/show/22512931-building-microservices)
+
+Links to the other posts in this series are available below:
 
 !include <safe-schema-updates-posts>
 

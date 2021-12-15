@@ -21,7 +21,7 @@ The interesting thing about CI is that it’s a machine driven process that will
 So given GitHub Actions hosts the code, exposes the build pipeline as code, provides the execution environment to run those pipelines, and provides a repository to host the resulting artifacts, do you even need a CI server any more?
 
 :::hint
-To answer the question of maintaining a dedicated CD server, you should read the post [The differences between Continuous Integration and Continuous Deployment](/blog/2021-04/difference-between-ci-and-cd/index.md).
+To answer the question of maintaining a dedicated CD server, you should read the post [The differences between Continuous Integration and Continuous Deployment](https://octopus.com/blog/difference-between-ci-and-cd).
 :::
 
 ## Top reasons to ditch your CI server and move to GitHub Actions

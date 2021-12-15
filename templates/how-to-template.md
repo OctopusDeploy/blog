@@ -16,6 +16,8 @@ tags: <!-- see https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a 
  - Engineering
 ---
 
+See https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags.
+
 Introductory paragraph that tells the reader why they should read on.
 
 Tell them what the how to demonstrates, and when/why the user might find this useful.
