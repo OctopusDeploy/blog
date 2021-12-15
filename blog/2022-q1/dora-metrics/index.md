@@ -131,17 +131,12 @@ Note: while we are trying to reduce the likelihood of deployment failures, we ar
 
 If that sounds reckless, consider which of the following companies delivers a higher quality product:
 
-**Company A (deploys quarterly):** 
--	4 deploys in 2021
--	50% failure rate
--	MTTR: 2 days
--	2 failures x 48 hours recovery time = 96 hours downtime
-
-**Company B (deploys 10 times a day):** 
--	3,650 deploys in 2021
--	1% failure rate
--	MTTR: 1 hour
--	36 failures x 1 hour recovery time = 36 hours downtime
+| **Company A (deploys quarterly):** | **Company B (deploys 10 times a day):** | 
+|---|---|
+| 4 deploys in 2021 | 3,650 deploys in 2021 | 
+| 50% failure rate | 1% failure rate | 
+| MTTR: 2 days | MTTR: 1 hour | 
+| 2 failures x 48 hours recovery time = 96 hours downtime | 36 failures x 1 hour recovery time = 36 hours downtime | 
 
 Company B suffers significantly more frequent failures. However, it’s probably considered the more reliable service by its users. Company A had roughly three times more downtime and we’ll remember those frustrating multi-day outages for years to come!
 
