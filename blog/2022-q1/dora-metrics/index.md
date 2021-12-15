@@ -131,7 +131,7 @@ Note: while we are trying to reduce the likelihood of deployment failures, we ar
 
 If that sounds reckless, consider which of the following companies delivers a higher quality product:
 
-| **Company A (deploys quarterly):** | **Company B (deploys 10 times a day):** | 
+| **Company A (deploys quarterly)** | **Company B (deploys 10 times a day)** | 
 |---|---|
 | 4 deploys in 2021 | 3,650 deploys in 2021 | 
 | 50% failure rate | 1% failure rate | 
