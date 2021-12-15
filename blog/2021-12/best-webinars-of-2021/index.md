@@ -8,7 +8,7 @@ metaImage: blogimage-mostpopularwebinarsin2021.png
 bannerImage: blogimage-mostpopularwebinarsin2021.png
 bannerImageAlt: Rear view mirror view of Octopus pulling down sunglasses to look at a 2021 sign
 tags:
- - Company
+ - DevOps
  - Community
  - Webinar
 ---
@@ -21,7 +21,7 @@ You can find all 55 of our webinars on our YouTube [Webinars playlist](https://w
 
 ## Technical deep dive into Config as Code
 
-[Configuration as Code](https://octopus.com/blog/config-as-code-what-is-it-how-is-it-beneficial) has been an Octopus concept for a while. Config as code allows you to store your scripts in source control and run them on your deployment targets or Workers. 
+[Configuration as Code](https://octopus.com/blog/config-as-code-what-is-it-how-is-it-beneficial) has been an Octopus concept for a while. Config as Code allows you to store your scripts in source control and run them on your deployment targets or Workers. 
 
 In 2021, we launched Config as Code as an early access preview, giving you built-in support for Config as Code with Git. In this webinar, we started a project from scratch using Config as Code and talked you through using this new feature.
 
