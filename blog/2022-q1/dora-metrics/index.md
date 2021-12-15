@@ -154,7 +154,7 @@ Of course, we should be tracking and reporting on our progress with respect to t
 Imagine a world where everyone has access to a dashboard reporting on the DORA metrics for each product or team. Teams would be incentivized to emulate the practices of the top performers. Management will see which teams most urgently need their support. Happy days.
 
 > “The key to successful change is measuring and understanding the right things **with a focus on capabilities—not on maturity**.”
-
+>
 > *From Accelerate, by Nicole Forsgren, Gene Kim, and Jez Humble, 2018.*
 
 However, Accelerate doesn’t just give us a scoreboard. Their research also highlights a set of 24 practical capabilities that have been demonstrated to improve performance. [The 24 capabilities are listed here](https://itrevolution.com/24-key-capabilities-to-drive-improvement-in-software-delivery/), and they broadly align with the practices that have been promoted by DevOps enthusiasts for years.
@@ -170,6 +170,7 @@ In my experience, getting a cross-functional group together for a couple of hour
 Having said that, Gene Kim gave us a pretty good pointer in [Beyond the Phoenix Project](https://www.goodreads.com/en/book/show/38714647-beyond-the-phoenix-project). Speaking from personal experience, his observations mirror my own with hundreds of customers throughout my career:
 
 > “What I find so amazing, is that as an organization goes from a code deployment lead times that are measured in months, maybe even in quarters, down to minutes, the constraint moves in some pretty predictable ways.”
+>
 > *Gene Kim, in Beyond the Phoenix Project, 2018.*
 
 He goes on to list the following bottlenecks, in order:
