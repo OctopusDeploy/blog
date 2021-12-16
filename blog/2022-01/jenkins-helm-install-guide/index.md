@@ -9,6 +9,7 @@ bannerImage:
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 tags:
   - DevOps
+  - CI Series
   - Continuous Integration
   - Jenkins
   - Kubernetes
