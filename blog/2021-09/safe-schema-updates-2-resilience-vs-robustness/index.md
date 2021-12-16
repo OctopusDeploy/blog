@@ -17,7 +17,7 @@ tags:
  
 This post is part 2 of my safe schema updates series. 
 
-We'll add links to the other posts in this series as they become available.
+Links to the other posts in this series are available below:
 
 !include <safe-schema-updates-posts>
 
@@ -152,6 +152,20 @@ The outcome of these changes should be significantly reduced risk associated wit
 
 In the next post (part 3) we’ll talk about Continuous Integration (CI). Specifically, we’ll discuss how it’s been misunderstood and the harm that misunderstanding can cause, as well as the benefits of embracing “proper” CI for any IT system – including any relational database. 
 
-We'll add links to the other posts in this series as they become available.
+Links to the other posts in this series are available below.
 
 !include <safe-schema-updates-posts>
+
+## Watch the webinars 
+
+Our first webinar discussed how loosely coupled architectures lead to maintainability, innovation, and safety. Part two discussed how to transition a mature system from one architecture to another. 
+
+### Database DevOps: Imagining better systems
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/oJAbUMZ6bQY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+### Database DevOps: Building better systems
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/joogIAcqMYo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Happy deployments!

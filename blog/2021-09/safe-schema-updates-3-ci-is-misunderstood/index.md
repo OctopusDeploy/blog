@@ -17,10 +17,8 @@ tags:
  - Continuous Integration
 ---
 
-This blog post is part 3 of my safe schema updates series. 
-
-We'll add links to the other posts in this series as they become available.
-
+This blog post is part 3 of my safe schema updates series. Links to the other posts in this series are available below:
+ 
 !include <safe-schema-updates-posts>
 
 Many people hear *“Continuous Integration”* (CI) and immediately think of build servers, test frameworks and automation. Jenkins, JUnit and GitHub Actions are great, but anyone who claims that the use of these tools has earned them any CI badges is missing the point.
@@ -113,6 +111,20 @@ Additionally, DDD is fundamentally about breaking up data models, and databases 
 
 In the next two posts, we are going to switch gears and talk about database architecture - from both a technical and a human perspective. We’ll talk about loose coupling and domain-driven development, and how these principles help us to practice Continuous Integration and produce safe, resilient IT systems.
 
-We'll add links to the other posts in this series as they become available.
+Links to the other posts in this series are available below:
 
 !include <safe-schema-updates-posts>
+
+## Watch the webinars 
+
+Our first webinar discussed how loosely coupled architectures lead to maintainability, innovation, and safety. Part two discussed how to transition a mature system from one architecture to another. 
+
+### Database DevOps: Imagining better systems
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/oJAbUMZ6bQY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+### Database DevOps: Building better systems
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/joogIAcqMYo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Happy deployments!

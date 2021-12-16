@@ -26,7 +26,7 @@ Our finished deployment process looks like this in Octopus:
 
 I explain the reason for each step and how they work.
 
-## Create an S3 bucket if it doesn't exist
+## Creating an S3 bucket if it doesn't exist
 
 In the spirit of treating servers like cattle and not pets, I don't assume much about our deployment target, beyond having an AWS account with appropriate permissions. In a specific case, I had dedicated buckets for combinations of regions and the environments of test, staging, and production, so I appreciate a build process that only needs me to name the bucket and region in scoped variables, and will set it up correctly if required. This is achieved with an [AWS CLI step](https://octopus.com/docs/deployments/custom-scripts/aws-cli-scripts) that runs the following PowerShell script, which uses the AWS CLI to see if you get a non-error result trying to list the contents of the bucket. Otherwise, it creates the bucket, then polls to confirm the bucket exists before the step finishes.
 
@@ -40,7 +40,7 @@ if ([string]::IsNullOrWhiteSpace($found)) {
 }
 ```
 
-## Set S3 CORS policy
+## Setting S3 CORS policy
 
 This is another AWS CLI script with the following PowerShell inline:
 
@@ -55,7 +55,7 @@ The encoding step is important, rather than echoing straight to a file. I'm unsu
 
 ![script options](cors_script.png)
 
-## Upload bundle to S3
+## Uploading bundle to S3
 
 There are a few prerequisites for the next **AWS CLI step**, which I explain before showing how it's set up in Octopus. I demonstrate how it's achieved in Vue. The steps will be different for other frameworks, but the explanation will point you in the right direction.
 
@@ -65,7 +65,7 @@ By default, Vue creates a separate CSS file, a production source map file, and a
 
 These are sensible defaults, but for a shared JS bundle that's not massive, you can start by allowing consumers to reference the one JS file, to get all styling and behavior. You can always introduce support later, as needed, for optimizations, source maps, and external CSS.
 
-To instruct Vue to build just one JavaScript file, you can add the following vue.config.js at the root of your Vue project next to pacakage.json:
+To instruct Vue to build just one JavaScript file, you can add the following vue.config.js at the root of your Vue project next to package.json:
 
 ```js
  module.exports = {
@@ -149,7 +149,7 @@ Tell Octopus to replace variables in `MyBundle\js\config.json` where `MyBundle` 
 
 ![config variables 2](config_variables_2.png)
 
-### Upload your bundle
+### Uploading your bundle
 
 Finally, you give the step the CLI command to upload your bundle, config.json, and assets to a folder named after the current release.
 
@@ -161,7 +161,7 @@ I skip uploading the index.html file that Vue CLI produces because legacy consum
 
 The focus of the next and final step is providing the URL of the newest bundle for the environment to any project that wants it.
 
-## Update the bundle URL in a variable set
+## Updating the bundle URL in a variable set
 
 Being able to tell other projects where to get the cache-busted shared bundle through an automatically populated config setting is an advantage of building an Octopus process for this type of JavaScript project. 
 

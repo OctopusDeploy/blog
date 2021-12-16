@@ -8,13 +8,17 @@ Company
 Automation
 AWS
 Azure
+Community
 Continuous Integration
 Continuous Deployment
 Configuration as Code
 Database Deployments
 Deployment Patterns
 Docker
+Getting Started
+GitHub Actions
 Google Cloud Platform
+Hackathon
 Java
 Jira
 Jenkins

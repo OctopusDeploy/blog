@@ -32,7 +32,7 @@ Before you can retrieve secrets from Azure Key Vault, you must authenticate with
 
 > Authentication with Key Vault works in conjunction with Azure Active Directory (Azure AD), which is responsible for authenticating the identity of any given security principal.
 
-In Octopus, authentication with Azure Key Vault can be achieved with an [Azure Account](https://octopus.com/docs/infrastructure/deployment-targets/azure), using a service principal.
+In Octopus, authentication with Azure Key Vault can be achieved with an [Azure Account](https://octopus.com/docs/infrastructure/accounts/azure), using a service principal.
 
 :::hint
 In addition to accessing resources in Azure, your service principal may need further permissions configured to access and retrieve secrets stored in Azure Key Vault. To learn more, read the [Azure Key Vault RBAC guide](https://docs.microsoft.com/en-us/azure/key-vault/general/rbac-guide) on how to provide access to keys, certificates, and secrets with an Azure role-based access control.
