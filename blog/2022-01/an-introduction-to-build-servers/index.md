@@ -49,7 +49,7 @@ One of Jenkins biggest benefits is its flexibility. It's a scalable platform, me
  
 That means Jenkins is flexible enough to cover your CI needs and you can tailor it for other automation purposes too.
 
-## About GitHub Actions
+## What is GitHub Actions
 
 [GitHub Actions](https://github.com/features/actions) is one of the newer CI platforms. It removes the need for a separate build server by using repository events to trigger automation workflows on virtual ‘runners’. 
 
