@@ -31,7 +31,7 @@ Build servers have 3 main purposes:
 
 Without a build server you're slowed down by complicated, manual processes and the needless time constraints they introduce. For example, without a build server:
 
-- Your team will likely need to commit code before a daily deadline or during change windows.
+- Your team will likely need to commit code before a daily deadline or during change windows
 - Once that deadline passes, no one can commit again until someone manually creates and tests a build.
 - If there are problems with code, the deadlines and manual processes delay the fixes further.
 
