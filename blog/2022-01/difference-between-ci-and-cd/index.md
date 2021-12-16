@@ -9,6 +9,7 @@ bannerImage: img_comparecicd_2019.png
 bannerImageAlt: Illustration of two deep sea masks representing CI and CD
 tags:
  - DevOps
+ - CI Series
  - Continuous Integration
  - Continuous Deployment
 ---
