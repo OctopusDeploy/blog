@@ -39,7 +39,7 @@ In this scenario, the team battles unnecessary hurdles. A build server, however,
 
 But CI doesn’t just mean less time spent on manual tasks or the death of arbitrary deadlines, either. By automatically taking these steps many times a day, you fix problems sooner and your results become more predictable. Build servers ultimately help you deploy through your pipeline with more confidence.
 
-We’re taking deep dives into 2 CI platforms in the coming weeks, looking at how [Jenkins](https://www.jenkins.io/) or [GitHub Actions](https://github.com/features/actions) can help with your processes, plus how they complement Octopus.
+We’re taking deep dives into two CI platforms in the coming weeks, looking at how [Jenkins](https://www.jenkins.io/) or [GitHub Actions](https://github.com/features/actions) can help with your processes, and how Octopus can help you get more out of your CI/CD pipeline.
 
 ## About Jenkins
 
