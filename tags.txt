@@ -34,3 +34,6 @@ Testing
 Trust and Security
 Variables
 Workers
+
+# Tags for marketing themes
+CI Series
