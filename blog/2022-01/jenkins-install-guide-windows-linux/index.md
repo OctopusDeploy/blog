@@ -8,6 +8,7 @@ metaImage:
 bannerImage: 
 tags:
  - DevOps
+ - CI series
  - Continuous Integration
  - Jenkins
  - Linux
