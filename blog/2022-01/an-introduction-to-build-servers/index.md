@@ -33,7 +33,7 @@ Without a build server you're slowed down by complicated, manual processes and t
 
 - Your team will likely need to commit code before a daily deadline or during change windows
 - After that deadline passes, no one can commit again until someone manually creates and tests a build
-- If there are problems with code, the deadlines and manual processes delay the fixes further.
+- If there are problems with code, the deadlines and manual processes further delay the fixes
 
 Without a build server, the team battles unnecessary hurdles that could be eliminated with automation. A build server will repeat these tasks for you throughout the day, and without those human-caused delays.
 
