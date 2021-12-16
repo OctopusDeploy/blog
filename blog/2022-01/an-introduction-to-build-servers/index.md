@@ -29,7 +29,7 @@ Build servers have 3 main purposes:
 - Running automatic tests to validate code
 - Creating deployable packages and handing off to your deployment tool
 
-Without a build server you're bogged down with manual processes and the needless time constraints caused by them. For example, without a build server:
+Without a build server you're slowed down by complicated, manual processes and the needless time constraints they introduce. For example, without a build server:
 
 - Your team will likely need to commit code before a daily deadline or during change windows.
 - Once that deadline passes, no one can commit again until someone manually creates and tests a build.
