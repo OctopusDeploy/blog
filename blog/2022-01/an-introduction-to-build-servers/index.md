@@ -41,7 +41,7 @@ But CI doesn’t just mean less time spent on manual tasks or the death of arbit
 
 We’re taking deep dives into two CI platforms in the coming weeks, looking at how [Jenkins](https://www.jenkins.io/) or [GitHub Actions](https://github.com/features/actions) can help with your processes, and how Octopus can help you get more out of your CI/CD pipeline.
 
-## About Jenkins
+## What is Jenkins
 
 [Jenkins](https://www.jenkins.io/) is the most popular CI platform on the market. Open-source and free to use, you can run Jenkins standalone on most operating systems to automate the building and testing of your code.
 
