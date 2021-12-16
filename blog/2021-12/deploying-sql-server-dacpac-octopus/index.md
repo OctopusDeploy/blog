@@ -243,6 +243,6 @@ Using a tool like SQL Server Management Studio (SSMS) you can see the database h
 
 ## Conclusion
 
-This post walked you through how to deploy a DACPAC from project creation to deployment.  Be sure to check out an example in our [sample instance ](https://samples.octopus.app/app#/Spaces-106/projects/dacpac-azure-sql/deployments/process).  The example deploys to an Azure SQL Database server.  
+This post walked you through how to deploy a DACPAC from project creation to deployment.  Be sure to check out an example in our [sample instance](https://samples.octopus.app/app#/Spaces-106/projects/dacpac-azure-sql/deployments/process).  The example deploys to an Azure SQL Database server.  
 
 Happy deployments!
