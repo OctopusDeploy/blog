@@ -26,7 +26,7 @@ Most development teams understand the importance of version control to coordinat
 Build servers have 3 main purposes:
 
 - Compiling committed code from your repository many times a day
-- Running thorough, automatic tests to validate code
+- Running automatic tests to validate code
 - Creating deployable packages and handing off to your deployment tool
 
 Without a build server you're bogged down with manual processes and the needless time constraints caused by them. For example, without a build server:
