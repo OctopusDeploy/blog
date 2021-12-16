@@ -1,20 +1,23 @@
 ---
 title: Deploy a Lambda with CloudFormation
-description: Learn how to deploy a Lambda with this sample CloudFormation template
+description: Learn how to deploy a Lambda with this sample CloudFormation template.
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
+visibility: public
+published: 2022-03-30-1400
 metaImage: 
 bannerImage: 
+bannerImageAlt: 125 characters max, describes image to people unable to see it.
+isFeatured: false
 tags:
- - Octopus
+ - DevOps
+ - AWS
 ---
 
 Lambda is a serverless Function as a Service (FaaS) offering from AWS. Lambda's provide native scaling, high availability, and the ability to scale to 0 keeping costs down for infrequently used deployments.
 
 Like most AWS resources, Lambdas can access VPCs to interact with other resources like databases or EC2 instances.
 
-In this post you'll deploy a simple Lambda, and then build on the [VPC with private and public subnets example provided in a previous post](https://octopus.com/blog/aws-vpc-public-private) to deploy a Lambda in a VPC with internet access using CloudFormation.
+In this post, you'll deploy a simple Lambda, and then build on the [VPC with private and public subnets example provided in a previous post](https://octopus.com/blog/aws-vpc-public-private) to deploy a Lambda in a VPC with internet access using CloudFormation.
 
 ## A simple Lambda CloudFormation template
 
@@ -380,7 +383,7 @@ The log group and IAM role are the same as the simple example described at the s
 
 The Lambda is changed slightly to include a new `VPCConfig` property granting the Lambda access to resources inside the VPC.
 
-It is important to note that the Lambda is granted access to the private subnets `SubnetB` and `SubnetC`, which are those subnets without an internet gateway attached:
+It's important to note that the Lambda is granted access to the private subnets `SubnetB` and `SubnetC`, which are those subnets without an internet gateway attached:
 
 ```yaml
   MyLambda:
@@ -411,4 +414,6 @@ Lambdas can be quite simple to deploy, requiring a small number of supporting re
 
 For more complex scenarios where Lambdas must have access to other resources like databases or EC2 instances inside a VPC, Lambdas can be configured with network access to specified subnets and have network traffic controlled using security groups.
 
-In this post you learned how to perform a simple Lambda deployment, and then saw an more complex example that built a VPC alongside the Lambda.
+In this post, you learned how to perform a simple Lambda deployment, and then saw a more complex example that built a VPC alongside the Lambda.
+
+Happy deployments!
