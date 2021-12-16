@@ -174,6 +174,8 @@ Now there is no need to make any modifications to consumers to update their Java
 
 Tenants are a powerful and versatile feature of Octopus. In this post, I demonstrated that they are well-suited to modeling consumers that share a JavaScript library. 
 
-The flexibility of tenant variables opens the door to advanced scenarios, such as publishing an NPM package or releasing custom builds of your JavaScript library for different consumers. The approach does bring a small increase in complexity, and if you only want all your consumers to use the latest version of a JavaScript dependency that doesn't change often, multi-tenanted deployments might be overkill. I've proven it's not difficult to adapt a simpler deployment process to be multi-tenanted when you need it, so it's fine to start with a simpler deployment process for your JavaScript library, but tenants have you covered if you need complete control over who uses which version of your library.
+The flexibility of tenant variables opens the door to advanced scenarios, such as publishing an NPM package or releasing custom builds of your JavaScript library for different consumers. The approach does bring a small increase in complexity, and if you only want all your consumers to use the latest version of a JavaScript dependency that doesn't change often, multi-tenanted deployments might be overkill. 
+
+I've proven it's not difficult to adapt a simpler deployment process to be multi-tenanted when you need it. It's fine to start with a simpler deployment process for your JavaScript library, but tenants have you covered if you need complete control over who uses which version of your library.
 
 Happy deployments!
