@@ -1,18 +1,21 @@
 ---
 title: Create an RDS instance with CloudFormation
-description: Learn how to create an RDS instance with this sample CloudFormation template
+description: Learn how to create an RDS instance with this sample CloudFormation template.
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2999-01-01
+published: 2022-03-29-1400
 metaImage: 
 bannerImage: 
+bannerImageAlt: 125 characters max, describes image to people unable to see it.
+isFeatured: false
 tags:
- - Octopus
+ - DevOps
+ - AWS
 ---
 
 [Amazon Relational Database Service](https://aws.amazon.com/rds/) (RDS) implements managed databases supporting a number of platforms such as MySQL, MariaDB, Oracle, Postgres, and SQL Server. Almost every custom application requires persistent data storage, and RDS provides a convenient, scalable, and highly available solution.
 
-In this post you'll learn how to deploy an RDS instance with a CloudFormation template.
+In this post, you'll learn how to deploy an RDS instance with a CloudFormation template.
 
 ## An RDS CloudFormation template
 
@@ -142,7 +145,7 @@ Network access to the RDS instance is defined in a security group, represented b
         CidrIp: "0.0.0.0/0"
 ```
 
-It is rare that a production database is accessible to public traffic. In fact, RDS solutions like Aurora Serverless (which is what you'll create next) [are only accessible from within a VPC](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.html#aurora-serverless.requirements):
+It's rare that a production database is accessible to public traffic. In fact, RDS solutions like Aurora Serverless (which is what you'll create next) [are only accessible from within a VPC](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.html#aurora-serverless.requirements):
 
 > You can't give an Aurora Serverless v1 DB cluster a public IP address. You can access an Aurora Serverless v1 DB cluster only from within a VPC.
 
@@ -185,4 +188,8 @@ You now have everything in place to deploy the RDS instance, represented by the 
 
 ## Conclusion
 
-RDS provides a managed, scalable, and highly available database platform supporting a number of popular database providers. This post built on the [previous post](https://octopus.com/blog/aws-vpc-private) describing VPCs with private subnets, and demonstrated the resources required to deploy a serverless Aurora RDS instance with security groups ready to be attached to any additional resources that required database access.
+RDS provides a managed, scalable, and highly available database platform supporting a number of popular database providers. 
+
+This post built on the [previous post](https://octopus.com/blog/aws-vpc-private) describing VPCs with private subnets, and demonstrated the resources required to deploy a serverless Aurora RDS instance with security groups ready to be attached to any additional resources that required database access.
+
+Happy deployments!
