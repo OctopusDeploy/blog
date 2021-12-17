@@ -35,48 +35,7 @@ Click **Next**
 
 Select **Attach existing policies directly &rarr; Create policy**
 
-The IAM policy will allow you to create an EKS cluster from the command line. The actions in the policy are the minimum policies required by eksctl.
-
-Paste the following policy into the **JSON** box.
-
-```
-{
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "VisualEditor0",
-            "Effect": "Allow",
-            "Action": [
-                "iam:CreateInstanceProfile",
-                "iam:DeleteInstanceProfile",
-                "iam:GetRole",
-                "iam:GetInstanceProfile",
-                "iam:TagRole",
-                "iam:RemoveRoleFromInstanceProfile",
-                "cloudformation:*",
-                "iam:DeleteRole",
-                "iam:AttachRolePolicy",
-                "iam:PutRolePolicy",
-                "iam:ListInstanceProfiles",
-                "iam:AddRoleToInstanceProfile",
-                "iam:CreateOpenIDConnectProvider",
-                "iam:ListInstanceProfilesForRole",
-                "iam:PassRole",
-                "iam:DetachRolePolicy",
-                "iam:ListAttachedRolePolicies",
-                "iam:DeleteRolePolicy",
-                "ec2:*",
-                "eks:*",
-                "iam:GetOpenIDConnectProvider",
-                "iam:DeleteOpenIDConnectProvider",
-                "iam:TagOpenIDConnectProvider",
-                "iam:GetRolePolicy"
-            ],
-            "Resource": "*"
-        }
-    ]
-}
-```
+The IAM policy will allow you to create an EKS cluster from the command line. [The actions in this policy are the minimum policies required by eksctl](https://eksctl.io/usage/minimum-iam-policies/).
 
 Click **Next** and give the policy a name. Click **Add Policy**
 
@@ -99,7 +58,7 @@ eksctl create cluster \
 --fargate
 ```
 
-The Fargate profile is an AWS profile, providing certain pod execution privileges. The profile gives a simple way to spin up a test cluster. Test the cluster configuration:
+AWS Fargate allows you to run containers without having to manage servers or clusters of Amazon EC2 instances. The profile gives a simple way to spin up a test cluster. Test the cluster configuration:
 
     kubectl get svc
     
@@ -141,7 +100,7 @@ You can also create a cluster from the AWS console. Go to **EKS &rarr; Add Clust
 ![EKS Console](eks-console.png)
 
 - **Name:** Give your cluster a name
-- **Kubernetes Version:** 1.21
+- **Kubernetes Version:**- Select the latest Kubernetes version
 - **Cluster Service Role:** Re-use the service role created from the CLI cluster
 
 Accept all other defaults to create your cluster.
@@ -156,11 +115,11 @@ Now that your clusters are live, you can perform operations on them, such as dep
 
 ## Deleting the clusters
 
-You can delete a cluster using the CLI by running this command. Replace the cluster name and region with your values.
-
+You can delete a cluster using the CLI by running this command. Replace the cluster name and region with your values. 
     eksctl delete cluster --name my-cluster --region us-east-2
 
-You can delete a cluster using the console by ticking the cluster, clicking delete, and typing the name of the cluster to delete.
+You can delete a cluster using the console by ticking the cluster, clicking delete, and typing the name of the cluster to delete. You can only delete a resource the same way you created it. This means clusters created through the CLI can only be deleted through the CLI. Clusters created through the console can only be deleted through the console.
+
 
 ![Delete cluster](delete-cluster.png)
 

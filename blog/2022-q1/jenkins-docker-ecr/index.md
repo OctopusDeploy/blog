@@ -43,6 +43,14 @@ In this blog, we will build the Octopus Deploy Underwater App and push it to Ama
 
 ## Jenkins setup
 
+We first install some necessary plugins to interact with docker and Amazon. Go to the **Dashboard &rarr; Manage Jenkins &rarr; Manage Plugins. You will need the following plugins:
+
+- [CloudBees AWS Credentials](https://plugins.jenkins.io/aws-credentials/)
+- [Amazon ECR](https://plugins.jenkins.io/amazon-ecr/)
+- [Docker Pipeline](https://plugins.jenkins.io/docker-workflow/)
+
+You can search for these plugin in the available tab. Once they are installed they will appear in the installed tab.
+
 We will use a Jenkinsfile to compile, build, test, and push the image to Amazon ECR. A Jenkins file is a configuration file that defines a Jenkins Pipeline. A Jenkins Pipeline is a series of steps that Jenkins will perform on an artifact to achieve the desired result. In this case, it is the clone, build, test, and push of an image to Amazon ECR. The power of using a Jenkinsfile is to check it into source control to manage different versions of the file.
 
 In your Jenkins instance, go to **Manage Jenkins &rarr; Manage Credentials &rarr; Jenkins Store &rarr; Global Credentials (unrestricted) &rarr; Add Credentials**

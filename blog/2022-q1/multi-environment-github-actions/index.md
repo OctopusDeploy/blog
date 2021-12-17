@@ -50,6 +50,8 @@ Go to **Settings &rarr; Secrets &rarr; New repository secret**
 - **REPO_NAME**- the name of the AWS ECR repository you created
 - **AWS_ACCESS_KEY_ID**- the Access Key ID from earlier
 - **AWS_SECRET_ACCESS_KEY**- the Secret Access Key from earlier
+- **OCTOPUS_SERVER**- The URL of your Octopus Server
+- **OCTOPUS_APIKEY**- The Octopus API Key of your Octopus Instance. To create one, go to **Your User Name &rarrl Profile &rarr; My API Keys &rarr; New API key**
 
 We need to create a workflow file in the repository. A Github Actions workflow contains instructions on performing operations on the code repository. Several pre-built step templates will allow you to do many different tasks on a code repository. In this example, we use a step template to build and push the code to an AWS ECR repository and deploy it from Octopus Deploy.
 
@@ -107,7 +109,7 @@ jobs:
       run: octo create-release --project underwater-octo-github --version 0.0.i --server=${{ secrets.OCTOPUS_SERVER }} --apiKey=${{ secrets.OCTOPUS_APIKEY }}
         
     - name: deploy Octopus release
-      run: octo deploy-release --project underwater-octo-github --version=latest --deployto Production --server=${{ secrets.OCTOPUS_SERVER }} --apiKey=${{ secrets.OCTOPUS_APIKEY }}    
+      run: octo deploy-release --project underwater-octo-github --version=latest --deployto Development --server=${{ secrets.OCTOPUS_SERVER }} --apiKey=${{ secrets.OCTOPUS_APIKEY }}    
      
       
 ```
@@ -126,7 +128,7 @@ Go to your Amazon ECR repository to view the image.
 
 In your Octopus Deploy instance, create a project called `aws` by going to **Project, Add Project** Add the `aws` title and click **Save**.
 
-Set up a Production Environment by going to **Infrastructure, Environments, Add Environment**. Give it a name and click **Save**
+Set up a Development Environment by going to **Infrastructure, Environments, Add Environment**. Give it a name and click **Save**. Do the same for a Test and Production environment
 
 We need to set up the Amazon account to deploy to EKS. Go to **Infrastructure, Accounts, Add Account, AWS Account**. Give it a name and fill out the **Access Key ID and Secret Access Key** from earlier.
 
@@ -167,6 +169,16 @@ spec:
           imagePullPolicy: Always
 
 ```
+
+Navigate back to the Octopus instance project overview and you will see the release deployed to the development environment.
+
+![Development Success](development-success.png)
+
+Now we can progress the release to the Test and Production environment when we are ready. Click Deploy to progress the release.
+
+![Development Success](production-success.png)
+
+
 
 This command will point the CLI to your cluster:
 

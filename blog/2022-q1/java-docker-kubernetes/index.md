@@ -55,6 +55,10 @@ Enable the container registry to store the container image.
     gcloud services enable containerregistry.googleapis.com
     export GOOGLE_CLOUD_PROJECT=`gcloud config list --format="value(core.project)"`
     
+Run this command to create the config.json with the correct settings
+
+    gcloud auth configure-docker
+    
 The jib tool creates and pushes the image to the container registry.
 
     ./mvnw com.google.cloud.tools:jib-maven-plugin:build -Dimage=gcr.io/$GOOGLE_CLOUD_PROJECT/octopus-underwater-app:latest
@@ -66,15 +70,6 @@ Confirm that the image is present on the GCR by going to the [registry home page
 ## Retrieve Credentials from Azure for Octopus Deploy
 
 We need to retrieve some credentials to pass to Octopus Deploy. Follow these steps to [add an Azure Service Principle to Octopus Deploy](https://octopus.com/docs/infrastructure/accounts/azure).
-
-    
-## Create Azure Kubernetes Cluster
-
-Now we switch to Microsoft Azure to host our Kubernetes cluster. Octopus Deploy is cloud-agnostic. It can work with deployments that span multiple cloud providers. 
-
-Create a new Kubernetes cluster by going to your resource group and creating a Kubernetes service. Give the cluster a name and accept all default options.
-
-![Create Kubernetes Cluster](create-kubernetes-cluster.png)
 
 
 ## Octopus Steps
@@ -115,7 +110,6 @@ spec:
     metadata:
       labels:
         app: java-web-app
-        octopusexport: OctopusExport
     spec:
       containers:
         - name: java-web-app
@@ -123,6 +117,31 @@ spec:
           ports:
             - containerPort: 80
 ```
+
+### Service
+
+Paste the following YAML into the Service section of the step:
+
+```
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: underwater-service
+spec:
+  type: LoadBalancer
+  ports:
+    - name: web
+      port: 80
+      targetPort: 80
+      protocol: TCP
+  selector:
+    app: java-web-app
+
+```
+
+![Kubernetes Service](octopus-service.png "Kubernetes Service")
+
 
 ### Deploy to Azure
 

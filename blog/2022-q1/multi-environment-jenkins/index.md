@@ -76,6 +76,8 @@ We need to set up the Amazon account to deploy to EKS. Go to **Infrastructure, A
 
 Set up your AWS Kubernetes cluster as a deployment target in Octopus Deploy by going to **Infrastructure, Deployment Targets, Add Deployment Target, Kubernetes Cluster, Add**
 
+We need to add the Amazon feed to the Octopus Instance. Go to **Library &rarr; External Feeds &rarr; Add Feed** and select the **AWS Elastic Container Registry**. Enter your **Access Key ID, Secret Access Key and Zone** of your registry. 
+
 
 ## Deploy to EKS step
 
@@ -105,7 +107,7 @@ spec:
     spec:
       containers:
         - name: octopus-underwater-app
-          image: 720766170633.dkr.ecr.us-east-2.amazonaws.com/underwater:latest
+          image: 720766170633.dkr.ecr.us-east-2.amazonaws.com/underwater
           ports:
             - containerPort: 80
               protocol: TCP
@@ -116,8 +118,9 @@ Click **SAVE
 
 ## Deploy in Jenkins
 
+To connect Jenkins to Octopus you will need to install the [Octopus Plugin](https://plugins.jenkins.io/octopusdeploy/). Go to **Dashboard &rarr; Manage Plugins**. If the plug in is not already installed, search for the Octopus Plugin in the available tab and install the plugin. [Follow this guide on how to set up Jenkins and the Octopus Plugin](https://octopus.com/docs/packaging-applications/build-servers/jenkins)
 
-Make a change to the code on GitHub, and the build will trigger in Jenkins and Octopus.
+Once the Octopus plugin is set up, make a change to the code on GitHub, and the build will trigger in Jenkins and Octopus.
 
 ![Jenkins Octopus Icon](jenkins-octo-icon.png "Jenkins Octopus Icon")
 

@@ -21,6 +21,8 @@ This blog will build a docker image in a Jenkinsfile workflow and publish the im
 
 We will extend the repository to include a deployment YAML file for this blog. Jenkins will use this deployment file to deploy to EKS. Add this file to the root level of your repository.
 
+As we are working with Kubernetes, the agent needs to be configured with a config file. [This documentation shows you how to configure your agent](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/eks/update-kubeconfig.html). AWS also requires the [aws-iam-authenticator binary](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html).
+
 ```
 apiVersion: apps/v1
 kind: Deployment
@@ -55,37 +57,51 @@ Create a file named `Jenkinsfile` in the root level of your repository
 ```
 
 
-node {
-
-    stage('Clone repository') {
-
-        checkout scm
+pipeline {
+    agent any
+    options {
+        skipStagesAfterUnstable()
     }
-
-    stage('Build image') {
-        /* Referencing the image name in AWS */
-
-        app = docker.build("underwater")
-    }
-    
-    stage('Test image') {
-    /* Empty for test purposes */
-
-    }
-
-    stage('Push image') {
-        /* Referencing the AWS registry. Tagging with the Jenkins build number and the latest tag */
-        docker.withRegistry('https://720766170633.dkr.ecr.us-east-2.amazonaws.com', 'ecr:us-east-2:aws-credentials') {
-            app.push("${env.BUILD_NUMBER}")
-            app.push("latest")
+    stages {
+         stage('Clone repository') { 
+            steps { 
+                script{
+                checkout scm
+                }
+            }
         }
+        
+        stage('Build') { 
+            steps { 
+                script{
+                 app = docker.build("underwater")
+                }
+            }
+        }
+        stage('Test'){
+            steps {
+                 echo 'Empty'
+            }
+        }
+        stage('Push') {
+            steps {
+                script{
+                        docker.withRegistry('https://720766170633.dkr.ecr.us-east-2.amazonaws.com', 'ecr:us-east-2:aws-credentials') {
+                    app.push("${env.BUILD_NUMBER}")
+                    app.push("latest")
+                    }
+                }
+            }
+        }
+        stage('Deploy'){
+            steps {
+                 sh 'kubectl apply -f deployment.yml'
+                 sh 'kubectl rollout restart deployment ecr-app-underwater'
+            }
+        }
+        
     }
-    
-    stage("kubernetes deployment"){
-        sh 'kubectl apply -f deployment.yml'
-        sh 'kubectl rollout restart deployment ecr-app-underwater'
-    }
-} 
+}
 
 ```
 Jenkins will clone, build, test, push and deploy the image to an EKS cluster. Jenkins does this through a deployment file.

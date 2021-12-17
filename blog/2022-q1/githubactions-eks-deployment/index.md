@@ -80,7 +80,7 @@ spec:
     spec:
       containers:
         - name: octopus-underwater-app
-          image: 720766170633.dkr.ecr.us-east-2.amazonaws.com/underwater:latest
+          image: 720766170633.dkr.ecr.us-east-2.amazonaws.com/octopus-underwater-app:latest
           ports:
             - containerPort: 80
               protocol: TCP
@@ -128,8 +128,6 @@ jobs:
 ```
 
 ![GitHub Success](github-success.png)
-
-This command will point the CLI to your cluster:
 
    kubectl get deployments
 
