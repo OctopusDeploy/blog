@@ -16,7 +16,7 @@ tags:
   - Testing
 ---
 
-As an open-source continuous integration (CI) platform, one of our favorite things about Jenkins is it's strong community. Nowhere is this more evident than in the Jenkins Plugins Index.
+As an open-source Continuous Integration (CI) platform, one of our favorite things about Jenkins is its strong community. Nowhere is this more evident than in the Jenkins Plugins Index.
 
 There are over 1800 user-created plugins in the Index, allowing you to extend Jenkins’ features and change your instance to meet your team’s needs.
 
