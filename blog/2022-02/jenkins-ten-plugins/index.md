@@ -72,7 +72,7 @@ The plugin extends Jenkins’ compatibility to better support:
 
 ## 8: Folders
 
-A simple plugin that's so useful, Jenkins recommends it during setup. The [Folders plugin](https://plugins.jenkins.io/cloudbees-folder/) helps you sort your instance by letting you group jobs in nestable folders.
+The [Folders plugin](https://plugins.jenkins.io/cloudbees-folder/) is so useful, Jenkins recommends it during setup. This simple plugin helps you sort your instance by letting you group jobs in nestable folders.
 
 You can give each folder its own dedicated view depending on its purpose, helping to clean up the clutter in the UI.
 
@@ -89,16 +89,18 @@ The [Pipeline Utility Steps plugin](https://plugins.jenkins.io/pipeline-utility-
 With this plugin you can:
 
 - Find, manage, and create files
-- Read and write common config files including CSV, JSON and YAML
+- Read and write common config files including CSV, JSON, and YAML
 - Zip and unzip files
 - Read and write Maven Model data structures
 - Compare 2 version numbers
 
 Check out the plugin’s GitHub page for the [full list of steps and the syntax needed to use them](https://github.com/jenkinsci/pipeline-utility-steps-plugin/blob/master/docs/STEPS.md).
 
-## Bonus recommendation: Octopus
+## Bonus recommendation: Octopus Deploy
 
-We’d be silly not to mention our own [Octopus Deploy plugin](https://plugins.jenkins.io/octopusdeploy/), which connects Octopus to your Jenkins pipeline.
+We’d be remiss not to mention our own [Octopus Deploy plugin](https://plugins.jenkins.io/octopusdeploy/), which connects Octopus to your Jenkins pipeline.
+
+If you're not already using Octopus, you can [sign up for a free trial](https://octopus.com/start).
 
 Once Jenkins has finished compiling, testing, and packaging your code, our plugin can:
 
@@ -113,7 +115,7 @@ See our documentation for more on [using Jenkins with Octopus](https://octopus.c
 
 ## How to install Jenkins plugins {#install}
 
-You can install plugins with either the Jenkins web UI or the [Jenkins CLI (command line interface)](https://www.jenkins.io/doc/book/managing/cli/) using the `install-plugin` command.
+You can install plugins with either the Jenkins web UI or the [Jenkins CLI (command-line interface)](https://www.jenkins.io/doc/book/managing/cli/) using the `install-plugin` command.
 
 To install Jenkins plugins, you must:
 
@@ -137,20 +139,20 @@ To search for and install plugins from the Jenkins web UI:
 
 ### Jenkins CLI
 
-Use the following command line to install plugins with the Jenkins CLI. Replace `[SOURCE]` with the local file, URL, or update center to install from:
+Use the following command-line to install plugins with the Jenkins CLI. Replace `[SOURCE]` with the local file, URL, or update center to install from:
 
 ```
 java -jar jenkins-cli.jar -s http://localhost:8080/ install-plugin [SOURCE]
 ```
 
-You can also use these modifiers at the end of the command line:
+You can also use these modifiers at the end of the command-line:
 
--	-deploy: install the plugin without a reboot
--	-name VAL: add a short name (by default Jenkins takes the plugin’s name as it appears in the source)
--	-restart: restart Jenkins once the plugin installs successfully
+-	`-deploy`: install the plugin without a reboot
+-	`-name VAL`: add a short name (by default Jenkins takes the plugin’s name as it appears in the source)
+-	`-restart`: restart Jenkins once the plugin installs successfully
 
 ## What's next?
 
-These are just some of our favorite plugins to help you with your Jenkins pipeline, but we’re only scratching the surface. There are many more to find on the [Jenkins Index](https://plugins.jenkins.io/) that can further aid you in your CI efforts.
+These are some of our favorite plugins to help you with your Jenkins pipeline, but we’re only scratching the surface. There are many more to find on the [Jenkins Index](https://plugins.jenkins.io/) that can further aid you in your CI efforts.
 
 Happy deployments! 
