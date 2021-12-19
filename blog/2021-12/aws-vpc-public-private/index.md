@@ -1,20 +1,23 @@
 ---
 title: Create a mixed AWS VPC with CloudFormation
-description: Learn how to create a mixed AWS VPC with this sample CloudFormation template
+description: Learn how to create a mixed AWS VPC with this sample CloudFormation template.
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
+visibility: public
+published: 2022-03-08-1400
 metaImage: 
 bannerImage: 
+bannerImageAlt: 125 characters max, describes image to people unable to see it.
+isFeatured: false
 tags:
- - Octopus
+ - DevOps
+ - AWS
 ---
 
-In the [previous post](../aws-vpc-private/index.md) you looked at how to create a VPC with private subnets, and then [add an internet gateway](../aws-vpc-public/index.md) to grant internet access inside public subnets.
+In our previous post, [Create a private AWS VPC with CloudFormation](https://octopus.com/blog/aws-vpc-private), you looked at how to create a VPC with private subnets, and then [add an internet gateway](https://octopus.com/blog/aws-vpc-public) to grant internet access inside public subnets.
 
-By mixing both private and public subnets it is possible to create a VPC that exposes some instances publicly, while restricting access to private instances. This is a common configuration for VPCs that host a public web site, and the web site accesses a private database.
+By mixing both private and public subnets, it's possible to create a VPC that exposes some instances publicly, while restricting access to private instances. This is a common configuration for VPCs that host a public website, and the website accesses a private database.
 
-In this post you'll create a VPC with a mix of public and private subnets.
+In this post, you'll create a VPC with a mix of public and private subnets.
 
 ## Types of subnets
 
@@ -24,11 +27,11 @@ A public subnet has a connection to the internet via an [internet gateway](https
 
 > a horizontally scaled, redundant, and highly available VPC component that allows communication between your VPC and the internet. 
 
-A private subnet does not route traffic to an internet gateway. Resources in a private subnet do not have public IP addresses, and can only communicate with resources in other subnets within the same VPC.
+A private subnet does not route traffic to an internet gateway. Resources in a private subnet do not have public IP addresses, and can only communicate with resources in other subnets in the same VPC.
 
-One or more subnets can be placed within a VPC. It is possible to mix and match public and private subnets within a VPC, allowing some resources in the VPC to access the internet, and some to only access other resources in the VPC.
+One or more subnets can be placed in a VPC. It is possible to mix and match public and private subnets in a VPC, allowing some resources in the VPC to access the internet, and some to only access other resources in the VPC.
 
-In a VPC with public and private subnets, it is possible to route outgoing internet traffic from the private subnets through a [NAT gateway](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html). Much like your home router, a NAT Gateway allows outbound internet traffic to be established, and for responses to those outbound requests to be routed back to the device in the private subnet. But a connection can not be initiated from an external connection through a NAT Gateway.
+In a VPC with public and private subnets, it's possible to route outgoing internet traffic from the private subnets through a [NAT gateway](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html). Much like your home router, a NAT Gateway allows outbound internet traffic to be established, and for responses to those outbound requests to be routed back to the device in the private subnet. But a connection can not be initiated from an external connection through a NAT Gateway.
 
 A VPC with public and private subnets is the most complicated to build, but offers the most flexibility when deploying instances that can either be accessed from the public internet, or can only be accessed from within the VPC.
 
@@ -134,9 +137,11 @@ Outputs:
 
 ```
 
-This template builds on the [previous post](../aws-vpc-public/index.md), so refer to that post for details on internet gateways, routes, and route associations.
+This template builds on the [previous post](https://octopus.com/blog/aws-vpc-public), so refer to that post for details on internet gateways, routes, and route associations.
 
-The template above treats `SubnetA` as the public subnet, and `SubnetB` as the private subnet. To make `SubnetB` private, the route association that directed public traffic to the internet gateway has been removed.
+The template above treats `SubnetA` as the public subnet, and `SubnetB` as the private subnet. 
+
+To make `SubnetB` private, the route association that directed public traffic to the internet gateway has been removed.
 
 However, instances in `SubnetB` will still have internet access via a NAT gateway.
 
@@ -189,10 +194,12 @@ The new route table is associated with `SubnetB` via a [AWS::EC2::SubnetRouteTab
       SubnetId: !Ref SubnetB
 ```
 
-Once created, the VPC contains a mix of public and private subnets. Any instances created in `SubnetA` have internet access via the internet gateway, and can be accessed via a public IP address. Instances created in `SubnetB` have internet access via the NAT gateway, but traffic can not be initiated from the internet.
+After it's created, the VPC contains a mix of public and private subnets. Any instances created in `SubnetA` have internet access via the internet gateway, and can be accessed via a public IP address. Instances created in `SubnetB` have internet access via the NAT gateway, but traffic can not be initiated from the internet.
 
 ## Conclusion
 
 Including both public and private subnets in a VPC provides the most flexibility when placing instances that must be accessed from the internet or benefit from the extra security provided by not being exposed to public traffic. Even though private subnets don't allow public traffic to initiate a connection, instances in private subnets can still make outbound network requests via a NAT gateway.
 
-In this post you looked at a sample CloudFormation template that created a VPC with a public and a private subnet. This, along with the templates to create [VPCs with public subnets](../aws-vpc-public/index.md) and [VPCs with private subnets](../aws-vpc-private/index.md), provides you with a quick starting point to create resources in AWS.
+In this post, you looked at a sample CloudFormation template that created a VPC with a public and a private subnet. This, along with the templates to create [VPCs with public subnets](https://octopus.com/blog/aws-vpc-public) and [VPCs with private subnets](https://octopus.com/blog/aws-vpc-private), provides you with a quick starting point to create resources in AWS.
+
+Happy deployments!
