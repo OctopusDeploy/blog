@@ -25,37 +25,52 @@ Extend the pipeline with Octopus Release and Deploy commands
 ```
 
 
-node {
-    def app
 
-    stage('Clone repository') {
-
-        checkout scm
+pipeline {
+    agent any
+    options {
+        skipStagesAfterUnstable()
     }
-
-    stage('Build image') {
-        /* Referencing the image name in AWS */
-
-        app = docker.build("underwater-octo")
-    }
-    
-    stage('Test image') {
-    /* Empty for test purposes */
-
-    }
-
-    stage('Push image') {
-        /* Referencing the AWS registry. Tagging with the Jenkins build number and the latest tag */
-        docker.withRegistry('https://720766170633.dkr.ecr.us-east-2.amazonaws.com', 'ecr:us-east-2:aws-credentials') {
-            app.push("${env.BUILD_NUMBER}")
-            app.push("latest")
+    stages {
+         stage('Clone repository') { 
+            steps { 
+                script{
+                checkout scm
+                }
+            }
         }
-    }
-    
-        stage('Create and Deploy Release') {
-        octopusCreateRelease additionalArgs: '', cancelOnTimeout: false, channel: '', defaultPackageVersion: '', deployThisRelease: false, deploymentTimeout: '', environment: "Production", jenkinsUrlLinkback: false, project: "underwater-octo", releaseNotes: false, releaseNotesFile: '', releaseVersion: "1.0.${BUILD_NUMBER}", tenant: '', tenantTag: '', toolId: 'Default', verboseLogging: false, waitForDeployment: false
-        octopusDeployRelease cancelOnTimeout: false, deploymentTimeout: '', environment: "Production", project: "underwater-octo", releaseVersion: "1.0.${BUILD_NUMBER}", tenant: '', tenantTag: '', toolId: 'Default', variables: '', verboseLogging: false, waitForDeployment: true
-            
+        
+        stage('Build') { 
+            steps { 
+                script{
+                 app = docker.build("underwater")
+                }
+            }
+        }
+        stage('Test'){
+            steps {
+                 echo 'Empty'
+            }
+        }
+        stage('Push') {
+            steps {
+                script{
+                        docker.withRegistry('https://720766170633.dkr.ecr.us-east-2.amazonaws.com', 'ecr:us-east-2:aws-credentials') {
+                    app.push("${env.BUILD_NUMBER}")
+                    app.push("latest")
+                    }
+                }
+            }
+        }
+        stage('Deploy'){
+            steps {
+                script{
+                    octopusCreateRelease additionalArgs: '', cancelOnTimeout: false, channel: '', defaultPackageVersion: '', deployThisRelease: false, deploymentTimeout: '', environment: "Development", jenkinsUrlLinkback: false, project: "underwater-octo", releaseNotes: false, releaseNotesFile: '', releaseVersion: "1.0.${BUILD_NUMBER}", tenant: '', tenantTag: '', toolId: 'Default', verboseLogging: false, waitForDeployment: false
+                    octopusDeployRelease cancelOnTimeout: false, deploymentTimeout: '', environment: "Development", project: "underwater-octo", releaseVersion: "1.0.${BUILD_NUMBER}", tenant: '', tenantTag: '', toolId: 'Default', variables: '', verboseLogging: false, waitForDeployment: true
+                }
+            }
+        }
+        
     }
 }
 
@@ -125,8 +140,6 @@ Once the Octopus plugin is set up, make a change to the code on GitHub, and the 
 ![Jenkins Octopus Icon](jenkins-octo-icon.png "Jenkins Octopus Icon")
 
 You can navigate to the Octopus Deploy instance and deployment through the Octopus Icon.
-
-This command will point the CLI to your cluster:
 
     kubectl get deployments
 
