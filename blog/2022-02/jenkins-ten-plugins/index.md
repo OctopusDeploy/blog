@@ -98,7 +98,7 @@ Check out the plugin’s GitHub page for the [full list of steps and the syntax 
 
 ## Bonus recommendation: Octopus Deploy
 
-We’d be remiss not to mention our own [Octopus Deploy plugin](https://plugins.jenkins.io/octopusdeploy/), which connects Octopus to your Jenkins pipeline.
+It wouldn't be right if we didn't mention our own [Octopus Deploy plugin](https://plugins.jenkins.io/octopusdeploy/), which connects Octopus to your Jenkins pipeline.
 
 Once Jenkins has finished compiling, testing, and packaging your code, our plugin can:
 
