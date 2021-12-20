@@ -1,5 +1,5 @@
 ---
-title: Create a Public AWS VPC with CloudFormation
+title: Create a public AWS VPC with CloudFormation
 description: Learn how to create a public AWS VPC with this sample CloudFormation template
 author: matthew.casperson@octopus.com
 visibility: public
