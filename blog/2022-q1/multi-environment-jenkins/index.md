@@ -20,7 +20,9 @@ This blog will build and push the Octopus Underwater App to Amazon Elastic Conta
 - A GitHub account
 - [A Jenkins instance set up with a pipeline](https://github.com/OctopusDeploy/blog/blob/2022-q1/blog/2022-q1/jenkins-docker-ecr/index.md)
 
-Extend the pipeline with Octopus Release and Deploy commands
+This blog will use the [Octopus Underwater app repository](https://github.com/terence-octo/octopus-underwater-app). You can fork the repository and follow along. Alternatively, the jenkins-octopus branch contains the files needed to complete the steps in this blog. You will have to replace some values with your own.
+
+Extend the pipeline with Octopus Release and Deploy commands. Create a Jenkinsfile and paste the following code.
 
 ```
 
@@ -151,6 +153,19 @@ Go to the IP address in the browser to view your web application.
 
 ![Octopus Underwater App](octopus-underwater-app.png)
 
+## Runbooks as a Kubernetes monitoring tool 
+
+You can also set up monitoring of your kubernetes resources through runbooks. Go to your project dashboard then **Runbooks &rarr; Add Runbook &rarr; Define your Runbook Process &rarr; Add Step &rarr; Kubernetes - Inspect Resource**
+
+![Inspect Kubernetes Octopus](inspect-kubernetes-octopus.png)
+
+Assign the role you set for your deployment target and you can replicate the `kubectl get deployments` command by setting the **Resource** and **Kubectl Verb**. 
+
+Click **Save** then **Run**
+
+This is useful as the runbooks can be shared across teams. Monitoring can then be done at an organization level rather than individually on local machines.
+
+![Get Deployment](get-deployment.png)
 
 ## The benefits of a dedicated CD tool
 

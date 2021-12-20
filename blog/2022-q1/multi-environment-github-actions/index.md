@@ -18,6 +18,8 @@ This blog will build a docker image in a GitHub Actions workflow and publish the
 - An Amazon Web Services Account (AWS)
 - A GitHub account
 
+This blog will use the [Octopus Underwater app repository](https://github.com/terence-octo/octopus-underwater-app). You can fork the repository and follow along. Alternatively, the github-octopus branch contains the files needed to complete the steps in this blog. You will have to replace some values with your own.
+
 
 ## Amazon Web Services setup
 
@@ -191,6 +193,20 @@ Running this command will get the list of deployments on the cluster. You should
 Go to the IP address in the browser to view your web application.
 
 ![Octopus Underwater App](octopus-underwater-app.png)
+
+## Runbooks as a Kubernetes monitoring tool 
+
+You can also set up monitoring of your kubernetes resources through runbooks. Go to your project dashboard then **Runbooks &rarr; Add Runbook &rarr; Define your Runbook Process &rarr; Add Step &rarr; Kubernetes - Inspect Resource**
+
+![Inspect Kubernetes Octopus](inspect-kubernetes-octopus.png)
+
+Assign the role you set for your deployment target and you can replicate the `kubectl get deployments` command by setting the **Resource** and **Kubectl Verb**. 
+
+Click **Save** then **Run**
+
+This is useful as the runbooks can be shared across teams. Monitoring can then be done at an organization level rather than individually on local machines.
+
+![Get Deployment](get-deployment.png)
 
 ## Octopus as a CD tool
 

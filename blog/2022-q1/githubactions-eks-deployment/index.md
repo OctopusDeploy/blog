@@ -16,8 +16,9 @@ tags:
 This blog will build a docker image in a GitHub Actions workflow and publish the image to Amazon Elastic Container Registry (ECR). To follow along, you will need:
 
 - An Amazon Web Services Account (AWS)
-
 - A GitHub account
+
+This blog will use the [Octopus Underwater app repository](https://github.com/terence-octo/octopus-underwater-app). You can fork the repository and follow along. Alternatively, the github-deployment branch contains the files needed to complete the steps in this blog. You will have to replace some values with your own.
 
 ## Amazon Web Services setup
 
