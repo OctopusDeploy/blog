@@ -2,17 +2,20 @@
 title: Create a Public AWS VPC with CloudFormation
 description: Learn how to create a public AWS VPC with this sample CloudFormation template
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
+visibility: public
+published: 2022-03-08-1400
 metaImage: 
 bannerImage: 
+bannerImageAlt: 125 characters max, describes image to people unable to see it.
+isFeatured: false 
 tags:
- - Octopus
+ - DevOps
+ - AWS
 ---
 
-In the [first post](../aws-vpc-private/index.md) you looked at how to create a VPC with private subnets. Instances in this VPC had no internet access and could only communicate with instances in the subnets within the same VPC.
+In our first post, [Create a private AWS VPC with CloudFormation](https://octopus.com/blog/aws-vpc-private), you looked at how to create a VPC with private subnets. Instances in this VPC had no internet access and could only communicate with instances in the subnets in the same VPC.
 
-In this post you'll create a VPC with public subnets, allowing instances to access, and be accessed from, the internet.
+In this post, you'll create a VPC with public subnets, allowing instances to access, and be accessed from, the internet.
 
 ## Types of subnets
 
@@ -104,7 +107,7 @@ Outputs:
     Value: !Ref VPC
 ```
 
-The template above builds on the template presented in the [previous post](../aws-vpc-private/index.md), adding an internet gateway and the route tables required to direct traffic to the internet. Refer to the [previous post](../aws-vpc-private/index.md) to read the details of the VPC, Subnet, and Rout Table resources.
+The template above builds on the template presented in the previous post, [Create a private AWS VPC with CloudFormation](https://octopus.com/blog/aws-vpc-private), adding an internet gateway and the route tables required to direct traffic to the internet. Refer to the [previous post](https://octopus.com/blog/aws-vpc-private) to read the details of the VPC, Subnet, and Route Table resources.
 
 To connect the VPC to the internet, you must attach an internet gateway, represented by the [AWS::EC2::InternetGateway](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-internetgateway.html) resource. This resource does not support any configuration properties beyond adding custom tags:
 
@@ -164,4 +167,6 @@ The IP address assigned to the EC2 instance allows you to SSH into it from your 
 
 Public subnets allow instances to access the internet, and give them the option of being assigned a public IP address. Creating a VPC with public subnets requires building an internet gateway, attaching it to the VPC, defining a route to direct public traffic through the internet gateway, and assigning the routes to the subnets.
 
-In this post you looked at a CloudFormation template creating a VPC with two public subnets. In the [next post](../aws-vpc-public-private/index.md) you'll learn how to create a VPC with both public and private subnets, and a NAT Gateway to grant internet access to instances in the private subnet.
+In this post you looked at a CloudFormation template creating a VPC with two public subnets. In the [next post](https://octopus.com/blog/aws-vpc-public-private/index.md) you'll learn how to create a VPC with both public and private subnets, and a NAT Gateway to grant internet access to instances in the private subnet.
+
+Happy deployments!
