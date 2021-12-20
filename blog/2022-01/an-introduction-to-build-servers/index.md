@@ -41,7 +41,7 @@ But CI doesn’t just mean less time spent on manual tasks or the death of arbit
 
 We’re taking deep dives into two CI platforms in the coming weeks, looking at how [Jenkins](https://www.jenkins.io/) or [GitHub Actions](https://github.com/features/actions) can help with your processes, and how Octopus can help you get more out of your CI/CD pipeline.
 
-## What is Jenkins
+## What is Jenkins?
 
 [Jenkins](https://www.jenkins.io/) is the most popular CI platform on the market. Open-source and free to use, you can run Jenkins standalone on most operating systems to automate the building and testing of your code.
 
@@ -49,7 +49,7 @@ One of Jenkins biggest benefits is its flexibility. It's a scalable platform, me
  
 That means Jenkins is flexible enough to cover your CI needs and you can tailor it for other automation purposes too.
 
-## What is GitHub Actions
+## What is GitHub Actions?
 
 [GitHub Actions](https://github.com/features/actions) is one of the newer CI platforms. It removes the need for a separate build server by using repository events to trigger automation workflows on virtual ‘runners’. 
 
@@ -61,11 +61,12 @@ Like Jenkins, [GitHub also has an actions marketplace](https://github.com/market
 
 ## What's next?
 
-You can look forward to more build server and CI content from us in the coming weeks, including guides for Jenkins and GitHub Actions, bespoke tools, and more.
+You can look forward to more build server and Continuous Integration content from us in the coming weeks, including guides for Jenkins and GitHub Actions, bespoke tools, and more.
 
-In the meantime, you can check out some of our older blogs on build servers, CI, and some of the ideas we’ll approach in this series:
+In the meantime, if you're not already using Octopus Deploy, you can [sign up for a free trial](https://octopus.com/start).
 
-- [Continuous Integration vs. Continuous Deployment](https://octopus.com/blog/difference-between-ci-and-cd)
+You can also check out some of our older blogs on build servers, CI, and some of the ideas we’ll approach in this series:
+
 - [Octopus vs. build servers](https://octopus.com/blog/octopus-vs-build-server)
 - [Integration 101: Octopus and build servers](https://octopus.com/blog/octopus-build-server-integration-101)
 - [Java CI/CD: Octopus, Jenkins, Java, Kubernetes, and the DevOps lifecycle (series)](https://octopus.com/blog/java-ci-cd-co/)
