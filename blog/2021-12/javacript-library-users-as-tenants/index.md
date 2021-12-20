@@ -1,5 +1,5 @@
 ---
-title: Manage all the consumers of your JavaScript library as tenants
+title: Managing all consumers of your JavaScript library as tenants
 description: Use Octopus tenants to control who references which version of your JavaScript library project.
 author: lee.meyer@octopus.com
 visibility: public
