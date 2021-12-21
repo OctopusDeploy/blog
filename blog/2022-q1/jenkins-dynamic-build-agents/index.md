@@ -37,6 +37,8 @@ Containers are lite virtual machines that are easily deployable and to most oper
 
 ### Before you start
 
+This guide is an example only, and you should experiment with scaling before changing an existing Jenkins setup.
+
 In this example, we set up scalability on a local minikube cluster and use the tools below to configure. If following along, you should install the tools in the order listed:
 
 - Docker Desktop – Only needed if you’re on Windows. Make sure Docker Desktop is set to manage Linux containers rather than Windows containers.
@@ -91,7 +93,7 @@ Open terminal window and use the following command to create a Kubernetes cluste
 minikube start
 ```
 
-The cluster may take a while to set up. Once done, you should give it a new namespace to make the cluster easier to use and reference. Use the following command in the terminal:
+The cluster may take a while to set up. Once done, you should give it a new namespace to make the cluster easier to use and reference. Use the following command in the terminal to create the namespace 'jenkins':
 
 ```
 kubectl create namespace jenkins
@@ -261,7 +263,7 @@ Now we can set up the plugin in Jenkins. Return to Jenkins in your web browser:
    - **Kubernetes URL** – enter `https://kubernetes.default`
    - **Kubernetes Namespace** – enter `jenkins`
    - **Jenkins URL** – enter `http://jenkins.jenkins.svc.cluster.local:8080`
-   - **Jenkins Tunnel** – enter `agent.jenkins.svc.cluster.local:50000`
+   - **Jenkins Tunnel** – enter `jenkins-agent.jenkins.svc.cluster.local:50000`
 1. Scroll to the bottom and click **Pod Templates**, then **Add Pod Template**, and **Pod Template Details**.
 1. Complete the following fields and click **Save**:
    - **Name** – enter `jenkins-agent`
