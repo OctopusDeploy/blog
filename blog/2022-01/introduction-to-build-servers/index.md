@@ -3,7 +3,7 @@ title: An introduction to build servers and Continuous Integration
 description: A brief overview on the benefits of build servers, focusing on Jenkins and GitHub Actions, plus what you can expect from us in this series.
 author: andrew.corrigan@octopus.com
 visibility: private
-published: 3020-01-01-1400
+published: 2022-01-10-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
