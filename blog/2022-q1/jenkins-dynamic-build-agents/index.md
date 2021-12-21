@@ -299,7 +299,7 @@ This is a great option for teams who:
 
 - already have access to AWS
 - want to easily add scaling to an existing Jenkins instance
-- prefer to perform setup using a UI rather than command lines.
+- prefer to perform setup using a UI rather than command lines
 
 Though AWS comes at a cost, your financial limits are set at an account level.
 
