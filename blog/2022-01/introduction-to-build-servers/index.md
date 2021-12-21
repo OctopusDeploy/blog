@@ -20,7 +20,6 @@ When you're developing and deploying software, one of the first things to figure
 
 Most development teams understand the importance of version control to coordinate code commits, and build servers to compile and package their software, but Continuous Integration (CI) is a big topic. Over the next few months, we’re going into detail about Continuous Integration and how two of the most popular build servers, Jenkins and GitHub Actions, can help with your CI processes.
 
-
 ## Why build servers are important
 
 Build servers have 3 main purposes:
