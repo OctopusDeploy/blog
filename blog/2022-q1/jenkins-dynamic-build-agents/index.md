@@ -68,9 +68,9 @@ To create the dockerfile and build an image:
    ```
    docker build . -t [username]/jenkinsdockerfile
    ```
-1. The build will take a little while to process, but once complete you’ll see the image in the Docker Hub.
+1. The build will take a little while to process, but once complete you’ll see the image in Docker Desktop or with the command `docker images`.
 
-When we create a minikube cluster in the next step, it won't see the image stored locally on your computer as the cluster runs on a virtual environment. Do get around this, we can push the image top Docker Hub.
+When we create a minikube cluster in the next step, it won't see the image stored locally on your computer as the cluster runs on a virtual environment. Do get around this, we can push the image to Docker Hub.
 
 If on Windows, you can do this in Docker Desktop:
 
@@ -99,7 +99,7 @@ kubectl create namespace jenkins
 
 ### Step 3: Install Jenkins using a YAML deployment file
 
-Copy the following code into a text file and save it as `jenkins-deployment.yaml`. Make sure to change the **Image** line to point to your image, for example [folder name]/[image name].
+Copy the following code into a text file and save it as `jenkins.yaml`. Make sure to change the **Image** line to point to your image, for example [Docker username]/[image name].
 
 ```
 # Service account docs:
@@ -160,7 +160,7 @@ spec:
     spec:
       containers:
       - name: jenkins 
-        image: [username]/jenkins 
+        image: [docker username]/jenkins 
         ports:
         - containerPort: 8080
         - containerPort: 50000
@@ -200,29 +200,13 @@ spec:
 To deploy the image to namespace, run the following command from the file’s directory:
 
 ```
-kubectl create -f jenkins-deployment.yaml -n jenkins
+kubectl apply -f jenkins.yaml -n jenkins jenkins.yaml
 ```
 
-Now we need to set the cluster to act as a service. This means you can connect to the Jenkins install on that cluster with a web browser. For this, we’ll create another YAML file. Copy the following code into a text file and save it as `jenkins-service.yaml`:
+The YAML script will now create a Jenkins instance in a Kubernetes pod. The process might take a while, but you can check progress with the following command. It's ready when the **Status** column reads as **Running**:
 
 ```
-apiVersion: v1
-kind: Service
-metadata:
-  name: jenkins
-spec:
-  type: NodePort
-  ports:
-  - port: 8080
-    targetPort: 8080
-  selector:
-    app: jenkins
-```
-
-Run the YAML file from its directory with the following command:
-
-```
-kubectl create -f jenkins-service.yaml -n jenkins
+kubectl get pods -n jenkins
 ```
 
 ### Step 4: Find your Jenkins instance URL and connect to it
@@ -244,7 +228,7 @@ The **Ports** column will show your instance’s ports as in an 8080:54321 forma
 We’ll now combine the minikube IP and the port to make up the URL. For example, if the IP is 123.123.123.123 and the port number is 54321, your Jenkins URL would be http://123.123.123.123:54321.
 
 :::hint
-If your URL doesn’t work, it’s possible your firewall could be blocking the instance. Speak to your network admin for help. If you’re following along on your home computer and hit this problem, you can temporarily forward your ports with `kubectl port-forward deployment/jenkins -n jenkins 8080:8080`. This would make your URL http://localhost:8080.
+If your URL doesn’t work, it’s possible your firewall could be blocking the instance. Speak to your network admin for help. If you’re following along on your home computer and hit this problem, you can temporarily forward your ports with `kubectl port-forward svc/jenkins -n jenkins 8080:8080`. This would make your URL http://localhost:8080.
 :::
 
 Go to the URL in your web browser and you should see the **Getting Started** screen. This will ask for a one-time Administrator password. With a Kubernetes cluster you need to find this via command line.
@@ -267,12 +251,6 @@ Scroll through the result and find the admin password separate by lines of aster
 
 ### Step 5: Get final information and set up the Jenkins plugin
 
-Before we can set up the plugin, we need the URL the Kubernetes master URL (also known as the ‘control plane’. Use the this command line to get the Kubernetes master URL:
-
-```
-kubectl cluster-info
-```
-
 Now we can set up the plugin in Jenkins. Return to Jenkins in your web browser:
 
 1. Click **Manage Jenkins** from the menu.
@@ -289,6 +267,7 @@ Now we can set up the plugin in Jenkins. Return to Jenkins in your web browser:
    - **Name** – enter `Jenkins-agent`
    - **Namespace** – enter `jenkins`
    - **Labels** – enter `Jenkins-agent`
+   - **Usage** - select **Use this node as much as possible** from the dropdown
 
 ### Step 6: Test everything’s working
 
@@ -304,7 +283,7 @@ Then we’ll create 2 “Hello World” build jobs:
 
 1. Click **New Item** from the Jenkins dashboard.
 1. Enter a suitable name, such as `Testing 1`, select **Freestyle project** and click **OK**.
-1. Under the **Build heading**, select **Execute shell** from the dropdown box.
+1. Under the **Build** heading, select **Execute shell** from the dropdown box.
 1. Enter `echo "Hello World"` into the **Command box** and click **Save**:
 1. Repeat the steps but call your second job `Testing 2`.
 
