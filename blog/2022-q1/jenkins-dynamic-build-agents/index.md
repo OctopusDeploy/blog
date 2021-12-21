@@ -65,9 +65,9 @@ To create the dockerfile and build an image:
    ```
 1. Save and close the file. If using Notepad on Windows, you must remove the ‘.txt’ file extension.
 1. Open a terminal and use the CD command to move to the folder with the file. Use the following command to create the image:
-```
-docker build . -t [username]/jenkinsdockerfile
-```
+   ```
+   docker build . -t [username]/jenkinsdockerfile
+   ```
 1. The build will take a little while to process, but once complete you’ll see the image in the Docker Hub.
 
 When we create a minikube cluster in the next step, it won't see the image stored locally on your computer as the cluster runs on a virtual environment. Do get around this, we can push the image top Docker Hub.
