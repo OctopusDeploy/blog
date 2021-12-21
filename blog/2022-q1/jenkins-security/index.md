@@ -23,7 +23,7 @@ In this blog we look at some of the methods and tools to keep your Jenkins insta
 
 [As December 2021 reminded us](https://octopus.com/blog/octopus-deploy-log4j-response), software vulnerabilities can come to light at any time. Software providers not only update their applications to fix bugs or add new features, but also to remove security exploits.
 
-[Jenkins have a security advisories page](https://www.jenkins.io/security/advisories/)to help you stay informed about vulnerabilities for their platform. It’s still a good idea, however, to keep your instance updated, including its plugins.
+[Jenkins have a security advisories page](https://www.jenkins.io/security/advisories/) to help you stay informed about vulnerabilities for their platform. It’s still a good idea, however, to keep your instance updated, including its plugins.
 
 To check for updates in Jenkins:
 
