@@ -27,7 +27,7 @@ Build servers have 3 main purposes:
 
 - Compiling committed code from your repository many times a day
 - Running automatic tests to validate code
-- Creating deployable packages and handing off to your deployment tool
+- Creating deployable packages and handing off to a deployment tool, like Octopus Deploy
 
 Without a build server you're slowed down by complicated, manual processes and the needless time constraints they introduce. For example, without a build server:
 
