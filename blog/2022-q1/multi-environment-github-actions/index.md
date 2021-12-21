@@ -18,6 +18,9 @@ This blog will build a docker image in a GitHub Actions workflow and publish the
 - An Amazon Web Services Account (AWS)
 - A GitHub account
 
+This blog will use the [Octopus Underwater app repository](https://github.com/terence-octo/octopus-underwater-app). You can fork the repository and follow along. Alternatively, the github-octopus branch contains the template files needed to complete the steps in this blog. You will have to replace some values with your own. I have included my values in this blog as a reference.
+
+
 
 ## Amazon Web Services setup
 
@@ -50,6 +53,8 @@ Go to **Settings &rarr; Secrets &rarr; New repository secret**
 - **REPO_NAME**- the name of the AWS ECR repository you created
 - **AWS_ACCESS_KEY_ID**- the Access Key ID from earlier
 - **AWS_SECRET_ACCESS_KEY**- the Secret Access Key from earlier
+- **OCTOPUS_SERVER**- The URL of your Octopus Server
+- **OCTOPUS_APIKEY**- The Octopus API Key of your Octopus Instance. To create one, go to **Your User Name &rarr; Profile &rarr; My API Keys &rarr; New API key**
 
 We need to create a workflow file in the repository. A Github Actions workflow contains instructions on performing operations on the code repository. Several pre-built step templates will allow you to do many different tasks on a code repository. In this example, we use a step template to build and push the code to an AWS ECR repository and deploy it from Octopus Deploy.
 
@@ -107,7 +112,7 @@ jobs:
       run: octo create-release --project underwater-octo-github --version 0.0.i --server=${{ secrets.OCTOPUS_SERVER }} --apiKey=${{ secrets.OCTOPUS_APIKEY }}
         
     - name: deploy Octopus release
-      run: octo deploy-release --project underwater-octo-github --version=latest --deployto Production --server=${{ secrets.OCTOPUS_SERVER }} --apiKey=${{ secrets.OCTOPUS_APIKEY }}    
+      run: octo deploy-release --project underwater-octo-github --version=latest --deployto Development --server=${{ secrets.OCTOPUS_SERVER }} --apiKey=${{ secrets.OCTOPUS_APIKEY }}    
      
       
 ```
@@ -124,9 +129,9 @@ Go to your Amazon ECR repository to view the image.
 
 ## Set Up Octopus Deploy
 
-In your Octopus Deploy instance, create a project called `aws` by going to **Project, Add Project** Add the `aws` title and click **Save**.
+In your Octopus Deploy instance, create a project called `aws-github` by going to **Project, Add Project** Add the `aws-github` title and click **Save**.
 
-Set up a Production Environment by going to **Infrastructure, Environments, Add Environment**. Give it a name and click **Save**
+Set up a Development Environment by going to **Infrastructure, Environments, Add Environment**. Give it a name and click **Save**. Do the same for a Test and Production environment
 
 We need to set up the Amazon account to deploy to EKS. Go to **Infrastructure, Accounts, Add Account, AWS Account**. Give it a name and fill out the **Access Key ID and Secret Access Key** from earlier.
 
@@ -135,7 +140,7 @@ Set up your AWS Kubernetes cluster as a deployment target in Octopus Deploy by g
 
 ## Deploy to EKS step
 
-In your `aws` project, go to **Process, add deployment step, Kubernetes, Deploy Kubernetes Containers**
+In your `aws-github` project, go to **Process, add deployment step, Kubernetes, Deploy Kubernetes Containers**
 
 Add the following YAML into the YAML section.
 
@@ -168,17 +173,22 @@ spec:
 
 ```
 
-This command will point the CLI to your cluster:
+Navigate back to the Octopus instance project overview and you will see the release deployed to the development environment.
 
-    kubectl get deployments
+![Development Success](development-success.png)
 
-Running this command will get the list of deployments on the cluster. You should see the deployment `octopus-underwater-app-octo`. Use this name to expose the web application:
+Now we can progress the release to the Test and Production environment when we are ready. Click Deploy to progress the release.
 
-    kubectl port-forward deployment/octopus-underwater-app-octo  28019:80
+![Development Success](production-success.png)
+
+We will port forward locally to inspect the service. Use this command to inspect the web application:
+
+    kubectl port-forward deployment/octopus-underwater-app-github  28019:80
     
 Go to the IP address in the browser to view your web application.
 
 ![Octopus Underwater App](octopus-underwater-app.png)
+
 
 ## Octopus as a CD tool
 

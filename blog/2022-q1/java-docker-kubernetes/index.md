@@ -27,7 +27,7 @@ In this blog post, I built a Maven Java project and hosted the image on the Goog
 
 The Octopus Deploy Underwater App is a landing page for users creating their first deployment. It showcases relevant articles for users as well as links to other resources.
 
-You can find the web application repository on [GitHub](https://github.com/terence-octo/octopus-underwater-app-java).
+You can find the web application repository on [GitHub](https://github.com/terence-octo/octopus-underwater-app/tree/underwater-app-java). The repository is split into separate branches for different use cases. We will be using the underwater-app-java branch.
 
 ## Building and pushing to a registry
 
@@ -41,9 +41,11 @@ Clone the java project repository that we will use to build and deploy to Azure.
 
     git clone https://github.com/terence-octo/octopus-underwater-app
     cd octopus-underwater-app
+    git checkout underwater-app-java
 
 Test the application locally by using the run command and visiting http://localhost:8080/ 
 
+    chmod +x mvnw
     ./mvnw spring-boot:run
     
 Running the package step builds the target JAR deployable for the app.
@@ -54,6 +56,10 @@ Enable the container registry to store the container image.
 
     gcloud services enable containerregistry.googleapis.com
     export GOOGLE_CLOUD_PROJECT=`gcloud config list --format="value(core.project)"`
+    
+Run this command to create the config.json with the correct settings
+
+    gcloud auth configure-docker
     
 The jib tool creates and pushes the image to the container registry.
 
@@ -67,7 +73,6 @@ Confirm that the image is present on the GCR by going to the [registry home page
 
 We need to retrieve some credentials to pass to Octopus Deploy. Follow these steps to [add an Azure Service Principle to Octopus Deploy](https://octopus.com/docs/infrastructure/accounts/azure).
 
-    
 ## Create Azure Kubernetes Cluster
 
 Now we switch to Microsoft Azure to host our Kubernetes cluster. Octopus Deploy is cloud-agnostic. It can work with deployments that span multiple cloud providers. 
@@ -107,7 +112,7 @@ metadata:
 spec:
   selector:
     matchLabels:
-      octopusexport: OctopusExport
+      app: java-web-app
   replicas: 1
   strategy:
     type: RollingUpdate
@@ -115,7 +120,6 @@ spec:
     metadata:
       labels:
         app: java-web-app
-        octopusexport: OctopusExport
     spec:
       containers:
         - name: java-web-app
@@ -124,31 +128,50 @@ spec:
             - containerPort: 80
 ```
 
+### Service
+
+Paste the following YAML into the Service section of the step. This will create an Azure Service through the Octopus client.
+
+```
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: underwater-service
+spec:
+  type: LoadBalancer
+  ports:
+    - name: web
+      port: 80
+      targetPort: 8080
+      protocol: TCP
+  selector:
+    app: java-web-app
+
+```
+
+![Kubernetes Service](octopus-service.png "Kubernetes Service")
+
+
 ### Deploy to Azure
 
 Click SAVE.
 
 Click Create Release and click through the steps to deploy the application to Azure.
 
-## Azure steps
-    
-The last step is to expose the app to the internet using a load balancer. Go to the Azure portal and bring up the Powershell Azure CLI.
+### Runbooks as a Kubernetes monitoring tool 
 
-    az aks get-credentials --resource-group myResourceGroup --name myAKSCluster
+You can  set up monitoring of your kubernetes resources through runbooks. Go to your project dashboard then **Runbooks &rarr; Add Runbook &rarr; Define your Runbook Process &rarr; Add Step &rarr; Kubernetes - Inspect Resource**
 
-This command will point the CLI to your cluster:
+![Inspect Kubernetes Octopus](inspect-kubernetes-octopus.png)
 
-    kubectl get deployments
+Assign the role you set for your deployment target and you can replicate the `kubectl get service` command by setting the **Resource** and **Kubectl Verb**. 
 
-Running this command will get the list of deployments on the cluster. You should see the deployment `java-web-gs-high-google`. Use this name to expose the Web Application:
+![Get Service](get-service.png)
 
-    kubectl expose deployment java-web-gs-high-google --type=LoadBalancer --port=80 --target-port=8080 --name=my-service-gs-high-google
-    
-This command creates a service named 'my-service' that generates a public IP to view the Web Application:
+Click **Save** then **Run**
 
-    kubectl get services
-        
-Run this command, and you will see "pending" under the External-IP. Wait 1 minute, run again, and you should see a public IP in that field. Go to the IP address in the browser to view your Web Application.
+This is useful as the runbooks can be shared across teams. Monitoring can then be done at an organization level rather than individually on local machines. Go to the task log to see the `underwwater-service` you just created. You will see an IP address under `External IP`. Go to this address and you will see the Octopus Underwater app. 
 
 ![Octopus Underwater App](octopus-underwater-app.png)
 

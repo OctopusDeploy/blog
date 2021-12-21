@@ -17,9 +17,15 @@ This blog will build a docker image in a Jenkinsfile workflow and publish the im
 
 - An Amazon Web Services Account (AWS)
 - A GitHub account
-- [A Jenkins instance set up with a pipeline](https://github.com/OctopusDeploy/blog/blob/2022-q1/blog/2022-q1/jenkins-docker-ecr/index.md)
+- [A Jenkins instance set up with a pipeline](https://github.com/OctopusDeploy/blog/blob/2022-q1/blog/2022-q1/jenkins-docker-ecr/index.md). This was set up as part of a previous blog.
 
 We will extend the repository to include a deployment YAML file for this blog. Jenkins will use this deployment file to deploy to EKS. Add this file to the root level of your repository.
+
+This blog will use the [Octopus Underwater app repository](https://github.com/terence-octo/octopus-underwater-app). You can fork the repository and use the main branch to follow along. The jenkins-deploy branch contains the template files needed to complete the steps in this blog. You will have to replace some values with your own. I have included my values in this blog as a reference.
+
+As we are working with Kubernetes, the agent needs to be configured with a config file. [This documentation shows you how to configure your agent](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/eks/update-kubeconfig.html). AWS also requires the [aws-iam-authenticator binary](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html).
+
+Create a file named `deployment.yml` in the root level of the repository.
 
 ```
 apiVersion: apps/v1
@@ -50,45 +56,59 @@ spec:
 
 ```
 
-Create a file named `Jenkinsfile` in the root level of your repository
+Create a file named `Jenkinsfile` in the root level of your repository.
 
 ```
 
 
-node {
-
-    stage('Clone repository') {
-
-        checkout scm
+pipeline {
+    agent any
+    options {
+        skipStagesAfterUnstable()
     }
-
-    stage('Build image') {
-        /* Referencing the image name in AWS */
-
-        app = docker.build("underwater")
-    }
-    
-    stage('Test image') {
-    /* Empty for test purposes */
-
-    }
-
-    stage('Push image') {
-        /* Referencing the AWS registry. Tagging with the Jenkins build number and the latest tag */
-        docker.withRegistry('https://720766170633.dkr.ecr.us-east-2.amazonaws.com', 'ecr:us-east-2:aws-credentials') {
-            app.push("${env.BUILD_NUMBER}")
-            app.push("latest")
+    stages {
+         stage('Clone repository') { 
+            steps { 
+                script{
+                checkout scm
+                }
+            }
         }
+        
+        stage('Build') { 
+            steps { 
+                script{
+                 app = docker.build("underwater")
+                }
+            }
+        }
+        stage('Test'){
+            steps {
+                 echo 'Empty'
+            }
+        }
+        stage('Push') {
+            steps {
+                script{
+                        docker.withRegistry('https://720766170633.dkr.ecr.us-east-2.amazonaws.com', 'ecr:us-east-2:aws-credentials') {
+                    app.push("${env.BUILD_NUMBER}")
+                    app.push("latest")
+                    }
+                }
+            }
+        }
+        stage('Deploy'){
+            steps {
+                 sh 'kubectl apply -f deployment.yml'
+                 sh 'kubectl rollout restart deployment ecr-app-underwater'
+            }
+        }
+        
     }
-    
-    stage("kubernetes deployment"){
-        sh 'kubectl apply -f deployment.yml'
-        sh 'kubectl rollout restart deployment ecr-app-underwater'
-    }
-} 
+}
 
 ```
-Jenkins will clone, build, test, push and deploy the image to an EKS cluster. Jenkins does this through a deployment file.
+Jenkins will clone, build, test, push and deploy the image to an EKS cluster. Jenkins does this through the deployment file created earlier.
 
 ## Jenkins as a CD tool
 
@@ -96,11 +116,11 @@ Jenkins is a continuous integration tool. Jenkins focuses on building and pushin
 
 ![Jenkins Success](jenkins-success.png)
 
-To view the deployment, we port forward a local port.
+We will port forward locally to inspect the service. Use this command to inspect the web application:
 
- kubectl port-forward deployment/ecr-app-underwater  28015:80
- 
-Navigate to `127.0.0.1:28008` to see the web app
+    kubectl port-forward deployment/octopus-underwater-app  28019:80
+    
+Go to the IP address in the browser to view your web application.
 
 ![Octopus Underwater App](octopus-underwater-app.png)
 
