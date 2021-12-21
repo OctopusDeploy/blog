@@ -119,7 +119,7 @@ We also recommend looking at both the [Folders](https://plugins.jenkins.io/cloud
 
 ## Securely store your credentials
 
-The [Credentials Binding plugin](https://plugins.jenkins.io/credentials-binding/) is the best option for encrypting and securely storing credentials that connects Jenkins with other services. Jenkins recommends it too – in fact it’s one of their suggested plugins when installing Jenkins for the first time. Plus, plenty of other plugins use it as a dependency too.
+The [Credentials Binding plugin](https://plugins.jenkins.io/credentials-binding/) is the best option for encrypting and securely storing credentials that connect Jenkins with other services. Jenkins recommends it too – in fact it’s one of their suggested plugins when installing Jenkins for the first time. Plus, plenty of other plugins use it as a dependency.
 
 This plugin lets you store and reuse all types of authentication methods, such as:
 
