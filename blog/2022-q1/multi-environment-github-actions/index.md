@@ -180,33 +180,18 @@ Now we can progress the release to the Test and Production environment when we a
 
 ![Development Success](production-success.png)
 
-
-
 This command will point the CLI to your cluster:
 
     kubectl get deployments
 
-Running this command will get the list of deployments on the cluster. You should see the deployment `octopus-underwater-app-octo`. Use this name to expose the web application:
+Running this command will get the list of deployments on the cluster. You should see the deployment `octopus-underwater-github`. The AWS Fargate Kubernetes profile does not support exposing a service via a Load Balancer. We will port forward locally to inspect the service. Use this command to expose the web application:
 
-    kubectl port-forward deployment/octopus-underwater-app-octo  28019:80
+    kubectl port-forward deployment/octopus-underwater-app-github  28019:80
     
 Go to the IP address in the browser to view your web application.
 
 ![Octopus Underwater App](octopus-underwater-app.png)
 
-## Runbooks as a Kubernetes monitoring tool 
-
-You can also set up monitoring of your kubernetes resources through runbooks. Go to your project dashboard then **Runbooks &rarr; Add Runbook &rarr; Define your Runbook Process &rarr; Add Step &rarr; Kubernetes - Inspect Resource**
-
-![Inspect Kubernetes Octopus](inspect-kubernetes-octopus.png)
-
-Assign the role you set for your deployment target and you can replicate the `kubectl get deployments` command by setting the **Resource** and **Kubectl Verb**. 
-
-Click **Save** then **Run**
-
-This is useful as the runbooks can be shared across teams. Monitoring can then be done at an organization level rather than individually on local machines.
-
-![Get Deployment](get-deployment.png)
 
 ## Octopus as a CD tool
 
