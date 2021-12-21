@@ -59,10 +59,10 @@ Our example dockerfile will create an image that includes Jenkins, plus the Blue
 To create the dockerfile and build an image:
 
 1. Create a text file called ‘Dockerfile’ and add the Jenkins-suggested script. You can add more plugins to the list if you need – just add their names separated by spaces:
-```FROM jenkins/jenkins:lts-slim 
-# Pipelines with Blue Ocean UI and Kubernetes
-RUN jenkins-plugin-cli --plugins blueocean kubernetes
-```
+   ```FROM jenkins/jenkins:lts-slim 
+   # Pipelines with Blue Ocean UI and Kubernetes
+   RUN jenkins-plugin-cli --plugins blueocean kubernetes
+   ```
 1. Save and close the file. If using Notepad on Windows, you must remove the ‘.txt’ file extension.
 1. Open a terminal and use the CD command to move to the folder with the file. Use the following command to create the image:
 ```
