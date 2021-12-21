@@ -144,11 +144,11 @@ jobs:
 
 ![GitHub Success](github-success.png)
 
-   kubectl get deployments
+`kubectl get deployments`
 
-Running this command will get the list of deployments on the cluster. You should see the deployment `octopus-underwater-app-octo`. Use this name to expose the web application:
+Running this command will get the list of deployments on the cluster. You should see the deployment `ecr-app-underwater`. The AWS Fargate Kubernetes profile does not support exposing a service via a Load Balancer. We will port forward locally to inspect the service. Use this command to expose the web application:
 
-   kubectl port-forward deployment/octopus-underwater-app-octo  28019:80
+`kubectl port-forward deployment/octopus-underwater-app-octo  28019:80`
 
 Go to the IP address in the browser to view your web application.
 
@@ -158,7 +158,7 @@ Go to the IP address in the browser to view your web application.
 
 GitHub Actions can build, push and deploy a GitHub repository to a Kubernetes cloud platform like EKS. Integrating with cloud platforms and other tools relies on community-built step templates. In my experience with the tools, these step templates are not standardized. I tried several different templates. Some worked differently from others, depending on the variables called.
 
-I found that using a new step template in GitHub required a layer of learning each time. A tool like Octopus also uses step templates, but they share a standard design across the Octopus Deploy application. This. means the Octopus Deploy step template experience is consistent. 
+I found that using a new step template in GitHub required a layer of learning each time. A tool like Octopus also uses step templates, but they share a standard design across the Octopus Deploy application. This means the Octopus Deploy step template experience is consistent. 
 
 
 
