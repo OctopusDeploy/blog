@@ -54,7 +54,7 @@ Go to **Settings &rarr; Secrets &rarr; New repository secret**
 - **AWS_ACCESS_KEY_ID**- the Access Key ID from earlier
 - **AWS_SECRET_ACCESS_KEY**- the Secret Access Key from earlier
 - **OCTOPUS_SERVER**- The URL of your Octopus Server
-- **OCTOPUS_APIKEY**- The Octopus API Key of your Octopus Instance. To create one, go to **Your User Name &rarrl Profile &rarr; My API Keys &rarr; New API key**
+- **OCTOPUS_APIKEY**- The Octopus API Key of your Octopus Instance. To create one, go to **Your User Name &rarr; Profile &rarr; My API Keys &rarr; New API key**
 
 We need to create a workflow file in the repository. A Github Actions workflow contains instructions on performing operations on the code repository. Several pre-built step templates will allow you to do many different tasks on a code repository. In this example, we use a step template to build and push the code to an AWS ECR repository and deploy it from Octopus Deploy.
 
@@ -129,7 +129,7 @@ Go to your Amazon ECR repository to view the image.
 
 ## Set Up Octopus Deploy
 
-In your Octopus Deploy instance, create a project called `aws` by going to **Project, Add Project** Add the `aws` title and click **Save**.
+In your Octopus Deploy instance, create a project called `aws-github` by going to **Project, Add Project** Add the `aws-github` title and click **Save**.
 
 Set up a Development Environment by going to **Infrastructure, Environments, Add Environment**. Give it a name and click **Save**. Do the same for a Test and Production environment
 
@@ -140,7 +140,7 @@ Set up your AWS Kubernetes cluster as a deployment target in Octopus Deploy by g
 
 ## Deploy to EKS step
 
-In your `aws` project, go to **Process, add deployment step, Kubernetes, Deploy Kubernetes Containers**
+In your `aws-github` project, go to **Process, add deployment step, Kubernetes, Deploy Kubernetes Containers**
 
 Add the following YAML into the YAML section.
 
@@ -181,11 +181,7 @@ Now we can progress the release to the Test and Production environment when we a
 
 ![Development Success](production-success.png)
 
-This command will point the CLI to your cluster:
-
-    kubectl get deployments
-
-Running this command will get the list of deployments on the cluster. You should see the deployment `octopus-underwater-github`. The AWS Fargate Kubernetes profile does not support exposing a service via a Load Balancer. We will port forward locally to inspect the service. Use this command to expose the web application:
+The AWS Fargate Kubernetes profile does not support exposing a service via a Load Balancer. We will port forward locally to inspect the service. Use this command to expose the web application:
 
     kubectl port-forward deployment/octopus-underwater-app-github  28019:80
     
