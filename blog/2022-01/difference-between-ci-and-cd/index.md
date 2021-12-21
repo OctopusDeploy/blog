@@ -52,14 +52,14 @@ Taken literally, CD takes the compiled artifacts from a successful build perform
 
 Such commit-to-consumer pipelines are common in simple projects. More complex projects can also have a completely automated development pipeline, if the appropriate tests and monitoring systems are in place.
 
-But while fully automated deployments have many benefits, it's not uncommon for deployments to involve human decision making. There are many valid reasons for not automatically deploying every commit to the main branch into production, including:
+But while fully automated deployments have many benefits, it's not uncommon for deployments to involve human decision-making. There are many valid reasons for not automatically deploying every commit to the main branch into production, including:
 
 * Coordinating deployments with legacy systems
 * Acquiring sign-off from product owners
 * Usability testing that is impossible to automate
 * Regulatory requirements
 * Dog-fooding your own product
-* Integrating deployments with backend changes like databases
+* Integrating deployments with back-end changes like databases
 * Not having 100% confidence in your tests
 
 Where CI is machine-driven for many teams, CD is human-driven. Much of the grunt work of performing a deployment is still automated, but the decision to promote a release through to production is a human one. Importantly, the decision may not be made by technical employees, but rather product owners, managers, or someone who stayed up until midnight to click the deploy button.
@@ -85,16 +85,20 @@ This single decision point means our once machine-driven equation now:
 
 ![Octopus dashboard showing Projects overview page with releases in Dev, Test and Production sometimes approved sometimes failing](dashboard.png "width=500")
 
-*Dashboards with deploy buttons for humans.*
+*Octopus dashboard with deploy buttons for humans.*
 
 This focus on the human element is frequently lost when CI/CD is presented as nothing more than a deployment step, automatically performed after the code has been compiled. For instance, the [Jenkins documentation](https://jenkins.io/doc/pipeline/tour/deployment/#stages-as-deployment-environments) recommends that the test and production environments are modeled as stages in a CI pipeline.
 
 At first glance, this example appears to provide a point in the process for a human to approve the deployment, but what happens to a build that was never intended to be pushed to production?  Such a build would be canceled before the application is exposed to customers, resulting in a failed build. These failed builds are difficult to distinguish from builds that failed to compile or failed their tests, even though not promoting to production is the expected behavior of the CD process in this instance.
 
-In short, a good CD tool facilitates the human decision-making process that is so common (if not essential) to deployments, or at the very least surfaces the current state of the deployments between environments, and automates the deployment, so promotions between environments are easy and reliable.
+In short, a good CD tool, like Octopus Deploy, facilitates the human decision-making process that is so common (if not essential) to deployments, or at the very least surfaces the current state of the deployments between environments, and automates the deployment, so promotions between environments are easy and reliable.
 
 ## Conclusion
 
 Recognizing the different requirements between a machine-driven CI process and a human-driven CD process is essential for delivering features to your customers in a fast, reliable, and repeatable manner. This is why using dedicated tools for Continuous Integration and Continuous Deployment can make sense.
+
+If you're looking for a CD tool, you can sign up for a [free trial of Octopus Deploy](https://octopus.com/start).
+
+You can also look forward to more Continuous Integration content from us in the coming weeks, including guides for Jenkins and GitHub Actions, bespoke tools, and more.
 
 Happy deployments!
