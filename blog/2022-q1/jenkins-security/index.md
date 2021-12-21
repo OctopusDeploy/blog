@@ -68,7 +68,7 @@ To stop your controller from running builds:
    - change the **Number of executors** to **0** if you never want to build on the controller
    - select **Only build jobs with label expressions matching this node** from the **Usage** dropdown if you want to build on the controller when needed.
 
-## Only give your teams access to what they need
+## Only give your team access to what they need
 
 Security, of course, is more than just protecting yourself from incoming threats. It’s also about protecting your environment from within because, naturally, accidents can happen. And they’re more likely to happen if:
 
