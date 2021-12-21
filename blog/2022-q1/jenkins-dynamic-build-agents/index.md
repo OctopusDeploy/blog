@@ -228,7 +228,7 @@ The **Ports** column will show your instance’s ports as in an 8080:54321 forma
 We’ll now combine the minikube IP and the port to make up the URL. For example, if the IP is 123.123.123.123 and the port number is 54321, your Jenkins URL would be http://123.123.123.123:54321.
 
 :::hint
-If your URL doesn’t work, it’s possible your firewall could be blocking the instance. Speak to your network admin for help. If you’re following along on your home computer and hit this problem, you can temporarily forward your ports with `kubectl port-forward svc/jenkins -n jenkins 8080:8080`. This would make your URL http://localhost:8080.
+If your URL doesn’t work, it’s possible your firewall could be blocking the instance. Speak to your network admin for help. If you’re following along on your own computer and hit this problem, you can temporarily forward your ports with `kubectl port-forward svc/jenkins -n jenkins 8080:8080`. This would make your URL http://localhost:8080.
 :::
 
 Go to the URL in your web browser and you should see the **Getting Started** screen. This will ask for a one-time Administrator password. With a Kubernetes cluster you need to find this via command line.
