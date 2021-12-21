@@ -31,17 +31,18 @@ Octopus Deploy is a tool that can help with your infrastructure and software's d
 Being able to handle software and infrastructure deployment, Octopus is a great tool for developers, DevOps engineers, and system administrators. 
 
 ## Getting to know Octopus Deploy
-A system administrator at heart, I'm always keen to learn how a product runs. With Octopus Deploy, there are a few ways of running it:
 
-- Octopus Cloud, which is a cloud-hosted service that Octopus manages 
-- On-premises installation, which you install on a Windows server 
-- Container-hosted installation, using the Octopus Deploy Docker image on Linux
+A system administrator at heart, I'm always keen to learn how a product runs. With Octopus Deploy, there are several ways you can set up your instance:
+
+- [Octopus Cloud](https://octopus.com/start/cloud), which is a cloud-hosted service that Octopus manages 
+- [On-premises installation](https://octopus.com/start/server-trial), which you install on a Windows server 
+- [Container-hosted installation](https://octopus.com/blog/introducing-linux-docker-image), using the Octopus Deploy Docker image on Linux (with a [free license](https://octopus.com/start/server-trial))
  
 I've been working through [installing Octopus Deploy](https://octopus.com/docs/installation) from scratch. 
 
 It's been a great learning experience, getting hands-on with the technology, building the infrastructure, and building my knowledge along the way. 
 
-Octopus Deploy is straightforward to install on a single server configuration and set up a lab for learning purposes.  However, I wanted to learn how customers run it in a real-world scenario. 
+It's straightforward to install Octopus Deploy on a single server configuration and to set up a lab for learning purposes.  However, I wanted to learn how customers run it in a real-world scenario. 
 
 I spent time running Octopus Deploy in a [highly available architecture](https://octopus.com/docs/administration/high-availability) in my environment. I looked at:
 
@@ -53,7 +54,7 @@ I had a few false starts because I assumed I knew what to do and didn't read [th
 
 A benefit of working with virtual machines is you can delete them and start again when you make a mistake while learning a new product or concept. And I took advantage of that functionality!
 
-My false starts taught me the importance of the Master Key to your Octopus Deploy environment and [how to recover](https://octopus.com/docs/administration/managing-infrastructure/lost-master-key) without a backup of your Key.
+My false starts taught me how important the Master Key is to your Octopus Deploy environment, and [how to recover](https://octopus.com/docs/administration/managing-infrastructure/lost-master-key) without a backup of your Key.
 
 ::hint
 The Master Key is created on installation and is used along with AES-128 to encrypt certain sensitive data in the Octopus database. Make sure you [back it up](https://octopus.com/docs/octopus-rest-api/octopus.server.exe-command-line/show-master-key) and keep it somewhere safe. 
@@ -67,15 +68,15 @@ Building and breaking my implementation helped enforce the concepts of deploying
 
 Another area that tripped me up was shared storage. This needs to be **configured and checked** before installing Octopus Deploy.  
 
-You can install Octopus Deploy in the shared storage being in place, but there will be some strange behavior if you do. Make sure you configure the [shared storage](https://octopus.com/docs/administration/high-availability/design/octopus-for-high-availability-on-premises#shared-storage) and check it's operational before you start the install.  
+You can install Octopus Deploy without the shared storage being in place, but there will be some strange behavior if you do. Make sure you configure the [shared storage](https://octopus.com/docs/administration/high-availability/design/octopus-for-high-availability-on-premises#shared-storage) and check it's operational before you start the install.  
 
 ## Next steps
 
-I'm continuing my learning journey and have a plan for the coming weeks. I'll be learning the terminology that Octopus Deploy uses, setting up my first deployment, and learning best practices.   
+I'm continuing my learning journey and have a plan for the coming weeks. I'll be learning the terminology that Octopus Deploy uses, setting up my first deployment, and becoming familiar with best practices.   
 
-Beyond that, I want to know how to look after my Octopus Deploy implementation, how to build complex deployments, and learn how Octopus integrates with other products. 
+Beyond that, I want to know how to look after my Octopus Deploy implementation, how to build complex deployments, and how Octopus integrates with other products. 
 
-Be sure to check back to see how my learning journey is going. We'll add links to other posts in the series as they become available.
+Be sure to check back to see how I'm progressing. We'll add links to other posts in the series as they become available.
 
 Let me know if you have any questions by reaching out to [sarah.lean@octopus.com](mailto:sarah.lean@octopus.com) or leaving a comment below.
 
