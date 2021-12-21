@@ -2,15 +2,15 @@
 title: Azure Bicep and Octopus Deploy
 description: In this blog post, I introduce how to use Bicep templates and automate their deployment using Octopus Deploy Runbooks.
 author: sarah.lean@octopus.com
-visibility: public
-published: 
+visibility: private
+published: 2999-01-01
 metaImage: 
 bannerImage: 
 bannerImageAlt: 
+isFeatured: false
 tags:
  - DevOps
  - Azure
- - IaC
 ---
 
 In late 2020 Microsoft announced their new project, [Bicep](https://docs.microsoft.com/azure/azure-resource-manager/bicep/overview). A Domain-Specific Language (DSL) for deploying Azure resources. The aim of Bicep is to simplify the authoring experience with it being straightforward to learn. A well as being modular and re-usable. 
