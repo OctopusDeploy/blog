@@ -15,7 +15,7 @@ tags:
   - Testing
 ---
 
-One instance of Jenkins is fine if you’re running a small project with few developers. But, you’ll find as your team and product grow, that single instance may not remain stable. When the number of commits increase, so do the processes Jenkins needs to run, and a lone instance’s performance can soon falter and slow your team down.
+One instance of Jenkins is fine if you’re running a small project with few developers. But you’ll find, as your team and product grow, that single instance may not remain stable. When the number of commits increase, so do the processes Jenkins needs to run, and a lone instance’s performance can soon falter and slow your team down.
 
 Thankfully, Jenkins is a scalable platform. Scalability means as your processing needs grow, Jenkins can grow with them.
 
@@ -23,11 +23,11 @@ Scalability with Jenkins sees one instance act as a controller, directing jobs t
 
 Thanks to virtual environments like Kubernetes and Amazon Web Services, you don’t need a finite number of agents or physical hardware. Jenkins in a dynamic setup is smart enough to spin up new agents if none are suitable, prune unused agents and even replace corrupted installs. And all without manual intervention.
 
-In this post, we look at 2 popular ways to set up dynamic scaling from start to finish, with Kubernetes and Amazon Web Services (AWS).
+In this post, we look at 2 popular ways to set up dynamic scaling from start to finish, with [Kubernetes](#method1) and [Amazon Web Services (AWS)](#method2).
 
-## Method 1: Scale with Kubernetes
+## Method 1: Scale with Kubernetes {#method1}
 
-Kubernetes is a tool that automatically scales the number of containers needed to keep an application running smoothly. This makes it a terrific choice for help with scaling your instance of Jenkins.
+Kubernetes is a tool that automatically scales the number of containers needed to keep an application running smoothly. This makes it a terrific choice for help with scaling your Jenkins instance.
 
 By deploying your Jenkins controller to Kubernetes, your CI setup becomes easier to manage, copy or recreate if you have problems.
 
@@ -310,7 +310,7 @@ Then we’ll create 2 “Hello World” build jobs:
 
 Run both build jobs at the same time. If working correctly, they’ll appear in the **Build Queue** on Jenkins’ left, with the 'Jenkins-agent' prefix we set earlier. You can also check the build history to double-check where the job has run.
 
-## Method 2: Scale with Amazon Web Services (AWS) and the EC2 Fleet plugin
+## Method 2: Scale with Amazon Web Services (AWS) and the EC2 Fleet plugin {#method2}
 
 An alternative way to manage Jenkins scalability is with EC2 (Amazon Elastic Compute Cloud) containers and the [EC2 Fleet plugin](https://plugins.jenkins.io/ec2-fleet/).
 
