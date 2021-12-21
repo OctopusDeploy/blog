@@ -264,9 +264,9 @@ Now we can set up the plugin in Jenkins. Return to Jenkins in your web browser:
    - **Jenkins Tunnel** – enter `agent.jenkins.svc.cluster.local:50000`
 1. Scroll to the bottom and click **Pod Templates**, then **Add Pod Template**, and **Pod Template Details**.
 1. Complete the following fields and click **Save**:
-   - **Name** – enter `Jenkins-agent`
+   - **Name** – enter `jenkins-agent`
    - **Namespace** – enter `jenkins`
-   - **Labels** – enter `Jenkins-agent`
+   - **Labels** – enter `jenkins-agent`
    - **Usage** - select **Use this node as much as possible** from the dropdown
 
 ### Step 6: Test everything’s working
