@@ -39,10 +39,6 @@ You will see your repository under **Amazon ECR &rarr; Repositories**. Make a no
 
 ![ECR Repository](ecr-repository.png)
 
-## Octopus Deploy Underwater Scene App
-
-In this blog, we will build the Octopus Deploy Underwater App and push it to Amazon ECR. You will use these images in later blog posts.
-
 ## Jenkins setup
 
 We first install some necessary plugins to interact with docker and Amazon. Go to the **Dashboard &rarr; Manage Jenkins &rarr; Manage Plugins. You will need the following plugins:
@@ -82,7 +78,7 @@ Fill out the following fields for the pipeline, leaving everything else as defau
 
 **Definition** - Pipeline script from SCM
 - **SCM** - Git
-- **Repository URL** - fork this URL: https://github.com/terence-octo/octopus-underwater-app/
+- **Repository URL** - The URL of your forked repo and the jenkins-ecr branch
 - **Credentials** - zone of the repository
 - **Branch Specifier** -*/main
 
