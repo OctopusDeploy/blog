@@ -21,6 +21,8 @@ This blog will build and push the Octopus Deploy Underwater App to Amazon Elasti
 
 The [Traditional Jenkins Installation](/blog/2022-q1/jenkins-install-guide/index.md), [Docker Jenkins Installation](/blog/2022-q1/jenkins-docker-install-guide/index.md), or [Helm Jenkins Installation](/blog/2022-q1/jenkins-helm-install-guide/index.md) guides provide instructions to install Jenkins in your chosen environment.
 
+This blog will use the [Octopus Underwater app repository](https://github.com/terence-octo/octopus-underwater-app). You can fork the repository and follow along. Alternatively, the jenkins-ecr branch contains the template files needed to complete the steps in this blog. You will have to replace some values with your own. I have included my values in this blog as a reference.
+
 ## Amazon Web Services setup
 
 To set up AWS for Jenkins, we need to create an access key and an ECR repository to store the image.
@@ -42,6 +44,14 @@ You will see your repository under **Amazon ECR &rarr; Repositories**. Make a no
 In this blog, we will build the Octopus Deploy Underwater App and push it to Amazon ECR. You will use these images in later blog posts.
 
 ## Jenkins setup
+
+We first install some necessary plugins to interact with docker and Amazon. Go to the **Dashboard &rarr; Manage Jenkins &rarr; Manage Plugins. You will need the following plugins:
+
+- [CloudBees AWS Credentials](https://plugins.jenkins.io/aws-credentials/)
+- [Amazon ECR](https://plugins.jenkins.io/amazon-ecr/)
+- [Docker Pipeline](https://plugins.jenkins.io/docker-workflow/)
+
+You can search for these plugin in the available tab. Once they are installed they will appear in the installed tab.
 
 We will use a Jenkinsfile to compile, build, test, and push the image to Amazon ECR. A Jenkins file is a configuration file that defines a Jenkins Pipeline. A Jenkins Pipeline is a series of steps that Jenkins will perform on an artifact to achieve the desired result. In this case, it is the clone, build, test, and push of an image to Amazon ECR. The power of using a Jenkinsfile is to check it into source control to manage different versions of the file.
 
@@ -72,7 +82,7 @@ Fill out the following fields for the pipeline, leaving everything else as defau
 
 **Definition** - Pipeline script from SCM
 - **SCM** - Git
-- **Repository URL** - fork this URL: https://github.com/terence-octo/octopus-underwater-app
+- **Repository URL** - fork this URL: https://github.com/terence-octo/octopus-underwater-app/
 - **Credentials** - zone of the repository
 - **Branch Specifier** -*/main
 
@@ -81,8 +91,6 @@ Click **SAVE**
 ## GitHub setup
 
 We will use a sample web application that displays an animated underwater scene with helpful links for this example.
-
-Fork the repository at https://github.com/terence-octo/octopus-underwater-app
 
 We want to set up a webhook so that Jenkins can know when the repository is updated. To do this, go to **Settings &rarr; Webhooks**
 
@@ -101,31 +109,42 @@ Click **Add webhook** to save.
 Add a Jenkins file to the root level of the repository. You will need to reference your Amazon ECR repository. Note the following changes required below:
 
 ```
-node {
-    def app
 
-    stage('Clone repository') {
-
-        checkout scm
+pipeline {
+    agent any
+    options {
+        skipStagesAfterUnstable()
     }
-
-    stage('Build image') {
-        /* Referencing the image name in AWS */
-
-        app = docker.build("[name of your AWS ECR repository]")
-    }
-    
-    stage('Test image') {
-    /* Empty */
-
-    }
-
-    stage('Push image') {
-        /* Referencing the AWS registry. Tagging with the Jenkins build number and the latest tag */
+    stages {
+         stage('Clone repository') { 
+            steps { 
+                script{
+                checkout scm
+                }
+            }
+        }
         
-        docker.withRegistry('[the URI of your repository]', 'ecr:[the zone of your AWS ECR repository]:[the ID of your jenkins AWS credentials]') {
-            app.push("${env.BUILD_NUMBER}")
-            app.push("latest")
+        stage('Build') { 
+            steps { 
+                script{
+                 app = docker.build("underwater")
+                }
+            }
+        }
+        stage('Test'){
+            steps {
+                 echo 'Empty'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                script{
+                        docker.withRegistry('https://720766170633.dkr.ecr.us-east-2.amazonaws.com', 'ecr:us-east-2:aws-credentials') {
+                    app.push("${env.BUILD_NUMBER}")
+                    app.push("latest")
+                    }
+                }
+            }
         }
     }
 }
