@@ -160,12 +160,12 @@ spec:
     spec:
       containers:
       - name: jenkins 
-        image: mcasperson/jenkins 
+        image: [username]/jenkins 
         ports:
         - containerPort: 8080
         - containerPort: 50000
         volumeMounts: 
-        - name: jenkins-home 
+        - name: jenkins-home
           mountPath: /var/jenkins_home 
       volumes:
       - name: jenkins-home 
@@ -222,7 +222,7 @@ spec:
 Run the YAML file from its directory with the following command:
 
 ```
-kubectl apply -f jenkins-service.yaml -n jenkins
+kubectl create -f jenkins-service.yaml -n jenkins
 ```
 
 ### Step 4: Find your Jenkins instance URL and connect to it
