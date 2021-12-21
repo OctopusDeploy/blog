@@ -181,7 +181,7 @@ Now we can progress the release to the Test and Production environment when we a
 
 ![Development Success](production-success.png)
 
-The AWS Fargate Kubernetes profile does not support exposing a service via a Load Balancer. We will port forward locally to inspect the service. Use this command to expose the web application:
+We will port forward locally to inspect the service. Use this command to inspect the web application:
 
     kubectl port-forward deployment/octopus-underwater-app-github  28019:80
     
