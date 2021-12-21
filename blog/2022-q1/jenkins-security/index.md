@@ -89,7 +89,7 @@ To create extra users:
 1. Click **Create User** from the left.
 1. Complete all fields and click **Create User**.
 
-### The Matrix Authorization Strategy plugin
+### Use the Matrix Authorization Strategy plugin
 
 We recommend using the [Matrix Authorization Strategy plugin](https://plugins.jenkins.io/matrix-auth/) to manage user access to Jenkins on a more granular level. For example, with this plugin you could:
 
@@ -112,12 +112,12 @@ To set permissions with the plugin:
    -	**Project-based Matrix Authorization Strategy** – allows you to manage user and group permissions at a project level
 1. Regardless of your choice, use the buttons to add users or groups, and select their level of access using the checkboxes in the table. Click **Save** when you’re done.
 
-### Other user access plugins
+### Other user access plugins you should consider
 If you’re already using other systems for access management, you might be able to authenticate your Jenkins users with those. For example, there are plugins for both [Microsoft’s Active Directory](https://plugins.jenkins.io/ui/search?sort=relevance&categories=&labels=&view=Tiles&page=1&query=Active%20Directory) and [OpenID](https://plugins.jenkins.io/ui/search?sort=relevance&categories=&labels=&view=Tiles&page=1&query=OpenID), which could save you from managing access in more than one spot.
 
 We also recommend looking at both the [Folders](https://plugins.jenkins.io/cloudbees-folder/) and [Folder-based Authorization Strategy](https://plugins.jenkins.io/folder-auth/) plugins. The Folders plugin allows you to group jobs as you want in nestable folders. Using this plugin means you could group jobs that share security needs, which helps you keep a closer eye on them. The Folder-based Authorization Strategy plugin extends security for folders, by letting you set folder access using roles.
 
-### Securely store credentials
+## Securely store your credentials
 
 The [Credentials Binding plugin](https://plugins.jenkins.io/credentials-binding/) is the best option for encrypting and securely storing credentials that connects Jenkins with other services. Jenkins recommends it too – in fact it’s one of their suggested plugins when installing Jenkins for the first time. Plus, plenty of other plugins use it as a dependency too.
 
