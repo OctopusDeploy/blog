@@ -137,11 +137,7 @@ Once the Octopus plugin is set up, make a change to the code on GitHub, and the 
 
 ![Jenkins Octopus Icon](jenkins-octo-icon.png "Jenkins Octopus Icon")
 
-You can navigate to the Octopus Deploy instance and deployment through the Octopus Icon.
-
-    kubectl get deployments
-
-Running this command will get the list of deployments on the cluster. You should see the deployment `ecr-app-underwater`. The AWS Fargate Kubernetes profile does not support exposing a service via a Load Balancer. We will port forward locally to inspect the service. Use this command to expose the web application:
+We will port forward locally to inspect the service. Use this command to inspect the web application:
 
     kubectl port-forward deployment/octopus-underwater-app  28019:80
     
