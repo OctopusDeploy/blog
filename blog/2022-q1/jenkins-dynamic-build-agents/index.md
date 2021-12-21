@@ -287,7 +287,7 @@ Then we’ll create 2 “Hello World” build jobs:
 1. Enter `echo "Hello World"` into the **Command box** and click **Save**:
 1. Repeat the steps but call your second job `Testing 2`.
 
-Run both build jobs at the same time. If working correctly, they’ll appear in the **Build Queue** on Jenkins’ left, with the 'Jenkins-agent' prefix we set earlier. You can also check the build history to double-check where the job has run.
+Run both build jobs at the same time. If working correctly, they’ll appear in the **Build Queue** on Jenkins’ left. During a build job, they'll appear under the **Build Executor Status** heading with the 'jenkins-agent' prefix we set earlier. You can also check the build history to double-check exactly where the job has run and if it was successful.
 
 ## Method 2: Scale with Amazon Web Services (AWS) and the EC2 Fleet plugin {#method2}
 
