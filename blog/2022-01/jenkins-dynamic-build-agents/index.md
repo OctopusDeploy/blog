@@ -1,15 +1,16 @@
 ---
-title: Use dynamic build agents to automate scaling in Jenkins
+title: Using dynamic build agents to automate scaling in Jenkins
 description: With some setup, Jenkins can automatically react to your processing needs, creating extra nodes to manage processes. This post explains 2 setup methods.
 author: andrew.corrigan@octopus.com
 visibility: private
-published: 3020-01-01-1400
+published: 2022-01-24-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags:
   - DevOps
+  - CI Series
   - Continuous Integration
   - Jenkins
   - Testing
@@ -468,3 +469,7 @@ Once set up and working, you can change how you want Jenkins to scale in AWS.
 ## What's next
 
 Make sure to watch this space for more Jenkins and build server posts in the coming weeks. For more information on scaling Jenkins, read through their [official scaling documentation](https://www.jenkins.io/doc/book/scaling/).
+
+!include <q1-2022-newsletter-cta>
+
+Happy deployments!
