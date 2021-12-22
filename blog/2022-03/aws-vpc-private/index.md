@@ -3,7 +3,7 @@ title: Create a private AWS VPC with CloudFormation
 description: Learn how to create a private AWS VPC with this sample CloudFormation template.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2022-03-08-1400
+published: 2022-03-01-1400
 metaImage: 
 bannerImage:
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
