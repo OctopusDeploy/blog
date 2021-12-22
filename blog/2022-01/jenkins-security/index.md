@@ -136,8 +136,6 @@ As you can see, there are plenty of ways to ensure safe use of Jenkins to protec
 
 We’ll have more on Jenkins as a platform in the coming weeks, so make sure to watch this space.
 
-## What next
+!include <jenkins-webinar-jan-2022>
 
-Why not check out some the other posts in this series, including:
-
-- We don’t have links yet.
+Happy deployments!
