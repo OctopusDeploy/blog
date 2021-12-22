@@ -25,13 +25,33 @@ This blog will use the [Octopus Underwater app repository](https://github.com/te
 
 As we are working with Kubernetes, the agent needs to be configured with a config file. [This documentation shows you how to configure your agent](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/eks/update-kubeconfig.html). AWS also requires the [aws-iam-authenticator binary](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html).
 
+## Amazon Web Services setup
+
+To set up AWS for Jenkins, we need to create an access key and an ECR repository to store the image.
+
+To create an access key, go to **Amazon Console &rarr; IAM &rarr; Users &rarr; [your user] &rarr; Security credentials &rarr; Create Access Key**
+
+Your browser will download a file containing the Access Key ID and the Secret Access Key. These values will be used in Jenkins to authenticate to Amazon.
+
+To create a repository, go to the **Amazon Console &rarr; ECR &rarr; Create Repository**
+
+The ECR requires an image repository set up for each image you publish. Name the repository the name you want the image to have. 
+
+You will see your repository under **Amazon ECR &rarr; Repositories**. Make a note of the zone it is in, in the URI field.
+
+![ECR Repository](ecr-repository.png)
+
+### AWS Cluster setup
+
+[Set up the cluster in AWS using this guide](https://github.com/OctopusDeploy/blog/blob/2022-q1/blog/2022-q1/eks-cluster-aws/index.md)
+
 Create a file named `deployment.yml` in the root level of the repository.
 
 ```
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ecr-app-underwater
+  name: underwater-app-jenkins 
   labels:
     app: octopus-underwater-app
 spec:
@@ -48,7 +68,7 @@ spec:
     spec:
       containers:
         - name: octopus-underwater-app
-          image: 720766170633.dkr.ecr.us-east-2.amazonaws.com/underwater:latest
+          image: 720766170633.dkr.ecr.us-east-2.amazonaws.com/octopus-underwater-app:latest
           ports:
             - containerPort: 80
               protocol: TCP
@@ -78,7 +98,7 @@ pipeline {
         stage('Build') { 
             steps { 
                 script{
-                 app = docker.build("underwater")
+                 app = docker.build("octopus-underwater-app")
                 }
             }
         }
@@ -100,7 +120,6 @@ pipeline {
         stage('Deploy'){
             steps {
                  sh 'kubectl apply -f deployment.yml'
-                 sh 'kubectl rollout restart deployment ecr-app-underwater'
             }
         }
         
@@ -116,11 +135,11 @@ Jenkins is a continuous integration tool. Jenkins focuses on building and pushin
 
 ![Jenkins Success](jenkins-success.png)
 
-We will port forward locally to inspect the service. Use this command to inspect the web application:
+We will port forward locally to inspect the service. Use this command to inspect the web application. The port 28015 is chosen based on the example in the Kubernetes documentation:
 
-    kubectl port-forward deployment/octopus-underwater-app  28019:80
+    kubectl port-forward deployment/underwater-app-jenkins  28015:80
     
-Go to the IP address in the browser to view your web application.
+Go to the IP address http://127.0.0.1:28015/ in the browser to view your web application.
 
 ![Octopus Underwater App](octopus-underwater-app.png)
 
