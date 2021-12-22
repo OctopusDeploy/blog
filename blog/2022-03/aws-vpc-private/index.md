@@ -11,6 +11,7 @@ isFeatured: false
 tags:
  - DevOps
  - AWS
+ - CloudFormation
 ---
 
 [Virtual Private Clouds](https://aws.amazon.com/vpc/), or VPCs, are the backbone of any infrastructure deployed to AWS. Almost all resources require a VPC, and most resource segregation is done via VPCs.
