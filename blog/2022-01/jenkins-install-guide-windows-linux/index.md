@@ -271,3 +271,7 @@ Jenkins is now configured and ready to use. Click the **Start using Jenkins** bu
 This post examined the installation process for Jenkins in Windows and major Linux distributions, and provided tips for administering the Jenkins service.
 
 Traditional installations are just one method for getting a Jenkins server up and running though. In the next post, you learn how to install Jenkins with Docker.
+
+!include <q1-2022-newsletter-cta>
+
+Happy deployments!
