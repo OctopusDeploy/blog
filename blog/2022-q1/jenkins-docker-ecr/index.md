@@ -58,7 +58,7 @@ In your Jenkins instance, go to **Manage Jenkins &rarr; Manage Credentials &rarr
 Fill in the following fields, leaving everything else as default:
 
 - **Kind**-AWS credentials
-- **ID** - amazon-credentials
+- **ID** - aws-credentials
 - **Access Key ID**- Access Key ID from earlier
 - **Secret Access Key**- Secret Access Key from earlier 
 
