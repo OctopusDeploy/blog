@@ -11,6 +11,7 @@ isFeatured: false
 tags:
  - DevOps
  - AWS
+ - CloudFormation
 ---
 
 In our first post, [Create a private AWS VPC with CloudFormation](https://octopus.com/blog/aws-vpc-private), you looked at how to create a VPC with private subnets. Instances in this VPC had no internet access and could only communicate with instances in the subnets in the same VPC.
