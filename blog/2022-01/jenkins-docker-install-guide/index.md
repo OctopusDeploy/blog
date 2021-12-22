@@ -341,4 +341,6 @@ Running Jenkins from a Docker image provides a convenient method for launching J
 
 Running Docker images on a workstation or server is just the beginning though. In the next post, you'll learn how to deploy Jenkins to a Kubernetes cluster.
 
+!include <jenkins-webinar-jan-2022>
+
 Happy deployments!
