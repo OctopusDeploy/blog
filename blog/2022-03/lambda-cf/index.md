@@ -11,6 +11,8 @@ isFeatured: false
 tags:
  - DevOps
  - AWS
+ - CloudFormation
+ - Lambda
 ---
 
 Lambda is a serverless Function as a Service (FaaS) offering from AWS. Lambda's provide native scaling, high availability, and the ability to scale to 0 keeping costs down for infrequently used deployments.
