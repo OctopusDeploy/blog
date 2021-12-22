@@ -12,6 +12,7 @@ isFeatured: false
 tags:
  - DevOps
  - AWS
+ - CloudFormation
 ---
 
 Workers provide the ability to delegate the execution of a deployment to a machine with privileged access to the resources being modified, with specialized tools installed, or just to remove the burden of executing a deployment from the Octopus Server. 
