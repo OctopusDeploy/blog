@@ -11,6 +11,7 @@ isFeatured: false
 tags:
  - DevOps
  - AWS
+ - CloudFormation
 ---
 
 The [instance type](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html#cfn-ec2-instance-instancetype) is a required parameter when building EC2 instances. While the AWS documentation provides a list of allowed values, it's not presented in a format that can be easily consumed by your own CloudFormation templates.
