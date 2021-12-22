@@ -11,6 +11,7 @@ isFeatured: false
 tags:
   - DevOps
   - AWS
+  - Lambda
 ---
 
 [Manual intervention](https://octopus.com/docs/projects/built-in-step-templates/manual-intervention-and-approvals) and [guided failure](https://octopus.com/docs/releases/guided-failures) are powerful features of the Octopus Deploy product.  Both features pause a deployment or runbook and wait for a user to choose an option. The downside is that someone needs to be present to provide a response.  With Octopus Deploy written API-first, however, it's possible to automate these responses. 
