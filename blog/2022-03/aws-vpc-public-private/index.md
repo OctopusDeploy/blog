@@ -11,7 +11,7 @@ isFeatured: false
 tags:
  - DevOps
  - AWS
-  - CloudFormation
+ - CloudFormation
 ---
 
 In our previous post, [Create a private AWS VPC with CloudFormation](https://octopus.com/blog/aws-vpc-private), you looked at how to create a VPC with private subnets, and then [add an internet gateway](https://octopus.com/blog/aws-vpc-public) to grant internet access inside public subnets.
