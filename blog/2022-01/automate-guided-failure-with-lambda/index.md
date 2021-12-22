@@ -122,7 +122,7 @@ resource "aws_apigatewayv2_api" "subscriber_gateway" {
   protocol_type                     = "HTTP"
 }
 ```
-varables.tf
+variables.tf
 ```terraform
 variable "region" {
     type = string
@@ -144,7 +144,7 @@ queue_name = "#{Project.AWS.Queue.Name}"
 api_gateway_name = "#{Project.AWS.API.Gateway.Name}"
 ```
 #### Applying a Terraform template
-Using the Terraform from above, create the resources on AWS.
+Using the Terraform above, create the resources on AWS.
 
 After the resources are created, you can focus on the Lambdas.
 
@@ -398,18 +398,18 @@ jobs:
           octo push --package=OctoSubscriber-ProcessMessage-Lambda.2021.1.1.$GITHUB_RUN_NUMBER.zip --server=$OCTOPUS_URL --apiKey=$OCTOPUS_API_KEY --space="Target - Serverless"
 ```
 
-In this case, the GitHub Action is pushing the Lambda packages directly to the built-in Octopus Deploy package repository.
+In this case, the GitHub action is pushing the Lambda packages directly to the built-in Octopus Deploy package repository.
 
 ## Deploying the Lambdas
 This post assumes you're familiar with how to create an Octopus Deploy project and will not cover this topic.
 
 The deployment process for the Lambdas will consist of the following steps:
 
-- AWS - Deploy Accept Message Lamdba Function
-- AWS - Deploy Process Message Lamdbda Function
-- AWS - Configure Accept Message Lambda Alias
-- AWS - Configure Process Message Lambda Alias
-- AWS - Configure Lambda API Gateway Integration
+- **AWS - Deploy Accept Message Lamdba Function**
+- **AWS - Deploy Process Message Lamdbda Function**
+- **AWS - Configure Accept Message Lambda Alias**
+- **AWS - Configure Process Message Lambda Alias**
+- **AWS - Configure Lambda API Gateway Integration**
 
 ![](octopus-deployment-process.png)
 
@@ -515,11 +515,11 @@ Navigate to **Lambda** in the AWS Console located under the **Compute** section.
 
 ![AWS Console showing All services section above Compute section with Lambda menu item highlighted](aws-console-lambda.png)
 
-Select the Process Message Lambda, then click **Configuration**, then **Triggers**, then click **Add Trigger**. 
+Select the **Process Message Lambda**, then click **Configuration**, then **Triggers**, then click **Add Trigger**. 
 
 ![AWS console showing Function overview](aws-lambda-configuration-triggers.png)
 
-Select SQS from the dropdown.  Clicking into the **SQS queue** box will bring up a list of queues. You can select from this list or enter the ARN of the queue.  After that has been completed, click **Add**.
+Select **SQS** from the dropdown.  Clicking into the **SQS queue** box will bring up a list of queues. You can select from this list or enter the ARN of the queue.  After that has been completed, click **Add**.
 
 ![AWS console showing  Trigger configuration section with SQS section and SQS queue section highlighted](aws-lambda-create-trigger.png)
 
@@ -530,7 +530,7 @@ Navigate to the **Configuration** tab of Octopus Deploy, click **Subscriptions**
 
 ![Octopus dashboard open on the Configuration tab with Subscriptions selected from the menu and ADD SUBSCRIPTION highlighted](octopus-subscription.png)
 
-Enter the following for the Subscription
+Enter the following for the Subscription:
 
 - **Name**: Give the subscription a name
 - **Event Categories**: Guided failure interruption raised
