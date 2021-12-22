@@ -71,4 +71,6 @@ You can also check out some of our older blogs on build servers, CI, and some of
 - [Java CI/CD: Octopus, Jenkins, Java, Kubernetes, and the DevOps lifecycle (series)](https://octopus.com/blog/java-ci-cd-co/)
 - [The ten pillars of pragmatic deployments](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments)
 
+!include <q1-2022-newsletter-cta>
+
 Happy deployments!
