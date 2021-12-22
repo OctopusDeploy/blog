@@ -11,6 +11,7 @@ isFeatured: false
 tags:
  - DevOps
  - AWS
+ - CloudFormation
 ---
 
 Many of the services provided by AWS are specific to individual regions, and Amazon Machine Images (AMIs) are just one example. While common AMIs are published to all regions, the AMI ID is unique per region.
