@@ -272,6 +272,8 @@ This post examined the installation process for Jenkins in Windows and major Lin
 
 Traditional installations are just one method for getting a Jenkins server up and running though. In the next post, you learn how to install Jenkins with Docker.
 
+!include <jenkins-webinar-jan-2022>
+
 !include <q1-2022-newsletter-cta>
 
 Happy deployments!
