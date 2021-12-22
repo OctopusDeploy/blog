@@ -135,12 +135,12 @@ Set up a Development Environment by going to **Infrastructure, Environments, Add
 
 We need to set up the Amazon account to deploy to EKS. Go to **Infrastructure, Accounts, Add Account, AWS Account**. Give it a name and fill out the **Access Key ID and Secret Access Key** from earlier.
 
-Set up your AWS Kubernetes cluster as a deployment target in Octopus Deploy by going to **Infrastructure, Deployment Targets, Add Deployment Target, Kubernetes Cluster, Add**
+Set up your AWS Kubernetes cluster as a deployment target in Octopus Deploy by going to **Infrastructure, Deployment Targets, Add Deployment Target, Kubernetes Cluster, Add**. [These steps indicates the fields to add to set up the deployment target.](https://octopus.com/docs/infrastructure/deployment-targets#adding-deployment-targets) In this section you will give the deployment target a target role. This will be referenced in the Octopus Deploy step later.
 
 
 ## Deploy to EKS step
 
-In your `aws-github` project, go to **Process, add deployment step, Kubernetes, Deploy Kubernetes Containers**
+In your `aws-github` project, go to **Process, add deployment step, Kubernetes, Deploy Kubernetes Containers**. Add the target role that you gave your deployment target earler.
 
 Add the following YAML into the YAML section.
 
