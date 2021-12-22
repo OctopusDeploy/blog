@@ -470,6 +470,8 @@ Once set up and working, you can change how you want Jenkins to scale in AWS.
 
 Make sure to watch this space for more Jenkins and build server posts in the coming weeks. For more information on scaling Jenkins, read through their [official scaling documentation](https://www.jenkins.io/doc/book/scaling/).
 
+!include <jenkins-webinar-jan-2022>
+
 !include <q1-2022-newsletter-cta>
 
 Happy deployments!
