@@ -18,7 +18,7 @@ This blog will set up an Elastic Kubernetes Service (EKS) cluster in Amazon Web 
 You will need:
 
 - AWS account
-- A terminal with [kubectl](https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html) and [eksctl](https://docs.aws.amazon.com/eks/latest/userguide/eksctl.html) installed
+- A terminal with [kubectl](https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html), [eksctl](https://docs.aws.amazon.com/eks/latest/userguide/eksctl.html) and [aws-iam-authenticator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html) installed
 - IAM Permissions
 
 There are two ways to set up a cluster in EKS, the command-line interface (CLI) or the console. Before doing these, we need to set up some access keys and user accounts.

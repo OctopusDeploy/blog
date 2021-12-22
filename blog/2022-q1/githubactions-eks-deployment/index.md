@@ -64,7 +64,7 @@ First, we need to create a deployment YAML file for GitHub actions to deploy to 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ecr-app-underwater
+  name: underwater-app-github
   labels:
     app: octopus-underwater-app
 spec:
@@ -144,11 +144,11 @@ jobs:
 
 ![GitHub Success](github-success.png)
 
-We will port forward locally to inspect the service. Use this command to inspect the web application:
+We will port forward locally to inspect the service. Use this command to inspect the web application. The port 28015 is chosen based on the example in the Kubernetes documentation:
 
-`kubectl port-forward deployment/octopus-underwater-app-octo  28019:80`
-
-Go to the IP address in the browser to view your web application.
+    kubectl port-forward deployment/underwater-app-github  28015:80
+    
+Go to the IP address http://127.0.0.1:28015/ in the browser to view your web application.
 
 ![Octopus Underwater App](octopus-underwater-app.png)
 

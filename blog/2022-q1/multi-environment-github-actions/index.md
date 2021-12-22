@@ -131,7 +131,7 @@ Go to your Amazon ECR repository to view the image.
 
 In your Octopus Deploy instance, create a project called `aws-github` by going to **Project, Add Project** Add the `aws-github` title and click **Save**.
 
-Set up a Development Environment by going to **Infrastructure, Environments, Add Environment**. Give it a name and click **Save**. Do the same for a Test and Production environment
+Set up a Development Environment by going to **Infrastructure, Environments, Add Environment**. Give it a name and click **Save**. Do the same for a Test and Production environment.
 
 We need to set up the Amazon account to deploy to EKS. Go to **Infrastructure, Accounts, Add Account, AWS Account**. Give it a name and fill out the **Access Key ID and Secret Access Key** from earlier.
 
@@ -148,7 +148,7 @@ Add the following YAML into the YAML section.
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ecr-app-underwater-github
+  name: octopus-underwater-app-github
   labels:
     app: octopus-underwater-app
 spec:
@@ -165,7 +165,7 @@ spec:
     spec:
       containers:
         - name: octopus-underwater-app
-          image: 720766170633.dkr.ecr.us-east-2.amazonaws.com/underwater-github:latest
+          image: 720766170633.dkr.ecr.us-east-2.amazonaws.com/octopus-underwater-app:latest
           ports:
             - containerPort: 80
               protocol: TCP
@@ -181,11 +181,11 @@ Now we can progress the release to the Test and Production environment when we a
 
 ![Development Success](production-success.png)
 
-We will port forward locally to inspect the service. Use this command to inspect the web application:
+We will port forward locally to inspect the service. Use this command to inspect the web application. The port 28015 is chosen based on the example in the Kubernetes documentation:
 
-    kubectl port-forward deployment/octopus-underwater-app-github  28019:80
+    kubectl port-forward deployment/octopus-underwater-app-github  28015:80
     
-Go to the IP address in the browser to view your web application.
+Go to the IP address http://127.0.0.1:28021/ in the browser to view your web application.
 
 ![Octopus Underwater App](octopus-underwater-app.png)
 

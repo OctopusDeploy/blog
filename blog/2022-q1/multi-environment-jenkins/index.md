@@ -18,9 +18,29 @@ This blog will build and push the Octopus Underwater App to Amazon Elastic Conta
 
 - An Amazon Web Services Account (AWS)
 - A GitHub account
-- [A Jenkins instance set up with a pipeline](https://github.com/OctopusDeploy/blog/blob/2022-q1/blog/2022-q1/jenkins-docker-ecr/index.md)
+- [A Jenkins instance set up with a pipeline](https://github.com/OctopusDeploy/blog/blob/2022-q1/blog/2022-q1/jenkins-docker-ecr/index.md).This was set up as part of a previous blog. If using the branch, specify the jenkins-octopus branch reference in Jenkins.
 
 This blog will use the [Octopus Underwater app repository](https://github.com/terence-octo/octopus-underwater-app). You can fork the repository and use the main branch to follow along. The jenkins-octopus branch contains the template files needed to complete the steps in this blog. You will have to replace some values with your own. I have included my values in this blog as a reference.
+
+## Amazon Web Services setup
+
+To set up AWS for Jenkins, we need to create an access key and an ECR repository to store the image.
+
+To create an access key, go to **Amazon Console &rarr; IAM &rarr; Users &rarr; [your user] &rarr; Security credentials &rarr; Create Access Key**
+
+Your browser will download a file containing the Access Key ID and the Secret Access Key. These values will be used in Jenkins to authenticate to Amazon.
+
+To create a repository, go to the **Amazon Console &rarr; ECR &rarr; Create Repository**
+
+The ECR requires an image repository set up for each image you publish. Name the repository the name you want the image to have. 
+
+You will see your repository under **Amazon ECR &rarr; Repositories**. Make a note of the zone it is in, in the URI field.
+
+![ECR Repository](ecr-repository.png)
+
+### AWS Cluster setup
+
+[Set up the cluster in AWS using this guide](https://github.com/OctopusDeploy/blog/blob/2022-q1/blog/2022-q1/eks-cluster-aws/index.md)
 
 
 Extend the pipeline with Octopus Release and Deploy commands. Create a Jenkinsfile and paste the following code.
@@ -46,7 +66,7 @@ pipeline {
         stage('Build') { 
             steps { 
                 script{
-                 app = docker.build("underwater")
+                 app = docker.build("octopus-underwater-app")
                 }
             }
         }
@@ -81,20 +101,20 @@ pipeline {
 
 ## Set Up Octopus Deploy
 
-In your Octopus Deploy instance, create a project called `aws` by going to **Project, Add Project** Add the `aws` title and click **Save**.
+In your Octopus Deploy instance, create a project called `aws-jenkins` by going to **Project, Add Project** Add the `aws-jenkins` title and click **Save**.
 
-Set up a Production Environment by going to **Infrastructure, Environments, Add Environment**. Give it a name and click **Save**
+Set up a Development Environment by going to **Infrastructure, Environments, Add Environment**. Give it a name and click **Save**. Do the same for a Test and Production environment.
 
 We need to set up the Amazon account to deploy to EKS. Go to **Infrastructure, Accounts, Add Account, AWS Account**. Give it a name and fill out the **Access Key ID and Secret Access Key** from earlier.
 
-Set up your AWS Kubernetes cluster as a deployment target in Octopus Deploy by going to **Infrastructure, Deployment Targets, Add Deployment Target, Kubernetes Cluster, Add**
+Set up your AWS Kubernetes cluster as a deployment target in Octopus Deploy by going to **Infrastructure, Deployment Targets, Add Deployment Target, Kubernetes Cluster, Add**. [These steps indicates the fields to add to set up the deployment target.](https://octopus.com/docs/infrastructure/deployment-targets#adding-deployment-targets) In this section you will give the deployment target a target role. This will be referenced in the Octopus Deploy step later.
 
 We need to add the Amazon feed to the Octopus Instance. Go to **Library &rarr; External Feeds &rarr; Add Feed** and select the **AWS Elastic Container Registry**. Enter your **Access Key ID, Secret Access Key and Zone** of your registry. 
 
 
 ## Deploy to EKS step
 
-In your `aws` project, go to **Process, add deployment step, Kubernetes, Deploy Kubernetes Containers**
+In your `aws-jenkins` project, go to **Process, add deployment step, Kubernetes, Deploy Kubernetes Containers**. Add the target role that you gave your deployment target earler.
 
 Add the following YAML into the YAML section.
 
@@ -103,7 +123,7 @@ Add the following YAML into the YAML section.
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ecr-app-underwater
+  name: octopus-underwater-app-jenkins
   labels:
     app: octopus-underwater-app
 spec:
@@ -120,7 +140,7 @@ spec:
     spec:
       containers:
         - name: octopus-underwater-app
-          image: 720766170633.dkr.ecr.us-east-2.amazonaws.com/underwater
+          image: 720766170633.dkr.ecr.us-east-2.amazonaws.com/octopus-underwater-app
           ports:
             - containerPort: 80
               protocol: TCP
@@ -137,11 +157,19 @@ Once the Octopus plugin is set up, make a change to the code on GitHub, and the 
 
 ![Jenkins Octopus Icon](jenkins-octo-icon.png "Jenkins Octopus Icon")
 
-We will port forward locally to inspect the service. Use this command to inspect the web application:
+Navigate back to the Octopus instance project overview and you will see the release deployed to the development environment.
 
-    kubectl port-forward deployment/octopus-underwater-app  28019:80
+![Development Success](development-success.png)
+
+Now we can progress the release to the Test and Production environment when we are ready. Click Deploy to progress the release.
+
+![Development Success](production-success.png)
+
+We will port forward locally to inspect the service. Use this command to inspect the web application. The port 28015 is chosen based on the example in the Kubernetes documentation:
+
+    kubectl port-forward deployment/octopus-underwater-app-jenkins  28015:80
     
-Go to the IP address in the browser to view your web application.
+Go to the IP address http://127.0.0.1:28021/ in the browser to view your web application.
 
 ![Octopus Underwater App](octopus-underwater-app.png)
 

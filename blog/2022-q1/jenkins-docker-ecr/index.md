@@ -80,7 +80,7 @@ Fill out the following fields for the pipeline, leaving everything else as defau
 - **SCM** - Git
 - **Repository URL** - The URL of your forked repo and the jenkins-ecr branch
 - **Credentials** - zone of the repository
-- **Branch Specifier** -*/main
+- **Branch Specifier** -*/jenkins-ecr
 
 Click **SAVE**
 
