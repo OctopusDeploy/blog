@@ -18,9 +18,9 @@ The terms *Continuous Integration* and *Continuous Deployment* tend to be combin
 
 Assuming CI/CD is *just CI with a deployment step* ignores some fundamental differences between the two processes. In this post, we look at:
 
-* The reasons why CI and CD are distinct processes
-* The features provided by good CD tools
-* Why you may consider using separate tools for your CI/CD workflow
+- The reasons why CI and CD are distinct processes
+- The features provided by good CD tools
+- Why you may consider using separate tools for your CI/CD workflow
 
 ## What is Continuous Integration?  
 
@@ -54,13 +54,13 @@ Such commit-to-consumer pipelines are common in simple projects. More complex pr
 
 But while fully automated deployments have many benefits, it's not uncommon for deployments to involve human decision-making. There are many valid reasons for not automatically deploying every commit to the main branch into production, including:
 
-* Coordinating deployments with legacy systems
-* Acquiring sign-off from product owners
-* Usability testing that is impossible to automate
-* Regulatory requirements
-* Dog-fooding your own product
-* Integrating deployments with back-end changes like databases
-* Not having 100% confidence in your tests
+- Coordinating deployments with legacy systems
+- Acquiring sign-off from product owners
+- Usability testing that is impossible to automate
+- Regulatory requirements
+- Dog-fooding your own product
+- Integrating deployments with back-end changes like databases
+- Not having 100% confidence in your tests
 
 Where CI is machine-driven for many teams, CD is human-driven. Much of the grunt work of performing a deployment is still automated, but the decision to promote a release through to production is a human one. Importantly, the decision may not be made by technical employees, but rather product owners, managers, or someone who stayed up until midnight to click the deploy button.
 
@@ -100,5 +100,7 @@ Recognizing the different requirements between a machine-driven CI process and a
 If you're looking for a CD tool, you can sign up for a [free trial of Octopus Deploy](https://octopus.com/start).
 
 You can also look forward to more Continuous Integration content from us in the coming weeks, including guides for Jenkins and GitHub Actions, bespoke tools, and more.
+
+!include <q1-2022-newsletter-cta>
 
 Happy deployments!
