@@ -454,7 +454,7 @@ Now we’ll create a “Hello World” build job:
 
 Run the build job and, if working correctly, you’ll see it appear under your fleet in the Build Executor Status on the left. Once complete, you can also check your build history to check exactly where the job ran.
 
-### Change your scaling options with the 
+### Change your scaling options in AWS
 
 Once set up and working, you can change how you want Jenkins to scale in AWS.
 
