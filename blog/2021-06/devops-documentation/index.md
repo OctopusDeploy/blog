@@ -368,8 +368,4 @@ If you're an Octopus customer, we hope you find these new guides valuable. If yo
 * The [WebDriver application source code](https://github.com/OctopusDeploy/WebDriverTraining).
 * The [GitHub repo](https://github.com/OctopusSamples/GoogleAgileDocs) holding the example project described in this post.
 
-## Register for Matthew's talk: Continuously Delivered Documentation 
-
-Matthew Casperson, Product Manager at Octopus Deploy, will be presenting his talk *Continuously Delivered Documentation* at CDCon 2021 on Wednesday, 23 June, 2021: [Register now](https://cdcon2021.sched.com/event/iosa)
-
 Happy deployments!

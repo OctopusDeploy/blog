@@ -48,7 +48,7 @@ If you need to run a series of steps on a target before deploying to another, us
 
 Take a look at an [example rolling deployment setup](https://samples.octopus.app/app#/Spaces-45) in our Octopus Samples instance.
 
-Also, check out our [rolling deployments documentation](https://octopus.com/docs/deployments/patterns/rolling-deployments) for more information, including how to use guided failures and variable run conditions. For even more reading on blue/green deployments, take a look at some of our other blog posts:
+Also, check out our [rolling deployments documentation](https://octopus.com/docs/deployments/patterns/rolling-deployments) for more information, including how to use guided failures and variable run conditions. For even more reading on rolling deployments, take a look at some of our other blog posts:
 
 - [The ultimate guide to rolling deployments](https://octopus.com/blog/ultimate-guide-to-rolling-deployments)
 - [Convert an existing application to use rolling deployments](https://octopus.com/blog/convert-to-rolling-deployments)

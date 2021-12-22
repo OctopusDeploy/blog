@@ -106,7 +106,7 @@ Enter a path for the **Remote root directory**. Because I am running the node on
 
 The node is now configured in Jenkins, but since there is no node running it is shown as disconnected.
 
-If you click the new node you'll see a screen that provides instructions for running the agent. Click the **agent.jar** link to download agent file and run the command shown on the screen to connect the agent to Jenkins:
+If you click the new node you'll see a screen that provides instructions for running the agent. Click the **agent.jar** link to download the agent file and run the command shown on the screen to connect the agent to Jenkins:
 
 ![Instructions for connecting a node](agentdownload.png "width=500")
 *Instructions for connecting a node.*
