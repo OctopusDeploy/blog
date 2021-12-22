@@ -520,4 +520,6 @@ In this post you learned how to:
 - Backup the Jenkins home directory
 - Create Kubernetes agents that are created and destroyed as needed
 
+!include <jenkins-webinar-jan-2022>
+
 Happy deployments!
