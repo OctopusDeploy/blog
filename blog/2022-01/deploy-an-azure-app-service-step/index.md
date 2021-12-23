@@ -1,5 +1,5 @@
 ---
-title: Use the new Deploy an Azure App Service step
+title: Using the new Deploy an Azure App Service step
 description: Learn how to use the new Azure App Service step in Octopus Deploy.
 author: terence.wong@octopus.com
 visibility: public
@@ -15,7 +15,7 @@ tags:
 
 Octopus Deploy provides process steps to deploy to Microsoft Azure. A new step, **Deploy an Azure App Service**, is available to deploy containers to an Azure App service.
 
-To do this, you'll need:
+To do this, you need:
 
 - An Octopus Deploy instance with a project and environment
 - An Azure account
@@ -65,7 +65,7 @@ Populate the fields with the following values:
 - **Container Image** - Runs inside a container on a Worker: Container Registry: Docker Image: `octopusdeploy/worker-tools:3.2.0-ubuntu.18.04`
 - **Package** - Deploy from a container image Package feed: docker Package ID: `octopussamples/randomquotes`
 
-In this example, we deploy a sample Docker image hosted on Docker Hub. The image below shows the result of my configuration. Click Save.
+In this example, we deploy a sample Docker image hosted on Docker Hub. The image below shows the result of my configuration. Click **Save**.
 
 
 ![Octopus Azure deploy step configuration](deploy-process-step-config.png)
@@ -76,7 +76,7 @@ Click **Create Release** then click through to the **Deploy** button to deploy t
 
 ## Viewing your Web App
 
-Navigate to the URL of your Web App - [your-url].azurewebsites.net
+Navigate to the URL of your Web App - `[your-url].azurewebsites.net`
 
 ![Random Quotes](randomquotes.png)
 
