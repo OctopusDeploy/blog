@@ -6,6 +6,8 @@ visibility: private
 published: 2022-01-17-1400
 metaImage: 
 bannerImage: 
+bannerImageAlt: 125 characters max, describes image to people unable to see it.
+isFeatured: false
 tags:
  - DevOps
  - CI Series
@@ -14,9 +16,9 @@ tags:
  - Linux
 ---
 
-The traditional Jenkins installation method is to use the installers made available on the [Jenkins website](https://www.jenkins.io/download/), or through your local operating system's package manager.The installation process is generally simple, but there are a few tricks to be aware of. 
+The traditional Jenkins installation method is to use the installers available on the [Jenkins website](https://www.jenkins.io/download/), or through your local operating system's package manager. The installation process is generally simple, but there are a few tricks to be aware of. 
 
-In this post, we run through the installation of Jenkins on Windows and Linux, and gain insights into customizing the installation.
+In this post, we run through the installation of Jenkins on Windows and Linux, and how to customize the installation.
 
 ## Choosing between Jenkins LTS and weekly releases
 
@@ -29,7 +31,7 @@ LTS releases tend to be more stable and predictable, with fewer features in each
 
 The weekly releases include all the latest features, but have less "bake time" in the community to find bugs.
 
-If you prefer stability and don't require all the latest features right away, go with an LTS release. If you want the latest features as soon as possible and don't mind encountering the occasional glitch, go with the weekly releases.
+If you prefer stability and don't require all the latest features right away, go with an LTS release. If you want the latest features as soon as possible and don't mind the occasional glitch, go with the weekly releases.
 
 ## How to install Jenkins on Windows
 
@@ -54,7 +56,7 @@ Download and install JDK 11 from your chosen OpenJDK distribution, and make a no
 
 Jenkins runs as a Windows service, and requires a Windows account to run the service under. The installer provides the option to use the existing [LocalService](https://docs.microsoft.com/en-us/windows/win32/services/localservice-account) account, but notes that this option is not recommended. The recommended solution is to create a new account specifically for running Jenkins.
 
-To perform this task from the command line you must first install the [Carbon PowerShell module](http://get-carbon.org/). Carbon provides many useful CMDLets for managing Windows, and you'll use one of these to grant the new Jenkins user the rights to log on as a service.
+To perform this task from the command-line, you must first install the [Carbon PowerShell module](http://get-carbon.org/). Carbon provides many useful CMDLets for managing Windows, and you'll use one of these to grant the new Jenkins user the rights to log on as a service.
 
 Run the following PowerShell command to install Carbon from the PowerShell Gallery:
 
@@ -96,7 +98,7 @@ The default installation directory is fine, so click the **Next** button:
 
 ![Jenkins Windows Installer showing Destination Folder screen](win-install-2.png "width=500")
 
-You're now prompted to supply the details of the user that runs the Windows service. Enter the credentials for the user you created earlier and click the **Test Credentials** button. Once the test passes, click the **Next** button:
+You're now prompted to supply the details of the user that runs the Windows service. Enter the credentials for the user you created earlier and click the **Test Credentials** button. After the test passes, click the **Next** button:
 
 ![Jenkins Windows Installer showing Service Logon Credentials screen with Run service as local or domain user selected](win-install-3.png "width=500")
 
@@ -104,11 +106,11 @@ The default port of **8080** is fine. Click the **Test Port** button to ensure t
 
 ![Jenkins Windows Installer showing Port Selection screen with Port Number 8080 entered in the Port Number field](win-install-4.png "width=500")
 
-You are now prompted to enter the path to the Java distribution you installed earlier. The default path for the Zulu 11 distribution is `C:\Program Files\Zulu\zulu-11`. Enter the appropriate path for your chosen distribution, and click the **Next** button:
+You're now prompted to enter the path to the Java distribution you installed earlier. The default path for the Zulu 11 distribution is `C:\Program Files\Zulu\zulu-11`. Enter the appropriate path for your chosen distribution, and click the **Next** button:
 
 ![Jenkins Windows Installer open on Select Java home directory screen](win-install-6.png "width=500")
 
-You will likely want to expose Jenkins through the Windows firewall to allow external clients to access it. Change the **Firewall Exception** feature to be installed, and click the **Next** button:
+You'll likely want to expose Jenkins through the Windows firewall to allow external clients to access it. Change the **Firewall Exception** feature to be installed, and click the **Next** button:
 
 ![Jenkins Windows Installer open on Custom Setup screen with Firewall Exception selected](win-install-7.png "width=500")
 
@@ -134,7 +136,7 @@ This wrapper is found at `C:\Program Files\Jenkins\jenkins.exe` by default, and 
 
 ![Jenkins Wrapper Configuration](jenkins-wrapper.png "width=500")
 
-This XML file contains the `service/arguments` element, which defines the command line arguments passed to Jenkins when it's executed. It also includes `service/env` elements to define the environment variables made available to Jenkins.
+This XML file contains the `service/arguments` element, which defines the command-line arguments passed to Jenkins when it's executed. It also includes `service/env` elements to define the environment variables made available to Jenkins.
 
 Advanced Jenkins configuration options often require passing arguments or defining environment variables. As an example, [disabling Cross-Site Request Forgery (CSRF) protection](https://www.jenkins.io/doc/book/security/csrf-protection/) in Jenkins requires passing the `-Dhudson.security.csrf.GlobalCrumbIssuerConfiguration.DISABLE_CSRF_PROTECTION=true` argument, which is configured in the `service/arguments` element:
 
@@ -192,7 +194,9 @@ sudo yum install jenkins
 
 ## Linux service configuration
 
-While all modern versions of Ubuntu, Debian, RHEL, and Fedora use [systemd](https://systemd.io/), the Jenkins service is still provided as an old init script under `/etc/init.d/jenkins`. So, to start the service, we run the `service` command:
+While all modern versions of Ubuntu, Debian, RHEL, and Fedora use [systemd](https://systemd.io/), the Jenkins service is still provided as an old init script under `/etc/init.d/jenkins`. 
+
+To start the service, we run the `service` command:
 
 ```bash
 sudo service jenkins start
