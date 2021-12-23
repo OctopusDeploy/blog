@@ -18,7 +18,7 @@ tags:
 
 When you're developing and deploying software, one of the first things to figure out is how to take your code and deploy your working application to a production environment where people can interact with your software.
 
-Most development teams understand the importance of version control to coordinate code commits, and build servers to compile and package their software, but Continuous Integration (CI) is a big topic. Over the next few months, we’re going into detail about Continuous Integration and how two of the most popular build servers, Jenkins and GitHub Actions, can help with your CI processes.
+Most development teams understand the importance of version control to coordinate code commits, and build servers to compile and package their software, but Continuous Integration (CI) is a big topic. Over the next few months, we’re going into detail about Continuous Integration and how two of the most popular build servers, [Jenkins](https://www.jenkins.io/) and [GitHub Actions](https://github.com/features/actions), can help with your CI processes.
 
 ## Why build servers are important
 
@@ -37,8 +37,6 @@ Without a build server you're slowed down by complicated, manual processes and t
 Without a build server, the team battles unnecessary hurdles that could be eliminated with automation. A build server will repeat these tasks for you throughout the day, and without those human-caused delays.
 
 But CI doesn’t just mean less time spent on manual tasks or the death of arbitrary deadlines, either. By automatically taking these steps many times a day, you fix problems sooner and your results become more predictable. Build servers ultimately help you deploy through your pipeline with more confidence.
-
-We’re taking deep dives into two CI platforms in the coming weeks, looking at how [Jenkins](https://www.jenkins.io/) or [GitHub Actions](https://github.com/features/actions) can help with your processes, and how Octopus can help you get more out of your CI/CD pipeline.
 
 ## What is Jenkins?
 
