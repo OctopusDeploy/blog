@@ -1,5 +1,5 @@
 ---
-title: Using the new Deploy an Azure App Service step
+title: Using the Deploy an Azure App Service step
 description: Learn how to use the new Azure App Service step in Octopus Deploy.
 author: terence.wong@octopus.com
 visibility: public
