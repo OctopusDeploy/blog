@@ -4,9 +4,9 @@ description: CI/CD are frequently referred to by a single acronym as if they wer
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2022-01-12-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: Illustration of two deep sea masks representing CI and CD
+metaImage: blogimage-introcicd.png
+bannerImage: blogimage-introcicd.png
+bannerImageAlt: CI CD equation says code plus dependencies plus build tools plus execution environment equals test results plus logs plus compiled artifact
 tags:
  - DevOps
  - CI Series
