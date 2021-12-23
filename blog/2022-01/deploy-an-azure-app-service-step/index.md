@@ -82,6 +82,6 @@ Navigate to the URL of your Web App - [your-url].azurewebsites.net
 
 ## Conclusion
 
-In this blog, you set up an Octopus Deploy project to deploy a Web App using the new **Deploy an Azure App Service** step.
+In this post, you set up an Octopus Deploy project to deploy a Web App using the new **Deploy an Azure App Service** step.
 
 Happy deployments!
