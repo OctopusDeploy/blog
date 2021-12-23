@@ -4,8 +4,8 @@ description: CI/CD are frequently referred to by a single acronym as if they wer
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2022-01-12-1400
-metaImage: img_comparecicd_2019.png
-bannerImage: img_comparecicd_2019.png
+metaImage: 
+bannerImage: 
 bannerImageAlt: Illustration of two deep sea masks representing CI and CD
 tags:
  - DevOps
