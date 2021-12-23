@@ -18,7 +18,7 @@ tags:
 
 Docker emerged victorious in the battle for universal application packages. Every major operating system supports Docker images, all cloud providers support deploying Docker images, and every major tool or platform offers an official Docker image. Jenkins is no exception, providing the image [jenkins/jenkins](https://hub.docker.com/r/jenkins/jenkins).
 
-In this post, you'll learn how to run Jenkins from a Docker image, configure it, customize it, and use the image as a replacement for a [traditional package based installation](https://octopus.com/blog/jenkins-install-guide-windows-linux).
+In this post, you learn how to run Jenkins from a Docker image, configure it, customize it, and use the image as a replacement for a [traditional package based installation](https://octopus.com/blog/jenkins-install-guide-windows-linux).
 
 ## Prerequisites
 
@@ -40,7 +40,7 @@ Let's break this command down to understand what it's doing.
 
 You can think of a Docker image as a read-only artifact containing the files you need to run a particular application. Unlike most application artifacts, a Docker image contains a complete operating system and all associated system tools required to support the core application being run. In the case of Jenkins, this means the Docker image contains the files you require to support a minimal Linux operating system, along with the version of Java required to run Jenkins.
 
-A container is an isolated environment in the OS where the Docker image is executed. Although Docker doesn't typically provide the same kind of isolation guarantees that virtual machines do, containers do provide a way to easily run trusted code side by side.
+A container is an isolated environment in the OS where the Docker image is executed. Although Docker doesn't typically provide the same kind of isolation guarantees that virtual machines do, containers do provide a way to easily run trusted code side-by-side.
 
 The `-p` arguments map a local port to a port exposed by the Docker container. The first argument is the local port, followed by a colon, and then the container port. 
 
@@ -103,7 +103,7 @@ Open [http://localhost:8080](http://localhost:8080) when you see the following m
 Jenkins is fully up and running
 ```
 
-You're now given the opportunity to complete the initial configuration of the Jenkins instance. Take a look at the [previous post about traditional Jenkins installation](blog/2022-q1/jenkins-install-guide/index.md) for more details on completing this initial configuration.
+You're now given the opportunity to complete the initial configuration of the Jenkins instance. Take a look at the [previous post about traditional Jenkins installation](https://octopus.com/blog/jenkins-install-guide-windows-linux) for more details on completing this initial configuration.
 
 You may have noticed that running Docker with the command above attaches your terminal to the container output stream. To [run the Docker image in the background](https://docs.docker.com/language/nodejs/run-containers/#run-in-detached-mode), use the `-d` or `--detach` argument:
 
@@ -130,7 +130,7 @@ RUN apt update && \
 USER jenkins
 ```
 
-`Dockerfile` files are used to build new Docker images. You can find a complete reference of the commands available in a `Dockerfile` from the [Docker documentation](https://docs.docker.com/engine/reference/builder/). The example above uses a small subset of the commands, but demonstrate a typical custom image based on the image provided by Jenkins.
+`Dockerfile` files are used to build new Docker images. You can find a complete reference of the commands available in a `Dockerfile` from the [Docker documentation](https://docs.docker.com/engine/reference/builder/). The example above uses a small subset of the commands, but demonstrates a typical custom image based on the image provided by Jenkins.
 
 The file starts with the `FROM` command, which instructs Docker to build the new image from the supplied image. This means your new image will have Jenkins and any supporting tooling already installed and configured:
 
@@ -154,7 +154,7 @@ RUN apt update && \
     apt update && apt install -y octopuscli
 ```
 
-It is considered best practice to have a regular user account run the application in the Docker container. The `jenkins` user was created in the base image, and so you switch back to that user with the final command:
+It's considered best practice to have a regular user account run the application in the Docker container. The `jenkins` user was created in the base image, and so you switch back to that user with the final command:
 
 ```dockerfile
 USER jenkins
@@ -180,7 +180,7 @@ docker run -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home myjenki
 
 ## Installing additional Jenkins plugins
 
-The easiest way to install new plugins is to use the Jenkins web UI. Any new plugins are saved to the external volume, and so are available even as you create, destroy, and update containers.
+The easiest way to install new plugins is to use the Jenkins web UI. Any new plugins are saved to the external volume, so they're available even as you create, destroy, and update containers.
 
 You can also automate the process of installing plugins by calling the `jenkins-plugin-cli` script, included in the base Jenkins image, as part of your custom Docker image. 
 
@@ -279,7 +279,7 @@ You can run the following command to backup the data saved in the Docker volume 
 docker run --rm -v jenkins_home:/var/jenkins_home -v $(pwd):/backup ubuntu tar cvf /backup/backup.tar /var/jenkins_home
 ```
 
-This command can be run when while Jenkins container is running because Docker volumes can be shared between running containers. However, [it is recommended that you stop Jenkins before performing a backup](https://docs.cloudbees.com/docs/admin-resources/latest/backup-restore/best-practices):
+This command can be run while Jenkins container is running because Docker volumes can be shared between running containers. However, [it's recommended you stop Jenkins before performing a backup](https://docs.cloudbees.com/docs/admin-resources/latest/backup-restore/best-practices):
 
 > Even though Jenkins takes advantage of COW, it is recommended that you stop Jenkins if possible before performing a backup because the pipeline workflow XML files may get captured in an inconsistent state (for example if the backup does not take an 'instant snapshot' of every file at that exact moment).
 
@@ -331,7 +331,9 @@ sudo journalctl -u docker-jenkins -f
 
 ## Conclusion
 
-Running Jenkins from a Docker image provides a convenient method for launching Jenkins in a self-contained and preconfigured environment. In this post you learned how to:
+Running Jenkins from a Docker image provides a convenient method for launching Jenkins in a self-contained and preconfigured environment. 
+
+In this post you learned how to:
 
 - Launch Jenkins in a Docker container
 - Install additional tools and plugins
@@ -342,5 +344,7 @@ Running Jenkins from a Docker image provides a convenient method for launching J
 Running Docker images on a workstation or server is just the beginning though. In the next post, you'll learn how to deploy Jenkins to a Kubernetes cluster.
 
 !include <jenkins-webinar-jan-2022>
+
+!include <q1-2022-newsletter-cta>
 
 Happy deployments!
