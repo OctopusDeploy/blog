@@ -167,10 +167,12 @@ Our primary considerations were:
 
 The other obvious contenders were YAML, JSON, and XML.  We ruled JSON out; it is designed for representing serialized objects and isn’t particularly human-friendly (so many quotes!). We ruled XML out; as much fun as it would be to swim against the tide, XML is simply too verbose (so many angle-brackets!). YAML certainly ticks the human-readable box, but it is painful for editing complex documents, and we felt it is better suited to simpler documents. 
 
-We like HCL. We feel it is the right tool for the job. Even though we have openly used HCL at the starting point, we are referring to our implementation as Octopus Configuration Language (OCL). We have built our own [parser/serializer](https://github.com/OctopusDeploy/Ocl), and there is no obligation on us to follow any direction Hashicorp takes HCL, and nothing preventing us from making changes. 
+We like HCL. We feel it is the right tool for the job. Even though we have openly used HCL as the starting point, we are referring to our implementation as Octopus Configuration Language (OCL). We have built our own [parser/serializer](https://github.com/OctopusDeploy/Ocl), and there is no obligation on us to follow any direction Hashicorp takes HCL, and nothing preventing us from making changes. 
 
 To be honest, we feel like the choice of configuration language is far from the most important part. The benefits would be similar, regardless of which we chose.
 
 ## What’s next?
 
-The next step is to get this into your hands. We are very keen to get feedback on the real thing.  We hope to have a public release in early 2021 (for those who may have seen previous mention of a November 2020 release, yes, we are as bad at estimating software projects as everyone else). In the meantime, if you have any questions or comments, please enter them below or join the conversation in the [Octopus community Slack](https://octopus.com/slack). 
+The next step is to get this into your hands. We are very keen to get feedback on the real thing.  We hope to have a public release in early 2021 (for those who may have seen previous mention of a November 2020 release, yes, we are as bad at estimating software projects as everyone else). In the meantime, if you have any questions or comments, please enter them below or join the conversation in the [Octopus community Slack](https://octopus.com/slack).
+
+!include <octopus-cac-deep-dive-video>

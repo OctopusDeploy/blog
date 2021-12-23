@@ -1,5 +1,5 @@
 ---
-title: Using HashiCorp Vault with Octopus Deploy
+title: Using HashiCorp Vault with Octopus
 description: Introducing new step templates to allow secrets stored in HashiCorp Vault to be used in deployments or runbooks.
 author: mark.harrison@octopus.com
 visibility: public
