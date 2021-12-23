@@ -7,6 +7,7 @@ published: 2022-01-19-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
+isFeatured: false
 tags:
   - DevOps
   - CI Series
@@ -19,7 +20,7 @@ Kubernetes (K8s) has become one of the most widely used platforms hosting Docker
 
 One supporting tool is [Helm](https://helm.sh/), which provides package management functionality for Kubernetes. Applications deployed by Helm are defined in charts, and Jenkins [provides a Helm chart](https://github.com/jenkinsci/helm-charts/blob/main/charts/jenkins/README.md) to deploy a Jenkins instance to Kubernetes.
 
-In this post, you'll learn how to install a Jenkins instance with Helm and connect agents to perform build tasks.
+In this post, you learn how to install a Jenkins instance with Helm and connect agents to perform build tasks.
 
 ## Prerequisites
 
@@ -106,7 +107,7 @@ Forwarding from 127.0.0.1:8080 -> 8080
 Forwarding from [::1]:8080 -> 8080
 ```
 
-Once the tunnel is established, open [http://localhost:8080](http://localhost:8080) on your local PC and you will be directed to the Jenkins instance in the Kubernetes cluster. Login with the username `admin` and the password returned by the first command.
+After the tunnel is established, open [http://localhost:8080](http://localhost:8080) on your local PC and you'll be directed to the Jenkins instance in the Kubernetes cluster. Login with the username `admin` and the password returned by the first command.
 
 You now have a functional, if basic, Jenkins instance running in Kubernetes.
 
@@ -216,7 +217,7 @@ The plugin ID and version are found on the [Jenkins plugin website](https://plug
 
 This approach is convenient, but the downside is the Jenkins instance is required to contact the Jenkins update site to retrieve them as part of the first boot. 
 
-A more robust approach is to download the plugins as part of a custom image, which ensures the plugins are baked into the Docker image. It also allows additional tools to be installed on the Jenkins controller. The [previous post](blog/2022-01/jenkins-docker-install-guide/index.md) has details on building and publishing custom Docker images.
+A more robust approach is to download the plugins as part of a custom image, which ensures the plugins are baked into the Docker image. It also allows additional tools to be installed on the Jenkins controller. The [previous post](https://octopus.com/blog/jenkins-docker-install-guide) has details on building and publishing custom Docker images.
 
 Note that the custom Docker image must have the following plugins installed in addition to any custom plugins. These plugins are required for the Helm chart to function properly:
 
@@ -281,7 +282,7 @@ Jenkins.instance.setNumExecutors(5)
 Even this simple example highlights the benefits of JCasC:
 
 - Each JCasC property is documented at http://jenkinshost/configuration-as-code/reference (replace `jenkinshost` with the hostname of your own Jenkins instance), whereas writing a Groovy script requires knowledge of the [Jenkins API](https://javadoc.jenkins-ci.org/jenkins/model/Jenkins.html). 
-- JCasC configuration is vanilla YAML, which is much more approachable that scripts written in Groovy.
+- JCasC configuration is vanilla YAML, which is much more approachable than scripts written in Groovy.
 - JCasC is opinionated, providing a consistent approach for common configuration. Groovy scripts can solve the same problem multiple ways, meaning scripts with more than a few lines of code require the expertise of a software engineer to be understood.
 
 For all the benefits though, JCasC is not a complete replacement for setting system properties or running Groovy scripts. For example, [JCasC will not support the ability to disable CSRF](https://github.com/jenkinsci/configuration-as-code-plugin/issues/1184), meaning this option is only exposed via system properties.
@@ -292,7 +293,7 @@ Volumes in Kubernetes are a little more complicated than those found in regular 
 
 To complicate matters, unlike Docker volumes, only specialized Kubernetes volumes can be shared between pods. These shared volumes are referred to as `ReadWriteMany` volumes. Typically though, a Kubernetes volume is only used by a single pod, and are referred to as `ReadWriteOnce` volumes.
 
-The Jenkins Helm chart configures a `ReadWriteOnce` volume to host the Jenkins home directory. Because this volume can only be accessed by the pod it's mounted into, all backup operations must be performed by that pod.
+The Jenkins Helm chart configures a `ReadWriteOnce` volume to host the Jenkins home directory. Because this volume can only be accessed by the pod it's mounted in to, all backup operations must be performed by that pod.
 
 Fortunately, the Helm chart offers [comprehensive backup options](https://github.com/jenkinsci/helm-charts/blob/main/charts/jenkins/README.md#backup), with the ability to perform backups and save them to cloud storage providers.
 
@@ -314,7 +315,7 @@ At this point `backup.tar.gz` can be copied to a more permanent location.
 
 ## Adding Jenkins agents
 
-In addition to installing Jenkins on a Kubernetes cluster, you're can also dynamically create Jenkins agents in the cluster. These agents are created when new tasks are scheduled in Jenkins and are automatically cleaned up after the tasks are completed.
+In addition to installing Jenkins on a Kubernetes cluster, you can also dynamically create Jenkins agents in the cluster. These agents are created when new tasks are scheduled in Jenkins and are automatically cleaned up after the tasks are completed.
 
 The default settings for agents are defined under the `agent` property in the `values.yaml` file. The example below defines an agent with the Jenkins label `default`, created in pods prefixed with the name `default`, and with CPU and memory limits:
 
@@ -521,5 +522,7 @@ In this post you learned how to:
 - Create Kubernetes agents that are created and destroyed as needed
 
 !include <jenkins-webinar-jan-2022>
+
+!include <q1-2022-newsletter-cta>
 
 Happy deployments!
