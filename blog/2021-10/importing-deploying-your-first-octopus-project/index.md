@@ -11,6 +11,7 @@ isFeatured: false
 tags:
  - DevOps
  - Azure
+ - Getting Started
 ---
 
 Setting up your first deployment can be challenging. There are new systems to learn and multiple configurations to get right.
@@ -39,7 +40,7 @@ If you haven't set up an Octopus Deploy instance, you need to do that now by sel
 
 - [Octopus Cloud](https://octopus.com/start/cloud): we host the Octopus Deploy instance for you, it connects to your servers.
 - [Self-hosted on a Windows Server](https://octopus.com/start/server): you host it on your infrastructure by [downloading our MSI](https://octopus.com/download) and installing it on Windows Server with a SQL Server back-end.  Learn more about [our installation requirements](https://octopus.com/docs/installation/requirements).
-- [Self-hosted as a Docker container](https://octopus.com/blog/introducing-linux-docker-image): you run Octopus in a docker container (currently an early access preview).  You still need a [free license](https://octopus.com/start/server).
+- [Self-hosted as a Docker container](https://octopus.com/blog/introducing-linux-docker-image): you run Octopus in a Docker container (currently an early access preview).  You still need a [free license](https://octopus.com/start/server).
 
 After your Octopus instance is ready, the first step is importing an existing project.
 

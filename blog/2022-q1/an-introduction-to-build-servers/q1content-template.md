@@ -16,7 +16,7 @@ tags:
   - Testing
 ---
 
-Octopus can receive packages by whatever means you want, whether you upload them direct to our in-built package store or import them via a feed. As believers in Continuous Integration/Continuous Delivery (CI/CD), though, we think they should come from a build server (also known as a 'CI platform').
+Octopus can receive packages by whatever means you want, whether you upload them direct to our in-built package store or import them via a feed. As believers in Continuous Integration/Continuous Delivery (CI/CD), we think they should come from a build server (also known as a 'CI platform').
 
 Given they can automate everything that happens between code commits and deployments, build servers are vital to CI as a concept. Let’s dig into exactly why we rate them so highly.
 
@@ -31,14 +31,14 @@ Build servers have 3 main purposes:
 Life without a build server means time bogged down with manual processes and the needless time constraints caused by them. For example, without a build server:
 
 - Your team will likely need to commit code before a daily deadline or during change windows.
-- Once that deadline passes, no one can commit again until someone manually creates and tests a build.
-- If there are problems with code, the deadlines and manual processes delay the fixes further.
+- Once that deadline passes, no one can commit again until someone has manually created and tested a build.
+- If there are problems with code, the team must address those problems instead of moving forward.
 
-As you can see, in this scenario the team battles hurdles that don't need to exist because of automation. A build server will repeatedly do all this for you throughout the day, and without those human-caused delays.
+As you can see, in this scenario the team battles time limits and manual interventions that don't need to exist because of automation. A build server will repeatedly do all this for you throughout the day, and without those human-caused delays.
 
 But CI doesn’t just mean less time spent on manual tasks or the death of arbitrary deadlines, either. By automatically taking these steps many times a day, you’ll fix problems sooner and your results will become far more predictable. This, ultimately, helps you deploy through your pipeline with more confidence.
 
-We’re taking deep dives into 2 CI platforms in the coming weeks, looking at how [Jenkins](https://www.jenkins.io/) or [GitHub Actions](https://github.com/features/actions) could help with your processes, plus how they complement Octopus.
+We’re taking deep dives into 2 CI platforms in the coming weeks, looking at how [Jenkins](https://www.jenkins.io/) or [GitHub Actions](https://github.com/features/actions) could help with your automation processes, plus how they complement Octopus.
 
 ## A little about Jenkins
 
@@ -50,11 +50,12 @@ That means it’s not only flexible enough to cover your CI needs, but you can a
 
 ## A little about GitHub Actions
 
-[GitHub Actions](https://github.com/features/actions) is one of the newer CI platforms. It removes the need for a separate build server by using repository events to trigger automation workflows on virtual ‘runners’. The good news for those using GitHub as their code repository is that you already have access - GitHub Actions is included in your existing repos.
+[GitHub Actions](https://github.com/features/actions) is one of the newer CI platforms. It replaces the need for a separate build server by using repository events to trigger automation workflows on virtual ‘runners’. The good news for those using GitHub as their code repository is that you already have access - GitHub Actions is included in your existing repos.
 
 Where’s the catch? While public repositories can use GitHub Actions for free, it’s pay-as-you-go for everyone else, billed by the minutes workflows take to run. All users get free monthly minutes, though, and you’re only charged if you exceed the number allowed by your plan.
 
 Like Jenkins, [GitHub also has an actions marketplace](https://github.com/marketplace) brimming with community-created apps and workflows to help with CI and more.
+
 
 ## What's next?
 
@@ -68,4 +69,4 @@ In the meantime, why not check out some of our older blogs on build servers, CI,
 - [Java CI/CD: Octopus, Jenkins, Java, Kubernetes, and the DevOps lifecycle (series)](https://octopus.com/blog/java-ci-cd-co/)
 - [The ten pillars of pragmatic deployments](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments)
 
-Happy deployments!
+Happy deployments! 
