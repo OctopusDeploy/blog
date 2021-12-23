@@ -62,7 +62,7 @@ Populate the fields with the following values:
 
 - **Worker Pool** - Runs on a Worker from a specific Worker Pool: `Hosted Ubuntu`
 - **On Behalf Of** - The role you created in the deployment target step (mine is `azure`)
-- **Container Image** - Runs inside a container on a Worker: Container Registry: docker Image: `octopusdeploy/worker-tools:3.2.0-ubuntu.18.04`
+- **Container Image** - Runs inside a container on a Worker: Container Registry: Docker Image: `octopusdeploy/worker-tools:3.2.0-ubuntu.18.04`
 - **Package** - Deploy from a container image Package feed: docker Package ID: `octopussamples/randomquotes`
 
 In this example, we deploy a sample Docker image hosted on Docker Hub. The image below shows the result of my configuration. Click Save.
