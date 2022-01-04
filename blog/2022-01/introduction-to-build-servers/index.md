@@ -32,7 +32,7 @@ Without a build server you're slowed down by complicated, manual processes and t
 
 - Your team will likely need to commit code before a daily deadline or during change windows
 - After that deadline passes, no one can commit again until someone manually creates and tests a build
-- If there are problems with code, the deadlines and manual processes further delay the fixes
+- If there are problems with the code, the deadlines and manual processes further delay the fixes
 
 Without a build server, the team battles unnecessary hurdles that could be eliminated with automation. A build server will repeat these tasks for you throughout the day, and without those human-caused delays.
 
@@ -42,7 +42,7 @@ But CI doesn’t just mean less time spent on manual tasks or the death of arbit
 
 [Jenkins](https://www.jenkins.io/) is the most popular CI platform on the market. Open-source and free to use, you can run Jenkins standalone on most operating systems to automate the building and testing of your code.
 
-One of Jenkins biggest benefits is its flexibility. It's a scalable platform, meaning you can expand its capabilities as your team or project needs grow. And thanks to its huge community, [there over 1800 plugins](https://plugins.jenkins.io/), making it easy to integrate with countless industry tools.
+One of Jenkins biggest benefits is its flexibility. It's a scalable platform, meaning you can expand its capabilities as your team or project needs grow. And thanks to its huge community, [there are over 1800 plugins](https://plugins.jenkins.io/), making it easy to integrate with countless industry tools.
  
 That means Jenkins is flexible enough to cover your CI needs and you can tailor it for other automation purposes too.
 
@@ -50,15 +50,15 @@ That means Jenkins is flexible enough to cover your CI needs and you can tailor 
 
 [GitHub Actions](https://github.com/features/actions) is one of the newer CI platforms. It removes the need for a separate build server by using repository events to trigger automation workflows on virtual ‘runners’. 
 
-The good news if you're using GitHub as your code repository, is that you already have access - GitHub Actions is included in your existing repos.
+If you're using GitHub as your code repository, the good news is that you already have access - GitHub Actions is included in your existing repos.
 
-Where’s the catch? While public repositories can use GitHub Actions for free, it’s pay-as-you-go for everyone else, billed by the minutes workflows take to run. All users get free monthly minutes, though, and you’re only charged if you exceed the number allowed by your plan.
+Where’s the catch? While public repositories can use GitHub Actions for free, it’s pay-as-you-go for everyone else, billed per minute for the time workflows take to run. All users get free monthly minutes, though, and you’re only charged if you exceed the number allowed by your plan.
 
-Like Jenkins, [GitHub also has an actions marketplace](https://github.com/marketplace) brimming with community-created apps and workflows to help with CI and more.
+Like Jenkins, [GitHub also has an actions marketplace](https://github.com/marketplace) brimming with community-created apps and workflows to help with Continuous Integration and more.
 
 ## What's next?
 
-You can look forward to more build server and Continuous Integration content from us in the coming weeks, including guides for Jenkins and GitHub Actions, bespoke tools, and more.
+Over the coming weeks, we'll share guides for Jenkins and GitHub Actions, some bespoke tools we've created, and more.
 
 In the meantime, if you're not already using Octopus Deploy, you can [sign up for a free trial](https://octopus.com/start).
 
