@@ -99,8 +99,6 @@ Recognizing the different requirements between a machine-driven CI process and a
 
 If you're looking for a CD tool, you can sign up for a [free trial of Octopus Deploy](https://octopus.com/start).
 
-You can also look forward to more Continuous Integration content from us in the coming weeks, including guides for Jenkins and GitHub Actions, bespoke tools, and more.
-
 !include <q1-2022-newsletter-cta>
 
 Happy deployments!
