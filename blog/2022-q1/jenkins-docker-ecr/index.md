@@ -19,7 +19,7 @@ This blog will build and push the Octopus Deploy Underwater App to Amazon Elasti
 - A Jenkins instance
 - A GitHub account
 
-The [Traditional Jenkins Installation](/blog/2022-q1/jenkins-install-guide/index.md), [Docker Jenkins Installation](/blog/2022-q1/jenkins-docker-install-guide/index.md), or [Helm Jenkins Installation](/blog/2022-q1/jenkins-helm-install-guide/index.md) guides provide instructions to install Jenkins in your chosen environment.
+The [Traditional Jenkins Installation](/blog/2022-q1/jenkins-install-guide/index.md), [Docker Jenkins Installation](/blog/2022-q1/jenkins-docker-install-guide/index.md), or [Helm Jenkins Installation](/blog/2022-01/jenkins-helm-install-guide/index.md) guides provide instructions to install Jenkins in your chosen environment.
 
 This blog will use the [Octopus Underwater app repository](https://github.com/terence-octo/octopus-underwater-app). You can fork the repository and follow along. Alternatively, the jenkins-ecr branch contains the template files needed to complete the steps in this blog. You will have to replace some values with your own. I have included my values in this blog as a reference.
 
