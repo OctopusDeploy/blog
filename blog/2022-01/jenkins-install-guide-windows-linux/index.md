@@ -13,7 +13,6 @@ tags:
  - CI Series
  - Continuous Integration
  - Jenkins
- - Linux
 ---
 
 The traditional Jenkins installation method is to use the installers available on the [Jenkins website](https://www.jenkins.io/download/), or through your local operating system's package manager. The installation process is generally simple, but there are a few tricks to be aware of. 
