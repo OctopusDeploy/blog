@@ -19,7 +19,7 @@ This blog will build a docker image in a Jenkinsfile and publish the image to Am
 - A Jenkins instance
 - A GitHub account
 
-The [Traditional Jenkins Installation](/blog/2022-01/jenkins-install-guide/index.md), [Docker Jenkins Installation](/blog/2022-q1/jenkins-docker-install-guide/index.md), or [Helm Jenkins Installation](/blog/2022-q1/jenkins-helm-install-guide/index.md) guides provide instructions to install Jenkins in your chosen environment.
+The [Traditional Jenkins Installation](/blog/2022-01/jenkins-install-guide-windows-linux/index.md), [Docker Jenkins Installation](/blog/2022-q1/jenkins-docker-install-guide/index.md), or [Helm Jenkins Installation](/blog/2022-q1/jenkins-helm-install-guide/index.md) guides provide instructions to install Jenkins in your chosen environment.
 
 ## Amazon Web Services setup
 

@@ -12,7 +12,7 @@ tags:
 
 Docker emerged victorious in the battle for universal application packages. Every major operating system supports Docker images, all cloud providers support deploying Docker images, and every major tool or platform offers an official Docker image. Jenkins is no exception, providing the image [jenkins/jenkins](https://hub.docker.com/r/jenkins/jenkins).
 
-In this post you'll learn how to run Jenkins from a Docker image, configure it, customize it, and use the image as a replacement for a [traditional package based installation](blog/2022-01/jenkins-install-guide/index.md).
+In this post you'll learn how to run Jenkins from a Docker image, configure it, customize it, and use the image as a replacement for a [traditional package based installation](blog/2022-01/jenkins-install-guide-windows-linux/index.md).
 
 ## Prerequisites
 
@@ -90,7 +90,7 @@ Open [http://localhost:8080](http://localhost:8080) when you see the following m
 Jenkins is fully up and running
 ```
 
-You are now given the opportunity to complete the initial configuration of the Jenkins instance. Take a look at the [previous post](blog/2022-01/jenkins-install-guide/index.md) for more details on completing this initial configuration.
+You are now given the opportunity to complete the initial configuration of the Jenkins instance. Take a look at the [previous post](blog/2022-01/jenkins-install-guide-windows-linux/index.md) for more details on completing this initial configuration.
 
 You may have noticed that running Docker with the command above attaches your terminal to the container output stream. To [run the Docker image in the background](https://docs.docker.com/language/nodejs/run-containers/#run-in-detached-mode), use the `-d` or `--detach` argument:
 
