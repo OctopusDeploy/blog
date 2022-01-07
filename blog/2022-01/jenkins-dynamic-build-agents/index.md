@@ -4,9 +4,9 @@ description: With some setup, Jenkins can automatically react to your processing
 author: andrew.corrigan@octopus.com
 visibility: private
 published: 2022-01-24-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-jenkinsconfigurationscalablebuildagents-2022.png
+bannerImage: blogimage-jenkinsconfigurationscalablebuildagents-2022.png
+bannerImageAlt: The Jenkins logo connected to AWS and Kubernetes logos
 isFeatured: false
 tags:
   - DevOps
