@@ -32,7 +32,7 @@ All major cloud providers offer hosted Kubernetes clusters:
 - Azure has [AKS](https://azure.microsoft.com/en-au/services/kubernetes-service/)
 - Google Cloud has [GKE](https://cloud.google.com/kubernetes-engine)
 
-If you wish to run a development Kubernetes cluster on your local PC, [kind](https://kind.sigs.k8s.io/docs/user/quick-start/) lets you create and destroy clusters for testing. The post [Creating test Kubernetes clusters with Kind](https://octopus.com/blog/testing-with-kind) provides instructions on running Kubernetes locally.
+If you want to run a development Kubernetes cluster on your local PC, [kind](https://kind.sigs.k8s.io/docs/user/quick-start/) lets you create and destroy clusters for testing. The post [Creating test Kubernetes clusters with Kind](https://octopus.com/blog/testing-with-kind) provides instructions on running Kubernetes locally.
 
 You must also have the Helm client installed. The [Helm documentation](https://helm.sh/docs/intro/install/) provides installation instructions.
 
@@ -97,7 +97,7 @@ $ kubectl exec --namespace default -it svc/myjenkins -c jenkins -- /bin/cat /run
 
 The second command listed in the notes establishes a tunnel to the service in the Kubernetes cluster.
 
-In Kubernetes, a service is a resource that configures the cluster's network to expose one or more pods. The default service type is `ClusterIP`, which exposes pods via a private IP address. It is this private IP address we tunnel into in order to gain access to the Jenkins web UI.
+In Kubernetes, a service is a resource that configures the cluster's network to expose one or more pods. The default service type is `ClusterIP`, which exposes pods via a private IP address. It's this private IP address we tunnel into in order to gain access to the Jenkins web UI.
 
 A Kubernetes pod is a resource that hosts one or more containers. This means the Jenkins instance is running as a container inside a pod:
 
@@ -287,7 +287,7 @@ Even this simple example highlights the benefits of JCasC:
 
 For all the benefits though, JCasC is not a complete replacement for setting system properties or running Groovy scripts. For example, [JCasC will not support the ability to disable CSRF](https://github.com/jenkinsci/configuration-as-code-plugin/issues/1184), meaning this option is only exposed via system properties.
 
-## Backing up Jenkins volume
+## Backing up Jenkins volumes
 
 Volumes in Kubernetes are a little more complicated than those found in regular Docker because K8s volumes tend to be hosted outside of the node that run the pod. This is because pods can be relocated between nodes, and so need to access volumes from any node.
 
