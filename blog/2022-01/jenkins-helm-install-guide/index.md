@@ -4,9 +4,9 @@ description: As part of our series about Continuous Integration and build server
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2022-01-19-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-installjenkinshelmk8-2022.png
+bannerImage: blogimage-installjenkinshelmk8-2022.png
+bannerImageAlt: The Helm and Jenkins logos and a laptop
 isFeatured: false
 tags:
   - DevOps
