@@ -4,8 +4,8 @@ description: Learn how to implement the new ECS deployment step.
 author: shawn.sesna@octopus.com
 visibility: private
 published: 2022-11-01-1400
-metaImage: 
-bannerImage: 
+metaImage: blogimage-usingthenewecsdeploymentstep-2022.png
+bannerImage: blogimage-usingthenewecsdeploymentstep-2022.png
 bannerImageAlt: 
 isFeatured: false
 tags:
