@@ -4,9 +4,9 @@ description: As part of our series about Continuous Integration and build server
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2022-01-17-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-installjenkinstraditionalinstallation-2022.png
+bannerImage: blogimage-installjenkinstraditionalinstallation-2022.png
+bannerImageAlt: The Jenkins logo, Windows logo, Linux logo and a laptop.
 isFeatured: false
 tags:
  - DevOps
