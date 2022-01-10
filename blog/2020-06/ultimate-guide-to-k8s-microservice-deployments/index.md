@@ -15,8 +15,6 @@ tags:
 
 ![The ultimate guide to Kubernetes microservice deployments](k8-microservice-deployments.png)
 
-![The ultimate guide to Kubernetes microservice deployments](k8-microservice-deploymts.png)
-
 Microservices have emerged as a popular development practice for teams who want to release complex systems quickly and reliably. Kubernetes is a natural platform for microservices as it can handle the orchestration required to deploy many instances of many individual microservices. Additionally, there are service mesh technologies that lift common networking concerns from the application layer into the infrastructure layer, making it easy to route, secure, log, and test network traffic.
 
 Using microservices, Kubernetes, and service mesh technologies to create a continuous integration and continuous delivery (CI/CD) pipeline requires some work as a robust CI/CD pipeline must address a number of concerns:
