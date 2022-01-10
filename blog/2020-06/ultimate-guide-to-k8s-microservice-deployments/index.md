@@ -4,8 +4,8 @@ description: Learn how to deploy microservices into a Kubernetes cluster with Oc
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2020-06-15
-metaImage: k8-microservice-deploymts.png
-bannerImage: k8-microservice-deploymts.png
+metaImage: k8-microservice-deployments.png
+bannerImage: k8-microservice-deployments.png
 bannerImageAlt: The ultimate guide to Kubernetes microservice deployments
 tags:
   - DevOps
