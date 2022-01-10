@@ -205,7 +205,7 @@ The plugin ID and version are found on the [Jenkins plugin website](https://plug
 
 ![Jenkins Plugin Website](jenkins-plugin.png "width=500")
 
-This approach is convenient, but does have the downside where the Jenkins instance is required to contact the Jenkins update site to retrieve them as part of the first boot. A more robust approach is to download the plugins as part of a custom image, which ensures the plugins are baked into the Docker image. It also has the advantage of allowing additional tools to be installed on the Jenkins controller. The [previous post](blog/2022-q1/jenkins-docker-install-guide/index.md) has details on building and publishing custom Docker images.
+This approach is convenient, but does have the downside where the Jenkins instance is required to contact the Jenkins update site to retrieve them as part of the first boot. A more robust approach is to download the plugins as part of a custom image, which ensures the plugins are baked into the Docker image. It also has the advantage of allowing additional tools to be installed on the Jenkins controller. The [previous post](blog/2022-01/jenkins-docker-install-guide/index.md) has details on building and publishing custom Docker images.
 
 Note that the custom Docker image must have the following plugins installed in addition to any custom plugins. These plugins are required for the Helm chart to function properly:
 
