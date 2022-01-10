@@ -6,6 +6,7 @@ visibility: public
 published: 2020-01-23
 metaImage: metaimage-team-permissions.png
 bannerImage: blogimage-team-permissions.png
+bannerImageAlt: role-based access control
 tags:
  - Product
  - Variables

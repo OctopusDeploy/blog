@@ -4,6 +4,7 @@ description: In Q4 2018 we will be shipping our first release of Octopus Server 
 author: michael.noonan@octopus.com
 visibility: public
 bannerImage: blogimage-ltsrelease.png
+bannerImageAlt: Cars on slow lane and fast lane
 metaImage: blogimage-ltsrelease.png
 published: 2018-09-17
 tags:

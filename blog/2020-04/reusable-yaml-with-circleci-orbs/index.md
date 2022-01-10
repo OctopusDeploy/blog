@@ -6,6 +6,7 @@ visibility: public
 published: 2020-04-29
 metaImage: octopus-circle-ci-orb.png
 bannerImage: octopus-circle-ci-orb.png
+bannerImageAlt: Reusable YAML with CircleCI orbs
 tags:
  - DevOps
  - CircleCI
@@ -319,11 +320,11 @@ orbs:
 
 ## Experimental Octopus CLI orb
 
-Speaking of published orbs, if you're using CircleCI and Octopus together, take a peek at our [experimental Octopus CLI orb](https://circleci.com/orbs/registry/orb/octopus-samples/octo-exp). With this orb, you can use a subset of commands from the Octopus CLI to manage your packages, releases, and deployments:
+Speaking of published orbs, if you're using CircleCI and Octopus together, take a peek at our [experimental Octopus CLI orb](https://circleci.com/orbs/registry/orb/octopusdeploylabs/octopus-cli). With this orb, you can use a subset of commands from the Octopus CLI to manage your packages, releases, and deployments:
 
 ```yaml
 orbs:
-  octo: octopus-samples/octo-exp@0.0.5
+  octo: octopusdeploylabs/octopus-cli@0.0.2
 
 jobs:
   package:
@@ -383,10 +384,10 @@ As a bonus, we can continue using an inline orb to reduce our duplication even m
 ```yaml
 orbs:
   cake: octopus-samples/cake@0.0.1
-  octo: octopus-samples/octo-exp@0.0.5
+  octo: octopusdeploylabs/octopus-cli@0.0.2
   octopetshop:
     orbs:
-      octo: octopus-samples/octo-exp@0.0.5
+      octo: octopusdeploylabs/octopus-cli@0.0.2
     commands:
       pack:
         parameters:
@@ -431,4 +432,4 @@ Since our calls to octo/pack will follow the same format with different values f
 
 CircleCI Orbs are a way to create reusable commands or jobs for your YAML based pipelines. You can publish orbs to CircleCI to share across projects or with other organizations. You can also use inline orbs to aid in development or to cut down the noise in your own configurations.
 
-Check out [CircleCI Orbs](https://circleci.com/orbs/) for more information and the [experimental Octopus CLI orb](https://circleci.com/orbs/registry/orb/octopus-samples/octo-exp) for details on how you can use CircleCI and Octopus together.
+Check out [CircleCI Orbs](https://circleci.com/orbs/) for more information and the [experimental Octopus CLI orb](https://circleci.com/orbs/registry/orb/octopusdeploylabs/octopus-cli) for details on how you can use CircleCI and Octopus together.

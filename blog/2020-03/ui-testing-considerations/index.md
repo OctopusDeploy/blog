@@ -6,8 +6,10 @@ visibility: public
 published: 2020-03-16
 metaImage: running-tests.png
 bannerImage: running-tests.png
+bannerImageAlt: Considerations for browser UI testing
 tags:
  - DevOps
+ - Testing
 ---
 
 ![Considerations for browser UI testing](running-tests.png)

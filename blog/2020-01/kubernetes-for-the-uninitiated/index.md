@@ -4,6 +4,7 @@ description: A high-level overview of Kubernetes with a real-world .NET Core web
 author: shawn.sesna@octopus.com
 visibility: public
 bannerImage: kubernetes-for-the-uninitiated.png
+bannerImageAlt: Beyond Hello World - Kubernetes for the uninitiated
 metaImage: kubernetes-for-the-uninitiated.png
 published: 2020-01-13
 tags:

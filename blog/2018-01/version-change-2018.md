@@ -5,6 +5,7 @@ author: michael.noonan@octopus.com
 visibility: public
 metaImage: metaimage-shipping-2018-1.png
 bannerImage: blogimage-shipping-2018-1.png
+bannerImageAlt: Roadmap for 2018
 published: 2018-01-22
 tags:
  - Company
@@ -57,7 +58,7 @@ Each approach came with some benefits and some disadvantages along the way.
 
 The bump from Octopus `1.x` to `2.x` and then `3.x` were all reasonable: we made large architectural changes, added major features, and sometimes broke compatibility along the way.
 
-After `3.0` we shipped several feature releases up to `3.3` and finally committed to building [first-class support for multi-tenant deployments](https://octopus.com/multi-tenant-deployments). At some point in time we committed to ship multi-tenant deployments in Octopus `3.4` and stuck with that version. In retrospect I think this release should have been Octopus `4.0`. It was a major change to the product and its capabilities which took six months from beginning to end.
+After `3.0` we shipped several feature releases up to `3.3` and finally committed to building [first-class support for multi-tenant deployments](https://octopus.com/docs/deployments/patterns/multi-tenant-deployments). At some point in time we committed to ship multi-tenant deployments in Octopus `3.4` and stuck with that version. In retrospect I think this release should have been Octopus `4.0`. It was a major change to the product and its capabilities which took six months from beginning to end.
 
 In many ways this approach worked, but it also felt very ad-hoc, without a clear set of guidelines to drive our decision making. This caused some internal tension when it came to big version changes, and made our versioning unpredictable.
 

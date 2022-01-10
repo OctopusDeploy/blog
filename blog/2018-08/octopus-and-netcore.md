@@ -5,6 +5,7 @@ author: shannon.lewis@octopus.com
 visibility: public
 metaImage: metaimage-package-netcore.png
 bannerImage: blogimage-package-netcore.png
+bannerImageAlt: Octopus Packaging .NET Core banner
 published: 2018-08-06
 tags:
  - Product
@@ -40,9 +41,9 @@ So what would a build script that brings all of this magic together look like? H
 ```bash
 dotnet publish MyAwesomeWebApp -o myMarshallingFolder
 
-dotnet octo pack --id=MyAwesomeWebApp --version=1.0.0.0 --outFolder=myArtifactsFolder --basePath=myMarshallingFolder
+octo pack --id=MyAwesomeWebApp --version=1.0.0.0 --outFolder=myArtifactsFolder --basePath=myMarshallingFolder
 
-dotnet octo push --package=myArtifactsFolder\MyAwesomeWebApp.1.0.0.0.nupkg --server=https://my.octopus.url --apiKey API-XXXXXXXXXXXXXXXX
+octo push --package=myArtifactsFolder\MyAwesomeWebApp.1.0.0.0.nupkg --server=https://my.octopus.url --apiKey API-XXXXXXXXXXXXXXXX
 ```
 
 Like I said, this is simplified. When you’re setting this up from your favorite build tool, you might want to split it into three separate steps.

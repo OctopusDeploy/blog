@@ -8,6 +8,7 @@ metaImage: tenant-sandboxes.png
 bannerImage: tenant-sandboxes.png
 tags:
  - Engineering
+ - Multi-Tenancy
 ---
 
 Recently I had a chance to meet with a customer to talk about their development process. They wanted to know if it's possible to alter their CI/CD pipeline to make it easier and faster to test changes. When they started describing their scenario I couldn't help but smile because I've run into it many times over the past 10+ years.
@@ -35,7 +36,7 @@ The root problem is the above solution doesn't scale well. Too many manual gates
 
 Sometimes a developer will be working on a spike or another change, and they want to get feedback, maybe from another developer, or from the business owner. In the past when I did this, I had the developer and/or business owner connect directly to my machine. Connecting directly to my machine was a significant pain for me as I could be in the middle of tweaking something else and the code might not be even running. It would've been nice to have someplace I could push to those changes too. At the time if I did that it would go up to the "main" development server and potentially break things.
 
-This is a perfect use case for Octopus Deploy's [multi-tenancy feature](https://octopus.com/multi-tenant-deployments). In this article, I am going to walk you through how to configure a private testing sandbox for teams and developers using the multi-tenancy feature in Octopus Deploy.
+This is a perfect use case for Octopus Deploy's [multi-tenancy feature](https://octopus.com/docs/deployments/patterns/multi-tenant-deployments). In this article, I am going to walk you through how to configure a private testing sandbox for teams and developers using the multi-tenancy feature in Octopus Deploy.
 
 !toc
 
@@ -63,7 +64,7 @@ Before diving into the configuration, let's take a step back and look at some us
 - As a developer on Team A, I want to be able to push a hotfix directly to staging without having to go through development or testing first.
 - As a developer on Team A, I want to be able to push my team's changes to a testing area where customers can provide feedback. Getting customer feedback isn't going to happen all the time, but I would like that opportunity.
 
-As stated earlier, we are going to use Octopus Deploy's [multi-tenancy feature](https://octopus.com/multi-tenant-deployments) to solve this. I chose this solution over creating separate environments for teams and developers for a few reasons.
+As stated earlier, we are going to use Octopus Deploy's [multi-tenancy feature](https://octopus.com/docs/deployments/patterns/multi-tenant-deployments) to solve this. I chose this solution over creating separate environments for teams and developers for a few reasons.
 
 1) When you add a new environment, you don't know all the variables you need to configure. With Octopus Deploy's multi-tenancy feature there is a concept of variable templates. If a tenant is missing a variable, there is an indicator in the UI and a central place to configure them.
 2) It keeps the lifecycle simple. I am in the camp that any given instance of Octopus Deploy should have 10 or fewer environments.

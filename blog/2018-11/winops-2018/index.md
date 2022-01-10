@@ -5,6 +5,7 @@ author: derek.campbell@octopus.com
 visibility: public
 published: 2018-11-08
 bannerImage: blogimage-winops-success.png
+bannerImageAlt: Derek Campbell speaking at WinOps London 2018 details
 metaImage: blogimage-winops-success.png
 tags:
  - Events and Webinars

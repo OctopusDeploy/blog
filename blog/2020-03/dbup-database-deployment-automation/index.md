@@ -6,6 +6,7 @@ visibility: public
 published: 2020-03-24
 metaImage: metaimage-sqlscript.png
 bannerImage: blogimage-sqlscript.png
+bannerImageAlt: Using DbUp and Octopus workers for database deployment automation
 tags:
  - Engineering
  - Database Deployments

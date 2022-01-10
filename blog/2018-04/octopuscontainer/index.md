@@ -6,6 +6,7 @@ visibility: public
 published: 2018-04-27
 metaImage: metaimage-dockercontainer.png
 bannerImage: blogimage-dockercontainer.png
+bannerImageAlt: Octopus Docker Container Banner
 tags:
  - Engineering
 ---

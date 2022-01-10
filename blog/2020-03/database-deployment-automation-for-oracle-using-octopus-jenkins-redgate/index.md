@@ -6,6 +6,7 @@ visibility: public
 published: 2020-03-17
 metaImage: metaimage-redgate-database.png
 bannerImage: blogimage-redgate-database.png
+bannerImageAlt: Add post-deployment scripts to Oracle database deployments using Octopus Deploy, Jenkins, and Redgate
 tags:
  - Engineering
  - Database Deployments

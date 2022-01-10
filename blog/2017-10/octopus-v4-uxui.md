@@ -5,6 +5,7 @@ author: jessica.ross@octopus.com
 visibility: public
 metaImage: 4.0uxui_metaimage.png
 bannerImage: 4.0uxui_blogimage.png
+bannerImageAlt: Octopus 4.0 coming soon
 published: 2017-10-26
 tags:
  - Engineering

@@ -4,6 +4,7 @@ description: How to programmatically verify that your App Settings have a matchi
 author: shawn.sesna@octopus.com
 visibility: public
 bannerImage: blogimage-verifyvariables.png
+bannerImageAlt: Illustration showing Octopus variables being scanned
 metaImage: blogimage-verifyvariables.png
 published: 2019-08-15
 tags:

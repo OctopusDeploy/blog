@@ -4,6 +4,7 @@ description: How to dynamically include new infrastructure during a deployment
 author: shawn.sesna@octopus.com
 visibility: public
 bannerImage: octopus-dynamic-targets.png
+bannerImageAlt: Deploying to dynamically provisioned infrastructure
 metaImage: octopus-dynamic-targets.png
 published: 2020-02-10
 tags:

@@ -6,6 +6,7 @@ visibility: public
 published: 2018-03-08
 metaImage: metaimage-powershell-linux.png
 bannerImage: blogimage-powershell-linux.png
+bannerImageAlt: Tux the Penguin reading a Powershell book
 tags:
  - Product
 ---

@@ -4,6 +4,7 @@ description: Deployments to AWS ECS using containers from ECR are now possible u
 author: robert.erez@octopus.com
 visibility: public
 bannerImage: amazon-elastic-containers-octopus-deploy.png
+bannerImageAlt: Octopus Juggling AWS ECS and Docker
 metaImage: amazon-elastic-containers-octopus-deploy.png
 published: 2018-09-19
 tags:

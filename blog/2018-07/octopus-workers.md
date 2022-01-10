@@ -4,6 +4,7 @@ description: Octopus now supports external worker machines
 author: michael.compton@octopus.com
 visibility: public
 bannerImage: blogimage-workers2.png
+bannerImageAlt: Octopus Workers illustration
 metaImage: metaimage-workers2.png
 published: 2018-07-06
 tags:

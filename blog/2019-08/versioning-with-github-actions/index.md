@@ -6,6 +6,7 @@ published: 2019-08-29
 visibility: public
 metaImage: blogimg_versioning_githubactions.png
 bannerImage: blogimg_versioning_githubactions.png
+bannerImageAlt: Illustration showing GitHub CI processes with versions
 tags:
  - DevOps
  - Continuous Integration

@@ -6,6 +6,7 @@ visibility: public
 published: 2018-04-20
 metaImage: metaimage-paas.png
 bannerImage: blogimage-paas.png
+bannerImageAlt: Azure PaaS deployment targets banner
 tags:
  - Engineering
 ---

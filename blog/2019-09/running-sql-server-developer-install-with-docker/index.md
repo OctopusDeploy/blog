@@ -6,6 +6,7 @@ visibility: public
 published: 2019-09-30
 metaImage: sql_docker_container_2019.png
 bannerImage: sql_docker_container_2019.png
+bannerImageAlt: SQL Server database in a Docker container on a desert island with a Docker container ship in the background
 tags:
  - Engineering
  - Database Deployments

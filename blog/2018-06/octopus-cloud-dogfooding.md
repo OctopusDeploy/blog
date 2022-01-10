@@ -5,6 +5,7 @@ author: matt.richardson@octopus.com
 visibility: public
 metaImage: metaimage-octopus-cloud.png
 bannerImage: blogimage-octopus-cloud.png
+bannerImageAlt: Octopus Deploy in the clouds illustration
 published: 2018-06-28
 tags:
  - Engineering

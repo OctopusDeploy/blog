@@ -6,6 +6,7 @@ visibility: public
 published: 2020-04-07
 metaImage: metaimage-sqlscript.png
 bannerImage: blogimage-sqlscript.png
+bannerImageAlt: Octopus worker deploying an ad-hoc SQL script illustration
 tags:
  - Engineering
  - Database Deployments

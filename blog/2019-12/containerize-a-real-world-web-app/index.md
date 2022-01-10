@@ -4,6 +4,7 @@ description: This post demonstrates how to containerize a real-world .NET Core w
 author: shawn.sesna@octopus.com
 visibility: public
 bannerImage: containerize-a-real-world-application.png
+bannerImageAlt: Containerize a real-world web application
 metaImage: containerize-a-real-world-application.png
 published: 2019-12-09
 tags:
@@ -230,64 +231,60 @@ With our containers running, we can navigate to http://localhost:5000.  OctoPetS
 ## Run your containerized application with Docker compose
 Running Docker commands one-by-one can get quite tedious.  To solve this, Docker created Docker compose.  With a single Docker compose YAML file, you can build all of your containers, set up their ports, create a local network for them to use, and define the environment variables for each.  In the following YAML code, we set up all of our containers similar to the Docker run commands above.  Instead of mapping host ports to container ports, we create a Docker network called `container_net`.  With the container_net network, the only ports that need to be mapped to the host are web front-end ports (5000 and 5001), leaving the rest accessible only to the other containers:
 
-```
+```yaml
 version: '3'
 services:
   sql-server:
     container_name: sql-server-db
-    image: microsoft/mssql-server-linux:2017-latest
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    ports:
+      - "1433:1433"
     environment:
       SA_PASSWORD: "SomeGoodPassword"
       ACCEPT_EULA: "Y"
-    networks:
-      container_net:
-        ipv4_address: 192.168.1.4
   productservice:
     environment:
-      - OPSConnectionString=Data Source=192.168.1.4;Initial Catalog=OctoPetShop; User ID=sa; Password=SomeGoodPassword
+      - OPSConnectionString=Data Source=sql-server;Initial Catalog=OctoPetShop; User ID=sa; Password=SomeGoodPassword
     build:
       dockerfile: dockerfile
       context: ./OctopusSamples.OctoPetshop.Productservice
-    networks:
-      container_net:
-        ipv4_address: 192.168.1.1
+    ports:
+      - '5011:5011'
+      - '5014:5014'
+    depends_on: 
+      - "database"
   octopetshop:
     environment:
-      - ProductServiceBaseUrl=http://192.168.1.1:5011/
-      - ShoppingCartServiceBaseUrl=http://192.168.1.3:5012
+      - ProductServiceBaseUrl=http://productservice:5011/
+      - ShoppingCartServiceBaseUrl=http:/shoppingcartservice:5012
     build:
       dockerfile: dockerfile
       context: ./OctopusSamples.OctoPetShop.Web
     ports:
       - '5000:5000'
       - '5001:5001'
-    networks:
-      container_net:
-        ipv4_address: 192.168.1.2
+    depends_on: 
+      - "shoppingcartservice"
+      - "productservice"
   shoppingcartservice:
     environment:
-      - OPSConnectionString=Data Source=192.168.1.4;Initial Catalog=OctoPetShop; User ID=sa; Password=SomeGoodPassword
+      - OPSConnectionString=Data Source=sql-server;Initial Catalog=OctoPetShop; User ID=sa; Password=SomeGoodPassword
     build:
       dockerfile: dockerfile
       context: ./OctopusSamples.OctoPetShop.ShoppingCartService
-    networks:
-      container_net:
-        ipv4_address: 192.168.1.3
+    ports:
+      - '5012:5012'
+      - '5013:5013'
+    depends_on: 
+      - "database"
   database:
     environment:
-      - DbUpConnectionString=Data Source=192.168.1.4;Initial Catalog=OctoPetShop; User ID=sa; Password=SomeGoodPassword
+      - DbUpConnectionString=Data Source=sql-server;Initial Catalog=OctoPetShop; User ID=sa; Password=SomeGoodPassword
     build:
       dockerfile: dockerfile
       context: ./OctopusSamples.OctoPetShop.Database
-    networks:
-        container_net:
-          ipv4_address: 192.168.1.5
-networks:
-  container_net:
-    ipam:
-      driver: default
-      config:
-        - subnet: 192.168.0.0/16
+    depends_on: 
+      - "sql-server" 
 ```
 
 Unlike the previous method of using Docker run for each of our containers, we can start our entire solution by running `docker-compose up`, which is much less typing.  Running Docker compose will also show us the output from the containers as they’re running:

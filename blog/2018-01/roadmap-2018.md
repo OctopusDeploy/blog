@@ -5,6 +5,7 @@ author: paul.stovell@octopus.com
 visibility: public
 metaImage: metaImage-roadmap2018.png
 bannerImage: blogImage-roadmap2018.png
+bannerImageAlt: Roadmap for 2018
 published: 2018-01-16
 tags:
  - Company

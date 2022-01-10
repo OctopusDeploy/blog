@@ -6,6 +6,7 @@ visibility: public
 published: 2020-03-25
 metaImage:
 bannerImage:
+canonicalurl: https://www.red-gate.com/blog/software-development/software-deployment
 tags:
  - DevOps
 ---

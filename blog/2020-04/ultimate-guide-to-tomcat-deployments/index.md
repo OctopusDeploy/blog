@@ -6,6 +6,7 @@ visibility: public
 published: 2020-05-04
 metaImage: blogimage-tomcatcontainer.png
 bannerImage: blogimage-tomcatcontainer.png
+bannerImageAlt: The ultimate guide to Tomcat deployments
 tags:
  - DevOps
  - Java

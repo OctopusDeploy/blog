@@ -6,6 +6,7 @@ visibility: public
 published: 2020-02-18
 metaImage: metaimage-automate-database.png
 bannerImage: blogimage-automate-database.png
+bannerImageAlt: Database deployment automation approaches
 tags:
  - Engineering
  - Database Deployments

@@ -6,6 +6,7 @@ visibility: public
 published: 2020-02-25
 metaImage: metaimage-redgate-database.png
 bannerImage: blogimage-redgate-database.png
+bannerImageAlt: Database deployment automation using state-based Redgate SQL Change Automation
 tags:
  - Engineering
  - Database Deployments

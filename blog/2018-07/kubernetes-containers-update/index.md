@@ -4,6 +4,7 @@ description: A progress update on adding Kubernetes support to Octopus
 author: michael.richardson@octopus.com
 visibility: public
 bannerImage: blogimage-kubernetes-containers-update.png
+bannerImageAlt: Octopus sailing Kubernetes
 metaImage: metaimage-kubernetes-containers-update.png
 published: 2018-07-19
 tags:

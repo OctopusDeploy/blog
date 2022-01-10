@@ -6,6 +6,7 @@ visibility: public
 published: 2018-06-22
 metaImage: metaimage-bitbucket.png
 bannerImage: blogimage-bitbucket.png
+bannerImageAlt: Bitbucket pipelinse and Octopus Deploy
 tags:
  - Engineering
 ---

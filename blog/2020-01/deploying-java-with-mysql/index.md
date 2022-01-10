@@ -4,6 +4,7 @@ description: This post demonstrates how to deploy a Java web application that us
 author: shawn.sesna@octopus.com
 visibility: public
 bannerImage: deploy-java-and-mysql.png
+bannerImageAlt: Deploying a Java web app with a MySQL backend with Octopus Deploy
 metaImage: deploy-java-and-mysql.png
 published: 2020-01-22
 tags:

@@ -6,6 +6,7 @@ visibility: public
 published: 2018-05-09
 metaImage: metaimage-team-permissions.png
 bannerImage: blogimage-team-permissions.png
+bannerImageAlt: role-based access control
 tags:
  - Engineering
 ---

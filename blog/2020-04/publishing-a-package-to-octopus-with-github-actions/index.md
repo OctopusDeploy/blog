@@ -6,11 +6,16 @@ visibility: public
 published: 2020-04-27
 metaImage: github-actions-publish.png
 bannerImage: github-actions-publish.png
+bannerImageAlt: Publishing a package to Octopus with GitHub Actions
 tags:
  - DevOps
 ---
 
 ![Publishing a package to Octopus with GitHub Actions](github-actions-publish.png)
+
+:::hint
+As part of the Octopus 2021 Q2 release, we introduced native support for GitHub Actions so you can integrate your GitHub builds and other automated processes with your Octopus workflows. Learn how to get started in our post [Announcing GitHub Actions for Octopus Deploy](https://octopus.com/blog/github-actions-for-octopus-deploy).
+:::
 
 I recently set aside some time to write my first GitHub Action. I used my personal blog as my test case. It is a static site that is built with Wyam and hosted in Firebase.
 
@@ -18,7 +23,7 @@ I recently set aside some time to write my first GitHub Action. I used my person
 
 ## What are GitHub Actions?
 
-GitHub actions are workflows that can react to events raised in your repository. Pushing to a branch, opening a pull request, and opening an issue are examples of events that can trigger your workflow.
+GitHub Actions are workflows that can react to events raised in your repository. Pushing to a branch, opening a pull request, and opening an issue are examples of events that can trigger your workflow.
 
 In my case, my workflow reacts to pushing to the master branch.
 
@@ -34,6 +39,10 @@ The high-level set of steps that I need to perform are:
 * Push that package to my Octopus instance.
 
 Some of these steps require other steps to run first. I'll need steps to install .NET Core, Wyam, and the Octopus CLI. I also need a step to calculate a version for my site package.
+
+:::hint
+The sample workflow in this post used a now deprecrated [set-env command](https://github.blog/changelog/2020-10-01-github-actions-deprecating-set-env-and-add-path-commands/). The post has been updated to use [environment files](https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions#environment-files) instead.
+:::
 
 ## Workflow creation
 
@@ -86,7 +95,7 @@ This step is called **Set version** and creates a package version based on the c
 
 ```yml
     - name: Set version
-      run: echo "::set-env name=PACKAGE_VERSION::$(date +'%Y.%m.%d').$GITHUB_RUN_NUMBER"
+      run: echo "PACKAGE_VERSION=$(date +'%Y.%m.%d').$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
 ```
 
 ### Generate the site
@@ -137,7 +146,7 @@ I copy the necessary files into a directory representing the package. Then I cal
         mkdir -p ./packages/blog.rousseau.dev/src/
         cp .firebaserc firebase.json ./packages/blog.rousseau.dev/
         cp -avr ./src/output ./packages/blog.rousseau.dev/src/
-        octo pack --id="blog.rousseau.dev" --format="Zip" --version="$PACKAGE_VERSION" --basePath="./packages/blog.rousseau.dev" --outFolder="./packages"
+        octo pack --id="blog.rousseau.dev" --format="Zip" --version="${{ env.PACKAGE_VERSION }}" --basePath="./packages/blog.rousseau.dev" --outFolder="./packages"
 ```
 
 A snippet of the output from this step looks like:
@@ -153,7 +162,7 @@ With the package created, I call the `octo push` command to upload the package t
 
 ```yml
     - name: Push blog.rousseau.dev to Octopus
-      run: octo push --package="./packages/blog.rousseau.dev.$PACKAGE_VERSION.zip" --server="${{ secrets.OCTOPUS_SERVER_URL }}" --apiKey="${{ secrets.OCTOPUS_API_KEY }}"
+      run: octo push --package="./packages/blog.rousseau.dev.${{ env.PACKAGE_VERSION }}.zip" --server="${{ secrets.OCTOPUS_SERVER_URL }}" --apiKey="${{ secrets.OCTOPUS_API_KEY }}"
 ```
 
 On the topic of API keys, I _highly_ recommend setting up a [service account](https://octopus.com/docs/administration/managing-users-and-teams/service-accounts) when integrating another application with Octopus. There's a built-in `Build server` role that you can use for CI service accounts.
@@ -194,7 +203,7 @@ jobs:
 
     - name: Set version
       id: set-version
-      run: echo "::set-env name=PACKAGE_VERSION::$(date +'%Y.%m.%d').$GITHUB_RUN_NUMBER"
+      run: echo "PACKAGE_VERSION=$(date +'%Y.%m.%d').$GITHUB_RUN_NUMBER" >> $GITHUB_ENV
 
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
@@ -219,10 +228,10 @@ jobs:
         mkdir -p ./packages/blog.rousseau.dev/src/
         cp .firebaserc firebase.json ./packages/blog.rousseau.dev/
         cp -avr ./src/output ./packages/blog.rousseau.dev/src/
-        octo pack --id="blog.rousseau.dev" --format="Zip" --version="$PACKAGE_VERSION" --basePath="./packages/blog.rousseau.dev" --outFolder="./packages"
+        octo pack --id="blog.rousseau.dev" --format="Zip" --version="${{ env.PACKAGE_VERSION }}" --basePath="./packages/blog.rousseau.dev" --outFolder="./packages"
 
     - name: Push blog.rousseau.dev to Octopus
-      run: octo push --package="./packages/blog.rousseau.dev.$PACKAGE_VERSION.zip" --server="${{ secrets.OCTOPUS_SERVER_URL }}" --apiKey="${{ secrets.OCTOPUS_API_KEY }}"
+      run: octo push --package="./packages/blog.rousseau.dev.${{ env.PACKAGE_VERSION }}.zip" --server="${{ secrets.OCTOPUS_SERVER_URL }}" --apiKey="${{ secrets.OCTOPUS_API_KEY }}"
 ```
 
 ## Conclusion

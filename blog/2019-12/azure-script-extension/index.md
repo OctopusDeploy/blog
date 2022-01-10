@@ -6,6 +6,7 @@ visibility: public
 published: 2019-12-17
 metaImage: azure-script-extension.png
 bannerImage: azure-script-extension.png
+bannerImageAlt: Azure custom script extensions
 tags:
  - DevOps
  - Azure

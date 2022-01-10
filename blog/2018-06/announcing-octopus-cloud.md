@@ -5,9 +5,11 @@ author: jason.brown@octopus.com
 visibility: public
 metaImage: metaimage-octopuscloudlaunch.png
 bannerImage: blogimage-octopuscloudlaunch.png
+bannerImageAlt: Octopus Clouds launch fireworks illustration
 published: 2018-07-02
 tags:
  - Product
+ - Octopus Cloud
 ---
 
 ![Octopus Clouds launch fireworks illustration](blogimage-octopuscloudlaunch.png)
@@ -38,6 +40,6 @@ We've throttled back a couple of the more high-octane, full-trust capabilities o
 
 ## It's available now
 
-You can [sign up right now](https://octopus.com/account/register) for a 30-day trial of Octopus Cloud.
+You can [sign up right now](https://octopus.com/start) for a trial of Octopus Cloud.
 
 Happy Cloud Deployments!

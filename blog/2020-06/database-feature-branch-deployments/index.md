@@ -6,6 +6,7 @@ visibility: public
 published: 2020-06-03
 metaImage: database-feature-branch-deployments.png
 bannerImage: database-feature-branch-deployments.png
+bannerImageAlt: Database Feature Branch Deployments
 tags:
  - Engineering
  - Database Deployments

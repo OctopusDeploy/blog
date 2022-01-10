@@ -6,6 +6,7 @@ visibility: public
 published: 2018-03-30
 metaImage: metaimage-azure.png
 bannerImage: blogimage-azure.png
+bannerImageAlt: Octopus Juggling Azure Balls
 tags:
  - Engineering
 ---

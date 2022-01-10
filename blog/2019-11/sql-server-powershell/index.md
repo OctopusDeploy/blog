@@ -4,6 +4,7 @@ description: SQL Server database administration using PowerShell
 author: james.chatmas@octopus.com
 visibility: public
 bannerImage: sql-server-powershell-examples.png
+bannerImageAlt: SQL Server and PowerShell Practical Examples
 metaImage: sql-server-powershell-examples.png
 published: 2019-11-26
 tags:
@@ -169,7 +170,7 @@ With the new database in place, perhaps there are changes to settings that need 
 Invoke-Sqlcmd -InputFile .\alter_script.sql -ServerInstance YourInstance -Database YourDB
 ```
 
-Additional `Invoke-Sqlcmd` information can be found at this Microsoft doc: [Invoke-Sqlcmd cmdlet](https://docs.microsoft.com/en-us/sql/database-engine/invoke-sqlcmd-cmdlet?view=sql-server-2014).
+Additional `Invoke-Sqlcmd` information can be found at this Microsoft doc: [Invoke-Sqlcmd cmdlet](https://docs.microsoft.com/en-us/powershell/module/sqlserver/invoke-sqlcmd).
 
 ## Run inline SQL commands
 Finally, you might need to run some SQL queries to verify the database contains the correct data (a sanity check that everything is well). PowerShell has the ability to run inline SQL queries directly from the console window. Let’s run a quick query to check for the number of rows in a table:

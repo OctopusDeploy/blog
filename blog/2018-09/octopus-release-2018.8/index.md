@@ -6,6 +6,7 @@ visibility: public
 published: 2018-09-04
 metaImage: metaimage-shipping-2018-8.png
 bannerImage: blogimage-shipping-2018-8.png
+bannerImageAlt: Octopus Deploy 2018.8 release banner
 tags:
  - Product
 ---

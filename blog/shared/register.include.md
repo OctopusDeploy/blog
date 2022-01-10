@@ -1,0 +1,1 @@
+You can get started with either Octopus Server or Octopus Cloud for [free](https://octopus.com/free).

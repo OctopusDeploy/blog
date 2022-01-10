@@ -6,6 +6,7 @@ visibility: public
 published: 2020-06-01
 metaImage: execution-workers.png
 bannerImage: execution-workers.png
+bannerImageAlt: Execution Containers for Workers
 tags:
  - Product
 ---

@@ -5,6 +5,7 @@ author: robert.erez@octopus.com
 visibility: public
 metaImage: 4.0react_metaimage.png
 bannerImage: 4.0react_blogimage.png
+bannerImageAlt: Octopus 4.0 was rewritten in React
 published: 2017-11-09
 tags:
  - Engineering

@@ -6,6 +6,7 @@ visibility: public
 published: 2018-04-06
 metaImage: metaimage-appveyor.png
 bannerImage: blogimage-appveyor.png
+bannerImageAlt: Continous Delivery in the cloud with Octopus and AppVeyor
 tags:
  - Product
 ---

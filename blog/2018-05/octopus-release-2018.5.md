@@ -5,6 +5,7 @@ author: rob.pearson@octopus.com
 visibility: public
 metaImage: metaimage-shipping-2018-5.png
 bannerImage: blogimage-shipping-2018-5.png
+bannerImageAlt: Octopus Deploy 2018.5 release banner
 published: 2018-05-14
 tags:
  - Product

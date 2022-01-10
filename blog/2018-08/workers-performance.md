@@ -4,6 +4,7 @@ description: Using Octopus Workers to improve server and deployment performance
 author: michael.compton@octopus.com
 visibility: public
 bannerImage: blogimage-workerperf.png
+bannerImageAlt: Octopus Workers illustration
 metaImage: metaimage-workerperf.png
 published: 2018-08-17
 tags:

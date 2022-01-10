@@ -6,6 +6,7 @@ visibility: public
 published: 2020-03-04
 metaImage: blogimage-ltsrelease.png
 bannerImage: blogimage-ltsrelease.png
+bannerImageAlt: Octopus releases and Long Term Support
 tags:
  - Product
 ---

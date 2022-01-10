@@ -5,6 +5,7 @@ author: derek.campbell@octopus.com
 visibility: public
 published: 2019-09-04
 bannerImage: blogimage-devopsdays-london.png
+bannerImageAlt: Octopus Deploy at DevOps Days London illustration
 metaImage: blogimage-devopsdays-london.png
 tags:
  - Events and Webinars

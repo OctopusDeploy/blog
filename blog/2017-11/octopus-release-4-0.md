@@ -6,6 +6,7 @@ visibility: public
 published: 2017-11-21
 metaImage: metaimage-shipping-4.png
 bannerImage: blogimage-shipping-4.png
+bannerImageAlt: Octopus Deploy 4.0 has shipped
 tags:
  - Product
 ---

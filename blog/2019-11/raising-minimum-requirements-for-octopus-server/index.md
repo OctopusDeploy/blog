@@ -6,16 +6,35 @@ visibility: public
 published: 2019-11-27
 metaImage: minimum_requirements_octopus_2020.png
 bannerImage: minimum_requirements_octopus_2020.png
+bannerImageAlt: Raising the minimum requirements for hosting and using Octopus Server
 tags:
 - Product
 ---
 
 ![Raising the minimum requirements for hosting and using Octopus Server](minimum_requirements_octopus_2020.png)
 
+:::success
+**September 2020 Update**
+
+We have listened to our customers and have revised our SQL Server requirement to SQL Server 2016+, down from SQL Server 2017+
+
+This has taken affect from the following versions:
+- 2020.1.x *(SQL Version change was not enforced in 2020.1.x)*
+- 2020.2.18 ➜ 2020.2.latest
+- 2020.3.6 ➜ 2020.3.latest
+- 2020.4.0 ➜ latest
+
+Any versions that are in the following version ranges still have the SQL Server 2017+ version requirement enforced
+- 2020.2.0 ➜ 2020.2.17 
+- 2020.3.0 ➜ 2020.3.5
+:::
+
+## Original post
+
 In 2020, we will raise the minimum requirements for hosting and using Octopus Server:
 
 - Windows Server 2012 R2
-- SQL Server 2017
+- SQL Server 2017+
 
 Additionally, we're also ending mainstream support for IE11.
 
@@ -29,7 +48,7 @@ Happy Deployments!
 
 You will only be affected if:
 
-1. You host Octopus Server on Windows Server 2008-2012 or SQL Server 2008-2016 and you want to upgrade to Octopus Server `2020.x`.
+1. You host Octopus Server on Windows Server 2008-2012 or SQL Server 2008-2014 and you want to upgrade to Octopus Server `2020.x`.
 2. You use Internet Explorer 11, by force or your own preference, regardless of whether you host Octopus Server on your own infrastructure or use Octopus Cloud.
 
 ## Question: Will my deployments be affected?

@@ -12,7 +12,7 @@ tags:
 
 This post follows on from our **Octopus Deploy 2019.4** announcement about [Tracking Your Work From Code to Deployment](../metadata-and-work-items/index.md).
 
-An important part of the tracking is visibility and traceability, and we’ve already seen in the previous post how the Jira integration can help with that.  In this post, we’re going to look at another new feature, [release notes templates and automatic release notes generation](https://octopus.com/docs/packaging-applications/build-servers#build-information).
+An important part of the tracking is visibility and traceability, and we’ve already seen in the previous post how the Jira integration can help with that.  In this post, we’re going to look at another new feature, [release notes templates and automatic release notes generation](https://octopus.com/docs/packaging-applications/build-servers/build-information).
 
 This is a feature that came out of the Jira integration, but isn’t dependent on that integration and in itself can make managing your release notes simpler. So if you’re managing release notes in Octopus, please read on.
 

@@ -4,6 +4,7 @@ description: Introducing our plans for single sign-on and new account features, 
 author: roy.wallace@octopus.com
 visibility: public
 bannerImage: blogimage-octopusid.png
+bannerImageAlt: A name badge representing an Octopus user
 metaImage: metaimage-octopusid.png
 published: 2019-07-02
 tags:

@@ -6,6 +6,7 @@ visibility: public
 published: 2018-05-31
 metaImage: metaimage-dynamic-targets.png
 bannerImage: blogimage-dynamic-targets.png
+bannerImageAlt: Dynamic targets
 tags:
  - Engineering
 ---

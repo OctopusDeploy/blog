@@ -4,6 +4,7 @@ description: How to create dynamic worker infrastructure using Terraform and AWS
 author: shawn.sesna@octopus.com
 visibility: public
 bannerImage: dynamic-workers.png
+bannerImageAlt: Building a dynamic worker army with Terraform and AWS autoscaling groups
 metaImage: dynamic-workers.png
 published: 2020-02-17
 tags:
@@ -75,25 +76,31 @@ resource "aws_launch_configuration" "dynamic-windows-worker-launchconfig" {
     security_groups = ["${aws_security_group.allow-octopusserver.id}"]
 
     user_data = <<-EOT
-<script>
-@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"            
+<powershell>
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+
+$OctopusName = (Invoke-RestMethod http://169.254.169.254/latest/meta-data/hostname)
 
 choco install octopusdeploy.tentacle -y
 
-@"C:\Program Files\Octopus Deploy\Tentacle\Tentacle.exe" create-instance --config "c:\octopus\home"
+& "C:\Program Files\Octopus Deploy\Tentacle\Tentacle.exe" create-instance --config "c:\octopus\home"
 
-@"C:\Program Files\Octopus Deploy\Tentacle\Tentacle.exe" new-certificate --if-blank
+& "C:\Program Files\Octopus Deploy\Tentacle\Tentacle.exe" new-certificate --if-blank
 
-@"C:\Program Files\Octopus Deploy\Tentacle\Tentacle.exe" configure --noListen True --reset-trust --app "c:\octopus\applications"
+& "C:\Program Files\Octopus Deploy\Tentacle\Tentacle.exe" configure --noListen True --reset-trust --app "c:\octopus\applications"
 
-@"C:\Program Files\Octopus Deploy\Tentacle\Tentacle.exe" register-worker --server "#{Project.Octopus.Server.Url}" --apiKey "#{Project.Octopus.Server.ApiKey}"  --comms-style "TentacleActive" --server-comms-port "#{Project.Octopus.Server.PollingPort}" --workerPool "#{Project.Octopus.Server.WorkerPool}" --policy "#{Project.Octopus.Server.MachinePolicy}" --space "#{Project.Octopus.Server.Space}"
+Write-Host "Running register with..."
 
-@"C:\Program Files\Octopus Deploy\Tentacle\Tentacle.exe" service --install
+& "C:\Program Files\Octopus Deploy\Tentacle\Tentacle.exe" register-worker --server "#{Project.Octopus.Server.Url}" --apiKey "#{Project.Octopus.Server.ApiKey}"  --comms-style "TentacleActive" --server-comms-port "#{Project.Octopus.Server.PollingPort}" --workerPool "#{Project.Octopus.Server.WorkerPool}" --policy "#{Project.Octopus.Server.MachinePolicy}" --space "#{Project.Octopus.Server.Space}" --name $OctopusName
 
-@"C:\Program Files\Octopus Deploy\Tentacle\Tentacle.exe" service --start
+Write-Host "Finished register with..."
+
+& "C:\Program Files\Octopus Deploy\Tentacle\Tentacle.exe" service --install
+
+& "C:\Program Files\Octopus Deploy\Tentacle\Tentacle.exe" service --start
 
 
-</script>
+</powershell>
 
   EOT
 }

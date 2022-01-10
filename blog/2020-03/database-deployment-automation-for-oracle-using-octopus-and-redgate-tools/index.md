@@ -6,6 +6,7 @@ visibility: public
 published: 2020-03-10
 metaImage: metaimage-redgate-database.png
 bannerImage: blogimage-redgate-database.png
+bannerImageAlt: Database deployment automation using Octopus and Redgate Deployment Suite for Oracle
 tags:
  - Engineering
  - Database Deployments

@@ -6,6 +6,7 @@ visibility: public
 published: 2020-03-09
 metaImage: octopus-testdrive.png
 bannerImage: octopus-testdrive.png
+bannerImageAlt: Introducing project TestDrive
 tags:
  - Product
 ---

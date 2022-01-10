@@ -6,6 +6,7 @@ visibility: public
 published: 2019-09-09
 metaImage: blogimage-servicemesh.png
 bannerImage: blogimage-servicemesh.png
+bannerImageAlt: Illustration showing a service mesh
 tags:
  - Engineering
  - Kubernetes

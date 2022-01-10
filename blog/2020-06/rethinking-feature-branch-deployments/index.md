@@ -4,14 +4,15 @@ description: Feature branches should be tested prior to merging into master.  Al
 author: bob.walker@octopus.com
 visibility: public
 published: 2020-06-03
-metaImage: feature-branches.png
-bannerImage: feature-branches.png
+metaImage: rethinking-feature-branch-deployments.png
+bannerImage: rethinking-feature-branch-deployments.png
+bannerImageAlt: Re-thinking feature branch deployments
 tags:
  - Engineering
  - Database Deployments
 ---
 
-![Re-thinking feature branch deployments](feature-branches.png)
+![Re-thinking feature branch deployments](rethinking-feature-branch-deployments.png)
 
 I transitioned to Git in 2013.  Since that time, I have been doing feature branch testing all wrong.  The problem was, I worked in places with the same static environments, **{{Dev, Test, Staging, Production}}**.  Each environment had one instance of my application, and they all reflected what was in the `master` branch.  The only way for QA to test a new feature was to merge code into `master`.  In a perfect world, I would stand up a sandbox for the feature branch for QA to test.  The **{{Dev, Test, Staging, Production}}** lifecycle represented my pre-Git life.  In this article, I walk through how I’ve adjusted my thinking to better leverage Git.
 

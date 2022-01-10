@@ -6,6 +6,7 @@ visibility: public
 published: 2019-12-04
 metaImage: first-look-jenkins-x.png
 bannerImage: first-look-jenkins-x.png
+bannerImageAlt: Jenkins X first look
 tags:
  - DevOps
  - Jenkins

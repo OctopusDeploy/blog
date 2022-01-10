@@ -10,10 +10,6 @@ tags:
  - Product
 ---
 
-<div style="background-color:#e9edf2;">
-<img style="display:block; margin: 0 auto; padding: 20px 0 20px 20px;" alt="Octopus Deploy with Tomcat" src="https://i.octopus.com/blog/2017-06/java-octopus.png" />
-</div>
-
 A customer recently asked if it was possible to deploy a Spring Boot application as a Windows Service using Octopus Deploy. The [Spring documentation](https://docs.spring.io/spring-boot/docs/current/reference/html/deployment-install.html#deployment-windows) does briefly mention a method for running Spring Boot applications as Windows services, but a lot of the details are left to the reader to figure out.  So in this blog post I'll show you how to quickly run a standard Spring Boot application as a service.
 
 ## Java and Windows services

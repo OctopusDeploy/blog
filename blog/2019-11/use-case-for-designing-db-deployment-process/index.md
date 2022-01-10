@@ -6,6 +6,7 @@ visibility: public
 published: 2019-11-12
 metaImage: blogimage-databasedeploymentcasestudy.png
 bannerImage: blogimage-databasedeploymentcasestudy.png
+bannerImageAlt: Octopus reading an automated database deployment process case study
 tags:
  - Engineering
  - Database Deployments

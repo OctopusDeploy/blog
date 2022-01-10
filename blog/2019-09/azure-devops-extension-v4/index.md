@@ -6,6 +6,7 @@ visibility: public
 published: 2019-09-12
 metaImage: blogimage-azureintegration.png
 bannerImage: blogimage-azureintegration.png
+bannerImageAlt: Illustration showing Azure DevOps and Octopus Deploy work great together
 tags:
  - Product
  - Azure
@@ -53,7 +54,7 @@ Reading release notes in Octopus is handy but sharing them via email, Slack, or 
 
 ![Configure your Octopus Space in an Azure Pipelines build process](azure-devops-spaces-support.png "width=600")
 
-Our updated extension includes full support to retrieve all the [spaces](https://octopus.com/spaces) from your Octopus server, so it’s now easy to select the one for your team.
+Our updated extension includes full support to retrieve all the [spaces](https://octopus.com/docs/administration/spaces) from your Octopus server, so it’s now easy to select the one for your team.
 
 ## How to install or update your Azure DevOps extension
 

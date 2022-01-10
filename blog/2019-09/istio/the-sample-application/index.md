@@ -6,6 +6,7 @@ visibility: public
 published: 2019-09-23
 metaImage: exploring-istio.png
 bannerImage: exploring-istio.png
+bannerImageAlt: An Octopus exploring the Istio service mesh for Kubernetes
 tags:
  - Engineering
  - Kubernetes

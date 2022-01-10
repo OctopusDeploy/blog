@@ -6,6 +6,7 @@ visibility: public
 published: 2020-05-27
 metaImage: bitbucket-cd.png
 bannerImage: bitbucket-cd.png
+bannerImageAlt: Bitbucket Pipelines
 tags:
  - DevOps
 ---

@@ -6,6 +6,7 @@ visibility: public
 published: 2019-10-02
 metaImage: kubernetes-oauth.png
 bannerImage: kubernetes-oauth.png
+bannerImageAlt: Kubernetes OAuth illustration showing a locked treasure chest representing Kubernetes
 tags:
  - Engineering
  - Kubernetes

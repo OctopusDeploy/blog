@@ -6,6 +6,7 @@ visibility: public
 published: 2020-05-06
 metaImage: tomcat-docker.png
 bannerImage: tomcat-docker.png
+bannerImageAlt: Booting Tomcat in Docker with the manager app
 tags:
  - DevOps
  - Java
@@ -53,14 +54,14 @@ The final hurdle to jump is the fact that the Tomcat Docker image does not load 
 The command below maps the two custom XML files we created above (saved to `/tmp` in this example), moves `/usr/local/tomcat/webapps.dist` to `/usr/local/tomcat/webapps`, and finally launches Tomcat:
 
 ```
-docker run \
+sudo docker run \
   --name tomcat \
   -it \
   -p 8080:8080 \
   -v /tmp/tomcat-users.xml:/usr/local/tomcat/conf/tomcat-users.xml \
-  -v /tmp/context.xml:/usr/local/tomcat/webapps.dist/manager/META-INF/context.xml \
+  -v /tmp/context.xml:/tmp/context.xml \
   tomcat:9.0 \
-  /bin/bash -c "mv /usr/local/tomcat/webapps /usr/local/tomcat/webapps2; mv /usr/local/tomcat/webapps.dist /usr/local/tomcat/webapps; catalina.sh run"
+  /bin/bash -c "mv /usr/local/tomcat/webapps /usr/local/tomcat/webapps2; mv /usr/local/tomcat/webapps.dist /usr/local/tomcat/webapps; cp /tmp/context.xml /usr/local/tomcat/webapps/manager/META-INF/context.xml; catalina.sh run"
 ```
 
 ## Access the manager application

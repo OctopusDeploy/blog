@@ -5,6 +5,7 @@ author: bob.walker@octopus.com
 visibility: public
 metaImage: img-blog-database-deployments-blue-green.png
 bannerImage: img-blog-database-deployments-blue-green.png
+bannerImageAlt: Illustration showing two database (one green and one blue) on a seesaw
 published: 2019-09-16
 tags:
  - DevOps

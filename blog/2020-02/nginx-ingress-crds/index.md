@@ -6,6 +6,7 @@ visibility: public
 published: 2020-02-19
 metaImage: nginx-ingress-crds.png
 bannerImage: nginx-ingress-crds.png
+bannerImageAlt: NGINX VirtualServer and VirtualServerRoute resources
 tags:
  - DevOps
  - Kubernetes

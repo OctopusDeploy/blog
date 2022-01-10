@@ -6,6 +6,7 @@ visibility: public
 published: 2020-04-16
 metaImage: sql-server-security-with-dbatools.png
 bannerImage: sql-server-security-with-dbatools.png
+bannerImageAlt: Deploying SQL Server Security with dbatools and Octopus Deploy
 tags:
  - Product
  - Database Deployments
@@ -95,3 +96,13 @@ I’ve got a bunch of stuff I want to do with this, and I’m really interested 
 However, I should also mention that in the last few days, I’ve learned that [Stuart Moore is working on something similar](https://github.com/sqlcollaborative/dbasecurityscan). Earlier this week, he published his work to [the sqlcollaborative](https://github.com/sqlcollaborative). He’s come at the problem more from a security auditing/testing perspective than a source control/deployment perspective, but our work is so tightly connected that it might be best to combine our efforts.
 
 The thing I love most about this community is how many people are willing to share their work and collaborate to solve hard problems.
+
+---
+
+Alex Yates has been helping organisations to apply DevOps principles to their data since 2010. He’s most proud of helping Skyscanner develop the ability to  [deploy 95 times a day](https://www.youtube.com/watch?v=sNsPnCv7hHo) and for supporting the United Nations Office for Project Services with their release processes. Alex has worked with clients on every continent except Antarctica – so he’s keen to meet anyone who researches penguins.
+ 
+A keen community member, he co-organises [Data Relay](https://datarelay.co.uk/), is the founder of [www.SpeakingMentors.com](http://www.speakingmentors.com/) and has been recognised as a  [Microsoft Data Platform MVP](https://mvp.microsoft.com/en-us/PublicProfile/5002655?fullName=Alex%20Yates) since 2017.
+ 
+Alex is the founder of [DLM Consultants](http://dlmconsultants.com/), an official Octopus Deploy partner. He enjoys mentoring, coaching, training and consulting with customers who want to achieve better business outcomes through improved IT and database delivery practices.
+ 
+If you would like to work with Alex, email: [enquiries@dlmconsultants.com](mailto:enquiries@dlmconsultants.com) 

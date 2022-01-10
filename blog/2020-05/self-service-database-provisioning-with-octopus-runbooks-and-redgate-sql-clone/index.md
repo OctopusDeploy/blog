@@ -3,9 +3,10 @@ title: Self-service database provisioning with Octopus Runbooks and Redgate SQL 
 description: A discussion about database provisioning for dev and test, including a walk-through of Redgate SQL Clone and Octopus Runbooks
 author: alex.yates@dlmconsultants.com
 visibility: public
-published: 2020-05-18
+published: 2020-10-19
 metaImage: runbooks-selfservice.png
 bannerImage: runbooks-selfservice.png
+bannerImageAlt: Self-service database provisioning with Octopus Runbooks and Redgate SQL Clone
 tags:
  - DevOps
  - Runbooks
@@ -287,3 +288,20 @@ Since I created the SQL Clone step templates, I’m keen for you to tell me if y
 If you want any advice about DevOps and Data, we offer consulting, coaching, and mentoring services. Alternatively, both Redgate and Octopus have great documentation, community forums, and tech support teams.
 
 Good luck!
+
+---
+
+**Edit, 22 Oct, 2021:**
+If you would like to learn more about database environment creation, and how it fits into the broader DevOps strategy, you may enjoy my latest blog series about safe schema updates. It starts with [Database delivery hell](https://octopus.com/blog/safe-schema-updates-1-delivery-hell).
+
+In particular, you may be interested in [Part 6](https://octopus.com/blog/safe-schema-updates-6-provisioning-databases), which tackles database environment provisioning.
+
+---
+
+Alex Yates has been helping organisations to apply DevOps principles to their data since 2010. He’s most proud of helping Skyscanner develop the ability to  [deploy 95 times a day](https://www.youtube.com/watch?v=sNsPnCv7hHo) and for supporting the United Nations Office for Project Services with their release processes. Alex has worked with clients on every continent except Antarctica – so he’s keen to meet anyone who researches penguins.
+ 
+A keen community member, he co-organises [Data Relay](https://datarelay.co.uk/), is the founder of [www.SpeakingMentors.com](http://www.speakingmentors.com/) and has been recognised as a  [Microsoft Data Platform MVP](https://mvp.microsoft.com/en-us/PublicProfile/5002655?fullName=Alex%20Yates) since 2017.
+ 
+Alex is the founder of [DLM Consultants](http://dlmconsultants.com/), an official Octopus Deploy partner. He enjoys mentoring, coaching, training and consulting with customers who want to achieve better business outcomes through improved IT and database delivery practices.
+ 
+If you would like to work with Alex, email: [enquiries@dlmconsultants.com](mailto:enquiries@dlmconsultants.com) 

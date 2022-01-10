@@ -6,6 +6,7 @@ visibility: public
 published: 2020-06-10
 metaImage: refactoring-octopus.png
 bannerImage: refactoring-octopus.png
+bannerImageAlt: Refactoring Octopus Adding strict null checks to the Octopus front-end
 tags:
   - Engineering
   - TypeScript

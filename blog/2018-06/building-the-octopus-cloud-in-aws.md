@@ -6,6 +6,7 @@ visibility: public
 published: 2018-06-25
 metaImage: metaimage-octopus-cloud.png
 bannerImage: blogimage-octopus-cloud.png
+bannerImageAlt: Octopus Deploy in the clouds illustration
 tags:
  - Engineering
 ---

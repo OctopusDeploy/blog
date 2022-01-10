@@ -6,6 +6,7 @@ visibility: public
 published: 2019-11-14
 metaImage: blogimage-databasedeploymentpitfalls.png
 bannerImage: blogimage-databasedeploymentpitfalls.png
+bannerImageAlt: Pitfalls with SQL rollbacks and automated database deployments
 tags:
  - Engineering
  - Database Deployments

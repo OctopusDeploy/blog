@@ -4,6 +4,7 @@ description: Introducing runbooks for your operations team. It’s now possible 
 author: jessica.ross@octopus.com
 visibility: public
 bannerImage: operations-runbooks.png
+bannerImageAlt: Illustration showing books running (i.e., runbooks) through a server room
 metaImage: operations-runbooks.png
 published: 2019-10-16
 tags:

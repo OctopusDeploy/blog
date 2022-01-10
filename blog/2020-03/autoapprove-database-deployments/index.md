@@ -6,6 +6,7 @@ visibility: public
 published: 2020-03-30
 metaImage: metaimage-sqlscript.png
 bannerImage: blogimage-sqlscript.png
+bannerImageAlt: Automatic approvals for your database deployment automation
 tags:
  - Engineering
  - Database Deployments

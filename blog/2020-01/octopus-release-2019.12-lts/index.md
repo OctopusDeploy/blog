@@ -4,6 +4,7 @@ description: Octopus Server 2019.12 LTS is now available, and we recommend this 
 author: rob.pearson@octopus.com
 visibility: public
 bannerImage: blogimage-ltsrelease.png
+bannerImageAlt: Cars in the slow and fast lanes
 metaImage: blogimage-ltsrelease.png
 published: 2020-01-14
 tags:
@@ -90,7 +91,7 @@ Octopus 2019.4 introduced build information and work item tracking. This is a po
 
 We also added deployment change templates to complement the existing release notes templates, enabling teams to customize the display to suit their needs.
 
-[Learn more](https://octopus.com/docs/packaging-applications/build-servers#build-information)
+[Learn more](https://octopus.com/docs/packaging-applications/build-servers/build-information)
 
 ## Other improvements
 

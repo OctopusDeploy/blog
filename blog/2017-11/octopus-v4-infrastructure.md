@@ -5,6 +5,7 @@ author: mark.siedle@octopus.com
 visibility: public
 metaImage: 4.0infrastructure_metaimage.png
 bannerImage: 4.0infrastructure_blogimage.png
+bannerImageAlt: Octopus 4.0 new infrastructure page can help you find a needle in a haystack
 published: 2017-11-02
 tags:
  - Engineering

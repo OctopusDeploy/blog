@@ -6,6 +6,7 @@ visibility: public
 published: 2019-12-18
 metaImage: octopus-2019.11-release-image.png
 bannerImage: octopus-2019.11-release-image.png
+bannerImageAlt: Octopus Deploy 2019.11 is now available
 tags:
  - Product
 ---

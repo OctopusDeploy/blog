@@ -6,6 +6,7 @@ visibility: public
 published: 2020-06-08
 metaImage: sql-server-powershell-examples.png
 bannerImage: sql-server-powershell-examples.png
+bannerImageAlt: SQL Server and PowerShell made easier with dbatools Practical Examples
 tags:
  - DevOps
  - PowerShell
@@ -204,3 +205,13 @@ Since 500 cmdlets can be pretty daunting, you might not know where to start. Her
 3.	Join the SQL Community. There are a bunch of us [hanging out on Slack](https://dbatools.io/dbatools-is-now-on-the-sql-server-communitys-slack/). We are an overbearingly friendly bunch, and we love to help make things go. (And if you spot an opportunity to improve dbatools, [submit a pull request](https://github.com/sqlcollaborative/dbatools/blob/master/contributing.md)!)
 
 Join us. We’d love to meet you! 😊
+
+---
+
+Alex Yates has been helping organisations to apply DevOps principles to their data since 2010. He’s most proud of helping Skyscanner develop the ability to  [deploy 95 times a day](https://www.youtube.com/watch?v=sNsPnCv7hHo) and for supporting the United Nations Office for Project Services with their release processes. Alex has worked with clients on every continent except Antarctica – so he’s keen to meet anyone who researches penguins.
+ 
+A keen community member, he co-organises [Data Relay](https://datarelay.co.uk/), is the founder of [www.SpeakingMentors.com](http://www.speakingmentors.com/) and has been recognised as a  [Microsoft Data Platform MVP](https://mvp.microsoft.com/en-us/PublicProfile/5002655?fullName=Alex%20Yates) since 2017.
+ 
+Alex is the founder of [DLM Consultants](http://dlmconsultants.com/), an official Octopus Deploy partner. He enjoys mentoring, coaching, training and consulting with customers who want to achieve better business outcomes through improved IT and database delivery practices.
+ 
+If you would like to work with Alex, email: [enquiries@dlmconsultants.com](mailto:enquiries@dlmconsultants.com) 

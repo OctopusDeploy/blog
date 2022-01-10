@@ -6,6 +6,7 @@ visibility: public
 published: 2020-04-21
 metaImage: bitbucket-cd.png
 bannerImage: bitbucket-cd.png
+bannerImageAlt: Bitbucket Pipelines
 tags:
  - DevOps
 ---
@@ -595,7 +596,7 @@ You can see the minimum YAML required to achieve the push to Octopus below:
 
 ### Push build information to Octopus
 
-To round off the integration, I want to have the [build information](https://octopus.com/docs/packaging-applications/build-servers#build-information) available within Octopus.
+To round off the integration, I want to have the [build information](https://octopus.com/docs/packaging-applications/build-servers/build-information) available within Octopus.
 
 For me, one of the best things about Octopus is that it’s built [API-first](https://octopus.com/docs/octopus-concepts/rest-api). This allows us to build a first-class CLI on top of it. Pushing build information turned out to be pretty easy. Once I knew the format of the JSON payload, I created a [Bash script](https://bitbucket.org/octopussamples/randomquotes-js/src/master/create-build-info.sh) to do just that using the [build-information](https://octopus.com/docs/octopus-rest-api/octopus-cli/build-information) command.
 

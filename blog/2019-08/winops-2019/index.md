@@ -5,6 +5,7 @@ author: derek.campbell@octopus.com
 visibility: public
 published: 2019-08-30
 bannerImage: blogimage-winops-turbocharging-azure.png
+bannerImageAlt: Derek Campbell speaking at WinOps London 2019 details
 metaImage: blogimage-winops-turbocharging-azure.png
 tags:
  - Events and Webinars

@@ -6,6 +6,7 @@ visibility: public
 published: 2020-01-20
 metaImage: kubernetes-in-docker.png
 bannerImage: kubernetes-in-docker.png
+bannerImageAlt: Kubernetes in Docker (KIND)
 tags:
  - DevOps
  - Kubernetes

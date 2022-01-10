@@ -5,6 +5,7 @@ author: shaun.marx@octopus.com
 visibility: public
 published: 2018-11-07
 bannerImage: blogimage-deploymenttargetupdate.png
+bannerImageAlt: Illustration of an idea turning into the new deployment target UX
 metaImage: blogimage-deploymenttargetupdate.png
 tags:
 - Engineering

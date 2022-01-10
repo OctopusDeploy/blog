@@ -2,17 +2,20 @@
 title: Cloning a space using the Octopus API
 description: With the Octopus API, it is possible to clone almost everything you need in a space.
 author: bob.walker@octopus.com
-visibility: private
-published: 2020-12-31
-metaImage: 
-bannerImage: 
+visibility: public
+published: 2020-06-29
+metaImage: spaces.png
+bannerImage: spaces.png
+bannerImageAlt: Cloning a space using the Octopus API
 tags:
  - Engineering
 ---
 
+![Cloning a space using the Octopus API](spaces.png)
+
 I was happy with how the [feature branch example](https://samples.octopus.app/app#/Spaces-106/projects/redgate-feature-branch-example/deployments) I put together for my [webinar with Redgate](https://event.on24.com/eventRegistration/EventLobbyServlet?target=reg20.jsp&partnerref=OS&eventid=2307799&sessionid=1&key=DCB6FD8458D78BEEBB341BE31CF8279B&regTag=&sourcepage=register).  My co-hosts at Redgate liked it so much they want a copy of their own to poke around with.  That sample project is located on Octopus Cloud, so I couldn't use the [migrator](https://octopus.com/docs/administration/data/data-migration), and if I am honest, I didn't want to for this specific use case.  For those of you who don't know, everything done in the Octopus Web Portal hits the Octopus Deploy RESTful API.  I set out to write a PowerShell script to use the Octopus API to copy a project from the sample instance over to Redgate's instance.  In this post, I share how I accomplished that and what you can do to write your own script.
 
-**TL;DR;** I posted my script in a [GitHub under the Octopus Samples organization](https://github.com/OctopusSamples/SpaceCloner).  Going forward, our team will use this script internally to speed up the creation of samples in that instance.  You can try it out for yourself, fork it, and modify it to meet your company's needs.
+**TL;DR;** I posted my script in [GitHub under the Octopus Samples organization](https://github.com/OctopusSamples/SpaceCloner).  Going forward, our team will use this script internally to speed up the creation of samples in that instance.  You can try it out for yourself, fork it, and modify it to meet your company's needs.
 
 !toc
 

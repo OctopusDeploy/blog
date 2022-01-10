@@ -4,6 +4,7 @@ description: An introduction to Spaces.
 author: nick.josevski@octopus.com
 visibility: public
 bannerImage: blogimage-spaces.png
+bannerImageAlt: Teams using Octopus Spaces illustration
 metaImage: blogimage-spaces.png
 published: 2018-12-14
 tags:
