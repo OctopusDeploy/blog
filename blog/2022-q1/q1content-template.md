@@ -8,13 +8,16 @@ metaImage:
 bannerImage: 
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
-tags:
+tags: 
   - DevOps
+  - CI Series
   - Continuous Integration
   - Jenkins
   - GitHub Actions
   - Testing
 ---
+
+<!-- see https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags -->
 
 Introductory paragraph that tells the reader why they should read on.
 

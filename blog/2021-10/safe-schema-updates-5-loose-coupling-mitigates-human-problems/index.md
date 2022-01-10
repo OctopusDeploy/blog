@@ -16,7 +16,7 @@ tags:
 
 This blog post is part 5 of my safe schema updates series. 
 
-We'll add links to the other posts in this series as they become available.
+Links to the other posts in this series are available below:
 
 !include <safe-schema-updates-posts>
 
@@ -113,6 +113,20 @@ After that, we’ll finish this series with two posts that discuss near-zero dow
 
 While each of these capabilities is individually valuable, it’s in the combination of all three that the benefits of each are multiplied.
 
-We'll add links to the other posts in this series as they become available.
+Links to the other posts in this series are available below:
 
 !include <safe-schema-updates-posts>
+ 
+## Watch the webinars 
+
+Our first webinar discussed how loosely coupled architectures lead to maintainability, innovation, and safety. Part two discussed how to transition a mature system from one architecture to another. 
+
+### Database DevOps: Imagining better systems
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/oJAbUMZ6bQY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+### Database DevOps: Building better systems
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/joogIAcqMYo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Happy deployments!

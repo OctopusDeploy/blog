@@ -18,7 +18,7 @@ tags:
 
 Docker emerged victorious in the battle for universal application packages. Every major operating system supports Docker images, all cloud providers support deploying Docker images, and every major tool or platform offers an official Docker image. Jenkins is no exception, providing the image [jenkins/jenkins](https://hub.docker.com/r/jenkins/jenkins).
 
-In this post, you learn how to run Jenkins from a Docker image, configure it, customize it, and use the image as a replacement for a [traditional package based installation](https://octopus.com/blog/jenkins-install-guide-windows-linux).
+In this post you'll learn how to run Jenkins from a Docker image, configure it, customize it, and use the image as a replacement for a [traditional package based installation](blog/2022-01/jenkins-install-guide-windows-linux/index.md).
 
 ## Prerequisites
 
