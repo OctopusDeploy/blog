@@ -2,7 +2,7 @@
 title: How to install Jenkins on Windows and Linux
 description: As part of our series about Continuous Integration and build servers, learn how to install Jenkins via the traditional installers.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2022-01-17-1400
 metaImage: blogimage-installjenkinstraditionalinstallation-2022.png
 bannerImage: blogimage-installjenkinstraditionalinstallation-2022.png
