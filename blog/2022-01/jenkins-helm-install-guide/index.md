@@ -2,7 +2,7 @@
 title: How to install a Jenkins instance with Helm
 description: As part of our series about Continuous Integration and build servers, learn how to install Jenkins via Helm.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2022-01-19-1400
 metaImage: blogimage-installjenkinshelmk8-2022.png
 bannerImage: blogimage-installjenkinshelmk8-2022.png
