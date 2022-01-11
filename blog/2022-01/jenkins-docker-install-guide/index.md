@@ -2,7 +2,7 @@
 title: How to install Jenkins on Docker
 description: As part of our series about Continuous Integration and build servers, learn how to install Jenkins via a Docker image.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2022-01-18-1400
 metaImage: blogimage-howtoinstalljenkinsondocker-2022.png
 bannerImage: blogimage-howtoinstalljenkinsondocker-2022.png
