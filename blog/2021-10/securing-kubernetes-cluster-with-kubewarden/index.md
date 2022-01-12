@@ -39,7 +39,7 @@ Kubewarden is installed via a runbook. Runbooks are useful for administration ta
 
 ![Octopus dashboard open on Runbooks screen showing Install Kubewarden](helm-deployment.png "width=500")
 
-## Deploy a suspicious pod
+## Deploying a suspicious pod
 
 To demonstrate how Kubewarden can keep your cluster secure, deploy the pod below. This pod gives itself the `SYS_TIME` capability and uses the `date` command to set the system time in the container.
 

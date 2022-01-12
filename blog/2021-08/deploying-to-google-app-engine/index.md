@@ -11,6 +11,7 @@ isFeatured: false
 tags:
  - DevOps
  - Java
+ - Google Cloud Platform
 ---
 
 Google App Engine (GAE) is one of the original Platform as a Service (PaaS) offerings provided by the Google Cloud Platform (GCP). 

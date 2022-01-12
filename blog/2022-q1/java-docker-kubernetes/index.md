@@ -27,7 +27,7 @@ In this blog post, I built a Maven Java project and hosted the image on the Goog
 
 The Octopus Deploy Underwater App is a landing page for users creating their first deployment. It showcases relevant articles for users as well as links to other resources.
 
-You can find the web application repository on [GitHub](https://github.com/terence-octo/octopus-underwater-app/tree/underwater-app-java). The repository is split into separate branches for different use cases. We will be using the underwater-app-java branch.
+You can find the web application repository on [GitHub](https://github.com/OctopusSamples/octopus-underwater-app). The repository is split into separate branches for different use cases. We will be using the underwater-app-java branch.
 
 ## Building and pushing to a registry
 
