@@ -44,7 +44,7 @@ You will see your repository under **Amazon ECR &rarr; Repositories**. Make a no
 
 We will use a sample web application that displays an animated underwater scene with helpful links for this example.
 
-Fork the repository at https://github.com/terence-octo/octopus-underwater-app
+Fork the repository at https://github.com/OctopusSamples/octopus-underwater-app
 
 Go to **Settings &rarr; Secrets &rarr; New repository secret**
 
