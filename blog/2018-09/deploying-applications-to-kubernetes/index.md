@@ -38,7 +38,7 @@ To follow along with this blog post, you will need to have an Octopus instance, 
 
 [Helm](https://helm.sh/) is a package manager for Kubernetes, and we'll use it to install some third party services into the Kubernetes cluster. Google Cloud provides [documentation](https://cloud.google.com/community/tutorials/nginx-ingress-gke#install-helm-in-cloud-shell) describing how to install Helm in their cloud, and other cloud providers will provide similar documentation.
 
-**New to Octopus?** Check out our [getting started guide](https://octopus.com/docs/getting-started) to learn more or explore our [demo site](https://demo.octopus.com/) to see some working examples.
+**New to Octopus?** Check out our [getting started guide](https://octopus.com/docs/getting-started) to learn more.
 
 ## Preparing the Octopus Server
 
