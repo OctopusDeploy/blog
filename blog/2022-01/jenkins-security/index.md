@@ -3,13 +3,14 @@ title: Tips to keep Jenkins safe for you and your team
 description: As Jenkins connects to many industry tools, it's a good idea to keep your instance as secure as possible. Here's our tips to keep your team safe.
 author: andrew.corrigan@octopus.com
 visibility: private
-published: 3020-01-01-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+published: 2022-01-25-1400
+metaImage: blogimage-jenkinsconfigurationsecurity-2022.png
+bannerImage: blogimage-jenkinsconfigurationsecurity-2022.png
+bannerImageAlt: padlock password icon and security badge icon beside a computer screen showing security shield icon
 isFeatured: false
 tags:
   - DevOps
+  - CI Series
   - Continuous Integration
   - Jenkins
   - Testing
