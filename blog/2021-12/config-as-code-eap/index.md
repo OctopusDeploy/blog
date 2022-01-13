@@ -13,11 +13,11 @@ tags:
 - Configuration as Code
 ---
 
-![Octopus Configuration as Code - Early Access Preview](blogimage-config-as-code-explanation_2021.gif)
+Our Configuration as Code early access preview (EAP) is now available.
 
-Our Configuration as Code early access preview (EAP) is now available. 
- 
-Configuration as Code (Config as Code) in Octopus delivers the full power of Git with the usability of Octopus. We built a robust Git-persistent layer alongside the existing database implementation. This means you can see your deployment process in your Git repo next to your application code and evolve them together. 
+Configuration as Code (Config as Code) in Octopus delivers the full power of Git with the usability of Octopus. We built a robust Git-persistent layer alongside the existing database implementation. This means you can see your deployment process in your Git repo next to your application code and evolve them together.
+
+![Octopus Configuration as Code - Early Access Preview](blogimage-config-as-code-explanation_2021.gif)
 
 Our Config as Code solution allows you to:
 
