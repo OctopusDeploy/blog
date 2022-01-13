@@ -3,10 +3,10 @@ title: Managing credentials in Jenkins
 description: As part of our series about Continuous Integration and build servers, we take a look at the best way to manage credentials in Jenkins with the Credentials Binding plugin.
 author: andrew.corrigan@octopus.com
 visibility: private
-published: 2022-01-27-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+published: 2022-01-26-1400
+metaImage: blogimage-jenkinsconfigurationaddingcredentials-2022.png
+bannerImage: blogimage-jenkinsconfigurationaddingcredentials-2022.png
+bannerImageAlt: illustration of security lanyard 
 isFeatured: false
 tags:
   - DevOps
