@@ -20,7 +20,7 @@ This blog will build and push the Octopus Underwater App to Amazon Elastic Conta
 - A GitHub account
 - [A Jenkins instance set up with a pipeline](https://github.com/OctopusDeploy/blog/blob/2022-q1/blog/2022-q1/jenkins-docker-ecr/index.md).This was set up as part of a previous blog. If using the branch, specify the jenkins-octopus branch reference in Jenkins.
 
-This blog will use the [Octopus Underwater app repository](https://github.com/terence-octo/octopus-underwater-app). You can fork the repository and use the main branch to follow along. The jenkins-octopus branch contains the template files needed to complete the steps in this blog. You will have to replace some values with your own. I have included my values in this blog as a reference.
+This blog will use the [Octopus Underwater app repository](https://github.com/OctopusSamples/octopus-underwater-app). You can fork the repository and use the main branch to follow along. The jenkins-octopus branch contains the template files needed to complete the steps in this blog. You will have to replace some values with your own. I have included my values in this blog as a reference.
 
 ## Amazon Web Services setup
 

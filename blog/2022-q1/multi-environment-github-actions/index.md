@@ -18,7 +18,7 @@ This blog will build a docker image in a GitHub Actions workflow and publish the
 - An Amazon Web Services Account (AWS)
 - A GitHub account
 
-This blog will use the [Octopus Underwater app repository](https://github.com/terence-octo/octopus-underwater-app). You can fork the repository and follow along. Alternatively, the github-octopus branch contains the template files needed to complete the steps in this blog. You will have to replace some values with your own. I have included my values in this blog as a reference.
+This blog will use the [Octopus Underwater app repository](https://github.com/OctopusSamples/octopus-underwater-app). You can fork the repository and follow along. Alternatively, the github-octopus branch contains the template files needed to complete the steps in this blog. You will have to replace some values with your own. I have included my values in this blog as a reference.
 
 
 
@@ -46,7 +46,7 @@ You will see your repository under **Amazon ECR &rarr; Repositories**. Make a no
 
 For this example, we will use a sample web application that displays an animated underwater Octopus named simple-octo.
 
-Fork the repository at https://github.com/terence-octo/simple-octo
+Fork the repository at https://github.com/OctopusSamples/octopus-underwater-app
 
 Go to **Settings &rarr; Secrets &rarr; New repository secret**
 
