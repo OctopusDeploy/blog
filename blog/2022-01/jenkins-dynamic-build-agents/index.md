@@ -22,7 +22,13 @@ Thankfully, Jenkins is a scalable platform. Scalability means as your processing
 
 Scalability with Jenkins sees one instance act as a controller, directing jobs to other instances known as ‘agents’. The controller knows the capacity of each agent and will send your builds and tests to the most suitable at the time. By using dynamic build agents, this process can happen automatically, allowing Jenkins to react to your needs.
 
-Thanks to virtual environments like Kubernetes and Amazon Web Services, you don’t need a finite number of agents or physical hardware. Jenkins in a dynamic setup is smart enough to spin up new agents if none are suitable, prune unused agents, and even replace corrupted installs. And all without manual intervention.
+Thanks to virtual environments like Kubernetes and Amazon Web Services (AWS), you don’t need a finite number of agents or physical hardware. Jenkins in a dynamic setup is smart enough to: 
+
+- Spin up new agents if none are suitable
+- Prune unused agents
+- Replace corrupted installs 
+
+And all without manual intervention.
 
 In this post, we look at 2 popular ways to set up dynamic scaling from start to finish, with [Kubernetes](#method1) and [Amazon Web Services (AWS)](#method2).
 
@@ -40,7 +46,7 @@ Containers are less complex virtual machines that are easily deployable to most 
 
 This guide is an example only, and you should experiment with scaling before changing an existing Jenkins setup.
 
-In this example, we set up scalability on a local minikube cluster and use the tools below for configuration. If following along, install the tools in the order listed:
+In this example, you set up scalability on a local minikube cluster and use the tools below for configuration. If following along, install the tools in the order listed:
 
 1. Docker Desktop – Only needed if you’re on Windows. Make sure Docker Desktop is set to manage Linux containers rather than Windows containers.
 1. minicube – Allows you to install Kubernetes clusters on your computer.
@@ -71,7 +77,7 @@ To create the dockerfile and build an image:
    ```
    docker build . -t [username]/jenkinsdockerfile
    ```
-1. The build will take a little while to process, but after it's complete you’ll see the image in Docker Desktop or with the command `docker images`.
+1. The build will take a little while to process, but after it's complete you see the image in Docker Desktop or with the command `docker images`.
 
 When you create a minikube cluster in the next step, it won't see the image stored locally on your computer as the cluster runs on a virtual environment. To get around this, you can push the image to Docker Hub.
 
@@ -468,7 +474,9 @@ After it's set up and working, you can change how you want Jenkins to scale in A
 
 ## What's next
 
-Watch the blog space for more Jenkins and build server posts in the coming weeks. For more information on scaling Jenkins, read through their [official scaling documentation](https://www.jenkins.io/doc/book/scaling/).
+Watch the blog for more Jenkins and build server posts. 
+
+For more information on scaling Jenkins, read through their [official scaling documentation](https://www.jenkins.io/doc/book/scaling/).
 
 !include <jenkins-webinar-jan-2022>
 
