@@ -3,13 +3,19 @@ title: Building and deploying a Java application with Docker, Google, Azure and 
 description: Build a Java application, push it to a Docker registry, and deploy to Azure with Octopus Deploy
 author: terence.wong@octopus.com
 visibility: private
-published: 2999-01-01
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+published: 2022-01-31-1400
+metaImage: blogimage-javaappcompiledtodockeranddeploytok8s-2022.png
+bannerImage: blogimage-javaappcompiledtodockeranddeploytok8s-2022.png
+bannerImageAlt: Blue rocket amongst clouds to represent deploying a Java application, with Docker, GCR, Azure, and Octopus logos in the rocket’s steam.
 isFeatured: false
 tags:
+ - CI Series
+ - Continuous Integration
+ - Jenkins
+ - GitHub Actions
+ - Testing
  - Java
+ - DevOps
  - Docker
  - Google
  - Microsoft
