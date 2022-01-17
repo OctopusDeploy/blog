@@ -4,9 +4,9 @@ description: Join Sarah as she goes on her learning journey with Octopus Deploy.
 author: sarah.lean@octopus.com
 visibility: public
 published: 9999-09-15-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: blogimage-fromzerotooctopusheropart2-2022.png
+bannerImage: blogimage-fromzerotooctopusheropart2-2022.png
+bannerImageAlt: Mario-style Explorer Sarah about to enter a tunnel (automated deployment process) above a rickety pile of stones (manual deployment). A rocket to the right awaits (signalling successful deployment).
 isFeatured: false
 tags:
  - DevOps
