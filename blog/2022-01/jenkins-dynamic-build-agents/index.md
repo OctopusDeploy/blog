@@ -20,7 +20,7 @@ One instance of Jenkins is fine if you’re running a small project with few dev
 
 Thankfully, Jenkins is a scalable platform. Scalability means as your processing needs grow, Jenkins can grow with them.
 
-Scalability with Jenkins sees one instance act as a controller, directing jobs to other instances known as ‘agents’. The controller knows the capacity of each agent and will send your builds and tests to the most suitable at the time. By using dynamic build agents, this process can happen automatically, allowing Jenkins to react to your needs.
+Scalability with Jenkins sees one instance act as a controller, directing jobs to other instances known as agents. The controller knows the capacity of each agent and will send your builds and tests to the most suitable at the time. By using dynamic build agents, this process can happen automatically, allowing Jenkins to react to your needs.
 
 Thanks to virtual environments like Kubernetes and Amazon Web Services (AWS), you don’t need a finite number of agents or physical hardware. Jenkins in a dynamic setup is smart enough to: 
 
@@ -32,7 +32,7 @@ And all without manual intervention.
 
 In this post, we look at 2 popular ways to set up dynamic scaling from start to finish, with [Kubernetes](#method1) and [Amazon Web Services (AWS)](#method2).
 
-## Method 1: Scale with Kubernetes {#method1}
+## Method 1: Scaling with Kubernetes {#method1}
 
 Kubernetes is a tool that automatically scales the number of containers needed to keep an application running smoothly. This makes it a terrific choice for help with scaling your Jenkins instance.
 
@@ -46,7 +46,7 @@ Containers are less complex virtual machines that are easily deployable to most 
 
 This guide is an example only, and you should experiment with scaling before changing an existing Jenkins setup.
 
-In this example, you set up scalability on a local minikube cluster and use the tools below for configuration. If following along, install the tools in the order listed:
+In this example, you set up scalability on a local minikube cluster and use the tools below for configuration. If you're following along, install the tools in the order listed:
 
 1. Docker Desktop – Only needed if you’re on Windows. Make sure Docker Desktop is set to manage Linux containers rather than Windows containers.
 1. minicube – Allows you to install Kubernetes clusters on your computer.
@@ -60,14 +60,14 @@ You can set up scalability with whatever tools you’re used to, but you may nee
 First, you must create a dockerfile and use that to build a Jenkins controller image.
 
 :::hint
-A dockefile is a text file used to create images in Docker, which you can then push to the Docker Hub.
+A dockerfile is a text file used to create images in Docker, which you can then push to the Docker Hub.
 :::
 
 Our example dockerfile will create an image that includes Jenkins, plus the Blue Ocean and Kubernetes plugins.
 
 To create the dockerfile and build an image:
 
-1. Create a text file called ‘Dockerfile’ and add the Jenkins-suggested script. You can add more plugins to the list if you need – just add their names separated by spaces:
+1. Create a text file called `Dockerfile` and add the Jenkins-suggested script. You can add more plugins to the list if you need – just add their names separated by spaces:
    ```FROM jenkins/jenkins:lts-slim 
    # Pipelines with Blue Ocean UI and Kubernetes
    RUN jenkins-plugin-cli --plugins blueocean kubernetes
@@ -94,7 +94,7 @@ Docker push -t [username]/[image name]
 
 ### Step 2: Create a Kubernetes cluster
 
-Open terminal window and use the following command to create a Kubernetes cluster:
+Open a terminal window and use the following command to create a Kubernetes cluster:
 
 ```
 minikube start
@@ -260,7 +260,7 @@ Scroll through the result and find the admin password separated by lines of aste
 
 ### Step 5: Get final information and set up the Jenkins plugin
 
-Now we can set up the plugin in Jenkins. Return to Jenkins in your web browser:
+Now you can set up the plugin in Jenkins. Return to Jenkins in your web browser:
 
 1. Click **Manage Jenkins** from the menu.
 1. Click **Manage Nodes and Clouds**.
@@ -280,7 +280,7 @@ Now we can set up the plugin in Jenkins. Return to Jenkins in your web browser:
 
 ### Step 6: Test everything is working
 
-To test that Jenkins will now scale suitably, you can create some simple build jobs to check how they’re distributed.
+To test that Jenkins will scale suitably, you can create some simple build jobs to check how they’re distributed.
 
 First, set Jenkins so it won’t run jobs on the controller (unless you tell it otherwise):
 
@@ -296,9 +296,9 @@ Then create 2 “Hello World” build jobs:
 1. Enter `echo "Hello World"` into the **Command box** and click **Save**:
 1. Repeat the steps but call your second job `Testing 2`.
 
-Run both build jobs at the same time. If working correctly, they’ll appear in the **Build Queue** on Jenkins’ left. During a build job, they'll appear under the **Build Executor Status** heading with the 'jenkins-agent' prefix we set earlier. You can also check the build history to double-check exactly where the job has run and if it was successful.
+Run both build jobs at the same time. If working correctly, they appear in the **Build Queue** on Jenkins’ left. During a build job, they appear under the **Build Executor Status** heading with the 'jenkins-agent' prefix we set earlier. You can also check the build history to double-check exactly where the job has run and if it was successful.
 
-## Method 2: Scale with Amazon Web Services (AWS) and the EC2 Fleet plugin {#method2}
+## Method 2: Scaling with Amazon Web Services (AWS) and the EC2 Fleet plugin {#method2}
 
 Another way to manage Jenkins scalability is with EC2 (Amazon Elastic Compute Cloud) containers and the [EC2 Fleet plugin](https://plugins.jenkins.io/ec2-fleet/).
 
@@ -310,7 +310,7 @@ This option suits teams who:
 
 Though AWS comes at a cost, your financial limits are set at an account level.
 
-### Configure AWS
+### Configuring AWS
 
 Sign up to AWS if you don’t have an account or log into your account if you have already access.
 
@@ -347,7 +347,7 @@ First, set an access key ID for your newly created IAM user. This will allow Jen
 1. Click **Users** from the left menu under the **Access management** heading.
 1. Search for and click the IAM user you created in step 2.
 1. Go to the **Security credentials** tab and click **Create access key**.
-1. Make a note of both the access key ID and the secret access key (click **show** to see it) and keep it somewhere safe, such as a password manager. You can only see the secret access key at this stage, you’ll need to create new one if you lose it.
+1. Make a note of both the access key ID and the secret access key (click **show** to see it) and keep it somewhere safe, such as a password manager. You can only see the secret access key at this stage, and you’ll need to create new one if you lose it.
 
 Now you create a key pair. This allows Jenkins to connect to the instances that AWS will create when scaling. To set a key pair:
 
@@ -355,9 +355,9 @@ Now you create a key pair. This allows Jenkins to connect to the instances that 
 1. Click **Key Pairs** in the left menu under the **Network & Security** heading.
 1. Click **Create key pair**.
 1. Complete the following options and click **Create key pair**:
-   - **Name** – give the key pair a descriptive name
-   - **Key pair type** - leave as **RSA**
-   - **Private key file format** – select **.pem**
+   - **Name** – give the key pair a descriptive name.
+   - **Key pair type** - leave as **RSA**.
+   - **Private key file format** – select **.pem**.
    - **Tags** – add if needed.
 1. The private key will automatically download in a text file. Keep this file safe, you need it later.
 
@@ -367,7 +367,7 @@ You can either create an EC2 Spot Fleet or an Auto Scaling Group. In this exampl
 
 Before starting, you should also have a clear idea about what Amazon Machine Image (AMI) you want to use. An AMI is a pre-built image that includes the operating system and software your EC2 Fleet will create extra machines from.
 
-Your AMI image should include Java 11 as Jenkins won’t scale without it. We used the [OpenJDK 11 Java 11 Ubuntu 18.04 AMI from the AWS Marketplace](https://aws.amazon.com/marketplace/server/configuration?productId=dd67a7a9-d67f-4c91-a5ee-7e32da4da5c8&ref_=psb_cfg_continue), however, you could build your own if you need something specific. See [AWS’s documentation for more information on AMIs](https://docs.aws.amazon.com/marketplace/latest/userguide/ami-products.html).
+Your AMI image should include Java 11 as Jenkins won’t scale without it. We use the [OpenJDK 11 Java 11 Ubuntu 18.04 AMI from the AWS Marketplace](https://aws.amazon.com/marketplace/server/configuration?productId=dd67a7a9-d67f-4c91-a5ee-7e32da4da5c8&ref_=psb_cfg_continue), however, you could build your own if you need something specific. See [AWS’s documentation for more information on AMIs](https://docs.aws.amazon.com/marketplace/latest/userguide/ami-products.html).
 
 To create an EC2 Spot Fleet:
 
@@ -382,14 +382,15 @@ To create an EC2 Spot Fleet:
 
 It takes a few moments for AWS to create your fleet. Then you can configure Jenkins.
 
-### Configure Jenkins
+### Configuring Jenkins
+
 #### Step 1: install the EC2 Fleet plugin in Jenkins
 
 To install the EC2 Fleet plugin:
 
 1. Click **Manage Jenkins** from the menu.
 1. Click **Manage Plugins**.
-1. Click the **Available** tab and start typing ‘EC2 Fleet’ into the **Filter field**. The plugin should appear in the predicted search results.
+1. Click the **Available** tab and start typing `EC2 Fleet` into the **Filter field**. The plugin should appear in the predicted search results.
 1. Check the tick box to the left of the plugin then click **Install without restart**.
 
 Jenkins will install the plugin and all dependencies, including other plugins, extensions, and Amazon Software Development Kits (SDKs).
@@ -428,7 +429,7 @@ To add your key pair:
 
 #### Step 3: Connect Jenkins to your AWS EC2 Spot Fleet
 
-Now we will connect Jenkins to the AWS EC2 Spot Fleet:
+Now you connect Jenkins to the AWS EC2 Spot Fleet:
 
 1. Click **Manage Jenkins** from the menu.
 1. Click **Manage Nodes and Clouds**.
@@ -440,7 +441,7 @@ Now we will connect Jenkins to the AWS EC2 Spot Fleet:
    - **EC2 Fleet** – Any EC2 Spot Fleets connected to your Access Key ID will appear here. You may need to click **Test Connection** if the credentials aren’t showing.
    - **Launcher** – Select **Launch agents via SSH**, select the key pair credentials you added in Step 2 and **Non verifying Verification Strategy** from both new dropdown boxes.
 
-#### Step 4: Test everything’s working
+#### Step 4: Test everything is working
 
 After a few minutes, go to your Jenkins dashboard. Under the **Build Executor Status** on the left, you should see both your controller instance and your new EC2 Fleet. If the EC2 fleet is showing any errors, click its name to see logs to identify the problem.
 
@@ -461,7 +462,7 @@ Now create a “Hello World” build job:
 
 Run the build job and, if working correctly, you’ll see it appear under your fleet in the Build Executor Status on the left. Once complete, you can also check your build history to check exactly where the job ran.
 
-### Change your scaling options in AWS
+### Changing your scaling options in AWS
 
 After it's set up and working, you can change how you want Jenkins to scale in AWS.
 
