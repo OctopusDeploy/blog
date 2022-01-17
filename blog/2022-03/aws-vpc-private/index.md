@@ -4,9 +4,9 @@ description: Learn how to create a private AWS VPC with this sample CloudFormati
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2022-03-04-1400
-metaImage: 
-bannerImage:
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-createaprivateawsvpcwithcloudformation-2022.png
+bannerImage: blogimage-createaprivateawsvpcwithcloudformation-2022.png
+bannerImageAlt: Illustration of a blue locked padlock branded with a closed eye to signal private VPC, sitting amongst clouds. 
 isFeatured: false 
 tags:
  - DevOps

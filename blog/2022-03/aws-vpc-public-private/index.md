@@ -4,9 +4,9 @@ description: Learn how to create a mixed AWS VPC with this sample CloudFormation
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2022-03-08-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-createamixedawsvpcwithcloudformation-2022.png
+bannerImage: blogimage-createamixedawsvpcwithcloudformation-2022.png
+bannerImageAlt: Two blue padlocks sitting amongst clouds, one open and branded with an open eye,  the other closed and branded with a closed eye. 
 isFeatured: false
 tags:
  - DevOps

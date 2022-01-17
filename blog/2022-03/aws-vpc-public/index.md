@@ -4,9 +4,9 @@ description: Learn how to create a public AWS VPC with this sample CloudFormatio
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2022-03-08-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-createapublicawsvpcwithcloudformation-2022.png
+bannerImage: blogimage-createapublicawsvpcwithcloudformation-2022.png
+bannerImageAlt: Illustration of a blue unlocked padlock branded with an open eye to signal public VPC, sitting amongst clouds. 
 isFeatured: false 
 tags:
  - DevOps
