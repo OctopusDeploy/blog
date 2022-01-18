@@ -6,7 +6,7 @@ visibility: private
 published: 2022-01-26-1400
 metaImage: blogimage-jenkinsconfigurationaddingcredentials-2022.png
 bannerImage: blogimage-jenkinsconfigurationaddingcredentials-2022.png
-bannerImageAlt: illustration of security lanyard 
+bannerImageAlt: Illustration of security lanyard 
 isFeatured: false
 tags:
   - DevOps
@@ -29,7 +29,7 @@ If you don’t have the Credentials Binding plugin installed, it’s easy to add
 
 1. Click **Manage Jenkins** from the menu.
 1. Click **Manage Plugins**.
-1. Click the **Available** tab and start typing ‘Credentials Binding’ into the **Filter** field. The plugin should appear in the predicted search results.
+1. Click the **Available** tab and start typing `Credentials Binding` into the **Filter** field. The plugin should appear in the predicted search results.
 1. Check the tick box to the left of the plugin then click **Install without restart**.
 
 Jenkins will install the plugin and all dependencies, including other plugins and extensions.
@@ -39,7 +39,7 @@ Jenkins will install the plugin and all dependencies, including other plugins an
 The Credentials Binding plugin stores your authentication methods in 2 different ways: 
 
 - [Global](#global-credentials)
-- [User tied](#user-tied-Credentials)
+- [User tied](#user-tied-credentials)
 
 Let’s look at the difference.
 
@@ -113,5 +113,9 @@ See [Jenkins’ credentials documentation](https://www.jenkins.io/doc/book/using
 Check out the other posts about Jenkins in our build server series:
 
 - I don't have the links for these yet
+
+!include <jenkins-webinar-jan-2022>
+
+!include <q1-2022-newsletter-cta>
 
 Happy deployments!
