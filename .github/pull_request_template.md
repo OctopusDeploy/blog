@@ -17,7 +17,7 @@ The design team will work on a design for the blog image. Add any ideas you have
 - [ ] The PR build passes validation, and if it doesn't, I've checked the [common validations errors](https://style.octopus.com/writing-at-octopus-tldr#common-validation-errors) and none of those apply.
 - [ ] The images I've included follow the [rules for working with images](https://www.octopus.design/writing/working-with-images/).
 - [ ] I've added alt text for all the images I've included (alt text describes image to people unable to see it, 125 characters max)
-- [ ] One screenshot (if any are included) is suitable for Twitter. This screenshot should be 16:9 ratio and at least 1200 x 675 pixels. For screenshots from the Octopus web app, please use Chrome and the browser’s zoom function to remove as much white space as possible. If screenshots are annotated (e.g., with boxes or arrows), please also provide a version that is unannotated for use on Twitter.
+- [ ] One screenshot (if any are included) is suitable for Twitter. This screenshot should be 16:9 ratio and at least 1200 x 675 pixels. For screenshots from the Octopus web app, please use Chrome and the browser’s zoom function to remove as much white space as possible. If screenshots are annotated (e.g., with boxes or arrows), please also provide a version that is unannotated for use on Twitter. Do not use Dark Mode for the Octopus Web Portal.
 
 ## How to review this PR
 <!-- If there's anything you'd like reviewers to focus on, mention it here. -->
