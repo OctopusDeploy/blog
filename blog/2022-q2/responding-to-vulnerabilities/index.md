@@ -432,3 +432,288 @@ If there is a matching space, return the ID:
     first_id = filtered_items[0]["Id"]
     return first_id
 ```
+
+Spaces are top level resources in Octopus, while all other resources you'll interact with in this script are children of a space. Just as you did with the `get_space_id` function, the `get_resource_id` function converts a named Octopus resource it its ID. The only difference here is the URL being requested includes the space ID in the path, and the resource type is supplied to build the second element in the path. Otherwise `get_resource_id` follows the same pattern described for the `get_space_id` function:
+
+```python
+def get_resource_id(space_id, resource_type, resource_name):
+    if space_id is None:
+        return None
+
+    url = args.octopus_url + "/api/" + space_id + "/" + resource_type + "?partialName=" \
+        + resource_name.strip() + "&take=1000"
+    response = get(url, headers=headers)
+    json = response.json()
+
+    filtered_items = [a for a in json["Items"] if a["Name"] == resource_name.strip()]
+    if len(filtered_items) == 0:
+        sys.stderr.write("The resource called " + resource_name + " could not be found in space " + space_id + ".\n")
+        return None
+
+    first_id = filtered_items[0]["Id"]
+    return first_id
+```
+
+You now need to provide a way to determine the release that was last deployed to the selected environment for the selected project.
+
+A release is a snapshot of the deployment process, package versions, and variables. This is the resource that is created when you click the `CREATE RELEASE` button in the Octopus UI.
+
+A deployment is then the execution of a release to an environment.
+
+SO, in order to find which package versions are deployed to the specified environment (and we are usually talking about the production environment when dealing with vulnerabilities), you must list the deployments to an environment, filter them down to the deployments for the specified project, sort the deployments to ensure you find the latest one, and return the ID of the release that the deployment executed.
+
+The `get_release_id` function implements this query:
+
+```python
+def get_release_id(space_id, environment_id, project_id):
+    if space_id is None or environment_id is None or project_id is None:
+        return None
+```
+
+You query the `/deployments` endpoint to return the list of deployments, and pass the `environments` query param to limit the result to just those deployments for the specified environment:
+
+```python
+    url = args.octopus_url + "/api/" + space_id + "/deployments?environments=" + environment_id + "&take=1000"
+    response = get(url, headers=headers)
+    json = response.json()
+```
+
+The resulting list if filtered to just those items relating to the specified project:
+
+```python
+    filtered_items = [a for a in json["Items"] if a["ProjectId"] == project_id]
+    if len(filtered_items) == 0:
+        sys.stderr.write("The project id " + project_id + " did not have a deployment in " + space_id + ".\n")
+        return None
+```
+
+The filtered list is sorted to ensure the latest deployment is the first item:
+
+```python
+    sorted_list = sorted(filtered_items, key=cmp_to_key(compare_dates), reverse=True)
+```
+
+The release ID of the latest deployment is then returned:
+
+```python
+    release_id = sorted_list[0]["ReleaseId"]
+
+    return release_id
+```
+
+As you saw earlier, when build information is available for a package referenced in a release, details like the link back to the CI build that created the package are made available. This link is exposed in the release resource returned by the Octopus API, and is extracted by the `get_build_urls` function:
+
+```python
+def get_build_urls(space_id, release_id, project):
+    if space_id is None or release_id is None:
+        return None
+```
+
+You query the Octopus API to return the complete release resource from the specified release ID:
+
+```python
+    url = args.octopus_url + "/api/" + space_id + "/releases/" + release_id
+    response = get(url, headers=headers)
+    json = response.json()
+```
+
+Each release can have multiple associated build information resources, and each of those is filtered to find any whose build URL includes `github.com`, indicating the package was build using GitHub Actions:
+
+```python
+    build_information_with_urls = [a for a in json["BuildInformation"] if "github.com" in a["BuildUrl"]]
+```    
+
+The dictionary containing all the build information is flattened to an array of links:
+
+```python
+    build_urls = list(map(lambda b: b["BuildUrl"], build_information_with_urls))
+```
+
+If no links back to GitHub were found, a warning message is presented:
+
+```python
+    if len(build_urls) == 0:
+        sys.stderr.write("No build information results contained build URLs to GitHub for project "
+                         + project.strip() + ".\n")
+        sys.stderr.write("This script assumes GitHub Actions were used to build the packages deployed by Octopus.\n")
+```
+
+The list of URLs is then returned:
+
+```python
+    return build_urls
+```
+
+GitHub Action artifacts are simply ZIP files that are downloaded like a regular file from any other webserver. The `download_file` function creates a temporary file and writes the contents of the supplied URL into it, returning the file name:
+
+```python
+def download_file(url):
+    with tempfile.NamedTemporaryFile(delete=False, suffix=".zip") as tmp_file:
+        # get request
+        response = get(url, auth=github_auth)
+        # write to file
+        tmp_file.write(response.content)
+        return tmp_file.name
+```
+
+The `get_artifacts` function queries the GitHub API for links to artifacts associated with a run:
+
+```python
+def get_artifacts(build_urls, dependency_artifact_name):
+    if build_urls is None:
+        return None
+
+    files = []
+```
+
+The GitHub link captured by the build information is to the public, browsable web page displaying the results of the GitHub Action run. In order to interact with the details of the run programmatically though, you'll need to interact with the GitHub API.
+
+GitHub has two related URL structures. URLs that start with `https://github.com/` expose HTML pages for web browsers, while URLs that start with `https://api.github.com/repos/` expose the GitHub API. Other than the prefix, the two URL structures are mostly the same.
+
+What this means is that we must convert a URL like `https://github.com/OctopusSamples/OctoPub/actions/runs/1660462851` into `https://api.github.com/repos/OctopusSamples/OctoPub/actions/runs/1660462851` in order to access the GitHub API:
+
+```python
+    for url in build_urls:
+        # turn https://github.com/OctopusSamples/OctoPub/actions/runs/1660462851 into
+        # https://api.github.com/repos/OctopusSamples/OctoPub/actions/runs/1660462851/artifacts
+        artifacts_api_url = url.replace("github.com", "api.github.com/repos") + "/artifacts"
+        response = get(artifacts_api_url, auth=github_auth)
+        artifact_json = response.json()
+```
+
+The list of artifacts is filtered to return the one that matches the expected artifact name:
+
+```python
+        filtered_items = [a for a in artifact_json["artifacts"] if a["name"] == dependency_artifact_name]
+```        
+
+If there are no matching artifacts, an error is displayed:
+
+```python
+        if len(filtered_items) == 0:
+            print("No artifacts were found in the GitHub Action run called " + dependency_artifact_name)
+```
+
+For each matching artifact, the download URL is extracted, and the list of URLs is returned:
+
+```python
+        for artifact in filtered_items:
+            artifact_url = artifact["archive_download_url"]
+            files.append(download_file(artifact_url))
+
+    return files
+```
+
+GitHub artifacts are expected to be zip files containing text files. The `unzip_files` function extracts the supplied files, scans the resulting files for text files, reads the text files, and returns the text:
+
+```python
+def unzip_files(zip_files):
+    if zip_files is None:
+        return None
+
+    text_files = []
+    for file in zip_files:
+        with zipfile.ZipFile(file, 'r') as zip_ref:
+            with tempfile.TemporaryDirectory() as tmp_dir:
+                zip_ref.extractall(tmp_dir)
+                for extracted_file in os.listdir(tmp_dir):
+                    filename = os.fsdecode(extracted_file)
+                    if filename.endswith(".txt"):
+                        with open(os.path.join(tmp_dir, extracted_file)) as f:
+                            content = f.read()
+                            text_files.append(content)
+    return 
+```
+
+The `search_files` function prints any dependency list that contains the specified text from the contents of the extracted text files:
+
+```python
+def search_files(text_files, text, project):
+    found = False
+    for file in text_files:
+        if text in file:
+            found = True
+            print(text + " found in the following list of dependencies for project " + project.strip())
+            print(file)
+
+    return found
+```
+
+The `scan_dependencies` function is where all the code above is pulled together to scan the list of dependencies for the supplied text:
+
+```python
+def scan_dependencies():
+```
+
+The space name is turned into an ID:
+
+```python
+    space_id = get_space_id(args.octopus_space)
+```    
+
+The environment name is turned into an ID:
+
+```
+    environment_id = get_resource_id(space_id, "environments", args.octopus_environment)
+```
+
+The projects can be supplied as a comma separated list, which you loop over:
+
+```python
+    found = False
+    for project in args.octopus_project.split(","):
+```    
+
+The project name is turned into an ID:
+
+```python
+        project_id = get_resource_id(space_id, "projects", project)
+```
+
+The release associated with the latest deployment for the project to the environment is found:
+
+```python
+        release_id = get_release_id(space_id, environment_id, project_id)
+```
+
+The artifact download URLs are found:
+
+```python
+        urls = get_build_urls(space_id, release_id, project)
+```
+
+Each URL is then downloaded:
+
+```python
+        files = get_artifacts(urls, args.github_dependency_artifact)
+```
+
+The zip files are extracted, and any text files contained in them are read:
+
+```python
+        text_files = unzip_files(files)
+```    
+
+The contents of these text files are scanned for the supplied text:
+
+```python
+        if search_files(text_files, args.search_text, project):
+            found = True
+```            
+
+Summary information is then printed:
+
+```python
+    print("Searching project(s) " + args.octopus_project + " for dependency " + args.search_text)
+    if found:
+        print("\n\nSearch text " + args.search_text + " was found in the list of dependencies.")
+        print("See the logs above for the complete text file listing the application dependencies.")
+    else:
+        print("\n\nSearch text " + args.search_text + " was not found in any dependencies.")
+```
+
+The last step is to call the `scan_dependencies` function, which initiates the script:
+
+```python
+scan_dependencies()
+```
