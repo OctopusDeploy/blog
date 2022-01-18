@@ -21,7 +21,7 @@ You can connect Jenkins to most industry tools, securely storing their credentia
 
 Jenkins’ documentation recommends using the [Credentials Binding plugin](https://plugins.jenkins.io/credentials-binding/). It’s one of the installer-suggested plugins during the Jenkins setup, so it’s possible you already installed it (and used it) without realizing.
 
-In this post, I walk you through how to install the plugin and the different ways the plugin is used.
+In this post, I walk you through how to install the plugin and the different ways it's used.
 
 ## How to install the Credentials Binding plugin
 
@@ -43,7 +43,7 @@ The Credentials Binding plugin stores your authentication methods in 2 different
 
 Let’s look at the difference.
 
-## Global credentials
+## Global credentials {#global-credentials}
 
 Global credentials are manually entered login methods stored in Jenkins. Anyone with access can use the credentials to connect to other services. This can include:
 
@@ -83,7 +83,7 @@ A good example of where you can select global credentials is when creating a pip
 ![The Jenkins freestyle project setup screen showing an example of where you can select global credentials](freestyle-project-setup.png)
 
 :::hint
-Jenkinsfiles are text files in your code repo that define what your pipeline does and what it connects to. Jenkinsfiles are part of the ‘Jenkins Pipeline’ - a collection of Jenkins-recommended plugins for Continuous Integration and Continuous Delivery (CI/CD).
+Jenkinsfiles are text files in your code repo that define what your pipeline does and what it connects to. Jenkinsfiles are part of ‘Jenkins Pipeline’ - a collection of Jenkins-recommended plugins for Continuous Integration and Continuous Delivery (CI/CD).
 
 This means you can connect to services via your Jenkinsfile from credentials stored in Jenkins.
 
@@ -92,7 +92,7 @@ If you’re using the Blue Ocean plugin, which creates a Jenkinsfile for you whe
 See the [Using a Jenkinsfile page](https://www.jenkins.io/doc/book/pipeline/jenkinsfile/) on the Jenkins website for more information.
 :::
 
-## User-tied credentials in Jenkins
+## User-tied credentials in Jenkins {#user-tied-credentials}
 
 Depending on what you're connecting Jenkins to, or the plugin you're using, Jenkins ties some credentials to the logged-in user. Jenkins only stores these credentials when you first connect it with another service. You can't use these credentials outside of their initial setup and no other user account can access them.
 
