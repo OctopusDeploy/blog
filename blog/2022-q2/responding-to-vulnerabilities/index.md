@@ -18,7 +18,7 @@ Anyone facing that challenge knows all too well that such a response is not as e
 
 Runbooks, combined with [build information](https://octopus.com/docs/packaging-applications/build-servers/build-information) and some simple changes to your CI/CD pipeline, provide a convenient method for querying the dependencies included in your deployed application. In this post you'll learn how to modify a GitHub Actions Workflow to expose the required information and see an example runbook that can query the information on demand.
 
-### Prerequisites
+## Prerequisites
 
 This post uses GitHub Actions as a CI server. GitHub Actions are free for public git repositories, so you only need a GitHub account to get started.
 
@@ -26,7 +26,7 @@ The sample runbook script is written against Python 3, which can be downloaded f
 
 The example application and associated GitHub workflows can be found on [GitHub](https://github.com/OctopusSamples/OctoPub).
 
-### Capturing dependencies during the build process
+## Capturing dependencies during the build process
 
 Every major language today provides the ability to list the dependencies consumed as part of the build process. The list below shows examples of these commands, capturing the output in a file called `dependencies.txt`:
 
@@ -43,7 +43,7 @@ Two steps must be added to a GitHub Actions workflow to capture the dependencies
 
 ```yaml
     - name: List Dependencies
-      run: ./mvnw --batch-mode dependency:tree --no-transfer-progress > dependencies.txt
+      run: mvn --batch-mode dependency:tree --no-transfer-progress > dependencies.txt
       shell: bash
     - name: Collect Dependencies
       uses: actions/upload-artifact@v2
@@ -55,3 +55,7 @@ Two steps must be added to a GitHub Actions workflow to capture the dependencies
 The screenshot below shows the artifact associated with the build:
 
 ![Dependencies Artifact](dependencies-artifact.png "width=500")
+
+## Producing build information
+
+a
