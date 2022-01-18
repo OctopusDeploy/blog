@@ -306,3 +306,129 @@ scan_dependencies()
 
 Let's break this code down to understand what it is doing.
 
+Your script will accept parameters from command line arguments to make it reusable across multiple Octopus instances and spaces. The arguments are parsed by the [argparse module](https://docs.python.org/3/library/argparse.html). You can find more information about using `argparse` from the post [How to Build Command Line Interfaces in Python With argparse](https://realpython.com/command-line-interfaces-python-argparse/):
+
+```python
+parser = argparse.ArgumentParser(description='Scan a deployment for a dependency.')
+parser.add_argument('--octopusUrl', 
+                    dest='octopus_url', 
+                    action='store', 
+                    help='The Octopus server URL',
+                    required=True)
+parser.add_argument('--octopusApiKey', 
+                    dest='octopus_api_key', 
+                    action='store', 
+                    help='The Octopus API key',
+                    required=True)
+parser.add_argument('--githubUser', 
+                    dest='github_user', 
+                    action='store', 
+                    help='The GitHub username',
+                    required=True)
+parser.add_argument('--githubToken', 
+                    dest='github_token', 
+                    action='store', 
+                    help='The GitHub token/password',
+                    required=True)
+parser.add_argument('--octopusSpace', 
+                    dest='octopus_space', 
+                    action='store', 
+                    help='The Octopus space',
+                    required=True)
+parser.add_argument('--octopusProject', 
+                    dest='octopus_project', 
+                    action='store',
+                    help='A comma separated list of Octopus projects', 
+                    required=True)
+parser.add_argument('--octopusEnvironment', 
+                    dest='octopus_environment', 
+                    action='store', 
+                    help='The Octopus environment',
+                    required=True)
+parser.add_argument('--searchText', 
+                    dest='search_text', 
+                    action='store',
+                    help='The text to search for in the list of dependencies',
+                    required=True)
+parser.add_argument('--githubDependencyArtifactName', 
+                    default="Dependencies", 
+                    dest='github_dependency_artifact',
+                    action='store',
+                    help='The name of the GitHub Action run artifact that contains the dependencies')
+
+args = parser.parse_args()
+```
+
+The script makes many requests to the Octopus and GitHub APIs, and all of the requests require authentication. 
+
+The Octopus API uses the `X-Octopus-ApiKey` header to specify the API key used to authenticate requests. You can find more information on how to create an API in the [Octopus documentation](https://octopus.com/docs/octopus-rest-api/how-to-create-an-api-key).
+
+The GitHub API uses standard HTTP basic authentication with a personal access token used for the password. The [GitHub documentation](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) provides details on creating tokens.
+
+The code below captures the objects that will be passed with each API request throughout the rest of the script:
+
+```python
+headers = {"X-Octopus-ApiKey": args.octopus_api_key}
+github_auth = HTTPBasicAuth(args.github_user, args.github_token)
+```
+
+An important aspect of this script is the ability to find the latest release deployed to a given environment. This means comparing the dates returned by the Octopus API.
+
+The Octopus API returns dates in the ISO 8601 format, which looks like `2022-01-04T04:23:02.941+00:00`. Unfortunately, [Python 3.6 does not support timezone offsets that include colons](https://bugs.python.org/issue15873), forcing us to strip them out before parsing and comparing the dates. 
+
+The `compare_dates` function takes two dates as strings, strips out the colons, parses the result, and returns a value of `1`, `0`, or `-1` indicating how `date1` compares to `date2`:
+
+```python
+def compare_dates(date1, date2):
+    # Python 3.6 doesn't handle the colon in the timezone of a string like "2022-01-04T04:23:02.941+00:00".
+    # So we need to manually strip it out.
+    date1_parsed = datetime.strptime(date1["Created"][:-3] + date1["Created"][-2:], '%Y-%m-%dT%H:%M:%S.%f%z')
+    date2_parsed = datetime.strptime(date2["Created"][:-3] + date2["Created"][-2:], '%Y-%m-%dT%H:%M:%S.%f%z')
+    if date1_parsed < date2_parsed:
+        return -1
+    if date1_parsed == date2_parsed:
+        return 0
+    return 1
+```
+
+A common pattern used through this script (and most scripts working with the Octopus API) is to find the ID of a named resource. The `get_space_id` function takes the name of an Octopus space and queries the API to return the space ID:
+
+```python
+def get_space_id(space_name):
+```
+
+The `/api/spaces` URL returns a list of the spaces defined in the Octopus server. The `partialName` query parameter limits the result to spaces whose name includes the supplied value, while the `take` parameter is set to a large number to ensure you do not need to loop over any paged results:
+
+```python
+    url = args.octopus_url + "/api/spaces?partialName=" + space_name.strip() + "&take=1000"
+```
+
+A GET HTTP request is made against the URL, including the Octopus authentication headers, and the JSON result is parsed into Python nested dictionaries:
+
+```python
+    response = get(url, headers=headers)
+    spaces_json = response.json()
+```
+
+The returned results could match any space whose name is or includes the supplied space name. This means that the spaces called `MySpace` and `MySpaceTwo` would be returned if we searched for the space called `MySpace`.
+
+To ensure you return the ID of the space with the correct name, a [list comprehensions](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions) filters the returned spaces to just those that exactly match the supplied space name:
+
+```python
+    filtered_items = [a for a in spaces_json["Items"] if a["Name"] == space_name.strip()]
+```
+
+The function will return `None` if none of the spaces match the supplied space name:
+
+```python
+    if len(filtered_items) == 0:
+        sys.stderr.write("The space called " + space_name + " could not be found.\n")
+        return None
+```
+
+If there is a matching space, return the ID:
+
+```python
+    first_id = filtered_items[0]["Id"]
+    return first_id
+```
