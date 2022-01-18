@@ -34,9 +34,9 @@ In this post, we look at 2 popular ways to set up dynamic scaling from start to 
 
 ## Method 1: Scaling with Kubernetes {#method1}
 
-Kubernetes is a tool that automatically scales the number of containers needed to keep an application running smoothly. This makes it a terrific choice for help with scaling your Jenkins instance.
+Kubernetes is a tool that automatically scales the number of containers needed to keep an application running smoothly. This makes it a good choice for help with scaling your Jenkins instance.
 
-By deploying your Jenkins controller to Kubernetes, your CI setup becomes easier to manage, copy, or recreate if you have problems.
+By deploying your Jenkins controller to Kubernetes, your Continuous Integration (CI) setup becomes easier to manage, copy, or recreate if you have problems.
 
 :::hint
 Containers are less complex virtual machines that are easily deployable to most operating systems or cloud services.
@@ -240,7 +240,7 @@ You now combine the minikube IP and the port to make up the URL. For example, if
 If your URL doesn’t work, it’s possible your firewall is blocking the instance. Speak to your network admin for help. If you’re following along on your own computer and hit this problem, you can temporarily forward your ports with `kubectl port-forward svc/jenkins -n jenkins 8080:8080`. This would make your URL http://localhost:8080.
 :::
 
-Go to the URL in your web browser and you should see the **Getting Started** screen. This will ask for a one-time administrator password. With a Kubernetes cluster you need to find this via command-line.
+Go to the URL in your web browser and you should see the **Getting Started** screen. This will ask for a one-time administrator password. With a Kubernetes cluster you need to find this via a command-line.
 
 First, you need the name of your Kubernetes pod. Use the following command:
 
@@ -250,7 +250,7 @@ kubectl get pods -n Jenkins
 
 Your pod name will look something like this: **jenkins-27bc5dcd98-xk9mp**.
 
-Now run the following command, replacing [podname] with the name you just took note of.
+Now run the following command, replacing `[podname]` with the name you just took note of.
 
 ```
 kubectl logs [podname] -n jenkins
@@ -312,7 +312,7 @@ Though AWS comes at a cost, your financial limits are set at an account level.
 
 ### Configuring AWS
 
-Sign up to AWS if you don’t have an account or log into your account if you have already access.
+Sign up to AWS if you don’t have an account or log into your account if you already have access.
 
 #### Step 1: Create a policy
 
@@ -343,7 +343,7 @@ Next, you create both authentication methods needed to connect AWS to Jenkins.
 
 First, set an access key ID for your newly created IAM user. This will allow Jenkins to see information related to your AWS setup. To set the access key ID:
 
-1. Click the **Services** menu at the top, **select Security, Identity, & Compliance** and then **IAM**.
+1. Click the **Services** menu at the top, select **Security, Identity, & Compliance** and then **IAM**.
 1. Click **Users** from the left menu under the **Access management** heading.
 1. Search for and click the IAM user you created in step 2.
 1. Go to the **Security credentials** tab and click **Create access key**.
@@ -384,7 +384,7 @@ It takes a few moments for AWS to create your fleet. Then you can configure Jenk
 
 ### Configuring Jenkins
 
-#### Step 1: install the EC2 Fleet plugin in Jenkins
+#### Step 1: Install the EC2 Fleet plugin in Jenkins
 
 To install the EC2 Fleet plugin:
 
@@ -473,7 +473,7 @@ After it's set up and working, you can change how you want Jenkins to scale in A
 1. Scroll to the bottom of the page to see the scaling options. Click the **Configure** button under the **Auto Scaling** heading.
 1. Change settings as you need and save.
 
-## What's next
+## What's next?
 
 Watch the blog for more Jenkins and build server posts. 
 
