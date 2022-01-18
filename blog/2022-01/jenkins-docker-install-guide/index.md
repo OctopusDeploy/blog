@@ -279,7 +279,7 @@ You can run the following command to backup the data saved in the Docker volume 
 docker run --rm -v jenkins_home:/var/jenkins_home -v $(pwd):/backup ubuntu tar cvf /backup/backup.tar /var/jenkins_home
 ```
 
-This command can be run while Jenkins container is running because Docker volumes can be shared between running containers. However, [it's recommended you stop Jenkins before performing a backup](https://docs.cloudbees.com/docs/admin-resources/latest/backup-restore/best-practices):
+This command can be run while the Jenkins container is running because Docker volumes can be shared between running containers. However, [it's recommended you stop Jenkins before performing a backup](https://docs.cloudbees.com/docs/admin-resources/latest/backup-restore/best-practices):
 
 > Even though Jenkins takes advantage of COW, it is recommended that you stop Jenkins if possible before performing a backup because the pipeline workflow XML files may get captured in an inconsistent state (for example if the backup does not take an 'instant snapshot' of every file at that exact moment).
 
