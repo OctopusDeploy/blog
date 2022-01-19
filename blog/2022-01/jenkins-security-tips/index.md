@@ -2,7 +2,7 @@
 title: Jenkins security tips
 description: As Jenkins connects to many industry tools, it's a good idea to keep your instance as secure as possible. Here are our tips to keep your team safe.
 author: andrew.corrigan@octopus.com
-visibility: private
+visibility: public
 published: 2022-01-25-1400
 metaImage: blogimage-jenkinsconfigurationsecurity-2022.png
 bannerImage: blogimage-jenkinsconfigurationsecurity-2022.png
