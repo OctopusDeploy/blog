@@ -802,4 +802,6 @@ When the runbook is executed, it proceeds to scan each project for the latest de
 
 ## Conclusion
 
-Log4j exposed many engineering teams to the reality that dependency vulnerabilities are simply a fact of life.
+Log4j exposed many engineering teams to the reality that dependency vulnerabilities are simply a fact of life, and that timely responses are crucial not only to limit your exposure to exploits, bit also to reduce pressure on support teams fielding questions from customers. It is also clear that Log4j won't be the last widespread vulnerability, and it is just a matter of time before your code base is impacted by a disclosure.
+
+In this post you learned how to save the list of dependencies consumed by a build of you application as an artifact in GitHub Actions, how to link runs to the packages they produce using build information, and then perform simple text matching on the dependencies included in packages deployed to an environment with a runbook executing a custom Python script. The end result is the ability to know within minutes whether your applications are exposed to a vulnerability reported in a dependency, and begin responding almost immediately. 
