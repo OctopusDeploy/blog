@@ -85,7 +85,7 @@ The next step is to write a custom script to query the Octopus API to extract th
 
 ## Querying the build information to download CI artifacts
 
-We now have all the information in place to track the dependencies for any packages used in an Octopus release. It is possible to manually traverse the links exposed in the Octopus UI back to the GitHub Actions run, download the dependencies artifact, and scan the text file inside, but this manual workflow will not scale as the number of application increases. What we want instead is to automate the process through a runbook executing a custom Python script.
+We now have all the information in place to track the dependencies for any packages used in an Octopus release. It is possible to manually traverse the links exposed in the Octopus UI back to the GitHub Actions run, download the dependencies artifact, and scan the text file inside. But this manual workflow will not scale as the number of application increases. What we want instead is to automate the process through a runbook executing a custom Python script.
 
 The first step is to define the dependencies for the script in the file `requirements.txt`. The script will make use of the [requests](https://pypi.org/project/requests/) package to streamline HTTP requests:
 
@@ -107,24 +107,49 @@ import zipfile
 import argparse
 
 parser = argparse.ArgumentParser(description='Scan a deployment for a dependency.')
-parser.add_argument('--octopusUrl', dest='octopus_url', action='store', help='The Octopus server URL',
+parser.add_argument('--octopusUrl', 
+                    dest='octopus_url', 
+                    action='store', 
+                    help='The Octopus server URL',
                     required=True)
-parser.add_argument('--octopusApiKey', dest='octopus_api_key', action='store', help='The Octopus API key',
+parser.add_argument('--octopusApiKey', 
+                    dest='octopus_api_key', 
+                    action='store', 
+                    help='The Octopus API key',
                     required=True)
-parser.add_argument('--githubUser', dest='github_user', action='store', help='The GitHub username',
+parser.add_argument('--githubUser', 
+                    dest='github_user', 
+                    action='store', 
+                    help='The GitHub username',
                     required=True)
-parser.add_argument('--githubToken', dest='github_token', action='store', help='The GitHub token/password',
+parser.add_argument('--githubToken', 
+                    dest='github_token', 
+                    action='store', 
+                    help='The GitHub token/password',
                     required=True)
-parser.add_argument('--octopusSpace', dest='octopus_space', action='store', help='The Octopus space',
+parser.add_argument('--octopusSpace', 
+                    dest='octopus_space', 
+                    action='store', 
+                    help='The Octopus space',
                     required=True)
-parser.add_argument('--octopusProject', dest='octopus_project', action='store',
-                    help='A comma separated list of Octopus projects', required=True)
-parser.add_argument('--octopusEnvironment', dest='octopus_environment', action='store', help='The Octopus environment',
+parser.add_argument('--octopusProject', 
+                    dest='octopus_project', 
+                    action='store',
+                    help='A comma separated list of Octopus projects', 
                     required=True)
-parser.add_argument('--searchText', dest='search_text', action='store',
+parser.add_argument('--octopusEnvironment', 
+                    dest='octopus_environment', 
+                    action='store', 
+                    help='The Octopus environment',
+                    required=True)
+parser.add_argument('--searchText', 
+                    dest='search_text', 
+                    action='store',
                     help='The text to search for in the list of dependencies',
                     required=True)
-parser.add_argument('--githubDependencyArtifactName', default="Dependencies", dest='github_dependency_artifact',
+parser.add_argument('--githubDependencyArtifactName', 
+                    default="Dependencies", 
+                    dest='github_dependency_artifact',
                     action='store',
                     help='The name of the GitHub Action run artifact that contains the dependencies')
 
@@ -306,7 +331,7 @@ scan_dependencies()
 
 Let's break this code down to understand what it is doing.
 
-Your script will accept parameters from command line arguments to make it reusable across multiple Octopus instances and spaces. The arguments are parsed by the [argparse module](https://docs.python.org/3/library/argparse.html). You can find more information about using `argparse` from the post [How to Build Command Line Interfaces in Python With argparse](https://realpython.com/command-line-interfaces-python-argparse/):
+Your script will accept parameters from command line arguments to make it reusable across multiple Octopus instances and spaces. The arguments are parsed by the [argparse module](https://docs.python.org/3/library/argparse.html). You can find more information about using `argparse` [here](https://realpython.com/command-line-interfaces-python-argparse/):
 
 ```python
 parser = argparse.ArgumentParser(description='Scan a deployment for a dependency.')
@@ -361,18 +386,18 @@ args = parser.parse_args()
 
 The script makes many requests to the Octopus and GitHub APIs, and all of the requests require authentication. 
 
-The Octopus API uses the `X-Octopus-ApiKey` header to specify the API key used to authenticate requests. You can find more information on how to create an API in the [Octopus documentation](https://octopus.com/docs/octopus-rest-api/how-to-create-an-api-key).
+The Octopus API uses the `X-Octopus-ApiKey` header to pass the API key used to authenticate requests. You can find more information on how to create an API in the [Octopus documentation](https://octopus.com/docs/octopus-rest-api/how-to-create-an-api-key).
 
-The GitHub API uses standard HTTP basic authentication with a personal access token used for the password. The [GitHub documentation](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) provides details on creating tokens.
+The GitHub API uses standard HTTP basic authentication with a personal access token for the password. The [GitHub documentation](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) provides details on creating tokens.
 
-The code below captures the objects that will be passed with each API request throughout the rest of the script:
+The code below captures the objects containing the credentials passed with each API request throughout the rest of the script:
 
 ```python
 headers = {"X-Octopus-ApiKey": args.octopus_api_key}
 github_auth = HTTPBasicAuth(args.github_user, args.github_token)
 ```
 
-An important aspect of this script is the ability to find the latest release deployed to a given environment. This means comparing the dates returned by the Octopus API.
+An important aspect of this script is the ability to find the latest release deployed to a given environment. This means comparing dates returned by the Octopus API.
 
 The Octopus API returns dates in the ISO 8601 format, which looks like `2022-01-04T04:23:02.941+00:00`. Unfortunately, [Python 3.6 does not support timezone offsets that include colons](https://bugs.python.org/issue15873), forcing us to strip them out before parsing and comparing the dates. 
 
@@ -391,28 +416,28 @@ def compare_dates(date1, date2):
     return 1
 ```
 
-A common pattern used through this script (and most scripts working with the Octopus API) is to find the ID of a named resource. The `get_space_id` function takes the name of an Octopus space and queries the API to return the space ID:
+A common pattern used through this script (and most scripts working with the Octopus API) is to lookup the ID of a named resource. The `get_space_id` function takes the name of an Octopus space and queries the API to return the space ID:
 
 ```python
 def get_space_id(space_name):
 ```
 
-The `/api/spaces` URL returns a list of the spaces defined in the Octopus server. The `partialName` query parameter limits the result to spaces whose name includes the supplied value, while the `take` parameter is set to a large number to ensure you do not need to loop over any paged results:
+The `/api/spaces` endpoint returns a list of the spaces defined in the Octopus server. The `partialName` query parameter limits the result to spaces whose name includes the supplied value, while the `take` parameter is set to a large number to ensure you do not need to loop over any paged results:
 
 ```python
     url = args.octopus_url + "/api/spaces?partialName=" + space_name.strip() + "&take=1000"
 ```
 
-A GET HTTP request is made against the URL, including the Octopus authentication headers, and the JSON result is parsed into Python nested dictionaries:
+A GET HTTP request is made against the endpoint, including the Octopus authentication headers, and the JSON result is parsed into Python nested dictionaries:
 
 ```python
     response = get(url, headers=headers)
     spaces_json = response.json()
 ```
 
-The returned results could match any space whose name is or includes the supplied space name. This means that the spaces called `MySpace` and `MySpaceTwo` would be returned if we searched for the space called `MySpace`.
+The returned results could match any space whose name is, or includes, the supplied space name. This means that the spaces called `MySpace` and `MySpaceTwo` would be returned if we searched for the space called `MySpace`.
 
-To ensure you return the ID of the space with the correct name, a [list comprehensions](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions) filters the returned spaces to just those that exactly match the supplied space name:
+To ensure you return the ID of the space with the correct name, a [list comprehension](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions) filters the returned spaces to just those that exactly match the supplied space name:
 
 ```python
     filtered_items = [a for a in spaces_json["Items"] if a["Name"] == space_name.strip()]
@@ -433,7 +458,7 @@ If there is a matching space, return the ID:
     return first_id
 ```
 
-Spaces are top level resources in Octopus, while all other resources you'll interact with in this script are children of a space. Just as you did with the `get_space_id` function, the `get_resource_id` function converts a named Octopus resource it its ID. The only difference here is the URL being requested includes the space ID in the path, and the resource type is supplied to build the second element in the path. Otherwise `get_resource_id` follows the same pattern described for the `get_space_id` function:
+Spaces are top level resources in Octopus, while all other resources you'll interact with in this script are children of a space. Just as you did with the `get_space_id` function, the `get_resource_id` function converts a named Octopus resource to its ID. The only difference here is the endpoint being requested includes the space ID in the path, and the resource type is supplied to build the second element in the path. Otherwise `get_resource_id` follows the same pattern described for the `get_space_id` function:
 
 ```python
 def get_resource_id(space_id, resource_type, resource_name):
@@ -456,11 +481,11 @@ def get_resource_id(space_id, resource_type, resource_name):
 
 You now need to provide a way to determine the release that was last deployed to the selected environment for the selected project.
 
-A release is a snapshot of the deployment process, package versions, and variables. This is the resource that is created when you click the `CREATE RELEASE` button in the Octopus UI.
+A release is a snapshot of the deployment process, package versions, and variables. This is the resource that is created when you click the **CREATE RELEASE** button in the Octopus UI.
 
 A deployment is then the execution of a release to an environment.
 
-SO, in order to find which package versions are deployed to the specified environment (and we are usually talking about the production environment when dealing with vulnerabilities), you must list the deployments to an environment, filter them down to the deployments for the specified project, sort the deployments to ensure you find the latest one, and return the ID of the release that the deployment executed.
+So, in order to find which package versions are deployed to the specified environment (and we are usually talking about the production environment when dealing with vulnerabilities), you must list the deployments to an environment, filter them down to the deployments for the specified project, sort the deployments to ensure you find the latest one, and return the ID of the release that the deployment executed.
 
 The `get_release_id` function implements this query:
 
@@ -478,7 +503,7 @@ You query the `/deployments` endpoint to return the list of deployments, and pas
     json = response.json()
 ```
 
-The resulting list if filtered to just those items relating to the specified project:
+The resulting list is filtered to just those items relating to the specified project:
 
 ```python
     filtered_items = [a for a in json["Items"] if a["ProjectId"] == project_id]
@@ -517,7 +542,7 @@ You query the Octopus API to return the complete release resource from the speci
     json = response.json()
 ```
 
-Each release can have multiple associated build information resources, and each of those is filtered to find any whose build URL includes `github.com`, indicating the package was build using GitHub Actions:
+Each release can have multiple associated build information resources, and each of those is filtered to find any whose build URL includes `github.com`, indicating the package was built using GitHub Actions:
 
 ```python
     build_information_with_urls = [a for a in json["BuildInformation"] if "github.com" in a["BuildUrl"]]
@@ -544,7 +569,7 @@ The list of URLs is then returned:
     return build_urls
 ```
 
-GitHub Action artifacts are simply ZIP files that are downloaded like a regular file from any other webserver. The `download_file` function creates a temporary file and writes the contents of the supplied URL into it, returning the file name:
+GitHub Action artifacts are simply zip files that are downloaded like a regular file from any other webserver. The `download_file` function creates a temporary file and writes the contents of the supplied URL into it, returning the file name:
 
 ```python
 def download_file(url):
