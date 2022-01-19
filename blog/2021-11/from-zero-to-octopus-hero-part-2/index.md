@@ -85,7 +85,7 @@ I’ll be honest and say I worried that my lack of development experience would 
 So never be frightened to test your knowledge and learn something new, you might surprise yourself.  
  
 ## Next Steps
-I want to start looking at more complex deployments using Octopus Deploy, especially [Tenants](https://octopus.com/docs/tenants), and how they solve problems with different features branches, customers, or even geographic data centers. 
+Next I want to start to look at some more features inside Octopus Deploy, as well as seeing how it can integrate with other tools!
  
 This learning journey is really exciting and things are starting to click and I’m excited about expanding on that knowledge and testing it!
 
