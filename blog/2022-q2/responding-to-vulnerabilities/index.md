@@ -16,15 +16,13 @@ Needless to say, many engineering teams found themselves under pressure to ident
 
 Anyone facing that challenge knows all too well that such a response is not as easy as it sounds. Like any code dependency, knowing whether your code uses Log4j requires a deep understanding of your application's structure and currently deployed version. Typically this requires checking your code base at the specific git commit representing the deployed version of your application and digging into your direct dependencies, along with their child dependencies, to find exactly what libraries your code uses.
 
-Runbooks, combined with [build information](https://octopus.com/docs/packaging-applications/build-servers/build-information) and some simple changes to your CI/CD pipeline, provide a convenient method for querying the dependencies included in your deployed application. In this post you'll learn how to modify a GitHub Actions Workflow to expose the required information and see an example runbook that can query the information on demand.
+Runbooks, combined with [build information](https://octopus.com/docs/packaging-applications/build-servers/build-information) and some simple changes to your CI/CD pipeline, provide a convenient method for querying the dependencies included in your deployed application. In this post you'll learn how to modify a GitHub Actions Workflow to capture the dependencies used for a particular build and see an example runbook that can query the information on demand.
 
 ## Prerequisites
 
 This post uses GitHub Actions as a CI server. GitHub Actions are free for public git repositories, so you only need a GitHub account to get started.
 
 The sample runbook script is written against Python 3, which can be downloaded from the [Python website](https://www.python.org/downloads/). The example runbook source code can be found on [GitHub](https://github.com/OctopusSamples/DependencyQuery).
-
-The example application and associated GitHub workflows can be found on [GitHub](https://github.com/OctopusSamples/OctoPub).
 
 ## Capturing dependencies during the build process
 
@@ -39,7 +37,7 @@ We start by capturing the dependencies consumed by the build process as part of 
 * Ruby - `gem dep > dependencies.txt`
 * DotNET Core - `dotnet list package > dependencies.txt`
 
-Two steps must be added to a GitHub Actions workflow to capture the dependencies as a artifact. The example below demonstrates how to capture Maven dependencies, but the `run` property of the `List Dependencies` step can be replaced with any of the commands above for your specific use case:
+Two steps must be added to a GitHub Actions workflow to capture the dependencies as an artifact. The example below demonstrates how to capture Maven dependencies, but the `run` property of the `List Dependencies` step can be replaced with any of the commands above for your specific use case:
 
 ```yaml
     - name: List Dependencies
@@ -60,7 +58,7 @@ The screenshot below shows the artifact associated with the build:
 
 [Build information](https://octopus.com/docs/packaging-applications/build-servers/build-information) provides additional metadata for packages referenced in an Octopus deployment or runbook. Build information packages are separate artifacts stored on the Octopus server with the same package ID and version as the package they represent. This allows Octopus to track metadata for all kinds of packages, whether stored in the built-in feed or hosted on external repositories.
 
-One attribute captured by build information packages is a link back to the specific CI build that produced the package. The screenshot below shows the link back to the GitHub Actions run:
+One attribute captured by build information packages is a link back to the CI build that produced the package. The screenshot below shows the link back to the GitHub Actions run:
 
 ![Build link](build-information.png "width=500")
 
@@ -81,13 +79,15 @@ The [xo-energy/action-octopus-build-information](https://github.com/xo-energy/ac
         octopus_environment: "Development"
 ```
 
-Pushing the build information package is all that is needed for Octopus to link the metadata to a release. The build information is linked to the release as long as the build information package ID and version matches a package used in an Octopus step. The next step is to write a custom script to query the Octopus API to extract the link back to the CI server for the latest release in a given environment.
+Pushing the build information package is all that is needed for Octopus to link the metadata to a release. The build information is linked to the release as long as the build information package ID and version matches a package used in an Octopus step. 
+
+The next step is to write a custom script to query the Octopus API to extract the link back to the CI server for the latest release in a given environment.
 
 ## Querying the build information to download CI artifacts
 
 We now have all the information in place to track the dependencies for any packages used in an Octopus release. It is possible to manually traverse the links exposed in the Octopus UI back to the GitHub Actions run, download the dependencies artifact, and scan the text file inside, but this manual workflow will not scale as the number of application increases. What we want instead is to automate the process through a runbook executing a custom Python script.
 
-The first step is to define the dependencies for the script in the file `requirements.txt`. The script will make use of the [requests](https://pypi.org/project/requests/) package to streamline HTTP requests:L
+The first step is to define the dependencies for the script in the file `requirements.txt`. The script will make use of the [requests](https://pypi.org/project/requests/) package to streamline HTTP requests:
 
 ```txt
 requests==2.27.1
@@ -802,6 +802,6 @@ When the runbook is executed, it proceeds to scan each project for the latest de
 
 ## Conclusion
 
-Log4j exposed many engineering teams to the reality that dependency vulnerabilities are simply a fact of life, and that timely responses are crucial not only to limit your exposure to exploits, bit also to reduce pressure on support teams fielding questions from customers. It is also clear that Log4j won't be the last widespread vulnerability, and it is just a matter of time before your code base is impacted by a disclosure.
+Log4j exposed many engineering teams to the reality that dependency vulnerabilities are simply a fact of life, and that timely responses are crucial not only to limit your exposure to exploits, but also to reduce pressure on support teams fielding questions from customers. It is also clear that Log4j won't be the last widespread vulnerability, and it is just a matter of time before your code base is impacted by a disclosure.
 
 In this post you learned how to save the list of dependencies consumed by a build of you application as an artifact in GitHub Actions, how to link runs to the packages they produce using build information, and then perform simple text matching on the dependencies included in packages deployed to an environment with a runbook executing a custom Python script. The end result is the ability to know within minutes whether your applications are exposed to a vulnerability reported in a dependency, and begin responding almost immediately. 
