@@ -113,16 +113,16 @@ For this test we'll make use of a step in the [community step template library](
 
 ## Load testing
 
-The previous three smoke tests verify the fundamental components of our application's infrastructure. You can expect that if any of them fail there is a serious issue.
+The previous three smoke tests verify the fundamental layers of our application's infrastructure. You can expect that if any of them fail there is a serious issue.
 
-However, it is still possible that the application is working, but is unusable because it is slow or randomly fails to respond to requests. Your final smoke test performs a quick load test using `hey` to verify that the application responds consistently to multiple requests. The script below calls `hey` against the microservice API:
+However, it is still possible that the application is working, but is unusable because it is slow or randomly fails to requests. Your final smoke test performs a quick load test using `hey` to verify that the application responds consistently to multiple requests. The script below calls `hey` against the microservice API:
 
 ```bash
 # Warm up
-hey https://development.octopus.pub/api/audits > /dev/null
+hey https://#{Octopus.Environment.Name | ToLower}.octopus.pub/api/audits > /dev/null
 
 # Real test
-hey https://development.octopus.pub/api/audits
+hey https://#{Octopus.Environment.Name | ToLower}.octopus.pub/api/audits
 # Capture the return code of the previous command. This will be used as the exit code of the entire script once we print out
 # any further instructions.
 RETURN_CODE=$?
@@ -140,10 +140,10 @@ The output from this script is shown in the screenshot below:
 
 ![hey output](hey.png "width=500")
 
-This output requires some interpretation to decide what further action to take. The histogram shows the response time for each of the requests, and in this example you would expect the vast majority of requests to be completed in less than a second. The instructions provided by the script guide support team members running this script to make the appropriate decision based on the output.
+This output requires some interpretation to decide what further action to take. The histogram shows the response time for each of the requests, and in this example you would expect the vast majority of requests to be completed in less than a second. The instructions guide support team members running this script to make the appropriate decision based on the output.
 
 ## Conclusion
 
-Every application you'll encounter in an enterprise environment requires a multitude of underlying services and infrastructure to be operating correctly. By capturing smoke tests that probe and verify those layers, support teams can quickly confirm issues and respond to support requests efficiently and confidently.
+Every application you'll encounter in an enterprise environment requires a multitude of underlying services and infrastructure to be operating correctly. By writing smoke tests that probe and verify those layers, support teams can quickly confirm issues and respond to support requests efficiently and confidently.
 
 In this post you saw some examples of smoke tests that verified DNS services, HTTP endpoints, and MySQL databases. You also saw a simple load test that provided insight into the performance of a service when responding to multiple requests.
