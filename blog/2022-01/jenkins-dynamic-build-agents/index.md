@@ -2,7 +2,7 @@
 title: Using dynamic build agents to automate scaling in Jenkins
 description: With some setup, Jenkins can automatically react to your processing needs, creating extra nodes to manage processes. This post explains 2 setup methods.
 author: andrew.corrigan@octopus.com
-visibility: private
+visibility: public
 published: 2022-01-24-1400
 metaImage: blogimage-jenkinsconfigurationscalablebuildagents-2022.png
 bannerImage: blogimage-jenkinsconfigurationscalablebuildagents-2022.png
