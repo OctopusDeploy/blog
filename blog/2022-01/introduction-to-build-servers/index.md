@@ -34,7 +34,7 @@ Without a build server you're slowed down by complicated, manual processes and t
 - After that deadline passes, no one can commit again until someone manually creates and tests a build
 - If there are problems with the code, the deadlines and manual processes further delay the fixes
 
-Without a build server, the team battles unnecessary hurdles that could be eliminated with automation. A build server will repeat these tasks for you throughout the day, and without those human-caused delays.
+Without a build server, the team battles unnecessary hurdles that automation removes. A build server will repeat these tasks for you throughout the day, and without those human-caused delays.
 
 But CI doesn’t just mean less time spent on manual tasks or the death of arbitrary deadlines, either. By automatically taking these steps many times a day, you fix problems sooner and your results become more predictable. Build servers ultimately help you deploy through your pipeline with more confidence.
 
