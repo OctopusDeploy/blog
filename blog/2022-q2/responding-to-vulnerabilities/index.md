@@ -717,3 +717,89 @@ The last step is to call the `scan_dependencies` function, which initiates the s
 ```python
 scan_dependencies()
 ```
+
+With the script written, it is time to execute it in a runbook.
+
+## Running the script in a runbook
+
+The first step is to expose three variables that will be passed to the script:
+
+* `GitHubToken` is a secret holding the GitHub personal access token used to authenticate GitHub API calls.
+* `ReadOnlyApiKey` is an Octopus API key assigned to an account with read only access to the Octopus server (because this script only queries the API, and never modifies any resources).
+* `SearchText` is a prompted variable that defines the text to search for in the dependency text files.
+
+![Octopus variables](variables.png "width=500")
+
+The runbook is comprised of a single **Run a script** step with the following bash script:
+
+```bash
+cd DependencyQuery
+
+echo "##octopus[stdout-verbose]"
+python3 -m venv my_env
+. my_env/bin/activate
+pip --disable-pip-version-check install -r requirements.txt
+echo "##octopus[stdout-default]"
+
+python3 main.py \
+    --octopusUrl https://tenpillars.octopus.app \
+    --octopusApiKey "#{ReadOnlyApiKey}" \
+    --githubUser mcasperson \
+    --githubToken "#{GitHubToken}" \
+    --octopusSpace "#{Octopus.Space.Name}" \
+    --octopusEnvironment "#{Octopus.Environment.Name}" \
+    --octopusProject "Products Service, Audits Service, Octopub Frontend" \
+    --searchText "#{SearchText}"
+```
+
+There are some interesting things going on in this script, so let's break it down.
+
+You enter the directory where Octopus extracted the package containing the Python script:
+
+```bash
+cd DependencyQuery
+```
+
+Printing the service message `##octopus[stdout-verbose]` instructs Octopus to treat all subsequent log messages as verbose:
+
+```bash
+echo "##octopus[stdout-verbose]"
+```
+
+A new [Python virtual environment](https://realpython.com/python-virtual-environments-a-primer/) called `my_env` is created and activated, and the script dependencies are installed:
+
+```bash
+python3 -m venv my_env
+. my_env/bin/activate
+pip --disable-pip-version-check install -r requirements.txt
+```
+
+The service message `##octopus[stdout-default]` is printed, instructing Octopus to treat subsequent log messages at the default level again:
+
+```bash
+echo "##octopus[stdout-default]"
+```
+
+You then execute the Python script. Some of the arguments, like `octopusUrl`, `githubUser`, `octopusProject` etc will need to be customized for your specific use case. Setting the `octopusSpace` and `octopusEnvironment` arguments to the space and environment in which the runbook is executed allows you to find dependencies in any environment the runbook is run in:
+
+```bash
+python3 main.py \
+    --octopusUrl https://tenpillars.octopus.app \
+    --octopusApiKey "#{ReadOnlyApiKey}" \
+    --githubUser mcasperson \
+    --githubToken "#{GitHubToken}" \
+    --octopusSpace "#{Octopus.Space.Name}" \
+    --octopusEnvironment "#{Octopus.Environment.Name}" \
+    --octopusProject "Products Service, Audits Service, Octopub Frontend" \
+    --searchText "#{SearchText}"
+```
+
+## Executing the runbook
+
+When the runbook is executed, it proceeds to scan each project for the latest deployment to the current environment, finds the GitHub Action run link from the build information, downloads the dependencies artifact, extracts the artifact, and scans the text files for the search text. With a single click of the **RUN** button, you now have the ability to quickly search any project deployed by Octopus that has associated build information and the required build artifacts:
+
+![Runbook run](runbook-run.png "width=500")
+
+## Conclusion
+
+Log4j exposed many engineering teams to the reality that dependency vulnerabilities are simply a fact of life.
