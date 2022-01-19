@@ -14,13 +14,13 @@ tags:
 
 Anyone who has spent some time on a help desk will have heard this, and other equally vague, descriptions of issues customers have run into. Getting actionable information is half the battle when diagnosing an issue.
 
-When supporting complex infrastructure though, it can be hard to know how the system was designed, which is turn makes it hard to know what questions to ask and where to find information that may aid in resolving the issue. It is the nature of the kind of custom applications typically found in enterprise environments that each is a evolution of the last, or written by an entirely different team using a unique approach each time. This means the business knowledge around how any given application should be supported is often only found in the heads of a few employees.
+When supporting complex infrastructure though, it can be hard to know how the system was designed, which in turn makes it hard to know what questions to ask and where to find information that may aid in resolving the issue. It is the nature of custom applications typically found in enterprise environments that each is a evolution of the last, or written by an entirely different team using a unique approach each time. This means business knowledge around how any given application should be supported is often only found in the heads of a few employees.
 
-Runbooks provide a way to capture this business knowledge in an automated and testable way, ensuring the support team can quickly diagnose high level issues and efficiently respond to customer requests. In this post you'll find an example runbook aimed at the level 1 support team and designed to smoke test a typical microservice application in AWS.
+Runbooks provide a way to capture this business knowledge in an automated and testable way, ensuring the support team can quickly diagnose high level issues and efficiently respond to customer requests. In this post you'll find an example runbook aimed at the level 1 support team designed to smoke test a typical microservice application in AWS.
 
 ## Prerequisites
 
-This post assumes that the runbook steps are run on a Linux worker. They use [dig](https://linux.die.net/man/1/dig) for DNS lookups, [hey](https://github.com/rakyll/hey) for load testing, [curl](https://curl.se/docs/projdocs.html), and the [mysql client](https://dev.mysql.com/doc/refman/8.0/en/mysql.html).
+This post assumes that the runbook steps are run on a Linux worker. They use [dig](https://linux.die.net/man/1/dig) for DNS lookups, [hey](https://github.com/rakyll/hey) for load testing, [curl](https://curl.se/docs/projdocs.html) for interacting with HTTP endpoints, and the [mysql client](https://dev.mysql.com/doc/refman/8.0/en/mysql.html).
 
 To install the tools in Ubuntu, run the following command:
 
