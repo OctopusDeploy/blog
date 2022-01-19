@@ -1,5 +1,5 @@
 ---
-title: Tips to keep Jenkins safe for you and your team
+title: Jenkins security tips
 description: As Jenkins connects to many industry tools, it's a good idea to keep your instance as secure as possible. Here are our tips to keep your team safe.
 author: andrew.corrigan@octopus.com
 visibility: private
@@ -39,19 +39,19 @@ To update Jenkins plugins:
 1. Make sure you're on the **Updates** tab, tick the updates you want to install and click **Download now and install after restart**.
 1. Restart Jenkins to complete updates.
 
-And don't forget about your operating system. You can install Jenkins on most major operating systems and containers, so keep those updated too. Seek out your operating system's documentation for more information on how.
+You can install Jenkins on most major operating systems and containers, so keep those updated too. Seek out your operating system's documentation for more information on how.
 
 ## Only change Jenkins' security defaults if you're sure
 
 Jenkins enables most of its security features on install to make things as secure as possible. Given the many ways you can use Jenkins, though, there's no 'one size fits all' approach for how best to configure or lock down your instance.
 
-With that, it's impossible for us to offer advice on what's best for your team (with an exception we'll explore next). Usefully, Jenkins provides detailed documentation on the important features you should look at. See the [Securing Jenkins page](https://www.jenkins.io/doc/book/security/) for help with security related to:
+So while we can't offer advice on what's best for your team (with an exception we'll explore next), usefully, Jenkins provides detailed documentation on the important features you should look at. See the [Securing Jenkins page](https://www.jenkins.io/doc/book/security/) for help with security related to:
 
 - Basic setup
 - Build behavior
 - User interface
 
-You should only make changes with careful consideration and, if possible, a chat with your cyber security specialist. You can make these changes in the **Configure Global Security** page – find it by click **Manage Jenkins** from the left menu.
+You should only make changes with careful consideration and, if possible, a chat with your cyber security specialist. You can make these changes in the **Configure Global Security** page – find it by selecting **Manage Jenkins** from the left menu.
 
 ## Avoid building on your controller
 
@@ -64,7 +64,7 @@ To stop your controller from running builds:
 1. Click **Manage Jenkins** from the menu.
 1. Click **Manage Nodes and Clouds**.
 1. Click the cog to the right of the **Built-In Node**.
-1. You have 2 options to prevent builds on the controller. Choose one and click Save:
+1. You have 2 options to prevent builds on the controller. Choose one and click **Save**:
    - Change the **Number of executors** to **0** if you never want to build on the controller.
    - Select **Only build jobs with label expressions matching this node** from the **Usage** dropdown if you want to build on the controller when needed.
 
@@ -80,7 +80,7 @@ Here are a few suggestions for managing your user access.
 
 ### Give each Jenkins user an account
 
-To help track what your users are doing, you should create individual user accounts for anyone using your Jenkins instance. This way you can see all activity and who's done what.
+To help track what your users are doing, create individual user accounts for anyone using your Jenkins instance. This way you can see all activity and who's done what.
 
 To create extra users:
 
@@ -113,7 +113,7 @@ To set permissions with the plugin:
 1. Regardless of your choice, use the buttons to add users or groups, and select their level of access using the checkboxes in the table. Click **Save** when you're done.
 
 ### Other user access plugins you should consider
-If you already use other systems for access management, you might be able to authenticate your Jenkins users with those. For example, there are plugins for both [Microsoft's Active Directory](https://plugins.jenkins.io/ui/search?sort=relevance&categories=&labels=&view=Tiles&page=1&query=Active%20Directory) and [OpenID](https://plugins.jenkins.io/ui/search?sort=relevance&categories=&labels=&view=Tiles&page=1&query=OpenID), which could save you from managing access in more than one spot.
+If you already use other systems for access management, you might be able to authenticate your Jenkins users with those. For example, there are plugins for both [Microsoft's Active Directory](https://plugins.jenkins.io/ui/search?sort=relevance&categories=&labels=&view=Tiles&page=1&query=Active%20Directory) and [OpenID](https://plugins.jenkins.io/ui/search?sort=relevance&categories=&labels=&view=Tiles&page=1&query=OpenID), which can save you from managing access in more than one spot.
 
 We also recommend looking at both the [Folders](https://plugins.jenkins.io/cloudbees-folder/) and [Folder-based Authorization Strategy](https://plugins.jenkins.io/folder-auth/) plugins. 
 
