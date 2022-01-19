@@ -21,7 +21,7 @@ tags:
 
 We spent the last few months exploring 2 build server options in Jenkins and GitHub Actions. As we discovered, Jenkins is a traditional build server with a self-managed instance at its center, while GitHub Actions performs similar tasks but as a service in a product you may already use. Either is a worthwhile option as part of a continuous integration/continuous deployment (CI/CD) workflow, depending on your needs.
 
-As a deployment tool that sits between packages and their destinations, however, Octopus is build server agnostic. Octopus can connect to all major automation services on the market, but why should you connect them to Octopus?
+As a deployment tool that sits between packages and their destinations, however, Octopus is build server agnostic. Octopus supports all major automation services on the market, but why should you connect them to Octopus?
 
 I mean, build servers can deploy too, right? They can, for sure, but they don’t quite solve the same problems Octopus does.
 
