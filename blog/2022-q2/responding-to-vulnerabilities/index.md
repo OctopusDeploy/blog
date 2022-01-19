@@ -650,7 +650,7 @@ def unzip_files(zip_files):
     return 
 ```
 
-The `search_files` function prints any dependency list that contains the specified text from the contents of the extracted text files:
+The `search_files` function prints any dependency list that contains the specified search string from the contents of the extracted text files:
 
 ```python
 def search_files(text_files, text, project):
@@ -719,7 +719,7 @@ The zip files are extracted, and any text files contained in them are read:
         text_files = unzip_files(files)
 ```    
 
-The contents of these text files are scanned for the supplied text:
+The contents of these text files are scanned for the search string:
 
 ```python
         if search_files(text_files, args.search_text, project):
@@ -785,7 +785,7 @@ You enter the directory where Octopus extracted the package containing the Pytho
 cd DependencyQuery
 ```
 
-Printing the service message `##octopus[stdout-verbose]` instructs Octopus to treat all subsequent log messages as verbose:
+Printing the [service message](https://octopus.com/docs/deployments/custom-scripts/logging-messages-in-scripts#service-message) `##octopus[stdout-verbose]` instructs Octopus to treat all subsequent log messages as verbose:
 
 ```bash
 echo "##octopus[stdout-verbose]"
@@ -821,7 +821,9 @@ python3 main.py \
 
 ## Executing the runbook
 
-When the runbook is executed, it proceeds to scan each project for the latest deployment to the current environment, finds the GitHub Action run link from the build information, downloads the dependencies artifact, extracts the artifact, and scans the text files for the search text. With a single click of the **RUN** button, you now have the ability to quickly search any project deployed by Octopus that has associated build information and the required build artifacts:
+When the runbook is executed, it proceeds to scan each project for the latest deployment to the current environment, finds the GitHub Action run link from the build information, downloads the dependencies artifact, extracts the artifact, and scans the text files for the search text. 
+
+With a single click of the **RUN** button, you now have the ability to quickly search any project deployed by Octopus that has associated build information and the required build artifacts:
 
 ![Runbook run](runbook-run.png "width=500")
 
