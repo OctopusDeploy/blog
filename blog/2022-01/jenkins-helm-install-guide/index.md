@@ -521,6 +521,12 @@ In this post you learned how to:
 - Backup the Jenkins home directory
 - Create Kubernetes agents that are created and destroyed as needed
 
+Check out our other posts about installing Jenkins:
+
+- [How to install Jenkins on Windows and Linux](https://octopus.com/blog/jenkins-install-guide-windows-linux)
+- [How to install Jenkins on Docker](https://octopus.com/blog/jenkins-docker-install-guide)
+
+
 !include <jenkins-webinar-jan-2022>
 
 !include <q1-2022-newsletter-cta>
