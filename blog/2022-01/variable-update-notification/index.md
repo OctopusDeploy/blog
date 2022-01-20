@@ -13,7 +13,7 @@ tags:
  - Azure
 ---
 
-Communication is paramount to a successful team.  Daily stand-ups, message programs, and email keep everyone up-to-date with how things are progressing. Information can get lost in the shuffle, though, such as when a variable value gets updated.  
+Communication is paramount to a successful team.  Daily stand-ups, message programs, and email keep everyone up-to-date with how things are progressing. Information can get lost in the shuffle, though, like when a variable value gets updated.  
 
 The [subscriptions](https://octopus.com/docs/administration/managing-infrastructure/subscriptions) feature of Octopus Deploy can be configured to notify users when a variable has been updated automatically by an email or webhook.  
 
@@ -36,7 +36,7 @@ The source code for this solution can be found in the **azure** folder of the [O
 
 ### Resource group
 
-Start by creating a resource group to house all of the other resources you'll create.  This comes with the added benefit of being easy to clean up, because deleting the resource group will delete all resources in it.  
+Start by creating a resource group to house all of the other resources you'll create.  This makes your work easy to clean up, because deleting the resource group will delete all resources in it.  
 
 You can create a resource group through the Azure Portal, or by adding an Azure CLI script to a runbook such as this:
 
@@ -69,7 +69,7 @@ az storage account create --name $storageAccountName --resource-group $resourceG
 
 ### Storage account message queue
 
-Message queues exist in storage accounts.  After the account has been created, create queue using the following:
+Message queues exist in storage accounts.  After the account has been created, create the queue using the following:
 
 ```powershell
 # Get variables
@@ -150,7 +150,7 @@ The Accept-Message function takes the submitted body and places it on the messag
 
 ### Accept-Message
 
-The Accept-Message function is written in nodeJS and is fairly basic.  If you've never created an Azure Function using nodeJS, use [this tutorial from Microsoft](https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-node) to get started.  
+The Accept-Message function is written in nodeJS and is fairly basic.  If you've never created an Azure Function using nodeJS, get started with [this tutorial from Microsoft](https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-node).  
 
 Add the following to `index.js`:
 
