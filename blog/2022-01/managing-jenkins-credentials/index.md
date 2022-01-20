@@ -17,7 +17,7 @@ tags:
 
 Like Octopus, Jenkins is just one step in your pipeline, complementing other systems and services.
 
-You can connect Jenkins to most industry tools, securely storing their credentials, secrets, and API keys. By storing these login methods, Jenkins can seamlessly connect to those other services during its automation processes.
+You can connect Jenkins to most industry tools, securely storing their credentials, secrets, and API keys. By storing these login methods, Jenkins seamlessly connects to those other services during its automation processes.
 
 Jenkins’ documentation recommends using the [Credentials Binding plugin](https://plugins.jenkins.io/credentials-binding/). It’s one of the installer-suggested plugins during the Jenkins setup, so it’s possible you already installed it (and used it) without realizing.
 
@@ -51,7 +51,7 @@ Global credentials are manually entered login methods stored in Jenkins. Anyone 
 -	Packaging services, like a Docker registry or TeamCity feed
 -	Deployment tools, like Octopus
 
-### Adding credentials in Jenkins
+### How to add credentials in Jenkins
 
 To add credentials in Jenkins:
 
