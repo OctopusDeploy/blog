@@ -13,7 +13,7 @@ tags:
  - Azure
 ---
 
-Communication is paramount to a successful team.  Daily stand-ups, message programs, and email keep everyone up-to-date with how things are progressing. Information can get lost in the shuffle, though, like when a variable value gets updated.  
+Communication is important for a successful team.  Daily stand-ups, message programs, and email keep everyone up-to-date with how things are progressing. Information can get lost in the shuffle, though, like when a variable value gets updated.  
 
 The [subscriptions](https://octopus.com/docs/administration/managing-infrastructure/subscriptions) feature of Octopus Deploy can be configured to notify users when a variable has been updated automatically by an email or webhook.  
 
