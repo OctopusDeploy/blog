@@ -46,3 +46,39 @@ unzip scheduler-cli.zip
 python setup.py install
 ```
 
+A public Octopus instance has been configured with a project that deploys the Instance Scheduler. You can access this instance [here](https://tenpillars.octopus.app/app#/Spaces-42/projects/aws-instance-scheduler/deployments).
+
+## Deploying the Instance Scheduler template
+
+Instance Scheduler is distributed as a CloudFormation template available from [here](https://s3.amazonaws.com/solutions-reference/aws-instance-scheduler/latest/aws-instance-scheduler.template). You'll deploy this with the **Deploy an AWS CloudFormation template** step in Octopus.
+
+:::hint
+If you see the error `Template could not be parsed: An item with the same key has already been added. Key: 14` when attempting to save the template, it is because one of the parameters has duplicated an option in the `AllowedValues` array. In the screenshot below you can see the `LogRetentionDays` parameter has duplicated value `14`. To resolve the error, remove the duplicated value:
+
+![Parameter Error](paramaters-error.png "width=500")
+:::
+
+You can leave the parameters with their default values, although you will likely want to define the `DefaultTimezone` parameter to reflect your local timezone.
+
+You can see a live example of this step [here](https://tenpillars.octopus.app/app#/Spaces-42/projects/aws-instance-scheduler/deployments/process/steps?actionId=4ba7211f-0531-48e6-8f88-de70b770595b).
+
+## Adding new periods
+
+The instance scheduler works by defining a number of periods in a DynamoDB database. The Scheduler CLI provides a convenient interface through which these periods can be viewed and manipulated.
+
+The script below calls `scheduler-cli describe-periods` to list the currently defined periods, and then pipes the resulting JSON to `jq`, which checks to see if a period called `aus_weekday` exists. If it does not exist, the period is added by calling `scheduler-cli create-period`, and if it does exist the period is updated by calling `scheduler-cli update-period`.
+
+This script is necessary to create an idempotent deployment, where a deployment can be redeployed at any point, regardless of the existing state of the database.
+
+This script is run with the **Run an AWS CLI Script** step in Octopus. You can see a live example [here](https://tenpillars.octopus.app/app#/Spaces-42/projects/aws-instance-scheduler/deployments/process/steps?actionId=05a40c92-e81a-4882-a6eb-49415f5d23e5):
+
+```bash
+alias python=python3
+scheduler-cli describe-periods --stack common-instance-scheduler | jq -e '.Periods|any(.Name == "aus_weekday")' > /dev/null
+if [[ 0 -ne $? ]]; then
+	scheduler-cli create-period --name "aus_weekday" --begintime 05:00 --endtime 17:00 --weekdays mon-fri --stack common-instance-scheduler
+else
+	scheduler-cli update-period --name "aus_weekday" --begintime 05:00 --endtime 17:00 --weekdays mon-fri --stack common-instance-scheduler
+fi
+```
+
