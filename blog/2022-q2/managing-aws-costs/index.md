@@ -18,7 +18,7 @@ In this post you'll learn how to install the Instance Scheduler, configure it wi
 
 ## Prerequisites
 
-You'll need Python 3, `jq`, `curl`, and `unzip` installed to complete the steps in this post. To install these tools in Ubuntu, run the command:
+This post assumes you will be running scripts on a Linux worker. You'll need Python 3, `jq`, `curl`, and `unzip` installed to complete the steps in this post. To install these tools in Ubuntu, run the command:
 
 ```bash
 apt-get install jq curl unzip python3
