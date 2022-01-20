@@ -15,9 +15,9 @@ tags:
 
 Communication is paramount to a successful team.  Daily stand-ups, message programs, and email keep everyone up-to-date with how things are progressing. Information can get lost in the shuffle, though, such as when a variable value gets updated.  
 
-The [subscriptions](https://octopus.com/docs/administration/managing-infrastructure/subscriptions) feature of Octopus Deploy can be configured to notify users of when a variable has been updated automatically by either email or a webhook.  
+The [subscriptions](https://octopus.com/docs/administration/managing-infrastructure/subscriptions) feature of Octopus Deploy can be configured to notify users when a variable has been updated automatically by an email or webhook.  
 
-In this post, you'll learn how to use the subscriptions feature to post a message to Slack via Azure Functions.
+In this post, you learn how to use the subscriptions feature to post a message to Slack via Azure Functions.
 
 ## Creating Azure resources
 
@@ -36,7 +36,7 @@ The source code for this solution can be found in the **azure** folder of the [O
 
 ### Resource group
 
-You first need to create is a resource group to house all of the other resources you'll create.  This comes with the added benefit of being easy to clean up, because deleting the resource group will delete all resources in it.  
+Start by creating a resource group to house all of the other resources you'll create.  This comes with the added benefit of being easy to clean up, because deleting the resource group will delete all resources in it.  
 
 You can create a resource group through the Azure Portal, or by adding an Azure CLI script to a runbook such as this:
 
@@ -96,7 +96,7 @@ The solution in this post uses two different Azure Functions:
 Both functions need to be registered as targets in Octopus Deploy.
 
 :::info
-The most common plan to use with Azure Functions is the Consumption Plan (sku Y1), however, I was unable to use the [az functionapp plan create](https://docs.microsoft.com/en-us/cli/azure/functionapp/plan?view=azure-cli-latest#az_functionapp_plan_create) CLI command, as `Y1` is not a supported sku.
+The most common plan to use with Azure Functions is the Consumption Plan (sku Y1), however, I was unable to use the [az functionapp plan create](https://docs.microsoft.com/en-us/cli/azure/functionapp/plan?view=azure-cli-latest#az_functionapp_plan_create) CLI command, as `Y1` is not a supported SKU.
 :::
 
 #### Accept-Message
@@ -137,7 +137,7 @@ az functionapp create --name $appServiceName --consumption-plan-location $azureL
 ```
 
 :::info
-For both functions I received a message advising I didn't configure Application Insights.  The CLI gives you parameters to configure it, but there doesn't appear to be a way to tell it you don't want Insights.
+For both functions, I received a message that I didn't configure Application Insights.  The CLI gives you parameters to configure it, but there doesn't appear to be a way to tell it you don't want Insights.
 :::
 
 After you provision all of your resources, the contents of the resource group should look similar to this:
@@ -146,7 +146,7 @@ After you provision all of your resources, the contents of the resource group sh
 
 ## Azure Functions
 
-The Accept-Message function takes the submitted body and places it on the message queue.  Once a message has been placed on the queue, Process-Message will trigger, parsing the message and posting to Slack.
+The Accept-Message function takes the submitted body and places it on the message queue.  After a message has been placed on the queue, Process-Message will trigger, parsing the message and posting to Slack.
 
 ### Accept-Message
 
@@ -183,10 +183,10 @@ module.exports = async function (context, req) {
 };
 ```
 
-Environment variables `AZURE_STORAGE_CONNECTION_STRING` and `QUEUE_NAME` are provided when we deploy the Function to Azure.
+Environment variables `AZURE_STORAGE_CONNECTION_STRING` and `QUEUE_NAME` are provided when you deploy the Function to Azure.
 
 :::warning
-The tutorial will download all of the `node_modules` necessary to create an Azure Function, however, it will not add them to the `package.json` file.  You need to add the references to make your function work.
+The tutorial will download all of the `node_modules` necessary to create an Azure Function, however, it won't add them to the `package.json` file.  You need to add the references to make your function work.
 :::
 
 ### Process-Message
@@ -338,7 +338,7 @@ This post assumes you know how to create a project in Octopus Deploy and will no
 
 ### Variables
 
-Both functions have some variables that need to be defined before defining our deployment process:
+Both functions have some variables to be defined before defining our deployment process:
 
 - Project.Azure.Storage.ConnectionString
 - Project.Azure.Storage.Queue.Name
@@ -357,7 +357,7 @@ The name of the message queue that you created earlier.
 
 #### Project.Slack.Url
 
-This is the integration webhook URL for Slack. It's recommended that you make this variable a sensitive value.
+This is the integration webhook URL for Slack. It's recommended you make this variable a sensitive value.
 
 #### Project.Slack.Channel.Name
 
@@ -365,7 +365,7 @@ This is the name of the Slack channel you want the Function to post to.
 
 ### Deployment process
 
-The deployment process consists of the following steps:
+These are the steps for the deployment process:
 
 - Deploy Accept-Message Function
 - Deploy Process-Message Function
@@ -430,7 +430,7 @@ Fill in the form fields for the step:
 
 ## Deployment
 
-Deploying the functions should look something like this:
+Deploying the functions looks something like this:
 
 ![Octopus dashboard showing Task Summary with green ticks for every step](octopus-deploy-successful.png)
 
