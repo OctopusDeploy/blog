@@ -12,7 +12,7 @@ tags:
 
 The promise of cloud computing has been to allow teams to efficiently scale up and down on demand. While on-premises infrastructure can save on electricity and cooling costs by shutting down, cloud based resources can avoid almost all charges (storage fees usually apply to stopped resources) by stopping any that are unused.
 
-AWS provides the [Instance Scheduler](https://aws.amazon.com/solutions/implementations/instance-scheduler/) to shutdown and restart EC2 and RDS resources on demand. This is a great solution for teams that have Octopus resources like workers running in AWS, and where they are unused for most of day.
+AWS provides the [Instance Scheduler](https://aws.amazon.com/solutions/implementations/instance-scheduler/) to shutdown and restart EC2 and RDS resources on demand. This is a great solution for teams that have Octopus resources like workers running in AWS, and where they are unused for most of the day.
 
 In this post you'll learn how to install the Instance Scheduler, configure it with custom periods, and tag resources to be automatically shutdown and restarted.
 
@@ -24,7 +24,7 @@ This post assumes you will be running scripts on a Linux worker. You'll need Pyt
 apt-get install jq curl unzip python3
 ```
 
-To install jq in Fedora, RHEL, Centos, and Amazon Linux, run the command:
+To install the tools in Fedora, RHEL, Centos, and Amazon Linux, run the command:
 
 ```bash
 yum install jq curl unzip python3
@@ -46,7 +46,7 @@ unzip scheduler-cli.zip
 python setup.py install
 ```
 
-A public Octopus instance has been configured with a project that deploys the Instance Scheduler. You can access this instance [here](https://tenpillars.octopus.app/app#/Spaces-42/projects/aws-instance-scheduler/deployments).
+A public Octopus instance has been configured with a project that deploys the instance scheduler. You can access this Octopus instance [here](https://tenpillars.octopus.app/app#/Spaces-42/projects/aws-instance-scheduler/deployments).
 
 ## Deploying the Instance Scheduler template
 
@@ -84,7 +84,7 @@ fi
 
 ## Tagging resources
 
-The instance scheduler identifies resources to shutdown and restart based on tags. The default tag the instance scheduler looks for is called `Schedule`. The value of the tag is set to the name of a period.
+The instance scheduler identifies resources to shutdown and restart based on tags. The default tag the instance scheduler looks for is called `Schedule` (although the tag name can be modified by changing the `TagName` parameter in the CloudFormation template). The value of the tag is set to the name of a period.
 
 In the screenshot below you can see that a worker EC2 instance has a tag called `Schedule` set to `aus_weekday`. This means this EC2 instance will be shutdown at 17:00 and restarted at 05:00 every weekday. This more than halves the running costs of the EC2 instance as it is now shutdown overnight and over the weekend:
 
