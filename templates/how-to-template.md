@@ -1,20 +1,22 @@
 ---
 title: How to do X
 description: A brief summary of the content, 170 characters max including spaces.
-author: Joan Smith
+author: firstname.surname@octopus.com
 visibility: private
 published: 3020-01-01
 metaImage: to-be-added-by-marketing
 bannerImage: to-be-added-by-marketing
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
-tags:
+tags: <!-- see https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags -->
  - DevOps
  - Company
  - Product
  - Events and Webinars
  - Engineering
 ---
+
+See https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags.
 
 Introductory paragraph that tells the reader why they should read on.
 

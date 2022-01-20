@@ -7,7 +7,7 @@ published: 2021-09-15-1400
 metaImage: octopus-release-2021-q3-summary-card.png
 bannerImage: release-octopus-2021-q3.png
 bannerImageAlt: A box labelled 2021 Q3 sits on a conveyor belt against a backdrop of party favors and fireworks.
-isFeatured: true
+isFeatured: false
 tags:
 - Product
 - DevOps

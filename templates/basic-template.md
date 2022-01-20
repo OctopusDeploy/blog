@@ -1,16 +1,18 @@
 ---
 title: Title
 description: A brief summary of the post, 170 characters max including spaces.
-author: Joan Smith
+author: firstname.surname@octopus.com
 visibility: private
 published: 3020-01-01-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
-tags:
+tags: 
   - tag
 ---
+
+See https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags,
 
 Introductory paragraph that tells the reader why they should read on.
 
