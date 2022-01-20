@@ -18,7 +18,7 @@ In this post you'll learn how to install the Instance Scheduler, configure it wi
 
 ## Prerequisites
 
-You'll need Python 3, `jq`, `curl`, and `unzip` installed to complete the steps in this post. To install these tools in Ubuntu, run the command:
+This post assumes you will be running scripts on a Linux worker. You'll need Python 3, `jq`, `curl`, and `unzip` installed to complete the steps in this post. To install these tools in Ubuntu, run the command:
 
 ```bash
 apt-get install jq curl unzip python3
@@ -82,3 +82,16 @@ else
 fi
 ```
 
+## Tagging resources
+
+The instance scheduler identifies resources to shutdown and restart based on tags. The default tag the instance scheduler looks for is called `Schedule`. The value of the tag is set to the name of a period.
+
+In the screenshot below you can see that a worker EC2 instance has a tag called `Schedule` set to `aus_weekday`. This means this EC2 instance will be shutdown at 17:00 and restarted at 05:00 every weekday. This more than halves the running costs of the EC2 instance as it is now shutdown overnight and over the weekend:
+
+![Tagged EC2 instance](tagged-ec2.png "width=500")
+
+## Conclusion
+
+The AWS Instance Scheduler is a convenient solution that allows you to automatically shutdown and restart EC2 and RDS instances, which can significantly reduce running costs for resources that are not required 24 hours a day.
+
+In this post you saw how to deploy the instance scheduler with Octopus, add a new period with the scheduler CLI, and tag your resources to allow the scheduler to shut them down overnight and over the weekend.
