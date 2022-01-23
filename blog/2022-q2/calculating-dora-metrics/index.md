@@ -17,7 +17,7 @@ The [DevOps Research and Assessment](https://www.devops-research.com/research.ht
 * Change Failure Rate — The percentage of deployments causing a failure in production.
 * Time to Restore Service — How long it takes an organization to recover from a failure in production.
 
-A challenge for teams is then how to calculate these metrics. Fortunately, Octopus captures most of the raw information required to generate these metrics, and in this post you'll learn how to query the Octopus API to calculate scores for the DORA metics with a custom runbook.
+A challenge for teams is then how to calculate these metrics. Fortunately, Octopus captures most of the raw information required to generate these metrics, and in this post you'll learn how to query the Octopus API to generate a DORA scorecard with a custom runbook.
 
 ## Prerequisites
 
