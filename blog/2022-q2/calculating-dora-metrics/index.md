@@ -546,6 +546,8 @@ def get_deployments(space_id, environment_id, project_id):
     return sorted_list
 ```
 
+### Calculating lead time for changes
+
 You now have the code in place to query the Octopus API for deployments and releases and use the information to calculate the DORA metrics.
 
 The first metric you'll tackle is lead time for changes, which is calculated in the `get_change_lead_time` function:
@@ -655,5 +657,79 @@ Assuming any commits were found in the build information metadata, the average t
 If no commits were found, or the release has no associated build information, `None` is returned:
 
 ```python        
+    return None
+```
+
+### Calculating time to restore service
+
+The next metric you'll calculate is time to restore service. 
+
+As we noted in the introduction, this metric is assumed to be measured by the time it takes to close a GitHub issue associated with a release. The `get_time_to_restore_service` function is used to calculate this value:
+
+```python
+def get_time_to_restore_service():
+```
+
+Again, you maintain an array of values to allow you to calculate an average:
+
+```python
+    restore_service_times = []
+```
+
+The space and environment names are converted to their IDs:
+
+```python
+    space_id = get_space_id(args.octopus_space)
+    environment_id = get_resource_id(space_id, "environments", args.octopus_environment)
+```
+
+Projects are supplied as a comma separated list, which you loop over:
+
+```python
+    for project in args.octopus_project.split(","):
+```
+
+The project name is converted to an ID, and the list of deployments to the project for the environment are returned:
+
+```python
+        project_id = get_resource_id(space_id, "projects", project)
+        deployments = get_deployments(space_id, environment_id, project_id)
+```
+
+You return the release associated with each deployment, loop over all the build information objects, and then loop over all the work items (called issues in GitHub) associated with each package in the release:
+
+```python
+        for deployment in deployments:
+            deployment_date = parse_octopus_date(deployment["Created"])
+            release = get_resource(space_id, "releases", deployment["ReleaseId"])
+            for buildInfo in release["BuildInformation"]:
+                for work_item in buildInfo["WorkItems"]:
+```
+
+The URL to the browseable issues is converted to an API URL, the issue is queried via the API, and the creation date is returned:
+
+```python
+                    api_url = work_item["LinkUrl"].replace("github.com", "api.github.com/repos")
+                    commit_response = get(api_url, auth=github_auth)
+                    created_date = parse_github_date(commit_response.json()["created_at"])
+```                    
+
+The time between the creation of the issue and the deployment is calculated:
+
+```python
+                    if created_date is not None:
+                        restore_service_times.append((deployment_date - created_date).total_seconds())
+```
+
+If any issues were found, the average time between the creation of the issue and the deployment is calculated:
+
+```python
+    if len(restore_service_times) != 0:
+        return sum(restore_service_times) / len(restore_service_times)
+```
+
+If no issues were found, `None` is returned:
+
+```python
     return None
 ```
