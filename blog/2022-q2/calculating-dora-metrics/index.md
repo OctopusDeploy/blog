@@ -108,11 +108,21 @@ headers = {"X-Octopus-ApiKey": args.octopus_api_key}
 github_auth = HTTPBasicAuth(args.github_user, args.github_token)
 
 
+def parse_github_date(date_string):
+    if date_string is None:
+        return None
+    return datetime.strptime(date_string.replace("Z", "+0000"), '%Y-%m-%dT%H:%M:%S%z')
+
+
+def parse_octopus_date(date_string):
+    if date_string is None:
+        return None
+    return datetime.strptime(date_string[:-3] + date_string[-2:], '%Y-%m-%dT%H:%M:%S.%f%z')
+
+
 def compare_dates(date1, date2):
-    # Python 3.6 doesn't handle the colon in the timezone of a string like "2022-01-04T04:23:02.941+00:00".
-    # So we need to manually strip it out.
-    date1_parsed = datetime.strptime(date1["Created"][:-3] + date1["Created"][-2:], '%Y-%m-%dT%H:%M:%S.%f%z')
-    date2_parsed = datetime.strptime(date2["Created"][:-3] + date2["Created"][-2:], '%Y-%m-%dT%H:%M:%S.%f%z')
+    date1_parsed = parse_octopus_date(date1["Created"])
+    date2_parsed = parse_octopus_date(date2["Created"])
     if date1_parsed < date2_parsed:
         return -1
     if date1_parsed == date2_parsed:
@@ -180,18 +190,6 @@ def get_deployments(space_id, environment_id, project_id):
     sorted_list = sorted(filtered_items, key=cmp_to_key(compare_dates), reverse=True)
 
     return sorted_list
-
-
-def parse_github_date(date_string):
-    if date_string is None:
-        return None
-    return datetime.strptime(date_string.replace("Z", "+0000"), '%Y-%m-%dT%H:%M:%S%z')
-
-
-def parse_octopus_date(date_string):
-    if date_string is None:
-        return None
-    return datetime.strptime(date_string[:-3] + date_string[-2:], '%Y-%m-%dT%H:%M:%S.%f%z')
 
 
 def get_change_lead_time():
@@ -296,80 +294,80 @@ def get_change_failure_rate():
 
 def get_change_lead_time_summary(lead_time):
     if lead_time is None:
-        sys.stdout.write("Change lead time: N/A (no deployments or commits)\n")
+        print("Change lead time: N/A (no deployments or commits)")
     # One hour
     if lead_time < 60 * 60:
-        sys.stdout.write("Change lead time: Elite (Average " + str(round(lead_time / 60 / 60, 2))
-                         + " hours between commit and deploy)\n")
+        print("Change lead time: Elite (Average " + str(round(lead_time / 60 / 60, 2))
+                         + " hours between commit and deploy)")
     # Every week
     elif lead_time < 60 * 60 * 24 * 7:
-        sys.stdout.write("Change lead time: High (Average " + str(round(lead_time / 60 / 60 / 24, 2))
-                         + " days between commit and deploy)\n")
+        print("Change lead time: High (Average " + str(round(lead_time / 60 / 60 / 24, 2))
+                         + " days between commit and deploy)")
     # Every six months
     elif lead_time < 60 * 60 * 24 * 31 * 6:
-        sys.stdout.write("Change lead time: Medium (Average " + str(round(lead_time / 60 / 60 / 24 / 31, 2))
-                         + " months between commit and deploy)\n")
+        print("Change lead time: Medium (Average " + str(round(lead_time / 60 / 60 / 24 / 31, 2))
+                         + " months between commit and deploy)")
     # Longer than six months
     else:
-        sys.stdout.write("Change lead time: Low (Average " + str(round(lead_time / 60 / 60 / 24 / 31, 2))
-                         + " months between commit and deploy)\n")
+        print("Change lead time: Low (Average " + str(round(lead_time / 60 / 60 / 24 / 31, 2))
+                         + " months between commit and deploy)")
 
 
 def get_deployment_frequency_summary(deployment_frequency):
     if deployment_frequency is None:
-        sys.stdout.write("Deployment frequency: N/A (no deployments found)\n")
+        print("Deployment frequency: N/A (no deployments found)")
     # Multiple times per day
     elif deployment_frequency < 60 * 60 * 12:
-        sys.stdout.write("Deployment frequency: Elite (Average " + str(round(deployment_frequency / 60 / 60, 2))
-                         + " hours between deployments)\n")
+        print("Deployment frequency: Elite (Average " + str(round(deployment_frequency / 60 / 60, 2))
+                         + " hours between deployments)")
     # Every month
     elif deployment_frequency < 60 * 60 * 24 * 31:
-        sys.stdout.write("Deployment frequency: High (Average " + str(round(deployment_frequency / 60 / 60 / 24, 2))
-                         + " days between deployments)\n")
+        print("Deployment frequency: High (Average " + str(round(deployment_frequency / 60 / 60 / 24, 2))
+                         + " days between deployments)")
     # Every six months
     elif deployment_frequency < 60 * 60 * 24 * 31 * 6:
-        sys.stdout.write("Deployment frequency: Medium (Average " + str(round(deployment_frequency / 60 / 60 / 24 / 31, 2))
-                         + " months bbetween deployments)\n")
+        print("Deployment frequency: Medium (Average " + str(round(deployment_frequency / 60 / 60 / 24 / 31, 2))
+                         + " months bbetween deployments)")
     # Longer than six months
     else:
-        sys.stdout.write("Deployment frequency: Low (Average " + str(round(deployment_frequency / 60 / 60 / 24 / 31, 2))
-                         + " months between commit and deploy)\n")
+        print("Deployment frequency: Low (Average " + str(round(deployment_frequency / 60 / 60 / 24 / 31, 2))
+                         + " months between commit and deploy)")
 
 
 def get_change_failure_rate_summary(failure_percent):
     if failure_percent is None:
-        sys.stdout.write("Change failure rate: N/A (no issues or deployments found)\n")
+        print("Change failure rate: N/A (no issues or deployments found)")
     # 15% or less
     elif failure_percent <= 0.15:
-        sys.stdout.write("Change failure rate: Elite (" + str(round(failure_percent * 100, 0)) + "%)\n")
+        print("Change failure rate: Elite (" + str(round(failure_percent * 100, 0)) + "%)")
     # Interestingly, everything else is reported as High to Low
     else:
-        sys.stdout.write("Change failure rate: Low (" + str(round(failure_percent * 100, 0)) + "%)\n")
+        print("Change failure rate: Low (" + str(round(failure_percent * 100, 0)) + "%)")
 
 
 def get_time_to_restore_service_summary(restore_time):
     if restore_time is None:
-        sys.stdout.write("Time to restore service: N/A (no issues or deployments found)\n")
+        print("Time to restore service: N/A (no issues or deployments found)")
     # One hour
     elif restore_time < 60 * 60:
-        sys.stdout.write("Time to restore service: Elite (Average " + str(round(restore_time / 60 / 60, 2))
-                         + " hours between issue opened and deployment)\n")
+        print("Time to restore service: Elite (Average " + str(round(restore_time / 60 / 60, 2))
+                         + " hours between issue opened and deployment)")
     # Every month
     elif restore_time < 60 * 60 * 24:
-        sys.stdout.write("Time to restore service: High (Average " + str(round(restore_time / 60 / 60, 2))
-                         + " hours between issue opened and deployment)\n")
+        print("Time to restore service: High (Average " + str(round(restore_time / 60 / 60, 2))
+                         + " hours between issue opened and deployment)")
     # Every six months
     elif restore_time < 60 * 60 * 24 * 7:
-        sys.stdout.write("Time to restore service: Medium (Average " + str(round(restore_time / 60 / 60 / 24, 2))
-                         + " hours between issue opened and deployment)\n")
+        print("Time to restore service: Medium (Average " + str(round(restore_time / 60 / 60 / 24, 2))
+                         + " hours between issue opened and deployment)")
     # Technically the report says longer than six months is low, but there is no measurement
     # between week and six months, so we'll say longer than a week is low.
     else:
-        sys.stdout.write("Deployment frequency: Low (Average " + str(round(restore_time / 60 / 60 / 24, 2))
-                         + " hours between issue opened and deployment)\n")
+        print("Deployment frequency: Low (Average " + str(round(restore_time / 60 / 60 / 24, 2))
+                         + " hours between issue opened and deployment)")
 
 
-sys.stdout.write("DORA stats for project(s) " + args.octopus_project + " in " + args.octopus_environment + "\n")
+print("DORA stats for project(s) " + args.octopus_project + " in " + args.octopus_environment)
 get_change_lead_time_summary(get_change_lead_time())
 get_deployment_frequency_summary(get_deployment_frequency())
 get_change_failure_rate_summary(get_change_failure_rate())
@@ -733,3 +731,311 @@ If no issues were found, `None` is returned:
 ```python
     return None
 ```
+
+### Calculating deployment frequency
+
+Deployment frequency is perhaps the easiest metric to calculate as it is simply the average time between production deployments. This is calculated by the `get_deployment_frequency` function:
+
+```python
+def get_deployment_frequency():
+```
+
+Deployment frequency is calculated as the the duration over which deployments have been performed divided by the number of deployments:
+
+```python
+    deployment_count = 0
+    earliest_deployment = None
+    latest_deployment = None
+```
+
+The space, environment, and project names are converted to IDs:
+
+```python
+    space_id = get_space_id(args.octopus_space)
+    environment_id = get_resource_id(space_id, "environments", args.octopus_environment)
+    for project in args.octopus_project.split(","):
+        project_id = get_resource_id(space_id, "projects", project)
+```
+
+The deployments performed to an environment are returned:
+
+```python
+        deployments = get_deployments(space_id, environment_id, project_id)
+```
+
+The number of deployments are counted:
+
+```python
+        deployment_count = deployment_count + len(deployments)
+```
+
+The earliest and latest deployments are found:
+
+```python
+        for deployment in deployments:
+            created = parse_octopus_date(deployment["Created"])
+            if earliest_deployment is None or earliest_deployment > created:
+                earliest_deployment = created
+            if latest_deployment is None or latest_deployment < created:
+                latest_deployment = created
+```
+
+Assuming any deployments were found, the the duration between deployments is divided by the number of deployments.
+
+Note you can measure this value a few different ways. The uncommented code measures the average time between deployments from the earliest deployment until the current point in time. 
+
+An alternative is to measure the average time between the earliest and the latest deployment:
+
+```python
+    if latest_deployment is not None:
+        # return average seconds / deployment from the earliest deployment to now
+        return (datetime.now(pytz.utc) - earliest_deployment).total_seconds() / deployment_count
+        # You could also return the frequency between the first and last deployment
+        # return (latest_deployment - earliest_deployment).total_seconds() / deployment_count
+    return None
+```
+
+### Calculating change failure rate
+
+The final metric is change failure rate.
+
+As we noted in the introduction, this code measures the number of deployments that fix issues rather than the number of deployments that introduce issues. The former measurement is trivial to calculate with the information captured by build information, while the later requires far more metadata to be exposed by issues.
+
+Despite the technical differences, we assume measuring deployments that fix issues is a good proxy for deployments that introduce issues; reducing production issues improves both scores, and while "bad" deployments are underrepresented by this logic where a single release fixes many issues, "bad" deployments are then overrepresented where multiple deployments are required to fix this issues from a single previous deployment.
+
+The `get_change_failure_rate` function is used to calculate the change failure rate:
+
+```python
+def get_change_failure_rate():
+```
+
+The failure rate is measured as the number of deployments with issues compared to the total number of deployments:
+
+```python
+    releases_with_issues = 0
+    deployment_count = 0
+```
+
+The space, environment, and project names are converted to IDs:
+
+```python
+    space_id = get_space_id(args.octopus_space)
+    environment_id = get_resource_id(space_id, "environments", args.octopus_environment)
+    for project in args.octopus_project.split(","):
+        project_id = get_resource_id(space_id, "projects", project)
+```
+
+The deployments performed to an environment are returned, and the total number of deployments is accumulated:
+
+```python
+        deployments = get_deployments(space_id, environment_id, project_id)
+        deployment_count = deployment_count + len(deployments)
+```
+
+You then find any issues associated with deployments and increment the count of deployments with issues when an issue is linked to the release:
+
+```python
+        for deployment in deployments:
+            release = get_resource(space_id, "releases", deployment["ReleaseId"])
+            for buildInfo in release["BuildInformation"]:
+                if len(buildInfo["WorkItems"]) != 0:
+                    # Note this measurement is not quite correct. Technically, the change failure rate
+                    # measures deployments that result in a degraded service. We're measuring
+                    # deployments that included fixes. If you made 4 deployments with issues,
+                    # and fixed all 4 with a single subsequent deployment, this logic only detects one
+                    # "failed" deployment instead of 4.
+                    #
+                    # To do a true measurement, issues must track the deployments that introduced the issue.
+                    # There is no such out of the box field in GitHub actions though, so for simplicity
+                    # we assume the rate at which fixes are deployed is a good proxy for measuring the
+                    # rate at which bugs are introduced.
+                    releases_with_issues = releases_with_issues + 1
+```
+
+If any deployments with issues were found, the ratio of deployments with issues is returned:
+
+```python
+    if releases_with_issues != 0 and deployment_count != 0:
+        return releases_with_issues / deployment_count
+```
+
+If no deployments with issues were found, `None` is returned:
+
+```python
+    return None
+```
+
+### Measuring deployment performance
+
+The measurement of each metric can be broken down into four categories: elite, high, medium, and low. The DORA report describes how each measurement is categorized, and the `get_change_lead_time_summary`, `get_deployment_frequency_summary`, `get_change_failure_rate_summary`, and `get_time_to_restore_service_summary` functions print the results:
+
+```python
+def get_change_lead_time_summary(lead_time):
+    if lead_time is None:
+        print("Change lead time: N/A (no deployments or commits)")
+    # One hour
+    if lead_time < 60 * 60:
+        print("Change lead time: Elite (Average " + str(round(lead_time / 60 / 60, 2))
+                         + " hours between commit and deploy)")
+    # Every week
+    elif lead_time < 60 * 60 * 24 * 7:
+        print("Change lead time: High (Average " + str(round(lead_time / 60 / 60 / 24, 2))
+                         + " days between commit and deploy)")
+    # Every six months
+    elif lead_time < 60 * 60 * 24 * 31 * 6:
+        print("Change lead time: Medium (Average " + str(round(lead_time / 60 / 60 / 24 / 31, 2))
+                         + " months between commit and deploy)")
+    # Longer than six months
+    else:
+        print("Change lead time: Low (Average " + str(round(lead_time / 60 / 60 / 24 / 31, 2))
+                         + " months between commit and deploy)")
+
+
+def get_deployment_frequency_summary(deployment_frequency):
+    if deployment_frequency is None:
+        print("Deployment frequency: N/A (no deployments found)")
+    # Multiple times per day
+    elif deployment_frequency < 60 * 60 * 12:
+        print("Deployment frequency: Elite (Average " + str(round(deployment_frequency / 60 / 60, 2))
+                         + " hours between deployments)")
+    # Every month
+    elif deployment_frequency < 60 * 60 * 24 * 31:
+        print("Deployment frequency: High (Average " + str(round(deployment_frequency / 60 / 60 / 24, 2))
+                         + " days between deployments)")
+    # Every six months
+    elif deployment_frequency < 60 * 60 * 24 * 31 * 6:
+        print("Deployment frequency: Medium (Average " + str(round(deployment_frequency / 60 / 60 / 24 / 31, 2))
+                         + " months bbetween deployments)")
+    # Longer than six months
+    else:
+        print("Deployment frequency: Low (Average " + str(round(deployment_frequency / 60 / 60 / 24 / 31, 2))
+                         + " months between commit and deploy)")
+
+
+def get_change_failure_rate_summary(failure_percent):
+    if failure_percent is None:
+        print("Change failure rate: N/A (no issues or deployments found)")
+    # 15% or less
+    elif failure_percent <= 0.15:
+        print("Change failure rate: Elite (" + str(round(failure_percent * 100, 0)) + "%)")
+    # Interestingly, everything else is reported as High to Low
+    else:
+        print("Change failure rate: Low (" + str(round(failure_percent * 100, 0)) + "%)")
+
+
+def get_time_to_restore_service_summary(restore_time):
+    if restore_time is None:
+        print("Time to restore service: N/A (no issues or deployments found)")
+    # One hour
+    elif restore_time < 60 * 60:
+        print("Time to restore service: Elite (Average " + str(round(restore_time / 60 / 60, 2))
+                         + " hours between issue opened and deployment)")
+    # Every month
+    elif restore_time < 60 * 60 * 24:
+        print("Time to restore service: High (Average " + str(round(restore_time / 60 / 60, 2))
+                         + " hours between issue opened and deployment)")
+    # Every six months
+    elif restore_time < 60 * 60 * 24 * 7:
+        print("Time to restore service: Medium (Average " + str(round(restore_time / 60 / 60 / 24, 2))
+                         + " hours between issue opened and deployment)")
+    # Technically the report says longer than six months is low, but there is no measurement
+    # between week and six months, so we'll say longer than a week is low.
+    else:
+        print("Deployment frequency: Low (Average " + str(round(restore_time / 60 / 60 / 24, 2))
+                         + " hours between issue opened and deployment)")
+```
+
+The final step is to calculate the metrics and pass the results to the functions above:
+
+```python
+print("DORA stats for project(s) " + args.octopus_project + " in " + args.octopus_environment)
+get_change_lead_time_summary(get_change_lead_time())
+get_deployment_frequency_summary(get_deployment_frequency())
+get_change_failure_rate_summary(get_change_failure_rate())
+get_time_to_restore_service_summary(get_time_to_restore_service())
+```
+
+## Running the script in a runbook
+
+The first step is to expose three variables that will be passed to the script:
+
+* `GitHubToken` is a secret holding the GitHub personal access token used to authenticate GitHub API calls.
+* `ReadOnlyApiKey` is an Octopus API key assigned to an account with read only access to the Octopus server (because this script only queries the API, and never modifies any resources).
+
+![Octopus variables](variables.png "width=500")
+
+The runbook is comprised of a single **Run a script** step with the following bash script:
+
+```bash
+cd DoraMetrics
+
+echo "##octopus[stdout-verbose]"
+python3 -m venv my_env
+. my_env/bin/activate
+pip --disable-pip-version-check install -r requirements.txt
+echo "##octopus[stdout-default]"
+
+python3 main.py \
+    --octopusUrl https://tenpillars.octopus.app \
+    --octopusApiKey "#{ReadOnlyApiKey}" \
+    --githubUser mcasperson \
+    --githubToken "#{GitHubToken}" \
+    --octopusSpace "#{Octopus.Space.Name}" \
+    --octopusEnvironment "#{Octopus.Environment.Name}" \
+    --octopusProject "Products Service, Audits Service, Octopub Frontend"
+```
+
+There are some interesting things going on in this script, so let's break it down.
+
+You enter the directory where Octopus extracted the package containing the Python script:
+
+```bash
+cd DependencyQuery
+```
+
+Printing the [service message](https://octopus.com/docs/deployments/custom-scripts/logging-messages-in-scripts#service-message) `##octopus[stdout-verbose]` instructs Octopus to treat all subsequent log messages as verbose:
+
+```bash
+echo "##octopus[stdout-verbose]"
+```
+
+A new [Python virtual environment](https://realpython.com/python-virtual-environments-a-primer/) called `my_env` is created and activated, and the script dependencies are installed:
+
+```bash
+python3 -m venv my_env
+. my_env/bin/activate
+pip --disable-pip-version-check install -r requirements.txt
+```
+
+The service message `##octopus[stdout-default]` is printed, instructing Octopus to treat subsequent log messages at the default level again:
+
+```bash
+echo "##octopus[stdout-default]"
+```
+
+You then execute the Python script. Some of the arguments, like `octopusUrl`, `githubUser`, `octopusProject` etc will need to be customized for your specific use case. Setting the `octopusSpace` and `octopusEnvironment` arguments to the space and environment in which the runbook is executed allows you to find dependencies in any environment the runbook is run in:
+
+```bash
+python3 main.py \
+    --octopusUrl https://tenpillars.octopus.app \
+    --octopusApiKey "#{ReadOnlyApiKey}" \
+    --githubUser mcasperson \
+    --githubToken "#{GitHubToken}" \
+    --octopusSpace "#{Octopus.Space.Name}" \
+    --octopusEnvironment "#{Octopus.Environment.Name}" \
+    --octopusProject "Products Service, Audits Service, Octopub Frontend"
+```
+
+## Executing the runbook
+
+When the runbook is executed, it proceeds to scan each project for the latest deployment to the current environment, finds the GitHub Action run link from the build information, downloads the dependencies artifact, extracts the artifact, and scans the text files for the search text. 
+
+With a single click of the **RUN** button, you now have the ability to quickly measure the performance of your projects:
+
+![Runbook run](runbook-run.png "width=500")
+
+## Conclusion
+
+The DORA metrics represent one of the few rigorously researched insights into your team's DevOps performance. Between the information captured by Octopus build information packages and issue tracking platforms like GitHub actions, it is possible to rank your performance against thousands of other software development teams across the globe.
+
+In this post you saw a sample Python script that queried the Octopus and GutHub APIs to calculate the four DORA metrics, and then ran the script as an Octopus runbook. The sample script can be easily applied to any team using GitHub actions, or modified to query other source control and issue tracking platforms.
