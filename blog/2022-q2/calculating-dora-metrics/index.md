@@ -426,7 +426,9 @@ def parse_github_date(date_string):
     return datetime.strptime(date_string.replace("Z", "+0000"), '%Y-%m-%dT%H:%M:%S%z')
 ```
 
-The Octopus returns dates in its own specific format. The `parse_octopus_date` function converts Octopus dates into Python datetime objects:
+The Octopus API returns dates in its own specific format. The `parse_octopus_date` function converts Octopus dates into Python datetime objects.
+
+The Octopus API returns dates in the ISO 8601 format, which looks like `2022-01-04T04:23:02.941+00:00`. Unfortunately, [Python 3.6 does not support timezone offsets that include colons](https://bugs.python.org/issue15873), forcing us to strip them out before parsing and comparing the dates:
 
 ```python
 def parse_octopus_date(date_string):
@@ -435,11 +437,7 @@ def parse_octopus_date(date_string):
     return datetime.strptime(date_string[:-3] + date_string[-2:], '%Y-%m-%dT%H:%M:%S.%f%z')
 ```
 
-An important aspect of this script is the ability to find the latest release deployed to a given environment. This means comparing dates returned by the Octopus API.
-
-The Octopus API returns dates in the ISO 8601 format, which looks like `2022-01-04T04:23:02.941+00:00`. Unfortunately, [Python 3.6 does not support timezone offsets that include colons](https://bugs.python.org/issue15873), forcing us to strip them out before parsing and comparing the dates. 
-
-The `compare_dates` function takes two dates as strings, strips out the colons, parses the result, and returns a value of `1`, `0`, or `-1` indicating how `date1` compares to `date2`:
+The `compare_dates` function takes two dates as strings, parses them as datetime objects, and returns a value of `1`, `0`, or `-1` indicating how `date1` compares to `date2`:
 
 ```python
 def compare_dates(date1, date2):
@@ -454,7 +452,7 @@ def compare_dates(date1, date2):
 
 ### Querying Octopus resources
 
-A common pattern used through this script (and most scripts working with the Octopus API) is to lookup the ID of a named resource. The `get_space_id` function takes the name of an Octopus space and queries the API to return the space ID:
+A common pattern used throughout this script (and most scripts working with the Octopus API) is to lookup the ID of a named resource. The `get_space_id` function takes the name of an Octopus space and queries the API to return the space ID:
 
 ```python
 def get_space_id(space_name):
@@ -517,7 +515,7 @@ def get_resource_id(space_id, resource_type, resource_name):
     return first_id
 ```
 
-You'll require access to the complete Octopus release in order to examine the build information metadata. The `get_resource` function uses the resource IDs returned by the functions above to return a complete resource definition from the Octopus API:
+You'll require access to the complete Octopus release resource in order to examine the build information metadata. The `get_resource` function uses the resource IDs returned by the functions above to return a complete resource definition from the Octopus API:
 
 ```python
 def get_resource(space_id, resource_type, resource_id):
@@ -554,7 +552,7 @@ def get_deployments(space_id, environment_id, project_id):
 
 ### Calculating lead time for changes
 
-You now have the code in place to query the Octopus API for deployments and releases and use the information to calculate the DORA metrics.
+You now have the code in place to query the Octopus API for deployments and releases, and use the information to calculate the DORA metrics.
 
 The first metric you'll tackle is lead time for changes, which is calculated in the `get_change_lead_time` function:
 
@@ -588,7 +586,7 @@ You collect the list of deployments to the project for the space and environment
         deployments = get_deployments(space_id, environment_id, project_id)
 ```
 
-This is where you calculate the lead time for a each deployment:
+This is where you calculate the lead time for each deployment:
 
 ```python
         for deployment in deployments:
@@ -606,7 +604,7 @@ A deployment represents the execution of a release in an environment. It is the 
             release = get_resource(space_id, "releases", deployment["ReleaseId"])
 ```
 
-Releases contain an array with zero or more build information objects. You must loop over this array looking for the details of the commits:
+Releases contain an array with zero or more build information objects. You must loop over this array to return the details of the commits:
 
 ```python
             for buildInfo in release["BuildInformation"]:
@@ -620,14 +618,14 @@ Each build information object contains zero or more commits. You must loop over 
 
 When working with GitHub commits, the URL associated with each commit links back to a page that you can open with a web browser. These links look like [https://github.com/OctopusSamples/OctoPub/commit/dcaf638037503021de696d13b4c5c41ba6952e9f](https://github.com/OctopusSamples/OctoPub/commit/dcaf638037503021de696d13b4c5c41ba6952e9f).
 
-GitHub maintains a parallel set of URLs that expose the API used to query GitHub resources. The URLs used by the API are usually very similar to the publicly browseable URLs. In this case the API URL looks like [https://api.github.com/repos/OctopusSamples/OctoPub/commits/dcaf638037503021de696d13b4c5c41ba6952e9f](https://github.com/OctopusSamples/OctoPub/commit/dcaf638037503021de696d13b4c5c41ba6952e9f)]. So you convert the browseable link to the API link:
+GitHub maintains a parallel set of URLs that expose the API used to query GitHub resources. The URLs used by the API are usually very similar to the publicly browseable URLs. In this case the API URL looks like [https://api.github.com/repos/OctopusSamples/OctoPub/commits/dcaf638037503021de696d13b4c5c41ba6952e9f](https://github.com/OctopusSamples/OctoPub/commit/dcaf638037503021de696d13b4c5c41ba6952e9f). So you convert the browseable link to the API link:
 
 ```python
                     api_url = commit["LinkUrl"].replace("github.com", "api.github.com/repos") \
                         .replace("commit", "commits")
 ```
 
-You then query the details of the commit
+You then query the details of the commit:
 
 ```python
                     commit_response = get(api_url, auth=github_auth)
