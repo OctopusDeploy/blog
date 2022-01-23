@@ -668,7 +668,7 @@ If no commits were found, or the release has no associated build information, `N
 
 The next metric you'll calculate is time to restore service. 
 
-As we noted in the introduction, this metric is assumed to be measured by the time it takes to close a GitHub issue associated with a release. The `get_time_to_restore_service` function is used to calculate this value:
+As we noted in the introduction, this metric is assumed to be measured by the time it takes deploy an release with a resolved issue. The `get_time_to_restore_service` function is used to calculate this value:
 
 ```python
 def get_time_to_restore_service():
@@ -746,7 +746,7 @@ Deployment frequency is perhaps the easiest metric to calculate as it is simply 
 def get_deployment_frequency():
 ```
 
-Deployment frequency is calculated as the the duration over which deployments have been performed divided by the number of deployments:
+Deployment frequency is calculated as the duration over which deployments have been performed divided by the number of deployments:
 
 ```python
     deployment_count = 0
@@ -786,7 +786,7 @@ The earliest and latest deployments are found:
                 latest_deployment = created
 ```
 
-Assuming any deployments were found, the the duration between deployments is divided by the number of deployments.
+Assuming any deployments were found, the duration between deployments is divided by the number of deployments.
 
 Note you can measure this value a few different ways. The uncommented code measures the average time between deployments from the earliest deployment until the current point in time. 
 
@@ -807,7 +807,7 @@ The final metric is change failure rate.
 
 As we noted in the introduction, this code measures the number of deployments that fix issues rather than the number of deployments that introduce issues. The former measurement is trivial to calculate with the information captured by build information, while the later requires far more metadata to be exposed by issues.
 
-Despite the technical differences, we assume measuring deployments that fix issues is a good proxy for deployments that introduce issues; reducing production issues improves both scores, and while "bad" deployments are underrepresented by this logic where a single release fixes many issues, "bad" deployments are then overrepresented where multiple deployments are required to fix this issues from a single previous deployment.
+Despite the technical differences, we assume measuring deployments that fix issues is a good proxy for deployments that introduce issues; reducing production issues improves both scores, and while "bad" deployments are underrepresented by this logic where a single release fixes many issues, "bad" deployments are then overrepresented where multiple deployments are required to fix the issues from a single previous deployment.
 
 The `get_change_failure_rate` function is used to calculate the change failure rate:
 
@@ -838,7 +838,7 @@ The deployments performed to an environment are returned, and the total number o
         deployment_count = deployment_count + len(deployments)
 ```
 
-You then find any issues associated with deployments and increment the count of deployments with issues when an issue is linked to the release:
+You then find any issues associated with deployments, and if any are found, you increment the count of deployments with issues:
 
 ```python
         for deployment in deployments:
@@ -858,7 +858,7 @@ You then find any issues associated with deployments and increment the count of 
                     releases_with_issues = releases_with_issues + 1
 ```
 
-If any deployments with issues were found, the ratio of deployments with issues is returned:
+If any deployments with issues were found, the ratio of deployments with issues to total number of deployments is returned:
 
 ```python
     if releases_with_issues != 0 and deployment_count != 0:
@@ -873,7 +873,7 @@ If no deployments with issues were found, `None` is returned:
 
 ### Measuring deployment performance
 
-The measurement of each metric can be broken down into four categories: elite, high, medium, and low. The DORA report describes how each measurement is categorized, and the `get_change_lead_time_summary`, `get_deployment_frequency_summary`, `get_change_failure_rate_summary`, and `get_time_to_restore_service_summary` functions print the results:
+The measurement of each metric are broken down into four categories: elite, high, medium, and low. The DORA report describes how each measurement is categorized, and the `get_change_lead_time_summary`, `get_deployment_frequency_summary`, `get_change_failure_rate_summary`, and `get_time_to_restore_service_summary` functions print the results:
 
 ```python
 def get_change_lead_time_summary(lead_time):
@@ -968,8 +968,6 @@ The first step is to expose three variables that will be passed to the script:
 * `GitHubToken` is a secret holding the GitHub personal access token used to authenticate GitHub API calls.
 * `ReadOnlyApiKey` is an Octopus API key assigned to an account with read only access to the Octopus server (because this script only queries the API, and never modifies any resources).
 
-![Octopus variables](variables.png "width=500")
-
 The runbook is comprised of a single **Run a script** step with the following bash script:
 
 ```bash
@@ -1019,7 +1017,7 @@ The service message `##octopus[stdout-default]` is printed, instructing Octopus 
 echo "##octopus[stdout-default]"
 ```
 
-You then execute the Python script. Some of the arguments, like `octopusUrl`, `githubUser`, `octopusProject` etc will need to be customized for your specific use case. Setting the `octopusSpace` and `octopusEnvironment` arguments to the space and environment in which the runbook is executed allows you to find dependencies in any environment the runbook is run in:
+You then execute the Python script. Some of the arguments, like `octopusUrl`, `githubUser`, `octopusProject` etc will need to be customized for your specific use case. Setting the `octopusSpace` and `octopusEnvironment` arguments to the space and environment in which the runbook is executed allows you to calculate DORA metrics in any environment the runbook is run in:
 
 ```bash
 python3 main.py \
@@ -1042,6 +1040,6 @@ With a single click of the **RUN** button, you now have the ability to quickly m
 
 ## Conclusion
 
-The DORA metrics represent one of the few rigorously researched insights into your team's DevOps performance. Between the information captured by Octopus build information packages and issue tracking platforms like GitHub actions, it is possible to rank your performance against thousands of other software development teams across the globe.
+The DORA metrics represent one of the few rigorously researched insights available to measure your team's DevOps performance. Between the information captured by Octopus build information packages and issue tracking platforms like GitHub actions, it is possible to rank your performance against thousands of other software development teams across the globe.
 
-In this post you saw a sample Python script that queried the Octopus and GutHub APIs to calculate the four DORA metrics, and then ran the script as an Octopus runbook. The sample script can be easily applied to any team using GitHub actions, or modified to query other source control and issue tracking platforms.
+In this post you saw a sample Python script that queried the Octopus and GitHub APIs to calculate the four DORA metrics, and then ran the script as an Octopus runbook. The sample script can be easily applied to any team using GitHub actions, or modified to query other source control and issue tracking platforms.
