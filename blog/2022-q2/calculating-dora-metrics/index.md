@@ -10,14 +10,14 @@ tags:
  - Octopus
 ---
 
-The [DevOps Research and Assessment](https://www.devops-research.com/research.html) annual report captures input from tens of thousands of professionals worldwide, and ranks the performance of software development teams using four key metrics:
+The [DevOps Research and Assessment (DORA)](https://www.devops-research.com/research.html) annual report captures input from tens of thousands of professionals worldwide, and ranks the performance of software development teams using four key metrics:
 
-* Deployment Frequency — How often an organization successfully releases to production.
-* Lead Time for Changes — The amount of time it takes a commit to get into production.
-* Change Failure Rate — The percentage of deployments causing a failure in production.
-* Time to Restore Service — How long it takes an organization to recover from a failure in production.
+* Deployment Frequency - How often an organization successfully releases to production.
+* Lead Time for Changes - The amount of time it takes a commit to get into production.
+* Change Failure Rate - The percentage of deployments causing a failure in production.
+* Time to Restore Service - How long it takes an organization to recover from a failure in production.
 
-A challenge for teams is then how to calculate these metrics. Fortunately, Octopus captures most of the raw information required to generate these metrics, and in this post you'll learn how to query the Octopus API to generate a DORA scorecard with a custom runbook.
+A challenge for teams is then how to calculate these metrics. Fortunately, Octopus captures most of the raw information required to generate these metrics, and in this post you'll learn how to query the Octopus API to produce a DORA scorecard with a custom runbook.
 
 ## Prerequisites
 
@@ -65,13 +65,13 @@ For the purpose of this post, the DORA metrics will be calculated as follows:
 * Change Failure Rate - The percentage of deployments to the production environment that resolved an issue.
 * Time to Restore Service - The time between an issue being opened and closed.
 
-You'll note that some of these measurements have been simplified for convenience or require external sources, like GitHub issues, to accurately track outages. 
+You'll note that some of these measurements have been simplified for convenience.
 
-For example, the change failure rate metric technically tracks deployments that caused an issue, not deployments that resolved an issue, as we have defined it here. However, the data exposed by build information packages makes is easy to track the resolved issues in a given release, and we assume the rate at which deployments resolve issues is a good proxy for the rate at which deployments introduce issues.
+For example, the change failure rate metric technically tracks deployments that caused an issue, not deployments that resolved an issue, as we have defined it here. However, the data exposed by build information packages makes it easy to track the resolved issues in a given release, and we assume the rate at which deployments resolve issues is a good proxy for the rate at which deployments introduce them.
 
 Also, the time to restore service metric assumes all issues represent bugs or regressions deployed to production. In reality, issues tend to track a wide range of changes from bugs to enhancements. The solution presented here does not make this distinction though.
 
-It is certainly possible to track which deployments resulted in production issues, so long as you create the required custom fields in your issue tracking platform and are diligent about populating them. It is also possible to distinguish between issues that document issues and those that represent enhancements. However, this level of tracking won't be discussed in this post.
+It is certainly possible to track which deployments resulted in production issues, so long as you create the required custom fields in your issue tracking platform and are diligent about populating them. It is also possible to distinguish between issues that document bugs and those that represent enhancements. However, this level of tracking won't be discussed in this post.
 
 ## Calculating the metrics
 
@@ -376,6 +376,8 @@ get_time_to_restore_service_summary(get_time_to_restore_service())
 
 Let's break this code down to understand what it is doing.
 
+### Processing arguments
+
 Your script will accept parameters from command line arguments to make it reusable across multiple Octopus instances and spaces. The arguments are parsed by the [argparse module](https://docs.python.org/3/library/argparse.html). You can find more information about using `argparse` [here](https://realpython.com/command-line-interfaces-python-argparse/):
 
 ```python
@@ -398,6 +400,8 @@ parser.add_argument('--octopusEnvironment', dest='octopus_environment', action='
 args = parser.parse_args()
 ```
 
+### API authentication
+
 The script makes many requests to the Octopus and GitHub APIs, and all of the requests require authentication. 
 
 The Octopus API uses the `X-Octopus-ApiKey` header to pass the API key used to authenticate requests. You can find more information on how to create an API in the [Octopus documentation](https://octopus.com/docs/octopus-rest-api/how-to-create-an-api-key).
@@ -410,6 +414,8 @@ The code below captures the objects containing the credentials passed with each 
 headers = {"X-Octopus-ApiKey": args.octopus_api_key}
 github_auth = HTTPBasicAuth(args.github_user, args.github_token)
 ```
+
+### Date processing
 
 The GitHub API returns dates in a specific format. The `parse_github_date` function takes these dates and converts them into Python datetime objects:
 
@@ -445,6 +451,8 @@ def compare_dates(date1, date2):
         return 0
     return 1
 ```
+
+### Querying Octopus resources
 
 A common pattern used through this script (and most scripts working with the Octopus API) is to lookup the ID of a named resource. The `get_space_id` function takes the name of an Octopus space and queries the API to return the space ID:
 
