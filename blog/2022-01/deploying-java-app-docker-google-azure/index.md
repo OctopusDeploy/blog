@@ -18,9 +18,15 @@ tags:
  - Azure
 ---
 
-In this post, we build a Maven Java project and host the image on the Google Container Registry (GCR). You can access the GCR through Octopus and deploy the Java application to Azure Kubernetes Service (AKS). 
+The Continuous Integration (CI) process usually involves building and pushing an image to a container registry. A Continuous Delivery (CD) tool takes over and forms the deployment step where it's deployed to an endpoint, like a web application. In our [CI series](https://octopus.com/blog/tag/CI%20Series), we explore various ways to achieve this. 
 
-To follow along, you need:
+To demonstrate one of these processes, I built a Maven Java project and hosted the image on the Google Container Registry (GCR). 
+
+You can access the GCR through Octopus and deploy the Java application to Azure Kubernetes Service (AKS). 
+
+## Prerequisites
+
+To follow along with this post, you need:
 
 - A Google Cloud Platform (GCP) account
 - A Microsoft Azure account
@@ -29,15 +35,15 @@ To follow along, you need:
 
 ## The Octopus Deploy underwater app
 
-The Octopus Deploy underwater app is a landing page for users creating their first deployment. It includes posts to help you continue your journey with Octopus Deploy.
+The Octopus Deploy underwater app is a landing page for users creating their first deployment. It includes links to posts that help you continue your journey with Octopus Deploy.
 
 You can find the web application repository on [GitHub](https://github.com/OctopusSamples/octopus-underwater-app). 
 
-The repository is split into separate branches for different use cases. We use the underwater-app-java branch.
+The repository is split into separate branches for different use cases. Use the underwater-app-java branch.
 
 ## Building and pushing to a registry
 
-We use the command-line to build the Java project and use gcloud to push the image to GCR.
+You use the command-line to build the Java project and use gcloud to push the image to GCR.
 
 First, configure the gcloud tool to point to your PROJECT_ID:
 
@@ -83,7 +89,7 @@ Follow the steps in our docs to [add an Azure Service Principle to Octopus Deplo
 
 ## Create Azure Kubernetes Cluster
 
-Now you switch to Microsoft Azure to host your Kubernetes cluster. Octopus Deploy is cloud-agnostic, so it can work with deployments that span multiple cloud providers. 
+Next, switch to Microsoft Azure to host your Kubernetes cluster. Octopus Deploy is cloud-agnostic, so it can work with deployments that span multiple cloud providers. 
 
 1. Create a new Kubernetes cluster by going to your resource group and creating a Kubernetes service. 
 1. Give the cluster a name and accept all default options.
