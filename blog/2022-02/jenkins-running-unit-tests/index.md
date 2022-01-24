@@ -4,9 +4,9 @@ description: As part of our series about Continuous Integration and build server
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2022-02-07-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-runningunittestsinjenkins-2022.png
+bannerImage: blogimage-runningunittestsinjenkins-2022.png
+bannerImageAlt: Open laptop sits behind a table of rows with green ticks, red crosses, or orange exclamation marks to indicate unit test results
 isFeatured: false
 tags:
   - DevOps
