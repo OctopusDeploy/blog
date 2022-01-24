@@ -48,10 +48,12 @@ This guide is an example only, and you should experiment with scaling before cha
 
 In this example, you set up scalability on a local minikube cluster and use the tools below for configuration. If you're following along, install the tools in the order listed:
 
-1. Docker Desktop – Only needed if you’re on Windows. Make sure Docker Desktop is set to manage Linux containers rather than Windows containers.
-1. minicube – Allows you to install Kubernetes clusters on your computer.
-1. Chocolatey – Only needed if you’re on Windows. It’s a command-line software management package you use to install Kubectl.
-1. Kubectl – A command-line tool to control Kubernetes clusters.
+1. [Docker Desktop](https://hub.docker.com/editions/community/docker-ce-desktop-windows) – Only needed if you’re on Windows. Make sure Docker Desktop is set to manage Linux containers rather than Windows containers.
+1. [minikube](https://minikube.sigs.k8s.io/docs/start/) – Allows you to install Kubernetes clusters on your computer.
+1. [Chocolatey](https://chocolatey.org/) – Only needed if you’re on Windows. It’s a command-line software management package you use to install Kubectl.
+1. [Kubectl](choco install kubernetes-cli) – A command-line tool to control Kubernetes clusters. Use this Chocolatey command-line to install:
+   ```choco install kubernetes-cli
+   ```
 
 You can set up scalability with whatever tools you’re used to, but you may need to adjust our instructions slightly.
 
