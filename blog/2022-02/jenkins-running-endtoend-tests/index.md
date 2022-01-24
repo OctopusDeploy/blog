@@ -4,9 +4,9 @@ description: As part of our series about Continuous Integration and build server
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2022-02-09-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-jenkinsrunendtoendtests-2022.png
+bannerImage: blogimage-jenkinsrunendtoendtests-2022.png
+bannerImageAlt: Mountain with a path using checkpoints with green ticks to show completed checks from start to finish. A person nears a red flag at the summit.
 isFeatured: false
 tags:
   - DevOps
