@@ -2,7 +2,7 @@
 title: Building and deploying a Java app with Docker, Google, Azure, and Octopus
 description: As part of our series about Continuous Integration and build servers, learn how to build a Java app, push it to a Docker registry, and deploy to Azure with Octopus Deploy.
 author: terence.wong@octopus.com
-visibility: private
+visibility: public
 published: 2022-01-31-1400
 metaImage: blogimage-javaappcompiledtodockeranddeploytok8s-2022.png
 bannerImage: blogimage-javaappcompiledtodockeranddeploytok8s-2022.png
@@ -81,13 +81,13 @@ Confirm the image is present on GCR by going to the [registry home page](https:/
 
 ![gcr](gcr.png)
 
-## Retrieve credentials from Azure for Octopus Deploy
+## Retrieving credentials from Azure for Octopus Deploy
 
 You need to retrieve some credentials to pass to Octopus Deploy. 
 
 Follow the steps in our docs to [add an Azure Service Principle to Octopus Deploy](https://octopus.com/docs/infrastructure/accounts/azure).
 
-## Create an Azure Kubernetes cluster
+## Creating an Azure Kubernetes cluster
 
 Next, switch to Microsoft Azure to host your Kubernetes cluster. Octopus Deploy is cloud-agnostic, so it can work with deployments that span multiple cloud providers. 
 
