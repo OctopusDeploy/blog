@@ -2,8 +2,8 @@
 title: Running unit tests in Jenkins
 description: As part of our series about Continuous Integration and build servers, learn how to run unit tests in Jenkins and capture the results.
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2022-02-07-1400
+visibility: public
+published: 2022-02-02-1400
 metaImage: blogimage-runningunittestsinjenkins-2022.png
 bannerImage: blogimage-runningunittestsinjenkins-2022.png
 bannerImageAlt: Open laptop sits behind a table of rows with green ticks, red crosses, and orange exclamation marks to indicate unit test results
@@ -437,7 +437,7 @@ pipeline {
 
 Unit tests are common in most large code bases. By executing unit tests in Jenkins the development team has a central source of truth reporting the current and historical test results.
 
-In this post you learned:
+In this post, you learned:
 
 - How to run tests in Java and DotNET Core code bases
 - How to collect and process the test results with the JUnit, MSTest, and xUnit plugins
