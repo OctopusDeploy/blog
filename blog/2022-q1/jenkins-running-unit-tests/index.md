@@ -2,7 +2,7 @@
 title: Running unit tests in Jenkins
 description: As part of our series about Continuous Integration and build servers, learn how to run unit tests in Jenkins and capture the results.
 author: matthew.casperson@octopus.com
-visibility: public
+visibility: private
 published: 2022-02-07-1400
 metaImage: blogimage-runningunittestsinjenkins-2022.png
 bannerImage: blogimage-runningunittestsinjenkins-2022.png
