@@ -18,7 +18,7 @@ tags:
  - Azure
 ---
 
-The Continuous Integration (CI) process usually involves building and pushing an image to a container registry. A Continuous Delivery (CD) tool takes over deploys to an endpoint, like a web application. In our [CI series](https://octopus.com/blog/tag/CI%20Series), we explore various ways to achieve this. 
+The Continuous Integration (CI) process typically involves building and pushing an image to a container registry. A Continuous Delivery (CD) tool then takes over and deploys to an endpoint, like a web application. In our [CI series](https://octopus.com/blog/tag/CI%20Series), we explore various ways to achieve this. 
 
 To demonstrate one of these processes, I built a Maven Java project and hosted the image on the Google Container Registry (GCR). 
 
@@ -30,12 +30,12 @@ To follow along with this post, you need:
 
 - A [Google Cloud Platform](https://cloud.google.com/free) (GCP) account
 - A [Microsoft Azure](https://azure.microsoft.com/en-us/free/) account
-- An [Octopus Deploy](https://octopus.com/start) instance - to link the [Azure Account to the Octopus Deploy instance](https://octopus.com/docs/infrastructure/accounts/azure#azure-service-principal)
+- An [Octopus Deploy](https://octopus.com/start) instance - to link the [Azure account to the Octopus Deploy instance](https://octopus.com/docs/infrastructure/accounts/azure#azure-service-principal)
 - Access to a terminal, locally or in the cloud, with gcloud and the Azure command-line interface installed
 
-## The Octopus Deploy underwater app
+## The Octopus underwater app
 
-The Octopus Deploy underwater app is a landing page for users creating their first deployment. It includes links to posts that help you continue your journey with Octopus Deploy.
+The Octopus underwater app is a landing page for users creating their first deployment. It includes links to posts that help you continue your journey with Octopus Deploy.
 
 You can find the web application repository on [GitHub](https://github.com/OctopusSamples/octopus-underwater-app). 
 
@@ -45,7 +45,7 @@ The repository is split into separate branches for different use cases. For this
 
 You use the command-line to build the Java project and use gcloud to push the image to the GCR.
 
-First, configure the gcloud tool to point to your PROJECT_ID:
+First, configure the gcloud tool to point to your `PROJECT_ID`:
 
     gcloud config set project <PROJECT_ID>
 
@@ -77,7 +77,7 @@ The jib tool creates and pushes the image to the container registry:
 
     ./mvnw com.google.cloud.tools:jib-maven-plugin:build -Dimage=gcr.io/$GOOGLE_CLOUD_PROJECT/octopus-underwater-app:latest
     
-Confirm the image is present on GCR by going to the [registry home page](https://cloud.google.com/container-registry).
+Confirm the image is present on GCR by going to the [Container Registry home page](https://cloud.google.com/container-registry).
 
 ![gcr](gcr.png)
 
@@ -85,7 +85,7 @@ Confirm the image is present on GCR by going to the [registry home page](https:/
 
 You need to retrieve some credentials to pass to Octopus Deploy. 
 
-Follow the steps in our docs to [add an Azure Service Principle to Octopus Deploy](https://octopus.com/docs/infrastructure/accounts/azure).
+Follow the steps in our docs to [add an Azure Service Principal to Octopus Deploy](https://octopus.com/docs/infrastructure/accounts/azure).
 
 ## Creating an Azure Kubernetes cluster
 
@@ -107,7 +107,7 @@ Next, switch to Microsoft Azure to host your Kubernetes cluster. Octopus Deploy 
 
 ### Add external feeds
 
-For Octopus to access the image stored in GCR, you need to enable the [google feed](https://octopus.com/docs/packaging-applications/package-repositories/guides/google-container-registry).
+For Octopus to access the image stored in GCR, you need to enable the [Google Container Registry feed](https://octopus.com/docs/packaging-applications/package-repositories/guides/google-container-registry).
 
 ### Set up deployment steps
 
@@ -197,7 +197,7 @@ Go to the task log to see the `underwater-service` you just created. Find the IP
 
 ## Conclusion
 
-In this post, you built the Octopus Deploy underwater app and pushed the image to GCR. You used Octopus Deploy to reference this image and deployed the image to AKS.
+In this post, you built the Octopus underwater app and pushed the image to GCR. You used Octopus Deploy to reference this image and deployed the image to AKS.
 
 !include <q1-2022-newsletter-cta>
 
