@@ -108,7 +108,7 @@ The `Dependencies` stage downloads Cypress to the project directory:
 
 The `Test` stage sets the `NO_COLOR` environment variable to `1` to strip an ANSI color codes from the output, and then runs Cypress. Cypress returns a non-zero exit code if any tests fail, but we defer the decision to pass or fail the build to the test processor by ensuring this command always returns true by appending `|| true`.
 
-You can learn more about processing failed tests in [Running unit tests in Jenkins](/blog/2022-q1/jenkins-running-unit-tests/index.md):
+You can learn more about processing failed tests in [Running unit tests in Jenkins](/blog/2022-02/jenkins-running-unit-tests/index.md):
 
 ```groovy
     stage('Test') {
