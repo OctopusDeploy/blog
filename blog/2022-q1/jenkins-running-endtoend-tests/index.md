@@ -256,7 +256,7 @@ The `Test` stage runs Newman, enabling the JUnit reporter with the `--reporters 
 
 Newman will return a non-zero exit code if any tests fail, so to defer the success or failure of the build to the test processor, you ensure the command always returns true with `|| true`.
 
-You can learn more about processing failed test in [Running unit tests in Jenkins](/blog/2022-q1/jenkins-running-unit-tests/index.md):
+You can learn more about processing failed test in [Running unit tests in Jenkins](/blog/2022-02/jenkins-running-unit-tests/index.md):
 
 ```groovy
     stage('Test') {
