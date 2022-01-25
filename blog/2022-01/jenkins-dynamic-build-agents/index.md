@@ -67,7 +67,7 @@ Our example dockerfile will create an image that includes Jenkins, plus the Blue
 
 To create the dockerfile and build an image:
 
-1. Create a text file called `Dockerfile` and add the Jenkins-suggested script. You can add more plugins to the list if you need – just add their names separated by spaces:
+1. Create a text file called `Dockerfile` and add the following Jenkins-suggested script. You can add more plugins to the list if you need – just add their names separated by spaces:
    ```FROM jenkins/jenkins:lts-slim 
    # Pipelines with Blue Ocean UI and Kubernetes
    RUN jenkins-plugin-cli --plugins blueocean kubernetes
@@ -206,7 +206,7 @@ spec:
       targetPort: 50000
 ```
 
-To deploy the image to namespace, run the following command from the file’s directory:
+To deploy the image to the namespace, run the following command from the file’s directory:
 
 ```
 kubectl apply -f jenkins.yaml -n jenkins jenkins.yaml
@@ -280,7 +280,7 @@ Now you can set up the plugin in Jenkins. Return to Jenkins in your web browser:
 
 ### Step 6: Test everything is working
 
-To test that Jenkins will scale suitably, you can create some simple build jobs to check how they’re distributed.
+To test Jenkins will scale suitably, you can create some simple build jobs to check how they’re distributed.
 
 First, set Jenkins so it won’t run jobs on the controller (unless you tell it otherwise):
 
