@@ -22,7 +22,7 @@ In this post, you learn how to add unit tests to a Jenkins project and configure
 
 ## Prerequisites
 
-To follow along with this post you need a Jenkins instance. The [Traditional Jenkins Installation](/blog/2022-q1/jenkins-install-guide/index.md), [Docker Jenkins Installation](/blog/2022-q1/jenkins-docker-install-guide/index.md), or [Helm Jenkins Installation](/blog/2022-q1/jenkins-helm-install-guide/index.md) guides provide instructions to install Jenkins in your chosen environment.
+To follow along with this post you need a Jenkins instance. The [Traditional Jenkins Installation](https://octopus.com/blog/jenkins-install-guide-windows-linux), [Docker Jenkins Installation](https://octopus.com/blog/jenkins-docker-install-guide), or [Helm Jenkins Installation](https://octopus.com/blog/jenkins-helm-install-guide) guides provide instructions to install Jenkins in your chosen environment.
 
 The sample applications you'll build are written in Java and DotNET Core, so the Java Development Kit (JDK) and DotNET Core SDK must be installed on the Jenkins controller or agents that perform the builds.
 
