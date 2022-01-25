@@ -1,5 +1,5 @@
 ---
-title: Building and deploying a Java application with Docker, Google, Azure and Octopus
+title: Building and deploying a Java app with Docker, Google, Azure, and Octopus
 description: As part of our series about Continuous Integration and build servers, learn how to build a Java app, push it to a Docker registry, and deploy to Azure with Octopus Deploy.
 author: terence.wong@octopus.com
 visibility: private
@@ -12,26 +12,26 @@ tags:
  - DevOps
  - CI Series
  - Continuous Integration
- - Google Cloud Plaform
+ - Google Cloud Platform
  - Java
  - Docker
  - Azure
 ---
 
-The Continuous Integration (CI) process usually involves building and pushing an image to a container registry. A Continuous Delivery (CD) tool takes over and forms the deployment step where it's deployed to an endpoint, like a web application. In our [CI series](https://octopus.com/blog/tag/CI%20Series), we explore various ways to achieve this. 
+The Continuous Integration (CI) process usually involves building and pushing an image to a container registry. A Continuous Delivery (CD) tool takes over deploys to an endpoint, like a web application. In our [CI series](https://octopus.com/blog/tag/CI%20Series), we explore various ways to achieve this. 
 
 To demonstrate one of these processes, I built a Maven Java project and hosted the image on the Google Container Registry (GCR). 
 
-You can access the GCR through Octopus and deploy the Java application to Azure Kubernetes Service (AKS). 
+You can access the GCR through Octopus, and deploy the Java application to Azure Kubernetes Service (AKS). 
 
 ## Prerequisites
 
 To follow along with this post, you need:
 
-- A Google Cloud Platform (GCP) account
-- A Microsoft Azure account
-- An Octopus Deploy instance - to link the [Azure Account to the Octopus Deploy instance](https://octopus.com/docs/infrastructure/accounts/azure#azure-service-principal)
-- Access to a terminal, either locally or in the cloud, with gcloud and the Azure command-line interface installed
+- A [Google Cloud Platform](https://cloud.google.com/free) (GCP) account
+- A [Microsoft Azure](https://azure.microsoft.com/en-us/free/) account
+- An [Octopus Deploy](https://octopus.com/start) instance - to link the [Azure Account to the Octopus Deploy instance](https://octopus.com/docs/infrastructure/accounts/azure#azure-service-principal)
+- Access to a terminal, locally or in the cloud, with gcloud and the Azure command-line interface installed
 
 ## The Octopus Deploy underwater app
 
@@ -39,17 +39,17 @@ The Octopus Deploy underwater app is a landing page for users creating their fir
 
 You can find the web application repository on [GitHub](https://github.com/OctopusSamples/octopus-underwater-app). 
 
-The repository is split into separate branches for different use cases. Use the underwater-app-java branch.
+The repository is split into separate branches for different use cases. For this post, use the underwater-app-java branch.
 
 ## Building and pushing to a registry
 
-You use the command-line to build the Java project and use gcloud to push the image to GCR.
+You use the command-line to build the Java project and use gcloud to push the image to the GCR.
 
 First, configure the gcloud tool to point to your PROJECT_ID:
 
     gcloud config set project <PROJECT_ID>
 
-Clone the java project repository that you'll use to build and deploy to Azure:
+Clone the Java project repository that you'll use to build and deploy to Azure:
 
     git clone https://github.com/terence-octo/octopus-underwater-app
     cd octopus-underwater-app
@@ -77,7 +77,7 @@ The jib tool creates and pushes the image to the container registry:
 
     ./mvnw com.google.cloud.tools:jib-maven-plugin:build -Dimage=gcr.io/$GOOGLE_CLOUD_PROJECT/octopus-underwater-app:latest
     
-Confirm that the image is present on the GCR by going to the [registry home page](https://cloud.google.com/container-registry).
+Confirm the image is present on GCR by going to the [registry home page](https://cloud.google.com/container-registry).
 
 ![gcr](gcr.png)
 
@@ -87,7 +87,7 @@ You need to retrieve some credentials to pass to Octopus Deploy.
 
 Follow the steps in our docs to [add an Azure Service Principle to Octopus Deploy](https://octopus.com/docs/infrastructure/accounts/azure).
 
-## Create Azure Kubernetes Cluster
+## Create an Azure Kubernetes cluster
 
 Next, switch to Microsoft Azure to host your Kubernetes cluster. Octopus Deploy is cloud-agnostic, so it can work with deployments that span multiple cloud providers. 
 
@@ -97,27 +97,27 @@ Next, switch to Microsoft Azure to host your Kubernetes cluster. Octopus Deploy 
 ![Create Kubernetes Cluster](create-kubernetes-cluster.png)
 
 
-## Octopus Steps
+## Octopus steps
 
-### Add Deployment Target
+### Add deployment target
 
 1. Go to **Infrastructure**, then **Deployment Targets**, then **Add Deployment Target**, then **Kubernetes Cluster**.
 1. Fill out the fields using the Azure Service Principle set up earlier. 
 1. Assign a unique role for the deployment. 
 
-### Add External Feeds
+### Add external feeds
 
-For Octopus to access the image stored in the GCR, you need to enable the [google feed](https://octopus.com/docs/packaging-applications/package-repositories/guides/google-container-registry).
+For Octopus to access the image stored in GCR, you need to enable the [google feed](https://octopus.com/docs/packaging-applications/package-repositories/guides/google-container-registry).
 
 ### Set up deployment steps
 
 In your project, add the **Deploy Kubernetes containers** step.
 
-![Deploy Kubernetes Containers Step](deploy-kubernetes-containers-step.png "Deploy Success")
+![Deploy Kubernetes Containers step](deploy-kubernetes-containers-step.png "Deploy Success")
 
 ### YAML file
 
-Click the **Edit YAML** box and paste the following YAML file in the box. The YAML file populates the various settings in the Octopus UI. You have to replace the PROJECT_ID with your google PROJECT_ID. Using the Google external feed credentials set up earlier, you can also use the UI to select the container image manually.
+Click the **Edit YAML** box and paste the YAML file below into the box. The YAML file populates the various settings in the Octopus UI. You have to replace the PROJECT_ID with your google PROJECT_ID. Using the Google external feed credentials set up earlier, you can also use the UI to select the container image manually.
 
 ```
 apiVersion: apps/v1
@@ -172,7 +172,7 @@ spec:
 
 ### Deploy to Azure
 
-1.Click **SAVE**.
+1. Click **SAVE**.
 1. Click **Create Release** and click through the steps to deploy the application to Azure.
 
 ### Runbooks as a Kubernetes monitoring tool 
@@ -191,7 +191,7 @@ Click **Save**, then **Run**.
 
 The runbooks can now be shared across teams. This means monitoring can be done at an organization level rather than individually on local machines. 
 
-Go to the task log to see the `underwwater-service` you just created. You will see an IP address under **External IP**. Enter this address into a browser address bar and you'll see the Octopus underwater app. 
+Go to the task log to see the `underwater-service` you just created. Find the IP address under **External IP**. Enter this address into a browser address bar and you'll see the Octopus underwater app. 
 
 ![Octopus Underwater App](octopus-underwater-app.png)
 
