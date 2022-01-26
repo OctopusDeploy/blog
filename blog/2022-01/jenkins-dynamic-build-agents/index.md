@@ -475,9 +475,12 @@ After it's set up and working, you can change how you want Jenkins to scale in A
 
 ## What's next?
 
-Watch the blog for more Jenkins and build server posts. 
-
 For more information on scaling Jenkins, read through their [official scaling documentation](https://www.jenkins.io/doc/book/scaling/).
+
+You can also read our other posts about configuring Jenkins:
+
+- [Jenkins security tips](https://octopus.com/blog/jenkins-security-tips)
+- [Managing credentials in Jenkins](https://octopus.com/blog/managing-jenkins-credentials)
 
 !include <jenkins-webinar-jan-2022>
 
