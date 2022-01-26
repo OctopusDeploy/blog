@@ -17,7 +17,7 @@ tags:
 
 For such an open, customizable platform, Jenkins provides decent security even in its default state. Given it connects to countless industry tools (Octopus included), though, there are a few other ways to help protect your projects.
 
-In this blog, we look at some of the methods and tools to keep your Jenkins instance safe, secure, and protect those using it.
+In this post, we look at some of the methods and tools to keep your Jenkins instance safe, secure, and protect those using it.
 
 ## Keep everything updated
 
