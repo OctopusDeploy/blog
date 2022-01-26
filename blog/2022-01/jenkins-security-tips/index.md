@@ -138,7 +138,10 @@ We'll cover the Credentials Binding plugin in detail in a future post.
 ## Conclusion
 As you can see, there are plenty of ways to ensure safe use of Jenkins to protect projects from risks outside and within. Check [Jenkins' documentation](https://www.jenkins.io/doc/book/security/) for even more information on keeping your instances secure.
 
-We'll have more on Jenkins as a platform in the coming weeks.
+Check out our other posts about configuring Jenkins:
+
+- [Using dynamic build agents to automate scaling in Jenkins](https://octopus.com/blog/jenkins-dynamic-build-agents)
+- [Managing credentials in Jenkins](https://octopus.com/blog/managing-jenkins-credentials)
 
 !include <jenkins-webinar-jan-2022>
 
