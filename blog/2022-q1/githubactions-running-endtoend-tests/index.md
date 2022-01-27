@@ -1,26 +1,40 @@
 ---
-title: Running end to end tests in GitHub Actions
-description: Learn how to run end to end tests in GitHub Actions and capture the results
+title: "Running end-to-end tests in Jenkins"
+description: "As part of our series about Continuous Integration and build servers, learn how to run end-to-end tests in Jenkins and capture the results."
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2999-01-01
-metaImage: 
-bannerImage: 
+published: 2022-02-09-1400
+metaImage: blogimage-jenkinsrunendtoendtests-2022.png
+bannerImage: blogimage-jenkinsrunendtoendtests-2022.png
+bannerImageAlt: Mountain with a path using checkpoints with green ticks to show completed checks from start to finish. A person nears a red flag at the summit.
+isFeatured: false
 tags:
- - Octopus
+  - DevOps
+  - CI Series
+  - Continuous Integration
+  - Jenkins
+  - Testing
 ---
 
-GitHub Actions has a large ecosystem of high quality third-party actions as well as native support for executing build steps inside Docker containers. This means it is easy to run end-to-end tests as part of a workflow, often only requiring a single step to run testing tools with all the require dependencies.
+End-to-end (E2E) tests represent the final stages of automated testing. E2E are long running, certainly with respect to unit tests that can complete thousands of tests in seconds. They are typically executed by external tools which interact with the application under test, through public interfaces like web pages or HTTP APIs.
 
-In this post you'll learn how to run browser tests with Cypress and API tests with Postman as part of a GitHub Actions workflow.
+In this post, you learn how to run E2E tests with Cypress to validate interactions with web pages and with Newman, the command-line test runner for Postman, to validate HTTP APIs.
 
 ## Prerequisites
 
-GitHub Actions is a hosted service, so the only prerequisite is a GitHub account. All other dependencies like, Software Development Kits (SDKs) or testing tools, are are provided by the Docker images or GitHub actions published by testing platforms.
+To follow along with this post you need a Jenkins instance. 
 
-## Running browser tests with Cypress
+For instructions on installing Jenkins in your chosen environment, you can refer to our guides:
 
-[Cypress](https://www.cypress.io/) is a browser automation tool that allows you to interact with web pages in much the same way an end user would by clicking on buttons and links, filling in forms, scrolling the page etc. You can also verify the content of a page to ensure the correct results have been displayed.
+- [How to install Jenkins on Windows and Linux](https://octopus.com/blog/jenkins-install-guide-windows-linux)
+- [How to install Jenkins on Docker](https://octopus.com/blog/jenkins-docker-install-guide)
+- [How to install a Jenkins instance with Helm](https://octopus.com/blog/jenkins-helm-install-guide)
+
+Both [Cypress](https://www.cypress.io) and [Newman](https://learning.postman.com/docs/running-collections/using-newman-cli/command-line-integration-with-newman) (the Postman command-line test runner) require you to install Node.js. The [Node.js website](https://nodejs.org/en/download/) provides downloads, or offers [installation instructions for package managers](https://nodejs.org/en/download/package-manager/).
+
+## How to run browser tests with Cypress
+
+Cypress is a browser automation tool that allows you to interact with web pages in much the same way an end user would, for example by clicking on buttons and links, filling in forms, and scrolling the page. You can also verify the content of a page to ensure the correct results have been displayed.
 
 The [Cypress documentation provides an example first test](https://docs.cypress.io/guides/getting-started/writing-your-first-test) which has been saved to the [junit-cypress-test GitHub repo](https://github.com/OctopusSamples/junit-cypress-test). The test is shown below:
 
@@ -44,167 +58,253 @@ This test is configured to generate a JUnit report file in the `cypress.json` fi
 }
 ```
 
-The workflow file below executes this test with the [Cypress GitHub Action](https://docs.cypress.io/guides/continuous-integration/github-actions#Cypress-GitHub-Action), saves the generated video file as an artifact, and processes the test results. You can find an example of this workflow in the [junit-cypress-test repository](https://github.com/OctopusSamples/junit-cypress-test/actions):
+Cypress is included as a development dependency in the `package.json` file:
 
-```yaml
-name: Cypress
-
-on:
-  push:
-  workflow_dispatch:
-
-jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-
-      - name: Cypress run
-        uses: cypress-io/github-action@v2
-
-      - name: Save video
-        uses: actions/upload-artifact@v2
-        with:
-          name: sample_spec.js.mp4
-          path: cypress/videos/sample_spec.js.mp4
-
-      - name: Report
-        uses: dorny/test-reporter@v1
-        if: always()
-        with:
-          name: Cypress Tests
-          path: cypress/results/results.xml
-          reporter: java-junit
-          fail-on-error: true
+```json
+{
+  "name": "cypress-test",
+  "version": "0.0.1",
+  "description": "A simple cypress test",
+  "devDependencies": {
+    "cypress": "8.6.0"
+  }
+}
 ```
 
-The [official Cypress GitHub action](https://github.com/cypress-io/github-action) is called to execute tests with the default options:
+You can run the Cypress test with the pipeline below:
 
-```yaml
-      - name: Cypress run
-        uses: cypress-io/github-action@v2
+```groovy
+pipeline {
+  // This pipeline requires the following plugins:
+  // * Git: https://plugins.jenkins.io/git/
+  // * Workflow Aggregator: https://plugins.jenkins.io/workflow-aggregator/
+  // * JUnit: https://plugins.jenkins.io/junit/
+  agent 'any'
+  stages {
+    stage('Checkout') {
+      steps {
+        script {
+            checkout([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/OctopusSamples/junit-cypress-test.git']]])
+        }
+      }
+    }
+    stage('Dependencies') {
+      steps {
+        sh(script: 'npm install')        
+      }
+    }
+    stage('Test') {
+      steps {
+        sh(script: 'NO_COLOR=1 node_modules/.bin/cypress run || true')          
+      }
+    }
+  }
+  post {
+    always {
+      junit(testResults: 'cypress/results/results.xml', allowEmptyResults : true)
+      archiveArtifacts(artifacts: 'cypress/videos/sample_spec.js.mp4', fingerprint: true) 
+    }
+  }
+}
 ```
 
-Cypress generates a video file capturing the browser as the tests are run. You save the video file as an artifact to be downloaded and viewed once the workflow completes:
+The `Dependencies` stage downloads Cypress to the project directory:
 
-```yaml
-      - name: Save video
-        uses: actions/upload-artifact@v2
-        with:
-          name: sample_spec.js.mp4
-          path: cypress/videos/sample_spec.js.mp4
+```groovy
+    stage('Dependencies') {
+      steps {
+        sh(script: 'npm install')        
+      }
+    }
 ```
 
-The test results are process by the `dorny/test-reporter` action.
+The `Test` stage sets the `NO_COLOR` environment variable to `1` to strip an ANSI color code from the output, and then runs Cypress. Cypress returns a non-zero exit code if any tests fail, but we defer the decision to pass or fail the build to the test processor by ensuring this command always returns true by appending `|| true`.
 
-Note that test-reporter has the ability to process Mocha JSON files, and Cypress uses Mocha for reporting, so an arguably more idiomatic solution would be to have Cypress generate Mocha JSON reports. Unfortunately, there is a [bug in Cypress](https://github.com/cypress-io/cypress/issues/18014) that prevents the JSON reporter from saving results as a file. Generating JUnit report files is a useful workaround until this issue is resolved:
+You can learn more about processing failed tests in [Running unit tests in Jenkins](https://octopus.com/blog/jenkins-running-unit-tests):
 
-```yaml
-
-      - name: Report
-        uses: dorny/test-reporter@v1
-        if: always()
-        with:
-          name: Cypress Tests
-          path: cypress/results/results.xml
-          reporter: java-junit
-          fail-on-error: true
+```groovy
+    stage('Test') {
+      steps {
+        sh(script: 'NO_COLOR=1 node_modules/.bin/cypress run || true')          
+      }
+    }
 ```
 
-Here are the results of the test:
+The `post` stage processes the JUnit report file and saves the generated video of the test as an artifact:
 
-![Cypress results](cypress-results.png "width=500")
-
-The video file artifact is listed in the **Summary** page:
-
-![Artifacts](github-actions-artifacts.png "width=500")
-
-Not all testing platforms provide a GitHub action, in which case you can execute steps against a standard Docker image. This is demonstrated in the next section.
-
-## Running API tests with Newman
-
-Unlike Cypress, [Postman](https://www.postman.com/) does not provide an official GitHub action. However, you can use the [postman/newman](https://hub.docker.com/r/postman/newman/) Docker image directly inside a workflow. You can find an example of the workflow in the [junit-newman-test repository](https://github.com/OctopusSamples/junit-newman-test/actions):
-
-```yaml
-name: Cypress
-
-on:
-  push:
-  workflow_dispatch:
-
-jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-
-      - name: Run Newman	    
-        uses: docker://postman/newman:latest
-        with:
-          args: run GitHubTree.json --reporters cli,junit --reporter-junit-export results.xml
-
-      - name: Report
-        uses: dorny/test-reporter@v1
-        if: always()
-        with:
-          name: Cypress Tests
-          path: results.xml
-          reporter: java-junit
-          fail-on-error: true
+```groovy
+  post {
+    always {
+      junit(testResults: 'cypress/results/results.xml', allowEmptyResults : true)
+      archiveArtifacts(artifacts: 'cypress/videos/sample_spec.js.mp4', fingerprint: true) 
+    }
+  }
 ```
 
-The `uses` property for a step can either be the name of a published action, or can reference a Docker image directly. In this example you run the [postman/newman](https://hub.docker.com/r/postman/newman/) docker image, with the `with.args` parameter defining the command line arguments:
+You can then drill into the test results using the same interface that exposes unit tests:
 
-```yaml
-      - name: Run Newman	    
-        uses: docker://postman/newman:latest
-        with:
-          args: run GitHubTree.json --reporters cli,junit --reporter-junit-export results.xml
+![Cypress test results](cypress-test-result.png "width=500")
+
+The video artifact captures the test output:
+
+![Cypress video](cypress-video.png "width=500")
+
+## How to run API tests with Newman
+
+Newman is the command-line test runner for Postman. The test scripts are exported from Postman as JSON files. An example that queries the GitHub API has been saved in the [junit-newman-test GitHub Repo](https://github.com/OctopusSamples/junit-newman-test):
+
+```json
+{
+  "info": {
+    "_postman_id": "f9b1443b-c23d-4738-901d-092cba2fc3d6",
+    "name": "GitHub",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "GitHub API",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"response must be valid and have a body\", ",
+              "function () {\n",
+              " pm.response.to.be.ok;\n",
+              " pm.response.to.be.withBody;\n",
+              " pm.response.to.be.json;\n",
+              "\n",
+              " pm.expect(pm.response.json().quote != \"\").to.be.true;\n",
+              "});"
+            ],
+            "type": "text/javascript"
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://api.github.com/repos/OctopusSamples/junit-newman-test/git/trees/main",
+          "protocol": "http",
+          "host": [
+            "api",
+            "github",
+            "com"
+          ],
+          "path": [
+            "repos",
+            "OctopusSamples",
+            "junit-newman-test",
+            "git",
+            "trees",
+            "main"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
 ```
 
-The resulting JUnit report file is then processed by the `dorny/test-reporter` action:
+Newman is saved as a development dependency in the `package.json` file:
 
-```yaml
-      - name: Report
-        uses: dorny/test-reporter@v1
-        if: always()
-        with:
-          name: Cypress Tests
-          path: results.xml
-          reporter: java-junit
-          fail-on-error: true
+```json
+{
+  "devDependencies": {
+    "newman": "^5.3.0"
+  }
+}
 ```
 
-Here are the results of the test:
+You can run the Newman test with the pipeline below:
 
-![Newman test results](newman-test-results.png "width=500")
-
-Behind the scenes, GitHub Actions executes the supplied Docker image with a number of standard environment variables relating to the workflow and with volume mounts that allow the Docker container to persist changes (like the report file) on the main file system.
-
-The following is an example of the command to execute a step in a Docker image:
-
+```groovy
+pipeline {
+  // This pipeline requires the following plugins:
+  // * Git: https://plugins.jenkins.io/git/
+  // * Workflow Aggregator: https://plugins.jenkins.io/workflow-aggregator/
+  // * JUnit: https://plugins.jenkins.io/junit/
+  agent 'any'
+  stages {
+    stage('Checkout') {
+      steps {
+        script {
+            checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/OctopusSamples/junit-newman-test.git']]])
+        }
+      }
+    }
+    stage('Dependencies') {
+      steps {
+        sh(script: 'npm install')        
+      }
+    }
+    stage('Test') {
+      steps {
+        sh(script: 'node_modules/.bin/newman run GitHubTree.json --reporters cli,junit --reporter-junit-export results.xml || true')          
+      }
+    }
+  }
+  post {
+    always {
+      junit(testResults: 'results.xml', allowEmptyResults : true)
+    }
+  }
+}
 ```
-/usr/bin/docker run --name postmannewmanlatest_fefcec --label f88420 --workdir /github/workspace --rm -e INPUT_ARGS -e HOME -e GITHUB_JOB -e GITHUB_REF -e GITHUB_SHA -e GITHUB_REPOSITORY -e GITHUB_REPOSITORY_OWNER -e GITHUB_RUN_ID -e GITHUB_RUN_NUMBER -e GITHUB_RETENTION_DAYS -e GITHUB_RUN_ATTEMPT -e GITHUB_ACTOR -e GITHUB_WORKFLOW -e GITHUB_HEAD_REF -e GITHUB_BASE_REF -e GITHUB_EVENT_NAME -e GITHUB_SERVER_URL -e GITHUB_API_URL -e GITHUB_GRAPHQL_URL -e GITHUB_WORKSPACE -e GITHUB_ACTION -e GITHUB_EVENT_PATH -e GITHUB_ACTION_REPOSITORY -e GITHUB_ACTION_REF -e GITHUB_PATH -e GITHUB_ENV -e RUNNER_OS -e RUNNER_NAME -e RUNNER_TOOL_CACHE -e RUNNER_TEMP -e RUNNER_WORKSPACE -e ACTIONS_RUNTIME_URL -e ACTIONS_RUNTIME_TOKEN -e ACTIONS_CACHE_URL -e GITHUB_ACTIONS=true -e CI=true -v "/var/run/docker.sock":"/var/run/docker.sock" -v "/home/runner/work/_temp/_github_home":"/github/home" -v "/home/runner/work/_temp/_github_workflow":"/github/workflow" -v "/home/runner/work/_temp/_runner_file_commands":"/github/file_commands" -v "/home/runner/work/junit-newman-test/junit-newman-test":"/github/workspace" postman/newman:latest run GitHubTree.json --reporters cli,junit --reporter-junit-export results.xml
+
+The `Dependencies` stage downloads Newman to the working directory:
+
+```groovy
+    stage('Dependencies') {
+      steps {
+        sh(script: 'npm install')        
+      }
+    }
 ```
 
-This is a complex command, but there are a few arguments that we are interested in.
+The `Test` stage runs Newman, enabling the JUnit reporter with the `--reporters cli,junit` argument, and saving the result as a JUnit report file with the `--reporter-junit-export results.xml` argument. 
 
-The `-e` arguments define environment variables for the container. You can see that dozens of workflow environment variables are exposed.
+Newman will return a non-zero exit code if any tests fail, so to defer the success or failure of the build to the test processor, you ensure the command always returns true with `|| true`.
 
-The `--workdir /github/workspace` argument overrides the working directory of the Docker container, while the `-v "/home/runner/work/junit-newman-test/junit-newman-test":"/github/workspace"` argument mounts the workflow workspace to the `/github/workspace` directory inside the container. This has the effect of mounting the working directory inside the Docker container, which exposes the checked out files, and allows any newly created files to persist once the container is shutdown:
+You can learn more about processing failed test in [Running unit tests in Jenkins](https://octopus.com/blog/jenkins-running-unit-tests):
 
-![Docker image command](github-action-docker-command.png "width=500")
+```groovy
+    stage('Test') {
+      steps {
+        sh(script: 'node_modules/.bin/newman run GitHubTree.json --reporters cli,junit --reporter-junit-export results.xml || true')          
+      }
+    }
+```
 
-Because every major testing tool provides a supported Docker image, the process you used to run Newman can be used to run most other testing platforms.
+The `post` stage processes the JUnit report file:
+
+```groovy
+  post {
+    always {
+      junit(testResults: 'results.xml', allowEmptyResults : true)
+    }
+  }
+```
+
+The test results are then made available through the Jenkins web UI:
+
+![Newman Test Results](newman-test-results.png "width=500")
 
 ## Conclusion
 
-GitHub Actions has enjoyed widespread adoption among developers, and many platforms provide supported actions for use in workflows. For those cases where there is no suitable action available, GitHub Actions provides an easy way to execute a standard Docker image as part of a workflow.
+E2E tests allow you to validate applications through their public interfaces as the final stage of automated testing. Unlike unit tests, E2E tests are often orchestrated with external tools. For example, Cypress provides the ability to automate interactions through a web browser, and Newman provides the ability to script and verify interactions with HTTP APIs. 
 
-In this post you learned how to run the Cypress action to execute browser based tests, and how to run the Newman Docker image to execute API tests.
+In this post, you learned how to:
+
+* Run a Cypress browser-based test
+* Run a Newman API test
+* Collect the results as JUnit report files
+* Process the test results
+
+!include <jenkins-webinar-jan-2022>
+
+!include <q1-2022-newsletter-cta>
+
+Happy deployments!
