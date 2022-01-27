@@ -1,6 +1,6 @@
 ---
 title: "Running end-to-end tests in Jenkins"
-description: As part of our series about Continuous Integration and build servers, learn how to run end-to-end tests in Jenkins and capture the results
+description: "As part of our series about Continuous Integration and build servers, learn how to run end-to-end tests in Jenkins and capture the results."
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2022-02-09-1400
@@ -18,7 +18,7 @@ tags:
 
 End-to-end (E2E) tests represent the final stages of automated testing. E2E are long running, certainly with respect to unit tests that can complete thousands of tests in seconds. They are typically executed by external tools which interact with the application under test, through public interfaces like web pages or HTTP APIs.
 
-In this post, you'll learn how to run E2E tests with Cypress to validate interactions with web pages and with Newman, the command line test runner for Postman, to validate HTTP APIs.
+In this post, you learn how to run E2E tests with Cypress to validate interactions with web pages and with Newman, the command-line test runner for Postman, to validate HTTP APIs.
 
 ## Prerequisites
 
@@ -30,7 +30,7 @@ For instructions on installing Jenkins in your chosen environment, you can refer
 - [How to install Jenkins on Docker](https://octopus.com/blog/jenkins-docker-install-guide)
 - [How to install a Jenkins instance with Helm](https://octopus.com/blog/jenkins-helm-install-guide)
 
-Both [Cypress](https://www.cypress.io) and [Newman](https://learning.postman.com/docs/running-collections/using-newman-cli/command-line-integration-with-newman) (the Postman command line test runner) require you to install Node.js. The [Node.js website](https://nodejs.org/en/download/) provides downloads, or offers [installation instructions for package managers](https://nodejs.org/en/download/package-manager/).
+Both [Cypress](https://www.cypress.io) and [Newman](https://learning.postman.com/docs/running-collections/using-newman-cli/command-line-integration-with-newman) (the Postman command-line test runner) require you to install Node.js. The [Node.js website](https://nodejs.org/en/download/) provides downloads, or offers [installation instructions for package managers](https://nodejs.org/en/download/package-manager/).
 
 ## How to run browser tests with Cypress
 
@@ -151,7 +151,7 @@ The video artifact captures the test output:
 
 ## How to run API tests with Newman
 
-Newman is the command line test runner for Postman. The test scripts are exported from Postman as JSON files. An example that queries the GitHub API has been saved in the [junit-newman-test GitHub Repo](https://github.com/OctopusSamples/junit-newman-test):
+Newman is the command-line test runner for Postman. The test scripts are exported from Postman as JSON files. An example that queries the GitHub API has been saved in the [junit-newman-test GitHub Repo](https://github.com/OctopusSamples/junit-newman-test):
 
 ```json
 {
@@ -268,7 +268,7 @@ The `Test` stage runs Newman, enabling the JUnit reporter with the `--reporters 
 
 Newman will return a non-zero exit code if any tests fail, so to defer the success or failure of the build to the test processor, you ensure the command always returns true with `|| true`.
 
-You can learn more about processing failed test in [Running unit tests in Jenkins](/blog/2022-q1/jenkins-running-unit-tests/index.md):
+You can learn more about processing failed test in [Running unit tests in Jenkins](https://octopus.com/blog/jenkins-running-unit-tests):
 
 ```groovy
     stage('Test') {
@@ -294,11 +294,17 @@ The test results are then made available through the Jenkins web UI:
 
 ## Conclusion
 
-E2E tests give you the ability to validate applications through their public interfaces as the final stage of automated testing. Unlike unit tests, E2E tests are often orchestrated with external tools. For example, Cypress provides the ability to automate interactions through a web browser, and Newman provides the ability to script and verify interactions with HTTP APIs. 
+E2E tests allow you to validate applications through their public interfaces as the final stage of automated testing. Unlike unit tests, E2E tests are often orchestrated with external tools. For example, Cypress provides the ability to automate interactions through a web browser, and Newman provides the ability to script and verify interactions with HTTP APIs. 
 
-In this post you learned how to:
+In this post, you learned how to:
 
 * Run a Cypress browser-based test
 * Run a Newman API test
 * Collect the results as JUnit report files
 * Process the test results
+
+!include <jenkins-webinar-jan-2022>
+
+!include <q1-2022-newsletter-cta>
+
+Happy deployments!
