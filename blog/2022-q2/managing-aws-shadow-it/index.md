@@ -89,4 +89,4 @@ The process of importing unmanaged resources into an CloudFormation stack is des
 
 Identifying Shadow IT resources in your AWS account is the first step to establishing infrastructure that can be effectively managed by your DevOps teams. Then by establishing a consistent tagging scheme you are able to document who is responsible for what, the purpose of resources, and which external processes created them.
 
-In this post you saw a number of scripts for finding noncompliant resources, as well as tips on how to add missing tags or import resources into CloudFormation stacks. These simple steps can make a huge difference as your infrastrucutre grows in size and complexity.
+In this post you saw a number of scripts for finding noncompliant resources, as well as tips on how to add missing tags or import resources into CloudFormation stacks. These simple steps can make a huge difference as your infrastructure grows in size and complexity.
