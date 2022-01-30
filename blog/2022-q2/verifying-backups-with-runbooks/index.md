@@ -12,7 +12,7 @@ tags:
 
 It is no longer a question these days of whether or not you should have backups. Regular backup procedures are simply a fact of life for any modern organization that recognizes the value of their data, with many organizations even going as far as transferring their backup media to another site to ensure a physical disaster in one location doesn't destroy their data.
 
-Less common though is a robust backup verification process. The finer points of the backup restoration process are often only worked out when disaster strikes. It is also during a disaster that organizations find themselves wondering if they have backed up the right data in the right format. Needless to say these are not the questions DevOps personnel want to be faced with when trying to restore operations in the midst of a crisis.
+Less common though is a robust backup verification process. The finer points of the backup restoration process are often only worked out when disaster strikes. It is also during a disaster that organizations find themselves wondering if they have backed up the right data in the right format. Needless to say, these are not the questions DevOps personnel want to be faced with when trying to restore operations in the midst of a crisis.
 
 Runbooks provide a convenient solution to these questions. By automating and regularly executing the process of restoring backups in a disposable environment, DevOps teams can gain confidence that their backups are valid and the process of restoring a system is well rehearsed.
 
@@ -22,13 +22,13 @@ In this post you'll learn how to complete the backup cycle by verifying the back
 
 ## Treating backups as deployable artifacts
 
-The database describe in the [previous post](https://octopus.com/blog/java-ci-cd-co/from-cd-to-co) was deployed to a Kubernetes cluster. As was noted in the previous post, the process of performing the backup involves running the `mysql` client within the MySQL container, dumping the database tables, and uploading the resulting file to a more permanent location. That location was an S3 bucket.
+The database described in the [previous post](https://octopus.com/blog/java-ci-cd-co/from-cd-to-co) was deployed to a Kubernetes cluster. As was noted in the previous post, the process of performing the backup involves running the `mysqldump` client within the MySQL container, dumping the database tables, and uploading the resulting file to a more permanent location. That location was an S3 bucket.
 
-However, verifying a backup file means treating it much like any other deployable artifact. The artifacts used to deploy your applications are versioned and saved in repositories that allow artifacts versions to be queried and compared. Conceptually, your database backup should be just another deployable and versioned artifact, ready to be queried and consumed by a runbook.
+However, verifying a backup file means treating it much like any other deployable artifact. The artifacts used to deploy your applications are versioned and saved in repositories that allow versions to be queried and compared. Conceptually, your database backup should be just another deployable and versioned artifact, ready to be queried and consumed by a runbook.
 
 In practice this means the backup artifact needs to be uploaded to a repository rather than a simple file store. This is not to say that you can no longer use a service like S3, as you can quite easily [format S3 to function as a Maven repository](https://octopus.com/blog/hosting-maven-in-s3). However, for the purposes of this blog, you'll upload the backup file directly to the Octopus built-in feed.
 
-Upload files to Octopus is most easily done with the Octopus CLI. The `Dockerfile` below installs the Octopus and AWS CLIs alongside the MySQL server:
+Uploading files to Octopus is most easily done with the Octopus CLI. The `Dockerfile` below installs the Octopus and AWS CLIs alongside the MySQL server:
 
 ```Dockerfile
 FROM mysql
@@ -52,13 +52,13 @@ kubectl exec $POD -- /bin/sh -c "cd /tmp; octo pack --overwrite --include dump.s
 kubectl exec $POD -- /bin/sh -c "cd /tmp; octo push --package PetClinicDB.${VERSION}.zip --overwrite-mode OverwriteExisting --server https://tenpillars.octopus.app --apiKey #{Octopus API Key} --space #{Octopus.Space.Name}"
 ```
 
-The end result of these scripts are versioned backup artifacts in the Octopus built-in feed:
+The end result of this script are versioned backup artifacts in the Octopus built-in feed:
 
 ![SQL backup artifacts](sql-backup-artifacts.png "width=500")
 
 ## Verifying the backups
 
-Now that your database backups are versioned and uploaded to a repository like any other deployable artifact, consuming them in runbooks becomes much easier. The next step is to automate the process of verifying the backup in an ephemeral (i.e. disposable) environment.
+Now that your database backups are versioned and uploaded to a repository, like any other deployable artifact, consuming them in runbooks becomes much easier. The next step is to automate the process of verifying the backup in an ephemeral (i.e. disposable) environment.
 
 Docker provides the perfect platform on which to spin up and tear down a test database. This is because Docker containers are, by design, isolated and self contained, allowing us to orchestrate the backup restoration and clean everything up afterwards.
 
@@ -70,7 +70,7 @@ The Bash script below performs the following:
 * Waits for the MySQL server to start
 * Restores the backup
 * Queries the database for records known to be included in the backup
-* Removed the Docker container
+* Removes the Docker container
 * Verifies the result of the previous SQL query
 
 ```bash
@@ -103,7 +103,7 @@ if [[ "$COUNT" -eq 0 ]]; then
 fi
 ```
 
-This script is run in a runbook as a regular **Run a script** step with an additional package reference downloading the SQL backup artifact:
+This script is run in a runbook as a regular **Run a script** step, with an additional package reference downloading the SQL backup artifact:
 
 ![Additional package reference](additional-package-reference.png "width=500")
 
@@ -113,8 +113,8 @@ Referencing a backup like any other deployable artifact allows you to select the
 
 ## Conclusion
 
-Backups are only as good as their ability to be restored, but too often the finer process of restoring a backup is discovered during a crisis, leaving DevOps teams to wonder if the backups include the correct data in the correct format.
+Backups are only as good as their ability to be restored, but too often the finer points of restoring a backup is discovered during a crisis, leaving DevOps teams to wonder if the backups include the correct data in the correct format.
 
-By treating backup artifacts like any other deployable artifact and automating the process of restoring and verifying backup data, DevOps teams can refine their recovery processes as part of a regular backup lifecycle, and gain confidence that they can quickly recover from any scenarios that involve the loss of data.
+By treating backup artifacts like any other deployable artifact and automating the process of restoring and verifying backup data, DevOps teams can refine their recovery process as part of a regular backup lifecycle, and gain confidence that they can quickly recover from any scenarios that involve the loss of data.
 
 In this post you saw example runbooks that generate database backups, upload them to an artifact repository, consume the backup as a deployable artifact, and verify the process of restoring the data to an ephemeral environment. The end result is a backup workflow treating the restoration of data as just another routine, automated task.
