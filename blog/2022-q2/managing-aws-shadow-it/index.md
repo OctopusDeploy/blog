@@ -34,11 +34,11 @@ The following Bash script scans the entire AWS account for any resources that la
 REQUIREDTAGS=("Team"  "Deployment Project"  "Environment")
 
 for tag in ${REQUIREDTAGS[*]}; do
-	echo "==========================================================="
-    echo "The following resources lack the ${tag} tag."
-    echo "==========================================================="
-	aws resourcegroupstaggingapi get-resources --tags-per-page 100 \
-		| jq -r ".ResourceTagMappingList[] | select(contains({Tags: [{Key: \"${tag}\"} ]}) | not) | .ResourceARN"
+  echo "==========================================================="
+  echo "The following resources lack the ${tag} tag."
+  echo "==========================================================="
+  aws resourcegroupstaggingapi get-resources --tags-per-page 100 \
+    | jq -r ".ResourceTagMappingList[] | select(contains({Tags: [{Key: \"${tag}\"} ]}) | not) | .ResourceARN"
 done
 ```
 
@@ -55,7 +55,7 @@ echo "==========================================================="
 echo "The following resources were not created by CloudFormation"
 echo "==========================================================="
 aws resourcegroupstaggingapi get-resources --tags-per-page 100 \
-		| jq -r '.ResourceTagMappingList[] | select(contains({Tags: [{Key: "aws:cloudformation:stack-id"} ]}) | not) | .ResourceARN'
+  | jq -r '.ResourceTagMappingList[] | select(contains({Tags: [{Key: "aws:cloudformation:stack-id"} ]}) | not) | .ResourceARN'
 ```
 
 Note that there are some exceptions to this rule. For example, CloudWatch event rules lack tags. In the screenshot below you can see a rule created by a CloudFormation template that would be flagged by the script above:
