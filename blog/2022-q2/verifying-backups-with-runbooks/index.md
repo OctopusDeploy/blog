@@ -99,7 +99,7 @@ docker rm mysql-#{Octopus.RunbookRun.Id | ToLower}
 
 if [[ "$COUNT" -eq 0 ]]; then
     # If there were no rows returned, something went wrong and the backup is not valid
-	exit 1
+    exit 1
 fi
 ```
 
