@@ -17,7 +17,7 @@ tags:
 
 For such an open, customizable platform, Jenkins provides decent security even in its default state. Given it connects to countless industry tools (Octopus included), though, there are a few other ways to help protect your projects.
 
-In this blog, we look at some of the methods and tools to keep your Jenkins instance safe, secure, and protect those using it.
+In this post, we look at some of the methods and tools to keep your Jenkins instance safe, secure, and protect those using it.
 
 ## Keep everything updated
 
@@ -138,7 +138,10 @@ We'll cover the Credentials Binding plugin in detail in a future post.
 ## Conclusion
 As you can see, there are plenty of ways to ensure safe use of Jenkins to protect projects from risks outside and within. Check [Jenkins' documentation](https://www.jenkins.io/doc/book/security/) for even more information on keeping your instances secure.
 
-We'll have more on Jenkins as a platform in the coming weeks.
+Check out our other posts about configuring Jenkins:
+
+- [Using dynamic build agents to automate scaling in Jenkins](https://octopus.com/blog/jenkins-dynamic-build-agents)
+- [Managing credentials in Jenkins](https://octopus.com/blog/managing-jenkins-credentials)
 
 !include <jenkins-webinar-jan-2022>
 
