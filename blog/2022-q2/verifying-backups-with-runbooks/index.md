@@ -42,30 +42,7 @@ apt update && apt install octopuscli -y
 
 ## Backing up the database
 
-The following PowerShell script locates the first pod whose name starts with "mysql", executes `mysqldump` to perform a backup, packages the SQL file as a artifact with the Octopus CLI, and pushes the artifact to the Octopus server:
-
-```PowerShell
-# Get the list of pods in JSON format
-kubectl get pods -o json |
-# Convert the output to an object
-ConvertFrom-Json |
-# Get the items property
-Select -ExpandProperty items |
-# Limit the items to those with the name starting with "mysql"
-? {$_.metadata.name -like "mysql*"} |
-# We only expect to find 1 such pod
-Select -First 1 |
-# Execute mysqldump on the pod to perform a backup
-% {
-    Write-Host "Performing backup on pod $($_.metadata.name)"
-    $backupVersion = Get-Date -Format "yyyy.MM.dd"
-    kubectl exec $_.metadata.name -- /bin/sh -c 'cd /tmp; mysqldump -u root -p#{MySQL Password} petclinic > dump.sql 2> /dev/null'
-    kubectl exec $_.metadata.name -- /bin/sh -c "cd /tmp; octo pack --overwrite --include dump.sql --id PetClinicDB --version $($backupVersion) --format zip"
-    kubectl exec $_.metadata.name -- /bin/sh -c "cd /tmp; octo push --package PetClinicDB.$($backupVersion).zip --overwrite-mode OverwriteExisting --server https://tenpillars.octopus.app --apiKey #{Octopus API Key} --space #{Octopus.Space.Name}"
-}
-```
-
-This is the equivalent in bash:
+The following bash script locates the first pod whose name starts with "mysql", executes `mysqldump` to perform a backup, packages the SQL file as a artifact with the Octopus CLI, and pushes the artifact to the Octopus server:
 
 ```bash
 POD=$(kubectl get pods -o json | jq -r '[.items[]|select(.metadata.name | startswith("mysql"))][0].metadata.name')
@@ -74,3 +51,70 @@ kubectl exec $POD -- /bin/sh -c 'cd /tmp; mysqldump -u root -p#{MySQL Password} 
 kubectl exec $POD -- /bin/sh -c "cd /tmp; octo pack --overwrite --include dump.sql --id PetClinicDB --version ${VERSION} --format zip"
 kubectl exec $POD -- /bin/sh -c "cd /tmp; octo push --package PetClinicDB.${VERSION}.zip --overwrite-mode OverwriteExisting --server https://tenpillars.octopus.app --apiKey #{Octopus API Key} --space #{Octopus.Space.Name}"
 ```
+
+The end result of these scripts are versioned backup artifacts in the Octopus built-in feed:
+
+![SQL backup artifacts](sql-backup-artifacts.png "width=500")
+
+## Verifying the backups
+
+Now that your database backups are versioned and uploaded to a repository like any other deployable artifact, consuming them in runbooks becomes much easier. The next step is to automate the process of verifying the backup in an ephemeral (i.e. disposable) environment.
+
+Docker provides the perfect platform on which to spin up and tear down a test database. This is because Docker containers are, by design, isolated and self contained, allowing us to orchestrate the backup restoration and clean everything up afterwards.
+
+The Bash script below performs the following:
+
+* Creates a MySQL Docker container
+* Exposes the internal port 3306 on a random port on the host
+* Extracts the random port number
+* Waits for the MySQL server to start
+* Restores the backup
+* Queries the database for records known to be included in the backup
+* Removed the Docker container
+* Verifies the result of the previous SQL query
+
+```bash
+# Run docker mapping port 3306 to a random port
+docker run -p 3306 --name mysql-#{Octopus.RunbookRun.Id | ToLower} -e MYSQL_ROOT_PASSWORD=Password01! -d mysql
+
+# Extract the random port Docker mapped to 3306
+PORT=$(docker port mysql-#{Octopus.RunbookRun.Id | ToLower})
+IFS=: read -r BINDING MYSQLPORT <<< "$PORT"
+echo "mysql-#{Octopus.RunbookRun.Id | ToLower} listening on $MYSQLPORT"
+
+echo "Waiting for MySQL to start"
+while ! echo exit | nc localhost $MYSQLPORT >/dev/null 2>&1; do echo "sleeping..."; sleep 10; done
+
+echo "Restoring the database"
+docker exec mysql-#{Octopus.RunbookRun.Id | ToLower} mysql -u root -p#{MySQL Password} -e "CREATE DATABASE petclinic;" 2>/dev/null
+cat PetClinicDB/dump.sql | docker exec -i mysql-#{Octopus.RunbookRun.Id | ToLower} /usr/bin/mysql -u root -p#{MySQL Password} petclinic 2>/dev/null
+
+echo "Query the database"
+COUNT=$(docker exec mysql-#{Octopus.RunbookRun.Id | ToLower} mysql -u root -p#{MySQL Password} petclinic -s -e "select count(*) from owners;" 2>/dev/null)
+echo "Table owners has $COUNT rows"
+
+echo "Shutting the container down"
+docker stop mysql-#{Octopus.RunbookRun.Id | ToLower}
+docker rm mysql-#{Octopus.RunbookRun.Id | ToLower}
+
+if [[ "$COUNT" -eq 0 ]]; then
+    # If there were no rows returned, something went wrong and the backup is not valid
+	exit 1
+fi
+```
+
+This script is run in a runbook as a regular **Run a script** step with an additional package reference downloading the SQL backup artifact:
+
+![Additional package reference](additional-package-reference.png "width=500")
+
+Referencing a backup like any other deployable artifact allows you to select the backup to verify when creating the runbook run, or accepting the latest version by default:
+
+![Selecting the package](selecting-package.png "width=500")
+
+## Conclusion
+
+Backups are only as good as their ability to be restored, but too often the finer process of restoring a backup is discovered during a crisis, leaving DevOps teams to wonder if the backups include the correct data in the correct format.
+
+By treating backup artifacts like any other deployable artifact and automating the process of restoring and verifying backup data, DevOps teams can refine their recovery processes as part of a regular backup lifecycle, and gain confidence that they can quickly recover from any scenarios that involve the loss of data.
+
+In this post you saw example runbooks that generate database backups, upload them to an artifact repository, consume the backup as a deployable artifact, and verify the process of restoring the data to an ephemeral environment. The end result is a backup workflow treating the restoration of data as just another routine, automated task.
