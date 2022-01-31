@@ -100,7 +100,7 @@ The most common plan to use with Azure Functions is the Consumption Plan (sku Y1
 :::
 
 #### Accept-Message
-The Azure CLI can also be used to create the functions as well.  The Accept-Message function is written in nodeJS, so be sure to specify `node` for the runtime.
+The Azure CLI can also be used to create the functions as well.  The Accept-Message function is written in Node.JS, so be sure to specify `node` for the runtime.
 
 ```powershell
 # Get variables
@@ -150,7 +150,7 @@ The Accept-Message function takes the submitted body and places it on the messag
 
 ### Accept-Message
 
-The Accept-Message function is written in nodeJS and is fairly basic.  If you've never created an Azure Function using nodeJS, get started with [this tutorial from Microsoft](https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-node).  
+The Accept-Message function is written in Node.JS and is fairly basic.  If you've never created an Azure Function using Node.JS, get started with [this tutorial from Microsoft](https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-node).  
 
 Add the following to `index.js`:
 
