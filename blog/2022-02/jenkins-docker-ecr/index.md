@@ -4,9 +4,9 @@ description: As part of our series about Continuous Integration and build server
 author: terence.wong@octopus.com
 visibility: private
 published: 2022-02-09-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: blogimage-jenkinsbuilddockerimageinjenkinsfileandpublishtoecr-2022.png
+bannerImage: blogimage-jenkinsbuilddockerimageinjenkinsfileandpublishtoecr-2022.png
+bannerImageAlt: Illustration of Docker logo with an arrow to ECR logo
 isFeatured: false
 tags:
  - DevOps
