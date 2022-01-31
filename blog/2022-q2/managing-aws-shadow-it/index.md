@@ -51,16 +51,16 @@ Finding resources that were not created by a CloudFormation template (i.e. unman
 
 All (or almost all) AWS resources support tags, and when those resources are created by a CloudFormation template, the `aws:cloudformation:stack-id` tag is automatically applied. This means identifying unmanaged resources is as simple as finding any resources that lack the `aws:cloudformation:stack-id` tag.
 
-The Bash script below scans all resources that lack the `aws:cloudformation:stack-id` tag:
+The Bash script below scans all resources, except for CloudFormation stacks, that lack the `aws:cloudformation:stack-id` tag:
 
 ```bash
 OUTPUT=$(aws resourcegroupstaggingapi get-resources --tags-per-page 100)
-COUNT=$(echo $OUTPUT | jq -r '[.ResourceTagMappingList[] | select(contains({Tags: [{Key: "aws:cloudformation:stack-id"} ]}) | not)] | length')
+COUNT=$(echo $OUTPUT | jq -r '[.ResourceTagMappingList[] | select(contains({Tags: [{Key: "aws:cloudformation:stack-id"} ]}) | not) | select(.ResourceARN | test("arn:aws:cloudformation:[a-z]+-[a-z]+-[0-9]+:[0-9]+:stack/.*") | not)] | length')
 
 echo "==========================================================="
 echo "The following ${COUNT} resources were not created by CloudFormation"
 echo "==========================================================="
-echo $OUTPUT | jq -r '.ResourceTagMappingList[] | select(contains({Tags: [{Key: "aws:cloudformation:stack-id"} ]}) | not) | .ResourceARN'
+echo $OUTPUT | jq -r '.ResourceTagMappingList[] | select(contains({Tags: [{Key: "aws:cloudformation:stack-id"} ]}) | not) | select(.ResourceARN | test("arn:aws:cloudformation:[a-z]+-[a-z]+-[0-9]+:[0-9]+:stack/.*") | not) | .ResourceARN'
 ```
 
 Note that there are some exceptions to this rule. For example, CloudWatch event rules lack tags. In the screenshot below you can see a rule created by a CloudFormation template that would be flagged by the script above:
