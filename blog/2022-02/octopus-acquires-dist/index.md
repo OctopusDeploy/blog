@@ -2,8 +2,8 @@
 title: Octopus Deploy acquires Dist
 description: Octopus Deploy has acquired Dist, a cloud-based container registry and artifact repository.
 author: paul.stovell@octopus.com
-visibility: private
-published: 2022-02-01-1400
+visibility: public
+published: 2022-02-01
 metaImage: blogimage-octopusdeployacquiresdist-2022.png
 bannerImage: blogimage-octopusdeployacquiresdist-2022.png
 bannerImageAlt: An Octopus-branded crane unloading containers from a ship named Dist.
@@ -12,7 +12,7 @@ tags:
   - Company
 ---
 
-Today I'm thrilled to announce that Octopus Deploy has acquired Dist, a cloud-based container registry and artifact repository. 
+Today I'm thrilled to announce that Octopus Deploy has acquired Dist, a cloud-based container registry and artifact repository service. 
 
 ## Why Dist is a great fit
 
@@ -36,9 +36,9 @@ Together with the Dist team, we'll make it even easier for software teams to del
 
 ### Fireside chat about Dist
 
-Director of Product, Michael Richardson, led the Dist acquisition process. He recently recorded a chat with Senior Solutions Architect, Derek Campbell, about how Dist technology will improve deployments with Octopus.
+Director of Product, Michael Richardson, led the Dist acquisition process. He recorded a chat with Senior Solutions Architect, Derek Campbell, about how Dist technology will improve deployments with Octopus.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/a-AmBFCbs08" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/0CAFUTWW6-k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### Container registry in Octopus
 
