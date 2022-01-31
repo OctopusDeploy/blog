@@ -35,12 +35,13 @@ The following Bash script scans the entire AWS account for any resources that la
 ```bash
 REQUIREDTAGS=("Team"  "Deployment Project"  "Environment")
 
-for tag in ${REQUIREDTAGS[*]}; do
-  echo "==========================================================="
-  echo "The following resources lack the ${tag} tag."
-  echo "==========================================================="
-  aws resourcegroupstaggingapi get-resources --tags-per-page 100 \
-    | jq -r ".ResourceTagMappingList[] | select(contains({Tags: [{Key: \"${tag}\"} ]}) | not) | .ResourceARN"
+for TAG in ${REQUIREDTAGS[*]}; do
+	OUTPUT=$(aws resourcegroupstaggingapi get-resources --tags-per-page 100)
+    COUNT=$(echo ${OUTPUT} | jq -r "[.ResourceTagMappingList[] | select(contains({Tags: [{Key: \"${TAG}\"} ]}) | not)] | length")
+    echo "==========================================================="
+    echo "The following ${COUNT} resources lack the ${TAG} tag."
+    echo "==========================================================="
+	echo ${OUTPUT} | jq -r ".ResourceTagMappingList[] | select(contains({Tags: [{Key: \"${TAG}\"} ]}) | not) | .ResourceARN"
 done
 ```
 
@@ -53,11 +54,13 @@ All (or almost all) AWS resources support tags, and when those resources are cre
 The Bash script below scans all resources that lack the `aws:cloudformation:stack-id` tag:
 
 ```bash
+OUTPUT=$(aws resourcegroupstaggingapi get-resources --tags-per-page 100)
+COUNT=$(echo $OUTPUT | jq -r '[.ResourceTagMappingList[] | select(contains({Tags: [{Key: "aws:cloudformation:stack-id"} ]}) | not)] | length')
+
 echo "==========================================================="
-echo "The following resources were not created by CloudFormation"
+echo "The following ${COUNT} resources were not created by CloudFormation"
 echo "==========================================================="
-aws resourcegroupstaggingapi get-resources --tags-per-page 100 \
-  | jq -r '.ResourceTagMappingList[] | select(contains({Tags: [{Key: "aws:cloudformation:stack-id"} ]}) | not) | .ResourceARN'
+echo $OUTPUT | jq -r '.ResourceTagMappingList[] | select(contains({Tags: [{Key: "aws:cloudformation:stack-id"} ]}) | not) | .ResourceARN'
 ```
 
 Note that there are some exceptions to this rule. For example, CloudWatch event rules lack tags. In the screenshot below you can see a rule created by a CloudFormation template that would be flagged by the script above:
