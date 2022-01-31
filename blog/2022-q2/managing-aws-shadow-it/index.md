@@ -63,14 +63,6 @@ echo "==========================================================="
 echo $OUTPUT | jq -r '.ResourceTagMappingList[] | select(contains({Tags: [{Key: "aws:cloudformation:stack-id"} ]}) | not) | select(.ResourceARN | test("arn:aws:cloudformation:[a-z]+-[a-z]+-[0-9]+:[0-9]+:stack/.*") | not) | .ResourceARN'
 ```
 
-Note that there are some exceptions to this rule. For example, CloudWatch event rules lack tags. In the screenshot below you can see a rule created by a CloudFormation template that would be flagged by the script above:
-
-![Cloudwatch event rule](cloudwatch-event-rule.png "width=500")
-
-However, CloudWatch Events are being replaced by EventBridge, which does support tags for events:
-
-![EventBridge tags](eventbridge-tags.png "width=500")
-
 ## Resolving noncompliant resources
 
 Defining tags on resources that lack them is usually a case of manually adding them through the web console or CLI. The script below shows an example of adding common tags to resources in bulk:
