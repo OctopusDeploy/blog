@@ -23,7 +23,9 @@ A challenge for teams is then how to calculate these metrics. Fortunately, Octop
 
 This post uses GitHub Actions as a CI server. GitHub Actions are free for public git repositories, so you only need a GitHub account to get started.
 
-The sample runbook script is written against Python 3, which can be downloaded from the [Python website](https://www.python.org/downloads/). The example runbook source code can be found on [GitHub](https://github.com/OctopusSamples/DoraMetrics).
+The sample runbook script is written against Python 3, which can be downloaded from the [Python website](https://www.python.org/downloads/). 
+
+The example runbook source code can be found on [GitHub](https://github.com/OctopusSamples/DoraMetrics). Tweaks and updates to the script will be found on the GitHub repo, so be sure to check here for the latest version.
 
 ## Producing build information
 
