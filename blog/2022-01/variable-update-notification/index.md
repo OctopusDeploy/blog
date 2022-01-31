@@ -446,7 +446,7 @@ Click **Get Function Url**, then the copy icon. Save this for later.
 
 ## Testing notifications
 
-After you have the functions deployed, you can configure a subscription in Octopus deploy to notify you when a variable has changed.
+After you have the functions deployed, you can configure a subscription in Octopus Deploy to notify you when a variable has changed.
 
 To configure a subscription click on **Configuration**, then **Subscriptions**, then **ADD SUBSCRIPTION**.
 
