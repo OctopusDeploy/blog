@@ -1,31 +1,43 @@
 ---
-title: Build docker image in Jenkinsfile and publish to ECR
-description: Build docker image in Jenkinsfile and publish to ECR
+title: Building a Docker image in Jenkinsfile and publishing to ECR
+description: As part of our series about Continuous Integration and build servers, learn how to build a Docker image in Jenkinsfile and publish to ECR.
 author: terence.wong@octopus.com
 visibility: private
-published: 2999-01-01
+published: 2022-02-09-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt: 
 isFeatured: false
 tags:
  - DevOps
+ - CI Series
+ - Continuous Integration
  - Jenkins
 ---
 
-This blog will build and push the Octopus Deploy Underwater App to Amazon Elastic Container Registry (ECR) using Jenkins.  To follow along, you will need:
+In this post, you learn how to build and push the Octopus Deploy underwater app to Amazon Elastic Container Registry (ECR) using Jenkins. 
+ 
+## Prerequisites
+ 
+To follow along, you need:
 
 - An Amazon Web Services Account (AWS)
 - A Jenkins instance
 - A GitHub account
 
-The [Traditional Jenkins Installation](/blog/2022-01/jenkins-install-guide-windows-linux/index.md), [Docker Jenkins Installation](/blog/2022-01/jenkins-docker-install-guide/index.md), or [Helm Jenkins Installation](/blog/2022-01/jenkins-helm-install-guide/index.md) guides provide instructions to install Jenkins in your chosen environment.
+For instructions on installing Jenkins in your chosen environment, you can refer to our guides:
 
-This blog will use the [Octopus Underwater app repository](https://github.com/OctopusSamples/octopus-underwater-app). You can fork the repository and follow along. Alternatively, the jenkins-ecr branch contains the template files needed to complete the steps in this blog. You will have to replace some values with your own. I have included my values in this blog as a reference.
+- [How to install Jenkins on Windows and Linux](https://octopus.com/blog/jenkins-install-guide-windows-linux)
+- [How to install Jenkins on Docker](https://octopus.com/blog/jenkins-docker-install-guide)
+- [How to install a Jenkins instance with Heml](https://octopus.com/blog/jenkins-helm-install-guide)
+
+This post uses the [Octopus underwater app repository](https://github.com/OctopusSamples/octopus-underwater-app). You can fork the repository and follow along. 
+
+Alternatively, the jenkins-ecr branch contains the template files to complete the steps in this post. You'll need to replace some values with your own. I've included my values in this post as a reference.
 
 ## Amazon Web Services setup
 
-To set up AWS for Jenkins, we need to create an access key and an ECR repository to store the image.
+To set up AWS for Jenkins, you need to create an access key and an ECR repository to store the image.
 
 To create an access key, go to **Amazon Console &rarr; IAM &rarr; Users &rarr; [your user] &rarr; Security credentials &rarr; Create Access Key**
 
@@ -41,64 +53,63 @@ You will see your repository under **Amazon ECR &rarr; Repositories**. Make a no
 
 ## Jenkins setup
 
-We first install some necessary plugins to interact with docker and Amazon. Go to the **Dashboard &rarr; Manage Jenkins &rarr; Manage Plugins. You will need the following plugins:
+First, you need to install some plugins to interact with Docker and Amazon. Go to the **Dashboard**, then **Manage Jenkins**, then **Manage Plugins**. 
+
+You need the following plugins:
 
 - [CloudBees AWS Credentials](https://plugins.jenkins.io/aws-credentials/)
 - [Amazon ECR](https://plugins.jenkins.io/amazon-ecr/)
 - [Docker Pipeline](https://plugins.jenkins.io/docker-workflow/)
 
-You can search for these plugin in the available tab. Once they are installed they will appear in the installed tab.
+You can search for these plugins in the available tab. After they're installed, they appear in the installed tab.
 
-We will use a Jenkinsfile to compile, build, test, and push the image to Amazon ECR. A Jenkins file is a configuration file that defines a Jenkins Pipeline. A Jenkins Pipeline is a series of steps that Jenkins will perform on an artifact to achieve the desired result. In this case, it is the clone, build, test, and push of an image to Amazon ECR. The power of using a Jenkinsfile is to check it into source control to manage different versions of the file.
+You use a Jenkinsfile to compile, build, test, and push the image to Amazon ECR. A Jenkins file is a configuration file that defines a Jenkins Pipeline. A Jenkins Pipeline is a series of steps that Jenkins performs on an artifact to achieve the desired result. In this case, it's the clone, build, test, and push of an image to Amazon ECR. The power of using a Jenkinsfile is to check it into source control to manage different versions of the file.
 
-In your Jenkins instance, go to **Manage Jenkins &rarr; Manage Credentials &rarr; Jenkins Store &rarr; Global Credentials (unrestricted) &rarr; Add Credentials**
+In your Jenkins instance, go to **Manage Jenkins**, then **Manage Credentials**, then **Jenkins Store**, then **Global Credentials (unrestricted)**, and finally **Add Credentials**.
 
 ![Manage Credentials](manage-credentials.png)
 
 Fill in the following fields, leaving everything else as default:
 
-- **Kind**-AWS credentials
+- **Kind** - AWS credentials
 - **ID** - aws-credentials
-- **Access Key ID**- Access Key ID from earlier
-- **Secret Access Key**- Secret Access Key from earlier 
+- **Access Key ID** - Access Key ID from earlier
+- **Secret Access Key** - Secret Access Key from earlier 
 
 Click **OK** to save.
 
 ![Input Key](input-key.png)
 
-Go to the **Jenkins Dashboard &rarr; New Item**
+Go to the **Jenkins Dashboard**, then **New Item**.
 
-Give your pipeline a name and select the pipeline item then **OK**
+Give your pipeline a name and select the pipeline item, then **OK**.
 
 ![Add Pipeline](add-pipeline.png)
 
 Fill out the following fields for the pipeline, leaving everything else as default:
 
-**GitHub hook trigger for GITScm polling** - Check the box
-
-**Definition** - Pipeline script from SCM
+- **GitHub hook trigger for GITScm polling** - check the box
+- **Definition** - pipeline script from SCM
 - **SCM** - Git
-- **Repository URL** - The URL of your forked repo and the jenkins-ecr branch
+- **Repository URL** - the URL of your forked repo and the jenkins-ecr branch
 - **Credentials** - zone of the repository
-- **Branch Specifier** -*/jenkins-ecr
+- **Branch Specifier** - `*/jenkins-ecr`
 
-Click **SAVE**
+Click **SAVE**.
 
 ## GitHub setup
 
-We will use a sample web application that displays an animated underwater scene with helpful links for this example.
+For this example, you use a sample web application that displays an animated underwater scene with helpful links.
 
-We want to set up a webhook so that Jenkins can know when the repository is updated. To do this, go to **Settings &rarr; Webhooks**
+You need to set up a webhook so that Jenkins knows when the repository is updated. To do this, go to **Settings**, then **Webhooks**.
 
 ![web-hook](webhook.png)
 
 Fill out the following fields, leaving everything else as default.
 
-**Payload URL** - http://[jenkins-url]/github-webhook/
-
-**Content Type** - application/json
-
-**Which events would you like to trigger this webhook?**- Just the push event
+- **Payload URL** - http://[jenkins-url]/github-webhook/
+- **Content Type** - application/json
+- **Which events would you like to trigger this webhook?**- Just the push event
 
 Click **Add webhook** to save.
 
@@ -146,22 +157,20 @@ pipeline {
 }
 ```
 
-The Jenkinsfile consists of different stages. Jenkins will run each of these stages in order in Jenkins, and if the build fails, you will be able to see which stage failed. Commit your code to GitHub. The commit will trigger a build job in Jenkins. Go to your Jenkins instance URL to see the build.
+The Jenkinsfile consists of different stages. Jenkins will run each of these stages in order, and if the build fails, you'll see which stage failed. 
 
-I had to trigger a Jenkins job via the build now button manually. After this, the webhook triggers would start working on every push.
+Commit your code to GitHub. The commit will trigger a build job in Jenkins. Go to your Jenkins instance URL to see the build.
+
+I had to trigger a Jenkins job via the **Build now** button manually. After this, the webhook triggers started working on every push.
 
 ![Jenkins Success](jenkins-success.png)
 
-After the build finishes, you can go to the Amazon ECR to see a new image built and pushed to the repository. It has tagged the latest push with the Jenkins build number and `latest.`
+After the build finishes, go to the Amazon ECR to see a new image built and pushed to the repository. It tags the latest push with the Jenkins build number and `latest`.
 
 ![ECR Success](ecr-success.png)
 
-In this blog, you have set up a Jenkins pipeline to build a GitHub repository and push it to Amazon ECR. The Jenkinsfile can push to other repositories such as Google or Microsoft. It can also include additional stages depending on the build requirements. Once the image is pushed, you can use a tool like Octopus Deploy to deploy the image to a target environment
+## Conclusion
 
-Happy Deployments!
+In this post, you set up a Jenkins Pipeline to build a GitHub repository and push it to Amazon ECR. The Jenkinsfile can push to other repositories such as Google or Microsoft. It can also include additional stages depending on the build requirements. After the image is pushed, you can use a tool like Octopus Deploy to deploy the image to a target environment.
 
-
-
-
-
-
+Happy deployments!
