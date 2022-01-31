@@ -173,4 +173,8 @@ After the build finishes, go to the Amazon ECR to see a new image built and push
 
 In this post, you set up a Jenkins Pipeline to build a GitHub repository and push it to Amazon ECR. The Jenkinsfile can push to other repositories such as Google or Microsoft. It can also include additional stages depending on the build requirements. After the image is pushed, you can use a tool like Octopus Deploy to deploy the image to a target environment.
 
+!include <jenkins-webinar-jan-2022>
+
+!include <q1-2022-newsletter-cta>
+
 Happy deployments!
