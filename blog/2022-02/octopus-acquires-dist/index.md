@@ -42,6 +42,6 @@ Director of Product, Michael Richardson, led the Dist acquisition process. He re
 
 ### Container registry in Octopus
 
-If you’re interested in the container registry in Octopus, you can [sign up to the feature in our Roadmap](https://octopus.com/company/roadmap). This keeps you updated with our progress and ways you can help shape the feature.
+If you’re interested in the container registry in Octopus, you can [sign up to the feature in our Roadmap](https://octopus.com/company/roadmap#container-registry). This keeps you updated with our progress and ways you can help shape the feature.
 
 Happy deployments!
