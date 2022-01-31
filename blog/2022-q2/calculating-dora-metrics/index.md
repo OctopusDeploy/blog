@@ -296,7 +296,7 @@ def get_change_lead_time_summary(lead_time):
     if lead_time is None:
         print("Change lead time: N/A (no deployments or commits)")
     # One hour
-    if lead_time < 60 * 60:
+    elif lead_time < 60 * 60:
         print("Change lead time: Elite (Average " + str(round(lead_time / 60 / 60, 2))
                          + " hours between commit and deploy)")
     # Every week
@@ -880,7 +880,7 @@ def get_change_lead_time_summary(lead_time):
     if lead_time is None:
         print("Change lead time: N/A (no deployments or commits)")
     # One hour
-    if lead_time < 60 * 60:
+    elif lead_time < 60 * 60:
         print("Change lead time: Elite (Average " + str(round(lead_time / 60 / 60, 2))
                          + " hours between commit and deploy)")
     # Every week
