@@ -34,9 +34,9 @@ The following Bash script scans the entire AWS account for any resources that la
 
 ```bash
 REQUIREDTAGS=("Team"  "Deployment Project"  "Environment")
+OUTPUT=$(aws resourcegroupstaggingapi get-resources --tags-per-page 100)
 
 for ((i = 0; i < ${#REQUIREDTAGS[@]}; i++)); do
-	OUTPUT=$(aws resourcegroupstaggingapi get-resources --tags-per-page 100)
     COUNT=$(echo ${OUTPUT} | jq -r "[.ResourceTagMappingList[] | select(contains({Tags: [{Key: \"${REQUIREDTAGS[$i]}\"} ]}) | not)] | length")
     echo "==========================================================="
     echo "The following ${COUNT} resources lack the ${REQUIREDTAGS[$i]} tag."
