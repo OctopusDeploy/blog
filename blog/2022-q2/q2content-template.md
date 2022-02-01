@@ -43,8 +43,6 @@ If including images, please include alt text. Alt text is primarily used to desc
 
 Close off the post by restating the main points of the post, share any closing thoughts, and invite feedback.
 
-Happy deployments! (Delete "Happy deployments!" from here if adding any more information below, it should appear last.)
-
 ## Learn more
 
 - [link](https://www.example.com/resource)
