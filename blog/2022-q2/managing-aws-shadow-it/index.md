@@ -24,7 +24,7 @@ None of this information is readily available from the VM resource itself, espec
 
 Any growing team that fails to implement standard practices around the creation of new cloud resources will likely find themselves years later with no idea what any given resource does. This presents security challenges, because it is unclear who is responsible for tasks like OS patching, or what networking rules are appropriate when a permissive "allow all" rule set was originally applied. It also makes it difficult to know if the current state of the resource is correct, or if someone accidentally made undesirable changes.
 
-In AWS, the first step towards describing resource attributes like who owns it and its purpose are to apply a set of standardized tags. The next step is to ensure all resources are created with declarative templates like CloudFormation, which allows resources to be recreated if needed, and also allows the detection of unwanted manual changes, also known as drift.
+In AWS, the first step towards describing resource attributes like who owns it and its purpose are to apply a set of standardized tags. The next step is to ensure all resources are created with declarative templates like CloudFormation, which allows resources to be recreated if needed, and also allows the detection of unwanted manual changes, known as drift.
 
 To identify noncompliant resources, you'll create two simple runbooks to scan your AWS account for resources without the expected tags.
 
