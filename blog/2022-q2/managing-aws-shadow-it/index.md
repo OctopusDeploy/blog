@@ -35,13 +35,13 @@ The following Bash script scans the entire AWS account for any resources that la
 ```bash
 REQUIREDTAGS=("Team"  "Deployment Project"  "Environment")
 
-for TAG in ${REQUIREDTAGS[*]}; do
+for ((i = 0; i < ${#REQUIREDTAGS[@]}; i++)); do
 	OUTPUT=$(aws resourcegroupstaggingapi get-resources --tags-per-page 100)
-    COUNT=$(echo ${OUTPUT} | jq -r "[.ResourceTagMappingList[] | select(contains({Tags: [{Key: \"${TAG}\"} ]}) | not)] | length")
+    COUNT=$(echo ${OUTPUT} | jq -r "[.ResourceTagMappingList[] | select(contains({Tags: [{Key: \"${REQUIREDTAGS[$i]}\"} ]}) | not)] | length")
     echo "==========================================================="
-    echo "The following ${COUNT} resources lack the ${TAG} tag."
+    echo "The following ${COUNT} resources lack the ${REQUIREDTAGS[$i]} tag."
     echo "==========================================================="
-	echo ${OUTPUT} | jq -r ".ResourceTagMappingList[] | select(contains({Tags: [{Key: \"${TAG}\"} ]}) | not) | .ResourceARN"
+	echo ${OUTPUT} | jq -r ".ResourceTagMappingList[] | select(contains({Tags: [{Key: \"${REQUIREDTAGS[$i]}\"} ]}) | not) | .ResourceARN"
 done
 ```
 
