@@ -158,6 +158,23 @@ An easy solution is to open the **Images** link in the EC2 console. This allows 
 
 ![AMI Details page](ami-details.png)
 
+## Using the parameter store
+
+Another option that allows your CloudFormation templates to automatically reference the latest Amazon AMIs is to query the AWS Systems Manager Parameter Store. The blog post called [Query for the latest Amazon Linux AMI IDs using AWS Systems Manager Parameter Store](https://aws.amazon.com/blogs/compute/query-for-the-latest-amazon-linux-ami-ids-using-aws-systems-manager-parameter-store/) demonstrates how you can reference the latest Amazon Windows and Linux AMIs with templates that look like this:
+
+```yaml
+Parameters:
+  LatestAmiId:
+    Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>'
+    Default: '/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2'
+
+Resources:
+ Instance:
+    Type: 'AWS::EC2::Instance'
+    Properties:
+      ImageId: !Ref LatestAmiId
+```
+
 ## Conclusion
 
 Keeping your CloudFormation templates up-to-date with the latest AMI IDs is a constant challenge. It's made more complicated by the fact that every region has unique AMI IDs. 
