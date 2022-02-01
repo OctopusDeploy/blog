@@ -21,7 +21,7 @@ In this post, you learn how to build and push the Octopus Deploy underwater app 
  
 To follow along, you need:
 
-- An Amazon Web Services Account (AWS)
+- An Amazon Web Services account (AWS)
 - A Jenkins instance
 - A GitHub account
 
@@ -29,7 +29,7 @@ For instructions on installing Jenkins in your chosen environment, you can refer
 
 - [How to install Jenkins on Windows and Linux](https://octopus.com/blog/jenkins-install-guide-windows-linux)
 - [How to install Jenkins on Docker](https://octopus.com/blog/jenkins-docker-install-guide)
-- [How to install a Jenkins instance with Heml](https://octopus.com/blog/jenkins-helm-install-guide)
+- [How to install a Jenkins instance with Helm](https://octopus.com/blog/jenkins-helm-install-guide)
 
 This post uses the [Octopus underwater app repository](https://github.com/OctopusSamples/octopus-underwater-app). You can fork the repository and follow along. 
 
@@ -39,21 +39,23 @@ Alternatively, the jenkins-ecr branch contains the template files to complete th
 
 To set up AWS for Jenkins, you need to create an access key and an ECR repository to store the image.
 
-To create an access key, go to **Amazon Console &rarr; IAM &rarr; Users &rarr; [your user] &rarr; Security credentials &rarr; Create Access Key**
+To create an access key, go to **Amazon Console**, then **IAM**, then **Users**, [your user], **Security credentials**, and **Create Access Key**.
 
 Your browser will download a file containing the Access Key ID and the Secret Access Key. These values will be used in Jenkins to authenticate to Amazon.
 
-To create a repository, go to the **Amazon Console &rarr; ECR &rarr; Create Repository**
+To create a repository, go to the **Amazon Console**, then **ECR**, then **Create Repository**.
 
-The ECR requires an image repository set up for each image you publish. Name the repository the name you want the image to have. 
+You need to set up an image repository for each image that you publish. Give the repository the same name you want the image to have. 
 
-You will see your repository under **Amazon ECR &rarr; Repositories**. Make a note of the zone it is in, in the URI field.
+You will see your repository under **Amazon ECR**, then **Repositories**. Make a note of the zone it's in, in the URI field.
 
 ![ECR Repository](ecr-repository.png)
 
 ## Jenkins setup
 
-First, you need to install some plugins to interact with Docker and Amazon. Go to the **Dashboard**, then **Manage Jenkins**, then **Manage Plugins**. 
+First, you need to install some plugins to interact with Docker and Amazon. 
+
+Go to the **Dashboard**, then **Manage Jenkins**, then **Manage Plugins**. 
 
 You need the following plugins:
 
@@ -63,7 +65,9 @@ You need the following plugins:
 
 You can search for these plugins in the available tab. After they're installed, they appear in the installed tab.
 
-You use a Jenkinsfile to compile, build, test, and push the image to Amazon ECR. A Jenkins file is a configuration file that defines a Jenkins Pipeline. A Jenkins Pipeline is a series of steps that Jenkins performs on an artifact to achieve the desired result. In this case, it's the clone, build, test, and push of an image to Amazon ECR. The power of using a Jenkinsfile is to check it into source control to manage different versions of the file.
+You use a Jenkinsfile to compile, build, test, and push the image to Amazon ECR. A Jenkinsfile is a configuration file that defines a Jenkins Pipeline. A Jenkins Pipeline is a series of steps that Jenkins performs on an artifact to achieve the desired result. In this case, it's the clone, build, test, and push of an image to Amazon ECR. 
+
+The power of using a Jenkinsfile is to check it into source control to manage different versions of the file.
 
 In your Jenkins instance, go to **Manage Jenkins**, then **Manage Credentials**, then **Jenkins Store**, then **Global Credentials (unrestricted)**, and finally **Add Credentials**.
 
@@ -72,7 +76,7 @@ In your Jenkins instance, go to **Manage Jenkins**, then **Manage Credentials**,
 Fill in the following fields, leaving everything else as default:
 
 - **Kind** - AWS credentials
-- **ID** - aws-credentials
+- **ID** - `aws-credentials`
 - **Access Key ID** - Access Key ID from earlier
 - **Secret Access Key** - Secret Access Key from earlier 
 
@@ -107,13 +111,13 @@ You need to set up a webhook so that Jenkins knows when the repository is update
 
 Fill out the following fields, leaving everything else as default.
 
-- **Payload URL** - http://[jenkins-url]/github-webhook/
-- **Content Type** - application/json
-- **Which events would you like to trigger this webhook?**- Just the push event
+- **Payload URL** - `http://[jenkins-url]/github-webhook/`
+- **Content type** - `application/json`
+- **Which events would you like to trigger this webhook?**- select **Just the push event**
 
 Click **Add webhook** to save.
 
-Add a Jenkins file to the root level of the repository. You will need to reference your Amazon ECR repository. Note the following changes required below:
+Add a Jenkins file to the root level of the repository. You need to reference your Amazon ECR repository. Note the following changes required below:
 
 ```
 
@@ -161,7 +165,7 @@ The Jenkinsfile consists of different stages. Jenkins will run each of these sta
 
 Commit your code to GitHub. The commit will trigger a build job in Jenkins. Go to your Jenkins instance URL to see the build.
 
-I had to trigger a Jenkins job via the **Build now** button manually. After this, the webhook triggers started working on every push.
+I had to trigger a Jenkins job by clicking the **Build now** button. After this, the webhook triggers worked on every push.
 
 ![Jenkins Success](jenkins-success.png)
 
