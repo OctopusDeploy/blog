@@ -63,7 +63,7 @@ You need the following plugins:
 - [Amazon ECR](https://plugins.jenkins.io/amazon-ecr/)
 - [Docker Pipeline](https://plugins.jenkins.io/docker-workflow/)
 
-You can search for these plugins in the available tab. After they're installed, they appear in the installed tab.
+You can search for these plugins in the **Available** tab. After they're installed, they appear in the **Installed** tab.
 
 You use a Jenkinsfile to compile, build, test, and push the image to Amazon ECR. A Jenkinsfile is a configuration file that defines a Jenkins Pipeline. A Jenkins Pipeline is a series of steps that Jenkins performs on an artifact to achieve the desired result. In this case, it's the clone, build, test, and push of an image to Amazon ECR. 
 
@@ -76,7 +76,7 @@ In your Jenkins instance, go to **Manage Jenkins**, then **Manage Credentials**,
 Fill in the following fields, leaving everything else as default:
 
 - **Kind** - AWS credentials
-- **ID** - `aws-credentials`
+- **ID** - aws-credentials, for example
 - **Access Key ID** - Access Key ID from earlier
 - **Secret Access Key** - Secret Access Key from earlier 
 
@@ -86,7 +86,7 @@ Click **OK** to save.
 
 Go to the **Jenkins Dashboard**, then **New Item**.
 
-Give your pipeline a name and select the pipeline item, then **OK**.
+Give your pipeline a name and select the **Pipeline** item, then **OK**.
 
 ![Add Pipeline](add-pipeline.png)
 
