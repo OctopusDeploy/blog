@@ -4,9 +4,9 @@ description: Set up a multi-environment deployment with Jenkins and Octopus Depl
 author: terence.wong@octopus.com
 visibility: private
 published: 2999-01-01
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: multienvironmentdeploymentsjenkinspushtooctopus-2022.png
+bannerImage: multienvironmentdeploymentsjenkinspushtooctopus-2022.png
+bannerImageAlt: A rocket flying from planet Jenkins to a planet labeled Prod, with planets labeled Test, and Dev next on its path. 
 isFeatured: false
 tags:
  - DevOps
