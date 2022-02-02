@@ -55,7 +55,7 @@ You should only make changes with careful consideration and, if possible, a chat
 
 ## Avoid building on your controller
 
-Jenkins offers a built-in node so you can run tests as soon as possible to see if it's the solution for you. Builds that run on a single instance, however, have access to your operating system's file system. For this reason, Jenkins recommends you have jobs run on ‘agents' instead (this happens in a scalable setup, which we talked about in our last post, [Using dynamic build agents to automate scaling in Jenkins](https://octopus.com/blog/jenkins-dynamic-build-agents)).
+Jenkins offers a built-in node so you can run tests as soon as possible to see if it's the solution for you. Builds that run on a single instance, however, have access to your operating system's file system. For this reason, Jenkins recommends you have jobs run on 'agents' instead (this happens in a scalable setup, which we talked about in our last post, [Using dynamic build agents to automate scaling in Jenkins](https://octopus.com/blog/jenkins-dynamic-build-agents)).
 
 Agents are virtual Jenkins instances that run jobs instead of your controller. When using agents, you can prevent your controller from running builds to limit access to files that can do harm.
 
