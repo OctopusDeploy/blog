@@ -15,9 +15,7 @@ tags:
  - AWS
 ---
 
-In this post, you learn how to set up an Elastic Kubernetes Service (EKS) cluster in Amazon Web Services (AWS). 
-
-EKS is a managed container service to run and scale Kubernetes in the cloud or on-premises. 
+In this post, you learn how to set up an Elastic Kubernetes Service (EKS) cluster in Amazon Web Services (AWS). EKS is a managed container service to run and scale Kubernetes in the cloud or on-premises. Kubernetes provides a scalable, distributed way to manage workloads. It does this by containerizing applications. Containers ensure replicability across different environments and cloud infrastructures. The clusters you create in this blog post will be used in later blogs to set up web applications and be part of workflows. 
 
 ## Prerequisites
 
@@ -36,7 +34,7 @@ Before this though, you need to set up some access keys and user accounts.
 
 ## Preliminary setup
 
-Follow these steps to set up your access keys and user accounts:
+In AWS, it is necessary to configure access policies. These policies determine what kind of user can access the cluster. Typically, it is useful to follow the principle of least privilege. This means that users are only given the minimum set of privileges required to carry out their role. This supports the security of the cloud infrastructure by not granting users more permissions than they need. Follow these steps to set up your access keys and user accounts:
 
 - Go to **AWS Console**, then **IAM**, then **Users**, and **Add Users**
 - Give the user a name, and tick **Access Key - Programmatic access**
