@@ -1,6 +1,6 @@
 ---
-title: Create an EKS cluster in AWS
-description: Create an EKS cluster in AWS
+title: Creating an EKS cluster in AWS
+description: As part of our series about Continuous Integration and build servers, learn how to create an EKS cluster in AWS.
 author: terence.wong@octopus.com
 visibility: private
 published: 2022-02-14-1400
@@ -10,46 +10,58 @@ bannerImageAlt: EKS hexagons falling into an AWS-styled cube
 isFeatured: false
 tags:
  - DevOps
+ - CI Series
+ - Continuous Integration
  - AWS
 ---
 
-This blog will set up an Elastic Kubernetes Service (EKS) cluster in Amazon Web Services (AWS). EKS is a managed container service to run and scale Kubernetes in the cloud or on-premises. 
+In this post, you learn how to set up an Elastic Kubernetes Service (EKS) cluster in Amazon Web Services (AWS). 
+
+EKS is a managed container service to run and scale Kubernetes in the cloud or on-premises. 
+
+## Prerequisites
 
 You will need:
 
-- AWS account
+- An AWS account
 - A terminal with [kubectl](https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html), [eksctl](https://docs.aws.amazon.com/eks/latest/userguide/eksctl.html) and [aws-iam-authenticator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html) installed
-- IAM Permissions
+- IAM permissions
 
-There are two ways to set up a cluster in EKS, the command-line interface (CLI) or the console. Before doing these, we need to set up some access keys and user accounts.
+There are two ways to set up a cluster in EKS: 
+
+- The command-line interface (CLI)
+- The console
+
+Before this though, you need to set up some access keys and user accounts.
 
 ## Preliminary setup
 
-**AWS Console &rarr; IAM &rarr; Users &rarr; Add Users**
+Follow these steps to set up your access keys and user accounts:
 
-Give the user a name, and tick **Access Key - Programmatic access**
-
-Click **Next**
+- Go to **AWS Console**, then **IAM**, then **Users**, and **Add Users**
+- Give the user a name, and tick **Access Key - Programmatic access**
+- Click **Next**
 
 ![New user](new-user.png)
 
-Select **Attach existing policies directly &rarr; Create policy**
+- Select **Attach existing policies directly**, then **Create policy**
 
-The IAM policy will allow you to create an EKS cluster from the command line. [The actions in this policy are the minimum policies required by eksctl](https://eksctl.io/usage/minimum-iam-policies/).
+The IAM policy allows you to create an EKS cluster from the command-line. [The actions in this policy are the minimum policies required by eksctl](https://eksctl.io/usage/minimum-iam-policies/).
 
-Click **Next** and give the policy a name. Click **Add Policy**
+- Click **Next** and give the policy a name
+- Click **Add Policy**
 
-Amazon will then show you the **Access Key ID** and **Secret Access Key**. Download this file for reference later.
+Amazon then shows you the **Access Key ID** and **Secret Access Key**. Download this file for reference later.
 
 ## Command-line interface
 
-Log in to the AWS command line using `aws login`
+Log in to the AWS command-line using `aws login`.
 
-Run `aws configure`
+Run `aws configure`.
 
 Enter your Access Key ID and Secret Access Key earlier. Set the zone to us-east-2 and accept the defaults.
 
-Now we can create our cluster.
+Now you can create your cluster.
 
 ```
 eksctl create cluster \
@@ -95,35 +107,45 @@ kube-system   coredns-85f9f6cd8b-c4jfk   1/1     Running   0          25h   192.
     
 ## Console interface
 
-You can also create a cluster from the AWS console. Go to **EKS &rarr; Add Cluster &rarr; Create**
+You can also create a cluster from the AWS console. 
+
+Go to **EKS**, then **Add Cluster**, then **Create**.
 
 ![EKS Console](eks-console.png)
 
-- **Name:** Give your cluster a name
-- **Kubernetes Version:**- Select the latest Kubernetes version
-- **Cluster Service Role:** Re-use the service role created from the CLI cluster
+- **Name:** give your cluster a name
+- **Kubernetes Version:** - select the latest Kubernetes version
+- **Cluster Service Role:** - re-use the service role created from the CLI cluster
 
 Accept all other defaults to create your cluster.
 
 ## Check Clusters
 
-Check the state of your two clusters by going to **EKS &rarr; Clusters**
+Check the state of your two clusters by going to **EKS**, then **Clusters**.
 
 ![EKS Two Clusters](eks-two-clusters.png)
 
-Now that your clusters are live, you can perform operations on them, such as deploying an application or configuring resources. For this blog, we will delete them.
+Now that your clusters are live, you can perform operations on them, such as deploying an application or configuring resources. For this post, we'll delete them.
 
 ## Deleting the clusters
 
 You can delete a cluster using the CLI by running this command. Replace the cluster name and region with your values. 
-    eksctl delete cluster --name my-cluster --region us-east-2
 
-You can delete a cluster using the console by ticking the cluster, clicking delete, and typing the name of the cluster to delete. You can only delete a resource the same way you created it. This means clusters created through the CLI can only be deleted through the CLI. Clusters created through the console can only be deleted through the console.
+`eksctl delete cluster --name my-cluster --region us-east-2`
+
+You can delete a cluster using the console by ticking the cluster, clicking delete, and typing the name of the cluster to delete. 
+
+You can only delete a resource the same way you created it. This means clusters created through the CLI can only be deleted through the CLI. Clusters created through the console can only be deleted through the console.
 
 
 ![Delete cluster](delete-cluster.png)
 
-In this blog, you have set up IAM permissions in AWS. You have used the CLI and console to create, inspect and delete an EKS cluster. EKS on AWS allows you to provision Kubernetes services in the cloud to deploy and scale workloads.
+## Conclusion
 
-Happy Deployments!
+In this post, you set up IAM permissions in AWS. You used the CLI and console to create, inspect, and delete an EKS cluster. 
 
+EKS on AWS allows you to provision Kubernetes services in the cloud to deploy and scale workloads.
+
+!include <q1-2022-newsletter-cta>
+
+Happy deployments!
