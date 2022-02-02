@@ -14,7 +14,7 @@ tags:
  - Getting Started
 ---
 
-My name is [Sarah Lean](https://twitter.com/Techielass) and I recently joined Octopus Deploy as Senior Solutions Architect in the Community team. 
+My name is Sarah Lean and I recently joined Octopus Deploy as Senior Solutions Architect in the Community team. 
 
 This post is part 1 of a series about my learning journey with Octopus. 
 
@@ -28,11 +28,11 @@ Deploying software and infrastructure in your environment is something all softw
 
 Octopus Deploy is a tool that helps customers accelerate repeatable, reliable, and traceable deployments across cloud and on-premises infrastructure. 
 
-Being able to handle software and infrastructure deployment, Octopus is a great tool for developers, DevOps engineers, and system administrators. 
+Being able to handle software and infrastructure deployment, Octopus is a great tool for developers, DevOps engineers, DevOps managers, and system administrators. 
 
 ## Getting to know Octopus Deploy
 
-A system administrator at heart, I'm always keen to learn how a product runs. Octopus Deploy allows you to set up your instance in several ways:
+As a system administrator at heart, I'm always keen to learn how a product runs. Octopus Deploy allows you to set up your instance in several ways:
 
 - [Octopus Cloud](https://octopus.com/start/cloud), a cloud-hosted service that Octopus manages 
 - [On-premises installation](https://octopus.com/start/server-trial), which you install on a Windows server 
@@ -52,7 +52,7 @@ I spent time running Octopus Deploy in a [highly available architecture](https:/
 
 I had a few false starts because I assumed I knew what to do and didn't read [the documentation](https://octopus.com/docs/administration/high-availability).
 
-A benefit of working with virtual machines is you can delete them and start again when you make a mistake while learning a new product or concept. And I took advantage of that functionality!
+Thankfully, when working with virtual machines you can delete them and start again when you make a mistake while learning a new product or concept. And I took advantage of that functionality!
 
 My false starts taught me how important the Master Key is to your Octopus Deploy environment, and [how to recover](https://octopus.com/docs/administration/managing-infrastructure/lost-master-key) without a backup of your Key.
 
