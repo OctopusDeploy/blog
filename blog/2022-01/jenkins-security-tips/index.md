@@ -45,7 +45,7 @@ You can install Jenkins on most major operating systems and containers, so keep 
 
 Jenkins enables most of its security features on install to make things as secure as possible. Given the many ways you can use Jenkins, though, there's no 'one size fits all' approach for how best to configure or lock down your instance.
 
-So while we can't offer advice on what's best for your team (with an exception we'll explore next), usefully, Jenkins provides detailed documentation on the important features you should look at. See the [Securing Jenkins page](https://www.jenkins.io/doc/book/security/) for help with security related to:
+So while we can't offer advice on what's best for your team (with an exception we'll explore next), Jenkins provides detailed documentation on the important features you should look at. See the [Securing Jenkins page](https://www.jenkins.io/doc/book/security/) for help with security related to:
 
 - Basic setup
 - Build behavior
