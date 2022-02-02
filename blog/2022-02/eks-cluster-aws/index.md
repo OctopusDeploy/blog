@@ -126,7 +126,7 @@ Go to **EKS**, then **Add Cluster**, then **Create**.
 
 Accept all other defaults to create your cluster.
 
-## Check clusters
+## Checking clusters
 
 Check the state of your two clusters by going to **EKS**, then **Clusters**.
 
