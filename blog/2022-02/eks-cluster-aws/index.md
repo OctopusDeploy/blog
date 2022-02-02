@@ -3,10 +3,10 @@ title: Create an EKS cluster in AWS
 description: Create an EKS cluster in AWS
 author: terence.wong@octopus.com
 visibility: private
-published: 2999-01-01
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+published: 2022-02-14-1400
+metaImage: blogimage-deploymentscreatingaeksclusterinaws-2022.png
+bannerImage: blogimage-deploymentscreatingaeksclusterinaws-2022.png
+bannerImageAlt: EKS hexagons falling into an AWS-styled cube
 isFeatured: false
 tags:
  - DevOps
