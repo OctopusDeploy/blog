@@ -127,7 +127,7 @@ The [Credentials Binding plugin](https://plugins.jenkins.io/credentials-binding/
 
 This plugin lets you store and reuse all types of authentication methods, such as:
 
-- Username and passwords
+- Usernames and passwords
 - SSH usernames and private keys
 - Secret files
 - Secret text
