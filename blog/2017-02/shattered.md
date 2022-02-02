@@ -157,3 +157,4 @@ This is a good time to give a shout out to the [new certificates feature](https:
 
 ![Certificates feature](https://i.octopus.com/blog/201702-certificate_list-BR7P.png "width=500")
  
+For updates, please subscribe to our [newsletter](#newsletter).

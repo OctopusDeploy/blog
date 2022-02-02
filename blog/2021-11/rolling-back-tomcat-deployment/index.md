@@ -20,6 +20,7 @@ In this post, I discuss different rollback strategies when using an Apache Tomca
 You can also read about:
 
 - [Rollback strategies that don’t require advanced deployment patterns](https://octopus.com/blog/rollback-strategies)
+- [General and Kubernetes-specific rollback strategies using Octopus Deploy](https://octopus.com/blog/rolling-back-kubernetes-deployment)
 :::
 
 
@@ -206,12 +207,10 @@ To assist in Tomcat maintenance, our team developed **[Undeploy Tomcat Applicati
 
 In this post I walked through several ways you can roll back an application deployment to an Apache Tomcat web server.  I hope one of these methods will help you in your DevOps journey.  
 
-## Register for the webinar: Rollback strategies with Octopus Deploy
+## Watch the webinar: Rollback strategies with Octopus Deploy
 
-A robust rollback strategy is key to any deployment strategy. In this webinar, we’ll cover best practices for IIS deployments, Tomcat, and full stack applications with a database. We’ll also discuss how to get the rollback strategy right for your situation. 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/F_V7r80aDbo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-We're running 3 sessions of the webinar over 2 days, Wed 3 Nov – Thurs 4 Nov, 2021.
-
-<span><a class="btn btn-success" href="/events/rollback-strategies-with-octopus-deploy">Register now</a></span>
+We host webinars regularly. See the [webinars page](https://octopus.com/events) for details about upcoming events, and live stream recordings.
 
 Happy deployments!
