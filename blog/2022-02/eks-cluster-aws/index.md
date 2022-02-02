@@ -13,16 +13,21 @@ tags:
  - CI Series
  - Continuous Integration
  - AWS
+ - Kubernetes
 ---
 
-In this post, you learn how to set up an Elastic Kubernetes Service (EKS) cluster in Amazon Web Services (AWS). EKS is a managed container service to run and scale Kubernetes in the cloud or on-premises. Kubernetes provides a scalable, distributed way to manage workloads. It does this by containerizing applications. Containers ensure replicability across different environments and cloud infrastructures. The clusters you create in this blog post will be used in later blogs to set up web applications and be part of workflows. 
+In this post, you learn how to set up an Elastic Kubernetes Service (EKS) cluster in Amazon Web Services (AWS). 
+
+EKS is a managed container service to run and scale Kubernetes in the cloud or on-premises. Kubernetes provides a scalable, distributed way to manage workloads. It does this by containerizing applications. Containers ensure replicability across different environments and cloud infrastructures. 
+
+The clusters you create in this post will be used in later posts in our [Continuous Integration series](https://octopus.com/blog/tag/CI%20Series), to set up web applications and as part of workflows. 
 
 ## Prerequisites
 
-You will need:
+To follow along with this post, you need:
 
 - An AWS account
-- A terminal with [kubectl](https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html), [eksctl](https://docs.aws.amazon.com/eks/latest/userguide/eksctl.html) and [aws-iam-authenticator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html) installed
+- A terminal with [kubectl](https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html), [eksctl](https://docs.aws.amazon.com/eks/latest/userguide/eksctl.html), and [aws-iam-authenticator](https://docs.aws.amazon.com/eks/latest/userguide/install-aws-iam-authenticator.html) installed
 - IAM permissions
 
 There are two ways to set up a cluster in EKS: 
@@ -34,7 +39,11 @@ Before this though, you need to set up some access keys and user accounts.
 
 ## Preliminary setup
 
-In AWS, it is necessary to configure access policies. These policies determine what kind of user can access the cluster. Typically, it is useful to follow the principle of least privilege. This means that users are only given the minimum set of privileges required to carry out their role. This supports the security of the cloud infrastructure by not granting users more permissions than they need. Follow these steps to set up your access keys and user accounts:
+In AWS, you need to configure access policies. These policies determine what kind of user can access the cluster. 
+
+Typically, it's useful to follow the principle of least privilege. This means you give users the minimum set of privileges required to carry out their role. This supports the security of the cloud infrastructure by not granting users more permissions than they need. 
+
+Follow these steps to set up your access keys and user accounts:
 
 - Go to **AWS Console**, then **IAM**, then **Users**, and **Add Users**
 - Give the user a name, and tick **Access Key - Programmatic access**
@@ -57,7 +66,7 @@ Log in to the AWS command-line using `aws login`.
 
 Run `aws configure`.
 
-Enter your Access Key ID and Secret Access Key earlier. Set the zone to us-east-2 and accept the defaults.
+Enter your Access Key ID and Secret Access Key earlier. Set the zone to `us-east-2` and accept the defaults.
 
 Now you can create your cluster.
 
@@ -68,7 +77,7 @@ eksctl create cluster \
 --fargate
 ```
 
-AWS Fargate allows you to run containers without having to manage servers or clusters of Amazon EC2 instances. The profile gives a simple way to spin up a test cluster. Test the cluster configuration:
+AWS Fargate lets you run containers without managing servers or clusters of Amazon EC2 instances. The profile provides a simple way to spin up a test cluster. Test the cluster configuration:
 
     kubectl get svc
     
@@ -111,19 +120,19 @@ Go to **EKS**, then **Add Cluster**, then **Create**.
 
 ![EKS Console](eks-console.png)
 
-- **Name:** give your cluster a name
-- **Kubernetes Version:** - select the latest Kubernetes version
-- **Cluster Service Role:** - re-use the service role created from the CLI cluster
+- **Name**: give your cluster a name
+- **Kubernetes Version**: select the latest Kubernetes version
+- **Cluster Service Role**: re-use the service role created from the CLI cluster
 
 Accept all other defaults to create your cluster.
 
-## Check Clusters
+## Check clusters
 
 Check the state of your two clusters by going to **EKS**, then **Clusters**.
 
 ![EKS Two Clusters](eks-two-clusters.png)
 
-Now that your clusters are live, you can perform operations on them, such as deploying an application or configuring resources. For this post, we'll delete them.
+Now that your clusters are live, you can perform operations on them, such as deploying an application or configuring resources. For this example, we'll delete them.
 
 ## Deleting the clusters
 
@@ -131,7 +140,7 @@ You can delete a cluster using the CLI by running this command. Replace the clus
 
 `eksctl delete cluster --name my-cluster --region us-east-2`
 
-You can delete a cluster using the console by ticking the cluster, clicking delete, and typing the name of the cluster to delete. 
+You can delete a cluster using the console by selecting the cluster, clicking **Delete**, and typing the name of the cluster to delete. 
 
 You can only delete a resource the same way you created it. This means clusters created through the CLI can only be deleted through the CLI. Clusters created through the console can only be deleted through the console.
 
