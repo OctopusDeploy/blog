@@ -15,7 +15,13 @@ tags:
  - Jenkins
 ---
 
-In this post, you build a docker image in a Jenkinsfile workflow and publish the image to Amazon Elastic Container Registry (ECR). Jenkins will trigger a deployment to Amazon Elastic Kubernetes Service (EKS). Jenkins is a build server that can automatically build your code repository. Jenkins does this through a Jenkinsfile, a configuration file that specifies the steps involved in building, pushing and deploying your application. Amazon EKS is a managed cloud service that provides kubernetes clusters that handle workload applications. The kubernetes clusters also take in a configuration file, specified by the YAML syntax. The power of this workflow is that configuration files can be specified for all stages of the process and be reused with slight modifications for a different environment.
+In this post, you build a docker image in a Jenkinsfile workflow and publish the image to Amazon Elastic Container Registry (ECR). 
+
+Jenkins will trigger a deployment to Amazon Elastic Kubernetes Service (EKS). Jenkins is a build server that can automatically builds your code repository. Jenkins does this through a Jenkinsfile, a configuration file that specifies the steps in building, pushing, and deploying your application. 
+
+Amazon EKS is a managed cloud service that provides Kubernetes clusters which handle workload applications. The Kubernetes clusters also take in a configuration file, specified by the YAML syntax. 
+
+The power of this workflow is that configuration files can be specified for all stages of the process and be reused with slight modifications for a different environment.
 
 ## Prerequisites
 
@@ -27,9 +33,9 @@ To follow along, you need:
 
 You need to extend the repository to include a deployment YAML file for this example. Jenkins will use this deployment file to deploy to EKS. Add this file to the root level of your repository.
 
-This post uses the [Octopus Underwater app repository](https://github.com/OctopusSamples/octopus-underwater-app). You can fork the repository and use the main branch to follow along. 
+This post uses the [Octopus underwater app repository](https://github.com/OctopusSamples/octopus-underwater-app). You can fork the repository and use the main branch to follow along. 
 
-The jenkins-deploy branch contains the template files needed to complete the steps in this post. You'll have to replace some values with your own. I've included my values in this post as a reference.
+The jenkins-deploy branch contains the template files you need to complete the steps in this post. You have to replace some values with your own, but I've included my values in this post as a reference.
 
 Because you're working with Kubernetes, the agent needs to be configured with a config file. [Amazon's documentation](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/eks/update-kubeconfig.html) shows you how to configure your agent. 
 
@@ -53,7 +59,7 @@ You'll see your repository under **Amazon ECR**, then **Repositories**. Make a n
 
 ### AWS cluster setup
 
-[Set up the cluster in AWS using this guide](https://github.com/OctopusDeploy/blog/blob/2022-q1/blog/2022-q1/eks-cluster-aws/index.md)
+Set up the cluster in AWS using the guide in our previous post, [Creating an ESK cluster in AWS](https://github.com/OctopusDeploy/blog/blob/2022-q1/blog/2022-q1/eks-cluster-aws/index.md).
 
 Create a file named `deployment.yml` in the root level of the repository.
 
@@ -139,9 +145,9 @@ pipeline {
 ```
 Jenkins will clone, build, test, push, and deploy the image to an EKS cluster. Jenkins does this through the deployment file created earlier.
 
-## Jenkins as a CD tool
+## Can Jenkins be used as a CD tool?
 
-Jenkins is a continuous integration tool that focuses on building and pushing images to a remote repository. Using it as a continuous deployment (CD) tool is possible, however, it can't track a release through various deployment stages. 
+Jenkins is a continuous integration (CI) tool that focuses on building and pushing images to a remote repository. Using it as a continuous deployment (CD) tool is possible, however, it can't track a release through various deployment stages. 
 
 A  continuous deployment tool like Octopus Deploy can help you manage releases when your deployments are complex. Octopus enables the benefits of a dedicated continuous deployment tool. If you're not already using Octopus Deploy, you can [sign up for a free trial](https://octopus.com/start).
 
@@ -157,7 +163,7 @@ Go to the IP address http://127.0.0.1:28015/ in the browser to view your web app
 
 ## Conclusion
 
-In this post, you deployed a web application to EKS with Jenkins. You have seen how Jenkins is able to configure the steps required to deploy your code repository. Amazon EKS provided the kubernetes infrastructure to handle the web application load. All steps in this process were carried out by specifying configuration files. These configuration files provide reusability across different environments.
+In this post, you deployed a web application to EKS with Jenkins. This example demonstrated how Jenkins is able to configure the steps you need to deploy your code repository. Amazon EKS provided the Kubernetes infrastructure to handle the web application load. All steps in this process were carried out by specifying configuration files. These configuration files provide reusability across different environments.
 
 !include <q1-2022-newsletter-cta>
 
