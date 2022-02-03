@@ -16,56 +16,57 @@ tags:
 
 <!-- see https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags -->
 
+
 ## What is Shadow IT?
 
-The IT department was once tasked with the oversight and management of all IT resources in an organization. This is no longer achievable because end users can create and use IT resources that the organization knows nothing about. This concept is known as shadow IT. 
+The IT department oversees and manages all IT resources in an organization. Employees can create and use IT resources that the organization does not know about. This concept is known as shadow IT. 
 
-Shadow IT is the use and management of IT technologies that are outside the control of an organization. In 2017, Gartner predicted that the IT department would make fewer technology decisions, and individual business units would begin to select technology for their teams, amounting to 38% of technology purchases[1]. In  2019, Everest Group predicted that upwards of 50% of technology spend in organizations is in the shadows[2]. With the rise of cloud solutions, this number is set to rise. 
+Shadow IT is the use and management of IT technologies outside an organization's control. In 2017, Gartner predicted that the IT department would make fewer technology decisions, and individual business units would begin to select technology for their teams, amounting to 38% of technology purchases[1]. In 2019, Everest Group predicted that more than 50% of technology spending in organizations was due to shadow IT[2]. The rise of cloud technology compounds this problem. It is easier than ever for users to use unapproved IT resources.
 
 How should IT departments respond to this? Is it realistic to track 100% of all IT purchases? Or should there be a more managed approach with accepted risk? What tools are they to help with this? This blog aims to explore these questions.
 
 ## Costs to the business
 
-As more and more IT resources and infrastructure migrate to shadow IT, the risks of security breaches increase as they lie outside the control of IT departments. A study by EMC estimates that data loss and downtime contribute to $1.7 trillion each year due to shadow IT security breaches[3]. In IBM's 2021 Cost of Data Breach report, the average cost of a data breach rose from US$3.86 million to US$4.24million from 2020 to 2021[4].
+More and more IT resources and infrastructure are migrating to shadow IT. The risks of security breaches are increasing as they lie outside the control of IT departments. A study by EMC estimates that data loss and downtime contribute to $1.7 trillion each year due to shadow IT security breaches[3]. In IBM's 2021 Cost of Data Breach Report, the average cost of a data breach rose from US$3.86 million to US$4.24million from 2020 to 2021[4].
 
 ![Average total cost of a data breach - IBM Cost of a Data Breach Report 2021](ibm.png "width=500")
 
-There are also compliance concerns for businesses in highly regulated industries. Many companies, including the U.S army banned US soldiers from using TikTok over GDPR concerns[5]. For industries like defence or cybersecurity, compliance poses a management risk that shadow IT exacerbates. What cannot be tracked cannot be forced to comply.
+There are also compliance concerns for businesses in highly regulated industries. Many organizations, including the U.S Army, banned US soldiers from using TikTok over GDPR concerns[5]. Compliance poses a management risk that shadow IT exacerbates. Companies cannot ensure compliance on what they cannot track.
 
-Shadow IT affects operational costs. When shadow IT is left unmanaged, services become decentralized as each business unit is procuring IT for their own needs. One business unit may prefer one product while another prefers its competitor. This leads to underutilization of a prescribed centralized service. Shadow IT can also lead to unpredictible operation costs of cloud infrastructure. Think of all the unmonitored VM's that are spun up for a single purpose, are always running, but never get teared down. 
+Shadow IT affects operational costs. When shadow IT is left unmanaged, services become decentralized as each business unit procures IT for its own needs. One business unit may prefer one product while another prefers its competitor. Decentralization leads to the underutilization of a prescribed centralized service. Shadow IT can also lead to unpredictable operation costs of cloud infrastructure. Think of all the unmonitored VM's created for a single purpose, always running but never getting torn down. 
 
 The costs of shadow IT boil down to a growing unknown resource that has operational and security risks.
 
-## Why do employees use Shadow IT?
+## Why do employees use shadow IT?
 
-End users are any employees of an organization that require an IT resource to do their job. The main motivation of end users to employ shadow IT is convenience. IT policies can sometimes be rigorous. Often it is easier and faster to procure an IT solution themselves than go through the process with IT. End users could also prefer certain solutions over a prescribed solution which leads to more shadow IT. Rather than dealing with support tickets an end user may choose to find an alternate path. 
+End users are any employees of an organization that require an IT resource to do their job. The primary motivation of end-users to employ shadow IT is convenience. IT policies can sometimes be rigorous. Often it is easier and faster to procure an IT solution themselves than go through the process with IT. End users could also prefer specific solutions over a prescribed solution, leading to more shadow IT. Rather than dealing with support tickets, an end-user may find an alternate solution to the problem that introduces shadow IT. 
 
-End users deviating from the prescribed IT solutions demonstrate the risks of shadow IT, however the end user is not often concerned with those risks. They want to get their job done in a way that is streamlined and efficient. At Octopus Deploy, we believe runbooks addresses the need for a streamlined experience, while maintaining the governance required to manage the IT resources.
+End users are the cause of shadow IT, but they are generally not concerned with the consequences. They want to get their job done in a streamlined and efficient way. Self-service runbooks can address this by ensuring a streamlined experience with governance.
 
 [Image about the need for governance vs need to ease-of use and runbooks]
 
 
 ## Risk mitigation
 
-The unknown nature of shadow IT increases the risk profile of an organization. Most likely, shadow IT has already invaded the majority of businesses, making the elimination of shadow IT entirely not possible. Gartner suggest three risk mitigation strategies to address this[6].
+The unknown nature of shadow IT increases the risk profile of an organization. Shadow IT has already infected businesses and will only grow. It is a matter of managing the risk. Gartner suggests three risk mitigation strategies to address this[6].
 
 > - Use Data Security Governance to Balance Local business unit IT (BUIT) Growth Objectives Against the Risk of Data Breaches and Financial Liabilities
-> - Deploy Shadow IT Discovery and Data Protection Tools to Enable the Safe Selection, Deployment and Notification of Unauthorized Cloud Services
+> - Deploy Shadow IT Discovery and Data Protection Tools to Enable the Safe Selection, Deployment, and Notification of Unauthorized Cloud Services
 > - Use Data Security Governance to Develop and Orchestrate Consistent Security Policies Across All BUIT for Each Prioritized Dataset
 
-From a business perspective, governance, discovery and protection are important to managing shadow IT. From an end user perspective, the IT solutions that are prescribed should be streamlined and minimise time spent in support. Self-service runbooks are able to address this.
+Shadow IT requires governance, discovery, and protection. The solution must be streamlined and minimize time spent in support. Self-service runbooks can address this.
 
-## What do we mean by self-service runbooks?
+## What is a self-service runbook?
 
-A runbook is a way to execute a commonly repeated task. The runbook can be saved, reused or modified later by someone else. The typical runbook workflow for a user would be to raise a ticket with support who then spent time understanding and actioning the ticket to execute the desired task. The task could be to refresh the data in a test database.
+A runbook is a reusable way to execute a commonly repeated task. The task could be to refresh the data in a test database. A user raises a ticket with support, who then spends time understanding and actioning the ticket to perform the desired task. 
 
-A self-service runbook enables the user to execute the task themselves. Instead of waiting on support to refresh a data base, a self-service runbook with the required permissions can be supplied to the user who can run it whenever a database refresh is required. This can be extended to any number of use cases to tighten the feedback loop on operations tasks.
+A self-service runbook enables the user to execute the task themselves. A user can now run the runbook to refresh the database without support. Self-service runbooks can apply to other use cases to tighten the feedback loop on operations tasks.
 
-Imagine a self-service runbook for creating a new AWS account. These accounts have configurable parameters to set access levels, VPC settings, and other IAM considerations. If 50 different users were to try and set up an account, 50 slightly different types of users could be created. This immediately introduces shadow IT into the organization. If you apply this to creating VMs, container registries or other PaaS infrastructure it is easy to see how shadow IT grows.
+Imagine a self-service runbook for creating a new AWS account. Users need to set access levels, VPC settings, and other IAM considerations. If 50 different users were to try and set up an account, this could result in 50 different types of users. Unmanaged creation of user accounts introduces shadow IT into the organization. If you apply this to creating VMs, container registries or other PaaS infrastructure, it is easy to see how shadow IT grows.
 
-Using self-service runbooks can restrict this process and make IT resources more standardized. This runbook can be configured to set the resource up with the appropriate access and monitoring controls required to manage the resource.
+Using self-service runbooks can restrict this process and make IT resources more standardized. Operations can use the runbook to enable monitoring and security on the IT resource
 
-Through not an exhaustive solution, runbooks are able to improve governance of IT resources and improve ease-of-use for end users. According to MRC on managing shadow IT risk[7]:
+Though runbooks don't solve every aspect of shadow IT, runbooks can improve IT resource governance and ease of use for end-users. According to MRC on managing shadow IT risk[7]:
 
 > The goal of this step is controlled, self-service solutions. Any software you provide must meet two important criteria:
 > - Self-service: Users must use the solution without bothering IT.
@@ -73,11 +74,11 @@ Through not an exhaustive solution, runbooks are able to improve governance of I
 > When you deliver controlled, self-service options, your business gets the best of both worlds. Users get the solutions they need quickly, and IT can still secure the data and applications."
 
 
-Self-service runbooks allows operations teams to ensure standardization into the processes that end users are running. Streamlining a process from multiple different ways into one standardized way that works repeatedly can provide a big benefit to a business.
+Self-service runbooks allow operations teams to enable monitoring, provide security. They enable the user to self-serve their problems without support.
 
 ## Conclusion
 
-Shadow IT is any IT resource that lies outside the control of the organization. It is a problem with several risks and high costs to businesses. To manage shadow IT, busineses need more governance, discovery and protection of IT assets. End users want more streamlined processes and the ability to solve problems without too many support tickets. Runbooks are a way to solve this issue by providing a self-serviced way to run commonly used tasks. Applying this concept to a problem like setting up cloud accounts provides standardization for IT assets
+Shadow IT is any IT resource that lies outside the organization's control. It is a problem with several risks and high costs to businesses. Businesses need more governance, discovery, and protection of IT assets. End users want more streamlined processes and solve problems without too many support tickets. Runbooks can solve this issue by providing a self-service way to run commonly used tasks. Applying this concept to a problem like setting up cloud accounts provides standardization for IT assets
 
 ## Learn more
 
