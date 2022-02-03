@@ -4,9 +4,9 @@ description: Jenkins has over 1800 community-created plugins to help with contin
 author: andrew.corrigan@octopus.com
 visibility: private
 published: 2022-02-23-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-jenkinsconfigurationtop10plugins-2022.png
+bannerImage: blogimage-jenkinsconfigurationtop10plugins-2022.png
+bannerImageAlt: Person working at a computer with plugs connecting to it. When they connect, little stars appear around the connection.
 isFeatured: false
 tags:
   - DevOps
