@@ -15,7 +15,7 @@ tags:
  - Jenkins
 ---
 
-In this post, you build a docker image in a Jenkinsfile workflow and publish the image to Amazon Elastic Container Registry (ECR). Jenkins will trigger a deployment to Amazon Elastic Kubernetes Service (EKS). 
+In this post, you build a docker image in a Jenkinsfile workflow and publish the image to Amazon Elastic Container Registry (ECR). Jenkins will trigger a deployment to Amazon Elastic Kubernetes Service (EKS). Jenkins is a build server that can automatically build your code repository. Jenkins does this through a Jenkinsfile, a configuration file that specifies the steps involved in building, pushing and deploying your application. Amazon EKS is a managed cloud service that provides kubernetes clusters that handle workload applications. The kubernetes clusters also take in a configuration file, specified by the YAML syntax. The power of this workflow is that configuration files can be specified for all stages of the process and be reused with slight modifications for a different environment.
 
 ## Prerequisites
 
@@ -157,7 +157,7 @@ Go to the IP address http://127.0.0.1:28015/ in the browser to view your web app
 
 ## Conclusion
 
-In this post, you deployed a web application to EKS with Jenkins.
+In this post, you deployed a web application to EKS with Jenkins. You have seen how Jenkins is able to configure the steps required to deploy your code repository. Amazon EKS provided the kubernetes infrastructure to handle the web application load. All steps in this process were carried out by specifying configuration files. These configuration files provide reusability across different environments.
 
 !include <q1-2022-newsletter-cta>
 
