@@ -153,6 +153,8 @@ A  continuous deployment tool like Octopus Deploy can help you manage releases w
 
 ![Jenkins Success](jenkins-success.png)
 
+## Viewing the web application
+
 You need to port forward locally to inspect the service. Use this command to inspect the web application. The port 28015 is chosen based on the example in the Kubernetes documentation:
 
     kubectl port-forward deployment/underwater-app-jenkins  28015:80
