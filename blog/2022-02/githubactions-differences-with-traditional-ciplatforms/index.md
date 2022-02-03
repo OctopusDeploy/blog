@@ -4,9 +4,9 @@ description: We explore how GitHub Actions, providing Continuous Integration as 
 author: andrew.corrigan@octopus.com
 visibility: private
 published: 2022-02-28-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-howgithubactionsidifferenttoatraditionalciserver-2022.png
+bannerImage: blogimage-howgithubactionsidifferenttoatraditionalciserver-2022.png
+bannerImageAlt: Two blue Octopus tentacles, one holding a red apple, and one holding a green apple.
 isFeatured: false
 tags:
   - DevOps
