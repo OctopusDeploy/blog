@@ -16,18 +16,22 @@ tags:
 
 <!-- see https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags -->
 
+In a traditional organization, the IT department oversees and manages all IT resources, however, with such easy access to cloud-based IT resources, many employees (who are impatient and have pressing deadlines) find it easier and quicker to spin up IT infrastructure themselves, rather than filling out request and waiting for the IT department to fullfil the request. When employees create and use their own IT resourcers that are invisible to the IT department, this is known as shadow IT.
 
-## What is Shadow IT?
+In 2017, Gartner predicted that the IT department would make fewer technology decisions, and individual business units would begin to select technology for their teams, amounting to 38% of technology purchases[1]. In 2019, Everest Group predicted that more than 50% of technology spending in organizations was due to shadow IT[2]. The rise of cloud technology compounds this problem, making it easier than ever for employees to use unapproved IT resources.
 
-The IT department oversees and manages all IT resources in an organization. Employees can create and use IT resources that the organization does not know about. This concept is known as shadow IT. 
+Shadow IT poses a number of new questions for oragnizations, for instance:
 
-Shadow IT is the use and management of IT technologies outside an organization's control. In 2017, Gartner predicted that the IT department would make fewer technology decisions, and individual business units would begin to select technology for their teams, amounting to 38% of technology purchases[1]. In 2019, Everest Group predicted that more than 50% of technology spending in organizations was due to shadow IT[2]. The rise of cloud technology compounds this problem. It is easier than ever for users to use unapproved IT resources.
+- How should IT departments respond to Shadow IT? 
+- Is it realistic, or even practical, to track 100% of all IT resources?
+- Should there be a more managed approach with accepted risk?
+- What tools can help manage Shadow IT? 
 
-How should IT departments respond to this? Is it realistic to track 100% of all IT purchases? Or should there be a more managed approach with accepted risk? What tools are they to help with this? This blog aims to explore these questions.
+This blog aims to explore these questions.
 
 ## Costs to the business
 
-More and more IT resources and infrastructure are migrating to shadow IT. The risks of security breaches are increasing as they lie outside the control of IT departments. A study by EMC estimates that data loss and downtime contribute to $1.7 trillion each year due to shadow IT security breaches[3]. In IBM's 2021 Cost of Data Breach Report, the average cost of a data breach rose from US$3.86 million to US$4.24million from 2020 to 2021[4].
+More and more teams are taking advantage of shadow IT. This increases the risks of security breaches as the resouces are outside the control of IT department. A study by EMC estimates that data loss and downtime contribute to $1.7 trillion each year due to shadow IT security breaches[3]. In IBM's 2021 Cost of Data Breach Report, the average cost of a data breach rose from US$3.86 million to US$4.24million from 2020 to 2021[4].
 
 ![Average total cost of a data breach - IBM Cost of a Data Breach Report 2021](ibm.png "width=500")
 
