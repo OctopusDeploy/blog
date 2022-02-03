@@ -38,7 +38,9 @@ The costs of shadow IT boil down to a growing unknown resource that has operatio
 
 ## Why do employees use Shadow IT?
 
-End users are any employees of an organization that require an IT resource to do their job. The main motivation of end users to employ shadow IT is convenience. IT policies can sometimes be rigorous. Often it is easier and faster to procure an IT solution themselves than go through the process with IT. End users could also prefer certain solutions over a prescribed solution which leads to more shadow IT. Rather than dealing with support tickets an end user may choose to find an alternate path. End users deviating from the prescribed IT solutions demonstrate the risks of shadow IT, however the end user is not often concerned with those risks. They want to get their job done in a way that is streamlined and efficient. At Octopus Deploy, we believe runbooks addresses the need for a streamlined experience, while maintaining the governance required to manage the IT resources.
+End users are any employees of an organization that require an IT resource to do their job. The main motivation of end users to employ shadow IT is convenience. IT policies can sometimes be rigorous. Often it is easier and faster to procure an IT solution themselves than go through the process with IT. End users could also prefer certain solutions over a prescribed solution which leads to more shadow IT. Rather than dealing with support tickets an end user may choose to find an alternate path. 
+
+End users deviating from the prescribed IT solutions demonstrate the risks of shadow IT, however the end user is not often concerned with those risks. They want to get their job done in a way that is streamlined and efficient. At Octopus Deploy, we believe runbooks addresses the need for a streamlined experience, while maintaining the governance required to manage the IT resources.
 
 [Image about the need for governance vs need to ease-of use and runbooks]
 
@@ -47,9 +49,9 @@ End users are any employees of an organization that require an IT resource to do
 
 The unknown nature of shadow IT increases the risk profile of an organization. Most likely, shadow IT has already invaded the majority of businesses, making the elimination of shadow IT entirely not possible. Gartner suggest three risk mitigation strategies to address this[6].
 
-- Use Data Security Governance to Balance Local business unit IT (BUIT) Growth Objectives Against the Risk of Data Breaches and Financial Liabilities
-- Deploy Shadow IT Discovery and Data Protection Tools to Enable the Safe Selection, Deployment and Notification of Unauthorized Cloud Services
-- Use Data Security Governance to Develop and Orchestrate Consistent Security Policies Across All BUIT for Each Prioritized Dataset
+> - Use Data Security Governance to Balance Local business unit IT (BUIT) Growth Objectives Against the Risk of Data Breaches and Financial Liabilities
+> - Deploy Shadow IT Discovery and Data Protection Tools to Enable the Safe Selection, Deployment and Notification of Unauthorized Cloud Services
+> - Use Data Security Governance to Develop and Orchestrate Consistent Security Policies Across All BUIT for Each Prioritized Dataset
 
 From a business perspective, governance, discovery and protection are important to managing shadow IT. From an end user perspective, the IT solutions that are prescribed should be streamlined and minimise time spent in support. Self-service runbooks are able to address this.
 
@@ -63,14 +65,13 @@ Imagine a self-service runbook for creating a new AWS account. These accounts ha
 
 Using self-service runbooks can restrict this process and make IT resources more standardized. This runbook can be configured to set the resource up with the appropriate access and monitoring controls required to manage the resource.
 
-Through not an exhausive solution, runbooks are able to improve governance of IT resources and improve ease-of-use for end users.
+Through not an exhaustive solution, runbooks are able to improve governance of IT resources and improve ease-of-use for end users. According to MRC on managing shadow IT risk[7]:
 
 > The goal of this step is controlled, self-service solutions. Any software you provide must meet two important criteria:
 > - Self-service: Users must use the solution without bothering IT.
 > - Control: IT must still be able to control data and user access.
 > When you deliver controlled, self-service options, your business gets the best of both worlds. Users get the solutions they need quickly, and IT can still secure the data and applications."
 
-[From MRC](https://www.mrc-productivity.com/blog/2016/07/6-ways-to-reduce-shadow-it-security-risks/)
 
 Self-service runbooks allows operations teams to ensure standardization into the processes that end users are running. Streamlining a process from multiple different ways into one standardized way that works repeatedly can provide a big benefit to a business.
 
@@ -86,6 +87,7 @@ Shadow IT is any IT resource that lies outside the control of the organization. 
 - [IBM](https://www.ibm.com/au-en/security/data-breach)
 - [TikTok](https://www.forbes.com/sites/carlieporterfield/2020/01/02/us-army-bans-soldiers-from-using-tiktok/?sh=5bb4b66deb9b)
 - [Risk management](https://www.gartner.com/smarterwithgartner/make-the-best-of-shadow-it)
+- [MRC](https://www.mrc-productivity.com/blog/2016/07/6-ways-to-reduce-shadow-it-security-risks/)
 
 !include <q2-2022-newsletter-cta>
 
