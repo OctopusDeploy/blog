@@ -31,28 +31,28 @@ This blog aims to explore these questions.
 
 ## Costs to the business
 
-More and more teams are taking advantage of shadow IT. This increases the risks of security breaches as the resouces are outside the control of IT department. A study by EMC estimates that data loss and downtime contribute to $1.7 trillion each year due to shadow IT security breaches[3]. In IBM's 2021 Cost of Data Breach Report, the average cost of a data breach rose from US$3.86 million to US$4.24million from 2020 to 2021[4].
+More and more teams are taking advantage of shadow IT. This increases the risks of security breaches as the resouces are outside the control of IT department. A study by EMC estimates that data loss and downtime contribute to $1.7 trillion each year due to shadow IT security breaches[3]. In IBM's 2021 [Cost of Data Breach Report](https://www.ibm.com/au-en/security/data-breach), the average cost of a data breach rose from US$3.86 million to US$4.24million from 2020 to 2021[4].
 
 ![Average total cost of a data breach - IBM Cost of a Data Breach Report 2021](ibm.png "width=500")
 
 There are also compliance concerns for businesses in highly regulated industries. Many organizations, including the U.S Army, banned US soldiers from using TikTok over GDPR concerns[5]. Compliance poses a management risk that shadow IT exacerbates. Companies cannot ensure compliance on what they cannot track.
 
-Shadow IT affects operational costs. When shadow IT is left unmanaged, services become decentralized as each business unit procures IT for its own needs. One business unit may prefer one product while another prefers its competitor. Decentralization leads to the underutilization of a prescribed centralized service. Shadow IT can also lead to unpredictable operation costs of cloud infrastructure. Think of all the unmonitored VM's created for a single purpose, always running but never getting torn down. 
+Shadow IT affects operational costs. When shadow IT is left unmanaged, services become decentralized as each business unit procures IT for its own needs. One business unit may prefer one product while another prefers its competitor. Shadow IT can also lead to unpredictable operation costs of cloud infrastructure. Think of all the unmonitored VM's created for a single purpose, always running but never getting torn down. By allowing business units to procure their own IT infrastructure, businesses lose then benefits of their buying power and abilty to reduce the cost of IT infrastructure.
 
-The costs of shadow IT boil down to a growing unknown resource that has operational and security risks.
+The true costs of shadow IT come down to a growing unknown resource that has operational and security risks.
 
 ## Why do employees use shadow IT?
 
-End users are any employees of an organization that require an IT resource to do their job. The primary motivation of end-users to employ shadow IT is convenience. IT policies can sometimes be rigorous. Often it is easier and faster to procure an IT solution themselves than go through the process with IT. End users could also prefer specific solutions over a prescribed solution, leading to more shadow IT. Rather than dealing with support tickets, an end-user may find an alternate solution to the problem that introduces shadow IT. 
+End users are any employees of an organization that require an IT resource to do their job. The primary motivation of end-users to employ shadow IT is convenience. IT policies can sometimes be rigorous. Often it is easier and faster for the end-user to procure an IT solution themselves than go through the process with IT. End users often also prefer specific solutions over a prescribed solution, leading to more shadow IT. Rather than dealing with support tickets, an end-user may find an alternate solution to the problem that introduces shadow IT. 
 
-End users are the cause of shadow IT, but they are generally not concerned with the consequences. They want to get their job done in a streamlined and efficient way. Self-service runbooks can address this by ensuring a streamlined experience with governance.
+End users are the cause of shadow IT, but they are generally not concerned with the consequences. They want to get their job done in a streamlined and efficient way. Self-service runbooks can address this by ensuring a streamlined experience with governance that gives the end-user the ability to spin up the infrastructure they need without avoiding the IT department.
 
 [Image about the need for governance vs need to ease-of use and runbooks]
 
 
 ## Risk mitigation
 
-The unknown nature of shadow IT increases the risk profile of an organization. Shadow IT has already infected businesses and will only grow. It is a matter of managing the risk. Gartner suggests three risk mitigation strategies to address this[6].
+The unknown nature of shadow IT increases the risk profile of an organization. Shadow IT has already infected businesses and will only grow. It is a matter of managing the risk. Gartner suggests three [risk mitigation strategies]() to address this[6].
 
 > - Use Data Security Governance to Balance Local business unit IT (BUIT) Growth Objectives Against the Risk of Data Breaches and Financial Liabilities
 > - Deploy Shadow IT Discovery and Data Protection Tools to Enable the Safe Selection, Deployment, and Notification of Unauthorized Cloud Services
