@@ -16,7 +16,7 @@ tags:
  - Kubernetes
 ---
 
-In this post, you build a Docker image in a Jenkinsfile workflow and publish the image to Amazon Elastic Container Registry (ECR). Jenkins will trigger a deployment to Amazon Elastic Kubernetes Service (EKS). 
+In this post, I show you how to build a Docker image with a Jenkinsfile workflow and publish the image to Amazon Elastic Container Registry (ECR). Jenkins will trigger a deployment to Amazon Elastic Kubernetes Service (EKS). 
 
 Jenkins is a build server that automatically builds your code repository. Jenkins does this through a Jenkinsfile, a configuration file that specifies the steps in building, pushing, and deploying your application. 
 
