@@ -13,11 +13,12 @@ tags:
  - CI Series
  - Continuous Integration
  - Jenkins
+ - Kubernetes
 ---
 
-In this post, you build a docker image in a Jenkinsfile workflow and publish the image to Amazon Elastic Container Registry (ECR). 
+In this post, you build a Docker image in a Jenkinsfile workflow and publish the image to Amazon Elastic Container Registry (ECR). Jenkins will trigger a deployment to Amazon Elastic Kubernetes Service (EKS). 
 
-Jenkins will trigger a deployment to Amazon Elastic Kubernetes Service (EKS). Jenkins is a build server that can automatically builds your code repository. Jenkins does this through a Jenkinsfile, a configuration file that specifies the steps in building, pushing, and deploying your application. 
+Jenkins is a build server that automatically builds your code repository. Jenkins does this through a Jenkinsfile, a configuration file that specifies the steps in building, pushing, and deploying your application. 
 
 Amazon EKS is a managed cloud service that provides Kubernetes clusters which handle workload applications. The Kubernetes clusters also take in a configuration file, specified by the YAML syntax. 
 
@@ -29,7 +30,7 @@ To follow along, you need:
 
 - An Amazon Web Services (AWS) account 
 - A GitHub account
-- [A Jenkins instance set up with a Pipeline](https://octopus.com/blog/jenkins-docker-ecr)
+- A [Jenkins instance set up with a Pipeline](https://octopus.com/blog/jenkins-docker-ecr)
 
 You need to extend the repository to include a deployment YAML file for this example. Jenkins will use this deployment file to deploy to EKS. Add this file to the root level of your repository.
 
@@ -143,7 +144,7 @@ pipeline {
 }
 
 ```
-Jenkins will clone, build, test, push, and deploy the image to an EKS cluster. Jenkins does this through the deployment file created earlier.
+Jenkins will clone, build, test, push, and deploy the image to an EKS cluster. Jenkins does this through the deployment file you created earlier.
 
 ## Can Jenkins be used as a CD tool?
 
@@ -159,9 +160,9 @@ You need to port forward locally to inspect the service. Use this command to ins
 
     kubectl port-forward deployment/underwater-app-jenkins  28015:80
     
-Go to the IP address http://127.0.0.1:28015/ in the browser to view your web application.
+Go to the IP address `http://127.0.0.1:28015/` in your browser to view your web application.
 
-![Octopus Underwater App](octopus-underwater-app.png)
+![Octopus underwater app](octopus-underwater-app.png)
 
 ## Conclusion
 
