@@ -60,7 +60,7 @@ You'll see your repository under **Amazon ECR**, then **Repositories**. Make a n
 
 ### AWS cluster setup
 
-Set up the cluster in AWS using the guide in our previous post, [Creating an ESK cluster in AWS](https://github.com/OctopusDeploy/blog/blob/2022-q1/blog/2022-q1/eks-cluster-aws/index.md).
+Set up the cluster in AWS using the guide in our previous post, [Creating an ESK cluster in AWS](https://octopus.com/blog/eks-cluster-aws).
 
 Create a file named `deployment.yml` in the root level of the repository.
 
