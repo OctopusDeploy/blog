@@ -1,5 +1,5 @@
 ---
-title: Building a Docker image in Jenkinsfile, publishing to ECR, and deploying to EKS
+title: Deploying to Amazon EKS with Docker and Jenkins
 description: As part of our series about Continuous Integration and build servers, learn how to build a Docker image in Jenkinsfile, publish to ECR, and deploy to EKS.
 author: terence.wong@octopus.com
 visibility: public
