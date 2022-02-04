@@ -1,9 +1,9 @@
 ---
-title: From Zero to Octopus Hero - Part 2 - ???
-description: Join Sarah as she goes on her learning journey with Octopus Deploy.
+title: From zero to Octopus hero - Discovering DevOps
+description: Join Sarah as she continues to learn about Octopus Deploy, this time focusing on DevOps.
 author: sarah.lean@octopus.com
 visibility: public
-published: 9999-09-15-1400
+published: 2022-02-22-1400
 metaImage: blogimage-fromzerotooctopusheropart2-2022.png
 bannerImage: blogimage-fromzerotooctopusheropart2-2022.png
 bannerImageAlt: Mario-style Explorer Sarah about to enter a tunnel (automated deployment process) above a rickety pile of stones (manual deployment). A rocket to the right awaits (signalling successful deployment).
@@ -11,81 +11,107 @@ isFeatured: false
 tags:
  - DevOps
  - Product
+ - Getting Started
 ---
 
-Hey folks, welcome back to the "From Zero to Octopus Hero" blog series, this is part 2!  I joined Octopus Deploy in October 2021 and am on a learning journey with the product and want to share that journey with you all!  In part one I covered off what Octopus Deploy is and set up the infrastructure needed to get started.  
+Hey folks, welcome to part 2 of my zero to hero blog series. 
+
+I joined Octopus Deploy in October 2021 and I'm on a learning journey with the product. In [part one](https://octopus.com/blog/zero-to-octopus-hero-part-1) I covered what Octopus Deploy does and set up the infrastructure to get started.  
  
-Part 2 is going to look at DevOps and how Octopus Deploy deals with helping to implement that for your organization. 
+In Part 2, I look at how Octopus Deploy helps implement DevOps for your organization. 
 
 ## Introduction to DevOps
-“DevOps is the union of people, process, and products to enable continuous delivery of value to our end users.” - Donovan Brown
- 
-I’ve spent years in the IT industry and worked my way through a lot of checklists with things that need to be done when deploying a server or helping to release a new version of software to customers.
- 
-While those checklists were helpful, the human element in that process can be flawed.  Assuming we’d completed a task. Skipping tasks.  Or even using an outdated version of that checklist.
- 
-This is where DevOps can help, if you build that checklist into an automation sequence, the automation tool won’t assume anything.  It won’t skip a task because it is tired or in a rush.
- 
-DevOps can help to introduce that consistency we all want in our IT environment.  It can also carry out tasks faster than a human in some cases.
- 
-When we talk about DevOps you often hear the terms Continuous Integration and Continuous Deployment or CI/CD mentioned.
- 
-Continuous Integration (CI) is the process of checking all your code, into a version control system.  The popular choice seems to be using Git.  With code repository choices being GitHub, GitLab, Azure DevOps, or BitBucket.
- 
-CI will then pull that code into a pipeline that builds your code, or compiles your application.  It can then carry out automated tests. Package your code or app into a deployable artifact, such as a Zip file or NuGet Package, or Docker image.  That artifact can then be deployed using a Continuous Deployment pipeline. 
 
-Continuous Deployment (CD) focuses on the deployment, the actual installation, and distribution of your bits, the code, or the application.  CD helps you distribute your code or application through different environments, from Dev, to Test to Production. 
+“DevOps is the union of people, process, and products to enable continuous delivery of value to our end users.” - Donovan Brown.
+ 
+I’ve spent years in the IT industry and worked my way through many checklists for deploying a server or helping to release a new version of software to customers.
+ 
+While checklists are helpful, the human element in that process can be flawed. Issues include:
+
+- Assuming you completed a task
+- Skipping tasks
+- Using an outdated version of a checklist
+ 
+This is where DevOps can help. If you build your checklist into an automation sequence, the automation tool won’t assume anything, and it won’t skip a task because it's tired or in a rush.
+ 
+DevOps helps to introduce the consistency we need in our IT environment.  It also carries out tasks faster than a human in many cases.
+ 
+When we talk about DevOps you often hear the terms Continuous Integration and Continuous Deployment (CI/CD) mentioned.
+ 
+Continuous Integration (CI) is the process of checking all your code into a version control system.  A popular tool is Git, with code repository choices including GitHub, GitLab, Azure DevOps, and BitBucket.
+ 
+CI pulls your code into a pipeline that builds your code, or compiles your application.  It then completes automated tests. You then package your code or app into a deployable artifact, such as a Zip file, NuGet package, or Docker image. Your artifact can then be deployed using a Continuous Deployment (CD) pipeline. 
+
+Continuous Deployment (CD) focuses on the deployment, the actual installation, and distribution of your bits, the code, or the application.  CD helps you distribute your code or application through different environments, from dev, to test, and production. 
 
 ## DevOps with Octopus Deploy
-Octopus Deploy can work in conjunction with continuous integration servers (or build servers) like Azure DevOps, TeamCity, Bamboo, Jenkins, and GitHub Actions. 
+
+Octopus Deploy works in conjunction with Continuous Integration (CI) servers (also known as build servers) like Azure DevOps, TeamCity, Bamboo, Jenkins, and GitHub Actions. 
  
-And it’s been eye-opening over the last few weeks. I've been working on getting an ASP.NET Application built using the CI pipeline capabilities in Azure DevOps. Then passing it to Octopus Deploy to deploy to my cloud platform.
+Over a few weeks, I worked on building an ASP.NET application using the CI pipeline in Azure DevOps, then passing it to Octopus Deploy to deploy to my cloud platform.
+
+### Step templates
  
-The power that you have for deployment within Octopus Deploy is impressive.  You configure your CD pipeline using something called [Step Templates](https://octopus.com/docs/projects/built-in-step-templates). The step templates you have access to range from being able to run a script to steps such as importing a certificate into your Windows Server.
+The power for deployments in Octopus Deploy is impressive. You configure your CD pipeline using [step templates](https://octopus.com/docs/projects/built-in-step-templates). The step templates range from being able to run a script, to importing certificates into your Windows server.
  
-These step templates mean, you don’t have to code. You don’t have to know the exact scripting syntax for doing tasks like importing a certificate into your Windows Server. You select the step template and then answer some basic questions and Octopus Deploy takes care of everything else.
+These step templates speed up your process by providing the code. You don’t have to know the scripting syntax for tasks like importing a certificate into your Windows Server. Instead, you select the step template, then answer some basic questions and Octopus Deploy takes care of everything else.
 
 ![An example of an Octopus Deploy Continuous Deployment pipeline](octopus-deployment-process.png)
 
-As someone who isn’t a coder, this has made getting started with Octopus Deploy and having a working CD pipeline a fast process.  Don’t get me wrong, I’ve had my fair share of failures setting the pipeline up.  Mostly that was due to my misunderstanding of how to configure the steps. 
+I'm not a developer, so this made getting started with Octopus Deploy and having a working CD pipeline a fast process.
 
-Bringing in the power of Octopus Deploy’s [Runbooks’](https://octopus.com/docs/runbooks) into my deployment pipeline has been game-changing. 
+### Runbooks
 
-Using the runbook process I’ve been able to build up a process that deploys all my infrastructure components, resources groups within Azure, Web Apps, and SQL Databases.  And actually have that as part of my CD pipeline. 
+Using Octopus Deploy’s [Runbooks](https://octopus.com/docs/runbooks) in my deployment pipeline has been game-changing. 
 
-I’ve also got a runbook process that tears down all my Azure resources, don’t want to run up any unnecessary costs when I am not using the resources. 
+I built up a process that deploys all my infrastructure components, resources groups in Azure, web apps, and SQL databases as part of my CD pipeline. 
 
-## Deployment Strategies
-A deployment strategy or pattern is important for any kind of software deployment or update management.   A deployment strategy should help to reduce downtime and make the process of rolling something new out seamless. 
+I also used a runbook process that tears down all my Azure resources, to avoid unnecessary costs when I'm not using the resources. 
 
-What I’ve been learning recently is in the development and DevOps world deployment strategies have exciting names: 
-- Rolling Deployments
-- Blue/Green pattern
-- Canary Deployments
-- Multi-region Deployments
+## Deployment strategies
 
-It’s been interesting learning the differences between them and when they are best used.  The concepts are by no means new to mean, just the terminology and the benefits when we approach software deployment or system upgrades from the development or DevOps perspective. 
+A deployment strategy or pattern is important for any software deployment or update management. A deployment strategy helps reduce downtime and creates a seamless process for rolling out new features. 
+
+I learnt that in the development and DevOps world, deployment strategies have exciting names: 
+
+- Rolling deployments
+- Blue/green deployments
+- Canary deployments
+- Multi-region deployments
+
+It’s been interesting learning the differences between them and when they're best used. The concepts aren't new to me, just the terminology and benefits when we approach software deployment or system upgrades from a DevOps perspective. 
  
-We recently published a [great blog](https://octopus.com/blog/common-deployment-patterns-and-how-to-set-them-up-in-octopus) covering these common deployment patterns and how each of them can be used with Octopus Deploy.  
+We have a [great blog](https://octopus.com/blog/common-deployment-patterns-and-how-to-set-them-up-in-octopus) covering these deployment patterns and how each can be used with Octopus Deploy.  
 
-## Rolling Deployments with Octopus Deploy
-Taking the basic pipeline that I had built earlier and adapting it to a rolling deployment was a straightforward process.  There is a button within step templates, where you can say you want to configure a rolling deployment and then Octopus Deploy sets up any further steps you want as child steps until the logic of your rolling deployment is carried out. 
+## Rolling deployments with Octopus
 
-It takes something that comes across as complex and simplifies it right down. 
+Taking the basic pipeline I built earlier and adapting it to a rolling deployment was a straightforward process. There's an option in the step templates to configure a rolling deployment, then Octopus Deploy sets up further steps you want as child steps, until the logic of your rolling deployment is complete. 
+
+It makes a complex process simple. 
 
 ![An example of an Octopus Deploy Rolling Deployment](octopus-rolling-deployment.png)
  
-## Lessons Learned
-The ease with which I’ve created and had deployments with Octopus Deploy working is a testament to the work the team has put into the product, and not my skills!  I’ve heard [Derek Campbell](https://twitter.com/DevOpsDerek) speak at conferences and sung the virtues of how easy Octopus Deploy is to set up and was always skeptical (I’m Scottish after all), but I am now well and part of that camp. 
- 
-The one I would say is if your logic is flawed then no matter how easy it is to put in place with Octopus Deploy, your deployments aren’t going to be successful.  So take the time to sit down and plan how your deployment process.  Think about the steps that need to happen before each other. What variables do you need?  When do you need to put in manual checks and what can be fully automated?  That planning will set you up for success when you configure the steps within Octopus Deploy. 
- 
-I’ll be honest and say I worried that my lack of development experience would be a real hurdle to diving into the DevOps learning journey, but it hasn’t been.  There is new terminology to learn, but the concepts are ones that I am more than familiar with, just in a non-automation world. 
- 
-So never be frightened to test your knowledge and learn something new, you might surprise yourself.  
- 
-## Next Steps
-Next I want to start to look at some more features inside Octopus Deploy, as well as seeing how it can integrate with other tools!
- 
-This learning journey is really exciting and things are starting to click and I’m excited about expanding on that knowledge and testing it!
+## Lessons learned
 
+It's a testament to the team at Octopus, not my skills, that I could carry out deployments with Octopus Deploy so easily.
+ 
+A lesson I learned is that your logic can't be flawed for your deployments to be successful. Take the time to plan your deployment process. Think about the steps that need to happen and in what order. 
+
+Consider these questions to set yourself up for success when configuring steps in Octopus:
+
+- What variables do I need?  
+- When do I need to put in manual checks and what can be fully automated?   
+ 
+I was worried that my lack of development experience would be a hurdle learning about DevOps, but it hasn’t been.  There's new terminology to learn, but I was familiar with the concepts, just in a non-automation world. 
+ 
+My advice: don't be frightened to test your knowledge and learn something new, you might surprise yourself.  
+ 
+## Next steps
+
+Next, I want to look at more features of Octopus Deploy, and learn how it can integrate with other tools.
+ 
+I'm enjoying my learning journey and the way concepts are starting to click. I’m excited about expanding my knowledge and testing it.
+
+Be sure to check back to see how I'm progressing. We'll add links to other posts in the series as they become available.
+
+Happy deployments!
