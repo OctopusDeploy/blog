@@ -16,7 +16,7 @@ tags:
   - Testing
 ---
 
-End-to-end (E2E) tests represent the final stages of automated testing. E2E are long running, certainly with respect to unit tests that can complete thousands of tests in seconds. They are typically executed by external tools which interact with the application under test, through public interfaces like web pages or HTTP APIs.
+End-to-end (E2E) tests represent the final stages of automated testing. E2E tests are long-running, especially compared to unit tests which can complete thousands of checks in seconds. They are typically executed by external tools which interact with the application under test, through public interfaces like web pages or HTTP APIs.
 
 In this post, you learn how to run E2E tests with Cypress to validate interactions with web pages and with Newman, the command-line test runner for Postman, to validate HTTP APIs.
 
