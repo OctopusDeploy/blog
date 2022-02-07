@@ -1,1 +1,0 @@
-- [Part 1: Getting to know Octopus Deploy](blog/2022-02/zero-to-octopus-hero-part-1/index.md)

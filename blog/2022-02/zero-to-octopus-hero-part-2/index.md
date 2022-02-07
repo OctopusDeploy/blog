@@ -114,6 +114,4 @@ I'm enjoying my learning journey and the way concepts are starting to click. Iâ€
 
 Be sure to check back to see how I'm progressing. We'll add links to other posts in the series as they become available.
 
-!include <zero-to-hero>
-
 Happy deployments!
