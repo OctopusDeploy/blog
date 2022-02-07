@@ -22,10 +22,10 @@ In 2017, Gartner predicted that the IT department would make fewer technology de
 
 Shadow IT poses a number of new questions for oragnizations, for instance:
 
-- How should IT departments respond to Shadow IT? 
+- How should IT departments respond to shadow IT? 
 - Is it realistic, or even practical, to track 100% of all IT resources?
 - Should there be a more managed approach with accepted risk?
-- What tools can help manage Shadow IT? 
+- What tools can help manage shadow IT? 
 
 This blog aims to explore these questions.
 
@@ -37,7 +37,7 @@ More and more teams are taking advantage of shadow IT. This increases the risks 
 
 There are also compliance concerns for businesses in highly regulated industries. Many organizations, including the U.S Army, banned US soldiers from using TikTok over GDPR concerns[5]. Compliance poses a management risk that shadow IT exacerbates. Companies cannot ensure compliance on what they cannot track.
 
-Shadow IT affects operational costs. When shadow IT is left unmanaged, services become decentralized as each business unit procures IT for its own needs. One business unit may prefer one product while another prefers its competitor. Shadow IT can also lead to unpredictable operation costs of cloud infrastructure. Think of all the unmonitored VM's created for a single purpose, always running but never getting torn down. By allowing business units to procure their own IT infrastructure, businesses lose then benefits of their buying power and abilty to reduce the cost of IT infrastructure.
+Shadow IT affects operational costs. When shadow IT is left unmanaged, services become decentralized as each business unit procures IT for its own needs. One business unit may prefer one product while another prefers its competitor, this can also lead to unpredictable operation costs of cloud infrastructure. Think of all the unmonitored VM's created for a single purpose, always running but never getting torn down. By allowing business units to procure their own IT infrastructure, businesses lose then benefits of their buying power and abilty to reduce the cost of IT infrastructure.
 
 The true costs of shadow IT come down to a growing unknown resource that has operational and security risks.
 
@@ -60,15 +60,26 @@ The unknown nature of shadow IT increases the risk profile of an organization. S
 
 Shadow IT requires governance, discovery, and protection. The solution must be streamlined and minimize time spent in support. Self-service runbooks can address this.
 
-## What is a self-service runbook?
+## What is a runbook?
 
-A runbook is a reusable way to execute a commonly repeated task. The task could be to refresh the data in a test database. A user raises a ticket with support, who then spends time understanding and actioning the ticket to perform the desired task. 
+A runbook is a reusable way to execute a commonly repeated task, for instance, refreshing the data in a test database. 
 
-A self-service runbook enables the user to execute the task themselves. A user can now run the runbook to refresh the database without support. Self-service runbooks can apply to other use cases to tighten the feedback loop on operations tasks.
+Typically when a developer needs the data in a test database to be refreshed, the following actions would need to be performed:
 
-Imagine a self-service runbook for creating a new AWS account. Users need to set access levels, VPC settings, and other IAM considerations. If 50 different users were to try and set up an account, this could result in 50 different types of users. Unmanaged creation of user accounts introduces shadow IT into the organization. If you apply this to creating VMs, container registries or other PaaS infrastructure, it is easy to see how shadow IT grows.
+1. The developer would create a request to the support team to refresh the data in their database.
+1. The support team would review the request to understand the requirements.
+1. If the support team needs additional information they would request it from the developer.
+1. When the support team has everything they need to action the request, they would run through the process of refresh the data in the database.
 
-Using self-service runbooks can restrict this process and make IT resources more standardized. Operations can use the runbook to enable monitoring and security on the IT resource
+Depending on the support team's workload and turnaround, this request could take anywhere between minutes to days to actions, and often the developer might have no visibility into how long their request will take.
+
+The steps required to refresh the data in the database can be captured and executed by a runbook. Runbooks also include all the permissions required to execute the task, meaning the runbook can be self-service, allowing the user to execute the task themselves without the adding steps of making the request and waiting for a support team member to action the request. 
+
+Any task that can be automated can captured in a runbook, allowing team members to execute tasks that had previously required a dedicated team.
+
+Runbooks also introduce consistency where there might not have been any in the past. Imagine a self-service runbook for creating a new AWS account. Users need to set access levels, VPC settings, and other IAM considerations. If 50 different users were to try and set up an account, this could result in 50 different types of users, which is another challenge that's introduced with shadow IT. If you apply this to creating VMs, container registries or other PaaS infrastructure, it is easy to see the issues with shadow IT.
+
+Using runbooks can restrict this process and make IT resources more standardized. Operations can use runbooks to enable monitoring and security on IT resources.
 
 Though runbooks don't solve every aspect of shadow IT, runbooks can improve IT resource governance and ease of use for end-users. According to MRC on managing shadow IT risk[7]:
 
@@ -78,7 +89,7 @@ Though runbooks don't solve every aspect of shadow IT, runbooks can improve IT r
 > When you deliver controlled, self-service options, your business gets the best of both worlds. Users get the solutions they need quickly, and IT can still secure the data and applications."
 
 
-Self-service runbooks allow operations teams to enable monitoring, provide security. They enable the user to self-serve their problems without support.
+Runbooks allow operations teams to monitor resources and provide security. Runbooks also allow the user to self-serve their problems without support.
 
 ## Conclusion
 
