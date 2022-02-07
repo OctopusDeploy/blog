@@ -77,13 +77,15 @@ Octopus's own Alex Yates highlighted 2 approaches worth revisiting in his piece 
 
 CALMS is a framework explored in [The DevOps Handbook](https://www.amazon.com.au/Devops-Handbook-World-Class-Reliability-Organizations/dp/1950508404/ref=sr_1_1?crid=22X11LJN7ZYVQ&keywords=the+devops+handbook&qid=1643682944&sprefix=the+devops+handbook%2Caps%2C265&sr=8-1).
 
-CALMS is also the approach Atlassian took on its path to DevOps culture, using it to measure progress and success. You can read [how Atlassian uses CALMS on their DevOps site](https://www.atlassian.com/devops/frameworks/calms-framework).
+CALMS is an acronym where each letter describes the actions needed to adopt DevOps"
 
 - **Culture** - Remove silos and share responsibility
 - **Automation** - Reduce time spent on manual tasks
 - **Lean** - Streamline processes to reduce wasted time
 - **Measurement** - Collect and review data to find areas for improvement
 - **Sharing** - Open and honest collaboration between teams
+
+CALMS is also the approach Atlassian took on its path to DevOps culture, using it to measure progress and success. You can read [how Atlassian uses CALMS on their DevOps site](https://www.atlassian.com/devops/frameworks/calms-framework).
 
 ### The Three Ways (Flow, feedback, continual experimentation and learning)
 
@@ -99,16 +101,16 @@ Let's take a quick look at what these principles mean.
 
 'The First Way' is about refining every process that takes place between the developer and the customer.
 
-This principle is about:
+This means:
 
-- Not trying too much during one lifecycle - focusing on short sprints
-- Removing arbitrary processes - giving the team what they need to keep things moving
+- Not trying too much during one lifecycle by focusing on short sprints
+- Removing arbitrary processes and giving the team what they need to keep things moving
 
 #### The Second Way: Feedback loops
 
-'The Second Way' is all about faster feedback, and faster feedback means faster reactions.
+'The Second Way' is all about faster feedback.
 
-Faster feedback means you can:
+Faster feedback means faster reactions, so you can:
 
 - Address problems before they become bigger problems deeply rooted due to iteration
 - Troubleshoot with less reverse engineering
@@ -116,9 +118,7 @@ Faster feedback means you can:
 
 #### The Third Way: Experiment and learn
 
-'The Third Way' is about recognizing that it's okay to take risks and that failure is an important part of learning.
-
-It's also about communicating the wins too.
+'The Third Way' is about recognizing that it's okay to take risks and that failure is an important part of learning. It's also about communicating the wins too.
 
 By recognizing this, it allows your teams to:
 
@@ -130,7 +130,7 @@ By recognizing this, it allows your teams to:
 
 Though the concept is about a unifying purpose, DevOps is really everyone's role. That said, it's still important for everyone to know their responsibilities. Adopting DevOps means adding some specialist roles that sit alongside development staples like coders, QA, designers, and more.
 
-Let's take a quick look at some of the common extra roles in DevOps and what they do. Some of the naming conventions and finer responsibilities may differ between organizations.
+Let's take a quick look at some of the common extra roles needed in DevOps and what they do. Some of the naming conventions and finer responsibilities may differ between organizations.
 
 ### DevOps Engineer
 
@@ -151,13 +151,13 @@ This means ensuring code gets compiled, built, tested and handed off for deploym
 
 ### Release Manager
 
-A Release Manager directs builds promoted for release. They communicate what's included in a release, and plots their course through a pipeline's environments.
+A Release Manager directs builds promoted for release. They communicate what's included in a release and plots their course through a pipeline's environments.
 
 This makes up what we call Continuous Deployment or Continuous Delivery (CD) - the process we created Octopus to help with.
 
 ### Product Manager
 
-Product Managers are almost the conduit between developers and end users.
+Product Managers are almost a conduit between developers and end users.
 
 Working with developers, they help ensure the product will have the features and fixes customers need.
 
@@ -165,7 +165,7 @@ Working with developers, they help ensure the product will have the features and
 
 This one's simple. A Data Analyst scours data to spot patterns and find areas for improvement.
 
-Data Analysts help spot the things that impact user experience, such as feature problems or product navigation.
+This helps you spot the things that impact user experience, such as feature problems or product navigation.
 
 ## Example DevOps tools
 
@@ -233,7 +233,7 @@ We spent the first quarter of 2022 doing deep dives into [Jenkins and GitHub Act
 
 ### Package
 
-Software packaging tools turn your code into the deployable artifacts you push to your environments.
+Software packaging tools turn your code into the deployable artifacts. You host and deploy these artifacts from package repositories.
 
 Popular options include:
 
@@ -266,6 +266,8 @@ Popular options include:
 - [Chef](https://www.chef.io/)
 - [Puppet Enterprise](https://puppet.com/try-puppet/puppet-enterprise/)
 
+[Runbooks](#octopus-and-devops) are also an important feature related to operations. We talk a little more about Octopus Runbooks at the end.
+
 ### Monitoring
 
 Monitoring tools scrape your product and related systems for important data. This can inform decisions about performance and customer usage.
@@ -279,7 +281,7 @@ Popular options include:
 
 ## Where Octopus fits into DevOps {#octopus-and-devops}
  
-Octopus fits nicely into a DevOps environment in 2 useful ways:
+Octopus fits nicely into a DevOps environment in 2 key ways:
 
 1. Providing the Continuous Deployment in your CI/CD pipeline and making complex deployments simple.
 2. Octopus Runbooks - Runbooks allow you to automate routine or emergency operations tasks. This could include:
@@ -290,6 +292,6 @@ Octopus fits nicely into a DevOps environment in 2 useful ways:
    - File clean-up
    - The running of scripts in any language you need
 
-We're looking closely at Octopus Runbooks in the next few months, with detailed insight, guides and samples.
+We're looking closely at Octopus Runbooks in the next few months, with detailed insight, guides, and samples.
 
 Happy deployments!
