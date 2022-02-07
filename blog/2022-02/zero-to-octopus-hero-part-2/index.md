@@ -3,7 +3,7 @@ title: From zero to Octopus hero - Discovering DevOps
 description: Join Sarah as she continues to learn about Octopus Deploy, this time focusing on DevOps.
 author: sarah.lean@octopus.com
 visibility: public
-published: 2022-02-22-1400
+published: 2022-02-24-1400
 metaImage: blogimage-fromzerotooctopusheropart2-2022.png
 bannerImage: blogimage-fromzerotooctopusheropart2-2022.png
 bannerImageAlt: Mario-style Explorer Sarah about to enter a tunnel (automated deployment process) above a rickety pile of stones (manual deployment). A rocket to the right awaits (signalling successful deployment).
@@ -34,7 +34,7 @@ While checklists are helpful, the human element in that process can be flawed. I
  
 This is where DevOps can help. If you build your checklist into an automation sequence, the automation tool won’t assume anything, and it won’t skip a task because it's tired or in a rush.
  
-DevOps helps to introduce the consistency we need in our IT environment.  It also carries out tasks faster than a human in many cases.
+DevOps helps to introduce the consistency we need in our IT environment.  It also completes tasks faster than a human in many cases.
  
 When we talk about DevOps you often hear the terms Continuous Integration and Continuous Deployment (CI/CD) mentioned.
  
@@ -46,25 +46,25 @@ Continuous Deployment (CD) focuses on the deployment, the actual installation, a
 
 ## DevOps with Octopus Deploy
 
-Octopus Deploy works in conjunction with Continuous Integration (CI) servers (also known as build servers) like Azure DevOps, TeamCity, Bamboo, Jenkins, and GitHub Actions. 
+Octopus Deploy works in conjunction with [Continuous Integration (CI) servers (also known as build servers)](https://octopus.com/blog/tag/CI%20Series) like Azure DevOps, TeamCity, Bamboo, Jenkins, and GitHub Actions. 
  
-Over a few weeks, I worked on building an ASP.NET application using the CI pipeline in Azure DevOps, then passing it to Octopus Deploy to deploy to my cloud platform.
+Over a few weeks, I worked on building an ASP.NET application using the CI pipeline in Azure DevOps, then passing it to Octopus to deploy to my cloud platform.
 
 ### Step templates
  
 The power for deployments in Octopus Deploy is impressive. You configure your CD pipeline using [step templates](https://octopus.com/docs/projects/built-in-step-templates). The step templates range from being able to run a script, to importing certificates into your Windows server.
  
-These step templates speed up your process by providing the code. You don’t have to know the scripting syntax for tasks like importing a certificate into your Windows Server. Instead, you select the step template, then answer some basic questions and Octopus Deploy takes care of everything else.
+These step templates speed up your process by providing the code. You don’t have to know the scripting syntax for tasks like importing a certificate into your server. Instead, you select the step template, then answer some basic questions, and Octopus Deploy takes care of the rest.
 
 ![An example of an Octopus Deploy Continuous Deployment pipeline](octopus-deployment-process.png)
 
-I'm not a developer, so this made getting started with Octopus Deploy and having a working CD pipeline a fast process.
+I'm not a developer, so this made it quick and easy to get started with Octopus Deploy and establish a working CD pipeline.
 
 ### Runbooks
 
 Using Octopus Deploy’s [Runbooks](https://octopus.com/docs/runbooks) in my deployment pipeline has been game-changing. 
 
-I built up a process that deploys all my infrastructure components, resources groups in Azure, web apps, and SQL databases as part of my CD pipeline. 
+I built up a process that deploys all my infrastructure components, resource groups in Azure, web apps, and SQL databases as part of my CD pipeline. 
 
 I also used a runbook process that tears down all my Azure resources, to avoid unnecessary costs when I'm not using the resources. 
 
@@ -79,9 +79,9 @@ I learnt that in the development and DevOps world, deployment strategies have ex
 - Canary deployments
 - Multi-region deployments
 
-It’s been interesting learning the differences between them and when they're best used. The concepts aren't new to me, just the terminology and benefits when we approach software deployment or system upgrades from a DevOps perspective. 
+It’s been interesting to learn the differences between each strategy and when they're best used. The concepts aren't new to me, just the terminology and benefits when we approach software deployment or system upgrades from a DevOps perspective. 
  
-We have a [great blog](https://octopus.com/blog/common-deployment-patterns-and-how-to-set-them-up-in-octopus) covering these deployment patterns and how each can be used with Octopus Deploy.  
+We have a [helpful blog post](https://octopus.com/blog/common-deployment-patterns-and-how-to-set-them-up-in-octopus) covering these deployment patterns and how each can be used with Octopus Deploy.  
 
 ## Rolling deployments with Octopus
 
@@ -95,14 +95,14 @@ It makes a complex process simple.
 
 It's a testament to the team at Octopus, not my skills, that I could carry out deployments with Octopus Deploy so easily.
  
-A lesson I learned is that your logic can't be flawed for your deployments to be successful. Take the time to plan your deployment process. Think about the steps that need to happen and in what order. 
+I learned that your logic can't be flawed for your deployments to be successful. Take the time to plan your deployment process. Think about the steps that need to happen and in what order. 
 
 Consider these questions to set yourself up for success when configuring steps in Octopus:
 
 - What variables do I need?  
 - When do I need to put in manual checks and what can be fully automated?   
  
-I was worried that my lack of development experience would be a hurdle learning about DevOps, but it hasn’t been.  There's new terminology to learn, but I was familiar with the concepts, just in a non-automation world. 
+I was worried that my lack of development experience would be a hurdle when learning about DevOps, but it hasn’t been.  There's new terminology, but I was familiar with the concepts, just in a non-automation world. 
  
 My advice: don't be frightened to test your knowledge and learn something new, you might surprise yourself.  
  
