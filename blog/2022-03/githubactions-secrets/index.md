@@ -4,9 +4,9 @@ description: An guide on how to add secrets in GitHub to use with GitHub Actions
 author: Andrew.Corrigan@octopus.com
 visibility: private
 published: 3020-01-01-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-githubconfigurationaddingsecrets-2022.png
+bannerImage: blogimage-githubconfigurationaddingsecrets-2022.png
+bannerImageAlt: Locked padlock beside an online form input field showing 6 asterisks to represent a password.
 isFeatured: false
 tags:
   - DevOps
