@@ -46,7 +46,7 @@ It's straightforward to install Octopus Deploy on a single server configuration 
 
 I spent time running Octopus Deploy in a [highly available architecture](https://octopus.com/docs/administration/high-availability) in my environment. I looked at:
 
-- How to load balancers
+- How to configure load balancers
 - Database high availability
 - Shared storage configurations
 
