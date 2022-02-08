@@ -1,13 +1,19 @@
 ---
-title: Running end to end tests in GitHub Actions
-description: Learn how to run end to end tests in GitHub Actions and capture the results
+title: Running end-to-end tests in GitHub Actions
+description: Learn how to run end-to-end tests in GitHub Actions and capture the results
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2999-01-01
-metaImage: 
-bannerImage: 
-tags:
- - Octopus
+metaImage: blogimage-githubactionsrunendtoendtests-2022.png
+bannerImage: blogimage-githubactionsrunendtoendtests-2022.png
+bannerImageAlt:  A Github Actions logo-shaped road with two roads, one with a car that’s completed the end-to-end test and one that's in progress.
+isFeatured: false
+tags: 
+  - DevOps
+  - CI Series
+  - Continuous Integration
+  - GitHub Actions
+  - Testing
 ---
 
 GitHub Actions has a large ecosystem of high quality third-party actions as well as native support for executing build steps inside Docker containers. This means it is easy to run end-to-end tests as part of a workflow, often only requiring a single step to run testing tools with all the require dependencies.
