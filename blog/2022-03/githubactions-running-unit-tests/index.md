@@ -4,10 +4,16 @@ description: Learn how to run unit tests in GitHub Actions and process the resul
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2999-01-01
-metaImage: 
-bannerImage: 
-tags:
- - Octopus
+metaImage: blogimage-runningunittestsingithubactions-2022.png
+bannerImage: blogimage-runningunittestsingithubactions-2022.png
+bannerImageAlt: Open laptop sits behind a screen in dark mode showing a table of rows with green ticks, red crosses, and orange exclamation marks to indicate unit test results
+isFeatured: false
+tags: 
+  - DevOps
+  - CI Series
+  - Continuous Integration
+  - GitHub Actions
+  - Testing
 ---
 
 Verifying code changes with unit tests is a critical process in typical development workflows. GitHub Actions provides a number of custom actions to collect and process the results of tests allowing developers to browse the results, debug failed tests, and generate reports.
