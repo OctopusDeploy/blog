@@ -54,9 +54,9 @@ Thankfully, when working with virtual machines you can delete them and start aga
 
 My false starts taught me how important the Master Key is to your Octopus Deploy environment, and [how to recover](https://octopus.com/docs/administration/managing-infrastructure/lost-master-key) without a backup of your Key.
 
-::hint
+:::hint
 The Master Key is created on installation and is used with AES-128 to encrypt certain sensitive data in the Octopus database. Make sure you [back it up](https://octopus.com/docs/octopus-rest-api/octopus.server.exe-command-line/show-master-key) and keep it somewhere safe. 
-::
+:::
 
 It's a great feeling when you get something working and see the results of your work. I fist-pumped the air when I set up the configuration and could access my Octopus Deploy instance through the load balancer!
 
