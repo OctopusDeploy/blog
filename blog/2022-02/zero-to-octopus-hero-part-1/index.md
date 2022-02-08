@@ -16,11 +16,9 @@ tags:
 
 My name is Sarah Lean and I recently joined Octopus Deploy as Senior Solutions Architect in the Community team. 
 
-This post is part 1 of a series about my learning journey with Octopus. 
-
 I'm starting from scratch with Octopus Deploy, but I intend to go from zero to Octopus hero over the coming weeks.
 
-We'll add links to other posts in the series as they become available.
+This post is part 1 of a series about my learning journey with Octopus. We'll add links to other posts in the series as they become available.
 
 ## What is Octopus Deploy?
 
