@@ -1,5 +1,5 @@
 ---
-title: Multi environment deployments with Jenkins and Octopus Deploy
+title: Multi-environment deployments with Jenkins and Octopus Deploy
 description: As part of our series about Continuous Integration and build servers, learn how to set up a multi-environment deployment with Jenkins and Octopus Deploy.
 author: terence.wong@octopus.com
 visibility: private
