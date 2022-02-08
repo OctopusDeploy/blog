@@ -1,12 +1,13 @@
 ---
 title: Request for Comments - Dynamic infrastructure
-description: We're making changes to how Octopus manages dynamic infrastructure and want your feedback.
+description: We're making changes to how Octopus manages dynamic infrastructure and we want your feedback.
 author: rhys.parry@octopus.com
 visibility: public
 published: 2022-02-21-1400
 metaImage: blogimage-feedback_2021_01.png
 bannerImage: blogimage-feedback_2021_01.png
 bannerImageAlt: Octopus salesperson at laptop with headset and icons representing customer feedback
+isFeatured: false
 tags:
  - Product
 ---
@@ -35,7 +36,7 @@ First, your resource will require two tags: `octopus-environment` and `octopus-r
 
 To discover targets, Octopus will need to authenticate with the appropriate cloud provider. You'll be able to provide this context using Octopus variables. For example, you'll be able to configure a variable named `Octopus.Azure.Account` to reference the Azure account to use for discovery. We'll link the account from the authentication context during discovery to the target by default.
 
-We like variables for this purpose because they have well-established scoping behavior that can be used to configure different accounts for each applicable scope. So, for example, you could scope by the environment, ensuring Test and Production environments use different authentication contexts.
+We like variables for this purpose because they have well-established scoping behavior that can be used to configure different accounts for each applicable scope. So, for example, you could scope by the environment, ensuring test and production environments use different authentication contexts.
 
 ### Target lifecycle
 
@@ -63,11 +64,11 @@ Only targets created due to discovery through this mechanism will be automatical
 
 ### What if I need to use different accounts for deployment and discovery?
 
-You'll be able to specify extra details Octopus needs for configuring your targets by setting other tags. For example, to use a different account when deploying to a resource, you'll be able to specify the `octopus-account` tag to reference the desired account in Octopus.
+You'll be able to specify the extra details Octopus needs for configuring your targets by setting other tags. For example, to use a different account when deploying to a resource, you'll be able to specify the `octopus-account` tag to reference the desired account in Octopus.
 
 ### What targets will be supported?
 
-Initially, we'll be working to support Azure Web Apps, Service Fabric, and AWS ECS Clusters. Then, as we expand our support for additional cloud targets in the coming year, we'll ensure they're ready to go for dynamic infrastructure.
+Initially, we'll be working to support Azure Web Apps, Service Fabric, and AWS ECS clusters. Then, as we expand our support for additional cloud targets in the coming year, we'll ensure they're ready to go for dynamic infrastructure.
 
 We plan to follow this with support for discovering Kubernetes containers across AWS, Azure, and Google Cloud.
 
@@ -75,7 +76,7 @@ We plan to follow this with support for discovering Kubernetes containers across
 
 Octopus currently provides a wide range of options for authenticating with AWS. In addition to an account using an access key and secret key, we support assuming an IAM role and using the role assigned to a Worker.
 
-We're still investigating how to best support this and juggle the Worker pool dependency when relying on instance roles.
+We're still investigating how to best support this and juggle the Worker Pool dependency when relying on instance roles.
 
 ## We want your feedback
 
@@ -84,7 +85,8 @@ We're actively developing this feature and would love to incorporate your feedba
 Specifically, we want to know:
 
 - About edge cases we might not have anticipated in regards to tagging
-- Will this solution fit your use case, or are there other dynamic infrastructure challenges you'd like to see Octopus address?
+- Will this solution fit your use case? 
+- Are there other dynamic infrastructure challenges you'd like to see Octopus address?
 
 This feedback will help us deliver the best solution we can.
 
