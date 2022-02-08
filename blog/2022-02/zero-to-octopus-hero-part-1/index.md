@@ -22,7 +22,7 @@ This post is part 1 of a series about my learning journey with Octopus. We'll ad
 
 ## What is Octopus Deploy?
 
-Deploying software and infrastructure in your environment is something all software engineers need to do, whether we're running on-premises or cloud environments. Introducing automation into the process can help to drive efficiency and consistency. 
+Deploying software and infrastructure in your environment is something all software engineers need to do, whether we're running on-premises or cloud environments. Introducing automation into the process can help drive efficiency and consistency. 
 
 Octopus Deploy is a platform that helps customers accelerate repeatable, reliable, and traceable deployments across cloud and on-premises infrastructure. 
 
