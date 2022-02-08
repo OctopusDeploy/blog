@@ -15,6 +15,8 @@ tags:
  - Jenkins
 ---
 
+During a deployment process, an artifact must be built by a build server before being deployed. Jenkins is a build server designed to be used in a multi-environment setting. Jenkins can package and push the artifact to a central repository. From here, a continuous delivery tool can take the artifact and deploy it. Octopus Deploy is a best in class continuous deployment tool that helps with this process. It can interface with and deploy to the major cloud providers such as Azure, Google and Amazon. 
+
 In this post, I show you how to build and push the Octopus underwater app to Amazon Elastic Container Registry (ECR). Jenkins will trigger a deployment in Octopus Deploy. Octopus Deploy will then deploy the app to Amazon Elastic Kubernetes Service. 
 
 ## Prerequisites
@@ -207,6 +209,12 @@ In Octopus, environments are dedicated spaces. Octopus Deploy makes it easy to s
 Jenkins is a continuous integration tool. It can do some parts of CD, but not all. Jenkins is commonly used to build and push images to a central repository. Octopus Deploy can interface with several different repositories and manage the deployment process. This separation of concerns allows Jenkins and Octopus Deploy to focus on what they're good at, enabling happier deployments.
 
 ![Release Management](release-management.png "Release Management")
+
+## Conclusion
+
+In this blog, you have built a web application using Jenkins, pushed it to the ECR and used Octopus Deploy to manage the deployment to Kubernetes. Octopus Deploy provides a dedicated dashboard to view deployments in their different stages. The dashboard highlights how Octopus Deploy supplements a continuous integration tool like Jenkins. 
+
+Octopus Deploy supports all the major cloud proviers such as Azure, Google and Amazon. To get started, you can start a [free trial](https://octopus.com/).
 
 !include <q1-2022-newsletter-cta>
 
