@@ -4,11 +4,11 @@ description: Shadow IT is the IT resources that an organization does not have vi
 author: terence.wong@octopus.com
 visibility: private
 published: 3020-01-01-1400
-metaImage: 
-bannerImage: 
+metaImage:
+bannerImage:
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
-tags: 
+tags:
   - DevOps
   - Runbooks Series
   - Runbooks
@@ -16,34 +16,34 @@ tags:
 
 <!-- see https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags -->
 
-In a traditional organization, the IT department oversees and manages all IT resources, however, with such easy access to cloud-based IT resources, many employees (who are impatient and have pressing deadlines) find it easier and quicker to spin up IT infrastructure themselves, rather than filling out request and waiting for the IT department to fullfil the request. When employees create and use their own IT resourcers that are invisible to the IT department, this is known as shadow IT.
+In a traditional organization, the IT department oversees and manages all IT resources, however, with such easy access to cloud-based IT resources, many employees (who are impatient and have pressing deadlines) find it easier and quicker to spin up IT infrastructure themselves, rather than filling out request and waiting for the IT department to fulfil the request. When employees create and use their own IT resources that are invisible to the IT department, this is known as shadow IT.
 
 In 2017, Gartner predicted that the IT department would make fewer technology decisions, and individual business units would begin to select technology for their teams, amounting to 38% of technology purchases[1]. In 2019, Everest Group predicted that more than 50% of technology spending in organizations was due to shadow IT[2]. The rise of cloud technology compounds this problem, making it easier than ever for employees to use unapproved IT resources.
 
-Shadow IT poses a number of new questions for oragnizations, for instance:
+Shadow IT poses a number of new questions for organizations, for instance:
 
-- How should IT departments respond to shadow IT? 
+- How should IT departments respond to shadow IT?
 - Is it realistic, or even practical, to track 100% of all IT resources?
 - Should there be a more managed approach with accepted risk?
-- What tools can help manage shadow IT? 
+- What tools can help manage shadow IT?
 
 This blog aims to explore these questions.
 
 ## Costs to the business
 
-More and more teams are taking advantage of shadow IT. This increases the risks of security breaches as the resouces are outside the control of IT department. A study by EMC estimates that data loss and downtime contribute to $1.7 trillion each year due to shadow IT security breaches[3]. In IBM's 2021 [Cost of Data Breach Report](https://www.ibm.com/au-en/security/data-breach), the average cost of a data breach rose from US$3.86 million to US$4.24million from 2020 to 2021[4].
+More and more teams are taking advantage of shadow IT. This increases the risks of security breaches as the resources are outside the control of IT department. A study by EMC estimates that data loss and downtime contribute to $1.7 trillion each year due to shadow IT security breaches[3]. In IBM's 2021 [Cost of Data Breach Report](https://www.ibm.com/au-en/security/data-breach), the average cost of a data breach rose from US$3.86 million to US$4.24million from 2020 to 2021[4].
 
 ![Average total cost of a data breach - IBM Cost of a Data Breach Report 2021](ibm.png "width=500")
 
 There are also compliance concerns for businesses in highly regulated industries. Many organizations, including the U.S Army, banned US soldiers from using TikTok over GDPR concerns[5]. Compliance poses a management risk that shadow IT exacerbates. Companies cannot ensure compliance on what they cannot track.
 
-Shadow IT affects operational costs. When shadow IT is left unmanaged, services become decentralized as each business unit procures IT for its own needs. One business unit may prefer one product while another prefers its competitor, this can also lead to unpredictable operation costs of cloud infrastructure. Think of all the unmonitored VM's created for a single purpose, always running but never getting torn down. By allowing business units to procure their own IT infrastructure, businesses lose then benefits of their buying power and abilty to reduce the cost of IT infrastructure.
+Shadow IT affects operational costs. When shadow IT is left unmanaged, services become decentralized as each business unit procures IT for its own needs. One business unit may prefer one product while another prefers its competitor, this can also lead to unpredictable operation costs of cloud infrastructure. Think of all the unmonitored VM's created for a single purpose, always running but never getting torn down. By allowing business units to procure their own IT infrastructure, businesses lose then benefits of their buying power and ability to reduce the cost of IT infrastructure.
 
 The true costs of shadow IT come down to a growing unknown resource that has operational and security risks.
 
 ## Why do employees use shadow IT?
 
-End users are any employees of an organization that require an IT resource to do their job. The primary motivation of end-users to employ shadow IT is convenience. IT policies can sometimes be rigorous. Often it is easier and faster for the end-user to procure an IT solution themselves than go through the process with IT. End users often also prefer specific solutions over a prescribed solution, leading to more shadow IT. Rather than dealing with support tickets, an end-user may find an alternate solution to the problem that introduces shadow IT. 
+End users are any employees of an organization that require an IT resource to do their job. The primary motivation of end-users to employ shadow IT is convenience. IT policies can sometimes be rigorous. Often it is easier and faster for the end-user to procure an IT solution themselves than go through the process with IT. End users often also prefer specific solutions over a prescribed solution, leading to more shadow IT. Rather than dealing with support tickets, an end-user may find an alternate solution to the problem that introduces shadow IT.
 
 End users are the cause of shadow IT, but they are generally not concerned with the consequences. They want to get their job done in a streamlined and efficient way. Self-service runbooks can address this by ensuring a streamlined experience with governance that gives the end-user the ability to spin up the infrastructure they need without avoiding the IT department.
 
@@ -62,7 +62,7 @@ Shadow IT requires governance, discovery, and protection. The solution must be s
 
 ## What is a runbook?
 
-A runbook is a reusable way to execute a commonly repeated task, for instance, refreshing the data in a test database. 
+A runbook is a reusable way to execute a commonly repeated task, for instance, refreshing the data in a test database.
 
 Typically when a developer needs the data in a test database to be refreshed, the following actions would need to be performed:
 
@@ -73,7 +73,7 @@ Typically when a developer needs the data in a test database to be refreshed, th
 
 Depending on the support team's workload and turnaround, this request could take anywhere between minutes to days to actions, and often the developer might have no visibility into how long their request will take.
 
-The steps required to refresh the data in the database can be captured and executed by a runbook. Runbooks also include all the permissions required to execute the task, meaning the runbook can be self-service, allowing the user to execute the task themselves without the adding steps of making the request and waiting for a support team member to action the request. 
+The steps required to refresh the data in the database can be captured and executed by a runbook. Runbooks also include all the permissions required to execute the task, meaning the runbook can be self-service, allowing the user to execute the task themselves without the adding steps of making the request and waiting for a support team member to action the request.
 
 Any task that can be automated can captured in a runbook, allowing team members to execute tasks that had previously required a dedicated team.
 
@@ -107,4 +107,4 @@ Shadow IT is any IT resource that lies outside the organization's control. It is
 
 !include <q2-2022-newsletter-cta>
 
-Happy deployments! 
+Happy deployments!
