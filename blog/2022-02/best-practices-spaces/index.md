@@ -57,19 +57,19 @@ More information on each of these options is below.
 
 ### Application suites
 
-Application suites are an ideal way to organise Spaces because your application design has similar considerations.
+Application suites are an ideal way to organise Spaces because your application design has similar considerations. For example, you might group the components of a content management system (CMS) within one space, and the components of a billing system into a second space.
 
 ### Application visibility
 
-
+A less granular approach is to have separate spaces for internal applications and public-facing applications.
 
 ### Company divisions
 
-
+If the company is split into sections that each develop their own applications, this is likely to provide a natural arrangement to use for Spaces. For example, if the company has divisions that offer software to different industries, each division could have a separate space.
 
 ## Useful indicators
 
-The ideal scenario for a space is that the applications are independent, deployed to dedicated targets, and have an autonomous team responsible for them.
+The ideal scenario for a space is that the applications with a space are independent, deployed to dedicated targets, and have an autonomous team responsible for them. While you might not find yourself in this perfect example, it provides a useful guide when you are deciding how to design your Spaces.
 
 If you deploy multiple applications to the same deployment targets, you should keep the deployments within the same space. 
 
