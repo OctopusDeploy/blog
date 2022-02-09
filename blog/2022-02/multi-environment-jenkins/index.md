@@ -179,15 +179,15 @@ Click **SAVE**.
 
 ## Deploying in Jenkins
 
-To connect Jenkins to Octopus, you need to install the [Octopus plugin](https://plugins.jenkins.io/octopusdeploy/). 
+To connect Jenkins to Octopus, you need to install the [Octopus Deploy plugin](https://plugins.jenkins.io/octopusdeploy/). 
 
 Go to **Dashboard**, then **Manage Plugins**. If the plugin is not installed, search for the Octopus plugin in the **Available** tab and install the plugin. Follow the [guide in our Docs that explains how to set up Jenkins and the Octopus plugin](https://octopus.com/docs/packaging-applications/build-servers/jenkins).
 
-Once the Octopus plugin is set up, make a change to the code on GitHub, and the build will trigger in Jenkins and Octopus.
+After the Octopus plugin is set up, making a change to the code in GitHub will trigger a build in Jenkins and Octopus.
 
 ![Jenkins Octopus Icon](jenkins-octo-icon.png "Jenkins Octopus Icon")
 
-Navigate back to the Octopus instance project overview and you see the release deployed to the Development environment.
+Navigate back to your Octopus instance and **Project**, then **Overview**, and you'll see the release deployed to the Development environment.
 
 ![Development Success](development-success.png)
 
@@ -195,7 +195,7 @@ Now you can progress the release to the Test and Production environment when you
 
 ![Development Success](production-success.png)
 
-You need to port forward locally to inspect the service. Use this command to inspect the web application. The port 28015 is chosen based on the example in the Kubernetes documentation:
+You need to port forward locally to inspect the service. Use this command to inspect the web application. The port, 28015, is based on the example in the Kubernetes documentation:
 
     kubectl port-forward deployment/octopus-underwater-app-jenkins  28015:80
     
@@ -205,11 +205,11 @@ Go to the IP address `http://127.0.0.1:28021/` in your browser to view your web 
 
 ## The benefits of a dedicated CD tool
 
-Octopus is a dedicated Continuous Delivery (CD) tool. It natively supports release management. Jenkins defines environments through the pipeline file. They are dividers to the pipeline code. 
+Octopus Deploy is a dedicated Continuous Delivery (CD) tool that natively supports release management. Jenkins defines environments through the pipeline file. They are dividers to the pipeline code. 
 
-In Octopus, environments are dedicated spaces. Octopus Deploy makes it easy to stop a deployment in a staging environment before it gets pushed to production. The dashboard below shows the capability. Different releases are present in different environments, and it's easy to see where releases are in the lifecycle.
+In Octopus, environments are dedicated spaces. Octopus Deploy makes it easy to stop a deployment in a staging environment before it gets pushed to production. The dashboard below demonstrates this capability - different releases are present in different environments, and it's easy to see where releases are in the lifecycle.
 
-Jenkins is a Continuous Integration (CI) tool. It can do some parts of CD, but not all. Jenkins is commonly used to build and push images to a central repository. Octopus Deploy can interface with several different repositories and manage the deployment process. This separation of concerns allows Jenkins and Octopus Deploy to focus on what they're good at, enabling happier deployments.
+Jenkins is a Continuous Integration (CI) tool that can only do some parts of Continuous Delivery. Jenkins is commonly used to build and push images to a central repository. Octopus Deploy can interface with several different repositories and manage the deployment process. This separation of concerns allows Jenkins and Octopus Deploy to focus on what they're best at, enabling happier deployments.
 
 ![Release Management](release-management.png "Release Management")
 
