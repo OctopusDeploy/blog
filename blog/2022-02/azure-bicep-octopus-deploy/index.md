@@ -19,7 +19,7 @@ Fast forward to 2022 and the use of Bicep and love for it within the IT communit
 
 In this blog post, I introduce how to use Bicep templates and automate their deployment using [Octopus Deploy Runbooks](https://octopus.com/docs/runbooks).
 
-# Getting started with Bicep and Octopus Deploy
+## Getting started with Bicep and Octopus Deploy
 
 ### Prerequisites
 
