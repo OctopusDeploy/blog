@@ -4,8 +4,8 @@ description: As part of our series about Continuous Integration and build server
 author: terence.wong@octopus.com
 visibility: private
 published: 2022-02-22-1400
-metaImage: multienvironmentdeploymentsjenkinspushtooctopus-2022.png
-bannerImage: multienvironmentdeploymentsjenkinspushtooctopus-2022.png
+metaImage: blogimage-multienvironmentdeploymentsjenkinspushtooctopus-2022.png
+bannerImage: blogimage-multienvironmentdeploymentsjenkinspushtooctopus-2022.png
 bannerImageAlt: A rocket flying from planet Jenkins to a planet labeled Prod, with planets labeled Test, and Dev next on its path. 
 isFeatured: false
 tags:
