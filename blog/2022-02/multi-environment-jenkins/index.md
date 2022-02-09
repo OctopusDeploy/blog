@@ -13,11 +13,14 @@ tags:
  - CI Series
  - Continuous Integration
  - Jenkins
+ - Kubernetes
 ---
 
-During a deployment process, an artifact must be built by a build server before being deployed. Jenkins is a build server designed to be used in a multi-environment setting. Jenkins can package and push the artifact to a central repository. From here, a continuous delivery tool can take the artifact and deploy it. Octopus Deploy is a best in class continuous deployment tool that helps with this process. It can interface with and deploy to the major cloud providers such as Azure, Google and Amazon. 
+During a deployment process, an artifact is built by a build server before being deployed. Jenkins is a build server designed for multi-environment settings. Jenkins can package and push your artifact to a central repository. From here, a Continuous Delivery (CD) tool can take the artifact and deploy it. 
 
-In this post, I show you how to build and push the Octopus underwater app to Amazon Elastic Container Registry (ECR). Jenkins will trigger a deployment in Octopus Deploy. Octopus Deploy will then deploy the app to Amazon Elastic Kubernetes Service. 
+Octopus Deploy is a best in class CD tool that helps with this process. Octopus can interface with and deploy to major cloud providers like Azure, Google, and Amazon. 
+
+In this post, I show you how to build and push the Octopus underwater app to Amazon Elastic Container Registry (ECR). Jenkins will trigger a deployment in Octopus Deploy. Octopus will then deploy the app to Amazon Elastic Kubernetes Service (EKS). 
 
 ## Prerequisites
 
@@ -29,13 +32,13 @@ To follow along, you need:
 
 This post uses the [Octopus underwater app repository](https://github.com/OctopusSamples/octopus-underwater-app). You can fork the repository and use the main branch to follow along. 
 
-The jenkins-octopus branch contains the template files needed to complete the steps in this blog. You have to replace some values with your own, but I've included my values in this post as a reference.
+The jenkins-octopus branch contains the template files needed to complete the steps in this post. You have to replace some values with your own, but I've included my values in this post as a reference.
 
 ## Amazon Web Services setup
 
 To set up AWS for Jenkins, you need to create an access key and an ECR repository to store the image.
 
-To create an access key, go to **Amazon Console**, then **IAM**, then **Users**, `[your user]`, then **Security credentials**, and then Create Access Key**.
+To create an access key, go to **Amazon Console**, then **IAM**, then **Users**, `[your user]`, then **Security credentials**, and then **Create Access Key**.
 
 Your browser downloads a file containing the Access Key ID and the Secret Access Key. These values are used in Jenkins to authenticate to Amazon.
 
@@ -131,7 +134,7 @@ Now you need to set up your AWS Kubernetes cluster as a deployment target in Oct
 
 Follow the [steps in our Docs](https://octopus.com/docs/infrastructure/deployment-targets#adding-deployment-targets) which indicate the fields to add to set up the deployment target. In this section you give the deployment target a target role. This will be referenced in the Octopus Deploy step later.
 
-You need to add the Amazon feed to the Octopus Instance: 
+You need to add the Amazon feed to the Octopus instance: 
 
 - Go to **Library**, then **External Feeds**, then **Add Feed**, and then select the **AWS Elastic Container Registry**. 
 - Enter your **Access Key ID**, **Secret Access Key**, and the **Zone** of your registry. 
@@ -202,19 +205,21 @@ Go to the IP address `http://127.0.0.1:28021/` in your browser to view your web 
 
 ## The benefits of a dedicated CD tool
 
-Octopus is a dedicated continuous delivery tool. It natively supports release management. Jenkins defines environments through the pipeline file. They are dividers to the pipeline code. 
+Octopus is a dedicated Continuous Delivery (CD) tool. It natively supports release management. Jenkins defines environments through the pipeline file. They are dividers to the pipeline code. 
 
-In Octopus, environments are dedicated spaces. Octopus Deploy makes it easy to stop a deployment at a staging environment before it gets pushed to production. The following dashboard shows the capability. Different releases are present in different environments, and it's easy to see the stage where releases are in the lifecycle.
+In Octopus, environments are dedicated spaces. Octopus Deploy makes it easy to stop a deployment in a staging environment before it gets pushed to production. The dashboard below shows the capability. Different releases are present in different environments, and it's easy to see where releases are in the lifecycle.
 
-Jenkins is a continuous integration tool. It can do some parts of CD, but not all. Jenkins is commonly used to build and push images to a central repository. Octopus Deploy can interface with several different repositories and manage the deployment process. This separation of concerns allows Jenkins and Octopus Deploy to focus on what they're good at, enabling happier deployments.
+Jenkins is a Continuous Integration (CI) tool. It can do some parts of CD, but not all. Jenkins is commonly used to build and push images to a central repository. Octopus Deploy can interface with several different repositories and manage the deployment process. This separation of concerns allows Jenkins and Octopus Deploy to focus on what they're good at, enabling happier deployments.
 
 ![Release Management](release-management.png "Release Management")
 
 ## Conclusion
 
-In this blog, you have built a web application using Jenkins, pushed it to the ECR and used Octopus Deploy to manage the deployment to Kubernetes. Octopus Deploy provides a dedicated dashboard to view deployments in their different stages. The dashboard highlights how Octopus Deploy supplements a continuous integration tool like Jenkins. 
+In this post, you built a web application using Jenkins, pushed it to the ECR, and used Octopus Deploy to manage the deployment to Kubernetes. 
 
-Octopus Deploy supports all the major cloud proviers such as Azure, Google and Amazon. To get started, you can start a [free trial](https://octopus.com/).
+Octopus Deploy provides a dedicated dashboard to view deployments in their different stages. The dashboard highlights how Octopus Deploy supplements a CI tool like Jenkins. 
+
+Octopus Deploy supports all the major cloud providers, including Azure, Google, and Amazon. If you're not already using Octopus, you can start a [free trial](https://octopus.com/).
 
 !include <q1-2022-newsletter-cta>
 
