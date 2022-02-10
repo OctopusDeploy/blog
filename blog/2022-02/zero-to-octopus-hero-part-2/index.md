@@ -52,7 +52,7 @@ Over a few weeks, I worked on building an ASP.NET application using the CI pipel
 
 ### Step templates
  
-The power for deployments in Octopus Deploy is impressive. You configure your CD pipeline using [step templates](https://octopus.com/docs/projects/built-in-step-templates). The step templates range from being able to run a script, to importing certificates into your Windows server.
+The way Octopus Deploy automates and accelerates deployments is impressive. You configure your CD pipeline using [step templates](https://octopus.com/docs/projects/built-in-step-templates). The step templates range from being able to run a script, to importing certificates into your Windows server.
  
 These step templates speed up your process by providing the code. You don’t have to know the scripting syntax for tasks like importing a certificate into your server. Instead, you select the step template, then answer some basic questions, and Octopus Deploy takes care of the rest.
 
@@ -70,7 +70,7 @@ I also used a runbook process that tears down all my Azure resources, to avoid u
 
 ## Deployment strategies
 
-A deployment strategy or pattern is important for any software deployment or update management. A deployment strategy helps reduce downtime and creates a seamless process for rolling out new features. 
+A deployment strategy (or pattern) is important for any software deployment or update management. A deployment strategy helps reduce downtime and creates a seamless process for rolling out new features. 
 
 I learnt that in the development and DevOps world, deployment strategies have exciting names: 
 
@@ -108,7 +108,7 @@ My advice: don't be frightened to test your knowledge and learn something new, y
  
 ## Next steps
 
-Next, I want to look at more features of Octopus Deploy, and learn how it can integrate with other tools.
+Next, I want to look at more of Octopus Deploy's features, and learn how it can integrate with other tools.
  
 I'm enjoying my learning journey and the way concepts are starting to click. I’m excited about expanding my knowledge and testing it.
 
