@@ -14,7 +14,7 @@ tags:
  - Deployment Patterns
 ---
 
-This blog post is part 6 of my safe schema updates series. We'll add links to the other posts in this series as they become available:
+This blog post is part 6 of my safe schema updates series. Links to the other posts in this series are available below:
 
 !include <safe-schema-updates-posts>
 
@@ -200,7 +200,7 @@ According to Gene Kim, the first delivery bottleneck that most folks hit in thei
 
 It’s my hope, that the sorts of technical practices outlined in this post will allow you, dear reader, to move as much development and testing off your big, shared development/test environments onto dedicated environments where changes can be tested in isolation and merged as soon as they are ready for deployment.
 
-This improved testing capability will come in handy as we move on to the next posts about near-zero downtime deployment and the strangler pattern for breaking up monolithic systems into more loosely coupled architectures. It's a lot easier to commit to complicated and risky refactors if you can test and rehearse the changes in safe, disposable dev and test and environments.
+This improved testing capability will come in handy as we move on to the next posts about near-zero downtime deployment and the strangler pattern for breaking up monolithic systems into more loosely coupled architectures. It's a lot easier to commit to complicated and risky refactors if you can test and rehearse the changes in safe, disposable dev and test environments.
 
 ## Next time
 
@@ -208,16 +208,20 @@ In the next post we’ll turn our focus to deployment patterns.
 
 Throughout this series I’ve been advocating for smaller, safer, more frequent deployments. However, if those deployments require periods of downtime, it’s unlikely that we’ll be allowed to deploy as often as we wish. There’s no point deploying 10 times a day if each deployment requires an hour of downtime. In my opinion, near-zero downtime deployments should not be seen as some lofty and unrealistic goal. They should be considered a prerequisite for practicing true continuous integration and for the delivery of resilient systems.
 
-We'll add links to the other posts in this series as they become available.
+Links to the other posts in this series are available below:
 
 !include <safe-schema-updates-posts>
 
-## Register for the webinar: Safe schema updates, part 1: Imagining better systems
+## Watch the webinars 
 
-Alex Yates will discuss why DevOps is more challenging for mature systems, and why newer systems typically adopt a different architecture.
+Our first webinar discussed how loosely coupled architectures lead to maintainability, innovation, and safety. Part two discussed how to transition a mature system from one architecture to another. 
 
-We're running 3 sessions of the webinar, Wed 17 Nov – Thurs 18 Nov, 2021.
+### Database DevOps: Imagining better systems
 
-<span><a class="btn btn-success" href="/events/safe-schema-updates-part-1-imagining-better-systems">Register now</a></span>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/oJAbUMZ6bQY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-In part two, Alex will discuss how to transition a mature system from one architecture to another. [Learn more and register for the second webinar.](https://octopus.com/events/safe-schema-updates-part-2-building-better-systems)
+### Database DevOps: Building better systems
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/joogIAcqMYo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Happy deployments!
