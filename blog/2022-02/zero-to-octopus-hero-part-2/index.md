@@ -26,19 +26,19 @@ In Part 2, I look at how Octopus Deploy helps implement DevOps for your organiza
  
 I’ve spent years in the IT industry and worked my way through many checklists for deploying a server or helping to release a new version of software to customers.
  
-While checklists are helpful, the human element in that process can be flawed. Issues include:
+While checklists are helpful, the human element in the process can be flawed. Issues include:
 
 - Assuming you completed a task
 - Skipping tasks
 - Using an outdated version of a checklist
  
-This is where DevOps can help. If you build your checklist into an automation sequence, the automation tool won’t assume anything, and it won’t skip a task because it's tired or in a rush.
+This is where DevOps helps. If you build your checklist into an automation sequence, the automation tool won’t assume anything, and it won’t skip a task because it's tired or in a rush.
  
-DevOps helps to introduce the consistency we need in our IT environment.  It also completes tasks faster than a human in many cases.
+DevOps introduces the consistency we need in our IT environment.  It also completes tasks faster than a human in many cases.
  
 When we talk about DevOps you often hear the terms Continuous Integration and Continuous Deployment (CI/CD) mentioned.
  
-Continuous Integration (CI) is the process of checking all your code into a version control system.  A popular tool is Git, with code repository choices including GitHub, GitLab, Azure DevOps, and BitBucket.
+Continuous Integration (CI) is the process of checking your code into a version control system.  A popular tool is Git, with code repository choices including GitHub, GitLab, Azure DevOps, and BitBucket.
  
 CI pulls your code into a pipeline that builds your code, or compiles your application.  It then completes automated tests. You then package your code or app into a deployable artifact, such as a Zip file, NuGet package, or Docker image. Your artifact can then be deployed using a Continuous Deployment (CD) pipeline. 
 
