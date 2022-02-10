@@ -12,7 +12,7 @@ tags:
  - Product
 ---
 
-Cloud providers make it easy to provision new infrastructure. This means it's easy to spin up environments to test a new feature or perform a demo for a customer. Keeping your Octopus targets in sync, though, can be challenging as this infrastructure comes and goes.
+Cloud providers make it easy to provision new infrastructure. This means it's simple to spin up environments to test a new feature or perform a demo for a customer. Keeping your Octopus targets in sync, though, can be challenging as this infrastructure comes and goes.
 
 Octopus currently provides a [dynamic infrastructure](https://octopus.com/docs/infrastructure/deployment-targets/dynamic-infrastructure) feature that lets you register targets during the deployment process. We give you the necessary pieces, and you glue them together to meet your requirements. This involves custom scripting, juggling output variables, and toggling settings.
 
@@ -90,7 +90,7 @@ Specifically, we want to know:
 
 This feedback will help us deliver the best solution we can.
 
-<span><a class="btn btn-success" href="hhttps://github.com/OctopusDeploy/StepsFeedback/issues/8">Provide feedback</a></span>
+<span><a class="btn btn-success" href="https://github.com/OctopusDeploy/StepsFeedback/issues/8">Provide feedback</a></span>
 
 ## Conclusion
 
