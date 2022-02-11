@@ -11,13 +11,13 @@ tags:
  - Spaces
 ---
 
-Spaces help you organize and secure your projects, environments, and infrastructure and control which team members can access them.
+The Octopus Spaces feature helps you organize and secure your projects, environments, and infrastructure and control which team members can access them.
 
 In this post, you'll learn how to use spaces effectively to organize your deployments.
 
 ## An overview of spaces
 
-Spaces are partitions that create hard walls in your Octopus Server. Deployment resources assigned to a space cannot be seen or used from another space. A *space manager* can be given full responsibility for managing each space, which can reduce the workload for an Octopus administrator.
+Spaces are partitions that create hard walls in your Octopus Server. Deployment resources assigned to a space cannot be seen or used from another space. An Octopus Administrator can give full responsibility for managing each space to a Space Manager, which can reduce the workload for the administrator.
 
 ![Spaces](spaces-temporary.png)
 
@@ -32,21 +32,32 @@ The following items are scoped to a space:
 
 These space-scoped items cannot be accessed from other spaces.
 
-When you create a team, you can choose whether to scope them to a space or have the team span all spaces.
+Teams are a special case. When you create a team, you can choose whether to scope them to a single space or have the team span all spaces.
 
 The [administration guide for Spaces](https://octopus.com/docs/administration/spaces) has instructions for managing spaces.
 
 ## The benefits of spaces
 
-You can use Spaces to organize your deployment resources and limit who can access them.
+There are two primary use cases for spaces:
 
-For example, your Octopus Deploy Dashboard increases vertically as you add projects and horizontally each time you add an environment. You will also find lists in edit screens getting longer as you add roles, variables, and deployment targets. Spaces allow you to contain the growth in each area by grouping related resources together.
+- Organising deployment resources
+- Controlling access to sets of deployment resources
 
-Many organizations need to restrict who can access particular sets of deployment resources. It is also helpful in larger organizations to make things easier for team members by limiting how much they see.
+You might choose to use spaces for either or both of these reasons.
 
-If you have to scroll through a long list of projects, Spaces are an opportunity to make things much more straightforward.
+### Organising deployment resources
 
-If you aren't using spaces, you might create permissions to control which projects team members can see or change. This granular level of permissions can be hard to manage. Because each space contains a related set of resources, you are likely to find your permissions can be more straightforward because you'll control access to the space rather than individual projects or resources.
+Your Octopus Deploy Dashboard displays a row for each project and a column for each phase in your lifecycles. The dashboard gets taller when you add more projects and wider as you create more phases. If you find your dashboard overwhelming, moving projects into spaces will clean it up and reduce how much you have to scroll.
+
+You will get the same benefits across all screens in the space and when choosing resources from a list, such as editing a process step, as only items from the current space are shown.
+
+Spaces allow you to limit the growth in each area by grouping related resources together.
+
+### Controlling access to deployment resources
+
+Before we introduced spaces, you could control the visibility of projects using teams with scoped roles. However, this could become difficult to manage. It was hard to stop items like deployment targets from being re-used by new projects.
+
+Spaces give you a convenient way to control access to a group of related resources without complicated permissions. You can grant a team member full or read-only access to the spaces they need, and they can then switch between them quickly using the space switcher.
 
 ## How to design your spaces
 
@@ -66,7 +77,7 @@ Application suites are ideal for organizing spaces because your application desi
 
 ### Application visibility
 
-A less granular approach is to have separate spaces for internal applications and public-facing applications.
+A less granular approach is to have separate spaces for internal and public-facing applications.
 
 ### Company divisions
 
@@ -92,4 +103,4 @@ Where an application contains several components, it is better to keep them with
 
 ## Conclusion
 
-Spaces are a key tool for organizing and securing the deployment-related resources you manage with Octopus Deploy. As an organization grows, spaces become an essential tool that helps you tackle the complexity in your deployment configuration.
+Spaces are a valuable tool for organizing and securing the deployment-related resources you manage with Octopus Deploy. As an organization grows, spaces become an essential tool that helps you tackle the complexity in your deployment configuration.
