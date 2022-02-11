@@ -1,12 +1,12 @@
 ---
 title: Introducing Buildkite integration
-description: Octopus Deploy now integrates with Buildkite, with plugins that are available for build agents. Learn how to use the plugins.
+description: Octopus Deploy now integrates with Buildkite, with plugins that are available for build agents. Learn how to use these new plugins.
 author: john.bristowe@octopus.com
 visibility: public
 published: 2022-02-14-1400
-metaImage: to-be-added-by-marketing
-bannerImage: to-be-added-by-marketing
-bannerImageAlt: Buildkite is now integrated with Octopus Deploy
+metaImage: blogimage-buildkiteintegration-2022.png
+bannerImage: blogimage-buildkiteintegration-2022.png
+bannerImageAlt: Buildkite and Octopus Deploy logos connected by plugs with little stars around the connection.
 isFeatured: false
 tags: 
   - Product
