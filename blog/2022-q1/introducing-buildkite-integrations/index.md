@@ -31,6 +31,8 @@ Buildkite integration with Octopus Deploy is supported through the following plu
 
 These plugins require the [Octopus CLI](https://octopus.com/downloads/octopuscli) to be installed on the Buildkite agent.
 
+![Buildkite Agent Runs](buildkite-agent-runs.png)
+
 ## Create Release
 
 In Octopus Deploy, a release is a snapshot of the deployment process and the associated assets (packages, scripts, variables) as they existed when the release was created. The release is given a version number, and you can deploy that release as many times as you need to, even if parts of the deployment process have changed since the release was created (those changes will be included in future releases but not in this version).
@@ -50,6 +52,8 @@ steps:
 ```
 
 It is strongly recommended that you use environment variables for sensitive values such as the API key or server address.
+
+![Buildkite Agent Runs Output](buildkite-agent-runs-output.png)
 
 ## Push Build Information
 
