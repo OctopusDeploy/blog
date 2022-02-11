@@ -4,7 +4,7 @@ description: Find out how to use Spaces effectively.
 author: steve.fenton@octopus.com
 visibility: private
 published: 9999-01-01
-metaImage: 
+metaImage:  Idea in spaces-app-suite.png
 bannerImage: 
 tags:
  - Product
@@ -18,8 +18,6 @@ In this post, you'll learn how to use spaces effectively to organize your deploy
 ## An overview of spaces
 
 Spaces are partitions that create hard walls in your Octopus Server. Deployment resources assigned to a space cannot be seen or used from another space. An Octopus Administrator can give full responsibility for managing each space to a Space Manager, which can reduce the workload for the administrator.
-
-![Spaces](spaces-temporary.png)
 
 The following items are scoped to a space:
 
