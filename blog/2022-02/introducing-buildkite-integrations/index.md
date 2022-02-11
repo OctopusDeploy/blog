@@ -1,45 +1,50 @@
 ---
-title: Introducing Buildkite Integration
-description: Integration between Buildkite and Octopus Deploy is available through plugins that are available for build agents.
+title: Introducing Buildkite integration
+description: Octopus Deploy now integrates with Buildkite, with plugins that are available for build agents. Learn how to use the plugins.
 author: john.bristowe@octopus.com
-visibility: private
+visibility: public
 published: 2022-02-14-1400
 metaImage: to-be-added-by-marketing
 bannerImage: to-be-added-by-marketing
 bannerImageAlt: Buildkite is now integrated with Octopus Deploy
 isFeatured: false
 tags: 
+  - Product
+  - DevOps
   - Continuous Integration
-  - Engineering
 ---
 
-Octopus Deploy now integrates with [Buildkite](https://buildkite.com/), enabling build agents to create releases, push build information, and run runbooks as part of a pipeline. This blog post demonstrates how you can use these plugins to perform various operations with Octopus Deploy as part of a pipeline in Buildkite.
+Octopus Deploy now integrates with [Buildkite](https://buildkite.com/). Our new Buildkite plugins will allow your build agents to create and deploy releases, push build information, and run runbooks as part of a pipeline.  
+
+This post demonstrates how you can use the Buildkite plugins to perform various operations with Octopus Deploy as part of a pipeline in Buildkite.
 
 ## What is Buildkite?
 
-Buildkite is a platform for running continuous integration pipelines on your infrastructure. This enables it to be fast, secure, and scalable.
+Buildkite is a platform for running Continuous Integration (CI) pipelines on your infrastructure. This makes it fast, secure, and scalable.
 
-Builds are conducted through agents. These are small, reliable and cross-platform build runners controlled through workflows defined in YAML. Agents are also extensible through plugins. These provide additional functionality to the workflows. They can do things like execute steps in Docker containers, read values from a credential store, or add test summary annotations to builds.
+Builds are conducted through agents. These are small, reliable, and cross-platform build runners controlled through workflows defined in YAML. 
 
-## Buildkite Integration with Octopus Deploy
+Agents are also extensible through plugins. These provide additional functionality to the workflows. They do things like execute steps in Docker containers, read values from a credential store, or add test summary annotations to builds.
+
+## Buildkite integration with Octopus Deploy
 
 Buildkite integration with Octopus Deploy is supported through the following plugins:
 
-* [create-release-buildkite-plugin](https://github.com/OctopusDeploy/create-release-buildkite-plugin)
-* [push-build-information-buildkite-plugin](https://github.com/OctopusDeploy/push-build-information-buildkite-plugin)
-* [run-runbook-buildkite-plugin](https://github.com/OctopusDeploy/run-runbook-buildkite-plugin)
+- [create-release-buildkite-plugin](https://github.com/OctopusDeploy/create-release-buildkite-plugin)
+- [push-build-information-buildkite-plugin](https://github.com/OctopusDeploy/push-build-information-buildkite-plugin)
+- [run-runbook-buildkite-plugin](https://github.com/OctopusDeploy/run-runbook-buildkite-plugin)
 
 These plugins require the [Octopus CLI](https://octopus.com/downloads/octopuscli) to be installed on the Buildkite agent.
 
 ![Buildkite Agent Runs](buildkite-agent-runs.png)
 
-## Create Release
+## Creating a release
 
-In Octopus Deploy, a release is a snapshot of the deployment process and the associated assets (packages, scripts, variables) as they existed when the release was created. The release is given a version number, and you can deploy that release as many times as you need to, even if parts of the deployment process have changed since the release was created (those changes will be included in future releases but not in this version).
+In Octopus Deploy, a release is a snapshot of your deployment process and the associated assets (packages, scripts, variables) as they existed when your release was created. The release is given a version number, and you can deploy that release as many times as you need to, even if parts of the deployment process have changed since the release was created (those changes will be included in future releases but not in this version).
 
-When you deploy the release, you are executing the deployment process with all the associated details, as they existed when the release was created.
+When you deploy the release, you're executing the deployment process with all the associated details, as they existed when the release was created.
 
-Creating a release in Octopus Deploy through Buildkite is accomplished by incorporating [create-release-buildkite-plugin](https://github.com/OctopusDeploy/create-release-buildkite-plugin) into your pipeline:
+Creating a release in Octopus Deploy through Buildkite incorporates [create-release-buildkite-plugin](https://github.com/OctopusDeploy/create-release-buildkite-plugin) into your pipeline:
 
 ```yaml
 steps:
@@ -51,19 +56,21 @@ steps:
         server: "${MY_OCTOPUS_SERVER}"
 ```
 
-It is strongly recommended that you use environment variables for sensitive values such as the API key or server address.
+:::hint
+We strongly recommended you use environment variables for sensitive values such as the API key or server address.
+:::
 
 ![Buildkite Agent Runs Output](buildkite-agent-runs-output.png)
 
-## Push Build Information
+## Pushing build information
 
-When deploying a release, it is useful to know which build produced the artifact, what commits it contained, and which work items it is associated with. The Build information feature allows you to upload information from your build server, manually or with the use of a plugin, to Octopus Deploy.
+When deploying a release, it's useful to know which build produced the artifact, what commits it contained, and which work items it is associated with. The build information feature allows you to upload information from your build server, manually or with a plugin, to Octopus Deploy.
 
 Build information is associated with a package and includes:
 
-* Build URL: A link to the build which produced the package
-* Commits: Details of the source commits related to the build
-* Issues: Issue references parsed from the commit messages
+- Build URL: A link to the build which produced the package
+- Commits: Details of the source commits related to the build
+- Issues: Issue references parsed from the commit messages
 
 Pushing build information to Octopus Deploy from Buildkite can be done through [push-build-information-buildkite-plugin](https://github.com/OctopusDeploy/push-build-information-buildkite-plugin):
 
@@ -78,11 +85,11 @@ steps:
           server: "${MY_OCTOPUS_SERVER}"
 ```
 
-## Run Runbook
+## Running a runbook
 
-Runbooks automate routine maintenance and emergency operations tasks, such as infrastructure provisioning, database management, and website failover and restoration. Runbooks include all the necessary permissions for the infrastructure they run on, so anybody on the team can execute the runbook, and because they're managed in Octopus there's a complete audit trail. Runbooks can be parameterized with prompted variables so that human interaction is required.
+Runbooks automate routine maintenance and emergency operations tasks, such as infrastructure provisioning, database management, and website failover and restoration. Runbooks include all the necessary permissions for the infrastructure they run on, so anybody on the team can execute the runbook, and because they're managed in Octopus there's a complete audit trail. Runbooks can use prompted variables so that human interaction is required.
 
-A runbook can be run in Octopus Deploy through Buildkite using the run-runbook-buildkite-plugin:
+A runbook can be run in Octopus Deploy through Buildkite using the [run-runbook-buildkite-plugin](https://github.com/OctopusDeploy/run-runbook-buildkite-plugin):
 
 ```yaml
 steps:
@@ -98,8 +105,8 @@ steps:
 
 ## Conclusion
 
-The integration provided through these plugins represent our initial design and release. Our plan is to build additional plugins and eliminate the dependency on the Octopus CLI by providing integration through bash scripts.
+The integration provided through our new Buildkite plugins represents our initial design and release. We plan to build additional plugins and eliminate the dependency on the Octopus CLI by providing integration through Bash scripts.
 
-If you're an existing Octopus Deploy customer, check out Buildkite as part of your build pipeline. If you're an existing Buildkite customer, check out Octopus Deploy for deployments. And if you haven't tried either product, consider them both as part of a CI/CD pipeline.
+If you're an existing Octopus Deploy customer, check out [Buildkite](https://buildkite.com/) as part of your build pipeline. If you're an existing Buildkite customer, check out [Octopus Deploy](https://octopus.com/start) for deployments. And if you haven't tried either product, consider them both as part of your CI/CD pipeline.
 
 Happy deployments!
