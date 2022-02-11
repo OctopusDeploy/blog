@@ -24,7 +24,7 @@ Buildkite is a platform for running Continuous Integration (CI) pipelines on you
 
 Builds are conducted through agents. These are small, reliable, and cross-platform build runners controlled through workflows defined in YAML. 
 
-Agents are also extensible through plugins. These provide additional functionality to the workflows. They do things like execute steps in Docker containers, read values from a credential store, or add test summary annotations to builds.
+Agents are also extensible through plugins. These provide additional functionality to the workflows. They do things like execute steps in Docker containers, read values from a credential store, and add test summary annotations to builds.
 
 ## Buildkite integration with Octopus Deploy
 
