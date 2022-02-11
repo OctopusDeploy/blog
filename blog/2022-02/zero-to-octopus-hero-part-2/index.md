@@ -102,16 +102,18 @@ Consider these questions to set yourself up for success when configuring steps i
 - What variables do I need?  
 - When do I need to put in manual checks and what can be fully automated?   
  
-I was worried that my lack of development experience would be a hurdle when learning about DevOps, but it hasn’t been.  There's new terminology, but I was familiar with the concepts, just in a non-automation world. 
+I was worried that my lack of development experience would be a hurdle when learning about DevOps, but it hasn’t been.  There's new terminology, but I was already familiar with the concepts. 
  
 My advice: don't be frightened to test your knowledge and learn something new, you might surprise yourself.  
  
 ## Next steps
 
-Next, I want to look at more of Octopus Deploy's features, and learn how it can integrate with other tools.
+Next, I want to look at more of Octopus Deploy's features, and learn how it integrates with other tools.
  
 I'm enjoying my learning journey and the way concepts are starting to click. I’m excited about expanding my knowledge and testing it.
 
 Be sure to check back to see how I'm progressing. We'll add links to other posts in the series as they become available.
+
+!include <zero-to-hero>
 
 Happy deployments!
