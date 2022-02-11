@@ -41,7 +41,7 @@ The [administration guide for Spaces](https://octopus.com/docs/administration/sp
 There are two primary use cases for spaces:
 
 - Organising deployment resources
-- Controlling access to sets of deployment resources
+- Controlling access to these resources
 
 You might choose to use spaces for either or both of these reasons.
 
@@ -61,9 +61,11 @@ Spaces give you a convenient way to control access to a group of related resourc
 
 ## How to design your spaces
 
-A space represents a logical group of applications. If you have several closely related applications, they are likely to share some variables in a variable set or get deployed to the same infrastructure. These factors will naturally guide whether they should be grouped into a space or kept in separate spaces to prevent them from becoming related in undesirable ways.
+A space represents a logical group of applications. If you have several closely related applications, they are likely to share some variables in a variable set or be deployed to the same infrastructure. These factors will naturally guide whether they should be grouped into a space or kept in separate spaces to prevent them from becoming related in undesirable ways.
 
-It may seem like a good idea to create a space for each team in your organization, but this is not always the best design to follow. Because the relationship between a team and a project is likely to change, you will need to move projects between spaces to keep them in sync with your team design. Instead, use one of the following dimensions to design your spaces:
+It may seem like a good idea to create a space for each team in your organization, but this is not always the best design to follow.
+
+Instead, use one of the following dimensions to design your spaces:
 
 - Application suites
 - Application audiences
@@ -75,32 +77,40 @@ More information on each of these options is below.
 
 Application suites are ideal for organizing spaces because your application design has similar design considerations. For example, you might group the components of a content management system (CMS) within one space and the components of a billing system into a second space.
 
-### Application visibility
+:::hint
+[Conway's law](https://en.wikipedia.org/wiki/Conway%27s_law) states that "Any organization that designs a system (defined broadly) will produce a design whose structure is a copy of the organization's communication structure." If you have designed your applications and teams to take advantage of this law, you may find that application suites and teams have a similar definition.
+:::
 
-A less granular approach is to have separate spaces for internal and public-facing applications.
+If you have more than one team contributing to an application suite, you should maintain a space that aligns with the software, not the teams. You can give both teams access to the space, and both can see a whole-system view of deployments.
+
+### Application audiences
+
+A less granular approach is to have separate spaces that match intended audiences, for example, internal and public-facing applications. This approach prioritizes cleaning up the public-facing space by removing less critical resources into a different space.
+
+This design can quickly improve the information for your public-facing space and may serve as a first step toward splitting resources into spaces for each application suite.
 
 ### Company divisions
 
-If your company is organized into divisions that develop independent applications, this is likely to provide a natural design for spaces. For example, if the company has divisions that offer software to different industries, each division could have a separate space.
+If your company is organized into divisions that develop independent applications, this is likely to provide a natural design for spaces. For example, if the company has divisions that offer software to different industries, each division could have a separate space with a dedicated space manager.
 
-The space for each division can have a separate space manager, which means the division can be self-sufficient in managing its space.
+This would allow each division to be self-sufficient in managing its space, without cluttering Octopus Deploy for other divisions.
 
 ## Useful design indicators
 
-The ideal scenario is that applications within a space are independent, deployed to dedicated targets, and have an autonomous team responsible for them. While you might not find yourself in this perfect example, it provides a helpful guide when deciding how to design your spaces.
+The ideal scenario is that applications within a space are independent, deployed to dedicated targets, and have an autonomous team responsible for them. While you might not find yourself in this perfect situation, it provides a helpful guide when deciding how to design your spaces.
 
-If you deploy multiple applications to the same deployment targets, you should keep the deployments within the same space. 
+If you deploy multiple applications to the same deployment targets, you should keep the deployments within the same space. It is possible to set up the same deployment target in more than one space using a listening tentacle. However, this complicates the permissions, and team members won't see all the deployments targeting the shared infrastructure.
 
-It is possible to set up the same deployment target in more than one space using a listening tentacle. However, this complicates the permissions, and team members won't see all the deployments targeting the shared infrastructure. If there are reasons to split the deployments into multiple spaces, those same reasons are likely to mean you should have different deployment targets, too.
+If there are strong reasons to split the deployments into multiple spaces, those same reasons are likely to mean you should have different deployment targets, too.
 
 ## What to avoid
 
-You should avoid using spaces for each environment, as you will duplicate the process in each space. It would not be easy to keep the process the same in each space when you make changes.
+You should avoid using spaces for each environment, as you will need to duplicate the process in each space. It would not be easy to keep the process consistent in each space when you make changes.
 
 You should also avoid using spaces where it is more appropriate to use [tenants](https://octopus.com/docs/tenants).
 
-Where an application contains several components, it is better to keep them within a single space; otherwise, it becomes difficult to track the currently deployed state of the application.
+Where an application contains several components, it is better to keep them within a single space; otherwise, it becomes difficult to track the currently deployed state of the application as a whole.
 
 ## Conclusion
 
-Spaces are a valuable tool for organizing and securing the deployment-related resources you manage with Octopus Deploy. As an organization grows, spaces become an essential tool that helps you tackle the complexity in your deployment configuration.
+Spaces are a valuable tool for organizing and securing the deployment-related resources you manage with Octopus Deploy. They provide smaller views over deployments and resources, but you should give due consideration to the design of your spaces.
