@@ -16,7 +16,7 @@ tags:
 
 Octopus Deploy now integrates with [Buildkite](https://buildkite.com/). Our new Buildkite plugins will allow your build agents to create and deploy releases, push build information, and run runbooks as part of a pipeline.  
 
-This post demonstrates how you can use the Buildkite plugins to perform various operations with Octopus Deploy as part of a pipeline in Buildkite.
+This post shows you how to use the Buildkite plugins to perform various operations with Octopus Deploy as part of a pipeline in Buildkite.
 
 ## What is Buildkite?
 
@@ -40,11 +40,11 @@ These plugins require the [Octopus CLI](https://octopus.com/downloads/octopuscli
 
 ## Creating a release
 
-In Octopus Deploy, a release is a snapshot of your deployment process and the associated assets (packages, scripts, variables) as they existed when your release was created. The release is given a version number, and you can deploy that release as many times as you need to, even if parts of the deployment process have changed since the release was created (those changes will be included in future releases but not in this version).
+In Octopus Deploy, a release is a snapshot of your deployment process and the associated assets (packages, scripts, variables) as they existed when your release was created. The release is given a version number, and you can deploy that release as many times as you need to, even if parts of the deployment process have changed since the release was created (those changes will be included in future releases but not in the current version).
 
 When you deploy the release, you're executing the deployment process with all the associated details, as they existed when the release was created.
 
-Creating a release in Octopus Deploy through Buildkite incorporates [create-release-buildkite-plugin](https://github.com/OctopusDeploy/create-release-buildkite-plugin) into your pipeline:
+Creating a release in Octopus Deploy through Buildkite incorporates the [create-release-buildkite-plugin](https://github.com/OctopusDeploy/create-release-buildkite-plugin) into your pipeline:
 
 ```yaml
 steps:
@@ -64,15 +64,15 @@ We strongly recommended you use environment variables for sensitive values such 
 
 ## Pushing build information
 
-When deploying a release, it's useful to know which build produced the artifact, what commits it contained, and which work items it is associated with. The build information feature allows you to upload information from your build server, manually or with a plugin, to Octopus Deploy.
+When deploying a release, it's useful to know which build produced the artifact, what commits it contained, and which work items it's associated with. The build information feature allows you to upload information from your build server, manually or with a plugin, to Octopus Deploy.
 
 Build information is associated with a package and includes:
 
-- Build URL: A link to the build which produced the package
-- Commits: Details of the source commits related to the build
-- Issues: Issue references parsed from the commit messages
+- Build URL: a link to the build which produced the package
+- Commits: details of the source commits related to the build
+- Issues: issue references parsed from the commit messages
 
-Pushing build information to Octopus Deploy from Buildkite can be done through [push-build-information-buildkite-plugin](https://github.com/OctopusDeploy/push-build-information-buildkite-plugin):
+Pushing build information to Octopus Deploy from Buildkite can be done through the [push-build-information-buildkite-plugin](https://github.com/OctopusDeploy/push-build-information-buildkite-plugin):
 
 ```yaml
 steps:
