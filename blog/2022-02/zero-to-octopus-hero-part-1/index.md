@@ -4,8 +4,8 @@ description: Join Sarah Lean as she learns about Octopus Deploy.
 author: sarah.lean@octopus.com
 visibility: public
 published: 2022-02-08-1400
-metaImage: blogimage-fromzerotooctopusheropart1.png
-bannerImage: blogimage-fromzerotooctopusheropart1.png
+metaImage: blogimage-fromzerotooctopusheropart1-2022.png
+bannerImage: blogimage-fromzerotooctopusheropart1-2022.png
 bannerImageAlt: Mario-style illustration with Sarah winning a fight with a creature over shark infested waters.
 isFeatured: false
 tags:
