@@ -18,6 +18,8 @@ This blog will build and push the Octopus Deploy Underwater Scene to Amazon Elas
 - An Amazon Web Services Account (AWS)
 - A GitHub account
 
+This blog will use the [Octopus Underwater app repository](https://github.com/OctopusSamples/octopus-underwater-app). You can fork the repository and follow along. Alternatively, the github-ecr branch contains the template files needed to complete the steps in this blog. You will have to replace some values with your own. I have included my values as a reference.
+
 
 ## Amazon Web Services setup
 
@@ -96,7 +98,7 @@ jobs:
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 ```
 
-GitHub stars an action by a push or pull request on the main branch. The steps check out the code, authenticate and log into AWS, then build, tag, and push the image to Amazon ECR. A similar step template could push to other cloud repositories like Google or Microsoft. 
+GitHub starts an action by a push or pull request on the main branch. The steps check out the code, authenticate and log into AWS, then build, tag, and push the image to Amazon ECR. A similar step template could push to other cloud repositories like Google or Microsoft. 
 
 Commit your changes and go to the **Actions** tab and click the title of your commit message. You will see the various stages of the workflow as it reaches completion.
 
@@ -106,16 +108,7 @@ Go to your Amazon ECR repository to view the image. Octopus Deploy can now deplo
 
 ![ECR Success](ecr-success.png)
 
-## GitHub Step Templates
 
-If you want to experiment with different workflows, GitHub Actions has a workflow builder. Go to **Actions &rarr; New Workflow** to use pre-built step templates. GitHub suggests templates based on your repository, but you can manually select the appropriate steps. 
+In this blog, you have set up a GitHub Actions workflow to build and push an image to Amazon ECR. 
 
-![Build Workflow](build-workflow.png)
-
-Select **set up a workflow yourself**, and you can use a template and add code snippets from the GitHub Marketplace. The marketplace contains community-built templates for different kinds of operations. Use the search box to search for the steps that you need.
-
-Each yml file created in the workflow folder is a different job. GitHub will create a new workflow on each trigger depending on the trigger conditions of the workflow. You could have one workflow to push to AWS and another to push to Google, for example.
-
-![Build Your Workflow](build-your-workflow.png)
-
-In this blog, you have set up a GitHub Actions workflow to build and push an image to Amazon ECR. GitHub Actions has
+Happy Deployments!

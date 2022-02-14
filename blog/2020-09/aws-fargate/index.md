@@ -281,6 +281,10 @@ The remainder of the variables are project variables:
 
 #### Steps
 
+:::info
+The following process can be replaced by using the [Deploy Amazon ECS Service](https://octopus.com/blog/octopus-release-2021-q4#ecs-integration) step (see our [Samples](https://samples.octopus.app/app#/Spaces-103/projects/aws-ecs/deployments/process) for details.)  The script steps below are kept for historical purposes.
+:::
+
 This deployment will consist of two steps, and they both use the **Run an AWS CLI script**.  At the time of this writing, there aren’t any ECS or Fargate specific templates available.
 - Create task definition
 - Run task

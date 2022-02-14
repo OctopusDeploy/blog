@@ -16,8 +16,9 @@ tags:
 This blog will build a docker image in a GitHub Actions workflow and publish the image to Amazon Elastic Container Registry (ECR). To follow along, you will need:
 
 - An Amazon Web Services Account (AWS)
-
 - A GitHub account
+
+This blog will use the [Octopus Underwater app repository](https://github.com/OctopusSamples/octopus-underwater-app). You can fork the repository and follow along. Alternatively, the github-deployment branch contains the template files needed to complete the steps in this blog. You will have to replace some values with your own. I have included my values as a reference.
 
 ## Amazon Web Services setup
 
@@ -43,7 +44,7 @@ You will see your repository under **Amazon ECR &rarr; Repositories**. Make a no
 
 We will use a sample web application that displays an animated underwater scene with helpful links for this example.
 
-Fork the repository at https://github.com/terence-octo/octopus-underwater-app
+Fork the repository at https://github.com/OctopusSamples/octopus-underwater-app
 
 Go to **Settings &rarr; Secrets &rarr; New repository secret**
 
@@ -63,7 +64,7 @@ First, we need to create a deployment YAML file for GitHub actions to deploy to 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ecr-app-underwater
+  name: underwater-app-github
   labels:
     app: octopus-underwater-app
 spec:
@@ -80,7 +81,7 @@ spec:
     spec:
       containers:
         - name: octopus-underwater-app
-          image: 720766170633.dkr.ecr.us-east-2.amazonaws.com/underwater:latest
+          image: 720766170633.dkr.ecr.us-east-2.amazonaws.com/octopus-underwater-app:latest
           ports:
             - containerPort: 80
               protocol: TCP
@@ -94,50 +95,60 @@ Create a file named main.yml in the .github/workflow directory of the root folde
 
 ```
 
-on: push
-name: deploy
-jobs:
- deploy:
-   name: deploy to cluster
-   runs-on: ubuntu-latest
-   steps:
-   - name: Checkout
-     uses: actions/checkout@v2
-   - name: Configure AWS credentials
-     uses: aws-actions/configure-aws-credentials@v1
-     with:
-       aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-       aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-       aws-region: us-east-2
-   - name: Login to Amazon ECR
-     id: login-ecr
-     uses: aws-actions/amazon-ecr-login@v1
-   - name: Push image and deploy
-     uses: observian/littleci-littlecd-eks@master
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
-     with:
-       access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-       secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-       account_id: ${{ secrets.AWS_ACCOUNT_ID }}
-       repo: github-ecr
-       region: us-east-2
-       tags: 0.1.1.${{ github.run_number }},${{ github.sha }}
-       eks_cluster_name: my-cluster-cli
-       k8s_manifest: git-deployment.yml
-       k8s_image_tag: 0.1.1.${{ github.run_number }}
+name: AWS ECR push
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Install Octopus CLI
+      uses: OctopusDeploy/install-octopus-cli-action@v1.1.1
+      with:
+          version: latest
+    - name: Checkout
+      uses: actions/checkout@v2
+      
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-2
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+
+    - name: Build, tag, and push the image to Amazon ECR
+      id: build-image
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: ${{ secrets.REPO_NAME }}
+        IMAGE_TAG: "latest"
+        
+      run: |
+        # Build a docker container and push it to ECR 
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        echo "Pushing image to ECR..."
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 ```
 
 ![GitHub Success](github-success.png)
 
-This command will point the CLI to your cluster:
+We will port forward locally to inspect the service. Use this command to inspect the web application. The port 28015 is chosen based on the example in the Kubernetes documentation:
 
-   kubectl get deployments
-
-Running this command will get the list of deployments on the cluster. You should see the deployment `octopus-underwater-app-octo`. Use this name to expose the web application:
-
-   kubectl port-forward deployment/octopus-underwater-app-octo  28019:80
-
-Go to the IP address in the browser to view your web application.
+    kubectl port-forward deployment/underwater-app-github  28015:80
+    
+Go to the IP address http://127.0.0.1:28015/ in the browser to view your web application.
 
 ![Octopus Underwater App](octopus-underwater-app.png)
 
@@ -145,7 +156,7 @@ Go to the IP address in the browser to view your web application.
 
 GitHub Actions can build, push and deploy a GitHub repository to a Kubernetes cloud platform like EKS. Integrating with cloud platforms and other tools relies on community-built step templates. In my experience with the tools, these step templates are not standardized. I tried several different templates. Some worked differently from others, depending on the variables called.
 
-I found that using a new step template in GitHub required a layer of learning each time. A tool like Octopus also uses step templates, but they share a standard design across the Octopus Deploy application. This. means the Octopus Deploy step template experience is consistent. 
+I found that using a new step template in GitHub required a layer of learning each time. A tool like Octopus also uses step templates, but they share a standard design across the Octopus Deploy application. This means the Octopus Deploy step template experience is consistent. 
 
 
 
