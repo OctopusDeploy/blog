@@ -26,23 +26,23 @@ Here are 10 of our favorite Jenkins plugins, what they can bring to your pipelin
 
 Jenkins’ own [Blue Ocean plugin](https://plugins.jenkins.io/blueocean/) freshens up the UI with a modern look and feel.
 
-The simpler, visual-focused design makes it easier to create pipelines, read process statuses, and spot pipeline problems. Plus, it allows you to create your own dashboards, so you only see what you need.
+The simple, visual-focused design makes it easier to create pipelines, read process statuses, and spot pipeline problems. Plus, it allows you to create your own dashboards, so you only see what you need.
 
 ## 2: Simple Theme
 
 With the [Simple Theme plugin](https://plugins.jenkins.io/simple-theme-plugin/), you can change the way Jenkins looks and feels using CSS and JavaScript.
 
-You can also find readily available themes on GitHub via the [plugin’s Index page](https://plugins.jenkins.io/simple-theme-plugin/).
+You can also find readily available themes on GitHub via the [plugin’s Index page](https://plugins.jenkins.io/simple-theme-plugin/#plugin-content-themes).
 
 ## 3: Performance Publisher
 
-Data isn't useful if you aren’t sure how to read it, and that’s what makes the [Performance Publisher](https://plugins.jenkins.io/perfpublisher/) plugin so helpful.
+Data isn't useful if you're not sure how to read it, and that’s what makes the [Performance Publisher](https://plugins.jenkins.io/perfpublisher/) plugin so helpful.
 
 Performance Publisher helps you spot trends in your test results. It reads the XML files created by your testing tool and turns them into easily readable graphs and stats.
 
 ## 4: GitHub
 
-The [GitHub plugin](https://plugins.jenkins.io/github/), as you might expect, connects Jenkins to GitHub. This allows for cross-functionality, such as:
+The [GitHub plugin](https://plugins.jenkins.io/github/) connects Jenkins to GitHub. This allows for cross-functionality, such as:
 
 -	Hyperlinks between the 2 services
 -	Build status reports
@@ -108,7 +108,7 @@ Once Jenkins has finished compiling, testing, and packaging your code, our plugi
 See our documentation for more on [using Jenkins with Octopus](https://octopus.com/docs/packaging-applications/build-servers/jenkins). Also, check out some of our other Jenkins-related blogs:
 
 -	[Octopus plugin for Jenkins: Painless Jenkins integration](https://octopus.com/blog/octopus-jenkins-plugin)
--	[Using Jenkins Pipelines with Octopus](https://octopus.com/blog/using-jenkins-pipelines)
+-	[Using Jenkins Pipeline with Octopus](https://octopus.com/blog/using-jenkins-pipelines)
 -	[Deploying to Octopus from Jenkins using Pipelines](https://octopus.com/blog/deploying-to-octopus-from-jenkins)
 
 If you're not already using Octopus Deploy, you can [sign up for a free trial](https://octopus.com/start).
@@ -122,7 +122,7 @@ To install Jenkins plugins, you must:
 - Configure the Jenkins controller to allow meta-data downloads from an update center (configured during Jenkins setup)
 - Be an admin of your Jenkins instance
 
-Before you install a plugin, read through its documentation in full. Jenkins will install all dependency plugins during an install, but make sure to note any other prerequisites or extra steps.
+Before you install a plugin, read through its documentation in full. Jenkins will install all dependency plugins during an installation, but make sure to note any other prerequisites or extra steps.
 
 See Jenkins’ documentation for more detail on managing and installing plugins, including:
 
@@ -154,5 +154,9 @@ You can also use these modifiers at the end of the command-line:
 ## What's next?
 
 These are some of our favorite plugins to help you with your Jenkins pipeline, but we’re only scratching the surface. There are many more to find on the [Jenkins Index](https://plugins.jenkins.io/) that can further aid you in your CI efforts.
+
+!include <jenkins-webinar-jan-2022>
+
+!include <q1-2022-newsletter-cta>
 
 Happy deployments! 
