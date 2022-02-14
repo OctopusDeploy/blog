@@ -2,7 +2,7 @@
 title: 10 of our favorite Jenkins plugins
 description: Jenkins has over 1800 community-created plugins to help with continuous integration. Here are 10 we think are useful, as part of our series about CI and build servers.
 author: andrew.corrigan@octopus.com
-visibility: private
+visibility: public
 published: 2022-02-23-1400
 metaImage: blogimage-jenkinsconfigurationtop10plugins-2022.png
 bannerImage: blogimage-jenkinsconfigurationtop10plugins-2022.png
