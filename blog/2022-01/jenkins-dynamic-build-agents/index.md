@@ -48,10 +48,10 @@ This guide is an example only, and you should experiment with scaling before cha
 
 In this example, you set up scalability on a local minikube cluster and use the tools below for configuration. If you're following along, install the tools in the order listed:
 
-1. Docker Desktop – Only needed if you’re on Windows. Make sure Docker Desktop is set to manage Linux containers rather than Windows containers.
-1. minicube – Allows you to install Kubernetes clusters on your computer.
-1. Chocolatey – Only needed if you’re on Windows. It’s a command-line software management package you use to install Kubectl.
-1. Kubectl – A command-line tool to control Kubernetes clusters.
+1. [Docker Desktop](https://hub.docker.com/editions/community/docker-ce-desktop-windows) – Only needed if you’re on Windows. Make sure Docker Desktop is set to manage Linux containers rather than Windows containers.
+1. [minikube](https://minikube.sigs.k8s.io/docs/start/) – Allows you to install Kubernetes clusters on your computer.
+1. [Chocolatey](https://chocolatey.org/) – Only needed if you’re on Windows. It’s a command-line software management package you use to install Kubectl.
+1. [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/#install-on-windows-using-chocolatey-or-scoop) – A command-line tool to control Kubernetes clusters. Use this Chocolatey command-line to install Kubectl: `choco install kubernetes-cli`
 
 You can set up scalability with whatever tools you’re used to, but you may need to adjust our instructions slightly.
 
@@ -67,8 +67,9 @@ Our example dockerfile will create an image that includes Jenkins, plus the Blue
 
 To create the dockerfile and build an image:
 
-1. Create a text file called `Dockerfile` and add the Jenkins-suggested script. You can add more plugins to the list if you need – just add their names separated by spaces:
-   ```FROM jenkins/jenkins:lts-slim 
+1. Create a text file called `Dockerfile` and add the following Jenkins-suggested script. You can add more plugins to the list if you need – just add their names separated by spaces:
+   ```
+   FROM jenkins/jenkins:lts-slim 
    # Pipelines with Blue Ocean UI and Kubernetes
    RUN jenkins-plugin-cli --plugins blueocean kubernetes
    ```
@@ -206,7 +207,7 @@ spec:
       targetPort: 50000
 ```
 
-To deploy the image to namespace, run the following command from the file’s directory:
+To deploy the image to the namespace, run the following command from the file’s directory:
 
 ```
 kubectl apply -f jenkins.yaml -n jenkins jenkins.yaml
@@ -280,7 +281,7 @@ Now you can set up the plugin in Jenkins. Return to Jenkins in your web browser:
 
 ### Step 6: Test everything is working
 
-To test that Jenkins will scale suitably, you can create some simple build jobs to check how they’re distributed.
+To test Jenkins will scale suitably, you can create some simple build jobs to check how they’re distributed.
 
 First, set Jenkins so it won’t run jobs on the controller (unless you tell it otherwise):
 
@@ -475,9 +476,12 @@ After it's set up and working, you can change how you want Jenkins to scale in A
 
 ## What's next?
 
-Watch the blog for more Jenkins and build server posts. 
-
 For more information on scaling Jenkins, read through their [official scaling documentation](https://www.jenkins.io/doc/book/scaling/).
+
+You can also read our other posts about configuring Jenkins:
+
+- [Jenkins security tips](https://octopus.com/blog/jenkins-security-tips)
+- [Managing credentials in Jenkins](https://octopus.com/blog/managing-jenkins-credentials)
 
 !include <jenkins-webinar-jan-2022>
 

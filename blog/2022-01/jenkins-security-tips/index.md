@@ -17,7 +17,7 @@ tags:
 
 For such an open, customizable platform, Jenkins provides decent security even in its default state. Given it connects to countless industry tools (Octopus included), though, there are a few other ways to help protect your projects.
 
-In this blog, we look at some of the methods and tools to keep your Jenkins instance safe, secure, and protect those using it.
+In this post, we look at some of the methods and tools to keep your Jenkins instance safe, secure, and protect those using it.
 
 ## Keep everything updated
 
@@ -45,7 +45,7 @@ You can install Jenkins on most major operating systems and containers, so keep 
 
 Jenkins enables most of its security features on install to make things as secure as possible. Given the many ways you can use Jenkins, though, there's no 'one size fits all' approach for how best to configure or lock down your instance.
 
-So while we can't offer advice on what's best for your team (with an exception we'll explore next), usefully, Jenkins provides detailed documentation on the important features you should look at. See the [Securing Jenkins page](https://www.jenkins.io/doc/book/security/) for help with security related to:
+So while we can't offer advice on what's best for your team (with an exception we'll explore next), Jenkins provides detailed documentation on the important features you should look at. See the [Securing Jenkins page](https://www.jenkins.io/doc/book/security/) for help with security related to:
 
 - Basic setup
 - Build behavior
@@ -55,7 +55,7 @@ You should only make changes with careful consideration and, if possible, a chat
 
 ## Avoid building on your controller
 
-Jenkins offers a built-in node so you can run tests as soon as possible to see if it's the solution for you. Builds that run on a single instance, however, have access to your operating system's file system. For this reason, Jenkins recommends you have jobs run on ‘agents' instead (this happens in a scalable setup, which we talked about in our last post, [Using dynamic build agents to automate scaling in Jenkins](https://octopus.com/blog/jenkins-dynamic-build-agents)).
+Jenkins offers a built-in node so you can run tests as soon as possible to see if it's the solution for you. Builds that run on a single instance, however, have access to your operating system's file system. For this reason, Jenkins recommends you have jobs run on 'agents' instead (this happens in a scalable setup, which we talked about in our last post, [Using dynamic build agents to automate scaling in Jenkins](https://octopus.com/blog/jenkins-dynamic-build-agents)).
 
 Agents are virtual Jenkins instances that run jobs instead of your controller. When using agents, you can prevent your controller from running builds to limit access to files that can do harm.
 
@@ -127,7 +127,7 @@ The [Credentials Binding plugin](https://plugins.jenkins.io/credentials-binding/
 
 This plugin lets you store and reuse all types of authentication methods, such as:
 
-- Username and passwords
+- Usernames and passwords
 - SSH usernames and private keys
 - Secret files
 - Secret text
@@ -138,7 +138,10 @@ We'll cover the Credentials Binding plugin in detail in a future post.
 ## Conclusion
 As you can see, there are plenty of ways to ensure safe use of Jenkins to protect projects from risks outside and within. Check [Jenkins' documentation](https://www.jenkins.io/doc/book/security/) for even more information on keeping your instances secure.
 
-We'll have more on Jenkins as a platform in the coming weeks.
+Check out our other posts about configuring Jenkins:
+
+- [Using dynamic build agents to automate scaling in Jenkins](https://octopus.com/blog/jenkins-dynamic-build-agents)
+- [Managing credentials in Jenkins](https://octopus.com/blog/managing-jenkins-credentials)
 
 !include <jenkins-webinar-jan-2022>
 
