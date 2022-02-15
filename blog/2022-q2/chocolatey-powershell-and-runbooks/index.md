@@ -2,8 +2,8 @@
 title: Configure team members’ machines with Chocolatey, PowerShell, and Octopus Runbooks
 description: This blog post shows you how to automate your team's development machines setup with Chocolatey, PowerShell, and Octopus Runbooks
 author: derek.campbell@octopus.com
-visibility: public
-published: 2020-11-03
+visibility: private
+published: 3000-01-01
 metaImage: automate_machine_chocolately.png
 bannerImage: automate_machine_chocolately.png
 bannerImageAlt: Configure team member’s machines with Chocolatey, PowerShell, and Octopus Runbooks
