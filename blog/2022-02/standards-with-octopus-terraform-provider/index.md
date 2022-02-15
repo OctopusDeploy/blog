@@ -4,9 +4,6 @@ description: Learn how to leverage the Octopus Deploy Terraform Provider to crea
 author: bob.walker@octopus.com
 visibility: public
 published: 2022-12-31-1600
-bannerImage: 
-metaImage: 
-bannerImageAlt: 
 isFeatured: false
 tags:
 - DevOps
