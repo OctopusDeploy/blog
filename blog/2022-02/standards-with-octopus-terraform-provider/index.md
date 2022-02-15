@@ -13,19 +13,19 @@ tags:
 - Terraform
 ---
 
-The [Octopus Deploy Samples Instance](https://samples.octopus.app) has grown expotentially since its creation in late 2019.  It has over 30 spaces, which makes simple things like rotating an external feed password time consuming.  Creating a new space is also time consuming, as we have to copy over the same accounts, worker pools, external feeds, etc.  This post will walk through how the Customer Solutions team leveraged the [Octopus Deploy Terraform Provider](https://registry.terraform.io/providers/OctopusDeployLabs/octopusdeploy/latest/) to establish standards that solved those problems.
+The [Octopus Deploy Samples Instance](https://samples.octopus.app) has grown significantly since its creation in late 2019.  It has over 30 spaces.  That growth is a double-edged sword.  Having all of those samples is very helpful to our customers, but many spaces make routine maintenance tasks like rotating an external feed password time-consuming.  This post will walk through how the Customer Solutions team leveraged the [Octopus Deploy Terraform Provider](https://registry.terraform.io/providers/OctopusDeployLabs/octopusdeploy/latest/) to establish standards to make the samples instance easier to maintain.
 
-## Samples Instance Maintenance Woes
+## Maintenance Woes
 
-At Octopus Deploy, each team gets a unique sandbox for each of the major cloud providers.  Within our sandbox, everyone on the team has free reign which is both a benefit and a curse.  Each person ended up using whatever region was closest to them (for me it is US Central for Azure and GCP, US East 2 for AWS).  If that region didn't a virtual network, VPC, database server, etc., they'd be created.  Anytime a new space was created, the person creating the space would copy over values from an earlier example they worked on.  That was in addition to creating the cloud accounts, worker pools, external feeds, and other variable sets.
+At Octopus Deploy, each team gets a unique sandbox for AWS, Azure, and GCP.  Within our sandbox, everyone on the team has free reign.  We can create whatever resources are needed to help demonstrate Octopus Deploy functionality.  That has been great, but as the team and the samples instance have grown, consistency between samples became harder to enforce.  Each person used whatever region was closest to them (for me, US Central for Azure and GCP, US East 2 for AWS).  They'd be created if that region didn't have a virtual network, VPC, database server, etc.  Anytime a new space was created, the person creating it would copy over values from an earlier example they worked on.  That was in addition to creating the cloud accounts, worker pools, external feeds, and other variable sets.
 
-Maintaining the samples instance could be time-consuming.  For example, some of our samples used AMIs.  AWS is fond of deprecating AMIs, so anytime one was deprecated we had to find every sample that used it and update it.
+Maintaining the samples instance could be time-consuming.  For example, some of our samples used AWS AMIs.  AWS is fond of deprecating AMIs, which required us to search every sample to determine which one to update.
 
-While that was a pain to deal with, it didn't cause _enough friction_ to change it.  It's not like we are creating spaces all the time.  And we do spot check items when we can.  That was until we were asked by our security team to move our AWS and Azure sandboxes.  That is when I started taking a hard look at the Octopus Terraform Provider.
+While that was a pain to deal with, it didn't cause _enough friction_ to change it.  It's not like we are creating spaces all the time.  And we do spot-check items when we can.  That was until we were asked by our security team to move our AWS and Azure sandboxes.  That is when I started taking a hard look at the Octopus Terraform Provider.
 
 ## Space Standards
 
-Each space on the samples instance is unique as each one shows how to use a different feature in Octopus Deploy.  Projects between spaces were rarely alike.  The desire was to have the same set of base resources across all spaces.  Those resources are:
+Each space on the samples instance is unique as each one shows how to use a different feature in Octopus Deploy.  Projects between spaces were rarely alike.  The scope was set to base resources across all spaces for this project.  Those resources are:
 
 - Accounts
     - GCP
@@ -46,31 +46,31 @@ Each space on the samples instance is unique as each one shows how to use a diff
     - Azure
     - API Keys (to use when calling API scripts from Octopus)
 
-You'll notice library varible sets for each cloud provider in that list.  That was the second part of the space standards project.  We decided to create a set of base resources, VPCs or Virtual Networks, Subnets, Security Groups, etc. in a select number of regions in both the US and UK.  The names of those base resources are stored in those library variable sets so any sample on any space can leverage it.
+You'll notice library variable sets for each cloud provider in that list.  That was the second part of the space standards project.  We decided to create a set of base resources, VPCs or Virtual Networks, Subnets, Security Groups, etc., in a select number of regions in both the US and UK.  The names of those base resources are stored in those library variable sets for any sample on any space can leverage it.
 
 ## Using Octopus Deploy Runbooks to run Terraform Commands
 
-I knew from the start I would be leveraging Octopus Deploy Runbooks to run the `terraform apply` or `terraform destroy` commands.  The question was, where would those runbooks exist?  I didn't want the runbooks to exist on the samples instance as that would turn into a strange "snaking eating the tail" scenario.  I opted to create a new instance, `samples-admin` to house these runbooks.  
+I knew from the start I would be leveraging Octopus Deploy Runbooks to run the `terraform apply` or `terraform destroy` commands.  But where should those runbooks exist?  Storing the runbooks on the samples instance caused a "snake eating the tail" scenario.  And they could end up blocking sample deployments and other runbooks.  I opted to create a new instance, `samples-admin`, to house these runbooks.  
 
-The next step was coming up with a runbook structure to let me apply the Terraform files to all spaces on the samples instance.  The space list is dynamic, and I didn't want to have to add a new step or perform any additional maintenance to this process when a new space was added.  To solve this, I created the following runbooks:
+The next step was to develop a runbook structure to apply Terraform templates to all spaces on the samples instance.  The space list is dynamic; adding a space should automatically add to the process.  The Octopus Terraform Provider tends to work best when targeting a specific space.  Therefore, I needed to run the `terraform apply` command for each space.  Having a single runbook with 34 static steps, each running `terraform apply` did not scale well.  To solve this dilemma, I created the following runbooks:
 
-**Enforce System Wide Standards** - runs scripts to enfore permissions on the everyone team, Octopus employees team, and Octopus managers team, then invokes **Enforce Space Standards** for each space on the samples instance.
+**Enforce System Wide Standards** - runs API scripts to enforce permissions on the everyone team, Octopus employees team, and Octopus managers team then invokes **Enforce Space Standards** for each space on the samples instance.
 
-![enforce system wide standards process](enforce-system-wide-standards-process.png)
+![enforce system-wide standards process](enforce-system-wide-standards-process.png)
 
-**Enforce Space Standards** - accepts a Space-Id as a prompted variable, runs some API scripts to enforce retention policies, and runs the **Apply a Terraform Template** built-in step.  
+**Enforce Space Standards** - accepts a Space-Id as a prompted variable, runs a few API scripts to enforce retention policies, and runs the **Apply a Terraform Template** built-in step.  
 
 ![enforce space standards process](enforce-space-standards-proess.png)
 
-The Space-Id prompted variable has `Spaces-1` as the default in the event I want to test a change quickly on a single space.  
+The Space-Id prompted variable has `Spaces-1` as the default if I want to test a change quickly on a single space.  
 
 ![space id prompted variable](space-id-prompted-variable.png)
 
-**Create New Space** - accepts a Space Name as a prompted variable, runs an API script to create a space, then calls the **Enforce System Wide Standards** runbook (using a prompted variable for a single space), to make sure permissions and resources are set up correctly for the new space.
+**Create New Space** - accepts a Space Name as a prompted variable and runs an API script to create a space.  After the space is created, it calls the **Enforce System Wide Standards** runbook (using a prompted variable for a single space) to ensure permissions and resources are set up correctly for the new space.
 
 ![create new space process](create-new-space-process.png)
 
-The scheduled trigger only invokes the **Enforce System Wide Standards** runbook.  Each time that trigger runs the following tasks are created:
+The scheduled trigger only invokes the **Enforce System Wide Standards** runbook.  Each time that trigger runs, the following tasks are created:
 
 - **Enforce System Wide Standards**
     - **Enforce Space Standards** (Spaces-1)
@@ -85,32 +85,33 @@ All scripts and terraform files used by these runbooks can be found in the [IaC 
 
 ## Terraform Basics
 
-At the start of this, my experience with Terraform was limited to Proof of Concepts.  This section covers some of what I learned about Terraform and how it pertains to Octopus Deploy.
+At the start of this, my experience with Terraform was limited to Proof of Concepts.  This section covers what I learned about Terraform and how it pertains to Octopus Deploy.
 
 ### Resource Ownership
 
-Adding a resource such as a Infrastructure Account, Environment, or Library Variable to Terraform means Terraform owns the lifecycle of that item.  Any modifications made to that resource in the Octopus UI will be overwritten the next time the `terraform apply` runs for that space.
+Adding a resource, be it Infrastructure Account, Environment, or Library Variable Set, to Terraform means it now owns the lifecycle of that item.  Any modifications made to that resource in the Octopus UI will be overwritten the next time the `terraform apply` runs for that space.  My runbooks run once every six hours, so at most, a modification will live for six hours before being overwritten.
 
-One of the standards I wanted to enforce was every lifecycle's retention policy was set to 5 days.  Some of our spaces have a variety of lifecycles to demonstrate a particular feature.  There was no standard set of lifecycles.  Managing that standard was not possible via Terraform because:
+One of the standards I wanted to enforce was every lifecycle's retention policy was set to 5 days.  Some of our spaces have a variety of lifecycles to demonstrate a particular feature.  Managing that standard was not possible via Terraform because:
 
-- Resources have to be declared in the Terraform file.  We didn't want to lose the ability to add lifecycles via the UI.  Dynamically adding resources to Terraform files was a non-trival amount of work.  I didn't want some lifeycles managed by Terraform while others were not, that'd be very confusing.
+- Resources have to be declared in the Terraform file.  We didn't want to lose the ability to add lifecycles via the UI.  Dynamically adding resources to Terraform files was a non-trivial amount of work.  
+- It would be very confusing to have one or two lifecycles managed by Terraform while the others were not.  
 - Terraform has total control over a resource.  I couldn't tell Terraform to only manage the retention policies.  
 
 I opted for an [API script](https://github.com/OctopusSamples/IaC/blob/master/octopus-samples-instances/api-scripts/enforce-lifecycle-policies.ps1) instead.  
 
 :::hint
-You cannot have resources managed by Terraform and the Octopus UI.  It is either one or the other.  Make it clear which resources are managed by Terraform.  We opted to include the suffix `TF` on every name.
+You cannot have resources managed by Terraform and the Octopus UI.  It is either one or the other.  Make it clear which resources are managed by Terraform.  I decided to include the suffix `TF` on every resource name.
 :::
 
 ### State
 
-Terraform uses a state file to determine which resources to create, update, and delete.  When a resource is appears in the Terraform file but not the state file Terraform will attempt to create it.  
+Terraform uses a state file to determine which resources to create, update, and delete.  When a resource appears in the Terraform file but not the state file Terraform will attempt to create it.  If a resource appears in the state file but not in the Terraform file, it will be deleted.
 
-By default the state file is stored in a subdirectory in the working directory.  The kicker is if you use Octopus Deploy to run those Terraform commands that working directory is deleted after each step runs.  Which means that state file is automatically deleted.  The first time Octopus Deploy runs a `terraform apply` command everything will work because the resources won't exist.  But it will fail on subsequent runs because the resource already exists in Octopus Deploy.  
+The state file is stored in a subdirectory in the working directory by default.  The kicker is Octopus Deploy deletes that working directory after each Terraform step runs.  That state file is automatically deleted.  The first time Octopus Deploy runs a `terraform apply` command, everything will work because it will be a brand new state file, and the resources won't exist.  But it will fail on subsequent runs because the resource already exists in Octopus Deploy, but the state file will think those resources don't exist.  
 
-Storing the state file in a local directory isn't recommended anyway.  Any sensitive values are stored unencrypted in the state file.  A [remote backend](https://www.terraform.io/language/settings/backends) to store the state file is recommended.  I opted for a secured S3 bucket with encryption turned on.
+Storing the state file in a local directory isn't recommended anyway.  Any sensitive values are stored unencrypted in the state file.  To store the state file, a [remote backend](https://www.terraform.io/language/settings/backends) is recommended to store the state file.  I opted for a secured S3 bucket with encryption turned on.
 
-In my initial version of the Terraform files, the state options were declared inline.  However, you can't use variables for state options.  In my ignorance, I decided to use Octostache, and have Octopus Deploy replace those values when the runbook ran.
+The state options were declared inline in my initial version of the Terraform files.  However, you can't use variables for state options.  In my ignorance, I decided to use Octostache and have Octopus Deploy replace those values when the runbook ran.
 
 ```
 terraform {
@@ -136,9 +137,9 @@ provider "octopusdeploy" {
 }  
 ```
 
-I did not like that.  If anyone but myself wanted to make an update, they had to know look at both the variables.tf and the main.tf files to make sure they had created all the variables.  It is too easy to forget.
+I did not like that.  Too many moving parts and too easy to mess up.  Anyone modifying this process would have to know to look at the variables.tf and the main.tf files to make sure they had created all the variables.
 
-In looking through [Terraform's documentation](https://www.terraform.io/language/settings/backends/configuration#command-line-key-value-pairs), I found it was possible to send in `-backend-config` arguments to the `terraform init` command.  Octopus Deploy has the ability to add additional arguments to the `terraform init` command.  Because I am using S3, the additional command line arguments are:
+In looking through [Terraform's documentation](https://www.terraform.io/language/settings/backends/configuration#command-line-key-value-pairs), I found the `-backend-config` arguments to the `terraform init` command.  Octopus Deploy can add additional arguments to the `terraform init` command.  Because I am using S3, the additional command-line arguments are:
 
 ```
 -backend-config="key=#{Project.AWS.Backend.Key}" -backend-config="region=#{Terraform.Init.S3.Region}" -backend-config="bucket=#{Terraform.Init.S3.Bucket}"
@@ -168,20 +169,19 @@ provider "octopusdeploy" {
 }  
 ```
 
-### Importing pre-existing items into State
+### Importing pre-existing items into the state file
 
-Almost all the items in the space standard list were new to each space.  Except for external feeds.  A number of spaces had a Docker external feed, a Github external feed or both.  I didn't want to create new external feeds and force everyone to update their deployment processes.  I opted to import those pre-existing external feeds into the state before running the `terraform apply` step.
+Except for external feeds, almost all the space standard items were new to each space.  Several spaces had a Docker external feed, a Github external feed, or both.  I didn't want to create new external feeds and force everyone to update their deployment processes.  I opted to import those pre-existing external feeds into the state file before running the `terraform apply` step.
 
 That wasn't as simple as running `terraform import`.  I wish it was.  I wanted my process to be able to run multiple times.  My script needed to:
 
-1. Determine if the feed in question already existed in Octopus by invoking the Octopus API.  If it did not, then exit.
-2. Determine if the feed in question already existed in the Terraform State file.  If it did, then exit.
-3. Import the feed in question into State.
+1.  Determine if the feed already existed in Octopus by invoking the Octopus API.  If it did not, then exit.
+2.  Determine if the feed already existed in the Terraform state file.  If it did, then exit.
+3.  Import the feed in question into the state file.
 
 Invoking the Octopus Deploy API was not a problem for me.  I have [some experience working with the API](https://github.com/OctopusDeployLabs/SpaceCloner).  Everything else was new to me.  
 
-Q: How do I provide credentials to `terraform init` for the S3 backend to work?  I want to do it the same way as the built-in steps in Octopus Deploy.
-A: Octopus uses [environment variables](https://www.terraform.io/language/settings/backends/s3#credentials-and-shared-configuration) for credential backend.  In my case, I need to supply a value for `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
+I want to log in to AWS the same way as the built-in steps in Octopus Deploy.  Octopus uses [environment variables](https://www.terraform.io/language/settings/backends/s3#credentials-and-shared-configuration) for credential backend.  In my case, I need to supply a value for `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
 
 ```PowerShell
 $backendAccountAccessKey = $OctopusParameters["Project.AWS.Backend.Account.AccessKey"]
@@ -193,23 +193,21 @@ $env:AWS_SECRET_ACCESS_KEY = $backendAccountSecretKey
 terraform init -no-color
 ```
 
-Q: How do I pull the terrform state into memory so it could be searched?
-A: This is accomplished by running the `terraform show` command with the argument `-json` specified.  Then it is a matter of converting that json into an object PowerShell can search through.
+The first problem was solved; next on the list was reading the state file into memory.  That is accomplished by running the `terraform show` command with the argument `-json` specified and running the `ConvertFrom-Json` cmdlet.
 
 ```PowerShell
 $currentStateAsJson = terraform show -json
 $currentState = $currentStateAsJson | ConvertFrom-Json -depth 10
 ```
 
-Q: What is the structure of the state file?  How do I search through it?
-A: This took a bit of trial and error but I ended up with:
+Now that the object is in PowerShell, it took a bit of trial and error to discover the structure (a lot of `Write-Hosts`).  I ended up with:
 
 ```PowerShell
 function Get-ItemExistsInState
 {
-	param 
+  param 
     (
-    	$currentState,
+      $currentState,
         $itemTypeToFind,
         $itemNameToFind
     )
@@ -220,7 +218,7 @@ function Get-ItemExistsInState
         if ($item.name.ToLower().Trim() -eq $itemNameToFind.ToLower().Trim() -and $item.type.ToLower().Trim() -eq $itemTypeToFind)
         {
             Write-Host "The item already exists in the state"
-			return $true
+      return $true
         }
     }   
     
@@ -228,8 +226,7 @@ function Get-ItemExistsInState
 }
 ```
 
-Q: What is the syntax to import items into Terraform state?
-A: The command to import an item into state is `terraform import [address] [id]`.  The address is what is defined in the terraform file.
+The command to import an item into the state file is `terraform import [address] [id]`.  The address is what is defined in the terraform file.
 
 For the resource defined as:
 
@@ -242,7 +239,7 @@ resource "octopusdeploy_feed" "github" {
 }
 ```
 
-The address is **octopusdeploy_feed.github**.  The id was a lot easier to determine, as that is the ID of the item in Octopus Deploy.  For example `Feeds-1070`.  
+The address is **octopusdeploy_feed.github**.  The id is the ID of the item in Octopus Deploy.  For example, `Feeds-1070`.  
 
 :::hint
 You can see a sample of the script I wrote in our [Samples IaC GitHub Repository](https://github.com/OctopusSamples/IaC/blob/master/octopus-samples-instances/api-scripts/import-into-state-example.ps1)
@@ -250,7 +247,7 @@ You can see a sample of the script I wrote in our [Samples IaC GitHub Repository
 
 ### Passing in variable values
 
-With Terraform you define and use a variable like so:
+With Terraform, you define and use a variable like this:
 
 ```Terraform
 terraform {
@@ -289,3 +286,19 @@ There are three options for passing in values to those variables.
 - Command line argument: `-var="octopus_address=https://samples.octopus.app"` or `-var="octopus_address=#{Octopus.Web.ServerUri}"`
 - Variable file: naming a file with the extension `.tfvars` and populating it with values.  For example `octopus_address = "https://samples.octopus.app"` or `octopus_address = "#{Octopus.Web.ServerUri}"`
 - Environment variables: `export TF_VAR_octopus_address=https://samples.octopus.app` or `$env:TF_VAR_octopus_address = https://samples.octopus.app`
+
+Octopus Deploy supports all three options.  It is a matter of personal preference.  I didn't like using a .tfvars file as that would have to be checked into source control with Octostache values; any variable name changes required updating multiple disparate places.  I opted for environment variables because it is cleaner in the Octopus UI than command-line variables.
+
+## Migrating to new resources
+
+Almost all the above lessons were learned while doing a pilot template with a few items.  It didn't take long after the pilot was completed before those resources were created on all samples instances.  That was the easy part of this project.  Now it was time to migrate all the existing projects to use the new resources.  This is a non-trivial task and not something that we could script away with some API scripts.  Each sample was spinning up its own infrastructure.  We needed to modify those samples to use the same base set of cloud resources and only create what was needed.
+
+Having the same library variable sets, accounts, and worker pools has made the migration much easier, but it is still manual work.  I'm bringing this up because you will probably have additional manual work if you want to implement something like this on an existing instance.  
+
+## Conclusion
+
+Before we started using the Octopus Terraform Provider, it took hours with many copy/pasting to rotate a password or add a new resource group on all spaces.  Now it takes less than 30 minutes.  
+
+The Octopus Terraform Provider has made it easy to establish standards across all spaces on the [Octopus Deploy Samples Instance](https://samples.octopus.app).  After I learned the nuances of Terraform, I've come to appreciate what it can offer.  I can share several resources between spaces but have the state of those resources managed by Terraform.  By doing this, I can limit edit permissions in the Octopus UI and rely on version control features such as branching, reverting, and pull requests to create an approval process.
+
+Until next time, happy deployments!
