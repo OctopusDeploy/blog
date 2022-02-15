@@ -4,8 +4,8 @@ description: Find out how to use Spaces effectively.
 author: steve.fenton@octopus.com
 visibility: private
 published: 9999-01-01
-metaImage:  Idea in spaces-app-suite.png
-bannerImage: 
+metaImage:  blogimage-spaces.png
+bannerImage: blogimage-spaces.png
 tags:
  - Product
  - Spaces
