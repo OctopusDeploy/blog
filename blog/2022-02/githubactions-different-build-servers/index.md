@@ -29,13 +29,13 @@ Simply put: if you have an account with GitHub, you can use GitHub Actions.
 
 This is appealing if you like all your work in one place, with fewer moving parts to worry about.
 
-## GitHub Actions is not an option if GitHub isn’t your code repository
+## Actions isn't an option if you don't use GitHub
 
 Your ability to use GitHub Actions depends on you or your company using GitHub. If you use other code repositories, or you host your code on-premises, GitHub Actions isn’t an option.
 
 That said, it’s worth mentioning that other code repository services, like GitLab and BitBucket, have released their own takes on CI as a Service, too. You may still have options if other services are more your flavor.
 
-## You don’t need your own hardware for CI (unless you really want to)
+## No hardware needed for CI (unless you want to)
 
 By default, actions use ‘runners’ to complete a workflow’s jobs. Runners are GitHub-hosted virtual machines using Windows, Linux, and MacOS. This means you don’t need to maintain your own infrastructure to perform CI. There’s no hardware to house, no operating systems to maintain, no installs, updates, or patches. GitHub takes care of all this for you.
 
