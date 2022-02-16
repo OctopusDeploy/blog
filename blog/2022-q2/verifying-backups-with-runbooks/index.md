@@ -84,6 +84,8 @@ echo "mysql-#{Octopus.RunbookRun.Id | ToLower} listening on $MYSQLPORT"
 
 echo "Waiting for MySQL to start"
 while ! echo exit | nc localhost $MYSQLPORT >/dev/null 2>&1; do echo "sleeping..."; sleep 10; done
+echo "Sleep a little longer to allow MySQL to finish booting"
+sleep 20
 
 echo "Restoring the database"
 docker exec mysql-#{Octopus.RunbookRun.Id | ToLower} mysql -u root -p#{MySQL Password} -e "CREATE DATABASE petclinic;" 2>/dev/null
