@@ -52,7 +52,7 @@ GitHub Actions is entirely free for those with public repos or using self-hosted
 
 ## How GitHub Actions automates with events and workflows
 
-GitHub Actions uses activity in your GitHub repo (or an external event, if you use a ‘[repository dispatch event](https://rm2wdx0x6j.execute-api.us-west-1.amazonaws.com/Development/index.html)’ webhook) to trigger workflows. You can choose to start workflows with single or several events, use a schedule, or kick them off manually.
+GitHub Actions uses activity in your GitHub repo (or an external event, if you use a ‘[repository dispatch event](https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#repository_dispatch)’ webhook) to trigger workflows. You can choose to start workflows with single or several events, use a schedule, or kick them off manually.
 
 The structure of a workflow is as follows: 
 
