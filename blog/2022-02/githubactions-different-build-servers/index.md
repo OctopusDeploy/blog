@@ -2,7 +2,7 @@
 title: How GitHub Actions is different to traditional build servers
 description: We explore how GitHub Actions, providing Continuous Integration as a Service, is different to traditional build servers.
 author: andrew.corrigan@octopus.com
-visibility: private
+visibility: public
 published: 2022-02-28-1400
 metaImage: blogimage-howgithubactionsidifferenttoatraditionalciserver-2022.png
 bannerImage: blogimage-howgithubactionsidifferenttoatraditionalciserver-2022.png
@@ -13,7 +13,6 @@ tags:
   - CI Series
   - Continuous Integration
   - GitHub Actions
-  - Testing
 ---
 
 GitHub Actions is relatively new to the world of automation and Continuous Integration (CI). Providing ‘CI as a Service’, GitHub Actions has many differences to its traditional, rival platforms.
