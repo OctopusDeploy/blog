@@ -241,7 +241,7 @@ To run the Runbook:
 
 ![Running runbook](images/run-runbook-run.png "width=500")
 
-At this point, you can grab a coffee because it will take a little while to install all of the applications and dependencies. After your coffee run, the runbook should have completed. Your computer should now be fully configured and ready instead of going through the pain of next, next, finish installs and application configuration:
+At this point, you can grab a coffee because it will take a little while to install all of the applications and dependencies. After your coffee run, the runbook should have completed. Your server should now be fully configured and ready instead of going through the pain of next, next, finish installs and application configuration:
 
 ![Completed runbook](images/completedrunbook.png "width=500")
 
