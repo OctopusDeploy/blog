@@ -16,9 +16,9 @@ tags:
   - Testing
 ---
 
-GitHub Actions is a relative newcomer to the world of automation and Continuous Integration (CI). Providing ‘CI as a Service’, GitHub Actions has many differences to its traditional, rival platforms.
+GitHub Actions is relatively new to the world of automation and Continuous Integration (CI). Providing ‘CI as a Service’, GitHub Actions has many differences to its traditional, rival platforms.
 
-In this post, we explore the differences between GitHub Actions and traditional build severs. We also look at why GitHub Actions is a suitable option (or not) for building and testing your code.
+In this post, we explore the differences between GitHub Actions and traditional build severs. We also look at whether GitHub Actions is a suitable option for building and testing your code.
 
 
 ## GitHub Actions is CI already built into GitHub
@@ -27,13 +27,13 @@ One of the biggest advantages GitHub Actions has over traditional CI platforms i
 
 Simply put: if you have an account with GitHub, you can use GitHub Actions.
 
-This is appealing if you like all your work in one place, meaning you have fewer moving parts to worry about.
+This is appealing if you like all your work in one place, with fewer moving parts to worry about.
 
 ## GitHub Actions is not an option if GitHub isn’t your code repository
 
 Your ability to use GitHub Actions depends on you or your company using GitHub. If you use other code repositories, or you host your code on-premises, GitHub Actions isn’t an option.
 
-That said, it’s worth mentioning that other code repository services, like GitLab and BitBucket, have released their own takes on CI as a Service too. You may still have options if other services are more your flavor.
+That said, it’s worth mentioning that other code repository services, like GitLab and BitBucket, have released their own takes on CI as a Service, too. You may still have options if other services are more your flavor.
 
 ## You don’t need your own hardware for CI (unless you really want to)
 
@@ -41,9 +41,9 @@ By default, actions use ‘runners’ to complete a workflow’s jobs. Runners a
 
 You can also [self-host your own runners](https://docs.github.com/en/actions/hosting-your-own-runners) if you need specific setups for CI and GitHub’s runners aren’t up to the task, or you want more control.
 
-##Licensing and pricing
+## Licensing and pricing
 
-Traditional build servers are usually open source or licensed to scale with your needs, be that number of users or instances. CI as a Service, however, means providers can get creative with their pricing models.
+Traditional build servers are usually open source or licensed to scale with your needs, by number of users or instances. CI as a Service, however, means providers can get creative with their pricing models.
 
 GitHub Actions, for example, [adopts a pay-as-you-go approach](https://docs.github.com/en/billing/managing-billing-for-github-actions/about-billing-for-github-actions) and measures all jobs by the minutes they take to run.
 
@@ -55,14 +55,18 @@ GitHub Actions is entirely free for those with public repos or using self-hosted
 
 GitHub Actions uses activity in your GitHub repo (or an external event, if you use a ‘[repository dispatch event](https://rm2wdx0x6j.execute-api.us-west-1.amazonaws.com/Development/index.html)’ webhook) to trigger workflows. You can choose to start workflows with single or several events, use a schedule, or kick them off manually.
 
-The structure of a workflow is as follows: Each workflow contains jobs. Each job has steps it performs on its own runner. A step is an individual action in each job.
+The structure of a workflow is as follows: 
+
+- Each workflow contains jobs
+- Each job has steps it performs on its own runner
+- A step is an individual action in each job
 
 For example, you could create a workflow that:
 
 1. Tests your code whenever someone creates a pull request
 1. Packages the code after successful tests and pushes it to your deployment tool
 
-With this scenario, the workflow would have 2 separate jobs. If testing on job 1 is successful, that will trigger job 2. Both jobs have their own steps and run on separate, clean runners.
+With this scenario, the workflow would have 2 separate jobs. If testing on job one is successful, that will trigger job 2. Both jobs have their own steps and run on separate, clean runners.
 
 Thanks to the [GitHub Marketplace](https://github.com/marketplace), you might not need to create the workflows at all. Though not unique to GitHub Actions, there are thousands of community-made actions and workflows you can use to achieve what you need.
 
@@ -80,18 +84,20 @@ Installing actions is also different compared to the way you add and manage plug
 
 In Jenkins, for example, they’re almost modular mini applications. Installed using .hpi packages, a Jenkins plugin can drastically affect the look, feel, and the options you see in your Jenkins instance.
 
-Installing actions in GitHub involves only copying code from an action’s marketplace page and pasting it into your repository’s .yml file. Instead of providing visible changes, actions offer only new functionality, triggered by events from the action’s own repo.
+Installing actions in GitHub involves copying code from an action’s marketplace page and pasting it into your repository’s .yml file. Instead of providing visible changes, actions offer only new functionality, triggered by events from the action’s own repo.
 
 ## Conclusion
 
 This post covered the major differences between GitHub Actions (and the concept of CI as a Service) and traditional CI platforms. 
 
-GitHub Actions is an ideal solution for those who:
+GitHub Actions is an ideal solution if you:
 
 - Are new to the concepts of CI
 - Don’t want to spend time setting up and maintaining a dedicated build server
-- Don’t want or need to host their hardware or data on-premises
-- Like all their tools in one place
+- Don’t want or need to host your hardware or data on-premises
+- Like all your tools in one place
 - Already use GitHub
+
+!include <q1-2022-newsletter-cta>
 
 Happy deployments!
