@@ -194,7 +194,7 @@ Select -First 1 |
 # Execute mysqldump on the pod to perform a backup
 % {
     Write-Host "Performing backup on pod $($_.metadata.name)"
-    kubectl exec $_.metadata.name -- /bin/sh -c 'mysqldump -u root -p#{MySQL Password} petclinic > /tmp/dump.sql 2>&1'
+    kubectl exec $_.metadata.name -- /bin/sh -c 'mysqldump -u root -p#{MySQL Password} petclinic > /tmp/dump.sql 2> /dev/null'
     kubectl exec $_.metadata.name -- /bin/sh -c 'AWS_DEFAULT_REGION=us-east-1 AWS_ACCESS_KEY_ID=#{AWS.AccessKey} AWS_SECRET_ACCESS_KEY=#{AWS.SecretKey} aws s3 cp /tmp/dump.sql s3://mattc-deployment-backup/dump.sql'    
 }
 ```
@@ -214,7 +214,7 @@ We don’t want to manually backup the database, so Octopus allows runbooks to b
 
 While it took some processing to find the name of the pod to perform the backup, this script is not particularly complicated, and seasoned system administrators have no doubt seen far more intricate management scripts than this. Nor is the ability to run a script on a schedule all that ground breaking. 
 
-The real advantage of this approach becomes clear when you consider the different teams who will need to interact with this infrastructure over the lifecyle of the application.
+The real advantage of this approach becomes clear when you consider the different teams who will need to interact with this infrastructure over the lifecycle of the application.
 
 Because Octopus has already deployed to our infrastructure, we don't need to duplicate credentials or other settings like URLs to manage the infrastructure. It's all already in Octopus.
 

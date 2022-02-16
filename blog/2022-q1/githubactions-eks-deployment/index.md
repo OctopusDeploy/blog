@@ -18,7 +18,7 @@ This blog will build a docker image in a GitHub Actions workflow and publish the
 - An Amazon Web Services Account (AWS)
 - A GitHub account
 
-This blog will use the [Octopus Underwater app repository](https://github.com/terence-octo/octopus-underwater-app). You can fork the repository and follow along. Alternatively, the github-deployment branch contains the template files needed to complete the steps in this blog. You will have to replace some values with your own. I have included my values as a reference.
+This blog will use the [Octopus Underwater app repository](https://github.com/OctopusSamples/octopus-underwater-app). You can fork the repository and follow along. Alternatively, the github-deployment branch contains the template files needed to complete the steps in this blog. You will have to replace some values with your own. I have included my values as a reference.
 
 ## Amazon Web Services setup
 
@@ -44,7 +44,7 @@ You will see your repository under **Amazon ECR &rarr; Repositories**. Make a no
 
 We will use a sample web application that displays an animated underwater scene with helpful links for this example.
 
-Fork the repository at https://github.com/terence-octo/octopus-underwater-app
+Fork the repository at https://github.com/OctopusSamples/octopus-underwater-app
 
 Go to **Settings &rarr; Secrets &rarr; New repository secret**
 
@@ -64,7 +64,7 @@ First, we need to create a deployment YAML file for GitHub actions to deploy to 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ecr-app-underwater
+  name: underwater-app-github
   labels:
     app: octopus-underwater-app
 spec:
@@ -144,11 +144,11 @@ jobs:
 
 ![GitHub Success](github-success.png)
 
-We will port forward locally to inspect the service. Use this command to inspect the web application:
+We will port forward locally to inspect the service. Use this command to inspect the web application. The port 28015 is chosen based on the example in the Kubernetes documentation:
 
-`kubectl port-forward deployment/octopus-underwater-app-octo  28019:80`
-
-Go to the IP address in the browser to view your web application.
+    kubectl port-forward deployment/underwater-app-github  28015:80
+    
+Go to the IP address http://127.0.0.1:28015/ in the browser to view your web application.
 
 ![Octopus Underwater App](octopus-underwater-app.png)
 

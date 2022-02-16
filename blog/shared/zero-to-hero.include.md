@@ -1,0 +1,2 @@
+- [Part 1: Getting to know Octopus Deploy](blog/2022-02/zero-to-octopus-hero-part-1/index.md)
+- [Part 2: Discovering DevOps](blog/2022-02/zero-to-octopus-hero-part-2/index.md)

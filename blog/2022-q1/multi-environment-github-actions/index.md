@@ -18,7 +18,7 @@ This blog will build a docker image in a GitHub Actions workflow and publish the
 - An Amazon Web Services Account (AWS)
 - A GitHub account
 
-This blog will use the [Octopus Underwater app repository](https://github.com/terence-octo/octopus-underwater-app). You can fork the repository and follow along. Alternatively, the github-octopus branch contains the template files needed to complete the steps in this blog. You will have to replace some values with your own. I have included my values in this blog as a reference.
+This blog will use the [Octopus Underwater app repository](https://github.com/OctopusSamples/octopus-underwater-app). You can fork the repository and follow along. Alternatively, the github-octopus branch contains the template files needed to complete the steps in this blog. You will have to replace some values with your own. I have included my values in this blog as a reference.
 
 
 
@@ -46,7 +46,7 @@ You will see your repository under **Amazon ECR &rarr; Repositories**. Make a no
 
 For this example, we will use a sample web application that displays an animated underwater Octopus named simple-octo.
 
-Fork the repository at https://github.com/terence-octo/simple-octo
+Fork the repository at https://github.com/OctopusSamples/octopus-underwater-app
 
 Go to **Settings &rarr; Secrets &rarr; New repository secret**
 
@@ -131,16 +131,16 @@ Go to your Amazon ECR repository to view the image.
 
 In your Octopus Deploy instance, create a project called `aws-github` by going to **Project, Add Project** Add the `aws-github` title and click **Save**.
 
-Set up a Development Environment by going to **Infrastructure, Environments, Add Environment**. Give it a name and click **Save**. Do the same for a Test and Production environment
+Set up a Development Environment by going to **Infrastructure, Environments, Add Environment**. Give it a name and click **Save**. Do the same for a Test and Production environment.
 
 We need to set up the Amazon account to deploy to EKS. Go to **Infrastructure, Accounts, Add Account, AWS Account**. Give it a name and fill out the **Access Key ID and Secret Access Key** from earlier.
 
-Set up your AWS Kubernetes cluster as a deployment target in Octopus Deploy by going to **Infrastructure, Deployment Targets, Add Deployment Target, Kubernetes Cluster, Add**
+Set up your AWS Kubernetes cluster as a deployment target in Octopus Deploy by going to **Infrastructure, Deployment Targets, Add Deployment Target, Kubernetes Cluster, Add**. [These steps indicates the fields to add to set up the deployment target.](https://octopus.com/docs/infrastructure/deployment-targets#adding-deployment-targets) In this section you will give the deployment target a target role. This will be referenced in the Octopus Deploy step later.
 
 
 ## Deploy to EKS step
 
-In your `aws-github` project, go to **Process, add deployment step, Kubernetes, Deploy Kubernetes Containers**
+In your `aws-github` project, go to **Process, add deployment step, Kubernetes, Deploy Kubernetes Containers**. Add the target role that you gave your deployment target earler.
 
 Add the following YAML into the YAML section.
 
@@ -148,7 +148,7 @@ Add the following YAML into the YAML section.
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: ecr-app-underwater-github
+  name: octopus-underwater-app-github
   labels:
     app: octopus-underwater-app
 spec:
@@ -165,7 +165,7 @@ spec:
     spec:
       containers:
         - name: octopus-underwater-app
-          image: 720766170633.dkr.ecr.us-east-2.amazonaws.com/underwater-github:latest
+          image: 720766170633.dkr.ecr.us-east-2.amazonaws.com/octopus-underwater-app:latest
           ports:
             - containerPort: 80
               protocol: TCP
@@ -181,11 +181,11 @@ Now we can progress the release to the Test and Production environment when we a
 
 ![Development Success](production-success.png)
 
-We will port forward locally to inspect the service. Use this command to inspect the web application:
+We will port forward locally to inspect the service. Use this command to inspect the web application. The port 28015 is chosen based on the example in the Kubernetes documentation:
 
-    kubectl port-forward deployment/octopus-underwater-app-github  28019:80
+    kubectl port-forward deployment/octopus-underwater-app-github  28015:80
     
-Go to the IP address in the browser to view your web application.
+Go to the IP address http://127.0.0.1:28021/ in the browser to view your web application.
 
 ![Octopus Underwater App](octopus-underwater-app.png)
 
