@@ -1,6 +1,6 @@
 ---
-title: Configure team members’ machines with Chocolatey, PowerShell, and Octopus Runbooks
-description: This blog post shows you how to automate your team's development machines setup with Chocolatey, PowerShell, and Octopus Runbooks
+title: Configure Windows Servers with Chocolatey, PowerShell, and Octopus Runbooks
+description: This blog post shows you how to automate your Windows servers setup with Chocolatey, PowerShell, and Octopus Runbooks
 author: derek.campbell@octopus.com
 visibility: private
 published: 3000-01-01
@@ -13,9 +13,9 @@ tags:
  - Chocolatey
 ---
 
-![Configure team member’s machines with Chocolatey, PowerShell, and Octopus Runbooks](automate_machine_chocolately.png)
+![Configure windows servers with Chocolatey, PowerShell, and Octopus Runbooks](automate_machine_chocolately.png)
 
-Last year, [Bob Walker](https://twitter.com/DevOpsWalker) shared a post about [automating developer machine setup with Chocolatey](https://octopus.com/blog/automate-developer-machine-setup-with-chocolatey). In this post, I show you how I created a runbook that uses Chocolatey to install every application I use in my day to day role. You can use this approach to install and configure pre-approved software for different job types across your organization, making it as easy as possible for new people, or people who need a fresh install or who have upgraded their hardware, to install and configure the software they need as quickly as possible.
+Runbooks are a way to automate routine tasks that are commonly performed. One such task is the setup and installation of windows servers. In this blog, I demonstrate how to set up and install developer dependencies on a windows server using a Octopus Deplkoy runbook. The runbook can be used to set up any number of windows machines.
 
 !toc
 
@@ -82,7 +82,7 @@ You can use [runbooks](https://octopus.com/docs/runbooks) to automate this part 
 
 ## Tools to install the OS
 
-This blog will not deal with installing the Operating System on your developer machine. There are lots of great tools out there that you can use to load the latest Windows Desktop and Server Operating Systems, and I am going to assume you’ve added the [Octopus Tentacle](https://octopus.com/docs/infrastructure/deployment-targets/windows-targets) as part of this process. Some tools I’ve used in the past when prepping servers, laptops, and desktops are:
+This blog will not deal with installing the Operating System on your windows server. There are lots of great tools out there that you can use to load the latest Windows Desktop and Server Operating Systems, and I am going to assume you’ve added the [Octopus Tentacle](https://octopus.com/docs/infrastructure/deployment-targets/windows-targets) as part of this process. Some tools I’ve used in the past when prepping windows servers are:
 
 - [Microsoft System Center Configuration Manager](https://en.wikipedia.org/wiki/Microsoft_System_Center_Configuration_Manager)
 - [Windows Deployment Services](https://docs.microsoft.com/en-us/windows/deployment/windows-deployment-scenarios-and-tools)
@@ -135,7 +135,7 @@ I created a runbook called **Install Developer Machine Dependencies**:
 
 ### Set timezone, input, and region
 
-One thing that annoys me about setting up Windows is having to configure my non-default regions, which isn’t the US. I use a PowerShell script to set this for all my laptops, desktops, and servers. The below works for me, and you can tweak it to your requirements:
+One thing that annoys me about setting up Windows is having to configure my non-default regions, which isn’t the US. I use a PowerShell script to set this for all servers. The below works for me, and you can tweak it to your requirements:
 
 ```PowerShell
 #Set home location to the United Kingdom
@@ -181,7 +181,7 @@ Next, I used was a community-contributed step template called [Chocolatey - Ensu
 
 Paul Broadwith of Chocolatey recently updated the [Chocolatey community step template](https://library.octopus.com/step-templates/b2385b12-e5b5-440f-bed8-6598c29b2528/actiontemplate-chocolatey-install-package) to install all of the Chocolatey packages in a single step.
 
-The applications I needed on my new laptop are below:
+The applications I needed on the windows server are:
 
 ```PowerShell
 git vscode sql-server-management-studio slack github-desktop rdmfree googlechrome firefox dotnetfx dotnetcore 7zip visualstudio2019professional nordvpn lastpass-chrome lastpass docker-desktop chromium googledrive google-drive-file-stream kubernetes-helm kubernetes-cli minikube zoom notepadplusplus nugetpackageexplorer sdio virtualbox jre8 vlc python foxitreader putty.install sysinternals snagit vagrant packer terraform
@@ -211,13 +211,13 @@ The next step was to configure IIS and its dependencies. I used our [IIS Runbook
 
 I’m not a fan of the default website in IIS, so I like to remove it by default. I used the community step template called [IIS Website - Delete](https://library.octopus.com/step-templates/a032159b-0742-4982-95f4-59877a31fba3/actiontemplate-iis-website-delete) and then specified Default Web Site. It will now remove the Default Web Site as part of this provisioning runbook in Octopus.
 
-I use [HyperV](https://docs.microsoft.com/en-us/windows-server/virtualization/hyper-v/hyper-v-technology-overview) as my laptop and server hypervisor when I can, and I wanted to enable it as part of the laptop provisioning process. I used the **Run a Script** built-in template for this task and used PowerShell to enable HyperV:
+I use [HyperV](https://docs.microsoft.com/en-us/windows-server/virtualization/hyper-v/hyper-v-technology-overview) as hypervisor when I can, and I wanted to enable it as part of the server provisioning process. I used the **Run a Script** built-in template for this task and used PowerShell to enable HyperV:
 
 ```PowerShell
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
 ```
 
-The last thing I wanted to do was to avoid installing all of the Windows updates that had been released since my laptop had been prepped. I used a community step template called [Windows - Apply Windows Updates](https://library.octopus.com/step-templates/3472f207-3934-44db-a4ac-1390167cf7ed/actiontemplate-windows-apply-windows-updates), which will automatically install and reboot your machine as long as you set the parameter to **True**.
+The last thing I wanted to do was to avoid installing all of the Windows updates that had been released since my server had been prepped. I used a community step template called [Windows - Apply Windows Updates](https://library.octopus.com/step-templates/3472f207-3934-44db-a4ac-1390167cf7ed/actiontemplate-windows-apply-windows-updates), which will automatically install and reboot your machine as long as you set the parameter to **True**.
 
 ## Publish the runbook
 
@@ -225,7 +225,7 @@ Runbooks can be in either a draft or published state. You need to publish the ru
 
 ## Run the runbook
 
-You have the space, the project, the lifecycle, the environment, the laptop, and the runbook in Octopus. The next step is to run and test the runbook to ensure it does what you want it to do.
+You have the space, the project, the lifecycle, the environment, the server, and the runbook in Octopus. The next step is to run and test the runbook to ensure it does what you want it to do.
 
 To run the Runbook:
 
@@ -269,7 +269,7 @@ You [upgrade](https://chocolatey.org/docs/commandsupgrade) it with Chocolatey an
 choco upgrade all -y
 ```
 
-This command will run on the computer, check against the latest version against the Chocolatey repository you have configured, download the new package, and install it. Think of this as almost a Windows Update but for your Chocolatey package. You can set this up using runbooks and using the Deploy a Script step template and using the upgrade command:
+This command will run on the server, check against the latest version against the Chocolatey repository you have configured, download the new package, and install it. Think of this as almost a Windows Update but for your Chocolatey package. You can set this up using runbooks and using the Deploy a Script step template and using the upgrade command:
 
 ![Upgrading Chocolatey apps runbook](images/upgradechocolateyapps.png "width=500")
 
@@ -303,4 +303,4 @@ You can see all of the configuration in this blog on our [samples instance](http
 
 ## Conclusion
 
-Octopus Runbooks and Chocolatey work well together and give you a lot of flexibility to help you automate the installation and configuration of laptops, desktops, and servers both on-premises and in the cloud. They take away the need to install thousands or potentially tens of thousands of applications across your organization’s infrastructure. If you want to see this in action, I presented a webinar with [Paul Broadwith](https://blog.pauby.com) from Chocolatey about [Operations automation with Octopus Runbooks and Chocolatey](https://www.youtube.com/watch?v=E0z4QbwTuBg), which demonstrated how easy this is to do with runbooks on cloud infrastructure.
+Octopus Runbooks and Chocolatey work well together and give you a lot of flexibility to help you automate the installation and configuration of servers both on-premises and in the cloud. They take away the need to install thousands or potentially tens of thousands of applications across your organization’s infrastructure. If you want to see this in action, I presented a webinar with [Paul Broadwith](https://blog.pauby.com) from Chocolatey about [Operations automation with Octopus Runbooks and Chocolatey](https://www.youtube.com/watch?v=E0z4QbwTuBg), which demonstrated how easy this is to do with runbooks on cloud infrastructure.
