@@ -3,7 +3,7 @@ title: Building a Docker image in Jenkinsfile and publishing to ECR
 description: As part of our series about Continuous Integration and build servers, learn how to build a Docker image in Jenkinsfile and publish to ECR.
 author: terence.wong@octopus.com
 visibility: public
-published: 2022-02-09-1400
+published: 2022-02-15-1400
 metaImage: blogimage-jenkinsbuilddockerimageinjenkinsfileandpublishtoecr-2022.png
 bannerImage: blogimage-jenkinsbuilddockerimageinjenkinsfileandpublishtoecr-2022.png
 bannerImageAlt: Illustration of Docker logo with an arrow to ECR logo
