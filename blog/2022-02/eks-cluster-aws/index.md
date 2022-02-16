@@ -3,7 +3,7 @@ title: Creating an EKS cluster in AWS
 description: As part of our series about Continuous Integration and build servers, learn how to create an EKS cluster in AWS.
 author: terence.wong@octopus.com
 visibility: public
-published: 2022-02-15-1400
+published: 2022-02-09-1400
 metaImage: blogimage-deploymentscreatingaeksclusterinaws-2022.png
 bannerImage: blogimage-deploymentscreatingaeksclusterinaws-2022.png
 bannerImageAlt: EKS hexagons falling into an AWS-styled cube
