@@ -2,7 +2,7 @@
 title: Config as Code strategies
 description: TBC
 author: steve.fenton@octopus.com
-visibility: public
+visibility: private
 published: 9999-01-01
 metaImage: 
 bannerImage: 
