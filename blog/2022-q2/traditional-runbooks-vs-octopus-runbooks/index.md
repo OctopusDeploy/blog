@@ -84,7 +84,7 @@ In fact, we'll show you. Let's walk through the creation process with a simple r
 
 ## Creating a simple runbook in Octopus
 
-This is a short example on how to create a basic runbook. This runbook is self-contained and won't affect any of your projects. You can follow along if you're an existing user or by [signing up for a free trial](https://octopus.com/start).
+This is a short example on how to create a basic runbook that won't affect any of your projects or environments. You can follow along if you're an existing user or by [signing up for a free trial](https://octopus.com/start).
 
 This guide assumes you already:
 
@@ -105,19 +105,20 @@ This runbook will:
 1. Click **DEFINE YOUR RUNBOOK PROCESS**.
 1. Click **ADD STEP**.
 1. Select **Script**, hover over **Run a Script** from the results and click **ADD**.
-1. Change the following settings and click **SAVE**:
+1. Change the following settings, leave everything else as default and click **SAVE**:
    - **Step Name** - give the step a descriptive name
-   - **Execution Location** - select **Run on the Octopus Server** as we're not using any deployment targets in this example.
+   - **Execution Location** - select **Run on the Octopus Server** or **Run once on a worker** depending on your Octopus setup.
    - **Inline Source Code** - select the **PowerShell** radio button and enter the following into the code box: `Write-Host 'Hello, World!'`
-1. Now we can add the step that messages Slack after the runbook completes successfully. Click **ADD STEP** again. 
-1. Search for `slack`, hover over **Slack - Send Simple Notification** from the results and click **ADD**.
-1. Complete the following settings and click **SAVE**:
+1. Now we can add the step that sends a message to Slack when the runbook completes successfully. Click **ADD STEP** again. 
+1. Search for `slack`, hover over **Slack - Send Simple Notification** from the results and click **ADD**. Click **Save** if prompted to save the step to your instance's templates.
+1. Complete the following settings, leave everything else as default and click **SAVE**:
    - **Step Name** - give the step a descriptive name.
-   - **Execution Location** - select **Run on the Octopus Server** as we're not using any deployment targets in this example.
-   - **Hook URL** - copy in your Slack Webhook URL.
+   - **Execution Location** - select **Run on the Octopus Server** or **Run once on a worker** depending on your Octopus setup.
+   - **Hook URL** - copy in your Slack Webhook URL. If others can see your Octopus instance or you're creating a real runbook, consider adding your webhook as a [project variable](https://octopus.com/docs/projects/variables). You can then securely call the webhook with the following syntax `#{variable-name}`.
    - **Channel handle** - enter the exact Slack channel you'd like to post the message to.
    - **Message** - type in the success message you'd like Octopus to send to Slack.
- 1. Click **RUN...** to test the runbook. Wait for it to finish, and check Slack for the message we set earlier.
+ 1. Click **RUN...** to test the runbook. Depending on your Octopus setup, you may need to select environments. If so, select any environments (it won't matter which as this runbook won't change anything) and click **RUN** again.
+ 1. Wait for the runbook to finish and check Slack for the message we set earlier.
 
  When creating a runbook for real, you must click **PUBLISH** to make it available to other team members and Octopus trigger events.
 
