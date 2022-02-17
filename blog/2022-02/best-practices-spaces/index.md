@@ -1,6 +1,6 @@
 ---
 title: Best practices for Octopus Spaces
-description: Find out how to use Spaces effectively.
+description: Find out how to use spaces effectively.
 author: steve.fenton@octopus.com
 visibility: private
 published: 9999-01-01
@@ -84,11 +84,13 @@ Read on for more information about each of these options.
 You can use the [export/import project feature](https://octopus.com/docs/projects/export-import) to move projects to a new space.
 :::
 
-### Client
+### Clients
 
-If you are an agency managing deployments for multiple clients, using a space per client ensures no data will be shared between customers. All deployment targets, projects, variables, and lifecycles will be exclusive to the customer space.
+If you are an agency managing applications for multiple clients, using a space per client ensures no data will be shared between customers. All deployment targets, projects, variables, and lifecycles will be exclusive to the customer space.
 
 You may decide to sub-divide a client into multiple spaces using one of the other options.
+
+This option works when you have different applications for each client. If you are deploying the same application to client-specific infrastructure, [tenants](https://octopus.com/docs/tenants) provide a better way to manage this.
 
 ### Application groups
 
