@@ -159,6 +159,7 @@ EKS on AWS allows you to provision Kubernetes services in the cloud to deploy an
 The clusters you created can be used to set up web applications and as part of workflows in upcoming posts. We'll add links to the relevant posts as they become available:
 
 - [Building a Docker image in Jenkinsfile and publishing to ECR](https://octopus.com/blog/jenkins-docker-ecr)
+- [Deploying to Amazon EKS with Docker and Jenkins](https://octopus.com/blog/jenkins-eks-ecr-deployment)
 
 !include <q1-2022-newsletter-cta>
 
