@@ -1,5 +1,5 @@
 ---
-title: Best practices for Spaces
+title: Best practices for Octopus Spaces
 description: Find out how to use Spaces effectively.
 author: steve.fenton@octopus.com
 visibility: private
