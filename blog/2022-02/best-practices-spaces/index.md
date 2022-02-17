@@ -102,7 +102,7 @@ If you have more than one team contributing to an application group, you should 
 
 ### Application audiences
 
-A less granular approach is to have separate spaces that match intended audiences, for example, internal and public-facing applications. This approach will clean up the public-facing space by moving internal resources into a different one.
+A less granular approach is to have separate spaces that match intended audiences, for example, internal and public-facing applications. This approach will clean up the public-facing space by moving internal resources into a different space.
 
 This design can quickly improve the information for your public-facing space and may serve as a first step toward splitting resources into spaces for each application suite.
 
