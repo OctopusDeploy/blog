@@ -124,7 +124,7 @@ If there are strong reasons to split the deployments into multiple spaces, those
 
 You should avoid using spaces for each environment, as you will need to duplicate the process in each space. It would not be easy to keep the process consistent in each space when you make changes and you won't benefit from release snapshots. Release snapshots make sure the same version of the package, variables, and process is used throughout environments, and this improves the reliability of your deployments.
 
-You should also avoid using spaces where it is more appropriate to use [tenants](https://octopus.com/docs/tenants).
+You should also avoid using spaces where it's more appropriate to use [tenants](https://octopus.com/docs/tenants).
 
 Where an application contains several components, it is better to keep them within a single space; otherwise, it becomes difficult to track the currently deployed state of the application as a whole.
 
