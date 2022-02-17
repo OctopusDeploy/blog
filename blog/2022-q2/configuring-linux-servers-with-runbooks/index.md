@@ -154,11 +154,9 @@ Go to the Linux server and run the dotnet command to confirm the installation.
 
 ![dotnet command](dotnet.png "width=500")
 
-## Comments on the usefulness of this approach
+## Conclusion
 
 This workflow demonstrated that runbooks could configure Linux servers. In this example, you applied a web development configuration to the server. Runbooks extend to other servers by adding another runbook with separate configuration parameters. In this case, we used a .NET configuration. Different runbooks allow the automatic setup of varying server configurations.
-
-## Conclusion
 
 Configuring servers can be a manual process. Often there are many different configuration requirements that a server could have. To help with this, runbooks in Octopus Deploy provide a repeatable, automated way to configure servers. They can be set up to cater to specific configuration needs and triggered when needed. The repeatable nature of runbooks introduces consistency within the organizational infrastructure. Runbooks minimize the load on system administrators to focus on other tasks. If you would like to know more about how Octopus Deploy and runbooks can help with your deployment needs, [contact us today!](sales@octopus.com)
 
