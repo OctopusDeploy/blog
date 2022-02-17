@@ -100,7 +100,7 @@ Application groups are ideal for organizing spaces because similar design consid
 
 You may find that this design for spaces matches how you have organized your teams. It is fine to land on this solution if you have done so by considering your application groups.
 
-If you have more than one team contributing to an application group, you should maintain a space that aligns with the software, not the teams. You can give both teams access to the space, and both can see a whole-system view of deployments so that it's clear if one application deployment is, for instance, blocking another.
+If you have more than one team contributing to an application group, you should maintain a space that aligns with the software, not the teams. You can give each teams access to the space, and both can see a whole-system view of deployments so that it's clear if one application deployment is, for instance, blocking another.
 
 ### Application audiences
 
