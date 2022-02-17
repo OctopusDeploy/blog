@@ -110,7 +110,7 @@ This runbook will:
    - **Execution Location** - select **Run on the Octopus Server** or **Run once on a worker** depending on your Octopus setup.
    - **Inline Source Code** - select the **PowerShell** radio button and enter the following into the code box: `Write-Host 'Hello, World!'`
 1. Now we can add the step that sends a message to Slack when the runbook completes successfully. Click **ADD STEP** again. 
-1. Search for `slack`, hover over **Slack - Send Simple Notification** from the results and click **ADD**. Click **Save** if prompted to save the step to your templates.
+1. Search for `slack`, hover over **Slack - Send Simple Notification** from the results and click **ADD**. Click **Save** if prompted to save the step to your instance's templates.
 1. Complete the following settings, leave everything else as default and click **SAVE**:
    - **Step Name** - give the step a descriptive name.
    - **Execution Location** - select **Run on the Octopus Server** or **Run once on a worker** depending on your Octopus setup.
