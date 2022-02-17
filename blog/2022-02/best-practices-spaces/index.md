@@ -78,7 +78,7 @@ Instead, use one of the following dimensions to design your spaces:
 - Application audiences
 - Company divisions
 
-More information on each of these options is below.
+Read on for more information about each of these options.
 
 :::hint
 You can use the [export/import project feature](https://octopus.com/docs/projects/export-import) to move projects to a new space.
