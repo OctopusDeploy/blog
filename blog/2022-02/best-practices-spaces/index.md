@@ -11,6 +11,8 @@ tags:
  - Spaces
 ---
 
+Over the years at Octopus, we've always been pleased to see our customers expand their use of Octopus Deploy to include new projects and teams. In the early days, it was hard to imagine this could ever pose any kind of problem. However, there comes a point when having too many projects in Octopus can become a distraction, particularly for a team that only works on a handful of those projects.
+
 The Octopus Spaces feature helps you organize and secure your projects, environments, and infrastructure and control which team members can access them. They are a useful alternative to installing multiple Octopus Deploy instances.
 
 In this post, you'll learn how to use spaces effectively to organize your deployments.
