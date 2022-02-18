@@ -7,7 +7,7 @@ published: 2022-01-10-1400
 metaImage: blogimage-buildservers.png
 bannerImage: blogimage-buildservers.png
 bannerImageAlt: 2 people writing code on laptops with arrows to a build server, then an arrow to the octopus logo in a cloud, and a rocket launching
-isFeatured: false
+isFeatured: true
 tags:
   - DevOps
   - CI Series
