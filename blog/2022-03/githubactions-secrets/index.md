@@ -1,29 +1,29 @@
 ---
 title: Secrets in GitHub Actions
-description: An guide on how to add secrets in GitHub to use with GitHub Actions, plus how to call them in workflows.
+description: As part of our series about Continuous Integration and build servers, learn how to add secrets in GitHub to use with GitHub Actions, plus how to call them in workflows.
 author: Andrew.Corrigan@octopus.com
 visibility: private
-published: 3020-01-01-1400
+published: 2022-03-01-1400
 metaImage: blogimage-githubconfigurationaddingsecrets-2022.png
 bannerImage: blogimage-githubconfigurationaddingsecrets-2022.png
 bannerImageAlt: Locked padlock beside an online form input field showing 6 asterisks to represent a password.
 isFeatured: false
 tags:
   - DevOps
+  - CI Series
   - Continuous Integration
   - GitHub Actions
-  - Testing
 ---
 
 In simple terms, a ‘secret’ is data that’s encrypted and hidden from view, but still useable in your projects. Secrets could be sensitive data about your business or a verification method, such as an API key to connect with other services in your pipeline.
 
 GitHub allows you to store secrets at 3 different levels:
 
-- repository
-- environment
-- organization
+- Repository
+- Environment
+- Organization
 
-In this blog we look at those 3 levels and how to add secrets to them. We also look at how to call secrets in an example workflow.
+In this post, we look at those 3 levels and how to add secrets to them. We also look at how to call secrets in an example workflow.
 
 ## Repository secrets
 
@@ -44,7 +44,7 @@ You can update the value of your secret at any time. Return to **Secrets** in th
 
 ## Environment secrets
 
-Much like you can with Octopus, you can set GitHub to deploy to your pipeline’s deployment targets with environments.
+Like with Octopus, you can set GitHub to deploy to your pipeline’s deployment targets with environments.
 
 If your repo is public or you have an enterprise license, you can set environment-specific secrets that only work for that one environment.
 
@@ -71,7 +71,7 @@ You can store 100 secrets per environment.
    - **Name** - give your secret a suitable name. You can’t use spaces or special characters other than underscores.
    - **Value** - enter the secret, such as your API key.
 
-## Organization Secrets
+## Organization secrets
 
 1. Open your organization’s page in GitHub and click **Settings** in the top menu.
 1. Click **Secrets** in the left menu.
@@ -81,7 +81,7 @@ You can store 100 secrets per environment.
    - **Value** - enter the secret, such as your API key.
    - **Repository access** - select a policy from the dropdown list. You can restrict use to either public or private repos, or manually select them.
 
-## Use secrets in GitHub Actions workflows
+## Using secrets in GitHub Actions workflows
 
 :::warning
 You can’t use secrets with workflows from a forked repository.
@@ -91,7 +91,7 @@ Don’t capture secrets in log files. GitHub will hide secrets if included, but 
 
 You use the `secrets` context to call your secret data in workflows. Contexts are what GitHub uses to pull information from its various sources, including workflows, jobs, and steps. See [GitHub’s documentation for the full list of contexts](https://docs.github.com/en/actions/learn-github-actions/contexts).
 
-As an example, say we want to send a package over to an Octopus server for deployment as part of our workflow. Here we can use the secrets context, along with the secrets’ names, to connect our workflow to Octopus.
+As an example, if you want to send a package over to an Octopus server for deployment as part of your workflow, you can use the secrets context, along with the secrets’ names, to connect your workflow to Octopus.
 
 ```
 - name: Push Package to Octopus
@@ -102,29 +102,31 @@ As an example, say we want to send a package over to an Octopus server for deplo
        server: ${{ secrets.OCTOPUS_PACKAGE_STORE }}
 ```
 
-To explain what’s happening, this part of our workflow:
+To explain what’s happening, this part of your workflow:
 
 1. Triggers an action to push the package to Octopus.
-1. Gets the Octopus API key from our secrets store to allow GitHub to pass data to Octopus.
-1. Packages our artifacts as per our action’s steps.
-1. Gets the hidden package destination from our secrets store.
+1. Gets the Octopus API key from your secrets store to allow GitHub to pass data to Octopus.
+1. Packages your artifacts as per your action’s steps.
+1. Gets the hidden package destination from your secrets store.
 
-Here the workflow uses both our API and destination but keeps them hidden from view.
+Here the workflow uses both your API and destination but keeps them hidden from view.
 
 ## Conclusion
 
 Secrets are a great security measure that allow you to protect data and connect to services without revealing sensitive info.
 
-## What next?
+## What's next?
 
 We recommend you see GitHub’s documentation for:
 
-- [more information about secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets#reviewing-access-to-organization-level-secrets)
+- [More information about secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets#reviewing-access-to-organization-level-secrets)
 - [GitHub Actions’ contexts](https://docs.github.com/en/actions/learn-github-actions/contexts)
 - [GitHub Actions’ syntax](https://docs.github.com/en/actions/learn-github-actions/workflow-syntax-for-github-actions#jobsjob_idstepsenv)
 
-If you haven’t already, check out some of our other blogs in this continuous integration series:
-
-- links to Come
+If you haven’t already, check out some of our [other blogs in this Continuous Integration series](https://octopus.com/blog/tag/CI%20Series).
 
 Octopus has also built a useful [GitHub Actions workflow generator](https://githubactionworkflows.com/) to help you build a CI pipeline for GitHub.
+
+!include <q1-2022-newsletter-cta>
+
+Happy deployments!
