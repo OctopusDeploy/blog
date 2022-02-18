@@ -1,15 +1,17 @@
 ---
-title: Build docker image in Workflow and publish to ECR
-description: Build docker image in Workflow and publish to ECR
+title: Building a Docker image in Workflow and publishing to ECR
+description: As part of our series about Continuous Integration and build servers, learn how to build a Docker image in Workflow and publish it to ECR.
 author: terence.wong@octopus.com
 visibility: private
-published: 2999-01-01
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+published: 2022-03-14-1400
+metaImage: blogimage-githubactionsbuilddockerimageinworkflowandpublishtoecr-2022.png
+bannerImage: blogimage-githubactionsbuilddockerimageinworkflowandpublishtoecr-2022.png
+bannerImageAlt: Illustration of a workflow connected to an illustration representing Docker connected to illustration representing ECR.
 isFeatured: false
 tags:
  - DevOps
+ - CI Series
+ - Continuous Integration
  - GitHub Actions
 ---
 
