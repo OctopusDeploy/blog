@@ -20,6 +20,10 @@ Some years ago we released a [blog series documenting the process of building a 
 
 In this post you'll learn how to complete the backup cycle by verifying the backup against a real, if disposable, MySQL database in a custom runbook.
 
+## See it in action
+
+The runbook described in this post has been deployed to [this public Octopus instance](https://tenpillars.octopus.app/app#/Spaces-62/projects/petclinic/operations/runbooks/Runbooks-126/overview). Click the **I am a guest** login link to view the runbook and the output generated from previous executions.
+
 ## Treating backups as deployable artifacts
 
 The database described in the [previous post](https://octopus.com/blog/java-ci-cd-co/from-cd-to-co) was deployed to a Kubernetes cluster. As was noted in the previous post, the process of performing the backup involves running the `mysqldump` client within the MySQL container, dumping the database tables, and uploading the resulting file to a more permanent location. That location was an S3 bucket.
@@ -84,6 +88,8 @@ echo "mysql-#{Octopus.RunbookRun.Id | ToLower} listening on $MYSQLPORT"
 
 echo "Waiting for MySQL to start"
 while ! echo exit | nc localhost $MYSQLPORT >/dev/null 2>&1; do echo "sleeping..."; sleep 10; done
+echo "Sleep a little longer to allow MySQL to finish booting"
+sleep 20
 
 echo "Restoring the database"
 docker exec mysql-#{Octopus.RunbookRun.Id | ToLower} mysql -u root -p#{MySQL Password} -e "CREATE DATABASE petclinic;" 2>/dev/null
