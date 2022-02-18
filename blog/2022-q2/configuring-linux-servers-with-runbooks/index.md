@@ -69,15 +69,20 @@ Configure the Tentacle on the Linux server by running the following command:
 
 The setup script will ask you a series of questions. Make sure to specify the following parameters:
 
-<!-- Terence to add the questions -->
+1. **Name of Tentacle instance (default Tentacle):** press Enter to accept defaults
+1. **What kind of Tentacle would you like to configure:** 1) Listening or 2) Polling (default 1): 2
+1. **Where would you like Tentacle to store log files? (/etc/octopus):** press Enter to accept defaults
+1. **Where would you like Tentacle to install applications to? (/home/Octopus/Applications):** press Enter to accept defaults
+1. **Octopus Server URL (eg. https://octopus-server):** <The URL of your Octopus instance>
+1. **Select auth method: 1) API-Key or 2) Username and Password (default 1):** 1
+1. **API-Key:** <Enter the API key configured earlier>
+1. **Select type of Tentacle do you want to setup: 1) Deployment Target or 2) Worker (default 1):** 1
+1. **What Space would you like to register this Tentacle in? (Default):** press Enter to accept defaults
+1. **What name would you like to register this Tentacle with?** press Enter to accept defaults
+1. **Enter the environments for this Tentacle (comma seperated):** Specify the environment/s of the Octopus instance
+1. **Enter the roles for this Tentacle (comma seperated):** Specify a role for the tentacle e.g. linux (You will use this later in the runbook)
+1. Press Enter to continue
 
-- Polling Tentacle
-- The Server URL is the URL of your Octopus instance
-- Enter the API key configured earlier
-- Deployment Target
-- Specify the environment of the Octopus instance
-- Specify the role of the tentacle (You will use this later in the runbook)
-- All other parameters can be left as default
 
 ### Confirming the Tentacle connection
 
@@ -87,13 +92,13 @@ Confirm that your Tentacle is connected in Octopus by navigating to **Infrastruc
 
 ## Setting up the runbook in Octopus
 
-Now that we have created the Linux server, installed and connected the Tentacle, we can create the runbook. This runbook establishes a development environment for a web development use case. Other types of use cases would require a different configuration setup. Operations can run the runbook when a web developer needs a server set up. 
+Now that we have created the Linux server, installed and connected the Tentacle, we can create the runbook. This runbook establishes a development environment for a web development use case. Other types of use cases would require a different configuration setup. Operations can run the runbook when a web developer needs a server set up.
 
 ### Create the runbook
 
-1. Create a project to host the runbook by going to **Projects, Add Project**. 
-1. In your project, go to **Runbooks, Add Runbook, Process, Add Step, Script, Run a Script, Add**. 
-1. Under `on Targets in Roles`, add the role that you specified in the Tentacle setup script. 
+1. Create a project to host the runbook by going to **Projects, Add Project**.
+1. In your project, go to **Runbooks, Add Runbook, Process, Add Step, Script, Run a Script, Add**.
+1. Under `on Targets in Roles`, add the role that you specified in the Tentacle setup script.
 1. Specify a Bash script and add the following code:
 
 ```
