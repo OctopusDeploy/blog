@@ -73,9 +73,9 @@ The setup script will ask you a series of questions. Make sure to specify the fo
 1. **What kind of Tentacle would you like to configure:** 1) Listening or 2) Polling (default 1): 2
 1. **Where would you like Tentacle to store log files? (/etc/octopus):** press Enter to accept defaults
 1. **Where would you like Tentacle to install applications to? (/home/Octopus/Applications):** press Enter to accept defaults
-1. **Octopus Server URL (eg. https://octopus-server):** <The URL of your Octopus instance>
+1. **Octopus Server URL (eg. https://octopus-server):** The URL of your Octopus instance
 1. **Select auth method: 1) API-Key or 2) Username and Password (default 1):** 1
-1. **API-Key:** <Enter the API key configured earlier>
+1. **API-Key:** Enter the API key configured earlier
 1. **Select type of Tentacle do you want to setup: 1) Deployment Target or 2) Worker (default 1):** 1
 1. **What Space would you like to register this Tentacle in? (Default):** press Enter to accept defaults
 1. **What name would you like to register this Tentacle with?** press Enter to accept defaults
