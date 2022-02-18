@@ -15,7 +15,7 @@ tags:
  - GitHub Actions
 ---
 
-This blog will build and push the Octopus Deploy Underwater Scene to Amazon Elastic Container Registry (ECR) using GitHub Actions. To follow along, you will need:
+Github Actions uses workflows to allow DevOps operations in any Github repository. Github Actions allows the built repository to interact with various services within a deployment process. Commonly, a codebase will be built and pushed into a container registry for deployment later. This blog will build and push the Octopus Deploy Underwater Scene to Amazon Elastic Container Registry (ECR) using GitHub Actions. To follow along, you will need:
 
 - An Amazon Web Services Account (AWS)
 - A GitHub account
@@ -110,7 +110,8 @@ Go to your Amazon ECR repository to view the image. Octopus Deploy can now deplo
 
 ![ECR Success](ecr-success.png)
 
+## Conclusion
 
-In this blog, you have set up a GitHub Actions workflow to build and push an image to Amazon ECR. 
+In this blog, you have set up a GitHub Actions workflow to build and push an image to Amazon ECR. Deployment tools like Octopus Deploy can then use this image in a later deployment stage to deploy the web application to a service. Github Actions allows code repositories to be part of a deployment process without additional work. Github Actions has several templates that developers can use to perform other deployment tasks. Next, we will take the image in ECR and deploy the web application.
 
 Happy Deployments!
