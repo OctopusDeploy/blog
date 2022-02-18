@@ -31,7 +31,7 @@ This blog aims to explore these questions.
 
 ## Costs to the business
 
-More and more teams are taking advantage of shadow IT. This increases the risks of security breaches as the resources are outside the control of IT department. A study by EMC estimates that data loss and downtime contribute to [$1.7 trillion each year due to shadow IT security breaches](https://corporate.delltechnologies.com/en-us/newsroom/announcements/2014/12/20141202-01.htm).[ In IBM's 2021 [Cost of Data Breach Report](https://www.ibm.com/au-en/security/data-breach), the average cost of a data breach rose from US$3.86 million to US$4.24million from 2020 to 2021[4].
+More and more teams are taking advantage of shadow IT. This increases the risks of security breaches as the resources are outside the control of IT department. A study by EMC estimates that data loss and downtime contribute to [$1.7 trillion each year due to shadow IT security breaches](https://corporate.delltechnologies.com/en-us/newsroom/announcements/2014/12/20141202-01.htm). In IBM's 2021 [Cost of Data Breach Report](https://www.ibm.com/au-en/security/data-breach), the average cost of a data breach rose from US$3.86 million to US$4.24million from 2020 to 2021.
 
 ![Average total cost of a data breach - IBM Cost of a Data Breach Report 2021](ibm.png "width=500")
 
@@ -47,9 +47,6 @@ End users are any employees of an organization that require an IT resource to do
 
 End users are the cause of shadow IT, but they are generally not concerned with the consequences. They want to get their job done in a streamlined and efficient way. Self-service runbooks can address this by ensuring a streamlined experience with governance that gives the end-user the ability to spin up the infrastructure they need without avoiding the IT department.
 
-[Image about the need for governance vs need to ease-of use and runbooks]
-
-
 ## Risk mitigation
 
 The unknown nature of shadow IT increases the risk profile of an organization. Shadow IT has already infected businesses and will only grow. It is a matter of managing the risk. Gartner suggests three [risk mitigation strategies](https://www.gartner.com/smarterwithgartner/make-the-best-of-shadow-it) to address this.
@@ -59,6 +56,12 @@ The unknown nature of shadow IT increases the risk profile of an organization. S
 > - Use Data Security Governance to Develop and Orchestrate Consistent Security Policies Across All BUIT for Each Prioritized Dataset
 
 Shadow IT requires governance, discovery, and protection. The solution must be streamlined and minimize time spent in support. Self-service runbooks can address this.
+
+## The Shadow IT Discovery lifecycle
+
+A [blog post by Microsoft](https://www.microsoft.com/security/blog/2019/03/26/step-7-discover-shadow-it-and-take-control-of-your-cloud-apps-top-10-actions-to-secure-your-environment/) outlines the stages of the shadow IT discovery lifecycle. This supports that any solution to shadow IT should have governance but also compliance. Reducing the barriers to compliance while maintaining governance is an important step towards managing shadow IT. Octopus Deploy provides runbooks as a way to acheive compliance and governance across an organization.
+
+![Shadow IT lifecycle](microsoft-shadow-it.png "width=500")
 
 ## What is a runbook?
 
