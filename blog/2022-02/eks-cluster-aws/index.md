@@ -3,7 +3,7 @@ title: Creating an EKS cluster in AWS
 description: As part of our series about Continuous Integration and build servers, learn how to create an EKS cluster in AWS.
 author: terence.wong@octopus.com
 visibility: public
-published: 2022-02-14-1400
+published: 2022-02-09-1400
 metaImage: blogimage-deploymentscreatingaeksclusterinaws-2022.png
 bannerImage: blogimage-deploymentscreatingaeksclusterinaws-2022.png
 bannerImageAlt: EKS hexagons falling into an AWS-styled cube
@@ -20,7 +20,10 @@ In this post, you learn how to set up an Elastic Kubernetes Service (EKS) cluste
 
 EKS is a managed container service to run and scale Kubernetes in the cloud or on-premises. Kubernetes provides a scalable, distributed way to manage workloads. It does this by containerizing applications. Containers ensure replicability across different environments and cloud infrastructures. 
 
-The clusters you create in this post will be used in later posts in our [Continuous Integration series](https://octopus.com/blog/tag/CI%20Series), to set up web applications and as part of workflows. 
+The clusters you create in this post will be used in later posts in our [Continuous Integration series](https://octopus.com/blog/tag/CI%20Series), to set up web applications and as part of workflows. We'll add links to the relevant posts as they become available:
+
+- [Building a Docker image in Jenkinsfile and publishing to ECR](https://octopus.com/blog/jenkins-docker-ecr)
+- [Deploying to Amazon EKS with Docker and Jenkins](https://octopus.com/blog/jenkins-eks-ecr-deployment)
 
 ## Prerequisites
 
@@ -152,6 +155,11 @@ You can only delete a resource the same way you created it. This means clusters 
 In this post, you set up IAM permissions in AWS. You used the CLI and console to create, inspect, and delete an EKS cluster. 
 
 EKS on AWS allows you to provision Kubernetes services in the cloud to deploy and scale workloads.
+
+The clusters you created can be used to set up web applications and as part of workflows in upcoming posts. We'll add links to the relevant posts as they become available:
+
+- [Building a Docker image in Jenkinsfile and publishing to ECR](https://octopus.com/blog/jenkins-docker-ecr)
+- [Deploying to Amazon EKS with Docker and Jenkins](https://octopus.com/blog/jenkins-eks-ecr-deployment)
 
 !include <q1-2022-newsletter-cta>
 

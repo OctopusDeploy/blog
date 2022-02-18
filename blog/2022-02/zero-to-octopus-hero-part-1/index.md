@@ -4,8 +4,8 @@ description: Join Sarah Lean as she learns about Octopus Deploy.
 author: sarah.lean@octopus.com
 visibility: public
 published: 2022-02-08-1400
-metaImage: blogimage-fromzerotooctopusheropart1.png
-bannerImage: blogimage-fromzerotooctopusheropart1.png
+metaImage: blogimage-fromzerotooctopushero-part1-2022.png
+bannerImage: blogimage-fromzerotooctopushero-part1-2022.png
 bannerImageAlt: Mario-style illustration with Sarah winning a fight with a creature over shark infested waters.
 isFeatured: false
 tags:
@@ -16,19 +16,17 @@ tags:
 
 My name is Sarah Lean and I recently joined Octopus Deploy as Senior Solutions Architect in the Community team. 
 
-This post is part 1 of a series about my learning journey with Octopus. 
-
 I'm starting from scratch with Octopus Deploy, but I intend to go from zero to Octopus hero over the coming weeks.
 
-We'll add links to other posts in the series as they become available.
+This post is part 1 of a series about my learning journey with Octopus. We'll add links to other posts in the series as they become available.
 
 ## What is Octopus Deploy?
 
-Deploying software and infrastructure in your environment is something all software engineers need to do, whether we're running on-premises or in cloud environments. Introducing automation into the process can help to drive efficiency and consistency. 
+Deploying software and infrastructure in your environment is something all software engineers need to do, whether we're running on-premises or cloud environments. Introducing automation into the process can help drive efficiency and consistency. 
 
-Octopus Deploy is a tool that helps customers accelerate repeatable, reliable, and traceable deployments across cloud and on-premises infrastructure. 
+Octopus Deploy is a platform that helps customers accelerate repeatable, reliable, and traceable deployments across cloud and on-premises infrastructure. 
 
-Being able to handle software and infrastructure deployment, Octopus is a great tool for developers, DevOps engineers, DevOps managers, and system administrators. 
+Octopus Deploy's ability to handle software and infrastructure deployment makes it a great tool for developers, DevOps engineers, DevOps managers, and system administrators.
 
 ## Getting to know Octopus Deploy
 
@@ -46,7 +44,7 @@ It's straightforward to install Octopus Deploy on a single server configuration 
 
 I spent time running Octopus Deploy in a [highly available architecture](https://octopus.com/docs/administration/high-availability) in my environment. I looked at:
 
-- How to load balancers
+- How to configure load balancers
 - Database high availability
 - Shared storage configurations
 
@@ -56,9 +54,9 @@ Thankfully, when working with virtual machines you can delete them and start aga
 
 My false starts taught me how important the Master Key is to your Octopus Deploy environment, and [how to recover](https://octopus.com/docs/administration/managing-infrastructure/lost-master-key) without a backup of your Key.
 
-::hint
+:::hint
 The Master Key is created on installation and is used with AES-128 to encrypt certain sensitive data in the Octopus database. Make sure you [back it up](https://octopus.com/docs/octopus-rest-api/octopus.server.exe-command-line/show-master-key) and keep it somewhere safe. 
-::
+:::
 
 It's a great feeling when you get something working and see the results of your work. I fist-pumped the air when I set up the configuration and could access my Octopus Deploy instance through the load balancer!
 

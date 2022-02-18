@@ -159,7 +159,27 @@ From this point, your release doesn’t change as it progresses through the envi
 
 For our configuration language, we are using a language based on [Hashicorp’s HCL](https://github.com/hashicorp/hcl).  
 
-![OCL sample](hcl-sample.png "width=500")
+```hcl
+step "Greetings World" {
+    script_action {
+        channels = ["Release", "Beta"]
+        environments = ["Production"]
+        worker_pool = "Ubuntu 2018.4"
+        syntax = "Bash"
+        body = <<EOT
+            echo "#{Greeting} World!"
+        EOT
+    }
+}
+
+step "Test Status Page" {
+    http_test_url_action {
+        url = "https://#{Domain}/status"
+        expected_code = 200
+        timeout_seconds = 60
+    }
+}
+```
 
 Our primary considerations were:
 - **Human readability**: The whole point of storing configuration in Git is so that humans can read and compare it. 
