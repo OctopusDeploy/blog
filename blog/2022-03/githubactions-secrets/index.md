@@ -1,8 +1,8 @@
 ---
 title: Secrets in GitHub Actions
 description: As part of our series about Continuous Integration and build servers, learn how to add secrets in GitHub to use with GitHub Actions, plus how to call them in workflows.
-author: Andrew.Corrigan@octopus.com
-visibility: private
+author: andrew.corrigan@octopus.com
+visibility: public
 published: 2022-03-01-1400
 metaImage: blogimage-githubconfigurationaddingsecrets-2022.png
 bannerImage: blogimage-githubconfigurationaddingsecrets-2022.png
@@ -27,7 +27,7 @@ In this post, we look at those 3 levels and how to add secrets to them. We also 
 
 ## Repository secrets
 
-As the name suggests, GitHub ties repository secrets to only one repository. They’re available to anyone with the collaborator role to use in actions.
+GitHub ties repository secrets to only one repository. They’re available to anyone with the collaborator role to use in actions.
 
 You can store 100 secrets per repository.
 
@@ -102,7 +102,7 @@ As an example, if you want to send a package over to an Octopus server for deplo
        server: ${{ secrets.OCTOPUS_PACKAGE_STORE }}
 ```
 
-To explain what’s happening, this part of your workflow:
+To explain what’s happening, this is part of your workflow:
 
 1. Triggers an action to push the package to Octopus.
 1. Gets the Octopus API key from your secrets store to allow GitHub to pass data to Octopus.
@@ -113,7 +113,7 @@ Here the workflow uses both your API and destination but keeps them hidden from 
 
 ## Conclusion
 
-Secrets are a great security measure that allow you to protect data and connect to services without revealing sensitive info.
+Secrets are a great security measure that allow you to protect data and connect to services without revealing sensitive information.
 
 ## What's next?
 
