@@ -47,8 +47,48 @@ Considerations
 - When you change the deployment config it will trigger a build as usual if the folder is included in the build triggers
 
 
-## Deployment repository
+## In a separate deployment repository
 
 Central deployment configuration repository.
 
 This would suit situations where the same team manages all the deployments, rather than the app teams.
+
+## Can you change your mind and move it?
+
+You can transfer the configuration to a new folder, or to a new Git repository.
+
+If you decide to move your configuration, the history won't be moved with it, only the current deployment process state.
+
+Q: what warnings or caveats should we add - making sure any branch names you depend on are maintained.
+
+### Moving config files into a folder
+
+You will need to pause changes to the deployment configuration while you perform this operation.
+
+Ensure you have the latest version of the config files.
+Create the new folder under the .octopus directory.
+Copy the files into the new folder
+
+Open the project in Octopus Deploy
+Open Settings / Version Control
+Expand the Git FIle Storage Directory and update the folder name
+Click SAVE to store the changes
+Check your deployment process
+Delete the files from the old location
+
+
+### Moving config files to a new repository
+
+Create a new Git repository
+Copy the latest version of the .octopus folder into the new repository
+Commit and push the changes
+
+Open the project in Octopus Deploy
+Open Settings / Version Control
+Update the Git Repository address
+Enter a personal access token for the new Git repository
+Click TEST to check your connection to the repository
+Click SAVE to store the changes
+Check your deployment process
+Delete the files from the old location
+
