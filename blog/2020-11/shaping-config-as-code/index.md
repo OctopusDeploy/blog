@@ -159,7 +159,7 @@ From this point, your release doesn’t change as it progresses through the envi
 
 For our configuration language, we are using a language based on [Hashicorp’s HCL](https://github.com/hashicorp/hcl).  
 
-```hcl
+```ruby
 step "Greetings World" {
     script_action {
         channels = ["Release", "Beta"]
