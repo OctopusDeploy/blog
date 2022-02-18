@@ -32,7 +32,7 @@ This is appealing if you like all your work in one place, with fewer moving part
 
 Your ability to use GitHub Actions depends on you or your company using GitHub. If you use other code repositories, or you host your code on-premises, GitHub Actions isn’t an option.
 
-That said, it’s worth mentioning that other code repository services, like GitLab and BitBucket, have released their own takes on CI as a Service, too. You may still have options if other services are more your flavor.
+It’s worth mentioning, however, that other code repository services, like GitLab and BitBucket, have released their own takes on CI as a Service, too. You may still have options if other services are more your flavor.
 
 ## No hardware needed for CI (unless you want to)
 
