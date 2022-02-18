@@ -163,7 +163,7 @@ This workflow demonstrated that runbooks could configure Linux servers. In this 
 
 ## Conclusion
 
-Configuring servers can be a manual process. Often there are many different configuration requirements that a server could have. To help with this, runbooks in Octopus Deploy provide a repeatable, automated way to configure servers. They can be set up to cater to specific configuration needs and triggered when needed. The repeatable nature of runbooks introduces consistency within the organizational infrastructure. Runbooks minimize the load on system administrators to focus on other tasks. If you would like to know more about how Octopus Deploy and runbooks can help with your deployment needs, [contact us today!](customersuccess@octopus.com)
+Configuring servers can be a manual process. Often there are many different configuration requirements that a server could have. To help with this, runbooks in Octopus Deploy provide a repeatable, automated way to configure servers. They can be set up to cater to specific configuration needs and triggered when needed. The repeatable nature of runbooks introduces consistency within the organizational infrastructure. Runbooks minimize the load on system administrators to focus on other tasks. If you would like to know more about how Octopus Deploy and runbooks can help with your deployment needs, [contact us today!](mailto:customersuccess@octopus.com)
 
 
 !include <q2-2022-newsletter-cta>
