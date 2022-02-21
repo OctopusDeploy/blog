@@ -1,8 +1,8 @@
 ---
 title: Running unit tests in GitHub Actions
-description: Learn how to run unit tests in GitHub Actions and process the results
+description:As part of our series about Continuous Integration and build servers, learn how to run unit tests in GitHub Actions and process the results.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2022-03-07-1400
 metaImage: blogimage-runningunittestsingithubactions-2022.png
 bannerImage: blogimage-runningunittestsingithubactions-2022.png
@@ -194,7 +194,7 @@ The test-reporter action then processes the report file, and sets `fail-on-error
 
 ## Conclusion
 
-GitHub actions is primarily a task execution environment designed to verify and build code, and publish the resulting artifacts. There are a number of third party actions that allow you to generate test reports and respond to failed tests, but GitHub actions has some gaps in terms of tracking test results over time. Still, the reporting functionality available today is useful, and will only improve.
+GitHub Actions is primarily a task execution environment designed to verify and build code, and publish the resulting artifacts. There are a number of third party actions that allow you to generate test reports and respond to failed tests, but GitHub Actions has some gaps in terms of tracking test results over time. Still, the reporting functionality available today is useful, and will only improve.
 
 In this post, you learned:
 
