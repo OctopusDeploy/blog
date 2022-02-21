@@ -59,7 +59,7 @@ This approach will mean you double the number of repositories under management, 
 
 ### Deployment repository grouped by space
 
-It is possible to store many deployment projects within a single repository using sub-folders. Instead of the OCL files being stored directly within the `.octopus` directory, each can have a folder such as `.octopus/OctoPetShop/` or `.octopus/OctoHR`. You can create a single repository to store all of the configurations for an Octopus Space.
+It is possible to store many deployment projects within a single repository using sub-folders. Instead of storing the OCL files directly within the `.octopus` directory, each can have a folder such as `.octopus/OctoPetShop/` or `.octopus/OctoHR`. You can create a single repository to store all of the configurations for an Octopus Space.
 
 This approach benefits from the existing design work you have already undertaken to arrange your spaces. It reduces the total number of repositories you need to manage while still allowing you to set specific permissions to the deployment repository.
 
@@ -77,7 +77,7 @@ You can use the [Octopus Deploy Terraform Provider](https://registry.terraform.i
 
 You might also consider sharing a single configuration between multiple projects to keep the process in sync. However, this requires many non-project resources to be kept identical between projects, which quickly becomes hard to manage.
 
-Instead of sharing the same OCL files between multiple projects, you should create a custom tool to interact with the [Octopus Deploy REST API ](https://octopus.com/docs/octopus-rest-api)to enforce the desired process configuration. You can read more in our documentation for [synchronizing multiple instances](https://octopus.com/docs/administration/sync-instances).
+Instead of sharing the same OCL files between multiple projects, you should create a custom tool to interact with the [Octopus Deploy REST API](https://octopus.com/docs/octopus-rest-api)to enforce the desired process configuration. You can read more in our documentation for [synchronizing multiple instances](https://octopus.com/docs/administration/sync-instances).
 
 ## Conclusion
 
