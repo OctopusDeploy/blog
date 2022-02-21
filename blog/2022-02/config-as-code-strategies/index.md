@@ -13,81 +13,79 @@ tags:
  - Configuration as Code
 ---
 
-Since last year, when we released the preview of Config as Code...
+Since last year, when we released the early-access preview of Octopus Config as Code, there have been many questions about how to use the feature to get the best results. This article will explain some good practices for using config as code and how to adjust your strategy in different situations.
 
+## Why use config as code?
 
+Git is the perfect solution for versioning code and keeping track of changes over time. It has established patterns for branching the code and publishing and approving changes. It also allows you to compare versions and travel back in time if you need to.
+Using Git to version control your config as code, you can:
 
+- Branch your configuration and test changes in the branch before merging them
+- Review and collaborate on changes using pull requests
+ - Clone an existing project to use as a template for future projects
+ - Track changes to the deployment configuration using the same tools you already use for your application code
+- Edit your deployment configuration in your preferred text editor or within the Octopus app
 
+The configuration is stored as human-readable Octopus Configuration Language (OCL) files to make it easier to read and edit the deployment process and review any changes. There is a [Visual Studio Code extension to make it easier to work with OCL files](https://marketplace.visualstudio.com/items?itemName=octopusdeploy.vscode-octopusdeploy).
 
-﻿When we talk to customers about config as code they often ask what the guidance is for certain things.
+## Where to store your configuration
 
-I﻿s the intention of the setup 1:1 ratio project to repo?﻿
-What's the recommendation for branching use?
-﻿It would be good to have an opinionated article around this.
+One of the first decisions you will need to make is where to store your config as code. You can choose between several options. You can keep your configuration:
 
-The existing material suggests the intended approach is to have a "configuration repository" is this correct and what are the reasons? Is there a case where keeping the config alongside the application code is appropriate?
+- Alongside your application code
+- In a separate application-specific deployment repository
+- In a repository that contains all the configurations for an Octopus Space
+- In a central deployment configuration repository
 
-Reasons for a configuration repository:
-The benefit of independent configuration changes.
-A tailored deployment process.
-Ease of change audits.
-Additional security controls, which are usually used for application secrets that a developer may not need access to.
-The configuration is versioned.
-It’s accessible to only those who need it.
-Secrets are encrypted.
-Proper approval gates are in place.
-
-Note: Octopus Deploy extension for VSCode
-https://marketplace.visualstudio.com/items?itemName=octopusdeploy.vscode-octopusdeploy
-
-## Why config as code
-
-History: Git is a time-machine for code, and being able to view the what, when, and who for your Octopus configuration alongside application code is undeniably useful.
-
-visibility/traceability in CI/CD pipeline configuration
-
-Branching: Today, there is a single instance of the deployment process. This makes testing changes difficult, as when a release is created it will use the current deployment process. Git branches make it possible to have as many versions of the deployment process as you like, allowing iterating on changes without impacting stability.
-
-Single source of truth: Having application code, build scripts, and deployment configuration all living together makes everyone feel warm and fuzzy.
-
-Cloning: Imagine being able to copy a .octopus folder to a brand new Git repository (maybe change a few variables) and use that as the Octopus project template.
-
-Key point - it doesn't stop you using the Octopus UI - you can make changes in the UI and commit them to the repository.
-
-## Folder per project
-
-Folder per project is a requirement, but you don't have to put them in a different repo - you could have one repo with many project folders.
-
-What are the good practices here - one repo per space?
-
-## Use branches and pull requests
-
-Use the features to review and accept changes.
-
-Use branches to test changes in a pre-live environment before merging the changes into your main line.
-
-## Where to put the config
+Each option is described below to explain when they work and when to avoid them. You might have noticed that you can arrange these possibilities along a scale from a one-to-one relationship with applications to a single large repository. There is a natural trade-off between having many repositories versus having potentially slower performance in fewer large repositories.
 
 ### Alongside application code
 
-Deployment configuration in the same repository as the application. Is this is the intended design...for what reasons?
+If you opt to store your configuration in the application repository, each application will have its own `.octopus` directory with the configuration files.
 
-Benefits
- - All related information is in the same place
- - Your existing process for code reviews and security can include the deployment process
+This approach benefits from keeping the configuration in the same location as the application code, so you'll be able to find it quickly and easily. It will have the same process and security policy as code changes for the application.
 
-Considerations
-- When you change the deployment config it will trigger a build as usual if the folder is included in the build triggers
-- If there is a lot of application code in the repository it might impact performance as Octopus needs to get the branch, switching branches could take longer
+You may wish to avoid this pattern if you have a large application code base as this may affect the performance when you switch between branches in the Octopus app, as it needs to retrieve the new branch to obtain the configuration. You will also need to mask the `.octopus` folder to avoid triggering a build for each configuration change.
+
+This pattern suits an autonomous team responsible for both the application and its deployment.
+
+### Application-specific deployment repository
+
+This option adds an additional repository per application to store the application's deployment configuration. For example, the application "OctoPetShop" would have an extra repository named "OctoPetShop Deployments" that contains only the config as code files. Each deployment repository would have a `.octopus` directory containing the OCL files. You can use a naming convention to make it easier to find the deployment configuration related to a specific application.
+
+Using this approach, you can easily grant separate permissions to the deployment configuration and apply different policies for pull requests. Each branch will remain as small as possible, and it will be fast when you switch between branches in the Octopus app.
+
+This approach will mean you double the number of repositories under management, making it undesirable if you have many applications.
+
+### Deployment repository grouped by space
+
+It is possible to store many deployment projects within a single repository using sub-folders. Instead of the OCL files being stored directly within the `.octopus` directory, each can have a folder such as `.octopus/OctoPetShop/` or `.octopus/OctoHR`. You can create a single repository to store all of the configurations for an Octopus Space.
+
+This approach benefits from the existing design work you have already undertaken to arrange your spaces. It reduces the total number of repositories you need to manage while still allowing you to set specific permissions to the deployment repository.
+
+### Central deployment repository
+
+Taking the grouped approach a step further, you _could_ have a single repository to store all of your deployment configurations. You will have fewer repositories but may suffer from issues as the number of branches increases. If you had ten projects within the repository and each had five branches, you would see 50 items in the branch selector in the Octopus app.
+
+Unless you have a small number of applications, you should avoid this option. In general, if you have started using spaces, you should consider organizing your repositories to match them.
+
+## When config as code is the wrong option
+
+Many deployment resources don't belong to a project, for example; spaces, tenants, environments, and accounts. We didn't intend for config as code to handle the version control of these items.
+
+You can use the [Octopus Deploy Terraform Provider](https://registry.terraform.io/providers/OctopusDeployLabs/octopusdeploy/latest/docs) to handle these resources. You can find out [how to get started with the Terraform provider for Octopus Deploy on our blog](https://octopus.com/blog/octopusdeploy-terraform-provider).
+
+You might also consider sharing a single configuration between multiple projects to keep the process in sync. However, this requires many non-project resources to be kept identical between projects, which quickly becomes hard to manage.
+
+Instead of sharing the same OCL files between multiple projects, you should create a custom tool to interact with the [Octopus Deploy REST API ](https://octopus.com/docs/octopus-rest-api)to enforce the desired process configuration. You can read more in our documentation for [synchronizing multiple instances](https://octopus.com/docs/administration/sync-instances).
+
+## Conclusion
+
+While there is no single correct way to use config as code, some suitable heuristics allow you to choose between four common Git repository strategies. We also reviewed cases where config as code isn't the intended solution. Instead, we provided alternative mechanisms to sync resources outside the project scope and keep deployment processes in sync.
 
 
-### In a separate deployment repository
+## POSSIBLY A SEPARATE POST?
 
-Central deployment configuration repository.
-
-This would suit situations where the same team manages all the deployments, rather than the app teams.
-
-You have to be careful as if there are 10 projects and four branches get created to handle changes being made to each project, you now have a list of 40 branches to choose from in the Octopus Deploy UI.
 
 ### Can you change your mind and move it?
 
@@ -127,7 +125,3 @@ Click TEST to check your connection to the repository
 Click SAVE to store the changes
 Check your deployment process
 Delete the files from the old location
-
-## When to use the Terraform provider instead
-
-For things outside of projects, like spaces, tenants, environments, accounts, etc (this came up multiple times on the community slack)
