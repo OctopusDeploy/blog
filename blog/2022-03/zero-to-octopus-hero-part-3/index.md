@@ -18,7 +18,7 @@ Hey folks, it's great to be back for part 3 of my zero to hero blog series.
 
 I joined Octopus Deploy in October 2021 and I'm on a learning journey that I want to share with you.  In [part one](https://octopus.com/blog/zero-to-octopus-hero-part-1), I covered what Octopus Deploy does. In [part 2](https://octopus.com/blog/zero-to-octopus-hero-part-2), I discovered the role Octopus plays in DevOps. 
 
-In this post, I look at how Octopus Deploy integrates with other tools that organizations use. I also dive in to more of Octopus’s features. 
+In this post, I look at how Octopus Deploy integrates with other tools that organizations use. I also dive in to more of Octopus Deploy's features. 
 
 
 ## Config As Code
