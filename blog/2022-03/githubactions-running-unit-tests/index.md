@@ -95,7 +95,7 @@ You start by building the application, but skipping the tests:
         run: mvn --batch-mode -DskipTests package
 ```
 
-Next you run the tests, allowing the command to pass even if there are failing tests. This allows you to defer the response to failed tests to the test processing action:
+Next, you run the tests, allowing the command to pass even if there are failing tests. This allows you to defer the response to failed tests to the test processing action:
 
 ```yaml
       - name: Test
