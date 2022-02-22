@@ -1,6 +1,6 @@
 ---
 title: Shaping Configuration as Code
-description:  We've been busy recently building _Configuration as Code_ support for Octopus Deploy. Learn about some of the factors that shaped this feature.
+description:  We've been busy recently building Configuration as Code support for Octopus Deploy. Learn about some of the factors that shaped this feature.
 author: michael.richardson@octopus.com
 visibility: public
 published: 2020-11-25 
@@ -13,7 +13,7 @@ tags:
  - Configuration as Code
 ---
 
-We’ve been busy recently building _Configuration as Code_ (Config as Code) support for Octopus Deploy.  In this post, we look at some of the factors that have shaped this feature: 
+We’ve been busy recently building _Configuration as Code_ (Config as Code) support for Octopus Deploy.  In this post, we look at some of the factors that shaped this feature: 
 
 - Why we’re building Config as Code 
 - Anti-patterns we wanted to avoid 
@@ -140,7 +140,7 @@ The other obvious contenders were YAML, JSON, and XML.
 - We ruled XML out; as much fun as it would be to swim against the tide, XML is too verbose (so many angle-brackets!). 
 - YAML ticks the human-readable box, but it's painful for editing complex documents, and we felt better suited to simpler documents (so much whitespace!). 
 
-We like HCL. We feel it's the right tool for the job. Even though we have openly used HCL as the starting point, we're referring to our implementation as **Octopus Configuration Language (OCL)**. 
+We like HCL. We feel it's the right tool for the job. Even though we've openly used HCL as the starting point, we're referring to our implementation as **Octopus Configuration Language (OCL)**. 
 
 We've built our own [parser/serializer](https://github.com/OctopusDeploy/Ocl), and there's no obligation on us to follow any direction Hashicorp takes HCL, and nothing preventing us from making changes. 
 
@@ -148,8 +148,6 @@ To be honest, we feel like the choice of configuration language is far from the 
 
 ## What’s next?
 
-The next step is getting this into your hands. We're rolling out an early access preview of cConfig as Code to Octopus Cloud instances over the coming months.  
-
-To stay updated, subscribe to the feature on our [roadmap page](https://octopus.com/company/roadmap). 
+The next step is getting this into your hands. We're rolling out an early access preview of Config as Code to Octopus Cloud instances over the coming months.  
 
 Happy deployments!
