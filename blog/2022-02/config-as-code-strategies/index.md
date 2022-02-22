@@ -22,8 +22,8 @@ Using Git to version control your config as code, you can:
 
 - Branch your configuration and test changes in the branch before merging them
 - Review and collaborate on changes using pull requests
- - Clone an existing project to use as a template for future projects
- - Track changes to the deployment configuration using the same tools you already use for your application code
+- Clone an existing project to use as a template for future projects
+- Track changes to the deployment configuration using the same tools you already use for your application code
 - Edit your deployment configuration in your preferred text editor or within the Octopus app
 
 The configuration is stored as human-readable Octopus Configuration Language (OCL) files to make it easier to read and edit the deployment process and review any changes. There is a [Visual Studio Code extension to make it easier to work with OCL files](https://marketplace.visualstudio.com/items?itemName=octopusdeploy.vscode-octopusdeploy).
