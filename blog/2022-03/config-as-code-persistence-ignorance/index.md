@@ -257,7 +257,7 @@ The consumer has to:
 1. Spin up a `transaction`
 2. Realize there's a `cache` dependency they can use
 3. Figure out whether their given type (`Foo`) supports caching *(not all our types support caching)*
-4. Determine how to call the caching methods directly, passing the `Get<T>` method a `transaction` and lambda
+4. Determine how to call the caching methods directly, passing the `Get<T>` method a `transaction` and Lambda
 
 Developers often failed to consider our cache when writing code. Because of this, we were being *reactive* to some performance problems and spot-fixing things to use cache as they arose.
 
