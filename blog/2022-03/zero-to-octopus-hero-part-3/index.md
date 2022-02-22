@@ -1,6 +1,6 @@
 ---
 title: From zero to Octopus hero - Octopus features and integrations
-description: Join Sarah as she continues to learn more about Octopus Deploy. In this post, Sarah looks at more Octopus features and integrations with other tools.
+description: Join Sarah as she continues to learn more about Octopus Deploy. In this post, Sarah looks at more Octopus features, plus integrations with other tools.
 author: sarah.lean@octopus.com
 visibility: public
 published: 2022-03-08-1400
@@ -29,7 +29,7 @@ With Config as Code you can see a history of changes to your deployment process,
 
 To explore this feature, install the [Octopus Deploy for Visual Studio Code plugin](https://marketplace.visualstudio.com/items?itemName=octopusdeploy.vscode-octopusdeploy). The plugin helps with syntax highlighting when exploring the .OCL files created in your Git repository by Octopus. 
 
-Another great resource to learn more about Config as Code is our deep dive webinar, hosted by Director of Product, Michael Richardson. 
+Another great resource to learn more about Config as Code is our deep dive webinar, hosted by our Director of Product, Michael Richardson. 
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/oZfxlbpSP14" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -55,7 +55,7 @@ I was able to import:
 
 This is a great feature in Octopus to help move projects between instances or to split projects into multiple spaces for better visibility.  
 
-It's worth noting that it won't export and import: 
+It's worth noting that it can't export and import: 
 
 * [Packages](https://octopus.com/docs/projects/export-import#packages)
 * [Deployment targets](https://octopus.com/docs/projects/export-import#deployment-targets)
@@ -68,16 +68,16 @@ It's worth noting that it won't export and import:
 
 Most organizations have an existing authentication system set up. Active Directory is a widely-used example.  Octopus Deploy can integrate with several authentication systems, including:
 
-- Active Directory
-- Azure Active Directory
-- Google Authenticator
-- Okta
+- Active Directory Authentication
+- Azure Active Directory Authentication
+- GoogleApps Authentication
+- Okta AUthentication
 - GitHub
-- LDAP  
+- LDAP Authentication
 
 Check out the[ authentication provider compatibility documentation](https://octopus.com/docs/security/authentication/auth-provider-compatibility) for more information. 
 
-Authentication should be set up to provide a consistent experience for all your users.  If you're introducing Octopus Deploy into your environment, you want to avoid giving your users another username/password combination to manage. 
+Authentication should be set up to provide a consistent experience for all your users.  If you're introducing Octopus Deploy into your environment, you want to avoid giving your users another username and password combination to manage. 
 
 ## Personalize your space
 
@@ -89,9 +89,9 @@ Under **Configuration**, then **Spaces**, and then in each Octopus Space, you ca
 
 ## Next steps
 
-I'm really starting to feel comfortable with Octopus Deploy. There's always more to learn but the jigsaw pieces are coming together and I'm enjoying my learning journey.
+I'm really starting to feel comfortable with Octopus Deploy. There's always more to learn but the jigsaw pieces are coming together.
 
-If there's anything you want me to cover or answer about Octopus Deploy, please let me know and I can cover them in part 4. Reach out to [sarah.lean@octopus.com](mailto:sarah.lean@octopus.com) or leave a comment below.
+If there's anything you want me to cover or answer about Octopus Deploy, please let me know and I can address them in part 4. Reach out to [sarah.lean@octopus.com](mailto:sarah.lean@octopus.com) or leave a comment below.
 
 We'll add links to other posts in the series as they become available.
 
