@@ -88,7 +88,7 @@ What's outstanding? The short answer is a lot of small things. Moving a chunk of
 
 Click the learn more link below to read more about the factors that have gone into designing and building our config as code support. We explicitly call out several anti-patterns that we have intentionally avoided. 
 
-[Learn more](/blog/2020-11/shaping-config-as-code/index.md)
+[Learn more](https://octopus.com/blog/shaping-config-as-code)
 
 ## Breaking changes
 
