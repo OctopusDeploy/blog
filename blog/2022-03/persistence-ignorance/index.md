@@ -1,12 +1,12 @@
 ---
-title: Core Platform and persistence ignorance
+title: Config as Code and persistence ignorance
 description: Read about the Core Platform team’s experience with persistence ignorance while developing the new Config as Code feature.
 author: mark.siedle@octopus.com
-visibility: private
-published: 9999-05-24-1400
+visibility: public
+published: 2022-03-17-1400
 bannerImage: blogimage-core-platform-and-persistence-ignorance_2021.png
 metaImage: blogimage-core-platform-and-persistence-ignorance_2021.png
-bannerImageAlt: customers lined up at an octopus document store-front, with GitHub or SQL acting as a supplier
+bannerImageAlt: Customers lined up at an octopus document store-front, with GitHub or SQL acting as a supplier.
 isFeatured: false
 tags:
 - Engineering
