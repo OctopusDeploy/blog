@@ -78,6 +78,7 @@ This change is useful to help your future-self, and other team members, to under
 We wanted to share a preview of our Config as Code feature in November 2020, but it’s not ready yet. We underestimated how long some of the core components would take to build, and this feature is an especially tricky one to ship incrementally.
 
 Fortunately, we’re making excellent progress, and we’ve completed some significant parts of the overall feature.
+
 * Configuring projects to use a git repository.
 * Switching branches in the Octopus Web Portal, viewing and editing the deployment process on different branches.
 * Changes can be committed, including adding a commit message.
@@ -88,7 +89,7 @@ What's outstanding? The short answer is a lot of small things. Moving a chunk of
 
 Click the learn more link below to read more about the factors that have gone into designing and building our config as code support. We explicitly call out several anti-patterns that we have intentionally avoided. 
 
-[Learn more](/blog/2020-11/shaping-config-as-code/index.md)
+[Learn more](https://octopus.com/blog/shaping-config-as-code)
 
 ## Breaking changes
 
