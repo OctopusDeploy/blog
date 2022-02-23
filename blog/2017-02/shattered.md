@@ -8,7 +8,7 @@ tags:
  - Product
  - Security
 ---
-
+ 
 ![SHA1ttered logo](shattered-logo.png) 
 
 If you've been following technology news recently, you will have seen that [Google announced](https://security.googleblog.com/2017/02/announcing-first-sha1-collision.html) a new attack that makes it [practically possible to generate SHA1 hash collisions](http://shattered.io/). 
@@ -157,3 +157,4 @@ This is a good time to give a shout out to the [new certificates feature](https:
 
 ![Certificates feature](https://i.octopus.com/blog/201702-certificate_list-BR7P.png "width=500")
  
+For updates, please subscribe to our [newsletter](#newsletter).

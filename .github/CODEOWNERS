@@ -2,5 +2,6 @@
 # Each line is a file pattern followed by one or more owners.
 
 # These owners will be the default owners for everything in the repo. Unless a later match takes precedence,
-# @wordlee and @robpearson will be requested for review when someone opens a pull request.
-*     @wordlee @TeganAli
+# @TeganAli will be requested for review when someone opens a pull request.
+/blog/     @TeganAli
+/blog/2022-q2/

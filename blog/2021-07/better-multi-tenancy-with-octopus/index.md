@@ -9,7 +9,7 @@ bannerImage: blogimage-better-multi-tenancy-with-octopus-deploy-2021.png
 bannerImageAlt: Three customers in front of three databases linked to the Octopus Deploy logo
 isFeatured: false
 tags:
- - Product
+ - DevOps
  - Multi-Tenancy
 ---
 
@@ -342,16 +342,10 @@ I hope you can see how the Octopus multi-tenancy feature solves some of the prob
 - [Multi-tenancy guides](https://octopus.com/docs/tenants/guides)
 
 
-## Register for the webinar: Better multi-tenancy deployments using Octopus Deploy
+## Watch the webinar: Better multi-tenancy deployments using Octopus Deploy
 
-Join Senior Solutions Architect Mark Harrison and Solutions Architect Adam Close from Octopus Deploy to learn how the multi-tenancy feature in Octopus can be leveraged for scalable, reusable, simplified deployments.
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dD8psiK1wL4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-We're running three sessions of the webinar:
-
-- Wed 28 Jul, 2021
-- Thurs 29 Jul, 2021 
-- Mon 2 Aug, 2021
-
-<span><a class="btn btn-success" href="/events/better-multi-tenancy-deployments-using-octopus-deploy">Register now</a></span>
+We host webinars regularly. See the [webinars page](https://octopus.com/events) for past webinars and details about upcoming webinars. 
 
 Happy deployments!

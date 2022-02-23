@@ -1,5 +1,5 @@
 ---
-title: Configure team member’s machines with Chocolatey, PowerShell, and Octopus Runbooks
+title: Configure team members’ machines with Chocolatey, PowerShell, and Octopus Runbooks
 description: This blog post shows you how to automate your team's development machines setup with Chocolatey, PowerShell, and Octopus Runbooks
 author: derek.campbell@octopus.com
 visibility: public
@@ -303,4 +303,4 @@ You can see all of the configuration in this blog on our [samples instance](http
 
 ## Conclusion
 
-Octopus Runbooks and Chocolatey work well together and gives you a lot of flexibility to help you automate the installation and configuration of laptops, desktops, and servers both on-premises and in the cloud. They take away the need to install thousands or potentially tens of thousands of applications across your organization’s infrastructure. If you want to see this in action, I recently presented a webinar with [Paul Broadwith](https://blog.pauby.com) from Chocolatey about [Operations automation with Octopus Runbooks and Chocolatey](https://www.youtube.com/watch?v=E0z4QbwTuBg), which demonstrated how easy this is to do with runbooks on cloud infrastructure.
+Octopus Runbooks and Chocolatey work well together and give you a lot of flexibility to help you automate the installation and configuration of laptops, desktops, and servers both on-premises and in the cloud. They take away the need to install thousands or potentially tens of thousands of applications across your organization’s infrastructure. If you want to see this in action, I presented a webinar with [Paul Broadwith](https://blog.pauby.com) from Chocolatey about [Operations automation with Octopus Runbooks and Chocolatey](https://www.youtube.com/watch?v=E0z4QbwTuBg), which demonstrated how easy this is to do with runbooks on cloud infrastructure.

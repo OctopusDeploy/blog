@@ -13,7 +13,7 @@ tags:
 
 ![Creating workers with the Tentacle Docker image](blogimage-worker-as-containers.png)
 
-I recently needed to create some additional, temporary workers on our [Samples](https://samples.octopus.app) cloud instance of Octopus Deploy.  As I only needed short-lived workers, containers seemed like the perfect solution. I'd spin up, they'd do some work, and I'd tear them down. In this post, I demonstrate how to create workers in a container hosted in Azure, perform a health check, and install additional software components.  
+I recently needed to create some additional, temporary workers on our [Samples](https://samples.octopus.app) cloud instance of Octopus Deploy.  As I only needed short-lived workers, containers seemed like the perfect solution. I'd spin them up, they'd do some work, and I'd tear them down. In this post, I demonstrate how to create workers in a container hosted in Azure, perform a health check, and install additional software components.  
 
 ## Spin up the workers
 

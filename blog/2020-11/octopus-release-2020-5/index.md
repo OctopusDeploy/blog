@@ -78,7 +78,6 @@ This change is useful to help your future-self, and other team members, to under
 We wanted to share a preview of our Config as Code feature in November 2020, but it’s not ready yet. We underestimated how long some of the core components would take to build, and this feature is an especially tricky one to ship incrementally.
 
 Fortunately, we’re making excellent progress, and we’ve completed some significant parts of the overall feature.
-
 * Configuring projects to use a git repository.
 * Switching branches in the Octopus Web Portal, viewing and editing the deployment process on different branches.
 * Changes can be committed, including adding a commit message.
@@ -119,4 +118,4 @@ Feel free to leave a comment, and let us know what you think! Happy deployments!
 * [Deconstructing blue/green deployments in Kubernetes](/blog/2020-12/deconstructing-blue-green-deployments/index.md)
 * [Creating multi-environment Kubernetes deployments](/blog/2020-12/multi-environment-k8s-deployments/index.md)
 * [Exposing Octopus variables to a Kubernetes container](/blog/2020-12/k8s-envfrom/index.md)
-* [Shaping Configuration-as-Code](https://octopus.com/blog/shaping-config-as-code)
+* [Shaping Config as Code](https://octopus.com/blog/shaping-config-as-code)

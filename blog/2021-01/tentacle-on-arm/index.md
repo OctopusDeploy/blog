@@ -125,17 +125,17 @@ Next, we'll run something against our new Tentacle.
 
 For this step, I am going to set up a new project and configure a runbook to install the latest package updates.
 
-In your instance, create a new _Project_, I called mine **Pi 🥧**
+In your instance, create a new project, I called mine **Pi 🥧**
 
 ![New project](project.png "width=200")
 
-I then created a new _Runbook_ called **Upgrade it!** and added a single script step containing:
+I then created a new runbook called **Upgrade it!** and added a single script step containing:
 
 ```bash
 sudo yum upgrade -y
 ```
 
-The step is configured to run a _bash_ script against the role **pi**, which is the role I specified in the configuration script earlier.
+The step is configured to run a bash script against the role **pi**, which is the role I specified in the configuration script earlier.
 
 ![Script step](script-step.png)
 
@@ -145,4 +145,4 @@ This is a simple example, this could also be a runbook that updates PiHole (`pi-
 
 ## Conclusion
 
-There are many reasons you might use ARM hardware from cost savings to performance or remote IoT devices. Being able to connect them to an Octopus instance via Tentacle allows you to deploy application updates to them or manage them using our [runbooks](https://octopus.com/docs/runbooks) feature to centralize management of the operating system and applications. The Polling Tentacle has the added benefit of avoiding complex firewall configurations and exposing SSH ports across the public Internet.
+There are many reasons you might use ARM hardware from cost savings to performance or remote IoT devices. Being able to connect them to an Octopus instance via Tentacle allows you to deploy application updates to them or manage them using our [Runbooks](https://octopus.com/docs/runbooks) feature to centralize management of the operating system and applications. The Polling Tentacle has the added benefit of avoiding complex firewall configurations and exposing SSH ports across the public Internet.
