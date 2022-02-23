@@ -49,23 +49,21 @@ Each option is described below to explain when they work and when to avoid them.
 
 Placing your deployment configuration alongside your application code is the pattern we recommend. It is best  _to evolve your deployment process alongside your application code_. Putting the configuration in the same location as the application aligns with DevOps practices, where engineers take end-to-end responsibility for their applications.
 
-If you opt to store your configuration in the application repository, each application will have its own `.octopus` directory with the configuration files.
+If you opt to store your configuration in the application repository, each application will have its own `.octopus` directory with the configuration files. This arrangement makes it easy for you to find the appropriate configuration for each application.
 
-This approach benefits from keeping the configuration in the same location as the application code, so you'll be able to find it quickly and easily. It will have the same process and security policy as code changes for the application.
-
-You may wish to avoid this pattern if you have a large application codebase, which may affect the performance when you switch between branches in the Octopus app. Currently, we need to retrieve the new branch to obtain the configuration, but we are actively working on improving the performance in this area.
-
-You will also need to mask the `.octopus` folder to avoid triggering a build for each configuration change.
+If you don't want changes to the deployment process to trigger a build, you can mask the `.octopus` folder in your build server.
 
 This pattern suits an autonomous team responsible for both the application and its deployment.
 
 ### Application-specific deployment repository
 
-This option adds an additional repository per application to store the application's deployment configuration. For example, the application "OctoPetShop" would have an extra repository named "OctoPetShop Deployments" that contains only the config as code files. Each deployment repository would have a `.octopus` directory containing the OCL files. You can use a naming convention to make it easier to find the deployment configuration related to a specific application.
+This option adds an additional repository per application to store the application's deployment configuration. For example, the application "OctoPetShop" would have an extra repository named "OctoPetShop Deployments" that contains only the config as code files.
 
-Using this approach, you can easily grant separate permissions to the deployment configuration and apply different policies for pull requests. Each branch will remain as small as possible, and it will be fast when you switch between branches in the Octopus app.
+Each deployment repository would contain only the `.octopus` directory with the OCL files. You can use a naming convention to make it easier to find the deployment configuration related to a specific application.
 
-This approach will mean you double the number of repositories under management, making it undesirable if you have many applications.
+Using this approach, you can easily grant separate permissions to the deployment repository and apply different policies for pull requests. So, this approach would be suited to situations where the application team doesn't undertake the deployments.
+
+This approach will mean you double the number of repositories under management, making it undesirable if you have many applications. You may prefer to group the projects to reduce the number of repositories.
 
 ### Deployment repository grouped by space
 
@@ -81,13 +79,11 @@ Unless you have a small number of applications, you should avoid this option. In
 
 ## Using config as code effectively
 
-Use branches to contain your risk.
+Once you have switched to version control, you will have access to some familiar tools that can help you succeed with your deployments. Two of these are branches and pull requests.
 
-Make edits in the Octopus app and commit the changes with a comment.
+You can use branches to contain the risk when changing your deployment process. You can create and switch branches in the Octopus app for a version-controlled project. You can also create and edit branches outside of the Octopus app. Whether you choose to use the Octopus app, a text editor, or both, the process will always be up to date with the branch.
 
-Review the changes using your pull request process and fix any typos in a text editor.
-
-CAN YOU HAVE A PROJECT THAT ONLY DEPLOYS TO DEV WORKING FROM A BRANCH SEPARATE TO THE DEFAULT MAIN BRANCH USED FOR THE FULL PIPELINE?
+![The branch switcher in Octopus Deploy](branch-switcher.jpg)
 
 ## When config as code is the wrong option
 
@@ -101,4 +97,6 @@ Instead of sharing the same OCL files between multiple projects, you should crea
 
 ## Conclusion
 
-While there is no single correct way to use config as code, some suitable heuristics allow you to choose between four common Git repository strategies. We also reviewed cases where config as code isn't the intended solution. Instead, we provided alternative mechanisms to sync resources outside the project scope and keep deployment processes in sync.
+You can now confidently choose an appropriate strategy for config as code. You should know how to select a suitable location in version control for your configuration files, understand how to use branches and pull requests to manage your deployment process, and when config as code is not the right tool for the job.
+
+(Q: Where can people keep up to date as this feature continues to be developed?)
