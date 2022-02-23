@@ -3,7 +3,7 @@ title: Shaping Configuration as Code
 description:  We've been busy recently building Configuration as Code support for Octopus Deploy. Learn about some of the factors that shaped this feature.
 author: michael.richardson@octopus.com
 visibility: public
-published: 2020-11-25 
+published: 2022-03-10-1400 
 metaImage: blogimage-shaping-config-as-code_2020.png
 bannerImage: blogimage-shaping-config-as-code_2020.png
 bannerImageAlt: Octopus Deploy logo and laptop screen showing Octopus Control Center, peeled up on one corner showing the code behind it.
@@ -13,7 +13,7 @@ tags:
  - Configuration as Code
 ---
 
-We’ve been busy recently building _Configuration as Code_ (Config as Code) support for Octopus Deploy.  In this post, we look at some of the factors that shaped this feature: 
+We’ve been busy recently building Configuration as Code (Config as Code) support for Octopus Deploy.  In this post, we look at some of the factors that shaped this feature: 
 
 - Why we’re building Config as Code 
 - Anti-patterns we wanted to avoid 
@@ -167,6 +167,6 @@ To be honest, we feel like the choice of configuration language is far from the 
 
 ## What’s next?
 
-The next step is getting this into your hands. We're rolling out an early access preview of Config as Code to Octopus Cloud instances over the coming months.  
+The next step is getting this into your hands. We rolled out an early access preview of Config as Code in 2021. It will be out of early access and available to use in production soon.
 
 Happy deployments!
