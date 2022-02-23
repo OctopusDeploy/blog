@@ -207,7 +207,7 @@ Our job architecturally is to help our developers fall into the pit of success. 
 
 To help us manage transactions across requests/commands, we introduced a [Unit of Work](https://martinfowler.com/eaaCatalog/unitOfWork.html) so there'd be one less thing for developers to consider. Consumers just ask for a document store of a given type. The Unit of Work *surrounding* their operation would be managed for them and not their concern.
 
-We'll cover this topic in more detail in a follow-up post, but it's safe to say, consumers just want an `X`, so let them ask for *just the thing they need*.
+It's safe to say, consumers just want an `X`, so let them ask for *just the thing they need*.
 
 For example, you shouldn't need to ask for the entire Bunnings store when all you want is a paintbrush. Just ask for a paintbrush! Whether the paintbrush comes from a Bunnings store at all is not your concern.
 
@@ -295,7 +295,7 @@ The consumer knows nothing about this layer. We decorated our abstraction and pu
 
 ## Encouraged by convention
 
-Our developers are now encouraged to take dependencies on `IDocumentStore<T>` and we have [convention tests](https://github.com/andrewabest/Conventional) to help them stop taking dependencies on stores/transactions directly (we'll have more on convention testing in a follow-up post).
+Our developers are now encouraged to take dependencies on `IDocumentStore<T>` and we have [convention tests](https://github.com/andrewabest/Conventional) to help them stop taking dependencies on stores/transactions directly.
 
 Consumers of our Core Platform ask for what they need, mutate it as they see fit, knowing (or not knowing) there's an `IUnitOfWork` per request that will take care of establishing a `transaction` when it's needed, and commit that transaction when the request completes (for Git or SQL).
 
