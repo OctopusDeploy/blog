@@ -221,6 +221,11 @@ Octopus Deploy provides a dedicated dashboard to view deployments in their diffe
 
 Octopus Deploy supports all the major cloud providers, including Azure, Google, and Amazon. If you're not already using Octopus, you can start a [free trial](https://octopus.com/).
 
+Check out our other posts about deploying with Jenkins, Kubernetes, and Octopus Deploy:
+
+- [Building a Docker image in Jenkinsfile and publishing to ECR](https://octopus.com/blog/jenkins-docker-ecr)
+- [Deploying to Amazon EKS with Docker and Jenkins](https://octopus.com/blog/jenkins-eks-ecr-deployment )
+
 !include <q1-2022-newsletter-cta>
 
 Happy deployments!
