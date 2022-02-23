@@ -28,6 +28,12 @@ Using Git to version control your config as code, you can:
 
 The configuration is stored as human-readable Octopus Configuration Language (OCL) files to make it easier to read and edit the deployment process and review any changes. There is a [Visual Studio Code extension to make it easier to work with OCL files](https://marketplace.visualstudio.com/items?itemName=octopusdeploy.vscode-octopusdeploy).
 
+Not everything is moved into the repository when you enable version control. A list of version-controlled resources is available in our [configuration as code reference](https://octopus.com/docs/projects/version-control/config-as-code-reference).
+
+:::warning
+Switching on version control for your project is a one-way change. You can't move the project back into the database once it's in a repository. You can clone an existing project to try config as code and confirm that it meets your needs before enabling it for your production projects.
+:::
+
 ## Where to store your configuration
 
 One of the first decisions you will need to make is where to store your config as code. You can choose between several options. You can keep your configuration:
@@ -37,15 +43,19 @@ One of the first decisions you will need to make is where to store your config a
 - In a repository that contains all the configurations for an Octopus Space
 - In a central deployment configuration repository
 
-Each option is described below to explain when they work and when to avoid them. You might have noticed that you can arrange these possibilities along a scale from a one-to-one relationship with applications to a single large repository. There is a natural trade-off between having many repositories versus having potentially slower performance in fewer large repositories.
+Each option is described below to explain when they work and when to avoid them. You might have noticed that you can arrange these possibilities along a scale from a one-to-one relationship with applications to a single large repository. We recommend keeping your deployment configuration in the same repository as the application code, but there are specific circumstances where the other options may be suitable.
 
 ### Alongside application code
+
+Placing your deployment configuration alongside your application code is the pattern we recommend. It is best  _to evolve your deployment process alongside your application code_. Putting the configuration in the same location as the application aligns with DevOps practices, where engineers take end-to-end responsibility for their applications.
 
 If you opt to store your configuration in the application repository, each application will have its own `.octopus` directory with the configuration files.
 
 This approach benefits from keeping the configuration in the same location as the application code, so you'll be able to find it quickly and easily. It will have the same process and security policy as code changes for the application.
 
-You may wish to avoid this pattern if you have a large application code base as this may affect the performance when you switch between branches in the Octopus app, as it needs to retrieve the new branch to obtain the configuration. You will also need to mask the `.octopus` folder to avoid triggering a build for each configuration change.
+You may wish to avoid this pattern if you have a large application codebase, which may affect the performance when you switch between branches in the Octopus app. Currently, we need to retrieve the new branch to obtain the configuration, but we are actively working on improving the performance in this area.
+
+You will also need to mask the `.octopus` folder to avoid triggering a build for each configuration change.
 
 This pattern suits an autonomous team responsible for both the application and its deployment.
 
@@ -68,6 +78,16 @@ This approach benefits from the existing design work you have already undertaken
 Taking the grouped approach a step further, you _could_ have a single repository to store all of your deployment configurations. You will have fewer repositories but may suffer from issues as the number of branches increases. If you had ten projects within the repository and each had five branches, you would see 50 items in the branch selector in the Octopus app.
 
 Unless you have a small number of applications, you should avoid this option. In general, if you have started using spaces, you should consider organizing your repositories to match them.
+
+## Using config as code effectively
+
+Use branches to contain your risk.
+
+Make edits in the Octopus app and commit the changes with a comment.
+
+Review the changes using your pull request process and fix any typos in a text editor.
+
+CAN YOU HAVE A PROJECT THAT ONLY DEPLOYS TO DEV WORKING FROM A BRANCH SEPARATE TO THE DEFAULT MAIN BRANCH USED FOR THE FULL PIPELINE?
 
 ## When config as code is the wrong option
 
