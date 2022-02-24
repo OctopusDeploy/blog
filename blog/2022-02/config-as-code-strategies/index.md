@@ -10,7 +10,7 @@ bannerImageAlt: Configuration as code
 isFeatured: false
 tags:
  - DevOps
- - Configuration as Code
+ - Configuration as Code 
 ---
 
 Since last year, when we released the early-access preview of Octopus Config as Code, there have been many questions about how to use the feature to get the best results. This article will explain some good practices for using config as code and how to adjust your strategy in different situations.
@@ -43,6 +43,8 @@ One of the first decisions you will need to make is where to store your deployme
 - In a separate deployment repository
 
 Each option is described below to explain when they work and when to avoid them. You might have noticed that you can arrange these possibilities along a scale from a one-to-one relationship with applications to a single large repository. We recommend keeping your deployment configuration in the same repository as the application code, but there are specific circumstances where the other options may be suitable.
+
+After setting up config as code, you can [move your deployment configuration files](https://octopus.com/docs/projects/version-control/moving-version-control) if you change your mind.
 
 ### Alongside application code
 
