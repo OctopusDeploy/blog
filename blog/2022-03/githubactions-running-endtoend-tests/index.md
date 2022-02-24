@@ -1,26 +1,32 @@
 ---
-title: Running end to end tests in GitHub Actions
-description: Learn how to run end to end tests in GitHub Actions and capture the results
+title: Running end-to-end tests in GitHub Actions
+description: As part of our series about Continuous Integration, learn how to run end-to-end tests in GitHub Actions and capture the results.
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
-metaImage: 
-bannerImage: 
-tags:
- - Octopus
+visibility: public
+published: 2022-03-09-1400
+metaImage: blogimage-githubactionsrunendtoendtests-2022.png
+bannerImage: blogimage-githubactionsrunendtoendtests-2022.png
+bannerImageAlt:  A Github Actions logo-shaped road with two roads, one with a car that’s completed the end-to-end test and one that's in progress.
+isFeatured: false
+tags: 
+  - DevOps
+  - CI Series
+  - Continuous Integration
+  - GitHub Actions
+  - Testing
 ---
 
-GitHub Actions has a large ecosystem of high quality third-party actions as well as native support for executing build steps inside Docker containers. This means it is easy to run end-to-end tests as part of a workflow, often only requiring a single step to run testing tools with all the require dependencies.
+GitHub Actions has a large ecosystem of high quality third-party actions, as well as native support for executing build steps inside Docker containers. This means it's easy to run end-to-end tests as part of a workflow, often only requiring a single step to run testing tools with all the required dependencies.
 
-In this post you'll learn how to run browser tests with Cypress and API tests with Postman as part of a GitHub Actions workflow.
+In this post, I show you how to run browser tests with Cypress and API tests with Postman as part of a GitHub Actions workflow.
 
 ## Prerequisites
 
-GitHub Actions is a hosted service, so the only prerequisite is a GitHub account. All other dependencies like, Software Development Kits (SDKs) or testing tools, are are provided by the Docker images or GitHub actions published by testing platforms.
+GitHub Actions is a hosted service, so the only prerequisite is a GitHub account. All other dependencies like, Software Development Kits (SDKs) or testing tools, are provided by the Docker images or GitHub actions published by testing platforms.
 
 ## Running browser tests with Cypress
 
-[Cypress](https://www.cypress.io/) is a browser automation tool that allows you to interact with web pages in much the same way an end user would by clicking on buttons and links, filling in forms, scrolling the page etc. You can also verify the content of a page to ensure the correct results have been displayed.
+[Cypress](https://www.cypress.io/) is a browser automation tool that lets you interact with web pages in much the same way an end user would, for example by clicking on buttons and links, filling in forms, and scrolling the page. You can also verify the content of a page to ensure the correct results are displayed.
 
 The [Cypress documentation provides an example first test](https://docs.cypress.io/guides/getting-started/writing-your-first-test) which has been saved to the [junit-cypress-test GitHub repo](https://github.com/OctopusSamples/junit-cypress-test). The test is shown below:
 
@@ -88,7 +94,7 @@ The [official Cypress GitHub action](https://github.com/cypress-io/github-action
         uses: cypress-io/github-action@v2
 ```
 
-Cypress generates a video file capturing the browser as the tests are run. You save the video file as an artifact to be downloaded and viewed once the workflow completes:
+Cypress generates a video file capturing the browser as the tests are run. You save the video file as an artifact to be downloaded and viewed after the workflow completes:
 
 ```yaml
       - name: Save video
@@ -98,7 +104,7 @@ Cypress generates a video file capturing the browser as the tests are run. You s
           path: cypress/videos/sample_spec.js.mp4
 ```
 
-The test results are process by the `dorny/test-reporter` action.
+The test results are processed by the `dorny/test-reporter` action.
 
 Note that test-reporter has the ability to process Mocha JSON files, and Cypress uses Mocha for reporting, so an arguably more idiomatic solution would be to have Cypress generate Mocha JSON reports. Unfortunately, there is a [bug in Cypress](https://github.com/cypress-io/cypress/issues/18014) that prevents the JSON reporter from saving results as a file. Generating JUnit report files is a useful workaround until this issue is resolved:
 
@@ -159,7 +165,7 @@ jobs:
           fail-on-error: true
 ```
 
-The `uses` property for a step can either be the name of a published action, or can reference a Docker image directly. In this example you run the [postman/newman](https://hub.docker.com/r/postman/newman/) docker image, with the `with.args` parameter defining the command line arguments:
+The `uses` property for a step can either be the name of a published action, or can reference a Docker image directly. In this example, you run the [postman/newman](https://hub.docker.com/r/postman/newman/) docker image, with the `with.args` parameter defining the command-line arguments:
 
 ```yaml
       - name: Run Newman	    
@@ -193,7 +199,7 @@ The following is an example of the command to execute a step in a Docker image:
 /usr/bin/docker run --name postmannewmanlatest_fefcec --label f88420 --workdir /github/workspace --rm -e INPUT_ARGS -e HOME -e GITHUB_JOB -e GITHUB_REF -e GITHUB_SHA -e GITHUB_REPOSITORY -e GITHUB_REPOSITORY_OWNER -e GITHUB_RUN_ID -e GITHUB_RUN_NUMBER -e GITHUB_RETENTION_DAYS -e GITHUB_RUN_ATTEMPT -e GITHUB_ACTOR -e GITHUB_WORKFLOW -e GITHUB_HEAD_REF -e GITHUB_BASE_REF -e GITHUB_EVENT_NAME -e GITHUB_SERVER_URL -e GITHUB_API_URL -e GITHUB_GRAPHQL_URL -e GITHUB_WORKSPACE -e GITHUB_ACTION -e GITHUB_EVENT_PATH -e GITHUB_ACTION_REPOSITORY -e GITHUB_ACTION_REF -e GITHUB_PATH -e GITHUB_ENV -e RUNNER_OS -e RUNNER_NAME -e RUNNER_TOOL_CACHE -e RUNNER_TEMP -e RUNNER_WORKSPACE -e ACTIONS_RUNTIME_URL -e ACTIONS_RUNTIME_TOKEN -e ACTIONS_CACHE_URL -e GITHUB_ACTIONS=true -e CI=true -v "/var/run/docker.sock":"/var/run/docker.sock" -v "/home/runner/work/_temp/_github_home":"/github/home" -v "/home/runner/work/_temp/_github_workflow":"/github/workflow" -v "/home/runner/work/_temp/_runner_file_commands":"/github/file_commands" -v "/home/runner/work/junit-newman-test/junit-newman-test":"/github/workspace" postman/newman:latest run GitHubTree.json --reporters cli,junit --reporter-junit-export results.xml
 ```
 
-This is a complex command, but there are a few arguments that we are interested in.
+This is a complex command, but there are a few arguments that we're interested in.
 
 The `-e` arguments define environment variables for the container. You can see that dozens of workflow environment variables are exposed.
 
@@ -207,4 +213,12 @@ Because every major testing tool provides a supported Docker image, the process 
 
 GitHub Actions has enjoyed widespread adoption among developers, and many platforms provide supported actions for use in workflows. For those cases where there is no suitable action available, GitHub Actions provides an easy way to execute a standard Docker image as part of a workflow.
 
-In this post you learned how to run the Cypress action to execute browser based tests, and how to run the Newman Docker image to execute API tests.
+In this post, you learned how to run the Cypress action to execute browser based tests, and how to run the Newman Docker image to execute API tests.
+
+Check out our other post about testing in GitHub Actions:
+
+- [Running unit tests in GitHub Actions](https://octopus.com/blog/githubactions-running-unit-tests)
+
+!include <q1-2022-newsletter-cta>
+
+Happy deployments!
