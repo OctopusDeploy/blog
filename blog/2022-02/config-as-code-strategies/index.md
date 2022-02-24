@@ -37,7 +37,7 @@ Switching on version control for your project is a one-way change. You can't mov
 
 ## Where to store your configuration
 
-One of the first decisions you will need to make is where to store your deployment configuration files. You can choose between several options. You can keep your configuration:
+One of the first decisions you will need to make is where to store your deployment configuration files. You can keep your configuration:
 
 - Alongside your application code
 - In a separate deployment repository
@@ -82,7 +82,7 @@ You can use the [Octopus Deploy Terraform Provider](https://registry.terraform.i
 
 You might also consider sharing a single configuration between multiple projects to keep the process in sync. However, this requires many non-project resources to be kept identical between projects, which quickly becomes hard to manage.
 
-Instead of sharing the same OCL files between multiple projects, you should create a custom tool to interact with the [Octopus Deploy REST API](https://octopus.com/docs/octopus-rest-api)to enforce the desired process configuration. You can read more in our documentation for [synchronizing multiple instances](https://octopus.com/docs/administration/sync-instances).
+Instead of sharing the same OCL files between multiple projects, you should create a custom tool to interact with the [Octopus Deploy REST API](https://octopus.com/docs/octopus-rest-api) to enforce the desired process configuration. You can read more in our documentation for [synchronizing multiple instances](https://octopus.com/docs/administration/sync-instances).
 
 ## Conclusion
 
