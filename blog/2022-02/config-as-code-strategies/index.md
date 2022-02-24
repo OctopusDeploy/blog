@@ -4,9 +4,9 @@ description: TBC
 author: steve.fenton@octopus.com
 visibility: private
 published: 9999-01-01
-metaImage: 
-bannerImage: 
-bannerImageAlt: TBC
+metaImage: blogimage-config-as-code.png
+bannerImage: blogimage-config-as-code.png
+bannerImageAlt: Configuration as code
 isFeatured: false
 tags:
  - DevOps
