@@ -32,7 +32,7 @@ The configuration is stored as human-readable files that use Octopus Configurati
 Not everything is moved into the repository when you enable version control. A list of version-controlled resources is available in our [configuration as code reference](https://octopus.com/docs/projects/version-control/config-as-code-reference).
 
 :::warning
-Switching on version control for your project is a one-way change. You can't move the project back into the database once it's in a repository. You can clone an existing project to try config as code and confirm that it meets your needs before enabling it for your production projects.
+Switching on version control for your project is a one-way change. You can't move the project back into the Octopus database once it's in a repository. You can clone an existing project to try config as code and confirm that it meets your needs before enabling it for your production projects.
 :::
 
 ## Where to store your configuration
