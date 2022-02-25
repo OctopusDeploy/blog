@@ -3,7 +3,7 @@ title: Running end-to-end tests in GitHub Actions
 description: As part of our series about Continuous Integration, learn how to run end-to-end tests in GitHub Actions and capture the results.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2022-03-09-1400
+published: 2022-03-07-1400
 metaImage: blogimage-githubactionsrunendtoendtests-2022.png
 bannerImage: blogimage-githubactionsrunendtoendtests-2022.png
 bannerImageAlt:  A Github Actions logo-shaped road with two roads, one with a car that’s completed the end-to-end test and one that's in progress.
