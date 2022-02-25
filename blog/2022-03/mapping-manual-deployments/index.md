@@ -31,15 +31,39 @@ The process for a each server is:
 - Create a folder in d:\www\ with the version number of the app, i.e. d:\www\6.4.1
 - Copy the built application into the new folder
 - Open the previous version folder and copy the db.config and settings.config files into the new folder
-- Disable the health-check endpoint in the application
-- Wait for IIS requests to drain
-- Stop the IIS server
+- Stop the app pool
 - Go to IIS Manager -> Sites -> AppSite and edit the Basic Settings
 - Change the Physical Path to the new version folder and clock OK
-- Start the IIS server
-- Enable the health-check endpoint in the application
+- Start the app pool
 
 This checklist will be our starting point for migrating the deployment into Octopus Deploy and then automating it.
+
+TEMP SCRIPT
+
+```
+$server = hostname
+$site = "UpDn"
+$appPool = "UpDn"
+$attempts = 0;
+$connections = 0;
+
+Stop-WebAppPool -Name $appPool
+
+Do {
+     Start-Sleep -Seconds 10
+     
+     $data = Get-Counter -ComputerName $server "\web service($site)\current connections"
+     $connections = $data.CounterSamples[0].CookedValue
+     $attempts++
+
+     Write-Host $attempts, $connections
+    
+} while($connections -gt 0 -And $attempts -lt 20)
+
+Write-Host 'Flushed'
+
+Start-WebAppPool -Name $appPool
+```
 
 
 ## Model your checklist in Octopus Deploy
