@@ -18,19 +18,28 @@ You might be new to Octopus Deploy and need a strategy for taking manual deploym
 
 You might be an existing Octopus Deploy customer who still has a manual deployment process for a legacy app that you want to track.
 
+The application scenario used as an example is legacy, because it is more likely to find a tricky legacy manual deployment that needs this technique and new applications you write today are more likely to have deployability baked into their design.
+
 ## Create a checklist
 
-Example manual process... we'll automate some or all of this later... including a step template that knocks out a couple of steps in one hit.
+To demonstrate this technique, we'll make up a legacy system. You may already have a document or checklist that describes how to deploy the website, so we'll start with that.
 
+You run a web application on multiple IIS servers, behing a load balancer. You deploy by taking each server out of balance in turn and applying the new version of the application.
 
-A software-as-a-service company that deploys the same code to 100 client sites, hosted on an IIS virtual machine, with separate config file changes for each client.
+The process for a each server is:
 
-- Copy the build application files to the server, to the d:\release folder
-- Delete the web.config file from d:\release as each client has their own customised config values
-- Check that the web.config file has definitely been deleted
-- Stop IIS
-- Copy the files from d:\release into d:\wwwroot\{client} folders
-- Start IIS
+- Create a folder in d:\www\ with the version number of the app, i.e. d:\www\6.4.1
+- Copy the built application into the new folder
+- Open the previous version folder and copy the db.config and settings.config files into the new folder
+- Disable the health-check endpoint in the application
+- Wait for IIS requests to drain
+- Stop the IIS server
+- Go to IIS Manager -> Sites -> AppSite and edit the Basic Settings
+- Change the Physical Path to the new version folder and clock OK
+- Start the IIS server
+- Enable the health-check endpoint in the application
+
+This checklist will be our starting point for migrating the deployment into Octopus Deploy and then automating it.
 
 
 ## Model your checklist in Octopus Deploy
