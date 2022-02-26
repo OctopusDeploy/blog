@@ -3,10 +3,10 @@ title: Build a workflow in GitHub Actions, push to ECR and deploy to EKS
 description: Build a workflow in GitHub Actions, push to ECR and deploy to EKS
 author: terence.wong@octopus.com
 visibility: private
-published: 2999-01-01
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+published: 2022-03-15-1400
+metaImage: blogimage-githubactionscreatedeploymentineks-2022.png
+bannerImage: blogimage-githubactionscreatedeploymentineks-2022.png
+bannerImageAlt: Illustration of a workflow, connected to Docker-type logo, connected to ECR, connected to rocket, connected to EKS-type logo.
 isFeatured: false
 tags:
  - DevOps
