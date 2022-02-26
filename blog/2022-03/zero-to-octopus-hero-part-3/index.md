@@ -4,9 +4,9 @@ description: Join Sarah as she continues to learn more about Octopus Deploy. In 
 author: sarah.lean@octopus.com
 visibility: public
 published: 2022-03-08-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: blogimage-fromzerotooctopusheropart3-2022.png
+bannerImage: blogimage-fromzerotooctopusheropart3-2022.png
+bannerImageAlt: Mario-style explorer Sarah flying through the sky in a rocket, with icons in the clouds representing features and integrations.
 isFeatured: false
 tags:
  - DevOps
