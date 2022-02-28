@@ -122,6 +122,8 @@ In this post, you set up a GitHub Actions workflow to build and push an image to
 
 In the next post, we'll take the image in ECR and deploy the web application.
 
+!include <githubactions-webinar-feb-2022>
+
 !include <q1-2022-newsletter-cta>
 
 Happy deployments!
