@@ -65,7 +65,7 @@ This link wasn’t just observed in “tech companies” (those who are known fo
 
 Every company is a software company now.
 
-If you want to get your shareholders on board with your DevOps transformation, make them read Accelerate.
+If you want to get your shareholders, executives or key stakeholders on board with your DevOps transformation, you need to get them to read Accelerate.
 
 ## Why are the DORA metrics effective?
 
