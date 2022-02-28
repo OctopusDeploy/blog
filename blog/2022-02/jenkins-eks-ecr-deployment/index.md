@@ -168,6 +168,11 @@ Go to the IP address `http://127.0.0.1:28015/` in your browser to view your web 
 
 In this post, you deployed a web application to EKS with Jenkins. This example demonstrated how Jenkins is able to configure the steps you need to deploy your code repository. Amazon EKS provided the Kubernetes infrastructure to handle the web application load. All steps in this process were carried out by specifying configuration files. These configuration files provide reusability across different environments.
 
+Check out our other posts about deploying with Jenkins, Kubernetes, and Octopus Deploy:
+
+- [Building a Docker image in Jenkinsfile and publishing to ECR](https://octopus.com/blog/jenkins-docker-ecr)
+- [Multi-environment deployments with Jenkins and Octopus](https://octopus.com/blog/multi-environment-deployments-jenkins)
+
 !include <q1-2022-newsletter-cta>
 
 Happy deployments!

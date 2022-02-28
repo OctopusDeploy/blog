@@ -20,6 +20,8 @@ I'm starting from scratch with Octopus Deploy, but I intend to go from zero to O
 
 This post is part 1 of a series about my learning journey with Octopus. We'll add links to other posts in the series as they become available.
 
+!include <zero-to-hero>
+
 ## What is Octopus Deploy?
 
 Deploying software and infrastructure in your environment is something all software engineers need to do, whether we're running on-premises or cloud environments. Introducing automation into the process can help drive efficiency and consistency. 
@@ -75,6 +77,8 @@ I'm continuing to build my knowledge and have a plan for the coming weeks. I'll 
 I also want to know how to look after my Octopus Deploy implementation, how to handle complex deployments, and how Octopus integrates with other products. 
 
 Be sure to check back to see how I'm progressing. We'll add links to other posts in the series as they become available.
+ 
+ !include <zero-to-hero>
 
 Let me know if you have any questions by reaching out to [sarah.lean@octopus.com](mailto:sarah.lean@octopus.com) or leaving a comment below.
 
