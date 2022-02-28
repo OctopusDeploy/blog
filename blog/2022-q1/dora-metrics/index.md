@@ -115,7 +115,7 @@ If our failures are fixed within minutes, if they only affect a tiny fraction of
 
 When we demonstrate consistent improvement with respect to MTTR, instead of MTBF, it’s easier to make the case for reduced bureaucracy. This reduces lead time, increases deployment frequency, reduces deployment size. This results in even safer deployments, with even better MTTR.
 
-We’ve turned a vicious circle into a virtuous one.
+We’ve turned a vicious cycle into a virtuous one.
 
 ### Change failure percentage
 
