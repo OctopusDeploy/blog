@@ -171,7 +171,7 @@ The DACPAC deployment process consists of the following steps:
 - **(Optional) Create database if not exists**: Some people prefer to place this activity in a runbook instead of as part of the deployment process.
 - Deploy the DACPAC to SQL Server.
 
-### (Optional) Create the database if it doesn't exists
+### (Optional) Create the database if it doesn't exist
 This step connects to a SQL server and creates a database if it doesn't exist.  Click **ADD STEP** and choose **SQL - Create Database If Not exists**.  This step can be run on a Worker Machine.
 
 ![](octopus-add-create-database.png)
@@ -243,6 +243,6 @@ Using a tool like SQL Server Management Studio (SSMS) you can see the database h
 
 ## Conclusion
 
-This post walked you through how to deploy a DACPAC from project creation to deployment.  Be sure to check out an example in our [sample instance ](https://samples.octopus.app/app#/Spaces-106/projects/dacpac-azure-sql/deployments/process).  The example deploys to an Azure SQL Database server.  
+This post walked you through how to deploy a DACPAC from project creation to deployment.  Be sure to check out an example in our [sample instance](https://samples.octopus.app/app#/Spaces-106/projects/dacpac-azure-sql/deployments/process).  The example deploys to an Azure SQL Database server.  
 
 Happy deployments!
