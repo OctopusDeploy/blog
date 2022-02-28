@@ -48,7 +48,7 @@ Their conclusions were striking.
 
 Nicole, Gene and Jez wanted to understand why some teams performed better than others. To do that, they first needed a yardstick with which to measure the “performance” of an IT team. This is no small feat. The authors discuss the challenges with various traditional metrics such as lines of code, story points and utilization etc. Defining the performance of an individual or team based solely on the work they put in was problematic.
 
-The authors chose instead to focus on outcomes rather than inputs. When they did, they noticed something unique about four specific metrics. These metrics have become known as the “DORA metrics”:
+The authors chose instead to focus on outcomes rather than outputs. When they did, they noticed something unique about four specific metrics, that covered a balance of both performance and stability. These metrics have become known as the “DORA metrics”:
 
 -	Deployment frequency
 -	Lead time
