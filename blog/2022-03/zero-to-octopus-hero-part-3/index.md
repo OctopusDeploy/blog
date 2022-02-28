@@ -23,7 +23,7 @@ In this post, I look at how Octopus Deploy integrates with other tools that orga
 
 ## Config As Code
 
-Version control is a core component of the DevOps methodology. Version-controlling your Octopus configuration can now be done with [Config as Code](https://octopus.com/blog/config-as-code-eap), available as an early access preview. 
+Version control is a core component of the DevOps methodology. Version-controlling your Octopus configuration can now be done with [Config as Code](https://octopus.com/blog/config-as-code-eap). 
 
 With Config as Code you can see a history of changes to your deployment process, including who performed changes and when, with a version-controlled (Git) text representation of an Octopus project. If you're storing your application in GitHub as well, you have a single source of truth, with application code, build scripts, and deployment configuration in the one place. 
 
@@ -71,7 +71,7 @@ Most organizations have an existing authentication system set up. Active Directo
 - Active Directory Authentication
 - Azure Active Directory Authentication
 - GoogleApps Authentication
-- Okta AUthentication
+- Okta Authentication
 - GitHub
 - LDAP Authentication
 
@@ -89,7 +89,7 @@ Under **Configuration**, then **Spaces**, and then in each Octopus Space, you ca
 
 ## Next steps
 
-I'm really starting to feel comfortable with Octopus Deploy. There's always more to learn but the jigsaw pieces are coming together.
+I'm really starting to feel comfortable using Octopus Deploy. There's always more to learn but the jigsaw pieces are coming together.
 
 If there's anything you want me to cover or answer about Octopus Deploy, please let me know and I can address them in part 4. Reach out to [sarah.lean@octopus.com](mailto:sarah.lean@octopus.com) or leave a comment below.
 
