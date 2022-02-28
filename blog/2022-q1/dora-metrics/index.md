@@ -206,10 +206,8 @@ I challenge you to answer the following questions:
 
 ## Help us improve Octopus
 
-Here at Octopus, we want to make it easier for you to access the data you need.
+Are you interested in continuous improvement and measuring DORA metrics from your Octopus data? We are, too! We're exploring this space and looking for customers to prototype with us for fast feedback.
 
-Have you been thinking about using DORA (or similar) metrics to drive improvement or measure success? 
+If this interests you, please apply for our Octopus Insights alpha program.
 
-Help us shape future opportunities for teams to gain insights from their value stream. Sign up for our research program:
-
-LINK - (To be added later)
+[Click here to apply now](https://t.dripemail2.com/c/eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZXRvdXIiLCJpc3MiOiJtb25vbGl0aCIsInN1YiI6ImRldG91cl9saW5rIiwiaWF0IjoxNjQ1NDY3MDMzLCJuYmYiOjE2NDU0NjcwMzMsImFjY291bnRfaWQiOiI5MzQyODM2IiwiZGVsaXZlcnlfaWQiOiJndWxodDN1aXY1aXUxNG1udWlpbCIsInVybCI6Imh0dHBzOi8vb2N0b3B1c2RlcGxveS50eXBlZm9ybS5jb20vaW5zaWdodHMtYWxwaGE_X19zPWltcGowMWlhaDI2Z2doZXI3bjB4JnV0bV9zb3VyY2U9ZHJpcCZ1dG1fbWVkaXVtPWVtYWlsJnV0bV9jYW1wYWlnbj1SZXF1ZXN0K2ZvcitDb21tZW50cystK09jdG9wdXMrbmV3cyJ9.M1IGUYfU4heF5yP06aHFXHQDXWCneVP2cu3A7EZaEFE).
