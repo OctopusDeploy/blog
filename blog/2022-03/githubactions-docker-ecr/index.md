@@ -2,7 +2,7 @@
 title: Building and publishing a Docker image to ECR using GitHub Actions
 description: As part of our series about Continuous Integration, learn how to build a Docker image in Github Actions and publish it to ECR.
 author: terence.wong@octopus.com
-visibility: private
+visibility: public
 published: 2022-03-14-1400
 metaImage: blogimage-githubactionsbuilddockerimageinworkflowandpublishtoecr-2022.png
 bannerImage: blogimage-githubactionsbuilddockerimageinworkflowandpublishtoecr-2022.png
@@ -15,7 +15,7 @@ tags:
  - GitHub Actions
 ---
 
-Github Actions uses workflows to allow DevOps operations in any Github repository. Github Actions lets the build repository interact with various services in a deployment process. Commonly, a codebase will be built and pushed into a container registry for deployment later. 
+Github Actions uses workflows so that you can include DevOps processes in any Github repository. Github Actions lets the build repository interact with various services in a deployment process. Commonly, a codebase will be built and pushed into a container registry for deployment later. 
 
 In this post, I show you how to build and push the Octopus Deploy underwater app to Amazon Elastic Container Registry (ECR) using GitHub Actions. 
 
@@ -58,7 +58,7 @@ Go to **Settings**, then **Secrets**, and then **New repository secret**.
 - **AWS_ACCESS_KEY_ID** - the Access Key ID from earlier
 - **AWS_SECRET_ACCESS_KEY** - the Secret Access Key from earlier
 
-You need to create a workflow file in the repository. A Github Actions workflow contains instructions on performing operations on the code repository. These are community-maintained steps. Several pre-built step templates will allow you to do many different tasks on a code repository. In this example, you use a step template to build and push the code to an AWS ECR repository.
+You need to create a workflow file in the repository. A Github Actions workflow contains instructions on performing operations on the code repository. These are community-maintained steps. Several pre-built step templates allow you to do many different tasks on a code repository. In this example, you use a step template to build and push the code to an AWS ECR repository.
 
 
 Create a file named `main.yml` in the .github/workflows directory of the root folder. Paste the following code in the main.yml file:
@@ -106,9 +106,9 @@ jobs:
         echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 ```
 
-GitHub starts an action by a push or pull request on the main branch. The steps check out the code, authenticate and log into AWS, then build, tag, and push the image to Amazon ECR. A similar step template could push to other cloud repositories like Google or Microsoft. 
+GitHub starts an action by using a push or pull request on the main branch. The steps check out the code, authenticate and log into AWS, then build, tag, and push the image to Amazon ECR. A similar step template could push to other cloud repositories like Google or Microsoft. 
 
-Commit your changes, go to the **Actions** tab, and click the title of your commit message. You'll see the various stages of the workflow as it reaches completion.
+Commit your changes, go to the **Actions** tab, and click the title of your commit message. You see the various stages of the workflow as it reaches completion.
 
 ![GitHub Actions Success](githubactions-success.png)
 
@@ -118,7 +118,7 @@ Go to your Amazon ECR repository to view the image. Octopus Deploy can now deplo
 
 ## Conclusion
 
-In this post, you set up a GitHub Actions workflow to build and push an image to Amazon ECR. Deployment tools like Octopus Deploy can then use this image in a later deployment stage to deploy the web application to a service. Github Actions allows code repositories to be part of a deployment process without additional work. Github Actions has several templates that developers can use to perform other deployment tasks. 
+In this post, you set up a GitHub Actions workflow to build and push an image to Amazon ECR. Deployment tools like Octopus can then use this image in a later deployment stage to deploy the web application to a service. Github Actions allows code repositories to be part of a deployment process without additional work. Github Actions has several templates that developers can use to perform other deployment tasks. 
 
 In the next post, we'll take the image in ECR and deploy the web application.
 
