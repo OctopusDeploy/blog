@@ -1,6 +1,6 @@
 ---
-title: Build a workflow in GitHub Actions, push to ECR and deploy to EKS
-description: Build a workflow in GitHub Actions, push to ECR and deploy to EKS
+title: Deploying to Amazon EKS with GitHub Actions
+description: As part of our series about Continuous Integration, learn how to build a workflow in GitHub Actions, push to ECR, and deploy to EKS.
 author: terence.wong@octopus.com
 visibility: private
 published: 2022-03-15-1400
@@ -157,9 +157,3 @@ Go to the IP address http://127.0.0.1:28015/ in the browser to view your web app
 GitHub Actions can build, push and deploy a GitHub repository to a Kubernetes cloud platform like EKS. Integrating with cloud platforms and other tools relies on community-built step templates. In my experience with the tools, these step templates are not standardized. I tried several different templates. Some worked differently from others, depending on the variables called.
 
 I found that using a new step template in GitHub required a layer of learning each time. A tool like Octopus also uses step templates, but they share a standard design across the Octopus Deploy application. This means the Octopus Deploy step template experience is consistent. 
-
-
-
-
-
-
