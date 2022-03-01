@@ -4,9 +4,9 @@ description: Build a Docker image in GitHub Actions, Push to ECO and deploy to E
 author: terence.wong@octopus.com
 visibility: private
 published: 2999-01-01
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: multienvironmentdeploymentsgithubactionspushtooctopus-2022.png
+bannerImage: multienvironmentdeploymentsgithubactionspushtooctopus-2022.png
+bannerImageAlt:  A map with a boat with shipping containers sailing between islands which represent environments.
 isFeatured: false
 tags:
  - GitHub actions
