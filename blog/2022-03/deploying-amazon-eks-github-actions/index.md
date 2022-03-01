@@ -10,53 +10,56 @@ bannerImageAlt: Illustration of a workflow, connected to Docker-type logo, conne
 isFeatured: false
 tags:
  - DevOps
+ - CI Series
+ - Continuous Integration
  - GitHub Actions
 ---
 
-This blog will build a docker image in a GitHub Actions workflow and publish the image to Amazon Elastic Container Registry (ECR). To follow along, you will need:
+In this post, you build a Docker image in a GitHub Actions workflow and publish the image to Amazon Elastic Container Registry (ECR). 
 
-- An Amazon Web Services Account (AWS)
+## Prerequisites
+
+To follow along with this post, you need:
+
+- An Amazon Web Services (AWS) account 
 - A GitHub account
 
-This blog will use the [Octopus Underwater app repository](https://github.com/OctopusSamples/octopus-underwater-app). You can fork the repository and follow along. Alternatively, the github-deployment branch contains the template files needed to complete the steps in this blog. You will have to replace some values with your own. I have included my values as a reference.
+This post uses the [Octopus underwater app repository](https://github.com/OctopusSamples/octopus-underwater-app). You can fork the repository and follow along. Alternatively, the github-deployment branch contains the template files needed to complete the steps in this post. You have to replace some values with your own, but I've included my values as a reference.
 
 ## Amazon Web Services setup
 
-To set up AWS for GitHub Actions, we need to create an access key and an ECR repository to store the image.
+To set up AWS for GitHub Actions, you need to create an access key and an ECR repository to store the image.
 
-To create an access key, go to **Amazon Console &rarr; IAM &rarr; Users &rarr; [your user] &rarr; Security credentials &rarr; Create Access Key**
+To create an access key, go to **Amazon Console**, then **IAM**, then **Users**, `[your user]`, then **Security credentials**, and then **Create Access Key**.
 
 Your browser will download a file containing the Access Key ID and the Secret Access Key. These values will be used in Jenkins to authenticate to Amazon.
 
-To create a repository, go to the **Amazon Console &rarr; ECR &rarr; Create Repository**
+To create a repository, go to the **Amazon Console**, then **ECR**, and then **Create Repository**.
 
-The ECR requires an image repository set up for each image you publish. Name the repository the name you want the image to have. 
+You need to set up an image repository for each image that you publish. Give the repository the same name you want the image to have.
 
-You will see your repository under **Amazon ECR &rarr; Repositories**. Make a note of the zone it is in, in the URI field.
+You will see your repository under **Amazon ECR**, then **Repositories**. Make a note of the zone it's in, in the URI field.
 
 ![ECR Repository](ecr-repository.png)
 
-### AWS Cluster setup
+### AWS cluster setup
 
 [Set up the cluster in AWS using this guide](https://github.com/OctopusDeploy/blog/blob/2022-q1/blog/2022-q1/eks-cluster-aws/index.md)
 
 ## GitHub setup
 
-We will use a sample web application that displays an animated underwater scene with helpful links for this example.
+For this example, you use a sample web application that displays an animated underwater scene with helpful links.
 
-Fork the repository at https://github.com/OctopusSamples/octopus-underwater-app
+Fork the repository at `https://github.com/OctopusSamples/octopus-underwater-app`.
 
 Go to **Settings &rarr; Secrets &rarr; New repository secret**
 
-- **REPO_NAME**- the name of the AWS ECR repository you created
+- **REPO_NAME** - the name of the AWS ECR repository you created
+- **AWS_ACCESS_KEY_ID** - the Access Key ID from earlier
+- **AWS_SECRET_ACCESS_KEY** - the Secret Access Key from earlier
+- **AWS_ACCOUNT_ID** - the ID of your Amazon account
 
-- **AWS_ACCESS_KEY_ID**- the Access Key ID from earlier
-
-- **AWS_SECRET_ACCESS_KEY**- the Secret Access Key from earlier
-
-- **AWS_ACCOUNT_ID**- The ID of your Amazon account
-
-First, we need to create a deployment YAML file for GitHub actions to deploy to EKS. Create a file named `git-deployment.yml` in the root level of your repository with the following code:
+First, you need to create a deployment YAML file for GitHub actions to deploy to EKS. Create a file named `git-deployment.yml` in the root level of your repository with the following code:
 
 ```
 
@@ -89,9 +92,9 @@ spec:
 
 ```
 
-We need to create a workflow file in the repository. A Github Actions workflow contains instructions on performing operations on the code repository. Several pre-built step templates will allow you to do many different tasks on a code repository. In this example, we use a step template to build and push the code to an AWS ECR repository and deploy it to EKS.
+You then need to create a workflow file in the repository. A Github Actions workflow contains instructions on performing operations on the code repository. Several pre-built step templates allow you to do many different tasks on a code repository. In this example, you use a step template to build and push the code to an AWS ECR repository and deploy it to EKS.
 
-Create a file named main.yml in the .github/workflow directory of the root folder. Paste the following code in the main.yml file:
+Create a file named `main.yml` in the .github/workflow directory of the root folder. Paste the following code in the main.yml file:
 
 ```
 
@@ -144,16 +147,22 @@ jobs:
 
 ![GitHub Success](github-success.png)
 
-We will port forward locally to inspect the service. Use this command to inspect the web application. The port 28015 is chosen based on the example in the Kubernetes documentation:
+You need to port forward locally to inspect the service. Use this command to inspect the web application. The port 28015 is chosen based on the example in the Kubernetes documentation:
 
     kubectl port-forward deployment/underwater-app-github  28015:80
     
-Go to the IP address http://127.0.0.1:28015/ in the browser to view your web application.
+Go to the IP address `http://127.0.0.1:28015/` in your browser to view your web application.
 
 ![Octopus Underwater App](octopus-underwater-app.png)
 
 ## GitHub Actions as a CD tool
 
-GitHub Actions can build, push and deploy a GitHub repository to a Kubernetes cloud platform like EKS. Integrating with cloud platforms and other tools relies on community-built step templates. In my experience with the tools, these step templates are not standardized. I tried several different templates. Some worked differently from others, depending on the variables called.
+GitHub Actions can build, push, and deploy a GitHub repository to a Kubernetes cloud platform like EKS. Integrating with cloud platforms and other tools relies on community-built step templates. In my experience with the tools, these step templates are not standardized. I tried several different templates. Some worked differently from others, depending on the variables called.
 
 I found that using a new step template in GitHub required a layer of learning each time. A tool like Octopus also uses step templates, but they share a standard design across the Octopus Deploy application. This means the Octopus Deploy step template experience is consistent. 
+
+!include <githubactions-webinar-feb-2022>
+
+!include <q1-2022-newsletter-cta>
+
+Happy deployments!
