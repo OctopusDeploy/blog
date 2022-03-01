@@ -1,12 +1,12 @@
 ---
-title: 10 of our favourite GitHub Actions
+title: 10 of our favorite GitHub Actions
 description: GitHub Actions is a newcomer to continuous integration and provides CI as a Service. Here are 10 of our favorite actions to install from the GitHub Marketplace.
 author: andy.corrigan@octopus.com
 visibility: private
 published: 3020-01-01-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-githubconfigurationtop10plugins-2022.png
+bannerImage: blogimage-githubconfigurationtop10plugins-2022.png
+bannerImageAlt: Blue plug in a white and purple socket.
 isFeatured: false
 tags:
   - DevOps
