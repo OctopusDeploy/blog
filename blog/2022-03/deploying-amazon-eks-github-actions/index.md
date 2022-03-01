@@ -15,7 +15,9 @@ tags:
  - GitHub Actions
 ---
 
-In a DevOps process, a build server builds a  code repository and pushes the software artifact to a container registry ready for deployment. Before Github Actions, a third-party tool would execute the DevOps commands on the Github repository. Github Actions makes DevOps operations native to a Github repository, making it easier for developers to achieve a DevOps process. In this post, you build a Docker image in a GitHub Actions workflow and publish the image to Amazon Elastic Container Registry (ECR). 
+In a DevOps process, a CI server builds a code repository and pushes the software artifact to a container registry, ready for deployment. Before GitHub Actions, a third-party tool executes the DevOps commands on the GitHub repository. GitHub Actions makes DevOps operations native to a GitHub repository, making it easier for developers to achieve a DevOps process. 
+
+In this post, you build a Docker image in a GitHub Actions workflow and publish the image to Amazon Elastic Container Registry (ECR). 
 
 ## Prerequisites
 
@@ -157,13 +159,17 @@ Go to the IP address `http://127.0.0.1:28015/` in your browser to view your web 
 
 ## GitHub Actions as a CD tool
 
-GitHub Actions can build, push, and deploy a GitHub repository to a Kubernetes cloud platform like EKS. Integrating with cloud platforms and other tools relies on community-built step templates. In my experience with the tools, these step templates are not standardized. I tried several different templates. Some worked differently from others, depending on the variables called.
+GitHub Actions can build, push, and deploy a GitHub repository to a Kubernetes cloud platform like EKS. Integrating with cloud platforms and other tools relies on community-built step templates. In my experience, these step templates aren't standardized. I tried several different templates, and some worked differently from others, depending on the variables called.
 
-I found that using a new step template in GitHub required a layer of learning each time. A tool like Octopus also uses step templates, but they share a standard design across the Octopus Deploy application. This means the Octopus Deploy step template experience is consistent. 
+I found that using a new step template in GitHub required some new learning each time. A tool like Octopus also uses step templates, but they share a standard design across the Octopus Deploy application. This means the Octopus Deploy step template experience is consistent. 
 
 ## Conclusion
 
-Github Actions allows developers to perform DevOps operations within their Github repositories, simplifying the deployment process. In this blog, you have built and pushed a Github repository to Amazon ECR. The following post will cover deploying the image to Amazon EKS. Templates are available for different third-party integrations. However, the user experience may vary between templates as they are community-maintained. In a future post, we will cover how Octopus Deploy can integrate with Github Actions, provide standardized templates for continuous deployment and provide a rich user experience. 
+Github Actions allows developers to perform DevOps operations in their Github repositories, simplifying the deployment process. 
+
+In this post, you built and pushed a GitHub repository to Amazon ECR. The next post will cover deploying the image to Amazon EKS. 
+
+Templates are available for different third-party integrations. However, the user experience may vary between templates as they are community-maintained. In a future post, we'll cover how Octopus Deploy can integrate with Github Actions, provide standardized templates for continuous deployment, and provide a rich user experience. 
 
 !include <githubactions-webinar-feb-2022>
 
