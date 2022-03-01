@@ -20,49 +20,82 @@ You might be an existing Octopus Deploy customer who still has a manual deployme
 
 The application scenario used as an example is legacy, because it is more likely to find a tricky legacy manual deployment that needs this technique and new applications you write today are more likely to have deployability baked into their design.
 
+NOTE: zero to checklist - reduces errors somewhat, ensures steps done and in right order
+checklist to manual octo - audit and metrics
+manual to auto -...
+
+Notes from Ryan
+
+https://github.com/OctopusDeploy/blog/blob/manual/blog/2021-09/modeling-manual-deployments/index.md
+
+Old stuff, like VB6 DLLs - Esoteric
+Manual intervention
+Paste log files or output as comments to capture the action done
+The approval steps become "check it worked" - and eventually as you gain confidence and remove the manual steps
+
+At least track it - something happened.
+
+Word doc / wiki page / etc... pages of conditional instructions - put them into Octopus and it can be the documentation with extra benefits.
+
+If you are using manual steps it doesn't really add to you cost.
+
+Customers not in control of target infrastructure - so the manual process lets them track the deployment being done in an ops group.
+
+Completely manual customers - i.e. no source control, no builds, etc
+
+
+
 ## Create a checklist
 
 To demonstrate this technique, we'll make up a legacy system. You may already have a document or checklist that describes how to deploy the website, so we'll start with that.
 
 You run a web application on multiple IIS servers, behing a load balancer. You deploy by taking each server out of balance in turn and applying the new version of the application.
 
-The process for a each server is:
+![A load balancer directing traffic to two web farm servers](load-balanced-app.png)
 
-- Create a folder in d:\www\ with the version number of the app, i.e. d:\www\6.4.1
-- Copy the built application into the new folder
-- Open the previous version folder and copy the db.config and settings.config files into the new folder
-- Stop the app pool
-- Go to IIS Manager -> Sites -> AppSite and edit the Basic Settings
-- Change the Physical Path to the new version folder and clock OK
-- Start the app pool
+The deployment process is:
+
+- Copy the images onto the load balancer server
+- Create a folder in `c:\www\` with the version number of the image package, i.e. `c:\www\0.0.1\`
+- Move the images into the new folder
+- Open IIS Manager and find the site named `ImageServer`
+- Update the **Physical path** to the new folder, i.e. `%SystemDrive%\www\0.0.1` and save
+- For each web farm server
+  - Copy the new app version onto the web server
+  - Create a folder in `c:\www\` with the version number of the app package, i.e. `c:\www\0.0.1\`
+  - Move the app files into the new folder
+  - Copy the `app.config` file from the previous version into the new folder
+  - Take the web server out of balance on the load balancer server
+  - Open IIS Manager and find the site named `Website`
+  - Update the **Physical path** to the new folder, i.e. `%SystemDrive%\www\0.0.1` and save
+  - Browse the website to make sure the landing page loads
+  - Add the server back into balance on the load balancer server
+
+
+The deployment process is:
+
+- Copy the new app version onto the web server
+- Create a folder in `c:\www\` with the version number of the app package, i.e. `c:\www\0.0.1\`
+- Move the app files into the new folder
+- Copy the `app.config` file from the previous version into the new folder
+- Open IIS Manager and find the site named `Website`
+- Update the **Physical path** to the new folder, i.e. `%SystemDrive%\www\0.0.1` and save
+- Browse the website to make sure the landing page loads
+
 
 This checklist will be our starting point for migrating the deployment into Octopus Deploy and then automating it.
 
 TEMP SCRIPT
 
 ```
-$server = hostname
-$site = "UpDn"
-$appPool = "UpDn"
-$attempts = 0;
-$connections = 0;
+$serverFarm = 'Sample'
 
-Stop-WebAppPool -Name $appPool
-
-Do {
-     Start-Sleep -Seconds 10
-     
-     $data = Get-Counter -ComputerName $server "\web service($site)\current connections"
-     $connections = $data.CounterSamples[0].CookedValue
-     $attempts++
-
-     Write-Host $attempts, $connections
-    
-} while($connections -gt 0 -And $attempts -lt 20)
-
-Write-Host 'Flushed'
-
-Start-WebAppPool -Name $appPool
+Set-WebConfiguration -PSPath 'MACHINE/WEBROOT/APPHOST' `
+    -Filter "webFarms/webFarm[@name='$serverFarm']" `
+    -Value @(
+        @{ address = '192.168.236.128'; enabled = $true },
+        @{ address = '192.168.236.129'; enabled = $true }
+    )
 ```
 
 
