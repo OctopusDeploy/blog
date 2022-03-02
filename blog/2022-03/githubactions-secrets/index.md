@@ -102,7 +102,7 @@ As an example, if you want to send a package over to an Octopus server for deplo
        server: ${{ secrets.OCTOPUS_PACKAGE_STORE }}
 ```
 
-To explain what’s happening, this is part of your workflow:
+To explain what’s happening, this part of the workflow:
 
 1. Triggers an action to push the package to Octopus.
 1. Gets the Octopus API key from your secrets store to allow GitHub to pass data to Octopus.
