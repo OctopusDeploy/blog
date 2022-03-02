@@ -2,7 +2,7 @@
 title: Deploying to Amazon EKS with GitHub Actions
 description: As part of our series about Continuous Integration, learn how to build a workflow in GitHub Actions, push to ECR, and deploy to EKS.
 author: terence.wong@octopus.com
-visibility: private
+visibility: public
 published: 2022-03-15-1400
 metaImage: blogimage-githubactionscreatedeploymentineks-2022.png
 bannerImage: blogimage-githubactionscreatedeploymentineks-2022.png
@@ -15,7 +15,9 @@ tags:
  - GitHub Actions
 ---
 
-In a DevOps process, a CI server, like Github Actions, builds a code repository and pushes the software artifact to a container registry, ready for deployment. Before GitHub Actions was introduced, a third-party tool like Jenkins would have to execute DevOps operations on the GitHub repository. GitHub Actions makes DevOps operations native to a GitHub repository, making it easier for developers to implement DevOps. 
+In a DevOps process, a CI server, like Github Actions, builds a code repository and pushes the software artifact to a container registry, ready for deployment. Before GitHub Actions was introduced, a third-party tool like Jenkins had to execute DevOps operations on the GitHub repository. 
+
+GitHub Actions makes DevOps operations native to a GitHub repository, making it easier for developers to implement DevOps processes. 
 
 In this post, you build a Docker image in a GitHub Actions workflow and publish the image to Amazon Elastic Container Registry (ECR). 
 
@@ -26,7 +28,7 @@ To follow along with this post, you need:
 - An Amazon Web Services (AWS) account 
 - A GitHub account
 
-This post uses the [Octopus underwater app repository](https://github.com/OctopusSamples/octopus-underwater-app). You can fork the repository and follow along. Alternatively, the github-deployment branch contains the template files needed to complete the steps in this post. You have to replace some values with your own, but I've included my values as a reference.
+This post uses the [Octopus underwater app repository](https://github.com/OctopusSamples/octopus-underwater-app). You can fork the repository and follow along. Alternatively, the github-deployment branch contains the template files you need to complete the steps in this post. You have to replace some values with your own, but I've included my values as a reference.
 
 ## Amazon Web Services setup
 
@@ -46,7 +48,7 @@ You will see your repository under **Amazon ECR**, then **Repositories**. Make a
 
 ### AWS cluster setup
 
-[Set up the cluster in AWS using this guide](https://github.com/OctopusDeploy/blog/blob/2022-q1/blog/2022-q1/eks-cluster-aws/index.md)
+Set up the cluster in AWS by following the steps in our post, [Creating an EKS cluster in AWS](https://octopus.com/blog/eks-cluster-aws).
 
 ## GitHub setup
 
@@ -54,12 +56,12 @@ For this example, you use a sample web application that displays an animated und
 
 Fork the repository at `https://github.com/OctopusSamples/octopus-underwater-app`.
 
-Go to **Settings &rarr; Secrets &rarr; New repository secret**
+Go to **Settings**, then **Secrets**, and then **New repository secret**.
 
 - **REPO_NAME** - the name of the AWS ECR repository you created
 - **AWS_ACCESS_KEY_ID** - the Access Key ID from earlier
 - **AWS_SECRET_ACCESS_KEY** - the Secret Access Key from earlier
-- **AWS_ACCOUNT_ID** - the ID of your Amazon account
+- **AWS_ACCOUNT_ID** - your Amazon account ID
 
 First, you need to create a deployment YAML file for GitHub actions to deploy to EKS. Create a file named `git-deployment.yml` in the root level of your repository with the following code:
 
@@ -94,7 +96,9 @@ spec:
 
 ```
 
-You then need to create a workflow file in the repository. A Github Actions workflow contains instructions on performing operations on the code repository. Several pre-built step templates allow you to do many different tasks on a code repository. In this example, you use a step template to build and push the code to an AWS ECR repository and deploy it to EKS.
+You then need to create a workflow file in the repository. 
+
+A Github Actions workflow contains instructions on performing operations on the code repository. Several pre-built step templates allow you to do many different tasks on a code repository. In this example, you use a step template to build and push the code to an AWS ECR repository and deploy it to EKS.
 
 Create a file named `main.yml` in the .github/workflow directory of the root folder. Paste the following code in the main.yml file:
 
@@ -169,7 +173,7 @@ Github Actions allows developers to perform DevOps operations in their Github re
 
 In this post, you built and pushed a GitHub repository to Amazon ECR. The next post will cover deploying the image to Amazon EKS. 
 
-Templates are available for different third-party integrations. However, the user experience may vary between templates as they are community-maintained. In a future post, we'll cover how Octopus Deploy can integrate with Github Actions, provide standardized templates for continuous deployment, and provide a rich user experience. 
+Templates are available for different third-party integrations. However, the user experience may vary between templates because they're community-maintained. In a future post, we'll cover how Octopus Deploy integrates with Github Actions and provides standardized templates for continuous deployment, while offering a rich user experience. 
 
 !include <githubactions-webinar-feb-2022>
 
