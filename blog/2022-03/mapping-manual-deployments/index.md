@@ -14,15 +14,35 @@ tags:
   - Product
 ---
 
-You might be new to Octopus Deploy and need a strategy for taking manual deployments and automating them.
+While Octopus Deploy makes complex deployment automation easy, you might have a scenario where you are still running a manual deployment. We have talked to customers with a legacy application that needs some special steps during the release process, or who have esoteric technology that makes it hard to work out where to start the automation journey.
 
-You might be an existing Octopus Deploy customer who still has a manual deployment process for a legacy app that you want to track.
+In this post, you'll find out how you can model your manual deployments with Octopus Deploy and the benefits this will bring to your release process.
 
-The application scenario used as an example is legacy, because it is more likely to find a tricky legacy manual deployment that needs this technique and new applications you write today are more likely to have deployability baked into their design.
+If you are new to Octopus, you might find this a useful way to advance from your current deployment process to full automation. Existing customers may find that this technique allows them to bring to their manual releases all the benefits of approvals and tracking that they get with automated deployments.
 
-NOTE: zero to checklist - reduces errors somewhat, ensures steps done and in right order
-checklist to manual octo - audit and metrics
-manual to auto -...
+## Creating a checklist
+
+When you have a manual release process, there is usually a document or checklist that explains the steps required to install the software along with who can perform each step. Before you re-create this in Octopus, it is worth spending some time refining the stages to agree who does what, in which order.
+
+If your document is lengthy, you might find you can divide it with headings that will give you a natural task list.
+
+You should end up with something like the following checklist:
+
+| Step   | Title                                                        | Who  |
+|--------|--------------------------------------------------------------|------|
+| 1      | Back-up the database                                         | DBA  |
+| 2      | Upgrade the database                                         | DBA  |
+| 3      | Copy the new application to a temporary folder on the server | Ops  |
+| 4      | Delete the configuration file in the temporary folder        | Ops  |
+| 5      | Copy the live configuration file into the temporary folder   | Ops  |
+| 6      | Add any new settings to the configuration file               | Ops  |
+| 7      | Copy the temporary folder into the live folder               | Ops  |
+| 8      | Check the application loads as expected                      | Test |
+
+If you didn't have a checklist before you started this exercise, you are likely to find that the checklist already increases the reliability of your deployments by ensuring the steps all occur and are done in the right order.
+
+
+
 
 Notes from Ryan
 
@@ -51,53 +71,11 @@ To demonstrate this technique, we'll make up a legacy system. You may already ha
 
 You run a web application on multiple IIS servers, behing a load balancer. You deploy by taking each server out of balance in turn and applying the new version of the application.
 
-![A load balancer directing traffic to two web farm servers](load-balanced-app.png)
-
 The deployment process is:
 
-- Copy the images onto the load balancer server
-- Create a folder in `c:\www\` with the version number of the image package, i.e. `c:\www\0.0.1\`
-- Move the images into the new folder
-- Open IIS Manager and find the site named `ImageServer`
-- Update the **Physical path** to the new folder, i.e. `%SystemDrive%\www\0.0.1` and save
-- For each web farm server
-  - Copy the new app version onto the web server
-  - Create a folder in `c:\www\` with the version number of the app package, i.e. `c:\www\0.0.1\`
-  - Move the app files into the new folder
-  - Copy the `app.config` file from the previous version into the new folder
-  - Take the web server out of balance on the load balancer server
-  - Open IIS Manager and find the site named `Website`
-  - Update the **Physical path** to the new folder, i.e. `%SystemDrive%\www\0.0.1` and save
-  - Browse the website to make sure the landing page loads
-  - Add the server back into balance on the load balancer server
 
 
-The deployment process is:
-
-- Copy the new app version onto the web server
-- Create a folder in `c:\www\` with the version number of the app package, i.e. `c:\www\0.0.1\`
-- Move the app files into the new folder
-- Copy the `app.config` file from the previous version into the new folder
-- Open IIS Manager and find the site named `Website`
-- Update the **Physical path** to the new folder, i.e. `%SystemDrive%\www\0.0.1` and save
-- Browse the website to make sure the landing page loads
-
-
-This checklist will be our starting point for migrating the deployment into Octopus Deploy and then automating it.
-
-TEMP SCRIPT
-
-```
-$serverFarm = 'Sample'
-
-Set-WebConfiguration -PSPath 'MACHINE/WEBROOT/APPHOST' `
-    -Filter "webFarms/webFarm[@name='$serverFarm']" `
-    -Value @(
-        @{ address = '192.168.236.128'; enabled = $true },
-        @{ address = '192.168.236.129'; enabled = $true }
-    )
-```
-
+This checklist will be our starting point for migrating the deployment into Octopus Deploy to help run the manual deployment.
 
 ## Model your checklist in Octopus Deploy
 
