@@ -3,10 +3,10 @@ title: How Octopus complements your build server
 description: A look at the ways how Octopus complements your choice of build server and completes your CI/CD pipeline.
 author: andrew.corrigan@octopus.com
 visibility: private
-published: 3020-01-01-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+published: 2022-03-28-1400
+metaImage: blogimage-howoctopuscomplimentsyourciserver-2022.png
+bannerImage: blogimage-howoctopuscomplimentsyourciserver-2022.png
+bannerImageAlt: People writing code with an arrow showing it delivered to a build server then an arrow to the Octopus Deploy logo as a puzzle piece.
 isFeatured: false
 tags: 
   - DevOps
@@ -16,8 +16,6 @@ tags:
   - GitHub Actions
   - Testing
 ---
-
-<!-- see https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags -->
 
 We spent the last few months exploring 2 build server options in Jenkins and GitHub Actions. As we discovered, Jenkins is a traditional build server with a self-managed instance at its center, while GitHub Actions performs similar tasks but as a service in a product you may already use. Either is a worthwhile option as part of a continuous integration/continuous deployment (CI/CD) workflow, depending on your needs.
 
