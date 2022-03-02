@@ -46,7 +46,7 @@ You will see your repository under **Amazon ECR &rarr; Repositories**. Make a no
 
 ### AWS Cluster setup
 
-[Set up the cluster in AWS using this guide](https://github.com/OctopusDeploy/blog/blob/2022-q1/blog/2022-q1/eks-cluster-aws/index.md)
+[Set up the cluster in AWS using this guide](https://octopus.com/blog/eks-cluster-aws)
 
 ## GitHub setup
 
