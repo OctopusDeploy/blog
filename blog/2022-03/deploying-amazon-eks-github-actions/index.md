@@ -15,7 +15,7 @@ tags:
  - GitHub Actions
 ---
 
-In a DevOps process, a CI server, like Github Actions, builds a code repository and pushes the software artifact to a container registry, ready for deployment. Before GitHub Actions was introduced, a third-party tool like Jenkins would have to execute the DevOps commands on the GitHub repository. GitHub Actions makes DevOps operations native to a GitHub repository, making it easier for developers to implement DevOps. 
+In a DevOps process, a CI server, like Github Actions, builds a code repository and pushes the software artifact to a container registry, ready for deployment. Before GitHub Actions was introduced, a third-party tool like Jenkins would have to execute DevOps operations on the GitHub repository. GitHub Actions makes DevOps operations native to a GitHub repository, making it easier for developers to implement DevOps. 
 
 In this post, you build a Docker image in a GitHub Actions workflow and publish the image to Amazon Elastic Container Registry (ECR). 
 
