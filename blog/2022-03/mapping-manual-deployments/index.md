@@ -20,6 +20,11 @@ In this post, you'll find out how you can model your manual deployments with Oct
 
 If you are new to Octopus, you might find this a useful way to advance from your current deployment process to full automation. Existing customers may find that this technique allows them to bring to their manual releases all the benefits of approvals and tracking that they get with automated deployments.
 
+## Benefits of using Octopus for manual deployments
+
+- You can ensure each step is completed by an appropriate team member
+- 
+
 ## Creating a checklist
 
 When you have a manual release process, there is usually a document or checklist that explains the steps required to install the software along with who can perform each step. Before you re-create this in Octopus, it is worth spending some time refining the stages to agree who does what, in which order.
@@ -30,7 +35,7 @@ You should end up with something like the following checklist:
 
 | Step   | Title                                                        | Who  |
 |--------|--------------------------------------------------------------|------|
-| 1      | Back-up the database                                         | DBA  |
+| 1      | Backup the database                                          | DBA  |
 | 2      | Upgrade the database                                         | DBA  |
 | 3      | Copy the new application to a temporary folder on the server | Ops  |
 | 4      | Delete the configuration file in the temporary folder        | Ops  |
@@ -39,7 +44,83 @@ You should end up with something like the following checklist:
 | 7      | Copy the temporary folder into the live folder               | Ops  |
 | 8      | Check the application loads as expected                      | Test |
 
-If you didn't have a checklist before you started this exercise, you are likely to find that the checklist already increases the reliability of your deployments by ensuring the steps all occur and are done in the right order.
+If you didn't have a checklist before you started this exercise, you are likely to find that the checklist already increases the reliability of your deployments by ensuring the steps all occur and are done in the right order. Now we can transfer this into Octopus to get the benefits of workflow management and tracking.
+
+## Create teams
+
+The checklist contains three teams who are responsible for the deployment: DBAs, Ops, and Test. When you create the process in Octopus, each step will have a *responsible team*. Follow these steps to add each team to Octopus:
+
+- Navigate to **{{ Configuration,Teams }}**
+- Select **ADD TEAM**
+- Enter the **New team name**, for example "DBA Team"
+- Select **SAVE**
+
+You can add team members by selecting the **ADD MEMBER** option. It is possible to assign specific users or existing roles to a team.
+
+With the three teams set up with their respective team members, you are ready to model the checklist as a process.
+
+![](manual-deployment-teams.jpg)
+
+## Create a lifecycle
+
+The lifecycle for your manual deployment might not match a lifecyle you are using for automated deployments. If this is the case, you can create a new lifecyle to use with your manual release process.
+
+ - Navigate to **{{ Infrastructure,Environments }}**
+ - Select **ADD ENVIRONMENT**
+ - Enter a **New environment name**, for example "Manual Test Environment"
+ - Select **SAVE**
+
+:::hint
+Normally after adding an environment, you would add deployment targets. As you are modelling a manual deployment you can leave the environments empty at this stage.
+:::
+
+Once you have created your environments, you can define a lifecyle that sets the order for releases. For example, you can enforce that a release must be deployed to the test environment before it is promoted to the live environment.
+
+- Navigate to **{{ Library,Lifecycles }}**
+- Select **ADD LIFECYCLE**
+- Enter the **Name** of the lifecyle, for example "Manual Deployment Lifecycle"
+- Under **Phases** select **ADD PHASE** to add each environment
+- Select **SAVE** when you have finished adding phases
+
+Your completed lifecyle should contain a phase for each environment as shown below.
+
+![A manual deployment lifecycle with a test phase and a live phase](manual-lifecycles.jpg)
+
+## Modelling the steps
+
+To add your checklist items as steps, you will need to create a new project. You can do this by navigating to **Projects** and selecting **ADD PROJECT**.
+
+- Add a **New project name**, such as "Manual Deployment"
+- Select the **Project group** where you want to add the new project, for example "Default Project Group"
+- Select the **Lifecycle**, for example the "Manual Deployment Lifecycle" you created previously
+- Select **SAVE**
+
+You will now see your project listed under the **Default Project Group**. You can also see the project listed on your dashboard.
+
+You now have all the resources ready to add the steps, so navigate to **{{ Projects,Manual Deployment,Process }}** to begin.
+
+You will add a step for each of the checklist items to create a process that will drive your manual deployments. So, repeat the following process for each of the items in your list.
+
+ - Click **ADD STEP**
+ - Filter the step templates using the search term "Manual Intervention"
+ - Click **ADD** on the **Manual Intervention Required** step
+ - Enter the title from your checklist into **Step name**, for example "Backup the database"
+ - If you have documentation for this step, you can add it to the **Instructions** field, which uses markdown for formatting
+ - Use the list under **Responsible teams** to select the correct team, for example "DBA Team"
+ - Click **SAVE** to complete the step configuration
+
+:::hint
+You may want to adjust the default option for blocking deployments to prevent multiple concurrent releases. Under the **Block Deployments** setting, select **Prevent other deployments while awaiting intervention**.
+:::
+
+When you have added your steps navigate to **{{ Projects,Manual Deployment,Process }}** and review the process overview, which should look like the below example.
+
+![The process shows the checklist steps and the manual deployment lifecycle](manual-deployment-process.jpg)
+
+You can adjust the steps and the lifecycle at any time if you need to change them.
+
+## NOTES
+
 
 
 
