@@ -22,6 +22,7 @@ If you are new to Octopus, you might find this a useful way to advance from your
 
 ## Benefits of using Octopus for manual deployments
 
+- You can use a lifecycle to ensure deployments are made to a test environment before they go live
 - You can ensure each step is completed by an appropriate team member
 - 
 
@@ -54,12 +55,23 @@ The checklist contains three teams who are responsible for the deployment: DBAs,
 - Select **ADD TEAM**
 - Enter the **New team name**, for example "DBA Team"
 - Select **SAVE**
+- Open the **USER ROLES** tab
+- Select **INCLUDE USER ROLE**
+- Choose **Project Deployer** from the list
+- Select **DEFINE SCOPE**
+- Under **Select project groups** choose "Default Project Group"
+- Select **APPLY**
+- Finally, select **SAVE**
+
+:::hint
+The **Project deployer** role grants the user all project contributor permissions, plus: deploying releases and executing runbooks.
+:::
 
 You can add team members by selecting the **ADD MEMBER** option. It is possible to assign specific users or existing roles to a team.
 
 With the three teams set up with their respective team members, you are ready to model the checklist as a process.
 
-![](manual-deployment-teams.jpg)
+![The teams list showing the DBA team, the Ops team, and the test team](manual-deployment-teams.jpg)
 
 ## Create a lifecycle
 
@@ -118,6 +130,26 @@ When you have added your steps navigate to **{{ Projects,Manual Deployment,Proce
 ![The process shows the checklist steps and the manual deployment lifecycle](manual-deployment-process.jpg)
 
 You can adjust the steps and the lifecycle at any time if you need to change them.
+
+## Using the process to track a release
+
+Although you don't have a package to deploy, you can still track the deployment using a release in Octopus.
+
+- Navigate to **{{ Projects,Manual Deployment,Process }}**
+- Select **CREATE RELEASE**
+- Enter a **Version**, you may want to follow on from an existing version number you have published
+- Select **SAVE**
+
+You can now track the manual deployment to each environment and the release can only proceed to the *manual live environment* if it first gets deployed to the *manual test environment* as controlled by the lifecycle you configured.
+
+- From the release screen for your new version, select **DEPLOY TO MANUAL TEST ENVIRONMENT**
+- A confirmation screen will appear, review the information and select **DEPLOY**
+
+The deployment is created for the release, and the first manual intervention step is ready to be picked up by a member of the DBA team. The release is given a manual intervention icon to show you that it is waiting for human intervention.
+
+![The Octopus dashboard with an orange eye icon that indicates a manual intervention is required](manual-intervention-needed.jpg)
+
+Only a member of the DBA Team can assign themselves the **Backup the database** task. They can do this by clickin on the release from the dashboard and selecting **ASSIGN TO ME**.
 
 ## NOTES
 
