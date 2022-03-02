@@ -1,25 +1,31 @@
 ---
-title: Multi-environment deployments with GitHub Actions, ECR and EKS
-description: Build a Docker image in GitHub Actions, Push to ECO and deploy to EKS with Octopus Deploy
+title: Multi-environment deployments with GitHub Actions, ECR, and EKS
+description: As part of our series about Continuous Integration, learn how to build a Docker image in GitHub Actions, push to ECR, and deploy to EKS with Octopus.
 author: terence.wong@octopus.com
 visibility: private
-published: 2999-01-01
+published: 2022-03-22-1400
 metaImage: multienvironmentdeploymentsgithubactionspushtooctopus-2022.png
 bannerImage: multienvironmentdeploymentsgithubactionspushtooctopus-2022.png
-bannerImageAlt:  A map with a boat with shipping containers sailing between islands which represent environments.
+bannerImageAlt: A map with a boat with shipping containers sailing between islands which represent environments.
 isFeatured: false
 tags:
- - GitHub actions
+ - DevOps
+ - Continuous Integration
+ - CI Series
+ - GitHub Actions
  - AWS
 ---
 
-This blog will build a docker image in a GitHub Actions workflow and publish the image to Amazon Elastic Container Registry (ECR). To follow along, you will need:
+In this post, I show you how to build a Docker image in a GitHub Actions workflow and publish the image to Amazon Elastic Container Registry (ECR). 
 
-- An Amazon Web Services Account (AWS)
+## Prerequisites
+
+To follow along, you will need:
+
+- An Amazon Web Services (AWS) account 
 - A GitHub account
 
-This blog will use the [Octopus Underwater app repository](https://github.com/OctopusSamples/octopus-underwater-app). You can fork the repository and follow along. Alternatively, the github-octopus branch contains the template files needed to complete the steps in this blog. You will have to replace some values with your own. I have included my values in this blog as a reference.
-
+This post uses the [Octopus underwater app repository](https://github.com/OctopusSamples/octopus-underwater-app). You can fork the repository and follow along. Alternatively, the github-octopus branch contains the template files you need to complete the steps in this post. You have to replace some values with your own, but I've included my values in this post as a reference.
 
 
 ## Amazon Web Services setup
@@ -193,3 +199,9 @@ Go to the IP address http://127.0.0.1:28021/ in the browser to view your web app
 ## Octopus as a CD tool
 
 When you use Octopus Deploy as a stage in your CI/CD toolchain, you benefit from a dedicated continuous delivery tool. Octopus Deploy integrates with several cloud repositories and natively supports release management.  GitHub Actions has community-developed step templates.  The experience with these may vary from template to template. Through its UI, Octopus Deploy provides a standardized experience for step templates. Octopus Deploy also contains integration to different repositories and cloud providers.
+
+!include <githubactions-webinar-feb-2022>
+
+!include <q1-2022-newsletter-cta>
+
+Happy deployments!
