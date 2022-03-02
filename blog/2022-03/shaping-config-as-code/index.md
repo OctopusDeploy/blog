@@ -19,7 +19,7 @@ We’ve been busy recently building Configuration as Code (Config as Code) suppo
 - Anti-patterns we wanted to avoid 
 - Design decisions
 
-First however, we should define what we mean by “Config as Code”. We're referring to a version-controlled (Git) text representation of an Octopus project. Today, when you configure a project in Octopus, the configuration is stored as records in a relational database. This feature takes some of that data and persists it as files in a Git repository rather than the database.
+First, however, we should define what we mean by “Config as Code”. We're referring to a version-controlled (Git) text representation of an Octopus project. Today, when you configure a project in Octopus, the configuration is stored as records in a relational database. This feature takes some of that data and persists it as files in a Git repository rather than the database.
 
 ## Why Config as Code?
 
