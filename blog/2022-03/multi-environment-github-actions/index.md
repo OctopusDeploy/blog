@@ -16,7 +16,7 @@ tags:
  - AWS
 ---
 
-Github Actions allows developers to perform DevOps operations within a GitHub repository. The Github community maintains templates that integrate third-party tools and repositories like Jenkins or Amazon Elastic Container Registry (ECR). Although Github Actions provides a contained solution, a dedicated continuous delivery tool like Octopus Deploy provides the developer with essential benefits such as environments, a dashboard to visualize environments, and a standardized step template library for a consistent user experience. In this post, I show you how to build a Docker image in a GitHub Actions workflow, publish the image to Amazon Elastic Container Registry (ECR) and use Octopus Deploy to deploy the image to a Web Application on Amazon Elastic Kubernetes Service (EKS).
+Github Actions allows developers to perform DevOps operations within a GitHub repository. The Github community maintains templates that integrate third-party tools and repositories like Jenkins or Amazon Elastic Container Registry (ECR). Although Github Actions provides a contained solution, a dedicated continuous delivery tool like Octopus Deploy provides the developer with essential benefits such as environments, a dashboard to visualize environments, and a standardized step template library for a consistent user experience. In this post, I show you how to build a Docker image in a GitHub Actions workflow, publish the image to Amazon Elastic Container Registry (ECR) and use Octopus Deploy to deploy the image to a web application on Amazon Elastic Kubernetes Service (EKS).
 
 ## Prerequisites
 
