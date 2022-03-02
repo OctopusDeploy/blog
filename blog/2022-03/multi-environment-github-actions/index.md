@@ -1,5 +1,5 @@
 ---
-title: Multi-environment deployments with GitHub Actions, ECR, and EKS
+title: Multi-environment deployments with GitHub Actions and Octopus
 description: As part of our series about Continuous Integration, learn how to build a Docker image in GitHub Actions, push to ECR, and deploy to EKS with Octopus.
 author: terence.wong@octopus.com
 visibility: private
@@ -16,7 +16,7 @@ tags:
  - AWS
 ---
 
-In this post, I show you how to build a Docker image in a GitHub Actions workflow and publish the image to Amazon Elastic Container Registry (ECR). 
+Github Actions allows developers to perform DevOps operations within a GitHub repository. The Github community maintains templates that integrate third-party tools and repositories like Jenkins or Amazon Elastic Container Registry (ECR). Although Github Actions provides a contained solution, a dedicated continuous delivery tool like Octopus Deploy provides the developer with essential benefits such as environments, a dashboard to visualize environments, and a standardized step template library for a consistent user experience. In this post, I show you how to build a Docker image in a GitHub Actions workflow, publish the image to Amazon Elastic Container Registry (ECR) and use Octopus Deploy to deploy the image to a Web Application on Amazon Elastic Kubernetes Service (EKS).
 
 ## Prerequisites
 
@@ -196,9 +196,9 @@ Go to the IP address http://127.0.0.1:28021/ in the browser to view your web app
 ![Octopus Underwater App](octopus-underwater-app.png)
 
 
-## Octopus as a CD tool
+## Conclusion
 
-When you use Octopus Deploy as a stage in your CI/CD toolchain, you benefit from a dedicated continuous delivery tool. Octopus Deploy integrates with several cloud repositories and natively supports release management.  GitHub Actions has community-developed step templates.  The experience with these may vary from template to template. Through its UI, Octopus Deploy provides a standardized experience for step templates. Octopus Deploy also contains integration to different repositories and cloud providers.
+In this blog, you have used Github Actions and Octopus Deploy to deploy a web application to Amazon EKS. When you use Octopus Deploy as a stage in your CI/CD toolchain, you benefit from a dedicated continuous delivery tool. Octopus Deploy integrates with several cloud repositories and natively supports release management. GitHub Actions has community-developed step templates. The experience with these may vary from template to template. Through its UI, Octopus Deploy provides a standardized experience for step templates. Octopus Deploy also contains integration to different repositories and cloud providers. 
 
 !include <githubactions-webinar-feb-2022>
 
