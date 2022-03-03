@@ -16,7 +16,11 @@ tags:
  - AWS
 ---
 
-Github Actions allows developers to perform DevOps operations within a GitHub repository. The Github community maintains templates that integrate third-party tools and repositories like Jenkins or Amazon Elastic Container Registry (ECR). Although Github Actions provides a contained solution, a dedicated continuous delivery tool like Octopus Deploy provides the developer with essential benefits such as environments, a dashboard to visualize environments, and a standardized step template library for a consistent user experience. In this post, I show you how to build a Docker image in a GitHub Actions workflow, publish the image to Amazon Elastic Container Registry (ECR) and use Octopus Deploy to deploy the image to a web application on Amazon Elastic Kubernetes Service (EKS).
+GitHub Actions allows developers to perform DevOps operations in a GitHub repository. The GitHub community maintains templates that integrate third-party tools and repositories like Jenkins or Amazon Elastic Container Registry (ECR). 
+
+Although GitHub Actions provides a contained solution, a dedicated continuous delivery tool like Octopus Deploy provides the developer with essential benefits such as environments, a dashboard to visualize environments, and a standardized step template library for a consistent user experience. 
+
+In this post, I show you how to build a Docker image in a GitHub Actions workflow, publish the image to Amazon Elastic Container Registry (ECR), and use Octopus Deploy to deploy the image to a web application on Amazon Elastic Kubernetes Service (EKS).
 
 ## Prerequisites
 
@@ -27,45 +31,45 @@ To follow along, you will need:
 
 This post uses the [Octopus underwater app repository](https://github.com/OctopusSamples/octopus-underwater-app). You can fork the repository and follow along. Alternatively, the github-octopus branch contains the template files you need to complete the steps in this post. You have to replace some values with your own, but I've included my values in this post as a reference.
 
-
 ## Amazon Web Services setup
 
-To set up AWS for GitHub Actions, we need to create an access key and an ECR repository to store the image.
+To set up AWS for GitHub Actions, you need to create an access key and an ECR repository to store the image.
 
-To create an access key, go to **Amazon Console &rarr; IAM &rarr; Users &rarr; [your user] &rarr; Security credentials &rarr; Create Access Key**
+To create an access key, go to **Amazon Console**, then **IAM**, then **Users**, `[your user]`, then **Security credentials**, and then **Create Access Key**.
 
-Your browser will download a file containing the Access Key ID and the Secret Access Key. These values will be used in Jenkins to authenticate to Amazon.
+Your browser downloads a file containing the Access Key ID and the Secret Access Key. These values are used in Jenkins to authenticate to Amazon.
 
-To create a repository, go to the **Amazon Console &rarr; ECR &rarr; Create Repository**
+To create a repository, go to the **Amazon Console**, then **ECR**, then **Create Repository**.
 
-The ECR requires an image repository set up for each image you publish. Name the repository the name you want the image to have. 
+You need to set up an image repository for each image that you publish. Give the repository the same name you want the image to have.
 
-You will see your repository under **Amazon ECR &rarr; Repositories**. Make a note of the zone it is in, in the URI field.
+You will see your repository under **Amazon ECR**, then **Repositories**. Make a note of the zone it's in, in the URI field.
 
 ![ECR Repository](ecr-repository.png)
 
 ### AWS Cluster setup
 
-[Set up the cluster in AWS using this guide](https://octopus.com/blog/eks-cluster-aws)
+Set up the cluster in AWS by following the steps in our post, [Creating an EKS cluster in AWS](https://octopus.com/blog/eks-cluster-aws).
 
 ## GitHub setup
 
-For this example, we will use a sample web application that displays an animated underwater Octopus named simple-octo.
+For this example, you use a sample web application that displays an animated underwater Octopus named simple-octo.
 
-Fork the repository at https://github.com/OctopusSamples/octopus-underwater-app
+Fork the repository at `https://github.com/OctopusSamples/octopus-underwater-app`.
 
-Go to **Settings &rarr; Secrets &rarr; New repository secret**
+Go to **Settings**, then **Secrets**, and then **New repository secret**.
 
-- **REPO_NAME**- the name of the AWS ECR repository you created
-- **AWS_ACCESS_KEY_ID**- the Access Key ID from earlier
-- **AWS_SECRET_ACCESS_KEY**- the Secret Access Key from earlier
-- **OCTOPUS_SERVER**- The URL of your Octopus Server
-- **OCTOPUS_APIKEY**- The Octopus API Key of your Octopus Instance. To create one, go to **Your User Name &rarr; Profile &rarr; My API Keys &rarr; New API key**
+- **REPO_NAME** - Name of the AWS ECR repository you created
+- **AWS_ACCESS_KEY_ID** - Access Key ID from earlier
+- **AWS_SECRET_ACCESS_KEY** - Secret Access Key from earlier
+- **OCTOPUS_SERVER** - URL of your Octopus Server
+- **OCTOPUS_APIKEY** - Your Octopus instance API key
+   - To create one, go to **Your User Name**, then **Profile**, then **My API Keys**, then **New API key**
 
-We need to create a workflow file in the repository. A Github Actions workflow contains instructions on performing operations on the code repository. Several pre-built step templates will allow you to do many different tasks on a code repository. In this example, we use a step template to build and push the code to an AWS ECR repository and deploy it from Octopus Deploy.
+You need to create a workflow file in the repository. A GitHub Actions workflow contains instructions on performing operations on the code repository. Several pre-built step templates allow you to do many different tasks on a code repository. In this example, you use a step template to build and push the code to an AWS ECR repository and deploy it from Octopus.
 
 
-Create a file named main.yml in the .github/workflow directory of the root folder. Paste the following code in the main.yml file:
+Create a file named `main.yml` in the .github/workflow directory of the root folder. Paste the following code in the main.yml file:
 
 ```
 on:
@@ -125,7 +129,7 @@ jobs:
 
 GitHub Actions creates an Action on a push or pull request on the main branch. The steps check out the code, authenticate and log into AWS, then build, tag, and push the image to Amazon ECR. GitHub Actions could use a similar step template to push to other cloud repositories like Google or Microsoft. 
 
-Commit your changes and go to the **Actions** tab and click the title of your commit message. You will see the various stages of the workflow as it reaches completion.
+Commit your changes and go to the **Actions** tab and click the title of your commit message. You see the various stages of the workflow as it reaches completion.
 
 ![GitHub Actions Success](githubactions-success.png)
 
@@ -133,22 +137,25 @@ Go to your Amazon ECR repository to view the image.
 
 ![ECR Success](ecr-success.png)
 
-## Set Up Octopus Deploy
+## Octopus Deploy setup
 
-In your Octopus Deploy instance, create a project called `aws-github` by going to **Project, Add Project** Add the `aws-github` title and click **Save**.
+In your Octopus Deploy instance, create a project by going to **Project**, then **Add Project**. Add `aws-github` as the title and click **Save**.
 
-Set up a Development Environment by going to **Infrastructure, Environments, Add Environment**. Give it a name and click **Save**. Do the same for a Test and Production environment.
+Set up a Development Environment by going to **Infrastructure**, then **Environments**, then **Add Environment**. Give it a name and click **Save**. 
 
-We need to set up the Amazon account to deploy to EKS. Go to **Infrastructure, Accounts, Add Account, AWS Account**. Give it a name and fill out the **Access Key ID and Secret Access Key** from earlier.
+Repeat these steps for a test and production environment.
 
-Set up your AWS Kubernetes cluster as a deployment target in Octopus Deploy by going to **Infrastructure, Deployment Targets, Add Deployment Target, Kubernetes Cluster, Add**. [These steps indicates the fields to add to set up the deployment target.](https://octopus.com/docs/infrastructure/deployment-targets#adding-deployment-targets) In this section you will give the deployment target a target role. This will be referenced in the Octopus Deploy step later.
+You then need to set up the Amazon account to deploy to EKS. 
 
+Go to **Infrastructure**, then **Accounts**, then **Add Account**, then **AWS Account**. Give it a name and fill out the **Access Key ID** and **Secret Access Key** from earlier.
 
-## Deploy to EKS step
+Set up your AWS Kubernetes cluster as a deployment target in Octopus Deploy by going to **Infrastructure**, then **Deployment Targets**, then **Add Deployment Target**, then **Kubernetes Cluster**, then **Add**. You can [follow the steps in our docs](https://octopus.com/docs/infrastructure/deployment-targets#adding-deployment-targets), which indicate the fields to add to set up the deployment target. In this section you  give the deployment target a target role. This will be referenced in the Octopus Deploy step later.
 
-In your `aws-github` project, go to **Process, add deployment step, Kubernetes, Deploy Kubernetes Containers**. Add the target role that you gave your deployment target earler.
+## Deploying to EKS step
 
-Add the following YAML into the YAML section.
+In your `aws-github` project, go to **Process**, then **Add deployment step**, then **Kubernetes**, then **Deploy Kubernetes Containers**. Add the target role that you assigned to your deployment target earlier.
+
+Add the following YAML into the YAML section:
 
 ```
 apiVersion: apps/v1
@@ -179,26 +186,28 @@ spec:
 
 ```
 
-Navigate back to the Octopus instance project overview and you will see the release deployed to the development environment.
+Navigate back to the Octopus instance project overview and to see the release deployed to the development environment.
 
 ![Development Success](development-success.png)
 
-Now we can progress the release to the Test and Production environment when we are ready. Click Deploy to progress the release.
+Now you can progress the release to the test and production environments when you're ready. Click **Deploy** to progress the release.
 
 ![Development Success](production-success.png)
 
-We will port forward locally to inspect the service. Use this command to inspect the web application. The port 28015 is chosen based on the example in the Kubernetes documentation:
+You need to port forward locally to inspect the service. Use this command to inspect the web application. The port 28015 is chosen based on the example in the Kubernetes documentation:
 
     kubectl port-forward deployment/octopus-underwater-app-github  28015:80
     
-Go to the IP address http://127.0.0.1:28021/ in the browser to view your web application.
+Go to the IP address http://127.0.0.1:28021/ in your browser to view your web application.
 
 ![Octopus Underwater App](octopus-underwater-app.png)
 
 
 ## Conclusion
 
-In this blog, you have used Github Actions and Octopus Deploy to deploy a web application to Amazon EKS. When you use Octopus Deploy as a stage in your CI/CD toolchain, you benefit from a dedicated continuous delivery tool. Octopus Deploy integrates with several cloud repositories and natively supports release management. GitHub Actions has community-developed step templates. The experience with these may vary from template to template. Through its UI, Octopus Deploy provides a standardized experience for step templates. Octopus Deploy also contains integration to different repositories and cloud providers. 
+In this post, you used GitHub Actions and Octopus Deploy to deploy a web application to Amazon EKS. When you use Octopus Deploy as a stage in your CI/CD toolchain, you benefit from a dedicated continuous delivery tool. 
+
+Octopus Deploy integrates with several cloud repositories and has in-built support for release management. GitHub Actions has community-developed step templates. The experience with these may vary from template to template. Through its UI, Octopus Deploy provides a standardized experience for step templates. Octopus also integrates with different repositories and cloud providers. 
 
 !include <githubactions-webinar-feb-2022>
 
