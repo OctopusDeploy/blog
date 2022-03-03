@@ -16,15 +16,16 @@ tags:
 
 While Octopus Deploy makes complex deployment automation easy, you might have a scenario where you are still running a manual deployment. We have talked to customers with a legacy application that needs some special steps during the release process, or who have esoteric technology that makes it hard to work out where to start the automation journey.
 
-In this post, you'll find out how you can model your manual deployments with Octopus Deploy and the benefits this will bring to your release process.
+In this post, you'll find out how you can model your manual deployments using manual intervention steps and the benefits this will bring to your release process.
 
 If you are new to Octopus, you might find this a useful way to advance from your current deployment process to full automation. Existing customers may find that this technique allows them to bring to their manual releases all the benefits of approvals and tracking that they get with automated deployments.
 
 ## Benefits of using Octopus for manual deployments
 
-- You can use a lifecycle to ensure deployments are made to a test environment before they go live
-- You can ensure each step is completed by an appropriate team member
-- 
+- Use lifecycles to track deployments across multiple environments
+- Ensure each step is completed by an authorised team member
+- Improve the reliability and traceability of deployments
+- Satisfy audit requirements with less effort
 
 ## Creating a checklist
 
@@ -67,7 +68,7 @@ The checklist contains three teams who are responsible for the deployment: DBAs,
 The **Project deployer** role grants the user all project contributor permissions, plus: deploying releases and executing runbooks.
 :::
 
-You can add team members by selecting the **ADD MEMBER** option. It is possible to assign specific users or existing roles to a team.
+You can add team members by selecting the **ADD MEMBER** option. It is possible to assign specific users or roles to a team.
 
 With the three teams set up with their respective team members, you are ready to model the checklist as a process.
 
@@ -149,86 +150,65 @@ The deployment is created for the release, and the first manual intervention ste
 
 ![The Octopus dashboard with an orange eye icon that indicates a manual intervention is required](manual-intervention-needed.jpg)
 
-Only a member of the DBA Team can assign themselves the **Backup the database** task. They can do this by clickin on the release from the dashboard and selecting **ASSIGN TO ME**.
+Only a member of the DBA Team can assign themselves the **Backup the database** task. They can do this by clicking on the release from the dashboard and selecting **ASSIGN TO ME**.
 
-## NOTES
+The process for each step as the manual deployment progresses is:
 
+- Select **ASSIGN TO ME** on the step
+- Use the step instructions on the task summary to complete the step
+- Enter any notes, logs, or output from the manual step into the **Notes** field
+- Select **PROCEED** to complete the step
 
+As each step is completed, the next step will become available to members of the relevant team.
 
+The task log records the date and time the step was done, who completed it, and any notes they entered.
 
+```no-highlight
+                    |   == Success: Step 1: Backup the database ==
+15:13:26   Verbose  |     Backup the database completed
+13:21:28   Verbose  |     Resuming after completion
+13:21:28   Info     |     Submitted by: Sarah (DBA) at 2022-03-03T13:21:24.3250260+00:00
+...
 
-Notes from Ryan
+...
+                    |   == Success: Step 8: Check the application loads as expected ==
+13:25:53   Verbose  |     Check the application loads as expected completed
+13:27:33   Verbose  |     Resuming after completion
+13:27:33   Info     |     Submitted by: Tina (Test) at 2022-03-03T13:27:25.7892278+00:00
+13:27:33   Info     |     Notes: 42 passed
+                    |     0 failed
+                    |     PASS
+```
 
-https://github.com/OctopusDeploy/blog/blob/manual/blog/2021-09/modeling-manual-deployments/index.md
+After your first deployment, you may decide to adjust the process.
 
-Old stuff, like VB6 DLLs - Esoteric
-Manual intervention
-Paste log files or output as comments to capture the action done
-The approval steps become "check it worked" - and eventually as you gain confidence and remove the manual steps
+## Look for opportuinities to automate
 
-At least track it - something happened.
+When you first started mapping your manual deployment process, automation may not have been your goal. However, you now have a starting point for automation and can review the steps to see if you can progress them through these levels of maturity:
 
-Word doc / wiki page / etc... pages of conditional instructions - put them into Octopus and it can be the documentation with extra benefits.
+1. Manual steps
+1. A script that can be manually run
+1. A scripted step that runs automatically
 
-If you are using manual steps it doesn't really add to you cost.
+For example, the database backup is currently being done manually, but the instructions for this step could be updated to include a script that will run the backup. Although the script will still be manually run, it will make it more likely that the backup will be done the same way each time.
 
-Customers not in control of target infrastructure - so the manual process lets them track the deployment being done in an ops group.
+Once you have a script instruction that is being manually executed, you could move that script into a new step. The existing manual intervention step could become a "check" that the automation worked as expected and when you have confidence in the automation you could remove the manual step entirely.
 
-Completely manual customers - i.e. no source control, no builds, etc
+You may find that there are existing step templates that will help you with your automation, for example there are step templates for backing up SQL databases on AWS, Azure, or SQL Server. You can find step templates by navigating to **{{ Library,Step Templates,BROWSE LIBRARY }}**.
 
+Once you have introduced more automation, you should review how often you deploy. If your deployment was only released once a month because it took so long to roll it out, you could look at moving to weekly releases.
 
+Frequent deployments are correlated to high-performance, not simply because releasing often is a high-performance trait, but beause of what you learn and adjust to achieve it.
 
-## Create a checklist
+## Summary
 
-To demonstrate this technique, we'll make up a legacy system. You may already have a document or checklist that describes how to deploy the website, so we'll start with that.
-
-You run a web application on multiple IIS servers, behing a load balancer. You deploy by taking each server out of balance in turn and applying the new version of the application.
-
-The deployment process is:
-
-
-
-This checklist will be our starting point for migrating the deployment into Octopus Deploy to help run the manual deployment.
-
-## Model your checklist in Octopus Deploy
-
-You may find that your process deploys multiple components. If you can split the checklist into independent deployments, you should do so. This might not be possible if the process is highly coupled and you would need to revisit the process after you have thought about how you could isolate the deployments.
-
-Map each checklist item as a manual intervention
-
-## Perform a deployment
-
-Complete your next deployment with Octopus Deploy
-
-## Adjust
-
-Adjust the process if it isn't right and repeat!
-
-## Automate a small part
-
-Pick a step to automate.
-
-How to choose a step? You want to build confidence, so start with an easy step.
-
-Each step that you automate will free up time that you can use to tackle more complex steps.
-
-implement it - create an additional step (before or after?) your manual step
-
-When you pick a step template, you might find it does more than you expected, for example a checklist that had separate steps for configuring a web server could be achieved in a single build-in step in Octopus Deploy. If this happens, disable all of the manual steps that have been achieved in the automation.
-
-### Sources of help
+## Further reading
 
 - Docs
 - Community Slack
 - Where else?
 
-## Be pragmatic
 
-There might be constraints that mean automating a particular step is difficult at this current time. That's okay. Just keep a note of any manual steps and why you could automate them and revisit it later.
 
-## Increase your deployment frequency
 
-Once you have introduced more automation, you should review how often you deploy. If your deployment was only released once a month because it took so long to roll it out, you could look at moving to weekly releases.
-
-Frequent deployments are correlated to high-performance, not simply because releasing often is a high-performance trait, but beause of what you learn and adjust to achieve it.
 
