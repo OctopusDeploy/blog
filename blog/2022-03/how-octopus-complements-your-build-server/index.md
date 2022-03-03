@@ -1,6 +1,6 @@
 ---
 title: How Octopus complements your build server
-description: A look at the ways how Octopus complements your choice of build server and completes your CI/CD pipeline.
+description: A look at how Octopus complements your choice of build server and completes your CI/CD pipeline.
 author: andrew.corrigan@octopus.com
 visibility: private
 published: 2022-03-28-1400
@@ -17,19 +17,19 @@ tags:
   - Testing
 ---
 
-We spent the last few months exploring 2 build server options in Jenkins and GitHub Actions. As we discovered, Jenkins is a traditional build server with a self-managed instance at its center, while GitHub Actions performs similar tasks but as a service in a product you may already use. Either is a worthwhile option as part of a continuous integration/continuous deployment (CI/CD) workflow, depending on your needs.
+We spent the last few months exploring 2 build server options in Jenkins and GitHub Actions. As we discovered, Jenkins is a traditional build server with a self-managed instance at its center, while GitHub Actions performs similar tasks but as a service in a product you may already use. Either is a worthwhile option as part of a Continuous Integration and Continuous Deployment (CI/CD) workflow, depending on your needs.
 
 As a deployment tool that sits between packages and their destinations, however, Octopus is build server agnostic. Octopus supports all major automation services on the market, but why should you connect them to Octopus?
 
-I mean, build servers can deploy too, right? They can, for sure, but they don’t quite solve the same problems Octopus does.
+Build servers can deploy too, but they don’t solve the same problems Octopus does.
 
-In this blog we look at how Octopus not only complements your build server of choice, but also completes your development pipeline.
+In this post, we look at how Octopus complements your build server of choice and completes your development pipeline.
 
 ## Build servers specialize in continuous integration. Octopus specializes in continuous deployment
 
-We talk a lot about CI/CD on this blog! Though ‘CI’ and ‘CD’ combine to make a catchy acronym and share the belief that repetition gives confidence, they’re separate concepts.
+We talk a lot about CI/CD on this blog. Though ‘CI’ and ‘CD’ combine to make a catchy acronym and share the belief that repetition gives confidence, they’re separate concepts.
 
-CI exists mostly to serve developers and is about automating the tasks that used to slow them down, such as compiling, building, and testing code. These are the same functions build servers excel at, so it’s no accident that many in DevOps now refer to build servers as ‘CI platforms’.
+CI exists mostly to serve developers. It's about automating the tasks that used to slow them down, such as compiling, building, and testing code. These are the same functions build servers excel at, so it’s no accident that many in DevOps now refer to build servers as ‘CI platforms’.
 
 CD processes, then, usually touch many teams as a release works its way through a pipeline’s environments. And where CD fundamentally differs to CI is the need for manual intervention at several stages.
 
@@ -37,15 +37,15 @@ Let’s look at how Octopus can help with managing those manual actions.
 
 ### Build human interactions into your deployment process
 
-As a release moves through a typical development pipeline (consisting of at least ‘Dev’, ‘QA’ and ‘Production’ environments), you may need the following types of human checks or actions:
+As a release moves through a typical development pipeline (consisting of at least Dev, QA, and Production environments), you may need the following types of human checks or actions:
 
 - Developers may want to check deployed changes in Dev before a release moves into QA.
-- A QA team will usually test the product as you’d expect customers to use it. This is different to the automated code tests during builds.
+- A QA team usually tests the product as you’d expect customers to use it. This is different to the automated code tests during builds.
 - A release may need sign-off from leadership before deployment to production (and thus your customers).
 
 In Octopus, you can build [manual intervention steps](https://octopus.com/docs/projects/built-in-step-templates/manual-intervention-and-approvals) right into your deployment processes. For example, if you need a deployment to pause and check for QA confirmation or management sign-off, that’s easy to add.
 
-This helps keep your deployments moving along as swiftly as you can.
+This helps keep your deployments moving along swiftly.
 
 ### Use spaces to manage access to manual interactions
 
@@ -59,11 +59,12 @@ You could set Octopus access so:
 - Project managers can only see the dashboard and reporting features
 - Teams can see only the projects they’re attached to
 
-This not only provides security around your instance, but also makes your info clearer by reducing the clutter for everyone.
+This not only provides security around your instance, but also makes your information clearer by reducing the clutter for everyone.
 
 ![An example of organisational structure using Octopus's Spaces feature](spaces.png)
 
 ## Octopus gives you confidence in releases
+
 Octopus helps provide greater confidence in your releases before they go to production. It does this in a few ways.
 
 ### Octopus matches your environment structure
