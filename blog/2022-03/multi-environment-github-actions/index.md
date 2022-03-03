@@ -4,8 +4,8 @@ description: As part of our series about Continuous Integration, learn how to bu
 author: terence.wong@octopus.com
 visibility: private
 published: 2022-03-22-1400
-metaImage:
-bannerImage: 
+metaImage: blogimage-multienvironmentdeploymentsgithubactions.png
+bannerImage: blogimage-multienvironmentdeploymentsgithubactions.png
 bannerImageAlt: A map with a boat with shipping containers sailing between islands which represent environments.
 isFeatured: false
 tags:
