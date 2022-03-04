@@ -14,26 +14,42 @@ tags:
   - Product
 ---
 
-While Octopus Deploy makes complex deployment automation easy, you might have a scenario where you are still running a manual deployment. We have talked to customers with a legacy application that needs some special steps during the release process, or who have esoteric technology that makes it hard to work out where to start the automation journey.
+While Octopus Deploy makes complex deployment automation easy, you may have a scenario where you are still running a manual deployment. We have talked to customers with legacy applications that need special steps during the release process, or who have esoteric technology that makes it hard to work out where to start the automation journey.
 
-In this post, you'll find out how you can model your manual deployments using manual intervention steps and the benefits this will bring to your release process.
+In this post, you'll find out how you can model your manual deployments using manual intervention steps and the benefits this brings to your release process.
 
-If you are new to Octopus, you might find this a useful way to advance from your current deployment process to full automation. Existing customers may find that this technique allows them to bring to their manual releases all the benefits of approvals and tracking that they get with automated deployments.
+If you are new to Octopus, you might find this a useful way to advance from your current deployment process to full automation. Existing customers may find that this technique allows them to bring familiar benefits they already get from automated deployments to a manual release.
 
 ## Benefits of using Octopus for manual deployments
 
+There are many benefits to be gained from using Octopus for manual deployments. These go beyond the benfits you might get from a task management application. You will be able to:
+
 - Use lifecycles to track deployments across multiple environments
+- Provide instructions for completing each step
 - Ensure each step is completed by an authorised team member
 - Improve the reliability and traceability of deployments
 - Satisfy audit requirements with less effort
 
-## Creating a checklist
+You might also be able to automate some steps in an otherwise manual deployment to obtain further benefits.
 
-When you have a manual release process, there is usually a document or checklist that explains the steps required to install the software along with who can perform each step. Before you re-create this in Octopus, it is worth spending some time refining the stages to agree who does what, in which order.
+## Modelling your manual deployments
 
-If your document is lengthy, you might find you can divide it with headings that will give you a natural task list.
+You will need to complete four steps to model your manual deployments:
 
-You should end up with something like the following checklist:
+1. Create a checklist
+1. Model your teams
+1. Define a lifecyle
+1. Turn your checklist into a deployment process
+
+The first step is a paper exercise that helps to design the process that you will use later. The other steps are done in Octopus to model your deployment according to the steps you discover in the design stage.
+
+### Create a checklist
+
+When you have a manual release process, there is usually a document or checklist that describes the steps required to install the software. This might also include details of who can perform each step. Before you re-create this in Octopus, it is worth spending some time refining the stages to agree who does what, in which order.
+
+If your document is lengthy, you might find you can divide it with headings that can be converted into a natural task list.
+
+You should end up with something similar to the following checklist:
 
 | Step   | Title                                                        | Who  |
 |--------|--------------------------------------------------------------|------|
@@ -46,11 +62,15 @@ You should end up with something like the following checklist:
 | 7      | Copy the temporary folder into the live folder               | Ops  |
 | 8      | Check the application loads as expected                      | Test |
 
-If you didn't have a checklist before you started this exercise, you are likely to find that the checklist already increases the reliability of your deployments by ensuring the steps all occur and are done in the right order. Now we can transfer this into Octopus to get the benefits of workflow management and tracking.
+If you don't have an existing checklist, you are likely to find that the checklist increases the reliability of your deployments by ensuring the steps all occur and are done in the right order.
 
-## Create teams
+Now we can transfer this into Octopus to get the benefits of workflow management and tracking.
 
-The checklist contains three teams who are responsible for the deployment: DBAs, Ops, and Test. When you create the process in Octopus, each step will have a *responsible team*. Follow these steps to add each team to Octopus:
+### Model your teams
+
+The sample checklist lists three teams in the *who* column that are responsible for the deployment: DBAs, Ops, and Test. When you create the process in Octopus, each step can be assigned to a *responsible team*. To model this, you can create teams and add team members to use when you define the deployment process.
+
+Follow these steps to add each team to Octopus:
 
 - Navigate to **{{ Configuration,Teams }}**
 - Select **ADD TEAM**
@@ -68,15 +88,17 @@ The checklist contains three teams who are responsible for the deployment: DBAs,
 The **Project deployer** role grants the user all project contributor permissions, plus: deploying releases and executing runbooks.
 :::
 
-You can add team members by selecting the **ADD MEMBER** option. It is possible to assign specific users or roles to a team.
-
-With the three teams set up with their respective team members, you are ready to model the checklist as a process.
+You can add team members by selecting the **ADD MEMBER** option.
 
 ![The teams list showing the DBA team, the Ops team, and the test team](manual-deployment-teams.jpg)
 
-## Create a lifecycle
+### Define a lifecycle
 
-The lifecycle for your manual deployment might not match a lifecyle you are using for automated deployments. If this is the case, you can create a new lifecyle to use with your manual release process.
+[Lifecycles](https://octopus.com/docs/releases/lifecycles) give you control over the way releases of your software are promoted between your environments. For manual deployments, you will use lifecycles to control the order of promotion, for example to prevent a version of software being deployed to *production* if it hasn't first been deployed to the *test* environment.
+
+You will need to define the environments first and then use a lifecycle to set the order in which release should flow through the environments.
+
+You can add environments with the following steps:
 
  - Navigate to **{{ Infrastructure,Environments }}**
  - Select **ADD ENVIRONMENT**
@@ -84,10 +106,10 @@ The lifecycle for your manual deployment might not match a lifecyle you are usin
  - Select **SAVE**
 
 :::hint
-Normally after adding an environment, you would add deployment targets. As you are modelling a manual deployment you can leave the environments empty at this stage.
+You would normally add deployment targets to a new environment, but you can skip this step until you need to perform some form of automation.
 :::
 
-Once you have created your environments, you can define a lifecyle that sets the order for releases. For example, you can enforce that a release must be deployed to the test environment before it is promoted to the live environment.
+Once your environments have been added, you can create a lifecycle and add the environments as *phases*:
 
 - Navigate to **{{ Library,Lifecycles }}**
 - Select **ADD LIFECYCLE**
@@ -99,16 +121,20 @@ Your completed lifecyle should contain a phase for each environment as shown bel
 
 ![A manual deployment lifecycle with a test phase and a live phase](manual-lifecycles.jpg)
 
-## Modelling the steps
+### Turn your checklist into a deployment process
 
-To add your checklist items as steps, you will need to create a new project. You can do this by navigating to **Projects** and selecting **ADD PROJECT**.
+The teams, environments, and lifecycles are all configured, so you are ready to use them to define your manual deployment process. The process is stored in a *project* in Octopus deploy, so the next step is to create a new project. To do this, follow these steps:
 
+- Navigate to **Projects**
+- Select **ADD PROJECT**
 - Add a **New project name**, such as "Manual Deployment"
 - Select the **Project group** where you want to add the new project, for example "Default Project Group"
 - Select the **Lifecycle**, for example the "Manual Deployment Lifecycle" you created previously
 - Select **SAVE**
 
 You will now see your project listed under the **Default Project Group**. You can also see the project listed on your dashboard.
+
+![The manual deployment project listed on the dashboard](manual-project-dashboard.jpg)
 
 You now have all the resources ready to add the steps, so navigate to **{{ Projects,Manual Deployment,Process }}** to begin.
 
@@ -130,36 +156,34 @@ When you have added your steps navigate to **{{ Projects,Manual Deployment,Proce
 
 ![The process shows the checklist steps and the manual deployment lifecycle](manual-deployment-process.jpg)
 
-You can adjust the steps and the lifecycle at any time if you need to change them.
-
 ## Using the process to track a release
 
 Although you don't have a package to deploy, you can still track the deployment using a release in Octopus.
 
 - Navigate to **{{ Projects,Manual Deployment,Process }}**
 - Select **CREATE RELEASE**
-- Enter a **Version**, you may want to follow on from an existing version number you have published
+- Enter a **Version**, you can enter the version or build number of the application you are deploying
 - Select **SAVE**
 
-You can now track the manual deployment to each environment and the release can only proceed to the *manual live environment* if it first gets deployed to the *manual test environment* as controlled by the lifecycle you configured.
+You can now track the manual deployment to each environment and the release can only proceed to the *manual live environment* if it first gets deployed to the *manual test environment* as controlled by the lifecycle you configured earlier.
 
 - From the release screen for your new version, select **DEPLOY TO MANUAL TEST ENVIRONMENT**
 - A confirmation screen will appear, review the information and select **DEPLOY**
 
-The deployment is created for the release, and the first manual intervention step is ready to be picked up by a member of the DBA team. The release is given a manual intervention icon to show you that it is waiting for human intervention.
+The deployment is created for the release, and the first manual intervention step, "Backup the database", is ready to be picked up by a member of the DBA team. The release is given a manual intervention icon to show you that it is waiting for a team member to pick it up.
 
 ![The Octopus dashboard with an orange eye icon that indicates a manual intervention is required](manual-intervention-needed.jpg)
 
 Only a member of the DBA Team can assign themselves the **Backup the database** task. They can do this by clicking on the release from the dashboard and selecting **ASSIGN TO ME**.
 
-The process for each step as the manual deployment progresses is:
+The process for each step of the manual deployment is:
 
 - Select **ASSIGN TO ME** on the step
 - Use the step instructions on the task summary to complete the step
 - Enter any notes, logs, or output from the manual step into the **Notes** field
 - Select **PROCEED** to complete the step
 
-As each step is completed, the next step will become available to members of the relevant team.
+As each step is completed, the next one will become available to members of the relevant team.
 
 The task log records the date and time the step was done, who completed it, and any notes they entered.
 
@@ -180,7 +204,7 @@ The task log records the date and time the step was done, who completed it, and 
                     |     PASS
 ```
 
-After your first deployment, you may decide to adjust the process.
+After your first deployment, you may decide to adjust the process. The process is snapshotted when you create a release to ensure the process is consistent across all deployments. To run the new process create a new release.
 
 ## Look for opportuinities to automate
 
@@ -188,27 +212,15 @@ When you first started mapping your manual deployment process, automation may no
 
 1. Manual steps
 1. A script that can be manually run
+1. A scripted step that runs automatically and is then checked manually
 1. A scripted step that runs automatically
 
-For example, the database backup is currently being done manually, but the instructions for this step could be updated to include a script that will run the backup. Although the script will still be manually run, it will make it more likely that the backup will be done the same way each time.
+For example, the database backup is currently being done manually, but the instructions for this step could be updated to include the script to run the backup. Although the script will still be manually run, it will make it more likely that the backup will be done the same way each time.
 
 Once you have a script instruction that is being manually executed, you could move that script into a new step. The existing manual intervention step could become a "check" that the automation worked as expected and when you have confidence in the automation you could remove the manual step entirely.
 
 You may find that there are existing step templates that will help you with your automation, for example there are step templates for backing up SQL databases on AWS, Azure, or SQL Server. You can find step templates by navigating to **{{ Library,Step Templates,BROWSE LIBRARY }}**.
 
-Once you have introduced more automation, you should review how often you deploy. If your deployment was only released once a month because it took so long to roll it out, you could look at moving to weekly releases.
-
-Frequent deployments are correlated to high-performance, not simply because releasing often is a high-performance trait, but beause of what you learn and adjust to achieve it.
-
 ## Summary
 
-## Further reading
-
-- Docs
-- Community Slack
-- Where else?
-
-
-
-
-
+You now know how to map a manual deployment in Octopus deploy and understand some of the benefits of doing this. You can use the process control and tracking in Octopus to introduce or improve several of the [ten pillars of pragmatic deployments](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments), as your deployments will be more repeatable, visible, auditable, standardized, and coordinated.
