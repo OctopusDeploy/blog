@@ -15,7 +15,7 @@ tags:
 
 ![Configure windows servers with Chocolatey, PowerShell, and Octopus Runbooks](automate_machine_chocolately.png)
 
-Runbooks automate routine, commonly performed tasks. One such task is the setup and installation of windows servers. In this blog, I demonstrate how to set up and install developer dependencies on a windows server using an Octopus Deploy runbook. The runbook can be executed to set up any number of windows machines.
+Runbooks automate routine, commonly performed tasks. One such task is the setup and installation of Windows servers. In this blog, I demonstrate how to set up and install developer dependencies on a windows server using an Octopus Deploy runbook. The runbook can be executed to set up any number of windows machines.
 
 !toc
 
