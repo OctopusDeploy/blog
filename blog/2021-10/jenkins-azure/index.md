@@ -22,7 +22,7 @@ To do this, you will need:
 - A Jenkins instance
 
 :::hint
-You can set up Jenkins in many ways. One way is to follow [this guide](https://docs.microsoft.com/en-us/azure/developer/jenkins/configure-on-linux-vm), completing steps 1-4. The guide will give you a live Jenkins instance on Azure.
+You can install Jenkins in many ways, for instance, for instance in [Linux or Windows](https://octopus.com/blog/jenkins-install-guide-windows-linux), on [Docker](https://octopus.com/blog/jenkins-docker-install-guide), or with [Helm](https://octopus.com/blog/jenkins-helm-install-guide). Alternatively, you could follow [this guide](https://docs.microsoft.com/en-us/azure/developer/jenkins/configure-on-linux-vm. If you complete steps 1-4. The guide will give you a live Jenkins instance on Azure.
 :::
 
 
