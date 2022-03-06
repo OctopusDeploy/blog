@@ -108,7 +108,7 @@ Next, you need to create an account in Azure by navigating to the [Azure portal]
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/QDwDi17Dkfs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-1. In the Azure Portal, open the menu, ![](menu.png), navigate to **{{Azure Active Directory > Properties}}** and copy the value from the **Tenant ID** field. This is your **Tenant ID**.
+1. In the Azure Portal, open the menu, navigate to **{{Azure Active Directory > Properties}}** and copy the value from the **Tenant ID** field. This is your **Tenant ID**.
 1. Next you need your **Application ID**.
   - If you created an AAD registered application, navigate to **{{Azure Active Directory > App Registrations}}**, click **View all applications**, select the app and copy the **Application ID**.  Please note, the Azure UI defaults to **Owned Applications** tab.  Click the **All Applications** tab to view all app registrations. 
   - If you haven't created a registered app, navigate to **{{Azure Active Directory > App Registrations}}**, click on **New registration** and add the details for your app, and click **Save**. Make note of the **Application ID**.
