@@ -15,7 +15,7 @@ tags:
   - Testing
 ---
 
-Although a relative newcomer to the world of continuous integration (CI), GitHub’s adding of ‘Actions’ has seen its strong community build useful tasks that plug right into your repository.
+Although relatively new to the world of continuous integration (CI), GitHub’s adding of ‘Actions’ has seen its strong community build useful tasks that plug right into your repository.
 
 These workflows allow you to run non-standard tasks to help you test, build, and push your work to your deployment tools.
 
@@ -23,13 +23,13 @@ In no particular order, here are 10 of our favorites, plus [how to install them]
 
 ## 1: Test reporter
 
-Showing all your test results in GitHub, the [test reporter](https://github.com/marketplace/actions/test-reporter) action helps keep the important parts of your code and testing processes in one place. Providing the results in XML or JSON formats as part of a ‘check run’, this action tells you where your code failed and with useful stats.
+Showing all your test results in GitHub, the [test reporter](https://github.com/marketplace/actions/test-reporter) action helps keep the important parts of your code and testing processes in one place. Providing the results in XML or JSON formats as part of a ‘check run’, this action tells you where your code failed with useful stats.
 
 Test reporter already supports most of the popular testing tools for the likes of .NET, JavaScript and more. Plus, you can add more by raising an issue or contributing yourself.
 
 Supported frameworks:
 
--	.NET: xUnit, NUnit and MSTest
+-	.NET: xUnit, NUnit, and MSTest
 -	Dart: test
 -	Flutter: test
 -	Java: JUnit
@@ -45,7 +45,7 @@ Check out the action’s page for the full list of features, including [advanced
 
 ## 3: Setup PHP
 
-The [Setup PHP action](https://github.com/marketplace/actions/setup-php-action) allows you to setup PHP extensions and.ini files for application testing on all major operating systems.
+The [Setup PHP action](https://github.com/marketplace/actions/setup-php-action) allows you to setup PHP extensions and .ini files for application testing on all major operating systems.
 
 It’s also compatible with tools like GitHub’s composer, PHP-config, symfony, and more. See the marketplace page for the [full list of compatible tools](https://github.com/marketplace/actions/setup-php-action#wrench-tools-support).
 
@@ -53,7 +53,7 @@ It’s also compatible with tools like GitHub’s composer, PHP-config, symfony,
 
 The [GitTools Action](https://github.com/marketplace/actions/gittools) allows you to use both [GitVersion](https://gitversion.net/) and [GitReleaseManager](https://github.com/GitTools/GitReleaseManager) in your pipeline.
 
-GitVersion helps solve common versioning problems with semantic versioning (also known as ‘Semver’), for consistency across your projects. GitVersion helps avoid duplication, saves rebuilding time, and way more. Benefiting CI, it creates version numbers that labels builds and makes variables available to the rest of your pipeline.
+GitVersion helps solve common versioning problems with semantic versioning (also known as ‘Semver’), for consistency across your projects. GitVersion helps avoid duplication, saves rebuilding time, and much more. Benefiting CI, it creates version numbers that labels builds and makes variables available to the rest of your pipeline.
 
 Meanwhile, GitReleaseManager automatically creates, attaches, and publishes exportable release notes.
 
@@ -70,7 +70,7 @@ Once set to react to the GitHub events of your choosing (such as commits to your
 
 ## 6: Repository dispatch
 
-The [repository dispatch action](https://github.com/marketplace/actions/repository-dispatch) makes it easier to trigger actions from a 'repository dispatch' event. Plus, it lets you trigger and chain the actions from one or more repository.
+The [repository dispatch action](https://github.com/marketplace/actions/repository-dispatch) makes it easier to trigger actions from a 'repository dispatch' event. Plus, it lets you trigger and chain the actions from one or more repositories.
 
 You need to [create a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) for this action to work as GitHub won’t support it by default.
 
@@ -111,14 +111,14 @@ We’ve created 4 useful plugins for those using Octopus to deploy through their
    - [Create releases](https://github.com/marketplace/actions/create-release-in-octopus-deploy)
    - [Start runbooks](https://github.com/marketplace/actions/run-runbook-in-octopus-deploy)
 
-And, given the nature of GitHub Actions as a service, other users have [contributed some Octopus-related actions too](https://github.com/marketplace?type=&verification=&query=Octopus+). Check those out if you’re after even more integration with Octopus.
+Given the nature of GitHub Actions as a service, other users have [contributed some Octopus-related actions](https://github.com/marketplace?type=&verification=&query=Octopus+) too. Check those out if you’re after even more integration with Octopus.
 
 ## How to install actions {#install-actions}
 
 Installing actions in GitHub is simple:
 
 1. Find the action you want on the [GitHub Marketplace](https://github.com/marketplace?type=actions).
-2. Read the marketplace page to check for prerequisites.
+2. Read the Marketplace page to check for prerequisites.
 3. Click **Use latest version** in the top right (or select an older version if you need).
 4. Copy the code from the pop-up, paste it into your repository’s .yml file, and save.
 5. Make sure you read the action’s documentation to check for any extra setup and how to use the action.
