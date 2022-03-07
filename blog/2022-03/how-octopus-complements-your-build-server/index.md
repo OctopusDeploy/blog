@@ -1,6 +1,6 @@
 ---
 title: How Octopus complements your build server
-description: A look at how Octopus complements your choice of build server and completes your CI/CD pipeline.
+description: Learn how Octopus complements your choice of build server and completes your CI/CD pipeline.
 author: andrew.corrigan@octopus.com
 visibility: private
 published: 2022-03-28-1400
@@ -17,7 +17,7 @@ tags:
   - Testing
 ---
 
-We spent the last few months exploring 2 build server options in Jenkins and GitHub Actions. As we discovered, Jenkins is a traditional build server with a self-managed instance at its center, while GitHub Actions performs similar tasks but as a service in a product you may already use. Either is a worthwhile option as part of a Continuous Integration and Continuous Deployment (CI/CD) workflow, depending on your needs.
+We spent the last few months exploring 2 build server options in Jenkins and GitHub Actions. As we discovered, Jenkins is a traditional build server with a self-managed instance at its center, while GitHub Actions performs similar tasks but as a service in a product you may already use. Either is worthwhile as part of a Continuous Integration and Continuous Deployment (CI/CD) workflow, depending on your needs.
 
 As a deployment tool that sits between packages and their destinations, however, Octopus is build server agnostic. Octopus supports all major automation services on the market, but why should you connect them to Octopus?
 
@@ -25,15 +25,15 @@ Build servers can deploy too, but they don’t solve the same problems Octopus d
 
 In this post, we look at how Octopus complements your build server of choice and completes your development pipeline.
 
-## Build servers specialize in continuous integration. Octopus specializes in continuous deployment
+## Build servers provide continuous integration, Octopus provides continuous deployment
 
 We talk a lot about CI/CD on this blog. Though ‘CI’ and ‘CD’ combine to make a catchy acronym and share the belief that repetition gives confidence, they’re separate concepts.
 
-CI exists mostly to serve developers. It's about automating the tasks that used to slow them down, such as compiling, building, and testing code. These are the same functions build servers excel at, so it’s no accident that many in DevOps now refer to build servers as ‘CI platforms’.
+CI exists mostly to serve developers. It's about automating tasks that used to slow them down, such as compiling, building, and testing code. These are the same functions build servers excel at, so it’s no accident that many in DevOps refer to build servers as ‘CI platforms’.
 
-CD processes, then, usually touch many teams as a release works its way through a pipeline’s environments. And where CD fundamentally differs to CI is the need for manual intervention at several stages.
+CD processes usually touch many teams as a release works its way through a pipeline’s environments. And where CD fundamentally differs to CI is the need for manual intervention at several stages.
 
-Let’s look at how Octopus can help with managing those manual actions.
+Let’s look at how Octopus helps with managing those manual actions.
 
 ### Build human interactions into your deployment process
 
@@ -49,7 +49,7 @@ This helps keep your deployments moving along swiftly.
 
 ### Use spaces to manage access to manual interactions
 
-Sometimes, those performing manual checks don’t need to see the full deployment picture. You can use Octopus’s Spaces feature to make sure teams only see what they need. 
+Sometimes, those performing manual checks don’t need to see the full deployment picture. You can use Octopus Deploy’s Spaces feature to make sure teams only see what they need. 
 
 You could set Octopus access so:
 
@@ -59,9 +59,9 @@ You could set Octopus access so:
 - Project managers can only see the dashboard and reporting features
 - Teams can see only the projects they’re attached to
 
-This not only provides security around your instance, but also makes your information clearer by reducing the clutter for everyone.
+This provides security around your instance and makes your information clearer by reducing the clutter for everyone.
 
-![An example of organisational structure using Octopus's Spaces feature](spaces.png)
+![An example of organizational structure using Octopus's Spaces feature](spaces.png)
 
 ## Octopus gives you confidence in releases
 
@@ -90,11 +90,12 @@ What if you have complex projects that only need to hit certain targets in your 
 ### Octopus controls deployment order with lifecycles
 
 When setting your environments, Octopus automatically creates a ‘lifecycle’. The lifecycle controls the order a package moves through your environments whenever you deploy.
+
 This means:
 
 - You can never accidentally skip an environment
-- Releases will always promote in the correct order
-- Users will only get your release when you want them to
+- Releases always promote in the correct order
+- Users only get your release when you want them to
 
 You can have more than one lifecycle, though. For example, you might want special lifecycles for different projects, or use them to help set up a favored [deployment pattern](https://octopus.com/blog/common-deployment-patterns-and-how-to-set-them-up-in-octopus).
 
@@ -110,7 +111,7 @@ By the time you’re ready to push to production, you can trust your deployment 
 
 ## Octopus easily connects to both ends of your development pipeline
 
-We’ve already explored how, thanks to plugins and connecters, Octopus can connect to your build server of choice. You can find our plugins for popular CI platforms on the following marketplaces:
+We already explored how, thanks to plugins and connecters, Octopus can connect to your build server of choice. You can find our plugins for popular CI platforms on the following marketplaces:
 
 - [Jenkins](https://plugins.jenkins.io/octopusdeploy/)
 - [GitHub Actions](https://github.com/marketplace?type=&verification=&query=Octopus+)
@@ -118,13 +119,13 @@ We’ve already explored how, thanks to plugins and connecters, Octopus can conn
 - [Atlassian Bamboo](https://marketplace.atlassian.com/apps/1217235/octopus-deploy-bamboo-add-on?hosting=server&tab=overview)
 - [Azure Pipelines](https://marketplace.visualstudio.com/items?itemName=octopusdeploy.octopus-deploy-build-release-tasks)
 
-Not only that, but Octopus easily connects to your deployment targets too. Whether that’s physical servers, containers, or any of the major cloud providers - Octopus can deploy there. We’ve built much of this into Octopus to make it as easy as possible. Once you’ve defined some environments, set your deployment targets with our simple setup wizards.
+Not only that, but Octopus easily connects to your deployment targets too. Whether that’s physical servers, containers, or any of the major cloud providers - Octopus can deploy there. We’ve built much of this into Octopus to make it as easy as possible. After you’ve defined some environments, set your deployment targets with our simple setup wizards.
 
 ![Octopus's deployment target wizard, showing the types of targets you can connect to](deployment-targets.png)
 
 ## Octopus offers clarity for project statuses
 
-If a deployment by build server fails, it’s likely you’ll need to go through logs to find out what went wrong. This is probably fine for the tech-minded, but it’s not ideal for everyone involved in deployments, such as release managers, leaders, or QA teams.
+If a deployment by build server fails, it’s likely you need to go through logs to find out what went wrong. This is probably fine for the tech-minded, but it’s not ideal for everyone involved in deployments, such as release managers, leaders, or QA teams.
 
 Thankfully, Octopus’s dashboard makes it easy to check what releases each environment has, and across all your projects too. Even during deployments.
 
@@ -139,21 +140,18 @@ This could include performing:
 - Incident recovery
 - Backups, restores, and tests
 - Spin-up and teardown of infrastructure
-- The stop, start and restart of system services
+- The stop, start, and restart of system services
 - File cleanup
 - The running of scripts in any language you need
 
-We will cover Octopus Runbooks in more detail starting next month, but in the meantime, why not check out our [Runbooks documentation](https://octopus.com/docs/runbooks) for more info.
+We'll cover Octopus Runbooks in more detail starting next month, but in the meantime, why not check out our [Runbooks documentation](https://octopus.com/docs/runbooks) for more information.
 
 ## Conclusion
 
-Over the course of our series on continuous integration and build servers, we covered 2 great options in Jenkins and GitHub Actions. We looked at how they can help your teams and provided setup advice and free tools along the way.
+Over the course of [our series on Continuous Integration and build servers](https://octopus.com/blog/tag/CI%20Series), we covered 2 great options in Jenkins and GitHub Actions. We looked at how they can help your teams and provided setup advice and free tools along the way.
 
-We also looked at how though CI and CD are separate concepts solving different problems, they’re 2 sides of the same coin combining for something greater.
+We also looked at how, though CI and CD are separate concepts solving different problems, they’re 2 sides of the same coin combining for something greater.
 
-Finally, we offered insight on how Octopus can help complete your full CI/CD pipeline. But don’t just take our word for it, [sign up for a free trial](https://octopus.com/start) to see it in action for yourself!
+Finally, we offered insight into how Octopus can help complete your full CI/CD pipeline. But don’t just take our word for it, [sign up for a free trial](https://octopus.com/start) to see it in action for yourself.
 
 Happy deployments!
-
-## Related links
-- links to the other posts (I don't have all the URLs, sorry)
