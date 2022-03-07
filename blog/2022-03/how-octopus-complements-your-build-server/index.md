@@ -148,7 +148,7 @@ We'll cover Octopus Runbooks in more detail starting next month, but in the mean
 
 ## Conclusion
 
-Over the course of [our series on Continuous Integration and build servers](https://octopus.com/blog/tag/CI%20Series), we covered 2 great options in Jenkins and GitHub Actions. We looked at how they can help your teams, provided setup advice, and free tools (the [Jenkins Pipeline Generator](https://development.jenkinspipelines.com/index.html) and [GitHub Actions Workflow Generator](https://development.githubactionworkflows.com/index.html)) along the way.
+Over the course of [our series on Continuous Integration and build servers](https://octopus.com/blog/tag/CI%20Series), we covered 2 great options in Jenkins and GitHub Actions. We looked at how they can help your teams, provided setup advice, and free tools (the [Jenkins Pipeline Generator](https://jenkinspipelines.com) and [GitHub Actions Workflow Generator](https://githubactionworkflows.com)) along the way.
 
 We also looked at how though CI and CD are separate concepts solving different problems, they’re 2 sides of the same coin combining for something greater.
 
