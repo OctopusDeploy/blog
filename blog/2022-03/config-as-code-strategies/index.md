@@ -13,13 +13,13 @@ tags:
  - Configuration as Code 
 ---
 
-Since last year, when we released the early-access preview of Octopus Config as Code, there have been many questions about how to use the feature to get the best results. This article will explain some good practices for using config as code and how to adjust your strategy in different situations.
+Since we released the early-access preview of Octopus Config as Code last year, there have been many questions about how to use the feature for the best results. This article explains some good practices for using config as code and how to adjust your strategy in different situations.
 
 ## Why use config as code?
 
 Git is the perfect solution for versioning code and keeping track of changes over time. It has established patterns for branching the code and for publishing and approving changes. It also allows you to compare versions and travel back in time if you need to.
 
-The Octopus Config as Code feature enables you to store your deployment process as configuration files in a Git repository rather than in the Octopus database. You can use config as code to:
+The Octopus Config as Code feature lets you store your deployment process as configuration files in a Git repository rather than in the Octopus database. You can use config as code to:
 
 - Branch your configuration and test changes in the branch before merging them
 - Review and collaborate on changes using pull requests
@@ -42,7 +42,7 @@ One of the first decisions you will need to make is where to store your deployme
 - Alongside your application code
 - In a separate deployment repository
 
-Each option is described below to explain when they work and when to avoid them. You might have noticed that you can arrange these possibilities along a scale from a one-to-one relationship with applications to a single large repository. We recommend keeping your deployment configuration in the same repository as the application code, but there are specific circumstances where the other options may be suitable.
+Read on, to learn when each option works best and when to avoid them. You might have noticed that you can arrange these possibilities along a scale from a one-to-one relationship with applications to a single large repository. We recommend keeping your deployment configuration in the same repository as the application code, but there are specific circumstances where the other options may be suitable.
 
 After setting up config as code, you can [move your deployment configuration files](https://octopus.com/docs/projects/version-control/moving-version-control) if you change your mind.
 
@@ -52,7 +52,7 @@ Placing your deployment configuration alongside your application code is the pat
 
 If you opt to store your configuration in the application repository, each application will have its own `.octopus` directory with the configuration files. This arrangement makes it easy to find the appropriate deployment process for each application.
 
-If you don't want changes to the deployment process to trigger a build, you can mask the `.octopus` folder in your build server.
+If you don't want changes to the deployment process to trigger a build of your application, you can mask the `.octopus` folder in your build server.
 
 This pattern is ideal when the team is responsible for both the application and its deployment.
 
