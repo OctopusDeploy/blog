@@ -219,7 +219,7 @@ In this post, you built a web application using Jenkins, pushed it to the ECR, a
 
 Octopus Deploy provides a dedicated dashboard to view deployments in their different stages. The dashboard highlights how Octopus Deploy supplements a CI tool like Jenkins. 
 
-Octopus Deploy supports all the major cloud providers, including Azure, Google, and Amazon. If you're not already using Octopus, you can start a [free trial](https://octopus.com/).
+Octopus Deploy supports all the major cloud providers, including Azure, Google, and Amazon. If you're not already using Octopus, you can start a [free trial](https://octopus.com/start).
 
 Check out our other posts about deploying with Jenkins, Kubernetes, and Octopus Deploy:
 
