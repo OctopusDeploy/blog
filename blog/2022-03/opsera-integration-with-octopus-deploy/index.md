@@ -15,7 +15,7 @@ tags:
   - Continuous Deployment
 ---
 
-We've partnered with [Opsera](https://www.opsera.io/) to provide integration with Octopus Deploy. You can integrate Octopus Deploy with the 95+ platforms that Opsera supports as part of its no-code DevOps orchestration platform.
+We've partnered with [Opsera](https://www.opsera.io/) to provide integration with Octopus Deploy. You can integrate Octopus with the 95+ platforms that Opsera supports as part of its no-code DevOps orchestration platform.
 
 It can be challenging to automate your CI/CD pipeline, especially when you're using different solutions. It requires technical know-how and experience to orchestrate the various tools, pipelines, and insights required by your development teams. This is where Opsera can help. 
 
@@ -39,7 +39,7 @@ A powerful feature of Opsera is its ability to visualize and orchestrate pipelin
 
 ![Workflow visualization in Opsera showing Java-based project](workflow.png)
 
-This workflow represents a Java-based project: build source code through the command line → push artifacts to Nexus repository → deploy to IIS through Octopus Deploy. 
+This workflow represents a Java-based project: build source code through the command-line → push artifacts to Nexus repository → deploy to IIS through Octopus Deploy. 
 
 Opsera displays each step of a workflow; each step represents a tool and an operation to be performed.
 
