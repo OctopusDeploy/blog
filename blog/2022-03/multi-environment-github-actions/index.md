@@ -2,7 +2,7 @@
 title: Multi-environment deployments with GitHub Actions and Octopus
 description: As part of our series about Continuous Integration, learn how to build a Docker image in GitHub Actions, push to ECR, and deploy to EKS with Octopus.
 author: terence.wong@octopus.com
-visibility: private
+visibility: public
 published: 2022-03-22-1400
 metaImage: blogimage-multienvironmentdeploymentsgithubactions.png
 bannerImage: blogimage-multienvironmentdeploymentsgithubactions.png
@@ -18,7 +18,7 @@ tags:
 
 GitHub Actions allows developers to perform DevOps operations in a GitHub repository. The GitHub community maintains templates that integrate third-party tools and repositories, like Jenkins or Amazon Elastic Container Registry (ECR). 
 
-Although GitHub Actions provides a contained solution, a dedicated continuous delivery tool like Octopus Deploy provides the developer with essential benefits such as environments, a dashboard to visualize environments, and a standardized step template library for a consistent user experience. 
+Although GitHub Actions provides a contained solution, a dedicated continuous delivery tool like Octopus Deploy provides you with benefits such as environments, a dashboard to visualize environments, and a standardized step template library for a consistent user experience. 
 
 In this post, I show you how to build a Docker image in a GitHub Actions workflow, publish the image to Amazon Elastic Container Registry (ECR), and use Octopus Deploy to deploy the image to a web application on Amazon Elastic Kubernetes Service (EKS).
 
@@ -127,7 +127,7 @@ jobs:
       
 ```
 
-GitHub Actions creates an action on a push or pull request on the main branch. The steps check out the code, authenticate and log into AWS, then build, tag, and push the image to Amazon ECR. GitHub Actions could use a similar step template to push to other cloud repositories, like Google or Microsoft. 
+GitHub Actions creates an action on a push or pull request on the main branch. The steps check out the code, authenticate and log into AWS, then build, tag, and push the image to Amazon ECR. GitHub Actions can use a similar step template to push to other cloud repositories, like Google or Microsoft. 
 
 Commit your changes and go to the **Actions** tab, then click the title of your commit message. You see the various stages of the workflow as it reaches completion.
 
@@ -151,7 +151,7 @@ Go to **Infrastructure**, then **Accounts**, then **Add Account**, then **AWS Ac
 
 Set up your AWS Kubernetes cluster as a deployment target in Octopus Deploy by going to **Infrastructure**, then **Deployment Targets**, then **Add Deployment Target**, then **Kubernetes Cluster**, then **Add**. 
 
-You can [follow the steps in our docs](https://octopus.com/docs/infrastructure/deployment-targets#adding-deployment-targets), which indicate the fields to add to set up the deployment target. In this section you  give the deployment target a target role. This will be referenced in the Octopus Deploy step later.
+You can [follow the steps in our docs](https://octopus.com/docs/infrastructure/deployment-targets#adding-deployment-targets), which indicate the fields to add to set up the deployment target. In this section you give the deployment target a target role. This will be referenced in the Octopus Deploy step later.
 
 ## Deploying to EKS step
 
