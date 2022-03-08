@@ -31,13 +31,21 @@ The next step is to register Octopus Deploy in Opsera through the Tool Registry.
 
 A powerful feature of Opsera is its ability to visualize and orchestrate pipeline workflows:
 
+![Workflow Visualization](workflow.png)
+
 This workflow represents a Java-based project: build source code through the command line → push artifacts to Nexus repository → deploy to IIS through Octopus Deploy. Opsera displays each step of a workflow; each step represents a tool and an operation to be performed.
 
+![](step-setup.png)
+
 Editing the configuration enables you to customize the properties and actions encompassed by its step:
+
+![](octopus-integration-settings.png)
 
 This step represents a deployment to IIS through Octopus Deploy. Resources like channels, projects, and roles are exposed through the Opsera UI, providing a consistent experience across the platforms it supports.
 
 Once the pipeline has been established, it can be run based on a series of events or as a scheduled task:
+
+![](pipeline-logs.png)
 
 ## Conclusion
 
