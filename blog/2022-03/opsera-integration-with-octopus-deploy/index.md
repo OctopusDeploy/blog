@@ -61,6 +61,6 @@ Opsera provides a self-service platform to help you automate your CI/CD through 
 
 Octopus Deploy joins the 95+ platforms supported by Opsera as part of its no-code DevOps orchestration platform. The power of Opsera is its ability to easily integrate other systems with Octopus Deploy.
 
-Customers of Opsera who are interested in using Octopus Deploy for their deployments can sign up for a [free trial](https://octopus.com/start). Using the steps (above), you'll be able to quickly incorporate our deployment capabilities as part of an orchestration through Opsera.
+If you're a customer of Opsera and you're interested in using Octopus Deploy for your deployments, you can [sign up for a free trial](https://octopus.com/start). Using the steps above, you can quickly incorporate our deployment capabilities as part of an orchestration through Opsera.
 
 Happy deployments!
