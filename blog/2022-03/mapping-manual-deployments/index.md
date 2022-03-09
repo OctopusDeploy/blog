@@ -102,7 +102,7 @@ You can add environments with the following steps:
 
  - Navigate to **{{ Infrastructure,Environments }}**
  - Select **ADD ENVIRONMENT**
- - Enter a **New environment name**, for example "Manual Test Environment"
+ - Enter a **New environment name**, for example "Test"
  - Select **SAVE**
 
 :::hint
@@ -165,9 +165,9 @@ Although you don't have a package to deploy, you can still track the deployment 
 - Enter a **Version**, you can enter the version or build number of the application you are deploying
 - Select **SAVE**
 
-You can now track the manual deployment to each environment. The release can only proceed to the *manual live environment* if it first gets deployed to the *manual test environment* as controlled by the lifecycle you configured earlier.
+You can now track the manual deployment to each environment. The release can only proceed to the *live* environment if it first gets deployed to the *test* environment as controlled by the lifecycle you configured earlier.
 
-- From the release screen for your new version, select **DEPLOY TO MANUAL TEST ENVIRONMENT**
+- From the release screen for your new version, select **DEPLOY TO TEST**
 - A confirmation screen will appear, review the information and select **DEPLOY**
 
 The deployment is created for the release, and the first manual intervention step, "Backup the database", is ready to be picked up by a member of the DBA team. The release has a manual intervention icon to show you that it is waiting for a team member to pick it up.
