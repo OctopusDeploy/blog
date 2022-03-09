@@ -202,6 +202,8 @@ In this post, you learned:
 - How to write basic workflows for testing Java and DotNET Core applications.
 - How to process test results and display the generated reports.
 
+!include <githubactions-webinar-feb-2022>
+  
 !include <q1-2022-newsletter-cta>
 
 Happy deployments!
