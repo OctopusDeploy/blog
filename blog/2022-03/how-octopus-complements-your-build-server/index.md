@@ -3,7 +3,7 @@ title: How Octopus complements your build server
 description: Learn how Octopus complements your choice of build server and completes your CI/CD pipeline.
 author: andrew.corrigan@octopus.com
 visibility: private
-published: 2022-03-28-1400
+published: 2022-03-29-1400
 metaImage: blogimage-howoctopuscomplimentsyourciserver-2022.png
 bannerImage: blogimage-howoctopuscomplimentsyourciserver-2022.png
 bannerImageAlt: People writing code with an arrow showing it delivered to a build server then an arrow to the Octopus Deploy logo as a puzzle piece.
@@ -148,7 +148,7 @@ We'll cover Octopus Runbooks in more detail starting next month, but in the mean
 
 ## Conclusion
 
-Over the course of [our series on Continuous Integration and build servers](https://octopus.com/blog/tag/CI%20Series), we covered 2 great options in Jenkins and GitHub Actions. We looked at how they can help your teams, provided setup advice, and free tools (the [Jenkins Pipeline Generator](https://jenkinspipelines.com) and [GitHub Actions Workflow Generator](https://githubactionworkflows.com)) along the way.
+Over the course of [our series on Continuous Integration and build servers](https://octopus.com/blog/tag/CI%20Series), we covered 2 great options in Jenkins and GitHub Actions. We looked at how they can help your teams and provided setup advice.
 
 We also looked at how though CI and CD are separate concepts solving different problems, they’re 2 sides of the same coin combining for something greater.
 
