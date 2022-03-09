@@ -58,7 +58,7 @@ Like Jenkins, [GitHub also has an actions marketplace](https://github.com/market
 
 ## What's next?
 
-Over the coming weeks, we'll share [guides for Jenkins and GitHub Actions, some bespoke tools we've created, and more](https://octopus.com/blog/tag/CI%20Series).
+Over the coming weeks, we'll share [guides for Jenkins and GitHub Actions, and more](https://octopus.com/blog/tag/CI%20Series).
 
 In the meantime, if you're not already using Octopus Deploy, you can [sign up for a free trial](https://octopus.com/start).
 
