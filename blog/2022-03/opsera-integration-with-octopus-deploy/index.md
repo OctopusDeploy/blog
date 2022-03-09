@@ -17,7 +17,7 @@ tags:
 
 We've partnered with [Opsera](https://www.opsera.io/) to provide integration with Octopus Deploy. You can integrate Octopus with the 95+ platforms that Opsera supports as part of its no-code DevOps orchestration platform.
 
-It can be challenging to automate your CI/CD pipeline, especially when you're using different solutions. It requires technical know-how and experience to orchestrate the various tools, pipelines, and insights required by your development teams. This is where Opsera can help. 
+It can be challenging to automate your CI/CD pipeline, especially when you're using different solutions. It requires technical know-how and experience to orchestrate the various tools, pipelines, and insights required by your development teams. This is where Opsera can help.
 
 Opsera provides a self-service platform to help you automate your CI/CD pipeline. You do this through a visual interface, so you can create declarative pipelines with unified insights.
 
@@ -29,7 +29,7 @@ Opsera and Octopus Deploy communicate through the Octopus API. So, the first ste
 
 This API key performs operations against Octopus Deploy on your behalf. See our docs to [learn how to create an API Key](https://octopus.com/docs/octopus-rest-api/how-to-create-an-api-key).
 
-The next step is to register Octopus Deploy in Opsera through the Tool Registry. Instructions for this step are in the section [Registering the Octopus Tool in Tool Registry](https://opsera.atlassian.net/wiki/spaces/OE/pages/1367474335/Octopus+Deployment#Registering-the-Octopus-tool-in-Tool-Registry) in Opsera's documentation. 
+The next step is to register Octopus Deploy in Opsera through the Tool Registry. Instructions for this step are in the section [Registering the Octopus Tool in Tool Registry](https://opsera.atlassian.net/wiki/spaces/OE/pages/1367474335/Octopus+Deployment#Registering-the-Octopus-tool-in-Tool-Registry) in Opsera's documentation.
 
 After this step is complete, you can use the Octopus Deploy integration in the pipeline UI of Opsera.
 
@@ -39,7 +39,7 @@ A powerful feature of Opsera is its ability to visualize and orchestrate pipelin
 
 ![Workflow visualization in Opsera showing Java-based project](workflow.png)
 
-This workflow represents a Java-based project: build source code through the command-line → push artifacts to Nexus repository → deploy to IIS through Octopus Deploy. 
+This workflow represents a Java-based project: build source code through the command-line → push artifacts to Nexus repository → deploy to IIS through Octopus Deploy.
 
 Opsera displays each step of a workflow; each step represents a tool and an operation to be performed.
 
@@ -60,5 +60,7 @@ After you establish the pipeline, it can run based on a series of events or as a
 Opsera provides a self-service platform to help you automate your CI/CD through a visual interface, so you can create declarative pipelines with unified insights.
 
 Octopus Deploy joins the 95+ platforms supported by Opsera as part of its no-code DevOps orchestration platform. The power of Opsera is its ability to easily integrate other systems with Octopus Deploy.
+
+Customers of Opsera who are interested in using Octopus Deploy for their deployments can sign up for a [free trial](https://octopus.com/start). Using the steps (above), you'll be able to quickly incorporate our deployment capabilities as part of an orchestration through Opsera.
 
 Happy deployments!
