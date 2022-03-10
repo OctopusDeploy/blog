@@ -16,9 +16,7 @@ Deployment tools like build servers, image repositories, and deployment targets 
 
 ## Build Servers
 
-The role of a build server is to take raw code, build it, and package it into a form ready for deployment. Build servers do this through YAML files. I built and pushed a sample web application called [Random Quotes](https://github.com/OctopusSamples/RandomQuotes-JS) to two container registries: Docker Hub and Google Container Registry.
-
-I used Github Actions to push to the Google Content Registry and Travis CI and CircleCI to push to DockerHub. Build servers are interchangeable, and they can push to any content registry.
+The role of a build server is to take raw code, build it, and package it into a form ready for deployment. Build servers do this through YAML files. I built and pushed a sample web application called [Random Quotes](https://github.com/OctopusSamples/RandomQuotes-JS). I used Github Actions to push to the Google Content Registry and Travis CI and CircleCI to push to DockerHub. Build servers are interchangeable, and they can push to any content registry.
 
 ### Github Actions
 
