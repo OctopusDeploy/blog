@@ -1,16 +1,4 @@
----
-title: "How Octopus Deploy makes for easier deployments"
-description: Learn about how Octopus Deploy works with different deployment tools and makes deployments easier
-author: terence.wong@octopus.com
-visibility: public
-published: 2021-09-01-1400
-bannerImage: blogimage-octopusmakesforeasierdeployments-2021.png
-metaImage: blogimage-octopusmakesforeasierdeployments-2021.png
-bannerImageAlt: Octopus tentacles slither out from an Octopus website window. Each tentacle holds a logo: Docker, AWS, GCP and CircleCI.
-isFeatured: false
-tags:
-- Product
----
+
 
 Deployment tools like build servers, image repositories, and deployment targets come in different shapes and sizes. Octopus Deploy supports a range of tools through a straightforward user interface and a best-in-class deployment experience. This blog shows you some deployment tools and how Octopus works to make deployments easier.
 
@@ -72,7 +60,7 @@ Octopus Deploy deploys to Azure, Google, and Amazon through an Octopus step. The
 
 The image below shows the Web Application in Azure, Google, and Amazon. The Web Application displays a random quote by a historical figure on every refresh.
 
-![Azure Website](azure-site.png "width=500")
+![Random Quotes](random-quotes.png "width=500")
 
 ## Conclusion
 
