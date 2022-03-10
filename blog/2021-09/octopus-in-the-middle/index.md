@@ -60,7 +60,7 @@ Octopus Deploy contains a built-in repository to manage local packages. The buil
 
 ### Octopus Deploy
 
-We have explored different tools that are part of a deployment. Octopus Deploy is a deployment tool that takes an image and deploys it to deployment targets. Octopus has broad support for deployment tools and has a friendly UI. Octopus Deploy uses dedicated environments to split releases into stages. This view is helpful to see the state of a release.
+We have explored different tools that are part of a deployment. Octopus Deploy is a deployment tool that takes an image and deploys it to deployment targets. Octopus has broad support for deployment tools and has a friendly UI. Octopus Deploy uses dedicated environments to split releases into stages. This view is helpful to see the progress of a release.
 
 ![Octopus UI](octopus-ui.png "width=500")
 
