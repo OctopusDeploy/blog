@@ -18,7 +18,7 @@ Deployment tools like build servers, image repositories and deployment targets c
 
 The role of a build server is to take raw code, build it, and package it into a form ready for deployment. This can be done through YAML files. I build and push a sample web application called Random Quotes to two container registries: Docker Hub and Google Container Registry.
 
-[I used the Random Quotes repository from Octopus Deploy Samples](https://github.com/OctopusSamples/RandomQuotes-JS).Each build server needed a configuration folder in the root level containing a YAML  file. The repository stores access keys to the build server and container registry. These keys are used in the YAML file to authenticate, build and push an image. I used Github Actions to push to the Google Content Registry and Travis CI and CircleCI to push to DockerHub. Build servers are interchangable and they can push to any content registry.
+[I used the Random Quotes repository from Octopus Deploy Samples](https://github.com/OctopusSamples/RandomQuotes-JS). Each build server needed a configuration folder in the root level containing a YAML  file. The repository stores access keys to the build server and container registry. These keys are used in the YAML file to authenticate, build and push an image. I used Github Actions to push to the Google Content Registry and Travis CI and CircleCI to push to DockerHub. Build servers are interchangable and they can push to any content registry.
 
 ### Github Actions
 
@@ -72,10 +72,12 @@ Octopus Deploy deploys to Azure, Google and Amazon through an Octopus step. The 
 
 ![Azure Release](azure-release.png "width=500")
 
-The image below shows the Web Application deployed onto Azure. This is the same view for Google and Amazon. The Web Application displays a random quote by a historical figures on every refresh.
+The image below shows the Web Application deployed onto Azure. This is the same view for Google and Amazon. The Web Application displays a random quote by a historical figure on every refresh.
 
 ![Azure Website](azure-site.png "width=500")
 
 ## Conclusion
 
-This blog introduced different build servers, content repositories and deployment targets. You saw how each tool has slightly different features and configuration requirements. A deployment process could be made up of a wide range of different tools. Octopus Deploy is able to work well with all of these tools by using a clean UI and providing best in class deployment experience. If you would like Octopus Deploy to help make deployments easier, [you can start a free trial.](https://octopus.com/start)
+This blog introduced different build servers, content repositories and deployment targets. You saw how each tool has slightly different features and configuration requirements. A deployment process could be made up of a wide range of different tools. Octopus Deploy is able to work well with all of these tools by using a clean UI and providing best in class deployment experience. If you would like Octopus Deploy to help make deployments easier, [you can start a free trial!](https://octopus.com/start)
+
+Happy Deployments!
