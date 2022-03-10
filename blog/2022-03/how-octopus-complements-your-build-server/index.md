@@ -49,13 +49,13 @@ This helps keep your deployments moving along swiftly.
 
 ### Use spaces to manage access to manual interactions
 
-Sometimes, those performing manual checks don’t need to see the full deployment picture. You can use Octopus Deploy’s Spaces feature to make sure teams only see what they need. 
+Sometimes, the people performing manual checks don’t need to see the full deployment picture. You can use Octopus Deploy’s Spaces feature to make sure teams only see what they need. 
 
 You could set Octopus access so:
 
 - Development teams can only deploy to Dev
 - QA teams can promote from Dev to QA
-- Managers can only confirm consent or reject deployment to the next phase
+- Managers can only confirm, consent, or reject deployment to the next phase
 - Project managers can only see the dashboard and reporting features
 - Teams can see only the projects they’re attached to
 
@@ -75,7 +75,7 @@ While build servers can technically deploy a package to any target, they tend to
 An environment is a collection of deployment targets used for a specific purpose, such as regional server farms, virtual agents, and cloud services.
 :::
 
-As you most likely know, an ideal deployment should flow through at least 2 environments before it reaches users. A minimalist environment structure, for example, would look like this:
+An ideal deployment should flow through at least 2 environments before it reaches users. A minimalist environment structure, for example, would look like this:
 
 - Development - an environment used by developers to iron out mistakes
 - Test - an environment for testing an app works as users would expect
@@ -85,7 +85,7 @@ Some pipelines may add extra environments, such as User Acceptance Testing (UAT)
 
 That’s why with Octopus, you deploy to environments rather than each individual target.
 
-What if you have complex projects that only need to hit certain targets in your environments? Don’t worry, we have tools to help you manage that, such as [variables](https://octopus.com/docs/projects/variables) and [tenants](https://octopus.com/docs/tenants).
+If you have complex projects that only need to hit certain targets in your environments, we have tools to help you manage that, such as [variables](https://octopus.com/docs/projects/variables) and [tenants](https://octopus.com/docs/tenants).
 
 ### Octopus controls deployment order with lifecycles
 
@@ -105,7 +105,7 @@ You can have more than one lifecycle, though. For example, you might want specia
 
 With Octopus, you set your deployment process just once per project. Unless you hit problems deploying to Dev, the process will stay the same throughout your entire pipeline.
 
-By the time you’re ready to push to production, you can trust your deployment process as it’s already worked before. Repeatable deployments breed confidence!
+By the time you’re ready to push to production, you can trust your deployment process because it’s worked before. Repeatable deployments breed confidence!
 
 ![An example deployment process in Octopus](deployment-process.png)
 
@@ -119,7 +119,7 @@ We already explored how, thanks to plugins and connecters, Octopus can connect t
 - [Atlassian Bamboo](https://marketplace.atlassian.com/apps/1217235/octopus-deploy-bamboo-add-on?hosting=server&tab=overview)
 - [Azure Pipelines](https://marketplace.visualstudio.com/items?itemName=octopusdeploy.octopus-deploy-build-release-tasks)
 
-Not only that, but Octopus easily connects to your deployment targets too. Whether that’s physical servers, containers, or any of the major cloud providers - Octopus can deploy there. We’ve built much of this into Octopus to make it as easy as possible. After you’ve defined some environments, set your deployment targets with our simple setup wizards.
+Octopus also easily connects to your deployment targets too. Whether that’s physical servers, containers, or any of the major cloud providers - Octopus can deploy there. We built much of this into Octopus to make it as easy as possible. After you define some environments, set your deployment targets with our simple setup wizards.
 
 ![Octopus's deployment target wizard, showing the types of targets you can connect to](deployment-targets.png)
 
@@ -150,7 +150,7 @@ We'll cover Octopus Runbooks in more detail starting next month, but in the mean
 
 Over the course of [our series on Continuous Integration and build servers](https://octopus.com/blog/tag/CI%20Series), we covered 2 great options in Jenkins and GitHub Actions. We looked at how they can help your teams and provided setup advice.
 
-We also looked at how though CI and CD are separate concepts solving different problems, they’re 2 sides of the same coin combining for something greater.
+We also explained how CI and CD are separate concepts solving different problems, yet are 2 sides of the same coin and combine for something greater.
 
 Finally, we offered insight into how Octopus can help complete your full CI/CD pipeline. But don’t just take our word for it, [sign up for a free trial](https://octopus.com/start) to see it in action for yourself.
 
