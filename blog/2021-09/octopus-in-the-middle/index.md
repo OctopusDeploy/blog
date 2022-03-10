@@ -1,6 +1,6 @@
 ---
 title: "How Octopus Deploy makes for easier deployments"
-description: Understand how Octopus Deploy can be the central orchestrator for a range of cloud services
+description: Learn about how Octopus Deploy works with different deployment tools and makes deployments easier
 author: terence.wong@octopus.com
 visibility: public
 published: 2021-09-01-1400
@@ -12,7 +12,7 @@ tags:
 - Product
 ---
 
-Deployment tools like build servers, image repositories, and deployment targets come in different shapes and sizes. Octopus Deploy makes deployments easier by supporting a range of tools through a straightforward user interface. This blog shows you some deployment tools and how Octopus works with them.
+Deployment tools like build servers, image repositories, and deployment targets come in different shapes and sizes. Octopus Deploy supports a range of tools through a straightforward user interface and a best-in-class deployment experience. This blog shows you some deployment tools and how Octopus works to make deployments easier.
 
 ## Build Servers
 
