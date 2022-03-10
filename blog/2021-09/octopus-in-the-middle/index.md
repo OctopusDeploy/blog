@@ -12,14 +12,13 @@ tags:
 - Product
 ---
 
-Deployment tools like build servers, image repositories and deployment targets come in different shapes and sizes. Octopus Deploy makes deployments easier by supporting a range of tools though a clear user interface. I show you some deployment tools and how Octopus fits with them in this blog.
+Deployment tools like build servers, image repositories and deployment targets come in different shapes and sizes. Octopus Deploy makes deployments easier by supporting a range of tools though a clear user interface. In this blog, I show you some deployment tools and how Octopus fits with them.
 
 ## Build Servers
 
 The role of a build server is to take raw code, build it, and package it into a form ready for deployment. This can be done through YAML files. I build and push a sample web application called Random Quotes to two container registries: Docker Hub and Google Container Registry.
 
-The repository I used is from the Octopus Deploy [samples repository](https://github.com/OctopusSamples/RandomQuotes-JS). Each build server requires a configuration folder in the root level containing a YAML  file. The repository stores access keys to the build server and container registry. These keys are used in the YAML file to authenticate, build and push an image. I used Github Actions to push to the Google Content Registry and Travis CI and CircleCI to push to DockerHub. Build servers are interchangable and they can push to any content registry.
-
+[I used the Random Quotes repository from Octopus Deploy Samples](https://github.com/OctopusSamples/RandomQuotes-JS).Each build server needed a configuration folder in the root level containing a YAML  file. The repository stores access keys to the build server and container registry. These keys are used in the YAML file to authenticate, build and push an image. I used Github Actions to push to the Google Content Registry and Travis CI and CircleCI to push to DockerHub. Build servers are interchangable and they can push to any content registry.
 
 ### Github Actions
 
@@ -45,7 +44,7 @@ A image repository is a place to store deployable images. Octopus Deploy uses th
 
 ### Docker Hub
 
-Docker Hub is a central repository for Docker images. It is free to sign up and create public repositories.
+Docker Hub is a central repository for Docker images. It is free to sign up and create public repositories. Here are the Travis CI and Circle CI images that have been pushed to Docker Hub.  
 
 ![Docker Hub](dockerhub.png "width=500")
 
@@ -79,4 +78,4 @@ The image below shows the Web Application deployed onto Azure. This is the same 
 
 ## Conclusion
 
-In this blog, I have introduced build servers, content repositories and deployment targets. Octopus Deploy makes deployments easier by supporting a range of deployment tools and providing a clean UI. [If you haven't already, you can start a free trial.](https://octopus.com/start)
+This blog introduced different build servers, content repositories and deployment targets. You saw how each tool has slightly different features and configuration requirements. A deployment process could be made up of a wide range of different tools. Octopus Deploy is able to work well with all of these tools by using a clean UI and providing best in class deployment experience. If you would like Octopus Deploy to help make deployments easier, [you can start a free trial.](https://octopus.com/start)
