@@ -16,17 +16,17 @@ Deployment tools like build servers, image repositories, and deployment targets 
 
 ## Build Servers
 
-The role of a build server is to take raw code, build it, and package it into a form ready for deployment. Build servers do this through YAML files. I built and pushed a sample web application called [Random Quotes](https://github.com/OctopusSamples/RandomQuotes-JS). I used Github Actions to push to the Google Content Registry and Travis CI and CircleCI to push to DockerHub. Build servers are interchangeable, and they can push to any content registry.
+The role of a build server is to take raw code, build it, and package it into a form ready for deployment. Build servers do this through YAML files. I built and pushed a sample web application called [Random Quotes](https://github.com/OctopusSamples/RandomQuotes-JS). I used GitHub Actions to push to the Google Content Registry and Travis CI and CircleCI to push to DockerHub. Build servers are interchangeable, and they can push to any content registry.
 
-### Github Actions
+### GitHub Actions
 
-Github Actions allows DevOps operations to be performed directly on a Github repository. Github Actions uses workflows, a feature that allows configuration files to specify a deployment process. The Github community maintains templates that cover different deployment targets. I used a basic one to set up a job to deploy to GCR.
+GitHub Actions allows DevOps operations to be performed directly on a GitHub repository. GitHub Actions uses workflows, a feature that allows configuration files to specify a deployment process. The GitHub community maintains templates that cover different deployment targets. I used a basic one to set up a job to deploy to GCR.
 
-![Github Actions Success](github-actions-success.png "width=500")
+![GitHub Actions Success](github-actions-success.png "width=500")
 
 ### Travis CI
 
-Travis CI is an open-source continuous delivery tool. It is free to sign up and works with GitHub. I connected my Github repository to Travis CI. Travis CI automatically detects changes on the repository and triggers a build. There wasn't a Travis CI template to use, but there were resources online to make it work.
+Travis CI is an open-source continuous delivery tool. It is free to sign up and works with GitHub. I connected my GitHub repository to Travis CI. Travis CI automatically detects changes on the repository and triggers a build. There wasn't a Travis CI template to use, but there were resources online to make it work.
 
 ![TravisCI Success](travisci-success.png "width=500")
 
@@ -48,7 +48,7 @@ Docker Hub is a central repository for Docker images. It is free to sign up and 
 
 ### Google Container Registry
 
-Google Container Registry is a container registry for the Google Cloud Platform. I added the Google Container Registry to the Github Actions step to push to Google Container Registry directly.
+Google Container Registry is a container registry for the Google Cloud Platform. I added the Google Container Registry to the GitHub Actions step to push to Google Container Registry directly.
 
 ![GCR](gcr.png "width=500")
 
