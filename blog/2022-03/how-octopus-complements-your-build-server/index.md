@@ -1,9 +1,9 @@
 ---
 title: How Octopus complements your build server
-description: Learn how Octopus complements your choice of build server and completes your CI/CD pipeline.
+description: Learn how Octopus Deploy complements your choice of build server and completes your CI/CD pipeline.
 author: andrew.corrigan@octopus.com
-visibility: private
-published: 2022-03-29-1400
+visibility: public
+published: 2022-03-23-1400
 metaImage: blogimage-howoctopuscomplimentsyourciserver-2022.png
 bannerImage: blogimage-howoctopuscomplimentsyourciserver-2022.png
 bannerImageAlt: People writing code with an arrow showing it delivered to a build server then an arrow to the Octopus Deploy logo as a puzzle piece.
