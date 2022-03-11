@@ -341,7 +341,7 @@ In this post you learned how to:
 - Backup the Docker volume
 - Configure a Docker container as a systemd service
 
-Running Docker images on a workstation or server is just the beginning though. In the next post, you'll learn how to deploy Jenkins to a Kubernetes cluster.
+Running Docker images on a workstation or server is just the beginning though. In the next post, you'll learn [how to deploy Jenkins to a Kubernetes cluster](https://octopus.com/blog/jenkins-helm-install-guide).
 
 !include <jenkins-webinar-jan-2022>
 

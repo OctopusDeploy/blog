@@ -7,7 +7,7 @@ published: 2022-01-10-1400
 metaImage: blogimage-buildservers.png
 bannerImage: blogimage-buildservers.png
 bannerImageAlt: 2 people writing code on laptops with arrows to a build server, then an arrow to the octopus logo in a cloud, and a rocket launching
-isFeatured: false
+isFeatured: true
 tags:
   - DevOps
   - CI Series
@@ -18,7 +18,7 @@ tags:
 
 When you're developing and deploying software, one of the first things to figure out is how to take your code and deploy your working application to a production environment where people can interact with your software.
 
-Most development teams understand the importance of version control to coordinate code commits, and build servers to compile and package their software, but Continuous Integration (CI) is a big topic. Over the next few months, we’re going into detail about Continuous Integration and how two of the most popular build servers, [Jenkins](https://www.jenkins.io/) and [GitHub Actions](https://github.com/features/actions), can help with your CI processes.
+Most development teams understand the importance of version control to coordinate code commits, and build servers to compile and package their software, but Continuous Integration (CI) is a big topic. Over the next few months, we’re going into detail about [Continuous Integration](https://octopus.com/blog/tag/CI%20Series) and how two of the most popular build servers, [Jenkins](https://www.jenkins.io/) and [GitHub Actions](https://github.com/features/actions), can help with your CI processes.
 
 ## Why build servers are important
 
@@ -58,11 +58,11 @@ Like Jenkins, [GitHub also has an actions marketplace](https://github.com/market
 
 ## What's next?
 
-Over the coming weeks, we'll share guides for Jenkins and GitHub Actions, some bespoke tools we've created, and more.
+Over the coming weeks, we'll share [guides for Jenkins and GitHub Actions, and more](https://octopus.com/blog/tag/CI%20Series).
 
 In the meantime, if you're not already using Octopus Deploy, you can [sign up for a free trial](https://octopus.com/start).
 
-You can also check out some of our previous posts on build servers, CI, and some of the ideas we’ll approach in this series:
+You can also check out some of our previous posts on build servers, CI, and some of the ideas we’ll approach in [this series](https://octopus.com/blog/tag/CI%20Series):
 
 - [Octopus vs. build servers](https://octopus.com/blog/octopus-vs-build-server)
 - [Integration 101: Octopus and build servers](https://octopus.com/blog/octopus-build-server-integration-101)

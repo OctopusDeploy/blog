@@ -21,7 +21,7 @@ tags:
 
 We spent the last few months exploring 2 build server options in Jenkins and GitHub Actions. As we discovered, Jenkins is a traditional build server with a self-managed instance at its center, while GitHub Actions performs similar tasks but as a service in a product you may already use. Either is a worthwhile option as part of a continuous integration/continuous deployment (CI/CD) workflow, depending on your needs.
 
-As a deployment tool that sits between packages and their destinations, however, Octopus is build server agnostic. Octopus can connect to all major automation services on the market, but why should you connect them to Octopus?
+As a deployment tool that sits between packages and their destinations, however, Octopus is build server agnostic. Octopus supports all major automation services on the market, but why should you connect them to Octopus?
 
 I mean, build servers can deploy too, right? They can, for sure, but they don’t quite solve the same problems Octopus does.
 
@@ -49,9 +49,9 @@ In Octopus, you can build [manual intervention steps](https://octopus.com/docs/p
 
 This helps keep your deployments moving along as swiftly as you can.
 
-### Use spaces to manage access to manual interactions
+### Use permissions to manage workflows
 
-Sometimes, those performing manual checks don’t need to see the full deployment picture. You can use Octopus’s Spaces feature to make sure teams only see what they need. 
+Sometimes, those performing manual checks don’t need to see the full deployment picture. You can use permissions in Octopus’s to make sure teams can only access and see what they need. 
 
 You could set Octopus access so:
 
@@ -63,8 +63,6 @@ You could set Octopus access so:
 
 This not only provides security around your instance, but also makes your info clearer by reducing the clutter for everyone.
 
-![An example of organisational structure using Octopus's Spaces feature](spaces.png)
-
 ## Octopus gives you confidence in releases
 Octopus helps provide greater confidence in your releases before they go to production. It does this in a few ways.
 
@@ -73,7 +71,7 @@ Octopus helps provide greater confidence in your releases before they go to prod
 While build servers can technically deploy a package to any target, they tend to lack the concept of environments.
 
 :::hint
-An environment is a collection of deployment targets used for a specific purpose, such as regional server farms, virtual agents, and cloud services.
+An environment is a collection of deployment targets used for a specific purpose, such as regional server farms, virtual machines, and cloud services.
 :::
 
 As you most likely know, an ideal deployment should flow through at least 2 environments before it reaches users. A minimalist environment structure, for example, would look like this:
@@ -86,15 +84,15 @@ Some pipelines may add extra environments, such as User Acceptance Testing (UAT)
 
 That’s why with Octopus, you deploy to environments rather than each individual target.
 
-What if you have complex projects that only need to hit certain targets in your environments? Don’t worry, we have tools to help you manage that, such as [variables](https://octopus.com/docs/projects/variables) and [tenants](https://octopus.com/docs/tenants).
+What if you have complex projects that only need to hit certain targets in your environments? Don’t worry, we have tools to help manage that, such as [target roles](https://octopus.com/docs/security/users-and-teams/system-and-space-permissions) and [tenants](https://octopus.com/docs/tenants).
 
 ### Octopus controls deployment order with lifecycles
 
-When setting your environments, Octopus automatically creates a ‘lifecycle’. The lifecycle controls the order a package moves through your environments whenever you deploy.
+When setting your environments, Octopus automatically creates a ‘lifecycle’. The lifecycle controls the order a release moves through your environments whenever you deploy.
 This means:
 
 - You can never accidentally skip an environment
-- Releases will always promote in the correct order
+- Releases always promote in the correct order
 - Users will only get your release when you want them to
 
 You can have more than one lifecycle, though. For example, you might want special lifecycles for different projects, or use them to help set up a favored [deployment pattern](https://octopus.com/blog/common-deployment-patterns-and-how-to-set-them-up-in-octopus).
@@ -111,7 +109,7 @@ By the time you’re ready to push to production, you can trust your deployment 
 
 ## Octopus easily connects to both ends of your development pipeline
 
-We’ve already explored how, thanks to plugins and connecters, Octopus can connect to your build server of choice. You can find our plugins for popular CI platforms on the following marketplaces:
+We’ve already explored how, thanks to plugins and connecters, your build server of choice can connect to Octopus. You can find our plugins for popular CI platforms on the following marketplaces:
 
 - [Jenkins](https://plugins.jenkins.io/octopusdeploy/)
 - [GitHub Actions](https://github.com/marketplace?type=&verification=&query=Octopus+)
@@ -119,13 +117,13 @@ We’ve already explored how, thanks to plugins and connecters, Octopus can conn
 - [Atlassian Bamboo](https://marketplace.atlassian.com/apps/1217235/octopus-deploy-bamboo-add-on?hosting=server&tab=overview)
 - [Azure Pipelines](https://marketplace.visualstudio.com/items?itemName=octopusdeploy.octopus-deploy-build-release-tasks)
 
-Not only that, but Octopus easily connects to your deployment targets too. Whether that’s physical servers, containers, or any of the major cloud providers - Octopus can deploy there. We’ve built much of this into Octopus to make it as easy as possible. Once you’ve defined some environments, set your deployment targets with our simple setup wizards.
+Not only that, Octopus connects to your deployment targets too. Whether that’s physical servers, container orchestration services, or any of the major cloud providers - Octopus can deploy there. We’ve built much of this into Octopus to make it as easy as possible. Once you’ve defined some environments, set your deployment targets with our simple setup wizards.
 
 ![Octopus's deployment target wizard, showing the types of targets you can connect to](deployment-targets.png)
 
 ## Octopus offers clarity for project statuses
 
-If a deployment by build server fails, it’s likely you’ll need to go through logs to find out what went wrong. This is probably fine for the tech-minded, but it’s not ideal for everyone involved in deployments, such as release managers, leaders, or QA teams.
+If a deployment by build server fails, it’s likely you’ll need to search through logs to find out what went wrong. This is probably fine for the tech-minded, but it’s not ideal for everyone involved in deployments, such as release managers, leaders, or QA teams.
 
 Thankfully, Octopus’s dashboard makes it easy to check what releases each environment has, and across all your projects too. Even during deployments.
 
