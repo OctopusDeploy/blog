@@ -1,8 +1,8 @@
 ---
 title: 10 of our favorite GitHub Actions workflows
-description: GitHub Actions is a newcomer to continuous integration and provides CI as a Service. Here are 10 of our favorite actions to install from the GitHub Marketplace.
+description: GitHub Actions is a newcomer to Continuous Integration and provides CI as a Service. Here are 10 of our favorite actions to install from the GitHub Marketplace.
 author: andy.corrigan@octopus.com
-visibility: private
+visibility: public
 published: 2022-03-23-1400
 metaImage: blogimage-githubconfigurationtop10plugins-2022.png
 bannerImage: blogimage-githubconfigurationtop10plugins-2022.png
