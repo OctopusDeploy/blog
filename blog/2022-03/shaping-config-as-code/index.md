@@ -3,7 +3,7 @@ title: Shaping Configuration as Code
 description:  We've been busy recently building Configuration as Code support for Octopus Deploy. Learn about some of the factors that shaped this feature.
 author: michael.richardson@octopus.com
 visibility: public
-published: 2022-03-24-1400 
+published: 2022-03-22-1400 
 metaImage: blogimage-shaping-config-as-code_2020.png
 bannerImage: blogimage-shaping-config-as-code_2020.png
 bannerImageAlt: Octopus Deploy logo and laptop screen showing Octopus Control Center, peeled up on one corner showing the code behind it.
