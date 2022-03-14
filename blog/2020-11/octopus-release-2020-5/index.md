@@ -88,7 +88,7 @@ What's outstanding? The short answer is a lot of small things. Moving a chunk of
 
 Click the learn more link below to read more about the factors that have gone into designing and building our config as code support. We explicitly call out several anti-patterns that we have intentionally avoided. 
 
-[Learn more](https://octopus.com/blog/shaping-config-as-code)
+[Learn more](/blog/2020-11/shaping-config-as-code/index.md)
 
 ## Breaking changes
 
@@ -118,4 +118,4 @@ Feel free to leave a comment, and let us know what you think! Happy deployments!
 * [Deconstructing blue/green deployments in Kubernetes](/blog/2020-12/deconstructing-blue-green-deployments/index.md)
 * [Creating multi-environment Kubernetes deployments](/blog/2020-12/multi-environment-k8s-deployments/index.md)
 * [Exposing Octopus variables to a Kubernetes container](/blog/2020-12/k8s-envfrom/index.md)
-* [Shaping Config as Code](https://octopus.com/blog/shaping-config-as-code)
+* [Shaping Config as Code](/blog/2020-11/shaping-config-as-code/index.md)

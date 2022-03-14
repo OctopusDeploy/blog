@@ -40,4 +40,3 @@ Workers
 
 # Tags for marketing themes
 CI Series
-Runbooks Series

@@ -1,3 +1,0 @@
-- [Part 1: Getting to know Octopus Deploy](blog/2022-02/zero-to-octopus-hero-part-1/index.md)
-- [Part 2: Discovering DevOps](blog/2022-02/zero-to-octopus-hero-part-2/index.md)
-- [Part 3: Octopus features and integrations](/blog/2022-03/zero-to-octopus-hero-part-3/index.md)

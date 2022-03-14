@@ -179,8 +179,8 @@ build-information:
             PackageId = "OctoPetShop.Web"
             Version = "1.0.21132.111113"
             Branch = $env:CI_COMMIT_BRANCH
-            BuildUrl = $env:CI_PIPELINE_URL
-            BuildNumber = $env:CI_PIPELINE_ID
+            BuildUrl = $env:CI_JOB_URL
+            BuildNumber = $env:CI_JOB_ID
             BuildEnvironment = "GitLabCI"
             VcsCommitNumber = $env:CI_COMMIT_SHA
             VcsType = "Git"

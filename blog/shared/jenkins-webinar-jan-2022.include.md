@@ -1,5 +1,7 @@
-## Watch our Jenkins Pipeline webinar
+## Register for the Jenkins Pipeline webinar
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/D_7AHTML_xw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+In this webinar, **Getting started with Jenkins Pipeline and Octopus Deploy**, we’ll show you how to use Jenkins Pipeline with Octopus Deploy. We’ll also demonstrate setting up your first Jenkins Pipeline and passing your packages to Octopus, to deploy them from development through to test.
 
-We host webinars regularly. See the [webinars page](https://octopus.com/events) for details about upcoming events, and live stream recordings.
+We're running 3 sessions of the webinar, Wed, Jan 26 – Thurs, Jan 27, 2022.
+
+<span><a class="btn btn-success" href="/events/getting-started-with-jenkins-pipelines-and-octopus-deploy">Register now</a></span>

@@ -18,7 +18,7 @@ At Octopus, we use Azure Kubernetes Service ([AKS](https://azure.microsoft.com/e
 
 To efficiently use this resource, we need to monitor how much it's being used along with several dimensions – CPU, memory, disk, network bandwidth, and more.
 
-For Linux [nodes](https://kubernetes.io/docs/concepts/architecture/nodes/), we use [Sumo Logic's solution for metric gathering from Kubernetes](https://github.com/SumoLogic/sumologic-kubernetes-collection), but it doesn't currently support gathering metrics from Windows. We use Windows nodes in our cluster, so we need a way to monitor them too.
+For Linux [nodes](https://kubernetes.io/docs/concepts/architecture/nodes/), we use [Sumologic's solution for metric gathering from Kubernetes](https://github.com/SumoLogic/sumologic-kubernetes-collection), but it doesn't currently support gathering metrics from Windows. We use Windows nodes in our cluster, so we need a way to monitor them too.
 
 In this post, I walk you through our solution. If you also need Windows node metrics, I hope you can use this post to find a solution that works for you.
 
@@ -37,7 +37,7 @@ There are three components:
 
 1. A Virtual Machine Scale Set Extension, which installs the [windows-exporter](https://github.com/prometheus-community/windows_exporter) Windows service on each instance as it's created
 1. A [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) container used to expose the windows-exporter running on the node as a Service in the cluster
-1. Two remote-write rules for Prometheus to forward some Windows metrics into the Sumo Logic pipeline
+1. Two remote-write rules for Prometheus to forward some Windows metrics into the Sumologic pipeline
 
 ### A Virtual Machine Scale Set extension
 
@@ -168,7 +168,7 @@ spec:
         kubernetes.io/os: windows
 ```
 
-If your labels match your existing Linux node metrics pipeline's `ServiceMonitor` Prometheus will automatically pick these up for scraping. For Sumo Logic, that means the following:
+If your labels match your existing Linux node metrics pipeline's `ServiceMonitor` Prometheus will automatically pick these up for scraping. For Sumologic, that means the following:
 
 ```yaml
 labels:
@@ -176,11 +176,11 @@ labels:
   release: collection
 ```
 
-Now the Prometheus instance inside the cluster is gathering metrics, we send them off to Sumo Logic for longer-term retention.
+Now the Prometheus instance inside the cluster is gathering metrics, we send them off to Sumologic for longer-term retention.
 
-## Forwarding to Sumo Logic
+## Forwarding to Sumologic
 
-The Sumo Logic collection solution is a Helm chart that installs everything you need to gather Kubernetes monitoring data (not just metrics, but events, logs, and all sorts of things). We upgrade the chart as part of our continuous deployment of the cluster infrastructure.
+The Sumologic collection solution is a Helm chart that installs everything you need to gather Kubernetes monitoring data (not just metrics, but events, logs, and all sorts of things). We upgrade the chart as part of our continuous deployment of the cluster infrastructure.
 
 The chart allows us to specify additional remote-write rules that tell Prometheus to send metrics to an instance of fluentd that the chart also installs - so we add two rules in our `values.yaml` override file to send these new Windows metrics to the same places that the Linux ones go. This is only necessary because the windows-exporter doesn't use the same metric names as the Linux exporter.
 
@@ -215,7 +215,7 @@ Note: We need to include all of the other `remoteWrite` rules from the original 
 
 Connecting everything above allows us to monitor (for example) the node disk consumption across our entire cluster in one place. This makes it significantly easier to experiment with changes to our workloads, because we no longer risk exhausting resources in the cluster.
 
-![A screenshot of the Sumo Logic monitoring dashboard showing Windows and Linux disk metrics on one graph](node-metrics-graph.png)
+![A screenshot of the Sumologic monitoring dashboard showing Windows and Linux disk metrics on one graph](node-metrics-graph.png)
 
 Happy deployments!
 

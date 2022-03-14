@@ -94,7 +94,7 @@ And these examples are just the tip of the iceberg. You can use:
 
 Conceptually, runbooks are a simple idea. They let you run the same automated processes that power deployments, just without requiring a deployment.
 
-But there is so much more to repeatable deployments than the actual act of deploying software, and runbooks inherit all of this cross-cutting functionality. With runbook automation, you get security, logging, auditing, reporting, dashboards, and scheduling built-in.
+But there is so much more to repeatable deployments than the actual act of deploying software, and runbooks inherit all of this cross-cutting functionality. With runbook automation, you get security, logging, auditing, reporting, dashboards, and scheduling built-in. 
 
 As we have seen in this post, even the simplest one line script can take advantage of these features to scale up to a robust, production ready solution.
 
