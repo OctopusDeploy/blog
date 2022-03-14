@@ -16,7 +16,7 @@ tags:
   - Kubernetes
 ---
 
-Kubernetes (K8s) has become one of the most widely used platforms hosting Docker containers. Kubernetes offers advanced orchestration features, networking capabilities, integrated security, user management, high availability, volume management, a wide ecosystem of supporting tools, and much more.
+Kubernetes (K8s) has become one of the most widely used platforms for hosting Docker containers. Kubernetes offers advanced orchestration features, networking capabilities, integrated security, user management, high availability, volume management, a wide ecosystem of supporting tools, and much more.
 
 One supporting tool is [Helm](https://helm.sh/), which provides package management functionality for Kubernetes. Applications deployed by Helm are defined in charts, and Jenkins [provides a Helm chart](https://github.com/jenkinsci/helm-charts/blob/main/charts/jenkins/README.md) to deploy a Jenkins instance to Kubernetes.
 
@@ -249,7 +249,7 @@ controller:
   installPlugins: false
 ```
 
-You can find an example `Dockerfile` installing tools for Java, DotNET Core, PHP, Python, Ruby, and Go in the [jenkins-complete-image repoistory](https://github.com/OctopusSamples/jenkins-complete-image).
+You can find an example `Dockerfile` installing tools for Java, DotNET Core, PHP, Python, Ruby, and Go in the [jenkins-complete-image repository](https://github.com/OctopusSamples/jenkins-complete-image).
 
 ## Jenkins Configuration as Code
 
@@ -520,6 +520,12 @@ In this post you learned how to:
 - Configure Jenkins through JCasC
 - Backup the Jenkins home directory
 - Create Kubernetes agents that are created and destroyed as needed
+
+Check out our other posts about installing Jenkins:
+
+- [How to install Jenkins on Windows and Linux](https://octopus.com/blog/jenkins-install-guide-windows-linux)
+- [How to install Jenkins on Docker](https://octopus.com/blog/jenkins-docker-install-guide)
+
 
 !include <jenkins-webinar-jan-2022>
 
