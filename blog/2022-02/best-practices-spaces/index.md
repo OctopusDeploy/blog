@@ -4,8 +4,10 @@ description: Find out how to use spaces effectively.
 author: steve.fenton@octopus.com
 visibility: private
 published: 9999-01-01
-metaImage:  
-bannerImage: 
+metaImage: blogimage-bestpracticesforoctopusspaces-2022.png
+bannerImage: blogimage-bestpracticesforoctopusspaces-2022.png
+bannerImageAlt: Overhead shot of a round table split into three equal parts, with people working on laptops and notebooks at each section.
+isFeatured: false
 tags:
  - Product
  - Spaces
