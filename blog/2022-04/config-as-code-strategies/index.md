@@ -4,9 +4,9 @@ description: Learn good practices for using Config as Code and how to adjust you
 author: steve.fenton@octopus.com
 visibility: public
 published: 2022-04-04-1400
-metaImage: blogimage-config-as-code.png
-bannerImage: blogimage-config-as-code.png
-bannerImageAlt: Configuration as code
+metaImage: 
+bannerImage: 
+bannerImageAlt: 
 isFeatured: false
 tags:
  - DevOps
