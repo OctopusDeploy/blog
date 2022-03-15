@@ -58,7 +58,7 @@ Octopus Deploy deploys to Azure, Google, and Amazon through an Octopus step. The
 
 ![Azure Release](azure-release.png "width=500")
 
-The image below shows the Web Application in Azure, Google, and Amazon. The Web Application displays a random quote by a historical figure on every refresh.
+Octopus Deploy works with a range of build servers, content repositories and deployment targets to produce a consistent deployment result. The image below shows the Web Application in Azure, Google, and Amazon. The web application displays a random quote by a historical figure on every refresh. A different deployment image could be specified on any of the deployment targets by changing the image that was referenced in Octopus Deploy. This means that the same deployment process can be reused for a different image. 
 
 ![Random Quotes](random-quotes.png "width=500")
 
