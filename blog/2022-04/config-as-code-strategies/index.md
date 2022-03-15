@@ -4,9 +4,9 @@ description: Learn good practices for using Config as Code and how to adjust you
 author: steve.fenton@octopus.com
 visibility: public
 published: 2022-04-04-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: blogimage-configascodestrategies-2022.png
+bannerImage: blogimage-configascodestrategies-2022.png
+bannerImageAlt: A simplified Octopus process editor UI is overlaid with a Config as Code branch switcher.
 isFeatured: false
 tags:
  - DevOps
