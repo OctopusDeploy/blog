@@ -1,6 +1,6 @@
 ---
 title: How Octopus complements your build server
-description: Learn how Octopus Deploy complements your choice of build server and completes your CI/CD pipeline.
+description: "Learn how Octopus Deploy complements your choice of build server and completes your CI/CD pipeline."
 author: andrew.corrigan@octopus.com
 visibility: public
 published: 2022-03-23-1400
@@ -43,7 +43,7 @@ As a release moves through a typical development pipeline (consisting of at leas
 - A QA team usually tests the product as you’d expect customers to use it. This is different to the automated code tests during builds.
 - A release may need sign-off from leadership before deployment to production (and thus your customers).
 
-In Octopus, you can build [manual intervention steps](https://octopus.com/docs/projects/built-in-step-templates/manual-intervention-and-approvals) right into your deployment processes. For example, if you need a deployment to pause and check for QA confirmation or management sign-off, that’s easy to add.
+In Octopus, you can build [manual intervention steps](https://octopus.com/docs/projects/built-in-step-templates/manual-intervention-and-approvals) into your deployment processes. For example, if you need a deployment to pause and check for QA confirmation or management sign-off, that’s easy to add.
 
 This helps keep your deployments moving along swiftly.
 
@@ -75,7 +75,7 @@ While build servers can technically deploy a package to any target, they tend to
 An environment is a collection of deployment targets used for a specific purpose, such as regional server farms, virtual agents, and cloud services.
 :::
 
-An ideal deployment should flow through at least 2 environments before it reaches users. A minimalist environment structure, for example, would look like this:
+An ideal deployment should flow through at least 2 environments before it reaches users. A minimalist environment structure, for example, looks like this:
 
 - Development - an environment used by developers to iron out mistakes
 - Test - an environment for testing an app works as users would expect
