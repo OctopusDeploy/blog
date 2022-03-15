@@ -4,9 +4,9 @@ description: What are the DORA metrics? Why do they matter? How can folks use th
 author: alex.yates@dlmconsultants.com
 visibility: private
 published: 3022-01-01-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-dorametrics-2022.png
+bannerImage: blogimage-dorametrics-2022.png
+bannerImageAlt: A slightly transparent screen with someone analyzing data behind it, with different metrics floating around the person.
 isFeatured: false
 tags:
   - DevOps
