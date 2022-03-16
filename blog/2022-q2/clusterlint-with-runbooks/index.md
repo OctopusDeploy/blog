@@ -63,7 +63,7 @@ Linting should be automated to run on a regular schedule. Runbooks supports this
 
 Lint results don’t mean anything unless they're shared and acted upon. With some scripting we can generate a summary report and capture it in an Octopus variable called `Report`:
 
-```ps
+```ps PowerShell
 $emailReport = clusterlint run -g basic -o json |
   ConvertFrom-Json |
   Select -ExpandProperty Diagnostics |
@@ -75,14 +75,13 @@ Write-Host $emailReport
 Set-OctopusVariable -name "Report" -value $emailReport
 ```
 
-```bash
+```bash Bash
 
 emailReport=`clusterlint run -g basic -o json | jq -r '.Diagnostics | group_by(.Property)[]| group_by(.Check)      | map({Check: .[0].Check, count: length}) | "Clusterlint Report", "---------", ( .[] | "\(.Check):\(.count)" )'`
 
 echo "$emailReport"
 
 set_octopusvariable "Report" "$emailReport"
-
 ```
 
 Octopus has steps for sending reports through channels like email, Slack, HipChat, and Teams. Here I have configured a step to send an email with the report summary:
