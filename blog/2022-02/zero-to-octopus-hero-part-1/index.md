@@ -4,8 +4,8 @@ description: Join Sarah Lean as she learns about Octopus Deploy.
 author: sarah.lean@octopus.com
 visibility: public
 published: 2022-02-08-1400
-metaImage: blogimage-fromzerotooctopusheropart1-2022.png
-bannerImage: blogimage-fromzerotooctopusheropart1-2022.png
+metaImage: blogimage-fromzerotooctopushero-part1-2022.png
+bannerImage: blogimage-fromzerotooctopushero-part1-2022.png
 bannerImageAlt: Mario-style illustration with Sarah winning a fight with a creature over shark infested waters.
 isFeatured: false
 tags:
@@ -19,6 +19,8 @@ My name is Sarah Lean and I recently joined Octopus Deploy as Senior Solutions A
 I'm starting from scratch with Octopus Deploy, but I intend to go from zero to Octopus hero over the coming weeks.
 
 This post is part 1 of a series about my learning journey with Octopus. We'll add links to other posts in the series as they become available.
+
+!include <zero-to-hero>
 
 ## What is Octopus Deploy?
 
@@ -75,6 +77,8 @@ I'm continuing to build my knowledge and have a plan for the coming weeks. I'll 
 I also want to know how to look after my Octopus Deploy implementation, how to handle complex deployments, and how Octopus integrates with other products. 
 
 Be sure to check back to see how I'm progressing. We'll add links to other posts in the series as they become available.
+ 
+ !include <zero-to-hero>
 
 Let me know if you have any questions by reaching out to [sarah.lean@octopus.com](mailto:sarah.lean@octopus.com) or leaving a comment below.
 

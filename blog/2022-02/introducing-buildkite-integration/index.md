@@ -109,6 +109,4 @@ The integration provided through our new Buildkite plugins represents our initia
 
 If you're an existing Octopus Deploy customer, check out [Buildkite](https://buildkite.com/) as part of your build pipeline. If you're an existing Buildkite customer, check out [Octopus Deploy](https://octopus.com/start) for deployments. And if you haven't tried either product, consider them both as part of your CI/CD pipeline.
 
-You can also [sign up to the Buildkite integration feature in our Roadmap](https://octopus.com/company/roadmap#buildkite) to stay updated with our progress.
-
 Happy deployments!

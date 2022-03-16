@@ -3,7 +3,7 @@ title: Building a Docker image in Jenkinsfile and publishing to ECR
 description: As part of our series about Continuous Integration and build servers, learn how to build a Docker image in Jenkinsfile and publish to ECR.
 author: terence.wong@octopus.com
 visibility: public
-published: 2022-02-09-1400
+published: 2022-02-15-1400
 metaImage: blogimage-jenkinsbuilddockerimageinjenkinsfileandpublishtoecr-2022.png
 bannerImage: blogimage-jenkinsbuilddockerimageinjenkinsfileandpublishtoecr-2022.png
 bannerImageAlt: Illustration of Docker logo with an arrow to ECR logo
@@ -178,6 +178,11 @@ After the build finishes, go to the Amazon ECR to see a new image built and push
 In this post, you set up a Jenkins Pipeline to build a GitHub repository and push it to Amazon ECR. The Jenkinsfile can push to other container registries such as those offered by Google and Microsoft. It can also include additional stages depending on the build requirements. 
 
 After the image is pushed, you can use a tool like Octopus Deploy to deploy the image to a target environment. If you're not already using Octopus Deploy, you can [sign up for a free trial](https://octopus.com/start).
+
+Check out our other posts about deploying with Jenkins, Kubernetes, and Octopus Deploy:
+
+- [Deploying to Amazon EKS with Docker and Jenkins](https://octopus.com/blog/jenkins-eks-ecr-deployment )
+- [Multi-environment deployments with Jenkins and Octopus](https://octopus.com/blog/multi-environment-deployments-jenkins)
 
 !include <jenkins-webinar-jan-2022>
 

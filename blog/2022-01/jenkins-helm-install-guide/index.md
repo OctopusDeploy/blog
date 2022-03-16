@@ -249,7 +249,7 @@ controller:
   installPlugins: false
 ```
 
-You can find an example `Dockerfile` installing tools for Java, DotNET Core, PHP, Python, Ruby, and Go in the [jenkins-complete-image repoistory](https://github.com/OctopusSamples/jenkins-complete-image).
+You can find an example `Dockerfile` installing tools for Java, DotNET Core, PHP, Python, Ruby, and Go in the [jenkins-complete-image repository](https://github.com/OctopusSamples/jenkins-complete-image).
 
 ## Jenkins Configuration as Code
 
