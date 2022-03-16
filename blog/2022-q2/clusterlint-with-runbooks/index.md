@@ -63,7 +63,7 @@ Linting should be automated to run on a regular schedule. Runbooks supports this
 
 Lint results don’t mean anything unless they're shared and acted upon. With some scripting we can generate a summary report and capture it in an Octopus variable called `Report`:
 
-```ps PowerShell
+```ps
 $emailReport = clusterlint run -g basic -o json |
   ConvertFrom-Json |
   Select -ExpandProperty Diagnostics |
@@ -75,7 +75,7 @@ Write-Host $emailReport
 Set-OctopusVariable -name "Report" -value $emailReport
 ```
 
-```bash command line
+```bash
 
 emailReport=`clusterlint run -g basic -o json | jq -r '.Diagnostics | group_by(.Property)[]| group_by(.Check)      | map({Check: .[0].Check, count: length}) | "Clusterlint Report", "---------", ( .[] | "\(.Check):\(.count)" )'`
 
