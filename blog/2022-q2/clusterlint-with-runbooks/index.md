@@ -75,7 +75,7 @@ Write-Host $emailReport
 Set-OctopusVariable -name "Report" -value $emailReport
 ```
 
-```command line bash
+```bash command line
 
 emailReport=`clusterlint run -g basic -o json | jq -r '.Diagnostics | group_by(.Property)[]| group_by(.Check)      | map({Check: .[0].Check, count: length}) | "Clusterlint Report", "---------", ( .[] | "\(.Check):\(.count)" )'`
 
