@@ -211,6 +211,11 @@ In this post, you used GitHub Actions and Octopus Deploy to deploy a web applica
 
 Octopus Deploy integrates with several cloud repositories and has in-built support for release management. GitHub Actions has community-developed step templates. The experience with these may vary from template to template. Through its UI, Octopus Deploy provides a standardized experience for step templates. Octopus also integrates with different repositories and cloud providers. 
 
+Check out our other posts about deploying with GitHub Actions, Kubernetes, and Octopus Deploy:
+
+- [Building and publishing a Docker image to ECR using GitHub Actions](https://octopus.com/blog/githubactions-docker-ecr)
+- [Deploying to Amazon EKS with GitHub Actions](https://octopus.com/blog/deploying-amazon-eks-github-actions)
+
 !include <githubactions-webinar-feb-2022>
 
 !include <q1-2022-newsletter-cta>
