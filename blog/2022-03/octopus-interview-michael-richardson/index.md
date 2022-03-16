@@ -1,5 +1,5 @@
 ---
-title: Title
+title: At the helm with Michael Richardson, Director of Product
 description: A brief summary of the post, 170 characters max including spaces.
 author: michael.richardson@octopus.com
 visibility: private
@@ -18,27 +18,27 @@ Introductory paragraph that tells the reader why they should read on.
 
 ## How long have you been at Octopus and what prior experience did you bring?
 
-I joined Octopus as a software engineer in 2015 - wow, time goes by fast - after following Paul’s journey.  I came with a decade’s experience building software and leading development teams, in organizations of all shapes and sizes, across many industries.  And similar to many of my colleagues at Octopus, I often happily claimed the responsibility for setting up the build and deployment pipelines for these projects. 
+After following Paul's journey, I joined Octopus as a software engineer in 2015 - wow, time goes by fast.  I came with a decade’s experience building software and leading development teams across many industries in organizations of all shapes and sizes. And similar to many of my colleagues at Octopus, I often happily claimed the responsibility for setting up the build and deployment pipelines for these projects. 
 
-Foreshadowing my future at Octopus, I had the opportunity to see and help define the various ways all these organizations released and deployed software, with varying degrees of success.  This lets me easily empathize with the challenges our customers face, and gave me an intuition for the type of problems Octopus could help with.
+Foreshadowing my future at Octopus, I had the opportunity to see and help define the various ways all these organizations released and deployed software, with varying degrees of success.  This lets me easily empathize with our customers' challenges and gave me an intuition for the type of problems Octopus could help with.
 
 ## What are your responsibilities as Director of Product?
 
-I wear the product hat in the leadership team of our Deploy Group.  Our mission is to have Octopus deploying as many applications as possible, through evolving its capabilities, expanding the technologies we integrate with and making it as easy as possible to use.  
+I wear the product hat in the leadership team of our Deploy Group.  Our mission is to have Octopus deploying as many applications as possible by evolving its capabilities, expanding the technologies we integrate with, and making it as easy as possible to use.  
 
 My role is to set the product direction for the group.  I’m always hunting for the next set of problems we could solve for our customers, and I work closely with the engineers, designers, and other product managers, to ensure we solve the problems we bet on.
 
 ## What does a typical day look like for you?
 
-A big part of a typical day is gathering information - analyzing data, reading customer feedback, listening to what other teams in Octopus are seeing, talking to customers, and following industry news.  I also regularly use Octopus and other tools, to model various scenarios.  
+A big part of a typical day is gathering information - analyzing data, reading customer feedback, listening to what other teams in Octopus are seeing, talking to customers, and following industry news.  I also regularly use Octopus and other tools to model various scenarios.  
 
-On a typical day, I’m likely to meet with one or more of our development teams, where I probably just ask “can we ship it?”
+On a typical day, I’m likely to meet with one or more of our development teams, where I probably just ask, “Can we ship it?”.
 
 Oh, and Zoom meetings. So many Zoom meetings.
 
 ## What are the biggest challenges for the Product team at Octopus?
 
-The biggest challenge is always that there are too many things we want to do!  When the company was 10 people, we said “if only we had 20 people, we could do everything!”  When we grew to 50 people, we said “if only we had 100 people, we could do everything!”  Well, we’re at nearly 200 at the time of writing, and we’re nowhere close to being able to do everything we would love to.  
+The biggest challenge is always that there are too many things we want to do! When the company was 10 people, we said, “If only we had 20 people, we could do everything!”.  When we grew to 50 people, we said, “If only we had 100 people, we could do everything!”.  Well, we’re at nearly 200 at the time of writing, and we’re nowhere close to being able to do everything we would love to.  
 
 Choosing the right problems to solve, and keeping a balance between maintaining high levels of reliability, refining and evolving the existing features, and building the next big thing, is always the biggest challenge.  
 
@@ -46,13 +46,13 @@ Choosing the right problems to solve, and keeping a balance between maintaining 
 
 Well…  [takes deep breath]
 
-The biggest evolution of the product we’re building at the moment is config-as-code.  I’m sure you’ve heard us talk about this many times by now, but this allows Octopus projects to be version-controlled in Git repositories.  This has been a huge engineering effort to lay the plumbing for this feature, with deployment processes version-controlled in the initial release.  But we’re just getting started, stay tuned for version-controlled variables, runbooks, and more.
+The biggest evolution of the product we’re building at the moment is Config as Code.  I’m sure you’ve heard us talk about this many times by now, but Config as Code allows Octopus projects to be version-controlled in Git repositories.  It's been a huge engineering effort to lay the plumbing for this feature, with deployment processes version-controlled in the initial release.  But we’re just getting started, so stay tuned for version-controlled variables, runbooks, and more.
 
-Another significant evolution, one that’s in a much earlier stage of development, is support for dynamic environments: creating and destroying test environments on-demand.  The way many development teams want to work today is not to have long-lived test environments, but rather to create new environments on-demand, for example, an environment for each pull request, and to destroy them the moment they’re no longer required.
+Another significant evolution, one that’s in a much earlier stage of development, is support for dynamic environments: creating and destroying test environments on-demand.  The way many development teams want to work today is not to have long-lived test environments. Rather, they want to create new environments on-demand, for example, an environment for each pull request, and to destroy them the moment they’re no longer required.
 
-We’re also exploring how we can make Octopus a perfect fit for cloud-native teams.  This means looking at how teams deploy to serverless platforms and use container images as deployment artifacts. 
+We’re also exploring how we can make Octopus a perfect fit for cloud-based teams.  This means looking at how teams deploy to serverless platforms and use container images as deployment artifacts. 
  
-We’re constantly adding to the range of products Octopus integrates with, and ServiceNow is a very notable example that we are currently developing a native integration for.  ITSM tools are common in larger organizations, and yet we’ve never built a first-party integration with one, so this is a different shape of integration for us. 
+We’re constantly adding to the range of products Octopus integrates with, and ServiceNow is a notable example that we're currently developing a built-in integration for.  ITSM tools are common in larger organizations, and yet we’ve never built a first-party integration with one, so this is a different shape of integration for us. 
 
 And if there’s something you think we should be looking at, please [reach out and tell us](https://octopus.com/company/contact)!  
 
