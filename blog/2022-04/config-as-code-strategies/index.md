@@ -54,7 +54,7 @@ After setting up Config as Code, you can [move your deployment configuration fil
 
 Placing your deployment configuration alongside your application code is the pattern we recommend. It's best  _to evolve your deployment process alongside your application code_. Putting the configuration in the same location as the application aligns with DevOps practices, where engineers take end-to-end responsibility for their applications.
 
-If you opt to store your configuration in the application repository, each application has its own `.octopus` directory with the configuration files. This arrangement makes it easy to find the appropriate deployment process for each application.
+If you opt to store your configuration in the application repository, each application has its own `.octopus` directory with the configuration files. This arrangement makes it easy to find the appropriate deployment process for each application. It also ensures that changes to the application and the deployment process are versioned together, which removes any dependency between specific versions of the application and the deployment process.
 
 If you don't want changes to the deployment process to trigger a build of your application, you can mask the `.octopus` folder in your build server.
 
