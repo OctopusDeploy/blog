@@ -1,20 +1,20 @@
 ---
 title: At the helm with Michael Richardson, Director of Product
-description: A brief summary of the post, 170 characters max including spaces.
+description: This post opens a series where we chat to people at Octopus about their role, what they're working on improve the product, and more. First is Michael Richardson, Director of Product.
 author: michael.richardson@octopus.com
-visibility: private
+visibility: public
 published: 2022-03-28-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-michaelrichardsonemployeeprofile-2022.png
+bannerImage: blogimage-michaelrichardsonemployeeprofile-2022.png
+bannerImageAlt: Octopus branded security badge with text that says Michael Richardson Director of Product, above the silhouette of a bearded man. 
 isFeatured: false
 tags: 
   - Company
 ---
 
-See https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags,
+This post opens a series where we chat to people at Octopus about their role, their challenges, what they're working on improve the product for our customers, and more.
 
-Introductory paragraph that tells the reader why they should read on.
+First up is Michael Richardson, Director of Product.
 
 ## How long have you been at Octopus and what prior experience did you bring?
 
@@ -58,18 +58,12 @@ And if there’s something you think we should be looking at, please [reach out 
 
 ## How do you measure success both internally and for our customers?
 
-Every company is now a software company, and being able to deploy more frequently, and more reliably, creates a positive feedback loop that can produce huge differences between the best teams and the rest.
+Every company is now a software company. Being able to deploy more frequently and more reliably creates a positive feedback loop that can produce huge differences between the best teams and the rest.
 
-Success is helping our customers use this feedback loop to deliver value for their customers.  That sounds corny, but it’s true.
+Success is helping our customers use this feedback loop to deliver value for their customers. That sounds corny, but it’s true.
 
-Personally, I’m passionate about the technology and practices involved in getting code from developer workstations through to running in production.  Being able to play a part in shaping the future of the industry, and seeing it utilized by all these incredible companies around the world, is rewarding, to say the least.
+Personally, I’m passionate about the technology and practices involved in getting code from developer workstations through to running in production.  Being able to play a part in shaping the industry's future and seeing it used by all these incredible companies around the world is rewarding, to say the least.
 
 As just one example of how this has played out over the years, 10 years ago it felt like as an industry we were still battling to convince people of the benefits of automating deployments.  In 2022, it feels like that mission has largely been accomplished, and the conversation is much more nuanced now.  I like to think Octopus played a part in this.
 
 I’m proud that Octopus is an Australian company.  Its growth, across many measures, has been incredible, and I think has stayed true to Paul’s original vision and values.  I’d call that success. 
-
-## Conclusion
-
-Close off the post by restating the main points of the post, share any closing thoughts, and invite feedback.
-
-Happy deployments!
