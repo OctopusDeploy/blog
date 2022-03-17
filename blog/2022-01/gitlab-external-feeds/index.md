@@ -6,7 +6,7 @@ visibility: private
 published: 2022-12-06-1400
 metaImage: blogimage-usinggitlabfeedswithoctopus-2022.png
 bannerImage: blogimage-usinggitlabfeedswithoctopus-2022.png
-bannerImageAlt: Packages on conveyer belt starting in an orange machine, traveling through a blue machine, coming out the other side with version numbers.
+bannerImageAlt: Packages on conveyer belts start in an orange machine, travel through a blue machine, and come out deployed with version numbers.
 isFeatured: false
 tags:
  - DevOps
