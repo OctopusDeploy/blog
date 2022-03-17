@@ -26,7 +26,7 @@ Foreshadowing my future at Octopus, I had the opportunity to see and help define
 
 I wear the product hat in the leadership team of our Deploy Group.  Our mission is to have Octopus deploying as many applications as possible by evolving its capabilities, expanding the technologies we integrate with, and making it as easy as possible to use.  
 
-My role is to set the product direction for the group.  I’m always hunting for the next set of problems we could solve for our customers, and I work closely with the engineers, designers, and other product managers, to ensure we solve the problems we bet on.
+My role is to set the product direction for the group. I’m always hunting for the next set of problems we could solve for our customers, and I work closely with the engineers, designers, and other product managers, to ensure we solve the problems we bet on.
 
 ## What does a typical day look like for you?
 
@@ -46,7 +46,7 @@ Choosing the right problems to solve, and keeping a balance between maintaining 
 
 Well…  [takes deep breath]
 
-The biggest evolution of the product we’re building at the moment is Config as Code.  I’m sure you’ve heard us talk about this many times by now, but Config as Code allows Octopus projects to be version-controlled in Git repositories.  It's been a huge engineering effort to lay the plumbing for this feature, with deployment processes version-controlled in the initial release.  But we’re just getting started, so stay tuned for version-controlled variables, runbooks, and more.
+The biggest evolution of the product we’re building at the moment is [Config as Code](https://octopus.com/blog/shaping-config-as-code).  I’m sure you’ve heard us talk about this many times by now, but Config as Code allows Octopus projects to be version-controlled in Git repositories.  It's been a huge engineering effort to lay the plumbing for this feature, with deployment processes version-controlled in the initial release.  But we’re just getting started, so stay tuned for version-controlled variables, runbooks, and more.
 
 Another significant evolution, one that’s in a much earlier stage of development, is support for dynamic environments: creating and destroying test environments on-demand.  The way many development teams want to work today is not to have long-lived test environments. Rather, they want to create new environments on-demand, for example, an environment for each pull request, and to destroy them the moment they’re no longer required.
 
