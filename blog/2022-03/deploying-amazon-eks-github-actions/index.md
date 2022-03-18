@@ -175,9 +175,10 @@ In this post, you built and pushed a GitHub repository to Amazon ECR and deploye
 
 Templates are available for different third-party integrations. However, the user experience may vary between templates because they're community-maintained. In a future post, we'll cover how Octopus Deploy integrates with Github Actions and provides standardized templates for continuous deployment, while offering a rich user experience. 
 
-Check out our other post about deploying with GitHub Actions, Kubernetes, and Octopus Deploy:
+Check out our other posts about deploying with GitHub Actions, Kubernetes, and Octopus Deploy:
 
 - [Building and publishing a Docker image to ECR using GitHub Actions](https://octopus.com/blog/githubactions-docker-ecr)
+- [Multi-environment deployments with GitHub Actions and Octopus](https://octopus.com/blog/multi-environment-deployments-github-actions)
 
 !include <githubactions-webinar-feb-2022>
 
