@@ -12,7 +12,7 @@ tags:
   - Company
 ---
 
-This post opens a series where we chat to people at Octopus about their role, their challenges, what they're working on improve the product for our customers, and more.
+This post opens a series where we chat to people at Octopus about their role, their challenges, what they're working on to improve the product for our customers, and more.
 
 First up is Michael Richardson, Director of Product.
 
@@ -40,7 +40,7 @@ Oh, and Zoom meetings. So many Zoom meetings.
 
 The biggest challenge is always that there are too many things we want to do! When the company was 10 people, we said, “If only we had 20 people, we could do everything!”.  When we grew to 50 people, we said, “If only we had 100 people, we could do everything!”.  Well, we’re at nearly 200 at the time of writing, and we’re nowhere close to being able to do everything we would love to.  
 
-Choosing the right problems to solve, and keeping a balance between maintaining high levels of reliability, refining and evolving the existing features, and building the next big thing, is always the biggest challenge.  
+Choosing the right problems to solve, and keeping a balance between maintaining high levels of reliability, refining and evolving the existing features, and building the next big thing, is always a challenge.  
 
 ## What are you working on to improve the product for our customers?
 
@@ -64,6 +64,6 @@ Success is helping our customers use this feedback loop to deliver value for the
 
 Personally, I’m passionate about the technology and practices involved in getting code from developer workstations through to running in production.  Being able to play a part in shaping the industry's future and seeing it used by all these incredible companies around the world is rewarding, to say the least.
 
-As just one example of how this has played out over the years, 10 years ago it felt like as an industry we were still battling to convince people of the benefits of automating deployments.  In 2022, it feels like that mission has largely been accomplished, and the conversation is much more nuanced now.  I like to think Octopus played a part in this.
+As just one example of how this has played out, 10 years ago it felt like as an industry we were still battling to convince people of the benefits of automating deployments.  In 2022, it feels like that mission has largely been accomplished, and the conversation is much more nuanced now.  I like to think Octopus played a part in this.
 
 I’m proud that Octopus is an Australian company.  Its growth, across many measures, has been incredible, and I think has stayed true to Paul’s original vision and values.  I’d call that success. 
