@@ -202,6 +202,10 @@ In this post, you learned:
 - How to write basic workflows for testing Java and DotNET Core applications.
 - How to process test results and display the generated reports.
 
+Check out our next post about testing in GitHub Actions:
+
+- [Running end-to-end tests in GitHub Actions](https://octopus.com/blog/githubactions-running-endtoend-tests)
+
 !include <githubactions-webinar-feb-2022>
   
 !include <q1-2022-newsletter-cta>
