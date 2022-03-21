@@ -1,6 +1,6 @@
 ---
-title: At the helm with Michael Richardson, Director of Product
-description: This post opens a series where we chat to people at Octopus about their role, what they're working on improve the product, and more. First is Michael Richardson, Director of Product.
+title: At the helm with Michael Richardson
+description: This post opens a series where we chat to people at Octopus about their role, what they're working on improve the product, and more. First is Michael Richardson, our original product management leader.
 author: michael.richardson@octopus.com
 visibility: public
 published: 2022-03-28-1400
@@ -14,7 +14,7 @@ tags:
 
 This post opens a series where we chat to people at Octopus about their role, their challenges, what they're working on to improve the product for our customers, and more.
 
-First up is Michael Richardson, Director of Product.
+First up is Michael Richardson, our original product management leader, now Director of Product.
 
 ## How long have you been at Octopus and what prior experience did you bring?
 
