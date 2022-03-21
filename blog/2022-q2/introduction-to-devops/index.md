@@ -153,7 +153,7 @@ This means ensuring code gets compiled, built, tested, and handed off for deploy
 
 A Release Manager directs builds promoted for release. They communicate what's included in a release and plot their course through a pipeline's environments.
 
-This makes up what we call Continuous Deployment or Continuous Delivery (CD) - the process we created Octopus to help with.
+This makes up what we call Continuous Deployment and Continuous Delivery (CD) - the processes we created Octopus to help with.
 
 ### Product Manager
 
