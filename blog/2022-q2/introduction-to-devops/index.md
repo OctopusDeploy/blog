@@ -1,9 +1,9 @@
 ---
 title: An introduction to DevOps
-description: We take surface-level look at the concepts, tools and roles of DevOps, plus how Octopus fits in.
+description: To open our series about runbooks, we take a surface-level look at the concepts, tools and roles of DevOps, plus how Octopus fits in.
 author: andrew.corrigan@octopus.com
 visibility: private
-published: 3020-01-01-1400
+published: 2022-04-05-1400
 metaImage: blogimage-placeholder.png
 bannerImage: blogimage-placeholder.png
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
