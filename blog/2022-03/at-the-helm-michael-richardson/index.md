@@ -16,7 +16,7 @@ This post opens a series where we chat to people at Octopus about their role, th
 
 First up is Michael Richardson, our original product management leader, now Director of Product.
 
-## How long have you been at Octopus and what prior experience did you bring?
+## How long have you been at Octopus and what experience did you bring?
 
 After following Paul's journey, I joined Octopus as a software engineer in 2015 - wow, time goes by fast.  I came with a decade’s experience building software and leading development teams across many industries in organizations of all shapes and sizes. And similar to many of my colleagues at Octopus, I often happily claimed the responsibility for setting up the build and deployment pipelines for these projects. 
 
@@ -56,7 +56,7 @@ We’re constantly adding to the range of products Octopus integrates with, and 
 
 And if there’s something you think we should be looking at, please [reach out and tell us](https://octopus.com/company/contact)!  
 
-## How do you measure success both internally and for our customers?
+## How do you measure success internally and for our customers?
 
 Every company is now a software company. Being able to deploy more frequently and more reliably creates a positive feedback loop that can produce huge differences between the best teams and the rest.
 
