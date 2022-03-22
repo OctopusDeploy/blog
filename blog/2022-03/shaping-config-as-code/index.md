@@ -82,7 +82,7 @@ It just feels like a step backward.
 We decided we wanted the best of both worlds: the superpowers of Git _and_ the usability of Octopus. Let's take a look at some specific design decisions:  
 
 
-### Branches as a first-class concept
+### Branches as a core concept
 
 Branches are Git’s superpower, and we want to leverage them as fully as possible. We're exposing the ability to switch branches in the Octopus UI: 
 
