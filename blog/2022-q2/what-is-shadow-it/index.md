@@ -4,9 +4,9 @@ description: Shadow IT is the IT resources that an organization does not have vi
 author: terence.wong@octopus.com
 visibility: private
 published: 2022-04-07-1400
-metaImage:
-bannerImage:
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-whatisshadowit-2022.png
+bannerImage: blogimage-whatisshadowit-2022.png
+bannerImageAlt: A torch shines a spotlight on IT icons. Surrounding the spotlight are question marks.
 isFeatured: false
 tags:
   - DevOps
