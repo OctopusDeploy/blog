@@ -6,7 +6,7 @@ visibility: public
 published: 2022-12-31-1400
 bannerImage: blogimage-usingterraformprovidertocreatestandards-2022.png
 metaImage: blogimage-usingterraformprovidertocreatestandards-2022.png
-bannerImageAlt: Using the Runbooks Terraform step to update a resource in all of the spaces
+bannerImageAlt: The Octopus Terraform Provider step runs and updates a resource in the Octopus Spaces.
 isFeatured: false
 tags:
 - DevOps
