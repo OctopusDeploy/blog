@@ -169,4 +169,6 @@ To be honest, we feel like the choice of configuration language is far from the 
 
 The next step is getting this into your hands. We rolled out an early access preview of Config as Code in 2021. It will be out of early access and available to use in production soon.
 
+!include <cac-webinar-may-2022>
+
 Happy deployments!
