@@ -3,10 +3,10 @@ title: Use Octopus Terraform Provider to create standards
 description: Learn how to leverage the Octopus Deploy Terraform Provider to create standards for all spaces on your instance.
 author: bob.walker@octopus.com
 visibility: public
-published: 2022-12-31
-bannerImage: 
-metaImage: 
-bannerImageAlt: 
+published: 2022-12-31-1400
+bannerImage: blogimage-usingterraformprovidertocreatestandards-2022.png
+metaImage: blogimage-usingterraformprovidertocreatestandards-2022.png
+bannerImageAlt: Using the Runbooks Terraform step to update a resource in all of the spaces
 isFeatured: false
 tags:
 - DevOps
