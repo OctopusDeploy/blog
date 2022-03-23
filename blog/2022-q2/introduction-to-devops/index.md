@@ -4,9 +4,9 @@ description: To open our series about runbooks, we take a surface-level look at 
 author: andrew.corrigan@octopus.com
 visibility: private
 published: 2022-04-05-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-introductiontodevops-2022.png
+bannerImage: blogimage-introductiontodevops-2022.png
+bannerImageAlt: Blue octopus tentacle shaped like the DevOps infinity symbol, with people on laptops sitting on and around the tentacle.
 isFeatured: false
 tags: 
   - DevOps
