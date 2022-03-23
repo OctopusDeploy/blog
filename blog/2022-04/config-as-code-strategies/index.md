@@ -96,4 +96,6 @@ You can now confidently choose an appropriate strategy for Config as Code. This 
 
 You can keep updated on future additions, such as Config as Code for Runbooks, on our [roadmap](https://octopus.com/company/roadmap).
 
+!include <cac-webinar-may-2022>
+
 Happy deployments!
