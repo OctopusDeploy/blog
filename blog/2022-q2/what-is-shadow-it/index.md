@@ -3,7 +3,7 @@ title: What is shadow IT?
 description: Shadow IT is the IT resources that an organization does not have visibility on. Find out how this affects your business!
 author: terence.wong@octopus.com
 visibility: private
-published: 3020-01-01-1400
+published: 2022-04-07-1400
 metaImage:
 bannerImage:
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
