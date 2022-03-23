@@ -4,9 +4,9 @@ description: A guide to configuring a GitHub NuGet registry as an external feed 
 author: shawn.sesna@octopus.com
 visibility: private
 published: 3020-01-01-1400
-metaImage:
-bannerImage:
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-configuringagithubnugetregistry-2022.png
+bannerImage: blogimage-configuringagithubnugetregistry-2022.png
+bannerImageAlt: Packages being placed on a conveyor belt by a crane and being pushed into a machine representing the GitHub package registry
 isFeatured: false
 tags:
   -
