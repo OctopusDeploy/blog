@@ -62,7 +62,7 @@ But while fully automated deployments have many benefits, it's not uncommon for 
 - Integrating deployments with back-end changes like databases
 - Not having 100% confidence in your tests
 
-Where CI is machine-driven for many teams, CD is human-driven. Much of the grunt work of performing a deployment is still automated, but the decision to promote a release through to production is a human one. Importantly, the decision may not be made by technical employees, but rather product owners, managers, or someone who stayed up until midnight to click the deploy button.
+Where CI tooling is machine-driven for many teams, CD is human-driven. Much of the grunt work of performing a deployment is still automated, but the decision to promote a release through to production is a human one. Importantly, the decision may not be made by technical employees, but rather product owners, managers, or someone who stayed up until midnight to click the deploy button.
 
 ## Why use separate CI and CD tools?
 
