@@ -10,6 +10,7 @@ bannerImageAlt: Blue plug in a white and purple socket.
 isFeatured: false
 tags:
   - DevOps
+  - CI Series
   - Continuous Integration
   - GitHub Actions
   - Testing
