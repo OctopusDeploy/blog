@@ -4,4 +4,4 @@ In this webinar, Derek Campbell and Pete Gallagher will introduce you to Config 
 
 We're running 3 sessions on Wednesday, May 5, 2022.
 
-<span><a class="btn btn-success" href="/events/introducing-config-as-code-in-octopus">Register now</a></span>
+<span><a class="btn btn-success" href="https://octopus.com/events/introducing-config-as-code-in-octopus">Register now</a></span>
