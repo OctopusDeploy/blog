@@ -2,7 +2,7 @@
 title: An introduction to DevOps
 description: To open our series about runbooks, we take a surface-level look at the concepts, tools, and roles of DevOps, plus how Octopus fits in.
 author: andrew.corrigan@octopus.com
-visibility: private
+visibility: public
 published: 2022-04-05-1400
 metaImage: blogimage-introductiontodevops-2022.png
 bannerImage: blogimage-introductiontodevops-2022.png
@@ -87,7 +87,7 @@ CALMS is an acronym where each letter describes the actions needed to adopt DevO
 
 CALMS is also the approach Atlassian took on its path to DevOps culture, using it to measure progress and success. You can read [how Atlassian uses CALMS on their DevOps site](https://www.atlassian.com/devops/frameworks/calms-framework).
 
-### The Three Ways (Flow, feedback, continual experimentation and learning)
+### The Three Ways (flow, feedback, continual experimentation and learning)
 
 Featured in both [The DevOps Handbook](https://www.amazon.com.au/Devops-Handbook-World-Class-Reliability-Organizations/dp/1950508404/ref=sr_1_1?crid=22X11LJN7ZYVQ&keywords=the+devops+handbook&qid=1643682944&sprefix=the+devops+handbook%2Caps%2C265&sr=8-1) and DevOps novel [The Unicorn Project](https://www.amazon.com.au/Phoenix-Project-Devops-Helping-Business/dp/1942788290/ref=sr_1_1?keywords=the+pheonix+project+book&qid=1643683007&sprefix=The+pheonix+pro%2Caps%2C253&sr=8-1), The Three Ways boils DevOps down to 3 key principles:
 
@@ -195,7 +195,7 @@ Given a lot of that process can get pretty conceptual, there's a range of tools 
 
 - [Teams](https://www.microsoft.com/en-au/microsoft-teams/group-chat-software)
 - [Confluence](https://www.atlassian.com/software/confluence)
-- [Monday.com](https://monday.com/)
+- [monday.com](https://monday.com/)
 - [Trello](https://trello.com/)
 
 ### Code repositories and source control
@@ -217,7 +217,7 @@ Popular options include:
 Build servers (also known as CI platforms) can save time by automating:
 
 - Code compiling
-- Code-validation tests
+- Code validation tests
 - Package creation
 
 Popular options include:
@@ -244,9 +244,9 @@ Popular options include:
 
 ### Releases and deployments
 
-Most code repos and build servers let you manage releases and deploy to targets in some fashion. However, they don't solve the same problems dedicated release management or deployment tools do.
+Most code repositories and build servers let you manage releases and deploy to targets in some fashion. However, they don't solve the same problems dedicated release management or deployment tools do.
 
-Obviously, [Octopus](https://octopus.com/) is our deployment tool and we think it's pretty great. We'll talk about [where Octopus fits into DevOps](#octopus-and-devops) later.
+Of course, [Octopus](https://octopus.com/) is our deployment tool and we think it's pretty great. We'll talk about [where Octopus fits into DevOps](#octopus-and-devops) later.
 
 Other popular options include:
 
@@ -288,7 +288,7 @@ Octopus fits nicely into a DevOps environment in 2 key ways:
    - Incident recovery
    - Backups, restores, and tests
    - Spin-up and tear-down of infrastructure
-   - The stop, start and restart of system services
+   - The stop, start, and restart of system services
    - File clean-up
    - The running of scripts in any language you need
 
