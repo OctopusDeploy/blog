@@ -14,8 +14,6 @@ tags:
   - Runbooks
 ---
 
-# Sample Octopus Runbooks: Sending support emails
-
 You can automate lots of useful tasks with Octopus Runbooks, especially around the management of infrastructure. One of the subtler but no less useful things, however, is the ability to let people know when there are problems.
 
 There are a couple of ways to approach this, depending on the information needed and what's useful to your support teams.
