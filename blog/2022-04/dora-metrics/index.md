@@ -1,9 +1,9 @@
 ---
-title: DORA Metrics - The predictive link between DevOps Practice and Business Outcomes
-description: What are the DORA metrics? Why do they matter? How can folks use them to drive improvement?
+title: DORA metrics - The predictive link between DevOps practice and business outcomes
+description: What are the DORA metrics? Why do they matter? How can you use them to drive improvement?
 author: alex.yates@dlmconsultants.com
 visibility: private
-published: 3022-01-01-1400
+published: 2022-04-06-1400
 metaImage: blogimage-dorametrics-2022.png
 bannerImage: blogimage-dorametrics-2022.png
 bannerImageAlt: A slightly transparent screen with someone analyzing data behind it, with different metrics floating around the person.
@@ -18,9 +18,9 @@ tags:
 
 In 2009, inspired by [John Allspaw and Paul Hammonds’ talk at Velocity](https://www.youtube.com/watch?v=LdOe18KhtT4), Patrick Debois organized a conference. In homage to John and Paul, Patrick called his conference “DevOps Days”. In doing so, he unintentionally gave a broad and fragmented coalition of geeks a unified name and identity. “DevOps” was now a thing… But it was notoriously hard to define.
 
-A passionate and diverse community of tech folks [had converged](https://itrevolution.com/the-convergence-of-devops/). They agreed on some broad ideas (covering a variety of topics) but they struggled to concisely articulate them as a single thing. It’s hard to neatly tie so many ideas about Culture, automation, lean IT, metrics, and sharing into a short and focused elevator pitch.  
+A passionate and diverse community of tech folks [had converged](https://itrevolution.com/the-convergence-of-devops/). They agreed on some broad ideas (covering a variety of topics) but struggled to concisely articulate them as a single thing. It’s hard to neatly tie so many ideas about culture, automation, lean IT, metrics, and sharing into a short and focused elevator pitch.  
 
-Making matters worse, public perception was… mixed. To some observers, this fledgling movement came across as naïve and dangerous. These DevOps hippies were actively promoting that developers should push directly to production! In the early days, not a lot of senior folks in “serious” businesses took these DevOps pioneers seriously.
+Making matters worse, public perception was… mixed. To some, this fledgling movement came across as naïve and dangerous. These DevOps hippies were actively promoting that developers should push directly to production! In the early days, not a lot of senior folks in “serious” businesses took these DevOps pioneers seriously.
 
 Books like [The Lean Startup](https://www.goodreads.com/book/show/10127019-the-lean-startup) challenged established IT project management dogma. Mantras like “Move fast and break things” seemed to be deliberately antagonistic to people who valued security and reliability. The “NoOps” subculture appeared to be calling for the mass firing of an entire function. Clickbait-y blog posts explicitly claimed that “[The Database Administrator is dead](https://thenextweb.com/news/dba-dead)”.
 
@@ -28,13 +28,13 @@ DevOps was supposed to unite us. What went wrong?
 
 Since DevOps was hard to define, and even harder to measure, it was frustratingly hard to make a compelling case either for or against it. Sure, DevOps advocates could wax lyrical about their favorite DevOps case studies: Flickr, Etsy, Netflix, whatever… but then the other side would rightly make accusations about cherry-picking and throw back their own examples, such as the Apollo program, or any other software system that simply cannot be allowed to fail (aerospace, healthcare etc).
 
-This was getting us nowhere. We needed clarity. We needed data. We needed a little scientific rigour.
+This was getting us nowhere. We needed clarity. We needed data. We needed a little scientific rigor.
 
 ## The State Of DevOps Reports
 
-In 2012, at Puppet, Alanna Brown recognized this need and started the annual State of DevOps Reports. Later she brought in others, including Gene Kim, Nicole Forsgren and Jez Humble. (What a team!)
+In 2012, at Puppet, Alanna Brown recognized this need and started the annual State of DevOps Reports. Later she brought in others, including Gene Kim, Nicole Forsgren, and Jez Humble. (What a team!)
 
-Nicole, [a PhD with some serious research credentials](https://nicolefv.com/research), [lead the research from 2013 to 2017](https://twitter.com/nicolefv/status/1328040951449677824). Each year, they surveyed tens of thousands of tech folks globally, across different job roles and industry sectors. They examined the results, sought out conclusions, and published the data with their findings.
+Nicole, [a PhD with some serious research credentials](https://nicolefv.com/research), [lead the research from 2013 to 2017](https://twitter.com/nicolefv/status/1328040951449677824). Each year, the team surveyed tens of thousands of tech folks globally, across different job roles and industry sectors. They examined the results, sought out conclusions, and published the data with their findings.
 
 They elevated the discussion about DevOps. This wasn’t about tribal, value signaling anymore. We had cold, hard data. We could talk about facts, rather than opinions. We could talk about global trends, rather than individual case studies.
 
@@ -46,9 +46,9 @@ Their conclusions were striking.
 
 ## How to benchmark performance in tech
 
-Nicole, Gene and Jez wanted to understand why some teams performed better than others. To do that, they first needed a yardstick with which to measure the “performance” of an IT team. This is no small feat. The authors discuss the challenges with various traditional metrics such as lines of code, story points and utilization etc. Defining the performance of an individual or team based solely on the work they put in was problematic.
+Nicole, Gene, and Jez wanted to understand why some teams performed better than others. To do that, they first needed a yardstick to measure the “performance” of an IT team. This is no small feat. The authors discuss the challenges with various traditional metrics such as lines of code, story points, and utilization etc. Defining the performance of an individual or team based solely on the work they put in was problematic.
 
-The authors chose instead to focus on outcomes rather than outputs. When they did, they noticed something unique about four specific metrics, that covered a balance of both performance and stability. These metrics have become known as the “DORA metrics”:
+The authors chose instead to focus on outcomes rather than outputs. When they did, they noticed something unique about 4 specific metrics, that covered a balance of both performance and stability. These metrics have become known as the “DORA metrics”:
 
 -	Deployment frequency
 -	Lead time
@@ -61,19 +61,19 @@ When teams performed better, specifically against these metrics, they saw a uniq
 -	Market share
 -	Productivity
 
-This link wasn’t just observed in “tech companies” (those who are known for their software products). This was true across all business sectors. By 2018, high-performing technology teams delivered a competitive advantage in every business. What’s more, DORA went on to discuss other “not-profit” organizations, where positive outcomes weren’t solely defined by bank balances. Once again, they found that the DORA metrics were reliable predictors of success.
+This link wasn’t just observed in “tech companies” (those who are known for their software products). This was true across all business sectors. By 2018, high-performing technology teams delivered a competitive advantage in every business. What’s more, DORA went on to discuss other “not-profit” organizations, where positive outcomes weren’t solely defined by bank balances. Again, they found that the DORA metrics were reliable predictors of success.
 
 Every company is a software company now.
 
-If you want to get your shareholders, executives or key stakeholders on board with your DevOps transformation, you need to get them to read Accelerate.
+If you want to get your shareholders, executives, or key stakeholders on board with your DevOps transformation, you need to get them to read [Accelerate](https://octopus.com/blog/devops-reading-list#accelerate).
 
 ## Why are the DORA metrics effective?
 
-There’s an old myth in IT that out of speed, quality and cost you have to pick two. I’m here to tell you that’s rubbish.
+There’s an old myth in IT that out of speed, quality, and cost you have to pick two. I’m here to tell you that’s rubbish.
 
 The DORA metrics are interesting because they promote various positive feedback loops that reinforce good practices with respect to speed and quality simultaneously. This combination allows teams to deliver better quality software, faster. (And, thus, for less money.)
 
-### Deployment Frequency
+### Deployment frequency
 
 As Chuck Rossi observed while at Facebook: “If we want more changes, we need more deployments.”
 
@@ -81,11 +81,11 @@ Chuck was under pressure to increase the pace of development. In an effort to de
 
 If the goal is to ship more changes, it’s essential to “scale out” deployments, rather than “scale up”.
 
-By focussing on radically increasing deployment frequency, rather than deployment size, Facebook was much more successful. They were able to ship more changes, whilst suffering fewer major deployment failures. When stuff did go wrong, it was easier to diagnose and faster to fix.
+By focussing on radically increasing deployment frequency, rather than deployment size, Facebook was much more successful. They were able to ship more changes, while suffering fewer major deployment failures. When stuff did go wrong, it was easier to diagnose and faster to fix.
 
 They learned that productivity is a function of deployment *frequency*, not deployment *size*.
 
-However, to radically increase deployment frequency, it’s necessary to think very differently about the delivery process. (At an organizational level.) If each deployment requires a two-week test cycle, an overly-bureaucratic review process, and a 48-hour downtime window, we aren’t going to be able to execute multiple deploys a week – let alone ten deploys a day! (Like John and Paul presented at Velocity.)
+However, to radically increase deployment frequency, we need to think very differently about the delivery process. (At an organizational level.) If each deployment requires a two-week test cycle, an overly-bureaucratic review process, and a 48-hour downtime window, we aren’t going to be able to execute multiple deploys a week – let alone 10 deploys a day! (Like John and Paul presented at Velocity.)
 
 If the goal is to increase deployment frequency, we need to understand lead time.
 
@@ -93,11 +93,11 @@ If the goal is to increase deployment frequency, we need to understand lead time
 
 Lead time is a loaded term. The Accelerate authors defined it in a specific way.
 
-They drew a line between the creativity, innovation, research and decision making associated with choosing *what* to build (which they call “the fuzzy front end”) and the practical engineering work required to deliver it. In Accelerate, lead time is defined as the time between when a developer starts work on something, and when that work has been delivered (and validated) in production.
+They drew a line between the creativity, innovation, research, and decision making associated with choosing *what* to build (which they call “the fuzzy front end”) and the practical engineering work required to deliver it. In Accelerate, lead time is defined as the time between when a developer starts work on something, and when that work has been delivered (and validated) in production.
 
-(I.E. They explicitely *don’t* count the amount of time some bug fix or feature request has been waiting on the backlog behind a long tail of higher priority JIRA tickets.)
+(They explicitly *don’t* count the amount of time some bug fix or feature request has been waiting on the backlog behind a long tail of higher priority JIRA tickets.)
 
-With poor performers measuring lead time in months, and high performers measuring lead time in hours, it can be mind-boggling for folks in either camp to imagine how the other group delivers software without breaking things. For poor performers, a lot of their long lead time is invested in testing, approvals and validation, so it’s natural for them to assume that moving faster requires sacrifices with respect to quality or safety.
+With poor performers measuring lead time in months, and high performers measuring lead time in hours, it can be mind-boggling for folks in either camp to imagine how the other group delivers software without breaking things. For poor performers, a lot of their long lead time is invested in testing, approvals, and validation, so it’s natural for them to assume that moving faster requires sacrifices with respect to quality or safety.
 
 However, for most orgs who haven’t taken a serious look at lead time before, they’ll probably see big improvements by seeking to understand where the longest waits, delays, and mistakes occur, and then making changes or automating steps to avoid/reduce them. They’ll see another huge boost by breaking large batches of changes into smaller, independently deliverable batches. Not only will these be much faster and safer to deliver, but it’ll be easier to pivot if necessary before some broader epic has been completed, without sacrificing current progress.
 
@@ -107,21 +107,21 @@ Consistently short lead times are not the result of rushed development work or s
 
 The best way to appreciate MTTR, is to contrast it with MTBF (Mean Time Between Failure).
 
-The focus on MTTR is an explicit recognition that we care more about reducing the impact of failure than we do about avoiding failures entirely. That’s not to say we don’t care about avoiding failures. Of course we do! (More on that shortly.) We just care *more* about our ability to recover when we do fail. And we recognize that safety measures that significantly detract from deployment frequency and lead time should be avoided since they create their own form of systemic risk. (Longer lead time, bigger batches, riskier deployments etc.)
+The focus on MTTR is an explicit recognition that we care more about reducing the impact of failure than we do about avoiding failures entirely. That’s not to say we don’t care about avoiding failures. Of course we do. (More on that shortly.) We just care *more* about our ability to recover when we do fail. And we recognize that safety measures that significantly detract from deployment frequency and lead time should be avoided since they create their own form of systemic risk. (Longer lead time, bigger batches, riskier deployments etc.)
 
 Flatly: [Accelerate has demonstrated that the DORA metrics matter](https://octopus.com/blog/change-advisory-boards-dont-work). (And MTBF doesn’t.)
 
-If our failures are fixed within minutes, if they only affect a tiny fraction of our users, and if all the data can be recovered quickly… is it really so terrible if we make a mistake every now and then? Is it not more prudent to focus more energy on our ability to recover from failure, than pursuing the impossible goal of catching every last mistake?
+If our failures are fixed in minutes, if they only affect a tiny fraction of our users, and if all the data can be recovered quickly… is it really so terrible if we make a mistake every now and then? Shouldn't we focus more energy on our ability to recover from failure, than pursuing the impossible goal of catching every last mistake?
 
 When we demonstrate consistent improvement with respect to MTTR, instead of MTBF, it’s easier to make the case for reduced bureaucracy. This reduces lead time, increases deployment frequency, reduces deployment size. This results in even safer deployments, with even better MTTR.
 
-We’ve turned a vicious cycle into a virtuous one.
+We turn a vicious cycle into a virtuous one.
 
 ### Change failure percentage
 
-Testing is the often-forgotten part of DevOps. Continuous Deployment, without appropriate testing, is a sure-fire way to deploy bugs to production more quickly than before!
+Testing is the often-forgotten part of DevOps. Continuous Deployment, without appropriate testing, is a sure-fire way to deploy bugs to production more quickly than before.
 
-While our focus on MTTR over MTBF demonstrates our acceptance that failures will occur, that doesn’t mean we are happy when they do. DevOps is about building quality in, just as much as it’s about deploying small and often. We want our deployments to be boring, rather than nail-biting. We want to be confident they’ll work.
+While our focus on MTTR over MTBF demonstrates our acceptance that failures will occur, that doesn’t mean we're happy when they do. DevOps is about building quality in, just as much as it’s about deploying small and often. We want our deployments to be boring, rather than nail-biting. We want to be confident they’ll work.
 
 But we need to replace slow checks with fast checks.
 
@@ -138,7 +138,7 @@ If that sounds reckless, consider which of the following companies delivers a hi
 | MTTR: 2 days | MTTR: 1 hour | 
 | 2 failures x 48 hours recovery time = 96 hours downtime | 36 failures x 1 hour recovery time = 36 hours downtime | 
 
-Company B suffers significantly more frequent failures. However, it’s probably considered the more reliable service by its users. Company A had roughly three times more downtime and we’ll remember those frustrating multi-day outages for years to come!
+Company B suffers significantly more frequent failures. However, it’s probably considered the more reliable service by its users. Company A had roughly 3 times more downtime and we’ll remember those frustrating multi-day outages for years to come!
 
 By combining a focus on MTTR (to reduce the impact of failure) with a concerted effort to improve the reliability of deployments (defined by change failure percentage) it’s practical to radically increase deployment frequency while also improving quality. (Even if the total number of failures actually increases.)
 
@@ -152,11 +152,11 @@ Imagine a world where everyone has access to a dashboard reporting on the DORA m
 >
 > *From Accelerate, by Nicole Forsgren, Gene Kim, and Jez Humble, 2018.*
 
-However, Accelerate doesn’t just give us a scoreboard. Their research also highlights a set of 24 practical capabilities that have been demonstrated to improve performance. [The 24 capabilities are listed here](https://itrevolution.com/24-key-capabilities-to-drive-improvement-in-software-delivery/), and they broadly align with the practices that have been promoted by DevOps enthusiasts for years.
+However, Accelerate doesn’t just give us a scoreboard. Their research also highlights a set of 24 practical capabilities that have been demonstrated to improve performance. [The 24 listed capabilities](https://itrevolution.com/24-key-capabilities-to-drive-improvement-in-software-delivery/) broadly align with the practices that have been promoted by DevOps enthusiasts for years.
 
-Honestly, since Accelerate, the term “DevOps” is less important. Those 24 capabilities have simply become the default convention for perceived good practice. It has been demonstrated that they work.
+Honestly, since Accelerate, the term “DevOps” is less important. Those 24 capabilities have become the default convention for perceived good practice. It has been demonstrated that they work.
 
-It’s probably unsurprising that source control, automated deployment and continuous integration feature in the list. In fact, they’re the top three! But it’s a long list, and it isn’t ordered by priority. Accelerate embraces the fact that DevOps is about so much more than deployment pipelines.
+It’s probably unsurprising that source control, automated deployment, and continuous integration feature in the list. In fact, they’re the top 3! But it’s a long list, and it isn’t ordered by priority. Accelerate embraces the fact that DevOps is about much more than deployment pipelines.
 
 The capability list is long and can feel daunting. That’s OK. One person can’t be responsible for implementing all of it, and any organization that tries to make too many changes at once is unlikely to succeed. Don’t ask yourself “how long will it take me to do all that?” Instead, choose where to start.
 
@@ -176,13 +176,13 @@ He goes on to list the following bottlenecks, in order:
 1.	Architecture
 1.	New product ideas
 
-Assuming your value stream mapping exercise returns similar results, it’s probably a good idea to start by investing in the capabilities that make these tasks easier, faster and more reliable. The likely result will be improved DORA metrics scores.
+Assuming your value stream mapping exercise returns similar results, it’s probably a good idea to start by investing in the capabilities that make these tasks easier, faster, and more reliable. The likely result will be improved DORA metrics scores.
 
 And we know that strong DORA metrics scores predict commercial success.
 
 ## A call to action
 
-You’ve read this far. Either I’ve convinced you about the value of the DORA metrics, or I haven’t.
+You’ve read this far. Either I convinced you about the value of the DORA metrics, or I didn't.
 
 **If you aren’t convinced:**
 
@@ -210,4 +210,6 @@ Are you interested in continuous improvement and measuring DORA metrics from you
 
 If this interests you, please apply for our Octopus Insights alpha program.
 
-[Click here to apply now](https://t.dripemail2.com/c/eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZXRvdXIiLCJpc3MiOiJtb25vbGl0aCIsInN1YiI6ImRldG91cl9saW5rIiwiaWF0IjoxNjQ1NDY3MDMzLCJuYmYiOjE2NDU0NjcwMzMsImFjY291bnRfaWQiOiI5MzQyODM2IiwiZGVsaXZlcnlfaWQiOiJndWxodDN1aXY1aXUxNG1udWlpbCIsInVybCI6Imh0dHBzOi8vb2N0b3B1c2RlcGxveS50eXBlZm9ybS5jb20vaW5zaWdodHMtYWxwaGE_X19zPWltcGowMWlhaDI2Z2doZXI3bjB4JnV0bV9zb3VyY2U9ZHJpcCZ1dG1fbWVkaXVtPWVtYWlsJnV0bV9jYW1wYWlnbj1SZXF1ZXN0K2ZvcitDb21tZW50cystK09jdG9wdXMrbmV3cyJ9.M1IGUYfU4heF5yP06aHFXHQDXWCneVP2cu3A7EZaEFE).
+<span><a class="btn btn-success" href="/https://t.dripemail2.com/c/eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZXRvdXIiLCJpc3MiOiJtb25vbGl0aCIsInN1YiI6ImRldG91cl9saW5rIiwiaWF0IjoxNjQ1NDY3MDMzLCJuYmYiOjE2NDU0NjcwMzMsImFjY291bnRfaWQiOiI5MzQyODM2IiwiZGVsaXZlcnlfaWQiOiJndWxodDN1aXY1aXUxNG1udWlpbCIsInVybCI6Imh0dHBzOi8vb2N0b3B1c2RlcGxveS50eXBlZm9ybS5jb20vaW5zaWdodHMtYWxwaGE_X19zPWltcGowMWlhaDI2Z2doZXI3bjB4JnV0bV9zb3VyY2U9ZHJpcCZ1dG1fbWVkaXVtPWVtYWlsJnV0bV9jYW1wYWlnbj1SZXF1ZXN0K2ZvcitDb21tZW50cystK09jdG9wdXMrbmV3cyJ9.M1IGUYfU4heF5yP06aHFXHQDXWCneVP2cu3A7EZaEFE">Apply now</a></span>
+
+Happy deployments!
