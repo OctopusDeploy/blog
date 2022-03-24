@@ -89,7 +89,7 @@ CALMS is also the approach Atlassian took on its path to DevOps culture, using i
 
 ### The Three Ways (flow, feedback, continual experimentation and learning)
 
-Featured in both [The DevOps Handbook](https://www.amazon.com.au/Devops-Handbook-World-Class-Reliability-Organizations/dp/1950508404/ref=sr_1_1?crid=22X11LJN7ZYVQ&keywords=the+devops+handbook&qid=1643682944&sprefix=the+devops+handbook%2Caps%2C265&sr=8-1) and DevOps novel [The Unicorn Project](https://www.amazon.com.au/Phoenix-Project-Devops-Helping-Business/dp/1942788290/ref=sr_1_1?keywords=the+pheonix+project+book&qid=1643683007&sprefix=The+pheonix+pro%2Caps%2C253&sr=8-1), The Three Ways boils DevOps down to 3 key principles:
+Featured in both [The DevOps Handbook](https://www.amazon.com.au/Devops-Handbook-World-Class-Reliability-Organizations/dp/1950508404/ref=sr_1_1?crid=22X11LJN7ZYVQ&keywords=the+devops+handbook&qid=1643682944&sprefix=the+devops+handbook%2Caps%2C265&sr=8-1) and DevOps novel [The Unicorn Project](https://www.amazon.com.au/Unicorn-Project-Developers-Disruption-Thriving/dp/1942788762/ref=pd_sim_1/357-7244557-3570039?pd_rd_w=BWDAz&pf_rd_p=2079b880-cb1c-48f6-812a-f71bd7657d34&pf_rd_r=E0XDXM3NV8329M06P8N9&pd_rd_r=d4d1415d-405a-4de2-982d-2beee3a11145&pd_rd_wg=20ZBi&pd_rd_i=1942788762&psc=1), The Three Ways boils DevOps down to 3 key principles:
 
 - Flow
 - Feedback
@@ -191,7 +191,7 @@ The planning stages are the most important for the direction and future of your 
 
 Given a lot of that process can get pretty conceptual, there's a range of tools that allow collaboration and project management.
 
-[Slack](https://slack.com/intl/en-au/) and [ZOOM](https://zoom.us/) are our main tools at Octopus, but other popular options include:
+[Slack](https://slack.com/intl/en-au/) and [Zoom](https://zoom.us/) are our main tools at Octopus, but other popular options include:
 
 - [Teams](https://www.microsoft.com/en-au/microsoft-teams/group-chat-software)
 - [Confluence](https://www.atlassian.com/software/confluence)
@@ -240,7 +240,7 @@ Popular options include:
 - [Docker Hub](https://www.docker.com/)
 - [JFrog](https://jfrog.com/)
 - [Codefresh](https://codefresh.io/)
-- [Redhat Quay](https://www.redhat.com/en/technologies/cloud-computing/quay)
+- [Red Hat Quay](https://www.redhat.com/en/technologies/cloud-computing/quay)
 
 ### Releases and deployments
 
