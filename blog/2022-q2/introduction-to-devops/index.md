@@ -1,12 +1,12 @@
 ---
 title: An introduction to DevOps
-description: We take surface-level look at the concepts, tools and roles of DevOps, plus how Octopus fits in.
+description: To open our series about runbooks, we take a surface-level look at the concepts, tools, and roles of DevOps, plus how Octopus fits in.
 author: andrew.corrigan@octopus.com
-visibility: private
-published: 3020-01-01-1400
-metaImage: blogimage-placeholder.png
-bannerImage: blogimage-placeholder.png
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+visibility: public
+published: 2022-04-05-1400
+metaImage: blogimage-introductiontodevops-2022.png
+bannerImage: blogimage-introductiontodevops-2022.png
+bannerImageAlt: Blue octopus tentacle shaped like the DevOps infinity symbol, with people on laptops sitting on and around the tentacle.
 isFeatured: false
 tags: 
   - DevOps
@@ -14,13 +14,13 @@ tags:
   - Runbooks
 ---
 
-'DevOps' is a *big* term, wide-reaching and applicable to many things that surround and support software development. 
+DevOps is a *big* term, wide-reaching and applicable to many things that surround and support software development. 
 
 For the uninitiated, DevOps can be hard to understand. Is it a culture? A guideline for development processes? A set of tools? Someone's job?
 
-The answer to all these questions is yes! It's all the above.
+The answer to all these questions is yes. It's all the above.
 
-In this blog, we take a surface-level look at the parts that make up DevOps. We explore the concepts, tools, unique roles, plus explain where Octopus fits in.
+In this post, we take a surface-level look at the parts that make up DevOps. We explore the concepts, tools, unique roles, plus explain where Octopus fits in.
 
 ## DevOps as a concept
 
@@ -28,7 +28,7 @@ In modern development, it's more important than ever to deliver software and upd
 
 The concept behind DevOps, then, is about removing barriers that get in the way of software delivery.
 
-Typical barriers could include:
+Typical barriers include:
 
 - Manual processes
 - Office politics
@@ -42,11 +42,11 @@ Let's look at what we must consider when thinking about a DevOps approach.
 
 In traditional organizations, developers and those that support them (such as operations or database teams) are often separate entities with little interaction.
 
-This means each team has its own beliefs, responsibilities, and priorities. While not exactly at odds, often those priorities can clash in pursuit of doing best for the business.
+This means each team has its own beliefs, responsibilities, and priorities. While not at odds, often those priorities can clash in pursuit of doing best for the business.
 
 Embracing DevOps as a culture means to remove that friction by introducing a shared purpose.
 
-The methods to achieve that can differ and depend how entrenched people are in their way of working. The aim, however, is to ensure all teams:
+The methods to achieve that can differ and depend how entrenched people are in their ways of working. The aim, however, is to ensure all teams:
 
 - Build trust through clear, honest communication and feedback
 - Collaborate throughout the product's entire lifecycle
@@ -77,7 +77,7 @@ Octopus's own Alex Yates highlighted 2 approaches worth revisiting in his piece 
 
 CALMS is a framework explored in [The DevOps Handbook](https://www.amazon.com.au/Devops-Handbook-World-Class-Reliability-Organizations/dp/1950508404/ref=sr_1_1?crid=22X11LJN7ZYVQ&keywords=the+devops+handbook&qid=1643682944&sprefix=the+devops+handbook%2Caps%2C265&sr=8-1).
 
-CALMS is an acronym where each letter describes the actions needed to adopt DevOps"
+CALMS is an acronym where each letter describes the actions needed to adopt DevOps:
 
 - **Culture** - Remove silos and share responsibility
 - **Automation** - Reduce time spent on manual tasks
@@ -87,7 +87,7 @@ CALMS is an acronym where each letter describes the actions needed to adopt DevO
 
 CALMS is also the approach Atlassian took on its path to DevOps culture, using it to measure progress and success. You can read [how Atlassian uses CALMS on their DevOps site](https://www.atlassian.com/devops/frameworks/calms-framework).
 
-### The Three Ways (Flow, feedback, continual experimentation and learning)
+### The Three Ways (flow, feedback, continual experimentation and learning)
 
 Featured in both [The DevOps Handbook](https://www.amazon.com.au/Devops-Handbook-World-Class-Reliability-Organizations/dp/1950508404/ref=sr_1_1?crid=22X11LJN7ZYVQ&keywords=the+devops+handbook&qid=1643682944&sprefix=the+devops+handbook%2Caps%2C265&sr=8-1) and DevOps novel [The Unicorn Project](https://www.amazon.com.au/Phoenix-Project-Devops-Helping-Business/dp/1942788290/ref=sr_1_1?keywords=the+pheonix+project+book&qid=1643683007&sprefix=The+pheonix+pro%2Caps%2C253&sr=8-1), The Three Ways boils DevOps down to 3 key principles:
 
@@ -99,7 +99,7 @@ Let's take a quick look at what these principles mean.
 
 #### The First Way: Flow
 
-'The First Way' is about refining every process that takes place between the developer and the customer.
+The First Way is about refining every process that takes place between the developer and the customer.
 
 This means:
 
@@ -108,7 +108,7 @@ This means:
 
 #### The Second Way: Feedback loops
 
-'The Second Way' is all about faster feedback.
+The Second Way is all about faster feedback.
 
 Faster feedback means faster reactions, so you can:
 
@@ -118,7 +118,7 @@ Faster feedback means faster reactions, so you can:
 
 #### The Third Way: Experiment and learn
 
-'The Third Way' is about recognizing that it's okay to take risks and that failure is an important part of learning. It's also about communicating the wins too.
+The Third Way is about recognizing that it's okay to take risks and that failure is an important part of learning. It's also about communicating the wins too.
 
 By recognizing this, it allows your teams to:
 
@@ -147,23 +147,23 @@ Both conductor and problem solver, a DevOps Engineer oversees the bigger picture
 
 The Build Manager maintains the automation systems that make up Continuous Integration (CI).
 
-This means ensuring code gets compiled, built, tested and handed off for deployment.
+This means ensuring code gets compiled, built, tested, and handed off for deployment.
 
 ### Release Manager
 
-A Release Manager directs builds promoted for release. They communicate what's included in a release and plots their course through a pipeline's environments.
+A Release Manager directs builds promoted for release. They communicate what's included in a release and plot their course through a pipeline's environments.
 
-This makes up what we call Continuous Deployment or Continuous Delivery (CD) - the process we created Octopus to help with.
+This makes up what we call Continuous Deployment and Continuous Delivery (CD) - the processes we created Octopus to help with.
 
 ### Product Manager
 
 Product Managers are almost a conduit between developers and end users.
 
-Working with developers, they help ensure the product will have the features and fixes customers need.
+Working with developers, they help ensure the product has the features and fixes customers need.
 
 ### Data Analyst
 
-This one's simple. A Data Analyst scours data to spot patterns and find areas for improvement.
+A Data Analyst scours data to spot patterns and find areas for improvement.
 
 This helps you spot the things that impact user experience, such as feature problems or product navigation.
 
@@ -187,7 +187,7 @@ It's important to find the right tools to help you manage each phase. Let's look
 
 ### Planning
 
-The planning stages are the most important for the direction and future of your product. Effective planning helps you focus on the improvements and features users will get at the end of the next lifecycle.
+The planning stages are the most important for the direction and future of your product. Effective planning helps you focus on the improvements and features users get at the end of the next lifecycle.
 
 Given a lot of that process can get pretty conceptual, there's a range of tools that allow collaboration and project management.
 
@@ -195,14 +195,14 @@ Given a lot of that process can get pretty conceptual, there's a range of tools 
 
 - [Teams](https://www.microsoft.com/en-au/microsoft-teams/group-chat-software)
 - [Confluence](https://www.atlassian.com/software/confluence)
-- [Monday.com](https://monday.com/)
+- [monday.com](https://monday.com/)
 - [Trello](https://trello.com/)
 
 ### Code repositories and source control
 
-Everyone knows source control is important to any development team. Source control tracks and checks every new piece of code and file change.
+Source control is important to any development team. Source control tracks and checks every new piece of code and file change.
 
-Most developers use [Git](https://git-scm.com/) for source control. Git is both a system and philosophy, allowing for distributed development and helps avoid risk through branching.
+Most developers use [Git](https://git-scm.com/) for source control. Git is both a system and philosophy, allowing for distributed development and helping avoid risk through branching.
 
 Code repositories, then, are hosting services for Git-managed code.
 
@@ -216,9 +216,9 @@ Popular options include:
 
 Build servers (also known as CI platforms) can save time by automating:
 
-- code compiling
-- code-validation tests
-- package creation.
+- Code compiling
+- Code validation tests
+- Package creation
 
 Popular options include:
 
@@ -229,11 +229,11 @@ Popular options include:
 - [Atlassian Bamboo](https://www.atlassian.com/software/bamboo)
 - [Azure DevOps](https://azure.microsoft.com/)
 
-We spent the first quarter of 2022 doing deep dives into [Jenkins and GitHub Actions](https://octopus.com/blog/introduction-to-build-servers). Why not take a read and see if they're for you?
+We spent the first quarter of 2022 deep-diving into [Jenkins and GitHub Actions](https://octopus.com/blog/tag/CI%20Series). Take a read and see if they're for you.
 
 ### Package
 
-Software packaging tools turn your code into the deployable artifacts. You host and deploy these artifacts from package repositories.
+Software packaging tools turn your code into deployable artifacts. You host and deploy these artifacts from package repositories.
 
 Popular options include:
 
@@ -244,9 +244,9 @@ Popular options include:
 
 ### Releases and deployments
 
-Most code repos and build servers allow you to manage releases and deploy to targets in some fashion. That said, they don't solve the same problems dedicated release management or deployment tools do.
+Most code repositories and build servers let you manage releases and deploy to targets in some fashion. However, they don't solve the same problems dedicated release management or deployment tools do.
 
-Obviously, [Octopus](https://octopus.com/) is our deployment tool and we think it's pretty great. We'll talk about [where Octopus fits into DevOps](#octopus-and-devops) later.
+Of course, [Octopus](https://octopus.com/) is our deployment tool and we think it's pretty great. We'll talk about [where Octopus fits into DevOps](#octopus-and-devops) later.
 
 Other popular options include:
 
@@ -258,7 +258,7 @@ Other popular options include:
 
 ### Operations
 
-Operations relates to the setup, running and maintenance of infrastructure for a pipeline.
+Operations relates to the setup, running, and maintenance of infrastructure for a pipeline.
 
 Popular options include:
 
@@ -288,10 +288,14 @@ Octopus fits nicely into a DevOps environment in 2 key ways:
    - Incident recovery
    - Backups, restores, and tests
    - Spin-up and tear-down of infrastructure
-   - The stop, start and restart of system services
+   - The stop, start, and restart of system services
    - File clean-up
    - The running of scripts in any language you need
 
+## Conclusion
+
 We're looking closely at Octopus Runbooks in the next few months, with detailed insight, guides, and samples.
+
+!include <q2-2022-newsletter-cta>
 
 Happy deployments!
