@@ -10,8 +10,6 @@ bannerImageAlt: Open book sits below a conveyer belt of books
 tags:
  - DevOps
 ---
-
-![The DevOps Reading List: Choosing your next DevOps book](blogimage-devops-reading-list.png)
  
 You like books. You want to learn more about DevOps. Either you are new to the topic, or you are looking to expand your knowledge, but you’re overwhelmed by the options. It seems like everyone has an opinion, and you don't know where to start or what to read first/next.
 
