@@ -75,7 +75,7 @@ New steps will always appear at the bottom of your runbook process. If you need 
 
 A simple support email is fine for things that are easy to fix, but what if your support teams need a little more info?
 
-With output variables and a little effort, the **Send an Email** step can also include everything needed to start troubleshooting.
+With [output variables](https://octopus.com/docs/projects/variables/output-variables) and a little effort, the **Send an Email** step can also include everything needed to start troubleshooting.
 
 Our sample runbook scrapes a Kubernetes cluster for information to send in an email to support, including:
 
@@ -112,9 +112,10 @@ To create the steps:
 1. Click **Kubernetes**, then **Run a kubectl CLI Script** under **Installed Step Templates**.
 1. Complete the following fields and click **SAVE**:
    - **Step Name** - get the step name from the step information below.
+   - **On Behalf Of** - select your target role from the dropdown.
    - **Worker Pool** - check **Runs on a worker from a specific work pool** and select **Hosted Ubuntu** from the dropdown. (only needed if using Octopus workers)
-   - **Container Image** - Check **Runs inside a container, on a worker**, then click **Use latest Linux-based image** to automatically complete the fields. (only needed if using Octopus workers)
-   - **Inline Source Code** - Check **Powershell** and enter the code for each step below.
+   - **Container Image** - check **Runs inside a container, on a worker**, then click **Use latest Linux-based image** to automatically complete the fields. (only needed if using Octopus workers)
+   - **Inline Source Code** - check **Powershell** and enter the code for each step below.
 :::
 
 #### Step 1: Get deployment
@@ -123,8 +124,9 @@ Call this step `Get deployment`. We reference this name when setting up the supp
 
 Enter the following code in the **Inline Source Code** field. Swap **yournamespace** for your own cluster's namespace.
 
-```ps
-$output = (kubectl describe deployment -n yournamespace) -join "`n"
+```
+ps
+$output = (kubectl describe deployment -n) -join "`n"
 Set-OctopusVariable -name "Describe[$($_.metadata.name)].Content" -value $output
 
 exit 0
@@ -134,13 +136,11 @@ exit 0
 
 Call this step `Get pod logs`. We reference this name when setting up the support email step.
 
-Enter the following code in the **Inline Source Code** field and swap the following elements:
+Enter the following code in the **Inline Source Code** field and swap **deployment-name** your own Kubernete's deployment name.
 
-- **yournamespace** - swap for your own cluster's namespace
-- **deployment-name** - swap for your Kubernete's deployment name
-
-```ps
-$pods = kubectl get pods -n yournamespace -o json | ConvertFrom-Json
+```
+ps
+$pods = kubectl get pods -o json | ConvertFrom-Json
 $items = if ($pods.items -ne $null) {$pods.items} else {@($pods)}
 
 $items | 
@@ -157,13 +157,11 @@ exit 0
 
 Call this step `Get description`. We reference this name when setting up the support email step.
 
-Enter the following code in the **Inline Source Code** field and swap the following elements:
+Enter the following code in the **Inline Source Code** field and swap **deployment-name** your own Kubernete's deployment name.
 
-- **yournamespace** - swap for your own cluster's namespace
-- **deployment-name** - swap for your Kubernete's deployment name
-
-```ps
-$pods = kubectl get pods -n yournamespace -o json | ConvertFrom-Json
+```
+ps
+$pods = kubectl get pods -o json | ConvertFrom-Json
 $items = if ($pods.items -ne $null) {$pods.items} else {@($pods)}
 
 $items | 
@@ -186,11 +184,10 @@ Now we can add the **Send an Email** step and configure it to include the scrape
    - **Step Name** - give the step a descriptive name.
    - **To**, **CC**, and **BCC** - enter an email address or select a team from the dropdown. See our documentation for more information about [creating teams](https://octopus.com/docs/security/users-and-teams).
    - **Subject**
-   - **Body** - use the following HTML:
+   - **Body** - use the following raw text:
 
 ```
-  
-#{SupportReason}
+Issue context:
 
 The description of the deployment is included below:
 
@@ -354,6 +351,6 @@ Events:                      <none>
 
 These examples are just a small insight into how Octopus Runbooks can help you get key information to those that need it.
 
-If you'd like to try Octopus Runbooks for yourself, sign up for a free trial and have fun experimenting!
+If you'd like to try Octopus Runbooks for yourself, [sign up for a free trial](https://octopus.com/start) and have fun experimenting!
 
 Happy deployments!
