@@ -210,6 +210,6 @@ Are you interested in continuous improvement and measuring DORA metrics from you
 
 If this interests you, please apply for our Octopus Insights alpha program.
 
-<span><a class="btn btn-success" href="/https://t.dripemail2.com/c/eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkZXRvdXIiLCJpc3MiOiJtb25vbGl0aCIsInN1YiI6ImRldG91cl9saW5rIiwiaWF0IjoxNjQ1NDY3MDMzLCJuYmYiOjE2NDU0NjcwMzMsImFjY291bnRfaWQiOiI5MzQyODM2IiwiZGVsaXZlcnlfaWQiOiJndWxodDN1aXY1aXUxNG1udWlpbCIsInVybCI6Imh0dHBzOi8vb2N0b3B1c2RlcGxveS50eXBlZm9ybS5jb20vaW5zaWdodHMtYWxwaGE_X19zPWltcGowMWlhaDI2Z2doZXI3bjB4JnV0bV9zb3VyY2U9ZHJpcCZ1dG1fbWVkaXVtPWVtYWlsJnV0bV9jYW1wYWlnbj1SZXF1ZXN0K2ZvcitDb21tZW50cystK09jdG9wdXMrbmV3cyJ9.M1IGUYfU4heF5yP06aHFXHQDXWCneVP2cu3A7EZaEFE">Apply now</a></span>
+<span><a class="btn btn-success" href="ttps://octopusdeploy.typeform.com/insights-alpha?utm_source=website&utm_medium=blog&utm_campaign=DORA+Metrics+-+The+predictive+link">Apply now</a></span>
 
 Happy deployments!
