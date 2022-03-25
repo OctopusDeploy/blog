@@ -210,6 +210,6 @@ Are you interested in continuous improvement and measuring DORA metrics from you
 
 If this interests you, please apply for our Octopus Insights alpha program.
 
-<span><a class="btn btn-success" href="ttps://octopusdeploy.typeform.com/insights-alpha?utm_source=website&utm_medium=blog&utm_campaign=DORA+Metrics+-+The+predictive+link">Apply now</a></span>
+<span><a class="btn btn-success" href="https://octopusdeploy.typeform.com/insights-alpha?utm_source=website&utm_medium=blog&utm_campaign=DORA+Metrics+-+The+predictive+link">Apply now</a></span>
 
 Happy deployments!
