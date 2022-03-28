@@ -1,9 +1,9 @@
 ---
 title: Traditional runbooks versus Octopus Runbooks
-description: A look at how Octopus Runbooks solves the problems with traditional runbooks.
+description: As part of our series about Runbooks, we look at how Octopus Runbooks solves the problems with traditional runbooks.
 author: andrew.corrigan@octopus.com
 visibility: private
-published: 3020-01-01-1400
+published: 2022-04-11-1400
 metaImage: blogimage-placeholder.png
 bannerImage: blogimage-placeholder.png
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
