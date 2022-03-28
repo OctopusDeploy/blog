@@ -10,12 +10,12 @@ bannerImageAlt: Customers lined up at an octopus document store-front, with GitH
 isFeatured: false
 tags:
 - Engineering
-- Config as Code
+- Configuration as Code
 ---
 
 When introducing the Configuration as Code (Config as Code) feature to our codebase, we ran into some [persistence ignorance](https://deviq.com/principles/persistence-ignorance) opportunities - to have our code ignorant of any persistence/storage logic.
 
-This post explores how the Core Platform team at Octopus made decisions about persistence ignorance. We hope that others can learn from our experience.
+This post explores how our Core Platform team made decisions about persistence ignorance. We hope others can learn from our experience.
 
 ## Octopus and SQL
 
