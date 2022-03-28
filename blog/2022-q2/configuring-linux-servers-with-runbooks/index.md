@@ -35,7 +35,7 @@ On the home page, navigate to **Create a resource, Ubuntu Server 20.04 LTS, Crea
 
 Choose the linked subscription and create a new resource group. Give the server a name. Under **Administrator account** generate an SSH public key or password, which you will use later. Select **Review + Create** to accept the default settings.
 
-When finished, select **Go to resource**. Connect to the server by clicking **Connect, Bastion**. You will need to enter either your SSH key or password from earlier.
+When finished, select **Go to resource**. Connect to the server by clicking **Connect, Bastion**. You will need to enter either your SSH key or password from earlier. If this is your first time setting up Bastion, you will have to click **Deploy Bastion**. There will be a wait time for Bastion to be set up.
 
 ## Installing an Octopus Tentacle on the Linux server
 
@@ -57,7 +57,7 @@ sudo apt-get install tentacle
 
 ```
 
-As the Tentacle needs to communicate with your Octopus instance, we need a key to provide to the Tentacle to authenticate. In your Octopus instance click **Your name in the top right, Profile, My API Keys, New API Key**. Give the key a name and make sure to save it. It will only be visible once.
+As the Tentacle needs to communicate with your Octopus instance, we need a key to provide to the Tentacle to authenticate. In your Octopus instance click **Your Profile, Profile, My API Keys, New API Key**. Give the key a name and make sure to save it. It will only be visible once.
 
 Configure the Tentacle on the Linux server by running the following command:
 
