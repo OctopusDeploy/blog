@@ -12,7 +12,7 @@ tags:
   - DevOps
 ---
 
-> “**The key to successful change is measuring and understanding the right things** with a focus on capabilities—not on maturity.”
+> **The key to successful change is measuring and understanding the right things** with a focus on capabilities—not on maturity.”
 >
 > *From Accelerate, by Nicole Forsgren, Gene Kim, and Jez Humble, 2018.*
 
@@ -148,7 +148,7 @@ Of course, we should be tracking and reporting on our progress with respect to t
 
 Imagine a world where everyone has access to a dashboard reporting on the DORA metrics for each product or team. Teams would be incentivized to emulate the practices of the top performers. Management will see which teams most urgently need their support. Happy days.
 
-> “The key to successful change is measuring and understanding the right things **with a focus on capabilities—not on maturity**.”
+> The key to successful change is measuring and understanding the right things **with a focus on capabilities—not on maturity**.”
 >
 > *From Accelerate, by Nicole Forsgren, Gene Kim, and Jez Humble, 2018.*
 
@@ -164,7 +164,7 @@ In my experience, getting a cross-functional group together for a couple of hour
 
 Having said that, Gene Kim gave us a pretty good pointer in [Beyond the Phoenix Project](https://www.goodreads.com/en/book/show/38714647-beyond-the-phoenix-project). Speaking from personal experience, his observations mirror my own with hundreds of customers throughout my career:
 
-> “What I find so amazing, is that as an organization goes from code deployment lead times that are measured in months, maybe even in quarters, down to minutes, the constraint moves in some pretty predictable ways.”
+> What I find so amazing, is that as an organization goes from code deployment lead times that are measured in months, maybe even in quarters, down to minutes, the constraint moves in some pretty predictable ways.”
 >
 > *Gene Kim, in Beyond the Phoenix Project, 2018.*
 
