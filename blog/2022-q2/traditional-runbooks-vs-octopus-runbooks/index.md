@@ -84,7 +84,7 @@ In fact, we'll show you. Let's walk through the creation process with a simple r
 
 ## Creating a simple runbook in Octopus
 
-This is a short example on how to create a basic runbook that won't affect any of your projects or environments. You can follow along if you're an existing user or by [signing up for a free trial](https://octopus.com/start).
+This is a short example on how to create a basic runbook that won't affect any of your projects or environments. You can follow along if you're an existing user or by [signing up for a free trial](https://octopus.com/start).If you don't want to follow along but would still like to see the end result, we set up an [example instance with this runbook](https://tenpillars.octopus.app/app#/Spaces-82/projects/starter-runbooks/operations/runbooks/Runbooks-181/process/RunbookProcess-Runbooks-181) that's accessible to guests.
 
 This guide assumes you already:
 
@@ -117,10 +117,10 @@ This runbook will:
    - **Hook URL** - copy in your Slack Webhook URL. If others can see your Octopus instance or you're creating a real runbook, consider adding your webhook as a [project variable](https://octopus.com/docs/projects/variables). You can then securely call the webhook with the following syntax `#{variable-name}`.
    - **Channel handle** - enter the exact Slack channel you'd like to post the message to.
    - **Message** - type in the success message you'd like Octopus to send to Slack.
- 1. Click **RUN...** to test the runbook. Depending on your Octopus setup, you may need to select environments. If so, select any environments (it won't matter which as this runbook won't change anything) and click **RUN** again.
+ 1. Click **RUN...** to test the runbook. Depending on your Octopus setup, you may need to select environments. If so, select any environment (it won't matter which as this runbook won't change anything) and click **RUN** again.
  1. Wait for the runbook to finish and check Slack for the message we set earlier.
 
- When creating a runbook for real, you must click **PUBLISH** to make it available to other team members and Octopus trigger events.
+When creating a runbook for real, you must click **PUBLISH** to make it available to other team members and Octopus trigger events.
 
 ## What's next?
 

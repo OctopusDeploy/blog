@@ -179,6 +179,11 @@ In this post, you set up a Jenkins Pipeline to build a GitHub repository and pus
 
 After the image is pushed, you can use a tool like Octopus Deploy to deploy the image to a target environment. If you're not already using Octopus Deploy, you can [sign up for a free trial](https://octopus.com/start).
 
+Check out our other posts about deploying with Jenkins, Kubernetes, and Octopus Deploy:
+
+- [Deploying to Amazon EKS with Docker and Jenkins](https://octopus.com/blog/jenkins-eks-ecr-deployment )
+- [Multi-environment deployments with Jenkins and Octopus](https://octopus.com/blog/multi-environment-deployments-jenkins)
+
 !include <jenkins-webinar-jan-2022>
 
 !include <q1-2022-newsletter-cta>
