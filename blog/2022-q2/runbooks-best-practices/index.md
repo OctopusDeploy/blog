@@ -7,9 +7,11 @@ published: 3020-01-01-1400
 metaImage: runbooks-best-practices.png
 bannerImage: runbooks-best-practices.png
 bannerImageAlt: Runbooks best practices
+isFeatured: false
 tags:
- - Product
- - Runbooks
+   - DevOps
+   - Runbooks Series
+   - Runbooks
 ---
 
 Waterfall, Agile, or Extreme Programming. Whether you implement them or even agree with them, there is no denying that developers are always looking to optimize their workflows. And while the specific methodologies differ, they all boil down to maintaining a high velocity and high quality. To achieve that, you need automation.
