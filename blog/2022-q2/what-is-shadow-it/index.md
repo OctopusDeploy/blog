@@ -67,7 +67,7 @@ Shadow IT requires governance, discovery, and protection. The solution must be s
 
 A [post by Microsoft](https://www.microsoft.com/security/blog/2019/03/26/step-7-discover-shadow-it-and-take-control-of-your-cloud-apps-top-10-actions-to-secure-your-environment/) outlines the stages of the shadow IT discovery lifecycle. This supports that any solution to shadow IT should have governance but also compliance. 
 
-Reducing the barriers to compliance while maintaining governance is an important step towards managing shadow IT. Octopus Deploy's Runbooks feature helps achieve compliance and governance across an organization.
+Reducing the barriers to compliance while maintaining governance is an important step towards managing shadow IT. Octopus Deploy's [Runbooks feature](https://octopus.com/docs/runbooks) helps achieve compliance and governance across an organization.
 
 ![Shadow IT lifecycle](microsoft-shadow-it.png "width=500")
 
