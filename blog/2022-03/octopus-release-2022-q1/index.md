@@ -17,9 +17,9 @@ tags:
 
 The Octopus 2022 Q1 release is now available.
 
-I'm thrilled to share that Configuration as Code (Config as Code) for deployments is now generally available. This means you can create  version-controlled projects and see your deployment process in your Git repo next to your application code and evolve them together.
+We're happy to share that Configuration as Code (Config as Code) for deployments is generally available. You can create version-controlled projects and see your deployment process in your Git repo next to your application code and evolve them together.
 
-We're proud to ship our no-compromise solution, and we believe we've built one of the best "as code" implementations. Config as Code in Octopus delivers the power of Git (branches, commits and history) with the usability of Octopus UI. Config as Code is available on Octopus Cloud and ready for download by our self-hosted customers.
+We believe our no-compromise solution is one of the best "as code" implementations. Config as Code in Octopus delivers the power of Git (branches, commits and history) with the usability of Octopus UI. Config as Code is available on Octopus Cloud and ready for [download](https://octopus.com/downloads/) by our self-hosted customers.
 
 This release also includes other noteworthy updates:
 
@@ -62,7 +62,7 @@ The following table shows the Octopus Server releases with long term support.
 
 ![Octopus Config as Code branch selector](cac-branch-selector.png "width=500")
 
-We worked hard on Config as Code to deliver a no-compromise implementation. Config as Code in Octopus delivers the full power of Git with a fully functional user interface. When you enable Config as Code for a project, you can continue to use the Octopus UI as you always have, or you can edit the text files in your favorite editor. Work wherever you're the most productive.
+When you enable Config as Code for a project, you can continue to use the Octopus UI as you always have, or you can edit the text files in your favorite editor. Work wherever you're the most productive.
 
 Config as Code has been one of the top requests from our customers. After launching an [early access preview in December 2021](https://octopus.com/blog/config-as-code-eap), your feedback has allowed us to fine-tune it further before general availability.
 
@@ -227,7 +227,7 @@ resource "octopusdeploy_deployment_process" "test-deployment-process-main" {
 
 Octopus Deploy now integrates with [Buildkite](https://buildkite.com/). Our new Buildkite plugins allow your build agents to create and deploy releases, push build information, and run runbooks as part of a pipeline.
 
-The integration provided through our new Buildkite plugins represents our initial design and release. We plan to build additional plugins and eliminate the dependency on the Octopus CLI by providing integration through Bash scripts.
+The integration through our Buildkite plugins represents our initial design and release. We plan to build additional plugins and eliminate the dependency on the Octopus CLI by providing integration through Bash scripts.
 
 [Learn more about our Buildkite plugins](https://octopus.com/blog/introducing-buildkite-integration).
 
@@ -247,9 +247,9 @@ After it's enabled, Opsera's integration provides access through its pipeline UI
 
 ![screenshot that shows the new UI](azure-devops-issue-tracker.png "width=500") 
 
-If your company has multiple Azure DevOps organizations, you can now connect Octopus to them all. When we built the functionality to associate build information with packages, we didn't plan for customers to access more than one Azure DevOps organization. We only added support to associate a single Azure DevOps organization. We've addressed this limitation.
+If your company has multiple Azure DevOps organizations, you can now connect Octopus to them all. When we built the functionality to associate build information with packages, we didn't plan for customers to access more than one Azure DevOps organization. We only added support to associate a single Azure DevOps organization. 
 
-In this release, you have the option to configure multiple Azure DevOps organization URLs. This update means Octopus can show work items from more than one Azure DevOps organization as part of release creation or when looking at package metadata.
+In this release, we addressed this limitation and you have the option to configure multiple Azure DevOps organization URLs. This update means Octopus can show work items from more than one Azure DevOps organization as part of release creation or when looking at package metadata.
 
 To configure multiple URLs in Octopus, head to **Configuration ➜ Settings ➜ Azure DevOps Issue Tracker**.
 
@@ -279,11 +279,11 @@ Octopus acquired [Dist](https://www.dist.cloud/), a fast and reliable artifact r
 
 ## Breaking changes 
 
-This release contains one breaking change. 
+This release contains one breaking chang.: 
 
 **Config as Code API URLs renamed**
 
-We have made minor changes to some Config as Code API URLs and keys in the related links collection. These changes only impact version-controlled projects and should only cause issues if you're using any URLs directly.
+We made minor changes to some Config as Code API URLs and keys in the related links collection. These changes only impact version-controlled projects and should only cause issues if you're using URLs directly.
 
 Learn more about this change in the [GitHub issue](https://github.com/OctopusDeploy/Issues/issues/7376).
 
