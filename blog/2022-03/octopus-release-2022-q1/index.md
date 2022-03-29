@@ -72,7 +72,7 @@ We designed our solution to [avoid key anti-patterns](https://octopus.com/blog/s
 
 [Stack Overflow](https://stackoverflow.com) and [Recruit Wizard](https://recruitwizard.com.au) have been using Config as Code in early access, and shared feedback about how it's improved their development workflow.
 
-> It has enabled us to make Config as Code the standard. The build pipeline is in the software repo. The deployment pipeline is the software repo. We can do one PR, and I can change the software, how it’s built, and how it’s deployed. 
+> It has enabled us to make Config as Code the standard. The build pipeline is in the software repo. The deployment pipeline is in the software repo. We can do one PR, and I can change the software, how it’s built, and how it’s deployed. 
 
 -- Chris Hunt, Staff Site Reliability Engineer at StackOverflow
 
