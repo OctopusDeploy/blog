@@ -92,7 +92,7 @@ Though there are many different ways to integrate DevOps and all of its associat
 
 The gain in security, auditibility, manageability, and control afforded to organizations integrating Config as Code into their workflows make managing complex configurations easier and more secure than with the typical approach to bundling configuration within an application’s codebase.
 
-!include <octopus-cac-deep-dive-video>
+!include <cac-webinar-may-2022>
 
 ---
 
