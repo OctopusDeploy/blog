@@ -2,8 +2,8 @@
 title: Runbooks best practices
 description: This post provides a step by step template you can use to generate high quality runbooks in Octopus
 author: matthew.casperson@octopus.com
-visibility: public
-published: 2020-03-09
+visibility: private
+published: 3020-01-01-1400
 metaImage: runbooks-best-practices.png
 bannerImage: runbooks-best-practices.png
 bannerImageAlt: Runbooks best practices
@@ -11,8 +11,6 @@ tags:
  - Product
  - Runbooks
 ---
-
-![Runbooks best practices](runbooks-best-practices.png)
 
 Waterfall, Agile, or Extreme Programming. Whether you implement them or even agree with them, there is no denying that developers are always looking to optimize their workflows. And while the specific methodologies differ, they all boil down to maintaining a high velocity and high quality. To achieve that, you need automation.
 
@@ -24,17 +22,17 @@ In this post, we’ll look at the best practices for designing runbooks, providi
 
 ## Describe
 
-It’s 1 am, and your pager goes off to let you know your web site is down. The last thing you want to do is wade through pages of projects and scripts to find the one that will resolve the issue. This makes discoverability critical to runbooks.
+It’s 1am and your pager goes off to let you know your website is down. The last thing you want to do is wade through pages of projects and scripts to find the one that will resolve the issue. This makes discoverability critical to runbooks.
 
-Each Octopus project has a description field. Runbooks should take advantage of this field to document what services the runbook targets and which problems the runbook solves. The description field is searchable from the main Octopus dashboard allowing operations and support staff to find suitable projects based on keyword searches rather than a rote knowledge of all available scripts.
+Each Octopus project has a description field. Runbooks should take advantage of this field to document what services the runbook targets and which problems the runbook solves. The description field is searchable from the main Octopus dashboard allowing operations and support staff to find suitable projects based on keyword searches, rather than a rote knowledge of all available scripts.
 
 In the screenshot below, you can see the sample project includes several keywords like “500” and “Azure Web App” that match the expected scenarios the runbook would be used in:
 
-![](description.png "width=500")
+![A project in Octopus called 'Azure Web App Runbook'](description.png "width=500")
 
 Searching for these keywords in the Octopus dashboard returns the runbook project:
 
-![](search.png "width=500")
+![The same project found in Octopus when searching words from its title](search.png "width=500")
 
 ## Inspect
 
@@ -82,13 +80,14 @@ If the inspect step failed to identify an issue, we display a prompt asking whet
 
 In practical terms, this step is implemented as a manual intervention step that runs on the condition that the `TestResult` variable created in the last step is true (in other words, if the inspect step successfully contacted the web application, thus not finding a problem).
 
-![](confirm.png "width=500")
+![The Octopus Runbooks step editor using a variable expression](confirm.png "width=500")
 
 It is worth paying attention to how often the confirmation step is presented. If it is the norm to proceed manually, it means the inspect step doesn’t accurately identify the error state of the system. Accurately determining that the system is degraded is an important requirement for automating the process.
 
 ## Rectify
 
 The rectify step is the meat of the runbook, and in our example is where the Azure web app is restarted. This is implemented with a **Run an Azure PowerShell script** step calling the following script to restart the web app:
+
 ```
 az webapp restart
 ```
@@ -130,7 +129,7 @@ Status: #{step.Status.Code}
 #{/each}
 ```
 
-![](notify.png "width=500")
+![An Octopus Runbooks step that uses Slack to notify teams that the runbook ran](notify.png "width=500")
 
 ## Test
 
@@ -140,11 +139,11 @@ The idea of environment progression for deployments has been a central tenant of
 
 ## Automate
 
-Implementing the previous steps means that your runbook accurately identifies when a system is not working as expected, rectifies the problem, and verifies that the system is back in the desired state. You will also have tested this runbook outside of the production environment. This methodology is specifically designed to instill a high degree of confidence in the runbook process.
+Implementing the previous steps means that your runbook accurately identifies when a system is not working as expected, rectifies the problem, and verifies that the system is back in the desired state. You will also have tested this runbook outside of the production environment. This methodology is specifically designed to instil a high degree of confidence in the runbook process.
 
 At this point, you have the ability to trigger the runbook automatically on a regular schedule. To do this, the confirm step is disabled or removed, use the run condition `#{unless Octopus.Action[Inspect].Output.TestResult}true#{/unless}` for the remaining steps, and a scheduled trigger is created to execute the runbook as needed:
 
-![](triggers.png "width=500")
+![Octopus's runbook triggers screen, showing how to automate runbooks under certain conditions](triggers.png "width=500")
 
 ## Summary
 
