@@ -14,7 +14,7 @@ tags:
   - Runbooks
 ---
 
-You can automate lots of useful tasks with Octopus Runbooks, especially around the management of infrastructure. One of the subtler but no less useful things, however, is the ability to let people know when there are problems.
+You can automate lots of useful tasks with Octopus Runbooks, especially around the management of infrastructure. One of the subtler but no less useful things, however, is  Octopus can let people know when there are problems.
 
 There are a couple of ways to approach this, depending on the information needed and what's useful to your support teams.
 
@@ -77,7 +77,7 @@ A simple support email is fine for things that are easy to fix, but what if your
 
 With [output variables](https://octopus.com/docs/projects/variables/output-variables) and a little effort, the **Send an Email** step can also include everything needed to start troubleshooting.
 
-Our sample runbook scrapes a Kubernetes cluster for information to send in an email to support, including:
+In this example, our sample runbook scrapes a Kubernetes cluster for information to send in an email to support, including:
 
 - Deployment information
 - Pod logs
@@ -89,7 +89,12 @@ This type of runbook is perfect for
 - Helping less technical staff get information without knowing tricky terms or commands
 - Speeding up system recovery
 
-Though this sample uses Kubernetes, you can tailor the idea for other deployment target types.
+### Before you start
+
+This sample uses:
+
+- Kubernetes as a deployment target, though you can tailor the idea for other target types.
+- PowerShell scripts to scrape data from Kubernetes. You may need to install PowerShell on your Linux distribution for these scripts to work. See [Microsoft's PowerShell install documentation](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.2) for how. 
 
 ### Create the project runbook
 
@@ -101,7 +106,7 @@ Though this sample uses Kubernetes, you can tailor the idea for other deployment
 
 ### Create Kubernetes steps
 
-Now we can create steps needed to scrape the information from your Kubernetes cluster. The steps use output variables so we can add the information to an email.
+Now we can create the steps needed to scrape information from your Kubernetes cluster. The steps use output variables so we can add the information to an email.
 
 Use the **ADD STEP** button to create 3 **Kubectl CLI Script** steps with the following names and Powershell scripts.
 
