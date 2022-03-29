@@ -1,5 +1,5 @@
 ---
-title: "Octopus 2022 Q1: Config as Code for deployments automation"
+title: "Octopus 2022 Q1: Config as Code for deployments"
 description: "Octopus 2022 Q1: Config as Code for deployments is now available. Plus new integrations and an acquisition."
 author: rob.pearson@octopus.com
 visibility: public
@@ -70,7 +70,7 @@ We designed our solution to [avoid key anti-patterns](https://octopus.com/blog/s
 
 ## Customers using Config as Code
 
-[Stack Overflow](https://stackoverflow.com) and [Recruit Wizard](https://recruitwizard.com.au) have been using Config as Code in early access, and share great feedback about how it's improved their development workflow.
+[Stack Overflow](https://stackoverflow.com) and [Recruit Wizard](https://recruitwizard.com.au) have been using Config as Code in early access, and shared feedback about how it's improved their development workflow.
 
 > It has enabled us to make Config as Code the standard. The build pipeline is in the software repo. The deployment pipeline is the software repo. We can do one PR, and I can change the software, how it’s built, and how it’s deployed. 
 
@@ -105,7 +105,7 @@ Branches are Git's superpower, and we expose that power. Using Config as Code yo
 
 Review, approve, and merge your branches before you deploy to production. Getting more eyes across changes is always a good thing. 
 
-Pull requests, protected branches, and code-owners enable a whole new set of workflows to improve the quality and safety of your releases. Reduce downtime from bad deployments and improve the quality of your releases.
+Pull requests, protected branches, and code-owners enable a new set of workflows to improve the quality and safety of your releases. Reduce downtime from bad deployments and improve the quality of your releases.
 
 ### Audit and traceability
 
