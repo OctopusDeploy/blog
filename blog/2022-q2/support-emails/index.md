@@ -16,9 +16,9 @@ tags:
 
 You can automate lots of useful tasks with Octopus Runbooks, especially around the management of infrastructure. One of the subtler but no less useful things, however, is  Octopus can let people know when there are problems.
 
-There are a couple of ways to approach this, depending on the information needed and what's useful to your support teams.
+There are a few ways to approach this, depending on the information needed and what's useful to your support teams.
 
-Let's look at some examples.
+Let's look at 2 examples. We created a [sample Octopus instance with both runbooks](https://tenpillars.octopus.app/app#/Spaces-103), so you don't need to follow along.
 
 ## Setting an SMTP connection in Octopus
 
@@ -39,7 +39,7 @@ If the test fails, check your details and try again. Some email services, such a
 
 If your step or script is simple enough that a problem should be easy to solve, a simple email saying 'hey, something's up!' might be enough. In this case, creating an automated support email step is very easy.
 
-In our sample instance, we created a runbook that runs a doomed-to-fail 'Hello World!' script. On failure, the runbook triggers an email to a support address.
+We created a [simple runbook in our sample instance](https://tenpillars.octopus.app/app#/Spaces-103/projects/simple-support-example/operations) that runs a doomed-to-fail 'Hello World!' script. On failure, the runbook triggers an email to a support address.
 
 Adding a step like this is a great way to bring outdated and broken runbooks to the attention of those that can fix them.
 
@@ -77,7 +77,7 @@ A simple support email is fine for things that are easy to fix, but what if your
 
 With [output variables](https://octopus.com/docs/projects/variables/output-variables) and a little effort, the **Send an Email** step can also include everything needed to start troubleshooting.
 
-In this example, our sample runbook scrapes a Kubernetes cluster for information to send in an email to support, including:
+In this example, our [advanced sample runbook](https://tenpillars.octopus.app/app#/Spaces-103/projects/advanced-email-example/operations/runbooks) scrapes a Kubernetes cluster for information to send in an email to support, including:
 
 - Deployment information
 - Pod logs
