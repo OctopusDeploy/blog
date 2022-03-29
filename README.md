@@ -11,7 +11,7 @@ See the [Octopus style guide](https://www.octopus.design/writing/) for the follo
 - [Markdown quick reference](https://www.octopus.design/writing/markdown/)
 - [Writing tips for the blog](https://www.octopus.design/writing/writing-tips-blog/) 
 
-# How to submit a blog post 
+# How to submit a blog post
 
 Internal authors can create a branch for their work, external authors need to fork the repo.
 
