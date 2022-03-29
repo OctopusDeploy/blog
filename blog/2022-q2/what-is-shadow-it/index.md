@@ -105,7 +105,7 @@ Runbooks let operations teams monitor resources and provide security. They also 
 
 ## Conclusion
 
-Shadow IT is any IT resource that lies outside the organization's control. It gives rise to problems with several risks and high costs to organizations. 
+Shadow IT is any IT resource that lies outside the organization's control. It gives rise to problems with several risks and high costs to businesses. 
 
 Businesses need more governance, discovery, and protection of IT assets. Employees want more streamlined processes and the ability to solve problems without too many support tickets. 
 
