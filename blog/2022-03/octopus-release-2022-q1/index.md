@@ -233,6 +233,10 @@ The integration through our Buildkite plugins represents our initial design and 
 
 ![Opsera and Octopus Configuration](opsera-octopus-configuration.png "width=500")
 
+[Join our free webinar](https://www.opsera.io/events/opsera-and-octopus-integration) to learn more about Opsera and Octopus Deploy integration on April 12, 2022.
+
+---
+
 We partnered with Opsera to provide integration with Octopus Deploy. You can integrate Octopus with the 95+ platforms that Opsera supports as part of its no-code DevOps orchestration platform.
 
 It can be challenging to automate your CI/CD pipeline, especially when using different solutions. Opsera provides a self-service platform to help you automate your CI/CD pipeline. You do this through a visual interface to create declarative pipelines with unified insights.
