@@ -52,11 +52,9 @@ The following table shows the Octopus Server releases with long term support.
 | Octopus 2021.3        | Yes                            |
 | Octopus 2021.2        | Expired                        |
 
-<!-- TODO: Add Killer Demo or Release tour 
 ## Config as Code Demo  
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/TODO" frameborder="0" allowfullscreen></iframe>
--->
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tHdAsY_7CqA" frameborder="0" allowfullscreen></iframe>
 
 ## Config as Code in Octopus
 
