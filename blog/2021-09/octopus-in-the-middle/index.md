@@ -8,7 +8,7 @@ The role of a build server is to take raw code, build it, and package it into a 
 
 ### GitHub Actions
 
-GitHub Actions allows DevOps operations to be performed directly on a GitHub repository. GitHub Actions uses workflows, a feature that allows configuration files to specify a deployment process. The GitHub community maintains templates that cover different deployment targets. I used a basic one to set up a job to deploy to GCR.
+GitHub Actions allows DevOps operations to be performed directly on a GitHub repository. GitHub Actions uses workflows, a feature that allows configuration files to specify a deployment process. The GitHub community maintains templates that cover different deployment targets. I used a basic one to set up a job to deploy to GCR so it is easy to get started.
 
 ![GitHub Actions Success](github-actions-success.png "width=500")
 
@@ -20,35 +20,35 @@ Travis CI is an open-source continuous delivery tool. It is free to sign up and 
 
 ### Circle CI
 
-Circle CI is also free to start and works with GitHub. Circle CI does have templates that you can import. The templates were helpful in quickly setting up a deployment flow.
+Circle CI is also free to start and works with GitHub. Circle CI does have templates that you can import. The templates were helpful in quickly setting up a deployment flow. The added benefit of templates along with a clearer UI made Circle CI easier for me to start with than Travis CI.
 
 ![CircleCI Success](circleci-success.png "width=500")
 
 ## Repositories
 
-An image repository is a place to store deployable images. Octopus Deploy uses these images and deploys them to a target. Octopus Deploy supports image repositories like Docker Hub, Google Container Registry, Azure Container Registry, and AWS Elastic Container Registry.
+An image repository is a place to store deployable images. Octopus Deploy uses these images and deploys them to a deployment target. Octopus Deploy supports image repositories like Docker Hub, Google Container Registry, Azure Container Registry, and AWS Elastic Container Registry. Octopus Deploy is repository agnostic, which gives you flexibility to store images where you want to.
 
 ### Docker Hub
 
-Docker Hub is a central repository for Docker images. It is free to sign up and create public repositories. Here are the Travis CI and Circle CI images pushed to Docker Hub.  
+Docker Hub is a central repository for Docker images. It is free to sign up and create public repositories. The Travis CI and Circle CI images can then be deployed to a target by Octopus Deploy. Docker Hub is popular because it is not tied to a specific Cloud vendor like Google, Microsoft or Amazon. Docker Hub provides repository functionality without the added bloat of additional cloud services.
 
 ![Docker Hub](dockerhub.png "width=500")
 
 ### Google Container Registry
 
-Google Container Registry is a container registry for the Google Cloud Platform. I added the Google Container Registry to the GitHub Actions step to push to Google Container Registry directly.
+Google Container Registry is a container registry for the Google Cloud Platform. I used it as a way to test a GitHub Actions step template. Other cloud repositories like Microsoft and Amazon also have equivalent GitHub Actions steps. Each one would require slightly different configuration setups. I used the step to push from GitHub Actions to Google Container Registry directly.
 
 ![GCR](gcr.png "width=500")
 
 ### Built-in repository
 
-Octopus Deploy contains a built-in repository to manage local packages. The built-in repository can be helpful for self-managing the packages that are deployed or keeping them private.
+Octopus Deploy contains a built-in repository to manage local packages. The built-in repository can be helpful for self-managing the packages that are deployed or keeping them private. A built-in repository is suitable in offline scenarios where continually redownloading images from the internet is not viable.
 
 ![Built-in Repository](built-in-repository.png "width=500")
 
 ### Octopus Deploy
 
-We have explored different tools that are part of a deployment. Octopus Deploy is a deployment tool that takes an image and deploys it to deployment targets. Octopus has broad support for deployment tools and has a friendly UI. Octopus Deploy uses dedicated environments to split releases into stages. This view is helpful to see the progress of a release.
+We have explored different tools that are part of a deployment. Octopus Deploy is a deployment tool that takes an image and deploys it to deployment targets. Octopus has broad support for deployment tools and has a friendly UI. Octopus Deploy uses dedicated environments to split releases into stages. Releases can exist in different deployment stages and can progress forwards towards production. The Octopus UI allows users to visualise which version each stage is at, helping release management.
 
 ![Octopus UI](octopus-ui.png "width=500")
 
