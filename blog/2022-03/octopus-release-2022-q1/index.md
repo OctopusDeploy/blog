@@ -52,7 +52,7 @@ The following table shows the Octopus Server releases with long term support.
 | Octopus 2021.3        | Yes                            |
 | Octopus 2021.2        | Expired                        |
 
-## Config as Code Demo  
+## Config as Code demo  
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/tHdAsY_7CqA" frameborder="0" allowfullscreen></iframe>
 
@@ -233,17 +233,15 @@ The integration through our Buildkite plugins represents our initial design and 
 
 ![Opsera and Octopus Configuration](opsera-octopus-configuration.png "width=500")
 
-[Join our free webinar](https://www.opsera.io/events/opsera-and-octopus-integration) to learn more about Opsera and Octopus Deploy integration on April 12, 2022.
-
----
-
 We partnered with Opsera to provide integration with Octopus Deploy. You can integrate Octopus with the 95+ platforms that Opsera supports as part of its no-code DevOps orchestration platform.
 
 It can be challenging to automate your CI/CD pipeline, especially when using different solutions. Opsera provides a self-service platform to help you automate your CI/CD pipeline. You do this through a visual interface to create declarative pipelines with unified insights.
 
 After it's enabled, Opsera's integration provides access through its pipeline UI to resources defined in Octopus Deploy, such as channels, environments, lifecycles, projects, spaces, and tenants.
 
-[Learn more about Opsera integration with Octopus](https://octopus.com/blog/opsera-integration-with-octopus-deploy).
+[Read our announcement blog post](https://octopus.com/blog/opsera-integration-with-octopus-deploy) to learn more about the Opsera integration with Octopus.
+
+You can also learn more by [attending the free webinar on Tuesday, April 12, 2022.](https://www.opsera.io/events/opsera-and-octopus-integration)
 
 ### Connect Octopus to all of your Azure DevOps organizations
 
