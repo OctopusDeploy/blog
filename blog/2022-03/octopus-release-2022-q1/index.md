@@ -309,4 +309,6 @@ We look forward to seeing our customers work with version-controlled projects. W
 
 We'd love to hear from you with any questions or comments. You can leave a comment below or join the conversation in our [Octopus Community Slack](https://octopus.com/slack).
 
+!include <cac-webinar-may-2022>
+
 Happy (version-controlled) deployments!
