@@ -309,6 +309,6 @@ We look forward to seeing our customers work with version-controlled projects. W
 
 We'd love to hear from you with any questions or comments. You can leave feedback below or join the conversation in our [Octopus Community Slack](https://octopus.com/slack).
 
-We also invite you to learn how to use Config as Code in Octopus by attending our [free webinar on on Wednesday, May 5, 2022](https://octopus.com/events/introducing-config-as-code-in-octopus)
+We also invite you to learn how to use Config as Code in Octopus by attending our [free webinar on Wednesday, May 4, 2022](https://octopus.com/events/introducing-config-as-code-in-octopus)
 
 Happy (version-controlled) deployments!
