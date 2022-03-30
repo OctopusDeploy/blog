@@ -1,9 +1,9 @@
 ---
 title: Best practices for Octopus Spaces
-description: Find out how to use spaces effectively.
+description: Find out how to use Octopus Spaces effectively.
 author: steve.fenton@octopus.com
-visibility: private
-published: 9999-01-01
+visibility: public
+published: 2022-04-12-1400
 metaImage: blogimage-bestpracticesforoctopusspaces-2022.png
 bannerImage: blogimage-bestpracticesforoctopusspaces-2022.png
 bannerImageAlt: Overhead shot of a round table split into three equal parts, with people working on laptops and notebooks at each section.
@@ -15,13 +15,13 @@ tags:
 
 Over the years at Octopus, we've always been pleased to see our customers expand their use of Octopus Deploy to include new projects and teams. In the early days, it was hard to imagine this could ever pose any kind of problem. However, there comes a point when having too many projects in Octopus can become a distraction, particularly for a team that only works on a handful of those projects.
 
-The Octopus Spaces feature helps you organize and secure your projects, environments, and infrastructure and control which team members can access them. They are a useful alternative to installing multiple Octopus Deploy instances.
+The Octopus Spaces feature helps you organize and secure your projects, environments, and infrastructure and control which team members can access them. They're a useful alternative to installing multiple Octopus Deploy instances.
 
-In this post, you'll learn how to use spaces effectively to organize your deployments.
+In this post, you learn how to use spaces effectively to organize your deployments.
 
 ## An overview of spaces
 
-Spaces are partitions that create hard walls in your Octopus Server. Deployment resources assigned to a space cannot be seen or used from another space. You can use spaces instead of creating multiple instances of Octopus Deploy, with each space being self-contained.
+Spaces are partitions that create hard walls in your Octopus Server. Deployment resources assigned to a space can't be seen or used from another space. You can use spaces instead of creating multiple instances of Octopus Deploy, with each space being self-contained.
 
 The following items are scoped to a space:
 
@@ -46,7 +46,7 @@ The [administration guide for Spaces](https://octopus.com/docs/administration/sp
 
 There are two primary use cases for spaces:
 
-- Organising deployment resources
+- Organizing deployment resources
 - Controlling access to these resources
 
 You might choose to use spaces for either or both of these reasons.
@@ -55,7 +55,7 @@ You might choose to use spaces for either or both of these reasons.
 
 Your Octopus Deploy Dashboard displays a row for each project and a column for each phase in your lifecycles. The dashboard gets taller when you add more projects and wider as you create more phases. If you find your dashboard overwhelming, moving projects into spaces will clean it up and reduce how much you have to scroll.
 
-You will get the same benefits across all screens in the space and when choosing resources from a list, such as editing a process step, as only items from the current space are shown.
+You'll get the same benefits across all screens in the space and when choosing resources from a list, such as editing a process step, as only items from the current space are shown.
 
 Spaces allow you to limit the growth in each area by grouping related resources together.
 
@@ -69,9 +69,9 @@ Spaces give you a convenient way to control access to a group of related resourc
 
 ## How to design your spaces
 
-A space represents a logical group of applications. If you have several closely related components, they are likely to share some variables in a variable set or be deployed to the same infrastructure. These factors will naturally guide whether they should be grouped into a space or kept in separate spaces to prevent them from becoming related in undesirable ways.
+A space represents a logical group of applications. If you have several closely related components, they're likely to share some variables in a variable set or be deployed to the same infrastructure. These factors will naturally guide whether they should be grouped into a space or kept in separate spaces to prevent them from becoming related in undesirable ways.
 
-It may seem like a good idea to create a space for each team in your organization, but this is not always the best design to follow. In particular, this may lead you to split items into too many spaces in situations where multiple teams contribute to the same application.
+It may seem like a good idea to create a space for each team in your organization, but this isn' always the best design to follow. In particular, this may lead you to split items into too many spaces in situations where multiple teams contribute to the same application.
 
 Instead, use one of the following dimensions to design your spaces:
 
