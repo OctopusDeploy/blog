@@ -151,7 +151,6 @@ In this release, we added support to configure version-controlled projects in HC
 
 The following example highlights the latest updates:
 
-hcl
 ```
 terraform {
   required_providers {
