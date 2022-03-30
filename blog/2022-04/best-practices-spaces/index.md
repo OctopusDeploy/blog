@@ -71,7 +71,7 @@ Spaces give you a convenient way to control access to a group of related resourc
 
 A space represents a logical group of applications. If you have several closely related components, they're likely to share some variables in a variable set or be deployed to the same infrastructure. These factors will naturally guide whether they should be grouped into a space or kept in separate spaces to prevent them from becoming related in undesirable ways.
 
-It may seem like a good idea to create a space for each team in your organization, but this isn' always the best design to follow. In particular, this may lead you to split items into too many spaces in situations where multiple teams contribute to the same application.
+It may seem like a good idea to create a space for each team in your organization, but this isn't always the best design to follow. In particular, this may lead you to split items into too many spaces in situations where multiple teams contribute to the same application.
 
 Instead, use one of the following dimensions to design your spaces:
 
