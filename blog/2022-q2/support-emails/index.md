@@ -14,11 +14,11 @@ tags:
   - Runbooks
 ---
 
-You can automate lots of useful tasks with Octopus Runbooks, especially around the management of infrastructure. One of the subtler but no less useful things, however, is the ability to let people know when there are problems.
+You can automate lots of useful tasks with Octopus Runbooks, especially around the management of infrastructure. One of the subtler but no less useful things, however, is  Octopus can let people know when there are problems.
 
-There are a couple of ways to approach this, depending on the information needed and what's useful to your support teams.
+There are a few ways to approach this, depending on the information needed and what's useful to your support teams.
 
-Let's look at some examples.
+Let's look at 2 examples. We created a [sample Octopus instance with both runbooks](https://tenpillars.octopus.app/app#/Spaces-103), so you don't need to follow along.
 
 ## Setting an SMTP connection in Octopus
 
@@ -39,7 +39,7 @@ If the test fails, check your details and try again. Some email services, such a
 
 If your step or script is simple enough that a problem should be easy to solve, a simple email saying 'hey, something's up!' might be enough. In this case, creating an automated support email step is very easy.
 
-In our sample instance, we created a runbook that runs a doomed-to-fail 'Hello World!' script. On failure, the runbook triggers an email to a support address.
+We created a [simple runbook in our sample instance](https://tenpillars.octopus.app/app#/Spaces-103/projects/simple-support-example/operations) that runs a doomed-to-fail 'Hello World!' script. On failure, the runbook triggers an email to a support address.
 
 Adding a step like this is a great way to bring outdated and broken runbooks to the attention of those that can fix them.
 
@@ -77,7 +77,7 @@ A simple support email is fine for things that are easy to fix, but what if your
 
 With [output variables](https://octopus.com/docs/projects/variables/output-variables) and a little effort, the **Send an Email** step can also include everything needed to start troubleshooting.
 
-Our sample runbook scrapes a Kubernetes cluster for information to send in an email to support, including:
+In this example, our [advanced sample runbook](https://tenpillars.octopus.app/app#/Spaces-103/projects/advanced-email-example/operations/runbooks) scrapes a Kubernetes cluster for information to send in an email to support, including:
 
 - Deployment information
 - Pod logs
@@ -89,7 +89,12 @@ This type of runbook is perfect for
 - Helping less technical staff get information without knowing tricky terms or commands
 - Speeding up system recovery
 
-Though this sample uses Kubernetes, you can tailor the idea for other deployment target types.
+### Before you start
+
+This sample uses:
+
+- Kubernetes as a deployment target, though you can tailor the idea for other target types.
+- PowerShell scripts to scrape data from Kubernetes. You may need to install PowerShell on your Linux distribution for these scripts to work. See [Microsoft's PowerShell install documentation](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.2) for how. 
 
 ### Create the project runbook
 
@@ -101,7 +106,7 @@ Though this sample uses Kubernetes, you can tailor the idea for other deployment
 
 ### Create Kubernetes steps
 
-Now we can create steps needed to scrape the information from your Kubernetes cluster. The steps use output variables so we can add the information to an email.
+Now we can create the steps needed to scrape information from your Kubernetes cluster. The steps use output variables so we can add the information to an email.
 
 Use the **ADD STEP** button to create 3 **Kubectl CLI Script** steps with the following names and Powershell scripts.
 
@@ -230,38 +235,40 @@ Looking through the email triggered by our example here, we can spot a couple of
 This means the support team quickly have an idea as to the problem with the deployment target.
 
 ```
+Issue context:
+
 The description of the deployment is included below:
 
 
 Description of
 Name:                   random-quotes
-Namespace:              randomquotes
-CreationTimestamp:      Mon, 21 Mar 2022 03:34:15 +0000
-Labels:                 Octopus.Action.Id=ca042dbb-ea71-4a77-b9ae-edf94acc441e
-                        Octopus.Deployment.Id=deployments-21
+Namespace:              default
+CreationTimestamp:      Fri, 25 Mar 2022 02:59:41 +0000
+Labels:                 Octopus.Action.Id=6f79e0b9-ec3d-4071-8d42-54dbc9d5ee1b
+                        Octopus.Deployment.Id=deployments-1426
                         Octopus.Deployment.Tenant.Id=untenanted
-                        Octopus.Environment.Id=environments-1
+                        Octopus.Environment.Id=environments-101
                         Octopus.Kubernetes.DeploymentName=random-quotes
                         Octopus.Kubernetes.SelectionStrategyVersion=SelectionStrategyVersion2
-                        Octopus.Project.Id=projects-1
+                        Octopus.Project.Id=projects-162
                         Octopus.RunbookRun.Id=
-                        Octopus.Step.Id=1968cd33-5ab9-4e47-8d9e-0f87f5c780c2
-Annotations:            deployment.kubernetes.io/revision: 1
+                        Octopus.Step.Id=b9777e71-4818-482e-8cb8-79ebf9b9960b
+Annotations:            deployment.kubernetes.io/revision: 2
 Selector:               Octopus.Kubernetes.DeploymentName=random-quotes
 Replicas:               1 desired | 1 updated | 1 total | 1 available | 0 unavailable
 StrategyType:           RollingUpdate
 MinReadySeconds:        0
 RollingUpdateStrategy:  25% max unavailable, 25% max surge
 Pod Template:
-  Labels:  Octopus.Action.Id=ca042dbb-ea71-4a77-b9ae-edf94acc441e
-           Octopus.Deployment.Id=deployments-21
+  Labels:  Octopus.Action.Id=6f79e0b9-ec3d-4071-8d42-54dbc9d5ee1b
+           Octopus.Deployment.Id=deployments-1426
            Octopus.Deployment.Tenant.Id=untenanted
-           Octopus.Environment.Id=environments-1
+           Octopus.Environment.Id=environments-101
            Octopus.Kubernetes.DeploymentName=random-quotes
            Octopus.Kubernetes.SelectionStrategyVersion=SelectionStrategyVersion2
-           Octopus.Project.Id=projects-1
+           Octopus.Project.Id=projects-162
            Octopus.RunbookRun.Id=
-           Octopus.Step.Id=1968cd33-5ab9-4e47-8d9e-0f87f5c780c2
+           Octopus.Step.Id=b9777e71-4818-482e-8cb8-79ebf9b9960b
   Containers:
    octopussamples:
     Image:      index.docker.io/octopussamples/randomquotesnodejs:1.0.2
@@ -277,56 +284,63 @@ Conditions:
   Available      True    MinimumReplicasAvailable
   Progressing    True    NewReplicaSetAvailable
 OldReplicaSets:  <none>
-NewReplicaSet:   random-quotes-758866bcd8 (1/1 replicas created)
+NewReplicaSet:   random-quotes-5db56b95dc (1/1 replicas created)
 Events:          <none>
 
 -----------------------------------------------------------
 
+
+
 The pod logs are included below:
 
-Logs for pod random-quotes-758866bcd8-dk2x9
-App listening at **http://undefined:undefined**
+
+Logs for pod random-quotes-5db56b95dc-xvhnn
+App listening at http://undefined:undefined
 
 -----------------------------------------------------------
 
+
+
 The pod descriptions are included below:
 
-Description of random-quotes-758866bcd8-dk2x9
-Name:         random-quotes-758866bcd8-dk2x9
-Namespace:    randomquotes
+
+Description of random-quotes-5db56b95dc-xvhnn
+Name:         random-quotes-5db56b95dc-xvhnn
+Namespace:    default
 Priority:     0
-Node:         aks-agentpool-10984672-vmss000001/10.240.0.5
-Start Time:   Mon, 21 Mar 2022 03:34:15 +0000
-Labels:       Octopus.Action.Id=ca042dbb-ea71-4a77-b9ae-edf94acc441e
-              Octopus.Deployment.Id=deployments-21
+Node:         aks-agentpool-33894862-vmss000001/10.240.0.5
+Start Time:   Fri, 25 Mar 2022 03:07:56 +0000
+Labels:       Octopus.Action.Id=6f79e0b9-ec3d-4071-8d42-54dbc9d5ee1b
+              Octopus.Deployment.Id=deployments-1426
               Octopus.Deployment.Tenant.Id=untenanted
-              Octopus.Environment.Id=environments-1
+              Octopus.Environment.Id=environments-101
               Octopus.Kubernetes.DeploymentName=random-quotes
               Octopus.Kubernetes.SelectionStrategyVersion=SelectionStrategyVersion2
-              Octopus.Project.Id=projects-1
+              Octopus.Project.Id=projects-162
               Octopus.RunbookRun.Id=
-              Octopus.Step.Id=1968cd33-5ab9-4e47-8d9e-0f87f5c780c2
-              pod-template-hash=758866bcd8
+              Octopus.Step.Id=b9777e71-4818-482e-8cb8-79ebf9b9960b
+              pod-template-hash=5db56b95dc
 Annotations:  <none>
 Status:       Running
-IP:           10.244.0.10
+IP:           10.244.2.11
 IPs:
-  IP:           10.244.0.10
-Controlled By:  ReplicaSet/random-quotes-758866bcd8
+  IP:           10.244.2.11
+Controlled By:  ReplicaSet/random-quotes-5db56b95dc
 Containers:
   octopussamples:
-    Container ID:   containerd://04b1c9a199d52dd6e72c8677ecc5ab7eb57e85772d05c0733608c2d4e694bca0
+    Container ID:   containerd://07a18a2468da4324be06c11eaeb7cdcc90d0cf67f701f7b140823cc8a7b3b80d
     Image:          index.docker.io/octopussamples/randomquotesnodejs:1.0.2
     Image ID:       docker.io/octopussamples/randomquotesnodejs@sha256:b2104dd603ef648f92cdd605ecf814e4cb24a2e1827f036b004985d06a380644
     Port:           8080/TCP
     Host Port:      0/TCP
     State:          Running
-      Started:      Mon, 21 Mar 2022 03:34:37 +0000
+      Started:      Fri, 25 Mar 2022 03:07:56 +0000
     Ready:          True
     Restart Count:  0
     Environment:
-      PORT:  **notanumber**
-    Mounts: /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-jss2f (ro)
+      PORT:  notanumber
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-v5rgh (ro)
 Conditions:
   Type              Status
   Initialized       True
@@ -334,7 +348,7 @@ Conditions:
   ContainersReady   True
   PodScheduled      True
 Volumes:
-  kube-api-access-jss2f:
+  kube-api-access-v5rgh:
     Type:                    Projected (a volume that contains injected data from multiple sources)
     TokenExpirationSeconds:  3607
     ConfigMapName:           kube-root-ca.crt
