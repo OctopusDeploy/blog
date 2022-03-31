@@ -1,10 +1,10 @@
 
 
-Deployment tools like build servers, image repositories, and deployment targets come in different shapes and sizes. Octopus Deploy supports a range of tools through a straightforward user interface and a best-in-class deployment experience. This blog shows you some deployment tools and how Octopus works to make deployments easier.
+Tools like build servers, image repositories, and deployment targets come in different shapes and sizes. Octopus Deploy supports a range of tools through a straightforward user interface and a best-in-class deployment experience. This blog shows you how Octopus Deploy works with other tools in your CI/CD pipeline to simplify complex deployments.
 
 ## Build Servers
 
-The role of a build server is to take raw code, build it, and package it into a form ready for deployment. Build servers do this through YAML files. I built and pushed a sample web application called [Random Quotes](https://github.com/OctopusSamples/RandomQuotes-JS). I used GitHub Actions to push to the Google Content Registry and Travis CI and CircleCI to push to DockerHub. Build servers are interchangeable, and they can push to any content registry.
+The role of a build server is to take raw code, build it, and package it into a form ready for deployment. Build servers can do this through YAML files. I built and pushed a sample web application called [Random Quotes](https://github.com/OctopusSamples/RandomQuotes-JS) with GitHub Actions to the Google Content Registry and Travis CI and CircleCI to push to DockerHub. Build servers are interchangeable, and they can push to any content registry.
 
 ### GitHub Actions
 
