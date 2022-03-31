@@ -7,7 +7,7 @@ published: 2021-08-24
 metaImage: blogimage-supportingoctopuscustomers.png
 bannerImage: blogimage-supportingoctopuscustomers.png
 bannerImageAlt: Three Octopus support workers at their computers with a clock above each, one showing US time, one UK time and one AUS time.
-isFeatured: true
+isFeatured: false
 tags:
   - Company
 ---
