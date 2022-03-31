@@ -2,7 +2,7 @@
 title: Traditional runbooks versus Octopus Runbooks
 description: As part of our series about Runbooks, we look at how Octopus Runbooks solves the problems with traditional runbooks.
 author: andrew.corrigan@octopus.com
-visibility: private
+visibility: public
 published: 2022-04-11-1400
 metaImage: blogimage-placeholder.png
 bannerImage: blogimage-placeholder.png
@@ -24,21 +24,21 @@ In the simplest terms, a runbook is a step-by-step guide to complete a routine o
 
 In the old days of IT operations, teams collated these guides into physical books or folders, pulled from the shelf only when needed. Nowadays, they're commonly found in documents on shared network drives, wikis, or knowledge bases.
 
-Say, for example, an application server has a known issue caused by a Windows service that hangs occasionally. Support teams may have a runbook (or knowledge article) to guide support members through restarting that service. Other typical runbooks include:
+Imagine, for example, an application server has a known issue caused by a Windows service that hangs occasionally. Support teams may have a runbook (or knowledge article) to guide support members through restarting that service. Other typical runbooks include:
 
 - Database backups and restores
 - Server maintenance such as upgrades, patching, or file tidy-up
-- Server, service or web application restarts
+- Server, service, or web application restarts
 - Troubleshooting steps with decision trees
 
 Whether physical or otherwise, manual runbooks have some problems, as they can be:
 
-- Time consuming - manually working through guides and branching steps takes time, more so for those unfamiliar with a system
+- Time consuming - manually working through guides and branching steps takes time, more so for those unfamiliar with a system.
 - Prone to human error - Mistakes can happen to the best of us, even with the simplest instructions. After all, pobody's nerfect!
 - Outdated - internal documentation upkeep often falls down the priority order in busy teams. This leaves runbooks out-of-date or lacking consistency.
 - Annoying to manage access for - your operations team likely need access to countless systems. Risk naturally increases alongside the number of people with access to something, or the more access one person has. But also, you don't want support members to find they don't have access when they really need it.
 
-These are all problems you can avoid if you're an Octopus user... 
+These are all problems you can avoid if you use Octopus Deploy. 
 
 ## The benefits of Octopus Runbooks
 
@@ -80,11 +80,11 @@ Octopus also provides full audit logs of every triggered runbook, so you can alw
 
 The processes for creating deployments and runbooks are similar. With both, you set steps using a combination of predefined actions or whatever scripting language you're comfortable with.
 
-In fact, we'll show you. Let's walk through the creation process with a simple runbook.
+Let's walk through the creation process with a simple runbook.
 
 ## Creating a simple runbook in Octopus
 
-This is a short example on how to create a basic runbook that won't affect any of your projects or environments. You can follow along if you're an existing user or by [signing up for a free trial](https://octopus.com/start).
+This example shows you how to create a basic runbook that won't affect any of your projects or environments. You can follow along if you're an existing user, or by [signing up for a free trial](https://octopus.com/start).
 
 If you don't want to follow along but would still like to see the end result, we set up an [example instance with this runbook](https://tenpillars.octopus.app/app#/Spaces-82/projects/starter-runbooks/operations/runbooks/Runbooks-181/process/RunbookProcess-Runbooks-181) that's accessible to guests.
 
