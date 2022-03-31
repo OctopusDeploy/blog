@@ -218,9 +218,9 @@ resource "octopusdeploy_deployment_process" "test-deployment-process-main" {
 
 ## New integrations
 
-### BuildKite plugins (early access) 
+### Buildkite plugins (early access) 
 
-![ BuildKite plugin for Octopus Deploy](buildkite-agent-runs.png "width=500")
+![ Buildkite plugin for Octopus Deploy](buildkite-agent-runs.png "width=500")
 
 Octopus Deploy now integrates with [Buildkite](https://buildkite.com/). Our new Buildkite plugins allow your build agents to create and deploy releases, push build information, and run runbooks as part of a pipeline.
 
