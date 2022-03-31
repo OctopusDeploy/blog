@@ -4,9 +4,9 @@ description: Read about the Core Platform team’s experience with persistence i
 author: mark.siedle@octopus.com
 visibility: public
 published: 2022-03-31-1400
-bannerImage: 
-metaImage: 
-bannerImageAlt: Customers lined up at an octopus document store-front, with GitHub or SQL acting as a supplier.
+bannerImage: blogimage-cacpersistenceresistance-2022.png
+metaImage: blogimage-cacpersistenceresistance-2022.png
+bannerImageAlt: Customers lined up at an Octopus document store-front.
 isFeatured: false
 tags:
 - Engineering
