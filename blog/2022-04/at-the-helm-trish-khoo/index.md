@@ -30,7 +30,7 @@ After checking Slack again, I action things we chatted about in the meeting, the
 
 Using Slack and Zoom every day can sound unexciting, but I'm building awareness of how my group and greater R&D are functioning and taking small but meaningful actions to adjust it. I also use the time in Zoom meetings to make origami flowers, which helps me focus!
 
-![Photo of Trish's desk showing a keyboard surrounded by colorful origami flowers](/path/to/image.png "width=500")*Optional caption text*
+![Photo of Trish's desk showing a keyboard surrounded by colorful origami flowers](trish-origami.jpg "width=500")*Trish's desk adorned with her origami creations*
 
 One lesson I've learned is that making large changes as a senior leader has a significant impact on the organization. Sometimes that's necessary, but often it can just be disruptive. The most helpful actions I can take clarify situations and policies to help others be more effective in their roles.
 
