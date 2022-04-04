@@ -1,8 +1,8 @@
 ---
 title: What is GitOps?
-description: GitOps is an exciting new paradigm, but it can be hard to understand exactly what the term means. Learn more as part of our series about Runbooks.
+description: GitOps is an exciting new paradigm, but it can be hard to understand exactly what the term means. 
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2022-04-13-1400
 metaImage: blogimage-whatisgitops-2022.png
 bannerImage: blogimage-whatisgitops-2022.png
@@ -13,7 +13,7 @@ tags:
  - Runbooks Series
 ---
 
-GitOps is a relatively new addition to the growing list of "Ops" paradigms taking shape in our industry. It all started with DevOps, and while the term DevOps has been around for some years now, it seems we still can't agree whether it's a process, mindset, job title, set of tools, or combination of them all. 
+GitOps is a relatively new addition to the growing list of "Ops" paradigms taking shape in our industry. It all started with DevOps, and while the term DevOps has been around for some years now, it seems we still can't agree whether it's a process, mindset, job title, set of tools, or some combination of them all. 
 
 The term GitOps suffers from the same ambiguity, so in this post we'll look at: 
 
@@ -41,7 +41,7 @@ Since that original blog post, initiatives like the [GitOps Working Group](https
 
 > clearly define a vendor-neutral, principle-led meaning of GitOps, which will establish a foundation for interoperability between tools, conformance, and certification.
 
-This working group recently released version 1 of their [principles](https://github.com/open-gitops/documents/blob/main/PRINCIPLES.md), which states that:
+This working group recently released version one of their [principles](https://github.com/open-gitops/documents/blob/main/PRINCIPLES.md), which states that:
 
 > The desired state of a GitOps managed system must be:
 >
@@ -89,7 +89,7 @@ So while the initial selection of specialized GitOps tools tends to be tightly i
 
 Continuous reconciliation, as described by the working group, describes responses to two types of system changes.
 
-The first is what you would expect, where deliberate changes to the configuration held in Git or other versioned storage is detected and applied to the system. This is the logical flow of configuration change and represents the normal operation of a correctly configured GitOps workflow.
+The first is what you expect, where deliberate changes to the configuration held in Git or other versioned storage is detected and applied to the system. This is the logical flow of configuration change and represents the normal operation of a correctly configured GitOps workflow.
 
 The second is where an agent detects undesirable changes to the system that are not described in the source configuration. In this case, your system no longer reflects the desired state, and the agent is expected to reconcile the system back to the configuration maintained in Git.
 
@@ -177,6 +177,8 @@ Perhaps the biggest source of confusion around GitOps is the misconception that 
 
 In practice, GitOps encapsulates one step in your infrastructure and deployment pipelines, and must be complemented with other processes and platforms to fulfill common business requirements.
 
-!include <q2-2022-newsletter-cta>
+## Follow our series about Runbooks
+
+For the next few months, we're focusing on Runbooks and how they can help manage your infrastructure. We’ll include a summary of the blog posts in our monthly newsletter. [Sign up to follow along](#newsletter).
 
 Happy deployments!
