@@ -1,20 +1,22 @@
 ---
 title: Title
 description: A brief summary of the announcement, 170 characters max including spaces.
-author: Joan Smith
+author: firstname.surname@octopus.com
 visibility: private
 published: 3020-01-01-1400
 metaImage: to-be-added-by-marketing
 bannerImage: to-be-added-by-marketing
-bannerImageAlt:
+bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
-tags:
+tags: 
   - DevOps
   - Company
   - Product
   - Events and Webinars
   - Engineering
 ---
+
+See https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags
 
 State the subject of the announcement as plainly and directly as you can.
 

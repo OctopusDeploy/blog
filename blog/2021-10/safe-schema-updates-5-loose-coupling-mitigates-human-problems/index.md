@@ -16,7 +16,7 @@ tags:
 
 This blog post is part 5 of my safe schema updates series. 
 
-We'll add links to the other posts in this series as they become available.
+Links to the other posts in this series are available below:
 
 !include <safe-schema-updates-posts>
 
@@ -113,17 +113,20 @@ After that, we’ll finish this series with two posts that discuss near-zero dow
 
 While each of these capabilities is individually valuable, it’s in the combination of all three that the benefits of each are multiplied.
 
-We'll add links to the other posts in this series as they become available.
+Links to the other posts in this series are available below:
 
 !include <safe-schema-updates-posts>
  
-## Register for the webinar: Safe schema updates, part 1: Imagining better systems
+## Watch the webinars 
 
-Alex Yates will discuss why DevOps is more challenging for mature systems, and why newer systems typically adopt a different architecture.
+Our first webinar discussed how loosely coupled architectures lead to maintainability, innovation, and safety. Part two discussed how to transition a mature system from one architecture to another. 
 
-We're running 3 sessions of the webinar, Wed 17 Nov – Thurs 18 Nov, 2021.
+### Database DevOps: Imagining better systems
 
-<span><a class="btn btn-success" href="/events/safe-schema-updates-part-1-imagining-better-systems">Register now</a></span>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/oJAbUMZ6bQY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-In part two, Alex will discuss how to transition a mature system from one architecture to another. [Learn more and register for the second webinar.](https://octopus.com/events/safe-schema-updates-part-2-building-better-systems)
+### Database DevOps: Building better systems
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/joogIAcqMYo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Happy deployments!

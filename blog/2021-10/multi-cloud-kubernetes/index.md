@@ -169,7 +169,7 @@ Write-Host "Waiting for cluster to be done creating..."
 while ($eksCluster.Cluster.Status -eq "CREATING")
 {
 	# Wait for cluster to be done creating
-	$eksCluster = aws eks describe-cluster --name $clusterName --instance-type "t3.medium" --instance-count 1
+	$eksCluster = aws eks describe-cluster --name $clusterName --instance-types "t3.medium" --instance-count 1
 	$eksCluster = $eksCluster | ConvertFrom-JSON
 }
 
@@ -282,6 +282,12 @@ Invoke-RestMethod -Method Post -Uri "$octopusUrl/api/$spaceId/machines" -Body ($
 ```
 :::info
 In the case of GKE, you need to specify a Worker Pool to be used for health checks and use the Execution Containers feature.  This is because the `Hosted Windows` Worker Pool in Octopus Cloud does not have the gcloud CLI installed and will fail when attempting to check the health of a GKE cluster.
+
+Update Nov 2021 - the `New-OctopusKubernetesTarget` has been updated to work with GKE.
+
+```powershell
+New-OctopusKubernetesTarget -Name "<Display name of target>" -clusterName $clusterName -octopusRoles "Test1" -octopusAccountIdOrName "<Google Account>" -namespace "default" -skipTlsVerification $true -octopusDefaultWorkerPoolIdOrName "Hosted Ubuntu" -healthCheckContainerImageFeedIdOrName "Docker Hub" -healthCheckContainerImage "octopusdeploy/worker-tools:3-ubuntu.18.04" -clusterRegion <Google region> -clusterProject <Google project name>
+```
 :::
 
 If all three runbooks are executed, you should have 3 Kubernetes clusters.
