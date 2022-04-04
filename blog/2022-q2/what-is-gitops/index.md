@@ -37,7 +37,7 @@ The term GitOps was originally coined in a blog post by WeaveWorks called [GitOp
 >
 >    Rollback and audit logs are also provided via Git  
 
-Since that original blog post, initiatives like the [GitOps Working Group](https://github.com/gitops-working-group/gitops-working-group) have been organized to:
+Since that original blog post, initiatives like the [GitOps Working Group](https://github.com/cncf/tag-app-delivery/tree/main/gitops-wg) have been organized to:
 
 > clearly define a vendor-neutral, principle-led meaning of GitOps, which will establish a foundation for interoperability between tools, conformance, and certification.
 
@@ -81,7 +81,7 @@ Kubernetes bakes these requirements into the platform, making it easy to achieve
 - CI/CD systems can poll the storage, are notified of changes via webhooks, or have builds or deployments triggered via platforms like GitHub Actions.
 - The IaC tooling is then executed, bringing the system in line with the desired state.
 
-Indeed, a real world end-to-end GitOps system inevitably incorporates orchestration outside of Kubernetes. For example, Kubernetes is unlikely to manage your DNS records, centralized authentication platforms, or messaging systems like Slack. You also likely find at least one managed service for things like databases, message queues, scheduling, and reporting more compelling than attempting to replicate them in a Kubernetes cluster. Also, any established IT department is guaranteed to have non-Kubernetes systems that would benefit from GitOps.
+Indeed, a real world end-to-end GitOps system inevitably incorporates orchestration outside of Kubernetes. For example, Kubernetes is unlikely to manage your DNS records, centralized authentication platforms, or messaging systems like Slack. You'll also likely find at least one managed service for things like databases, message queues, scheduling, and reporting more compelling than attempting to replicate them in a Kubernetes cluster. Also, any established IT department is guaranteed to have non-Kubernetes systems that would benefit from GitOps.
 
 So while the initial selection of specialized GitOps tools tends to be tightly integrated into Kubernetes, achieving the functional requirements of GitOps across established infrastructure will inevitably require orchestrating one or more IaC tools.
 
