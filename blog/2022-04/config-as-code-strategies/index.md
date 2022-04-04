@@ -13,7 +13,7 @@ tags:
  - Configuration as Code 
 ---
 
-Since we released the early access preview of Octopus's Configuration as Code last year, there have been many questions about how to use the feature for the best results. 
+Since we released the early access preview of [Octopus's Configuration as Code](https://octopus.com/blog/octopus-release-2022-q1) last year, there have been many questions about how to use the feature for the best results. 
 
 This post explains some good practices for using Config as Code and how to adjust your strategy in different situations.
 
@@ -92,7 +92,7 @@ Instead of sharing the same OCL files between multiple projects, you should crea
 
 ## Conclusion
 
-You can now confidently choose an appropriate strategy for Config as Code. This post explained how to select a suitable location in version control for your configuration files, how to use branches and pull requests to manage your deployment process, and when Config as Code is not the right tool for the job.
+You can now confidently choose an appropriate strategy for [Config as Code](https://octopus.com/blog/octopus-release-2022-q1). This post explained how to select a suitable location in version control for your configuration files, how to use branches and pull requests to manage your deployment process, and when Config as Code is not the right tool for the job.
 
 You can keep updated on future additions, such as Config as Code for Runbooks, on our [roadmap](https://octopus.com/company/roadmap).
 
