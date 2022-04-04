@@ -13,9 +13,11 @@ tags:
  - Configuration as Code 
 ---
 
-Since we released the early access preview of [Octopus's Configuration as Code](https://octopus.com/blog/octopus-release-2022-q1) last year, there have been many questions about how to use the feature for the best results. 
+Since we released the early access preview of Octopus's Configuration as Code last year, there have been many questions about how to use the feature for the best results. 
 
 This post explains some good practices for using Config as Code and how to adjust your strategy in different situations.
+
+You can also read more about Config as Code in Octopus in our [2022 Q1 announcement post](https://octopus.com/blog/octopus-release-2022-q1).
 
 ## Why use Config as Code?
 
