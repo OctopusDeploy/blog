@@ -5,7 +5,7 @@ author: rob.pearson@octopus.com
 visibility: public
 published: 2022-03-30-1400
 metaImage: octopus-2022-q1-config-as-code.png
-bannerImage: octopus-2022-q1-config-as-code.png
+bannerImage: 
 bannerImageAlt: Octopus 2022 Q1 highlighting config as code with screenshot showing the Octopus UI and a config file in a text editor.
 isFeatured: true
 tags:
