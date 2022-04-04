@@ -37,7 +37,7 @@ The term GitOps was originally coined in a blog post by WeaveWorks called [GitOp
 >
 >    Rollback and audit logs are also provided via Git  
 
-Since that original blog post, initiatives like the [GitOps Working Group](https://github.com/gitops-working-group/gitops-working-group) have been organized to:
+Since that original blog post, initiatives like the [GitOps Working Group](https://github.com/cncf/tag-app-delivery/tree/main/gitops-wg) have been organized to:
 
 > clearly define a vendor-neutral, principle-led meaning of GitOps, which will establish a foundation for interoperability between tools, conformance, and certification.
 
