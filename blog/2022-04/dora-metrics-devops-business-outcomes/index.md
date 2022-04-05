@@ -36,7 +36,7 @@ In 2012, at Puppet, Alanna Brown recognized this need and started the annual Sta
 
 Nicole, [a PhD with some serious research credentials](https://nicolefv.com/research), [lead the research from 2013 to 2017](https://twitter.com/nicolefv/status/1328040951449677824). Each year, the team surveyed tens of thousands of tech folks globally, across different job roles and industry sectors. They examined the results, sought out conclusions, and published the data with their findings.
 
-They elevated the discussion about DevOps. This wasn’t about tribal, value signaling anymore. We had cold, hard data. We could talk about facts, rather than opinions. We could talk about global trends, rather than individual case studies.
+They elevated the discussion about DevOps. This wasn’t about tribal value signaling anymore. We had cold, hard data. We could talk about facts rather than opinions. We could talk about global trends rather than individual case studies.
 
 Most importantly, we could, authoritatively, show people the money.
 
@@ -105,7 +105,7 @@ Consistently short lead times are not the result of rushed development work or s
 
 ### Mean Time to Recovery (MTTR)
 
-The best way to appreciate MTTR, is to contrast it with MTBF (Mean Time Between Failure).
+The best way to appreciate MTTR is to contrast it with MTBF (Mean Time Between Failure).
 
 The focus on MTTR is an explicit recognition that we care more about reducing the impact of failure than we do about avoiding failures entirely. That’s not to say we don’t care about avoiding failures. Of course we do. (More on that shortly.) We just care *more* about our ability to recover when we do fail. And we recognize that safety measures that significantly detract from deployment frequency and lead time should be avoided since they create their own form of systemic risk. (Longer lead time, bigger batches, riskier deployments, etc.)
 
