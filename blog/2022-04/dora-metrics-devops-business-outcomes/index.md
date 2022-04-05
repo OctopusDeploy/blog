@@ -105,7 +105,7 @@ Consistently short lead times are not the result of rushed development work or s
 
 ### Mean Time to Recovery (MTTR)
 
-The best way to appreciate MTTR, is to contrast it with MTBF (Mean Time Between Failure).
+The best way to appreciate MTTR is to contrast it with MTBF (Mean Time Between Failure).
 
 The focus on MTTR is an explicit recognition that we care more about reducing the impact of failure than we do about avoiding failures entirely. That’s not to say we don’t care about avoiding failures. Of course we do. (More on that shortly.) We just care *more* about our ability to recover when we do fail. And we recognize that safety measures that significantly detract from deployment frequency and lead time should be avoided since they create their own form of systemic risk. (Longer lead time, bigger batches, riskier deployments, etc.)
 
