@@ -36,7 +36,7 @@ In 2012, at Puppet, Alanna Brown recognized this need and started the annual Sta
 
 Nicole, [a PhD with some serious research credentials](https://nicolefv.com/research), [lead the research from 2013 to 2017](https://twitter.com/nicolefv/status/1328040951449677824). Each year, the team surveyed tens of thousands of tech folks globally, across different job roles and industry sectors. They examined the results, sought out conclusions, and published the data with their findings.
 
-They elevated the discussion about DevOps. This wasn’t about tribal, value signaling anymore. We had cold, hard data. We could talk about facts, rather than opinions. We could talk about global trends, rather than individual case studies.
+They elevated the discussion about DevOps. This wasn’t about tribal value signaling anymore. We had cold, hard data. We could talk about facts, rather than opinions. We could talk about global trends, rather than individual case studies.
 
 Most importantly, we could, authoritatively, show people the money.
 
