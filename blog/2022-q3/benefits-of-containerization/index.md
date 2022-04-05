@@ -18,7 +18,7 @@ tags:
 
 ## What is containerization?
 
-A container is a lightweight, portable computing environment with all the necessary binaries, configurations, and dependencies to run as a standalone process. Containerization is the process of making an application runnable as a container. Once the application runs as a container, it will run the same regardless of the infrastructure. Containerization has seen comprehensive spread use in recent years. The uptake of containerization has been partly because of the wide adoption of cloud technologies. Cloud environments have allowed container scaling and replication, unlocking their business value. This blog discusses the main benefits of containerization, why it is important for software development and how Octopus Deploy supports containers.
+A container is a lightweight, portable computing environment with all the necessary binaries, configurations, and dependencies to run as a standalone process. Containerization is the process of making an application runnable as a container. Once the application runs as a container, it will run the same regardless of the infrastructure. Containerization has seen extensive use in recent years. The uptake of containerization has been partly due to the wide adoption of cloud technologies. Cloud environments have allowed container scaling and replication, unlocking their business value. This blog discusses the main benefits of containerization, why it is important for software development and how Octopus Deploy supports containers.
 
 ## Benefits
 
@@ -43,7 +43,7 @@ Containerization provides application portability. Containers can run anywhere o
 
 Containers are replicable and run anywhere. PaaS solutions and container orchestration tools like Kubernetes allow developers to operate containers at scale. Container orchestrators can scale individual components in software applications up and down depending on demand and load. Container orchestration leads to cost savings as components do not run for longer than they need to. Scaling improves reliability as container orchestrators can allocate sufficient resources to high-demand parts of the application.
 
-## Who are the main players in container technologies?
+## Who are the primary tools for container technologies?
 
 Cloud PaaS solutions like Microsoft Azure, Amazon Web Services, and Google Cloud Platform have provided the infrastructure to run technologies like Docker and Kubernetes.
 
@@ -51,9 +51,28 @@ The Docker container technology was launched as open-source in 2013. Since then,
 
 Kubernetes is a container orchestration technology developed by Google. Companies have been using Kubernetes alongside Docker to manage and scale container solutions.
 
-Docker has been the most common container technology run on Kubernetes. The (v1.24 Kubernetes update)[https://kubernetes.io/blog/2022/03/31/ready-for-dockershim-removal/] has deprecated Dockershim - an underlying module providing compatibility between Docker and Kubernetes. The update is mainly due to Docker's compatibility with the Container Runtime Interface. Docker has developed a replacement for Dockershim called cri-dockerd that addresses compatibility issues. A report by Datadog in 2021 indicated a 6% increase in containerd adoption with a correlated dip in Docker usage. The containerd trend may continue as Kubernetes moves away from Docker. The containerization and container orchestration landscape is rapidly evolving and changing year to year. The technological tools and popularity may wane and change, but the containerization and container orchestration concepts are here to stay.
+Docker has been the most common container technology run on Kubernetes. The [v1.24 Kubernetes update](https://kubernetes.io/blog/2022/03/31/ready-for-dockershim-removal/) has deprecated Dockershim - an underlying module providing compatibility between Docker and Kubernetes. The update is mainly due to Docker's compatibility with the Container Runtime Interface. Docker has developed a replacement for Dockershim called cri-dockerd that addresses compatibility issues. A report by Datadog in 2021 indicated a 6% increase in containerd adoption with a correlated dip in Docker usage. The containerd trend may continue as Kubernetes moves away from Docker. The containerization and container orchestration landscape is rapidly evolving and changing year to year. The technological tools and popularity may wane and change, but the containerization and container orchestration concepts are here to stay.
 
 Regardless of the tools used, Octopus Deploy is cloud-agnostic. It works with PaaS providers, container technologies, and cloud orchestration tools.
+
+## What are the top container images?
+
+According to the Data Dog 2021 report, the top three container images are:
+
+- NGINX
+
+NGINX is an open-source web server, load balancer, and reverse proxy used in several applications. NGINX is the most popular container image, used in over 50% of container environments
+
+- Redis
+
+Redis is an open-source in-memory data structure store used as a database, cache, and message broker. This image is the most popular run image on Kubernetes StatefulSets at around 35%
+
+- Postgres
+
+Postgres is an open-source relational database system that uses the SQL language. Developers used Postgres in container environments, and Kubernetes Stateful sets at around 20%.
+
+Popular container images are often open-source and address a fundamental need in software applications, such as databases, web servers, or caches. These images are maintained and kept up to date by a community and are OCI compliant.
+
 
 ## Containerization support in Octopus Deploy
 
