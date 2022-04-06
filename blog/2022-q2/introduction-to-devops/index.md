@@ -294,7 +294,7 @@ Octopus fits nicely into a DevOps environment in 2 key ways:
 
 ## Conclusion
 
-We're looking closely at Octopus Runbooks in the next few months, with detailed insight, guides, and samples.
+We're looking closely at Octopus Runbooks in the next few months, with detailed insights, guides, and samples.
 
 !include <q2-2022-newsletter-cta>
 

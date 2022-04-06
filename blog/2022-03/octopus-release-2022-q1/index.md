@@ -5,15 +5,14 @@ author: rob.pearson@octopus.com
 visibility: public
 published: 2022-03-30-1400
 metaImage: octopus-2022-q1-config-as-code.png
-bannerImage: octopus-2022-q1-config-as-code.png
+bannerImage: blogimage-cofigascode-2022.png
 bannerImageAlt: Octopus 2022 Q1 highlighting config as code with screenshot showing the Octopus UI and a config file in a text editor.
+isFeatured: true
 tags:
 - Product
 - DevOps
 - Configuration as Code
 ---
-
-![Octopus Configuration as Code - General Availability](octopus-2022-q1-config-as-code.png)
 
 The Octopus 2022 Q1 release is now available.
 
@@ -52,11 +51,9 @@ The following table shows the Octopus Server releases with long term support.
 | Octopus 2021.3        | Yes                            |
 | Octopus 2021.2        | Expired                        |
 
-<!-- TODO: Add Killer Demo or Release tour 
-## Config as Code Demo  
+## Config as Code demo  
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/TODO" frameborder="0" allowfullscreen></iframe>
--->
+<iframe width="560" height="315" src="https://www.youtube.com/embed/tHdAsY_7CqA" frameborder="0" allowfullscreen></iframe>
 
 ## Config as Code in Octopus
 
@@ -153,8 +150,7 @@ In this release, we added support to configure version-controlled projects in HC
 
 The following example highlights the latest updates:
 
-hcl
-```
+``` json
 terraform {
   required_providers {
     octopusdeploy = { ... }
@@ -221,9 +217,9 @@ resource "octopusdeploy_deployment_process" "test-deployment-process-main" {
 
 ## New integrations
 
-### BuildKite plugins (early access) 
+### Buildkite plugins (early access) 
 
-![ BuildKite plugin for Octopus Deploy](buildkite-agent-runs.png "width=500")
+![ Buildkite plugin for Octopus Deploy](buildkite-agent-runs.png "width=500")
 
 Octopus Deploy now integrates with [Buildkite](https://buildkite.com/). Our new Buildkite plugins allow your build agents to create and deploy releases, push build information, and run runbooks as part of a pipeline.
 
@@ -241,7 +237,9 @@ It can be challenging to automate your CI/CD pipeline, especially when using dif
 
 After it's enabled, Opsera's integration provides access through its pipeline UI to resources defined in Octopus Deploy, such as channels, environments, lifecycles, projects, spaces, and tenants.
 
-[Learn more about Opsera integration with Octopus](https://octopus.com/blog/opsera-integration-with-octopus-deploy).
+[Read our announcement blog post](https://octopus.com/blog/opsera-integration-with-octopus-deploy) to learn more about the Opsera integration with Octopus.
+
+You can also learn more by [attending the free webinar on Tuesday, April 12, 2022.](https://www.opsera.io/events/opsera-and-octopus-integration)
 
 ### Connect Octopus to all of your Azure DevOps organizations
 
@@ -307,6 +305,8 @@ Octopus 2022 Q1 delivers the first milestone for Config as Code in Octopus, and 
 
 We look forward to seeing our customers work with version-controlled projects. We're continuing to add more functionality to our Config as Code solution.
 
-We'd love to hear from you with any questions or comments. You can leave a comment below or join the conversation in our [Octopus Community Slack](https://octopus.com/slack).
+We'd love to hear from you with any questions or comments. You can leave feedback below or join the conversation in our [Octopus Community Slack](https://octopus.com/slack).
+
+We also invite you to learn how to use Config as Code in Octopus by attending our [free webinar on Wednesday, May 4, 2022](https://octopus.com/events/introducing-config-as-code-in-octopus)
 
 Happy (version-controlled) deployments!
