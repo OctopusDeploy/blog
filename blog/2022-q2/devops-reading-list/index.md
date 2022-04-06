@@ -7,6 +7,7 @@ published: 2022-04-19-1400
 metaImage: blogimage-devopsreadinglist-2022.png
 bannerImage: blogimage-devopsreadinglist-2022.png
 bannerImageAlt: Open book sits below a conveyer belt of books
+isFeatured: false
 tags:
  - DevOps
  - Runbooks Series
@@ -541,26 +542,16 @@ Don’t just take my word for it. I’m just one imperfect human who is fascinat
 
 ## Final thoughts {#final_thoughts}
 
-Not every book is for everyone. For example, while many people love The Phoenix Project, there are certainly some that don’t like the format. And I’m aware that my decision to include a specialized book about databases reflects my personal experience. Why not a book dedicated to kanban/scrum, testing, product management, chaos engineering, or security? These are all fair questions.
+Not every book is for everyone. For example, many people love The Phoenix Project, but some don’t like the format. And I’m aware that my decision to include a specialized book about databases reflects my personal experience. Why not a book dedicated to kanban/scrum, testing, product management, chaos engineering, or security? These are all fair questions.
 
 It’s also true that these sorts of posts often age quickly. I’m writing this post in October 2020, and half of the titles above were published since 2016. I’m sure that over the next few years new books will be written, old books will be rediscovered, and books that are popular now will go out of fashion. The technology we use is constantly evolving, and the DevOps community has a deep passion for learning and improvement, so it would be a surprise and a shame if things don’t evolve over the coming years.
 
-With all this in mind, dear reader, I’d like to turn the tables on you. Did you like the decision tree? Did you like or dislike the books in my list? Was your personal book recommendation a good fit? Did you read it, and was it valuable? Are there any books that I overlooked which you feel should have made the cut? What would your DevOps reading list look like?
+With all this in mind, dear reader, I’d like to turn the tables on you. Did you like the decision tree? Did you like or dislike the books in my list? Was your personal book recommendation a good fit? Did you read it, and was it valuable? Are there any books I overlooked which you feel should have made the cut? What would your DevOps reading list look like?
 
-Please do leave a comment. I look forward to seeing your suggestions, and I hope to add a few of them to my personal reading list for the upcoming holiday season.
+Please leave a comment. I look forward to seeing your suggestions, and I hope to add a few to my personal reading list.
 
-But more importantly, if you like books, I encourage you to choose one, buy a copy, and set aside some time to start reading. In this crazy time more than ever before, I’ve found it especially cathartic and valuable to block out a few hours, pop the kettle on, turn off my devices, and to sit back with a notepad, pen, and a good book about how to prosper in the face of unexpected challenges and uncertain market conditions.
+But more importantly, if you like books, I encourage you to buy one and set aside some time to start reading. In this crazy time more than ever before, I’ve found it especially cathartic and valuable to block out a few hours, pop the kettle on, turn off my devices, and to sit back with a notepad, pen, and a good book about how to prosper in the face of unexpected challenges and uncertain market conditions.
 
 !include <q2-2022-newsletter-cta>
 
 Happy deployments!
-
----
-
-Alex Yates has been helping organisations to apply DevOps principles to their data since 2010. He’s most proud of helping Skyscanner develop the ability to  [deploy 95 times a day](https://www.youtube.com/watch?v=sNsPnCv7hHo) and for supporting the United Nations Office for Project Services with their release processes. Alex has worked with clients on every continent except Antarctica – so he’s keen to meet anyone who researches penguins.
- 
-A keen community member, he co-organises [Data Relay](https://datarelay.co.uk/), is the founder of [www.SpeakingMentors.com](http://www.speakingmentors.com/) and has been recognised as a  [Microsoft Data Platform MVP](https://mvp.microsoft.com/en-us/PublicProfile/5002655?fullName=Alex%20Yates) since 2017.
- 
-Alex is the founder of [DLM Consultants](http://dlmconsultants.com/), an official Octopus Deploy partner. He enjoys mentoring, coaching, training and consulting with customers who want to achieve better business outcomes through improved IT and database delivery practices.
- 
-If you would like to work with Alex, email: [enquiries@dlmconsultants.com](mailto:enquiries@dlmconsultants.com) 
