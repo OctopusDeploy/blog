@@ -4,8 +4,8 @@ description: This post provides a step by step template you can use to generate 
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2022-04-020-1400
-metaImage: 
-bannerImage: 
+metaImage: blogimage-runbooksbestpractices-2022.png
+bannerImage: blogimage-runbooksbestpractices-2022.png
 bannerImageAlt: A book with legs and arms is wearing a toolbelt and running with a checklist in its hand
 isFeatured: false
 tags:
