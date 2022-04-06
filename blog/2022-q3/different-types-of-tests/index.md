@@ -46,7 +46,7 @@ Non-functional tests test the overall performance of the application. How secure
 
 ## Test types
 
-The following are some types of functional and performance tests. I have provided some general points of the kind of test and a real-life example. These are simple and digestible to get the main point across.
+The following are some types of functional and non-functional tests. I have provided some general points of the kind of test and a real-life example. These are simple and digestible to get the main point across.
 
 ### Functional
 
@@ -54,11 +54,11 @@ The following are some types of functional and performance tests. I have provide
 
 ```
 
-Testing an individual unit of code for functionality
+Testing an individual unit of code for functionality. In this case we test a function, which is a block of code that does one task.
 
-1. We want to test if a class works
-2. We test the class by giving it inputs
-3. We check whether the expected output matches the actual output
+1. Test if a function works. This function averages the weather for the previous 14 days.
+2. Give the function the weather inputs for the previous 14 days
+3. Check whether the expected output matches the actual output
 
 ```
 
@@ -66,11 +66,10 @@ Testing an individual unit of code for functionality
 
 ```
 
-Testing the functionality between two or more modules
+Testing the functionality between two or more modules. This example tests the integration between the e-commerce store front, and the shopping cart module
 
-1. Test adding an item to the cart from the e-commerce shop front
-2. Load the e-commerce store and add an item to the cart, and go to checkout
-3. Check that the correct number of items are in the cart and the user is now at the checkout page.
+1. Load the e-commerce store and add some items to the cart, and go to checkout
+2. Check that the correct number of items are in the cart and the listed price is correct
 
 ```
 
@@ -78,25 +77,24 @@ Testing the functionality between two or more modules
 
 ```
 
-Smoke testing ensures that the most critical paths of an application work before passing the tests on to more rigorous testing.
+Ensures that the most critical paths of an application work before passing the tests on to more rigorous testing. This is often done manually but can be automated with tools like Selenium.
 
-1. We want to make sure that all critical login functions are available to a user before moving forward with testing.
+1. Expect successful login
 2. User is on the home screen
 3. User enters credentials
 4. Click login
 5. User is on the dashboard page
-
+6. Confirm successful login
 ```
 
 #### Acceptance
 
 ```
 
-Confirm that the application is working according to a requirements specification
+Confirm that the application is working according to a requirements specification. In this example there is a requirement for a rewards system to work with an application. The tests test for the expected behavior of a rewards system.
 
-1. It is a requirement for the user rewards system to works
-2. If a user tries to purchase a product with rewards points and they have enough points, the purchase price should be $0
-3. If a user tries to purchase a product with rewards points and they do not have enough points, the purchase price should be $20
+1. If a user tries to purchase a product with rewards points and they have enough points, the purchase price should be $0
+2. If a user tries to purchase a product with rewards points and they do not have enough points, the purchase price should be $20
 
 ```
 
@@ -106,7 +104,7 @@ Confirm that the application is working according to a requirements specificatio
 
 ```
 
-Tests performance metrics like speed, response time, and resource usage of the application
+Tests performance metrics like speed, response time, and resource usage of the application.
 
 1. Verify that loading the home page takes <4ms
 2. Check CPU and memory load during peak conditions
@@ -128,7 +126,7 @@ Tests related to the load on an application
 
 ```
 
-
+Tests for security related weaknesses in the system.
 
 1. Check if stored passwords are encrypted
 2. Check cookies and traffic location to scan for malicious actors
@@ -138,6 +136,8 @@ Tests related to the load on an application
 #### Scalability
 
 ```
+
+Tests for failures related to scaling the application. 
 
 1. Under increasing load, test how many nodes an application needs to recover
 2. Monitor load to identify peak time. Assign more nodes during this time
