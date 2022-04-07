@@ -128,7 +128,7 @@ By recognizing this, it allows your teams to:
 
 ## DevOps roles
 
-Though the concept is about a unifying purpose, DevOps is really everyone's role. That said, it's still important for everyone to know their responsibilities. Adopting DevOps means adding some specialist roles that sit alongside development staples like coders, QA, designers, and more.
+Given the concept is about a unifying purpose, DevOps is really everyone's role. That said, it's still important that everyone knows their responsibilities. Adopting DevOps means adding some specialist roles that sit alongside development staples like coders, QA, designers, and more.
 
 Let's take a quick look at some of the common extra roles needed in DevOps and what they do. Some of the naming conventions and finer responsibilities may differ between organizations.
 
@@ -291,10 +291,6 @@ Octopus fits nicely into a DevOps environment in 2 key ways:
    - The stop, start, and restart of system services
    - File clean-up
    - The running of scripts in any language you need
-
-## Conclusion
-
-We're looking closely at Octopus Runbooks in the next few months, with detailed insights, guides, and samples.
 
 !include <q2-2022-newsletter-cta>
 
