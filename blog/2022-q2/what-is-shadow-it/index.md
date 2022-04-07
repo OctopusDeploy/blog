@@ -75,7 +75,7 @@ Reducing the barriers to compliance while maintaining governance is an important
 
 ## What is a runbook?
 
-A runbook is a reusable way to execute a commonly repeated task, for example, refreshing the data in a test database.
+A runbook is a reusable way to execute a commonly repeated task. The types of tasks runbooks can automate include minimizing application downtime, simplifying routine maintenance, and providing self-service operations. Let's look at a request the operations team might receive, refreshing the data in a test database.
 
 Typically, when a developer needs to refresh the data in a test database, the following actions need to be performed:
 
