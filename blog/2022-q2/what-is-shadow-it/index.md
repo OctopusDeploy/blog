@@ -35,7 +35,7 @@ A study by EMC estimates that data loss and downtime contribute to [$1.7 trillio
 
 In IBM's 2021 [Cost of Data Breach Report](https://www.ibm.com/au-en/security/data-breach), the average cost of a data breach rose from USD 3.86 million to USD 4.24million from 2020 to 2021.
 
-![Average total cost of a data breach - IBM Cost of a Data Breach Report 2021](ibm.png "width=500")
+![Average total cost of a data breach - IBM Cost of a Data Breach Report 2021](ibm.png "width=500")*Source: IBM*
 
 There are also compliance concerns for businesses in highly regulated industries. The [General Data Protection Regulation (GDPR)](https://gdpr.eu/tag/gdpr/) imposes strict regulations on organizations anywhere they collect data from people in the European Union (EU). There are harsh fines for offenders reaching into the tens of millions of euros. As shadow IT increases, it becomes harder to ensure that only authorized employees are accessing sensitive data.
 
