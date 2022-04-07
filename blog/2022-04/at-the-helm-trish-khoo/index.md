@@ -12,7 +12,7 @@ tags:
   - Company
 ---
 
-This post is the next in our series where we chat to people at Octopus about their role, their challenges, what they're working on to improve the product for our customers, and more.
+This post is the next in our series, chatting to people at Octopus about their role, their challenges, what they're working on to improve the product for our customers, and more.
 
 Here we talk to Trish Khoo, our Director of Engineering.
 
@@ -28,7 +28,7 @@ On Mondays, I have a catch-up with Mike (VP of Engineering) and Roy (Director of
 
 After checking Slack again, I action things we chatted about in the meeting, then break for lunch. Then I have sync-ups with my engineering managers, and my GLT (Group Leadership Team). In the afternoon, I write policies, guidelines, proposals, strategies, announcements, or messages, and have 1:1 meetings.
 
-Using Slack and Zoom every day can sound unexciting, but I'm building awareness of how my group and greater R&D are functioning and taking small but meaningful actions to adjust it. I also use the time in Zoom meetings to make origami flowers, which helps me focus!
+Using Slack and Zoom every day might sound unexciting, but I'm building awareness of how my group and greater R&D are functioning and taking small but meaningful actions to adjust it. I also use the time in Zoom meetings to make origami flowers, which helps me focus!
 
 ![Photo of Trish's desk showing a keyboard surrounded by colorful origami flowers](trish-origami.jpg "width=500")*Trish's desk adorned with her origami creations*
 
@@ -46,7 +46,7 @@ I'm happy to see my contribution to our scaling goals in the past year, and I'm 
 
 ## What are the biggest challenges for the engineering team at Octopus?
 
-We've added so many engineers to the company so quickly and worked hard to get our system to scale alongside this growth. We're at a critical point in our journey where engineering productivity is challenging, our ambitions are high, and half our team is brand new. Keeping on top of our delivery roadmap at this point requires constant attention, but so far we’re doing great. 
+We've added so many engineers to the company so quickly and worked hard to get our system to scale alongside the growth. We're at a critical point in our journey where engineering productivity is challenging, our ambitions are high, and half our team is new. Keeping on top of our delivery roadmap at this point requires constant attention, but so far we’re doing great. 
 
 ## What's your vision for engineering at Octopus over the next few years?
 
@@ -56,6 +56,8 @@ And I think we’re doing really well! No matter what we do, the rapid scale and
 
 ## How do you measure success internally and for our customers?
 
-It's an interesting time at the moment with a focus on acquiring new, bigger customers as well as retaining our existing ones. We're discovering what success means for new customers, and learning what it takes to create a compelling product they'll love. In one team, we've been experimenting with our customers' first experience with Octopus to see if we can get more first-timers to deploy successfully. In another team, we're learning about popular enterprise products like ServiceNow and working out how Octopus can fit into this kind of tooling ecosystem. Ultimately, we want our product to help our customers succeed because that helps us be successful.
+It's an interesting time at the moment with a focus on acquiring new, bigger customers as well as retaining our existing ones. We're discovering what success means for new customers, and learning what it takes to create a compelling product they'll love. 
 
-Internally, we need to deliver consistently and sustainably. This means we create a working environment where it’s easy to get the big things done repeatedly. With that and the right people, we can achieve pretty much anything. 
+In one team, we've been experimenting with our customers' first experience with Octopus to see if we can get more first-timers to deploy successfully. In another team, we're learning about popular enterprise products like ServiceNow and working out how Octopus can fit into this kind of tooling ecosystem. Ultimately, we want our product to help our customers succeed because that helps us be successful.
+
+Internally, we need to deliver consistently and sustainably. This means we create a working environment where it’s easy to get the big things done repeatedly. With that and the right people, we can achieve pretty much anything.
