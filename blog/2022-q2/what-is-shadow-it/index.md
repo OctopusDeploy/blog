@@ -61,7 +61,7 @@ The unknown nature of shadow IT increases the risk profile of an organization. S
 > - Deploy shadow IT discovery and data protection tools to enable the safe selection, deployment, and notification of unauthorized cloud services
 > - Use data security governance to develop and orchestrate consistent security policies across all BUIT for each prioritized dataset
 
-Shadow IT requires governance, discovery, and protection. The solution must be streamlined and minimize time spent in support. Self-service runbooks can address this.
+Shadow IT requires governance, discovery, and protection. The solution must be streamlined and minimize time spent in support.
 
 ## The Shadow IT discovery lifecycle
 
