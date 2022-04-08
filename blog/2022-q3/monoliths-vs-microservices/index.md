@@ -49,9 +49,7 @@ Microservices use API calls for communication. An application using microservice
 
 Both monoliths and the microservice architecture suffer from complexity issues. Developing a monolith means the code base of the application becomes very large. No single developer or team likely understands the application in its entirety. Microservices are independent, so each microservice is likely to be understood by its developers. Microservices also suffer from complexity issues because multiple services interact, and developers may not have applied a standard framework to each service. The scalability of microservices increases the demand for documentation. As more services are added to the application, the size of the required documentation increases.
 
-Microservice downtime can cause cascading effects in the application. Even though microservices are independent, the are connected. Often, several third party microservices are working together to achieve a task. If one microservice is sending erroneous outputs, this may cause other microservices to behave in an unpredictable way.
-
-Microservices are distributed, this introduces a networking problem. Firewalls, latency and security would all have to be considered. This would be more of an issue compared to monoliths where an application is self-contained, running in a central location.
+Microservice downtime can cause cascading effects in the application. Even though microservices are independent, the are connected. Often, several third party microservices are working together to achieve a task. If one microservice is sending erroneous outputs, this may cause other microservices to behave in an unpredictable way. Microservices are distributed, this introduces a networking problem. Firewalls, latency and security would all have to be considered. This would be more of an issue compared to monoliths where an application is self-contained, running in a central location.
 
 ## Conclusion
 
