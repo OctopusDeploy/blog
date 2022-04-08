@@ -292,6 +292,8 @@ Octopus fits nicely into a DevOps environment in 2 key ways:
    - File clean-up
    - The running of scripts in any language you need
 
+If you're not already using Octopus Deploy, you can [sign up for a free trial](https://octopus.com/start).
+
 !include <q2-2022-newsletter-cta>
 
 Happy deployments!
