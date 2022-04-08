@@ -4,8 +4,8 @@ description: As part of our series about Runbooks, we look at how Octopus Runboo
 author: andrew.corrigan@octopus.com
 visibility: public
 published: 2022-04-11-1400
-metaImage: blogimage-placeholder.png
-bannerImage: blogimage-placeholder.png
+metaImage: 
+bannerImage: 
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags: 
