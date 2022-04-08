@@ -33,7 +33,7 @@ By contrast, a software application with a microservice architecture breaks down
 
 We have seen that a monolithic application is a single code base that describes everything an application needs to run. An application built from microservices has its codebase split across multiple components. These components are built independently and are connected on a case-by-case basis to suit application requirements.
 
-Monolithic software architecture is the traditional way of building software applications and have predated microservices for many years. The advancement of cloud technologies, containerization in particular, have allowed microservices to become very popular in delivering software. A Google Trends search shows that microservices only started to become popular after 2013. This is coincidentally when Docker (the main containerization technology) was released.
+Monolithic software is the traditional way of building software applications and have predated microservices for many years. The advancement of cloud technologies, containerization in particular, have allowed microservices to become very popular in delivering software. A Google Trends search shows that microservices only started to become popular after 2013. This is coincidentally when Docker (the main containerization technology) was released.
 
 ![Google Trends Microservices](google-trends-microservices.png "width=500")
 
