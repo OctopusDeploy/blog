@@ -277,7 +277,7 @@ Octopus acquired [Dist](https://www.dist.cloud/), a fast and reliable artifact r
 
 ## Breaking changes 
 
-This release contains one breaking chang.: 
+This release contains one breaking change: 
 
 **Config as Code API URLs renamed**
 
