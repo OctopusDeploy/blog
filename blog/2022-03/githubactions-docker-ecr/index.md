@@ -120,7 +120,9 @@ Go to your Amazon ECR repository to view the image. Octopus Deploy can now deplo
 
 In this post, you set up a GitHub Actions workflow to build and push an image to Amazon ECR. Deployment tools like Octopus can then use this image in a later deployment stage to deploy the web application to a service. Github Actions allows code repositories to be part of a deployment process without additional work. Github Actions has several templates that developers can use to perform other deployment tasks. 
 
-In the next post, we'll take the image in ECR and deploy the web application.
+In the next post, we'll [take the image in ECR and deploy the web application](https://octopus.com/blog/deploying-amazon-eks-github-actions).
+
+Following that, we'll [use GitHub Actions and Octopus Deploy to deploy a web application to Amazon EKS](https://octopus.com/blog/multi-environment-deployments-github-actions).
 
 !include <githubactions-webinar-feb-2022>
 
