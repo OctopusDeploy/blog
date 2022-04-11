@@ -7,7 +7,7 @@ published: 2022-04-05-1400
 metaImage: blogimage-introductiontodevops-2022.png
 bannerImage: blogimage-introductiontodevops-2022.png
 bannerImageAlt: Blue octopus tentacle shaped like the DevOps infinity symbol, with people on laptops sitting on and around the tentacle.
-isFeatured: false
+isFeatured: true
 tags: 
   - DevOps
   - Runbooks Series
