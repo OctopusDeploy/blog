@@ -1,5 +1,5 @@
 ---
-title: Publishing a package to a local Octopus with GitHub Actions
+title: Publishing a package to a local Octopus instance with GitHub Actions
 description: Learn how to push a package to a local instance of Octopus Deploy with a GitHub Actions Runner
 author: shawn.sesna@octopus.com
 visibility: public
