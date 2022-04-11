@@ -24,16 +24,9 @@ A container is a lightweight, portable computing environment with all the necess
 
 ### Containers complement your DevOps process
 
-Containerization complements your DevOps process. DevOps is a practice that focuses on agility and automation. One breakdown of DevOps is the 6 C's.
+In our [introduction to DevOps blog](https://octopus.com/blog/introduction-to-devops), we discussed how DevOps as a concept is about removing barriers that get in the way of software delivery. The way DevOps is acheived is by refining every process that takes place between the developer and the customer (flow), having faster feedback loops, and having continual experimentation and learning. 
 
-- Continuous Integration
-- Continuous Testing
-- Continuous Delivery
-- Continuous Deployment
-- Continuous Monitoring
-- Continuous Business Planning
-
-Containers complement the 6 C's of DevOps as containers can be run in a microservice architecture. Microservices give the development process flexibility and agility to address the continuous C's requirement of DevOps. Microservices can be easier to troubleshoot as they are isolated and independent from other microservices. For a list of benefits of microservices, see (blog)[bloglink].
+DevOps is a practice that focuses on agility and automation. [Containerization can be run in a microservice architecture, which gives the development process agility and flexibility](link). Using containerization complements DevOps because software can be deployed and tested faster, improving the feedback loops. Containerization makes it easier to test and experiment with diferent software configurations as containers are isolated units that are interchangeable. 
 
 ### Containers are portable - build once, run anywhere
 
