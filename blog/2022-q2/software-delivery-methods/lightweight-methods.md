@@ -1,29 +1,8 @@
 
 
-The v-model expanded on this shift in thinking by changing the way organizations thought about feedback; replacing the feedback between sequential stages with a layered apporach.
-
-
-
-
-
-
-
-
-
-
-
-
-
-A more evolutionary approach had begun to emerge, where software was written quickly in a modern language and user feedback on the system directed it's evolution. This approach was, at times, a little too similar to software that was delivered with no model at all. There was some hope that a transformational model might solve the problem by providing automatic code generation based on a set of specifications, as this would mean the code would no longer need to be maintained; only the set of specifications.
-
-
-
-
-The most influential heavyweight methods include Waterfall, Spiral Model, and V-Model.
 
 Model = order of phases and criteria for completion of a step and entrance into the next.
 Method = how to navigate each phase
-
 
 
 Herbert D. Benington
