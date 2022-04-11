@@ -38,7 +38,7 @@ Write-Host "Hello, World!"
 Use the following (minus the back-ticks) to include images:
 
 ```
-![Alt text, a description of the image](/path/to/image.png "width=500")*Optional caption text*
+<![Alt text, a description of the image](placeholderimg.png "width=500")*Optional caption text*
 ```
 If including images, please include alt text. Alt text is primarily used to describe images to people unable to see them, and can be 125 characters max including spaces. You can also include an image caption if the reader would benefit from additional information or context.
 
