@@ -30,19 +30,19 @@ An image repository is a place to store deployable images. Octopus Deploy uses t
 
 ### Docker Hub
 
-Docker Hub is a central repository for Docker images. It is free to sign up and create public repositories. The Travis CI and Circle CI images can then be deployed to a target by Octopus Deploy. Docker Hub is popular because it is not tied to a specific Cloud vendor like Google, Microsoft or Amazon. Docker Hub provides repository functionality without the added bloat of additional cloud services.
+Docker Hub is a central repository for Docker images that [works with Octopus Deploy](https://octopus.com/docs/packaging-applications/package-repositories/guides/container-registries/docker-hub). It is free to sign up and create public repositories. The Travis CI and Circle CI images can then be deployed to a target by Octopus Deploy. Docker Hub is popular because it is not tied to a specific Cloud vendor like Google, Microsoft or Amazon. Docker Hub provides repository functionality without the added bloat of additional cloud services. 
 
 ![Docker Hub](dockerhub.png "width=500")
 
 ### Google Container Registry
 
-Google Container Registry is a container registry for the Google Cloud Platform. I used it as a way to test a GitHub Actions step template. Other cloud repositories like Microsoft and Amazon also have equivalent GitHub Actions steps. Each one would require slightly different configuration setups. I used the step to push from GitHub Actions to Google Container Registry directly.
+Google Container Registry is a container registry for the Google Cloud Platform and [is supported by Octopus Deploy](https://octopus.com/docs/packaging-applications/package-repositories/guides/container-registries/google-container-registry). I used it as a way to test a GitHub Actions step template. Other cloud repositories like Microsoft and Amazon also have equivalent GitHub Actions steps. Each one would require slightly different configuration setups. I used the step to push from GitHub Actions to Google Container Registry directly.
 
 ![GCR](gcr.png "width=500")
 
 ### Built-in repository
 
-Octopus Deploy contains a built-in repository to manage local packages. The built-in repository can be helpful for self-managing the packages that are deployed or keeping them private. A built-in repository is suitable in offline scenarios where continually redownloading images from the internet is not viable.
+[Octopus Deploy contains a built-in repository to manage local packages](https://octopus.com/docs/packaging-applications/package-repositories/built-in-repository). The built-in repository can be helpful for self-managing the packages that are deployed or keeping them private. A built-in repository is suitable in offline scenarios where continually redownloading images from the internet is not viable. 
 
 ![Built-in Repository](built-in-repository.png "width=500")
 
