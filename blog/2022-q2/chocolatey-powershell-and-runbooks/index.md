@@ -4,9 +4,9 @@ description: This blog post shows you how to automate your Windows server setup 
 author: derek.campbell@octopus.com
 visibility: private
 published: 2022-04-26-1400
-metaImage: 
-bannerImage:
-bannerImageAlt: Configure team member’s machines with Chocolatey, PowerShell, and Octopus Runbooks
+metaImage: blogimage-configuringchocolateypowershellrunbooks-2022.png
+bannerImage: blogimage-configuringchocolateypowershellrunbooks-2022.png
+bannerImageAlt: Open laptop sits in front of a conveyer belt with blocks of chocolate above it.
 tags:
  - DevOps
  - Runbooks Series
