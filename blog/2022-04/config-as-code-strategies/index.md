@@ -17,6 +17,8 @@ Since we released the early access preview of Octopus's Configuration as Code la
 
 This post explains some good practices for using Config as Code and how to adjust your strategy in different situations.
 
+You can also read more about Config as Code in Octopus in our [2022 Q1 announcement post](https://octopus.com/blog/octopus-release-2022-q1).
+
 ## Why use Config as Code?
 
 Git is the perfect solution for versioning code and keeping track of changes over time. It has established patterns for branching the code and for publishing and approving changes. It also allows you to compare versions and travel back in time if you need to.
@@ -92,7 +94,7 @@ Instead of sharing the same OCL files between multiple projects, you should crea
 
 ## Conclusion
 
-You can now confidently choose an appropriate strategy for Config as Code. This post explained how to select a suitable location in version control for your configuration files, how to use branches and pull requests to manage your deployment process, and when Config as Code is not the right tool for the job.
+You can now confidently choose an appropriate strategy for [Config as Code](https://octopus.com/blog/octopus-release-2022-q1). This post explained how to select a suitable location in version control for your configuration files, how to use branches and pull requests to manage your deployment process, and when Config as Code is not the right tool for the job.
 
 You can keep updated on future additions, such as Config as Code for Runbooks, on our [roadmap](https://octopus.com/company/roadmap).
 

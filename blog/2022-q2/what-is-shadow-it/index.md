@@ -35,7 +35,7 @@ A study by EMC estimates that data loss and downtime contribute to [$1.7 trillio
 
 In IBM's 2021 [Cost of Data Breach Report](https://www.ibm.com/au-en/security/data-breach), the average cost of a data breach rose from USD 3.86 million to USD 4.24million from 2020 to 2021.
 
-![Average total cost of a data breach - IBM Cost of a Data Breach Report 2021](ibm.png "width=500")
+![Average total cost of a data breach - IBM Cost of a Data Breach Report 2021](ibm.png "width=500")*Source: IBM*
 
 There are also compliance concerns for businesses in highly regulated industries. The [General Data Protection Regulation (GDPR)](https://gdpr.eu/tag/gdpr/) imposes strict regulations on organizations anywhere they collect data from people in the European Union (EU). There are harsh fines for offenders reaching into the tens of millions of euros. As shadow IT increases, it becomes harder to ensure that only authorized employees are accessing sensitive data.
 
@@ -61,19 +61,21 @@ The unknown nature of shadow IT increases the risk profile of an organization. S
 > - Deploy shadow IT discovery and data protection tools to enable the safe selection, deployment, and notification of unauthorized cloud services
 > - Use data security governance to develop and orchestrate consistent security policies across all BUIT for each prioritized dataset
 
-Shadow IT requires governance, discovery, and protection. The solution must be streamlined and minimize time spent in support. Self-service runbooks can address this.
+Shadow IT requires governance, discovery, and protection. The solution must be streamlined and minimize time spent in support.
 
 ## The Shadow IT discovery lifecycle
 
-A [post by Microsoft](https://www.microsoft.com/security/blog/2019/03/26/step-7-discover-shadow-it-and-take-control-of-your-cloud-apps-top-10-actions-to-secure-your-environment/) outlines the stages of the shadow IT discovery lifecycle. This supports that any solution to shadow IT should have governance but also compliance. 
+This image from [Microsoft's blog post](https://www.microsoft.com/security/blog/2019/03/26/step-7-discover-shadow-it-and-take-control-of-your-cloud-apps-top-10-actions-to-secure-your-environment/) demonstrates the stages of the shadow IT discovery lifecycle. This supports that any solution to shadow IT should have governance but also compliance. 
+
+![Shadow IT lifecycle](microsoft-shadow-it.png "width=500")*Source: Microsoft*
 
 Reducing the barriers to compliance while maintaining governance is an important step towards managing shadow IT. Octopus Deploy's [Runbooks feature](https://octopus.com/docs/runbooks) helps achieve compliance and governance across an organization.
 
-![Shadow IT lifecycle](microsoft-shadow-it.png "width=500")
+
 
 ## What is a runbook?
 
-A runbook is a reusable way to execute a commonly repeated task, for example, refreshing the data in a test database.
+A runbook is a reusable way to execute a commonly repeated task. The types of tasks runbooks can automate include minimizing application downtime, simplifying routine maintenance, and providing self-service operations. Let's look at a request the operations team might receive, refreshing the data in a test database.
 
 Typically, when a developer needs to refresh the data in a test database, the following actions need to be performed:
 

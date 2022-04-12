@@ -5,7 +5,7 @@ author: rob.pearson@octopus.com
 visibility: public
 published: 2022-03-30-1400
 metaImage: octopus-2022-q1-config-as-code.png
-bannerImage: octopus-2022-q1-config-as-code.png
+bannerImage: blogimage-cofigascode-2022.png
 bannerImageAlt: Octopus 2022 Q1 highlighting config as code with screenshot showing the Octopus UI and a config file in a text editor.
 isFeatured: true
 tags:
@@ -13,8 +13,6 @@ tags:
 - DevOps
 - Configuration as Code
 ---
-
-![Octopus Configuration as Code - General Availability](octopus-2022-q1-config-as-code.png)
 
 The Octopus 2022 Q1 release is now available.
 
@@ -279,7 +277,7 @@ Octopus acquired [Dist](https://www.dist.cloud/), a fast and reliable artifact r
 
 ## Breaking changes 
 
-This release contains one breaking chang.: 
+This release contains one breaking change: 
 
 **Config as Code API URLs renamed**
 
