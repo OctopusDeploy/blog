@@ -41,7 +41,7 @@ for ((i = 0; i < ${#REQUIREDTAGS[@]}; i++)); do
     echo "==========================================================="
     echo "The following ${COUNT} resources lack the ${REQUIREDTAGS[$i]} tag."
     echo "==========================================================="
-	echo ${OUTPUT} | jq -r ".ResourceTagMappingList[] | select(contains({Tags: [{Key: \"${REQUIREDTAGS[$i]}\"} ]}) | not) | .ResourceARN"
+    echo ${OUTPUT} | jq -r ".ResourceTagMappingList[] | select(contains({Tags: [{Key: \"${REQUIREDTAGS[$i]}\"} ]}) | not) | .ResourceARN"
 done
 ```
 
