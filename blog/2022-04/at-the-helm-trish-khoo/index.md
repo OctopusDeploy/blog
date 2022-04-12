@@ -26,7 +26,7 @@ I usually start my day catching up on Slack messages over coffee. I have 8 chann
 
 On Mondays, I catch up with Mike (VP of Engineering) and Roy (Director of Engineering for the Scale Group) to discuss issues affecting R&D that we can solve collaboratively. 
 
-After checking Slack again, I action things from the meeting, then break for lunch. Then I have sync-ups with my engineering managers, and my GLT. In the afternoon, I write policies, guidelines, proposals, strategies, announcements, or messages, and have 1:1 meetings.
+After checking Slack again, I action things from the meeting, then break for lunch. Then I have sync-ups with my engineering managers, and my Group Leadership Team (GLT). In the afternoon, I write policies, guidelines, proposals, strategies, announcements, or messages, and have 1:1 meetings.
 
 Using Slack and Zoom every day might sound unexciting, but I'm building awareness of how my group and greater R&D are functioning and taking small but meaningful actions to adjust things. I also use the time in Zoom meetings to make origami flowers, which helps me focus!
 
@@ -38,9 +38,9 @@ One lesson I've learned is that making big changes as a senior leader has a sign
 
 Defining the new Engineering Manager role has been a big achievement. Before joining, engineering managers were generally hands-on technical leads and people managers. Defining a new role of managers who are purely focused on people management, team culture, and delivery has helped scale teams and relieve additional pressures from technical leads. 
 
-I also established the first R&D group with my GLT (Group Leadership Team), which has offered us better ways to strategize big, long-term initiatives. 
+I also established the first R&D group with my GLT, which has offered us better ways to strategize big, long-term initiatives. 
 
-I also enjoyed working with other leaders to create an engineering hiring strategy that allowed us to scale rapidly. When I first started, "headcount" wasn't a concept at Octopus and each manager was responsible for their job ads and candidate interviews - the whole process through to hire. It worked for a small number of candidates, but it didn't scale. Together with the People & Culture team, I introduced new scalable ways to manage incoming candidates while ensuring we’re filling the right teams first.
+I also enjoyed working with other leaders to create an engineering hiring strategy that allowed us to scale rapidly. When I first started, "headcount" wasn't a concept at Octopus and each manager was responsible for their job ads and candidate interviews - the whole process through to hire. It worked for a small number of candidates, but it didn't scale. Together with the People team, I introduced new scalable ways to manage incoming candidates while ensuring we’re filling the right teams first.
 
 I'm happy to see my contribution to our scaling goals over the past year, and I'm proud to be a part of this journey. 
 
