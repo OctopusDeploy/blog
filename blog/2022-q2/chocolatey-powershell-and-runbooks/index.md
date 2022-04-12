@@ -4,8 +4,8 @@ description: This blog post shows you how to automate your Windows server setup 
 author: derek.campbell@octopus.com
 visibility: private
 published: 2022-04-26-1400
-metaImage: automate_machine_chocolately.png
-bannerImage: automate_machine_chocolately.png
+metaImage: 
+bannerImage:
 bannerImageAlt: Configure team member’s machines with Chocolatey, PowerShell, and Octopus Runbooks
 tags:
  - DevOps
