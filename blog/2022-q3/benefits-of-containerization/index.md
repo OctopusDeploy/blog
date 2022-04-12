@@ -18,15 +18,13 @@ tags:
 
 ## What is containerization?
 
-A container is a lightweight, portable computing environment with all the necessary binaries, configurations, and dependencies to run as a standalone process. Containerization is the process of making an application runnable as a container. Once the application runs as a container, it will run the same regardless of the infrastructure. Containerization has seen extensive use in recent years. The uptake of containerization has been partly due to the wide adoption of cloud technologies. Cloud environments have allowed container scaling and replication, unlocking their business value. This blog discusses the main benefits of containerization, why it is important for software development and how Octopus Deploy supports containers.
+A container is a lightweight, portable computing environment with all the necessary files to run independently. Containerization is the process of making an application runnable as a container. Once the application runs as a container, it will run the same regardless of the infrastructure. Containerization has seen extensive use in recent years. The uptake of containerization has been partly due to the wide adoption of cloud technologies. Cloud environments have allowed container scaling and replication, unlocking their business value. This blog discusses the main benefits of containerization, why it is important for software development and how Octopus Deploy supports containers.
 
 ## Benefits
 
 ### Containers complement your DevOps process
 
-In our [introduction to DevOps blog](https://octopus.com/blog/introduction-to-devops), we discussed how DevOps as a concept is about removing barriers that get in the way of software delivery. The way DevOps is acheived is by refining every process that takes place between the developer and the customer (flow), having faster feedback loops, and having continual experimentation and learning. 
-
-DevOps is a practice that focuses on agility and automation. [Containerization can be run in a microservice architecture, which gives the development process agility and flexibility](link). Using containerization complements DevOps because software can be deployed and tested faster, improving the feedback loops. Containerization makes it easier to test and experiment with diferent software configurations as containers are isolated units that are interchangeable. 
+In our [introduction to DevOps blog](https://octopus.com/blog/introduction-to-devops), we discussed how DevOps as a concept is about removing barriers that get in the way of software delivery. The way DevOps is acheived is by refining every process that takes place between the developer and the customer (flow), having faster feedback loops, and having continual experimentation and learning. DevOps is a practice that focuses on agility and automation. [Containerization can be run in a microservice architecture, which gives the development process agility and flexibility](link). Using containerization complements DevOps because software can be deployed and tested faster, improving the feedback loops.
 
 ### Containers are portable - build once, run anywhere
 
@@ -38,15 +36,9 @@ Containers are replicable and run anywhere. PaaS solutions and container orchest
 
 ## Who are the primary tools for container technologies?
 
-Cloud PaaS solutions like Microsoft Azure, Amazon Web Services, and Google Cloud Platform have provided the infrastructure to run technologies like Docker and Kubernetes.
-
-The Docker container technology was launched as open-source in 2013. Since then, it has gained widespread adoption as the leading container technology. While Docker remains the most popular container technology, it is one part of a larger ecosystem of containers.
-
-Kubernetes is a container orchestration technology developed by Google. Companies have been using Kubernetes alongside Docker to manage and scale container solutions.
+Cloud PaaS solutions like Microsoft Azure, Amazon Web Services, and Google Cloud Platform have provided the infrastructure to run technologies like Docker and Kubernetes. The Docker container technology was launched as open-source in 2013. Since then, it has gained widespread adoption as the leading container technology. While Docker remains the most popular container technology, it is one part of a larger ecosystem of containers. Kubernetes is a container orchestration technology developed by Google. Companies have been using Kubernetes alongside Docker to manage and scale container solutions.
 
 Docker has been the most common container technology run on Kubernetes. The [v1.24 Kubernetes update](https://kubernetes.io/blog/2022/03/31/ready-for-dockershim-removal/) has deprecated Dockershim - an underlying module providing compatibility between Docker and Kubernetes. The update is mainly due to Docker's compatibility with the Container Runtime Interface. Docker has developed a replacement for Dockershim called cri-dockerd that addresses compatibility issues. A report by Datadog in 2021 indicated a 6% increase in containerd adoption with a correlated dip in Docker usage. The trend for containerd increasing in adoption rate may continue as Kubernetes moves away from full Docker support. The containerization and container orchestration landscape is rapidly evolving and changing year to year. The technological tools and popularity may wane and change, but the containerization and container orchestration concepts are here to stay.
-
-Regardless of the tools used, Octopus Deploy is cloud-agnostic. It works with PaaS providers, container technologies, and cloud orchestration tools.
 
 ## What are the top container images?
 
