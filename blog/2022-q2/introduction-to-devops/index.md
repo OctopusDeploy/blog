@@ -71,7 +71,7 @@ With that, it's no surprise that Continuous Integration and Continuous Deploymen
 
 Given DevOps' conceptual nature, there are many ways for organizations to approach its adoption.
 
-Octopus's own Alex Yates highlighted 2 approaches worth revisiting in his piece [On the naming of "DevOps Engineers"](https://octopus.com/blog/on-the-naming-of-devops-engineers).
+Alex Yates highlighted 2 approaches worth revisiting in his piece [On the naming of "DevOps Engineers"](https://octopus.com/blog/on-the-naming-of-devops-engineers).
 
 ### CALMS (Culture, Automation, Lean, Measurement, Sharing)
 
