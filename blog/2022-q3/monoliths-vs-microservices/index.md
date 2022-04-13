@@ -39,7 +39,7 @@ The following diagram visualizes the differences between monoliths and microserv
 
 ## Which one is better for enterprise software applications?
 
-Monolithic software is the traditional way of building software applications and has predated microservices for many years. The advancement of cloud technologies, particularly containerization, has allowed microservices to become very popular in delivering software. A Google Trends search shows that microservices started to become popular after 2013. 2013 was also when Docker (the leading containerization technology) was released.
+Monolithic software is the traditional way of building software applications and has predated microservices for many years. The advancement of cloud technologies, particularly containerization, has allowed microservices to become very popular in delivering software. A Google Trends search for the microservices keyword shows that microservices started to become popular after 2013. 2013 was also when Docker (the leading containerization technology) was released.
 
 ![Google Trends Microservices](google-trends-microservices.png "width=500")
 
