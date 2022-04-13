@@ -1,5 +1,5 @@
 ---
-title: "The DevOps Reading List: Choosing your next DevOps book"
+title: "The DevOps reading list: Choosing your next DevOps book"
 description: Your guide to selecting your first/next DevOps book.
 author: alex.yates@octopus.com
 visibility: public
@@ -17,15 +17,15 @@ You like books. You want to learn more about DevOps. Either you're new to the to
 
 Or perhaps you're already an advocate of DevOps, you want to recommend a book for a friend or colleague, but you aren’t up to date on the latest releases. Which book should you put under their nose?
 
-This blog post is for you.
+This post is for you.
 
 What follows is a list of some of the most widely respected DevOps books and my personal recommendation about which one you (yes, you, specifically you) should read first.
 
-## How to read this blog post
+## How to read this post
 
 ![bookshelf](bookshelf.jpg "width=500")
 
-This blog post is too long for you to read end-to-end. It’s not intended to be read that way. Instead, treat this like a “choose your own adventure” storybook, and I’ll chaperone you to the most appropriate parts you.
+This post is too long for you to read end-to-end. It’s not intended to be read that way. Instead, treat this like a “choose your own adventure” storybook, and I’ll chaperone you to the most appropriate parts you.
 
 What follows is a simple decision tree, designed to point you directly to my personal book recommendation for you. When you get to the decision tree, I encourage you to answer the questions and see where they lead you. Hopefully, you end up with a book recommendation that piques your interest.
 
