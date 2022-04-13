@@ -1,6 +1,6 @@
 ---
 title: Configuring Windows servers with Chocolatey, PowerShell, and Octopus Runbooks
-description: This blog post shows you how to automate your Windows server setup with Chocolatey, PowerShell, and Octopus Runbooks.
+description: This post shows you how to automate your Windows server setup with Chocolatey, PowerShell, and Octopus Runbooks.
 author: derek.campbell@octopus.com
 visibility: public
 published: 2022-04-26-1400
