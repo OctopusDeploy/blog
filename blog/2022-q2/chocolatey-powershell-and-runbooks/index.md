@@ -2,7 +2,7 @@
 title: Configuring Windows servers with Chocolatey, PowerShell, and Octopus Runbooks
 description: This blog post shows you how to automate your Windows server setup with Chocolatey, PowerShell, and Octopus Runbooks.
 author: derek.campbell@octopus.com
-visibility: private
+visibility: public
 published: 2022-04-26-1400
 metaImage: blogimage-configuringchocolateypowershellrunbooks-2022.png
 bannerImage: blogimage-configuringchocolateypowershellrunbooks-2022.png
@@ -14,11 +14,9 @@ tags:
  - Chocolatey
 ---
 
-![Configure windows servers with Chocolatey, PowerShell, and Octopus Runbooks](automate_machine_chocolately.png)
+Runbooks automate routine, commonly performed tasks. One of those tasks is the setup and installation of Windows servers. 
 
-Runbooks automate routine, commonly performed tasks. One such task is the setup and installation of Windows servers. 
-
-In this post, I demonstrate how to set up and install developer dependencies on a Windows server using Octopus Deploy Runbooks. The runbook can be executed to set up any number of Windows machines.
+In this post, I demonstrate how to set up and install developer dependencies on a Windows server using Octopus Runbooks. The runbook can be executed to set up any number of Windows machines.
 
 !toc
 
@@ -30,7 +28,7 @@ Chocolatey focus on making Windows software more straightforward, streamlined, a
 
 ### Using Chocolatey
 
-You don’t need runbooks to use Chocolatey, and it’s as simple as opening an Administrator Windows PowerShell window and running a script to install something like Google Chrome:
+You don’t need runbooks to use Chocolatey, and it’s as simple as opening an administrator Windows PowerShell window and running a script to install something like Google Chrome:
 
 ```PowerShell
 choco install googlechrome -y
@@ -47,7 +45,7 @@ You can extend this to all your required applications, and source control the sc
 
 ### Chocolatey packages
 
-Chocolatey is an open-source tool, and you can get lots of pre-configured packages from the site. In my experience, though, most organizations write their own packages, and you can do this too. You learn more about this on the [Create your own Chocolatey packages page](https://chocolatey.org/blog/create-chocolatey-packages). 
+Chocolatey is an open-source tool, and you can get lots of pre-configured packages from the site. In my experience, though, most organizations write their own packages, and you can do this too. You can learn more about this on the [Create your own Chocolatey packages](https://chocolatey.org/blog/create-chocolatey-packages) page. 
 
 The main reasons to write your own package are:
 
@@ -69,7 +67,7 @@ choco install OctopusDeploy -y
 You still need to configure Octopus after using Chocolatey to install, but you can [automate the installation](https://octopus.com/docs/installation/automating-installation).
 :::
 
-## Why use Runbooks and Chocolatey
+## Why use Runbooks and Chocolatey?
 
 [Runbooks](https://octopus.com/docs/runbooks) is my favorite Octopus feature. With my operations background, I appreciate how it automates mundane and time-consuming operations tasks.
 
@@ -87,13 +85,13 @@ You can use [runbooks](https://octopus.com/docs/runbooks) to automate the follow
 - [GCP operations](https://octopus.com/docs/runbooks/runbook-examples/gcp)
 - [Terraform](https://octopus.com/docs/runbooks/runbook-examples/terraform)
 
-## Tools to install the OS
+## Tools to install the operating system
 
-This post doesn't cover installing the Operating System on your Windows server. There are great tools that you can use to load the latest Windows desktop and Server Operating Systems, and this post assumes you added the [Octopus Tentacle](https://octopus.com/docs/infrastructure/deployment-targets/windows-targets) as part of this process. 
+This post doesn't cover installing the operating system on your Windows server. There are great tools that you can use to load the latest Windows desktop and server operating systems, and this post assumes you added the [Octopus Tentacle](https://octopus.com/docs/infrastructure/deployment-targets/windows-targets) as part of that process. 
 
 Some tools I've used when prepping Windows servers include:
 
-- [Microsoft System Center Configuration Manager](https://en.wikipedia.org/wiki/Microsoft_System_Center_Configuration_Manager)
+- [Microsoft Endpoint Configuration Manager](https://en.wikipedia.org/wiki/Microsoft_Endpoint_Configuration_Manager)
 - [Windows Deployment Services](https://docs.microsoft.com/en-us/windows/deployment/windows-deployment-scenarios-and-tools)
 - [Packer](https://www.packer.io/)
 
@@ -108,11 +106,13 @@ Generally, public cloud providers also provide Infrastructure as Code tools, suc
 
 Before you start, you need to install an [Octopus Tentacle](https://octopus.com/docs/infrastructure/deployment-targets/windows-targets) on your server.
 
-I'm using the Octopus [samples instance](https://samples.octopus.app). Next, I added a new space called **Target - Windows**.
+I'm using the Octopus [samples instance](https://samples.octopus.app). 
+
+Next, add a new space called **Target - Windows**.
 
 As part of the new space configuration, I did the following:
 
-- Created an Octopus [environment](https://octopus.com/docs/infrastructure/environments) named **Provisioning**:
+- Created an Octopus [environment](https://octopus.com/docs/infrastructure/environments) named `Provisioning`:
 
 ![Adding an Octopus environment](images/environment.png "width=500")
 
@@ -120,31 +120,31 @@ As part of the new space configuration, I did the following:
 
 ![Adding a deployment target](images/deploymenttarget.png "width=500")
 
-- Checked the Infrastructure tab showed my Windows server and that it was healthy:
+- Checked the **Infrastructure** tab showed my Windows server and that it was healthy:
 
 ![A Healthy deployment target](images/healthy.png "width=500")
 
-- Created a [project](https://octopus.com/docs/projects) called **Computer Provisioning**:
+- Created a [project](https://octopus.com/docs/projects) called `Computer Provisioning`:
 
 ![Adding an Octopus project](images/project.png "width=500")
 
-- Created a [Lifecycle](https://octopus.com/docs/getting-started-guides/lifecycle) called **Computer Lifecycle** and added the **Provisioning** environment to it, and then assigned it to the project:
+- Created a [Lifecycle](https://octopus.com/docs/getting-started-guides/lifecycle) called `Computer Lifecycle` and added the **Provisioning** environment to it, and then assigned it to the project:
 
 ![Adding a Provisioning lifecycle](images/lifecycle.png "width=500")
 
 ## Runbook configuration
 
-First, you need to do find the project and add the runbook:
+First, you need to find the project and add the runbook:
 
 ![Adding a runbook](images/addrunbook.png "width=500")
 
-I created a runbook called **Install Developer Machine Dependencies**:
+I created a runbook called `Install Developer Machine Dependencies`:
 
 ![Naming the runbook](images/namedrunbook.png "width=500")
 
 ### Setting timezone, input, and region
 
-When setting up Windows, it can frustrating configuring your non-default regions, if they're not in the US. I use a PowerShell script to set this for all servers. You can use my example below and can tweak it to your requirements:
+When setting up Windows, it can be frustrating configuring your non-default regions. I use a PowerShell script to set this for all servers. You can use my example below and tweak it to your requirements:
 
 ```PowerShell
 #Set home location to the United Kingdom
@@ -182,7 +182,7 @@ Set-TimeZone "Eastern Time Zone"
 
 ### Checking if Chocolatey is installed
 
-Next, I used a community-contributed step template called [Chocolatey - Ensure Installed](https://library.octopus.com/step-templates/c364b0a5-a0b7-48f8-a1a4-35e9f54a82d3/actiontemplate-chocolatey-ensure-installed). This step checks if Chocolatey is installed and installs it if not.
+Next, I used a community-contributed step template called [Chocolatey - Ensure Installed](https://library.octopus.com/step-templates/c364b0a5-a0b7-48f8-a1a4-35e9f54a82d3/actiontemplate-chocolatey-ensure-installed). This step checks whether Chocolatey is installed and installs it if not.
 
 ![Installing Chocolatey](images/chocolateyinstallstep.png "width=500")
 
@@ -204,9 +204,9 @@ The following parameters are available:
 
 - **Version (optional)**: You can use this to specify the version of the software you want to install. If you’re using more than one package per step and want to set particular software versions, you need to configure that Chocolatey install and add the version in an additional step.
 - **Cache location (optional)**: You can use this to specify a non-default location for a cache. This is useful when installing SQL without having the Tentacle run as an administrator. SQL can be tricky to install without running the Tentacle service as a local administrator. You can specify a folder such as `C:\Octopus\Applications` as the cache, which the Local System User has full access to.
-- **Package Source (Optional)**: This is probably the *single most crucial parameter in this step*. If you’re doing this at home, it might be acceptable to use the Chocolatey Package Repository, which is the default setting. However, if you’re doing this for a company, please consider using your own package source repositories, such as [Nexus](https://www.sonatype.com/nexus/repository-pro), [Artifactory](https://jfrog.com/artifactory/), or [MyGet](https://www.myget.org/).
+- **Package Source (Optional)**: This is the *most crucial parameter in this step*. If you’re doing this at home, it might be acceptable to use the Chocolatey Package Repository, which is the default setting. However, if you’re doing this for a company, please consider using your own package source repositories, such as [Nexus](https://www.sonatype.com/nexus/repository-pro), [Artifactory](https://jfrog.com/artifactory/), or [MyGet](https://www.myget.org/).
 
-The Chocolatey Package resource is built by the community for the community. If you’re using the community repository for enterprise or large scale package installation, you will likely be [rate limited](https://chocolatey.org/docs/community-packages-disclaimer#rate-limiting). Be careful, and be kind to the community.
+The Chocolatey Package resource is built by the community for the community. If you’re using the community repository for enterprise or large scale package installation, you'll likely be [rate limited](https://chocolatey.org/docs/community-packages-disclaimer#rate-limiting). Be careful, and be kind to the community.
 
 You can specify whether you want to disable the download progress in your logs. I usually enable this option to avoid thousands of log files. The last option allows you to specify additional parameters:
 
@@ -218,7 +218,7 @@ The next step is configuring IIS and its dependencies. I used our [IIS Runbooks]
 
 ### Optional steps
 
-I prefer to avoid the default website in IIS, so I remove it by default. I use the community step template called [IIS Website - Delete](https://library.octopus.com/step-templates/a032159b-0742-4982-95f4-59877a31fba3/actiontemplate-iis-website-delete) and then specify Default Web Site. It removes the Default Web Site as part of this provisioning runbook in Octopus.
+I prefer to avoid the default website in IIS, so I remove it by default. I use the community step template called [IIS Website - Delete](https://library.octopus.com/step-templates/a032159b-0742-4982-95f4-59877a31fba3/actiontemplate-iis-website-delete) and then specify `Default Web Site`. It removes the Default Web Site as part of this provisioning runbook in Octopus.
 
 I use [HyperV](https://docs.microsoft.com/en-us/windows-server/virtualization/hyper-v/hyper-v-technology-overview) as hypervisor when possible, and enable it as part of the server provisioning process. I use the **Run a Script** built-in template for this task and use PowerShell to enable HyperV:
 
@@ -226,7 +226,7 @@ I use [HyperV](https://docs.microsoft.com/en-us/windows-server/virtualization/hy
 Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All
 ```
 
-Finally, I avoid installing all of the Windows updates released since my server was prepped. I use a community step template called [Windows - Apply Windows Updates](https://library.octopus.com/step-templates/3472f207-3934-44db-a4ac-1390167cf7ed/actiontemplate-windows-apply-windows-updates), which automatically installs and reboots your machine if you set the parameter to `True`.
+Finally, I avoid installing all of the Windows updates released if my server is prepped. I use a community step template called [Windows - Apply Windows Updates](https://library.octopus.com/step-templates/3472f207-3934-44db-a4ac-1390167cf7ed/actiontemplate-windows-apply-windows-updates), that automatically installs and reboots your machine if you set the parameter to `True`.
 
 ## Publishing the runbook
 
@@ -239,33 +239,35 @@ You have the space, the project, the lifecycle, the environment, the server, and
 To run the runbook:
 
 1. Open the runbook project
-2. Select {{Operations,Runbooks}}
-3. Select the runbook you created
+1. Select **Operations**, then **Runbooks**
+1. Select the runbook you created
 
 ![Running the runbook](images/run-runbook.png "width=500")
 
 4. Select **Run**
-5. Select the environment
-6. Click the **Run** button
+4. Select the environment
+4. Click the **Run** button
 
 ![Running runbook](images/run-runbook-run.png "width=500")
 
-You can grab a coffee now because it takes some time to install all of the applications and dependencies. After your coffee, the runbook should be complete. Your server will be fully configured and ready instead of going through the pain of next, next, finish installs, and application configuration:
+You can grab a coffee now because it takes some time to install all of the applications and dependencies. After your coffee, the runbook should be complete. Your server will be fully configured and you can avoid the pain of next, next, finish installs, and application configuration.
 
 ![Completed runbook](images/completedrunbook.png "width=500")
 
-Now, you should see all of the new applications installed on your server.
+Now you see all of the new applications installed on your server.
 
-## Other scenarios
+## Using Runbooks in other scenarios
 
-Runbooks are useful for installing applications, not just for ops, DevOps, and developers but other job types too. You can create additional runbooks for other job types that need different applications. For exmaple, a business analyst may want [PowerBI](https://powerbi.microsoft.com/en-us/), and a DBA might wish to install [SQL Toolbelt](https://chocolatey.org/packages/SqlToolbelt). You can even allow people access to runbooks to install and configure pre-approved software.
+Runbooks are useful for installing applications, not just for ops, DevOps, and developers, but other job types too. You can create additional runbooks for other job types that need different applications. For example, a business analyst may want [PowerBI](https://powerbi.microsoft.com/en-us/), and a DBA might wish to install [SQL Toolbelt](https://chocolatey.org/packages/SqlToolbelt). You can even allow people access to runbooks to install and configure pre-approved software.
 
 You can also use this approach for all of your servers, so you can install [SQL](https://chocolatey.org/packages/sql-server-2019) on a database server, or [Tomcat](https://chocolatey.org/packages/Tomcat) on a web server.
 
 :::hint
-When installing SQL, create your own Chocolatey Package. SQL is tricker to install as it requires an administrator account to install quickly, and you want to configure things such as default users, groups, and locations of the database and log files.
+When installing SQL, create your own Chocolatey package. SQL is trickier to install as it requires an administrator account to install quickly, and you want to configure things such as default users, groups, and locations of the database and log files.
 
-When using Octopus to install SQL Developer Edition or SQL Express, you can do it without the Tentacle running as a local administrator. You still need to use the optional location for the files. Another gotcha is that if you run the install under a service account with a named service account, by default, it uses that user as the default SQL administrator. You need to connect with that account to give yourself access.
+When using Octopus to install SQL Developer Edition or SQL Express, you can do it without the Tentacle running as a local administrator. You still need to use the optional location for the files. 
+
+Another gotcha is that if you run the install under a service account with a named service account, by default, it uses that user as the default SQL administrator. You need to connect with that account to give yourself access.
 :::
 
 ## Upgrading Chocolatey packages
@@ -276,7 +278,7 @@ One of my favorite features of chocolatey is [upgrading](https://chocolatey.org/
 choco upgrade all -y
 ```
 
-This command will run on the server, check against the latest version against the Chocolatey repository you have configured, download the new package, and install it. It's like a Windows update but for your Chocolatey package. You can set this up using runbooks, using the Deploy a Script step template, and using the upgrade command:
+This command runs on the server, checks the latest version against the Chocolatey repository you configured, downloads the new package, and installs it. It's like a Windows update but for your Chocolatey package. You can set this up with runbooks, using the **Deploy a Script step**, and using the upgrade command:
 
 ![Upgrading Chocolatey apps runbook](images/upgradechocolateyapps.png "width=500")
 
@@ -288,31 +290,31 @@ After you create the runbook, select **Run**, and it runs the Chocolatey script 
 
 With the upgraded Chocolatey runbook working, you can publish the runbook and set a schedule to execute the script, much like a [CRON JOB](https://en.wikipedia.org/wiki/Cron) or a [Windows Task Scheduler](https://en.wikipedia.org/wiki/Windows_Task_Scheduler).
 
-To set this up, select the triggers option under **Operations**, and select **Add scheduled trigger**.
+To set this up, select the triggers option under **Operations**, and select **ADD SCHEDULED TRIGGER**.
 
 ![Add a Scheduled Trigger](images/addscheduledtrigger.png "width=500")
 
-On the **New scheduled trigger** page, and you need to enter:
+On the **New scheduled trigger** page, you need to enter:
 
 - **Name**
 - **Description**
 - **Select the Runbook to run on the scheduled trigger**
 - **Select the environment**
 - **Select a schedule of daily or alternative schedule**
-- **Select the Interval at which it should execute**
+- **Select at what interval at which it should execute**
 - **Select the time the schedule should execute**
 
 ![Scheduled Trigger](images/scheduledtrigger.png "width=500")
 
-This triggers daily at the time you set. I selected 12.30 pm as that’s when many people go to lunch.
+This triggers daily at the time you set. I selected 12.30 PM as that’s when many people go to lunch.
 
-All of the configuration in this post can be found on our [samples instance](https://samples.octopus.app) by logging in as guest and selecting the **Target - Windows** space.
+All of the configuration in this post can be found on our [samples instance](https://samples.octopus.app) by logging in as a guest and selecting the **Target - Windows** space.
 
 ## Conclusion
 
-Octopus Runbooks and Chocolatey work well together and give you the flexibility to automate the installation and configuration of servers both on-premises and in the cloud. They take away the need to install thousands applications across your organization’s infrastructure. 
+Octopus Runbooks and Chocolatey work well together, giving you the flexibility to automate the installation and configuration of servers both on-premises and in the cloud. They eliminate the need to install thousands of applications across your organization’s infrastructure. 
 
-To see this in action, check out my webinar with [Paul Broadwith](https://blog.pauby.com) from Chocolatey about [Operations automation with Octopus Runbooks and Chocolatey](https://www.youtube.com/watch?v=E0z4QbwTuBg), which demonstrates how easy this is to do with runbooks on cloud infrastructure.
+To see this in action, watch our webinar, [Automating your infrastructure & applications with Runbooks and Chocolatey](https://octopus.com/events/automating-your-infrastructure-applications-with-runbooks-and-chocolatey), with [Paul Broadwith](https://blog.pauby.com) from Chocolatey.
 
 !include <q2-2022-newsletter-cta>
 
