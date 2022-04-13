@@ -18,7 +18,7 @@ Waterfall, Agile, or Extreme Programming. Whether you implement them or even agr
 
 The operations space hasn’t had the same love that developers have enjoyed, though, leaving the operations team to hack CI servers to automate their tasks. CI servers were built to automate software development, and the ops team will always be a secondary consideration.
 
-With runbooks, Octopus elevates operations tasks to a first-class concept, giving ops teams a workflow designed for their needs.
+With runbooks, Octopus elevates operations tasks to a top-level concept, giving ops teams a workflow designed for their needs.
 
 In this post, we look at the best practices for designing runbooks, providing a template for ops teams to move from manual to automated workflows. As an example, we create a runbook for restarting an Azure web application.
 
