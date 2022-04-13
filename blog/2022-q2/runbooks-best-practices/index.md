@@ -149,7 +149,7 @@ At this point, you have the ability to trigger the runbook automatically on a re
 
 ## Conclusion
 
-Whatever methodology you ascribe to, achieving high velocity and high quality demands automation. The steps outlined in this post are designed to produce a runbook that can be confidently run automatically.
+Whatever methodology you prefer, achieving high velocity and high quality demands automation. The steps outlined in this post are designed to produce a runbook that can be confidently run automatically.
 
 Reliably identifying when a system is not in a desired state, rectifying the problem, verifying the fix, and validating the entire process in a test environment ensures your runbooks have the same quality as your software deployments.
 
