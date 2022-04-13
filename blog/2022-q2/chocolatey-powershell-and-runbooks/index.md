@@ -18,8 +18,6 @@ Runbooks automate routine, commonly performed tasks. One of those tasks is the s
 
 In this post, I demonstrate how to set up and install developer dependencies on a Windows server using Octopus Runbooks. The runbook can be executed to set up any number of Windows machines.
 
-!toc
-
 ## What is Chocolatey?
 
 [Chocolatey](https://chocolatey.org/) is a package manager for Windows. It’s an open-source project that provides developers, operations, and everybody in between a way to manage, install, and upgrade software across their Windows estate. 
