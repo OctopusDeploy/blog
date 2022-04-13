@@ -208,7 +208,7 @@ The following parameters are available:
 
 The Chocolatey Package resource is built by the community for the community. If you’re using the community repository for enterprise or large scale package installation, you will likely be [rate limited](https://chocolatey.org/docs/community-packages-disclaimer#rate-limiting). Be careful, and be kind to the community.
 
-The last two options cover whether you want to see the download progress in your logs. I usually turn them off to avoid thousands of log files. The other is to allow for additional parameters:
+You can specify whether you want to disable the download progress in your logs. I usually enable this option to avoid thousands of log files. The last option allows you to specify additional parameters:
 
 ![Specifying Chocolatey Parameters](images/chocoparams.png "width=500")
 
@@ -270,9 +270,7 @@ When using Octopus to install SQL Developer Edition or SQL Express, you can do i
 
 ## Upgrading Chocolatey packages
 
-You can use Octopus to install applications via Chocolatey, but software gets patched, and new features and security enhancements are added all  the time. What happens when you need the latest version of the software you installed using runbooks and Chocolatey?
-
-You [upgrade](https://chocolatey.org/docs/commandsupgrade) it with Chocolatey and runbooks. This is easy to do, and one of my favorite commands on logging in to a server, or for running using a runbook is:
+One of my favorite features of chocolatey is [upgrading](https://chocolatey.org/docs/commandsupgrade) software to the latest version with just one command:
 
 ```PowerShell
 choco upgrade all -y
