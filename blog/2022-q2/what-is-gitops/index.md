@@ -6,7 +6,7 @@ visibility: public
 published: 2022-04-13-1400
 metaImage: blogimage-whatisgitops-2022.png
 bannerImage: blogimage-whatisgitops-2022.png
-bannerImageAlt: Person holds magnifying glass over GitOps logo,  surrounded by icons for declarative, visioned and immutable, pulled automatically, and continuously reconciled.
+bannerImageAlt: Person holds magnifying glass over GitOps logo,  surrounded by icons for declarative, versioned and immutable, pulled automatically, and continuously reconciled.
 isFeatured: false
 tags:
  - DevOps

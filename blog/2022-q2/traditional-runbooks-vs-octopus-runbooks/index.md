@@ -130,7 +130,7 @@ When creating a runbook for real, you must click **PUBLISH** to make it availabl
 
 This is just a taster to show you the benefits of Octopus Runbooks and how easy it is to set them up.
 
-In [upcoming series posts](https://octopus.com/blog/tag/Runbooks%20Series), we'll walk you through some real use-cases, including how to use Octopus Runbooks to:
+In [upcoming series posts](https://octopus.com/blog/tag/Runbooks%20Series), we'll walk you through some real use cases, including how to use Octopus Runbooks to:
 
 - Respond to vulnerabilities
 - Create standardized support emails

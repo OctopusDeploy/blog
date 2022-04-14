@@ -71,7 +71,7 @@ With that, it's no surprise that Continuous Integration and Continuous Deploymen
 
 Given DevOps' conceptual nature, there are many ways for organizations to approach its adoption.
 
-Octopus's own Alex Yates highlighted 2 approaches worth revisiting in his piece [On the naming of "DevOps Engineers"](https://octopus.com/blog/on-the-naming-of-devops-engineers).
+Alex Yates highlighted 2 approaches worth revisiting in his piece [On the naming of "DevOps Engineers"](https://octopus.com/blog/on-the-naming-of-devops-engineers).
 
 ### CALMS (Culture, Automation, Lean, Measurement, Sharing)
 
@@ -89,7 +89,7 @@ CALMS is also the approach Atlassian took on its path to DevOps culture, using i
 
 ### The Three Ways (flow, feedback, continual experimentation and learning)
 
-Featured in both [The DevOps Handbook](https://www.amazon.com.au/Devops-Handbook-World-Class-Reliability-Organizations/dp/1950508404/ref=sr_1_1?crid=22X11LJN7ZYVQ&keywords=the+devops+handbook&qid=1643682944&sprefix=the+devops+handbook%2Caps%2C265&sr=8-1) and DevOps novel [The Unicorn Project](https://www.amazon.com.au/Unicorn-Project-Developers-Disruption-Thriving/dp/1942788762/ref=pd_sim_1/357-7244557-3570039?pd_rd_w=BWDAz&pf_rd_p=2079b880-cb1c-48f6-812a-f71bd7657d34&pf_rd_r=E0XDXM3NV8329M06P8N9&pd_rd_r=d4d1415d-405a-4de2-982d-2beee3a11145&pd_rd_wg=20ZBi&pd_rd_i=1942788762&psc=1), The Three Ways boils DevOps down to 3 key principles:
+Featured in [The DevOps Handbook](https://itrevolution.com/book/the-devops-handbook/) and DevOps novels [The Phoenix Project](https://itrevolution.com/the-phoenix-project/) and [The Unicorn Project](https://itrevolution.com/the-unicorn-project/), The Three Ways boils DevOps down to 3 key principles:
 
 - Flow
 - Feedback
