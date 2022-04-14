@@ -1,12 +1,12 @@
 ---
 title: Configuring Linux servers with Runbooks
-description: As part of our series about Runbooks, learn how to configure Linux servers with Runbooks.
+description: As part of our series about Runbooks, learn how to configure Linux servers with Octopus Runbooks.
 author: terence.wong@octopus.com
 visibility: private
 published: 2022-04-27-1400
-metaImage:
-bannerImage:
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-configuringlinuxserverswithrunbooks-2022.png
+bannerImage: blogimage-configuringlinuxserverswithrunbooks-2022.png
+bannerImageAlt: A book with arms and legs is holding a checklist under one arm and has a screwdriver in the other hand.
 isFeatured: false
 tags:
   - DevOps
@@ -17,9 +17,9 @@ tags:
 
 When setting up a Linux server, you need to configure the system for your needs. You can use the server for web development, system administration, data science, and more. Each use case has different configuration requirements, and manually configuring these servers can be tedious and time-consuming. 
 
-With Octopus Runbooks you can create a repeatable, automatic process to configure your Linux servers, and it can be adapted to suit different configuration needs. 
+With Octopus Runbooks you can create a repeatable, automatic process to configure your Linux servers, and it can be adapted to suit different configuration needs.
 
-In this post, I configure a Linux server using a runbook to specify all the dependencies required for a specific task. This runbook can be saved and exported for future servers with the same need.
+In this post, I configure a Linux server using a runbook to specify all the dependencies required for a specific task. This runbook can be saved and exported for future servers with the same requirements.
 
 ## Prerequisites
 
@@ -61,7 +61,7 @@ sudo apt-get install tentacle
 
 ```
 
-The Tentacle needs to communicate with your Octopus instance, so you need a key to provide to the Tentacle for authentication. 
+The Tentacle needs to communicate with your Octopus instance, so you need to provide a key to the Tentacle for authentication. 
 
 In your Octopus instance, click **Your Profile**, then **Profile**, then **My API Keys**, and **New API Key**. Give the key a name and make sure to save it, as it's only visible once.
 
@@ -139,7 +139,7 @@ Go to the Linux server and run the `npm` command to confirm the installation.
 
 Let's create a different kind of configuration, using a simple .NET configuration. 
 
-Create another Linux server and follow the same steps to create another runbook with an Octopus Tentacle. 
+Create another Linux server and follow the steps above to create another runbook with an Octopus Tentacle. 
 
 This time, in step 4, add the following code:
 
@@ -171,15 +171,15 @@ Go to the Linux server and run the `dotnet` command to confirm the installation.
 
 This workflow demonstrates that runbooks can configure Linux servers. You created two runbooks, one that applied a web development configuration to the server and a second runbook that configured the server with a .NET configuration. 
 
-You can create runbooks for as many different configurations as you need, ensuring each configuration is consistent and automatic each time it's created.
+You can create runbooks for as many configurations as you need, ensuring each configuration is consistent and automatic each time it's created.
 
 ## Conclusion
 
-Configuring servers can be a tedious, manual process. Often there are many configuration requirements for a server. To help with this, Octopus Runbooks provides a repeatable, automated way to configure servers. 
+Configuring servers can be a tedious, manual process. Often, there are multiple configuration requirements for a server. To help with this, Octopus Runbooks provides a repeatable, automated way to configure servers. 
 
-Runbooks can cater to specific configuration needs and be triggered when needed. The repeatable nature of runbooks introduces consistency in the organizational infrastructure. Runbooks reduce the workload for system administrators so they can focus on other tasks. 
+Runbooks can cater to specific configuration needs and be triggered when required. The repeatable nature of runbooks introduces consistency in your organizational infrastructure. Runbooks also reduce the workload for system administrators so they can focus on other tasks. 
 
-If you'd like to know more about how Octopus Runbooks can help with your deployment needs, [contact us today!](mailto:customersuccess@octopus.com)
+If you'd like to know more about how Octopus Runbooks can help with your deployment needs, [contact our Customer Success team](mailto:customersuccess@octopus.com).
 
 !include <q2-2022-newsletter-cta>
 
