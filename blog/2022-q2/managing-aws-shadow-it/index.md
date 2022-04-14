@@ -1,12 +1,12 @@
 ---
 title: Identifying AWS shadow IT resources
-description: Learn how to find unmanaged resources in AWS using runbooks
+description: As part of our series on Octopus Runbooks, learn how to find unmanaged resources in AWS using runbooks.
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2022-05-02-1400
-metaImage: 
-bannerImage:  
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-identifyingawsshadowitresources-2022.png
+bannerImage: blogimage-identifyingawsshadowitresources-2022.png 
+bannerImageAlt: Detective-like person with a hat and trench coat holds a giant magnifying glass over a cloud revealing a web server.
 isFeatured: false
 tags: 
   - DevOps
