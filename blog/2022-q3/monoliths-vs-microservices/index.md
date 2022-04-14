@@ -24,7 +24,7 @@ Monoliths and microservices are two different approaches to building software. T
 
 ## What are monoliths and microservices?
 
-A monolith is a singular executable software application. A monolith contains one codebase that defines the user interface, application logic, and database required to run an application. A monolithic application is built and maintained as a single, indivisible unit and is served from a central location. An example would be an in-house accounting software that uses a database to store customer records, web server for record keeping, and other components all served from an on-premise server.
+A monolith is a singular executable software application. A monolith contains one codebase that defines the user interface, application logic, and database required to run an application. A monolithic application is built and maintained as a single, indivisible unit and is served from a central location. For example, in-house accounting software that uses a database to store customer records, web server for record keeping, and other components all served from an on-premise server.
 
 By contrast, a microservice architecture breaks down an application into smaller independent units. Microservices are connected to make the whole application through Application Programming Interfaces (APIs). An API allows microservices to communicate with each other to execute a task. For example, a microservice sends input data to a second microservice. The second microservice sends input data to several other microservices, and so on. The same accounting software could be run on the cloud, with the database, web server and other components distributed across multiple geographical regions.
 
