@@ -43,7 +43,7 @@ You can extend this to all your required applications, and source control the sc
 
 ### Chocolatey packages
 
-Chocolatey is an open-source tool, and you can get lots of pre-configured packages from the site. In my experience, though, most organizations write their own packages, and you can do this too. You can learn more about this on the [Create your own Chocolatey packages](https://chocolatey.org/blog/create-chocolatey-packages) page. 
+Chocolatey is an open-source tool, and you can get lots of pre-configured packages from the site. In my experience, though, most organizations write their own packages and you can do this too. Chocolately provide information about [creating your own Chocolatey packages](https://chocolatey.org/blog/create-chocolatey-packages), if you're not familiar with the process. 
 
 The main reasons to write your own package are:
 
@@ -93,7 +93,7 @@ Some tools I've used when prepping Windows servers include:
 - [Windows Deployment Services](https://docs.microsoft.com/en-us/windows/deployment/windows-deployment-scenarios-and-tools)
 - [Packer](https://www.packer.io/)
 
-Generally, public cloud providers also provide Infrastructure as Code tools, such as:
+Generally, public cloud providers also provide Infrastructure as Code (IaC) tools, such as:
 
 - [Azure Resource Manager templates](https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/overview)
 - [AWS CloudFormation](https://aws.amazon.com/cloudformation/)
@@ -186,7 +186,7 @@ Next, I used a community-contributed step template called [Chocolatey - Ensure I
 
 ### Installing Chocolatey package step
 
-Paul Broadwith of Chocolatey recently updated the [Chocolatey community step template](https://library.octopus.com/step-templates/b2385b12-e5b5-440f-bed8-6598c29b2528/actiontemplate-chocolatey-install-package) to install all of the Chocolatey packages in a single step.
+Paul Broadwith of Chocolatey updated the [Chocolatey community step template](https://library.octopus.com/step-templates/b2385b12-e5b5-440f-bed8-6598c29b2528/actiontemplate-chocolatey-install-package) to install all of the Chocolatey packages in a single step.
 
 The applications I need on the Windows server are:
 
@@ -248,7 +248,7 @@ To run the runbook:
 
 ![Running runbook](images/run-runbook-run.png "width=500")
 
-You can grab a coffee now because it takes some time to install all of the applications and dependencies. After your coffee, the runbook should be complete. Your server will be fully configured and you can avoid the pain of next, next, finish installs, and application configuration.
+You can grab a coffee now because it takes time to install the applications and dependencies. After your coffee, the runbook should be complete. Your server will be fully configured and you can avoid the pain of next, next, finish installs, and application configuration.
 
 ![Completed runbook](images/completedrunbook.png "width=500")
 
