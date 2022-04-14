@@ -1,13 +1,18 @@
 ---
-title: Identifying AWS Shadow IT resources
+title: Identifying AWS shadow IT resources
 description: Learn how to find unmanaged resources in AWS using runbooks
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2999-01-01
+published: 2022-05-02-1400
 metaImage: 
-bannerImage: 
-tags:
- - Octopus
+bannerImage:  
+bannerImageAlt: 125 characters max, describes image to people unable to see it.
+isFeatured: false
+tags: 
+  - DevOps
+  - Runbooks Series
+  - Runbooks
+  - AWS
 ---
 
 The term Shadow IT is often used to refer to adhoc IT resources deployed by members of a DevOps team to solve an immediate need, but which lack the kind of ongoing maintenance and management required to support long lived infrastructure.
