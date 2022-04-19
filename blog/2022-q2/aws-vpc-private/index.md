@@ -162,7 +162,7 @@ The screenshot below shows the VPC in the AWS console after it's created:
 
 VPCs with private subnets are the most simple to create. In this post, you looked at a simple CloudFormation template to create a VPC with two private subnets. 
 
-In the [next post](2022-q2/aws-vpc-public/index.md) you learn how to create a VPC with public subnets.
+In the [next post](https://octopus.com/blog/aws-vpc-public) you learn how to create a VPC with public subnets.
 
 !include <q2-2022-newsletter-cta>
 
