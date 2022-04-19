@@ -3,13 +3,14 @@ title: Create a private AWS VPC with CloudFormation
 description: Learn how to create a private AWS VPC with this sample CloudFormation template.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2022-03-04-1400
+published: 2022-05-04-1400
 metaImage: blogimage-createaprivateawsvpcwithcloudformation-2022.png
 bannerImage: blogimage-createaprivateawsvpcwithcloudformation-2022.png
 bannerImageAlt: Illustration of a blue locked padlock branded with a closed eye to signal private VPC, sitting amongst clouds. 
 isFeatured: false 
 tags:
  - DevOps
+ - Runbooks Series
  - AWS
  - CloudFormation
 ---
@@ -18,7 +19,7 @@ tags:
 
 Unfortunately, despite their ubiquity, creating VPCs is not as simple as it could be. 
 
-In this post, you'll learn the different types of VPCs available in AWS, and find an example CloudFormation template that can be used to deploy a simple VPC with private subnets.
+In this post, you learn the different types of VPCs available in AWS, and find an example CloudFormation template that can be used to deploy a simple VPC with private subnets.
 
 ## Types of AWS subnets
 
@@ -34,7 +35,7 @@ A private subnet does not route traffic to an internet gateway. Resources in a p
 
 One or more subnets can be placed in a VPC. It is possible to mix and match public and private subnets in a VPC, allowing some resources in the VPC to access the internet, and some to only access other resources in the VPC.
 
-A VPC with private subnets is the easiest to configure, which you'll do in the next section.
+A VPC with private subnets is the easiest to configure, which you do in the next section.
 
 ## Creating a VPC with private subnets
 
@@ -110,7 +111,7 @@ Note the VPC has a tag called `Name`. The value of this tag is displayed in the 
 
 Next, you define two subnets with [AWS::EC2::Subnet](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html) resources.
 
-Subnets are placed in [availability zones](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html) (AZs), which are isolated locations within a region. AZs have codes like `us-east-1` or `ap-southeast-2`, which are based on the region that the AZs are located in. 
+Subnets are placed in [availability zones](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html) (AZs), which are isolated locations in a region. AZs have codes like `us-east-1` or `ap-southeast-2`, which are based on the region that the AZs are located in. 
 
 Rather than hard code these AZ names, you can use the [`Select` intrinsic function](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-select.html) to return items from the [`GetAZs` array](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-getavailabilityzones.html), which will return an available AZ for the region in which your VPC is being created.
 
@@ -161,6 +162,8 @@ The screenshot below shows the VPC in the AWS console after it's created:
 
 VPCs with private subnets are the most simple to create. In this post, you looked at a simple CloudFormation template to create a VPC with two private subnets. 
 
-In the [next post](../aws-vpc-public/index.md) you'll learn how to create a VPC with public subnets.
+In the [next post](2022-q2/aws-vpc-public/index.md) you learn how to create a VPC with public subnets.
+
+!include <q2-2022-newsletter-cta>
 
 Happy deployments!

@@ -3,13 +3,14 @@ title: Create a mixed AWS VPC with CloudFormation
 description: Learn how to create a mixed AWS VPC with this sample CloudFormation template.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2022-03-08-1400
+published: 2022-05-10-1400
 metaImage: blogimage-createamixedawsvpcwithcloudformation-2022.png
 bannerImage: blogimage-createamixedawsvpcwithcloudformation-2022.png
 bannerImageAlt: Two blue padlocks sitting amongst clouds, one open and branded with an open eye,  the other closed and branded with a closed eye. 
 isFeatured: false
 tags:
  - DevOps
+ - Runbooks Series
  - AWS
  - CloudFormation
 ---
@@ -18,7 +19,7 @@ In our previous post, [Create a private AWS VPC with CloudFormation](https://oct
 
 By mixing both private and public subnets, it's possible to create a VPC that exposes some instances publicly, while restricting access to private instances. This is a common configuration for VPCs that host a public website, and the website accesses a private database.
 
-In this post, you'll create a VPC with a mix of public and private subnets.
+In this post, you create a VPC with a mix of public and private subnets.
 
 ## Types of subnets
 
@@ -34,7 +35,7 @@ One or more subnets can be placed in a VPC. It is possible to mix and match publ
 
 In a VPC with public and private subnets, it's possible to route outgoing internet traffic from the private subnets through a [NAT gateway](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html). Much like your home router, a NAT Gateway allows outbound internet traffic to be established, and for responses to those outbound requests to be routed back to the device in the private subnet. But a connection can not be initiated from an external connection through a NAT Gateway.
 
-A VPC with public and private subnets is the most complicated to build, but offers the most flexibility when deploying instances that can either be accessed from the public internet, or can only be accessed from within the VPC.
+A VPC with public and private subnets is the most complicated to build, but offers the most flexibility when deploying instances that can either be accessed from the public internet, or can only be accessed from in the VPC.
 
 ## Creating a VPC with public and private subnets
 
@@ -202,5 +203,7 @@ After it's created, the VPC contains a mix of public and private subnets. Any in
 Including both public and private subnets in a VPC provides the most flexibility when placing instances that must be accessed from the internet or benefit from the extra security provided by not being exposed to public traffic. Even though private subnets don't allow public traffic to initiate a connection, instances in private subnets can still make outbound network requests via a NAT gateway.
 
 In this post, you looked at a sample CloudFormation template that created a VPC with a public and a private subnet. This, along with the templates to create [VPCs with public subnets](https://octopus.com/blog/aws-vpc-public) and [VPCs with private subnets](https://octopus.com/blog/aws-vpc-private), provides you with a quick starting point to create resources in AWS.
+
+!include <q2-2022-newsletter-cta>
 
 Happy deployments!

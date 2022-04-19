@@ -1,22 +1,23 @@
 ---
 title: Create a public AWS VPC with CloudFormation
-description: Learn how to create a public AWS VPC with this sample CloudFormation template
+description: Learn how to create a public AWS VPC with this sample CloudFormation template.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2022-03-08-1400
+published: 2022-05-09-1400
 metaImage: blogimage-createapublicawsvpcwithcloudformation-2022.png
 bannerImage: blogimage-createapublicawsvpcwithcloudformation-2022.png
 bannerImageAlt: Illustration of a blue unlocked padlock branded with an open eye to signal public VPC, sitting amongst clouds. 
 isFeatured: false 
 tags:
  - DevOps
+ - Runbooks Series
  - AWS
  - CloudFormation
 ---
 
 In our first post, [Create a private AWS VPC with CloudFormation](https://octopus.com/blog/aws-vpc-private), you looked at how to create a VPC with private subnets. Instances in this VPC had no internet access and could only communicate with instances in the subnets in the same VPC.
 
-In this post, you'll create a VPC with public subnets, allowing instances to access, and be accessed from, the internet.
+In this post, you create a VPC with public subnets, allowing instances to access, and be accessed from, the internet.
 
 ## Types of subnets
 
@@ -168,6 +169,8 @@ The IP address assigned to the EC2 instance allows you to SSH into it from your 
 
 Public subnets allow instances to access the internet, and give them the option of being assigned a public IP address. Creating a VPC with public subnets requires building an internet gateway, attaching it to the VPC, defining a route to direct public traffic through the internet gateway, and assigning the routes to the subnets.
 
-In this post you looked at a CloudFormation template creating a VPC with two public subnets. In the [next post](https://octopus.com/blog/aws-vpc-public-private/index.md) you'll learn how to create a VPC with both public and private subnets, and a NAT Gateway to grant internet access to instances in the private subnet.
+In this post you looked at a CloudFormation template creating a VPC with two public subnets. In the [next post](https://octopus.com/blog/aws-vpc-public-private/index.md) you learn how to create a VPC with both public and private subnets, and a NAT Gateway to grant internet access to instances in the private subnet.
+
+!include <q2-2022-newsletter-cta>
 
 Happy deployments!
