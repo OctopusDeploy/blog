@@ -16,28 +16,28 @@ tags:
 
 You can automate lots of useful tasks with Octopus Runbooks, especially around the management of infrastructure. One of the subtler but no less useful things is Octopus can let people know when there are problems.
 
-There are a few ways to approach this, depending on the information needed and what's useful to your support teams.
+There are a few ways to approach this, depending on the information you need and what's useful to your support teams.
 
 Let's look at 2 examples. We created a [sample Octopus instance with both runbooks](https://tenpillars.octopus.app/app#/Spaces-103), so you don't need to follow along.
 
 ## Setting an SMTP connection in Octopus
 
-You must enter SMTP settings in Octopus before runbook steps can send emails to support teams. If you don't know your SMTP server or port details, speak to your operations team.
+You must enter SMTP settings in Octopus before runbook steps can send emails to your support team. If you don't know your SMTP server or port details, speak to your operations team.
 
 1. Click **Configuration** from the top menu.
 1. Click **SMTP** from the left menu.
 1. Complete the following fields and click **SAVE AND TEST**:
    - **SMTP Host**
    - **SMTP Port**
-   - **Use SSL/TLS** - forces secure SSL and TLS protocols. If disabled, Octopus will still use this option if your server supports either protocol.
-   - **From Address** - the address you'd like Octopus to send from.
+   - **Use SSL/TLS** - forces secure SSL and TLS protocols. If disabled, Octopus still uses this option if your server supports either protocol.
+   - **From Address** - the address you want Octopus to send from.
    - **Credentials** - the username and password for the email account.
 
 If the test fails, check your details and try again. Some email services, such as Gmail, may need settings changed to allow external apps to send emails.
 
 ## Simple support emails
 
-If your step or script is simple enough that a problem should be easy to solve, an email alert might be sufficient. In this case, creating an automated support email step is uncomplicated.
+If your step or script is simple enough that problems are easy to solve, an email alert might be sufficient. In this case, creating an automated support email step is straightforward.
 
 We created a [simple runbook in our sample instance](https://tenpillars.octopus.app/app#/Spaces-103/projects/simple-support-example/operations) that runs a doomed-to-fail 'Hello World!' script. On failure, the runbook triggers an email to a support address.
 
@@ -45,7 +45,7 @@ Adding a step like this brings outdated and broken runbooks to the attention of 
 
 Here's how we set up the **Send an Email** step:
 
-1. Open the project you'd like to trigger a support email for.
+1. Open the project you want to trigger a support email for.
 1. Click **Operations**.  
 1. Click **Runbooks**.
 1. Click an existing runbook to edit it, or create a new one with the **ADD RUNBOOK** button. If creating a new runbook, enter a name and description, then click **SAVE**.
@@ -54,7 +54,7 @@ Here's how we set up the **Send an Email** step:
 1. Complete the following fields and click **SAVE**:
    - **Step Name** - give the step a descriptive name.
    - **To**, **CC**, and **BCC** - enter an email address or select a team from the dropdown. See our documentation for more information about [creating teams](https://octopus.com/docs/security/users-and-teams).
-   - **Subject**.
+   - **Subject**
    - **Body** - use raw text or HTML emails.
    - **Run Condition** - if alerting someone to a failed deployment or runbook step, select **Failure: only run when previous step fails**.
    - **Start Trigger** - usually best to leave as **Wait for the previous step to complete, then start**.
@@ -73,11 +73,11 @@ New steps always appear at the bottom of your runbook process. If you need to re
 
 ## Advanced support emails
 
-A simple support email is fine for things that are easy to fix, but what if your support teams need a little more info?
+A simple support email is fine for things that are easy to fix, but what if your support team needs more information?
 
 With [output variables](https://octopus.com/docs/projects/variables/output-variables) and a little effort, the **Send an Email** step can also include everything to start troubleshooting.
 
-In this example, our [advanced sample runbook](https://tenpillars.octopus.app/app#/Spaces-103/projects/advanced-email-example/operations/runbooks) scrapes a Kubernetes cluster for information to send in an email to support, including:
+In this example, our [advanced sample runbook](https://tenpillars.octopus.app/app#/Spaces-103/projects/advanced-email-example/operations/runbooks) scrapes a Kubernetes cluster for information to send in an email, including:
 
 - Deployment information
 - Pod logs
@@ -85,7 +85,7 @@ In this example, our [advanced sample runbook](https://tenpillars.octopus.app/ap
 
 This type of runbook is perfect for:
 
-- Automatically pulling technical info from your deployment targets
+- Automatically pulling technical information from your deployment targets
 - Helping less technical staff get information without knowing tricky terms or commands
 - Speeding up system recovery
 
@@ -94,7 +94,7 @@ This type of runbook is perfect for:
 This sample uses:
 
 - Kubernetes as a deployment target, though you can tailor the idea for other target types.
-- PowerShell scripts to scrape data from Kubernetes. You may need to install PowerShell on your Linux distribution for these scripts to work. See [Microsoft's PowerShell install documentation](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.2) for how. 
+- PowerShell scripts to scrape data from Kubernetes. You may need to install PowerShell on your Linux distribution for these scripts to work. See [Microsoft's PowerShell install documentation](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell?view=powershell-7.2) to learn how. 
 
 ### Create the project runbook
 
@@ -108,7 +108,7 @@ This sample uses:
 
 Now we create the steps to scrape information from your Kubernetes cluster. The steps use output variables so we can add the information to an email.
 
-Use the **ADD STEP** button to create 3 **Kubectl CLI Script** steps with the following names and Powershell scripts.
+Use the **ADD STEP** button to create 3 **Kubectl CLI Script** steps with the following names and PowerShell scripts.
 
 :::hint  
 To create the steps:
@@ -363,7 +363,7 @@ Events:                      <none>
 
 ## Conclusion
 
-These examples are just a small insight into how Octopus Runbooks can help you get key information to those that need it.
+These examples are a small insight into how Octopus Runbooks can help you get key information to those that need it.
 
 If you'd like to try Octopus Runbooks for yourself, [sign up for a free trial](https://octopus.com/start) and have fun experimenting.
 
