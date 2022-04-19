@@ -3,7 +3,7 @@ title: Automating support emails with Octopus Runbooks
 description: You can use Octopus Runbooks to automate delivery of important information to your support teams when things go wrong. This post explains how. 
 author: andrew.corrigan@octopus.com
 visibility: private
-published: 3020-01-01-1400
+published: 2022-05-03-1400
 metaImage: blogimage-placeholder.png
 bannerImage: blogimage-placeholder.png
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
@@ -14,7 +14,7 @@ tags:
   - Runbooks
 ---
 
-You can automate lots of useful tasks with Octopus Runbooks, especially around the management of infrastructure. One of the subtler but no less useful things, however, is  Octopus can let people know when there are problems.
+You can automate lots of useful tasks with Octopus Runbooks, especially around the management of infrastructure. One of the subtler but no less useful things is Octopus can let people know when there are problems.
 
 There are a few ways to approach this, depending on the information needed and what's useful to your support teams.
 
@@ -37,32 +37,32 @@ If the test fails, check your details and try again. Some email services, such a
 
 ## Simple support emails
 
-If your step or script is simple enough that a problem should be easy to solve, a simple email saying 'hey, something's up!' might be enough. In this case, creating an automated support email step is very easy.
+If your step or script is simple enough that a problem should be easy to solve, an email alert might be sufficient. In this case, creating an automated support email step is uncomplicated.
 
 We created a [simple runbook in our sample instance](https://tenpillars.octopus.app/app#/Spaces-103/projects/simple-support-example/operations) that runs a doomed-to-fail 'Hello World!' script. On failure, the runbook triggers an email to a support address.
 
-Adding a step like this is a great way to bring outdated and broken runbooks to the attention of those that can fix them.
+Adding a step like this brings outdated and broken runbooks to the attention of those who can fix them.
 
 Here's how we set up the **Send an Email** step:
 
 1. Open the project you'd like to trigger a support email for.
-1. Click **Operations**  
-1. Click **Runbooks**
+1. Click **Operations**.  
+1. Click **Runbooks**.
 1. Click an existing runbook to edit it, or create a new one with the **ADD RUNBOOK** button. If creating a new runbook, enter a name and description, then click **SAVE**.
 1. Click **ADD STEP**.
 1. Search for `email`, hover over **Send an Email** from the results and click **ADD**.
 1. Complete the following fields and click **SAVE**:
    - **Step Name** - give the step a descriptive name.
    - **To**, **CC**, and **BCC** - enter an email address or select a team from the dropdown. See our documentation for more information about [creating teams](https://octopus.com/docs/security/users-and-teams).
-   - **Subject**
-   - **Body** - use raw text or HTML emails
-   - **Run Condition** - if alerting someone to a failed deployment or runbook step, select **Failure: only run when previous step fails**
+   - **Subject**.
+   - **Body** - use raw text or HTML emails.
+   - **Run Condition** - if alerting someone to a failed deployment or runbook step, select **Failure: only run when previous step fails**.
    - **Start Trigger** - usually best to leave as **Wait for the previous step to complete, then start**.
 
 When creating or editing a runbook, you must click **PUBLISH** to make it available to other teams and Octopus trigger events.
 
 :::hint
-New steps will always appear at the bottom of your runbook process. If you need to reorder your steps:
+New steps always appear at the bottom of your runbook process. If you need to reorder your steps:
 
 1. Open your runbook.
 1. Go to the **Process** tab.
@@ -75,7 +75,7 @@ New steps will always appear at the bottom of your runbook process. If you need 
 
 A simple support email is fine for things that are easy to fix, but what if your support teams need a little more info?
 
-With [output variables](https://octopus.com/docs/projects/variables/output-variables) and a little effort, the **Send an Email** step can also include everything needed to start troubleshooting.
+With [output variables](https://octopus.com/docs/projects/variables/output-variables) and a little effort, the **Send an Email** step can also include everything to start troubleshooting.
 
 In this example, our [advanced sample runbook](https://tenpillars.octopus.app/app#/Spaces-103/projects/advanced-email-example/operations/runbooks) scrapes a Kubernetes cluster for information to send in an email to support, including:
 
@@ -83,7 +83,7 @@ In this example, our [advanced sample runbook](https://tenpillars.octopus.app/ap
 - Pod logs
 - Description of the deployment targets
 
-This type of runbook is perfect for
+This type of runbook is perfect for:
 
 - Automatically pulling technical info from your deployment targets
 - Helping less technical staff get information without knowing tricky terms or commands
@@ -98,7 +98,7 @@ This sample uses:
 
 ### Create the project runbook
 
-1. Open the project you'd like to trigger a support email for.
+1. Open the project you want to trigger a support email for.
 1. Click **Operations**.
 1. Click **Runbooks**.
 1. Click **ADD RUNBOOK**.
@@ -106,7 +106,7 @@ This sample uses:
 
 ### Create Kubernetes steps
 
-Now we can create the steps needed to scrape information from your Kubernetes cluster. The steps use output variables so we can add the information to an email.
+Now we create the steps to scrape information from your Kubernetes cluster. The steps use output variables so we can add the information to an email.
 
 Use the **ADD STEP** button to create 3 **Kubectl CLI Script** steps with the following names and Powershell scripts.
 
@@ -118,8 +118,8 @@ To create the steps:
 1. Complete the following fields and click **SAVE**:
    - **Step Name** - get the step name from the step information below.
    - **On Behalf Of** - select your target role from the dropdown.
-   - **Worker Pool** - check **Runs on a worker from a specific work pool** and select **Hosted Ubuntu** from the dropdown. (only needed if using Octopus workers)
-   - **Container Image** - check **Runs inside a container, on a worker**, then click **Use latest Linux-based image** to automatically complete the fields. (only needed if using Octopus workers)
+   - **Worker Pool** - check **Runs on a worker from a specific work pool** and select **Hosted Ubuntu** from the dropdown. (Only needed if using Octopus Workers.)
+   - **Container Image** - check **Runs inside a container, on a worker**, then click **Use latest Linux-based image** to automatically complete the fields. (Only needed if using Octopus Workers.)
    - **Inline Source Code** - check **Powershell** and enter the code for each step below.
 :::
 
@@ -181,7 +181,7 @@ exit 0
 
 ### Create the email step
 
-Now we can add the **Send an Email** step and configure it to include the scraped information.
+Now we add the **Send an Email** step and configure it to include the scraped information.
 
 1. Click **ADD STEP**.
 1. Search for `email`, hover over **Send an Email** from the results and click **ADD**.
@@ -232,7 +232,7 @@ Looking through the email triggered by our example here, we can spot a couple of
 - The port number is not a number
 - The pod has an undefined URL
 
-This means the support team quickly have an idea as to the problem with the deployment target.
+This means the support team quickly have an idea of the problem with the deployment target.
 
 ```
 Issue context:
@@ -365,6 +365,8 @@ Events:                      <none>
 
 These examples are just a small insight into how Octopus Runbooks can help you get key information to those that need it.
 
-If you'd like to try Octopus Runbooks for yourself, [sign up for a free trial](https://octopus.com/start) and have fun experimenting!
+If you'd like to try Octopus Runbooks for yourself, [sign up for a free trial](https://octopus.com/start) and have fun experimenting.
+
+!include <q2-2022-newsletter-cta>
 
 Happy deployments!
