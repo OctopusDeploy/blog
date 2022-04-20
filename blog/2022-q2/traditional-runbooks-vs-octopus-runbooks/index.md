@@ -34,7 +34,7 @@ Imagine, for example, an application server has a known issue caused by a Window
 Whether physical or otherwise, manual runbooks have some problems, as they can be:
 
 - Time consuming - manually working through guides and branching steps takes time, more so for those unfamiliar with a system.
-- Prone to human error - Mistakes can happen to the best of us, even with the simplest instructions. After all, pobody's nerfect!
+- Prone to human error - mistakes can happen to the best of us, even with the simplest instructions. After all, pobody's nerfect!
 - Outdated - internal documentation upkeep often falls down the priority order in busy teams. This leaves runbooks out-of-date or lacking consistency.
 - Annoying to manage access for - your operations team likely need access to countless systems. Risk naturally increases alongside the number of people with access to something, or the more access one person has. But also, you don't want support members to find they don't have access when they really need it.
 
@@ -130,7 +130,7 @@ When creating a runbook for real, you must click **PUBLISH** to make it availabl
 
 This is just a taster to show you the benefits of Octopus Runbooks and how easy it is to set them up.
 
-In [upcoming series posts](https://octopus.com/blog/tag/Runbooks%20Series), we'll walk you through some real use-cases, including how to use Octopus Runbooks to:
+In [upcoming series posts](https://octopus.com/blog/tag/Runbooks%20Series), we'll walk you through some real use cases, including how to use Octopus Runbooks to:
 
 - Respond to vulnerabilities
 - Create standardized support emails
