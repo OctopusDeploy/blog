@@ -16,13 +16,13 @@ tags:
 
 *The internet is broken!*
 
-Anyone who has spent some time on a help desk has heard this, and other equally vague, descriptions of issues customers have run into. Getting actionable information is half the battle when diagnosing an issue.
+Anyone who has spent some time on a help desk has heard this, and other equally vague descriptions of issues customers run into. Getting actionable information is half the battle when diagnosing an issue.
 
-When supporting complex infrastructure though, it can be hard to know how the system was designed, which in turn makes it hard to know what questions to ask and where to find information to help resolve the issue. It's the nature of custom applications typically found in enterprise environments that each is an evolution of the last, or written by an entirely different team using a unique approach each time. This means business knowledge around how an application should be supported is often only found in the heads of a few employees.
+When supporting complex infrastructure though, it can be hard to know how the system was designed, making it hard to know what questions to ask and where to find information to help resolve the issue. It's the nature of custom applications typically found in enterprise environments that each is an evolution of the last, or written by an entirely different team using a unique approach each time. This means business knowledge around how an application should be supported is often only found in the heads of a few employees.
 
 Runbooks provide a way to capture this business knowledge in an automated and testable way, ensuring the support team can quickly diagnose high level issues and efficiently respond to customer requests. 
 
-In this post, I provide an example runbook aimed at the level 1 support team designed to smoke test a typical microservice application in AWS.
+In this post, I provide an example runbook aimed at the level 1 support team, designed to smoke test a typical microservice application in AWS.
 
 ## Prerequisites
 
@@ -76,13 +76,13 @@ The output of this script looks like this:
 
 ![dig output](dns-smoke-test.png "width=500")
 
-Tools like `dig` tend to be quite technical, and the output requires some experience to interpret. However, your level 1 support team usually doesn't need to deeply understand networking issues like DNS, so it's important that the results and any further actions are explained as part of the script. This is an example of capturing business knowledge in a runbook, and it means even new starters can run these runbooks and be confident responding to the results.
+Tools like `dig` tend to be quite technical, and the output requires some experience to interpret. However, your level 1 support team doesn't usually need a deep understanding of networking issues like DNS, so the script must explain the results and any further actions. This is an example of capturing business knowledge in a runbook, and it means even new starters can run these runbooks and be confident in responding to the results.
 
 ## Smoke testing MySQL
 
-In this example our application uses a MySQL database for persistence. If the database isn't accessible, the service will fail, so the next step is to write a script to smoke test the database.
+In this example, our application uses a MySQL database for persistence. If the database isn't accessible, the service will fail, so the next step is to write a script to smoke test the database.
 
-The script below uses the `mysql` command line tool to attempt to query a known database table. Note the results are redirected to `/dev/null`, as we don't want to populate the logs with actual database records:
+The script below uses the `mysql` command-line tool to attempt to query a known database table. Note the results are redirected to `/dev/null`, as we don't want to populate the logs with actual database records:
 
 ```bash
 DATABASE_HOST=$(get_octopusvariable "Database.Host")
@@ -113,7 +113,7 @@ The next test verifies that public HTTP endpoints respond with the expected stat
 
 For a complete list of HTTP response codes, refer to the [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status).
 
-For this test, we make use of a step in the [community step template library](https://octopus.com/docs/projects/community-step-templates) called **HTTP - Test URL (Bash)**. This step defines a bash script that calls `curl` against the supplied URL and verifies the HTTP status code:
+For this test, we make use of a step in the [community step template library](https://octopus.com/docs/projects/community-step-templates) called **HTTP - Test URL (Bash)**. This step defines a Bash script that calls `curl` against the supplied URL and verifies the HTTP status code:
 
 ![HTTP - Test URL (Bash)](http-test.png "width=500")
 
@@ -121,7 +121,7 @@ For this test, we make use of a step in the [community step template library](ht
 
 The previous three smoke tests verify the fundamental layers of our application's infrastructure. You can expect that if any of them fail there's a serious issue.
 
-However, it is still possible the application is working, but is unusable because it's slow or randomly fails to requests. Your final smoke test performs a quick load test using `hey` to verify that the application responds consistently to multiple requests. The script below calls `hey` against the microservice API:
+However, it's still possible the application is working, but is unusable because it's slow or randomly fails to requests. Your final smoke test performs a quick load test using `hey` to verify that the application responds consistently to multiple requests. The script below calls `hey` against the microservice API:
 
 ```bash
 # Warm up
@@ -146,7 +146,7 @@ The output from this script is shown in the screenshot below:
 
 ![hey output](hey.png "width=500")
 
-This output requires some interpretation to decide what further action to take. The histogram shows the response time for each of the requests, and in this example you would expect the vast majority of requests to be completed in less than a second. The instructions guide support team members running this script to make the appropriate decision based on the output.
+This output requires some interpretation to decide what further action to take. The histogram shows the response time for each of the requests, and in this example you'd expect the majority of requests to be completed in less than a second. The instructions guide support team members running this script to make the appropriate decision based on the output.
 
 ## Conclusion
 
