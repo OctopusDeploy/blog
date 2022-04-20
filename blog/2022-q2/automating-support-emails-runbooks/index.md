@@ -2,11 +2,11 @@
 title: Automating support emails with Octopus Runbooks
 description: You can use Octopus Runbooks to automate delivery of important information to your support teams when things go wrong. This post explains how. 
 author: andrew.corrigan@octopus.com
-visibility: private
+visibility: public
 published: 2022-05-03-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-automatingsupportemailswithoctopusrunbooks-2022.png
+bannerImage: blogimage-automatingsupportemailswithoctopusrunbooks-2022.png
+bannerImageAlt: Octopus arm presses button on open laptop with send written on screen in a green box and orange envelopes springing up behind laptop.
 isFeatured: false
 tags: 
   - DevOps
