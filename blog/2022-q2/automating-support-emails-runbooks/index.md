@@ -4,8 +4,8 @@ description: You can use Octopus Runbooks to automate delivery of important info
 author: andrew.corrigan@octopus.com
 visibility: private
 published: 2022-05-03-1400
-metaImage: blogimage-placeholder.png
-bannerImage: blogimage-placeholder.png
+metaImage: 
+bannerImage: 
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags: 
