@@ -1,32 +1,38 @@
 ---
 title: Implementing DevSecOps to respond to vulnerabilities
-description: Learn how to configure your CI/CD pipeline to quickly identify and respond to vulnerabilities
+description: As part of our series about Runbooks, learn how to configure your CI/CD pipeline to quickly identify and respond to vulnerabilities.
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2999-01-01
+published: 2022-05-16-1400
 metaImage: 
 bannerImage: 
-tags:
- - Octopus
+bannerImageAlt: 125 characters max, describes image to people unable to see it.
+isFeatured: false
+tags: 
+  - DevOps
+  - Runbooks Series
+  - Runbooks
 ---
 
-The Log4j project found itself the centre of attention in late 2021 for a [critical vulnerability](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-45046), spawning a flood of "Our response to Log4j" announcements from companies and framework developers around the globe, and even more requests to support desks and forums from customers looking to gauge their exposure.
+The Log4j project became the center of attention in late 2021 for a [critical vulnerability](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-45046). It spawned a flood of ["Our response to Log4j"](https://octopus.com/blog/octopus-deploy-log4j-response) announcements from companies and framework developers around the globe, and even more requests to support desks and forums from customers looking to gauge their exposure.
 
-Needless to say, many engineering teams found themselves under pressure to identify any code bases that may have been affected, provide accurate reports describing any exposure, update any required dependencies, and deploy the new code to production as quickly as possible.
+Many engineering teams found themselves under pressure to identify any affected code bases, provide accurate reports describing any exposure, update any required dependencies, and deploy the new code to production as quickly as possible.
 
-Anyone facing that challenge knows all too well that such a response is not as easy as it sounds. Like any code dependency, knowing whether your code uses Log4j requires a deep understanding of your application's structure and currently deployed version. Typically this requires checking your code base at the specific git commit representing the deployed version of your application and digging into your direct dependencies, along with their child dependencies, to find exactly what libraries your code uses.
+Anyone facing that challenge knows that such a response is not as easy as it sounds. Like any code dependency, knowing whether your code uses Log4j requires a deep understanding of your application's structure and currently deployed version. Typically, this requires checking your code base at the specific git commit representing the deployed version of your application and digging into your direct dependencies, along with their child dependencies, to find exactly what libraries your code uses.
 
-Runbooks, combined with [build information](https://octopus.com/docs/packaging-applications/build-servers/build-information) and some simple changes to your CI/CD pipeline, provide a convenient method for querying the dependencies included in your deployed application. In this post you'll learn how to modify a GitHub Actions Workflow to capture the dependencies used for a particular build and see an example runbook that can query the information on demand.
+Runbooks, combined with [build information](https://octopus.com/docs/packaging-applications/build-servers/build-information) and some simple changes to your CI/CD pipeline, provide a convenient method for querying the dependencies included in your deployed application. 
+
+In this post, you learn how to modify a GitHub Actions Workflow to capture the dependencies used for a particular build and see an example runbook that can query the information on demand.
 
 ## Prerequisites
 
-This post uses GitHub Actions as a CI server. GitHub Actions are free for public git repositories, so you only need a GitHub account to get started.
+This post uses GitHub Actions as a CI server. GitHub Actions is free for public git repositories, so you only need a GitHub account to get started.
 
 The sample runbook script is written against Python 3, which can be downloaded from the [Python website](https://www.python.org/downloads/). The example runbook source code can be found on [GitHub](https://github.com/OctopusSamples/DependencyQuery).
 
 ## Capturing dependencies during the build process
 
-We start by capturing the dependencies consumed by the build process as part of our GitHub Actions workflow. Every major language today provides the ability to list dependencies, and the list below shows examples of these commands, capturing the output in a file called `dependencies.txt`:
+You start by capturing the dependencies consumed by the build process as part of our GitHub Actions workflow. Every major language today provides the ability to list dependencies, and the list below shows examples of these commands, capturing the output in a file called `dependencies.txt`:
 
 * Maven - `mvn --batch-mode dependency:tree --no-transfer-progress > dependencies.txt`
 * Gradle - `gradle dependencies --console=plain > dependencies.txt`
@@ -79,13 +85,13 @@ The [xo-energy/action-octopus-build-information](https://github.com/xo-energy/ac
         octopus_environment: "Development"
 ```
 
-Pushing the build information package is all that is needed for Octopus to link the metadata to a release. The build information is linked to the release as long as the build information package ID and version matches a package used in an Octopus step. 
+Pushing the build information package is all you need for Octopus to link the metadata to a release. The build information is linked to the release as long as the build information package ID and version matches a package used in an Octopus step. 
 
 The next step is to write a custom script to query the Octopus API to extract the link back to the CI server for the latest release in a given environment.
 
 ## Querying the build information to download CI artifacts
 
-We now have all the information in place to track the dependencies for any packages used in an Octopus release. It is possible to manually traverse the links exposed in the Octopus UI back to the GitHub Actions run, download the dependencies artifact, and scan the text file inside. But this manual workflow will not scale as the number of application increases. What we want instead is to automate the process through a runbook executing a custom Python script.
+You now have all the information in place to track the dependencies for any packages used in an Octopus release. It's possible to manually traverse the links exposed in the Octopus UI back to the GitHub Actions run, download the dependencies artifact, and scan the text file inside. But this manual workflow doesn't scale as the number of application increases. Instead, you want to automate the process through a runbook executing a custom Python script.
 
 The first step is to define the dependencies for the script in the file `requirements.txt`. The script will make use of the [requests](https://pypi.org/project/requests/) package to streamline HTTP requests:
 
@@ -329,9 +335,9 @@ def scan_dependencies():
 scan_dependencies()
 ```
 
-Let's break this code down to understand what it is doing.
+Let's break this code down to understand what it's doing.
 
-Your script will accept parameters from command line arguments to make it reusable across multiple Octopus instances and spaces. The arguments are parsed by the [argparse module](https://docs.python.org/3/library/argparse.html). You can find more information about using `argparse` [here](https://realpython.com/command-line-interfaces-python-argparse/):
+Your script will accept parameters from command-line arguments to make it reusable across multiple Octopus instances and spaces. The arguments are parsed by the [argparse module](https://docs.python.org/3/library/argparse.html). Learn more about using `argparse`in Real Python's post, [How to Build Command Line Interfaces in Python With argparse](https://realpython.com/command-line-interfaces-python-argparse/):
 
 ```python
 parser = argparse.ArgumentParser(description='Scan a deployment for a dependency.')
@@ -416,13 +422,13 @@ def compare_dates(date1, date2):
     return 1
 ```
 
-A common pattern used through this script (and most scripts working with the Octopus API) is to lookup the ID of a named resource. The `get_space_id` function takes the name of an Octopus space and queries the API to return the space ID:
+A common pattern in this script (and most scripts working with the Octopus API) is to lookup the ID of a named resource. The `get_space_id` function takes the name of an Octopus space and queries the API to return the space ID:
 
 ```python
 def get_space_id(space_name):
 ```
 
-The `/api/spaces` endpoint returns a list of the spaces defined in the Octopus server. The `partialName` query parameter limits the result to spaces whose name includes the supplied value, while the `take` parameter is set to a large number to ensure you do not need to loop over any paged results:
+The `/api/spaces` endpoint returns a list of the spaces defined in the Octopus server. The `partialName` query parameter limits the result to spaces whose name includes the supplied value, while the `take` parameter is set to a large number to ensure you don't need to loop over any paged results:
 
 ```python
     url = args.octopus_url + "/api/spaces?partialName=" + space_name.strip() + "&take=1000"
@@ -458,7 +464,7 @@ If there is a matching space, return the ID:
     return first_id
 ```
 
-Spaces are top level resources in Octopus, while all other resources you'll interact with in this script are children of a space. Just as you did with the `get_space_id` function, the `get_resource_id` function converts a named Octopus resource to its ID. The only difference here is the endpoint being requested includes the space ID in the path, and the resource type is supplied to build the second element in the path. Otherwise `get_resource_id` follows the same pattern described for the `get_space_id` function:
+Spaces are top level resources in Octopus, while all other resources you interact with in this script are children of a space. Just as you did with the `get_space_id` function, the `get_resource_id` function converts a named Octopus resource to its ID. The only difference here is the endpoint being requested includes the space ID in the path, and the resource type is supplied to build the second element in the path. Otherwise `get_resource_id` follows the same pattern described for the `get_space_id` function:
 
 ```python
 def get_resource_id(space_id, resource_type, resource_name):
@@ -485,7 +491,7 @@ A release is a snapshot of the deployment process, package versions, and variabl
 
 A deployment is then the execution of a release to an environment.
 
-So, in order to find which package versions are deployed to the specified environment (and we are usually talking about the production environment when dealing with vulnerabilities), you must list the deployments to an environment, filter them down to the deployments for the specified project, sort the deployments to ensure you find the latest one, and return the ID of the release that the deployment executed.
+So, in order to find which package versions are deployed to the specified environment (and we're usually talking about the production environment when dealing with vulnerabilities), you must list the deployments to an environment, filter them down to the deployments for the specified project, sort the deployments to ensure you find the latest one, and return the ID of the release that the deployment executed.
 
 The `get_release_id` function implements this query:
 
@@ -554,7 +560,7 @@ The dictionary containing all the build information is flattened to an array of 
     build_urls = list(map(lambda b: b["BuildUrl"], build_information_with_urls))
 ```
 
-If no links back to GitHub were found, a warning message is presented:
+If no links back to GitHub are found, a warning message is presented:
 
 ```python
     if len(build_urls) == 0:
@@ -743,19 +749,19 @@ The last step is to call the `scan_dependencies` function, which initiates the s
 scan_dependencies()
 ```
 
-With the script written, it is time to execute it in a runbook.
+With the script written, it's time to execute it in a runbook.
 
 ## Running the script in a runbook
 
-The first step is to expose three variables that will be passed to the script:
+The first step is to expose 3 variables that will be passed to the script:
 
-* `GitHubToken` is a secret holding the GitHub personal access token used to authenticate GitHub API calls.
-* `ReadOnlyApiKey` is an Octopus API key assigned to an account with read only access to the Octopus server (because this script only queries the API, and never modifies any resources).
-* `SearchText` is a prompted variable that defines the text to search for in the dependency text files.
+- `GitHubToken` is a secret holding the GitHub personal access token used to authenticate GitHub API calls.
+- `ReadOnlyApiKey` is an Octopus API key assigned to an account with read only access to the Octopus server (because this script only queries the API, and never modifies any resources).
+- `SearchText` is a prompted variable that defines the text to search for in the dependency text files.
 
 ![Octopus variables](variables.png "width=500")
 
-The runbook is comprised of a single **Run a script** step with the following bash script:
+The runbook is comprised of a single **Run a script** step with the following Bash script:
 
 ```bash
 cd DependencyQuery
@@ -805,7 +811,7 @@ The service message `##octopus[stdout-default]` is printed, instructing Octopus 
 echo "##octopus[stdout-default]"
 ```
 
-You then execute the Python script. Some of the arguments, like `octopusUrl`, `githubUser`, `octopusProject` etc will need to be customized for your specific use case. Setting the `octopusSpace` and `octopusEnvironment` arguments to the space and environment in which the runbook is executed allows you to find dependencies in any environment the runbook is run in:
+You then execute the Python script. Some of the arguments, like `octopusUrl`, `githubUser`, `octopusProject`, need to be customized for your specific use case. Setting the `octopusSpace` and `octopusEnvironment` arguments to the space and environment in which the runbook is executed allows you to find dependencies in any environment the runbook is run in:
 
 ```bash
 python3 main.py \
@@ -821,14 +827,18 @@ python3 main.py \
 
 ## Executing the runbook
 
-When the runbook is executed, it proceeds to scan each project for the latest deployment to the current environment, finds the GitHub Action run link from the build information, downloads the dependencies artifact, extracts the artifact, and scans the text files for the search text. 
+When the runbook is executed, it scans each project for the latest deployment to the current environment, finds the GitHub Action run link from the build information, downloads the dependencies artifact, extracts the artifact, and scans the text files for the search text. 
 
-With a single click of the **RUN** button, you now have the ability to quickly search any project deployed by Octopus that has associated build information and the required build artifacts:
+With a single click of the **RUN** button, you have the ability to quickly search any project deployed by Octopus that has associated build information and the required build artifacts:
 
 ![Runbook run](runbook-run.png "width=500")
 
 ## Conclusion
 
-Log4j exposed many engineering teams to the reality that dependency vulnerabilities are simply a fact of life, and that timely responses are crucial not only to limit your exposure to exploits, but also to reduce pressure on support teams fielding questions from customers. It is also clear that Log4j won't be the last widespread vulnerability, and it is just a matter of time before your code base is impacted by a disclosure.
+Log4j exposed many engineering teams to the reality that dependency vulnerabilities are a fact of life, and that timely responses are crucial not only to limit your exposure to exploits, but to reduce pressure on support teams fielding questions from customers. It's also clear that Log4j won't be the last widespread vulnerability, and it's just a matter of time before your code base is impacted by a disclosure.
 
-In this post you learned how to save the list of dependencies consumed by a build of your application as an artifact in GitHub Actions, how to link runs to the packages they produce using build information, and then perform simple text matching on the dependencies included in packages deployed to an environment with a runbook executing a custom Python script. The end result is the ability to know within minutes whether your applications are exposed to a vulnerability reported in a dependency, and begin responding almost immediately. 
+In this post, you learned how to save the list of dependencies consumed by a build of your application as an artifact in GitHub Actions, how to link runs to the packages they produce using build information, and then perform simple text matching on the dependencies included in packages deployed to an environment with a runbook executing a custom Python script. The end result is the ability to know in minutes whether your applications are exposed to a vulnerability reported in a dependency, and begin responding almost immediately. 
+
+!include <q2-2022-newsletter-cta>
+
+Happy deployments!
