@@ -4,9 +4,9 @@ description: As part of our series about Runbooks, learn how to configure your C
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2022-05-16-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-devsecopsvulnerabilities-2022.png
+bannerImage: blogimage-devsecopsvulnerabilities-2022.png
+bannerImageAlt: Blue DevOps infinity diagram outlined in green with a green security shield over the right top-hand corner.
 isFeatured: false
 tags: 
   - DevOps
