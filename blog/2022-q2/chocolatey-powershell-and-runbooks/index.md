@@ -114,7 +114,7 @@ As part of the new space configuration, I did the following:
 
 ![Adding an Octopus environment](images/environment.png "width=500")
 
-- Added a Windows server as a [deployment target](https://octopus.com/docs/infrastructure/deployment-targets) and assigned it the [target role](https://octopus.com/docs/infrastructure/deployment-targets#target-roles) **Computer**. I used a [Polling Tentacle](https://octopus.com/docs/infrastructure/deployment-targets/windows-targets/tentacle-communication#polling-tentacles).:
+- Added a Windows server as a [deployment target](https://octopus.com/docs/infrastructure/deployment-targets) and assigned it the [target role](https://octopus.com/docs/infrastructure/deployment-targets#target-roles) **Computer**. I used a [Polling Tentacle](https://octopus.com/docs/infrastructure/deployment-targets/windows-targets/tentacle-communication#polling-tentacles):
 
 ![Adding a deployment target](images/deploymenttarget.png "width=500")
 
@@ -126,7 +126,7 @@ As part of the new space configuration, I did the following:
 
 ![Adding an Octopus project](images/project.png "width=500")
 
-- Created a [Lifecycle](https://octopus.com/docs/getting-started-guides/lifecycle) called `Computer Lifecycle` and added the **Provisioning** environment to it, and then assigned it to the project:
+- Created a [lifecycle](https://octopus.com/docs/getting-started-guides/lifecycle) called `Computer Lifecycle` and added the **Provisioning** environment to it, and then assigned it to the project:
 
 ![Adding a Provisioning lifecycle](images/lifecycle.png "width=500")
 
