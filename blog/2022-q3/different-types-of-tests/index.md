@@ -1,6 +1,6 @@
 ---
 title: The different types of software tests
-description: This post explains why testing is important. The post discusses the two methods of testing: manual and automated and the two broad types of testing: functional and non-functional. The post gives some examples of different types of tests.
+description: This post explains why testing is important. The post discusses the two methods of testing, manual and automated and the two broad types of testing, functional and non-functional. The post gives some examples of different types of tests.
 author: terence.wong@octopus.com
 visibility: private
 published: 3020-01-01-1400
@@ -11,7 +11,6 @@ isFeatured: false
 tags:
   - DevOps
   - Testing
-
 ---
 
 <!-- see https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags -->
