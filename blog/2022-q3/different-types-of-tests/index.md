@@ -150,6 +150,6 @@ Tests for issues related to scaling the application.
 
 ## Conclusion
 
-Testing is an essential factor in DevOps processes. Testing assures each stage in a DevOps process for quality before moving to the next stage. Tests can be run manually or automated. This blog has given examples of the two main types of tests: functional and non-functional. A robust testing environment fits well with Octopus Deploy. Octopus Deploy takes care of the release, deploy and automate sections of the DevOps lifecycle, and makes complex deployments easier.
+Testing is an essential factor in DevOps processes. Testing assures each stage in a DevOps process for quality before moving to the next stage. Tests can be run manually or automated. This blog has given examples of the two main types of tests: functional and non-functional. A robust testing environment fits well with Octopus Deploy. Octopus Deploy takes care of the release, deploy and automate sections of the DevOps lifecycle, and makes complex deployments easier!
 
 Happy Deployments!
