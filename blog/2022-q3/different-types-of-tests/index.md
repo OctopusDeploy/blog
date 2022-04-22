@@ -24,7 +24,7 @@ Testing is part of continuous delivery. Testing assures each stage of the delive
 
 ## Manual vs. automated tests
 
-A person carries out a manual test. A person will click through an application and use it to find any bugs. Automated tests are scripted in advance and executed by a machine. Automated tests compare an expected result with the actual result.
+Software tests can be manual or automatic. A person carries out a manual test. A person will click through an application and use it to find any bugs. Automated tests are scripted in advance and executed by a machine. Automated tests compare an expected result with the actual result.
 
 Both methods of testing have their place in a software application. A manual test is much slower and requires an environment for the tester. As developers must write automated tests in advance, the errors found in manual testing can inform and turn into automated tests to strengthen the test harness. Manual tests are suitable for cases where opinion and nuance play a role, such as UX or user experience. There is no deterministic result for an automated test to check in these cases.
 
