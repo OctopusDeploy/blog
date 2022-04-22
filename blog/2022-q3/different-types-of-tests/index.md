@@ -1,17 +1,16 @@
 ---
-title: Different types of tests
-description: A brief summary of the post, 170 characters max including spaces.
+title: The different types of software tests
+description: This post explains why testing is important. The post discusses the two methods of testing: manual and automated and the two broad types of testing: functional and non-functional. The post gives some examples of different types of tests.
 author: terence.wong@octopus.com
 visibility: private
 published: 3020-01-01-1400
-metaImage:
-bannerImage:
+metaImage: placeholderimg.png
+bannerImage: placeholderimg.png
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags:
   - DevOps
-  - Runbooks Series
-  - Runbooks
+  - Testing
 ---
 
 <!-- see https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags -->
@@ -22,11 +21,11 @@ Testing is part of continuous delivery. Testing assures each stage of the delive
 
 ![Octopus DevOps](devops-cycle.png "width=500")
 
-## Manual vs. automated tests
+## Manual and automated tests
 
 Software tests can be manual or automatic. A person carries out a manual test. A person will click through an application and use it to find any bugs. Automated tests are scripted in advance and executed by a machine. Automated tests compare an expected result with the actual result. Both methods of testing have their place in a software application. A manual test is much slower and requires an environment for the tester. As developers must write automated tests in advance, the errors found in manual testing can inform and turn into automated tests to strengthen the test suite. Manual tests are suitable for cases where opinion and nuance play a role, such as UX or user experience. There is no pre-determined result for an automated test to check in these cases.
 
-Automated tests are near-instant and execute in the hundreds or thousands at runtime. Automated tests check for functionality and ensure that every line of code and feature works as intended. In a DevOps process, automated tests enable continuous delivery. Automated tests will have a rating of test coverage. When developers add new features to a release, developers can run the tests to identify whether test coverage has decreased. Developers can pinpoint where tests fail to fix bugs for the new release. Automated tests complement a continuous delivery DevOps strategy. The more tests are automated, the faster an application can iterate and cycle through the DevOps loop of building, testing, and releasing. 
+Automated tests are near-instant and execute in the hundreds or thousands at runtime. Automated tests check for functionality and ensure that every line of code and feature works as intended. In a DevOps process, automated tests enable continuous delivery. Automated tests will have a rating of test coverage. When developers add new features to a release, developers can run the tests to identify whether test coverage has decreased. Developers can pinpoint where tests fail to fix bugs for the new release. Automated tests complement a continuous delivery DevOps strategy. The more tests are automated, the faster an application can iterate and cycle through the DevOps loop of building, testing, and releasing.
 
 ## Functional and non-functional tests
 
@@ -34,23 +33,23 @@ The list of possible types of tests is large and growing. There are hundreds of 
 
 Functional tests ask questions like:
 
-- Does this button work? 
-- Does one module work with another module? 
-- Does the user journey work from the start of the experience to the end? 
+- Does this button work?
+- Does one module work with another module?
+- Does the user journey work from the start of the experience to the end?
 
 Functional tests test for functionality. Maintenance testing tests if the application has retained all functionality from version to version. It asks whether any functionality in the application has regressed between versions. I have included maintenance testing under functional tests as it has to do with functionality. Some sources list it as a third type.
 
-Non-functional tests test the overall performance of the application. 
+Non-functional tests test the overall performance of the application.
 
-- How secure is the application? 
-- How much load can it handle? 
-- Can the application scale if needed? 
+- How secure is the application?
+- How much load can it handle?
+- Can the application scale if needed?
 
 Non-functional tests are more concerned with the application health rather than individual components.
 
 ## Test types
 
-The following are some types of functional and non-functional tests. I have provided some general points of the kind of test and a real-life example. 
+The following are some types of functional and non-functional tests. I have provided some general points of the kind of test and a real-life example.
 
 ### Functional
 
@@ -141,7 +140,7 @@ Tests for security related weaknesses in the system.
 
 ```
 
-Tests for issues related to scaling the application. 
+Tests for issues related to scaling the application.
 
 1. Under increasing load, test how many nodes an application needs to recover
 2. Test the length of time required for more nodes to be added and the application to recover. Flag if significantly longer than average time.
