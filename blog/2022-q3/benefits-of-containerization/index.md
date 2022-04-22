@@ -1,17 +1,17 @@
 ---
 title: The benefits of containerization
-description: A brief summary of the post, 170 characters max including spaces.
+description: A post about containerization. The post outlines the main benefits of containerization, lists the top container images, discusses the main containerization technologies and explains how Octopus Deploy works with containerization to make complex deployments easier.
 author: terence.wong@octopus.com
 visibility: private
 published: 3020-01-01-1400
-metaImage:
-bannerImage:
+metaImage: placeholderimg.png
+bannerImage: placeholderimg.png
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags:
   - DevOps
-  - Runbooks Series
-  - Runbooks
+  - Containers
+  - Cloud Orchestration
 ---
 
 <!-- see https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags -->
@@ -22,7 +22,7 @@ A container is a lightweight, portable computing environment with all the necess
 
 ### Containers complement your DevOps process
 
-In our [introduction to DevOps blog](https://octopus.com/blog/introduction-to-devops), we discussed how DevOps as a concept is about removing barriers that get in the way of software delivery. DevOps refines every process between the developer and the customer (flow), has faster feedback loops and continues experimentation and learning. DevOps is a practice that focuses on agility and automation. Using containerization complements DevOps because software can be deployed and tested faster, improving feedback loops. Containerization has also been a major factor in the popularity of microservices, a [software architecture that improves flexibility and agility](link). 
+In our [introduction to DevOps blog](https://octopus.com/blog/introduction-to-devops), we discussed how DevOps as a concept is about removing barriers that get in the way of software delivery. DevOps refines every process between the developer and the customer (flow), has faster feedback loops and continues experimentation and learning. DevOps is a practice that focuses on agility and automation. Using containerization complements DevOps because software can be deployed and tested faster, improving feedback loops. Containerization has also been a major factor in the popularity of microservices, a [software architecture that improves flexibility and agility](link).
 
 ### Containers are scalable - allocate resources efficiently
 
@@ -30,19 +30,19 @@ Platform as a Service (PaaS) solutions and container orchestration tools like Ku
 
 ### Containers are portable - build once, run anywhere
 
-Containers are portable, they can run anywhere on any infrastructure, such as in the cloud, on a VM, or bare metal. [The Open Container Initiative (OCI)](https://opencontainers.org/) designs open standards for containers, ensuring that any OCI compliant containers will run the same way on any infrastructure. To run applications, containers are loaded with container images. A container image is a static file that contains executable code to run a process on IT infrastructure. There are container images for several different use cases such as databases, web servers, operating systems, and more. Container image repositories are public access points for container images. Any developer can access them and load a container with an image. The open standards of containers, alongside the wide range of images available, means that developers can load endless services on any infrastructure configuration. 
+Containers are portable, they can run anywhere on any infrastructure, such as in the cloud, on a VM, or bare metal. [The Open Container Initiative (OCI)](https://opencontainers.org/) designs open standards for containers, ensuring that any OCI compliant containers will run the same way on any infrastructure. To run applications, containers are loaded with container images. A container image is a static file that contains executable code to run a process on IT infrastructure. There are container images for several different use cases such as databases, web servers, operating systems, and more. Container image repositories are public access points for container images. Any developer can access them and load a container with an image. The open standards of containers, alongside the wide range of images available, means that developers can load endless services on any infrastructure configuration.
 
 ## What are the top container images?
 
-[Docker Hub](https://hub.docker.com/search?q=&type=image) provides a list of popular container images.Some of the top container images are: 
+[Docker Hub](https://hub.docker.com/search?q=&type=image) provides a list of popular container images.Some of the top container images are:
 
-- Ubuntu, a Debian-based Linux operating system 
+- Ubuntu, a Debian-based Linux operating system
 
-- NGINX, an open-source web server, load balancer, and reverse proxy used in several applications. 
+- NGINX, an open-source web server, load balancer, and reverse proxy used in several applications.
 
-- Postgres, an open-source relational database system that uses the SQL language. 
+- Postgres, an open-source relational database system that uses the SQL language.
 
-- Redis, an open-source in-memory data structure store used as a database, cache, and message broker. 
+- Redis, an open-source in-memory data structure store used as a database, cache, and message broker.
 
 - Alpine, a Linux distribution built around musl libc and BusyBox
 
@@ -50,7 +50,7 @@ Popular container images are often open-source and address a fundamental need in
 
 ## What are the primary tools for container technologies?
 
-Cloud PaaS solutions like Microsoft Azure, Amazon Web Services, and Google Cloud Platform have provided the infrastructure to run technologies like Docker and Kubernetes. The Docker container technology was launched as open-source in 2013. Since then, it has gained widespread adoption as the leading container technology. Kubernetes is the most popular container orchestration technology used alongside Docker to manage and scale container solutions. 
+Cloud PaaS solutions like Microsoft Azure, Amazon Web Services, and Google Cloud Platform have provided the infrastructure to run technologies like Docker and Kubernetes. The Docker container technology was launched as open-source in 2013. Since then, it has gained widespread adoption as the leading container technology. Kubernetes is the most popular container orchestration technology used alongside Docker to manage and scale container solutions.
 
 The containerization landscape is fluid and ever changing. While Docker has been the most common container technology run on Kubernetes, the [v1.24 Kubernetes update](https://kubernetes.io/blog/2022/03/31/ready-for-dockershim-removal/) has deprecated Dockershim - an underlying module providing compatibility between Docker and Kubernetes. The update is mainly due to Docker's compatibility with the Container Runtime Interface. Docker has developed a replacement for Dockershim called cri-dockerd that addresses compatibility issues. A [report by Datadog](https://www.datadoghq.com/container-report/) in 2021 indicated a 6% increase in containerd adoption with a correlated dip in Docker usage. The increase in containerd adoption rate may continue as Kubernetes moves away from full Docker support. The containerization and container orchestration landscape is rapidly evolving and changing year to year. The technological tools and popularity may wane and change, but the containerization and container orchestration concepts are here to stay. Octopus fully supports containerization and container orchestration and is tool agnostic.
 
