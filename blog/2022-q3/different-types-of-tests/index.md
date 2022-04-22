@@ -24,13 +24,9 @@ Testing is part of continuous delivery. Testing assures each stage of the delive
 
 ## Manual vs. automated tests
 
-Software tests can be manual or automatic. A person carries out a manual test. A person will click through an application and use it to find any bugs. Automated tests are scripted in advance and executed by a machine. Automated tests compare an expected result with the actual result.
+Software tests can be manual or automatic. A person carries out a manual test. A person will click through an application and use it to find any bugs. Automated tests are scripted in advance and executed by a machine. Automated tests compare an expected result with the actual result. Both methods of testing have their place in a software application. A manual test is much slower and requires an environment for the tester. As developers must write automated tests in advance, the errors found in manual testing can inform and turn into automated tests to strengthen the test suite. Manual tests are suitable for cases where opinion and nuance play a role, such as UX or user experience. There is no pre-determined result for an automated test to check in these cases.
 
-Both methods of testing have their place in a software application. A manual test is much slower and requires an environment for the tester. As developers must write automated tests in advance, the errors found in manual testing can inform and turn into automated tests to strengthen the test harness. Manual tests are suitable for cases where opinion and nuance play a role, such as UX or user experience. There is no deterministic result for an automated test to check in these cases.
-
-Automated tests are near-instant and execute in the hundreds or thousands at runtime. Automated tests check for functionality and ensure that every line of code and feature works as intended. In a DevOps process, automated tests enable continuous delivery. Automated tests will have a rating of test coverage. When developers add new features to a release, developers can run the test harness to identify whether test coverage has decreased. Developers can pinpoint where tests fail to fix bugs for the new release.
-
-Manual and automated tests are two methods of testing. Manual testing can be helpful in cases where opinion may be necessary. Manual testing may also inform developers which tests to automate. Automated tests work well in a DevOps strategy as automated tests are quicker than manual testing. Automated tests help give test coverage over the whole application and help identify bugs quickly when tests fail.
+Automated tests are near-instant and execute in the hundreds or thousands at runtime. Automated tests check for functionality and ensure that every line of code and feature works as intended. In a DevOps process, automated tests enable continuous delivery. Automated tests will have a rating of test coverage. When developers add new features to a release, developers can run the tests to identify whether test coverage has decreased. Developers can pinpoint where tests fail to fix bugs for the new release. Automated tests complement a continuous delivery DevOps strategy. The more tests are automated, the faster an application can iterate and cycle through the DevOps loop of building, testing, and releasing. 
 
 ## Functional and non-functional tests
 
@@ -50,7 +46,7 @@ Non-functional tests test the overall performance of the application.
 - How much load can it handle? 
 - Can the application scale if needed? 
 
-Non-functional tests are more concerned with the application rather than individual components.
+Non-functional tests are more concerned with the application health rather than individual components.
 
 ## Test types
 
@@ -114,9 +110,9 @@ Confirm that the application is working according to a requirements specificatio
 
 Tests performance metrics like speed, response time, and resource usage of the application.
 
-1. Verify that loading the home page takes <4ms
-2. Check CPU and memory load during peak conditions
-3. Check database response time when handling 100 or more concurrent requests
+1. Measure the loading time of the home page and flag if it exceeds a threshold value
+2. Measure CPU and memory load during peak conditions (0900-1700). Measure how long CPU and memory exceeding a  threshold value
+3. Measure database response time when handling 100 or more concurrent requests. Flag if response time exceeds threshold value
 
 ```
 
@@ -126,7 +122,7 @@ Tests performance metrics like speed, response time, and resource usage of the a
 
 Tests related to the load on an application
 
-1. Increase the number of concurrent requests on the application until failure. Record the result.
+1. Increase the number of concurrent requests on the database to test for failure
 
 ```
 
@@ -137,7 +133,7 @@ Tests related to the load on an application
 Tests for security related weaknesses in the system.
 
 1. Check if stored passwords are encrypted
-2. Check cookies and traffic location to scan for malicious actors
+2. Check for any idle sessions and log them out if idle
 
 ```
 
@@ -145,10 +141,10 @@ Tests for security related weaknesses in the system.
 
 ```
 
-Tests for failures related to scaling the application. 
+Tests for issues related to scaling the application. 
 
 1. Under increasing load, test how many nodes an application needs to recover
-2. Monitor load to identify peak time. Assign more nodes during this time
+2. Test the length of time required for more nodes to be added and the application to recover. Flag if significantly longer than average time.
 
 ```
 
