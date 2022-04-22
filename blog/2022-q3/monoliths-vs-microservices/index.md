@@ -1,17 +1,17 @@
 ---
 title: Monoliths vs Microservices
-description: A brief summary of the post, 170 characters max including spaces.
+description: A post about the differences between monoliths and microservices. The post discusses why microservices may be better than monoliths for enterprise software applications and how microservices may have some challenges over monoliths despite their benefits.
 author: terence.wong@octopus.com
 visibility: private
 published: 3020-01-01-1400
-metaImage:
-bannerImage:
+metaImage: placeholderimg.png
+bannerImage: placeholderimg.png
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags:
   - DevOps
-  - Runbooks Series
-  - Runbooks
+  - Containers
+  - Cloud Orchestration
 ---
 
 <!-- see https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags -->
