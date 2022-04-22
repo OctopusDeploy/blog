@@ -4,9 +4,9 @@ description: Learn how to use runbooks to perform high level smoke tests against
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2022-05-11-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-runningsmoketestsoninfrastructure-2022.png
+bannerImage: blogimage-runningsmoketestsoninfrastructure-2022.png
+bannerImageAlt: Oversized screen with a magnifying glass finding bugs in code, surrounded by smoke. Person sits in front, cross-legged with laptop in lap.
 isFeatured: false
 tags: 
   - DevOps
