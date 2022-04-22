@@ -34,7 +34,7 @@ Containers are portable, they can run anywhere on any infrastructure, such as in
 
 ## What are the top container images?
 
-According to [Docker Hub](https://hub.docker.com/search?q=&type=image) today, the top five images are: 
+[Docker Hub](https://hub.docker.com/search?q=&type=image) provides a list of popular container images.Some of the top container images are: 
 
 - Ubuntu, a Debian-based Linux operating system 
 
@@ -45,7 +45,6 @@ According to [Docker Hub](https://hub.docker.com/search?q=&type=image) today, th
 - Redis, an open-source in-memory data structure store used as a database, cache, and message broker. 
 
 - Alpine, a Linux distribution built around musl libc and BusyBox
-
 
 Popular container images are often open-source and address a fundamental need in software applications, such as databases, web servers, or caches. These images are maintained and kept up to date by a community and are OCI compliant. Developers can use a mixture of these container images to build an application, knowing that each container image will run in the same way and on any infrastructure.
 
