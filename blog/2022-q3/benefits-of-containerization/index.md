@@ -22,7 +22,7 @@ A container is a lightweight, portable computing environment with all the necess
 
 ### Containers complement your DevOps process
 
-In our [introduction to DevOps blog](https://octopus.com/blog/introduction-to-devops), we discussed how DevOps as a concept is about removing barriers that get in the way of software delivery. DevOps refines every process between the developer and the customer (flow), has faster feedback loops and continues experimentation and learning. DevOps is a practice that focuses on agility and automation. Using containerization complements DevOps because software can be deployed and tested faster, improving feedback loops. Containerization has also been a major factor in the popularity of microservices, a [software architecture that improves flexibility and agility](link).
+In our [introduction to DevOps blog](https://octopus.com/blog/introduction-to-devops), we discussed how DevOps as a concept is about removing barriers that get in the way of software delivery. DevOps refines every process between the developer and the customer (flow), has faster feedback loops and continues experimentation and learning. DevOps is a practice that focuses on agility and automation. Using containerization complements DevOps because software can be deployed and tested faster, improving feedback loops. Containerization has also been a major factor in the popularity of microservices, a [software architecture that improves flexibility and agility].
 
 ### Containers are scalable - allocate resources efficiently
 
