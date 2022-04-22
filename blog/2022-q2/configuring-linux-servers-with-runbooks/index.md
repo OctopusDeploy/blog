@@ -1,8 +1,8 @@
 ---
-title: Configuring Linux servers with Runbooks
+title: Configuring Linux servers with Octopus Runbooks
 description: As part of our series about Runbooks, learn how to configure Linux servers with Octopus Runbooks.
 author: terence.wong@octopus.com
-visibility: private
+visibility: public
 published: 2022-04-27-1400
 metaImage: blogimage-configuringlinuxserverswithrunbooks-2022.png
 bannerImage: blogimage-configuringlinuxserverswithrunbooks-2022.png
@@ -15,7 +15,7 @@ tags:
   - Linux
 ---
 
-When setting up a Linux server, you need to configure the system for your needs. You can use the server for web development, system administration, data science, and more. Each use case has different configuration requirements, and manually configuring these servers can be tedious and time-consuming. 
+When setting up a Linux server, you have to configure the system for your needs. You can use the server for web development, system administration, data science, and more. Each use case has different configuration requirements, and manually configuring these servers can be tedious. 
 
 With Octopus Runbooks you can create a repeatable, automatic process to configure your Linux servers, and it can be adapted to suit different configuration needs.
 
@@ -31,11 +31,11 @@ To follow along, you need:
 
 ## Creating a Linux server in Azure
 
-Microsoft Azure is a cloud computing platform for creating virtual machines, web applications, and other cloud-based resources. We'll use Azure to create a Linux server for our runbook example.
+Microsoft Azure is a cloud computing platform for creating virtual machines, web applications, and other cloud-based resources. We use Azure to create a Linux server for our runbook example.
 
 On the Azure home page, navigate to **Create a resource**, then **Ubuntu Server 20.04 LTS**, then **Create**.
 
-Choose the linked subscription and create a new resource group. Give the server a name. Under **Administrator account** generate an SSH public key or password, which you'll use later. Select **Review + Create** to accept the default settings.
+Choose the linked subscription and create a new resource group. Give the server a name. Under **Administrator account**, generate an SSH public key or password, which you use later. Select **Review + Create** to accept the default settings.
 
 When finished, select **Go to resource**. Connect to the server by clicking **Connect, Bastion**. You need to enter either your SSH key or password from earlier. If this is your first time setting up Bastion, click **Deploy Bastion**, and wait for it to complete the set up.
 
@@ -73,38 +73,38 @@ Configure the Tentacle on the Linux server by running the following command:
 
 ```
 
-The setup script will ask you a series of questions. Make sure to specify the following parameters:
+The setup script asks you a series of questions. Make sure to specify the following parameters:
 
 1. **Name of Tentacle instance (default Tentacle):** press Enter to accept defaults
-1. **What kind of Tentacle would you like to configure:** 1) Listening or 2) Polling (default 1): 2
+1. **What kind of Tentacle would you like to configure:** 1) Listening or 2) Polling (default 1): `2`
 1. **Where would you like Tentacle to store log files? (/etc/octopus):** press Enter to accept defaults
 1. **Where would you like Tentacle to install applications to? (/home/Octopus/Applications):** press Enter to accept defaults
-1. **Octopus Server URL (eg. https://octopus-server):** The URL of your Octopus instance
+1. **Octopus Server URL (eg. https://octopus-server):** the URL of your Octopus instance
 1. **Select auth method: 1) API-Key or 2) Username and Password (default 1):** 1
-1. **API-Key:** Enter the API key configured earlier
+1. **API-Key:** enter the API key configured earlier
 1. **Select type of Tentacle do you want to setup: 1) Deployment Target or 2) Worker (default 1):** 1
 1. **What Space would you like to register this Tentacle in? (Default):** press Enter to accept defaults
 1. **What name would you like to register this Tentacle with?** press Enter to accept defaults
-1. **Enter the environments for this Tentacle (comma seperated):** Specify the environment/s of the Octopus instance
-1. **Enter the roles for this Tentacle (comma seperated):** Specify a role for the tentacle, for example, Linux (you use this later in the runbook)
-1. Press Enter to continue
+1. **Enter the environments for this Tentacle (comma seperated):** specify the environment/s of the Octopus instance
+1. **Enter the roles for this Tentacle (comma seperated):** specify a role for the tentacle, for example, Linux (you use this later in the runbook)
+1. Press **Enter** to continue
 
 
 ### Confirming the Tentacle connection
 
-Confirm your Tentacle is connected in Octopus by navigating to **Infrastructure**, then **Deployment Targets**. Here you see your connected deployment target.
+You confirm your Tentacle is connected in Octopus by navigating to **Infrastructure**, then **Deployment Targets**. Here you see your connected deployment target.
 
 ![Linux Deployment Target](linux-deployment-target.png "width=500")
 
 ## Setting up the runbook in Octopus
 
-After you've created the Linux server, and installed and connected the Tentacle, you can create the runbook. The runbook establishes a development environment for a web development use case. Other use cases require a different configuration setup. Operations can run the runbook when a web developer needs a server set up.
+After you create the Linux server, and install and connect the Tentacle, you can create the runbook. The runbook establishes a development environment for a web development use case. Other use cases require a different configuration setup. Operations can run the runbook when a web developer needs a server set up.
 
 ### Create the runbook
 
 1. Create a project to host the runbook by going to **Projects**, then **Add Project**.
 1. In your project, go to **Runbooks**, then **Add Runbook**, then **Process**, then **Add Step**, then **Script**, then **Run a Script**, and finally, **Add**.
-1. Under `on Targets in Roles`, add the role you specified in the Tentacle setup script.
+1. Under **On Targets in Roles**, add the role you specified in the Tentacle setup script.
 1. Specify a Bash script and add the following code:
 
 ```
@@ -127,9 +127,9 @@ apt-get install -y npm
 
 5. Click **SAVE** and **Run**.
 
-You'll get a successful result.
+You then see a successful result.
 
-![Runbook succes web developer](runbook-web-success.png "width=500")
+![Runbook success web developer](runbook-web-success.png "width=500")
 
 Go to the Linux server and run the `npm` command to confirm the installation.
 
@@ -179,7 +179,7 @@ Configuring servers can be a tedious, manual process. Often, there are multiple 
 
 Runbooks can cater to specific configuration needs and be triggered when required. The repeatable nature of runbooks introduces consistency in your organizational infrastructure. Runbooks also reduce the workload for system administrators so they can focus on other tasks. 
 
-If you'd like to know more about how Octopus Runbooks can help with your deployment needs, [contact our Customer Success team](mailto:customersuccess@octopus.com).
+To learn more about how Octopus Runbooks can help with your deployment needs, [contact our Customer Success team](mailto:customersuccess@octopus.com).
 
 !include <q2-2022-newsletter-cta>
 
