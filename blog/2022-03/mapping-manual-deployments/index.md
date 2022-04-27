@@ -72,17 +72,11 @@ The sample checklist includes three teams in the *who* column that are responsib
 
 Follow these steps to add each team to Octopus:
 
-- Navigate to **{{ Configuration,Teams }}**
-- Select **ADD TEAM**
-- Enter the **New team name**, for example, "DBA Team"
-- Select **SAVE**
-- Open the **USER ROLES** tab
-- Select **INCLUDE USER ROLE**
-- Choose **Project Deployer** from the list
-- Select **DEFINE SCOPE**
-- Under **Select project groups** choose "Default Project Group"
-- Select **APPLY**
-- Finally, select **SAVE**
+1. Navigate to **{{ Configuration,Teams }}** and select **ADD TEAM**
+1. Enter the **New team name**, for example, "DBA Team" and select **SAVE**
+1. Open the **USER ROLES** tab and select **INCLUDE USER ROLE**
+1. Choose **Project Deployer** from the list and select **DEFINE SCOPE**
+1. Under **Select project groups** choose "Default Project Group", click **APPLY** and finally, **SAVE**
 
 :::hint
 The **Project deployer** role grants the user all project contributor permissions, plus: deploying releases and executing runbooks.
