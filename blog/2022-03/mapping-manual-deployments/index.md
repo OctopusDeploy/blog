@@ -68,9 +68,9 @@ Now we can transfer this into Octopus to get the benefits of workflow management
 
 ### Model your teams
 
-The sample checklist includes three teams in the *who* column that are responsible for the deployment: DBAs, Ops, and Test. When you create the process in Octopus, you can assign each step to a *responsible team*. To model this, you can create teams and add team members to use when you define the deployment process.
+The sample checklist lists three teams in the *who* column that are responsible for the deployment: DBAs, Ops, and Test. When you create the process in Octopus, you can assign each step to a *responsible team*.
 
-Follow these steps to add each team to Octopus:
+Follow these steps to create each team in Octopus:
 
 1. Navigate to **{{ Configuration,Teams }}** and select **ADD TEAM**
 1. Enter the **New team name**, for example, "DBA Team" and select **SAVE**
