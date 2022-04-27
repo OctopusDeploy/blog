@@ -28,7 +28,7 @@ In this post, you learn how to modify a GitHub Actions Workflow to capture the d
 
 This post uses GitHub Actions as a CI server. GitHub Actions is free for public git repositories, so you only need a GitHub account to get started.
 
-The sample runbook script is written against Python 3, which can be downloaded from the [Python website](https://www.python.org/downloads/). The example runbook source code can be found on [GitHub](https://github.com/OctopusSamples/DependencyQuery).
+The sample runbook script is written against Python 3, which you can download from the [Python website](https://www.python.org/downloads/). You can find the example runbook source code on [GitHub](https://github.com/OctopusSamples/DependencyQuery).
 
 ## Capturing dependencies during the build process
 
@@ -85,7 +85,7 @@ The [xo-energy/action-octopus-build-information](https://github.com/xo-energy/ac
         octopus_environment: "Development"
 ```
 
-Pushing the build information package is all you need for Octopus to link the metadata to a release. The build information is linked to the release as long as the build information package ID and version matches a package used in an Octopus step. 
+Pushing the build information package is all you need for Octopus to link the metadata to a release. The build information is linked to the release as long as the build information package ID and version match a package used in an Octopus step. 
 
 The next step is to write a custom script to query the Octopus API to extract the link back to the CI server for the latest release in a given environment.
 
@@ -93,7 +93,7 @@ The next step is to write a custom script to query the Octopus API to extract th
 
 You now have all the information in place to track the dependencies for any packages used in an Octopus release. It's possible to manually traverse the links exposed in the Octopus UI back to the GitHub Actions run, download the dependencies artifact, and scan the text file inside. But this manual workflow doesn't scale as the number of application increases. Instead, you want to automate the process through a runbook executing a custom Python script.
 
-The first step is to define the dependencies for the script in the file `requirements.txt`. The script will make use of the [requests](https://pypi.org/project/requests/) package to streamline HTTP requests:
+The first step is to define the dependencies for the script in the file `requirements.txt`. The script makes use of the [requests](https://pypi.org/project/requests/) package to streamline HTTP requests:
 
 ```txt
 requests==2.27.1
@@ -337,7 +337,7 @@ scan_dependencies()
 
 Let's break this code down to understand what it's doing.
 
-Your script will accept parameters from command-line arguments to make it reusable across multiple Octopus instances and spaces. The arguments are parsed by the [argparse module](https://docs.python.org/3/library/argparse.html). Learn more about using `argparse`in Real Python's post, [How to Build Command Line Interfaces in Python With argparse](https://realpython.com/command-line-interfaces-python-argparse/):
+Your script accepts parameters from command-line arguments to make it reusable across multiple Octopus instances and spaces. The arguments are parsed by the [argparse module](https://docs.python.org/3/library/argparse.html). Learn more about using `argparse`in Real Python's post, [How to Build Command Line Interfaces in Python With argparse](https://realpython.com/command-line-interfaces-python-argparse/):
 
 ```python
 parser = argparse.ArgumentParser(description='Scan a deployment for a dependency.')
@@ -405,7 +405,7 @@ github_auth = HTTPBasicAuth(args.github_user, args.github_token)
 
 An important aspect of this script is the ability to find the latest release deployed to a given environment. This means comparing dates returned by the Octopus API.
 
-The Octopus API returns dates in the ISO 8601 format, which looks like `2022-01-04T04:23:02.941+00:00`. Unfortunately, [Python 3.6 does not support timezone offsets that include colons](https://bugs.python.org/issue15873), forcing us to strip them out before parsing and comparing the dates. 
+The Octopus API returns dates in the ISO 8601 format, which looks like `2022-01-04T04:23:02.941+00:00`. Unfortunately, [Python 3.6 does not support timezone offsets that include colons](https://bugs.python.org/issue15873), forcing you to strip them out before parsing and comparing the dates. 
 
 The `compare_dates` function takes two dates as strings, strips out the colons, parses the result, and returns a value of `1`, `0`, or `-1` indicating how `date1` compares to `date2`:
 
@@ -487,7 +487,7 @@ def get_resource_id(space_id, resource_type, resource_name):
 
 You now need to provide a way to determine the release that was last deployed to the selected environment for the selected project.
 
-A release is a snapshot of the deployment process, package versions, and variables. This is the resource that is created when you click the **CREATE RELEASE** button in the Octopus UI.
+A release is a snapshot of the deployment process, package versions, and variables. This is the resource that's created when you click the **CREATE RELEASE** button in the Octopus UI.
 
 A deployment is then the execution of a release to an environment.
 
