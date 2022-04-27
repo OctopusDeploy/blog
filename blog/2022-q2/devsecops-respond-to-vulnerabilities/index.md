@@ -34,14 +34,14 @@ The sample runbook script is written against Python 3, which can be downloaded f
 
 You start by capturing the dependencies consumed by the build process as part of our GitHub Actions workflow. Every major language today provides the ability to list dependencies, and the list below shows examples of these commands, capturing the output in a file called `dependencies.txt`:
 
-* Maven - `mvn --batch-mode dependency:tree --no-transfer-progress > dependencies.txt`
-* Gradle - `gradle dependencies --console=plain > dependencies.txt`
-* Npm - `npm list --all > dependencies.txt`
-* PHP - `composer show --all > dependencies.txt`
-* Python - `pip install pipdeptree; pipdeptree > dependencies.txt`
-* Go - `go list > dependencies.txt`
-* Ruby - `gem dep > dependencies.txt`
-* DotNET Core - `dotnet list package > dependencies.txt`
+- Maven - `mvn --batch-mode dependency:tree --no-transfer-progress > dependencies.txt`
+- Gradle - `gradle dependencies --console=plain > dependencies.txt`
+- Npm - `npm list --all > dependencies.txt`
+- PHP - `composer show --all > dependencies.txt`
+- Python - `pip install pipdeptree; pipdeptree > dependencies.txt`
+- Go - `go list > dependencies.txt`
+- Ruby - `gem dep > dependencies.txt`
+- DotNET Core - `dotnet list package > dependencies.txt`
 
 Two steps must be added to a GitHub Actions workflow to capture the dependencies as an artifact. The example below demonstrates how to capture Maven dependencies, but the `run` property of the `List Dependencies` step can be replaced with any of the commands above for your specific use case:
 
