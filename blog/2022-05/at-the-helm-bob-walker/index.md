@@ -1,12 +1,12 @@
 ---
 title: At the helm with Bob Walker
-description: A series where we chat to people at Octopus about their role, what they're working on to improve the product, and more. Hear from Bob Walker, our VP of Customer Solutions
+description: A series where we chat to people at Octopus about their role, what they're working on to improve the product, and more. Hear from Bob Walker, our VP of Customer Solutions.
 author: bob.walker@octopus.com
 visibility: public
 published: 2022-05-23-1400
 metaImage: 
 bannerImage: 
-bannerImageAlt: Octopus branded security badge with text that says Bob Walker VP of Customer Solutions, above the silhouette of a man. 
+bannerImageAlt: Octopus branded security badge with text that says Bob Walker, VP of Customer Solutions, above the silhouette of a man. 
 isFeatured: false
 tags: 
   - Company
@@ -18,35 +18,50 @@ Here we talk to Bob Walker, our VP of Customer Solutions.
 
 ## How long have you been at Octopus and what drew you to work here?
 
-I was a user of Octopus Deploy before I joined Octopus.  I experienced first-hand seeing the benefit of implementing Octopus Deploy at two different companies.  Before using Octopus were deploying major releases once a quarter that took several hours.  Those deployments required several emergency fixes for days after because of some missed database change or configuration file not being updated.  After implementing Octopus, eventually, we got deploying once every 10 days and it took 15 minutes with no emergency fixes (outside of missed bugs).
+I was using Octopus Deploy before I joined Octopus. I saw first-hand the benefits of implementing Octopus Deploy at 2 different companies.  
 
-Being a user (and a fan) I followed Octopus on Twitter and late 2017 I saw they were hiring in the US for the first time, for the role of pre-sales engineer.  A chance to work in CI/CD and help customers use a tool I am a fan of?  Sold!  I applied that night.  Fun fact: my first day consisted of filling out some forms and then boarding a plane to Brisbane, Australia.  Ryan Rousseau were hired on the same day and are the first two US-based employees, none of the onboarding infrastructure we have in place today existed, so onboarding had to happen in Australia.  
+Before using Octopus at these compaies, we deployed major releases once per quarter, and it took several hours.  The deployments required emergency fixes for days after. It was easy to miss a database change or forget to update a configuration file.  
 
+After implementing Octopus, we deployed every 10 days, and it took 15 minutes with no emergency fixes (outside of missed bugs).
+
+Being a user and a fan, I followed Octopus on Twitter. In late 2017, I saw they were hiring in the US for the role of pre-sales engineer. The chance to work in CI/CD and help customers use a tool I was a fan of - sold! I applied that night.  
+
+Fun fact: I filled out some forms on my first day and then boarded a plane to Brisbane, Australia. Ryan Rousseau, Principal Solutions Architect, was hired on the same day, and we were the first 2 US-based employees. None of the onboarding infrastructure we have today existed, so onboarding had to happen in Australia.    
 
 ## What does the Customer Solutions team do?
 
-The Customer Solutions team helps customers solve complex problems as Octopus Deploy exists today.  We look at Octopus as it exists for our customers right now, not what it could be in six months, because they need help today.
+The Customer Solutions team helps customers solve complex problems. We look at Octopus as it exists right now for our customers, not what it could be in 6 months, because our customers need help today.
 
-The analogy I like to use is deploying to Production is like painting a room.  The actual painting part doesn’t take very long, it is all the prep-work and clean up that makes it such an event.  Our customers experience the same thing, but instead of having to pick out a color (and having the inevitable fight with their partner) or moving out all the furniture, they have to worry about making sure their deployment targets are have the necessary software or what the database delta script looks like.  
+I use the analogy that deploying to production is like painting a room.  The painting doesn’t take long, but the prep-work and clean-up make it an event. Our customers experience the same thing. Instead of picking a color or moving the furniture, they have to make sure their deployment targets use the necessary software or know what the database delta script looks like.   
 
 ## What does a typical day look like as VP of Customer Solutions?
 
-Everyone on the team is very smart, extremely nice, and they want to help our customers to the best of their abilities.   Our first priority is helping customers who have reached out to us directly.  Some questions can be answered in a few email exchanges, but others require a longer-term engagement lasting anywhere from a few weeks to a couple of months.  Part of my day to day is making sure those longer term engagements are distributed correctly, they are on track, and the customer is happy and successful.
+We have a team of intelligent and friendly people who want to help our customers to the best of their abilities. Our priority is helping customers who have reached out to us directly. We can answer some questions in a few email exchanges, but others need a longer-term engagement from weeks to months. As part of my day-to-day, I distribute the longer-term engagements, ensure they're on track, and that our customers are happy and successful.
 
-Once we come up with a solution for one customer, the question then becomes, how can we share that with as many customers as possible?  Another part of my day to day ensuring the team is focusing their limited time on the most important thing. Can we pre-emptively answer questions with a doc update, a blog post, a webinar, or something else?  We are never bereft of ideas to work on, so it is identifying the ones with the biggest impact. 
+After we devise a solution for one customer, we work out how to share that with as many customers as possible.  I also ensure the team focuses their limited time on the most important things. Can we pre-emptively answer questions with a doc update, a blog post, a webinar, or something else?  We're never short of work, so we need to identify what will have the most significant impact.  
 
 ## What are the most common questions from our customers?
 
-It varies from week to week and release to release.  As 2022.1 just came out, we are getting more questions around best usage of Config as Code.  You can always tell when we get a set of similar questions on a topic because you’ll see a big change to our docs or new examples appear on our [public samples instance](https://samples.octopus.app/app). A while ago we were getting a lot of questions about upgrades, so we re-wrote the upgrade guide to include topics our customers were asking about.  Or, we didn’t have a good example for rollbacks, so we created a [new space in our samples instance](https://samples.octopus.app/app#/Spaces-762) as well as hosted a webinar to demonstrate how to do it. 
+Our questions vary each week and with each release.  
 
-## How does your team keep up with all the changes in the world of software and in our ever-evolving product?
+We recently released 2022.1, so we're currently getting lots of questions about how best to use Config as Code.  
 
-Every month we has a week of “sharpening time.”  That comes from the quote attributed to Abraham Lincoln, “if I had six hours to chop down a tree, I’d spend four sharpening the axe.”
+When we get similar questions on a topic, you'll see us update our docs or add new examples on our [public samples instance](https://samples.octopus.app/app). 
 
-During that week, when a person is not helping a customer 1:1, they are taking the time to sharpen their axe by diving into a topic that interests them.  People on the team have found their own area of expertise.  For example, Shawn a deep dive into Kubernetes where he set up his own cluster running on Raspberry Pis, while Adam did a deep dive into AWS and configured the team’s VPCs, Subnets, IAM, and anything else that is shared.  
+We received lots of questions about upgrades a while ago, so we re-wrote the upgrade guide to include topics our customers were asking about.  Late last year, we addressed the need for rollback examples by creating a [new space in our samples instance](https://samples.octopus.app/app#/Spaces-762) and hosting a [webinar to demonstrate rolling back](https://octopus.com/events/rollback-strategies-with-octopus-deploy).
 
-The unstructure sharpening time is very useful, as you don’t know where it will lead.  But we always have new features and functionality being added to Octopus that we do need to learn about.  When we are not sharpening, we work on campaigns to do things like host a webinar, update some docs, or create a sample.  Most of the time that will cover a new feature.  When we think a feature is something everyone on the team should know, then we ensure everyone on the team has some hand’s on experience.  
+## How does your team keep up with all the changes in the world of software and our ever-evolving product?
+
+Every month we have a week of “sharpening time.” Sharpening comes from a quote attributed to Abraham Lincoln, “If I had six hours to chop down a tree, I’d spend four sharpening the axe.”
+
+During sharpening week, when we're not helping a customer, each person is sharpening their axe by delving into a topic that interests them. People on the team have found their areas of expertise this way.  For example, Shawn deep-dived into Kubernetes and set up his cluster on Raspberry Pis, while Adam deep-dived into AWS and configured the team’s VPCs, subnets, IAM, and anything else that was shared.  
+
+The great thing about unstructured sharpening time is that you don’t know where it will lead.  
+
+We're always adding new features and functionality to Octopus that we need to learn about, too.  When we're not sharpening, we might host a webinar, update our docs, or create a sample to cover a new feature.  If everyone in the team needs to know about a feature, we ensure they have some hands-on experience with it.
 
 ## How do you measure success internally and for our customers?
 
-It can be tricky to isolate one specific metric, as each person is using Octopus a little differently.  A SaaS company who creates unique infrastructure per customer has a different set of challenges than an insurance company who has a suite of internal only applications.  Ultimately, we want our customers to be happy and successful using Octopus Deploy.  One way to measure that is by looking at renewal and expansion percentages.  But that is not the only metric.  Personally, I’d hate for a person to renew their license “in anger.”  We evaluate a host of other indicators, such as duplicate questions, number of questions, version usage, feature usage, and so on.  
+It's tricky to isolate one metric to measure success for our customers, as each person uses Octopus differently. A SaaS company that creates a unique infrastructure per customer faces different challenges than an insurance company with a suite of internal-only applications.  
+
+Ultimately, we want our customers to be happy and successful using Octopus Deploy. One way we measure success is by looking at renewal and expansion percentages. But that's not the only metric. I’d hate for someone to renew their license “in anger”.  We evaluate a host of other indicators, such as duplicate questions, number of questions, version use, feature use, and more. 
