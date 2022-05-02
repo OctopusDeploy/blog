@@ -31,7 +31,7 @@ Any growing team that fails to implement standard practices around the creation 
 
 In AWS, the first step towards describing resource attributes like who owns it and its purpose are to apply a set of standardized tags. The next step is to ensure all resources are created with declarative templates like CloudFormation, which allows resources to be recreated if needed, and also allows the detection of unwanted manual changes, known as drift.
 
-To identify noncompliant resources, you'll create two simple runbooks to scan your AWS account for resources without the expected tags.
+To identify non-compliant resources, you'll create two simple runbooks to scan your AWS account for resources without the expected tags.
 
 ## Identifying untagged resources
 
@@ -72,7 +72,7 @@ echo $OUTPUT | jq -r '.ResourceTagMappingList[] | select(contains({Tags: [{Key: 
 Note that at the time of writing there are open issues where tags like `aws:cloudformation:stack-id` are not applied to some resources. For example, [SQS topics do not have the tags applied](https://github.com/aws-cloudformation/cloudformation-coverage-roadmap/issues/652).
 :::
 
-## Resolving noncompliant resources
+## Resolving non-compliant resources
 
 Defining tags on resources that lack them is usually a case of manually adding them through the web console or CLI. The script below shows an example of adding common tags to resources in bulk:
 
@@ -93,7 +93,7 @@ The process of importing unmanaged resources into a CloudFormation stack is desc
 
 Identifying shadow IT resources in your AWS account is the first step to establishing infrastructure that can be effectively managed by your DevOps teams. Then, by establishing a consistent tagging scheme, you're able to document who is responsible for what, the purpose of resources, and which external processes created them.
 
-In this post, you saw a number of scripts for finding noncompliant resources, and tips on how to add missing tags or import resources into CloudFormation stacks. These simple steps can make a huge difference as your infrastructure grows in size and complexity.
+In this post, you saw a number of scripts for finding non-compliant resources, and tips on how to add missing tags or import resources into CloudFormation stacks. These simple steps can make a huge difference as your infrastructure grows in size and complexity.
 
 !include <q2-2022-newsletter-cta>
 
