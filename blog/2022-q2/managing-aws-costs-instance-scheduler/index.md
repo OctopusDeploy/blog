@@ -1,13 +1,18 @@
 ---
 title: Managing AWS costs with Instance Scheduler
-description: Learn how to deploy and configure the Instance Scheduler to shutdown unused AWS resources
+description: Learn how to deploy and configure the Instance Scheduler to shutdown unused AWS resources.
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2999-01-01
+published: 2022-05-18-1400
 metaImage: 
 bannerImage: 
-tags:
- - Octopus
+bannerImageAlt: 125 characters max, describes image to people unable to see it.
+isFeatured: false
+tags: 
+  - DevOps
+  - Runbooks Series
+  - Runbooks
+  - AWS
 ---
 
 The promise of cloud computing has been to allow teams to efficiently scale up and down on demand. While on-premises infrastructure can save on electricity and cooling costs by shutting down, cloud based resources can avoid almost all charges (storage fees usually apply to stopped resources) by stopping any that are unused.
