@@ -36,7 +36,7 @@ You can install Jenkins in many ways, for instance, in [Linux or Windows](https:
 :::
 
 
-## Jenkins
+## Set up Jenkins for Octopus Deploy
 
 After you set up Jenkins, go to the URL for your Jenkins instance to access the UI. 
 
