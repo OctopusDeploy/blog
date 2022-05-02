@@ -6,7 +6,7 @@ visibility: public
 published: 2022-05-02-1400
 metaImage: blogimage-identifyingawsshadowitresources-2022.png
 bannerImage: blogimage-identifyingawsshadowitresources-2022.png 
-bannerImageAlt: Detective figure with a hat and trench coat holds a giant magnifying glass over a cloud revealing a web server.
+bannerImageAlt: Detective figure with a hat and trench coat holds a giant magnifying glass over a cloud revealing a server.
 isFeatured: false
 tags: 
   - DevOps
@@ -15,7 +15,7 @@ tags:
   - AWS
 ---
 
-The term shadow IT often refers to adhoc IT resources deployed by members of a DevOps team to solve an immediate need, but which lack the kind of ongoing maintenance and management to support long lived infrastructure.
+The term shadow IT often refers to ad hoc IT resources deployed by members of a DevOps team to solve an immediate need, but which lack the kind of ongoing maintenance and management to support long lived infrastructure.
 
 In AWS, shadow IT takes the form of virtual machines, S3 buckets, virtual private clouds, and any other kind of resource created on the fly, usually through the web console. 
 
