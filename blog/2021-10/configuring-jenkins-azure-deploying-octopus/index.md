@@ -1,5 +1,5 @@
 ---
-title: Configure Jenkins in Azure and deploy with Octopus Deploy 
+title: Configuring Jenkins in Azure and deploying with Octopus
 description: Learn how configure a Jenkins instance in Azure and deploy with Octopus Deploy
 author: terence.wong@octopus.com
 visibility: public 
