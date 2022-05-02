@@ -1,54 +1,59 @@
 ---
 title: Configuring Jenkins in Azure and deploying with Octopus
-description: Learn how configure a Jenkins instance in Azure and deploy with Octopus Deploy
+description: Learn how to configure a Jenkins instance in Azure and deploy with Octopus.
 author: terence.wong@octopus.com
 visibility: public 
-published: 2021-10-11
+published: 2022-05-17-1400
 metaImage: blogimage-configureajenkinsvminazureanddeploywithoctopusdeploy.png
 bannerImage: blogimage-configureajenkinsvminazureanddeploywithoctopusdeploy.png
 bannerImageAlt: A rocket coming from a Jenkins launch pad and being deployed via Octopus Deploy towards an Azure logo in the clouds.
 isFeatured: false
 tags:
+ - DevOps
  - Azure
  - Jenkins
 ---
 
-Jenkins is an open-source automation server that enables developers to automate building, testing, and deploying software. This blog post will show you how to configure a Jenkins instance, push a package to an Octopus Deploy instance, and deploy a web application to Azure.
+Jenkins is an open-source automation server that lets you automate building, testing, and deploying software. 
 
-To do this, you will need:
+In this post, I show you how to configure a Jenkins instance, push a package to an Octopus Deploy instance, and deploy a web application to Azure.
+
+
+## Before you start
+
+To follow along with this post, you need:
 
 - An Octopus Deploy instance
 - An Azure account
 - A Jenkins instance
 
 :::hint
-You can install Jenkins in many ways, for instance, for instance in [Linux or Windows](https://octopus.com/blog/jenkins-install-guide-windows-linux), on [Docker](https://octopus.com/blog/jenkins-docker-install-guide), or with [Helm](https://octopus.com/blog/jenkins-helm-install-guide). Alternatively, you could follow [this guide](https://docs.microsoft.com/en-us/azure/developer/jenkins/configure-on-linux-vm. If you complete steps 1-4. The guide will give you a live Jenkins instance on Azure.
+You can install Jenkins in many ways, for instance, in [Linux or Windows](https://octopus.com/blog/jenkins-install-guide-windows-linux), on [Docker](https://octopus.com/blog/jenkins-docker-install-guide), or with [Helm](https://octopus.com/blog/jenkins-helm-install-guide). Or you can follow steps 1 to 4 in [this guide](https://docs.microsoft.com/en-us/azure/developer/jenkins/configure-on-linux-vm) for a live Jenkins instance on Azure.
 :::
-
 
 
 ## Jenkins
 
-With Jenkins set up, go to the URL for your Jenkins instance to access the UI. In the UI, go to **{{Manage Jenkins, Manage Plugins}}** and search for the Octopus Deploy Plugin under Available, and install the plugin.
+After you set up Jenkins, go to the URL for your Jenkins instance to access the UI. 
+
+In the UI, go to **Manage Jenkins**, then **Manage Plugins** and search for the Octopus Deploy Plugin under **Available** and install the plugin.
 
 ![Octopus Plugin](octopus-plugin.png "width=500")
 
 
-Generate an API key in the Octopus Deploy instance. To do this, in the Octopus Deploy instance, go to your **{{username, Profile, My API Keys}}** and create a key. Jenkins will use this value.
+Generate an API key in the Octopus Deploy instance. To do this, in the Octopus Deploy instance, go to your **username**, then **Profile**, then **My API Keys**, and create a key. Jenkins uses this value.
 
 ![Octopus API Key](octopus-api-key.png "width=500")
 
-
-Go to **{{Manage Jenkins, Configure system}}**
+Next, go to **Manage Jenkins**, then **Configure system**.
 
 Under the Octopus Deploy Plugin setting, set the URL to the Octopus Deploy instance and add the API key.
 
 ![Octopus URL](octopus-url.png "width=500")
 
+Jenkins now makes your compile packages available in Octopus, ready to be deployed. 
 
-
-
-Jenkins can now make your compile packages available in Octopus to be deployed. Let's create a new job by going to the Jenkins home page and click **new item &rarr; freestyle project**, and assign the following settings:
+Let's create a new job by going to the Jenkins home page and clicking **New item**, then **Freestyle project**, and assigning the following settings:
 
 ### Source Code Management
 
