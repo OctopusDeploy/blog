@@ -15,7 +15,7 @@ tags:
  - CloudFormation
 ---
 
-In our previous post, [Create a private AWS VPC with CloudFormation](https://octopus.com/blog/aws-vpc-private), you looked at how to create a VPC with private subnets, and then [add an internet gateway](https://octopus.com/blog/aws-vpc-public) to grant internet access inside public subnets.
+In our first post, [Create a private AWS VPC with CloudFormation](https://octopus.com/blog/aws-vpc-private), you looked at how to create a VPC with private subnets, and then, in our second post, [add an internet gateway to grant internet access inside public subnets](https://octopus.com/blog/aws-vpc-public).
 
 By mixing both private and public subnets, it's possible to create a VPC that exposes some instances publicly, while restricting access to private instances. This is a common configuration for VPCs that host a public website, and the website accesses a private database.
 
