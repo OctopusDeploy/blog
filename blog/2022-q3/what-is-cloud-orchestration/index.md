@@ -14,9 +14,6 @@ tags:
   - Runbooks
 ---
 
-<!-- see https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags -->
-## Introduction
-
 Cloud solutions have gained popularity over traditional IT systems. A [study by Gartner](https://www.gartner.com/en/newsroom/press-releases/2022-02-09-gartner-says-more-than-half-of-enterprise-it-spending) indicates that revenue for cloud products are set to overtake traditional IT solutions in 2025.
 
 ![Gartner Cloud Adoption](gartner-cloud-adoption.png "width=500")
@@ -43,27 +40,17 @@ SaaS systems are often built on IaaS and PaaS platforms and PaaS platforms are o
 
 <!-- Good image https://azure.microsoft.com/en-au/overview/what-is-paas/ -->
 
-## Why it's important
-
-
-## Benefits
-
-
-
-Efficiency
-Cost Reductions
-Supports DevOps
-Security
-
 ## Different tooling
 
 Here are some cloud orchestration tools:
 
 ### Terraform
 
-Terraform is an open source infrastructure as code tool. You can specify your infrastructure in configuration files which are interpreted to deploy infrastructure on the cloud. This tool is used by many cloud providers as a common framework to deploy infrastructure solutions.
+Terraform is an open source infrastructure as code tool. You can specify your infrastructure in configuration files which are interpreted to deploy infrastructure on the cloud. The benefit of infrastructure as code is that infrastructure configurations can be saved and restored between versions. Terraform is used by many cloud providers as a common framework to deploy infrastructure solutions.
 
 ### Kubernetes
+
+Kubernetes is a container orchestration tool developed by Google. Containers are lightweight computing units that make up a larger application. Kubernetes works with cloud providers to manage and deploy containers on infrastrucutre. Resources can be scaled up or down depending on demand which saves costs and increases the reliability of the application.
 
 ### Platform as a Service Cloud Automation tools
 
@@ -76,10 +63,24 @@ Many PaaS cloud providers have tools that allow cloud automation. These tools in
 
 These tools allow developers to automate their cloud environments through infrastructure as code, deployment management GUIs, and integrations to other cloud solutions within the PaaS system.
 
-### RedHat Ansible
+### Dedicated Cloud Orchestration tools
 
-Cloudify
-Morpheus
+Apart from the major cloud provider cloud orchestration tools, there are some dedicated tools such as:
+
+- RedHat Ansible
+- Cloudify
+- Morpheus
+
+
+
+## Benefits
+
+
+
+Efficiency
+Cost Reductions
+Supports DevOps
+Security
 
 ## How Octopus fits in
 
