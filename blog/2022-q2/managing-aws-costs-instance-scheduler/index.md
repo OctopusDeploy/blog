@@ -4,9 +4,9 @@ description: Learn how to deploy and configure the Instance Scheduler to shutdow
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2022-05-18-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-aws-instance-scheduler-2022.png
+bannerImage: blogimage-aws-instance-scheduler-2022.png
+bannerImageAlt: Two blue octopus arms, one pressing a giant power button, the other wearing a wrist watch.
 isFeatured: false
 tags: 
   - DevOps
