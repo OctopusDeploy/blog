@@ -169,7 +169,7 @@ The IP address assigned to the EC2 instance allows you to SSH into it from your 
 
 Public subnets allow instances to access the internet, and give them the option of being assigned a public IP address. Creating a VPC with public subnets requires building an internet gateway, attaching it to the VPC, defining a route to direct public traffic through the internet gateway, and assigning the routes to the subnets.
 
-In this post you looked at a CloudFormation template creating a VPC with two public subnets. In the [next post](https://octopus.com/blog/aws-vpc-public-private/index.md) you learn how to create a VPC with both public and private subnets, and a NAT Gateway to grant internet access to instances in the private subnet.
+In this post you looked at a CloudFormation template creating a VPC with two public subnets. In the [next post](https://octopus.com/blog/aws-vpc-public-private) you learn how to create a VPC with both public and private subnets, and a NAT Gateway to grant internet access to instances in the private subnet.
 
 !include <q2-2022-newsletter-cta>
 
