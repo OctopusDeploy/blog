@@ -3,10 +3,10 @@ title: Generating instance types lists for CloudFormation
 description: Learn how to generate a list of available instance types to include in CloudFormation templates.
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2999-01-01
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+published: 2999-01-01-1400
+metaImage: blogimage-generatinginstancetypeslistsforcf-2022.png
+bannerImage: blogimage-generatinginstancetypeslistsforcf-2022.png
+bannerImageAlt: Blue octopus arm holding 
 isFeatured: false
 tags:
  - DevOps
