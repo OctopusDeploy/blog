@@ -49,7 +49,7 @@ Non-functional tests are more concerned with the application health rather than 
 
 ## Test types
 
-The following are some types of functional and non-functional tests. I have provided some general points of the kind of test and a real-life example.
+The following are some types of functional and non-functional tests. I have provided some general points of the kind of test and an example.
 
 ### Functional
 
