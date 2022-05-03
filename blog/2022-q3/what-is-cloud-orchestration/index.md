@@ -37,9 +37,9 @@ PaaS platforms give developers complete cloud development and deployment environ
 
 ### Infrastructure as a Service (IaaS)
 
-IaaS provides an on-demand service to deploy IT infrastructure such as virtual machines, servers, networks, and storage. IaaS is structured as pay-as-you-go where users pay for the infrastructure they need, when they need it. Examples of IaaS platforms include Digital Ocean, or AWS EC2. 
+IaaS provides an on-demand service to deploy IT infrastructure such as virtual machines, servers, networks, and storage. IaaS is structured as pay-as-you-go where users pay for the infrastructure they need, when they need it. Examples of IaaS platforms include Digital Ocean, or AWS EC2.
 
-SaaS systems are often build on IaaS or PaaS platforms and PaaS platforms are often built on IaaS platforms.
+SaaS systems are often built on IaaS and PaaS platforms and PaaS platforms are often built on IaaS platforms. The diagram below shows how SaaS, IaaS and PaaS work together to deliver cloud systems:
 
 <!-- Good image https://azure.microsoft.com/en-au/overview/what-is-paas/ -->
 
@@ -48,6 +48,8 @@ SaaS systems are often build on IaaS or PaaS platforms and PaaS platforms are of
 
 ## Benefits
 
+
+
 Efficiency
 Cost Reductions
 Supports DevOps
@@ -55,12 +57,27 @@ Security
 
 ## Different tooling
 
-Terraform
-AWS Cloud Formation
-IBM Cloud Orchestrator
-RedHat Ansible
-Microsoft Azure Automation
-Kubernetes
+Here are some cloud orchestration tools:
+
+### Terraform
+
+Terraform is an open source infrastructure as code tool. You can specify your infrastructure in configuration files which are interpreted to deploy infrastructure on the cloud. This tool is used by many cloud providers as a common framework to deploy infrastructure solutions.
+
+### Kubernetes
+
+### Platform as a Service Cloud Automation tools
+
+Many PaaS cloud providers have tools that allow cloud automation. These tools include:
+
+- AWS Cloud Formation
+- Microsoft Azure Automation
+- IBM Cloud Orchestrator
+- Google Cloud Composer
+
+These tools allow developers to automate their cloud environments through infrastructure as code, deployment management GUIs, and integrations to other cloud solutions within the PaaS system.
+
+### RedHat Ansible
+
 Cloudify
 Morpheus
 
