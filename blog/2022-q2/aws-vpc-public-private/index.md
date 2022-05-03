@@ -186,7 +186,7 @@ A new route, defined by the [AWS::EC2::Route](https://docs.aws.amazon.com/AWSClo
       RouteTableId: !Ref "NatRouteTable"
 ```
 
-The new route table is associated with `SubnetB` via a [AWS::EC2::SubnetRouteTableAssociation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet-route-table-assoc.html) resource:
+The new route table is associated with `SubnetB` via a [AWS::EC2::SubnetRouteTableAssociation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnetroutetableassociation.html) resource:
 
 ```yaml
   SubnetBRouteTableAssociation:
