@@ -4,8 +4,9 @@ description: Learn how to measure the performance of your deployments using the 
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2999-01-01
-metaImage: 
-bannerImage: 
+metaImage: blogimage-calculatingdorametrics-2022.png
+bannerImage: blogimage-calculatingdorametrics-2022.png
+bannerImageAlt: A book with arms and legs holds an oversized magnifying glass over a laptop highlighting a table with three columns.
 tags:
  - Octopus
 ---
