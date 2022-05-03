@@ -50,7 +50,7 @@ Terraform is an open source infrastructure as code tool. You can specify your in
 
 ### Kubernetes
 
-Kubernetes is a container orchestration tool developed by Google. Containers are lightweight computing units that make up a larger application. Kubernetes works with cloud providers to manage and deploy containers on infrastrucutre. Resources can be scaled up or down depending on demand which saves costs and increases the reliability of the application.
+Kubernetes is a container orchestration tool developed by Google. Containers are lightweight computing units that make up a larger application. Kubernetes works with cloud providers to manage and deploy containers on infrastructure. Resources can be scaled up or down depending on demand which saves costs and increases the reliability of the application.
 
 ### Platform as a Service Cloud Automation tools
 
@@ -65,22 +65,13 @@ These tools allow developers to automate their cloud environments through infras
 
 ### Dedicated Cloud Orchestration tools
 
-Apart from the major cloud provider cloud orchestration tools, there are some dedicated tools such as:
+Apart from the cloud provider cloud orchestration tools, there are some dedicated cloud orchestration tools such as:
 
 - RedHat Ansible
 - Cloudify
 - Morpheus
 
-
-
-## Benefits
-
-
-
-Efficiency
-Cost Reductions
-Supports DevOps
-Security
+These dedicated tools provide features such as cloud provisioning, configuration management, and automation. All cloud orchestration tools are designed to work with the major technologies such as Terraform and Kubernetes. The choice of tool will depend on IT budget, preferred languages, the location of preexisting deployments or other application specific requirements.
 
 ## How Octopus fits in
 
