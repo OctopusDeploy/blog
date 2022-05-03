@@ -3,10 +3,10 @@ title: Creating AMI mappings for CloudFormation
 description: Learn how to create region AMI mappings for use with CloudFormation Templates.
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2999-01-01
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+published: 2999-01-01-1400
+metaImage: blogimage-cloudformationmappings-2022.png
+bannerImage: blogimage-cloudformationmappings-2022.png
+bannerImageAlt: World globe with three oversized orange pins in different locations.
 isFeatured: false
 tags:
  - DevOps
