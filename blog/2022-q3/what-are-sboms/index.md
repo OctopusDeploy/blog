@@ -21,13 +21,13 @@ tags:
 
 ## What are SBOMs?
 
-Software applications are built from various sources, from in-house components to paid software to open-source software. The wide variety of software components in an application makes it hard to track what an application is made of. The lack of traceability in software applications poses a security threat to governments and businesses. How can an application be secure when the individual components used to build the application are not known?
+Software applications are built from various sources, such as in-house components, paid software and open-source software. The wide variety of software components in an application makes it hard to track what an application is made of. The lack of traceability in software applications poses a security threat to governments and businesses. How can an application be secure when the individual components used to build the application are not known?
 
 A bill of materials is a manufacturing term that lists the required inventory to produce a given output reliably. Bills of materials have been used for years to provide transparency and repeatability to the manufacturing process. Software bills of materials (SBOMs) apply a similar concept to bills of materials to software. SBOMs itemize the components in a software application in a list that developers can share across teams.
 
 ## Executive Order
 
-On the 12th of May 2021, The United States government released an executive order (EO) on Improving the Nation's Cybersecurity. In the EO, the government `acknowledges growing risks across the cybersecurity landscape and seeks to enhance the federal government's cybersecurity posture correspondingly.` The EO seeks to minimize the cybersecurity risk in the supply chain that arises from software that is acquired. The cybersecurity risk increases as the number of unknown components in the software applications increases. The EO requires developers to produce an SBOM for all applications developed in the US.
+On the 12th of May 2021, The United States government released an executive order on Improving the Nation's Cybersecurity. In the executive order, the government `acknowledges growing risks across the cybersecurity landscape and seeks to enhance the federal government's cybersecurity posture correspondingly.` The executive order seeks to minimize the cybersecurity risk in the supply chain that arises from software that is acquired. The cybersecurity risk increases as the number of unknown components in the software applications increases. The executive order requires developers to produce an SBOM for all applications developed in the US.
 
 ## What goes into an SBOM?
 
@@ -41,7 +41,7 @@ The National Telecommunications and Information Administration (NTIA) provides g
 
 - Version String - the version of the component
 
-- Component Hash - –a cryptographic hash used to identify the binary instance of a component
+- Component Hash - a cryptographic hash used to identify the binary instance of a component
 
 - Unique Identifier - a unique identifier for a component. Multiple identifiers may exist for an element because different systems may use another identifier
 
@@ -53,15 +53,11 @@ The National Telecommunications and Information Administration (NTIA) provides g
 
 ## Why is it important?
 
-The requirement for SBOMs has a significant impact on open-source software. Open-source software is built collaboratively and contains several third-party libraries that use other third-party libraries. Without the ability to generate SBOMs, open-source software will not be compliant with the EO. The inability to generate SBOMs also affects proprietary software that uses some open-source software in production. Government bodies and organizations that are acting under the EO are obligated to choose software that can produce an SBOM on demand and can prove that each component is not a cybersecurity risk.
-
-## Automation can help
-
-Software applications can have thousands of different dependencies. Manually listing each component is not viable or sustainable as components can be replaced or upgraded frequently. Automation is necessary to supply SBOMs accurately and quickly.
+The requirement for SBOMs has a significant impact on open-source software. Open-source software is built collaboratively and contains several third-party libraries that use other third-party libraries. Without the ability to generate SBOMs, open-source software will not be compliant with the executive order. The inability to generate SBOMs also affects proprietary software that uses some open-source software in production. Government bodies and organizations that are acting under the executive order are obligated to choose software that can produce an SBOM on demand and can prove that each component is not a cybersecurity risk.
 
 ## How Octopus can help with the free tool
 
-With SBOMs in mind, Octopus has produced some free tools that help developers meet this requirement. The tool is called App Builder. App Builder takes a GitHub repository and automatically deploys it to a Cloud Environment with an in-built SBOM packaged to the destination. App Builder dramatically reduces the need to figure out how to piece together SBOMs from separate sources on the internet.
+Software applications can have thousands of different dependencies. Manually listing each component is not viable or sustainable as components can be replaced or upgraded frequently. Automation is necessary to supply SBOMs accurately and quickly.Octopus has produced some free tools that help developers produce SBOMs. The tool is called App Builder. App Builder takes a GitHub repository and automatically deploys it to a Cloud Environment with an in-built SBOM packaged to the destination. App Builder dramatically reduces the need to figure out how to piece together SBOMs from separate sources on the internet.
 
 ## Conclusion
 
