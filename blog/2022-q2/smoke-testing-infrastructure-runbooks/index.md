@@ -2,7 +2,7 @@
 title: Smoke testing your infrastructure with runbooks
 description: Learn how to use runbooks to perform high level smoke tests against your applications and infrastructure.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2022-05-11-1400
 metaImage: blogimage-runningsmoketestsoninfrastructure-2022.png
 bannerImage: blogimage-runningsmoketestsoninfrastructure-2022.png
