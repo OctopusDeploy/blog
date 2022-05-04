@@ -13,9 +13,9 @@ tags:
  - Runbooks Series
 ---
 
-GitOps is a relatively new addition to the growing list of "Ops" paradigms taking shape in our industry. It all started with DevOps, and while the term DevOps has been around for some years now, it seems we still can't agree whether it's a process, mindset, job title, set of tools, or some combination of them all. 
+GitOps is a relatively new addition to the growing list of "Ops" paradigms taking shape in our industry. It all started with DevOps, and while the term DevOps has been around for some years now, it seems we still can't agree whether it's a process, mindset, job title, set of tools, or some combination of them all. We captured our thoughts about DevOps in our [introduction to DevOps](https://octopus.com/blog/introduction-to-devops) post.
 
-The term GitOps suffers from the same ambiguity, so in this post we'll look at: 
+The term GitOps suffers from the same ambiguity, so in this post we look at: 
 
 - The history of GitOps
 - GitOps goals and ideals

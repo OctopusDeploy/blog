@@ -9,7 +9,7 @@ bannerImage: deploying-ssis-issue.png
 bannerImageAlt: deploying SSIS with octopus deploy
 tags:
  - DevOps
- - Databases
+ - Database Deployments
 ---
 
 ![deploying SSIS with octopus deploy](deploying-ssis-issue.png)
