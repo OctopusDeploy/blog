@@ -6,7 +6,7 @@ visibility: public
 published: 2022-05-23-1400
 metaImage: blogimage-atthehelmwithbobwalker-2022.png
 bannerImage: blogimage-atthehelmwithbobwalker-2022.png
-bannerImageAlt: Octopus branded security badge with text that says Bob Walker, VP of Customer Solutions, above the silhouette of a man wearing glasses. 
+bannerImageAlt: Octopus-branded security badge with text that says Bob Walker, VP of Customer Solutions, above the silhouette of a man wearing glasses. 
 isFeatured: false
 tags: 
   - Company
@@ -52,7 +52,9 @@ We received lots of questions about upgrades a while ago, so we re-wrote the upg
 
 ## How does your team keep up with all the changes in the world of software and our ever-evolving product?
 
-Every month we have a week of “sharpening time.” Sharpening comes from a quote attributed to Abraham Lincoln, “If I had six hours to chop down a tree, I’d spend four sharpening the axe.”
+Every month, we have a week of "sharpening time". Sharpening comes from a quote attributed to Abraham Lincoln:
+
+>  If I had six hours to chop down a tree, I’d spend four sharpening the axe.
 
 During sharpening week, when we're not helping a customer, each person is sharpening their axe by delving into a topic that interests them. People on the team have found their areas of expertise this way.  For example, Shawn deep-dived into Kubernetes and set up his cluster on Raspberry Pis, while Adam deep-dived into AWS and configured the team’s VPCs, subnets, IAM, and anything else that was shared.  
 
