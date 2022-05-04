@@ -32,7 +32,7 @@ To follow along with this post, you need:
 - A Jenkins instance
 
 :::hint
-You can install Jenkins in many ways, for instance, in [Linux or Windows](https://octopus.com/blog/jenkins-install-guide-windows-linux), on [Docker](https://octopus.com/blog/jenkins-docker-install-guide), or with [Helm](https://octopus.com/blog/jenkins-helm-install-guide). Or you can follow steps 1 to 4 in [this guide](https://docs.microsoft.com/en-us/azure/developer/jenkins/configure-on-linux-vm) for a live Jenkins instance on Azure.
+You can install Jenkins in many ways, for instance, using [Linux or Windows](https://octopus.com/blog/jenkins-install-guide-windows-linux),[Docker](https://octopus.com/blog/jenkins-docker-install-guide), or using [Helm](https://octopus.com/blog/jenkins-helm-install-guide). Or you can follow steps 1 to 4 in [this guide from Microsoft](https://docs.microsoft.com/en-us/azure/developer/jenkins/configure-on-linux-vm) for a live Jenkins instance on Azure.
 :::
 
 
@@ -45,9 +45,9 @@ In the UI, go to **Manage Jenkins**, then **Manage Plugins** and search for the 
 ![Octopus Plugin](octopus-plugin.png "width=500")
 
 
-You now need to generate an API key in the Octopus Deploy instance. 
+You now need to generate an API key in your Octopus Deploy instance. 
 
-In the Octopus Deploy instance, go to your **Username**, then **Profile**, then **My API Keys**, and create a key. Jenkins uses this value.
+In Octopus, go to your **Username**, then **Profile**, then **My API Keys**, and create a key. Jenkins uses this value.
 
 ![Octopus API Key](octopus-api-key.png "width=500")
 
@@ -59,7 +59,7 @@ Under the Octopus Deploy Plugin setting, add the URL of your Octopus Deploy inst
 
 Jenkins makes your compile packages available in Octopus, ready to be deployed. 
 
-Let's create a new job by going to the Jenkins home page and clicking **New item**, then **Freestyle project**, and assigning the following settings:
+Create a new job by going to the Jenkins home page and clicking **New item**, then **Freestyle project**, and assigning the following settings:
 
 ### Source code management
 
@@ -72,7 +72,7 @@ Poll SCM: `H/5 * * * *`
 
 ### Build step - execute shell
 
-You will have to install npm and nodejs on the VM.
+You have to install npm and nodejs on the VM.
 
     npm install
     npm tests
@@ -111,7 +111,7 @@ Jenkins uploads the package to the Octopus Deploy instance, which you can find u
 
 ## Configuring an Azure account
 
-You need to configure an Azure account and web application to act as a target for the deployment from Octopus. You can also use other targets, such as AWS or Linux and Windows servers.
+You need to configure an Azure account and web application as a target for the deployment from Octopus. You can also use other targets, such as AWS or Linux and Windows servers.
 
 Create an account in Azure by navigating to the [Azure portal](https://portal.azure.com/). 
 
@@ -121,7 +121,7 @@ Create an account in Azure by navigating to the [Azure portal](https://portal.az
 
 1. In the Azure Portal, open the menu, navigate to **Azure Active Directory**, then **Properties** and copy the value from the **Tenant ID** field. This is your **Tenant ID**.
 1. Next you need your **Application ID**:
-  - If you created an AAD registered application, navigate to **Azure Active Directory**, then **App Registrations**, and click **View all applications**. Select the app and copy the **Application ID**.  Please note, the Azure UI defaults to **Owned Applications** tab. Click the **All Applications** tab to view all app registrations. 
+  - If you created an AAD registered application, navigate to **Azure Active Directory**, then **App Registrations**, and click **View all applications**. Select the app and copy the **Application ID**. Please note, the Azure UI defaults to **Owned Applications** tab. Click the **All Applications** tab to view all app registrations. 
   - If you haven't created a registered app, navigate to **Azure Active Directory**, then **App Registrations**, click on **New registration**, and add the details for your app, and click **Save**. Make note of the **Application ID**.
 1. Generate a one-time password by navigating to **Certificates & Secrets**, then **New client secret**. Add a new secret, enter a description, and click **Save**. Make note of the displayed application password to use in Octopus. You can change the expiry date, if you don't want to accept the default one-year expiry for the password.
 
@@ -146,14 +146,13 @@ The next step is setting up an [Azure web application](#web-application-setup) a
 
 ### Web application setup {#web-application-setup}
 
-
 1. In your **Resource group** click **Create**, then **Web App**.
 2. Create a Windows Node Application under runtime stack and operating system.
 3. Take note of your Azure app name, as this will be the address of your web application: `[your-site].azurewebsites.net`.
 
 ### Add the Service Principal account in Octopus {#add-service-principal-account}
 
-With the following values, you can add your account to Octopus:
+Using the following values, you can add your account to Octopus:
 
 - Application ID
 - Tenant ID
@@ -166,12 +165,12 @@ With the following values, you can add your account to Octopus:
 5. Add your Azure Subscription ID - this is found in the Azure portal under **Subscriptions**
 6. Add the **Application ID**, the **Tenant ID**, and the **Application Password/Keyword**
 
-Click **SAVE AND TEST** to confirm the account can interact with Azure. Octopus will attempt to use the account credentials to access the Azure Resource Management (ARM) API and list the Resource Groups in that subscription. 
+Click **SAVE AND TEST** to confirm the account can interact with Azure. Octopus will attempt to use the account credentials to access the Azure Resource Management (ARM) API and list the resource groups in that subscription. 
 
 You may need to whitelist the IP addresses for the Azure Data Center that you're targeting. See [deploying to Azure via a Firewall](https://octopus.com/docs/deployments/azure) for more details.
 
 :::hint
-It can take several minutes for your newly-created Service Principal to ass the credential test. If you've double-checked your credential values, wait 15 minutes then try again.
+It can take several minutes for your newly-created Service Principal to pass the credential test. If you've double-checked your credential values, wait 15 minutes then try again.
 :::
 
 ## Configure Octopus to deploy to Azure
