@@ -2,7 +2,7 @@
 title: Implementing DevSecOps to respond to vulnerabilities
 description: As part of our series about Runbooks, learn how to configure your CI/CD pipeline to quickly identify and respond to vulnerabilities.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2022-05-16-1400
 metaImage: blogimage-devsecopsvulnerabilities-2022.png
 bannerImage: blogimage-devsecopsvulnerabilities-2022.png
