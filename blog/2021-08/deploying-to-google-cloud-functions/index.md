@@ -10,6 +10,7 @@ bannerImageAlt: laptop with code on screen sits behind a rocket ship that is lau
 isFeatured: false
 tags:
  - DevOps
+ - Google Cloud Platform
 ---
 
 Google Cloud Functions (GCF) is Google's Function as a Service (FaaS) platform. It allows simple applications to run on demand in response to events triggered via external sources such as HTTP requests, or from events triggered from other Google Cloud Platform (GCP) services such as files being uploaded to a bucket.

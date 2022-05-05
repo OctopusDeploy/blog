@@ -1,0 +1,1 @@
+Learn more about the Octopus 2021.2 (Q3) release in our [release announcement](https://octopus.com/blog/octopus-release-2021-q3).

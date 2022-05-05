@@ -24,7 +24,7 @@ Operations Runbooks in Octopus put the Ops in DevOps. This post is part of a ser
 ---
 
 :::hint
-Octopus 2021 Q3 includes updated support for Kubernetes deployments, and runbooks for Google Cloud, AWS, and Azure users. Watch [Twitter](https://twitter.com/OctopusDeploy) and check [our blog](https://octopus.com/blog) for updates on our upcoming 2021 Q3 release.
+Octopus 2021 Q3 includes updated support for Kubernetes deployments, and runbooks for Google Cloud, AWS, and Azure users. Learn more in our [release announcement](https://octopus.com/blog/octopus-release-2021-q3).
 :::
 
 *Kubernetes made the simple things hard and the hard things possible.* This is an apt statement. You only need to look at the number of best practice guides available for Kubernetes and the surrounding ecosystem to understand that running even a single pod *properly* is a daunting task.
@@ -94,7 +94,7 @@ And these examples are just the tip of the iceberg. You can use:
 
 Conceptually, runbooks are a simple idea. They let you run the same automated processes that power deployments, just without requiring a deployment.
 
-But there is so much more to repeatable deployments than the actual act of deploying software, and runbooks inherit all of this cross-cutting functionality. With runbook automation, you get security, logging, auditing, reporting, dashboards, and scheduling built-in. 
+But there is so much more to repeatable deployments than the actual act of deploying software, and runbooks inherit all of this cross-cutting functionality. With runbook automation, you get security, logging, auditing, reporting, dashboards, and scheduling built-in.
 
 As we have seen in this post, even the simplest one line script can take advantage of these features to scale up to a robust, production ready solution.
 

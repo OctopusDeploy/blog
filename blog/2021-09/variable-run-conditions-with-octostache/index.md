@@ -16,6 +16,8 @@ One feature of Octopus Deploy I love using is [variable run conditions](https://
 
 In our 2021.2 release, the filters `Match` and `Contains` [were added to Octostache](https://octopus.com/docs/projects/variables/variable-filters#VariableSubstitutionSyntax-ComparisonFilters).  
 
+!include <octopus-2021-q3>
+
 In this post, I walk you through how to combine variable run conditions with output variables and the new `Contains` filter.
 
 ## The scenario

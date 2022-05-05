@@ -14,7 +14,7 @@ tags:
 
 A [Workato connector for Octopus Deploy](https://www.workato.com/integrations/community/octopus-deploy) is now available. Our support for Workato will make a wide variety of workflow scenarios possible for Octopus Deploy customers.
 
-[Workato](https://www.workato.com/) is an enterprise integration Platform-as-a-Service (iPaaS) that helps you to build workflow automations. You construct workflows through a low-code/no-code visual designer, supporting hundreds of different platforms and systems. Built in Ruby, Workato connectors are defined as a JSON configuration and registered through the Workato development environment.
+[Workato](https://www.workato.com/) is an enterprise Integration Platform as a Service (iPaaS) that helps you to build workflow automations. You construct workflows through a low-code/no-code visual designer, supporting hundreds of different platforms and systems. Built in Ruby, Workato connectors are defined as a JSON configuration and registered through the Workato development environment.
 
 We know IT teams still play a significant role in [workflow automations](https://www.workato.com/the-connector/work-automation-index/), but product teams and business operations teams are becoming more involved. This requires quick implementations, which can be optimized with Workato's low-code interface.
 
@@ -29,6 +29,8 @@ The Workato connector for Octopus lets you quickly integrate Octopus with your w
 - Creating recipes that respond to events in Octopus through a trigger
 
 Additional actions can also be added to the connector if you need them.
+
+!include <octopus-2021-q3>
 
 ## Getting started
 
@@ -61,13 +63,13 @@ A workflow used frequently by customers is to notify a Slack channel when a part
 
 This is achieved through the new subscription event trigger that responds to real-time events raised by Octopus Deploy. When this occurs, a Slack channel is notified with details of the event (for example, new deployment created).
 
-### Example: Approval in ServiceNow; Build with Jenkins; Deploy with Octopus Deploy
+### Example: Approve in ServiceNow; Build with Jenkins; Release with Octopus Deploy
 
 This scenario provides a more elaborate example of the kinds of workflows you can create with Workato:
 
 ![](approval-workflow.png)
 
-In this workflow, real-time approval events from an instance of ServiceNow trigger a series of actions to commence. Specifically, a build in Jenkins starts, followed by the creation of a release in Octopus Deploy. Conditions may be checked and used to drive decisions as part of the workflow. These are similar to control flow statements like `if`-`then`-`else` statements in programming languages.
+In this workflow, real-time approval events from an instance of ServiceNow trigger a series of actions. Specifically, a build in Jenkins starts, followed by the creation of a release in Octopus Deploy. Conditions may be checked and used to drive decisions as part of the workflow. These are similar to control flow statements like `if`-`then`-`else` statements in programming languages.
 
 ## Conclusion
 

@@ -10,6 +10,7 @@ bannerImageAlt: A Docker branded box of images moving towards the Google Cloud R
 isFeatured: false
 tags:
  - DevOps
+ - Google Cloud Plaform
 ---
 
 Google Cloud Run is a relatively new Platform as a Service (PaaS) offering on the Google Cloud Platform (GCP). It allows you to run and scale container images while only paying for the time that a request is being processed.

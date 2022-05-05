@@ -68,6 +68,11 @@ Click **ADD CONTAINER** and fill in the following components:
   - **ServerPort**: `10943` (setting this environment variable configures the worker for Polling mode)
   - **Space**: Name of the space to add the worker to (the OctoStache variable of `#{Octopus.Space.Name}` will retrieve the name of the current space)
 
+:::hint
+Windows K8s clusters limit the hostname to 16 characters. If you're using Windows K8s, use the Downstream API feature and add an additional environment variable, **TargetName**: metadata.name
+![Pod and Container Field Environment Variables](octopus-container-targetname.png)
+:::
+
 Anything not listed above uses the form defaults.  
 
 ## Execute the runbook

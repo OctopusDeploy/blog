@@ -33,6 +33,8 @@ Built-in integration of Octopus with GCP allows you to:
 
 GCP integration is available in Octopus Deploy 2021.2 and newer. Octopus Cloud customers are already running this version, and on-premises customers can [download it now](https://octopus.com/downloads).
 
+!include <octopus-2021-q3>
+
 ## How to deploy to Google Cloud
 
 To see this new integration in action, this post explains how to add a new Google Cloud account in Octopus, and run a `gcloud` script to create a new Kubernetes cluster.
