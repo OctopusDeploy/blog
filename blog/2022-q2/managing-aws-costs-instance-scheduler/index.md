@@ -35,7 +35,7 @@ To install the tools in Fedora, RHEL, Centos, and Amazon Linux, run the command:
 yum install jq curl unzip python3
 ```
 
-The Instance Scheduler is managed with a custom Python application called [Scheduler CLI](https://docs.aws.amazon.com/solutions/latest/instance-scheduler/scheduler-cli.html). 
+The Instance Scheduler is managed with a custom Python application called [Scheduler CLI](https://docs.aws.amazon.com/solutions/latest/instance-scheduler-on-aws/scheduler-cli.html). 
 
 The CLI requires Python 3. If you have Python 2 and Python 3 installed, you can force the use of Python 3 with the command:
 
