@@ -2,7 +2,7 @@
 title: Managing AWS costs with Instance Scheduler
 description: Learn how to deploy and configure the Instance Scheduler to shutdown unused AWS resources.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2022-05-18-1400
 metaImage: blogimage-aws-instance-scheduler-2022.png
 bannerImage: blogimage-aws-instance-scheduler-2022.png
@@ -23,7 +23,7 @@ In this post, you learn how to install the Instance Scheduler, configure it with
 
 ## Prerequisites
 
-This post assumes you will be running scripts on a Linux worker. You need Python 3, `jq`, `curl`, and `unzip` installed to complete the steps in this post. To install these tools in Ubuntu, run the command:
+This post assumes you'll be running scripts on a Linux Worker. You need Python 3, `jq`, `curl`, and `unzip` installed to complete the steps in this post. To install these tools in Ubuntu, run the command:
 
 ```bash
 apt-get install jq curl unzip python3
@@ -99,7 +99,7 @@ In the screenshot below, you can see that a worker EC2 instance has a tag called
 
 The AWS Instance Scheduler is a convenient solution that lets you automatically shutdown and restart EC2 and RDS instances, which can significantly reduce running costs for resources that aren't required 24 hours a day.
 
-In this post, you saw how to deploy the Instance Scheduler with Octopus, add a new period with the scheduler CLI, and tag your resources to allow the scheduler to shut them down overnight and over the weekend.
+In this post, you saw how to deploy the Instance Scheduler with Octopus, add a new period with the Scheduler CLI, and tag your resources to allow the Scheduler to shut them down overnight and over the weekend.
 
 !include <q2-2022-newsletter-cta>
 
