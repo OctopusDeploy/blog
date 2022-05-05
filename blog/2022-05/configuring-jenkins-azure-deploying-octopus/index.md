@@ -32,11 +32,11 @@ To follow along with this post, you need:
 - A Jenkins instance
 
 :::hint
-You can install Jenkins in many ways, for instance, using [Linux or Windows](https://octopus.com/blog/jenkins-install-guide-windows-linux),[Docker](https://octopus.com/blog/jenkins-docker-install-guide), or using [Helm](https://octopus.com/blog/jenkins-helm-install-guide). Or you can follow steps 1 to 4 in [this guide from Microsoft](https://docs.microsoft.com/en-us/azure/developer/jenkins/configure-on-linux-vm) for a live Jenkins instance on Azure.
+You can install Jenkins in many ways, for example, on [Linux or Windows](https://octopus.com/blog/jenkins-install-guide-windows-linux), on [Docker](https://octopus.com/blog/jenkins-docker-install-guide), or with [Helm](https://octopus.com/blog/jenkins-helm-install-guide). Or you can follow steps 1 to 4 in [this guide from Microsoft](https://docs.microsoft.com/en-us/azure/developer/jenkins/configure-on-linux-vm) for a live Jenkins instance on Azure.
 :::
 
 
-## Setup Jenkins for Octopus Deploy
+## Setting up Jenkins for Octopus Deploy
 
 After you set up Jenkins, go to the URL for your Jenkins instance to access the UI. 
 
@@ -72,7 +72,7 @@ Poll SCM: `H/5 * * * *`
 
 ### Build step - execute shell
 
-You have to install npm and nodejs on the VM.
+You have to install npm and Node.js on the virtual machine.
 
     npm install
     npm tests
@@ -80,22 +80,22 @@ You have to install npm and nodejs on the VM.
 
 ### Build step Octopus Deploy: package application
 
-Octopus Deploy CLI: default
-Package ID: `RandomQuotes`
-Version Number: `1.0.${BUILD_NUMBER}`
-Package format: zip
-Package include paths: `${WORKSPACE}/**`
-Package output folder: `${WORKSPACE}`
+- Octopus Deploy CLI: default
+- Package ID: `RandomQuotes`
+- Version Number: `1.0.${BUILD_NUMBER}`
+- Package format: zip
+- Package include paths: `${WORKSPACE}/**`
+- Package output folder: `${WORKSPACE}`
 
 ### Build step Octopus Deploy: push packages
 
-Octopus Deploy CLI: default
-Octopus Deploy Connection: Octo-Jenkins
-Package paths: `${WORKSPACE}/RandomQuotes.1.0.${BUILD_NUMBER}.zip`
+- Octopus Deploy CLI: default
+- Octopus Deploy Connection: Octo-Jenkins
+- Package paths: `${WORKSPACE}/RandomQuotes.1.0.${BUILD_NUMBER}.zip`
     
 Click **SAVE**.
 
-Go back to the job dashboard and click **Build Now** to start the job.
+Go back to the **Dashboard** and click **Build Now** to start the job.
 
 ![Jenkins Build Now](jenkins-build-now.png "width=500")
 
@@ -152,7 +152,7 @@ The next step is setting up an [Azure web application](#web-application-setup) a
 
 ### Add the Service Principal account in Octopus {#add-service-principal-account}
 
-Using the following values, you can add your account to Octopus:
+You can add your account to Octopus using the following values:
 
 - Application ID
 - Tenant ID
@@ -165,7 +165,7 @@ Using the following values, you can add your account to Octopus:
 5. Add your Azure Subscription ID - this is found in the Azure portal under **Subscriptions**
 6. Add the **Application ID**, the **Tenant ID**, and the **Application Password/Keyword**
 
-Click **SAVE AND TEST** to confirm the account can interact with Azure. Octopus will attempt to use the account credentials to access the Azure Resource Management (ARM) API and list the resource groups in that subscription. 
+Click **SAVE AND TEST** to confirm the account can interact with Azure. Octopus attempts to use the account credentials to access the Azure Resource Management (ARM) API and lists the resource groups in that subscription. 
 
 You may need to whitelist the IP addresses for the Azure Data Center that you're targeting. See [deploying to Azure via a Firewall](https://octopus.com/docs/deployments/azure) for more details.
 
@@ -173,7 +173,7 @@ You may need to whitelist the IP addresses for the Azure Data Center that you're
 It can take several minutes for your newly-created Service Principal to pass the credential test. If you've double-checked your credential values, wait 15 minutes then try again.
 :::
 
-## Configure Octopus to deploy to Azure
+## Configuring Octopus to deploy to Azure
 
 In your Octopus instance, add a production environment by going to **Infrastructure**, then **Environments**, and **Add Environment**.
 
@@ -210,13 +210,13 @@ The Octopus Deploy Jenkins plugin can also be used to create releases and deploy
 
 In the dashboard of your Jenkins job, go to **Configure** and add the following steps:
 
-### Post-build action: Create Release
+### Post-build action: create release
 
-Octopus Deploy CLI: default
-Octopus Server: `Octo-Jenkins`
-Project Name: `jenkins`
-Release Version: `0.0.i`
-Deploy this release after it is created? Check the box
+- Octopus Deploy CLI: default
+- Octopus Server: `Octo-Jenkins`
+- Project Name: `jenkins`
+- Release Version: `0.0.i`
+- Deploy this release after it is created? Check the box
 
 Click **SAVE**, go back to the job dashboard, and click **Build now**. Jenkins triggers the package to build and starts the post-build release and deploy steps in Octopus Deploy.
 
