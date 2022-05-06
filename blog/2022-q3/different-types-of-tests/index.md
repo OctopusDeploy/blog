@@ -17,33 +17,27 @@ tags:
 
 ## Why is testing important?
 
-Testing is part of continuous delivery. Testing assures each stage of the delivery pipeline for quality before moving on to the next stage. DevOps is an iterative cycle of building, testing, and releasing. A comprehensive testing environment will ensure that each iteration of the DevOps loop strengthens the quality of the product. A weak testing phase will mean defects progress to release, and developers must fix bugs while the product is live. Development teams fall on both sides of the testing spectrum. A survey by [Mabel on the state of testing in DevOps](https://www.dropbox.com/s/nnagymzdcnoswc6/Benchmark-Report-State-of-Testing-in-DevOps.pdf?dl=0) indicates that automated testing (at least 4-5 different types of tests) is key to customer happiness. The [2021 State of DevOps DORA Report](https://www.dropbox.com/s/xycst8qsxnpsieu/state-of-devops-2021.pdf?dl=0), continuous testing is an indicator of success: `continuous testing is a strong predictor of
-successful continuous delivery. Elite performers who meet their reliability targets are 3.7 times more likely to leverage continuous testing`
+Testing is part of continuous delivery that assures each stage of the delivery pipeline for quality before moving on to the next stage. DevOps is an iterative cycle of building, testing, and releasing software in short iterations. A comprehensive testing environment will ensure that each iteration of the DevOps loop strengthens the quality of the product. A weak testing phase will mean defects progress to release, and developers must fix bugs while the product is live. Development teams fall on both sides of the testing spectrum. A survey by [Mabel on the state of testing in DevOps](https://www.dropbox.com/s/nnagymzdcnoswc6/Benchmark-Report-State-of-Testing-in-DevOps.pdf?dl=0) indicates that automated testing (at least 4-5 different types of tests) is key to customer happiness. The [2021 State of DevOps DORA Report](https://www.dropbox.com/s/xycst8qsxnpsieu/state-of-devops-2021.pdf?dl=0), continuous testing is an indicator of success, with elite performers who meet their reliability targets 3.7 times more likely to leverate continuous testing.
 
-
-This blog discusses automated and manual tests and common types of tests: functional and non-functional. At Octopus Deploy, we help make complex deployments easier by providing a best-in-class deployment management tool. This tool works with your DevOps process to create the deployment loop shown below:
+This blog discusses automated and manual tests and common types of tests: functional and non-functional. At Octopus Deploy, we help make complex deployments easier by providing a best-in-class deployment management tool that works with your DevOps process to create the deployment loop shown below:
 
 ![Octopus DevOps](devops-cycle.png "width=500")
 
 ## Manual and automated tests
 
-Software tests can be manual or automatic. A person carries out a manual test. A person will click through an application and use it to find any bugs. Automated tests are scripted in advance and executed by a machine. Automated tests compare an expected result with the actual result. Both methods of testing have their place in a software application. A manual test is much slower and requires an environment for the tester. As developers must write automated tests in advance, the errors found in manual testing can inform and turn into automated tests to strengthen the test suite. Manual tests are suitable for cases where opinion and nuance play a role, such as UX or user experience. There is no pre-determined result for an automated test to check in these cases.
+Software tests can be manual or automatic. A person carries out a manual test to click through an application and find bugs. Automated tests are scripted in advance and executed by a machine. Automated tests compare an expected result with the actual result. Both methods of testing have their place in a software application. A manual test is much slower and requires an environment for the tester. As developers must write automated tests in advance, the errors found in manual testing can inform and turn into automated tests to strengthen the test suite. Manual tests are suitable for cases where opinion and nuance play a role, such as UX or user experience. There is no pre-determined result for an automated test to check in these cases.
 
 Automated tests are near-instant and execute in the hundreds or thousands at runtime. Automated tests check for functionality and ensure that every line of code and feature works as intended. In a DevOps process, automated tests enable continuous delivery. Automated tests will have a rating of test coverage. When developers add new features to a release, developers can run the tests to identify whether test coverage has decreased. Developers can pinpoint where tests fail to identify bugs for the new release. Automated tests complement a continuous delivery DevOps strategy. The more tests are automated, the faster an application can iterate and cycle through the DevOps loop of building, testing, and releasing.
 
 ## Functional and non-functional tests
 
-There are many different kinds of tests you could perform on your application. One way to categorize types of tests is functional and non-functional testing.
-
-Functional tests ask questions like:
+There are many different kinds of tests you could perform on your application. One way to categorize types of tests is functional and non-functional testing. Functional tests ask questions like:
 
 - Does this button work?
 - Does one module work with another module?
 - Does the user journey work from the start of the experience to the end?
 
-Functional tests test for functionality. Maintenance testing tests if the application has retained all functionality from version to version. It asks whether any functionality in the application has regressed between versions. I have included maintenance testing under functional tests as it has to do with functionality. Some sources list it as a third type.
-
-Non-functional tests test the way a system operates rather than the functions of the system. Non-functional tests asks questions such as:
+Maintenance testing tests if the application has retained all functionality from version to version. It asks whether any functionality in the application has regressed between versions. I have included maintenance testing under functional tests as it has to do with functionality. Some sources list it as a third type. Non-functional tests test the way a system operates rather than the functions of the system. Non-functional tests asks questions such as:
 
 - How secure is the application?
 - How much load can the application handle?
@@ -51,7 +45,7 @@ Non-functional tests test the way a system operates rather than the functions of
 
 ## Test types
 
-The following are some types of functional and non-functional tests. I have provided some general points of the kind of test and an example.
+The following are some types of functional and non-functional tests. I have provided an explanation of the type of test and an example.
 
 ### Functional
 
@@ -137,6 +131,6 @@ Tests for issues related to scaling the application.
 
 ## Conclusion
 
-Testing is an essential factor in DevOps processes. Testing assures each stage in a DevOps process for quality before moving to the next stage. Tests can be run manually or automated. This blog has given examples of the two main types of tests: functional and non-functional. A robust testing environment fits well with Octopus Deploy. Octopus Deploy takes care of the release, deploy and automate sections of the DevOps lifecycle, and makes complex deployments easier!
+Testing is essential in DevOps processes. Testing assures each stage in a DevOps process for quality before moving to the next stage. Research has shown that automated testing is a strong indicator of customer happineses and successful teams. Tests can be run manually or automated. This blog has given examples of the two main types of tests: functional and non-functional. A robust testing environment fits well with Octopus Deploy. Octopus Deploy takes care of the release, deploy and automate sections of the DevOps lifecycle, and makes complex deployments easier!
 
 Happy Deployments!
