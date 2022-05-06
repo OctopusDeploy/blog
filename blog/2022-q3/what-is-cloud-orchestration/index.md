@@ -14,7 +14,7 @@ tags:
   - Runbooks
 ---
 
-Cloud solutions have gained popularity over traditional IT systems. A [study by Gartner](https://www.gartner.com/en/newsroom/press-releases/2022-02-09-gartner-says-more-than-half-of-enterprise-it-spending) indicates that revenue for cloud products will overtake traditional IT solutions in 2025. There is a need to optimize cloud solutions to make them more efficient and cost-effective to achieve revenue gains. Cloud orchestration is the coordination and automation of workloads, resources, and infrastructure in public and private cloud environments. Cloud orchestration is the automation of the whole cloud system. Each part of the system should work together to produce an efficient, well-oiled machine. Cloud automation is a subset of cloud orchestration focused on automating the individual components of a cloud system. Cloud orchestration and automation complement each other to produce an automated cloud system.
+Cloud solutions have gained popularity over traditional IT systems. A [study by Gartner](https://www.gartner.com/en/newsroom/press-releases/2022-02-09-gartner-says-more-than-half-of-enterprise-it-spending) indicates that revenue for cloud products will overtake traditional IT solutions in 2025. There is a need to optimize cloud solutions to make them more efficient and cost-effective to achieve revenue gains. Cloud orchestration is the coordination and automation of workloads, resources, and infrastructure in public and private cloud environments. Cloud orchestration is the automation of the whole cloud system. Each part of the system should work together to produce an efficient system. Cloud automation is a subset of cloud orchestration focused on automating the individual components of a cloud system. Cloud orchestration and automation complement each other to produce an automated cloud system.
 
 ![Gartner Cloud Adoption](gartner-cloud-adoption.png "width=500")
 
@@ -32,7 +32,7 @@ SaaS is a software licensing and delivery model where a software solution is pro
 
 ## Benefits of Cloud Orchestration
 
-Cloud orchestration and automation allow developers to automate every part of their cloud solution. Orchestration and automation lead to:
+Cloud orchestration allows developers to automate every part of their cloud solution. Cloud orchestration leads to:
 
 - Increased efficiency
 - Cost reductions
@@ -43,11 +43,9 @@ When developers automate processes in a cloud solution, the cloud solution can d
 
 ## Cloud Orchestration tools
 
-Terraform is an open-source infrastructure as code tool. You can specify your infrastructure in configuration files to deploy infrastructure on the cloud. Infrastructure as code can be saved and restored between versions. Terraform is a common framework for deploying infrastructure solutions. 
+Terraform is an open-source infrastructure as code tool. You can specify your infrastructure in configuration files to deploy infrastructure on the cloud. Infrastructure as code can be saved and restored between versions. Terraform is a common framework for deploying infrastructure solutions. Kubernetes is a container orchestration tool developed by Google. Containers are lightweight computing units that make up a larger application. Kubernetes works with cloud providers to manage and deploy containers on infrastructure. Resources can be scaled up or down depending on demand which saves costs and increases the reliability of the application.
 
-Kubernetes is a container orchestration tool developed by Google. Containers are lightweight computing units that make up a larger application. Kubernetes works with cloud providers to manage and deploy containers on infrastructure. Resources can be scaled up or down depending on demand which saves costs and increases the reliability of the application.
-
-Many PaaS cloud providers have tools that allow cloud automation, such as:
+Many PaaS cloud providers have tools that allow cloud orchestration, such as:
 
 - AWS Cloud Formation
 - Microsoft Azure Automation
