@@ -21,7 +21,7 @@ Testing is part of continuous delivery. Testing assures each stage of the delive
 successful continuous delivery. Elite performers who meet their reliability targets are 3.7 times more likely to leverage continuous testing`
 
 
-This blog discusses automated and manual tests and common types of tests: functional, non-functional, and maintenance. At Octopus Deploy, we help make complex deployments easier by providing a best-in-class deployment management tool. This tool works with your DevOps process to create the deployment loop shown below:
+This blog discusses automated and manual tests and common types of tests: functional and non-functional. At Octopus Deploy, we help make complex deployments easier by providing a best-in-class deployment management tool. This tool works with your DevOps process to create the deployment loop shown below:
 
 ![Octopus DevOps](devops-cycle.png "width=500")
 
