@@ -43,13 +43,11 @@ Functional tests ask questions like:
 
 Functional tests test for functionality. Maintenance testing tests if the application has retained all functionality from version to version. It asks whether any functionality in the application has regressed between versions. I have included maintenance testing under functional tests as it has to do with functionality. Some sources list it as a third type.
 
-Non-functional tests test the overall performance of the application.
+Non-functional tests test the way a system operates rather than the functions of the system. Non-functional tests asks questions such as:
 
 - How secure is the application?
-- How much load can it handle?
+- How much load can the application handle?
 - Can the application scale if needed?
-
-Non-functional tests are more concerned with the application health rather than individual components.
 
 ## Test types
 
