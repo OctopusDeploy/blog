@@ -17,7 +17,11 @@ tags:
 
 ## Why is testing important?
 
-Testing is part of continuous delivery. Testing assures each stage of the delivery pipeline for quality before moving on to the next stage. DevOps is an iterative cycle of building, testing, and releasing. A comprehensive testing environment will ensure that each iteration of the DevOps loop strengthens the quality of the product. A weak testing phase will mean defects progress to release, and developers must fix bugs while the product is live. This blog discusses automated and manual tests and common types of tests: functional, non-functional, and maintenance. At Octopus Deploy, we help make complex deployments easier by providing a best-in-class deployment management tool. This tool works with your DevOps process to create the deployment loop shown below:
+Testing is part of continuous delivery. Testing assures each stage of the delivery pipeline for quality before moving on to the next stage. DevOps is an iterative cycle of building, testing, and releasing. A comprehensive testing environment will ensure that each iteration of the DevOps loop strengthens the quality of the product. A weak testing phase will mean defects progress to release, and developers must fix bugs while the product is live. Development teams fall on both sides of the testing spectrum. A survey by [Mabel on the state of testing in DevOps](https://www.dropbox.com/s/nnagymzdcnoswc6/Benchmark-Report-State-of-Testing-in-DevOps.pdf?dl=0) indicates that automated testing (at least 4-5 different types of tests) is key to customer happiness. The [2021 State of DevOps DORA Report](https://www.dropbox.com/s/xycst8qsxnpsieu/state-of-devops-2021.pdf?dl=0), continuous testing is an indicator of success: `continuous testing is a strong predictor of
+successful continuous delivery. Elite performers who meet their reliability targets are 3.7 times more likely to leverage continuous testing`
+
+
+This blog discusses automated and manual tests and common types of tests: functional, non-functional, and maintenance. At Octopus Deploy, we help make complex deployments easier by providing a best-in-class deployment management tool. This tool works with your DevOps process to create the deployment loop shown below:
 
 ![Octopus DevOps](devops-cycle.png "width=500")
 
