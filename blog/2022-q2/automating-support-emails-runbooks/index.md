@@ -18,7 +18,7 @@ You can automate lots of useful tasks with Octopus Runbooks, especially around t
 
 There are a few ways to approach this, depending on the information you need and what's useful to your support teams.
 
-Let's look at 2 examples. We created a [sample Octopus instance with both runbooks](https://tenpillars.octopus.app/app#/Spaces-103), so you don't need to follow along.
+Let's look at 2 examples. We created a [sample Octopus instance with both runbooks](https://tenpillars.octopus.app/app#/Spaces-103), so you can easily follow along.
 
 ## Setting an SMTP connection in Octopus
 
