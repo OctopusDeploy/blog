@@ -2,7 +2,7 @@
 title: Calculating DORA metrics with Runbooks
 description: Learn how to measure the performance of your deployments using the DORA metrics and a custom runbook.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2022-05-25-1400
 metaImage: blogimage-calculatingdorametrics-2022.png
 bannerImage: blogimage-calculatingdorametrics-2022.png
@@ -25,9 +25,9 @@ A challenge for teams is then how to calculate these metrics. Fortunately, Octop
 
 In this post, you learn how to query the Octopus API to produce a DORA scorecard with a custom runbook.
 
-## Prerequisites
+## Getting started
 
-This post uses GitHub Actions as a CI server. GitHub Actions are free for public git repositories, so you only need a GitHub account to get started.
+This post uses GitHub Actions as a CI server. GitHub Actions is free for public git repositories, so you only need a GitHub account to get started.
 
 The sample runbook script is written against Python 3, which can be [downloaded from the Python website](https://www.python.org/downloads/). 
 
@@ -62,7 +62,7 @@ With commits and work items now associated with each Octopus release, the next t
 
 ## Interpreting the DORA metrics
 
-DORA metrics are very high level and don't define specific rules for how they're measured. This makes sense, because every team and toolchain has slightly different interpretations of what a deployment is, or what a production failure is.
+DORA metrics are high level and don't define specific rules for how they're measured. This makes sense, because every team and toolchain has slightly different interpretations of what a deployment is, or what a production failure is.
 
 So to calculate the metrics, you must first decide exactly how to measure them with the data you have available.
 
@@ -75,7 +75,7 @@ For the purpose of this post, the DORA metrics are calculated as follows:
 
 You'll note that some of these measurements have been simplified for convenience.
 
-For example, the change failure rate metric technically tracks deployments that caused an issue, not deployments that resolved an issue, as we defined it here. However, the data exposed by build information packages makes it easy to track the resolved issues in a given release, and we assume the rate at which deployments resolve issues is a good proxy for the rate at which deployments introduce them.
+For example, the change failure rate metric technically tracks deployments that caused an issue, not deployments that resolved an issue, as we define it here. However, the data exposed by build information packages makes it easy to track the resolved issues in a given release, and we assume the rate at which deployments resolve issues is a good proxy for the rate at which deployments introduce them.
 
 Also, the time to restore service metric assumes all issues represent bugs or regressions deployed to production. In reality, issues tend to track a wide range of changes from bugs to enhancements. The solution presented here doesn't make this distinction though.
 
@@ -386,7 +386,7 @@ Let's break this code down to understand what it's doing.
 
 ### Processing arguments
 
-Your script accepts parameters from command-line arguments to make it reusable across multiple Octopus instances and spaces. The arguments are parsed by the [argparse module](https://docs.python.org/3/library/argparse.html). You can find more information about using `argparse` [here](https://realpython.com/command-line-interfaces-python-argparse/):
+Your script accepts parameters from command-line arguments to make it reusable across multiple Octopus instances and spaces. The arguments are parsed by the [argparse module](https://docs.python.org/3/library/argparse.html). You can find more information about using `argparse` [in Real Python's post on the topic](https://realpython.com/command-line-interfaces-python-argparse/):
 
 ```python
 parser = argparse.ArgumentParser(description='Calculate the DORA metrics.')
@@ -460,7 +460,7 @@ def compare_dates(date1, date2):
 
 ### Querying Octopus resources
 
-A common pattern used throughout this script (and most scripts working with the Octopus API) is to lookup the ID of a named resource. The `get_space_id` function takes the name of an Octopus space and queries the API to return the space ID:
+A common pattern used in this script (and most scripts working with the Octopus API) is to lookup the ID of a named resource. The `get_space_id` function takes the name of an Octopus space and queries the API to return the space ID:
 
 ```python
 def get_space_id(space_name):
@@ -815,7 +815,7 @@ The final metric is change failure rate.
 
 As noted in the introduction, this code measures the number of deployments that fix issues rather than the number of deployments that introduce issues. The former measurement is trivial to calculate with the information captured by build information, while the latter requires far more metadata to be exposed by issues.
 
-Despite the technical differences, you can assume measuring deployments that fix issues is a good proxy for deployments that introduce issues; reducing production issues improves both scores, and while "bad" deployments are underrepresented by this logic where a single release fixes many issues, "bad" deployments are then overrepresented where multiple deployments are required to fix the issues from a single previous deployment.
+Despite the technical differences, you can assume measuring deployments that fix issues is a good proxy for deployments that introduce issues. Reducing production issues improves both scores, and while "bad" deployments are underrepresented by this logic where a single release fixes many issues, "bad" deployments are then overrepresented where multiple deployments are required to fix the issues from a single previous deployment.
 
 The `get_change_failure_rate` function is used to calculate the change failure rate:
 
@@ -884,7 +884,7 @@ If no deployments with issues are found, `None` is returned:
 The measurement of each metric is broken down into four categories: 
 
 - Elite
-- High,
+- High
 - Medium
 - Low 
 
@@ -1055,9 +1055,9 @@ With a single click of the **RUN** button, you can quickly measure the performan
 
 ## Conclusion
 
-The DORA metrics represent one of the few rigorously researched insights available to measure your team's DevOps performance. Between the information captured by Octopus build information packages and issue tracking platforms like GitHub actions, you can rank your performance against thousands of other software development teams around the globe.
+The DORA metrics represent one of the few rigorously researched insights available to measure your team's DevOps performance. Between the information captured by Octopus build information packages and issue tracking platforms like GitHub Actions, you can rank your performance against thousands of other software development teams around the globe.
 
-In this post, you saw a sample Python script that queried the Octopus and GitHub APIs to calculate the four DORA metrics, and then ran the script as an Octopus runbook. The sample script can be easily applied to any team using GitHub actions, or modified to query other source control and issue tracking platforms.
+In this post, you saw a sample Python script that queried the Octopus and GitHub APIs to calculate the four DORA metrics, and then ran the script as an Octopus runbook. The sample script can be easily applied to any team using GitHub Actions, or modified to query other source control and issue tracking platforms.
 
 !include <q2-2022-newsletter-cta>
 
