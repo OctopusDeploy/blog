@@ -978,7 +978,7 @@ get_time_to_restore_service_summary(get_time_to_restore_service())
 
 ## Running the script in a runbook
 
-The first step is exposing 3 variables that are passed to the script:
+The first step is exposing 2 variables that are passed to the script:
 
 - `GitHubToken` is a secret holding the GitHub personal access token used to authenticate GitHub API calls.
 - `ReadOnlyApiKey` is an Octopus API key assigned to an account with read only access to the Octopus server (because this script only queries the API, and never modifies any resources).
