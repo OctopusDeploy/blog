@@ -10,6 +10,7 @@ bannerImageAlt: Octopus branded security badge with text that says Trish Khoo Di
 isFeatured: false
 tags: 
   - Company
+  - At The Helm
 ---
 
 This post is the next in our series, chatting to people at Octopus about their role, their challenges, what they're working on to improve the product for our customers, and more.
