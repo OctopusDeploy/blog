@@ -1,38 +1,43 @@
 ---
 title: Calculating DORA metrics with Runbooks
-description: Learn how to measure the performance of your deployments using the DORA metrics and a custom runbook
+description: Learn how to measure the performance of your deployments using the DORA metrics and a custom runbook.
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2999-01-01
+published: 2022-05-25-1400
 metaImage: blogimage-calculatingdorametrics-2022.png
 bannerImage: blogimage-calculatingdorametrics-2022.png
 bannerImageAlt: A book with arms and legs holds an oversized magnifying glass over a laptop highlighting a table with three columns.
-tags:
- - Octopus
+isFeatured: false
+tags: 
+  - DevOps
+  - Runbooks Series
+  - Runbooks
 ---
 
-The [DevOps Research and Assessment (DORA)](https://www.devops-research.com/research.html) annual report captures input from tens of thousands of professionals worldwide, and ranks the performance of software development teams using four key metrics:
+The [DevOps Research and Assessment (DORA)](https://www.devops-research.com/research.html) annual report captures input from thousands of professionals worldwide, and ranks the performance of software development teams using four key metrics:
 
-* Deployment Frequency - How often an organization successfully releases to production.
-* Lead Time for Changes - The amount of time it takes a commit to get into production.
-* Change Failure Rate - The percentage of deployments causing a failure in production.
-* Time to Restore Service - How long it takes an organization to recover from a failure in production.
+- Deployment Frequency - How often an organization successfully releases to production.
+- Lead Time for Changes - The amount of time it takes a commit to get into production.
+- Change Failure Rate - The percentage of deployments causing a failure in production.
+- Time to Restore Service - How long it takes an organization to recover from a failure in production.
 
-A challenge for teams is then how to calculate these metrics. Fortunately, Octopus captures most of the raw information required to generate these metrics, and in this post you'll learn how to query the Octopus API to produce a DORA scorecard with a custom runbook.
+A challenge for teams is then how to calculate these metrics. Fortunately, Octopus captures most of the raw information required to generate these metrics. 
+
+In this post, you learn how to query the Octopus API to produce a DORA scorecard with a custom runbook.
 
 ## Prerequisites
 
 This post uses GitHub Actions as a CI server. GitHub Actions are free for public git repositories, so you only need a GitHub account to get started.
 
-The sample runbook script is written against Python 3, which can be downloaded from the [Python website](https://www.python.org/downloads/). 
+The sample runbook script is written against Python 3, which can be [downloaded from the Python website](https://www.python.org/downloads/). 
 
-The example runbook source code can be found on [GitHub](https://github.com/OctopusSamples/DoraMetrics). Tweaks and updates to the script will be found on the GitHub repo, so be sure to check here for the latest version.
+The example runbook source code can be found on [GitHub](https://github.com/OctopusSamples/DoraMetrics). Tweaks and updates to the script can be found on the GitHub repo, so be sure to check for the latest version.
 
 ## Producing build information
 
 [Build information](https://octopus.com/docs/packaging-applications/build-servers/build-information) provides additional metadata for packages referenced in an Octopus deployment or runbook. Build information packages are separate artifacts stored on the Octopus server with the same package ID and version as the package they represent. This allows Octopus to track metadata for all kinds of packages, whether stored in the built-in feed or hosted on external repositories.
 
-Build information captures information such as the commits that are included in the compiled artifact and lists of work items (known as issues in GitHub) that were closed.
+Build information captures information such as the commits that are included in the compiled artifact and lists of work items (known as issues in GitHub) that are closed.
 
 The [xo-energy/action-octopus-build-information](https://github.com/xo-energy/action-octopus-build-information) action provides the ability to create and upload a build information package. The step below shows an example of the action:
 
@@ -51,34 +56,34 @@ The [xo-energy/action-octopus-build-information](https://github.com/xo-energy/ac
         octopus_environment: "Development"
 ```
 
-Pushing the build information package is all that is needed for Octopus to link the metadata to a release. The build information is linked to the release as long as the build information package ID and version matches a package used in an Octopus step. 
+Pushing the build information package is all that Octopus needs to link the metadata to a release. The build information is linked to the release when the build information package ID and version matches a package used in an Octopus step. 
 
-With commits and work items now associated with each Octopus release, the next task is to determine how this information can be used to measure the four key metrics.
+With commits and work items now associated with each Octopus release, the next task is determining how this information can be used to measure the four key metrics.
 
 ## Interpreting the DORA metrics
 
-One thing you'll notice about the DORA metrics is that they are very high level and do not define specific rules for how they are measured. This makes sense, because every team and toolchain will have slightly different interpretations of what a deployment is, or what a production failure is.
+DORA metrics are very high level and don't define specific rules for how they're measured. This makes sense, because every team and toolchain has slightly different interpretations of what a deployment is, or what a production failure is.
 
 So to calculate the metrics, you must first decide exactly how to measure them with the data you have available.
 
-For the purpose of this post, the DORA metrics will be calculated as follows:
+For the purpose of this post, the DORA metrics are calculated as follows:
 
-* Deployment Frequency - The frequency of deployments to the production environment.
-* Lead Time for Changes - The time between the earliest commit associated with a release and the deployment to the production environment.
-* Change Failure Rate - The percentage of deployments to the production environment that resolved an issue.
-* Time to Restore Service - The time between an issue being opened and closed.
+- Deployment Frequency - The frequency of deployments to the production environment.
+- Lead Time for Changes - The time between the earliest commit associated with a release and the deployment to the production environment.
+- Change Failure Rate - The percentage of deployments to the production environment that resolved an issue.
+- Time to Restore Service - The time between an issue being opened and closed.
 
 You'll note that some of these measurements have been simplified for convenience.
 
-For example, the change failure rate metric technically tracks deployments that caused an issue, not deployments that resolved an issue, as we have defined it here. However, the data exposed by build information packages makes it easy to track the resolved issues in a given release, and we assume the rate at which deployments resolve issues is a good proxy for the rate at which deployments introduce them.
+For example, the change failure rate metric technically tracks deployments that caused an issue, not deployments that resolved an issue, as we defined it here. However, the data exposed by build information packages makes it easy to track the resolved issues in a given release, and we assume the rate at which deployments resolve issues is a good proxy for the rate at which deployments introduce them.
 
-Also, the time to restore service metric assumes all issues represent bugs or regressions deployed to production. In reality, issues tend to track a wide range of changes from bugs to enhancements. The solution presented here does not make this distinction though.
+Also, the time to restore service metric assumes all issues represent bugs or regressions deployed to production. In reality, issues tend to track a wide range of changes from bugs to enhancements. The solution presented here doesn't make this distinction though.
 
-It is certainly possible to track which deployments resulted in production issues, so long as you create the required custom fields in your issue tracking platform and are diligent about populating them. It is also possible to distinguish between issues that document bugs and those that represent enhancements. However, this level of tracking won't be discussed in this post.
+It's certainly possible to track which deployments resulted in production issues, so long as you create the required custom fields in your issue tracking platform and you're diligent about populating them. It's also possible to distinguish between issues that document bugs and those that represent enhancements. However, this level of tracking won't be discussed in this post.
 
 ## Calculating the metrics
 
-The complete script you'll use to generate DORA metrics is shown below:
+The complete script you use to generate DORA metrics is shown below:
 
 ```python
 import sys
@@ -377,11 +382,11 @@ get_change_failure_rate_summary(get_change_failure_rate())
 get_time_to_restore_service_summary(get_time_to_restore_service())
 ```
 
-Let's break this code down to understand what it is doing.
+Let's break this code down to understand what it's doing.
 
 ### Processing arguments
 
-Your script will accept parameters from command line arguments to make it reusable across multiple Octopus instances and spaces. The arguments are parsed by the [argparse module](https://docs.python.org/3/library/argparse.html). You can find more information about using `argparse` [here](https://realpython.com/command-line-interfaces-python-argparse/):
+Your script accepts parameters from command-line arguments to make it reusable across multiple Octopus instances and spaces. The arguments are parsed by the [argparse module](https://docs.python.org/3/library/argparse.html). You can find more information about using `argparse` [here](https://realpython.com/command-line-interfaces-python-argparse/):
 
 ```python
 parser = argparse.ArgumentParser(description='Calculate the DORA metrics.')
@@ -431,7 +436,7 @@ def parse_github_date(date_string):
 
 The Octopus API returns dates in its own specific format. The `parse_octopus_date` function converts Octopus dates into Python datetime objects.
 
-The Octopus API returns dates in the ISO 8601 format, which looks like `2022-01-04T04:23:02.941+00:00`. Unfortunately, [Python 3.6 does not support timezone offsets that include colons](https://bugs.python.org/issue15873), forcing us to strip them out before parsing and comparing the dates:
+The Octopus API returns dates in the ISO 8601 format, which looks like `2022-01-04T04:23:02.941+00:00`. Unfortunately, [Python 3.6 does not support timezone offsets that include colons](https://bugs.python.org/issue15873), so you need to strip them out before parsing and comparing the dates:
 
 ```python
 def parse_octopus_date(date_string):
@@ -461,7 +466,7 @@ A common pattern used throughout this script (and most scripts working with the 
 def get_space_id(space_name):
 ```
 
-The `/api/spaces` endpoint returns a list of the spaces defined in the Octopus server. The `partialName` query parameter limits the result to spaces whose name includes the supplied value, while the `take` parameter is set to a large number to ensure you do not need to loop over any paged results:
+The `/api/spaces` endpoint returns a list of the spaces defined in the Octopus server. The `partialName` query parameter limits the result to spaces whose name includes the supplied value, while the `take` parameter is set to a large number so you don't need to loop over any paged results:
 
 ```python
     url = args.octopus_url + "/api/spaces?partialName=" + space_name.strip() + "&take=1000"
@@ -497,7 +502,7 @@ If there is a matching space, return the ID:
     return first_id
 ```
 
-Spaces are top level resources in Octopus, while all other resources you'll interact with in this script are children of a space. Just as you did with the `get_space_id` function, the `get_resource_id` function converts a named Octopus resource to its ID. The only difference here is the endpoint being requested includes the space ID in the path, and the resource type is supplied to build the second element in the path. Otherwise `get_resource_id` follows the same pattern described for the `get_space_id` function:
+Spaces are top-level resources in Octopus, while all other resources you interact with in this script are children of a space. Just as you did with the `get_space_id` function, the `get_resource_id` function converts a named Octopus resource to its ID. The only difference here is the endpoint being requested includes the space ID in the path, and the resource type is supplied to build the second element in the path. Otherwise `get_resource_id` follows the same pattern described for the `get_space_id` function:
 
 ```python
 def get_resource_id(space_id, resource_type, resource_name):
@@ -518,7 +523,7 @@ def get_resource_id(space_id, resource_type, resource_name):
     return first_id
 ```
 
-You'll require access to the complete Octopus release resource in order to examine the build information metadata. The `get_resource` function uses the resource IDs returned by the functions above to return a complete resource definition from the Octopus API:
+You need access to the complete Octopus release resource to examine the build information metadata. The `get_resource` function uses the resource IDs returned by the functions above to return a complete resource definition from the Octopus API:
 
 ```python
 def get_resource(space_id, resource_type, resource_id):
@@ -557,13 +562,13 @@ def get_deployments(space_id, environment_id, project_id):
 
 You now have the code in place to query the Octopus API for deployments and releases, and use the information to calculate the DORA metrics.
 
-The first metric you'll tackle is lead time for changes, which is calculated in the `get_change_lead_time` function:
+The first metric to tackle is lead time for changes, which is calculated in the `get_change_lead_time` function:
 
 ```python
 def get_change_lead_time():
 ```
 
-You calculate the lead time for each deployment and capture the values in an array. This allows you to calculate the average lead time: 
+Calculate the lead time for each deployment and capture the values in an array. This lets you calculate the average lead time: 
 
 ```python
     change_lead_times = []
@@ -583,7 +588,7 @@ The projects argument is a comma separated list of project names. So you must lo
         project_id = get_resource_id(space_id, "projects", project)
 ```
 
-You collect the list of deployments to the project for the space and environment:
+Collect the list of deployments to the project for the space and environment:
 
 ```python
         deployments = get_deployments(space_id, environment_id, project_id)
@@ -595,13 +600,13 @@ This is where you calculate the lead time for each deployment:
         for deployment in deployments:
 ```
 
-The lead time for changes metric is concerned with the time it takes for a commit to be deployed to production. So you must find the earliest commit associated with the deployment:
+The lead time for changes metric is concerned with the time it takes for a commit to be deployed to production. You must find the earliest commit associated with the deployment:
 
 ```python
             earliest_commit = None
 ```
 
-A deployment represents the execution of a release in an environment. It is the release that contains the build information metadata, which in turn contains the details of the commits associated with any packages included in the release. So you must get the release resource from the release ID held by the deployment:
+A deployment represents the execution of a release in an environment. It's the release that contains the build information metadata, which in turn contains the details of the commits associated with any packages included in the release. You must get the release resource from the release ID held by the deployment:
 
 ```python
             release = get_resource(space_id, "releases", deployment["ReleaseId"])
@@ -619,9 +624,9 @@ Each build information object contains zero or more commits. You must loop over 
                 for commit in buildInfo["Commits"]:
 ```
 
-When working with GitHub commits, the URL associated with each commit links back to a page that you can open with a web browser. These links look like [https://github.com/OctopusSamples/OctoPub/commit/dcaf638037503021de696d13b4c5c41ba6952e9f](https://github.com/OctopusSamples/OctoPub/commit/dcaf638037503021de696d13b4c5c41ba6952e9f).
+When working with GitHub commits, the URL associated with each commit links back to a page you can open with a web browser. These links look like: [https://github.com/OctopusSamples/OctoPub/commit/dcaf638037503021de696d13b4c5c41ba6952e9f](https://github.com/OctopusSamples/OctoPub/commit/dcaf638037503021de696d13b4c5c41ba6952e9f).
 
-GitHub maintains a parallel set of URLs that expose the API used to query GitHub resources. The URLs used by the API are usually very similar to the publicly browseable URLs. In this case the API URL looks like [https://api.github.com/repos/OctopusSamples/OctoPub/commits/dcaf638037503021de696d13b4c5c41ba6952e9f](https://github.com/OctopusSamples/OctoPub/commit/dcaf638037503021de696d13b4c5c41ba6952e9f). So you convert the browseable link to the API link:
+GitHub maintains a parallel set of URLs that expose the API used to query GitHub resources. The URLs used by the API are usually similar to the publicly browsable URLs. In this case the API URL looks like: [https://api.github.com/repos/OctopusSamples/OctoPub/commits/dcaf638037503021de696d13b4c5c41ba6952e9f](https://github.com/OctopusSamples/OctoPub/commit/dcaf638037503021de696d13b4c5c41ba6952e9f). So you convert the browsable link to the API link:
 
 ```python
                     api_url = commit["LinkUrl"].replace("github.com", "api.github.com/repos") \
@@ -654,14 +659,14 @@ Assuming the code above found a commit date, the difference between the deployme
                 change_lead_times.append((parse_octopus_date(deployment["Created"]) - earliest_commit).total_seconds())
 ```
 
-Assuming any commits were found in the build information metadata, the average time between the earliest commit and the deployment date is calculated and returned:
+Assuming any commits are found in the build information metadata, the average time between the earliest commit and the deployment date is calculated and returned:
 
 ```python
     if len(change_lead_times) != 0:
         return sum(change_lead_times) / len(change_lead_times)
 ```
 
-If no commits were found, or the release has no associated build information, `None` is returned:
+If no commits are found, or the release has no associated build information, `None` is returned:
 
 ```python        
     return None
@@ -669,9 +674,9 @@ If no commits were found, or the release has no associated build information, `N
 
 ### Calculating time to restore service
 
-The next metric you'll calculate is time to restore service. 
+The next metric to calculate is time to restore service. 
 
-As we noted in the introduction, this metric is assumed to be measured by the time it takes deploy an release with a resolved issue. The `get_time_to_restore_service` function is used to calculate this value:
+As noted in the introduction, this metric is assumed to be measured by the time it takes deploy a release with a resolved issue. The `get_time_to_restore_service` function is used to calculate this value:
 
 ```python
 def get_time_to_restore_service():
@@ -703,7 +708,7 @@ The project name is converted to an ID, and the list of deployments to the proje
         deployments = get_deployments(space_id, environment_id, project_id)
 ```
 
-You return the release associated with each deployment, loop over all the build information objects, and then loop over all the work items (called issues in GitHub) associated with each package in the release:
+Return the release associated with each deployment, loop over all the build information objects, and then loop over all the work items (called issues in GitHub) associated with each package in the release:
 
 ```python
         for deployment in deployments:
@@ -713,7 +718,7 @@ You return the release associated with each deployment, loop over all the build 
                 for work_item in buildInfo["WorkItems"]:
 ```
 
-The URL to the browseable issues is converted to an API URL, the issue is queried via the API, and the creation date is returned:
+The URL to the browsable issues is converted to an API URL, the issue is queried via the API, and the creation date is returned:
 
 ```python
                     api_url = work_item["LinkUrl"].replace("github.com", "api.github.com/repos")
@@ -728,14 +733,14 @@ The time between the creation of the issue and the deployment is calculated:
                         restore_service_times.append((deployment_date - created_date).total_seconds())
 ```
 
-If any issues were found, the average time between the creation of the issue and the deployment is calculated:
+If any issues are found, the average time between the creation of the issue and the deployment is calculated:
 
 ```python
     if len(restore_service_times) != 0:
         return sum(restore_service_times) / len(restore_service_times)
 ```
 
-If no issues were found, `None` is returned:
+If no issues are found, `None` is returned:
 
 ```python
     return None
@@ -743,7 +748,7 @@ If no issues were found, `None` is returned:
 
 ### Calculating deployment frequency
 
-Deployment frequency is perhaps the easiest metric to calculate as it is simply the average time between production deployments. This is calculated by the `get_deployment_frequency` function:
+Deployment frequency is the easiest metric to calculate as it's simply the average time between production deployments. This is calculated by the `get_deployment_frequency` function:
 
 ```python
 def get_deployment_frequency():
@@ -789,9 +794,9 @@ The earliest and latest deployments are found:
                 latest_deployment = created
 ```
 
-Assuming any deployments were found, the duration between deployments is divided by the number of deployments.
+Assuming any deployments are found, the duration between deployments is divided by the number of deployments.
 
-Note you can measure this value a few different ways. The uncommented code measures the average time between deployments from the earliest deployment until the current point in time. 
+Note: you can measure this value a few different ways. The uncommented code measures the average time between deployments from the earliest deployment until the current point in time. 
 
 An alternative is to measure the average time between the earliest and the latest deployment:
 
@@ -808,9 +813,9 @@ An alternative is to measure the average time between the earliest and the lates
 
 The final metric is change failure rate.
 
-As we noted in the introduction, this code measures the number of deployments that fix issues rather than the number of deployments that introduce issues. The former measurement is trivial to calculate with the information captured by build information, while the later requires far more metadata to be exposed by issues.
+As noted in the introduction, this code measures the number of deployments that fix issues rather than the number of deployments that introduce issues. The former measurement is trivial to calculate with the information captured by build information, while the latter requires far more metadata to be exposed by issues.
 
-Despite the technical differences, we assume measuring deployments that fix issues is a good proxy for deployments that introduce issues; reducing production issues improves both scores, and while "bad" deployments are underrepresented by this logic where a single release fixes many issues, "bad" deployments are then overrepresented where multiple deployments are required to fix the issues from a single previous deployment.
+Despite the technical differences, you can assume measuring deployments that fix issues is a good proxy for deployments that introduce issues; reducing production issues improves both scores, and while "bad" deployments are underrepresented by this logic where a single release fixes many issues, "bad" deployments are then overrepresented where multiple deployments are required to fix the issues from a single previous deployment.
 
 The `get_change_failure_rate` function is used to calculate the change failure rate:
 
@@ -841,7 +846,7 @@ The deployments performed to an environment are returned, and the total number o
         deployment_count = deployment_count + len(deployments)
 ```
 
-You then find any issues associated with deployments, and if any are found, you increment the count of deployments with issues:
+You then need to find any issues associated with deployments, and if any are found, you increment the count of deployments with issues:
 
 ```python
         for deployment in deployments:
@@ -861,14 +866,14 @@ You then find any issues associated with deployments, and if any are found, you 
                     releases_with_issues = releases_with_issues + 1
 ```
 
-If any deployments with issues were found, the ratio of deployments with issues to total number of deployments is returned:
+If any deployments with issues are found, the ratio of deployments with issues to total number of deployments is returned:
 
 ```python
     if releases_with_issues != 0 and deployment_count != 0:
         return releases_with_issues / deployment_count
 ```
 
-If no deployments with issues were found, `None` is returned:
+If no deployments with issues are found, `None` is returned:
 
 ```python
     return None
@@ -876,7 +881,14 @@ If no deployments with issues were found, `None` is returned:
 
 ### Measuring deployment performance
 
-The measurement of each metric are broken down into four categories: elite, high, medium, and low. The DORA report describes how each measurement is categorized, and the `get_change_lead_time_summary`, `get_deployment_frequency_summary`, `get_change_failure_rate_summary`, and `get_time_to_restore_service_summary` functions print the results:
+The measurement of each metric is broken down into four categories: 
+
+- Elite
+- High,
+- Medium
+- Low 
+
+The DORA report describes how each measurement is categorized, and the `get_change_lead_time_summary`, `get_deployment_frequency_summary`, `get_change_failure_rate_summary`, and `get_time_to_restore_service_summary` functions print the results:
 
 ```python
 def get_change_lead_time_summary(lead_time):
@@ -954,7 +966,7 @@ def get_time_to_restore_service_summary(restore_time):
                          + " hours between issue opened and deployment)")
 ```
 
-The final step is to calculate the metrics and pass the results to the functions above:
+The final step is calculating the metrics and passing the results to the functions above:
 
 ```python
 print("DORA stats for project(s) " + args.octopus_project + " in " + args.octopus_environment)
@@ -966,12 +978,12 @@ get_time_to_restore_service_summary(get_time_to_restore_service())
 
 ## Running the script in a runbook
 
-The first step is to expose three variables that will be passed to the script:
+The first step is exposing 3 variables that are passed to the script:
 
-* `GitHubToken` is a secret holding the GitHub personal access token used to authenticate GitHub API calls.
-* `ReadOnlyApiKey` is an Octopus API key assigned to an account with read only access to the Octopus server (because this script only queries the API, and never modifies any resources).
+- `GitHubToken` is a secret holding the GitHub personal access token used to authenticate GitHub API calls.
+- `ReadOnlyApiKey` is an Octopus API key assigned to an account with read only access to the Octopus server (because this script only queries the API, and never modifies any resources).
 
-The runbook is comprised of a single **Run a script** step with the following bash script:
+The runbook is a single **Run a script** step with the following bash script:
 
 ```bash
 cd DoraMetrics
@@ -1020,7 +1032,7 @@ The service message `##octopus[stdout-default]` is printed, instructing Octopus 
 echo "##octopus[stdout-default]"
 ```
 
-You then execute the Python script. Some of the arguments, like `octopusUrl`, `githubUser`, `octopusProject` etc will need to be customized for your specific use case. Setting the `octopusSpace` and `octopusEnvironment` arguments to the space and environment in which the runbook is executed allows you to calculate DORA metrics in any environment the runbook is run in:
+You then execute the Python script. Some of the arguments, like `octopusUrl`, `githubUser`, `octopusProject`, need to be customized for your specific use case. Setting the `octopusSpace` and `octopusEnvironment` arguments to the space and environment in which the runbook is executed lets you calculate DORA metrics in any environment the runbook is run in:
 
 ```bash
 python3 main.py \
@@ -1035,14 +1047,18 @@ python3 main.py \
 
 ## Executing the runbook
 
-When the runbook is executed, it proceeds to scan each project for the latest deployment to the current environment, finds the GitHub Action run link from the build information, downloads the dependencies artifact, extracts the artifact, and scans the text files for the search text. 
+When the runbook is executed, it scans each project for the latest deployment to the current environment, finds the GitHub Action run link from the build information, downloads the dependencies artifact, extracts the artifact, and scans the text files for the search text. 
 
-With a single click of the **RUN** button, you now have the ability to quickly measure the performance of your projects:
+With a single click of the **RUN** button, you can quickly measure the performance of your projects:
 
 ![Runbook run](runbook-run.png "width=500")
 
 ## Conclusion
 
-The DORA metrics represent one of the few rigorously researched insights available to measure your team's DevOps performance. Between the information captured by Octopus build information packages and issue tracking platforms like GitHub actions, it is possible to rank your performance against thousands of other software development teams across the globe.
+The DORA metrics represent one of the few rigorously researched insights available to measure your team's DevOps performance. Between the information captured by Octopus build information packages and issue tracking platforms like GitHub actions, you can rank your performance against thousands of other software development teams around the globe.
 
-In this post you saw a sample Python script that queried the Octopus and GitHub APIs to calculate the four DORA metrics, and then ran the script as an Octopus runbook. The sample script can be easily applied to any team using GitHub actions, or modified to query other source control and issue tracking platforms.
+In this post, you saw a sample Python script that queried the Octopus and GitHub APIs to calculate the four DORA metrics, and then ran the script as an Octopus runbook. The sample script can be easily applied to any team using GitHub actions, or modified to query other source control and issue tracking platforms.
+
+!include <q2-2022-newsletter-cta>
+
+Happy deployments!
