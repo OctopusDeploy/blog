@@ -10,6 +10,7 @@ bannerImageAlt: Octopus-branded security badge with text that says Bob Walker, V
 isFeatured: false
 tags: 
   - Company
+  - At The Helm
 ---
 
 This post is the next in our series, chatting to people at Octopus about their role, what they’re working on to improve the product for our customers, and more.
