@@ -1,26 +1,28 @@
 ---
 title: Creating AMI mappings for CloudFormation
-description: Learn how to create region AMI mappings for use with CloudFormation Templates.
+description: As part of our Runbooks series, learn how to create region AMI mappings for use with CloudFormation Templates.
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01-1400
+visibility: public
+published: 2022-05-24-1400
 metaImage: blogimage-cloudformationmappings-2022.png
 bannerImage: blogimage-cloudformationmappings-2022.png
 bannerImageAlt: World globe with three oversized orange pins in different locations.
 isFeatured: false
 tags:
  - DevOps
+ - Runbooks Series
+ - Runbooks
  - AWS
  - CloudFormation
 ---
 
-Many of the services provided by AWS are specific to individual regions, and Amazon Machine Images (AMIs) are just one example. While common AMIs are published to all regions, the AMI ID is unique per region.
+Many services provided by AWS are specific to individual regions, and Amazon Machine Images (AMIs) are just one example. While common AMIs are published to all regions, the AMI ID is unique per region.
 
 This presents a challenge when writing CloudFormation scripts, as the AMI ID passed to EC2 resources is region specific, making your template region specific as well.
 
-[Mappings](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-findinmap.html) can be used to write generic CloudFormation templates, allowing AMI IDs are mapped to a region and looked up when the template is deployed. Unfortunately, AMI IDs change frequently, and there are no easy mapping references to include in your templates.
+[Mappings](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/intrinsic-function-reference-findinmap.html) can be used to write generic CloudFormation templates, allowing AMI IDs to be mapped to a region and looked up when the template is deployed. Unfortunately, AMI IDs change frequently, and there are no easy mapping references to include in your templates.
 
-In this post, you'll learn how to generate an up-to-date mapping with the latest regional AMI IDs for inclusion in your CloudFormation templates.
+In this post, you learn how to generate an up-to-date mapping with the latest regional AMI IDs for inclusion in your CloudFormation templates.
 
 ## Prerequisites
 
@@ -154,13 +156,13 @@ Resources:
 
 You'll notice from the command above that the AMI name must be passed as a parameter. However, the AWS console typically shows the AMI description, which is more user friendly. So how do you find the name from the AMI ID or description?
 
-An easy solution is to open the **Images** link in the EC2 console. This allows public AMIs to be searched for either their ID or description, and the AMI details page then displays the AMI name:
+An easy solution is to open the **Images** link in the EC2 console. This allows public AMIs to be searched for by their ID or description, and the AMI details page then displays the AMI name:
 
 ![AMI Details page](ami-details.png)
 
 ## Using the parameter store
 
-Another option that allows your CloudFormation templates to automatically reference the latest Amazon AMIs is to query the AWS Systems Manager Parameter Store. The blog post called [Query for the latest Amazon Linux AMI IDs using AWS Systems Manager Parameter Store](https://aws.amazon.com/blogs/compute/query-for-the-latest-amazon-linux-ami-ids-using-aws-systems-manager-parameter-store/) demonstrates how you can reference the latest Amazon Windows and Linux AMIs with templates that look like this:
+Another option that allows your CloudFormation templates to automatically reference the latest Amazon AMIs is to query the AWS Systems Manager Parameter Store. The blog [Query for the latest Amazon Linux AMI IDs using AWS Systems Manager Parameter Store](https://aws.amazon.com/blogs/compute/query-for-the-latest-amazon-linux-ami-ids-using-aws-systems-manager-parameter-store/) demonstrates how you can reference the latest Amazon Windows and Linux AMIs with templates that look like this:
 
 ```yaml
 Parameters:
@@ -177,8 +179,10 @@ Resources:
 
 ## Conclusion
 
-Keeping your CloudFormation templates up-to-date with the latest AMI IDs is a constant challenge. It's made more complicated by the fact that every region has unique AMI IDs. 
+Keeping your CloudFormation templates up-to-date with the latest AMI IDs is a constant challenge. It's complicated further because every region has unique AMI IDs. 
 
 In this post, you learned how to generate up-to-date mappings with regional AMI IDs to copy and paste into your CloudFormation templates.
+
+!include <q2-2022-newsletter-cta>
 
 Happy deployments!
