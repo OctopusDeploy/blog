@@ -10,6 +10,7 @@ bannerImageAlt: Octopus branded security badge with text that says Michael Richa
 isFeatured: false
 tags: 
   - Company
+  - At The Helm
 ---
 
 This post opens a series where we chat to people at Octopus about their role, their challenges, what they're working on to improve the product for our customers, and more.

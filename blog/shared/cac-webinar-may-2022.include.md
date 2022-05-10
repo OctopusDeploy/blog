@@ -1,7 +1,7 @@
-## Register for our webinar: Introducing Config as Code in Octopus
+## Watch our webinar: Introducing Config as Code in Octopus
 
-Derek Campbell and Pete Gallagher will talk you through getting started with Config as Code in Octopus and best practices when using Config as Code at scale.
+Derek Campbell and Pete Gallagher talk you through getting started with Config as Code in Octopus and best practices when using Config as Code at scale.
 
-We're running 3 sessions on Wednesday, May 4, 2022.
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Z4DgiJ630FU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-<span><a class="btn btn-success" href="https://octopus.com/events/introducing-config-as-code-in-octopus">Register now</a></span>
+We host webinars regularly. See the [webinars page](https://octopus.com/events) for details about upcoming events and live stream recordings.
