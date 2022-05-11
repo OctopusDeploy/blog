@@ -31,15 +31,18 @@ Fun fact: I filled out some forms on my first day then boarded a plane to Brisba
 
 ## What does the Customer Success team do?
 
-The Customer Success team helps customers solve complex problems. We look at Octopus as it exists right now for our customers, not what it could be in 6 months, because our customers need help today.
+We do what it says on the tin; we help our customers be successful after they purchase their license. Success takes many forms and requires different areas of expertise. We have: 
 
-I use the analogy that deploying to production is like painting a room.  The painting doesn’t take long, but the prep-work and clean-up make it an event. Our customers experience the same thing. Instead of agonizing over choosing a color and moving the furniture, they have to make sure their deployment targets use the necessary software or know what the database delta script looks like.   
+- Customer success managers and account managers building relationships with our customers
+- Technical account managers helping our customers get the most out of their license
+- Solutions architects helping overcome technical challenges
+- Licensing and renewal specialists answering those tricky licensing questions
 
 ## What does a typical day look like as Technical Director of Customer Success?
 
-We have a team of intelligent and friendly people who want to help our customers to the best of their abilities. Our priority is helping customers who have reached out to us directly. We can answer some questions in a few email exchanges, but others need a longer-term engagement from weeks to months. As part of my day-to-day, I distribute the longer-term engagements, ensure they’re on track, and that our customers are happy and successful.
+As mentioned, I was one of the first US-based employees at Octopus. I woke up each day for the first few years with the simple goal of determining how best I could help customers. I wore many hats and performed different tasks. I answered support tickets, wrote blog posts, hosted webinars to show off new features, and helped customers 1:1 to overcome roadblocks.  
 
-After we devise a solution for one customer, we work out how to share that with as many customers as possible.  I also ensure the team focuses their limited time on the most important things. Can we preemptively answer questions with a doc update, a blog post, a webinar, or something else?  We’re never short of work, so we need to identify what will have the most significant impact.  
+My day-to-day now focuses on leveraging my experience and perspective to support everyone in the Customer Success team. I might walk through bursting scenarios with a new customer success manager, or gather product feedback from the solutions architects and technical account managers. I might help our Product team determine our next focus or ensure everyone knows about new features and functionality.
 
 ## What are the most common questions from our customers?
 
@@ -53,15 +56,15 @@ We received lots of questions about upgrades a while ago, so we re-wrote the upg
 
 ## How does your team keep up with all the changes in the world of software and our ever-evolving product?
 
-Every month, we have a week of "sharpening time". Sharpening comes from a quote attributed to Abraham Lincoln:
+We stay on top of our game with "sharpening time". Sharpening comes from a quote attributed to Abraham Lincoln:
 
 >  If I had six hours to chop down a tree, I’d spend four sharpening the axe.
 
-During sharpening week, when we’re not helping a customer, each person is sharpening their axe by delving into a topic that interests them. People on the team have found their areas of expertise this way.  For example, Shawn deep-dived into Kubernetes and set up his cluster on Raspberry Pis, while Adam deep-dived into AWS and configured the team’s VPCs, subnets, IAM, and anything else that was shared.  
+We encourage the team to sharpen their axe by diving into a topic that interests them or a feature we're releasing next quarter.  
 
-The great thing about unstructured sharpening time is that you don’t know where it will lead.  
+The great thing about unstructured sharpening time is that you don’t know where it will lead. 
 
-We’re always adding new features and functionality to Octopus that we need to learn about, too.  When we’re not sharpening, we might host a webinar, update our docs, or create a sample to cover a new feature.  If everyone in the team needs to know about a feature, we ensure they have some hands-on experience with it.
+For example, Shawn deep-dived into Kubernetes and set up his cluster running on Raspberry Pis. Meanwhile, Adam deep-dived into AWS and configured the team’s VPCs, Subnets, IAM, and anything else shared.  Before releasing Config as Code, I spent time poking around the edges to see what we're supporting and not supporting.
 
 ## How do you measure success internally and for our customers?
 
