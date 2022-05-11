@@ -1,12 +1,12 @@
 ---
 title: At the helm with Bob Walker
-description: A series where we chat to people at Octopus about their role, what they’re working on to improve the product, and more. Hear from Bob Walker, our VP of Customer Solutions.
+description: A series where we chat to people at Octopus about their role, what they’re working on to improve the product, and more. Hear from Bob Walker, our Technical Director of Customer Success.
 author: bob.walker@octopus.com
 visibility: public
 published: 2022-05-23-1400
 metaImage: blogimage-atthehelmwithbobwalker-2022.png
 bannerImage: blogimage-atthehelmwithbobwalker-2022.png
-bannerImageAlt: Octopus-branded security badge with text that says Bob Walker, VP of Customer Solutions, above the silhouette of a man wearing glasses. 
+bannerImageAlt: Octopus-branded security badge with text that says Bob Walker, Technical Director of Customer Success, above the silhouette of a man wearing glasses. 
 isFeatured: false
 tags: 
   - Company
@@ -15,7 +15,7 @@ tags:
 
 This post is the next [in our series](https://octopus.com/blog/tag/At%20The%20Helm), chatting to people at Octopus about their role, what they’re working on to improve the product for our customers, and more.
 
-Here we talk to Bob Walker, our VP of Customer Solutions.
+Here we talk to Bob Walker, our Technical Director of Customer Success.
 
 ## How long have you been at Octopus and what drew you to work here?
 
@@ -29,13 +29,13 @@ Being a user and a fan, I followed Octopus on Twitter. In late 2017, I saw they 
 
 Fun fact: I filled out some forms on my first day then boarded a plane to Brisbane, Australia. Ryan Rousseau, Principal Solutions Architect, was hired on the same day, and we were the first 2 US-based employees. The onboarding infrastructure we have today didn’t exist, so onboarding had to happen in Australia.    
 
-## What does the Customer Solutions team do?
+## What does the Customer Success team do?
 
-The Customer Solutions team helps customers solve complex problems. We look at Octopus as it exists right now for our customers, not what it could be in 6 months, because our customers need help today.
+The Customer Success team helps customers solve complex problems. We look at Octopus as it exists right now for our customers, not what it could be in 6 months, because our customers need help today.
 
 I use the analogy that deploying to production is like painting a room.  The painting doesn’t take long, but the prep-work and clean-up make it an event. Our customers experience the same thing. Instead of agonizing over choosing a color and moving the furniture, they have to make sure their deployment targets use the necessary software or know what the database delta script looks like.   
 
-## What does a typical day look like as VP of Customer Solutions?
+## What does a typical day look like as Technical Director of Customer Success?
 
 We have a team of intelligent and friendly people who want to help our customers to the best of their abilities. Our priority is helping customers who have reached out to us directly. We can answer some questions in a few email exchanges, but others need a longer-term engagement from weeks to months. As part of my day-to-day, I distribute the longer-term engagements, ensure they’re on track, and that our customers are happy and successful.
 
