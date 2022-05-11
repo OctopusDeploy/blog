@@ -4,8 +4,8 @@ description: A series where we chat to people at Octopus about their role, what 
 author: bob.walker@octopus.com
 visibility: public
 published: 2022-05-23-1400
-metaImage: 
-bannerImage:
+metaImage: blogimage-atthehelmwithbobwalker-2022.png
+bannerImage: blogimage-atthehelmwithbobwalker-2022.png
 bannerImageAlt: Octopus-branded security badge with text that says Bob Walker, Technical Director of Customer Success, above the silhouette of a man wearing glasses. 
 isFeatured: false
 tags: 
