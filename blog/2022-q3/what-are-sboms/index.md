@@ -21,29 +21,6 @@ tags:
 
 ## What are SBOMs?
 
----
-title: What are SBOMs?
-description: An description of SBOMs, how they are important and how Octopus helps address the problems
-author: terence.wong@octopus.com
-visibility: private
-published: 3020-01-01-1400
-metaImage: placeholderimg.png
-bannerImage: placeholderimg.png
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
-isFeatured: false
-tags:
-  - DevOps
-  - Containers Series
-  - Containers
-  - Cloud Orchestration
-  - Testing
-  - Everything as Code
----
-
-<!-- see https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags -->
-
-## What are SBOMs?
-
 Developers build software from in-house components, paid and open-source software. The wide variety of software components in an application makes it hard to track what software an application uses. The lack of traceability in software applications poses a security threat to governments and businesses. How can an application be secure when the individual components used to build the application are not known? A bill of materials is a manufacturing term that lists the required inventory to produce a given output reliably. Bills of materials have been used for years to provide transparency and repeatability to the manufacturing process. Software bills of materials (SBOMs) apply a similar concept to bills of materials to software. SBOMs itemize the components in a software application in a list that developers can share across teams.
 
 ## Executive Order
