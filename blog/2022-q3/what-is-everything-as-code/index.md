@@ -40,7 +40,7 @@ Everything as code allows developers to express IT resources as code. The benefi
 - **Consistency:** EaC gives developers more consistency because developers capture infrastructure and configuration settings in a standard framework such as Terraform. This framework reduces human error and improves reliability as the system is version-controlled.
 - **Scalability:** EaC improves the scalability of systems because developers capture resource settings in code. Scaling up involves making a small change to a configuration file, and developers can roll any issues back to previous versions.
 - **Portability:** EaC allows teams to export their infrastructure, configuration, or other parts of the system and replicate it.
--**Auditability:** EaC makes it easier to audit systems as version control makes changes visible.
+- **Auditability:** EaC makes it easier to audit systems as version control makes changes visible.
 
 ## Future of everything as code
 
