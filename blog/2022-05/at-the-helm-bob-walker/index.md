@@ -37,12 +37,13 @@ We do what it says on the tin; we help our customers be successful after they pu
 - Technical account managers helping our customers get the most out of their license
 - Solutions architects helping overcome technical challenges
 - Licensing and renewal specialists answering those tricky licensing questions
+- Sales operations and training staff keeping everything running smoothly
 
 ## What does a typical day look like as Technical Director of Customer Success?
 
 As mentioned, I was one of the first US-based employees at Octopus. I woke up each day for the first few years with the simple goal of determining how best I could help customers. I wore many hats and performed different tasks. I answered support tickets, wrote blog posts, hosted webinars to show off new features, and helped customers 1:1 to overcome roadblocks.  
 
-My day-to-day now focuses on leveraging my experience and perspective to support everyone in the Customer Success team. I might walk through bursting scenarios with a new customer success manager, or gather product feedback from the solutions architects and technical account managers. I might help our Product team determine our next focus or ensure everyone knows about new features and functionality.
+My day-to-day now focuses on leveraging my experience and perspective to support everyone in the Customer Success team. I might walk through bursting scenarios with a new customer success manager; share knowledge about the history of our product with the solutions architects and technical account managers so they can better help their customers; provide feedback to our Product team so they have the context to determine our next focus; ensure everyone knows about new features and functionality.
 
 ## What are the most common questions from our customers?
 
