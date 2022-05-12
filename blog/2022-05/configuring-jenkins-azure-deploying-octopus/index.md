@@ -16,7 +16,7 @@ tags:
  - Azure
 ---
 
-Jenkins is the most popular Continuous Integration (CI) platform on the market. It's open-source and free, and lets you automate the building and testing of your code.
+Jenkins is the most popular Continuous Integration (CI) platform on the market. It's open-source and free, and lets you automate the building and testing of your code. 
 
 You can use it with Octopus Deploy to manage releases and deployments automatically.
 
