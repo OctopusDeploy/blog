@@ -5,9 +5,9 @@ description: Learn how to deploy an EC2 configured as an Octopus Worker via a Cl
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2999-01-01
-metaImage: 
-bannerImage:
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-deployingec2workercloudformation-2022.png
+bannerImage: blogimage-deployingec2workercloudformation-2022.png
+bannerImageAlt: Picture of server in the clouds.
 isFeatured: false
 tags:
  - DevOps
