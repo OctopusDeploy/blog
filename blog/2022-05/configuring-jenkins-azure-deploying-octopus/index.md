@@ -4,8 +4,8 @@ description: Learn how to configure a Jenkins instance in Azure and deploy with 
 author: terence.wong@octopus.com
 visibility: public 
 published: 2022-05-17-1400
-metaImage: blogimage-configureajenkinsvminazureanddeploywithoctopusdeploy.png
-bannerImage: blogimage-configureajenkinsvminazureanddeploywithoctopusdeploy.png
+metaImage: blogimage-configurejenkinswithoctopusazure-2022.png
+bannerImage: blogimage-configurejenkinswithoctopusazure-2022.png
 bannerImageAlt: A rocket coming from a Jenkins launch pad and being deployed via Octopus Deploy towards an Azure logo in the clouds.
 isFeatured: false
 tags:
