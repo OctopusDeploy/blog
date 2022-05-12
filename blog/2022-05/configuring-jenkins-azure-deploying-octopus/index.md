@@ -25,7 +25,7 @@ In this post, I show you how to configure a Jenkins instance, push a package to 
 
 ## Before you start
 
-To follow along with this post, you need:
+To follow along with this post, you will need:
 
 - An [Octopus Deploy instance](https://octopus.com/start)
 - An Azure account
