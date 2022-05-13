@@ -184,6 +184,8 @@ Check out our other posts about deploying with Jenkins, Kubernetes, and Octopus 
 - [Deploying to Amazon EKS with Docker and Jenkins](https://octopus.com/blog/jenkins-eks-ecr-deployment )
 - [Multi-environment deployments with Jenkins and Octopus](https://octopus.com/blog/multi-environment-deployments-jenkins)
 
+!include <jenkins-free-tool>
+
 !include <jenkins-webinar-jan-2022>
 
 !include <q1-2022-newsletter-cta>
