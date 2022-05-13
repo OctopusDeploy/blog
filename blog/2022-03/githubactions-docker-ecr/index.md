@@ -124,6 +124,8 @@ In the next post, we'll [take the image in ECR and deploy the web application](h
 
 Following that, we'll [use GitHub Actions and Octopus Deploy to deploy a web application to Amazon EKS](https://octopus.com/blog/multi-environment-deployments-github-actions).
 
+!include <github-actions-free-tool>
+
 !include <githubactions-webinar-feb-2022>
 
 !include <q1-2022-newsletter-cta>
