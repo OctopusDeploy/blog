@@ -128,6 +128,8 @@ Installing actions in GitHub is simple:
 
 If the actions we’ve chosen don’t suit your project or you need something outside the scope of CI, there's plenty more to choose from. Search through the [GitHub marketplace](https://github.com/marketplace?type=actions) for more.
 
+!include <github-actions-free-tool>
+
 !include <githubactions-webinar-feb-2022>
 
 !include <q1-2022-newsletter-cta>
