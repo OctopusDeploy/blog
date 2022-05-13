@@ -8,5 +8,5 @@ _site/
 .vs/*
 */.vs/*
 .atom/*
-*/.Ulysses-Group.plist
-.Ulysses-Settings.plist
+*.Ulysses-Group.plist
+*.Ulysses-Settings.plist
