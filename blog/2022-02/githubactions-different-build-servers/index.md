@@ -97,6 +97,8 @@ GitHub Actions is an ideal solution if you:
 - Like all your tools in one place
 - Already use GitHub
 
+!include <github-actions-free-tool>
+  
 !include <githubactions-webinar-feb-2022>
 
 !include <q1-2022-newsletter-cta>
