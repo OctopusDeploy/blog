@@ -206,6 +206,8 @@ Check out our next post about testing in GitHub Actions:
 
 - [Running end-to-end tests in GitHub Actions](https://octopus.com/blog/githubactions-running-endtoend-tests)
 
+!include <github-actions-free-tool>
+  
 !include <githubactions-webinar-feb-2022>
   
 !include <q1-2022-newsletter-cta>
