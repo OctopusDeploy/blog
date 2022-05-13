@@ -303,6 +303,8 @@ In this post, you learned how to:
 * Collect the results as JUnit report files
 * Process the test results
 
+!include <jenkins-free-tool>
+
 !include <jenkins-webinar-jan-2022>
 
 !include <q1-2022-newsletter-cta>
