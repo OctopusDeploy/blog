@@ -173,6 +173,8 @@ Check out our other posts about deploying with Jenkins, Kubernetes, and Octopus 
 - [Building a Docker image in Jenkinsfile and publishing to ECR](https://octopus.com/blog/jenkins-docker-ecr)
 - [Multi-environment deployments with Jenkins and Octopus](https://octopus.com/blog/multi-environment-deployments-jenkins)
 
+!include <jenkins-free-tool>
+ 
 !include <q1-2022-newsletter-cta>
 
 Happy deployments!
