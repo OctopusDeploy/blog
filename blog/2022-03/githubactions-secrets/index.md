@@ -127,6 +127,8 @@ If you haven’t already, check out some of our [other blogs in this Continuous 
 
 Octopus has also built a useful [GitHub Actions workflow generator](https://githubactionworkflows.com/) to help you build a CI pipeline for GitHub.
 
+!include <github-actions-free-tool>
+  
 !include <githubactions-webinar-feb-2022>
   
 !include <q1-2022-newsletter-cta>
