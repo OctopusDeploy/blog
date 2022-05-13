@@ -226,6 +226,8 @@ In this post, you set up and used a Jenkins instance to build and push a package
 
 This post shows you how Jenkins integrates with Octopus Deploy to manage releases and deployments automatically.
 
+!include <jenkins-free-tool>
+
 For more on Continuous Integration (CI) and build servers, [check out our CI blog series](https://octopus.com/blog/tag/CI%20Series).
 
 Happy deployments! 
