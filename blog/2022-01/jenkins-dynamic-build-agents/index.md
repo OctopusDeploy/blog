@@ -483,6 +483,8 @@ You can also read our other posts about configuring Jenkins:
 - [Jenkins security tips](https://octopus.com/blog/jenkins-security-tips)
 - [Managing credentials in Jenkins](https://octopus.com/blog/managing-jenkins-credentials)
 
+!include <jenkins-free-tool>
+
 !include <jenkins-webinar-jan-2022>
 
 !include <q1-2022-newsletter-cta>

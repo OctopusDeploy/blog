@@ -4,8 +4,8 @@ description: Learn how to configure a Jenkins instance in Azure and deploy with 
 author: terence.wong@octopus.com
 visibility: public 
 published: 2022-05-17-1400
-metaImage: blogimage-configureajenkinsvminazureanddeploywithoctopusdeploy.png
-bannerImage: blogimage-configureajenkinsvminazureanddeploywithoctopusdeploy.png
+metaImage: blogimage-configurejenkinswithoctopusazure-2022.png
+bannerImage: blogimage-configurejenkinswithoctopusazure-2022.png
 bannerImageAlt: A rocket coming from a Jenkins launch pad and being deployed via Octopus Deploy towards an Azure logo in the clouds.
 isFeatured: false
 tags:
@@ -16,7 +16,7 @@ tags:
  - Azure
 ---
 
-Jenkins is the most popular Continuous Integration (CI) platform on the market. It's open-source and free, and lets you automate the building and testing of your code.
+Jenkins is the most popular Continuous Integration (CI) platform on the market. It's open-source and free, and lets you automate the building and testing of your code. 
 
 You can use it with Octopus Deploy to manage releases and deployments automatically.
 
@@ -225,6 +225,8 @@ Click **SAVE**, go back to the job dashboard, and click **Build now**. Jenkins t
 In this post, you set up and used a Jenkins instance to build and push a package to Octopus Deploy. You used this package to deploy a web application to an Azure Web App. 
 
 This post shows you how Jenkins integrates with Octopus Deploy to manage releases and deployments automatically.
+
+!include <jenkins-free-tool>
 
 For more on Continuous Integration (CI) and build servers, [check out our CI blog series](https://octopus.com/blog/tag/CI%20Series).
 

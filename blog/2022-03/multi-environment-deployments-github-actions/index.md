@@ -216,6 +216,8 @@ Check out our other posts about deploying with GitHub Actions, Kubernetes, and O
 - [Building and publishing a Docker image to ECR using GitHub Actions](https://octopus.com/blog/githubactions-docker-ecr)
 - [Deploying to Amazon EKS with GitHub Actions](https://octopus.com/blog/deploying-amazon-eks-github-actions)
 
+!include <github-actions-free-tool>
+
 !include <githubactions-webinar-feb-2022>
 
 !include <q1-2022-newsletter-cta>

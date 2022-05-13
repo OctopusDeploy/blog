@@ -155,6 +155,8 @@ You can also use these modifiers at the end of the command-line:
 
 These are some of our favorite plugins to help you with your Jenkins pipeline, but we’re only scratching the surface. There are many more to find on the [Jenkins Index](https://plugins.jenkins.io/) that can further aid you in your CI efforts.
 
+!include <jenkins-free-tool>
+  
 !include <jenkins-webinar-jan-2022>
   
 !include <q1-2022-newsletter-cta>
