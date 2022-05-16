@@ -1,7 +1,7 @@
 ---
-title: 10 of our favorite GitHub Actions workflows
+title: 10 of our favorite actions for GitHub Actions
 description: GitHub Actions is a newcomer to Continuous Integration and provides CI as a Service. Here are 10 of our favorite actions to install from the GitHub Marketplace.
-author: andy.corrigan@octopus.com
+author: andrew.corrigan@octopus.com
 visibility: public
 published: 2022-03-21-1400
 metaImage: blogimage-githubconfigurationtop10plugins-2022.png
@@ -10,6 +10,7 @@ bannerImageAlt: Blue plug in a white and purple socket.
 isFeatured: false
 tags:
   - DevOps
+  - CI Series
   - Continuous Integration
   - GitHub Actions
   - Testing
@@ -17,7 +18,7 @@ tags:
 
 Although relatively new to the world of continuous integration (CI), GitHub’s adding of ‘Actions’ has seen its strong community build useful tasks that plug right into your repository.
 
-These workflows allow you to run non-standard tasks to help you test, build, and push your work to your deployment tools.
+Actions allow you to run non-standard tasks to help you test, build, and push your work to your deployment tools.
 
 In no particular order, here are 10 of our favorites, plus [how to install them](#install-actions).
 
@@ -106,10 +107,10 @@ After it's installed, just add your scripts to your repository and kick them off
 
 We’ve created 4 useful plugins for those using Octopus to deploy through their environments.
 
-- [Install Octopus CLI](https://github.com/marketplace/actions/install-octopus-cli) – lets you install the [Octopus Command Line Interface](https://octopus.com/docs/octopus-rest-api/octopus-cli) on runners (GitHub-hosted or otherwise). You can extend its use with our other 3 actions too, using the Octopus CLI to:
-   - [Push packages](https://github.com/marketplace/actions/push-package-to-octopus-deploy)
-   - [Create releases](https://github.com/marketplace/actions/create-release-in-octopus-deploy)
-   - [Start runbooks](https://github.com/marketplace/actions/run-runbook-in-octopus-deploy)
+[Install Octopus CLI](https://github.com/marketplace/actions/install-octopus-cli) lets you install the [Octopus Command Line Interface](https://octopus.com/docs/octopus-rest-api/octopus-cli) on runners (GitHub-hosted or otherwise). You can extend its use with our other 3 actions too, using the Octopus CLI to:
+- [Push packages](https://github.com/marketplace/actions/push-package-to-octopus-deploy)
+- [Create releases](https://github.com/marketplace/actions/create-release-in-octopus-deploy)
+- [Start runbooks](https://github.com/marketplace/actions/run-runbook-in-octopus-deploy)
 
 Given the nature of GitHub Actions as a service, other users have [contributed some Octopus-related actions](https://github.com/marketplace?type=&verification=&query=Octopus+) too. Check those out if you’re after even more integration with Octopus.
 
@@ -126,6 +127,8 @@ Installing actions in GitHub is simple:
 ## What next?
 
 If the actions we’ve chosen don’t suit your project or you need something outside the scope of CI, there's plenty more to choose from. Search through the [GitHub marketplace](https://github.com/marketplace?type=actions) for more.
+
+!include <github-actions-free-tool>
 
 !include <githubactions-webinar-feb-2022>
 

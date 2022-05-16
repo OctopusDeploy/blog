@@ -147,4 +147,6 @@ This is only the first cut of this functionality. We have a roadmap of features 
 
 We’d love for you to try Config as Code with your workflow and [let us know how we can improve it](https://octopusdeploy.typeform.com/to/qeW9JGyo).
 
+!include <cac-webinar-may-2022>
+
 Happy (version-controlled) deployments!

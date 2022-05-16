@@ -63,6 +63,6 @@ Octopus Deploy joins the 95+ platforms supported by Opsera as part of its no-cod
 
 If you're a customer of Opsera and you're interested in using Octopus Deploy for your deployments, you can [sign up for a free trial](https://octopus.com/start). Using the steps above, you can quickly incorporate our deployment capabilities as part of an orchestration through Opsera.
 
-To learn more, attend the [free webinar about the Opsera and Octopus Deploy integration](https://www.opsera.io/events/opsera-and-octopus-integration) on April 12, 2022.
+To learn more, watch the [free webinar about the Opsera and Octopus Deploy integration](https://www.opsera.io/events/opsera-and-octopus-integration).
 
 Happy deployments!

@@ -219,6 +219,8 @@ Check out our other post about testing in GitHub Actions:
 
 - [Running unit tests in GitHub Actions](https://octopus.com/blog/githubactions-running-unit-tests)
 
+!include <github-actions-free-tool>
+  
 !include <githubactions-webinar-feb-2022>
 
 !include <q1-2022-newsletter-cta>

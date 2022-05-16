@@ -343,6 +343,8 @@ In this post you learned how to:
 
 Running Docker images on a workstation or server is just the beginning though. In the next post, you'll learn [how to deploy Jenkins to a Kubernetes cluster](https://octopus.com/blog/jenkins-helm-install-guide).
 
+!include <jenkins-free-tool>
+  
 !include <jenkins-webinar-jan-2022>
 
 !include <q1-2022-newsletter-cta>

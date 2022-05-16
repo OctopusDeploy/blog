@@ -526,6 +526,7 @@ Check out our other posts about installing Jenkins:
 - [How to install Jenkins on Windows and Linux](https://octopus.com/blog/jenkins-install-guide-windows-linux)
 - [How to install Jenkins on Docker](https://octopus.com/blog/jenkins-docker-install-guide)
 
+!include <jenkins-free-tool>
 
 !include <jenkins-webinar-jan-2022>
 

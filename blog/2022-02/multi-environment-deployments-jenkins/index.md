@@ -226,6 +226,8 @@ Check out our other posts about deploying with Jenkins, Kubernetes, and Octopus 
 - [Building a Docker image in Jenkinsfile and publishing to ECR](https://octopus.com/blog/jenkins-docker-ecr)
 - [Deploying to Amazon EKS with Docker and Jenkins](https://octopus.com/blog/jenkins-eks-ecr-deployment )
 
+!include <jenkins-free-tool>
+ 
 !include <q1-2022-newsletter-cta>
 
 Happy deployments!

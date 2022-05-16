@@ -143,6 +143,8 @@ Check out our other posts about configuring Jenkins:
 - [Using dynamic build agents to automate scaling in Jenkins](https://octopus.com/blog/jenkins-dynamic-build-agents)
 - [Managing credentials in Jenkins](https://octopus.com/blog/managing-jenkins-credentials)
 
+!include <jenkins-free-tool>
+
 !include <jenkins-webinar-jan-2022>
 
 !include <q1-2022-newsletter-cta>

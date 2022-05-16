@@ -444,6 +444,8 @@ In this post, you learned:
 - How to allow Jenkins users to claim failed tests to indicate they'll take responsibility for them
 - How to fail a build when the tests fail
 
+!include <jenkins-free-tool>
+
 !include <jenkins-webinar-jan-2022>
 
 !include <q1-2022-newsletter-cta>

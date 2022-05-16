@@ -14,7 +14,7 @@ tags:
  - Continuous Deployment
 ---
 
-The terms *Continuous Integration* and *Continuous Deployment* tend to be combined into the acronym CI/CD, often without distinction between the two. CI and CD are distinct processes, even if combining the terms suggests that Continuous Deployment is an extension of Continuous Integration, and the execution of both processes is the responsibility of a single tool.
+The terms *Continuous Integration* and *Continuous Deployment* tend to be combined into the acronym CI/CD to describe the process of building and deploying software, often without distinction between the two. CI and CD are distinct processes, even if combining the terms suggests that Continuous Deployment is an extension of Continuous Integration, and the execution of both processes is the responsibility of a single tool.
 
 Assuming CI/CD is *just CI with a deployment step* ignores some fundamental differences between the two processes. In this post, we look at:
 
@@ -24,7 +24,7 @@ Assuming CI/CD is *just CI with a deployment step* ignores some fundamental diff
 
 ## What is Continuous Integration?  
 
-At a high level, CI is all about: 
+At a high level, CI tooling is concerned with: 
 
 - Taking the code written by developers and compiling it into an artifact
 - Running automated tests
@@ -32,7 +32,7 @@ At a high level, CI is all about:
 
 A CI server facilitates this process by running builds and tests with each commit.
 
-The CI process can be described as the equation:
+CI servers can be described as solving the equation:
 
 `code + dependencies + build tools + execution environment = test results + logs + compiled artifact`
 
@@ -42,7 +42,7 @@ The left side of the equation takes the code written by developers, any dependen
 
 When a CI server has been configured correctly, each commit to a repository results in the build being run, thus solving the equation without manual intervention from a human.
 
-This means the CI process is machine-driven, so much so that it's common for CI servers to have read-only user interfaces, like the Jenkins Blue Ocean UI.
+This means the process implemented by CI servers is machine-driven, so much so that it's common for CI servers to have read-only user interfaces, like the Jenkins Blue Ocean UI.
 
 The other important aspect of the CI equation is that developers provide the inputs, and the outputs are created for developers or people in other technical roles. Employees outside the IT department rarely interact with the CI server.
 
@@ -62,7 +62,7 @@ But while fully automated deployments have many benefits, it's not uncommon for 
 - Integrating deployments with back-end changes like databases
 - Not having 100% confidence in your tests
 
-Where CI is machine-driven for many teams, CD is human-driven. Much of the grunt work of performing a deployment is still automated, but the decision to promote a release through to production is a human one. Importantly, the decision may not be made by technical employees, but rather product owners, managers, or someone who stayed up until midnight to click the deploy button.
+Where CI tooling is machine-driven for many teams, CD is human-driven. Much of the grunt work of performing a deployment is still automated, but the decision to promote a release through to production is a human one. Importantly, the decision may not be made by technical employees, but rather product owners, managers, or someone who stayed up until midnight to click the deploy button.
 
 ## Why use separate CI and CD tools?
 
