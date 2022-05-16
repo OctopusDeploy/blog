@@ -3,7 +3,7 @@
 title: Creating an EC2 Octopus Worker with CloudFormation
 description: Learn how to deploy an EC2 configured as an Octopus Worker via a CloudFormation template.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2022-05-31-1400
 metaImage: blogimage-deployingec2workercloudformation-2022.png
 bannerImage: blogimage-deployingec2workercloudformation-2022.png
@@ -583,7 +583,7 @@ Mappings:
     # ...
 ```
 
-All EC2 instances must be placed in a Virtual Private Cloud (VPC), create with a [AWS::EC2::VPC](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpc.html) resource. 
+All EC2 instances must be placed in a Virtual Private Cloud (VPC), created with an [AWS::EC2::VPC](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpc.html) resource. 
 
 You define a Classless Inter-Domain Routing (CIDR) block of `10.0.0.0/16`, meaning all subnets assigned to the VPC must have IP addresses starting with `10.0`:
 
@@ -604,7 +604,7 @@ An internet gateway provides a connection to and from the internet. It's represe
     Type: AWS::EC2::InternetGateway
 ```
 
-The internet gateway is attached to the VPC using a [AWS::EC2::VPCGatewayAttachment](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpc-gateway-attachment.html) resource:
+The internet gateway is attached to the VPC using an [AWS::EC2::VPCGatewayAttachment](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-vpc-gateway-attachment.html) resource:
 
 ```yaml
   VPCGatewayAttachment:
@@ -614,7 +614,7 @@ The internet gateway is attached to the VPC using a [AWS::EC2::VPCGatewayAttachm
       InternetGatewayId: !Ref InternetGateway
 ```
 
-A subnet is attached to the VPC using a [AWS::EC2::Subnet](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html) resource. You can avoid hard-coding an availability zone by using the `!Select` function to return the first item from the `!GetAZs` array. 
+A subnet is attached to the VPC using an [AWS::EC2::Subnet](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnet.html) resource. You can avoid hard-coding an availability zone by using the `!Select` function to return the first item from the `!GetAZs` array. 
 
 The CIDR block is set to `10.0.0.0/24`, indicating that the IP addresses for resources in this subnet all start with `10.0.0`. Setting `MapPublicIpOnLaunch` to `true` means any EC2 instances placed in this subnet receive a dynamic, public IP address, allowing you to SSH into them:
 
@@ -630,7 +630,7 @@ The CIDR block is set to `10.0.0.0/24`, indicating that the IP addresses for res
       MapPublicIpOnLaunch: true
 ```
 
-A route table defines the network rules for traffic associated with this VPC, and is defined by a [AWS::EC2::RouteTable](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-routetable.html) resource:
+A route table defines the network rules for traffic associated with this VPC, and is defined by an [AWS::EC2::RouteTable](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-routetable.html) resource:
 
 ```yaml
   RouteTable:
@@ -639,7 +639,7 @@ A route table defines the network rules for traffic associated with this VPC, an
       VpcId: !Ref VPC
 ```
 
-External internet traffic is directed to the internet gateway by a route represented by a [AWS::EC2::Route](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route.html) resource. The CIDR block `0.0.0.0/0` matches all IPv4 addresses, which means this rule matches all traffic not configured by the default rules that handle internal traffic inside the VPC:
+External internet traffic is directed to the internet gateway by a route represented by an [AWS::EC2::Route](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-route.html) resource. The CIDR block `0.0.0.0/0` matches all IPv4 addresses, which means this rule matches all traffic not configured by the default rules that handle internal traffic inside the VPC:
 
 ```yaml
   InternetRoute:
@@ -651,7 +651,7 @@ External internet traffic is directed to the internet gateway by a route represe
       RouteTableId: !Ref RouteTable
 ```
 
-The route table is associated with the subnet using a [AWS::EC2::SubnetRouteTableAssociation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html) resource:
+The route table is associated with the subnet using an [AWS::EC2::SubnetRouteTableAssociation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html) resource:
 
 ```yaml
   SubnetARouteTableAssociation:
@@ -727,7 +727,7 @@ This resource references the AMI IDs from the `Mappings` section, joins the subn
 
 [User data scripts](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) are run after the instance is provisioned. It's here you install any specialized tools commonly required by deployments, install the Octopus Tentacle, and configure the Tentacle as a Worker.
 
-One issue to watch out for is that the network may not be available when this script is executed. This has been discussed on [StackOverflow](https://stackoverflow.com/questions/54050975/aws-ec2-yum-update-does-not-work-in-autoscaling-launchconfig-userdata).
+One issue to watch out for is that the network may not be available when this script is executed. This has been [discussed on StackOverflow](https://stackoverflow.com/questions/54050975/aws-ec2-yum-update-does-not-work-in-autoscaling-launchconfig-userdata).
 
 To ensure any subsequent commands have network access, you must enter a loop waiting for a ping to a known and reliable site like Google to succeed:
 
