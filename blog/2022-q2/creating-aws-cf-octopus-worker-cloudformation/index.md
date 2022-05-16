@@ -4,22 +4,23 @@ title: Creating an EC2 Octopus Worker with CloudFormation
 description: Learn how to deploy an EC2 configured as an Octopus Worker via a CloudFormation template.
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2999-01-01
+published: 2022-05-31-1400
 metaImage: blogimage-deployingec2workercloudformation-2022.png
 bannerImage: blogimage-deployingec2workercloudformation-2022.png
 bannerImageAlt: Picture of server in the clouds.
 isFeatured: false
 tags:
  - DevOps
+ - Runbooks Series
  - AWS
  - CloudFormation
 ---
 
-Workers provide the ability to delegate the execution of a deployment to a machine with privileged access to the resources being modified, with specialized tools installed, or just to remove the burden of executing a deployment from the Octopus Server. 
+Workers let you delegate the execution of a deployment to a machine with privileged access to the resources being modified, with specialized tools installed, or just to remove the burden of executing a deployment from the Octopus Server. 
 
 EC2 instances provide a logical solution to host Octopus Workers. 
 
-In this post, you'll learn how to deploy an Octopus Worker onto a new EC2 instance with CloudFormation.
+In this post, you learn how to deploy an Octopus Worker onto a new EC2 instance with CloudFormation.
 
 ## The complete template
 
@@ -596,7 +597,7 @@ You define a Classless Inter-Domain Routing (CIDR) block of `10.0.0.0/16`, meani
           Value: Linux VPC
 ```
 
-An internet gateway provides a connection to and from the internet. It is represented by the [AWS::EC2::InternetGateway](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-internetgateway.html) resource:
+An internet gateway provides a connection to and from the internet. It's represented by the [AWS::EC2::InternetGateway](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-internetgateway.html) resource:
 
 ```yaml
   InternetGateway:
@@ -662,7 +663,7 @@ The route table is associated with the subnet using a [AWS::EC2::SubnetRouteTabl
 
 To allow your local workstation to SSH into the EC2 instance, a security group is configured to open port 22 to any traffic originating from your local IP address. The security group also allows traffic sent to any destination. Security groups are represented by the [AWS::EC2::SecurityGroup](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html) resource.
 
-Because you'll configure a Polling Tentacle, which establishes an outbound connection from the Worker to the Octopus Server, there is no need to open any ports to allow traffic from Octopus to the EC2 instance. Security groups wallow the Octopus Server to respond to a request made by the Worker.
+Because you configure a Polling Tentacle, which establishes an outbound connection from the Worker to the Octopus Server, there's no need to open any ports to allow traffic from Octopus to the EC2 instance. Security groups allow the Octopus Server to respond to a request made by the Worker.
 
 If you configure a Listening Tentacle, where Octopus establishes the network connection to the Worker, you have to open port 10933 to the list of [static IPs associated with your hosted instance](https://octopus.com/docs/octopus-cloud/static-ip), or the IP address of your self hosted Octopus instance.
 
@@ -724,7 +725,7 @@ This resource references the AMI IDs from the `Mappings` section, joins the subn
           Value: Linux Server
 ```
 
-[User data scripts](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) are run after when the instance is provisioned. It's here we'll install any specialized tools commonly required by deployments, install the Octopus Tentacle, and configure the Tentacle as a Worker.
+[User data scripts](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/user-data.html) are run after the instance is provisioned. It's here you install any specialized tools commonly required by deployments, install the Octopus Tentacle, and configure the Tentacle as a Worker.
 
 One issue to watch out for is that the network may not be available when this script is executed. This has been discussed on [StackOverflow](https://stackoverflow.com/questions/54050975/aws-ec2-yum-update-does-not-work-in-autoscaling-launchconfig-userdata).
 
@@ -807,5 +808,9 @@ After this template is deployed, a new Worker appears in your Octopus instance, 
 Deploying Workers as EC2 instances allows you to offload deployment tasks to dedicated VMs, and may improve the efficiency of your deployments by executing them closer to the AWS resources being modified.
 
 In this post, you looked at a CloudFormation template that deployed an EC2 instance in a VPC with public internet access and with initialization scripts that installed and configured an Octopus Tentacle as a Worker.
+
+We have [other posts about CloudFormation templates](https://octopus.com/blog/tag/CloudFormation) you might find helpful too.
+
+!include <q2-2022-newsletter-cta>
 
 Happy deployments!
