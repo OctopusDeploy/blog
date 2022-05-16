@@ -1,6 +1,6 @@
 ---
 title: Creating AMI mappings for CloudFormation
-description: As part of our Runbooks series, learn how to create region AMI mappings for use with CloudFormation Templates.
+description: As part of our Runbooks series, learn how to create region AMI mappings for use with CloudFormation templates.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2022-05-24-1400
@@ -182,6 +182,8 @@ Resources:
 Keeping your CloudFormation templates up-to-date with the latest AMI IDs is a constant challenge. It's complicated further because every region has unique AMI IDs. 
 
 In this post, you learned how to generate up-to-date mappings with regional AMI IDs to copy and paste into your CloudFormation templates.
+
+Check out our [other posts about CloudFormation templates](https://octopus.com/blog/tag/CloudFormation).
 
 !include <q2-2022-newsletter-cta>
 
