@@ -629,7 +629,7 @@ The CIDR block is set to `10.0.0.0/24`, indicating that the IP addresses for res
       MapPublicIpOnLaunch: true
 ```
 
-A route table defines the network rules for traffic associated with this VPC, and is defined by an [AWS::EC2::RouteTable](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-routetable.html) resource:
+A route table defines the network rules for traffic associated with this VPC, and is defined by an [AWS::EC2::RouteTable](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-ec2-subnetroutetableassociation.html) resource:
 
 ```yaml
   RouteTable:
@@ -808,7 +808,7 @@ Deploying Workers as EC2 instances allows you to offload deployment tasks to ded
 
 In this post, you looked at a CloudFormation template that deployed an EC2 instance in a VPC with public internet access and with initialization scripts that installed and configured an Octopus Tentacle as a Worker.
 
-We have [other posts about CloudFormation templates](https://octopus.com/blog/tag/CloudFormation) you might find helpful too.
+We have [other posts about CloudFormation](https://octopus.com/blog/tag/CloudFormation) you might find helpful too.
 
 !include <q2-2022-newsletter-cta>
 
