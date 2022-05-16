@@ -4,8 +4,8 @@ description: Learn how Clusterlint can be built into your workflow with runbooks
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2022-06-01-1400
-metaImage: 
-bannerImage: 
+metaImage: blogimage-lintingkubernetesclusterwithclusterlintandrunbooks-2022.png
+bannerImage: blogimage-lintingkubernetesclusterwithclusterlintandrunbooks-2022.png
 bannerImageAlt: Picture of a cartoon book running with a lint roller cleaning and checking Kubernete shapes
 isFeatured: false
 tags:
@@ -107,5 +107,7 @@ Conceptually, runbooks are a simple idea. They let you run the same automated pr
 But there is so much more to repeatable deployments than the actual act of deploying software, and runbooks inherit all of this cross-cutting functionality. With runbook automation, you get security, logging, auditing, reporting, dashboards, and scheduling built-in.
 
 As we have seen in this post, even the simplest one line script can take advantage of these features to scale up to a robust, production ready solution.
+
+!include <q2-2022-newsletter-cta>
 
 Happy deployments!
