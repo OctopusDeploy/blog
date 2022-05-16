@@ -1,30 +1,33 @@
 ---
 title: Generating instance types lists for CloudFormation
-description: Learn how to generate a list of available instance types to include in CloudFormation templates.
+description: As part of our series on Runbooks, learn how to generate a list of available instance types to include in CloudFormation templates.
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01-1400
+visibility: public
+published: 2022-05-30-1400
 metaImage: blogimage-generatinginstancetypeslistsforcf-2022.png
 bannerImage: blogimage-generatinginstancetypeslistsforcf-2022.png
-bannerImageAlt: Blue octopus arm holding 
+bannerImageAlt: Blue octopus arm holding a list of instance types
 isFeatured: false
 tags:
  - DevOps
+ - Runbooks Series
  - AWS
  - CloudFormation
 ---
 
 The [instance type](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-instance.html#cfn-ec2-instance-instancetype) is a required parameter when building EC2 instances. While the AWS documentation provides a list of allowed values, it's not presented in a format that can be easily consumed by your own CloudFormation templates.
 
-In this post, you'll learn how to build a parameter with a complete list of instance types as allowed values to copy and paste into your own templates.
+In this post, you learn how to build a parameter with a complete list of instance types as allowed values, to copy and paste into your own templates.
 
-## Prerequisites
+## Getting started
 
-The script requires `jq`. The `jq` [download page](https://stedolan.github.io/jq/download/) includes instructions for installing the tool for major Linux distributions.
+The script requires `jq`. 
+
+The `jq` [download page](https://stedolan.github.io/jq/download/) includes instructions for installing the tool for major Linux distributions.
 
 ## The lookup script
 
-The script below returns a YAML bloc defining a CloudFormation parameter with a sorted list of all available instance types:
+The script below returns a YAML block defining a CloudFormation parameter with a sorted list of all available instance types:
 
 ```bash
 echo "Parameters:"
@@ -365,5 +368,7 @@ When this parameter is included in a template deployed by Octopus, the list of a
 EC2s have dozens of instance types these days, and providing a list of options to those deploying a CloudFormation template removes the need to refer to external documentation. 
 
 In this post, you learned how to build a CloudFormation parameter in YAML with a complete list of instance types, ready to be copied into your CloudFormation templates.
+
+!include <q2-2022-newsletter-cta>
 
 Happy deployments!
