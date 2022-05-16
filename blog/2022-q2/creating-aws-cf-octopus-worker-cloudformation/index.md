@@ -1,4 +1,3 @@
-
 ---
 title: Creating an EC2 Octopus Worker with CloudFormation
 description: Learn how to deploy an EC2 configured as an Octopus Worker via a CloudFormation template.
