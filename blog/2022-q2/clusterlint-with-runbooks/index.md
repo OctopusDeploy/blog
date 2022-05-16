@@ -3,13 +3,14 @@ title: Linting your Kubernetes cluster with Clusterlint and runbooks
 description: Learn how Clusterlint can be built into your workflow with runbooks.
 author: matthew.casperson@octopus.com
 visibility: private
-published: 3000-01-01
-metaImage: k8s-clusterlint-runbook.png
-bannerImage: k8s-clusterlint-runbook.png
-bannerImageAlt: Kubernetes DevOps Runbook example with Clusterlint
+published: 2022-06-01-1400
+metaImage: 
+bannerImage: 
+bannerImageAlt: Picture of a cartoon book running with a lint roller cleaning and checking Kubernete shapes
 isFeatured: false
 tags:
  - DevOps
+ - Runbooks Series
  - Runbooks
  - Kubernetes
 ---
