@@ -8,6 +8,7 @@ Company
 Automation
 AWS
 Azure
+CloudFormation
 Community
 Continuous Integration
 Continuous Deployment
@@ -23,14 +24,22 @@ Java
 Jira
 Jenkins
 Kubernetes
+Lambda
 Linux
 Multi-Tenancy
 Octopus Cloud
 PowerShell
 Reporting
 Runbooks
+Serverless
 Step Templates
 Testing
 Trust and Security
 Variables
 Workers
+
+# Tags for marketing themes
+CI Series
+Runbooks Series
+
+At The Helm
