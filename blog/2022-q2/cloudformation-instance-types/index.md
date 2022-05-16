@@ -365,7 +365,7 @@ When this parameter is included in a template deployed by Octopus, the list of a
 
 ## Conclusion
 
-EC2s have dozens of instance types these days, and providing a list of options to those deploying a CloudFormation template removes the need to refer to external documentation. 
+EC2s have dozens of instance types, and providing a list of options to those deploying a CloudFormation template removes the need to refer to external documentation. 
 
 In this post, you learned how to build a CloudFormation parameter in YAML with a complete list of instance types, ready to be copied into your CloudFormation templates.
 
