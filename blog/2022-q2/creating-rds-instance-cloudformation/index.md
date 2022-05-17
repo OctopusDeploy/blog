@@ -3,7 +3,7 @@ title: Creating an RDS instance with CloudFormation
 description: As part of our Runbooks series, learn how to create an RDS instance with this sample CloudFormation template.
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2022-03-29-1400
+published: 2022-06-06-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
@@ -120,7 +120,7 @@ Outputs:
 
 The VPC, subnets, and route tables were described in a [previous post](https://octopus.com/blog/aws-vpc-private). This template then places a number of additional resources into the VPC to support or create the RDS instance.
 
-RDS instances must have at least two subnets to achieve high availability. These subnets are grouped together in a [AWS::RDS::DBSubnetGroup](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbsubnet-group.html) resource:
+RDS instances need at least 2 subnets to achieve high availability. These subnets are grouped together in an [AWS::RDS::DBSubnetGroup](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-rds-dbsubnet-group.html) resource:
 
 ```yaml
   SubnetGroup:
@@ -133,7 +133,7 @@ RDS instances must have at least two subnets to achieve high availability. These
       - !Ref "SubnetB"
 ```
 
-Network access to the RDS instance is defined in a security group, represented by a [AWS::EC2::SecurityGroup](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html) resource. This security group allows all outbound traffic, but does not specify any rules for inbound traffic. Inbound traffic rules are taken care of with another resource:
+Network access to the RDS instance is defined in a security group, represented by an [AWS::EC2::SecurityGroup](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html) resource. This security group allows all outbound traffic, but doesn't specify any rules for inbound traffic. Inbound traffic rules are taken care of with another resource:
 
 ```yaml
   InstanceSecurityGroup:
@@ -147,7 +147,7 @@ Network access to the RDS instance is defined in a security group, represented b
         CidrIp: "0.0.0.0/0"
 ```
 
-It's rare that a production database is accessible to public traffic. In fact, RDS solutions like Aurora Serverless (which you create next) [are only accessible from within a VPC](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.html#aurora-serverless.requirements):
+It's rare that a production database is accessible to public traffic. In fact, RDS solutions like Aurora Serverless (which you create next) [are only accessible in a VPC](https://docs.aws.amazon.com/AmazonRDS/latest/AuroraUserGuide/aurora-serverless.html#aurora-serverless.requirements):
 
 > You can't give an Aurora Serverless v1 DB cluster a public IP address. You can access an Aurora Serverless v1 DB cluster only from within a VPC.
 
@@ -192,7 +192,7 @@ You now have everything in place to deploy the RDS instance, represented by the 
 
 RDS provides a managed, scalable, and highly available database platform supporting a number of popular database providers. 
 
-This post built on the [previous post](https://octopus.com/blog/aws-vpc-private) describing VPCs with private subnets, and demonstrated the resources required to deploy a serverless Aurora RDS instance with security groups ready to be attached to any additional resources that required database access.
+This post built on our [post describing VPCs with private subnets](https://octopus.com/blog/aws-vpc-private), and demonstrated the resources required to deploy a serverless Aurora RDS instance with security groups ready to be attached to any additional resources that required database access.
 
 We have [other posts about CloudFormation templates](https://octopus.com/blog/tag/CloudFormation) you might find helpful too.
 
