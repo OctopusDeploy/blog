@@ -276,20 +276,10 @@ It would be a great idea to either extend these runbooks, or combine them with o
 
 If you’ve made it this far, I hope you’ve been inspired to action.
 
-Happy deployments!
-
-
-### If you have any issues following this walk-through
-
-Since I created the SQL Clone step templates, I’m keen for you to tell me if you have any problems with them or any ideas you have for enhancements. Please email me using the contact details for [DLM Consultants](http://dlmconsultants.com/).
-
-If you want any advice about DevOps and Data, we offer consulting, coaching, and mentoring services. Alternatively, both Redgate and Octopus have great documentation, community forums, and tech support teams.
-
----
-
-**Edit, 22 Oct, 2021:**
 If you would like to learn more about database environment creation, and how it fits into the broader DevOps strategy, you may enjoy my latest blog series about safe schema updates. It starts with [Database delivery hell](https://octopus.com/blog/safe-schema-updates-1-delivery-hell).
 
 In particular, you may be interested in [Part 6](https://octopus.com/blog/safe-schema-updates-6-provisioning-databases), which tackles database environment provisioning.
 
 !include <q2-2022-newsletter-cta>
+
+Happy deployments!
