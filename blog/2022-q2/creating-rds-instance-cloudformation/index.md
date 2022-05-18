@@ -4,9 +4,9 @@ description: As part of our Runbooks series, learn how to create an RDS instance
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2022-06-06-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-createrdsinstancecf-2022.png
+bannerImage: blogimage-createrdsinstancecf-2022.png
+bannerImageAlt: A crane lowering one level of a database server onto three levels already stacked up below it.
 isFeatured: false
 tags:
  - DevOps
