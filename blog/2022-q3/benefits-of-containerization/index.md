@@ -46,7 +46,7 @@ Because containers are portable, they can run anywhere on any infrastructure, su
 
 To run applications, containers are loaded with container images. A container image is a static file that contains executable code to run a process on IT infrastructure. There are container images for different use cases such as databases, web servers, operating systems, and more. Container image repositories are public access points for container images, which makes them available to developers who can load a container with these images. 
 
-The open standards of containers, alongside the wide range of images available, means that developers can load endless services on any infrastructure configuration.
+The open standards of containers, alongside the wide range of images available, means that developers can load endless services in their containers to be executed on a variety of infrastructure.
 
 ## What are the top container images?
 
