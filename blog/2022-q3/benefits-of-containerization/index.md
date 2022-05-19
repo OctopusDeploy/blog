@@ -74,7 +74,7 @@ A [report by Datadog](https://www.datadoghq.com/container-report/) in 2021 indic
 
 ## Containerization support in Octopus Deploy
 
-A deployment process will likely use some form of containers or container orchestration to deploy an application. Octopus Deploy is a deployment management tool that supports containerization. Octopus Deploy works with container registries, PaaS providers, Docker, and Kubernetes to provide a best-in-class deployment management tool. Regardless of which container technologies are most popular moving forward, Octopus Deploy can work with all of them to provide happier deployments!
+A deployment process can use some form of containers or container orchestration to deploy an application. Octopus Deploy is a deployment management tool that supports containerization. Octopus Deploy works with container registries, PaaS providers, Docker, and Kubernetes to provide a best-in-class deployment management tool. Regardless of which container technologies are most popular moving forward, Octopus Deploy can work with all of them to provide happier deployments!
 
 ## Conclusion
 
