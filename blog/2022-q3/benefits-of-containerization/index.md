@@ -62,7 +62,7 @@ The open standards of containers, alongside the wide range of images available, 
 
 - Alpine: a Linux distribution built around musl libc and BusyBox.
 
-Popular container images are often open-source and address a fundamental need in software applications, such as databases, web servers, or caches. These images are maintained and kept up to date by a community and are OCI compliant. Developers can use a mixture of these container images to build an application, knowing that each container image will run in the same way and on any infrastructure.
+Popular container images are often open-source and address a fundamental need in software applications, such as databases, web servers, or caches. These use cases are common to most software projects and tools have already been built to solve them. The power of containerization helps developers build on existing solutions to solve new problems.
 
 ## What are the primary tools for container technologies?
 
