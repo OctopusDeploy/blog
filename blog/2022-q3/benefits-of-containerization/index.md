@@ -22,7 +22,7 @@ Containers are still a relatively new technology, and to the uninitiated they ca
 
 A container is a lightweight, portable computing environment that includes all the necessary files to run independently. 
 
-Containerization is the process of making an application runnable as a container. Once the application can run as a container, it will run the same regardless of the infrastructure that is used to execute the container. 
+Containerization is the process of making an application runnable as a container. Once the application can run as a container, it will run the same regardless of the infrastructure that is used to execute the container. Containers are loaded with container images that run a specific application inside the container. The varied number of different container images means that containers have a wide variety of use cases and applications.
 
 Containerization has been widely adopted in recent years, partly due to the availability of cloud technologies, which make container scaling and replication possible, unlocking the business value of containers.  
 
