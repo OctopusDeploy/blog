@@ -3,7 +3,7 @@ title: Comparing continuous delivery and Agile
 description: TBC
 author: steve.fenton@octopus.com
 visibility: private
-published: 9999-99-99-12:00
+published: 3020-01-01-1400
 metaImage: placeholderimg.png
 bannerImage: placeholderimg.png
 bannerImageAlt: TBC
@@ -12,19 +12,19 @@ tags:
   - DevOps
 ---
 
-After two decades, The Agile Manifesto is still a big influence on software development teams around the world. With DevOps and continuous delivery now gaining traction, it's a good time to compare the 5 principles of continuous delivery to the 12 Agile principles.
-
-In his book *Continuous Delivery Pipelines*, Dave Farley places "apply Lean and Agile principles" in his 7 essential techniques, so how well do they align? Let's find out.
+After two decades, The Agile Manifesto is still a big influence on software development teams around the world. With DevOps and continuous delivery now gaining traction, it's a good time to compare the 5 principles of continuous delivery to the 12 Agile principles. In his book *Continuous Delivery Pipelines*, Dave Farley places "apply Lean and Agile principles" in his 7 essential techniques, so how well do they align? Let's find out.
 
 ## Agile and continuous delivery
 
-Continuous delivery is...
+Continuous delivery uses the deployment pipeline as a focusing lens for the continuous improvement of the software delivery process. There are specific capabilities, techniques, and principles involved and a strong preference for automation where it is appropriate. The technical capabilities of continuous delivery have been proven to have a statistical relationship to the success of an organization. A continuous delivery pipeline with fully automated approval stages is sometimes called _continuous deployment_, where no human intervention is required after the code is integrated into the main branch in version control.
 
-Agile is...
+Agile is a set of principles attached to a collective manifesto that emerged from the lightweight and adaptive software development movement. The Agile Manifesto was written to represent a set of values to use as a litmus test for development methods. Rather than defining a model or framework, the values and principles could guide the creation and evolution of many different approaches. Some successful examples of Agile methods include Extreme Programming, Scrum, and Dynamic Systems Development Method (DSDM).
 
-CD was influenced by both lean and agile, and even took it's name from the first principle of The Agile Manifesto: "Our highest priority is to satisfy the customer through early and continuous delivery of valuable software". It seeks to deliver the maximum value for the least effort and requires software be in a constant state of readiness. It uses automation to clear the way for fast and frequent delivery of software.
+Continuous delivery was influenced by Agile and Lean, and took it's name from the first principle of The Agile Manifesto: "Our highest priority is to satisfy the customer through early and continuous delivery of valuable software". Continuous delivery seeks to deliver the maximum value for the least effort and requires software be in a constant state of readiness. It uses automation to clear the way for fast and frequent delivery of software.
 
 ### The Agile Manifesto
+
+
 
 People have tried to re-write the Agile principles a few times, but the original authors have left it alone.
 
