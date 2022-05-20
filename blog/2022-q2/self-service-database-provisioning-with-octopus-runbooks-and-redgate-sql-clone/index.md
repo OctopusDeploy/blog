@@ -4,9 +4,9 @@ description: A discussion about database provisioning for dev and test, includin
 author: alex.yates@dlmconsultants.com
 visibility: public
 published: 2022-06-07-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: Self-service database provisioning with Octopus Runbooks and Redgate SQL Clone
+metaImage: blogimage-selfservicedatabaseredbookssqlclone-2022.png
+bannerImage: blogimage-selfservicedatabaseredbookssqlclone-2022.png
+bannerImageAlt: Octopus paying for running book with shopping trolley at a self service checkout.
 tags:
  - DevOps
  - Runbooks Series
@@ -20,7 +20,7 @@ I wanted to write about self-service database environment creation.
 
 It’s a crucial part of any development process and has an enormous impact on productivity, quality, and security. It’s also a fascinating technical challenge, often combining infrastructure-as-code, test data management, automation, and interesting data virtualization techniques. And since theory is largely hypothetical unless it’s turned into practice, I wanted to include a step-by-step walk-through so that you can create your own proof of concept.
 
-Needless to say, this blog post got a bit long. To break it down, I followed [Simon Sinek’s *Why? How? What?*](https://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action?language=en) concept to split it into shorter, bite-sized sections. I encourage you to start at whichever part interests you the most:
+Needless to say, this post got a bit long. To break it down, I followed [Simon Sinek’s *Why? How? What?*](https://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action?language=en) concept to split it into shorter, bite-sized sections. You can start at whichever part interests you the most:
 
 - [**Why?** This is important](#why) 
 - [**How?** Introducing the tech](#how) 
@@ -276,7 +276,7 @@ It would be a great idea to either extend these runbooks, or combine them with o
 
 If you’ve made it this far, I hope you’ve been inspired to action.
 
-If you would like to learn more about database environment creation, and how it fits into the broader DevOps strategy, you may enjoy my latest blog series about safe schema updates. It starts with [Database delivery hell](https://octopus.com/blog/safe-schema-updates-1-delivery-hell).
+To learn more about database environment creation, and how it fits into the broader DevOps strategy, you may enjoy my blog series about safe schema updates. It starts with [Database delivery hell](https://octopus.com/blog/safe-schema-updates-1-delivery-hell).
 
 In particular, you may be interested in [Part 6](https://octopus.com/blog/safe-schema-updates-6-provisioning-databases), which tackles database environment provisioning.
 
