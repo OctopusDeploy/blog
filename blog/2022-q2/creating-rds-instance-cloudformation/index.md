@@ -2,7 +2,7 @@
 title: Creating an RDS instance with CloudFormation
 description: As part of our Runbooks series, learn how to create an RDS instance with this sample CloudFormation template.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2022-06-06-1400
 metaImage: blogimage-createrdsinstancecf-2022.png
 bannerImage: blogimage-createrdsinstancecf-2022.png
