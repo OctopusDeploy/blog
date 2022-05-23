@@ -51,9 +51,9 @@ The following are some types of functional and non-functional tests. I have prov
 
 #### Unit
 
-```
+Unit tests test an individual unit of code for functionality. In this case we test a function, which is a block of code that does one task.
 
-Testing an individual unit of code for functionality. In this case we test a function, which is a block of code that does one task.
+```
 
 1. Test if a function works. This function averages the weather for the previous 14 days.
 2. Give the function the weather inputs for the previous 14 days
@@ -63,9 +63,9 @@ Testing an individual unit of code for functionality. In this case we test a fun
 
 #### Integration
 
-```
+Integration tests tests the functionality between two or more modules. This example tests the integration between the e-commerce store front, and the shopping cart module
 
-Testing the functionality between two or more modules. This example tests the integration between the e-commerce store front, and the shopping cart module
+```
 
 1. Load the e-commerce store and add some items to the cart, and go to checkout
 2. Check that the correct number of items are in the cart and the listed price is correct
@@ -74,9 +74,9 @@ Testing the functionality between two or more modules. This example tests the in
 
 #### Smoke
 
-```
-
 Smoke testing is preliminary testing to reveal failures that could result in a rejection of a release.
+
+```
 
 1. Does the web server return a 200 OK response?
 2. Can I ping the database?
@@ -84,9 +84,9 @@ Smoke testing is preliminary testing to reveal failures that could result in a r
 
 #### Acceptance
 
-```
+Acceptance tests confirm that the application is working according to a requirements specification. In this example there is a requirement for a rewards system to work with an application. The tests test for the expected behavior of a rewards system.
 
-Confirm that the application is working according to a requirements specification. In this example there is a requirement for a rewards system to work with an application. The tests test for the expected behavior of a rewards system.
+```
 
 1. If a user tries to purchase a product with rewards points and they have enough points, the purchase price should be $0
 2. If a user tries to purchase a product with rewards points and they do not have enough points, the purchase price should be $20
@@ -97,9 +97,9 @@ Confirm that the application is working according to a requirements specificatio
 
 #### Load/Performance
 
-```
+Load and performance tests test for metrics like speed, response time, and resource usage of the application.
 
-Tests performance metrics like speed, response time, and resource usage of the application.
+```
 
 1. Measure the loading time of the home page and flag if it exceeds a threshold value
 2. Measure database response time when handling 100 or more concurrent requests. Flag if response time exceeds threshold value
@@ -109,9 +109,9 @@ Tests performance metrics like speed, response time, and resource usage of the a
 
 #### Security
 
-```
+Securit tests test for security related weaknesses in the system.
 
-Tests for security related weaknesses in the system.
+```
 
 1. Scan log files for sensitive information. eg. credit card numbers or email addresses
 2. Scanning for long running sessions as a sign that session handling isn't working as expected
@@ -120,9 +120,9 @@ Tests for security related weaknesses in the system.
 
 #### Scalability
 
-```
+Scalability tests test for issues related to scaling the application.
 
-Tests for issues related to scaling the application.
+```
 
 1. Under increasing load, test how many nodes an application needs to recover
 2. Test the length of time required for more nodes to be added and the application to recover. Chart how quickly you can expect 90% of scale up events to complete in.
