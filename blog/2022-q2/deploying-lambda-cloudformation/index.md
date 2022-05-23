@@ -1,5 +1,5 @@
 ---
-title: Deploy a Lambda with CloudFormation
+title: Deploying a Lambda with CloudFormation
 description: Learn how to deploy a Lambda with this sample CloudFormation template.
 author: matthew.casperson@octopus.com
 visibility: public
