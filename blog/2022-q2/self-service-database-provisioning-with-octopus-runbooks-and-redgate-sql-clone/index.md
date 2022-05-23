@@ -18,9 +18,9 @@ tags:
 
 I wanted to write about self-service database environment creation.
 
-It’s a crucial part of any development process and has an enormous impact on productivity, quality, and security. It’s also a fascinating technical challenge, often combining infrastructure-as-code, test data management, automation, and interesting data virtualization techniques. And since theory is largely hypothetical unless it’s turned into practice, I wanted to include a step-by-step walk-through so that you can create your own proof of concept.
+It’s crucial to any development process and has an enormous impact on productivity, quality, and security. It’s also a fascinating technical challenge, often combining infrastructure-as-code, test data management, automation, and interesting data virtualization techniques. And since theory is largely hypothetical unless it’s turned into practice, I wanted to include a step-by-step walk-through so that you can create your own proof of concept.
 
-Needless to say, this post got a bit long. To break it down, I followed [Simon Sinek’s *Why? How? What?*](https://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action?language=en) concept to split it into shorter, bite-sized sections. You can start at whichever part interests you the most:
+Needless to say, this post got a bit long. To break it down, I followed [Simon Sinek’s *Why? How? What?*](https://www.ted.com/talks/simon_sinek_how_great_leaders_inspire_action?language=en) concept to split it into bite-sized sections. You can start at whichever part interests you the most:
 
 - [**Why?** This is important](#why) 
 - [**How?** Introducing the tech](#how) 
@@ -28,7 +28,7 @@ Needless to say, this post got a bit long. To break it down, I followed [Simon S
 
 ## Why? This is important {#why}
 
-In 2018 Nicole Forsgren, Gene Kim, and Jez Humble gave us [Accelerate](https://www.amazon.co.uk/Accelerate-Software-Performing-Technology-Organizations/dp/1942788339). The book clearly articulates 4 key metrics demonstrated to predict superior IT performance and positive business outcomes (including profitability, market share, and productivity) in any organization. Those metrics are:
+In 2018 Nicole Forsgren, Gene Kim, and Jez Humble gave us [Accelerate](https://www.amazon.co.uk/Accelerate-Software-Performing-Technology-Organizations/dp/1942788339). The book articulates 4 key metrics demonstrated to predict superior IT performance and positive business outcomes (including profitability, market share, and productivity) in any organization. Those metrics are:
 
 - Deployment frequency
 - Lead time
@@ -37,7 +37,7 @@ In 2018 Nicole Forsgren, Gene Kim, and Jez Humble gave us [Accelerate](https://w
 
 The authors clearly explain how, by focusing on these metrics, businesses invert the core chronic conflict between dev and ops (between speed and safety) and create a virtuous cycle of smaller, more regular, and safer releases. This results in better agility, innovation, and consequently, better business outcomes.
 
-To improve lead time, it's necessary to understand all the work required to get a task from the backlog into production. There's always a bottleneck or constraint somewhere in the process that creates delays, crippling lead time and resulting in significantly larger amounts of work in progress (WIP), bigger and more complicated releases, and more frequent disasters.
+To improve lead time, it's necessary to understand all the work required to get a task from the backlog into production. There's always a bottleneck or constraint somewhere in the process creating delays, crippling lead time, and resulting in significantly larger amounts of work in progress (WIP), bigger and more complicated releases, and more frequent disasters.
 
 In [Beyond the Phoenix Project](https://www.audible.co.uk/pd/Beyond-the-Phoenix-Project-Audiobook/B07B7CH7FQ?source_code=M2M30DFT1BkSH11221601A7&&ipRedirectOverride=true), Gene Kim remarks that:
 
@@ -53,31 +53,31 @@ He goes on to tell us that the constraint tends to land in the following places,
 
 I help people to manage their database code. From where I’m sitting, Gene is bang on the money.
 
-Many folks are lumbered with shared dev databases. For these folks managing the concurrent development of multiple pieces of work is a grisly quagmire of unnecessary bureaucracy, tedious processes, and expensive mistakes. This is exacerbated by poor lead times and large amounts of WIP.
+Many folks are lumbered with shared dev databases. For these folks, managing the concurrent development of multiple pieces of work is a grisly quagmire of unnecessary bureaucracy, tedious processes, and expensive mistakes. This is exacerbated by poor lead times and large amounts of WIP.
 
-Old test code as well as big, complicated, and/or long-since abandoned or unfinished pieces of work hang around on the dev and test databases. At the same time, production hotfixes are often missing. This undermines all testing, and any attempts at deployment automation are hamstrung by the requirement to leave all that garbage alone – just in case. This simultaneously makes the deployment process (whether it’s manual or automated) much more complicated and more unreliable, further feeding the core chronic conflict.
+Old test code and big, complicated, and/or long-since abandoned or unfinished pieces of work hang around on the dev and test databases. At the same time, production hotfixes are often missing. This undermines all testing, and any attempts at deployment automation are hamstrung by the requirement to leave all that garbage alone – just in case. This simultaneously makes the deployment process (whether it’s manual or automated) more complicated and more unreliable, further feeding the core chronic conflict.
 
 To break this vicious cycle, and achieve faster lead time and deployment frequency, it's essential to move to a model where disposable dev and test environments, including databases, are available to developers and testers on-demand and discarded after the work has been completed. This ensures everyone is looking at a true version of the code, uninfected with the garbage that typifies shared environments.
 
-This has a transformative effect on your IT performance because (for most organizations) it helps to solve so many of the challenges associated with the first 3 bottlenecks, which results in order of magnitude improvements to lead time. What inevitably follows is a big improvement to deployment frequency.
+This has a transformative effect on your IT performance because (for most organizations) it helps to solve many of the challenges associated with the first 3 bottlenecks, which results in order of magnitude improvements to lead time. What inevitably follows is a big improvement to deployment frequency.
 
 What’s more, by making significant progress against Accelerate’s first 2 (speed-oriented) key metrics, you almost certainly witness simultaneous improvements against the second 2 (safety-oriented) metrics. These metrics replace the core chronic conflict with a virtuous cycle where speed enhances safety, and safety enhances speed.
 
 However, self-service provisioning of disposable databases often feels like the hardest problem to solve, especially if you have large and/or sensitive data to consider. At the same time, it’s possibly your best opportunity to significantly improve the performance of your IT team and, consequently, your business outcomes.
 
-This post introduces you to some of the tech that might help. I finish with a walk-through to set up a proof of concept solution using Octopus Deploy and [Redgate SQL Clone](https://www.red-gate.com/products/dba/sql-clone/). If you're not already using Octopus, you can [start a free trial](https://octopus.com/start). Redgate SQL Clone comes with a free trial too.
+This post introduces you to some of the tech that might help. I finish with a walk-through to set up a proof of concept solution using Octopus Deploy and [Redgate SQL Clone](https://www.red-gate.com/products/dba/sql-clone/). If you're not already using Octopus, you can [start a free trial](https://octopus.com/start). [Redgate SQL Clone](https://www.red-gate.com/products/dba/sql-clone/) comes with a free trial too.
 
 ## How? Introducing the tech {#how}
 
 [Rob published a great overview of operations runbooks](https://octopus.com/blog/operations-runbooks).
 
-Octopus Runbooks are a way to organize, audit, and share the scripts and processes for performing regular operations tasks. They aid efficiency, knowledge sharing, and reduce errors. They offer a great platform to schedule tasks or to enable users to trigger them on demand without needing personal access to the associated servers, scripts, or other artifacts.
+Octopus Runbooks are a way to organize, audit, and share the scripts and processes for performing regular operations tasks. They aid efficiency, knowledge sharing, and reduce errors. It's a platform to schedule tasks or to enable users to trigger them on demand without needing personal access to the associated servers, scripts, or other artifacts.
 
 This is a great platform to build a self-service environment creation process for a developer or tester.
 
 For example, runbooks allow a DBA to curate a source data image and provisioning process at a time that suits them. The source data image would be appropriate for developers or testers to use, and the developers/testers could consume the source image on their own schedule, without bothering the DBA who might be (for example) busy working on a sev-1 outage. This simultaneously reduces delays for dev teams and interruptions for ops folks. Fewer support tickets is a win for everyone. More importantly, we just removed the first major constraint in Gene Kim’s list (above).
 
-Runbooks by themselves, however, don’t have any database smarts. It’s up to the user to figure out how to create a source image and how to automate its provision to an appropriate dev/test instance. That’s a challenge for a couple of reasons.
+Runbooks by themselves, however, don’t have any database smarts. The user needs to figure out how to create a source image and how to automate its provision to an appropriate dev/test instance. That’s a challenge for a couple of reasons.
 
 For example, you might start by using a production backup for the source image and a runbook to restore that backup to the developer’s workstation. This immediately throws up a couple of challenges:
 
@@ -143,7 +143,7 @@ If you have not yet produced an image with SQL Clone, follow these instructions:
 - [Creating a Masking Set with Redgate Data Masker (optional)](https://www.red-gate.com/hub/university/courses/sql-provision/sql-provision/data-masker-user-interface/creating-saving-masking-set)
 - [Creating a SQL Clone Image (required)](https://www.red-gate.com/hub/university/courses/sql-provision/sql-provision/introduction-to-sql-clone/creating-images)
 
-After you create your image, it’s a good idea to create a clone for your image using the SQL Clone UI before starting your runbook. 
+After you create your image, create a clone for your image using the SQL Clone UI before starting your runbook. 
 
 ![A database clone in the SQL Clone UI](sql_clone_create_clone.png)
  
@@ -161,7 +161,7 @@ When you know you can create a clone from your image using SQL Clone, you're in 
 
 ### Prep work in Octopus Deploy
 
-This post assumes you already have a working knowledge of Octopus Deploy environments, Tentacles, and deployment targets ([documentation](https://octopus.com/docs/infrastructure)).
+This post assumes you have a working knowledge of Octopus Deploy environments, Tentacles, and deployment targets ([documentation](https://octopus.com/docs/infrastructure)).
 
 Configure a deployment target that has a network connection and can authenticate against SQL Clone. Give this target the role `sqlclone` and add the target to one or more environments (e.g., dev/test).
  
@@ -206,13 +206,13 @@ I didn't use a **SQL Clone Template** ([documentation](https://documentation.red
 
 Remember, the template is executed against the clone, not the image, so it inflates the size of the _diff file_. Do not make bulk changes to the data or rebuild indexes on any large tables in a template file or your developer’s hard drives will pay the price.
 
-Generally, your clones will want to use the production database name, however, in some cases, that can cause issues. For example, if you want to create multiple clones on the same instance, you need to give them different names. You wouldn’t want to accidentally replace any pre-existing dev/test databases. For this reason, I used special variables for `SQL Server` and `Clone Name`.
+Generally, your clones will want to use the production database name, however, in some cases, that can cause issues. For example, to create multiple clones on the same instance, you need to give them different names. You wouldn’t want to accidentally replace any pre-existing dev/test databases. For this reason, I used special variables for `SQL Server` and `Clone Name`.
 
 Here’s my config:
 
 ![Adding parameters to the step template](octopus_step_parameters.png)
  
-Note that if your developers are working on their own instances, they will want to set the `SQL Server` variable at run time. Similarly, if your developers are all going to be building their clones on a shared dev/test instance, or if they're likely to want to use multiple clones at the same time, (for example because they are working on a couple of tasks concurrently or they want to compare a few different solutions to a problem), they might want to select a custom `Clone Name` at run time.
+Note that if your developers are working on their own instances, they'll want to set the `SQL Server` variable at run time. Similarly, if your developers are all going to be building their clones on a shared dev/test instance, or if they're likely to want to use multiple clones at the same time, (for example because they are working on a couple of tasks concurrently or they want to compare a few different solutions to a problem), they might want to select a custom `Clone Name` at run time.
 
 For that reason, you shortly set the 	`#{ServerInstanceForClone}` and `#{DatabaseNameForClone}` variables to be settable at runtime. But before you do, you must set your step **Conditions**. I only want to run this in dev or test, so I specified accordingly:
 
@@ -273,6 +273,8 @@ It would be a great idea to either extend these runbooks, or combine them with o
 
 - [Using Infrastructure as Code with Operations Runbooks](https://octopus.com/blog/runbooks-with-infrastructure-as-code)
 - [Automating SQL Server Developer installation](https://octopus.com/blog/automate-sql-server-install)
+
+## What's next?
 
 If you’ve made it this far, I hope you’ve been inspired to action.
 
