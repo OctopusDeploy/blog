@@ -14,11 +14,11 @@ tags:
 
 After two decades, The Agile Manifesto is still a big influence on software development teams around the world. Now, with DevOps and continuous delivery gaining traction, it's a good time to compare the 5 principles of continuous delivery to the 12 Agile principles. In his book *Continuous Delivery Pipelines*, Dave Farley places "apply Lean and Agile principles" in his 7 essential techniques, so how well do they align? Let's find out.
 
-## Agile and continuous delivery
+## Introduction
 
 Continuous delivery uses the deployment pipeline as a focusing lens for the continuous improvement of the software delivery process. There are specific capabilities, techniques, and principles involved and there's a strong preference for automation where it's appropriate. Research has found the technical capabilities of continuous delivery are a direct impact on the success of an organization. A continuous delivery pipeline with fully automated approval stages is sometimes called _continuous deployment_, where no human intervention is required after the code is integrated into the main or trunk branch in version control.
 
-Agile is a set of principles attached to a collective manifesto that emerged from the lightweight and adaptive software development movement. The Agile Manifesto was written to represent a set of values to use as a litmus test for development methods. Rather than defining a model or framework, the values and principles could guide the creation and evolution of many different approaches. Some examples of popular Agile methods include Extreme Programming, Scrum, and Dynamic Systems Development Method (DSDM).
+Agile is a set of principles attached to a collective manifesto that emerged from the lightweight and adaptive software development movement. The Agile Manifesto was written to represent a set of values to use as a litmus test for development methods. Rather than defining a model or framework, the values and principles could guide the creation and evolution of many different approaches. Some examples of popular Agile methods include Extreme Programming, Scrum, and Disciplined Agile.
 
 Continuous delivery was influenced by Agile and Lean, and took it's name from the first principle of The Agile Manifesto: "Our highest priority is to satisfy the customer through early and continuous delivery of valuable software". Continuous delivery seeks to deliver the maximum value for the least effort and requires software be in a constant state of readiness. It uses automation to clear the path for fast and frequent delivery of software.
 
@@ -30,9 +30,11 @@ When the original authors wrote down the manifesto and principles for Agile, the
 
 Many other people have written alternate versions, but most of these represent a well considered but single-person perspective. Two exceptions to this are [Modern Agile](https://modernagile.org/) and [Heart of Agile](https://heartofagile.com/). With Modern Agile, Joshua Kerievsky adds more emphasis on human factors, while in Heart of Agile, Alistair Cockburn seeks to strip away unnecessary "decoration" from Agile and return it to "the core elements that really matter".
 
-These three approaches will be used for a comparison of Agile and continuous delivery. 
+### Lean software development
 
-### Different method approaches
+...
+
+### Different ways of working
 
 Most processes are based around a variation of the plan, do, check, act cycle (PDCA). In software delivery, it is common to find four specific activities that need to be done in a specific order:
 
@@ -60,7 +62,7 @@ You'll find that most modern software development methods act in one or two of t
 
 The selections you make will be influenced by your organization's attitude towards adoption. In the 2022 Culture and Methods report from [InfoQ](https://www.infoq.com/articles/culture-trends-2022/), Agile and Scrum were firmly established for late majority adopters, while the early majority has moved onto DevOps and pragmatic agility. The early adopters have already moved into cultural spaces, addressing psychological safety, developer experience, and async working. Additional work will be required if you need to move your organization from a late majority position.
 
-Techniques such as Kanban provide a mechanism to visualize whatever value stream you currently have, limit your batch size, and continuously improve it.
+Techniques such as Kanban provide a mechanism to visualize whatever value stream you currently have, limit your batch size, and continuously improve it. The value stream has both predicable and variable components. The process of inventing, designing, and developing a feature is unpredictable and highly variable, but the steps that happen once code is checked into version control should be repeatable, deterministic, and automated wherever possible.
 
 
 
