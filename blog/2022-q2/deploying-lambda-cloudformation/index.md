@@ -16,7 +16,7 @@ tags:
  - Lambda
 ---
 
-Lambda is a serverless Function as a Service (FaaS) offering from AWS. Lambdas provide native scaling, high availability, and the ability to scale to 0 keeping costs down for infrequently used deployments.
+Lambda is a serverless Function as a Service (FaaS) offering from AWS. Lambdas provide scaling, high availability, and the ability to scale to 0 keeping costs down for infrequently used deployments.
 
 Like most AWS resources, Lambdas can access VPCs to interact with other resources like databases or EC2 instances.
 
@@ -134,7 +134,7 @@ Lambdas deploy code that has been uploaded to an S3 bucket. Uploading files is n
 
 The example Lambda below is configured to deploy a natively compiled binary, usually written in a language like Go or using a compiler like GraalVM.
 
-Other languages, like Java, DotNET Core, Python, PHP, Node.js etc, require their own [unique runtime](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html), and this affects the [`Runtime`](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html#cfn-lambda-function-runtime) and [`Handler`](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html#cfn-lambda-function-handler) properties in the CloudFormation template:
+Other languages, like Java, DotNET Core, Python, PHP, and Node.js, require their own [unique runtime](https://docs.aws.amazon.com/lambda/latest/dg/lambda-runtimes.html), and this affects the [`Runtime`](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html#cfn-lambda-function-runtime) and [`Handler`](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html#cfn-lambda-function-handler) properties in the CloudFormation template:
 
   ```yaml
   MyLambda:
@@ -155,7 +155,7 @@ Other languages, like Java, DotNET Core, Python, PHP, Node.js etc, require their
 
 ## Placing a Lambda in a VPC
 
-In a more complex scenario, your Lambda will be granted access to a VPC in order to access shared resources like a database or EC2 instance.
+In a more complex scenario, your Lambda will be granted access to a VPC in order to access shared resources like a database or an EC2 instance.
 
 The template below builds on a previous example demonstrating a VPC with a mix of [public and private subnets](https://octopus.com/blog/aws-vpc-public-private), and then deploys a Lambda with [VPC access](https://docs.aws.amazon.com/lambda/latest/dg/configuration-vpc.html): 
 
@@ -352,7 +352,7 @@ Outputs:
     Value: !Ref VPC
 ```
 
-The majority of this template defines the resources required to build a VPC with both a private and public subnet, and building the network infrastructure like internet gateways and NAT gateways to provide internet access to any other resources placed in the VPC subnets. These resources are covered in detail in a [previous post](https://octopus.com/blog/aws-vpc-public-private).
+The majority of this template defines the resources required to build a VPC with both a private and public subnet, and building the network infrastructure like internet gateways and NAT gateways to provide internet access to any other resources placed in the VPC subnets. These resources are covered in detail in [our post about creating a mixed AWS VPC with CloudFormation](https://octopus.com/blog/aws-vpc-public-private).
 
 You then create a security group, represented by the [AWS::EC2::SecurityGroup](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html) resource, to define the networking rules applied to resources in this VPC. This example includes rules that allow all outbound traffic:
 
