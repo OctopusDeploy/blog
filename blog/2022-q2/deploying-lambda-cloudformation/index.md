@@ -1,25 +1,26 @@
 ---
 title: Deploying a Lambda with CloudFormation
-description: Learn how to deploy a Lambda with this sample CloudFormation template.
+description: As part of our Runbooks series, learn how to deploy a Lambda with this sample CloudFormation template.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2022-03-30-1400
+published: 2022-06-08-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags:
  - DevOps
+ - Runbooks Series
  - AWS
  - CloudFormation
  - Lambda
 ---
 
-Lambda is a serverless Function as a Service (FaaS) offering from AWS. Lambda's provide native scaling, high availability, and the ability to scale to 0 keeping costs down for infrequently used deployments.
+Lambda is a serverless Function as a Service (FaaS) offering from AWS. Lambdas provide native scaling, high availability, and the ability to scale to 0 keeping costs down for infrequently used deployments.
 
 Like most AWS resources, Lambdas can access VPCs to interact with other resources like databases or EC2 instances.
 
-In this post, you'll deploy a simple Lambda, and then build on the [VPC with private and public subnets example provided in a previous post](https://octopus.com/blog/aws-vpc-public-private) to deploy a Lambda in a VPC with internet access using CloudFormation.
+In this post, you deploy a simple Lambda, and then build on the [VPC with private and public subnets example provided in a previous post](https://octopus.com/blog/aws-vpc-public-private) to deploy a Lambda in a VPC with internet access using CloudFormation.
 
 ## A simple Lambda CloudFormation template
 
@@ -127,7 +128,7 @@ To grant the Lambda permission to write to the log group above, you must create 
             - !Sub "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/${LambdaName}*:*"
   ```
 
-The final step is to create the Lambda itself, represented by the [AWS::Lambda::Function](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html) resource.
+The final step is creating the Lambda itself, represented by the [AWS::Lambda::Function](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-lambda-function.html) resource.
 
 Lambdas deploy code that has been uploaded to an S3 bucket. Uploading files is not performed by CloudFormation, so this must be performed as a separate step prior to deploying the template.
 
@@ -351,7 +352,7 @@ Outputs:
     Value: !Ref VPC
 ```
 
-The majority of this template defines the resources required to build a VPC with both a private and public subnet, as well as building the network infrastructure like internet gateways and NAT gateways to provide internet access to any other resources placed in the VPC subnets. These resources are covered in detail in a [previous post](https://octopus.com/blog/aws-vpc-public-private).
+The majority of this template defines the resources required to build a VPC with both a private and public subnet, and building the network infrastructure like internet gateways and NAT gateways to provide internet access to any other resources placed in the VPC subnets. These resources are covered in detail in a [previous post](https://octopus.com/blog/aws-vpc-public-private).
 
 You then create a security group, represented by the [AWS::EC2::SecurityGroup](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html) resource, to define the networking rules applied to resources in this VPC. This example includes rules that allow all outbound traffic:
 
@@ -412,10 +413,14 @@ It's important to note that the Lambda is granted access to the private subnets 
 
 ## Conclusion
 
-Lambdas can be quite simple to deploy, requiring a small number of supporting resources like log groups and IAM roles to allow the Lambda to be monitored and debugged.
+Lambdas can be simple to deploy, requiring a small number of supporting resources like log groups and IAM roles to allow the Lambda to be monitored and debugged.
 
 For more complex scenarios where Lambdas must have access to other resources like databases or EC2 instances inside a VPC, Lambdas can be configured with network access to specified subnets and have network traffic controlled using security groups.
 
 In this post, you learned how to perform a simple Lambda deployment, and then saw a more complex example that built a VPC alongside the Lambda.
+
+We have [other posts about CloudFormation templates](https://octopus.com/blog/tag/CloudFormation) you might find helpful too.
+
+!include <q2-2022-newsletter-cta>
 
 Happy deployments!
