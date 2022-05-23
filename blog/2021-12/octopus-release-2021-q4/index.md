@@ -7,7 +7,7 @@ published: 2021-12-01-1400
 metaImage: octopus-release-2021-q4-summary-card.png
 bannerImage: release-octopus-2021-q4.png
 bannerImageAlt: A box labeled 2021 Q4 sits on a conveyor belt against a backdrop of party favors, fireworks, and a rocket on a path between the Octopus and AWS logos.
-isFeatured: true
+isFeatured: false
 tags:
 - Product
 - DevOps

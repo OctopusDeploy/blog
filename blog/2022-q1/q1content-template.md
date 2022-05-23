@@ -10,6 +10,7 @@ bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags: 
   - DevOps
+  - CI Series
   - Continuous Integration
   - Jenkins
   - GitHub Actions
