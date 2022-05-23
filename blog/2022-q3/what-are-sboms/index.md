@@ -57,9 +57,9 @@ The National Telecommunications and Information Administration (NTIA) provides g
 
 The requirement for SBOMs has a significant impact on open-source software. Open-source software is built collaboratively and contains several third-party libraries that use other third-party libraries. Without the ability to generate SBOMs, open-source software will not be compliant with the executive order. The inability to generate SBOMs also affects proprietary software that uses some open-source software in production. Government bodies and organizations that are acting under the executive order are obligated to choose software that can produce an SBOM on demand and can prove that each component is not a cybersecurity risk. The widespread use of SBOMs will increase the trust between vendors and governmental bodies.
 
-## How Octopus can help with the free tool
+## Octopus Builder - How it can help with your SBOM requirements
 
-Software applications can have thousands of different dependencies. Manually listing each component is not sustainable as developers can replace or upgrade components frequently. Automation is necessary to supply SBOMs accurately and quickly. Octopus has produced a free tool that helps developers make SBOMs. The tool generates an SBOM as part of the build, and Octopus Deploy can scan the SBOM as part of the deployment. The tool dramatically reduces the need to figure out how to piece together SBOMs from separate sources on the internet.
+Software applications can have thousands of different dependencies. Manually listing each component is not sustainable as developers can replace or upgrade components frequently. Automation is necessary to supply SBOMs accurately and quickly. Octopus has produced a free tool called Octopus Builder that helps developers make SBOMs. The tool generates an SBOM as part of the build, and Octopus Deploy can scan the SBOM as part of the deployment. The tool dramatically reduces the need to figure out how to piece together SBOMs from separate sources on the internet. You can find Octopus Builder on [our website]()
 
 ## Conclusion
 
