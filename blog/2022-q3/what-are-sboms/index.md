@@ -19,7 +19,7 @@ tags:
 
 <!-- see https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags -->
 
-If you are a developer, or if you manage an enterprise software application, you may have been asked to produce a list of components in your application. Customers want to know what goes into your applcation because they want it to be free of vulnerabilties. Enterprise vendors and government bodies also want to know because they are concerned with security concerns for their users using your software.  
+If you are a developer, or if you manage an enterprise software application, you may have been asked to produce a list of components in your application. Customers want to know what goes into your applcation because they want it to be free of vulnerabilties. Enterprise vendors and government bodies also want to know because they are concerned with security issues for their users using your software.  
 
 Software applications are made up of serveral sources, open-source, in-house or a mixture of both. As the list of dependencies grows, how can an application be secure when the individual components used to build the application are not known? 
 
@@ -57,7 +57,7 @@ The National Telecommunications and Information Administration (NTIA) provides g
 
 ## Why is it important?
 
-The requirement for SBOMs has a significant impact on open-source software. Open-source software is built collaboratively and contains several third-party libraries that use other third-party libraries. Without the ability to generate SBOMs, open-source software will not be compliant with the executive order. The inability to generate SBOMs also affects proprietary software that uses some open-source software in production. Government bodies and organizations that are acting under the executive order are obligated to choose software that can produce an SBOM on demand and can prove that each component is not a cybersecurity risk. The widespread use of SBOMs will increase the trust between vendors and governmental bodies.
+The requirement for SBOMs has a significant impact on software. Software is built collaboratively and contains several third-party libraries that use other third-party libraries. Without the ability to generate SBOMs, software will not be compliant with the executive order. Government bodies and organizations that are acting under the executive order are obligated to choose software that can produce an SBOM on demand and can prove that each component is not a cybersecurity risk. The widespread use of SBOMs will increase the trust between vendors and governmental bodies.
 
 Software vendors need a reliable way to detect any known vulnerabilities in their deployed application. SBOMs allow you to be proactive in addressing vulerabilities, reducing the likelihood that your tools can be hacked. Vulnerability scanning will also allow you to avoid some awkward conversations with customers that scan your applications themselves and report vulnerabilities.
 
@@ -69,11 +69,11 @@ The requirement for SBOMs could be seen as just an additional step in the build 
 - How do you schedule SBOM scanning to proactively detect newly discovered vulnerabilities?
 - How do you scan old SBOM versions to identify previous releases of your software that include vulnerable components?
 
-At Octopus, we believe we have built a free tool that answers all of these questions for you.
+At Octopus, we have built a free tool that answers all of these questions for you.
 
 ## Octopus Builder - How it can help with your SBOM requirements
 
-Software applications can have thousands of different dependencies. Manually listing each component is not sustainable as developers can replace or upgrade components frequently. Automation is necessary to supply SBOMs accurately and quickly. Octopus has produced a free tool called Octopus Builder that helps developers make SBOMs. The tool generates an SBOM as part of the build, and Octopus Deploy can scan the SBOM as part of the deployment. The tool dramatically reduces the need to figure out how to piece together SBOMs from separate sources on the internet. You can find Octopus Builder on [our website.]()
+We have built a free tool called Octopus Builder that helps developers generate SBOMs and build them into their deployment process. The tool generates an SBOM as part of the build, and Octopus Deploy can scan the SBOM as part of the deployment. With Octopus Buider, you don't need to figure out how to generate SBOMS from different sources on the internet. You don't need to consider how to pair an SBOM to a deployable artifact, how to keep track of the version your SBOM refers to, how to orchestrate and publish the SBOM, how to schedule SBOM scanning or how to scan old SBOM versions because we answer all these questions in one tool. You can find Octopus Builder on [our website.]()
 
 ## Conclusion
 
