@@ -69,7 +69,7 @@ The requirement for SBOMs could be seen as just an additional step in the build 
 - How do you schedule SBOM scanning to proactively detect newly discovered vulnerabilities?
 - How do you scan old SBOM versions to identify previous releases of your software that include vulnerable components?
 
-At Octopus, we have built a free tool that answers all of these questions for you.
+At Octopus, we have built a free tool that answers all of these questions for you and meets your SBOM requirements.
 
 ## Octopus Builder - How it can help with your SBOM requirements
 
