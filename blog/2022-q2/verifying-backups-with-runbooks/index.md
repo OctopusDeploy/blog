@@ -3,11 +3,15 @@ title: Verifying backups with Runbooks
 description: Learn how to automate the process of verifying your backups using a custom runbook
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2999-01-01
+published: 2022-06-20-1400
 metaImage: 
 bannerImage: 
-tags:
- - Octopus
+annerImageAlt: 125 characters max, describes image to people unable to see it.
+isFeatured: false
+tags: 
+  - DevOps
+  - Runbooks Series
+  - Runbooks
 ---
 
 It is no longer a question these days of whether or not you should have backups. Regular backup procedures are simply a fact of life for any modern organization that recognizes the value of their data, with many organizations even going as far as transferring their backup media to another site to ensure a physical disaster in one location doesn't destroy their data.
