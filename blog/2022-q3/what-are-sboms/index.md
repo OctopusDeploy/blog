@@ -27,9 +27,9 @@ A bill of materials is a manufacturing term that lists the required inventory to
 
 ## Executive Order
 
-On the 12th of May 2021, The United States government released an executive order on Improving the Nation's Cybersecurity. In the executive order, the government: 
+On the 12th of May 2021, The United States government released an executive order on [Improving the Nation's Cybersecurity](https://www.whitehouse.gov/briefing-room/presidential-actions/2021/05/12/executive-order-on-improving-the-nations-cybersecurity/). In the executive order, 
 
-`acknowledges growing risks across the cybersecurity landscape and seeks to enhance the federal government's cybersecurity posture correspondingly.` 
+> The Federal Government must bring to bear the full scope of its authorities and resources to protect and secure its computer systems, whether they are cloud-based, on-premises, or hybrid.  The scope of protection and security must include systems that process data (information technology (IT)) and those that run the vital machinery that ensures our safety (operational technology (OT)).
 
 The executive order seeks to minimize the cybersecurity risk in the supply chain that arises from acquired software. Cybersecurity risk increases as the number of unknown components in the software applications increases. The executive order requires developers to produce an SBOM for all applications developed in the US. This has several implications for business inside and outside the US. Any US government project will now have a requirement to produce SBOMs for security purposes. Any vendor that cannot produce SBOMs for their products are unlikely to be approved to work with government projects. The executive order is likely the beginning of many similar orders to require SBOMs worldwide. As awareness of SBOMs increase, the more likely businesses anywhere will begin to demand SBOMs be made availalble. If you work in software, SBOMs will likely be in your future.
 
