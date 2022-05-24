@@ -19,9 +19,9 @@ tags:
 
 <!-- see https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags -->
 
-If you are a developer, or if you manage an enterprise software application, you may have been asked to produce a list of components in your application. Customers want to know what goes into your applcation because they want it to be free of vulnerabilties. Enterprise vendors and government bodies also want to know because they are concerned with security issues for their users using your software.  
+If you are a developer, or if you manage an enterprise software application, you may have been asked about the components in your application. Why do people want to know? Customers want to trust your application, they want your application to be secure. Enterprise vendors and government bodies also want to know because they are concerned with security issues for their users using your software.  
 
-Software applications are made up of serveral sources, open-source, in-house or a mixture of both. As the list of dependencies grows, how can an application be secure when the individual components used to build the application are not known? 
+Software applications are made up of several sources, open-source, in-house or a mixture of both. As the list of dependencies grows, how can an application be secure when the individual components used to build the application are not known? 
 
 A bill of materials is a manufacturing term that lists the required inventory to produce a given output reliably. Bills of materials have been used for years to provide transparency and repeatability to the manufacturing process. Software bills of materials (SBOMs) apply a similar concept to bills of materials to software. SBOMs itemize the components in a software application in a list that developers can share across teams.
 
