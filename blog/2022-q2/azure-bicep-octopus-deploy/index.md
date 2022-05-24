@@ -35,7 +35,7 @@ You need the following tooling to get started with Bicep:
 
 ### Creating your first Bicep template
 
-Microsoft provides the [Bicep Microsoft Learning Path](https://docs.microsoft.com/en-gb/learn/paths/fundamentals-bicep/) to get your learning journey started. In this post, I explain how to create a basic template. The post assumes you have experience with ARM templates or similar. 
+Microsoft provides the [Bicep Microsoft Learning Path](https://docs.microsoft.com/en-gb/learn/paths/fundamentals-bicep/) to help you get started. In this post, I explain how to create a basic template. The post assumes you have experience with ARM templates or similar. 
 
 I walk through the creation of an Azure App Service Plan and Azure Linux Web App. 
 
@@ -54,9 +54,9 @@ param appServicePlanName string
 param webSiteName string
 ​```
 
-You can declare static entries for these parameters or can leave them blank and then input values during deployment. You declare some as static but leave others so we you pass in the information later during deployment.  
+You can declare static entries for these parameters or can leave them blank and then input values during deployment. In this example, you're declaring some as static but leaving others so you can pass in the information during deployment.  
 
-Next, you define how you want to deploy your Azure App Service Plan. 
+Next, you define how you want to deploy your Azure App Service Plan: 
 
 ```json
 // Deploying the Azure App Service Plan
@@ -83,7 +83,7 @@ I'll break some of this down for you:
 - Tags - tagging your resources helps you organize them logically.
 - Properties - this is where you can begin to configure the App Service Plan to your needs. Here, you’re defining the SKU and the kind (Linux or Windows). 
 
-Next you want to deploy the Azure Web App.
+Next you deploy the Azure Web App:
 
 ```json
 // Deploying the Azure Web App
@@ -127,13 +127,15 @@ octo push --package="c:\bicep\BicepTemplate.1.0.0.0.zip" --server="https://MyOct
 
 ### Running the Bicep template from an Octopus Runbook
 
-With your Bicep ZIP file in Octopus, it’s time to automate the deployment of it. 
+With your Bicep ZIP file in Octopus, it’s time to automate its deployment. 
 
 :::hint
-It's assumed you have an Octopus environment set up and have connected your [Azure account](https://octopus.com/docs/infrastructure/accounts/azure). 
+This post assumes you have an Octopus environment set up and have connected your [Azure account](https://octopus.com/docs/infrastructure/accounts/azure). 
 :::
 
-In a new or existing project, click **Variables** in the left menu. You need to define the variables for deployment.  Enter variables for:
+In a new or existing project, click **Variables** in the left menu. 
+
+You need to define the variables for deployment. Enter variables for:
 
 - Resource Group
 - Web Site Name
@@ -143,21 +145,21 @@ In a new or existing project, click **Variables** in the left menu. You need to 
 
 ![Declared variables](variables.png)
 
-After you enter the variables, click **Runbooks** under **Operations**. 
+After you enter the variables, navigate to **Operations** and click **Runbooks**. 
 
 Select **Add Runbook** to create a new runbook to deploy your Bicep template. 
 
 ![Add a new Runbook](newrunbook.png)
 
-In this runbook, click **Define your Runbook Proces**. 
+In this runbook, click **Define your Runbook Process**. 
 
 ![Define the Runbook Process](definerunbook.png)
 
-The first step to add is **Run an Azure Script**.  This step creates the Azure Resource Group to hold your resources.  
+The first step to add is **Run an Azure Script**. This step creates the Azure Resource Group to hold your resources.  
 
 ![Azure Run a Script Deployment Step](azurescriptstep.png)
 
-Give the step a name for reference. Then enter the details of your Azure account. 
+Give the step a name for reference. Then, enter the details of your Azure account. 
 
 Next, enter the script that will create your Resource Group, using an Azure CLI command.
 
@@ -168,7 +170,7 @@ az group create -l $OctopusParameters["Project.location"] -n $OctopusParameters[
 You're using some of the variables you declared in an earlier step. 
 
 
-Now you need to add another **Run an Azure Script** step.  This deploys your Bicep template, so name it appropriately.  Then scroll to the Azure section and again add your Azure account details.
+Now you need to add another **Run an Azure Script** step. This deploys your Bicep template, so name it appropriately.  Then, scroll to the Azure section and again add your Azure account details.
 
 Next, scroll to the **Script** section and enter the following script:
 
