@@ -3,7 +3,7 @@ title: Deploying to Azure with GitHub Actions and Octopus Deploy
 description: Learn how to deploy an Azure web application with GitHub Actions and Octopus Deploy.
 author: terence.wong@octopus.com
 visibility: public
-published: 2021-10-19-1400
+published: 2022-06-13-1400
 metaImage: blogimage-deployingtoazurewithgithubactionsandoctopusdeploy-2021.png
 bannerImage: blogimage-deployingtoazurewithgithubactionsandoctopusdeploy-2021.png
 bannerImageAlt: A rocket travelling between four planets. The first planet is branded Github Actions, the second Docker, third Octopus, and fourth Azure.
@@ -12,7 +12,11 @@ tags:
  - DevOps
 ---
 
-This post uses Octopus Deploy, GitHub Actions, and Docker to deploy a sample web application to Azure. The application will update on new code changes. To complete the steps, you will need:
+This post uses Octopus Deploy, GitHub Actions, and Docker to deploy a sample web application to Azure. The application will update on new code changes. 
+
+## Before you start
+
+To complete the steps in this post, you need:
 
 - An active Octopus Deploy instance
 - Aa GitHub account
