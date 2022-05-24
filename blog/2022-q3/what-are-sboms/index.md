@@ -73,7 +73,7 @@ At Octopus, we have built a free tool that answers all of these questions for yo
 
 ## Octopus Builder - How it can help with your SBOM requirements
 
-We have built a free tool called Octopus Builder that helps developers generate SBOMs and build them into their deployment process. The tool generates an SBOM as part of the build, and Octopus Deploy can scan the SBOM as part of the deployment. With Octopus Buider, you don't need to figure out how to generate SBOMS from different sources on the internet. You don't need to consider how to pair an SBOM to a deployable artifact, how to keep track of the version your SBOM refers to, how to orchestrate and publish the SBOM, how to schedule SBOM scanning or how to scan old SBOM versions because we answer all these questions in one tool. You can find Octopus Builder on [our website.]()
+Octopus Builder helps you generate SBOMs and build them into your deployment process. The tool generates an SBOM as part of the build, and Octopus Deploy can scan the SBOM as part of the deployment. With Octopus Buider, you don't need to figure out how to generate SBOMS from different sources on the internet. You don't need to consider how to pair an SBOM to a deployable artifact, how to keep track of the version your SBOM refers to, how to orchestrate and publish the SBOM, how to schedule SBOM scanning or how to scan old SBOM versions because we answer all these questions in one tool. You can find Octopus Builder on [our website.]()
 
 ## Conclusion
 
