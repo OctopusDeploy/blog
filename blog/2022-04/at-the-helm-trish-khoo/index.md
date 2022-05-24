@@ -13,7 +13,7 @@ tags:
   - At The Helm
 ---
 
-This post is the next in our series, chatting to people at Octopus about their role, their challenges, what they're working on to improve the product for our customers, and more.
+This post is the next [in our series](https://octopus.com/blog/tag/At%20The%20Helm), chatting to people at Octopus about their role, their challenges, what they're working on to improve the product for our customers, and more.
 
 Here we talk to Trish Khoo, our Director of Engineering.
 
