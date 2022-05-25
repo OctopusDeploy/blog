@@ -1,6 +1,6 @@
 ---
 title: Azure Bicep and Octopus Deploy
-description: Learn how to use Bicep templates and automate their deployment using Octopus Deploy Runbooks.
+description: Learn how to use Bicep templates and automate their deployment using Octopus Runbooks.
 author: sarah.lean@octopus.com
 visibility: public
 published: 2022-06-14-1400
@@ -17,11 +17,11 @@ tags:
 
 In late 2020, Microsoft announced their new project, [Bicep](https://docs.microsoft.com/azure/azure-resource-manager/bicep/overview), a Domain-Specific Language (DSL) for deploying Azure resources. Bicep aims to simplify the authoring experience, making it easy to learn. It's also modular and re-usable. 
 
-Today, Bicep is hugely popular in the IT community. You can find blogs posts, tweets, conference sessions, and plenty of interaction on the official [Bicep GitHub space](https://github.com/Azure/bicep). Since v0.3 Bicep has been fully supported by Microsoft Support plans and is considered ready for production. 
+Today, Bicep is hugely popular in the IT community. You can find blog posts, tweets, conference sessions, and plenty of interaction on the official [Bicep GitHub space](https://github.com/Azure/bicep). Bicep has been supported by Microsoft Support Plans as of v.0.3, and is considered ready for production. 
 
-In this post, I introduce how to use Bicep templates and automate their deployment using [Octopus Runbooks](https://octopus.com/docs/runbooks).
+In this post, I introduce using Bicep templates and automating their deployment using [Octopus Runbooks](https://octopus.com/docs/runbooks).
 
-## Getting started with Bicep and Octopus Deploy
+## Getting started with Bicep and Octopus
 
 ### Prerequisites
 
@@ -35,9 +35,9 @@ You need the following tooling to get started with Bicep:
 
 ### Creating your first Bicep template
 
-Microsoft provides the [Bicep Microsoft Learning Path](https://docs.microsoft.com/en-gb/learn/paths/fundamentals-bicep/) to help you get started. In this post, I explain how to create a basic template. The post assumes you have experience with ARM templates or similar. 
+Microsoft provides the [Bicep Microsoft Learning Path](https://docs.microsoft.com/en-gb/learn/paths/fundamentals-bicep/) to help you get started. 
 
-I walk through the creation of an Azure App Service Plan and Azure Linux Web App. 
+In this post, I explain how to create a basic template. The post assumes you have experience with ARM templates or similar. I walk through the creation of an Azure App Service Plan and Azure Linux Web App. 
 
 First in the template, you need to declare the parameters and variables you're using: 
 
@@ -76,9 +76,9 @@ resource appServicePlan 'Microsoft.Web/serverfarms@2021-02-01' = {
 
 I'll break some of this down for you: 
 
-- The resource identifier (resource _appServicePlan_) – tells Bicep to create a new resource named _appServicePlan_. This name identifies the resource in the Bicep template. It's not the name of the resource that you'll create in Azure. 
-- _Microsoft.Web/serverfarms@2021-02-01 _- defines the resource provider _Microsoft.Web_, then the resource type _serverfarms_, and lastly the API version -_ 2021-02-01_ to use.  It’s always worth checking the official Microsoft documentation to see if there's a newer API. 
-- Name - this is the actual name of the Azure Resource.
+- The resource identifier (resource `appServicePlan`) - tells Bicep to create a new resource named `appServicePlan`. This name identifies the resource in the Bicep template. It's not the name of the resource that you'll create in Azure. 
+- `Microsoft.Web/serverfarms@2021-02-01` - defines the resource provider `Microsoft.Web`, then the resource type `serverfarms`, and lastly the API version `2021-02-01` to use.  It’s always worth checking the official Microsoft documentation to see if there's a newer API. 
+- Name - this is the actual name of the Azure resource.
 - Location - this is the Azure region you'll deploy in.
 - Tags - tagging your resources helps you organize them logically.
 - Properties - this is where you can begin to configure the App Service Plan to your needs. Here, you’re defining the SKU and the kind (Linux or Windows). 
@@ -102,24 +102,24 @@ resource appService 'Microsoft.Web/sites@2021-02-01' = {
 
 I'll break this down for you: 
 
-- The resource identifier (resource _appService_) – tells Bicep to create a new resource named _appService_. This name identifies the resource in the Bicep template.  It's not the name of the resource that you'll create in Azure. 
-- _Microsoft.Web/sites@2021-02-01_ - defines the resource provider _Microsoft.Web_, then the resource type _sites_, and lastly the API version -_ 2021-02-01_ to use.  It’s always worth checking the official Microsoft documentation to see if there's a newer API. 
-- Name - this is the actual name of the Azure Resource.
+- The resource identifier (resource `appService`) - tells Bicep to create a new resource named `appService`. This name identifies the resource in the Bicep template.  It's not the name of the resource that you'll create in Azure. 
+- `Microsoft.Web/sites@2021-02-01` - defines the resource provider `Microsoft.Web`, then the resource type `sites`, and lastly the API version `2021-02-01` to use.  It’s always worth checking the official Microsoft documentation to see if there's a newer API. 
+- Name - this is the actual name of the Azure resource.
 - Location - this is the Azure region you'll deploy in.
 - Tags - tagging your resources helps organize them logically.
-- Properties - this where you can begin to configure the App Service. You defined which App Service Plan you're using with this web app and the Linux version you want.  There are a more settings you can configure but we keep it simple for this example. 
+- Properties - this where you begin to configure the App Service. You defined which App Service Plan you're using with this web app and the Linux version you want. There are more settings you can configure but we keep it simple for this example. 
 
-The template is complete. You can [see the template here](https://gist.github.com/weeyin83/7a9a20a5fc7e10e65561b4d5e6ed4019). 
+The template is complete. You can [see the completed template on GitHub](https://gist.github.com/weeyin83/7a9a20a5fc7e10e65561b4d5e6ed4019). 
 
-### Prepraing your Bicep template for use in Octopus Deploy
+### Preparing your Bicep template for use in Octopus Deploy
 
-To run your Bicep template file inside an Octopus Runbook, you first need to save the file inside a ZIP file using the Octopus CLI. 
+To run your Bicep template file inside an Octopus Runbook, you first need to save it inside a ZIP file using the Octopus CLI. 
 
 ```bash
 octo pack --id="BicepTemplate" --format="zip" --version="1.0.0.0" --basePath="c:\Bicep\" --outFolder="c:\Bicep"
 ```
 
-You can upload the ZIP file into the Octopus Library through the portal or use the Octopus CLI again. 
+You can upload the ZIP file to the Octopus Library through the portal or use the Octopus CLI again. 
 
 ```bash
 octo push --package="c:\bicep\BicepTemplate.1.0.0.0.zip" --server="https://MyOctopusServer" --apiKey="API-MyApiKey"
@@ -151,7 +151,7 @@ Select **Add Runbook** to create a new runbook to deploy your Bicep template.
 
 ![Add a new Runbook](newrunbook.png)
 
-In this runbook, click **Define your Runbook Process**. 
+In this runbook, click **DEFINE YOUR RUNBOOK PROCESS**. 
 
 ![Define the Runbook Process](definerunbook.png)
 
@@ -193,7 +193,7 @@ New-AzResourceGroupDeployment -Name $deploymentName -ResourceGroupName $OctopusP
 If you're using your own [Workers](https://octopus.com/docs/infrastructure/workers), please check you have Azure CLI, Azure PowerShell, and Bicep installed. 
 :::
 
-The script above uses the Bicep Zip file. Enter a deployment name so you can trace the history of the deployment. The script uses the PowerShell command to deploy the template file and pull in the variables you declared in Octopus. 
+The script above uses the Bicep ZIP file. Enter a deployment name so you can trace the history of the deployment. The script uses the PowerShell command to deploy the template file and pull in the variables you declared in Octopus. 
 
 Just below the script box, navigate to the section **Referenced Package** and click **Add**.  Select the ZIP file with your Bicep file. 
 
