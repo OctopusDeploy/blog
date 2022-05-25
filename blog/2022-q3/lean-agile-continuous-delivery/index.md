@@ -40,9 +40,11 @@ https://continuousdelivery.com/principles/
 1. Relentlessly pursue continuous improvement
 1. Everyone is responsible
 
+![The relationship between the continuous delivery principles](cd-principles.png)
+
 ### Agile principles comparison
 
-![](agile-continous-delivery.jpg)
+![Mapping agile and continuous delivery principles](agile-continous-delivery.jpg)
 
 The continous delivery principles are well-aligned to Agile principles in most cases. Often, a single continuous delivery principle covers several Agile ones. Working in small batches is a great way to achieve several of the Agile principles:
 
@@ -70,8 +72,7 @@ You don't have to throw out The Agile Manifesto to move forwards, it's part of t
 
 ### Lean principles comparison
 
-
-![](lean-continous-delivery.jpg)
+![Mapping lean and continuous delivery principles](lean-continous-delivery.jpg)
 
 The Lean principles are already brief and actionable, and they are covered particularly well by continuous delivery.
 
@@ -81,7 +82,7 @@ You could view the Lean principles as applicable broadly to your organization, w
 
 ## Conclusion
 
-In terms of principles, continuous delivery provides a concise alternative to the Agile principles and a complementary set to Lean. All three are aligned to modern management philosophy and provide perspectives that can be used to review and re-focus your software delivery efforts.
+Continuous delivery provides a concise set of principles that align to 10 of the 12 Agile principles. Continuous delivery also complements Lean, providing a different perspective on achieving similar goals. All three are consistent with modern management philosophy and provide different way to review and re-focus your software delivery efforts.
 
 ## Learn more
 
