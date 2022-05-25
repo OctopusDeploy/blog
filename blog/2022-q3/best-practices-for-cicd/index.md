@@ -14,13 +14,13 @@ tags:
 
 <!-- see https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags -->
 
-Continuous integration and deployment (CI/CD) are practices that take software development from code to a live product. CI/CD forms part of DevOps practices, and there are many commonly agreed-upon best practices that users can follow to improve their deployment pipeline. Octopus Deploy is a deployment tool that supports the continuous deployment side of CI/CD, and we provide a best-in-class product that makes complex deployments easier. Here are eight best practices that we believe will help you in your deployment journey.
+Continuous integration and delivery (CI/CD) are practices that take software development from code to a live product. CI/CD forms part of DevOps practices, and there are many commonly agreed-upon best practices that users can follow to improve their deployment pipeline. Octopus Deploy is a deployment tool that supports the continuous delivery side of CI/CD, and we provide a best-in-class product that makes complex deployments easier. Here are eight best practices that we believe will help you in your deployment journey.
 
 ## Adopt agile methodologies
 
-Agile methodologies are a vital component of CI/CD and DevOps. Agile methodologies is a project management approach that involves continuous collaboration with stakeholders and continuous improvement at each stage of the deployment process. The principle of agile methodologies is to have frequent feedback through small development iterations so that developers can closely align the final product with the product owner's needs. Agile methodologies contrast traditional waterfall methods, where projects were scoped and delivered in a single phase.
+Agile methodologies are a vital component of CI/CD and DevOps. Agile methodologies is a project management approach that involves continuous collaboration with stakeholders and continuous improvement at each stage of the deployment process. The principle of agile methodologies is to have frequent feedback through small development iterations so that developers can closely align the final product with the user needs. Agile methodologies contrast traditional waterfall methods, where projects were scoped and delivered in a single phase.
 
-To get the most out of a CI/CD pipeline, software projects should be managed with the agile methodology so that the continuous feedback loop can improve the product.
+To get the most out of a CI/CD pipeline, software projects should be managed according to Agile and Lean principles so that the continuous feedback loop can improve the product.
 
 ## Use version-controlled code, connected to the deployment process, committed frequently
 
@@ -28,7 +28,7 @@ Developers should keep code created for a software project in a version-controll
 
 When using version control in a software project, committing a code change should trigger a CI/CD pipeline build. This trigger allows developers to test and validate changes to the codebase earlier.
 
-Once a code change is set up to trigger an automated build,  developers should be encouraged to commit their code daily. Daily commits trigger automated tests more frequently and allow developers to notice any errors sooner.
+Once a code change is set up to trigger an automated build,  developers should be encouraged to commit their code at least once a day. Daily commits trigger automated tests more frequently and allow developers to notice any errors sooner.
 
 
 ## Use configuration as code for your deployment process
@@ -55,10 +55,10 @@ Every year there is a new flavor of the month technologies that people are sayin
 
 ## Take security seriously
 
-When dealing with propriety software, security is a concern. The practices of a development pipeline should incorporate a security strategy. Many cloud providers like AWS, Azure, or Google have built-in security features such as IAM, secrets, and role-based permissions. Many customers are rightly concerned with security, and companies should look to invest in certifications such as ISO 27001 and SOC II.
+When dealing with propriety software, security is a concern. The practices of a deployment pipeline should incorporate a security strategy. Many cloud providers like AWS, Azure, or Google have built-in security features such as IAM, secrets, and role-based permissions. Many customers are rightly concerned with security, and companies should look to invest in certifications such as ISO 27001 and SOC II.
 
 ## Conclusion
 
-CI/CD is part of the DevOps methodology and helps bring software projects from code to a live product. I have listed eight best practices you can use to make the most of your CI/CD process. Octopus Deploy is a continuous deployment tool that can help your CI/CD goals.
+CI/CD is part of the DevOps model and helps bring software projects from code to a live product. I have listed eight best practices you can use to make the most of your CI/CD process. Octopus Deploy is a continuous deployment tool that can help your CI/CD goals.
 
 Happy deployments!
