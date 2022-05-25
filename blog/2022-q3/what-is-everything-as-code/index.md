@@ -16,7 +16,9 @@ tags:
 
 <!-- see https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags -->
 
-If you work in DevOps or Cloud, you may have worked with tools like GitHub Actions, Jenkins, or Terraform to deliver your DevOps pipelines. You may have noticed that these tools all represent parts of the DevOps pipeline as code, allowing you to store and reuse parts of the pipeline. The code representation of the DevOps pipeline is part of a shift to Everything as Code (EaC). But what is EaC and why is it important? 
+If you work in DevOps or Cloud, you may have worked with tools like GitHub Actions, Jenkins, or Terraform to deliver your DevOps pipelines. You may have noticed that these tools all represent parts of the DevOps pipeline as code, allowing you to store and reuse parts of the pipeline. 
+
+The code representation of the DevOps pipeline is part of a shift to Everything as Code (EaC). But what is EaC and why is it important? 
 
 Everything as Code (EaC) is an approach to software development and DevOps that uses code to define and manage IT resources. The code representation of resources makes it easier for developers to audit changes, improve consistency, scale resources, and transfer settings from one environment to another. Taken literally, EaC is an ideal state where every part of the software life cycle is code. 
 
@@ -35,9 +37,13 @@ Terraform is one of the most popular IaC frameworks. Terraform provides a config
 
 ## Configuration as Code
 
-CaC is the process of capturing all system configuration settings in code. In our platform, the configuration settings specified the deployment process. CaC was a heavily requested feature that we wantetd to develop for our users. After a successful design and development phase, we released CaC for our platform in 2022 Q1. Our goals were to provide our users with complete CaC functionality without sacrificing usability through the UI. CaC allows our customers to leverage the power of Git in their deployment process through branches, pull requests, and a complete audit log of changes. [We captured some of our design thinking on our blog](https://octopus.com/blog/shaping-config-as-code).
+CaC is the process of capturing all system configuration settings in code. In our platform, the configuration settings specified the deployment process. CaC was a heavily requested feature that we wantetd to develop for our users. After a successful design and development phase, we released CaC for our platform in 2022 Q1. 
 
-With the release of CaC, our users can choose to use the UI or the source controlled implementation without losing any functionality. A user that only wants to use the UI to make minor changes can work with the power user that wants to use the source controlled implementation to make advanced changes. All functionality that is available to the source controlled implementation is present in the UI version. We believe this keeps our user experience as a first class priority and we are proud of it!
+Our goals for CaC were to provide our users with complete CaC functionality without sacrificing usability through the UI. CaC allows our customers to leverage the power of Git in their deployment process through branches, pull requests, and a complete audit log of changes. [We captured some of our design thinking on our blog](https://octopus.com/blog/shaping-config-as-code).
+
+With the release of CaC, our users can choose to use the UI or the source controlled implementation without losing any functionality. A user that only wants to use the UI to make minor changes can work with the power user that wants to use the source controlled implementation to make advanced changes. All functionality that is available to the source controlled implementation is present in the UI version. 
+
+We believe our CaC implementation keeps our user experience as a first class priority and we are proud of it!
 
 ## Other Examples
 
@@ -64,10 +70,14 @@ Everything as code allows you to express IT resources as code. Them main benefit
 
 EaC has some clear benefits to you and your software stack, but is it always good to push for EaC when you can?
 
-We have said that EaC is an ideal state where developers represent system parts as code. While many benefits come from this, from an implementation standpoint, it does not always make sense to move a system towards EaC. While deployments as code in Octopus Deploy had significant benefits, there are diminishing returns on converting other platform parts to EaC. There is always an opportunity cost in developing an additional EaC feature compared with other features that organizations could develop in the same timeframe. In practice, organizations should apply EaC where it makes sense and has the most benefit to users.
+We have said that EaC is an ideal state where developers represent system parts as code. While many benefits come from this, from an implementation standpoint, it does not always make sense to move a system towards EaC.
+
+While deployments as code in Octopus Deploy had significant benefits, there are diminishing returns on converting other platform parts to EaC. There is always an opportunity cost in developing an additional EaC feature compared with other features that organizations could develop in the same timeframe. In practice, organizations should apply EaC where it makes sense and has the most benefit to users.
 
 ## Conclusion
 
-EaC is an approach to software development and DevOps that uses code to define and manage IT resources. EaC has found many applications in IaC, CaC, and other areas of IT. If you work in DevOps and the Cloud, you will have already seen some of the benefits of EaC first hand. There will certainly be parts of your platform that could benefit from an EaC approach, the key is identifying those areas. Although EaC is a promising end-state for organizations, there is an opportunity cost to convert parts of a platform to EaC, which will inform where you invest your resources.
+EaC is an approach to software development and DevOps that uses code to define and manage IT resources. EaC has found many applications in IaC, CaC, and other areas of IT. If you work in DevOps and the Cloud, you will have already seen some of the benefits of EaC first hand. 
+
+Although EaC is a promising end-state for organizations, there is an opportunity cost to convert parts of a platform to EaC, which will inform where you invest your resources. There will certainly be parts of your platform that could benefit from an EaC approach, the key is identifying those areas. 
 
 Happy deployments!
