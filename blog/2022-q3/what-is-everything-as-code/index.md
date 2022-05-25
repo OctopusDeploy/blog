@@ -49,16 +49,16 @@ There are other examples of EaC, some more niche than others, such as:
 
 - **Security as Code:** When managing several users in the cloud, security becomes a concern for cloud administrators. Security as code allows security data such as roles and permissions to be represented in a configuration file. Care has to be taken when applying this to sensitive data such as passwords and if sensitive data does need to be as code, encryption techniques must be considered.
 
-EaC is relevant in any scenario where developers can code processes and resources, so it could apply to many more segments of IT. 
+EaC is relevant in any scenario where developers can code processes and resources, so it applies to many more segments of IT. 
 
 ## Benefits
 
-Everything as code allows developers to express IT resources as code. The benefits of this framework are:
+Everything as code allows you to express IT resources as code. The benefits of this framework are:
 
-- **Consistency:** EaC gives developers more consistency because developers capture infrastructure and configuration settings in a standard framework such as Terraform. This framework reduces human error and improves reliability as the system is version-controlled.
-- **Scalability:** EaC improves the scalability of systems because developers capture resource settings in code. Scaling up involves making a small change to a configuration file, and developers can roll any issues back to previous versions.
-- **Portability:** EaC allows teams to export their infrastructure, configuration, or other parts of the system and replicate it.
-- **Auditability:** EaC makes it easier to audit systems as version control makes changes visible.
+- **Consistency:** You can capture infrastructure and configuration settings in a standard framework such as Terraform. This framework reduces human error and improves reliability as the system is version-controlled.
+- **Scalability:** Scaling up involves making a small change to a configuration file, and you can roll any issues back to previous versions.
+- **Portability:** You can export your infrastructure, configuration, or other parts of the system and replicate it.
+- **Auditability:** You can audit your systems more easily as version control makes changes visible.
 
 ## Future of everything as code
 
