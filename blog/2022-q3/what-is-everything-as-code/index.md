@@ -18,7 +18,7 @@ tags:
 
 If you work in DevOps or Cloud, you may have worked with tools like GitHub Actions, Jenkins, or Terraform. You may have noticed that these tools all represent parts of the DevOps pipeline as code so that you can store and reuse parts of the code for use later. The code representation of the DevOps pipeline is part of Everything as Code (EaC). But what is EaC and why is it important? 
 
-Everything as Code (EaC) is an approach to software development and DevOps that uses code to define and manage IT resources. The code representation of resources makes it easier for developers to audit changes, improve consistency, scale resources, and transfer settings from one environment to another. EaC is ideal where every part of the software life cycle is code. 
+Everything as Code (EaC) is an approach to software development and DevOps that uses code to define and manage IT resources. The code representation of resources makes it easier for developers to audit changes, improve consistency, scale resources, and transfer settings from one environment to another. Taken literally, EaC is an ideal state where every part of the software life cycle is code. 
 
 Applications today are far from that ideal, with EaC being used as an umbrella term to cover specific applications of the as-code framework. Infrastructure as code (IaC) and configuration as code (CaC) are popular EaC applications, with other applications like environments as code, data pipelines as code, and machine learning processes as code. This blog will discuss IaC, EaC, some upcoming as-code applications, benefits to EaC, and the future of EaC.
 
