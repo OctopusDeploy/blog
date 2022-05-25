@@ -20,7 +20,7 @@ If you work in DevOps or Cloud, you may have worked with tools like GitHub Actio
 
 Everything as Code (EaC) is an approach to software development and DevOps that uses code to define and manage IT resources. The code representation of resources makes it easier for developers to audit changes, improve consistency, scale resources, and transfer settings from one environment to another. Taken literally, EaC is an ideal state where every part of the software life cycle is code. 
 
-Applications today are far from that ideal, with EaC being used as an umbrella term to cover specific applications of the as-code framework. Infrastructure as code (IaC) and configuration as code (CaC) are popular EaC applications, with other applications like environments as code, data pipelines as code, and machine learning processes as code. This blog will discuss IaC, EaC, some upcoming as-code applications, benefits to EaC, and the future of EaC.
+Applications today are far from that ideal, with EaC being used as an umbrella term to cover specific applications of the as-code framework. Infrastructure as code (IaC) and configuration as code (CaC) are popular EaC applications, with other applications that cover a range of IT fields. This blog will discuss IaC, CaC, some other as-code applications, benefits to EaC, and the future of EaC.
 
 
 ## Infrastructure as Code
@@ -44,6 +44,8 @@ There are other examples of EaC, some more niche than others, such as:
 - **Environments as Code:** Tools that provision computing environments like Docker and Vagrant. Many cloud providers have their own compute environments as code offerings such as Compute Engine by Google and EC2 by Amazon.
 
 - **Data analytics as Code:** Developers can represent data pipelines and machine learning processes as code. This allows data analytics components to be ported from one project to another.
+
+- **DevOps pipelines as Code:** Tools like GitHub Actions and Jenkins represent DevOps pipelines as code. When code is pushed, a process is triggered to built the repository and produce an artefact or deploy a release.
 
 - **Security as Code:** When managing several users in the cloud, security becomes a concern for cloud administrators. Security as code allows security data such as roles and permissions to be represented in a configuration file. Care has to be taken when applying this to sensitive data such as passwords and if sensitive data does need to be as code, encryption techniques must be considered.
 
