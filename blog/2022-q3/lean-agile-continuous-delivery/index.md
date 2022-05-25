@@ -16,13 +16,35 @@ With DevOps and continuous delivery gaining traction, are Lean and Agile princip
 
 ## Introduction
 
-At the turn of the century, there was a revolution in software development. The core idea was to deliver software in a series of small batches, adapting the design and responding to feedback from the people using it. Previously, there had been a trend towards creating a fixed plan with detailed designs and working in large projects that could take years to complete.
+Throughout the 1990s, a revolution was brewing within the software development industry. The early phased models had divided the delivery process into skill-based steps, with designs and documents being used to run approval processes to control the project.
 
-In 2001, The Agile Manifesto was written and it remains a big influence on software development teams around the world. Two years later, Mary and Tom Poppendieck published their Lean Software Development book, which has also proven widely influential, particularly in the agile community.
+The process for delivering software was heavyweight and slow, with little indication that the overheads reduced the risks they were intended to mitigate.
+
+A collection of lightweight methods were emerging that were designed to generate feedback and adapt the plan iteratively. Small batches were used to control the risk and to provide frequent opportunities to review and change the plan.
+
+The Agile Manifesto emerged From this adaptive and lightweight methods community in 2001, with Lean Software Development arriving a couple of years later.
+
+Both Agile and Lean provided a *values and principles* based approach to software development. You could test whether an approach was Agile or Lean by testing it against a set of core statements that defined the philosophy behind the approach.
 
 ![The evolution of software delivery from phased, to adaptive, to continuous](software-delivery-history-lean-agile.png)
 
-With DevOps and continuous delivery gaining traction, it's a good time to compare the 5 principles of continuous delivery to the 12 Agile principles and the 7 Lean principles. In his book *Continuous Delivery Pipelines*, Dave Farley places "apply Lean and Agile principles" in his list of essential techniques, so how well do they align?
+Continuous delivery and DevOps arrived a decade later. Instead of a they represented an evolution of Agile and Lean ideas, based on the experiences shared within the community.
+
+InfoQ publishes an annual report on software development culture and methods, which is inspired by Geoffrey Moore's book *Crossing the Chasm*. Moore famously visualizes a technology adoption lifecycle as a bell curve charting 3 standard deviations. The chart is divided into five groups with different attitudes to new technology:
+
+- Innovators (-3)
+- Early adopters (-2)
+- Early majority (-1)
+- Late majority (+1)
+- Laggards (+3)
+
+The early majority and late majority represent two-thirds of the adoption lifecycle, but for a technology (on in the case of InfoQ an idea) to move into the majority, it must cross the chasm from the early adopters to the mainstream.
+
+![The adoption of culture and methods for software development](infoq-culture-and-methods-2022.jpg)*Source: [InfoQ Software Development Culture and Methods 2022](https://www.infoq.com/articles/culture-trends-2022/)*
+
+While adaptive modes of software delivery are now embedded in the late majority, the capabilities needed for continuous modes are still making their way across the chasm. Some practices (such as generic DevSecOps) have made the leap, while other key elements (like team topologies and empowered teams) remain at the early adopter stage.
+
+So, with DevOps and continuous delivery gaining traction, it's a great time to compare the 5 principles of continuous delivery with the 12 Agile principles and the 7 Lean principles.
 
 ## Comparing principles
 
