@@ -42,13 +42,19 @@ The early majority and late majority represent two-thirds of the adoption lifecy
 
 ![The adoption of culture and methods for software development](infoq-culture-and-methods-2022.jpg)*Source: [InfoQ Software Development Culture and Methods 2022](https://www.infoq.com/articles/culture-trends-2022/)*
 
-While adaptive modes of software delivery are now embedded in the late majority, the capabilities needed for continuous modes are still making their way across the chasm. Some practices (such as generic DevSecOps) have made the leap, while other key elements (like team topologies and empowered teams) remain at the early adopter stage.
+While adaptive modes of software delivery are now embedded in the late majority, the capabilities needed for continuous modes are still making their way across the chasm. Some practices (such as DevSecOps) have made the leap, while other key elements (like team topologies and empowered teams) remain at the early adopter stage.
 
 So, with DevOps and continuous delivery gaining traction, it's a great time to compare the 5 principles of continuous delivery with the 12 Agile principles and the 7 Lean principles.
 
 ## Comparing principles
 
-Agile is a set of values and principles with no descriptive method for applying them. The idea was to allow many methods aligned and measured against The Agile Manifesto. Lean goes substantially further and describes techniques that cover the whole software development process with advice on planning, design, testing, and maintenance. Continuous delivery uses the deployment pipeline (from the code commit to the software running in production) to focus efforts to improve the flow of changes. Specific technical capabilities are described in detail to enable the *early and continuous delivery of valuable software*.
+Agile, lean, and continuous delivery each provides a set of principles. This provides a basis for a comparison of their fundamental structures.
+
+There are other techniques and capabilities in Lean and continuous delivery that don't have comparable elements in Agile, as The Agile Manifesto was designed as a broad litmus test of the agility of other specific methods, such as Extreme Programming, Scrum, and Disciplined Agile.
+
+Lean describes techniques that cover the whole software development process with advice on planning, design, testing, and maintenance.
+
+Continuous delivery uses the deployment pipeline (from the code commit to the software running in production) to focus efforts to improve the flow of change. Specific technical capabilities are described in detail to enable the *early and continuous delivery of valuable software*.
 
 This means the principles are the only directly comparable elements of these three approaches.
 
