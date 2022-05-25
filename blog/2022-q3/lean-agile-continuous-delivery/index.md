@@ -58,23 +58,27 @@ Continuous delivery uses the deployment pipeline (from the code commit to the so
 
 This means the principles are the only directly comparable elements of these three approaches.
 
-### CD principles
+### Continuous delivery principles
 
-https://continuousdelivery.com/principles/
+There are [five principles](https://continuousdelivery.com/principles/) of continuous delivery.
 
 1. Build quality in
-1. Work in small batches
-1. Computers perform repetitive tasks, people solve problems
-1. Relentlessly pursue continuous improvement
-1. Everyone is responsible
+2. Work in small batches
+3. Computers perform repetitive tasks, people solve problems
+4. Relentlessly pursue continuous improvement
+5. Everyone is responsible
 
 ![The relationship between the continuous delivery principles](cd-principles.png)
 
+The principles can be arranged into a reinforcing relationship, where the first three principles act as drivers of continuous improvement, for which everyone involved is responsible.
+
 ### Agile principles comparison
 
-![Mapping agile and continuous delivery principles](agile-continous-delivery.jpg)
+In general, the principles of continuous delivery are well aligned to [The Agile Manifesto](https://agilemanifesto.org/principles.html).
 
-The continous delivery principles are well-aligned to Agile principles in most cases. Often, a single continuous delivery principle covers several Agile ones. Working in small batches is a great way to achieve several of the Agile principles:
+![Mapping agile and continuous delivery principles](agile-continuous-delivery.jpg)
+
+For example, working in small batches widely understood to help achieve several of the Agile principles:
 
 - Our highest priority is to satisfy the customer through early and continuous delivery of valuable software.
 - Welcome changing requirements, even late in development. Agile processes harness change for the customer's competitive advantage.
@@ -83,16 +87,20 @@ The continous delivery principles are well-aligned to Agile principles in most c
 - Agile processes promote sustainable development. The sponsors, developers, and users should be able to maintain a constant pace indefinitely.
 - Simplicity--the art of maximizing the amount of work not done--is essential.
 
-The principle "work in small batches" is concise, easy to follow, and contributes to achieving half of the Agile principles. It doesn't do this on its own, to "deliver working software frequently" we also need to "build quality in" and let "computers perform repetitive tasks".
+The phrasing of the principle "work in small batches" is concise and easy to follow in practice. This continuous delivery principle contributes to the attainment of half of the Agile principles.
 
-Across the 5 continuous delivery principles, all of the key ideas are represented in snappy and actionable statements, with just two exceptions.
+There is also an amplification effect as all 5 principles are combined, to "deliver working software frequently" you need to work in small batches, increase automation, and build quality in.
+
+There are two Agile principles that are not covered by continuous delivery:
 
  - Business people and developers must work together daily throughout the project, and
  - The most efficient and effective method of conveying information to and within a development team is face-to-face conversation
 
-Continuous delivery is centered on the delivery pipeline, which means the process of identification, inception, and initiation aren't the concern of continuous delivery. However, the subject of the broader development lifecycle is still discussed in Jez Humble and Dave Farley's *Continuous Delivery* book. It may even be the case that continuous delivery challenges these views. The authors and editors worked with different tools in different countries and used version control and automated builds to update drafts of the book. Remote and asynchronous work is becoming more common, so perhaps face-to-face communication isn't fundamental to successful software development either.
+Continuous delivery is centered on the delivery pipeline, which means the process of identification, inception, and initiation aren't a direct concern of continuous delivery. Additionally, in the front matter of the *Continuous Delivery* book, the authors highlight that the book was created according to the ideas it contained. The contributors and editors worked using different tools and from different locations. They used version control and builds to form a delivery pipeline for the book. They didn't work together on a daily basis or convey information face-to-face.
 
-The principles of continuous delivery are 10% of the size of the Agile principles; just 21 words rather than 180. Blaise Pascal is credited with an apology for the length of a letter, excusing himself by saying he had no time to make it shorter. In our case, hindsight and the more detailed practices around the deployment pipeline have provided the opportunity for concision.
+As an industry, many organizations who hadn't attempted to work remotely are now ready to experiment with distributed working and this will further challenge real-time face-to-face co-ordination as asynchronous communication becomes more common and familiar.
+
+In terms of word counts, the principles of continuous delivery are conveyed in 21 words, rather than the 180 words of the Agile principles. A combination of hindsight and incisive editing has given us quick compass to check our direction, with the detail being provided in the specific practices of continuous delivery.
 
 > It’s easy to get bogged down in the details of implementing continuous delivery — tools, architecture, practices, politics — if you find yourself lost, try revisiting these principles and you may find it helps you refocus on what’s important. - [Jez Humble](https://continuousdelivery.com/principles/)
 
