@@ -53,10 +53,10 @@ EaC is relevant in any scenario where developers can code processes and resource
 
 ## Benefits
 
-Everything as code allows you to express IT resources as code. The benefits of this framework are:
+Everything as code allows you to express IT resources as code. Them main benefits of this framework are:
 
 - **Consistency:** You can capture infrastructure and configuration settings in a standard framework such as Terraform. This framework reduces human error and improves reliability as the system is version-controlled.
-- **Scalability:** Scaling up involves making a small change to a configuration file, and you can roll any issues back to previous versions.
+- **Scalability:** If you want to scale, you make a small change to a configuration file, and you can roll any issues back to previous versions.
 - **Portability:** You can export your infrastructure, configuration, or other parts of the system and replicate it.
 - **Auditability:** You can audit your systems more easily as version control makes changes visible.
 
