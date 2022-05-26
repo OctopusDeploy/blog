@@ -14,19 +14,23 @@ tags:
 
 <!-- see https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags -->
 
-Continuous integration and delivery (CI/CD) are practices that take software development from code to a live product. CI/CD forms part of DevOps practices, and there are many commonly agreed-upon best practices that users can follow to improve their deployment pipeline. Octopus Deploy is a deployment tool that supports the continuous delivery side of CI/CD, and we provide a best-in-class product that makes complex deployments easier. Here are eight best practices that we believe will help you in your deployment journey.
+Continuous integration and delivery (CI/CD) are practices that take software development from code to a live product. CI/CD forms part of DevOps practices, and there are many commonly agreed-upon best practices that users can follow to improve their deployment pipeline. 
+
+If you work in DevOps, you would have used a build server like Jenkins and a deployment tool like Octopus Deploy to complete your deployment process. Octopus Deploy supports the continuous delivery side of CI/CD, and we provide a best-in-class product that makes complex deployments easier. 
+
+At Octopus, we believe in the power of eight. Eight lessons for eight tentacles! Here are eight best practices that we believe will help you in your deployment journey.
 
 ## Adopt agile methodologies
 
 Agile methodologies are a vital component of CI/CD and DevOps. Agile methodologies is a project management approach that involves continuous collaboration with stakeholders and continuous improvement at each stage of the deployment process. The principle of agile methodologies is to have frequent feedback through small development iterations so that developers can closely align the final product with the user needs. Agile methodologies contrast traditional waterfall methods, where projects were scoped and delivered in a single phase.
 
-To get the most out of a CI/CD pipeline, software projects should be managed according to Agile and Lean principles so that the continuous feedback loop can improve the product.
+To get the most out of a CI/CD pipeline, software projects should be managed according to Agile and Lean principles so that the continuous feedback loop can improve the product. We have seen that agile methodologies usually starts off as a set of checklists to tick off for upper management. In the initial stages, agile is applied to meet the checklist. As teams have permission to explore the agile space, after a year or so, agile is running in earnest and the true benefits are seen.
 
 ## Use version-controlled code, connected to the deployment process, committed frequently
 
-Developers should keep code created for a software project in a version-controlled system like Git. Version-controlled code allows a complete history and rollback of code to previous versions. Developers can also resolve conflict by using the merging methods of Git.
+If you work in software, you will have heard about Git and probably use Git. The wars on source-controlled code have been fought and won, and Git is now synonymous with source-control. This best practice is an obvious one, but it is essential, you need to keep your code in source-control. Source-controlled code allows a complete history and rollback of code to previous versions. You can also resolve conflicts by using the merging methods of Git.
 
-When using version control in a software project, committing a code change should trigger a CI/CD pipeline build. This trigger allows developers to test and validate changes to the codebase earlier.
+When using source control, committing a code change should trigger a CI/CD pipeline build. This trigger allows developers to test and validate changes to the codebase earlier.
 
 Once a code change is set up to trigger an automated build,  developers should be encouraged to commit their code at least once a day. Daily commits trigger automated tests more frequently and allow developers to notice any errors sooner.
 
