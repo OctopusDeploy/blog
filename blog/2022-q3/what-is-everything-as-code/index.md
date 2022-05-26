@@ -1,6 +1,6 @@
 ---
 title: What is everything as code?
-description: A brief summary of the post, 170 characters max including spaces.
+description: This post discusses the shift to everything as code. The two main EaC applications, infrastructure as code and configuration as code are discussed, along with other IT applications and benefits for EaC.
 author: terence.wong@octopus.com
 visibility: private
 published: 3020-01-01-1400
