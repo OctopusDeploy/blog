@@ -12,7 +12,7 @@ tags:
   - DevOps
 ---
 
-With DevOps and continuous delivery gaining traction, are the principles behind Lean and Agile still relevant? How do they compare to the 5 principles of continuous delivery and what do any differences mean for software development teams?
+With DevOps and continuous delivery gaining traction, are the principles behind Lean and Agile still relevant? How do they compare to the 5 principles of continuous delivery, and what do any differences mean for software development teams?
 
 ## Introduction
 
@@ -20,17 +20,17 @@ Throughout the 1990s, a revolution was brewing within the software development i
 
 The process for delivering software was heavyweight and slow, with little indication that the overheads reduced the risks they were intended to mitigate.
 
-A collection of lightweight methods was emerging, all designed to generate fast feedback and iteratively adapt the plan based on new information. Small batches, rather than controls and approvals, were being used to control the risk and to provide frequent opportunities to change direction.
+A collection of lightweight methods emerged, all designed to generate fast feedback and iteratively adapt the plan based on new information. Small batches, rather than controls and approvals, were used to control the risk and provide frequent opportunities to change direction.
 
 The Agile Manifesto emerged From this adaptive and lightweight methods community in 2001, with Lean Software Development arriving a couple of years later.
 
-Both Agile and Lean provided a *values and principles* based approach to software development. You could test whether an approach was Agile or Lean by testing it against a set of core statements that defined the philosophy behind each approach.
+Both Agile and Lean provided a *values and principles* based approach to software development. You could test whether an approach was Agile or Lean by testing it against a set of core statements that defined the philosophy behind each method.
 
 ![The evolution of software delivery from phased, to adaptive, to continuous](software-delivery-history-lean-agile.png)
 
-Continuous delivery emerged from the Lean and Agile community and provided the most concrete set of practices and capabilities to achieve the goal of delivering software frequently and safely. Apart from Extreme Programming, the majority of software development methods dealt with requirements management and communication structures. Instead, continuous delivery takes on the rest of the value stream and provides a pathway to implement an efficient and reliable delivery pipeline.
+Continuous delivery emerged from the Lean and Agile communities and provided the most concrete set of practices and capabilities to achieve the goal of delivering software frequently and safely. Apart from Extreme Programming, most software development methods deal with requirements management and communication structures. Continuous delivery takes on the rest of the value stream and provides a pathway to implement an efficient and reliable delivery pipeline.
 
-InfoQ publishes an annual report on software development culture and methods, which is inspired by Geoffrey Moore's book *Crossing the Chasm*. Moore famously visualizes a technology adoption lifecycle as a bell curve spread across 3 standard deviations.
+InfoQ publishes an annual report on software development culture and methods. The report is styled after Geoffrey Moore's *Crossing the Chasm* concept. Moore famously visualizes a technology adoption lifecycle as a bell curve spread across 3 standard deviations.
 
 The chart is divided into five groups with different attitudes to new technology:
 
@@ -40,11 +40,11 @@ The chart is divided into five groups with different attitudes to new technology
 - Late majority (+1)
 - Laggards (+3)
 
-The early majority and late majority represent two-thirds of the adoption lifecycle, but for a technology (or in the case of InfoQ, an idea) to move into the majority it must cross the chasm from the early adopters to the mainstream majorities.
+The early majority and late majority represent two-thirds of the adoption lifecycle. Still, for new technology (or, in the case of InfoQ, a new idea) to move into the majority, it must cross the chasm from the early adopters to the mainstream majorities.
 
 ![The adoption of culture and methods for software development](infoq-culture-and-methods-2022.jpg)*Source: [InfoQ Software Development Culture and Methods 2022](https://www.infoq.com/articles/culture-trends-2022/)*
 
-While adaptive modes of software delivery are now embedded in the late majority, the capabilities needed for continuous modes of delivery are still making their way across the chasm. Some practices (such as DevSecOps) have made the leap, while other key elements, like team topologies and empowered teams, remain at the early adopter stage.
+While adaptive modes of software delivery are embedded in the late majority, the capabilities needed for continuous modes of delivery are still making their way across the chasm. Some practices (such as DevSecOps) have made the leap, while other key elements, like team topologies and empowered teams, remain at the early adopter stage.
 
 So, with DevOps and continuous delivery gaining traction, it's a great time to compare the 5 principles of continuous delivery with the 12 Agile principles and the 7 Lean principles.
 
@@ -52,13 +52,13 @@ So, with DevOps and continuous delivery gaining traction, it's a great time to c
 
 Agile, lean, and continuous delivery each provide a set of principles. This provides a basis for a comparison of their fundamental structures.
 
-There are other techniques and capabilities in Lean and continuous delivery that don't have comparable elements in Agile, as The Agile Manifesto was designed as a broad litmus test of the agility of other specific methods, such as Extreme Programming, Scrum, and Disciplined Agile; so it didn't define further details itself.
+There are other techniques and capabilities in Lean and continuous delivery that don't have comparable elements in Agile. The Agile Manifesto was intended to be a broad litmus test of the agility of other specific methods, such as Extreme Programming, Scrum, and Disciplined Agile, so it didn't define further details.
 
-Lean expands on its principles by describing techniques that cover the whole software development process with advice on planning, design, testing, and maintenance.
+Lean expands on its principles by describing techniques covering the whole software development process with advice on planning, design, testing, and maintenance.
 
-Continuous delivery uses the deployment pipeline (from the code commit to the software running in production) to focus efforts to improve the flow of change. Specific technical capabilities are described in detail to enable the *early and continuous delivery of valuable software*.
+Continuous delivery uses the deployment pipeline (from the code commit to the software running in production) to focus efforts on improving the flow of change. Specific technical capabilities are described in detail to enable the *early and continuous delivery of valuable software*.
 
-This means the principles are the only directly comparable elements of these three approaches.
+The principles are the only directly comparable elements of these three approaches.
 
 ### Continuous delivery principles
 
@@ -66,7 +66,7 @@ There are [five principles](https://continuousdelivery.com/principles/) of conti
 
 1. Build quality in
 2. Work in small batches
-3. Computers perform repetitive tasks, people solve problems
+3. Computers perform repetitive tasks, and people solve problems
 4. Relentlessly pursue continuous improvement
 5. Everyone is responsible
 
@@ -76,11 +76,11 @@ The principles can be arranged into a reinforcing relationship, where the first 
 
 ### Agile principles comparison
 
-In general, the principles of continuous delivery are well aligned to [The Agile Manifesto](https://agilemanifesto.org/principles.html).
+In general, continuous delivery principles are consistent with [The Agile Manifesto](https://agilemanifesto.org/principles.html).
 
 ![Mapping agile and continuous delivery principles](agile-continuous-delivery.jpg)
 
-For example, working in small batches widely understood to help achieve several of the Agile principles:
+For example, working in small batches is widely understood to help achieve several of the Agile principles:
 
 - Our highest priority is to satisfy the customer through early and continuous delivery of valuable software.
 - Welcome changing requirements, even late in development. Agile processes harness change for the customer's competitive advantage.
@@ -91,22 +91,22 @@ For example, working in small batches widely understood to help achieve several 
 
 The phrasing of the principle "work in small batches" is concise and easy to follow in practice. This continuous delivery principle contributes to the attainment of half of the Agile principles.
 
-There is also an amplification effect as all 5 principles are combined, to "deliver working software frequently" you need to work in small batches, increase automation, and build quality in.
+There is also an amplification effect when you combine the 5 principles. To "deliver working software frequently," you need to work in small batches, increase automation, and build quality in.
 
-There are two Agile principles that are not covered by continuous delivery:
+Two Agile principles are not covered by continuous delivery:
 
  - Business people and developers must work together daily throughout the project, and
  - The most efficient and effective method of conveying information to and within a development team is face-to-face conversation
 
-Continuous delivery is centered on the delivery pipeline, which means the process of identification, inception, and initiation aren't a direct concern of continuous delivery. Additionally, in the front matter of the *Continuous Delivery* book, the authors highlight that the book was created according to the ideas it contained. The contributors and editors worked using different tools and from different locations. They used version control and builds to form a delivery pipeline for the book. They didn't work together on a daily basis or convey information face-to-face.
+Continuous delivery is centered on the delivery pipeline, which means the process of identification, inception, and initiation aren't a direct concern of continuous delivery. Additionally, in the front matter of the *Continuous Delivery* book, the authors highlight that the book was created according to the ideas it contained. The contributors and editors worked using different tools and from separate locations. They used version control and automated builds to form a delivery pipeline for the book. They didn't work together daily or convey information face-to-face.
 
-As an industry, many organizations who hadn't attempted to work remotely are now ready to experiment with distributed working and this will further challenge real-time face-to-face co-ordination as asynchronous communication becomes more common and familiar.
+As an industry, many organizations who hadn't attempted to work remotely are now ready to experiment with distributed working. This will further challenge the need for real-time face-to-face coordination as asynchronous communication becomes more common and familiar.
 
-In terms of word counts, the principles of continuous delivery are conveyed in 21 words, rather than the 180 words of the Agile principles. A combination of hindsight and incisive editing has given us quick compass to check our direction, with the detail being provided in the specific practices of continuous delivery.
+In terms of word counts, continuous delivery principles are conveyed in 21 words, rather than the 180 words of the Agile principles. A combination of hindsight and incisive editing has given us a compass to check our direction, with the detail provided in the specific practices of continuous delivery.
 
-> It’s easy to get bogged down in the details of implementing continuous delivery — tools, architecture, practices, politics — if you find yourself lost, try revisiting these principles and you may find it helps you refocus on what’s important. - [Jez Humble](https://continuousdelivery.com/principles/)
+> It's easy to get bogged down in the details of implementing continuous delivery — tools, architecture, practices, politics — if you find yourself lost, try revisiting these principles and you may find it helps you re-focus on what's important. - [Jez Humble](https://continuousdelivery.com/principles/)
 
-You don't have to throw out The Agile Manifesto to move forwards, it's part of the geography that continuous delivery and DevOps are building on. The industry will continue to discover new and better ways of developing software. It is increasingly certain that technical practices and cultural capabilities are a key part of this emerging knowledge.
+You don't have to throw out The Agile Manifesto to move forwards; it's part of the geography that continuous delivery and DevOps are building on. The industry will continue to discover new and better ways of developing software. It is increasingly evident that technical practices and cultural capabilities are vital.
 
 ### Lean principles comparison
 
@@ -114,15 +114,15 @@ The Lean principles are already brief and actionable. There is complete alignmen
 
 ![Mapping lean and continuous delivery principles](lean-continous-delivery.jpg)
 
-With Agile, continuous delivery offered a concise alternative of 10 of the Agile principles. In the case of Lean, continuous delivery aligns completely with the principles. Each approach provides a different perspective that applies to different segments of the organization.
+With Agile, continuous delivery offered a concise alternative to 10 Agile principles. In the case of Lean, continuous delivery aligns entirely with the principles. Each approach provides a different perspective that applies to various organization segments.
 
-In an organization that has fully adopted both Lean and continuous delivery, the principles would be useful to different groups. Lean principles and techniques are useful as leadership tools and continuous delivery provides an approach specific to the individual contributors delivery efforts.
+In an organization that has fully adopted both Lean and continuous delivery, the respective principles are helpful to different groups. Lean principles and techniques are leadership tools, while continuous delivery provides an approach specific to the individual contributors' delivery efforts.
 
-For example, with continuous delivery, automation is the practical attack vector for eliminating waste, delivering quickly, and building integrity into the system.
+For example, automation is the practical attack vector for eliminating waste, delivering quickly, and building integrity into the system with continuous delivery.
 
 ## Conclusion
 
-Continuous delivery provides a concise set of principles that align to 10 of the 12 Agile principles. Continuous delivery also complements Lean, providing a different perspective on achieving similar goals.
+Continuous delivery provides a concise set of principles that align with 10 of the 12 Agile principles and complement Lean, providing a different perspective on achieving similar goals.
 
 All three sets of principles are consistent with modern management philosophy and provide different ways to review and re-focus your software delivery efforts.
 
