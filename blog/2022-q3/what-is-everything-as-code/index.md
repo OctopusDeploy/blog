@@ -37,7 +37,7 @@ Terraform is one of the most popular IaC frameworks. Terraform provides a config
 
 ## Configuration as Code
 
-CaC is the process of capturing all system configuration settings in code. In our platform, the configuration settings specify the deployment process. CaC was a heavily requested feature that we wanted to develop for our users. After a successful design and development phase, we released CaC for our platform in 2022 Q1. 
+CaC is the process of capturing all system configuration settings in code. In our platform, the configuration settings specify the deployment process. CaC was a heavily requested feature that we wanted to develop for our users. After a successful design and development phase, we released CaC for our platform in March 2022. 
 
 Our goals for CaC were to provide our users with complete CaC functionality without sacrificing usability through the UI. CaC allows our customers to leverage the power of Git in their deployment process through branches, pull requests, and a complete audit log of changes. [We captured some of our design thinking on our blog](https://octopus.com/blog/shaping-config-as-code).
 
