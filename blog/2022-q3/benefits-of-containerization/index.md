@@ -34,9 +34,13 @@ DevOps refines every process between the developer and the customer (flow), enco
 
 Containerization complements DevOps because software can be deployed and tested faster, improving feedback loops. Containerization is also a major factor in the popularity of microservices, a software architecture that improves flexibility and agility.
 
+If you work in DevOps, you will likely have worked with containers before. If you are trying to get started, check out the [DockerHub library of images](https://hub.docker.com/search?q=) to see what images you could use, or [our post on getting started with containers.]()
+
 ### Containers are scalable and allocate resources efficiently
 
 Platform as a Service (PaaS) solutions and container orchestration tools like Kubernetes allow developers to operate containers at scale. Container orchestrators can scale individual components in software applications up and down depending on demand and load. This leads to cost savings as components only run for as long they’re needed. Scaling also improves reliability as container orchestrators can allocate sufficient resources to high-demand parts of the application.
+
+Scaling and cost savings is a big factor when deciding to migrate to containerization. Many cloud providers have a cost calculator for cloud resources and you could use that if you are wanting your department to make the switch to containers.
 
 ### Containers are portable: build once, run anywhere
 
