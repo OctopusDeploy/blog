@@ -22,8 +22,7 @@ The code representation of the DevOps pipeline is part of a shift to Everything 
 
 Everything as Code (EaC) is an approach to software development and DevOps that uses code to define and manage IT resources. The code representation of resources makes it easier for developers to audit changes, improve consistency, scale resources, and transfer settings from one environment to another. Taken literally, EaC is an ideal state where every part of the software life cycle is code. 
 
-Applications today are far from that ideal, with EaC being used as an umbrella term to cover specific applications of the as-code framework. Infrastructure as Code (IaC) and Configuration as Code (CaC) are widespread EaC applications, with other applications covering a range of IT fields. This blog will discuss some applications of EaC, the benefits, and our thoughts on moving towards EaC.
-
+The implementation of EaC today is far from that ideal, with EaC being used as an umbrella term to cover specific applications of the as-code framework. Infrastructure as Code (IaC) and Configuration as Code (CaC) are widespread EaC applications, with other applications covering a range of IT fields. This blog discusses some applications of EaC, the benefits, and our thoughts on moving towards EaC.
 
 ## Infrastructure as Code
 
@@ -41,7 +40,7 @@ CaC is the process of capturing all system configuration settings in code. In ou
 
 Our goals for CaC were to provide our users with complete CaC functionality without sacrificing usability through the UI. CaC allows our customers to leverage the power of Git in their deployment process through branches, pull requests, and a complete audit log of changes. [We captured some of our design thinking on our blog](https://octopus.com/blog/shaping-config-as-code).
 
-With the release of CaC, our users can choose to use the UI or the source-controlled implementation without losing any functionality. A user that only wants to use the UI to make minor changes can work with the power user that wants to use the source-controlled implementation to make advanced changes. All functionality available to the source-controlled implementation is present in the UI version. 
+With the release of CaC, our users can choose to use the UI or the source-controlled implementation without losing any functionality. A user that only wants to use the UI to make minor changes can work with the power user that wants to use the source-controlled implementation to make advanced changes. All functionality available to the source-controlled implementation is also present in the UI version. 
 
 We believe our CaC implementation keeps our user experience a first-class priority, and we are proud of it!
 
