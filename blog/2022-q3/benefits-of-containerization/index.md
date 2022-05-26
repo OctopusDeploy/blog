@@ -22,9 +22,9 @@ Containers are still a relatively new technology, and to the uninitiated they ca
 
 A container is a lightweight, portable computing environment that includes all the necessary files to run independently. 
 
-Containerization is the process of making an application runnable as a container. Once the application can run as a container, it will run the same regardless of the infrastructure that is used to execute the container. Containers are loaded with container images that run a specific application inside the container. If you have an IT application in mind, from setting up a database, to loading different operating systems, to accessing a deep learning platform, containerization has you covered. 
+Containerization is the process of making an application runnable as a container. Once the application can run as a container, it will run the same regardless of the infrastructure that is used to execute the container. Containers are loaded with container images that run a specific application inside the container. If you want to build a modern application, from setting up a database, to loading different operating systems, to accessing a deep learning platform, you're going to need containerization.
 
-Containerization has been widely adopted in recent years, partly due to the availability of cloud technologies, which make container scaling and replication possible, unlocking the business value of containers.  
+Containerization has been widely adopted in recent years, partly due to the availability of cloud technologies. Cloud technologies allow you to scale and replicate containers, and they lower the barrier to entry. 
 
 ### Containers complement your DevOps process
 
@@ -46,7 +46,7 @@ Because containers are portable, they can run anywhere on any infrastructure, su
 
 To run applications, containers are loaded with container images. A container image is a static file that contains executable code to run a process on IT infrastructure. There are container images for different use cases such as databases, web servers, operating systems, and more. Container image repositories are public access points for container images, which makes them available to developers who can load a container with these images. 
 
-The open standards of containers, alongside the wide range of images available, means that developers can load endless services in their containers to be executed on a variety of infrastructure.
+If you wanted to use a container for your application, then thanks to the OCI, you can be sure that any OCI image you use will work on your infrastructure, even if you choose to change it.
 
 ## What are the top container images?
 
