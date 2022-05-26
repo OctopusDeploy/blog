@@ -20,7 +20,7 @@ Throughout the 1990s, a revolution was brewing within the software development i
 
 The process for delivering software was heavyweight and slow, with little indication that the overheads reduced the risks they were intended to mitigate.
 
-A collection of lightweight methods emerged, all designed to generate fast feedback and iteratively adapt the plan based on new information. Small batches, rather than controls and approvals, were used to control the risk and provide frequent opportunities to change direction.
+A collection of lightweight methods emerged, all designed to generate fast feedback and iteratively adapt the plan based on new information. Small batches, rather than controls and approvals, were used to manage the risk and provide frequent opportunities to change direction.
 
 The Agile Manifesto emerged From this adaptive and lightweight methods community in 2001, with Lean Software Development arriving a couple of years later.
 
@@ -118,7 +118,7 @@ With Agile, continuous delivery offered a concise alternative to 10 Agile princi
 
 In an organization that has fully adopted both Lean and continuous delivery, the respective principles are helpful to different groups. Lean principles and techniques are leadership tools, while continuous delivery provides an approach specific to the individual contributors' delivery efforts.
 
-For example, automation is the practical attack vector for eliminating waste, delivering quickly, and building integrity into the system with continuous delivery.
+For example, automation is a practical attack vector for eliminating waste, delivering quickly, and building integrity into the system with continuous delivery.
 
 ## Conclusion
 
