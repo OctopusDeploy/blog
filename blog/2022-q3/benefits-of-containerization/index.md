@@ -1,6 +1,6 @@
 ---
 title: The benefits of containerization
-description: A post about containerization. The post outlines the main benefits of containerization, lists the top container images, discusses the main containerization technologies and explains how Octopus Deploy works with containerization to make complex deployments easier.
+description: The post outlines the main benefits of containerization, lists the top container images, discusses the main containerization technologies and explains how Octopus Deploy works with containerization to make complex deployments easier.
 author: terence.wong@octopus.com
 visibility: private
 published: 3020-01-01-1400
