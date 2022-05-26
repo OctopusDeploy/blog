@@ -16,7 +16,7 @@ tags:
 
 Wherever you work, you may have noticed a big shift to the cloud in the applications you use, from storing data like emails or photos, to developing software in a cloud repository like Git. Everyone can agree, cloud solutions are dominating the market. A [study by Gartner](https://www.gartner.com/en/newsroom/press-releases/2022-02-09-gartner-says-more-than-half-of-enterprise-it-spending) indicates that revenue for cloud products will overtake traditional IT solutions in 2025. 
 
-If you work with cloud products, you'll want make them more efficient and cost-effective. Two terms that can help you with that are cloud orchestration and cloud automation. These terms are often used interchangeably, but there are some key differences. 
+If you work with cloud products, you'll want make them more efficient and cost-effective. Two idea that can help you with that are cloud orchestration and cloud automation. These concepts are often used interchangeably, but there are some key differences. 
 
 Cloud orchestration is the coordination and automation of workloads, resources, and infrastructure in public and private cloud environments. Cloud orchestration is the automation of the whole cloud system. Each part of the system should work together to produce an efficient system. Cloud automation is a subset of cloud orchestration focused on automating the individual components of a cloud system. Cloud orchestration and automation complement each other to produce an automated cloud system.
 
