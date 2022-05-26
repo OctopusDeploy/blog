@@ -1,6 +1,6 @@
 ---
 title: What is cloud orchestration?
-description: A brief summary of the post, 170 characters max including spaces.
+description: The post discusses cloud orchestration and cloud automation, as a service models, the benefits of cloud orchestration, some cloud orchestration tooling and how Octopus fits into cloud orchestration.
 author: terence.wong@octopus.com
 visibility: private
 published: 3020-01-01-1400
