@@ -80,7 +80,9 @@ These dedicated tools provide cloud provisioning, configuration management, and 
 
 ### Where does Octopus Deploy fit in?
 
-Octopus Deploy is a cloud-agnostic deployment tool that makes complex deployments easier. The role of Octopus Deploy in cloud orchestration is to set up and manage the deployment of an application through an on-premise solution or a cloud provider. Octopus takes the application from code to build to deployment. Once the deployment is live, a tool like Kubernetes or AWS Cloud Formation can manage the state of the infrastructure and cloud resources of the application. If developers need to deploy the application with a new version, Octopus can manage the new release and deploy a new release version to the production environment.
+Octopus Deploy is a cloud-agnostic deployment tool that makes complex deployments easier. The role of Octopus Deploy in cloud orchestration is to set up and manage the deployment of an application through an on-premise solution or a cloud provider. 
+
+Octopus takes the application from code to build to deployment. Once the deployment is live, a tool like Kubernetes or AWS Cloud Formation can manage the state of the infrastructure and cloud resources of the application. If developers need to deploy the application with a new version, Octopus can manage the new release and deploy a new release version to the production environment.
 
 ## Conclusion
 
