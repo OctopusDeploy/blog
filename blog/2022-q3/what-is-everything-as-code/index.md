@@ -29,7 +29,7 @@ Applications today are far from that ideal, with EaC being used as an umbrella t
 
 IaC is the process of provisioning IT infrastructure through code. Traditionally, developers provisioned IT infrastructure manually where there are no controls on who can provision infrastructure and what methods they use.
 
-You may have encountered a situation where one person (the gatekeeper) controlled all your IT infrastructure. Only that person understood the location and configuration of your infrastructure.
+You may have encountered a situation where one person (the gatekeeper) controlled all your IT infrastructure. Only that person understood where things were, and even then they weren't sure about everything.
 
 With IaC, the contents and location of all infrastructure are transparent and visible to everyone in the organization. Infrastructure is no longer gate-kept by a few people but is version-controlled in a configuration file. Much better!
 
