@@ -1,6 +1,6 @@
 ---
 title: Comparing Lean, Agile, and continuous delivery
-description: TBC
+description: Are Agile and Lean principles still relevant and how do they compare to continuous delivery?
 author: steve.fenton@octopus.com
 visibility: private
 published: 3020-01-01-1400
