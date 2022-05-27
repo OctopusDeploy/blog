@@ -34,15 +34,13 @@ In our [introduction to DevOps blog](https://octopus.com/blog/introduction-to-de
 
 DevOps refines every process between the developer and the customer (flow), encourages faster feedback loops and experimentation and learning. DevOps is a practice that focuses on agility and automation.
 
-Containerization complements DevOps because software can be deployed and tested faster, improving feedback loops. Containerization is also a major factor in the popularity of microservices, a software architecture that improves flexibility and agility.
-
-If you work in DevOps, you can use containerization to speed up the time it takes to develop new features and get feedback. Improving the feedback loop for your product will lead to a better product and happier customers.
+Containerization complements DevOps because software can be deployed and tested faster, improving feedback loops. Containerization is also a major factor in the popularity of microservices, a software architecture that improves flexibility and agility. You can use containerization to speed up the time it takes to develop new features and get feedback. Improving the feedback loop for your product will lead to a better product and happier customers.
 
 ### Containers are scalable and allocate resources efficiently
 
 Platform as a Service (PaaS) solutions and container orchestration tools like Kubernetes allow developers to operate containers at scale. Container orchestrators can scale individual components in software applications up and down depending on demand and load. This leads to cost savings as components only run for as long they’re needed. Scaling also improves reliability as container orchestrators can allocate sufficient resources to high-demand parts of the application.
 
-Scaling and cost savings is a big factor when deciding to migrate to containerization. Many cloud providers have a cost calculator for cloud resources and you could use that if you are wanting your department to make the switch to containers.
+Scaling and cost savings is a big factor when deciding to migrate to containerization. Many cloud providers have a cost calculator for cloud resources that you could use if you are wanting your department to make the switch to containers.
 
 ### Containers are portable: build once, run anywhere
 
@@ -52,7 +50,7 @@ Because containers are portable, they can run anywhere on any infrastructure, su
 
 To run applications, containers are loaded with container images. A container image is a static file that contains executable code to run a process on IT infrastructure. There are container images for different use cases such as databases, web servers, operating systems, and more. Container image repositories are public access points for container images, which makes them available to developers who can load a container with these images. 
 
-If you wanted to use a container for your application, then thanks to the OCI, you can be sure that any OCI image you use will work on your infrastructure, even if you choose to change it.
+If you wanted to use a container for your application, then thanks to the OCI, you can be sure that any OCI image you use will work on your infrastructure, even if your infrastructure changes.
 
 ## What are the top container images?
 
