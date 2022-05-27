@@ -18,7 +18,7 @@ Continuous integration and delivery (CI/CD) are practices that take software dev
 
 If you work in DevOps, you would have used a build server like Jenkins, and a deployment tool like Octopus Deploy to complete your deployment process. Octopus Deploy supports the continuous delivery side of CI/CD, and we provide a best-in-class product that makes complex deployments easier. 
 
-At Octopus, we believe in the power of eight. Eight lessons for eight tentacles! Here are eight best practices that we believe will help you in your deployment journey.
+At Octopus, we believe in the power of eight, an octopus has eight tentacles so here are eight best practices that we believe will help you in your deployment journey!
 
 ## Adopt agile methodologies
 
