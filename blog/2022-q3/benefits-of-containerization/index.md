@@ -26,6 +26,8 @@ Containerization is the process of making an application runnable as a container
 
 Containerization has been widely adopted in recent years, partly due to the availability of cloud technologies. Cloud technologies allow you to scale and replicate containers, and they lower the barrier to entry. 
 
+If you work in DevOps, you will likely have worked with containers before. If you are trying to get started, check out the [DockerHub library of images](https://hub.docker.com/search?q=) to see what images you could use, or [our post on getting started with containers.]()
+
 ### Containers complement your DevOps process
 
 In our [introduction to DevOps blog](https://octopus.com/blog/introduction-to-devops), we discussed how DevOps as a concept is about removing barriers that get in the way of software delivery. 
@@ -34,7 +36,7 @@ DevOps refines every process between the developer and the customer (flow), enco
 
 Containerization complements DevOps because software can be deployed and tested faster, improving feedback loops. Containerization is also a major factor in the popularity of microservices, a software architecture that improves flexibility and agility.
 
-If you work in DevOps, you will likely have worked with containers before. If you are trying to get started, check out the [DockerHub library of images](https://hub.docker.com/search?q=) to see what images you could use, or [our post on getting started with containers.]()
+If you work in DevOps, you can use containerization to speed up the time it takes to develop new features and get feedback. Improving the feedback loop for your product will lead to a better product and happier customers.
 
 ### Containers are scalable and allocate resources efficiently
 
