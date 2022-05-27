@@ -1,6 +1,6 @@
 ---
 title: What are SBOMs?
-description: An description of SBOMs, how they are important and how Octopus helps address the problems
+description: This blog gives a description of SBOMs, talks about the executive order by the US government, why SBOMs are important and how Octopus helps address the problems
 author: terence.wong@octopus.com
 visibility: private
 published: 3020-01-01-1400
