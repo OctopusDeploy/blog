@@ -1,6 +1,6 @@
 ---
 title: Best practices for CI/CD
-description: A brief summary of the post, 170 characters max including spaces.
+description: This post discusses eight best practices for CI/CD, using agile methodologies, commiting code frequently, using configuration as code, keeping builds green, automate your tests, using a feedback loop, using fit for purpose technologies.
 author: terence.wong@octopus.com
 visibility: private
 published: 3020-01-01-1400
