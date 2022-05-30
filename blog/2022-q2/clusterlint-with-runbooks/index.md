@@ -3,13 +3,14 @@ title: Linting your Kubernetes cluster with Clusterlint and runbooks
 description: Learn how Clusterlint can be built into your workflow with runbooks.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2021-09-14-1400
-metaImage: k8s-clusterlint-runbook.png
-bannerImage: k8s-clusterlint-runbook.png
-bannerImageAlt: Kubernetes DevOps Runbook example with Clusterlint
+published: 2022-06-01-1400
+metaImage: blogimage-lintingkubernetesclusterwithclusterlintandrunbooks-2022.png
+bannerImage: blogimage-lintingkubernetesclusterwithclusterlintandrunbooks-2022.png
+bannerImageAlt: Picture of a cartoon book running with a lint roller cleaning and checking Kubernete shapes
 isFeatured: false
 tags:
  - DevOps
+ - Runbooks Series
  - Runbooks
  - Kubernetes
 ---
@@ -37,7 +38,7 @@ One such linting tool is [Clusterlint](https://github.com/digitalocean/clusterli
 
 A question to ask when implementing a linting tool is whether it should target a subset, for example, just a single deployment, or the entire cluster. If you target the results of a single deployment, it makes sense to include a lint check as part of the deployment process.
 
-However, I would caution against baking linting into a deployment process too early. Coming from a development background, I’ve seen global code linting implementations fail every time because they generate too many false positives, have opinions that are not shared by the development team, and are ultimately ignored or implemented in an ad-hoc fashion because they get in the way.
+However, I would caution against baking linting into a deployment process too early. Coming from a development background, I’ve seen global code linting implementations fail every time because they generate too many false positives, have opinions that aren't shared by the development team, and are ultimately ignored or implemented in an ad-hoc fashion because they get in the way.
 
 A better solution is to implement linting outside of the deployment workflow, at least initially. This provides the ability to generate a focused lint ruleset with the most value, and identify issues with configuration that no-one is likely to touch and would be missed by checks only run against active deployments.
 
@@ -49,7 +50,7 @@ In the screenshot below, you can see a runbook that calls the `clusterlint` exec
 
 ![Octopus dashboard open on Projects tab and Operations Runbooks page showing ClusterLint Step Editor](clusterlint-runbook.png "width=500")
 
-What is notable about this runbook example is how simple it is. Just one line of code adds an automated check of your Kubernetes cluster.
+What's notable about this runbook example is how simple it is. Just one line of code adds an automated check of your Kubernetes cluster.
 
 The runbook is simple because it leverages existing support for Kubernetes in Octopus. The **Run a kubectl Script** step is used to execute `clusterlint` with a `kubectl` config file generated from a Kubernetes target. If you're performing Kubernetes deployments with Octopus, these targets are already configured.
 
@@ -61,9 +62,9 @@ Linting should be automated to run on a regular schedule. Runbooks supports this
 
 ![Octopus dashboard open on Projects tab and Operations Triggers page showing Daily check](runbook-schedule.png "width=500")
 
-Lint results don’t mean anything unless they're shared and acted upon. With some scripting we can generate a summary report and capture it in an Octopus variable called `Report`:
+Lint results don’t mean anything unless they're shared and acted upon. With some scripting, we can generate a summary report and capture it in an Octopus variable called `Report`:
 
-```
+```ps PowerShell
 $emailReport = clusterlint run -g basic -o json |
   ConvertFrom-Json |
   Select -ExpandProperty Diagnostics |
@@ -75,7 +76,16 @@ Write-Host $emailReport
 Set-OctopusVariable -name "Report" -value $emailReport
 ```
 
-Octopus has steps for sending reports through channels like email, Slack, HipChat, and Teams. Here I have configured a step to send an email with the report summary:
+```bash Bash
+
+emailReport=`clusterlint run -g basic -o json | jq -r '.Diagnostics | group_by(.Property)[]| group_by(.Check)      | map({Check: .[0].Check, count: length}) | "Clusterlint Report", "---------", ( .[] | "\(.Check):\(.count)" )'`
+
+echo "$emailReport"
+
+set_octopusvariable "Report" "$emailReport"
+```
+
+Octopus has steps for sending reports through channels like email, Slack, HipChat, and Teams. Here I've configured a step to send an email with the report summary:
 
 ![Octopus dashboard open on Projects tab and Operations Runbooks page showing Email report](email.png "width=500")
 
@@ -94,8 +104,10 @@ And these examples are just the tip of the iceberg. You can use:
 
 Conceptually, runbooks are a simple idea. They let you run the same automated processes that power deployments, just without requiring a deployment.
 
-But there is so much more to repeatable deployments than the actual act of deploying software, and runbooks inherit all of this cross-cutting functionality. With runbook automation, you get security, logging, auditing, reporting, dashboards, and scheduling built-in.
+But there's so much more to repeatable deployments than the actual act of deploying software, and runbooks inherit all of this cross-cutting functionality. With runbook automation, you get security, logging, auditing, reporting, dashboards, and scheduling built-in.
 
-As we have seen in this post, even the simplest one line script can take advantage of these features to scale up to a robust, production ready solution.
+As we've seen in this post, even the simplest one-line script can take advantage of these features to scale up to a robust, production ready solution.
+
+!include <q2-2022-newsletter-cta>
 
 Happy deployments!
