@@ -26,11 +26,7 @@ To complete the steps in this post, you need:
 
 The deployment flow begins with GitHub. GitHub hosts the web application code. GitHub Actions automatically detects changes to the code base, builds the code, and deploys a Docker image to Docker Hub. Octopus Deploy uses this image in an orchestration step to deploy the web application to Azure.
 
-![Deploy Flow](deploy-flow.png "Deploy Flow")
-
-First, you need to fork [this Random Quotes repository](https://GitHub.com/OctopusSamples/RandomQuotes-JS). Random Quotes is a web application that generates random historical quotes on a button press. It's a simple application to demonstrate the GitHub Actions functionality. 
-
-![Random Quotes fork](random-quotes-fork.png "Random Quotes fork")
+The first step in the process is to fork [the Random Quotes repository](https://GitHub.com/OctopusSamples/RandomQuotes-JS). Random Quotes is a web application that generates random historical quotes on a button press. It's a simple application to demonstrate the GitHub Actions functionality. 
 
 Next, you need to set up GitHub Actions to automate the build, push and deploy process. To do this, you need to retrieve some credentials from Docker and Octopus.
 
