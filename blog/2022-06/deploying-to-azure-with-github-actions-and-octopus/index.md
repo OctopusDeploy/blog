@@ -12,7 +12,8 @@ tags:
  - DevOps
 ---
 
-This post uses Octopus Deploy, GitHub Actions, and Docker to deploy a sample web application to Azure. The application will update on new code changes. 
+GitHub Actions is a continuous integration and continuous delivery tool that uses automated actions to deploy your code. If you store your code in GitHub, GitHub Actions enhanced every Github Repository with CI/CD functionality, making deployments simple. Many developers just want an easy way to get started without the bloat of enterprise tools and GitHub Actions fits that need. If you want to get started with GitHub Actions, we show you how to deploy a sample web aplication to Azure with Octopus Deploy. 
+
 
 ## Before you start
 
@@ -27,7 +28,7 @@ The deployment flow begins with GitHub. GitHub hosts the web application code. G
 
 ![Deploy Flow](deploy-flow.png "Deploy Flow")
 
-First, you need to fork [this Random Quotes repository](https://GitHub.com/OctopusSamples/RandomQuotes-JS). This web application generates random historical quotes on a button press.
+First, you need to fork [this Random Quotes repository](https://GitHub.com/OctopusSamples/RandomQuotes-JS). Random Quotes is a web application that generates random historical quotes on a button press. It's a simple application to demonstrate the GitHub Actions functionality. 
 
 ![Random Quotes fork](random-quotes-fork.png "Random Quotes fork")
 
@@ -273,6 +274,10 @@ Let's make a change to confirm that the deployment is automatically updated. In 
 Change the year to 2021 and commit the code to GitHub. The commit and push will trigger the GitHub actions build. After the deployment is complete, navigate to your web app where the year has changed.
 
 ![Random Quotes 2021](random-quotes-2021.png "Random Quotes 2021")
+
+## Conclusion
+
+GitHub Actions is a CI/CD platform that enhances all GitHub projects with CI/CD capabilities. GitHub Actions providers developers with an easy way to deploy their GitHub projects. Octopus Deploy works with GitHub Actions to provide a dedicated continuous delivery tool for managing deployments. The CI/CD process can be connected to a cloud target such as Microsoft Azure or Amazon Web Services to give the application a deployment target.
 
 This tutorial set up a continuous delivery flow with Octopus Deploy, GitHub Actions, Docker, and Azure. GitHub automatically detects changes to the code and triggers a build and push to Docker. Octopus Deploy then creates a new release and deploys the Azure Web Application. 
 
