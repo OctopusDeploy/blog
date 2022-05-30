@@ -255,7 +255,7 @@ We want to ask GitHub actions to automatically build the docker image, push it t
 
 The changes have installed the Octopus Deploy CLI onto the machine to run commands on behalf of your Octopus Deploy instance. On every push to Docker, the script waits 60 seconds and then creates a new deployment for Azure. Commit the changes and navigate to the actions tab to confirm the deployments.
 
-![GitHub success](GitHub-success.png "GitHub success")
+![GitHub success](github-success.png "GitHub success")
 
 Navigate to Octopus Deploy **{{Projects,Releases}}** to see the latest deployments
 
