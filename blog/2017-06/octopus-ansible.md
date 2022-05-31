@@ -10,10 +10,6 @@ tags:
  - DevOps
 ---
 
-<div style="background-color:#e9edf2;">
-<img style="display:block; margin: 0 auto; padding: 20px 0 20px 20px;" alt="Octopus Deploy with Ansible" src="https://i.octopus.com/blog/2017-06/linux-blogimage.png" />
-</div>
-
 Chances are you are familiar with the features Octopus provides to manage and deploy your code.  These days cloud services like AWS and tools like Ansible turn your infrastructure into code too, so why not deploy your Ansible, Chef or Puppet scripts with Octopus?
 
 In this blog post I'll run you through the process of creating a simple Windows instance in AWS using Ansible and Octopus Deploy.
