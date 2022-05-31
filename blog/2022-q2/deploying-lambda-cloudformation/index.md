@@ -4,9 +4,9 @@ description: As part of our Runbooks series, learn how to deploy a Lambda with t
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2022-06-08-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-deployalambdawithcloudformation-2022.png
+bannerImage: blogimage-deployalambdawithcloudformation-2022.png
+bannerImageAlt: Blueprint of a 
 isFeatured: false
 tags:
  - DevOps
