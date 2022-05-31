@@ -4,9 +4,9 @@ description: Learn how to automate the process of verifying your backups using a
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2022-06-20-1400
-metaImage: 
-bannerImage: 
-annerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-verifyingbackupswithrunbooks-2022.png
+bannerImage: blogimage-verifyingbackupswithrunbooks-2022.png
+annerImageAlt: A book with legs that looks like it's running is surrounded by three cogs and databases.
 isFeatured: false
 tags: 
   - DevOps
