@@ -16,7 +16,7 @@ tags:
  - Lambda
 ---
 
-Lambda is a serverless Function as a Service (FaaS) offering from AWS. Lambdas provide scaling, high availability, and the ability to scale to 0 keeping costs down for infrequently used deployments.
+Lambda is a serverless Function as a Service (FaaS) offering from AWS. Lambdas provide scaling, high availability, and the ability to scale to zero keeping costs down for infrequently used deployments.
 
 Like most AWS resources, Lambdas can access VPCs to interact with other resources like databases or EC2 instances.
 
