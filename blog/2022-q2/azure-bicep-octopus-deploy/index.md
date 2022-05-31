@@ -17,9 +17,9 @@ tags:
 
 In late 2020, Microsoft announced their new project, [Bicep](https://docs.microsoft.com/azure/azure-resource-manager/bicep/overview), a Domain-Specific Language (DSL) for deploying Azure resources. Bicep aims to simplify the authoring experience, making it easy to learn. It's also modular and re-usable. 
 
-Today, Bicep is hugely popular in the IT community. You can find blog posts, tweets, conference sessions, and plenty of interaction on the official [Bicep GitHub space](https://github.com/Azure/bicep). Bicep has been supported by Microsoft Support Plans as of v.0.3, and is considered ready for production. 
+Bicep is very popular in the IT community. You can find blog posts, tweets, conference sessions, and plenty of interaction on the official [Bicep GitHub space](https://github.com/Azure/bicep). Bicep has been supported by Microsoft Support Plans as of v.0.3, and is considered ready for production. 
 
-In this post, I introduce using Bicep templates and automating their deployment using [Octopus Runbooks](https://octopus.com/docs/runbooks).
+In this post, I introduce Bicep templates and show you how to automate their deployment using [Octopus Runbooks](https://octopus.com/docs/runbooks).
 
 ## Getting started with Bicep and Octopus
 
@@ -54,7 +54,7 @@ param appServicePlanName string
 param webSiteName string
 ​```
 
-You can declare static entries for these parameters or can leave them blank and then input values during deployment. In this example, you're declaring some as static but leaving others so you can pass in the information during deployment.  
+You can declare static entries for these parameters or you can leave them blank and then input values during deployment. In this example, you're declaring some as static but leaving others blank so you can pass in the information during deployment.  
 
 Next, you define how you want to deploy your Azure App Service Plan: 
 
@@ -109,7 +109,7 @@ I'll break this down for you:
 - Tags - tagging your resources helps organize them logically.
 - Properties - this where you begin to configure the App Service. You defined which App Service Plan you're using with this web app and the Linux version you want. There are more settings you can configure but we keep it simple for this example. 
 
-The template is complete. You can [see the completed template on GitHub](https://gist.github.com/weeyin83/7a9a20a5fc7e10e65561b4d5e6ed4019). 
+The template is now complete. You can [see the completed template on GitHub](https://gist.github.com/weeyin83/7a9a20a5fc7e10e65561b4d5e6ed4019). 
 
 ### Preparing your Bicep template for use in Octopus Deploy
 
