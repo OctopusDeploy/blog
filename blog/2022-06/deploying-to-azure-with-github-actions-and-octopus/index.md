@@ -12,7 +12,9 @@ tags:
  - DevOps
 ---
 
-GitHub Actions is a continuous integration and continuous delivery tool that uses automated actions to deploy your code. If you store your code in GitHub, GitHub Actions enhances every Github Repository with CI/CD functionality, making deployments simple. Many developers just want an easy way to get started without the bloat of enterprise tools and GitHub Actions fits that need. If you want to get started with GitHub Actions, we show you how to deploy a sample web aplication to Azure with Octopus Deploy. 
+GitHub Actions is a continuous integration and continuous delivery (CI/CD) tool that uses automated actions to deploy your code. If you store your code in GitHub, GitHub Actions enhances every Github repository with CI/CD functionality, making deployments simple. Many developers just want an easy way to get started without the bloat of enterprise tools, and GitHub Actions fits that need. 
+
+In this post, I show you how to get started with GitHub Actions, and how to deploy a sample web application to Azure with Octopus. 
 
 
 ## Before you start
@@ -26,7 +28,7 @@ To complete the steps in this post, you need:
 
 The deployment flow begins with GitHub. GitHub hosts the web application code. GitHub Actions automatically detects changes to the code base, builds the code, and deploys a Docker image to Docker Hub. Octopus Deploy uses this image in an orchestration step to deploy the web application to Azure.
 
-The first step in the process is to fork [the Random Quotes repository](https://GitHub.com/OctopusSamples/RandomQuotes-JS). Random Quotes is a web application that generates random historical quotes on a button press. It's a simple application to demonstrate the GitHub Actions functionality. 
+The first step in the process is forking [the Random Quotes repository](https://GitHub.com/OctopusSamples/RandomQuotes-JS). Random Quotes is a web application that generates random historical quotes. It's a simple application to demonstrate GitHub Actions' functionality. 
 
 Next, you need to set up GitHub Actions to automate the build, push and deploy process. To do this, you need to retrieve some credentials from Docker and Octopus.
 
