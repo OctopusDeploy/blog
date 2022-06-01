@@ -4,9 +4,9 @@ description: A series where we chat to people at Octopus about their role, what 
 author: ships.mahindra@octopus.com
 visibility: public
 published: 2022-06-20-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: Octopus-branded security badge with text that says Ships Mahindra, Senior Product Manager, above the silhouette of a woman.
+metaImage: blogimage-atthehelmwithshipsmahindra-2022.png
+bannerImage: blogimage-atthehelmwithshipsmahindra-2022.png
+bannerImageAlt: Octopus-branded security badge with text that says Ships Mahindra, Senior Product Manager, above the silhouette of a woman wearing glasses.
 isFeatured: false
 tags: 
   - Company
