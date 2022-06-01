@@ -12,7 +12,7 @@ tags:
  - DevOps
 ---
 
-GitHub Actions is a continuous integration and continuous delivery tool that uses automated actions to deploy your code. If you store your code in GitHub, GitHub Actions enhanced every Github Repository with CI/CD functionality, making deployments simple. Many developers just want an easy way to get started without the bloat of enterprise tools and GitHub Actions fits that need. If you want to get started with GitHub Actions, we show you how to deploy a sample web aplication to Azure with Octopus Deploy. 
+GitHub Actions is a continuous integration and continuous delivery tool that uses automated actions to deploy your code. If you store your code in GitHub, GitHub Actions enhances every Github Repository with CI/CD functionality, making deployments simple. Many developers just want an easy way to get started without the bloat of enterprise tools and GitHub Actions fits that need. If you want to get started with GitHub Actions, we show you how to deploy a sample web aplication to Azure with Octopus Deploy. 
 
 
 ## Before you start
