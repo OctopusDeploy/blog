@@ -40,7 +40,7 @@ Go to your Octopus instance, then **Profile**, then **My API keys** and create a
 
 ![Octopus API key](octopus-api-key.png "Octopus API key")
 
-In the Random Quotes repository that you forked, go to **Settings** then **Secret** and add the following repository secrets:
+In the Random Quotes repository that you forked, go to **Settings** then **Secrets,** then **Actions** and add the following repository secrets:
 
     DOCKER_HUB_ACCESS_TOKEN
     DOCKER_HUB_USERNAME
