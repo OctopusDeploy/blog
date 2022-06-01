@@ -32,15 +32,15 @@ The first step in the process is forking [the Random Quotes repository](https://
 
 Next, you need to set up GitHub Actions to automate the build, push and deploy process. To do this, you need to retrieve some credentials from Docker and Octopus.
 
-Go to **{{Docker Hub account, account settings, security}}** and create a new access token. Save this token as you can only view it once.
+Go to **Docker Hub Account**, then **Account Settings**, then **Security** and create a new access token. Save this token as you can only view it once.
 
 ![Docker Token](docker-token.png "Docker Token")
 
-Go to your Octopus instance, then **{{profile,my API keys}}** and create an API key. Save this key value. Take note of your Octopus server URL.
+Go to your Octopus instance, then **Profile**, then **My API keys** and create an API key. Save this key value. Take note of your Octopus server URL.
 
 ![Octopus API key](octopus-api-key.png "Octopus API key")
 
-In the Random Quotes repository that you forked, go to **{{settings, Secret}}** and add the following repository secrets:
+In the Random Quotes repository that you forked, go to **Settings** then **Secret** and add the following repository secrets:
 
     DOCKER_HUB_ACCESS_TOKEN
     DOCKER_HUB_USERNAME
@@ -101,11 +101,11 @@ Next, create an account in Azure, by navigating to the [portal](https://portal.a
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/QDwDi17Dkfs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-1. In the Azure Portal, open the menu, ![](menu.png) and navigate to **{{Azure Active Directory,Properties}}** and copy the value from the **Tenant ID** field, this is your **Tenant ID**.
+1. In the Azure Portal, open the menu, ![](menu.png) and navigate to **Azure Active Directory,** then **Properties** and copy the value from the **Tenant ID** field, this is your **Tenant ID**.
 1. Next you need your **Application ID**.
- - If you've created an AAD registered application, navigate to **{{Azure Active Directory,App Registrations}}**, click **View all applications**, select the app and copy the **Application ID**. Please note, the Azure UI defaults to **Owned Applications** tab. Click the **All Applications** tab to view all app registrations. 
- - If you haven't created a registered app, navigate to **{{Azure Active Directory,App Registrations}}**, click on **New registration** and add the details for your app, and click **Save**. Make note of the **Application ID**.
-1. Generate a one-time password by navigating to **{{Certificates & Secrets,Certificates & Secrets}}**. Add a new **secret**, enter a description, and click **Save**. Make note of the displayed application password for use in Octopus. If you don’t want to accept the default one year expiry for the password, you can change the expiry date.
+ - If you've created an AAD registered application, navigate to **Azure Active Directory,** then **App Registrations**, click **View all applications**, select the app and copy the **Application ID**. Please note, the Azure UI defaults to **Owned Applications** tab. Click the **All Applications** tab to view all app registrations. 
+ - If you haven't created a registered app, navigate to **Azure Active Directory,** then **App Registrations**, click on **New registration** and add the details for your app, and click **Save**. Make note of the **Application ID**.
+1. Generate a one-time password by navigating to **Certificates & Secrets,** then **Certificates & Secrets**. Add a new **Secret**, enter a description, and click **Save**. Make note of the displayed application password for use in Octopus. If you don’t want to accept the default one year expiry for the password, you can change the expiry date.
 
 You now have the following:
 
@@ -128,14 +128,14 @@ Next, you will set up an [Azure web application](#web-application-setup) and con
 
 ### Web application setup {#web-application-setup}
 
-1. If a resource group doesn't exist, create one by going to **{{Home,Resource groups, Create}}. When created, take note of the Azure subscription ID of the resource group.
-2. In your **Resource group** click **{{Create, Web App}}**
+1. If a resource group doesn't exist, create one by going to **Home,** then **Resource groups,** then **Create**. When created, take note of the Azure subscription ID of the resource group.
+2. In your **Resource group** click **Create** then **Web App**
 3. For the publish setting, choose Docker container.
 4. For the operating system, choose linux.
 5. Take note of your Azure app name. This will be the address of your web application: [webapp-name].azurewebsites.net
 6. Take note of the app service plan and resource group when setting up the application.
 
-In your Octopus Deploy instance, go to **{{Library, External feeds}}** and add the docker container registry feed by entering your docker credentials. Click save and test to confirm the connection.
+In your Octopus Deploy instance, go to **Library** then **External feeds** and add the docker container registry feed by entering your docker credentials. Click save and test to confirm the connection.
 
 ### Add the Service Principal account in Octopus {#add-service-principal-account}
 
@@ -145,8 +145,8 @@ Now that you have the following values, you can add your account to Octopus:
 - Tenant ID
 - Application Password/Key
 
-1. Navigate to **{{Infrastructure,Account}}**.
-2. Select **{{ADD ACCOUNT,Azure Subscriptions}}**.
+1. Navigate to **Infrastructure,** then **Account**.
+2. Select **ADD ACCOUNT** then **Azure Subscriptions**.
 3. Give the account the name you want it to be known by in Octopus.
 4. Give the account a description.
 5. Add your Azure Subscription ID. This is found in the Azure portal under **Subscriptions**.
@@ -162,7 +162,7 @@ A newly created Service Principal may take several minutes before the credential
 
 With Octopus, you can deploy software to Windows servers, Linux servers, Microsoft Azure, AWS, Kubernetes clusters, cloud regions, or an offline package drop. Regardless of where you're deploying your software, these machines and services are known as your deployment targets. Octopus organizes your deployment targets (the VMs, servers, and services where you deploy your software) into environments.
 
-1. Go to **{{Infrastructure, Deployment Targets}}**
+1. Go to **Infrastructure,** then **Deployment Targets**
 2. Select an Azure Web App
 3. Enter a Display Name
 4. Fill out the environment and target roles
@@ -170,9 +170,9 @@ With Octopus, you can deploy software to Windows servers, Linux servers, Microso
 
 ## Create the project environment
 
-Create a project by navigating to **{{Projects, Add Project}}**. These steps assume a project named 'docker'. 
+Create a project by navigating to **Projects,** then **Add Project**. These steps assume a project named 'docker'. 
 
-Add an environment named 'Production' by going to **{{Infrastructure,Environments,Add Environment}}**. 
+Add an environment named 'Production' by going to **Infrastructure,** then **Environments,** then **Add Environment**. 
 
 Navigate to the created project. Under variables, add the following variables with their values:
 
@@ -255,7 +255,7 @@ The changes have installed the Octopus Deploy CLI onto the machine to run comman
 
 ![GitHub success](github-success.png "GitHub success")
 
-Navigate to Octopus Deploy **{{Projects,Releases}}** to see the latest deployments
+Navigate to Octopus Deploy **Projects,** then **Releases** to see the latest deployments
 
 ![Octopus success](octopus-success.png "Octopus success")
 
