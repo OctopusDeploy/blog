@@ -15,7 +15,7 @@ tags:
  - GitHub Actions
 ---
 
-GitHub Actions is a continuous integration and continuous delivery (CI/CD) tool that uses automated actions to deploy your code. If you store your code in GitHub, GitHub Actions enhances every Github repository with CI/CD functionality, making deployments simple. Many developers want an easy way to get started without the bloat of enterprise tools, and GitHub Actions fits that need. 
+GitHub Actions is a Continuous Integration and Continuous Delivery (CI/CD) tool that uses automated actions to deploy your code. If you store your code in GitHub, GitHub Actions enhances every Github repository with CI/CD functionality, making deployments simple. Many developers want an easy way to get started without the bloat of enterprise tools, and GitHub Actions fits that need. 
 
 In this post, I show you how to get started with GitHub Actions, and how to deploy a sample web application to Azure with Octopus. 
 
@@ -31,7 +31,7 @@ To complete the steps in this post, you need:
 
 The deployment flow begins with GitHub. GitHub hosts the web application code. GitHub Actions automatically detects changes to the code base, builds the code, and deploys a Docker image to Docker Hub. Octopus Deploy uses this image in an orchestration step to deploy the web application to Azure.
 
-The first step in the process is forking [the Random Quotes repository](https://GitHub.com/OctopusSamples/RandomQuotes-JS). Random Quotes is a web application that generates random historical quotes. It's a simple application to demonstrate GitHub Actions' functionality. 
+The first step in the process is forking [the Random Quotes repository](https://GitHub.com/OctopusSamples/RandomQuotes-JS). Random Quotes is a simple web application that generates random historical quotes, to demonstrate GitHub Actions' functionality. 
 
 Next, you need to set up GitHub Actions to automate the build, push and deploy process. To do this, you need to retrieve some credentials from Docker and Octopus.
 
@@ -104,7 +104,7 @@ Next, create an account in Azure, by navigating to the [Azure portal](https://po
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/QDwDi17Dkfs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-1. In the Azure Portal, open the menu, ![](menu.png) and navigate to **Azure Active Directory,** then **Properties** and copy the value from the **Tenant ID** field. This is your Tenant ID.
+1. In the Azure Portal, open the menu ![hamburger menu](menu.png) and navigate to **Azure Active Directory,** then **Properties** and copy the value from the **Tenant ID** field. This is your Tenant ID.
 1. Next you need your **Application ID**.
  - If you created an AAD registered application, navigate to **Azure Active Directory,** then **App Registrations**, click **View all applications**, select the app and copy the **Application ID**. Please note, the Azure UI defaults to the **Owned Applications** tab. Click the **All Applications** tab to view all app registrations. 
  - If you haven't created a registered app, navigate to **Azure Active Directory,** then **App Registrations**, click on **New registration** and add the details for your app, and click **Save**. Make note of the **Application ID**.
@@ -134,7 +134,7 @@ Next, set up an [Azure web application](#web-application-setup) and configure it
 1. If a resource group doesn't exist, create one by going to **Home**, then **Resource groups**, then **Create**. After it's created, take note of the Azure subscription ID for the resource group.
 2. In your **Resource group** click **Create** then **Web App**
 3. For the publish setting, choose Docker container.
-4. For the operating system, choose linux.
+4. For the operating system, choose Linux.
 5. Take note of your Azure app name. This will be the address of your web application: `[webapp-name].azurewebsites.net`
 6. Take note of the app service plan and resource group when setting up the application.
 
@@ -168,8 +168,8 @@ With Octopus, you can deploy software to Windows servers, Linux servers, Microso
 1. Go to **Infrastructure,** then **Deployment Targets**.
 2. Select an Azure Web App.
 3. Enter a Display Name.
-4. Fill out the environment and target roles.
-5. Select the Azure Account and Web App created earlier.
+4. Fill out the **Environment** and **Target roles**.
+5. Select the Azure account and web app created earlier.
 
 ## Create the project environment
 
@@ -177,7 +177,7 @@ Create a project by navigating to **Projects,** then **Add Project**. These step
 
 Add an environment named `Production` by going to **Infrastructure**, then **Environments**, then **Add Environment**. 
 
-Navigate to the created project. Under variables, add the following variables with their values:
+Navigate to the project you created. Under **Variables**, add the following variables with their values:
 
 - `app-service-plan`
 - `resource-group`
@@ -260,7 +260,7 @@ Commit the changes and navigate to the actions tab to confirm the deployments.
 
 ![GitHub success](github-success.png "GitHub success")
 
-Navigate to Octopus Deploy **Projects,** then **Releases** to see the latest deployments
+Navigate to Octopus Deploy **Projects,** then **Releases** to see the latest deployments.
 
 ![Octopus success](octopus-success.png "Octopus success")
 
@@ -282,7 +282,7 @@ Change the year to `2021` and commit the code to GitHub. The commit and push wil
 
 GitHub Actions is a CI/CD platform that enhances all GitHub projects with CI/CD capabilities. GitHub Actions makes it easy for developers to deploy their GitHub projects. Octopus Deploy works with GitHub Actions to provide a dedicated continuous delivery tool for managing deployments. The CI/CD process can be connected to a cloud target, such as Microsoft Azure or Amazon Web Services, to give the application a deployment target.
 
-This tutorial set up a continuous delivery flow with Octopus Deploy, GitHub Actions, Docker, and Azure. GitHub automatically detects changes to the code and triggers a build and push to Docker. Octopus Deploy then creates a new release and deploys the Azure Web Application. 
+This tutorial set up a continuous delivery flow with Octopus Deploy, GitHub Actions, Docker, and Azure. GitHub automatically detects changes to the code, triggers a build, and pushes to Docker. Octopus Deploy then creates a new release and deploys the Azure Web Application. 
 
 !include <github-actions-free-tool>
 
