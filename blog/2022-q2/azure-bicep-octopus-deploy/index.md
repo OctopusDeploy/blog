@@ -28,7 +28,7 @@ In this post, I introduce Bicep templates and show you how to automate their dep
 You need the following tooling to get started with Bicep: 
 
 - [Visual Studio Code](https://code.visualstudio.com/)
-- [Bicep Extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep)
+- [Bicep extension for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep)
 - [Azure PowerShell](https://docs.microsoft.com/powershell/azure/install-az-ps?view=azps-7.0.0)
 - [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)
 - [Octopus CLI](https://octopus.com/docs/octopus-rest-api/octopus-cli)
