@@ -19,32 +19,36 @@ Here we talk to Ships Mahindra, Senior Product Manager.
 
 ## What was your last role before joining Octopus Deploy?
 
-I worked as a contractor doing product stuff at a startup (Creatively Squared) which was also remote-first & Brisbane based for a short period. And before that I worked as a product manager at Xero.     
+I worked as a contractor for a short period, doing product work at a startup, Creatively Squared, which was also remote-first and Brisbane-based. Before that, I worked as Product Manager at Xero.     
 
 ## How did you become a Product Manager and what do you love about the role?
 
-So, I come from a technical background and started my career as a software engineer. After a couple of years though I realised that I gravitated towards solving problems that were a lot more “grey” & people related such as other roles such as Scrum Master, Product Owner, Business Analyst a lot more. As a junior/intermediate software engineer, most problems you tend to come across are pretty black & white and there is generally a right answer. With business or customer focused problems, there are a lot of grey areas and multiple ways to solve the same problem. And there is a lot of thinking that goes into understanding the long term direction / strategy and then making the right decisions to get there. So I decided to go learn more about decision making and how businesses operate through an MBA. And post the MBA, I started pursuing a career in Product management. 
+I started my career as a software engineer. After a few years, I became interested in solving tricky problems that affected people, that were covered in roles like Scrum Master, Product Owner, and Business Analyst. As a junior or intermediate software engineer, most problems are straightforward and there's usually a right answer. With business or customer-focused problems, there's more uncertainty and many ways to solve the same problem. You have to consider the long term direction and strategy and then make the right decisions to get there. 
 
-I love bringing clarity when there is a lot of ambiguity and chaos. I love figuring out what users / customers struggle with and then delivering something that brings some delight to their life and makes it a bit easier. I like that I can still be close enough to the tech and see how things are being built without having to do them myself ;-) And I love working with a team - as often the best ideas come from collaborative debates and brainstorming!
+So, I decided to do an MBA to learn more about decision-making and how businesses operate. After the MBA, I started pursuing my career in product management. 
+
+I love bringing clarity when there's ambiguity and chaos. I love figuring out what customers struggle with and delivering a solution that delights them and makes life easier. I'm still close to the tech and can see how things are built, without building anything myself. I also love working with a team because the best ideas often come from collaborative debates and brainstorming.
 
 ## What does a typical day look like as a Senior Product Manager for Config as Code?
 
-Typically, I am thinking about a particular problem space and figuring out how to add value in there. This might include talking to customers about it over a video call, doing market research, analysing usage data in spreadsheets, writing a pitch document, pairing up with the design & development teams to ideate in a workshop, addressing any immediate questions about what the team is working on, etc. No 2 days are alike! Its always changing and I enjoy that variety :-)
+I usually think about a problem space and how to add value. This includes talking to customers on video, doing market research, analyzing usage data in spreadsheets, writing pitch documents, pairing up with the design & development teams to ideate in workshops, addressing immediate questions about what the team is working on, and more. No 2 days are alike! It's always changing and I enjoy the variety.
 
 ## How do you decide what issues and solutions to tackle next?
 
-Aahh… the art & science of prioritisation. There must be millions of articles written on this very subject. Every PM develops their own process to do this and choose their own set of tools /frameworks. Without writing an essay here - I’ll attempt to explain my style.
-I am always gathering inputs from various sources and analysing them - so customer feedback, usage data, market trends, etc. I am always listening for cues and patterns. I then reflect on what our goals are and what’s the next best bet we can make to get us closer to the goal. 
+Ah… the art and science of prioritization. There must be millions of articles written on this subject. Every PM develops their own process and chooses their own set of tools and frameworks. 
 
-In the case of config as code, our long term goal is to reach at least 60% feature adoption. This means the key question is - what is stopping any users from adopting this feature today. Once we have a list of potential opportunities, I think about what is the one or two that will add enough value to our users to adopt config as code. Do we have enough data or signal from our users/market to go ahead? If yes, then we start working on that problem. If not, we find small experiments we can run to validate or invalidate our assumptions. This might include more user research, testing designs, testing prototypes, shipping minimal features, etc.
+I like to gather inputs from various sources and analyze them - customer feedback, usage data, market trends. I listen for cues and patterns. Then I reflect on our goals and the next best bet to get us closer to one of our goals. 
 
+Our long term objective for Config as Code is to reach at least 60% feature adoption. So the key question is - what's stopping users from adopting Config as Code today? After we have a list of opportunities, I weigh up which will add enough value to our users to adopt Config as Code. Do we have enough data or signals from our users and the market to go ahead? If we do, we start working on that problem. If not, we find small experiments we can run on our assumptions. This includes more user research, testing designs, testing prototypes, or shipping minimal features.
 
 ## How do you evaluate the impact of the solutions you ship?
 
-Again, there are probably a million articles out there on the subject.
-For me, it comes back to setting up our success measures that align with our goals upfront for those solutions. And once we ship something, monitoring those measures & evaluating its performance. However sometimes, success can also be defined in terms of user outcomes such as having 10 alpha users loving our product or even just “launching” something especially when innovating or building something brand new. 
-Ultimately, I want customers to love our product because of how easy it is to use and they cannot imagine going back to a life without it. We have a long road ahead with Octopus :-)
+This is another well-covered subject.
+
+For me, it's about setting up success measures that align with our goals. After we ship something, we monitor and evaluate performance. However, sometimes, success is also defined by user outcomes, like having 10 alpha users who love our product, or even just “launching” something when we're innovating or building something new. 
+
+Ultimately, I want our customers to love our product because of how easy it is to use and feel like they couldn't live without it. 
 
 ## If you had to switch jobs with someone else at Octopus, whose job would you want?
 
-Hmm.. noone? I do love what I do! Maybe I might consider being a designer instead as it's the closest thing to Product management :-)
+Honestly, no one. I love what I do! If I had no choice, I'd consider being a designer because it's the closest thing to product management.
