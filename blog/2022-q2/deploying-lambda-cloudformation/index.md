@@ -6,7 +6,7 @@ visibility: public
 published: 2022-06-08-1400
 metaImage: blogimage-deployalambdawithcloudformation-2022.png
 bannerImage: blogimage-deployalambdawithcloudformation-2022.png
-bannerImageAlt: Blueprint of a 
+bannerImageAlt: A blueprint, set square, and mechanical pencil. The blueprint depicts an app window with two cogs. 
 isFeatured: false
 tags:
  - DevOps
