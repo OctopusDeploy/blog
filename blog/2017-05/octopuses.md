@@ -9,11 +9,6 @@ tags:
  - Product
 ---
 
-<div style="background-color:#e9edf2;">
-<img style="display:block; margin: 0 auto; padding: 20px 0 20px 20px;" alt="Overloaded Octopus" src="https://i.octopus.com/blog/2017-05/4.0-kickoff-blogimage.png"  />
-</div>
-
----
 When we first built Octopus, we imagined it would be used by small teams to deploy applications to a dozen or so machines.  Over time, we've [seen customers scale Octopus up to many thousands of machines](https://octopus.com/blog/octostats), deploying hundreds of different projects.  At that scale, customers need their Octopus Servers to be online at all times, so we support running a single [Octopus Server across a multi-node, high availability cluster](https://octopus.com/high-availability).
 
 One great big Octopus Server isn't always a great idea though.

@@ -1,3 +1,1 @@
-## Follow our series about Continuous Integration
-
-We're focusing on Continuous Integration and build servers for the first few months of this year. We’ll include a summary of the blog posts in our monthly newsletter. [Sign up to follow along](#newsletter).
+Read the rest of our [Continuous Integration series](https://octopus.com/blog/tag/CI%20Series).
