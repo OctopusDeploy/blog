@@ -13,7 +13,7 @@ tags:
   - At The Helm
 ---
 
-This post opens a series where we chat to people at Octopus about their role, their challenges, what they're working on to improve the product for our customers, and more.
+This post [opens a series](https://octopus.com/blog/tag/At%20The%20Helm) where we chat to people at Octopus about their role, their challenges, what they're working on to improve the product for our customers, and more.
 
 First up is Michael Richardson, our original product management leader, now Director of Product.
 
