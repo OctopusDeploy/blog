@@ -21,9 +21,9 @@ tags:
 
 What do modern DevOps teams need from their continuous delivery workflows? Continuous integration, cloud deployments, feature branching, testing, Software Bill Of Materials (SBOMs), and dependency vulnerability scanning are just a few of the features that high performing teams need to quickly deliver and maintain high quality software.
 
-But how do you *actually* implement these processes? We've shared a lot of opinions in this blog over the years to help teams get the most out of Octopus, but it felt like we were telling the end of the story. We wanted to "make complex deployments easy", but lost sight of the fact that the most complex aspect of a deployment is often the foundation. This left you, the reader, to build your own sample applications, instantiate your own cloud infrastructure, and populate your own Octopus configuration before following along with our latest how-to guide.
+But how do you *actually* implement these processes? We've shared a lot of opinions in this blog over the years to help teams get the most out of Octopus, but it felt like we were telling the end of the story. We wanted to "make complex deployments easy", but frequently skipped over the unglamorous work of setting up even the most minimal realistic sample environment. This left you, the reader, to write your own sample applications, instantiate your own cloud infrastructure, and populate your own Octopus configuration before following along with our latest how-to guide.
 
-We want you to experience the power and joy of a modern continuous delivery workflow, but without spending days setting up your tools. This is why we built the [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/), and we'd love your feedback on this early release.
+We want you to experience the power and joy of a modern continuous delivery workflow to the platforms you actually use, but without spending days setting up your tools. This is why we built the [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/), and we'd love your feedback on this early release.
 
 ## What is the Octopus Workflow Builder
 
@@ -31,7 +31,7 @@ The [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/) pr
 
 The [Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/) will then populate a GitHub repository with:
 
-* A sample web application
+* Sample web applications
 * Terraform configuration files to create ECR repositories and populate an Octopus space with the Octopus Terraform provider 
 * GitHub Action workflows to compile, test, and publish the sample applications and apply the Terraform configuration
 
@@ -41,9 +41,9 @@ This in turn populates your Octopus instance with:
 * An infrastructure deployment project creating either an EKS cluster, and ECS cluster, or an API Gateway to expose Lambdas
 * A backend deployment project that deploys a RESTful API, smoke tests it, and performs an integration test with Postman
 * A frontend deployment project that deploys a static web application, smoke tests it, and performs an end-to-end test with Cypress
-* An environment where security scanning is performed against an SBOM package generated from the associated deployed application's dependencies
+* An environment where security scanning is performed against an SBOM package generated from the associated application's dependencies
 
-The end result is an opinionated CI/CD workflow for deploying, testing, and maintaining cloud based deployments. Best of all, the entire workflow is configured in your GitHub repository and Octopus instance, so you have complete control to customize the process however you want!
+The end result is an opinionated CI/CD workflow for deploying, testing, and maintaining real cloud based applications. Best of all, the entire workflow is configured in your GitHub repository and Octopus instance, so you have complete control to customize the process however you want!
 
 The following videos highlight the features of the sample deployment project created by the Workflow Builder:
 
