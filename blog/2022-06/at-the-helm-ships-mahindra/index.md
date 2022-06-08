@@ -39,7 +39,7 @@ Ah… the art and science of prioritization. There must be millions of articles 
 
 I like to gather inputs from various sources and analyze them - customer feedback, usage data, market trends. I listen for cues and patterns, then frame these as opportunities to pursue. Then I reflect on our goals and the next best bet to get us closer to one of our goals. 
 
-Our long term objective for Config as Code is to reach at least 60% feature adoption. So the key question is - what's stopping users from adopting Config as Code today? After we have a list of opportunities, I weigh up which will add enough value to encourage our users to adopt Config as Code. Do we have enough data or signals from our users and the market to make a bet on these opportunities? If we do, we start working on that problem. If not, we find small experiments we can run on our assumptions. This includes more user research, testing designs, testing prototypes, or shipping minimal features.
+Our long term objective for Config as Code is to reach at least 60% feature adoption. So the key question is - what's stopping users from adopting Config as Code today? After we have a list of opportunities, I weigh up which will add enough value to encourage our users to adopt Config as Code. Do we have enough data or signals from our users and the market to make a bet on those opportunities? If we do, we start working on that problem. If not, we find small experiments we can run on our assumptions. This includes more user research, testing designs, testing prototypes, or shipping minimal features.
 
 ## How do you evaluate the impact of the solutions you ship?
 
