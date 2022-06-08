@@ -29,11 +29,15 @@ We want you to experience the power and joy of a modern continuous delivery work
 
 The [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/) provides a simple wizard where you select the platform you want to deploy to (EKS, ECS, and Lambdas are supported in this release), enter the Octopus cloud instance you wish to populate with sample deployment projects, enter your AWS keys, and authorize the application to create a GitHub repository on your behalf.
 
-The [Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/) will then populate a GitHub repository with a sample web application, Terraform configuration files to create ECR repositories and populate an Octopus space with the Octopus Terraform provider, and GitHub Action workflows to compile, test, and publish the sample applications and apply the Terraform configuration.
+The [Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/) will then populate a GitHub repository with:
+
+* A sample web application
+* Terraform configuration files to create ECR repositories and populate an Octopus space with the Octopus Terraform provider 
+* GitHub Action workflows to compile, test, and publish the sample applications and apply the Terraform configuration
 
 The end result is an opinionated CI/CD workflow for deploying, testing, and maintaining cloud based deployments. Best of all, the entire workflow is configured in your GitHub repository and Octopus instance, so you have complete control to customize the process however you want!
 
-The following videos highlight the feature of the sample deployment project created by the Workflow Builder:
+The following videos highlight the features of the sample deployment project created by the Workflow Builder:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/wABZvJPVCMg" frameborder="0" allowfullscreen></iframe>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/vcHdGRS-xzU" frameborder="0" allowfullscreen></iframe>
@@ -53,11 +57,5 @@ If you are interested in the source code for the [WorkFlow Builder](https://octo
 ## Conclusion
 
 We hope you enjoy the [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/), and look forward to any feedback you may have to help us make this the best tool it can be.
-
-## Learn more
-
-- [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/)
-- [Octopus Workflow Builder Source Code](https://github.com/OctopusSamples/content-team-apps)
-- [GitHub feedback issue](https://github.com/OctopusSamples/content-team-apps/issues/13)
 
 Happy deployments! 
