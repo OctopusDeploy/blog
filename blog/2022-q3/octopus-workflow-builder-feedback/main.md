@@ -58,5 +58,6 @@ We hope you enjoy the Octopus Workflow Builder, and look forward to any feedback
 
 - [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/)
 - [Octopus Workflow Builder Source Code](https://github.com/OctopusSamples/content-team-apps)
+- [GitHub feedback issue](https://github.com/OctopusSamples/content-team-apps/issues/13)
 
 Happy deployments! 
