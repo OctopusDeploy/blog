@@ -27,31 +27,36 @@ We want you to experience the power and joy of a modern continuous delivery work
 
 ## What is the Octopus Workflow Builder
 
+The Octopus Workflow Builder provides a simple wizard where you select the platform you want to deploy to (EKS, ECS, and Lambdas are supported in this release), enter the Octopus cloud instance you wish to populate with sample deployment projects, enter your AWS keys, and authorize the application to create a GitHub repository on your behalf.
 
+The Workflow Builder will then populate a GitHub repository with a sample web application, Terraform configuration files to create ECR repositories and populate an Octopus space with the Octopus Terraform provider, and GitHub Action workflows to compile, test, and publish the sample applications and apply the Terraform configuration.
 
-### Sub headings
+The end result is an opinionated CI/CD workflow for deploying, testing, and maintaining cloud based deployments. Best of all, the entire workflow is configured in your GitHub repository and Octopus instance, so you have complete control to customize the process however you want!
 
-Use three ### to include H3 headings.
+The following videos highlight the feature of the sample deployment project created by the Workflow Builder:
 
-Use **Bold** text for UI labels, use single back-ticks for `parameters` and `filepaths`, and three back-ticks for code blocks:
+<iframe width="560" height="315" src="https://www.youtube.com/embed/wABZvJPVCMg" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/vcHdGRS-xzU" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/sex-QLKA5xE" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Wo4JY8fV_WM" frameborder="0" allowfullscreen></iframe>
 
-```
-Write-Host "Hello, World!"
-```
+## We want your feedback
 
-Use the following (minus the back-ticks) to include images:
+We would love to get your feedback on this early release of the Workflow Builder to help us iron out any bugs and to understand if the tool was useful for you.
 
-```
-![Alt text, a description of the image](placeholderimg.png "width=500")*Optional caption text*
-```
-If including images, please include alt text. Alt text is primarily used to describe images to people unable to see them, and can be 125 characters max including spaces. You can also include an image caption if the reader would benefit from additional information or context.
+We have a [GitHub issue](https://github.com/OctopusSamples/content-team-apps/issues/13) where you can submit any feedback.
+
+## Accessing the source code
+
+If you are interested in the source code for the WorkFlow Builder, we've released the source code on [GitHub](https://github.com/OctopusSamples/content-team-apps).
 
 ## Conclusion
 
-Close off the post by restating the main points of the post, share any closing thoughts, and invite feedback.
+We hope you enjoy the Octopus Workflow Builder, and look forward to any feedback you may have to help us make this the best tool it can be.
 
 ## Learn more
 
-- [link](https://www.example.com/resource)
+- [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/)
+- [Octopus Workflow Builder Source Code](https://github.com/OctopusSamples/content-team-apps)
 
 Happy deployments! 
