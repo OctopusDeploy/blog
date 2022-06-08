@@ -48,7 +48,7 @@ We have a [GitHub issue](https://github.com/OctopusSamples/content-team-apps/iss
 
 ## Accessing the source code
 
-If you are interested in the source code for the [WorkFlow Builder](https://octopusworkflowbuilder.octopus.com/#/), we've released the source code on [GitHub](https://github.com/OctopusSamples/content-team-apps).
+If you are interested in the source code for the [WorkFlow Builder](https://octopusworkflowbuilder.octopus.com/#/), we've released it on [GitHub](https://github.com/OctopusSamples/content-team-apps).
 
 ## Conclusion
 
