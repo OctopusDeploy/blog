@@ -1,12 +1,12 @@
 ---
-title: At the helm with Ships Mahindra
-description: A series where we chat to people at Octopus about their role, what they’re working on to improve the product, and more. Hear from Ships Mahindra, Senior Product Manager.
+title: At the helm with Shipra Mahindra
+description: A series where we chat to people at Octopus about their role, what they’re working on to improve the product, and more. Hear from Shipra Mahindra, Senior Product Manager.
 author: ships.mahindra@octopus.com
 visibility: public
 published: 2022-06-21-1400
 metaImage: blogimage-atthehelmwithshipsmahindra-2022.png
 bannerImage: blogimage-atthehelmwithshipsmahindra-2022.png
-bannerImageAlt: Octopus-branded security badge with text that says Ships Mahindra, Senior Product Manager, above the silhouette of a woman wearing glasses.
+bannerImageAlt: Octopus-branded security badge with text that says Shipra Mahindra, Senior Product Manager, above the silhouette of a woman wearing glasses.
 isFeatured: false
 tags: 
   - Company
@@ -15,7 +15,7 @@ tags:
 
 This post is the next [in our series](https://octopus.com/blog/tag/At%20The%20Helm), chatting to people at Octopus about their role, what they’re working on to improve the product for our customers, and more.
 
-Here we talk to Ships Mahindra, Senior Product Manager.
+Here we talk to Shipra Mahindra, Senior Product Manager.
 
 ## What was your last role before joining Octopus Deploy?
 
