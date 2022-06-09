@@ -1,29 +1,24 @@
 ---
-title: Octopus Workflow Builder Feedback
+title: Octopus Workflow Builder feedback
 description: We are looking for feedback on an early release of a workflow builder.
 author: matthew.casperson@octopus.com
 visibility: private
 published: 3020-01-01-1400
-metaImage: placeholderimg.png
-bannerImage: placeholderimg.png
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-feedback_2021_01.png
+bannerImage: blogimage-feedback_2021_01.png
+bannerImageAlt: Octopus employee at laptop with headset and icons representing customer feedback
 isFeatured: false
 tags: 
   - DevOps
-  - Containers Series
   - Containers
   - Cloud Orchestration
-  - Testing
-  - Everything as Code
 ---
-
-<!-- see https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags -->
 
 What do modern DevOps teams demand from their continuous delivery workflows? Continuous integration, cloud deployments, feature branching, testing, Software Bill Of Materials (SBOMs), and dependency vulnerability scanning are just a few of the features that high performing teams need to quickly deliver and maintain high quality software.
 
-But how do you *actually* implement these processes? We've shared a lot of opinions in this blog over the years to help teams get the most out of Octopus, but it felt like we were telling the end of the story. We wanted to "make complex deployments easy", but frequently skipped over the unglamorous work of setting up even the most minimal realistic sample environment. This left you, the reader, to write your own sample applications, instantiate your own cloud infrastructure, populate your own Octopus configuration, and copy/paste our samples before following along with our latest how-to guide.
+But how do you *actually* implement these processes? We've shared a lot of opinions in this blog over the years to help teams get the most out of Octopus, but it feels like we were often telling the end of the story. We wanted to "make complex deployments easy", but we frequently skipped over the unglamorous work of setting up even the most minimal realistic sample environment. This left you, the reader, to write your own sample applications, instantiate your own cloud infrastructure, populate your own Octopus configuration, and copy/paste our samples before following along with our latest how-to guide.
 
-We want you to experience the power and joy of a modern continuous delivery workflow to the platforms you actually use, but without spending days setting up your tools. This is why we built the [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/), and we'd love your feedback on this early release.
+We want you to experience the power and joy of a modern continuous delivery workflow to the platforms you actually use, but without spending days setting up your tools. This is why we've built the [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/), and we'd love your feedback on this early release.
 
 ## What is the Octopus Workflow Builder
 
@@ -54,7 +49,7 @@ The following videos highlight the features of the sample deployment project cre
 
 ## We want your feedback
 
-We would love to get your feedback on this early release of the [Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/) to help us iron out any bugs and to understand if the tool was useful for you.
+We would love to get your feedback on this early release of the [Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/) to help us iron out any bugs and to understand if the tool is useful for you. 
 
 We have a [GitHub issue](https://github.com/OctopusSamples/content-team-apps/issues/13) where you can submit any feedback.
 
@@ -64,6 +59,8 @@ If you are interested in the source code for the [WorkFlow Builder](https://octo
 
 ## Conclusion
 
-We hope you enjoy the [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/), and look forward to any feedback you may have to help us make this the best tool it can be.
+We hope you enjoy the [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/), and look forward to any feedback you have to help us make this the best tool it can be.
+
+<span><a class="btn btn-success" href="https://github.com/OctopusSamples/content-team-apps/issues/13">Provide feedback</a></span>
 
 Happy deployments! 
