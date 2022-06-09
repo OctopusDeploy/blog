@@ -16,17 +16,21 @@ tags:
 
 Though they serve different purposes, container registries often get confused for their repository counterparts.
 
-A container repository is storage for your containerized application images. Nowadays, most image repositories focus on the now industry-standard Docker format.
+A container repository is storage for your containerized application images. Nowadays, most image repositories focus on the 'OCI' format, based on the container format Docker popularized and opened up to everyone. In fact, 'OCI images' and 'Docker images' are often used interchangeably in the marketing of registry providers.
 
-A container *registry*, then, acts as both a collection of container repositories and a searchable catalog where you manage and deploy images.
+:::hint
+OCI stands for 'Open Container Initiative'. The initiative is a container structure intended to act as the industry standard format. Most of the major players in tech, development, and cloud services back the initiative and support the OCI format. Read more about it on the [Open Container Initiative website](https://opencontainers.org/).
+:::
+
+A container *registry*, then, acts as both a collection of container repositories and a searchable catalogue where you manage and deploy images.
 
 There are many container registry options on the market, serving customers of different types, sizes and needs. Let's look at our top 8 and why they might appeal.
 
 ## Docker Hub
 
-Given Docker is the standard format for container delivery thanks to adoption from all major operating systems, it makes sense that [Docker Hub](https://hub.docker.com/) is also the standard registry for image management. If you're in development, chances are you've already used Docker Hub, especially if you've ever followed one of our technical guides or blogs.
+Given Docker invented the standard OCI format for container delivery, along with adoption from all major operating systems, it makes sense that [Docker Hub](https://hub.docker.com/) is also the standard registry for image management. If you're in development, chances are you've already used Docker Hub, especially if you've ever followed one of our technical guides or blogs.
 
-While all registry services on this list help you manage Docker's own image format, Docker Hub as a registry is still worthy of a place here. Not least because it offers a huge public registry you can use to deploy apps from vendors large and small, but to also deliver your own.
+While all registry services on this list help you manage Docker's format, Docker Hub as a registry is still worthy of a place here. Not least because it offers a huge public registry you can use to deploy apps from vendors large and small, but to also deliver your own.
 
 ## Amazon ECR
 
@@ -40,13 +44,13 @@ Naturally, Amazon's ECR is woven into all their container hosting services, allo
 
 (Providing you can get your head around all these similar acronyms, of course.)
 
-Like Docker Hub, their public registry is also worth the price of admission, allowing deployment of many products, free software, and open-source projects. You're never short of existing environments to build on.
+Like Docker Hub, their public registry and marketplace are also worth the price of admission, allowing deployment of many products, free software, and open-source projects. You're never short of existing environments to build on.
 
 ## Harbor
 
 [Harbor](https://goharbor.io/) is an open-source registry you can install almost anywhere, but is particularly suited to Kubernetes.
 
-Where certain services tie their registries tightly into their own services, Harbor's freedom makes it a more versatile option. Not only is it compatible with most cloud services and Continuous Integration and Continuous Delivery (CI/CD) platforms, but it's a good on-premises solution too.
+Where certain services tie their registries tightly into their own services, Harbor's freedom makes it a versatile option. Not only is it compatible with most cloud services and Continuous Integration and Continuous Delivery (CI/CD) platforms, but it's a good on-premises solution too.
 
 ## Azure Container Registry
 
@@ -66,9 +70,11 @@ There are definite benefits to considering GitHub Packages for container managem
 
 ## Google Container Registry
 
-As other services focus their promises on certain features important to a subset of likely customers, [Google Cloud's Container Registry](https://cloud.google.com/container-registry/) is a solid all-rounder. It does everything you want from a container registry and does it really well.
+As other services focus their promises on certain features important to a subset of likely customers, [Google Cloud's Container Registry (GCR)](https://cloud.google.com/container-registry/) is a solid all-rounder. It does everything you want from a container registry and does it really well.
 
-It's not quite as feature-boastful as AWS or Azure, but Google Cloud's Container Registry is a worthy offering from one of the cloud-provider 'Big 3'.
+As with the other big names in cloud services, you may get locked into GCR depending on the Google Cloud products you use. Google Cloud Run, for example, will only use images stored in GCR, so keep that in mind when choosing a registry service.
+
+It's not quite as feature-boastful as AWS or Azure, but Google Cloud's GCR is a worthy offering from one of the cloud-provider 'Big 3'.
 
 ## Red Hat Quay
 
