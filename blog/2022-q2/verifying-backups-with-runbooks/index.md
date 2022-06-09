@@ -2,7 +2,7 @@
 title: Verifying backups with Runbooks
 description: Learn how to automate the process of verifying your backups using a custom runbook.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2022-06-20-1400
 metaImage: blogimage-verifyingbackupswithrunbooks-2022.png
 bannerImage: blogimage-verifyingbackupswithrunbooks-2022.png
@@ -18,7 +18,7 @@ It's no longer a question these days of whether or not you should have backups. 
 
 Less common though is a robust backup verification process. The finer points of the backup restoration process are often only worked out when disaster strikes. It's also during a disaster that organizations find themselves wondering if they've backed up the right data in the right format. Needless to say, these are not the questions DevOps personnel want to be faced with when trying to restore operations during a crisis.
 
-Runbooks provide a convenient solution to these questions. By automating and regularly executing the process of restoring backups in a disposable environment, DevOps teams can gain confidence their backups are valid and the process of restoring a system is well rehearsed.
+Runbooks provide a convenient solution to these questions. By automating and regularly executing the process of restoring backups in a disposable environment, DevOps teams can gain confidence their backups are valid, and the process of restoring a system is well rehearsed.
 
 Some years ago we released a [blog series documenting the process of building a CI/CD and operations pipeline for a Java application](https://octopus.com/blog/java-ci-cd-co/from-jar-to-docker). This series wrapped up with a runbook designed to backup a MySQL database. While valuable advice, this post series made the same mistake of assuming creating a backup and saving it offsite was the end of the story.
 
@@ -26,7 +26,7 @@ In this post, you learn how to complete the backup cycle by verifying the backup
 
 ## See the runbook in action
 
-The runbook described in this post has been deployed to [this public Octopus instance](https://tenpillars.octopus.app/app#/Spaces-62/projects/petclinic/operations/runbooks/Runbooks-126/overview). Click the **I am a guest** login link to view the runbook and the output generated from previous executions.
+The runbook described in this post has been deployed to [this public Octopus instance](https://tenpillars.octopus.app/app#/Spaces-62/projects/petclinic/operations/runbooks/Runbooks-126/overview). Click **I am a guest** to view the runbook and the output generated from previous executions.
 
 ## Treating backups as deployable artifacts
 
@@ -34,7 +34,7 @@ The database described in the [previous post](https://octopus.com/blog/java-ci-c
 
 However, verifying a backup file means treating it much like any other deployable artifact. The artifacts used to deploy your applications are versioned and saved in repositories that allow versions to be queried and compared. Conceptually, your database backup should be just another deployable and versioned artifact, ready to be queried and consumed by a runbook.
 
-In practice, the backup artifact needs to be uploaded to a repository rather than a simple file store. This doesn't mean you can no longer use a service like S3, as you can quite easily [format S3 to function as a Maven repository](https://octopus.com/blog/hosting-maven-in-s3). However, for the purposes of this post, you upload the backup file directly to the Octopus built-in feed.
+In practice, the backup artifact needs to be uploaded to a repository rather than a simple file store. This doesn't mean no longer using a service like S3, as you can quite easily [format S3 to function as a Maven repository](https://octopus.com/blog/hosting-maven-in-s3). However, for the purposes of this post, you upload the backup file directly to the Octopus built-in feed.
 
 You can upload files to Octopus most easily with the Octopus CLI. The `Dockerfile` below installs the Octopus and AWS CLIs alongside the MySQL server:
 
@@ -60,13 +60,13 @@ kubectl exec $POD -- /bin/sh -c "cd /tmp; octo pack --overwrite --include dump.s
 kubectl exec $POD -- /bin/sh -c "cd /tmp; octo push --package PetClinicDB.${VERSION}.zip --overwrite-mode OverwriteExisting --server https://tenpillars.octopus.app --apiKey #{Octopus API Key} --space #{Octopus.Space.Name}"
 ```
 
-The end result of this script is versioned backup artifacts in the Octopus built-in feed:
+The end result of this script are versioned backup artifacts in the Octopus built-in feed:
 
 ![SQL backup artifacts](sql-backup-artifacts.png "width=500")
 
 ## Verifying the backups
 
-Now that your database backups are versioned and uploaded to a repository, like any other deployable artifact, consuming them in runbooks becomes much easier. The next step is automating the process of verifying the backup in an ephemeral (i.e. disposable) environment.
+Now that your database backups are versioned and uploaded to a repository, like any other deployable artifact, consuming them in runbooks becomes much easier. The next step is automating the process of verifying the backup in an ephemeral (disposable) environment.
 
 Docker provides the perfect platform to spin up and tear down a test database. This is because Docker containers are, by design, isolated and self contained, allowing you to orchestrate the backup restoration and clean everything up afterwards.
 
