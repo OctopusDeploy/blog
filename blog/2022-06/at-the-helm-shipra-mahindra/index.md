@@ -3,7 +3,7 @@ title: At the helm with Shipra Mahindra
 description: A series where we chat to people at Octopus about their role, what they’re working on to improve the product, and more. Hear from Shipra Mahindra, Senior Product Manager.
 author: ships.mahindra@octopus.com
 visibility: public
-published: 2022-06-21-1400
+published: 2022-06-20-1400
 metaImage: blogimage-atthehelmwithshipramahindra-2022.png
 bannerImage: blogimage-atthehelmwithshipramahindra-2022.png
 bannerImageAlt: Octopus-branded security badge with text that says Shipra Mahindra, Senior Product Manager, above the silhouette of a woman wearing glasses.
