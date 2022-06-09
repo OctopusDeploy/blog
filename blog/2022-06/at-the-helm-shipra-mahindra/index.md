@@ -4,8 +4,8 @@ description: A series where we chat to people at Octopus about their role, what 
 author: ships.mahindra@octopus.com
 visibility: public
 published: 2022-06-21-1400
-metaImage: 
-bannerImage: 
+metaImage: blogimage-atthehelmwithshipramahindra-2022.png
+bannerImage: blogimage-atthehelmwithshipramahindra-2022.png
 bannerImageAlt: Octopus-branded security badge with text that says Shipra Mahindra, Senior Product Manager, above the silhouette of a woman wearing glasses.
 isFeatured: false
 tags: 
@@ -15,7 +15,7 @@ tags:
 
 This post is the next [in our series](https://octopus.com/blog/tag/At%20The%20Helm), chatting to people at Octopus about their role, what they’re working on to improve the product for our customers, and more.
 
-Here we talk to Shipra Mahindra, Senior Product Manager.
+Here we talk to Shipra Mahindra, Senior Product Manager for Configuration as Code.
 
 ## What was your last role before joining Octopus Deploy?
 
