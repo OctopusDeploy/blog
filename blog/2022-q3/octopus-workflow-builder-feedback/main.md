@@ -1,6 +1,6 @@
 ---
 title: Octopus Workflow Builder feedback
-description: We are looking for feedback on an early release of a workflow builder.
+description: Request for feedback on the early release of a workflow builder.
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2022-06-14
