@@ -3,10 +3,10 @@ title: Verifying backups with Runbooks
 description: Learn how to automate the process of verifying your backups using a custom runbook.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2022-06-20-1400
+published: 2022-06-13-1400
 metaImage: blogimage-verifyingbackupswithrunbooks-2022.png
 bannerImage: blogimage-verifyingbackupswithrunbooks-2022.png
-annerImageAlt: A book with legs that looks like it's running is surrounded by three cogs and databases.
+bannerImageAlt: A book with legs that looks like it's running is surrounded by three cogs and databases.
 isFeatured: false
 tags: 
   - DevOps
