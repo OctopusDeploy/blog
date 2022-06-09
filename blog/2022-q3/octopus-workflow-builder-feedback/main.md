@@ -19,7 +19,7 @@ tags:
 
 <!-- see https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags -->
 
-What do modern DevOps teams need from their continuous delivery workflows? Continuous integration, cloud deployments, feature branching, testing, Software Bill Of Materials (SBOMs), and dependency vulnerability scanning are just a few of the features that high performing teams need to quickly deliver and maintain high quality software.
+What do modern DevOps teams demand from their continuous delivery workflows? Continuous integration, cloud deployments, feature branching, testing, Software Bill Of Materials (SBOMs), and dependency vulnerability scanning are just a few of the features that high performing teams need to quickly deliver and maintain high quality software.
 
 But how do you *actually* implement these processes? We've shared a lot of opinions in this blog over the years to help teams get the most out of Octopus, but it felt like we were telling the end of the story. We wanted to "make complex deployments easy", but frequently skipped over the unglamorous work of setting up even the most minimal realistic sample environment. This left you, the reader, to write your own sample applications, instantiate your own cloud infrastructure, populate your own Octopus configuration, and copy/paste our samples before following along with our latest how-to guide.
 
