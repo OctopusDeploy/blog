@@ -3,7 +3,7 @@ title: Source control your Azure Bicep files
 description: Learn how to use GitHub to source control your Azure Bicep files and then deploy them using Octopus.
 author: sarah.lean@octopus.com
 visibility: public
-published: 2022-06-22-1400
+published: 2022-06-27-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt: 
@@ -12,18 +12,20 @@ tags:
   - DevOps
   - Runbooks Series
   - Azure
-  - GitHub
+  - GitHub Actions
 ---
 
-Recently, I wrote about [using Azure Bicep files to deploy your Azure infrastructure using Octopus Runbooks](https://www.octopus.com/blog/azure-bicep-octopus-deploy).  In this post, I explain how you can use GitHub to source control your Azure Bicep files and then deploy them using Octopus. 
+Recently, I wrote about [using Azure Bicep files to deploy your Azure infrastructure using Octopus Runbooks](https://www.octopus.com/blog/azure-bicep-octopus-deploy).  
+
+In this post, I explain how you can use GitHub to source control your Azure Bicep files and then deploy them using Octopus. 
 
 ## Why source control?
 
 Source control provides a single source of truth, whether that's for your application code or your Infrastructure as Code (IaC).  
 
-Source control also allows you to collaborate with others working on the same code base and merge their changes. It can also help keep track of every change, so if a mistake is made, you can turn back the clock to a working version. 
+Source control also allows you to collaborate with others working on the same code base and merge their changes. It can also help keep track of every change, so if someone makes a mistake, you can turn back the clock to a working version. 
 
-## Get your Bicep files from GitHub to Octopus Deploy
+## Get your Bicep files from GitHub to Octopus
 
 With your Bicep files stored in GitHub, you can use GitHub Actions to move them to your Octopus Deploy instance, to automate the deployment of the Azure resources.
 
@@ -33,13 +35,13 @@ In this post, you create a GitHub Actions workflow to pack your Bicep files into
 
 ### Octopus connection
 
-First, you need to set up GitHub Secrets that will hold the connection information to your Octopus instance. 
+First, you need to set up GitHub Actions secrets that will hold the connection information to your Octopus instance. 
 
 You need: 
 
 - The URL for your Octopus Deploy instance
-- An API Key
-- The name of the Space that your files should be pushed to 
+- An API key
+- The name of the space you want to push your files to 
 
 Create 3 secrets under **Settings**, **Secrets**: 
 
@@ -67,9 +69,9 @@ on:
     branches:
     - main
 ```
-Your workflow runs every time there's a push on the Main branch. 
+Your workflow runs every time there's a push on the main branch. 
 
-Next, you need to define the steps for the workflow to work through: 
+Next, you need to define the steps for the workflow: 
 
 ```yml
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -85,7 +87,7 @@ jobs:
 
 Define the kind of Worker or runner the job should run on. In this example, I defined the latest Windows runner. 
 
-The first step for my workflow is to take the files within my repository and bring them into the working area.  I’ve done this by using a Marketplace action called checkout. 
+The first step for your workflow is taking the files in your repository and bringing them into the working area.  I did this using a Marketplace action called checkout. 
 
 ```yml
  # We install the latest version of Octopus CLI
