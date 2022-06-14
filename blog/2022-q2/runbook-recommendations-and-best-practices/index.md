@@ -4,16 +4,16 @@ description: Recommendations from lessons learned on how to design and implement
 author: bob.walker@octopus.com
 visibility: public
 published: 2022-06-29-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt:
+metaImage: blogimage-runbooklessonslearnedrecommendations-2022.png
+bannerImage: blogimage-runbooklessonslearnedrecommendations-2022.png
+bannerImageAlt: Blue Octopus arm holding a lightbulb with a runbook in the middle of it.
 tags:
  - DevOps
  - Runbooks Series
  - Runbooks
 ---
 
-When we first released Runbooks, I had the chance to create a number of them and I learned some lessons you might find helpful. 
+When we first released Runbooks, I had the chance to create a number of them and I learned some lessons you might find helpful.
 
 In this post, I walk through creating a runbook from scratch and share my recommendations.
 
@@ -21,7 +21,7 @@ In this post, I walk through creating a runbook from scratch and share my recomm
 
 At Octopus, we use AWS and Azure for our infrastructure.  In fact, at the time of writing (this post was originally published in November 2020), the only infrastructure in Brisbane’s home office is a WiFi router and a network switch. Despite being heavy cloud users, many of us run a hypervisor in our home offices. It lets us configure and run permanent VMs such as domain controllers and SQL Servers to use with Octopus Deploy. It’s one thing to have someone set it up for you, but it’s entirely different to set it up from scratch. 
 
-The problem to solve: I have a couple of SQL Servers running, and I want to back up several databases on each server to my NAS. 
+The problem to solve: I have a couple of SQL Servers running and I want to back up several databases on each server to my NAS. 
 
 ## Designing the runbook process
 
