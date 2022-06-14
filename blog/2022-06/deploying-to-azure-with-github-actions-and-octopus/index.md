@@ -4,9 +4,9 @@ description: Learn how to deploy an Azure web application with GitHub Actions an
 author: terence.wong@octopus.com
 visibility: public
 published: 2022-06-13-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: A rocket travelling between four planets. The first planet is branded Github Actions, the second Docker, third Octopus, and fourth Azure.
+metaImage: blogimage-deployingtoazurewithgithubactionsandoctopu-2022.png
+bannerImage: blogimage-deployingtoazurewithgithubactionsandoctopu-2022.png
+bannerImageAlt: A rocket traveling between 4 planets. The first planet is branded Github Actions, the second Docker, third Octopus, and fourth Azure.
 isFeatured: false
 tags:
  - DevOps
@@ -15,7 +15,9 @@ tags:
  - GitHub Actions
 ---
 
-GitHub Actions is a Continuous Integration and Continuous Delivery (CI/CD) tool that uses automated actions to deploy your code. If you store your code in GitHub, GitHub Actions enhances every Github repository with CI/CD functionality, making deployments simple. Many developers want an easy way to get started without the bloat of enterprise tools, and GitHub Actions fits that need. 
+GitHub Actions is a Continuous Integration and Continuous Delivery (CI/CD) tool that uses automated actions to deploy your code. If you store your code in GitHub, GitHub Actions enhances every Github repository with CI/CD functionality, making deployments simple. 
+
+Many developers want an easy way to get started without the bloat of enterprise tools, and GitHub Actions fits that need. 
 
 In this post, I show you how to get started with GitHub Actions, and how to deploy a sample web application to Azure with Octopus. 
 
