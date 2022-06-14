@@ -4,8 +4,8 @@ description: Learn how to deploy an Azure web application with GitHub Actions an
 author: terence.wong@octopus.com
 visibility: public
 published: 2022-06-13-1400
-metaImage: blogimage-deployingtoazurewithgithubactionsandoctopusdeploy-2021.png
-bannerImage: blogimage-deployingtoazurewithgithubactionsandoctopusdeploy-2021.png
+metaImage: 
+bannerImage: 
 bannerImageAlt: A rocket travelling between four planets. The first planet is branded Github Actions, the second Docker, third Octopus, and fourth Azure.
 isFeatured: false
 tags:
