@@ -71,7 +71,7 @@ Octopus is a great solution for teams on this journey because we have a broad se
 :::hint
 Config as Code in Octopus lets you branch and iterate on your deployment process so you can modernize your CI/CD pipelines while maintaining the older process, until the new one is ready for production.
 
-[Learn more about version control](https://octopus.com/docs/projects/version-control)
+[Learn more about version control](https://octopus.com/docs/projects/version-control).
 :::
 
 Octopus 2022 Q2 also includes out-of-the-box support to deploy applications to Amazon ECS and Kubernetes clusters, including Amazon EKS, Azure Kubernetes Service, and Google Kubernetes Engine. 
@@ -114,7 +114,7 @@ No matter what you use, Octopus lets your team integrate Octopus with your exist
 
 > My favorite part about the Amazon ECS support in Octopus is I can build my task definitions files and export the CloudFormation template if I need to customize it. This is so much easier than writing them by hand.
 
--- Brendan McGill, Software Development Manager at EB Games
+- Brendan McGill, Software Development Manager at EB Games
 
 <!--
 [Read more](eb-games.pdf) about how EB Games uses Octopus Deploy and Amazon ECS.
