@@ -88,11 +88,11 @@ After [signing up for the EAP](https://octopusdeploy.typeform.com/servicenow-eap
 
 Navigate to **Configuration**, then **License**, and add the license key provided by the Customer Success Team. 
 
-![Octopus Deploy license configuration for ServiceNow](LicenceText.png "width=500")
+![Octopus Deploy license configuration for ServiceNow](licence-text.png "width=500")
 
 Next, click **Settings** and navigate to **ServiceNow Integration**. **Enable** the ServiceNow integration with the check box, and add a connection. 
 
-![ServiceNow configuration settings](ServiceNowConnection.png "width=500")
+![ServiceNow configuration settings](servicenow-connection.png "width=500")
 
 You need to provide a Base URL, OAuth Client ID, and Client Secret from ServiceNow. The Base URL can be found in your ServiceNow menu. 
 
@@ -114,7 +114,7 @@ To set up your environment, go to **Infrastructure** and choose the environment 
 
 Repeat this for all environments that apply. 
 
-![Service Now environment configuration](EnvironmentSettings.png "width=500")
+![Service Now environment configuration](environment-settings.png "width=500")
 
 ### Configuring your project
 
@@ -122,11 +122,11 @@ To set up your project, go to **Settings - General** and under the subheading **
 
 You can also provide a change template name if your organization has templates for their names in their change process. This is optional, and you can leave it blank if it’s not required. If you include the change template name, it's used to automatically create a standard change request on deployment.
 
-![Service Now project configuration](ProjectSettings.png "width=500")
+![Service Now project configuration](project-settings.png "width=500")
 
 ## Setting up a prompted variable for reusable change requests
 
-![Setting up a prompted variable for reusable change requests](ProjectPromptedVariable.png "width=500")
+![Setting up a prompted variable for reusable change requests](project-prompted-variable.png "width=500")
 
 If you want to reuse change requests or use an existing change request, you need to set up a prompted variable for ServiceNow. 
 
@@ -142,11 +142,11 @@ Go to the environment you set up and navigate to the **Deploy** window. To creat
 
 After you click **Deploy**, the **Task Summary** screen appears and displays the message `Change Request awaiting approval`. A change request number then appears for the created change request, with a link to ServiceNow. 
 
-![Octopus deployment ask with ServiceNow change request awaiting approval](TaskStatusMessageWithCR.png "width=500")
+![Octopus deployment ask with ServiceNow change request awaiting approval](task-status-with-cr.png "width=500")
 
 To get your change request approved, assign it to someone in the **Assignment Group** section. Then, select **Request Approval** to move the change request along your organization’s approval process. 
 
-![ServiceNow change request worflow](ServiceNow_ChangeRequest.png "width=500")
+![ServiceNow change request worflow](servicenow-change-request.png "width=500")
 
 Until the change request is approved, your deployment won't run in Octopus. The approver needs to move the change request to **Implement** before it triggers automatic approval in Octopus. 
 
@@ -158,11 +158,11 @@ To reuse a change request for another deployment, it needs to remain in Implemen
 The change request must also remain in Implement for the duration of the deployment because Octopus checks the status of the change request throughout the Task Log. 
 :::
 
-![Octopus deployment ask with ServiceNow change request awaiting approval](TaskStatusMessage_ApprovedWaitingToExecute.png "width=500")
+![Octopus deployment ask with ServiceNow change request awaiting approval](task-status-approved-waiting-to-execute.png "width=500")
 
 ## Using an existing change request for deployments
 
-![Using an existing change request for deployments](Deploy_WithManualCR.png "width=500")
+![Using an existing change request for deployments](deploy-with-manual-cr.png "width=500")
 
 If you have an existing change request in the Implement stage, you can use this for other environments and projects (for example, you can use the same change request in Test and Production). 
 
