@@ -1,12 +1,12 @@
 ---
-title: "ServiceNow integration: early access preview"
-description: 
+title: "ServiceNow integration for Octopus Deploy: early access preview"
+description: Octopus introduces ServiceNow Change Management without the friction (early access preview).
 author: ella.pradella@octopus.com
-visibility: private
+visibility: public
 published: 2022-06-16-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: blogimage-opseraintegration-2022.png
+bannerImage: blogimage-opseraintegration-2022.png
+bannerImageAlt: ServiceNow and Octopus Deploy logos connected by plugs with little stars around the connection.
 tags:
 - Product
 - DevOps
@@ -88,11 +88,11 @@ After [signing up for the EAP](https://octopusdeploy.typeform.com/servicenow-eap
 
 Navigate to **Configuration**, then **License**, and add the license key provided by the Customer Success Team. 
 
-IMAGE HERE
+![Octopus Deploy license configuration for ServiceNow](LicenceText.png "width=500")
 
 Next, click **Settings** and navigate to **ServiceNow Integration**. **Enable** the ServiceNow integration with the check box, and add a connection. 
 
-IMAGE HERE
+![ServiceNow configuration settings](ServiceNowConnection.png "width=500")
 
 You need to provide a Base URL, OAuth Client ID, and Client Secret from ServiceNow. The Base URL can be found in your ServiceNow menu. 
 
@@ -114,7 +114,7 @@ To set up your environment, go to **Infrastructure** and choose the environment 
 
 Repeat this for all environments that apply. 
 
-IMAGE HERE
+![Service Now environment configuration](EnvironmentSettings.png "width=500")
 
 ### Configuring your project
 
@@ -122,11 +122,11 @@ To set up your project, go to **Settings - General** and under the subheading **
 
 You can also provide a change template name if your organization has templates for their names in their change process. This is optional, and you can leave it blank if it’s not required. If you include the change template name, it's used to automatically create a standard change request on deployment.
 
-IMAGE HERE
+![Service Now project configuration](ProjectSettings.png "width=500")
 
 ## Setting up a prompted variable for reusable change requests
 
-IMAGE HERE
+![Setting up a prompted variable for reusable change requests](ProjectPromptedVariable.png "width=500")
 
 If you want to reuse change requests or use an existing change request, you need to set up a prompted variable for ServiceNow. 
 
@@ -142,11 +142,11 @@ Go to the environment you set up and navigate to the **Deploy** window. To creat
 
 After you click **Deploy**, the **Task Summary** screen appears and displays the message `Change Request awaiting approval`. A change request number then appears for the created change request, with a link to ServiceNow. 
 
-IMAGE HERE
+![Octopus deployment ask with ServiceNow change request awaiting approval](TaskStatusMessageWithCR.png "width=500")
 
 To get your change request approved, assign it to someone in the **Assignment Group** section. Then, select **Request Approval** to move the change request along your organization’s approval process. 
 
-IMAGE HERE
+![ServiceNow change request worflow](ServiceNow_ChangeRequest.png "width=500")
 
 Until the change request is approved, your deployment won't run in Octopus. The approver needs to move the change request to **Implement** before it triggers automatic approval in Octopus. 
 
@@ -158,9 +158,11 @@ To reuse a change request for another deployment, it needs to remain in Implemen
 The change request must also remain in Implement for the duration of the deployment because Octopus checks the status of the change request throughout the Task Log. 
 :::
 
-IMAGE HERE
+![Octopus deployment ask with ServiceNow change request awaiting approval](TaskStatusMessage_ApprovedWaitingToExecute.png "width=500")
 
 ## Using an existing change request for deployments
+
+![Using an existing change request for deployments](Deploy_WithManualCR.png "width=500")
 
 If you have an existing change request in the Implement stage, you can use this for other environments and projects (for example, you can use the same change request in Test and Production). 
 
@@ -168,13 +170,9 @@ Simply copy the change request number and paste it in the **Parameters** section
 
 If the change request has remained in the Implement stage, Octopus automatically recognizes it's been approved. 
 
-IMAGE HERE
-
 ## Running diagnostics on the ServiceNow integration
 
 If there are any errors in the setup of the ServiceNow integration, an error is created and your deployment won’t run. To find out why this is happening, go to the **Diagnostics** tab. From here you can see the issue, for example you may have incorrect template names or unassigned roles for the user. 
-
-IMAGE HERE
 
 ## Conclusion
 
