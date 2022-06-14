@@ -4,9 +4,9 @@ description: Recommendations from lessons learned on how to design and implement
 author: bob.walker@octopus.com
 visibility: public
 published: 2022-06-29-1400
-metaImage: blogimage-runbookslaunch.png
-bannerImage: blogimage-runbookslaunch.png
-bannerImageAlt: Runbook lessons learned and recommendations
+metaImage: 
+bannerImage: 
+bannerImageAlt:
 tags:
  - DevOps
  - Runbooks Series
