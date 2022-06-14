@@ -113,8 +113,8 @@ No matter what you use, Octopus lets your team integrate Octopus with your exist
 [EB Games](https://www.ebgames.com.au/) is using Octopus to deploy their containerized applications. They shared feedback about how it's improved their development workflow.
 
 > My favorite part about the Amazon ECS support in Octopus is I can build my task definitions files and export the CloudFormation template if I need to customize it. This is so much easier than writing them by hand.
-
-- Brendan McGill, Software Development Manager at EB Games
+>
+> *Brendan McGill, Software Development Manager at EB Games*
 
 <!--
 [Read more](eb-games.pdf) about how EB Games uses Octopus Deploy and Amazon ECS.
