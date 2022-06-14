@@ -116,7 +116,9 @@ No matter what you use, Octopus lets your team integrate Octopus with your exist
 
 -- Brendan McGill, Software Development Manager at EB Games
 
+<!--
 [Read more](eb-games.pdf) about how EB Games uses Octopus Deploy and Amazon ECS.
+-->
 
 <!--
 Want to learn more about how other customers use Octopus? Check out our [customer stories](https://octopus.com/customers). 
