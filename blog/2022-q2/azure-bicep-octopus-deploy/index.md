@@ -4,9 +4,9 @@ description: Learn how to use Bicep templates and automate their deployment usin
 author: sarah.lean@octopus.com
 visibility: public
 published: 2022-06-14-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: blogimage-azurebicepandoctopusdeploy-2022.png
+bannerImage: blogimage-azurebicepandoctopusdeploy-2022.png
+bannerImageAlt: Octopus Deploy logo and 
 isFeatured: false
 tags:
  - DevOps
