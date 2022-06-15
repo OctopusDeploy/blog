@@ -66,7 +66,7 @@ The editor modal window lets you select the type of text in the top right corner
 The script itself isn’t complex. For each object in the array, it will:
 
 - Connect to the server
-- Pull back a list of databases
+- Pull up a list of databases
 - Exclude any databases in the DatabasesToExclude array
 - If ExcludeSystemDatabases is TRUE, exclude any system databases
 - Clean up old database backups
