@@ -4,8 +4,8 @@ description: "Octopus 2022 Q2 with support for cloud-native containers and serve
 author: ella.pradella@octopus.com
 visibility: public
 published: 2022-06-15-1400
-metaImage: octopus-2022-q2-blog-meta-graphic.png
-bannerImage: octopus-2022-q2-blog-graphic.png
+metaImage: newsimg-600x320-q2-launch-2022.png
+bannerImage: blogimage-q2launch-azure-2022.png
 bannerImageAlt: Octopus 2022 Q2 highlighting Cloud Native container deployments for Amazon ECS and Kubernetes.
 isFeatured: true
 tags:
@@ -17,7 +17,7 @@ tags:
 - Serverless
 ---
 
-![Octopus 2022 announcement graphic highlighting Cloud Native container deployments for Amazon ECS and Kubernetes](octopus-2022-q2-blog-graphic.png)
+![Octopus 2022 announcement graphic highlighting Cloud Native container deployments for Amazon ECS and Kubernetes](blogimage-q2launch-azure-2022.png)
 
 The Octopus 2022 Q2 release is now available.
 
@@ -106,7 +106,9 @@ No matter what you use, Octopus lets your team integrate Octopus with your exist
 
 ## Octopus cloud-native deployment demo
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/TODO" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/vsJkvaCLT4k" frameborder="0" allowfullscreen></iframe>
+
+<!--
 
 ## Customers using cloud-native deployments
 
@@ -116,7 +118,7 @@ No matter what you use, Octopus lets your team integrate Octopus with your exist
 >
 > *Brendan McGill, Software Development Manager at EB Games*
 
-<!--
+
 [Read more](eb-games.pdf) about how EB Games uses Octopus Deploy and Amazon ECS.
 -->
 
