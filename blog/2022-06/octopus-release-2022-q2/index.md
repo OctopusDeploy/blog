@@ -108,6 +108,8 @@ No matter what you use, Octopus lets your team integrate Octopus with your exist
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/vsJkvaCLT4k" frameborder="0" allowfullscreen></iframe>
 
+<!--
+
 ## Customers using cloud-native deployments
 
 [EB Games](https://www.ebgames.com.au/) is using Octopus to deploy their containerized applications. They shared feedback about how it's improved their development workflow.
@@ -116,7 +118,7 @@ No matter what you use, Octopus lets your team integrate Octopus with your exist
 >
 > *Brendan McGill, Software Development Manager at EB Games*
 
-<!--
+
 [Read more](eb-games.pdf) about how EB Games uses Octopus Deploy and Amazon ECS.
 -->
 
