@@ -5,8 +5,8 @@ author: ella.pradella@octopus.com
 visibility: public
 published: 2022-06-15-1400
 metaImage: newsimg-600x320-q2-launch-2022.png
-bannerImage: blogimage-q2launch-azure-2022.png
-bannerImageAlt: Octopus 2022 Q2 highlighting Cloud Native container deployments for Amazon ECS and Kubernetes.
+bannerImage: blogimage-q2launch-azure-20223.png
+bannerImageAlt: Octopus 2022 Q2 highlighting cloud native container deployments for Amazon ECS and Kubernetes.
 isFeatured: true
 tags:
 - Product
@@ -17,7 +17,7 @@ tags:
 - Serverless
 ---
 
-![Octopus 2022 announcement graphic highlighting Cloud Native container deployments for Amazon ECS and Kubernetes](blogimage-q2launch-azure-2022.png)
+![Octopus 2022 announcement graphic highlighting cloud native container deployments for Amazon ECS and Kubernetes](blogimage-q2launch-azure-20223.png)
 
 The Octopus 2022 Q2 release is now available.
 
@@ -52,7 +52,7 @@ This release also includes other noteworthy updates:
 
 ## Long term support 
 
-The following table shows the Octopus Server releases with long term support. 
+The following table shows the Octopus Server releases with long term support: 
 
 | Release               | Long term support              |
 | --------------------- | ---------------------------    |
