@@ -68,7 +68,7 @@ The script itself isn’t complex. For each object in the array, it will:
 - Connect to the server
 - Pull back a list of databases
 - Exclude any databases in the DatabasesToExclude array
-- Run a simple backup command if the database isn’t excluded
+- If ExcludeSystemDatabases is TRUE, exclude any system databases
 - Clean up old database backups
 
 ```
