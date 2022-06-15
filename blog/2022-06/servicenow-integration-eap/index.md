@@ -57,7 +57,7 @@ Our ServiceNow integration in Octopus relieves some of the pain in manually fill
 
 ### Change management built into Octopus
 
-ServiceNow integration set up is simple as everything is built into Octopus. The integration uses documented APIs provided by ServiceNow for minimal friction, without downloading a separate ServiceNow App. 
+ServiceNow integration set up is simple as everything is built into Octopus. The integration uses documented APIs provided by ServiceNow for minimal friction, without downloading a separate ServiceNow app. 
 
 After you're set up, change requests can be automatically created in your deployments, or you can use an existing change request, and the deployment won't continue until someone provides approvals. After the change request is in the implement phase, Octopus recognizes the approval automatically and continues the deployment. There's no need for manual intervention in the deployment process. 
 
@@ -69,7 +69,7 @@ With our ServiceNow Integration, you can use a prompted variable to reuse a chan
 
 ### Minimal configuration to use the integration
 
-The ServiceNow integration doesn't require much setup in ServiceNow. All you need is a special Octopus license, which is free for [early access preview (EAP) users](https://octopusdeploy.typeform.com/servicenow-eap).
+The ServiceNow integration doesn't require much set up in ServiceNow. All you need is a special Octopus license, which is free for [early access preview (EAP) users](https://octopusdeploy.typeform.com/servicenow-eap).
 
 After your license is set up, you only need to configure 2 things in ServiceNow to get started:
 
