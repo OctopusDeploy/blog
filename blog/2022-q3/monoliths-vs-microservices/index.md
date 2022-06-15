@@ -4,9 +4,9 @@ description: A post about the differences between monoliths and microservices. T
 author: terence.wong@octopus.com
 visibility: private
 published: 3020-01-01-1400
-metaImage: placeholderimg.png
-bannerImage: placeholderimg.png
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-microservicesvsmonolith-2022.png
+bannerImage: blogimage-microservicesvsmonolith-2022.png
+bannerImageAlt: 5 blue square cubes and one blue cube separated by a line and the initials VS for versus.
 isFeatured: false
 tags:
   - DevOps
