@@ -273,9 +273,9 @@ With Octopus 2022.2, your security teams can adjust session timeouts according t
 
 ### OAuth authentication improvements
 
-In addition to the current OAuth 2.0 Implicit flow, we also support OAuth 2.1 Authorization Code flow with PKCE so we're up-to-date with key protocols and standards to meet the needs of your security teams. Using Authorization Code flow with PKCE ensures your instance is more secure because you can dynamically generate a client secret on every request. Please note that the old implicit flow can still be used until you update to the new flow via your Settings.
+In addition to the current OAuth 2.0 Implicit flow, we also support OAuth 2.1 Authorization Code Flow with PKCE so we're up-to-date with key protocols and standards to meet the needs of your security teams. Using Authorization Code Flow with PKCE ensures your instance is more secure because you can dynamically generate a client secret on every request. Please note that the old implicit flow can still be used until you update to the new flow via your Settings.
 
-The following authentication providers can now be used with OAuth 2.1 Authorization Code flow with PKCE:
+The following authentication providers can now be used with OAuth 2.1 Authorization Code Flow with PKCE:
 
 - [Azure Active Directory (AAD)](https://octopus.com/docs/security/authentication/azure-ad-authentication)
 - [GoogleApps Authentication](https://octopus.com/docs/security/authentication/googleapps-authentication)
