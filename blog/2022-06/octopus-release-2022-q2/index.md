@@ -17,7 +17,7 @@ tags:
 - Serverless
 ---
 
-![Octopus 2022 announcement graphic highlighting Cloud Native container deployments for Amazon ECS and Kubernetes](blogimage-q2launch-azure-2022.png)
+![Octopus 2022 announcement graphic highlighting cloud native container deployments for Amazon ECS and Kubernetes](blogimage-q2launch-azure-20223.png)
 
 The Octopus 2022 Q2 release is now available.
 
