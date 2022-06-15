@@ -4,13 +4,15 @@ description: Octopus introduces ServiceNow Change Management without the frictio
 author: ella.pradella@octopus.com
 visibility: public
 published: 2022-06-16-1400
-metaImage: blogimage-opseraintegration-2022.png
-bannerImage: blogimage-opseraintegration-2022.png
+metaImage: blogimage-snow-2022.png
+bannerImage: blogimage-snow-2022.png
 bannerImageAlt: ServiceNow and Octopus Deploy logos connected by plugs with little stars around the connection.
 tags:
 - Product
 - DevOps
 ---
+
+![ServiceNow integration for Octopus Deploy: early access preview](blogimage-snow-2022.png)
 
 Our ServiceNow integration is available as an early access preview (EAP). 
 
@@ -83,6 +85,8 @@ Anyone can create a free Personal Development Instance (PDI) to use in ServiceNo
 :::hint
 Read the latest version of the [documentation for the ServiceNow integration](https://octopus.com/docs/approvals/service-now). 
 :::
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/BjKj3I5mW14" frameborder="0" allowfullscreen></iframe>
 
 After [signing up for the EAP](https://octopusdeploy.typeform.com/servicenow-eap), there are a few settings you need to configure to get started with the ServiceNow integration.
 
