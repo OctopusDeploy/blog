@@ -4,9 +4,9 @@ description: Learn how to use GitHub to source control your Azure Bicep files an
 author: sarah.lean@octopus.com
 visibility: public
 published: 2022-06-27-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: blogimage-azurebicepandoctopusdeploy-2022.png
+bannerImage: blogimage-azurebicepandoctopusdeploy-2022.png
+bannerImageAlt: Octopus logo, GitHub Actions icon, and Azure Bicep logo. 
 isFeatured: false
 tags:
   - DevOps
