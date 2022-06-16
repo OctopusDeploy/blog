@@ -86,7 +86,7 @@ Anyone can create a free Personal Development Instance (PDI) to use in ServiceNo
 Read the latest version of the [documentation for the ServiceNow integration](https://octopus.com/docs/approvals/service-now). 
 :::
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/BjKj3I5mW14" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/MWrhD78xzyw" frameborder="0" allowfullscreen></iframe>
 
 After [signing up for the EAP](https://octopusdeploy.typeform.com/servicenow-eap), there are a few settings you need to configure to get started with the ServiceNow integration.
 
