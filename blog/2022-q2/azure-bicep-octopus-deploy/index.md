@@ -3,10 +3,10 @@ title: Azure Bicep and Octopus Deploy
 description: Learn how to use Bicep templates and automate their deployment using Octopus Runbooks.
 author: sarah.lean@octopus.com
 visibility: public
-published: 2022-06-14-1400
+published: 2022-06-22-1400
 metaImage: blogimage-azurebicepandoctopusdeploy-2022.png
 bannerImage: blogimage-azurebicepandoctopusdeploy-2022.png
-bannerImageAlt: Octopus Deploy logo and 
+bannerImageAlt: Octopus Deploy logo and Azure Bicep logo
 isFeatured: false
 tags:
  - DevOps
