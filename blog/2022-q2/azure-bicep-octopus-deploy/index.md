@@ -41,7 +41,7 @@ In this post, I explain how to create a basic template. The post assumes you hav
 
 First in the template, you need to declare the parameters and variables you're using: 
 
-​```json
+```json
 // Declare parameters
 param sku string
 param linuxFxVersion string = 'node|14-lts' // The runtime stack of web app
@@ -52,7 +52,7 @@ param resourceTags object = {
 } // Tags for all resources
 param appServicePlanName string
 param webSiteName string
-​```
+```
 
 You can declare static entries for these parameters or you can leave them blank and then input values during deployment. In this example, you're declaring some as static but leaving others blank so you can pass in the information during deployment.  
 
