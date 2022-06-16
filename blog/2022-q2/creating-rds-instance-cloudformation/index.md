@@ -14,7 +14,7 @@ tags:
  - AWS
  - CloudFormation
 ---
- 
+
 [Amazon Relational Database Service](https://aws.amazon.com/rds/) (RDS) implements managed databases supporting a number of platforms such as MySQL, MariaDB, Oracle, Postgres, and SQL Server. Almost every custom application requires persistent data storage, and RDS provides a convenient, scalable, and highly available solution.
 
 In this post, you learn how to deploy an RDS instance with a CloudFormation template.
