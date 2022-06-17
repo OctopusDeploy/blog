@@ -9,7 +9,9 @@ Automation
 AWS
 Azure
 CloudFormation
+Cloud Orchestration
 Community
+Containers
 Continuous Integration
 Continuous Deployment
 Configuration as Code
