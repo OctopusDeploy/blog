@@ -96,13 +96,13 @@ This code builds and pushes the code as a Docker image to Docker Hub on every ne
 
 After the build is complete, navigate to [Docker Hub](https://hub.docker.com/) to see the image.
 
-## Configure an Azure Account
+## Configuring an Azure account
 
 You need to configure an Azure account and web application to act as a target for the deployment from Octopus. Other targets are possible such as AWS or local.
 
 Next, create an account in Azure, by navigating to the [Azure portal](https://portal.azure.com/). 
 
-### Create an Azure Service Principal with the Azure Portal {#create-service-principal-account-in-azure}
+### Creating an Azure Service Principal with the Azure Portal {#create-service-principal-account-in-azure}
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/QDwDi17Dkfs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -129,7 +129,7 @@ Resource permissions ensure your registered app has permission to work with your
 1. In the Azure Portal navigate to **Resource groups** and select the resource group(s) that you want the registered app to access.
 2. Next, click the **Access Control (IAM)** option. Under **Role assignments**, if your app isn't listed, click **Add role assignment**. Select the appropriate role (**Contributor** is a common option) and search for your new application name. Select it from the search results and then click **Save**.
 
-Next, set up an [Azure web application](#web-application-setup) and configure its properties.
+Next, you set up an Azure web application and configure its properties.
 
 ### Web application setup {#web-application-setup}
 
@@ -173,7 +173,7 @@ With Octopus, you can deploy software to Windows servers, Linux servers, Microso
 4. Fill out the **Environment** and **Target roles**.
 5. Select the Azure account and web app created earlier.
 
-## Create the project environment
+## Creating the project environment
 
 Create a project by navigating to **Projects,** then **Add Project**. These steps assume a project named `docker`. 
 
