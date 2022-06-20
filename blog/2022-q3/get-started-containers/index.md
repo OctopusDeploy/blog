@@ -105,7 +105,7 @@ If you're looking to experiment with containerization but have nothing suitable 
 
 The [Octopus Underwater App](https://github.com/OctopusSamples/octopus-underwater-app) is a simple JavaScript app to help you test containerization with different service providers.
 
-![The Octopus Underwater App](/octopus-underwater-app.png)
+![The Octopus Underwater App](octopus-underwater-app.png)
 
 ## Seeing how it all works
 
