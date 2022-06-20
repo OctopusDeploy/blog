@@ -38,7 +38,7 @@ This post uses `PetClinic-ECS` as the assigned role.
 As with other target types, you can also add the target via the API or use script commands.
 
 ### API
-There are many examples of how to register a target via the API.  However, the ECS step uses the new **Step UI Framework** (link?).  The `Endpoint` component of the JSON document for an ECS target differs to other target types. The example script below shows you how to register an ECS target via the API:
+There are many examples of how to register a target via the API.  However, the ECS step uses the new **Step UI Framework**.  The `Endpoint` component of the JSON document for an ECS target differs to other target types. The example script below shows you how to register an ECS target via the API:
 
 ```powershell
 # Define parameters
