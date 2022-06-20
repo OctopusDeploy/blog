@@ -10,11 +10,8 @@ bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags:
   - DevOps
-  - Containers Series
-  - Containers
   - Cloud Orchestration
   - Testing
-  - Everything as Code
 ---
 
 <!-- see https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags -->
