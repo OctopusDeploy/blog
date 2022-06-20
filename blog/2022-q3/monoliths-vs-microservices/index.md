@@ -1,12 +1,12 @@
 ---
-title: Monoliths vs Microservices
-description: A post about the differences between monoliths and microservices. The post discusses why microservices may be better than monoliths for enterprise software applications and how microservices may have some challenges over monoliths despite their benefits.
+title: Monoliths vs microservices
+description: A post about the differences between monoliths and microservices. Find out why we think microservices are better than monoliths for enterprise software applications, and learn the challenges with each approach.
 author: terence.wong@octopus.com
-visibility: private
-published: 3020-01-01-1400
+visibility: public
+published: 2022-07-04-1400
 metaImage: blogimage-microservicesvsmonolith-2022.png
 bannerImage: blogimage-microservicesvsmonolith-2022.png
-bannerImageAlt: 5 blue square cubes and one blue cube separated by a line and the initials VS for versus.
+bannerImageAlt: 5 blue cubes and one blue cube separated by a line and the initials VS.
 isFeatured: false
 tags:
   - DevOps
@@ -14,51 +14,52 @@ tags:
   - Cloud Orchestration
 ---
 
-<!-- see https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags -->
+Monoliths and microservices are 2 approaches to building software. The choice between these 2 approaches can significantly impact development and performance. 
 
-Monoliths and microservices are two different approaches to building software. The choice between these two approaches can significantly impact development and performance. This blog discusses:
+In this post, I discuss:
 
  - The difference between monoliths and microservices
--  Which one is better for enterprise software applications
--  Some challenges of both approaches
+-  Which is better for enterprise software applications
+-  Challenges of both approaches
 
 ## What are monoliths and microservices?
 
-A monolith is a singular executable software application. A monolith contains one codebase that defines the user interface, application logic, and database required to run an application. A monolithic application is built and maintained as a single, indivisible unit and is served from a central location. For example, in-house accounting software that uses a database to store customer records, web server for record keeping, and other components all served from an on-premise server.
+A monolith is a singular executable software application. A monolith contains one codebase that defines the user interface, application logic, and database required to run an application. A monolithic application is built and maintained as a single, indivisible unit and is served from a central location. For example, in-house accounting software that uses a database to store customer records, a web server for record keeping, and other components all served from an on-premises server.
 
-By contrast, a microservice architecture breaks down an application into smaller independent units. Microservices are connected to make the whole application through Application Programming Interfaces (APIs). An API allows microservices to communicate with each other to execute a task. For example, a microservice sends input data to a second microservice. The second microservice sends input data to several other microservices, and so on. The same accounting software could be run on the cloud, with the database, web server and other components distributed across multiple geographical regions.
+By contrast, a microservice architecture breaks down an application into smaller independent units. Microservices are connected to make the whole application through Application Programming Interfaces (APIs). 
 
-Microservices are modularized. The components that make up a microservice architecture are built independently and only become associated with one another when required to create an application. A database component built as part of a microservice could be part of two different software applications through software reuse.
+An API lets microservices communicate with one another to execute a task. For example, a microservice sends input data to a second microservice. The second microservice sends input data to several other microservices, and so on. The same accounting software can run on the cloud, with the database, web server, and other components distributed across multiple geographical regions.
 
-The following diagram visualizes the differences between monoliths and microservices. They key difference is that monoliths are large units that contain several services whereas an application using microservices is made up of several independent microservices.
+Microservices are modularized. The components that make up a microservice architecture are built independently and only become associated when they need to create an application. A database component built for a microservice can be part of 2 different software applications through software reuse.
+
+The diagram below visualizes the differences between monoliths and microservices. They key difference is that monoliths are large units that contain several services whereas an application using microservices is made up of several independent microservices.
 
 ![Monolith vs Microservices](monolith-vs-microservices.png "width=500")
 
 ## Which one is better for enterprise software applications?
 
-Monolithic software is the traditional way of building software applications and has predated microservices for many years. The advancement of cloud technologies, particularly containerization, has allowed microservices to become very popular in delivering software. A Google Trends search for the microservices keyword shows that microservices started to become popular after 2013. 2013 was also when Docker (the leading containerization technology) was released.
+Monolithic software is the traditional way of building software applications and predates microservices. With the advancement of cloud technologies, particularly containerization, microservices have become popular in delivering software. Google Trends shows that microservices gained popularity after 2013. It was also 2013 when Docker, the leading containerization technology, was released.
 
 ![Google Trends Microservices](google-trends-microservices.png "width=500")
 
-Microservices are more agile than monoliths because there is more isolation between microservices than there is with traditional monolithic applications. Building, testing, and deploying a monolithic application involves the entire codebase. Each microservice can be built and tested independently without building a larger application. The agility of microservices allows them to be more reusable than monoliths. To reuse code from a monolith, developers create new interfaces for the new application. Through APIs, microservices have immediate interfaces with other applications, making them easier to reuse than monoliths.
+Microservices are more agile than monoliths because there's more isolation between microservices than traditional monolithic applications. Building, testing, and deploying a monolithic application involves the entire codebase. Each microservice can be built and tested independently without building a larger application. The agility of microservices allows them to be more reusable than monoliths. To reuse code from a monolith, you need to create new interfaces for the new application. Through APIs, microservices have immediate interfaces with other applications, making them easier to reuse than monoliths.
 
-A container is a lightweight, portable computing environment with all the necessary files to run independently. Containerization is the process of making an application runnable as a container. Containerization has helped microservices gain popularity and widespread adoption through scaling. Microservice applications can leverage cloud orchestration tools like Kubernetes to schedule and scale workloads. Suppose an application contains a database and a web front end, but the database is also serving a second application. A Kubernetes node dynamically manages load for the front end and database by increasing or decreasing load on each service. The Kubernetes node services two applications, and only uses the resources required for the task. A monolith can only scale by adding more nodes that scale the entire application, leading to unnecessary costs.
+A container is a lightweight, portable computing environment with all the necessary files to run independently. Containerization is the process of making an application runnable as a container. Containerization helped microservices gain popularity and widespread adoption through scaling. Microservice applications leverage cloud orchestration tools like Kubernetes to schedule and scale workloads. 
 
-Enterprise software applications are applications that meet an organization's needs. Enterprise software applications operate at scale and compete with other products for market share. Our [post on DORA metrics](https://octopus.com/blog/dora-metrics-devops-business-outcomes) discussed how agility based metrics like deployment frequency, lead time, mean time to recovery (MTTR) and change failure % were important to improving profitability, market share and productivity. Microservices are more agile and flexible than monoliths, which allow microservice applications to be delivered faster to market and achieve cost savings at scale. Microservices can be delivered iteratively with feedback instead of delivering a monolith as a single executable. The benefits of microservices over make them well suited for enterprise software applications.
+Imagine an application contains a database and a web front-end, but the database is also serving a second application. A Kubernetes node dynamically manages load for the front-end and database by increasing or decreasing load on each service. The Kubernetes node services 2 applications, and only uses the resources required for the task. A monolith can only scale by adding more nodes that scale the entire application, leading to unnecessary costs.
+
+Enterprise software applications are applications that meet an organization's needs. They operate at scale and compete with other products for market share. Our [post on DORA metrics](https://octopus.com/blog/dora-metrics-devops-business-outcomes) discusses how agility based metrics like deployment frequency, lead time, mean time to recovery (MTTR) and change failure percentage are important to improving profitability, market share, and productivity. Microservices are more agile and flexible than monoliths, allowing microservice applications to be delivered faster to market and achieve cost savings at scale. Microservices can be delivered iteratively with feedback instead of delivering a monolith as a single executable. The benefits of microservices make them well-suited for enterprise software applications.
 
 ## The challenges of microservices over monoliths
 
-Despite the many benefits, there are some challenges when using microservices over monoliths. An application using microservices may have to make hundreds of API calls for one function. A monolith application would only need one call to do the same function. Monoliths can have higher performance at scale for applications that require several functions, as there is no need for multiple API calls per function.
+Despite many benefits, there are challenges when using microservices over monoliths. An application using microservices may make hundreds of API calls for one function. A monolith application only needs one call to do the same function. Monoliths can have higher performance at scale for applications that require several functions, as there's no need for multiple API calls per function.
 
-Both the monolithic and microservice architecture suffer from complexity issues. Developing a monolith means the code base of the application becomes very large. No single developer or team likely understands the application in its entirety. Microservices contain multiple interacting services that could each use a different framework, increasing complexity. The number of services in microservices also increases the demand for documentation as the number of services increases.
+Both the monolithic and microservice architecture can be complicated. When developing a monolith, the code base of the application becomes very large. No single developer or team likely understands the application in its entirety. Microservices contain multiple interacting services that can each use a different framework, increasing complexity. The number of services in microservices also increases the demand for documentation as the number of services increases.
 
-Microservice downtime can cause cascading effects in the application. Even though microservices are independent, they are connected. If one microservice sends incorrect outputs, this may cause other microservices to behave unpredictably. Microservices are decentralized, which introduces a networking problem. Firewalls, latency, and security are more significant problems in microservices than in monoliths, where an application is self-contained and runs in a central location.
+Microservice downtime can cause cascading effects in the application. Even though microservices are independent, they're connected. If one microservice sends incorrect outputs, this may cause other microservices to behave unpredictably. Microservices are decentralized, which introduces networking problems. Firewalls, latency, and security are more significant problems in microservices than in monoliths, where an application is self-contained and runs in a central location.
 
 ## Conclusion
 
-Monoliths and microservices are two different approaches to software development. Monoliths have predated microservices for several years. Around 2013, microservices started to become popular due to improved cloud and container technologies. Monoliths are a singular executable that provides high performance but low agility. Microservices are independent services that make up a larger application providing high agility, flexibility, and scale. These benefits make microservices better suited for enterprise software applications.
-
-
-!include <q2-2022-newsletter-cta>
+Monoliths and microservices are 2 approaches to software development. Around 2013, microservices became popular with improved cloud and container technologies. Monoliths are a singular executable providing high performance but low agility. Microservices are independent services that make up a larger application providing high agility, flexibility, and scale. These benefits make microservices better suited for enterprise software applications, as long as you're aware of the challenges.
 
 Happy deployments!
