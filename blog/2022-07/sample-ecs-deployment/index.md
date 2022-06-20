@@ -2,14 +2,15 @@
 title: Using the new ECS deployment step
 description: Learn how to implement the new ECS deployment step.
 author: shawn.sesna@octopus.com
-visibility: private
-published: 2022-11-01-1400
+visibility: public
+published: 2022-07-06-1400
 metaImage: blogimage-usingthenewecsdeploymentstep-2022.png
 bannerImage: blogimage-usingthenewecsdeploymentstep-2022.png
 bannerImageAlt: 
 isFeatured: false
 tags:
  - DevOps
+ - AWS
 ---
 
 A little over a year ago, I wrote a [blog post](https://octopus.com/blog/aws-fargate) demonstrating how to deploy to AWS ECS using Octopus Deploy.  While the content showed you how to make it work, having to script out everything yourself using the AWS CLI wasn't exactly a stellar experience.  Octopus [ellicted feedback](https://github.com/OctopusDeploy/StepsFeedback/issues/1) from the community and found that ECS support was something that our customers felt we were lacking.  As of version 2021.3, Octopus Depoloy now includes an ECS deployment step that completely replaces everything from the original post!
