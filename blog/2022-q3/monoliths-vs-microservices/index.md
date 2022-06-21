@@ -1,5 +1,5 @@
 ---
-title: Monoliths vs microservices
+title: Monoliths versus microservices
 description: A post about the differences between monoliths and microservices. Find out why we think microservices are better than monoliths for enterprise software applications, and learn the challenges with each approach.
 author: terence.wong@octopus.com
 visibility: public
