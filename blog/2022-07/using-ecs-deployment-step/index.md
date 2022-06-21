@@ -6,14 +6,14 @@ visibility: public
 published: 2022-07-06-1400
 metaImage: blogimage-usingthenewecsdeploymentstep-2022.png
 bannerImage: blogimage-usingthenewecsdeploymentstep-2022.png
-bannerImageAlt: 
+bannerImageAlt: Deploy Amazon ECS Service step in Octopus
 isFeatured: false
 tags:
  - DevOps
  - AWS
 ---
 
-I previously wrote a [post demonstrating how to deploy to AWS ECS using Octopus Deploy](https://octopus.com/blog/aws-fargate). I showed you how to make it work, but scripting everything yourself using the AWS CLI wasn't an ideal experience. We [gathered feedback](https://github.com/OctopusDeploy/StepsFeedback/issues/1) from the community and discovered our customers wanted better ECS support. As of version 2021.3, Octopus Deploy includes an ECS deployment step that replaces everything from the original post.
+I previously wrote a [post demonstrating how to deploy to AWS ECS using Octopus Deploy](https://octopus.com/blog/aws-fargate). I showed you how to make it work, but scripting everything yourself using the AWS CLI wasn't an ideal experience. We [gathered feedback](https://github.com/OctopusDeploy/StepsFeedback/issues/1) from the community and discovered our customers wanted better ECS support. As of version 2021.3, Octopus Deploy includes an ECS deployment step that replaces everything from my original post.
 
 In this post, I explain how to implement the new ECS deployment step.
 
@@ -29,7 +29,7 @@ $ecsClusterName = $OctopusParameters['AWS.ECS.Cluster.Name']
 aws ecs create-cluster --cluster-name $ecsClusterName
 ```
 
-After you create the cluster, you need to add it to Octopus Deploy as a deployment target.  When creating a new target, select the AWS category, then the new ECS Target.
+After you create the cluster, you need to add it to Octopus Deploy as a deployment target.  When creating a new target, select the **AWS** category, then the new **Amazon ECS cluster** target.
 
 ![](octopus-ecs-target.png)
 
@@ -124,11 +124,11 @@ new_octopustarget -n "$(get_octopusvariable "target_name")" -t "aws-ecs-target" 
 ```
 
 ## The Deploy Amazon ECS Service step
-To show you how to use the **Deploy Amazon ECS Service** step, this post duplicates the deployment of the containerized version of the Octo Pet Shop application from the previous post, using the new step.
+To show you how to use the **Deploy Amazon ECS Service** step, this post duplicates the deployment of the containerized version of the Octo Pet Shop application from the [previous post](https://octopus.com/blog/aws-fargate), using the new step.
 
 ### Adding the Deploy Amazon ECS Service step
 
-To add the **Deploy Amazon ECS Service** step, click **ADD STEP**, choose AWS, then **Deploy Amazon ECS Service**.
+To add the **Deploy Amazon ECS Service** step, click **ADD STEP**, choose **AWS**, then **Deploy Amazon ECS Service**.
 
 ![Octopus dashboard showing process editor and Deploy Amazon ECS Service step](octopus-deploy-amazon-ecs-service.png)
 
@@ -142,8 +142,8 @@ After you add the step, fill in the form fields with the same information from t
 - Desired Count: `1`
 - Task Memory (GB): `4 GB`
 - Task CPU (units): `0.5 vCPU`
-- Security Group IDs: (Your AWS Security group ID)
-- Subent IDs: (Two AWS subnet IDs)
+- Security Group IDs: Your AWS Security group ID
+- Subent IDs: Two AWS subnet IDs
 - Auto-Assign Public IP: `Yes`
 - Enable ECS Managed Tags: `No`
 
@@ -164,25 +164,25 @@ Click the **ADD** button to add containers to the ECS service.
    - Container Image: This post pulls the octopetshop-productservice image from AWS ACR
    - Container Port Mappings:
      - `5011, tcp`
-   - Environment Variables
+   - Environment Variables:
      - Key: `OPSConnectionString, Value: Database connection string (ie: Data Source=localhost;Initial Catalog=OctoPetShop; User ID=#{Project.Database.User.Name}; Password=#{Project.Database.User.Password}`
   - Container Name: `octopetshop-shoppingcartservice`
     - Container Image: This post pulls the octopetshop-web image from AWS ACR
     - Container Port Mappings:
       - `5012, tcp`
-   - Environment Variables
+   - Environment Variables:
      - Key: `OPSConnectionString, Value: Database connection string (ie: Data Source=localhost;Initial Catalog=OctoPetShop; User ID=#{Project.Database.User.Name}; Password=#{Project.Database.User.Password})`
   - Container Name: `sqlserver`
     - Container Image: This post pulls the mssql/server image from the Microsoft container registry
     - Container Port Mappings:
       - `1433, tcp`
-    - Environment Variables
+    - Environment Variables:
       - Key: `ACCEPT_EULA, Value: Y`
       - Key: `SA_PASSWORD, Value: (secure password)`
   - Container Name: `octopetshop-database`
     - Container Image: This post pulls the octopetshop-database image from AWS ACR
     - Essential: `False`
-   - Environment Variables
+   - Environment Variables:
      - Key: `DbUpConnectionString, Value: Database connection string (ie: Data Source=localhost;Initial Catalog=OctoPetShop; User ID=#{Project.Database.User.Name}; Password=#{Project.Database.User.Password})`    
 
 And that's it! This single step replaces the custom scripting from the previous post.
