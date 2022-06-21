@@ -133,7 +133,7 @@ To add the **Deploy Amazon ECS Service** step, click **ADD STEP**, choose **AWS*
 ![Octopus dashboard showing process editor and Deploy Amazon ECS Service step](octopus-deploy-amazon-ecs-service.png)
 
 :::hint
-In the script version, the `Register-ECSTaskDefinition` cmdlet takes a parameter `-Cpu 512`.  This value equates to `0.5 vCpu` in the new step, See the [AWS documentation for more information](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-cpu-memory-error.html).
+In the script version, the `Register-ECSTaskDefinition` cmdlet takes a parameter `-Cpu 512`.  This value equates to `0.5 vCpu` in the new step. See the [AWS documentation for more information](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task-cpu-memory-error.html).
 :::
 
 After you add the step, fill in the form fields with the same information from the script. Anything not listed can be left blank or use default values.
