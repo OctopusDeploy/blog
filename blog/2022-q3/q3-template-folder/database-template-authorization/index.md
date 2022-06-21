@@ -17,10 +17,10 @@ tags:
   - Step Templates
 ---
 
-Amazon Web Services (AWS), Azure, and Google Cloud Platform (GCP) have introduced passwordless authentication mechanisms where resources such as Virtual Machines (VMs) can be assigned an identity (Azure), a service account (GCP), or a role (AWS) that can be used to authenticate to other resources such as database server instances.  The Solutions team has updated several database deployment Community Step Templates to include these passwordless authentication mechanisms.  This post will cover which templates have been updated and which mechanisms they support.
+Amazon Web Services (AWS), Azure, and Google Cloud Platform (GCP) have introduced passwordless authentication mechanisms where resources such as Virtual Machines (VMs) can be assigned an identity (Azure), a service account (GCP), or a role (AWS) that can be used to authenticate to other resources such as database server instances.  Octopus Deploy contains several built-in steps which support the ability to authenticate to resources using this method, however, database deployments are almost entirely done using Community Step Templates.  The Octopus Community has been hard at work updating templates to support cloud-native authentication.
 
 ## Database technologies that support cloud-native authentication methods
-The database technologies that support the cloud-native authentication differs by cloud provider:
+Not every database technology a cloud provider offers supports cloud-native authentication.  I've listed which technologies are supported below by provider:
 
 AWS
 - Amazon Aurora
@@ -28,68 +28,53 @@ AWS
 - MySQL
 - PostgreSQL
 
-:::warning
-Amazon Aurora has not been tested with the templates listed in this post.  
-::::
-
 Azure
 - Azure Cosmos DB
 - MySQL
 - PostgreSQL
 - Microsoft SQL Server
 
-:::warning
-Azure Cosmos DB has not been sted with the templates listed in this post.
-:::
-
 GCP
 - MySQL
 - PostgreSQL
 
-Both GCP and AWS support Windows Authentication for Microsoft SQL Server, however, the server must connected to an Active Directory on the cloud provider.
+Both GCP and AWS support Windows Authentication for Microsoft SQL Server, however, the server must connected to an Active Directory domain on the cloud provider.
+
+:::warning
+Amazon Aurora and Azure Cosmo have not been tested with the templates listed in this post.  
+::::
 
 ## Step templates with cloud authentication support
-The following Community Step Templates support use of cloud-native database authentication:
+The following Community Step Templates have been updated to support use of cloud-native database authentication:
+- [Flyway Database Migrations](https://library.octopus.com/step-templates/ccebac39-79a8-4ab4-b55f-19ea570d9ebc/actiontemplate-flyway-database-migrations)
 - [Liquibase Run Command](https://library.octopus.com/step-templates/36df3e84-8501-4f2a-85cc-bd9eb22030d1/actiontemplate-liquibase-run-command)
-- [Flyway Database Migrations](https://library.octopus.com/step-templates/ccebac39-79a8-4ab4-b55f-19ea570d9ebc/actiontemplate-flyway-database-migrations) 
-- [RoundhousE Database Migrations](https://library.octopus.com/step-templates/6da0afee-ed55-4c75-a13b-5e8ce42ef027/actiontemplate-roundhouse-database-migrations)
+- [MariaDB - Add Database User To Role](https://library.octopus.com/step-templates/24095ff8-a851-498f-8105-667bd76733eb/actiontemplate-mariadb-add-database-user-to-role)
+- [MariaDB - Create Database If Not Exists](https://library.octopus.com/step-templates/2bdfe600-e205-43f9-b174-67ee5d36bf5b/actiontemplate-mariadb-create-database-if-not-exists)
+- [MariaDB - Create User If Not Exists](https://library.octopus.com/step-templates/5e41412b-0839-4fa8-b7a1-9360115ef303/actiontemplate-mariadb-create-user-if-not-exists)
+- [MySQL - Add Database User To Role](https://library.octopus.com/step-templates/fc7272be-779c-4ef2-8051-0e7271471328/actiontemplate-mysql-add-database-user-to-role)
+- [MySQL - Create Database If Not Exists](https://library.octopus.com/step-templates/4a222ac3-ff4b-4328-8778-1c44eebdedde/actiontemplate-mysql-create-database-if-not-exists)
+- [MySQL - Create User If Not Exists](https://library.octopus.com/step-templates/d5e87b36-da2b-4771-9394-0dbdc9587dd4/actiontemplate-mysql-create-user-if-not-exists)
+- [Postgres - Add Database User To Role](https://library.octopus.com/step-templates/72f8bfaf-14c3-4807-b687-c07738c14ba1/actiontemplate-postgres-add-database-user-to-role)
+- [Postgres - Create Database If Not Exists](https://library.octopus.com/step-templates/0a1208c7-4a12-4da1-a60d-2b3197b377c4/actiontemplate-postgres-create-database-if-not-exists)
+- [Postgres - Execute SQL](https://library.octopus.com/step-templates/9a9c8c2c-d50e-4dc8-8e7e-b561f6e8fc15/actiontemplate-postgres-execute-sql)
+- [Postgres - Create User If Not Exists](https://library.octopus.com/step-templates/6e676055-fb63-450f-9d98-ac99c4a68023/actiontemplate-postgres--create-user-if-not-exists)
 - [SQL - Deploy DACPAC with AAD Auth support](https://library.octopus.com/step-templates/ae9d0024-a5aa-4aa8-95a9-cba53c291054/actiontemplate-sql-deploy-dacpac-with-aad-auth-support)
 
-### Liquibase Run Command
-The `Liquibase Run Command` has been updated with an **Authentication Method** selector which allows you to select the appropriate method for the cloud provider.  This template supports the following:
+With the exception of **SQL - Deploy DACPAC with AAD Auth support**, all of the above templates work on Windows (PowerShell, PowerShell Core) and Linux (PowerShell Core) have been updated with an **Authentication Method** selector that supports the following types:
 - AWS EC2 IAM Role
 - Azure Managed Identity
 - GCP Service Account
 - Username/Password
 - Windows Authentication
 
-![Liquibase Run Command Authentication Selector](liquibase-authentication-selector.png)
+![Authentication Selector](authentication-selector.png)
 
-Liquibase Run Command requires the use of PowerShell, however, is coded to work on both Windows and Linux operating systems.
-
-### Flyway Database Migrations
-`Flyway Database Migrations` has also been updated with an **Authentication Method** selector.   This template supports the following authentication methods:
-- AWS EC2 IAM Role
-- Azure Managed Identity
-- GCP Service Account
-- Username/Password
-- Windows Authentication
-
-![Flway Database Migrations Authentication Selector](flyway-authentication-selector.png)
-
-Flyway Database Migrations requires the use of PowerShell Core, however, is coded to work with PowerShell Core on both Windows and Linux operating systems.
-
-### RoundhousE Database Migrations
-Simlar to the previous two, `RoundhousE Database Migrations` has been updated with an **Authentication Method** selector.  This template supports the following authentication methods:
-- AWS EC2 IAM Role
-- Azure Managed Identity
-- GCP Service Account
-- Username/Password
-- Windows Authentication
-
+:::Info
+Flyway Database Migrations is PowerShell Core only.
+:::
 
 ### SQL - Deploy DACPAC with AAD Auth support
-Though limited to Azure, SQL - Deploy DACPAC with AAD Auth support can use several the following authentication methods:
+Cloud-native authentication using the SQL - Deploy DACPAC with AAD Auth support template is limited the Azure cloud provider and supports the following methods:
 - Azure Active Directory Integrated
 - Azure Active Directory Managed Identity
 - Azure Active Directory Username/Password
@@ -98,11 +83,10 @@ Though limited to Azure, SQL - Deploy DACPAC with AAD Auth support can use sever
 
 ![SQL - Deploy DACPAC with AAD Auth support Authentication Selector](dacpac-authentication-selector.png)
 
-SQL - Deploy DACPAC with AAD Auth support is written in PowerShell and makes use of DLL files that are part of the SQL Server installation.  Because of this, it may not work on the Linux operating system.
+SQL - Deploy DACPAC with AAD Auth support is written in PowerShell and makes use of .NET standard DLL files that are part of the SQL Server installation or SQL Server PowerShell module.  Because of this, it does not work on the Linux operating system.
 
 ## Conclusion
-Use of cloud-native authentication within Octopus Deploy is a topic that comes up quite a bit.  To continue to support our customers with the best experience possible, the Solutions team took it upon themselves to augment popular database deployment templates to use modern, cloud authentication for databases.  Happy Deployments!
-
+The Octopus Community recognizes the advantages of utilizing authentication mechanisms offered by cloud providers.  In this post, I've listed templates that have been updated with cloud provider authentication functionality.
 
 ## Learn more
 
