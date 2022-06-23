@@ -28,7 +28,7 @@ The [Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/) will then 
 
 - Sample web applications
 - Terraform configuration files to create ECR repositories and populate an Octopus space with the [Octopus Terraform provider ](https://registry.terraform.io/providers/OctopusDeployLabs/octopusdeploy/latest/docs)
-- GitHub Action workflows to compile, test, and publish the sample applications and apply the Terraform configuration
+- GitHub Actions workflows to compile, test, and publish the sample applications and apply the Terraform configuration
 
 This in turn populates your Octopus instance with:
 
