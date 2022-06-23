@@ -80,7 +80,7 @@ With plenty of registries on the market, they all boast different strengths, suc
 
 You may get locked into a particular registry when choosing a hosting provider.
 
-We recently talked about 8 different registry options in another post, but here are a few examples:
+Example container registries include:
 
 - [Docker Hub](https://hub.docker.com/)
 - [Harbor](https://goharbor.io/)
@@ -118,14 +118,12 @@ His guide walks you through a complete pipeline, including:
 
 ## What's next?
 
-**Replace this section with our series blurb**
+In this post we explored the basic components that make containerized applications possible. We have more posts about containerization on the way, including:
 
-We're covering containerization in-depth over the next few months, covering:  
-
-- blog post
-- blog post
-- blog post
-  
-Why not follow the series etc etc?
+- Registries you should consider
+- More detailed looks at containerization's benefits
+- Good platforms for microservices
+- A deep dive into cloud orchestration and cloud automation
+- A look at 'everything as code'
 
 Happy deployments!
