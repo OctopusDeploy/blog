@@ -7,7 +7,7 @@ published: 2022-03-30-1400
 metaImage: octopus-2022-q1-config-as-code.png
 bannerImage: blogimage-cofigascode-2022.png
 bannerImageAlt: Octopus 2022 Q1 highlighting config as code with screenshot showing the Octopus UI and a config file in a text editor.
-isFeatured: true
+isFeatured: false
 tags:
 - Product
 - DevOps
