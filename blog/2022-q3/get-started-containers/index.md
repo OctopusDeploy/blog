@@ -14,7 +14,7 @@ tags:
   - Cloud Orchestration
 ---
 
-Though not exactly new, containers are becoming the most popular way to run and host applications and microservices. Put simply, containers are lightweight virtual environments that can run apps without the bloat of a full operating system.
+Containers are becoming the most popular way to run and host applications and microservices. Put simply, containers are lightweight virtual environments that can run apps without the bloat of a full operating system.
 
 Without the bloat, containers have many benefits over traditional infrastructure and virtual machines, including:
 
@@ -23,7 +23,9 @@ Without the bloat, containers have many benefits over traditional infrastructure
 - Easy to spin up and tear down
 - Easy to scale resources to meet the application's needs
 
-Deployable container images also make it easy to get your app running. Container images usually include your software, all runtimes and prerequisites needed to run your app, plus any config set by code. Many companies had their own container image formats over the years, but Docker's 'OCI' image (now open-source) quickly became the industry-standard. In fact, many providers now use the terms 'OCI images' and 'Docker images' interchangeably.
+Deployable container images also make it easy to get your app running. Container images usually include your software, all runtimes and prerequisites needed to run your app, plus any config set by code. 
+
+Many companies had their own container image formats over the years, but Docker's 'OCI' image (now open-source) quickly became the industry-standard. In fact, many providers now use the terms 'OCI images' and 'Docker images' interchangeably.
 
 :::hint
 OCI stands for Open Container Initiative. The initiative is a container structure that acts as the industry standard format. Most major players in tech, development, and cloud services back the initiative and support the OCI format. Read more about it on the [Open Container Initiative website](https://opencontainers.org/).
@@ -118,7 +120,7 @@ His guide walks you through a complete pipeline, including:
 
 ## What's next?
 
-In this post we explored the basic components that make containerized applications possible. We have more posts about containerization on the way, including:
+In this post, we explored the basic components that make containerized applications possible. We have more posts about containerization on the way, including:
 
 - Registries you should consider
 - More detailed looks at containerization's benefits
