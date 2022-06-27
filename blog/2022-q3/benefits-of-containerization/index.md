@@ -3,7 +3,7 @@ title: The benefits of containerization
 description: Learn about the benefits of containerization, the top container images, containerization technologies, and how Octopus works with containerization to make deployments easier.
 author: terence.wong@octopus.com
 visibility: private
-published: 2022-07-26-1400
+published: 2022-07-13-1400
 metaImage: placeholderimg.png
 bannerImage: placeholderimg.png
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
@@ -38,7 +38,7 @@ Containerization complements DevOps because software can be deployed and tested 
 
 ### Containers are scalable and allocate resources efficiently
 
-Platform as a Service (PaaS) solutions and container orchestration tools like Kubernetes let developers operate containers at scale. Container orchestrators can scale individual components in software applications up and down depending on demand and load. This leads to cost savings as components only run for as long they’re needed. Scaling also improves reliability as container orchestrators can allocate sufficient resources to high-demand parts of the application.
+Platform as a Service (PaaS) solutions and container orchestration tools like Kubernetes let developers operate containers at scale. Container orchestrators can scale individual components in software applications up and down depending on demand and load. This leads to cost savings as components only run for as long as they’re needed. Scaling also improves reliability as container orchestrators can allocate sufficient resources to high-demand parts of the application.
 
 Scaling and cost savings are big factors when deciding to migrate to containerization. Many cloud providers have a cost calculator for cloud resources that you can use if you want your department to make the switch to containers.
 
@@ -76,7 +76,7 @@ A [report by Datadog](https://www.datadoghq.com/container-report/) in 2021 indic
 
 ## Containerization support in Octopus Deploy
 
-A deployment process can use some form of containers or container orchestration to deploy an application. Octopus is a deployment management tool that supports containerization. Octopus Deploy works with container registries, PaaS providers, Docker, and Kubernetes to provide a best-in-class deployment management tool. Regardless of which container technologies are most popular moving forward, Octopus Deploy can work with all of them to provide happier deployments!
+A deployment process can use some form of containers or container orchestration to deploy an application. Octopus is a deployment management tool that supports containerization. Octopus Deploy works with container registries, PaaS providers, Docker, and Kubernetes to provide a best-in-class deployment management tool. Regardless of which container technologies are most popular moving forward, Octopus Deploy can work with all of them to provide happier deployments.
 
 ## Conclusion
 
