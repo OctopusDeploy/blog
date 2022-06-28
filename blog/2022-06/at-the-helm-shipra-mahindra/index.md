@@ -27,7 +27,7 @@ I started my career as a software engineer. After a few years, I became interest
 
 So, I decided to do an MBA to learn more about decision-making and how businesses operate. After the MBA, I started pursuing my career in product management. 
 
-I love bringing clarity where there's ambiguity and chaos. I love figuring out what customers struggle with and delivering a solution that delights them and makes life easier. I'm still close to the tech and can see how things are built, without building anything myself. I also love working with a team because the best ideas often come from collaborative debates and brainstorming.
+I love bringing clarity where there's ambiguity and chaos. I love figuring out what customers struggle with and delivering solutions that delight them and make life easier. I'm still close to the tech and can see how things are built, without building anything myself. I also love working with a team because the best ideas often come from collaborative debates and brainstorming.
 
 ## What does a typical day look like as a Senior Product Manager for Config as Code?
 
