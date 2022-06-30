@@ -1,20 +1,21 @@
 ---
-title: Using the GitLab feeds with Octopus Deploy
+title: Using GitLab feeds with Octopus Deploy
 description: Learn how to connect GitLab feed types to Octopus Deploy.
 author: shawn.sesna@octopus.com
-visibility: private 
-published: 2022-07-27-1400
+visibility: public 
+published: 2022-07-20-1400
 metaImage: blogimage-usinggitlabfeedswithoctopus-2022.png
 bannerImage: blogimage-usinggitlabfeedswithoctopus-2022.png
-bannerImageAlt: Packages on conveyer belts start in an orange machine, travel through a blue machine, and come out deployed with version numbers.
+bannerImageAlt: Packages on a conveyer belt start in an orange machine, travel through a blue machine, and come out deployed with version numbers.
 isFeatured: false
 tags:
  - DevOps
+ - Continuous Integration
 ---
 
-Octopus Deploy contains a [built-in repository](https://octopus.com/docs/packaging-applications/package-repositories/built-in-repository) that supports a variety of [file types](https://octopus.com/docs/packaging-applications#supported-formats).  However, some customers prefer to use a third-party repository or use the repositories built-in to their Continuous Integration (CI) tools.  
+Octopus Deploy contains a [built-in repository](https://octopus.com/docs/packaging-applications/package-repositories/built-in-repository) that supports a variety of [file types](https://octopus.com/docs/packaging-applications#supported-formats).  However, some customers prefer to use a third-party repository or use the repositories built in to their Continuous Integration (CI) tools.  
 
-In this post, I demonstrate how to use the registries built into GitLab as external feeds for Octopus Deploy.
+In this post, I demonstrate how to use the registries built in to GitLab as external feeds for Octopus Deploy.
 
 ## GitLab registries
 
@@ -35,7 +36,7 @@ The [GitLab Package Registry](https://gitlab.octopusdemos.app/help/user/packages
 
 #### Maven
 
-Maven repositories are often associated with Java applications, although they can be used more generically (more on that later).  The [PetClinic](https://bitbucket.org/octopussamples/petclinic/src/master/) example application contains most of the components necessary to demonstrate the Maven registry capabilities of GitLab.  The only thing missing is the mechanism to authenticate to the Maven registry.  [GitLab documentation](https://docs.gitlab.com/ee/user/packages/maven_repository/#create-maven-packages-with-gitlab-cicd-by-using-maven) shows this can easily be included by adding an `ci_settings.xml` file with the following contents: 
+Maven repositories are often associated with Java applications, although they can be used more generically (more on that later).  Our [PetClinic](https://bitbucket.org/octopussamples/petclinic/src/master/) example application contains most of the components necessary to demonstrate the Maven registry capabilities of GitLab.  The only thing missing is the mechanism to authenticate to the Maven registry.  [GitLab documentation](https://docs.gitlab.com/ee/user/packages/maven_repository/#create-maven-packages-with-gitlab-cicd-by-using-maven) shows you how this can be easily included, by adding an `ci_settings.xml` file with the following contents: 
 
 ```xml
 <settings xmlns="http://maven.apache.org/SETTINGS/1.1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -127,9 +128,11 @@ The PetClinic application consists of 2 major components:
 
 To deploy both of these using Octopus, first you need to add them to the Maven registry so Octopus can find and deploy them.  
 
-The `maven-push` section of the build definition is where the artifacts are uploaded to the Maven registry.  Note that there are 2 `mvn deploy:deploy-file` commands defined in the `script` section.  The first `deploy` command uploads the `.war` file that was compiled in the `java-build` stage to the registry.  
+The `maven-push` section of the build definition is where the artifacts are uploaded to the Maven registry.  Note that there are 2 `mvn deploy:deploy-file` commands defined in the script section.  The first `deploy` command uploads the `.war` file that was compiled in the `java-build` stage to the registry.  
 
-Unlike the web component, the Flyway piece is already compiled, you just need to zip then upload it to the registry.  The `zip` command zips the contents of the `flyway` folder. Next, use the directions from Matt Casperson's [blog post about deploying and consuming ZIP files from Maven](https://octopus.com/blog/deploy-and-consume-zip-files-from-maven), to upload the `.zip` file to a Maven registry.
+Unlike the web component, the Flyway piece is already compiled, you just need to zip then upload it to the registry.  The `zip` command zips the contents of the `flyway` folder. 
+
+Next, use the directions from Matt Casperson's [post about deploying and consuming ZIP files from Maven](https://octopus.com/blog/deploy-and-consume-zip-files-from-maven), to upload the `.zip` file to a Maven registry.
 
 ![package registry showing 2 packages](gitlab-maven-packages.png)
 
@@ -260,10 +263,10 @@ To add a GitLab Maven registry, you need the Project or Group ID the feed is ass
 
 Fill in the form fields:
 
-- Feed Type: `Maven Feed`
-- Name: Give the feed a name, for example, `GitLab Petclinic Maven Feed`
-- URL: `https://[gitlabserver]/api/v4/projects/[project or group id]/packages/maven`
-- (Optional) Credentials: Username and password to use to access the feed
+- **Feed Type**: `Maven Feed`
+- **Name**: Give the feed a name, for example, `GitLab Petclinic Maven Feed`
+- **URL**: `https://[gitlabserver]/api/v4/projects/[project or group id]/packages/maven`
+- (Optional) **Credentials**: Username and password to access the feed
 
 ![Octopus dashboard showing Create Feeds screen under External Feeds section](octopus-add-maven-feed.png)
 
@@ -272,14 +275,14 @@ Click **SAVE AND TEST** to ensure the feed is functional.  Enter the name of the
 ![](octopus-test-maven-feed.png)
 
 ### Adding a GitLab NuGet feed
-Similar to the Maven feed, you need the Project or Group ID that the feed is associated with.
+Similar to the Maven feed, you need the Project or Group ID the feed is associated with.
 
 Fill in the form fields:
 
-- Feed Type: `NuGet Feed`
-- Name: Give the feed a name, for example, `GitLab OctoPetShop Nuget Feed`
-- URL: `https://[gitlabserver]/api/v4/projects/[project or group id]/packages/nuget/index.json`
-- (Optional) Credentials: Username and password to access the feed
+- **Feed Type**: `NuGet Feed`
+- **Name**: Give the feed a name, for example, `GitLab OctoPetShop Nuget Feed`
+- **URL**: `https://[gitlabserver]/api/v4/projects/[project or group id]/packages/nuget/index.json`
+- (Optional) **Credentials**: Username and password to access the feed
 
 ![Octopus dashboard showing Create Feeds screen under External Feeds section](octopus-add-nuget-feed.png)
 
@@ -293,19 +296,19 @@ Unlike the other 2 feed types, the container feed doesn't need the Project or Gr
 
 Fill in the form fields:
 
-- Feed Type: `Docker Container Registry`
-- Name: Give the feed a name, for example, `GitLab Container Registry`
-- URL: `https://[gitlabserver]:[port]`
-- Credentials: Username and password to access the feed
+- **Feed Type**: `Docker Container Registry`
+- **Name**: Give the feed a name, for example, `GitLab Container Registry`
+- **URL**: `https://[gitlabserver]:[port]`
+- **Credentials**: Username and password to access the feed
 
 ![Octopus dashboard showing Create Feeds screen under External Feeds section](octopus-add-container-feed.png)
 
-Click **SAVE AND TEST** to ensure the feed is functional.  Enter the name of the package (can be partial):
+Click **SAVE AND TEST** to ensure the feed is functional. Enter the name of the package (can be partial):
 
 ![Octopus External Feed](octopus-test-container-feed.png)
 
 ## Conclusion
 
-Manny scenarios benefits from using the built-in repository. However, if you need something cross-space and don't want to duplicate, there are alternatives. This post showed you how to use the built-in registries of GitLab as External Feeds to Octopus Deploy.  
+In many cases, you'll benefit from using Octopus Deploy's built-in repository. However, if you need something cross-space and don't want to duplicate, there are alternatives. This post showed you how to use the built-in registries of GitLab as external feeds to Octopus Deploy.  
 
 Happy deployments!
