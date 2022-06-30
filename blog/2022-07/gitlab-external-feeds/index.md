@@ -309,6 +309,6 @@ Click **SAVE AND TEST** to ensure the feed is functional. Enter the name of the 
 
 ## Conclusion
 
-In many cases, you'll benefit from using Octopus Deploy's built-in repository. However, if you need something cross-space and don't want to duplicate, there are alternatives. This post showed you how to use the built-in registries of GitLab as external feeds to Octopus Deploy.  
+In many cases, you'll benefit from using Octopus Deploy's built-in repository. However, if you need something cross-space and don't want to duplicate, there are alternatives. This post showed you how to use GitLab's built-in registries as external feeds to deploy your projects with Octopus.
 
 Happy deployments!
