@@ -15,7 +15,7 @@ tags:
 
 Octopus Deploy has a [built-in repository](https://octopus.com/docs/packaging-applications/package-repositories/built-in-repository) that supports a variety of [file types](https://octopus.com/docs/packaging-applications#supported-formats).  However, some customers prefer to use a third-party repository or use the repositories built in to their Continuous Integration (CI) tools.  
 
-In this post, I demonstrate how to use the registries built in to GitLab as external feeds for Octopus Deploy.
+In this post, I demonstrate how to use GitLab's built-in registries as external feeds to deploy your projects with Octopus.
 
 ## GitLab registries
 
