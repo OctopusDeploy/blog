@@ -162,15 +162,95 @@ For example, the fully-qualified slug for a channel might look something like `s
 Slugs are unique within their owners scope. So, two projects can have the same slug, as long as they live in different spaces, the same goes for channels in different projects, etc.
 Knowing the fully-qualified slug allows us to uniquely identify resources out-of-scope.
 
-<!-- Todo: Decided to implement short slugs and build upon them later -->
-
 ## Implementing slugs
 
-- Slug generator
-- Slug provider
-- Backwards compatability
+When we began working on slugs, we chose to add slugs to the resources whose IDs could be converted to names, with plans to add slugs to remaining documents later on.
+
+We initially started prototyping fully-qualified slugs on a bunch of these resources, but we eventually decided to de-scope fully-qualified slugs, and opt for more simpler and lightweight approach to slugs.
+This was primarily due to time constraints, a large number of breaking changes, and we didn't need fully-qualified slugs for config as code anyway.
+Instead, we would persue a more lightweight slug solution, while making room for fully-qualified slugs in the future.
+
+Thankfully, there was a bit of ground-work already done for us, as projects already have a concept of slugs. Project slugs are automatically generated based on their names, and re-generated when the name changes. These slugs are used in the project URLs for the web UI.
+We were able to re-use this existing project slug generation code, and combine it with a new concept called slug providers
+
+### Introducing Slug Providers
+
+Slug providers live in our [document store](https://octopus.com/blog/config-as-code-persistence-ignorance) layer as a decorator. Their job is to ensure that slugs have been set on any documents which need one, and don't already have one, much like how a database will automatically set the ID for any new rows.
+Because slugs are a required field, this helps us immensely with backwards compatability, as our existing database calls don't need to be updated for slugs.
+
+```cs
+public class SlugProvider<T> : ISlugProvider<T> where T : class, IHaveSlug
+{
+  public async Task EnsureSlugIsSet(T document, CancellationToken cancellationToken)
+  {
+    // Don't want to overwrite any existing slug
+    if (!string.IsNullOrEmpty(document.Slug))
+      return;
+
+    document.Slug = SlugGenerator.GenerateSlug(document.Name);
+  }
+}
+
+public class SlugProviderDecorator<T> : IDocumentStore<T>
+{
+  readonly IDocumentStore<T> inner;
+  readonly ISlugProvider<T> slugProvider;
+
+  public async Task Add(T document, CancellationToken cancellationToken)
+  {
+    // Make sure the slug has been set before proceeding to the next IDocumentStore
+    await slugProvider.EnsureSlugIsSet(document, cancellationToken);
+    await inner.Add(T document, CancellationToken cancellationToken);
+  }
+
+  ...
+}
+```
+
+> Q: What if two names are similar enough that they can generate the same slug?
+
+This is entirely possible, and we've accounted for this in our slug providers.
+For example, if we have two projects with very similar names (`My Awesome Project`, and `My AWESOME Project!!!`), they will generate the same slug (`my-awesome-project`).
+
+Project slugs addressed this by appending a number to the end of the slug until it was unique.
+
+```cs
+public class SlugProvider<T> : ISlugProvider<T> where T : class, IHaveSlug
+{
+  readonly IDocumentStore<T> documentStore;
+
+  public async Task EnsureSlugIsSet(T document, CancellationToken cancellationToken)
+  {
+    // Don't want to overwrite any existing slug
+    if (!string.IsNullOrEmpty(document.Slug))
+      return;
+
+    var slug = SlugGenerator.GenerateSlug(document.Name);
+    slug = await UniquifySlug(slug);
+
+    document.Slug = slug;
+  }
+
+  public async Task UniquifySlug(string slug, CancellationToken cancellationToken)
+  {
+    var existingSlugs = (await documentStore.All()).Select(d => d.Slug);
+
+    var i = 1;
+    var uniqueSlug = slug;
+    while (existingSlugs.Contains(uniqueSlug))
+    {
+      var uniqueSlug = $"{slug}-{i}";
+      i++;
+    } 
+
+    return uniqueSlug;
+  }
+}
+```
 
 ## Slugs in OCL
+
+Once we added slugs to all the necessary resources, we started working on using slugs in our OCL. 
 
 We've added slugs to a number of different resources within Octopus, and we plan to add slugs to more resources in the future. This currently includes:
 - Accounts
