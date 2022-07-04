@@ -104,8 +104,6 @@ Next, create an account in Azure, by navigating to the [Azure portal](https://po
 
 ### Creating an Azure Service Principal with the Azure Portal {#create-service-principal-account-in-azure}
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/QDwDi17Dkfs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
 1. In the Azure Portal, open the menu ![hamburger menu](menu.png) and navigate to **Azure Active Directory,** then **Properties** and copy the value from the **Tenant ID** field. This is your Tenant ID.
 1. Next you need your **Application ID**.
  - If you created an AAD registered application, navigate to **Azure Active Directory,** then **App Registrations**, click **View all applications**, select the app and copy the **Application ID**. Please note, the Azure UI defaults to the **Owned Applications** tab. Click the **All Applications** tab to view all app registrations. 
