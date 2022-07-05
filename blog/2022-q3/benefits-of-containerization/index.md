@@ -4,9 +4,9 @@ description: Learn about the benefits of containerization, the top container ima
 author: terence.wong@octopus.com
 visibility: private
 published: 2022-07-13-1400
-metaImage: placeholderimg.png
-bannerImage: placeholderimg.png
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: 
+bannerImage: 
+bannerImageAlt: 
 isFeatured: false
 tags:
   - DevOps
