@@ -181,7 +181,7 @@ If you consider the previous revision to be the blue half of a blue green deploy
 
 ![](tag.png "width=500")
 
-This new revision can be opened via a URL like https://green---randomquotes-5od2layuca-ts.a.run.app/ to test it before directing any main traffic to it.
+This new revision can be opened via a URL like `https://green---randomquotes-5od2layuca-ts.a.run.app/` to test it before directing any main traffic to it.
 
 A canary deployment can be achieved by gradually directing more traffic to the green stack. The command below directs 10% of traffic to the new revision:
 
