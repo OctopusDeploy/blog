@@ -2,11 +2,11 @@
 title: The benefits of containerization
 description: Learn about the benefits of containerization, the top container images, containerization technologies, and how Octopus works with containerization to make deployments easier.
 author: terence.wong@octopus.com
-visibility: private
+visibility: public
 published: 2022-07-13-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: blogimage-benefitscontainerisation-2022.png
+bannerImage: blogimage-benefitscontainerisation-2022.png
+bannerImageAlt: Man sitting on top of  container and gold circle with 3 stars.
 isFeatured: false
 tags:
   - DevOps
