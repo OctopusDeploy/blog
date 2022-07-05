@@ -3,10 +3,10 @@ title: Containerization - what you need to get started
 description: A high-level look at what you need to get started with containerization.
 author: andrew.corrigan@octopus.com
 visibility: public
-published: 2022-07-20-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+published: 2022-07-18-1400
+metaImage: blogimage-gettingstartedcontainerisation-2022.png
+bannerImage: blogimage-gettingstartedcontainerisation-2022.png
+bannerImageAlt: Man sitting on top of  container with green circle with a power up icon
 isFeatured: false
 tags: 
   - DevOps
@@ -16,7 +16,7 @@ tags:
 
 Containers are becoming the most popular way to run and host applications and microservices. Put simply, containers are lightweight virtual environments that can run apps without the bloat of a full operating system.
 
-Without the bloat, containers have many benefits over traditional infrastructure and virtual machines, including:
+Without the bloat, [containers have many benefits](https://octopus.com/blog/benefits-of-containerization) over traditional infrastructure and virtual machines, including:
 
 - Better security
 - Little-to-no system maintenance
