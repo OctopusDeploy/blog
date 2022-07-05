@@ -2,10 +2,10 @@
 title: Containerization - what you need to get started
 description: A high-level look at what you need to get started with containerization.
 author: andrew.corrigan@octopus.com
-visibility: private
+visibility: public
 published: 2022-07-20-1400
-metaImage: placeholderimg.png
-bannerImage: placeholderimg.png
+metaImage: 
+bannerImage: 
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags: 
