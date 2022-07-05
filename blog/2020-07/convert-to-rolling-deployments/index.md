@@ -40,7 +40,7 @@ For both the sequential and rolling deployment processes, the PetClinic applicat
 
 It’s important to highlight that this post won’t cover every element required for a zero-downtime deployment. It makes some assumptions about the application set-up:
 
-1. The database is already deployed in a highly available configuration. For more information on MySQL high availability, refer to the [documentation](https://dev.mysql.com/doc/mysql-ha-scalability/en/ha-overview.html).
+1. The database is already deployed in a highly available configuration. For more information on MySQL high availability, refer to the [documentation](https://dev.mysql.com/doc/).
 1. Changes to the database are made in a backward and forward compatible way using [Flyway](https://flywaydb.org/).
 1. Any required session state is persisted for when an individual server is being deployed to.
 

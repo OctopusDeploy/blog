@@ -29,7 +29,7 @@ This update brings together two exciting features for Linux users that allow you
 - Self-host the Octopus Server on Linux. 
 - Run the Tentacle agent on ARM and ARM64 hardware. 
 
-We joined the [Linux Foundation](https://www.linuxfoundation.org/en/join/members/) in 2020, and we care deeply about making DevOps automation excellent on both Windows and Linux platforms. Octopus Cloud uses our Linux Docker image to power the deployments for thousands of customers. It's a stable and secure platform for all your deployment and runbook automation, and now it's available to self-hosted customers as well.
+We joined the [Linux Foundation](https://www.linuxfoundation.org) in 2020, and we care deeply about making DevOps automation excellent on both Windows and Linux platforms. Octopus Cloud uses our Linux Docker image to power the deployments for thousands of customers. It's a stable and secure platform for all your deployment and runbook automation, and now it's available to self-hosted customers as well.
 
 This release also includes new Global Search and API key management features that benefit all users of Octopus Server.
 

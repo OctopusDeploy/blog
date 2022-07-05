@@ -30,6 +30,6 @@ You can find more information on topics discussed today in our docs:
 - [Machine policies](https://octopus.com/docs/infrastructure/machine-policies)
 - [Tentacle communication](https://octopus.com/docs/infrastructure/deployment-targets/windows-targets/tentacle-communication)
 - [Spaces](https://octopus.com/docs/administration/spaces)
-- [Workers](https://octopus.com/Workers)
+- [Workers](https://octopus.com/docs/infrastructure/workers)
 
 Subscribe to our [YouTube channel](https://www.youtube.com/channel/UCURDSDCwx9ZiCMcLdc8d6Uw?sub_confirmation=1) and follow the [playlist](https://www.youtube.com/playlist?list=PLAGskdGvlaw3-cd9rPiwhwfUo7kDGnOBh) to catch new episodes when they are released.

@@ -104,7 +104,7 @@ You’ll notice my variables follow a namespacing format of `[variablesetname].[
 
 ### Workers and security
 
-It is not wise to expose AWS RDS servers to the Internet, even sample ones I am spinning up and down.  I am going to use S3 to store backups of my database.  It is not wise to expose that either.  Not even to Octopus Cloud.  I configured my security group to only accept requests from port 80, port 443, and port 10933.  I created an EC2 instance in AWS and registered it as a [worker](https://octopus.com/workers).  That EC2 instance has permissions to upload to S3 as well as connect to AWS RDS instance over port 1433:
+It is not wise to expose AWS RDS servers to the Internet, even sample ones I am spinning up and down.  I am going to use S3 to store backups of my database.  It is not wise to expose that either.  Not even to Octopus Cloud.  I configured my security group to only accept requests from port 80, port 443, and port 10933.  I created an EC2 instance in AWS and registered it as a [worker](https://octopus.com/docs/infrastructure/workers).  That EC2 instance has permissions to upload to S3 as well as connect to AWS RDS instance over port 1433:
 
 ![](sample-aws-infrastructure.png)
 

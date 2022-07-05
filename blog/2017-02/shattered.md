@@ -26,7 +26,7 @@ When you install Octopus and the Tentacle agent, they both generate X.509 certif
 Mitigations:
 
  - **Right now**  
-   In the mean time, if you are concerned, there is a workaround: you can generate your own certificates, and tell Octopus and Tentacle to use them instead. For details, check our documentation page on [how to use custom certificates with Octopus and Tentacle](https://octopus.com/docs/how-to/how-to-use-custom-certificates-with-octopus-server-and-tentacle). 
+   In the mean time, if you are concerned, there is a workaround: you can generate your own certificates, and tell Octopus and Tentacle to use them instead. For details, check our documentation page on [how to use custom certificates with Octopus and Tentacle](https://octopus.com/docs/security/octopus-tentacle-communication/custom-certificates-with-octopus-server-and-tentacle). 
  - **Very soon**  
    We'll soon release an update that changes the algorithm to SHA256. This will apply to new installations, but for older installations you'll have to regenerate the certificates and update the trust between all the machines. 
  - **Later**  

@@ -45,7 +45,7 @@ For Octopus, it seems a natural fit to support the declarative approach.  This i
 
 ![Kubernetes Apply Step](kubernetes-apply-step.png "width=500")
 
-The Apply command accepts a template (JSON or YAML). This is conceptually similar to how the [AWS CloudFormation](https://octopus.com/docs/deploying-applications/aws-deployments/cloudformation) or [Azure Resource Group](https://octopus.com/docs/deploying-applications/azure-deployments/resource-groups) steps work in Octopus. The k8s template can be sourced from a package or configured directly in the Octopus UI.     
+The Apply command accepts a template (JSON or YAML). This is conceptually similar to how the [AWS CloudFormation](https://octopus.com/docs/deployments/aws/cloudformation) or [Azure Resource Group](https://octopus.com/docs/runbooks/runbook-examples/azure/resource-groups) steps work in Octopus. The k8s template can be sourced from a package or configured directly in the Octopus UI.     
 
 ### Container Images 
 
@@ -84,7 +84,7 @@ You can see in the UI-mock-up above that you are selecting two versions:
 
 ### Variable Substitution
 
-We will perform [variable-substitution](https://octopus.com/docs/deployment-process/variables/variable-substitution-syntax) on the Kubernetes template. So you can use Octopus variables directly in it, and they will be replaced. 
+We will perform [variable-substitution](https://octopus.com/docs/projects/variables/variable-substitutions) on the Kubernetes template. So you can use Octopus variables directly in it, and they will be replaced. 
 
 Unfortunately, Kubernetes doesn't support parameter files for templates (as for example [CloudFormation](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/parameters-section-structure.html) and [Azure RM](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-manager-templates-parameters) templates do). This is unfortunate, as parameter files seem like the ideal way for the template author to tell tools like Octopus which values should be supplied as arguments.  
 
@@ -111,7 +111,7 @@ There are many other [Kubernetes commands](https://kubernetes.io/docs/reference/
 
 We will enable these by adding a new flavor of a Run a Script step: _Run a kubectl Script_. 
 
-This step will allow you to write your own scripts, and we ensure the `kubectl` command-line is available and authenticated against the Kubernetes cluster the step is targeting.  This is conceptually similiar to our [Run an AWS CLI Script](https://octopus.com/docs/deploying-applications/custom-scripts/aws-cli-scripts) or the  [Run an Azure PowerShell Script](https://octopus.com/docs/deploying-applications/azure-deployments/running-azure-powershell) steps, which authenticate against and provide the SDK for AWS and Azure respectively. 
+This step will allow you to write your own scripts, and we ensure the `kubectl` command-line is available and authenticated against the Kubernetes cluster the step is targeting.  This is conceptually similiar to our [Run an AWS CLI Script](https://octopus.com/docs/deployments/custom-scripts/aws-cli-scripts) or the  [Run an Azure PowerShell Script](https://octopus.com/docs/deployments/azure/running-azure-powershell) steps, which authenticate against and provide the SDK for AWS and Azure respectively. 
 
 ![kubectl Script Step](kubectl-script-step.png "width=500")
 

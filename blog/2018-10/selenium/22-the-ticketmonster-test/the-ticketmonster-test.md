@@ -14,7 +14,7 @@ This post is part of a series about [creating a Selenium WebDriver test framewor
 
 TicketMonster is a sample application created by RedHat to demonstrate a number of Java web technologies. The nice thing about TicketMonster (from the point of view of a WebDriver tutorial anyway) is that it has not been optimized for automated tests, meaning that to successfully test a typical journey through the application we can’t rely on consistent network requests or all elements having convenient `id` attributes we can use to locate them.
 
-But in order to write tests for TicketMonster,  we need to have it deployed somewhere. The source code for the TicketMonster application is freely available, and you can find detailed instructions on how to run TicketMonster locally at [https://developers.redhat.com/ticket-monster/whatisticketmonster/](https://developers.redhat.com/ticket-monster/whatisticketmonster/). However, for this post we will use an instance of TicketMonster available at [https://ticket-monster.herokuapp.com/](https://ticket-monster.herokuapp.com/).
+But in order to write tests for TicketMonster,  we need to have it deployed somewhere. The source code for the TicketMonster application is freely available, and you can find detailed instructions on how to run TicketMonster locally at [https://developers.redhat.com/ticket-monster/whatisticketmonster/](https://developers.redhat.com/ticket-monster/whatisticketmonster/). 
 
 The scenario we’ll test is purchasing a ticket for an event. Let’s first run through the process of buying a ticket manually.
 
