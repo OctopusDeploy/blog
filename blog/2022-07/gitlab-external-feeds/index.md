@@ -29,7 +29,7 @@ In this post, I cover package and container registries.
 
 ### Package registry
 
-The [GitLab Package Registry](https://gitlab.octopusdemos.app/help/user/packages/package_registry/index.md#use-gitlab-cicd-to-build-packages) supports a wide variety of package types, however, Octopus only supports the following GitLab package registry types as external feeds:
+The [GitLab Package Registry](https://docs.gitlab.com/ee/user/packages/package_registry/) supports a wide variety of package types, however, Octopus only supports the following GitLab package registry types as external feeds:
 
 - Maven
 - NuGet
