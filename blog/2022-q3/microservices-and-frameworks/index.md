@@ -19,9 +19,9 @@ tags:
 
 Delivering software through microservices is a modern development approach with many benefits, for developers and customers alike.
 
-Especially useful for web applications, software built this way sees each *feature* hosted in a separate container. Users then access the whole application and its features through a front end (also in its own container), unaware of the difference in delivery.
+Using microservices means developing an application in separate, independent services. Users then access the whole application and its features through a front end, unaware of the difference in delivery.
 
-Despite the benefits, there are things to consider before developing in microservices, like the software structure and the team's processes. Thankfully, many microservices frameworks exist to help lift some of that load. In this post, we look at:
+Despite the benefits, there are things to consider before developing in microservices, such as the software's structure and the team's processes. Thankfully, many microservices frameworks exist to help lift some of that load. In this post, we look at:
 
 - Benefits of developing in microservices
 - The concept of frameworks and why you should consider them
@@ -29,7 +29,7 @@ Despite the benefits, there are things to consider before developing in microser
 
 ## Benefits of microservices
 
-Let's imagine you're building a retail website built in microservices. You might decide the following features should live in their own containers:
+Let's imagine you're building a retail website with microservices. You might decide to develop the following features as separate services:
 
 - Website front-end (HTML, CSS etc)
 - Search
@@ -46,7 +46,7 @@ Compared to a traditional website delivered as one object, microservices offers 
 
 - Product reliability - A problem with one component is less likely to impact your business. For example, people can still search and buy things if your customer reviews component goes down.
 - Quicker fixes - If the container with your checkout system becomes corrupt, you can replace it with a fresh image in minutes.
-- Reusable components - Opening a second retail website and want both to share the same live chat for support? Both sites can share the same containerized feature.
+- Reusable components - Opening a second retail website and want both to share the same live chat for support? Both sites can share the same feature.
 - Scalability - You can easily scale your website's resources to meet each component's traffic demands.
 
 There are cost and network traffic trade-offs to consider, however. Terence Wong explores these in more depth in his recent post [Monoliths versus microservices](https://octopus.com/blog/monoliths-vs-microservices).
@@ -72,13 +72,13 @@ As the name implies, a framework is a ready-made architectural structure for sof
 - Has tools to help with development
 - Helps everyone in your team pull in the same direction.
 
-Best of all, they save you time in planning, development, and support. After all, frameworks are proven, well-worn paths to software delivery. Why spend time making mistakes or plotting structures when someone has already done that for you?
+Best of all, a framework saves you time in planning, development, and support. After all, frameworks are proven, well-worn paths to software delivery. Why spend time making mistakes or plotting structures when someone has already done that for you?
 
 There are countless frameworks available for projects delivered in microservices. Those you consider will depend on your project and the programming language you use.
 
-Let's look at some popular framework options for different development languages.
-
 ## Popular frameworks for microservices
+
+Let's look at a handful of popular framework options for different development languages. This is not a comprehensive list, however. There are plenty more frameworks on the market, and we recommend doing your research before committing to one.
 
 All these frameworks are open-source.
 
@@ -126,11 +126,11 @@ A microservices framework by [AxonIQ](https://www.axoniq.io/axoniq-products) tha
 - [Command Query Responsibility Segregation (CQRS)](https://en.wikipedia.org/wiki/Command%E2%80%93query_separation#Command_Query_Responsibility_Segregation)
 - [Domain-driven design (DDD)](https://en.wikipedia.org/wiki/Domain-driven_design)
 
-#### Spring Boot
+#### Spring Cloud Functions
 
 A microservices framework from Java-framework provider, Spring.
 
-[Spring Boot](https://spring.io/microservices) boasts a framework that makes it easy to start small and grow.
+[Spring Cloud Functions](https://spring.io/microservices) boasts a framework that makes it easy to start small and grow.
 
 Its [Spring Cloud](https://spring.io/cloud) feature helps with connectivity with many service registries, and also offers an API gateway into your project.
 
@@ -200,7 +200,9 @@ Its developers describe [Fiber](https://gofiber.io/) as a Go equivalent of the E
 
 ## What's next?
 
-In this post we looked at microservices benefits, explored why using a microservices framework is a good idea, and listed some popular framework options. We have more posts about containerization on the way, including:
+In this post we looked at microservices benefits, explored why using a microservices framework is a good idea, and listed some popular framework options. 
+
+This quarter, we also have posts about containerization on the way, including:
 
 - Registries you should consider
 - More detailed looks at containerization's benefits
