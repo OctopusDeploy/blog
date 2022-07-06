@@ -3,25 +3,23 @@ title: Microservices and frameworks
 description: An overview of microservices and the different frameworks you can use to support them.
 author: andrew.corrigan@octopus.com
 visibility: private
-published: 3020-01-01-1400
+published: 32022-07-11-1400
 metaImage: blogimage-microservicesframeworks-2022.jpg
 bannerImage: blogimage-microservicesframeworks-2022.jpg
 bannerImageAlt: 3 people building an unstable looking tower with blue blocks, beside 2 people building a stable, lower tower with blue blocks.
 isFeatured: false
 tags: 
   - DevOps
-  - Containers Series
   - Containers
-  - Cloud Orchestration
-  - Testing
-  - Everything as Code
 ---
 
 Delivering software through microservices is a modern development approach with many benefits, for developers and customers alike.
 
-Using microservices means developing an application in separate, independent services. Users then access the whole application and its features through a front end, unaware of the difference in delivery.
+Using microservices means developing an application in separate, independent services. Users then access the whole application and its features through a front-end, unaware of the difference in delivery.
 
-Despite the benefits, there are things to consider before developing in microservices, such as the software's structure and the team's processes. Thankfully, many microservices frameworks exist to help lift some of that load. In this post, we look at:
+Despite the benefits, there are things to consider before developing in microservices, such as the software's structure and the team's processes. Thankfully, many microservices frameworks exist to help lift some of that load. 
+
+In this post, we look at:
 
 - Benefits of developing in microservices
 - The concept of frameworks and why you should consider them
@@ -31,7 +29,7 @@ Despite the benefits, there are things to consider before developing in microser
 
 Let's imagine you're building a retail website with microservices. You might decide to develop the following features as separate services:
 
-- Website front-end (HTML, CSS etc)
+- Website front-end (HTML, CSS, etc)
 - Search
 - Navigation
 - Product database
@@ -42,20 +40,20 @@ Let's imagine you're building a retail website with microservices. You might dec
 - Checkout and payment systems
 - Support live chat
 
-Compared to a traditional website delivered as one object, microservices offers the following benefits:
+Compared to a traditional website delivered as one object, microservices offer the following benefits:
 
 - Product reliability - A problem with one component is less likely to impact your business. For example, people can still search and buy things if your customer reviews component goes down.
 - Quicker fixes - If the container with your checkout system becomes corrupt, you can replace it with a fresh image in minutes.
 - Reusable components - Opening a second retail website and want both to share the same live chat for support? Both sites can share the same feature.
 - Scalability - You can easily scale your website's resources to meet each component's traffic demands.
 
-There are cost and network traffic trade-offs to consider, however. Terence Wong explores these in more depth in his recent post [Monoliths versus microservices](https://octopus.com/blog/monoliths-vs-microservices).
+There are cost and network traffic trade-offs to consider, however. Terence Wong explores these in more depth in his post [Monoliths versus microservices](https://octopus.com/blog/monoliths-vs-microservices).
 
 ## Microservices frameworks and why you should consider them
 
-If you know that delivering your product through microservices is for you, there are many ways to plot out how it'll work.
+If you want to deliver your product through microservices, there are many ways to plot out how it'll work.
 
-You could, of course, start from scratch and feel out a simple product structure along the way with nothing but your code and some containers.
+You could start from scratch and feel out a simple product structure along the way with nothing but your code and some containers.
 
 This approach is likely fine for small projects with few features, but things can get complex quickly should you need to scale suddenly. You could see a bunch of unintended impacts, such as:
 
@@ -202,7 +200,7 @@ Its developers describe [Fiber](https://gofiber.io/) as a Go equivalent of the E
 
 In this post we looked at microservices benefits, explored why using a microservices framework is a good idea, and listed some popular framework options. 
 
-This quarter, we also have posts about containerization on the way, including:
+We also have posts about containerization on the way, including:
 
 - Registries you should consider
 - More detailed looks at containerization's benefits
