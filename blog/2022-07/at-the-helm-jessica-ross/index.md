@@ -4,9 +4,9 @@ description: A series where we chat to people at Octopus about their role, what 
 author: shipra.mahindra@octopus.com
 visibility: public
 published: 2022-07-25-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: Octopus-branded security badge with text that says Jessica Ross, Director of User Experience and Design, above the silhouette of a woman.
+metaImage: blogimage-atthehelmwithjessross-2022.png
+bannerImage: blogimage-atthehelmwithjessross-2022.png
+bannerImageAlt: Octopus-branded security badge with text that says Jessica Ross, Director of User Experience and Design, above the silhouette of a red-headed woman wearing glasses.
 isFeatured: false
 tags: 
   - Company
