@@ -4,9 +4,9 @@ description: An overview of microservices and the different frameworks you can u
 author: andrew.corrigan@octopus.com
 visibility: private
 published: 3020-01-01-1400
-metaImage: placeholderimg.png
-bannerImage: placeholderimg.png
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-microservicesframeworks-2022.jpg
+bannerImage: blogimage-microservicesframeworks-2022.jpg
+bannerImageAlt: 3 people building an unstable looking tower with blue blocks, beside 2 people building a stable, lower tower with blue blocks.
 isFeatured: false
 tags: 
   - DevOps
