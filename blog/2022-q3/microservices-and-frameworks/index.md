@@ -11,6 +11,7 @@ isFeatured: false
 tags: 
   - DevOps
   - Containers
+  - Microservices
 ---
 
 Delivering software through microservices is a modern development approach with many benefits, for developers and customers alike.
