@@ -18,7 +18,7 @@ At Octopus Deploy, how we support our customers has always been important to us.
 
 In the early days, the entire team, from our CEO down, answered support emails. As we grew, we added a dedicated team of support engineers who worked closely with our product engineering teams to ensure we were giving our customers the best possible support. Now we have support engineers based in Australia, the UK, and the US, which means we provide support 24 hours a day five days a week and there's no time zone lag.
 
-You can access support by [email](mailto:support@octopus.com) and on our [support forum](https://help.octopus.com/), or if you prefer to self-support, we have [documentation](https://www.octopus.com/docs), a [YouTube channel](https://www.youtube.com/octopusdeploy), and a [community Slack channel](http://octopus.com/slack).
+You can access support by [email](mailto:support@octopus.com) and on our [support forum](https://help.octopus.com/), or if you prefer to self-support, we have [documentation](https://www.octopus.com/docs), a [YouTube channel](https://www.youtube.com/octopusdeploy), and a [community Slack channel](https://octopus.com/slack).
 
 ## Priority Support 
 

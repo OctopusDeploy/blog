@@ -87,7 +87,7 @@ The `<modelVersion>` element defines the POM version. The only supported value f
 
 The `<groupId>`, `<artifactId>` and `<version>` elements define the identity of the Maven artifact produced by this project. These values are sometimes combined and abbreviated to the acronym GAV.
 
-The `groupId` usually takes the form of a reversed domain name, although this is just a convention and not a strict requirement. We have used the value `com.octopus`, which is the reverse of the domain name in the URL [http://octopus.com/](http://octopus.com/).
+The `groupId` usually takes the form of a reversed domain name, although this is just a convention and not a strict requirement. We have used the value `com.octopus`, which is the reverse of the domain name in the URL [https://octopus.com/](https://octopus.com/).
 
 The combination of the `groupId` and `artifactId` must be unique, and since many projects may share the `groupId`, it is the `artifactId` that describes this project.
 

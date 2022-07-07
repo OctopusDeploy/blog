@@ -27,8 +27,8 @@ In this post, I will show you that it is possible to deploy and run .NET Core ap
 ## Requirements before you start
 
 * Editor: Visual Studio, Visual Studio Code, Rider.
-* [Octopus Command Line](http://octopus.com/downloads).
-* [Octopus Server](http://octopus.com/downloads) and an [API key](https://octopus.com/docs/octopus-rest-api/how-to-create-an-api-key).
+* [Octopus Command Line](https://octopus.com/downloads).
+* [Octopus Server](https://octopus.com/downloads) and an [API key](https://octopus.com/docs/octopus-rest-api/how-to-create-an-api-key).
 * .NET Core: [Windows](https://www.microsoft.com/net/download/windows) or [Macos](https://www.microsoft.com/net/download/macos).
 * A Raspberry Pi 3+ running [Raspbian](https://www.raspberrypi.org/downloads/raspbian/) with .NET core 2.0 or later Runtime [installed](https://github.com/dotnet/core/blob/master/samples/RaspberryPiInstructions.md):
     * Download link: [Linux ARM (armhf)](https://github.com/dotnet/core-setup).

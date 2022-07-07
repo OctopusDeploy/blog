@@ -57,7 +57,7 @@ Below is a list of hard lessons I learned automating database deployments:
 - Don’t break your focus during the kick-off meeting.  Block out 1 to 2 days and don’t allow open laptops, except to look up answers to specific questions.
 - Don’t focus on specific tooling.  Focus on the core concepts of the tooling available.  For example, modern version control software supports branching and a review process for merging, and every database deployment tool has a way to run from the command-line.
 - Don’t try to automate rollbacks at the start.  You could spend the entire two days at the kick-off meeting trying to figure out all the possible scenarios.
-- Don’t be afraid to ask for help if you get stuck.  When I worked for a previous company, we asked Redgate for help, and they walked us through this process.  There are consulting firms, such as [DLM Consultants](http://dlmconsultants.com/), which can also help.
+- Don’t be afraid to ask for help if you get stuck.  When I worked for a previous company, we asked Redgate for help, and they walked us through this process.  There are consulting firms, such as [DLM Consultants](https://dlmconsultants.com/), which can also help.
 - Don’t make decisions in a vacuum.  The work group should be transparent and solicit feedback at key points, and provide regular updates to everyone.
 
 Depending on the size of your company, you might only have 4 to 6 developers and a DBA, or maybe only 2 or 3 people have the desire/bandwidth to solve the issues.  In this case, *work group* really means *anyone who wants to be included*.

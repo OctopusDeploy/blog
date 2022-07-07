@@ -76,7 +76,7 @@ In itself we didn't really see this as a problem - the code was fine, and the ch
 
 #### Marketing and communication suffered
 
-We were working so autonomously and with so little friction that half of our team didn't even realize we were already up to `3.11` and that we had shipped the features for [managing and deploying X.509 certificates](https://octopus.com/certificates) - arguably one of the best things Octopus can do for you - and we didn't really make the most of that opportunity to shout it from the rooftops! At the same time we made a little mistake with typed variables where two teams took a slightly different approach to solving the same problem.
+We were working so autonomously and with so little friction that half of our team didn't even realize we were already up to `3.11` and that we had shipped the features for [managing and deploying X.509 certificates](https://octopus.com/docs/deployments/certificates) - arguably one of the best things Octopus can do for you - and we didn't really make the most of that opportunity to shout it from the rooftops! At the same time we made a little mistake with typed variables where two teams took a slightly different approach to solving the same problem.
 
 This wasn't a versioning problem, this was a **planning** problem! We were shipping really nice things, but we weren't doing it with a deliberate sense of cohesion and alignment.
 

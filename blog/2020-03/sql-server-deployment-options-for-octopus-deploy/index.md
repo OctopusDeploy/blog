@@ -79,7 +79,7 @@ SQL Source Control is almost certainly the most popular SQL Server source contro
 
 Deployment is handled through the SCA PowerShell module, and there are some excellent step templates that make setting up your Octopus Deploy projects relatively straight-forward. The diff reports are really handy too. Check out [Bob’s recent post](https://octopus.com/blog/database-deployment-automation-using-redgate-sql-change-automation) for more info on this.
 
-I’ve written [a much more detailed account of the differences between SSDT and SQL Source Control here](https://www.brentozar.com/archive/2018/12/comparison-review-microsoft-ssdt-vs-red-gate-sql-source-control/), and there’s also a [30-page whitepaper on the topic](http://dlmconsultants.com/redgate-vs-ssdt/).
+I’ve written [a much more detailed account of the differences between SSDT and SQL Source Control here](https://www.brentozar.com/archive/2018/12/comparison-review-microsoft-ssdt-vs-red-gate-sql-source-control/), and there’s also a [30-page whitepaper on the topic](https://dlmconsultants.com/redgate-vs-ssdt/).
 
 **Best thing:** Usability, integration with SSMS, release diff reports.
 
@@ -167,7 +167,7 @@ As stated above, my aim was to list the most popular options. Based on the data 
 
 None of the tools are perfect. They all have their challenges, but they also all have advantages. Almost certainly, however, in almost all cases you would be better off using one of these tools than creating your own database deployment framework. 
 
-Which tool is the best suited for your environment? Well, it depends. But here is a decision tree from one of [DLM Consultants’ 2-day Database DevOps training classes](http://dlmconsultants.com/dlm-workshops/) to prompt some discussion amongst your team:
+Which tool is the best suited for your environment? Well, it depends. But here is a decision tree from one of [DLM Consultants’ 2-day Database DevOps training classes](https://dlmconsultants.com/dlm-workshops/) to prompt some discussion amongst your team:
 
 ![A decision tree for SQL Server estates](decision-tree.jpg "width=500")
 
@@ -179,6 +179,6 @@ Alex Yates has been helping organisations to apply DevOps principles to their da
  
 A keen community member, he co-organises [Data Relay](https://datarelay.co.uk/), is the founder of [www.SpeakingMentors.com](http://www.speakingmentors.com/) and has been recognised as a  [Microsoft Data Platform MVP](https://mvp.microsoft.com/en-us/PublicProfile/5002655?fullName=Alex%20Yates) since 2017.
  
-Alex is the founder of [DLM Consultants](http://dlmconsultants.com/), an official Octopus Deploy partner. He enjoys mentoring, coaching, training and consulting with customers who want to achieve better business outcomes through improved IT and database delivery practices.
+Alex is the founder of [DLM Consultants](https://dlmconsultants.com/), an official Octopus Deploy partner. He enjoys mentoring, coaching, training and consulting with customers who want to achieve better business outcomes through improved IT and database delivery practices.
  
 If you would like to work with Alex, email: [enquiries@dlmconsultants.com](mailto:enquiries@dlmconsultants.com) 

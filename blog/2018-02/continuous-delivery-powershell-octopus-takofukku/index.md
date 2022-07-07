@@ -70,7 +70,7 @@ One minor problem I found with Pester tests is that errors outside the immediate
 
 ![The Publish Step](publish.png)
 
-My esteemed colleague [Chris van Dal](https://octopus.com/blog/introducing-chris-van-dal) did a pull request a while back adding `publish.ps1` to this repo so that I could deploy to the PS Gallery easily. You can see the script [over at the GitHub repo](https://github.com/stopthatastronaut/StatusCakeDSC/blob/master/publish.ps1), and it's pretty much what most PowerShell module authors use to push their modules out. I just drive that from my Octopus step as follows:
+My esteemed colleague Chris van Dal, did a pull request a while back adding `publish.ps1` to this repo so that I could deploy to the PS Gallery easily. You can see the script [over at the GitHub repo](https://github.com/stopthatastronaut/StatusCakeDSC/blob/master/publish.ps1), and it's pretty much what most PowerShell module authors use to push their modules out. I just drive that from my Octopus step as follows:
 
 ```
 Set-Location c:\StatuscakeDSC

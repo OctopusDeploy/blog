@@ -46,7 +46,7 @@ New option for `Web Application`:
 
 ## Certificates are now generated using SHA256
 
-As promised in our blog post on [shattered](http://octopus.com/blog/shattered), we have updated our certificate generation to use SHA256, rather than the previous SHA1. This ensures any new installations or regenerated certificates will use SHA256, but will not affect any existing certificates. We will be rolling out features in the near future to make it easier to replace older certificates.
+As promised in our blog post on [shattered](https://octopus.com/blog/shattered), we have updated our certificate generation to use SHA256, rather than the previous SHA1. This ensures any new installations or regenerated certificates will use SHA256, but will not affect any existing certificates. We will be rolling out features in the near future to make it easier to replace older certificates.
 
 ## Tentacle split
 
@@ -87,7 +87,7 @@ Every Octopus customer should benefit from these improvements, but especially th
 
 ## Improved upgrade experience
 
-Whenever we needed to change the database schema, those changes would be applied when the Octopus Server started up, by the Octopus Server account, somewhat invisibly to any users. This hasn't provided the best experience for customers with large installations or those using [Octopus High Availability](http://g.octopushq.com/HighAvailability) clusters, or those who want a different security model. Now when you upgrade Octopus to 3.14.x, or newer, the database schema upgrade will be performed automatically after the installer completes, clearly showing the progress of the schema changes.
+Whenever we needed to change the database schema, those changes would be applied when the Octopus Server started up, by the Octopus Server account, somewhat invisibly to any users. This hasn't provided the best experience for customers with large installations or those using [Octopus High Availability](https://g.octopushq.com/HighAvailability) clusters, or those who want a different security model. Now when you upgrade Octopus to 3.14.x, or newer, the database schema upgrade will be performed automatically after the installer completes, clearly showing the progress of the schema changes.
 
 ![Improved upgrade experience](octopus-release-3-14-improved-upgrade-experience.gif "width=500")
 

@@ -148,7 +148,7 @@ A well-trained kraken makes a powerful ally.
 
 ---
 
-To learn more about DLM Consultants’ DLM Health Check: [http://dlmconsultants.com/dlm-health-check/](http://dlmconsultants.com/dlm-health-check/)
+To learn more about DLM Consultants’ DLM Health Check: [https://dlmconsultants.com/dlm-health-check/](https://dlmconsultants.com/dlm-health-check/)
 To learn more about security in Octopus Deploy: [https://octopus.com/docs/security](https://octopus.com/docs/security)
 
 ---
@@ -157,6 +157,6 @@ Alex Yates has been helping organisations to apply DevOps principles to their da
  
 A keen community member, he co-organises [Data Relay](https://datarelay.co.uk/), is the founder of [www.SpeakingMentors.com](http://www.speakingmentors.com/) and has been recognised as a  [Microsoft Data Platform MVP](https://mvp.microsoft.com/en-us/PublicProfile/5002655?fullName=Alex%20Yates) since 2017.
  
-Alex is the founder of [DLM Consultants](http://dlmconsultants.com/), an official Octopus Deploy partner. He enjoys mentoring, coaching, training and consulting with customers who want to achieve better business outcomes through improved IT and database delivery practices.
+Alex is the founder of [DLM Consultants](https://dlmconsultants.com/), an official Octopus Deploy partner. He enjoys mentoring, coaching, training and consulting with customers who want to achieve better business outcomes through improved IT and database delivery practices.
  
 If you would like to work with Alex, email: [enquiries@dlmconsultants.com](mailto:enquiries@dlmconsultants.com) 
