@@ -20,6 +20,9 @@ Introductory paragraph that tells the reader why they should read on.
 
 The body of the post is where you share your hypothesis, how-to, or story.
 
+If there are any previous posts on the same topic, please link to them to help with our SEO efforts. For example:
+Our post about [DORA metrics](https://octopus.com/blog/dora-metrics-devops-business-outcomes) discusses how agility-based metrics can help improve profitability, market share, and productivity. 
+
 ### Subheadings
 
 Use three ### to include H3 headings.
