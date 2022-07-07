@@ -42,7 +42,7 @@ Octopus will use Windows PowerShell by default and provides the option to use Po
 
 Octopus will automatically execute scripts with PowerShell Core if it’s installed. 
 
-[Learn More](http://octopus.com/docs/deployment-examples/custom-scripts/powershell-core)
+[Learn More](https://octopus.com/docs/deployment-examples/custom-scripts/powershell-core)
 
 ## Improved build information and work item tracking
 

@@ -44,7 +44,7 @@ To follow along with this blog post, you will need to have an Octopus instance, 
 
 The Kubernetes steps in Octopus require that the `kubectl` executable be available on the path. Likewise the Helm steps require the `helm` executable to be available on the path.
 
-If you run the Kubernetes steps from [Octopus workers](http://g.octopushq.com/OnboardingWorkersLearnMore), you can install the `kubectl` executable using the instructions on the [Kubernetes website](http://g.octopushq.com/KubernetesKubectlInstall), and the `helm` executable using the instructions on the [Helm project page](http://g.octopushq.com/KubernetesHelmInstall).
+If you run the Kubernetes steps from [Octopus workers](https://g.octopushq.com/OnboardingWorkersLearnMore), you can install the `kubectl` executable using the instructions on the [Kubernetes website](https://g.octopushq.com/KubernetesKubectlInstall), and the `helm` executable using the instructions on the [Helm project page](https://g.octopushq.com/KubernetesHelmInstall).
 
 Because the Kubernetes functionality in Octopus is in a preview state, the steps discussed in this post need to be enabled in the `Features` section.
 
@@ -411,7 +411,7 @@ The blue/green deployment strategy provides some interesting possibilities for t
 
 ## Volumes and ConfigMaps
 
-Volumes provide a way for Container resources to access external data. [Kubernetes provides a lot of flexibility with volumes](http://g.octopushq.com/KubernetesVolumes), and they could be disks, network shares, directories on nodes, GIT repositories and more.
+Volumes provide a way for Container resources to access external data. [Kubernetes provides a lot of flexibility with volumes](https://g.octopushq.com/KubernetesVolumes), and they could be disks, network shares, directories on nodes, GIT repositories and more.
 
 For this example, we want to take the data stored in a ConfigMap resource, and expose it as a file within our Container resource. ConfigMap resources are convenient because Kubernetes ensures they are highly available, they can be shared across Container resources, and they are easy to create.
 

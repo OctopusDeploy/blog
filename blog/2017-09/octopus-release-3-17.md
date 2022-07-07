@@ -31,7 +31,7 @@ This months release is big and we're very happy to ship Octopus 3.17 with first-
 
 These new steps allow Java applications to be deployed to WildFly 10+ and Red Hat JBoss EAP 6+ application servers, as well as Tomcat 7+. In addition, the `Deploy Java Archive` step allows Java applications to be copied to a custom location on the target machine, allowing Java applications to be deployed in any Java application server capable of using file copy deployments.
 
-See the [documentation](http://g.octopushq.com/JavaAppDeploy) for more information on these new steps.
+See the [documentation](https://g.octopushq.com/JavaAppDeploy) for more information on these new steps.
 
 ## Swagger support for the Octopus API
 
@@ -51,7 +51,7 @@ The other big change related to user modelling is the introduction of Logins, wh
 
 And one final note, automatic user creation can now be disabled. It still defaults to being enabled, but you can now chose to disable it. Enabling/disabling is done via the `configure` command line and can be set per authentication provider.
 
-See the updated [documentation](http://g.octopushq.com/AuthenticationProviders) for more information.
+See the updated [documentation](https://g.octopushq.com/AuthenticationProviders) for more information.
 
 ## Breaking changes
 

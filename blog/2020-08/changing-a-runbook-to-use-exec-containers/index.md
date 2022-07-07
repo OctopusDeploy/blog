@@ -94,7 +94,7 @@ In the Dockerfile above, I installed the `google-cloud-sdk`.  In the runbook, th
 
 ### Authentication
 
-The runbook has a step that sets the authentication scope. This needs to change as we need to set the authentication scope on each step.  We can refactor this out to a reusable [script module](http://g.octopushq.com/ScriptModules).
+The runbook has a step that sets the authentication scope. This needs to change as we need to set the authentication scope on each step.  We can refactor this out to a reusable [script module](https://g.octopushq.com/ScriptModules).
 
 I’ll go to **{{ Library, Script Modules, Add Script Module }}**, and add the following PowerShell code I copied from the **Activate GCloud Service Account** step:
 
@@ -135,7 +135,7 @@ Now, after I’ve copied the step to my **Destroy Ubuntu worker** runbook, I can
 
 ### Specify the execution container
 
-The first step in the runbook that I’m going to change to use an execution container is **Get GCP NLB IP**. Before using a container, I have to set up an [external feed](http://g.octopushq.com/DockerRegistries) for [DockerHub](https://hub.docker.com/).  To do this, navigate to **{{ Library, External Feeds, Add Feed }}**.
+The first step in the runbook that I’m going to change to use an execution container is **Get GCP NLB IP**. Before using a container, I have to set up an [external feed](https://g.octopushq.com/DockerRegistries) for [DockerHub](https://hub.docker.com/).  To do this, navigate to **{{ Library, External Feeds, Add Feed }}**.
 
 ![docker feed](docker-feed.png)
 

@@ -41,7 +41,7 @@ Now, you can import your self-hosted license keys into your account. When you go
 
 ## Spin up a new Cloud trial
 
-You can also use your account to easily try Octopus Deploy in the cloud, as always, free for 30 days. Just [sign in](http://account.octopus.com) and follow the link to create a new Cloud instance and get up and running in a few clicks.
+You can also use your account to easily try Octopus Deploy in the cloud, as always, free for 30 days. Just [sign in](https://account.octopus.com) and follow the link to create a new Cloud instance and get up and running in a few clicks.
 
 ## Future plans
 

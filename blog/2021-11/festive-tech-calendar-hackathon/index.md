@@ -81,6 +81,6 @@ If you haven’t used Octopus Deploy before, check out the following resources:
 - [Getting Started docs](https://octopus.com/docs/getting-started)
 - [Getting Started YouTube videos](https://www.youtube.com/playlist?list=PLAGskdGvlaw268i2ZTPC1ZrxwFjjKIdKH)
 - [Our blog](https://octopus.com/blog)
-- The [Octopus Community Slack space](http://octopususergroup.slack.com) - to ask questions and meet other people from the Octopus community 
+- The [Octopus Community Slack space](https://octopususergroup.slack.com) - to ask questions and meet other people from the Octopus community 
 
 Happy deployments!
