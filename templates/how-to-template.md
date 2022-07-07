@@ -46,9 +46,12 @@ Use screenshots to help orient the user if they're moving between screens/system
 2. Use clear declarative language.
     1. Break steps into multiple nested parts so you're not asking the user to process too much all at once.
 
+If there are any previous blog posts on the same topic, please link to them to help with our SEO efforts. For example:
+The VPC, subnets, and route tables were described in our previous post about [creating a private AWS VPC with CloudFormation](https://octopus.com/blog/aws-vpc-private).
+
 ## Conclusion
 
-Close off the post by restating the what was achieved in the how-to, share any closing thoughts, and invite feedback.
+Close off the post by restating what was achieved in the how-to, share any closing thoughts, and invite feedback.
 
 ## Learn more
 
