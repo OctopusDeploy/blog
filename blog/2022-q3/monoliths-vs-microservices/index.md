@@ -12,6 +12,7 @@ tags:
   - DevOps
   - Containers
   - Cloud Orchestration
+  - Microservices
 ---
 
 Monoliths and microservices are 2 approaches to building software. Which one you choose can significantly impact development and performance. 
