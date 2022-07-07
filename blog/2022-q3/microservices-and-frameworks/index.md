@@ -2,8 +2,8 @@
 title: Microservices and frameworks
 description: An overview of microservices and the different frameworks you can use to support them.
 author: andrew.corrigan@octopus.com
-visibility: private
-published: 32022-07-11-1400
+visibility: public
+published: 2022-07-11-1400
 metaImage: blogimage-microservicesframeworks-2022.jpg
 bannerImage: blogimage-microservicesframeworks-2022.jpg
 bannerImageAlt: 3 people building an unstable looking tower with blue blocks, beside 2 people building a stable, lower tower with blue blocks.
@@ -44,7 +44,7 @@ Compared to a traditional website delivered as one object, microservices offer t
 
 - Product reliability - A problem with one component is less likely to impact your business. For example, people can still search and buy things if your customer reviews component goes down.
 - Quicker fixes - If the container with your checkout system becomes corrupt, you can replace it with a fresh image in minutes.
-- Reusable components - Opening a second retail website and want both to share the same live chat for support? Both sites can share the same feature.
+- Reusable components - If you open a second retail website, both can share the same live chat feature.
 - Scalability - You can easily scale your website's resources to meet each component's traffic demands.
 
 There are cost and network traffic trade-offs to consider, however. Terence Wong explores these in more depth in his post [Monoliths versus microservices](https://octopus.com/blog/monoliths-vs-microservices).
@@ -55,28 +55,28 @@ If you want to deliver your product through microservices, there are many ways t
 
 You could start from scratch and feel out a simple product structure along the way with nothing but your code and some containers.
 
-This approach is likely fine for small projects with few features, but things can get complex quickly should you need to scale suddenly. You could see a bunch of unintended impacts, such as:
+This approach is likely fine for small projects with few features, but things can get complex quickly if you need to scale suddenly. You could see a bunch of unintended impacts, such as:
 
 - The product being hard to troubleshoot  
 - Risk of new team members struggling to figure out how things fit together
 - Finding dependencies you didn't know you had
 
-This is where adopting an established microservices framework from the start makes things much easier.
+This is where adopting an established microservices framework from the start makes things easier.
 
 As the name implies, a framework is a ready-made architectural structure for software development. A framework: 
 
 - Helps form the shape of your software as it lives on your infrastructure
 - Offers teams clarity and focus
 - Has tools to help with development
-- Helps everyone in your team pull in the same direction.
+- Helps everyone in your team pull in the same direction
 
-Best of all, a framework saves you time in planning, development, and support. After all, frameworks are proven, well-worn paths to software delivery. Why spend time making mistakes or plotting structures when someone has already done that for you?
+Best of all, a framework saves you time in planning, development, and support. Frameworks are proven, well-worn paths to software delivery. Why spend time making mistakes or plotting structures when someone has already done that for you?
 
 There are countless frameworks available for projects delivered in microservices. Those you consider will depend on your project and the programming language you use.
 
 ## Popular frameworks for microservices
 
-Let's look at a handful of popular framework options for different development languages. This is not a comprehensive list, however. There are plenty more frameworks on the market, and we recommend doing your research before committing to one.
+Let's look at a handful of popular framework options for different development languages. This isn't a comprehensive list, though. There are plenty more frameworks on the market, and we recommend doing your research before committing to one.
 
 All these frameworks are open-source.
 
@@ -87,7 +87,7 @@ All these frameworks are open-source.
 The [Molecular](https://moleculer.services/) microservices framework promises:
 
 - High-speed performance
-- Extensible through existing or self-developed plugins
+- Extensibility through existing or self-developed plugins
 - Fault tolerance through a built-in load balancer, circuit breakers, and more
 - Compatibility with popular logging services
 
@@ -95,11 +95,11 @@ The [Molecular](https://moleculer.services/) microservices framework promises:
 
 [Koa](https://koajs.com/) is a microservices framework that claims to be leaner and more customizable than its predecessor, [Express](http://expressjs.com/). It also aims to make server creation easier.
 
-#### Loopback 4
+#### LoopBack 4
 
-[Loopback 4](https://loopback.io/doc/en/lb4/) is a microservices framework that includes:
+[LoopBack 4](https://loopback.io/doc/en/lb4/) is a microservices framework that includes:
 
-- OpenAPI Spec Driven REST APIs
+- OpenAPI spec driven REST APIs
 - Dependency injection through components, mixins, and repositories
 - GraphQL support
 
@@ -107,13 +107,13 @@ The [Molecular](https://moleculer.services/) microservices framework promises:
 
 #### Micronaut
 
-Micronaut (https://micronaut.io/) is a solid option because of its compatibility with Java-like languages, such as Groovy and Kotlin.
+[Micronaut](https://micronaut.io/) is a solid option because of its compatibility with Java-like languages, such as Groovy and Kotlin.
 
 It offers:
 
 - Built-in cloud support
 - Easy unit tests
-- Quick config
+- Quick configuration
 - Support for API services like OpenAPI and Swagger
 
 #### Axon Framework
@@ -160,7 +160,7 @@ As another lightweight Python offering, [CherryPy](https://cherrypy.dev/) claims
 It is:
 
 - HTTP and WSGI compliant
-- Runs on multiple ports
+- Able to run on multiple ports
 - Extensible through plugins
 
 ### Go
@@ -170,7 +170,7 @@ It is:
 [Go Micro](https://asim.github.io/go-micro/) promises:
 
 - In-built authentication
-- Dynamics configs
+- Dynamic configurations
 - Service discovery through DNS
 - Load balancing
 - Message encoding
@@ -188,7 +188,7 @@ It is:
 
 #### Fiber
 
-Its developers describe [Fiber](https://gofiber.io/) as a Go equivalent of the Express framework. Built on top of Fasthttp, it offers easy routing definitions and helps deliver static files.
+Fiber's developers describe [Fiber](https://gofiber.io/) as a Go equivalent of the Express framework. Built on top of Fasthttp, it offers easy routing definitions and helps deliver static files.
 
 ### .NET and C#
 
