@@ -20,13 +20,19 @@ This request for comments (RFC) aims to gather feedback on the demand for this f
 
 If you are using C# scripts in your deployment processes, and are deploying to Linux targets using SSH and Mono, or to Windows tentacle targets running Windows versions earlier than 2012 R2, the proposed changes could impact you.
 
-## How we propose to support dotnet-script
+### How we propose to support dotnet-script
 
 This RFC proposes removing `ScriptCS` in favour of `dotnet-script`.
 
-To deploy software to your server we use [Tentacle](https://github.com/OctopusDeploy/OctopusTentacle), a lightweight service responsible for communicating with Octopus Server, and invoking [Calamari](https://github.com/OctopusDeploy/Calamari). Calamari is a command-line tool which knows how to perform the deployment, and is the host process for all deployment actions including script execution.
+To deploy software to your server we use [Tentacle](https://github.com/OctopusDeploy/OctopusTentacle), a lightweight service responsible for communicating with Octopus Server, and invoking [Calamari](https://github.com/OctopusDeploy/Calamari). Calamari is a command-line tool which knows how to perform the deployment, and is the host process for all deployment actions including script execution. We currently build Calamari for .Net Framework 4.0.0, 4.5.2 and netcore3.1, depending on your server OS, architecture version Tentacle will receive one of these Calamari builds. 
 
-One of the tradeoffs of this change is that C# scripting will no longer be available on Linux deployment targets using SSH with Mono. If you wish to run C# scripts against your SSH linux targets, you will need to reconfigure your SSH targets to use the self-contained Calamari which runs via netcore3.1. Targets using the Linux tentacle will continue to work as they always have.
+Historically Calamari required Mono to be installed on your Linux targets to execute `ScriptCS` as it's built on the full .NET Framework. With the introduction of cross platform dotnet apps with netcore3.1 Linux can now natively run dotnet apps removing the complexity and overhead of Mono. Linux targets will receive the netcore3.1 Calamari by default with the exception of [Linux SSH targets](https://octopus.com/docs/infrastructure/deployment-targets/linux/ssh-target#add-an-ssh-connection) which can specify to run scripts on Mono.
+
+`dotnet-script` is a modern implementation of C# scripting, built on dotnet, it can run on all targets that support dotnet apps (netcore3.1 and newer). This means Windows server versions will need to support dotnet apps to execute `dotnet-script`. Windows Server 2012 R2 only supports the full .Net Framework, meaning Windows Server 2012 R2 and earlier versions will no longer support C# scripting.
+
+## Impacts
+
+One of the tradeoffs of this change is that C# scripting will no longer be available on Linux deployment targets using SSH with Mono. If you wish to run C# scripts against your SSH linux targets, you will need to reconfigure your SSH targets to use the self-contained Calamari which runs via netcore3.1. To do this select the Self-Contained Calamari target runtime on your SSH target, a guide can be found [here](https://octopus.com/docs/infrastructure/deployment-targets/linux/ssh-target#self-contained-calamari). Targets using the Linux tentacle will continue to work as they always have.
 
 The other tradeoff we would make with this change is that `dotnet-script` only works with netcore3.1 and above. This would mean C# scripting will be unavailable to deployments against Windows Tentacles installed on versions of Windows earlier than 2012 R2, as these run Full .NET Framework builds of Calamari. 
 
@@ -64,7 +70,7 @@ We are still evaluating how many users this change is likely to affect. We will 
 
 ## We want your feedback
 
-We're still considering this change, so now is a great time to help shape this proposal with your feedback. We have created a [GitHub issue to capture the discussion](https://github.com/OctopusDeploy/StepsFeedback/issues/7).
+We're still considering this change, so now is a great time to help shape this proposal with your feedback. We have created a [GitHub issue to capture the discussion](https://github.com/OctopusDeploy/StepsFeedback/issues/9).
 
 Specifically, we want to know:
 
@@ -74,7 +80,7 @@ Specifically, we want to know:
 
 This feedback will help us deliver the best solution we can.
 
-<span><a class="btn btn-success" href="https://github.com/OctopusDeploy/StepsFeedback/issues/7">Provide feedback</a></span>
+<span><a class="btn btn-success" href="https://github.com/OctopusDeploy/StepsFeedback/issues/9">Provide feedback</a></span>
 
 ## Conclusion
 
@@ -88,6 +94,6 @@ In summary, the migration from `ScriptCS` to `dotnet-script` includes results in
 
 Thanks for reading this RFC. We hope you're as excited about the proposed migration to `dotnet-script` as we are.
 
-Any [feedback](https://github.com/OctopusDeploy/StepsFeedback/issues/7) you have is greatly appreciated.
+Any [feedback](https://github.com/OctopusDeploy/StepsFeedback/issues/9) you have is greatly appreciated.
 
 Happy deployments!
