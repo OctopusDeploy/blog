@@ -1,5 +1,5 @@
 ---
-title: What are slugs and why we chose them for OCL
+title: Introducing slugs in Config as Code
 description: TODO
 author: eoin.motherway@octopus.com
 visibility: public
@@ -15,16 +15,15 @@ tags:
 
 When we started developing the Configuration as Code feature, we made the decision to replace IDs with names in OCL.
 
-This post explores the tradeoffs made by using names in OCL, what slugs are, how we went about implementing them, and how they solved most of the problems we ran into with names.
+This post explores the tradeoffs made by using names in OCL, what slugs are, and how we implemented them for config as code, and future features.
 
 ## IDs in Octopus
 
-Traditionally, Octopus uses unique IDs to reference shared resources from places such as deployment processes, runbooks, variables, and much more. These IDs are also used in the API routes, and web UI routes.
-When a page is loaded in the web UI, it will get the ID from the route, and use that ID to send a request to the API. This allows us to show names in the UI.
+Traditionally, Octopus uses unique IDs to reference shared resources from places such as deployment processes, runbooks, variables, and many more. These IDs are also used in the API, and web UI routes.
 
 ## Config as Code
 
-Once we began working on Config as Code, we realised that our IDs weren't going to work very well in OCL.
+When we began working on Config as Code, we realised that our IDs weren't going to work very well in OCL.
 
 On their own, IDs aren't very descriptive. The ID of an environment might look something like `Environments-42`. This isn't an issue when using IDs in the API, as other applications are usually the ones reading them, so IDs make it much easier for them to perform any necessary requests.
 OCL on the other hand is meant to be written and read by humans.
@@ -41,13 +40,13 @@ step "Run a Script" {
 }
 ```
 
-If you came across this in your git repository, it wouldn't be very clear what this is doing. What environment is `Environments-42`? Which worker pool is `WorkerPools-4`? To find that out, you would have to use the Octopus API, CLI, or web UI, which isn't a great experience if you're just trying to read the OCL.
+If you came across this in your git repository, it wouldn't be very clear what this is doing. What environment is `Environments-42`? Which worker pool is `WorkerPools-4`? To find that out, you would need to use the API, CLI, or web UI to figure out which ID maps to which resource, which isn't a great experience if you're trying to read the OCL.
 
 ## Names in OCL
 
-When we realised we couldn't use IDs in OCL, we looked at our models for something that could be used to uniquely identify resources. We weren't spoiled for choice here, since all we had was ID, and name.
+When it came to looking for an alternative for IDs, we weren't spoiled for choice. The only unique identifiers we could use were IDs, and names.
 
-Names in Octopus are unique enough that we could confidently use them to identify resources, and they were used directly in the web UI, so they were easily identifyable at a glance.
+Names in Octopus are unique enough that we could confidently use them to identify resources. Since they were used directly in the web UI, they were also easily identifyable at a glance.
 
 ```ocl
 step "Run a Script" {
@@ -61,11 +60,9 @@ step "Run a Script" {
 
 Looking at the above OCL, it's much easier to understand what's going on comparaed to using IDs.
 
-Now that we had decided to use names in OCL, we had to figure out how we were going to convert IDs to names when writing OCL.
-
 ## Converting IDs to Names
 
-We could've easily written a converter that explicitly replaces all IDs with names, for example:
+Now that we had decided to use names in OCL, we had to figure out how we were going to convert IDs to names when writing OCL. We could've easily written a converter that explicitly replaces all IDs with names, for example:
 
 ```cs
 public async Task ConvertIdsToNames(DeploymentAction action, CancellationToken cancellationToken)
@@ -81,11 +78,11 @@ public async Task ConvertIdsToNames(DeploymentAction action, CancellationToken c
 ```
 
 This could've worked, but it wouldn't scale very well.
-As we add support for more resource types in OCL, and update our existing models, we would need to keep this converter up-to-date, which could easily be forgotten.
+As we add support for more resource types in OCL, and update our existing models, we would need to keep this converter up-to-date, which could easily be forgotten, and it's implementation could easily drift from the model definition.
 
 To address this, we leveraged tiny types, and introduced the tiny type converter.
 
-Throughout the Octopus codebase, we use tiny types (Sometimes called [value objects](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/implement-value-objects)) to represent IDs. This allows us to provide domain specific context to primitive types. 
+Throughout the Octopus codebase, we use tiny types (Sometimes called [value objects](https://docs.microsoft.com/en-us/dotnet/architecture/microservices/microservice-ddd-cqrs-patterns/implement-value-objects)) to represent IDs. This allows us to provide domain specific context to primitive types.
 
 ```cs
 public class DeploymentAction
@@ -98,7 +95,7 @@ public class DeploymentAction
 }
 ```
 
-By utilizing tiny types, we can programitally identify which properties contain IDs. This allows us to use a bit of [reflection](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/reflection) to iterate over our models, identify IDs, perform the necessary lookups, and replace any IDs with names.
+By utilizing tiny types, we can programitally identify which properties are IDs. This allows us to use a bit of [reflection](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/reflection) to iterate over our models, identify IDs, perform the necessary lookups, and replace any IDs with names.
 
 ```cs
 public class TinyTypeConverter
@@ -114,19 +111,19 @@ public class TinyTypeConverter
 }
 ```
 
-## Converting Names to IDs
-
-TODO
-
 ## The Tradeoffs
 
 While using names can improve the readibility of the OCL, it presented a number of drawbacks.
 
+The decision to use names in OCL was made before [document stores](https://octopus.com/blog/config-as-code-persistence-ignorance) were implemented into the Octopus codebase. We also lacked a solid caching layer between Octopus Server and the database.
+Because of this, we had concerns about performance when converting between IDs and names every time we read from and write to OCL. We ultimately decided to convert IDs to names when conveting project to version controlled, then using names from then on.
+
+This decision had a couple of side effeects. 
 Throughout the Octopus codebase, we generally assume that all references to shared resources are made using IDs. When we introduced names in OCL, we broke this assumption.
-Now, ID properties could contain either a name, **or** an ID. This, combined with the fact that IDs are also valid names made debugging a bit of a nightmare.
+Now, ID properties could contain either a name, **or** an ID. This caused a number of breaking changes, which combined with the fact that IDs are also valid names made debugging a bit of a nightmare.
 This also revealed a lot of edge cases and unexpected scenarios when Octopus tries to figure out if a value is a name or an ID.
 
-The "names as IDs" approach also spread to our REST API, meaning API consumers now had to be aware of names and IDs in JSON too.
+The _"names as IDs"_ approach also spread to our REST API, meaning API consumers now had to be aware of names and IDs in JSON too.
 
 ```json
 {
@@ -135,14 +132,15 @@ The "names as IDs" approach also spread to our REST API, meaning API consumers n
 }
 ```
 
-## The new IDs
+The final nail in the coffin for _"names as IDs"_ was chatty API clients. Our API consumers would need to make additional requests to the Octopus API to be able to fetch resources referenced by name.
+Because our API doesn't support lookups by name, consumers would need to use our generic list-style endpoints (E.g: `/projects`) to find all resources and manually search through their names.
+These requests might not be cheap, especially if pagination is taking place and multiple requests need to be made for a single resource.
 
-With all of the grief caused by names and IDs, we sought out alternatives.
+## Introducing Slugs
 
-Outside of the Config as Code team, other teams were also looking for alternatives to the traditional IDs.
-<!-- Todo: Which teams, and use cases -->
+With all of the grief caused by names as IDs, a number of teams within R&D sought out alternatives.
 
-We eventually decided to begin investigating fullt-qualified slugs.
+We quickly came to a consensus and began investigating fullt-qualified slugs.
 
 ## What are slugs?
 
@@ -164,18 +162,17 @@ Knowing the fully-qualified slug allows us to uniquely identify resources out-of
 
 ## Implementing slugs
 
-When we began working on slugs, we chose to add slugs to the resources whose IDs could be converted to names, with plans to add slugs to remaining documents later on.
+When we began working on slugs, we chose to add slugs to a handful of resources, with plans to add slugs to remaining documents later on, keeping the initial scope narrow, and allowing for room to grow in the future.
 
-We initially started prototyping fully-qualified slugs on a bunch of these resources, but we eventually decided to de-scope fully-qualified slugs, and opt for more simpler and lightweight approach to slugs.
-This was primarily due to time constraints, a large number of breaking changes, and we didn't need fully-qualified slugs for config as code anyway.
-Instead, we would persue a more lightweight slug solution, while making room for fully-qualified slugs in the future.
+We initially started prototyping fully-qualified slugs on these resources, but we eventually decided to de-scope fully-qualified slugs, and opt for more simpler and lightweight approach to slugs.
+This was primarily due to time constraints, a significant number of breaking changes, and we didn't need fully-qualified slugs for config as code anyway.
 
 Thankfully, there was a bit of ground-work already done for us, as projects already have a concept of slugs. Project slugs are automatically generated based on their names, and re-generated when the name changes. These slugs are used in the project URLs for the web UI.
 We were able to re-use this existing project slug generation code, and combine it with a new concept called slug providers
 
 ### Introducing Slug Providers
 
-Slug providers live in our [document store](https://octopus.com/blog/config-as-code-persistence-ignorance) layer as a decorator. Their job is to ensure that slugs have been set on any documents which need one, and don't already have one, much like how a database will automatically set the ID for any new rows.
+Slug providers live in our document store layer as a decorator. Their job is to ensure that slugs have been set on any documents which need one, and don't already have one, much like how a database will automatically set the ID for any new rows.
 Because slugs are a required field, this helps us immensely with backwards compatability, as our existing database calls don't need to be updated for slugs.
 
 ```cs
@@ -233,15 +230,15 @@ public class SlugProvider<T> : ISlugProvider<T> where T : class, IHaveSlug
 
   public async Task UniquifySlug(string slug, CancellationToken cancellationToken)
   {
-    var existingSlugs = (await documentStore.All()).Select(d => d.Slug);
-
+    var existingDoc = await documentStore.GetBySlugOrNull(d.Slug);
+    
     var i = 1;
     var uniqueSlug = slug;
-    while (existingSlugs.Contains(uniqueSlug))
+    while (existingDoc is not null)
     {
       var uniqueSlug = $"{slug}-{i}";
       i++;
-    } 
+    }
 
     return uniqueSlug;
   }
@@ -251,24 +248,10 @@ public class SlugProvider<T> : ISlugProvider<T> where T : class, IHaveSlug
 ## Slugs in OCL
 
 Once we added slugs to all the necessary resources, we started working on using slugs in our OCL. 
+This turned out to be relatively simple, as we could re-use our existing tiny type converter with some added logic for converting between IDs and slugs.
+We also didn't need to worry too much about performance anymore, as our new document stores offered improved caching capabilities.
 
-We've added slugs to a number of different resources within Octopus, and we plan to add slugs to more resources in the future. This currently includes:
-- Accounts
-- Environments
-- Feeds
-- Lifecycles
-- Teams
-- Worker Pools
-- Deployment Targets
-- Projects
-- Channels
-- Deployment Steps and Actions
-
-Octopus will automatically generate slugs based on the name when creating new resources. These slugs can be changed later if desired.
-
-When Octopus reads OCL from a git repository, it searches for slugs and converts them to the IDs we're all familiar with.
-This removes the need to account for IDs or names, and allows most API calls to be re-used between database projects and version controlled projects.
-
+We also updated our OCL syntax for deployment steps and actions, so that slugs can be specified separately from names.
 Since slugs are human readable, they also improve the OCL experience compared to using IDs.
 
 ```ocl
@@ -285,8 +268,12 @@ step "run-a-script" {
 
 It's much easier to understand which environments and worker pool this is referring to now, and we get the added bonus of these slugs being unique.
 
+Because we convert slugs to IDs when reading OCL, this removes the need to account for IDs or names in both the Octopus codebase and API.
+This solves the issue of chatty API clients, complicated _"name or ID"_ related logic, and eliminates a whole category of bugs!
+
 ### The future of slugs
 
----
+With much of the groundwork for slugs now completed, we can start adding slugs to more and more resources, and looking into fully-qualified slugs with a fresh set of eyes.
+As slugs become more prevelant throughout Octopus, they'll eventually become a more integral part of our integrations, steps, and API.
 
 Happy deployments!
