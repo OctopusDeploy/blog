@@ -59,10 +59,10 @@ New-Item -Path . -Name "ScriptFile.csx" -ItemType "file" -Value $ScriptContent
 scriptcs ScriptFile.csx -- $OctopusParameters["Octopus.Deployment.Id"]
 ```
 
-Alternativly you can include [scriptcs-tools.1.0.0.zip](scriptcs-tools.1.0.0.zip) as a [package](https://octopus.com/blog/script-step-packages) in your step and call the executable directly.
+Alternatively you can [download the ScriptCS nuget package](https://community.chocolatey.org/api/v2/package/ScriptCs/0.17.1), rezip the tools folder and use this as a [step package](https://octopus.com/blog/script-step-packages) by calling the executable directly.
 
 ```powershell
-./scriptcs-tools/scriptcs-tools/scriptcs.exe ScriptFile.csx -- $OctopusParameters["Octopus.Deployment.Id"]
+./tools/tools/scriptcs.exe ScriptFile.csx -- $OctopusParameters["Octopus.Deployment.Id"]
 ```
 
 :::hint
