@@ -36,6 +36,39 @@ One of the tradeoffs of this change would be that C# scripting would no longer b
 
 The other tradeoff we would make with this change is that `dotnet-script` only works with netcore3.1 and above. This would mean C# scripting will be unavailable to deployments against Windows Tentacles installed on versions of Windows earlier than 2012 R2, as these run Full .NET Framework builds of Calamari. 
 
+## Workarounds
+
+You can still run your existing C# scripts with ScriptCS by [installing ScriptCS](https://github.com/scriptcs/scriptcs#getting-scriptcs) directly to your deployment target or including ScriptCS as a package. To install ScriptCS directly on Mac and Linux follow the ScriptCS guide [here](https://github.com/scriptcs/scriptcs/wiki/Building-on-Mac-and-Linux) or for windows Targets the following powershell script installs both chocolatey and ScriptCS.
+
+```powershell
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+refreshenv
+choco install scriptcs -y
+refreshenv
+```
+
+Once ScriptCS is installed on the machine you can copy your C# Script into the following powershell template and run your existing scripts.
+
+```powershell
+$ScriptContent = @"
+Console.WriteLine(Env.ScriptArgs[0]);
+"@
+
+New-Item -Path . -Name "ScriptFile.csx" -ItemType "file" -Value $ScriptContent
+
+scriptcs ScriptFile.csx -- $OctopusParameters["Octopus.Deployment.Id"]
+```
+
+Alternativly you can include [scriptcs-tools.1.0.0.zip](scriptcs-tools.1.0.0.zip) as a [package](https://octopus.com/blog/script-step-packages) in your step and call the executable directly.
+
+```powershell
+./scriptcs-tools/scriptcs-tools/scriptcs.exe ScriptFile.csx -- $OctopusParameters["Octopus.Deployment.Id"]
+```
+
+:::hint
+With these changes paramaters used in the C# script must be passed in through the ScriptCS arguments and referenced by Env.ScriptArgs[Index] inside the ScriptContent. 
+:::
+
 ### Added functionality
 | Feature                               | ScriptCS          | dotnet-script    |
 |---------------------------------------|-------------------|------------------|
