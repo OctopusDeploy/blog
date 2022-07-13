@@ -24,30 +24,32 @@ If you are using C# scripts in your deployment processes, and are deploying to L
 
 This RFC proposes removing `ScriptCS` in favour of `dotnet-script`.
 
-To deploy software to your server we use [Tentacle](https://github.com/OctopusDeploy/OctopusTentacle), a lightweight service responsible for communicating with Octopus Server, and invoking [Calamari](https://github.com/OctopusDeploy/Calamari). Calamari is a command-line tool which knows how to perform the deployment, and is the host process for all deployment actions including script execution. We currently build Calamari for .Net Framework 4.0.0, 4.5.2 and netcore3.1, depending on your server OS, architecture and version Tentacle will receive one of these Calamari builds.
+To deploy software to your server we use [Tentacle](https://github.com/OctopusDeploy/OctopusTentacle), a lightweight service responsible for communicating with Octopus Server, and invoking [Calamari](https://github.com/OctopusDeploy/Calamari). Calamari is a command-line tool which knows how to perform the deployment, and is the host process for all deployment actions including script execution. We currently build Calamari for .Net Framework 4.0.0, 4.5.2 and netcore3.1. Depending on your server OS, architecture and version, Tentacle will receive one of these Calamari builds.
 
-Historically Calamari required Mono to be installed on your Linux targets to execute `ScriptCS` as it's built on the full .NET Framework. With the introduction of cross platform dotnet apps with netcore3.1 Linux can now natively run dotnet apps removing the complexity and overhead of Mono. Linux targets currently receive the netcore3.1 Calamari by default with the exception of [Linux SSH targets](https://octopus.com/docs/infrastructure/deployment-targets/linux/ssh-target#add-an-ssh-connection) which can specify to run scripts on Mono.
+Historically Calamari required Mono to be installed on your Linux targets to execute `ScriptCS` as it's built on the full .NET Framework. With the introduction of cross platform dotnet apps with netcore3.1 Linux can now natively run dotnet apps removing the complexity and overhead of Mono. Linux targets currently receive the netcore3.1 Calamari by default, with the exception of [Linux SSH targets](https://octopus.com/docs/infrastructure/deployment-targets/linux/ssh-target#add-an-ssh-connection), which can specify to run scripts on Mono.
 
-`dotnet-script` is a modern implementation of C# scripting, built on dotnet, it can run on all targets that support dotnet apps (netcore3.1 and newer). If we made this change, it would mean that C# scripts would only be able to be run on targets that support dotnet. Windows Server 2012 R2 and earlier only support .NET Framework, so these targets would lose the ability to run C# scripts.
+`dotnet-script` is a modern implementation of C# scripting, built on dotnet. It can run on all targets that support dotnet apps (netcore3.1 and newer). If we made this change, it would mean that C# scripts would only be able to be run on targets that support dotnet. Windows Server 2012 R2 and earlier only support .NET Framework, so these targets would lose the ability to run C# scripts.
 
 ## Impacts
 
-One of the tradeoffs of this change would be that C# scripting would no longer be available on Linux deployment targets using SSH with Mono. If you wish to run C# scripts against your SSH linux targets, you would need to reconfigure your SSH targets to use the self-contained Calamari which runs via netcore3.1. To do this select the Self-Contained Calamari target runtime on your SSH target, a guide can be found [here](https://octopus.com/docs/infrastructure/deployment-targets/linux/ssh-target#self-contained-calamari). Targets using the Linux tentacle will continue to work as they always have.
+### Linux SSH Targets using Mono
+One of the tradeoffs of this change would be that C# scripting would no longer be available on Linux deployment targets using SSH with Mono.
 
-The other tradeoff we would make with this change is that `dotnet-script` only works with netcore3.1 and above. This would mean C# scripting will be unavailable to deployments against Windows Tentacles installed on versions of Windows earlier than 2012 R2, as these run Full .NET Framework builds of Calamari. 
+If you wish to run C# scripts against your SSH linux targets, you would need to reconfigure your SSH targets to use the self-contained Calamari which runs via netcore3.1. To do this, [select the Self-Contained Calamari target runtime on your SSH target](https://octopus.com/docs/infrastructure/deployment-targets/linux/ssh-target#self-contained-calamari). Targets using the Linux tentacle will continue to work as they always have.
 
-## Workarounds
+### Windows Server 2012R2 (and earlier) targets
+The other tradeoff we would make with this change is that `dotnet-script` only works with netcore3.1 and above. This would mean C# scripting will be unavailable to deployments against Windows Tentacles installed on versions of Windows earlier than 2012 R2, as these run .NET Framework builds of Calamari. 
 
-You can still run your existing C# scripts with ScriptCS by [installing ScriptCS](https://github.com/scriptcs/scriptcs#getting-scriptcs) directly to your deployment target or including ScriptCS as a package. To install ScriptCS directly on Mac and Linux follow the ScriptCS guide [here](https://github.com/scriptcs/scriptcs/wiki/Building-on-Mac-and-Linux) or for windows Targets the following powershell script installs both chocolatey and ScriptCS.
+#### Workaround
 
-```powershell
-Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
-refreshenv
-choco install scriptcs -y
-refreshenv
-```
+We've developed a workaround to allow you to continue using ScriptCS on your affected Windows targets, but you will have to update your deployment process. 
 
-Once ScriptCS is installed on the machine you can copy your C# Script into the following powershell template and run your existing scripts.
+1. Add the [ScriptCS nuget package](https://www.nuget.org/packages/scriptcs/) as a [referenced package](https://octopus.com/blog/script-step-packages).
+2. Copy the body of your C# Script into the `$ScriptContent` variable in the following PowerShell template.
+
+:::info
+Any paramaters used in the C# script will need to be passed in through the ScriptCS arguments and referenced using the `Env.ScriptArgs[Index]` format inside the ScriptContent. The template below shows an example of how to do this for `Octopus.Deployment.Id`.
+:::
 
 ```powershell
 $ScriptContent = @"
@@ -56,18 +58,10 @@ Console.WriteLine(Env.ScriptArgs[0]);
 
 New-Item -Path . -Name "ScriptFile.csx" -ItemType "file" -Value $ScriptContent
 
-scriptcs ScriptFile.csx -- $OctopusParameters["Octopus.Deployment.Id"]
+$scriptCs = Join-Path $OctopusParameters["Octopus.Action.Package[scriptcs].ExtractedPath"] "tools/scriptcs.exe"
+
+& $scriptCs ScriptFile.csx -- $OctopusParameters["Octopus.Deployment.Id"]
 ```
-
-Alternatively you can [download the ScriptCS nuget package](https://community.chocolatey.org/api/v2/package/ScriptCs/0.17.1), rezip the tools folder and use this as a [step package](https://octopus.com/blog/script-step-packages) by calling the executable directly.
-
-```powershell
-./tools/tools/scriptcs.exe ScriptFile.csx -- $OctopusParameters["Octopus.Deployment.Id"]
-```
-
-:::hint
-With these changes paramaters used in the C# script must be passed in through the ScriptCS arguments and referenced by Env.ScriptArgs[Index] inside the ScriptContent. 
-:::
 
 ### Added functionality
 | Feature                               | ScriptCS          | dotnet-script    |
