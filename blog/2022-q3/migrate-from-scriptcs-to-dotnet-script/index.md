@@ -59,12 +59,14 @@ var response = await client.ExecuteGetAsync(request);
 Console.WriteLine(response.Content);
 ```
 
-### Impact on Linux SSH Targets using Mono
+### Linux SSH Targets using Mono
 One of the tradeoffs of this change would be that C# scripting would no longer be available on Linux deployment targets using SSH with Mono.
+
+#### Migration
 
 If you wish to run C# scripts against your SSH linux targets, you would need to reconfigure your SSH targets to use the self-contained Calamari which runs via netcore3.1. To do this, [select the Self-Contained Calamari target runtime on your SSH target](https://octopus.com/docs/infrastructure/deployment-targets/linux/ssh-target#self-contained-calamari). Targets using the Linux tentacle will continue to work as they always have.
 
-### Impact on  Windows Server 2012R2 (and earlier) targets
+### Windows Server 2012R2 (and earlier) targets
 The other tradeoff we would make with this change is that `dotnet-script` only works with netcore3.1 and above. This would mean C# scripting will be unavailable to deployments against Windows Tentacles installed on versions of Windows earlier than 2012 R2, as these run .NET Framework builds of Calamari. 
 
 #### Workaround
