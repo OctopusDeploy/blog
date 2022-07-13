@@ -32,12 +32,39 @@ Historically Calamari required Mono to be installed on your Linux targets to exe
 
 ## Impacts
 
-### Linux SSH Targets using Mono
+### Added functionality
+| Feature                               | ScriptCS          | dotnet-script    |
+|---------------------------------------|-------------------|------------------|
+| C# Version                            | 5                 | 8                |
+| Removes Mono Depedency for Linux      | ❌                | ✅              |
+| Nuget import support                  | ❌                | ✅              |
+| Allows future .Net 5 & 6 support      | ❌                | ✅              |
+
+### Benefits of the proposed approach
+
+All C# language features included up to version [8](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-8) are now available for use in your C# scripts.
+
+Removing the dependency on Mono to execute scripts brings us inline with modern cross platform .NET capabilities reducing the complexity of calling into Mono and related issues.
+
+The Nuget import support from `dotnet-script` allows for the direct referencing of a nuget package in a script without having to [include the dll in the in the scripts packages](https://octopus.com/docs/octopus-rest-api/octopus.client/using-client-in-octopus). The new approach can be seen below.
+
+```
+#r "nuget: RestSharp, 108.0.1"
+
+using RestSharp;
+  
+var client = new RestClient("https://pokeapi.co/api/v2/");
+var request = new RestRequest("pokemon/ditto");
+var response = await client.ExecuteGetAsync(request);
+Console.WriteLine(response.Content);
+```
+
+### Impact on Linux SSH Targets using Mono
 One of the tradeoffs of this change would be that C# scripting would no longer be available on Linux deployment targets using SSH with Mono.
 
 If you wish to run C# scripts against your SSH linux targets, you would need to reconfigure your SSH targets to use the self-contained Calamari which runs via netcore3.1. To do this, [select the Self-Contained Calamari target runtime on your SSH target](https://octopus.com/docs/infrastructure/deployment-targets/linux/ssh-target#self-contained-calamari). Targets using the Linux tentacle will continue to work as they always have.
 
-### Windows Server 2012R2 (and earlier) targets
+### Impact on  Windows Server 2012R2 (and earlier) targets
 The other tradeoff we would make with this change is that `dotnet-script` only works with netcore3.1 and above. This would mean C# scripting will be unavailable to deployments against Windows Tentacles installed on versions of Windows earlier than 2012 R2, as these run .NET Framework builds of Calamari. 
 
 #### Workaround
@@ -61,34 +88,6 @@ New-Item -Path . -Name "ScriptFile.csx" -ItemType "file" -Value $ScriptContent
 $scriptCs = Join-Path $OctopusParameters["Octopus.Action.Package[scriptcs].ExtractedPath"] "tools/scriptcs.exe"
 
 & $scriptCs ScriptFile.csx -- $OctopusParameters["Octopus.Deployment.Id"]
-```
-
-### Added functionality
-| Feature                               | ScriptCS          | dotnet-script    |
-|---------------------------------------|-------------------|------------------|
-| C# Version                            | 5                 | 8                |
-| Removes Mono Depedency for Linux      | ❌                | ✅              |
-| Nuget import support                  | ❌                | ✅              |
-| Allows future .Net 5 & 6 support      | ❌                | ✅              |
-
-
-## Benefits of the proposed approach
-
-All C# language features included up to version [8](https://docs.microsoft.com/en-us/dotnet/csharp/whats-new/csharp-8) are now available for use in your C# scripts.
-
-Removing the dependency on Mono to execute scripts brings us inline with modern cross platform .NET capabilities reducing the complexity of calling into Mono and related issues.
-
-The Nuget import support from `dotnet-script` allows for the direct referencing of a nuget package in a script without having to [include the dll in the in the scripts packages](https://octopus.com/docs/octopus-rest-api/octopus.client/using-client-in-octopus). The new approach can be seen below.
-
-```
-#r "nuget: RestSharp, 108.0.1"
-
-using RestSharp;
-  
-var client = new RestClient("https://pokeapi.co/api/v2/");
-var request = new RestRequest("pokemon/ditto");
-var response = await client.ExecuteGetAsync(request);
-Console.WriteLine(response.Content);
 ```
 
 ## When will this be released?
