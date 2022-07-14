@@ -56,7 +56,7 @@ This will copy the step you want cloned and add it below the step being cloned
 ![Cloned step added to deployment process](deployment-process-uservoice-update-cloned-step.png)
 
 ## Allow the Run Condition of a step to be based on a variable
-This feature allows you to tailor your deployment process **at runtime** by giving you the option to conditionally **run** or **skip** an action based on the **boolean** result of an [Octopus Variable Expression](https://octopus.com/docs/deploying-applications/variables/binding-syntax).
+This feature allows you to tailor your deployment process **at runtime** by giving you the option to conditionally **run** or **skip** an action based on the **boolean** result of an [Octopus Variable Expression](https://octopus.com/docs/projects/variables/variable-substitutions#binding-variables).
 
 ![New Variable based Run Condition option](deployment-process-uservoice-update-variable-run-condition.png)
 

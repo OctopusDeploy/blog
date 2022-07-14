@@ -51,7 +51,7 @@ Updating steps across multiple projects requires a lot of work because each step
 
 ## Substitute variables in files now supports extended wildcard pattern matching
 
-A popular feature on package steps is the ability for Octopus to do [variable substitution](https://octopus.com/docs/deploying-applications/substitute-variables-in-files) in configuration and JSON files. Which lets you make use of the [embedded template syntax](https://octopus.com/docs/reference/variable-substitution-syntax).
+A popular feature on package steps is the ability for Octopus to do [variable substitution](https://octopus.com/docs/projects/variables/variable-substitutions) in configuration and JSON files. Which lets you make use of the [embedded template syntax](https://octopus.com/docs/projects/steps/configuration-features/substitute-variables-in-templates).
 
 The way these extra configuration actions worked was on a fixed set of files, 1 line per file. This was a rigid configuration, if the file was missing it would fail the deploy. This may be desirable if you've got a handful of files, but there were 90 user voice votes for this to be more flexible. The issue was with larger deployments there would be an unknown and changing amount of configuration files that needed to be transformed. The breaking of a build because of moved configuration files was a terrible experience.
 
@@ -59,7 +59,7 @@ To the rescue comes extended wildcard pattern matching for these configuration o
 
 ## PowerShell debugging support
 
-If you've ever written a Step Template or Script Step for Octopus that was more than a few lines long, I'm sure you've run into issues where you've had to tweak things and re-run until you've made it work the way you want. Maybe you've even resorted to `write-host` based debugging. Well, now you can use a fully fledged debugger (such as PowerShell ISE) with your PowerShell scripts to debug issues. You can even debug remotely via PSRemoting! Take a look at our [guide to remote debugging](https://octopus.com/docs/guides/debugging-powershell-scripts) or our [documentation](https://octopus.com/docs/deploying-applications/custom-scripts/debugging-powershell-scripts) to get started.
+If you've ever written a Step Template or Script Step for Octopus that was more than a few lines long, I'm sure you've run into issues where you've had to tweak things and re-run until you've made it work the way you want. Maybe you've even resorted to `write-host` based debugging. Well, now you can use a fully fledged debugger (such as PowerShell ISE) with your PowerShell scripts to debug issues. You can even debug remotely via PSRemoting! Take a look at our [documentation](https://octopus.com/docs/deployments/custom-scripts/debugging-powershell-scripts) to get started.
 
 ## Performance improvements
 
@@ -73,7 +73,7 @@ We highly recommend upgrading to Octopus 3.12 just so you can benefit from these
 
 ## Certificate-Chain support
 
-Octopus version 3.11 delivered the [Certificates feature](https://octopus.com/blog/certificates-feature), and we have been refining it over the past weeks.  3.12 continues this by adding support for [PFX files containing certificate-chains](https://octopus.com/docs/deploying-applications/certificates/certificate-chains).  
+Octopus version 3.11 delivered the [Certificates feature](https://octopus.com/blog/certificates-feature), and we have been refining it over the past weeks.  3.12 continues this by adding support for [PFX files containing certificate-chains](https://octopus.com/docs/deployments/certificates/certificate-chains).  
 
 ![Certificate Chain Icon](certificate-chain-card.png "width=500")
 
