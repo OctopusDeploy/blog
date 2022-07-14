@@ -1,4 +1,5 @@
----
+Hi everybody, effective from July 1st Tegan was promoted to Senior digital content specialist. Tegan has been with us for almost a year and a half. Tegan joined the team with a wealth of marketing and editing experience, and in the time she's been with us, she has mastered some fairly complex systems (Git for one) that she uses in her day to day work, she's learned about a completely new domain.
+Tegan constantly advocates for our users and strives to ensure every piece of content she creates adds value and represents Octopus in the best way possible. Thank you Tegan and congratulations, we couldn't do what we do without you!---
 title: Octopus Server 2019.12 with Long Term Support (LTS)
 description: Octopus Server 2019.12 LTS is now available, and we recommend this release for self-hosted customers. This release includes Operations Runbooks, our official Jenkins plugin, PowerShell Core support, improved build server integration, and more.
 author: rob.pearson@octopus.com
@@ -81,7 +82,7 @@ On Windows platforms, Octopus will use Windows PowerShell by default, with the o
 
 On Linux platforms, Octopus will automatically execute PowerShell scripts with PowerShell Core if it’s installed.
 
-[Learn more](http://octopus.com/docs/deployment-examples/custom-scripts/powershell-core)
+[Learn more](https://octopus.com/docs/deployment-examples/custom-scripts/powershell-core)
 
 ## Improved build information and work item tracking
 
