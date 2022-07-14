@@ -81,7 +81,7 @@ On Windows platforms, Octopus will use Windows PowerShell by default, with the o
 
 On Linux platforms, Octopus will automatically execute PowerShell scripts with PowerShell Core if it’s installed.
 
-[Learn more](http://octopus.com/docs/deployment-examples/custom-scripts/powershell-core)
+[Learn more](https://octopus.com/docs/deployment-examples/custom-scripts/powershell-core)
 
 ## Improved build information and work item tracking
 

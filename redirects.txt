@@ -15,3 +15,4 @@ blog/2021-08/single-api-frameworkg/index.md -> blog/2021-08/migrating-nancy-api-
 blog/2021-08/migrating-nancy-api-endpoints-to-asp-netg/index.md -> blog/2021-08/migrating-nancy-api-endpoints-to-asp-net/index.md
 blog/2020-06/gitub-actions-local-runner/index.md -> blog/2020-06/github-actions-local-runner/index.md
 blog/2022-q2/cf-instance-types/index.md -> blog/2022-q2/cloudformation-instance-types/index.md
+blog/2021-03/introducing-priority-support -> blog/2021-08/supporting-octopus-customers/index.md
