@@ -14,7 +14,7 @@ tags:
 
 We received [customer feedback](https://help.octopus.com/t/consider-use-dotnet-script-vs-scriptcs/22144) and [uservoice voting](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/31454668-allow-the-use-of-c-script-csx-using-net-core) requesting an update of the tooling Octopus uses to run C# scripts, from [scriptcs](https://github.com/scriptcs/scriptcs) to [dotnet-script](https://github.com/filipw/dotnet-script). This would unlock newer C# language features in deployment scripts, allow referencing NuGet packages directly from within scripts, and removes the need to have Mono installed to run C# scripts on Linux deployment targets.
 
-We're keen to gather feedback on the demand for this functionality and raise awareness of the tradeoffs in moving to dotnet-script and deprecating scriptcs. C# scripting accounts for ~5% of our script steps, so we want to understand the impact this change could have on our users.
+We're keen to gather feedback on the demand for this functionality and raise awareness of the trade-offs in moving to dotnet-script and deprecating scriptcs. C# scripting accounts for ~5% of our script steps, so we want to understand the impact this change could have on our users.
 
 If you're using C# scripts in your deployment processes, and are deploying to Linux targets using SSH and Mono, or to Windows Tentacle targets running Windows versions earlier than 2012 R2, the proposed changes could impact you.
 
