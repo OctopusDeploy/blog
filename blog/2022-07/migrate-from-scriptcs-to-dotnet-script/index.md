@@ -3,9 +3,9 @@ title: Request for Comments - Migrating from scriptcs to dotnet-script
 description: Provide your feedback on the proposed migration.
 author: isaac.calligeros@octopus.com
 visibility: public
-published: 2021-07-05-1400
-metaImage: blogimage-feedback_2022-q3.png
-bannerImage: blogimage-feedback_2022-q3.png
+published: 2021-07-21-1400
+metaImage: 
+bannerImage: 
 bannerImageAlt: Octopus salesperson at laptop with headset and icons representing customer feedback
 isFeatured: false
 tags:
