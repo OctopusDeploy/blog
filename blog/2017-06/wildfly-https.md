@@ -49,7 +49,7 @@ First we need to reference the certificate through a variable. In the `Variables
 
 ![Certificate](certificate-variable.png)
 
-Creating this variable gives us access to a [number of different representations of the information held in the certificate](https://octopus.com/docs/deploying-applications/variables/certificate-variables#expanded-properties).
+Creating this variable gives us access to a [number of different representations of the information held in the certificate](https://octopus.com/docs/projects/variables/certificate-variables#expanded-properties).
 
 The script below saves the certificate and private key back on the target server as PEM files, merges them into a combined PKCS12 keystore, and then imports the PKCS12 keystore into a Java keystore.
 

@@ -27,7 +27,7 @@ Looking at the build phase, you should notice a `Package Applications for Octopu
 
 ![AppVeyor Build Step](appveyor_build_step.png "width=800")
 
-This flag ensures that once the build has completed, the contents are zipped up into a package that can be pushed to Octopus Deploy. Although Octopus will accept any NuGet, zip, or tar package this flag will make use of `octo.exe` to [create a zip](https://octopus.com/docs/packaging-applications/creating-packages/creating-zip-packages), named using the application name and version of this AppVeyor project.
+This flag ensures that once the build has completed, the contents are zipped up into a package that can be pushed to Octopus Deploy. Although Octopus will accept any NuGet, zip, or tar package this flag will make use of `octo.exe` to [create a zip](https://octopus.com/docs/packaging-applications/create-packages/creating-zip-packages), named using the application name and version of this AppVeyor project.
 
 ### Push
 In the `Deployment` configuration, select the new `Octopus Deploy` deployment provider. This feature performs all the appropriate calls to pass the package into Octopus and create a related Octopus [Release](https://octopus.com/docs/deployment-process/releases) .
@@ -98,7 +98,7 @@ With the staging version of our application available we can inspect and test it
 
 Notice how the transformation has been applied changing the colour of the navbar, while the port and other variables have been updated based on the environment being deployed to.
 
-For more information about this new feature, be sure to read our [docs](https://octopus.com/docs/packaging-applications/build-servers/app-veyor)
+For more information about this new feature, be sure to read our [docs](https://octopus.com/docs/packaging-applications/build-servers/appveyor)
 
 ## AppVeyor + Octopus = Deploy Any Time
 

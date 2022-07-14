@@ -30,8 +30,8 @@ Since the [RFC](https://octopus.com/blog/rfc-azure-service-fabric) earlier this 
 
 These new Service Fabric steps can now assist you with:
 
-- Deploying a Service Fabric App ([learn more](https://octopus.com/docs/deploying-applications/deploying-to-service-fabric/deploying-a-package-to-a-service-fabric-cluster))
-- Running a Service Fabric SDK PowerShell Script ([learn more](https://octopus.com/docs/deploying-applications/custom-scripts/service-fabric-powershell-scripts))
+- Deploying a Service Fabric App ([learn more](https://octopus.com/docs/deployments/azure/service-fabric/deploying-a-package-to-a-service-fabric-cluster)
+- Running a Service Fabric SDK PowerShell Script ([learn more](https://octopus.com/docs/deployments/custom-scripts/service-fabric-powershell-scripts))
 
 Both steps require connection to a cluster. As such, we've included support for security modes including unsecure, Client Certificates and Azure Active Directory.
 
@@ -42,9 +42,7 @@ Due to Service Fabric dependencies, you will need to manually install the [Servi
 
 ## Want to learn more?
 
-You can learn more about these new features from our main [Deploying to Service Fabric](https://octopus.com/docs/deploying-applications/deploying-to-service-fabric) documentation. 
-
-We also have a new guide explaining [Continuous Integration for Service Fabric](https://octopus.com/docs/guides/service-fabric) where you can learn how Octopus Deploy fits into a Continuous Deployment pipeline for you Service Fabric applications.
+You can learn more about these new features from our main [Deploying to Service Fabric](https://octopus.com/docs/deployments/azure/service-fabric) documentation. 
 
 ## HTTP Strict-Transport-Security (HSTS)
 
@@ -56,7 +54,7 @@ We can now send this header on demand, but as there are some potential complexat
 
 Knocking off another high ranking [UserVoice suggestion](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/8475958-lifecycle-optional-phase-or-optional-environment) from our backlog, you can now create optional phases in your lifecycle that can be skipped during progression. This feature will help for those cases where you want to have the freedom to deploy your release to a set of environments, without holding up the deployment from continuing. [Channels](https://octopus.com/docs/patterns/branching) work well when this behaviour is known up-front and is part of a standard release pipeline, for example always pushing a hotfix release straight to UAT, but this approach is too rigid for the more fluid set of rules that optional phases functionality brings.
 
-Learn more about [optional lifecycle phases](https://octopus.com/docs/key-concepts/lifecycles#Lifecycles-OptionalPhases).
+Learn more about [optional lifecycle phases](https://octopus.com/docs/releases/lifecycles).
 
 ## Browser caching
 
@@ -86,7 +84,7 @@ Currently, when using a template for calculating release versions many variables
 ...
 ``` 
 
-When using [Channels](https://octopus.com/docs/key-concepts/projects/channels), corresponding variables are made available for the _current_ channel. e.g.
+When using [Channels](https://octopus.com/docs/releases/channels), corresponding variables are made available for the _current_ channel. e.g.
 
 ```
 #{Octopus.Version.Channel.LastMajor}

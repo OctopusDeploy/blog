@@ -70,11 +70,11 @@ These values are used during local development. If you run the solution from Vis
 
 ### Package for Octopus
 
-Unfortunately, due to the output of Azure Function projects, the standard [`OctoPack`](https://octopus.com/docs/packaging-applications/creating-packages/nuget-packages/using-octopack) generated NuGet package will not work. The configuration files for the functions are generated _after_ the build phase, which is when Octopack is configured to kick in. We recommend using `dotnet publish` to publish the project to a directory, then package the generated files:
+Unfortunately, due to the output of Azure Function projects, the standard [`OctoPack`](https://octopus.com/docs/packaging-applications/create-packages/nuget-packages/using-octopack) generated NuGet package will not work. The configuration files for the functions are generated _after_ the build phase, which is when Octopack is configured to kick in. We recommend using `dotnet publish` to publish the project to a directory, then package the generated files:
 
 ![folder](folder.png "width=500")
 
-Luckily, since Octopus will happily deploy anything that has been packaged into a zip, we can leverage a different Octopus command-line tool called [Octopus CLI](https://octopus.com/docs/packaging-applications/creating-packages/octopus-cli).
+Luckily, since Octopus will happily deploy anything that has been packaged into a zip, we can leverage a different Octopus command-line tool called [Octopus CLI](https://octopus.com/docs/packaging-applications/create-packages/octopus-cli).
 Using your standard build tool (or even locally for testing purposes), ensure that the current working directory set is the to the project directory and call:
 
 ```shell
@@ -84,7 +84,7 @@ octo pack --id=AcmeFunctions --format=zip --outFolder=./dist --version=9.14.159-
 octo push --server=http://myoctopusserver.acme.com --apiKey=API-ABC123IS4XQUUOG9TWDXXX --package=dist/AcmeFunctions.9.14.159-pi.zip
 ```
 
-Substitute the relevant values for your Octopus Server, API key, and version information. Alternatively, you can package and push the contents of the project as a zip using one of our plugins for [TeamCity](https://octopus.com/docs/packaging-applications/build-servers/teamcity), [VSTS](https://octopus.com/docs/packaging-applications/build-servers/tfs-vsts), [Bamboo](https://octopus.com/docs/packaging-applications/build-servers/bamboo), or the soon-to-be-available [AppVeyor](https://www.appveyor.com).
+Substitute the relevant values for your Octopus Server, API key, and version information. Alternatively, you can package and push the contents of the project as a zip using one of our plugins for [TeamCity](https://octopus.com/docs/packaging-applications/build-servers/teamcity), [VSTS](https://octopus.com/docs/packaging-applications/package-repositories/guides/nuget-repositories/tfs-azure-devops), [Bamboo](https://octopus.com/docs/packaging-applications/build-servers/bamboo), or the soon-to-be-available [AppVeyor](https://www.appveyor.com).
 
 ## Create the Azure Function
 
@@ -165,7 +165,7 @@ Once this and the preceding step is run during a deployment, the *Blue* slot wil
 
 ### Step 3: SwapSlot
 
-There is another existing step that was built for Azure Web Apps that we can also put to good use with Azure Functions. Add a new step and search for the **Switch Azure Staging Deployment Slot** step in the step library. Provide the variables for `ResourceGroupName`, `AppName`, and `SlotName` that were provided in the first step above. For the `AzureAccount` field, you will currently need to get the account ID for the Azure account you have configured in Octopus. This can be seen in the URL when you view the account through the Octopus Portal. In the coming weeks, we expect this requirement to go away as we provide a typed variable for [Azure Accounts](https://octopus.com/docs/deployment-process/variables/azure-account-variables.md) in the same way that we have done for [AWS Accounts](https://octopus.com/docs/deployment-process/variables/aws-account-variables.md).
+There is another existing step that was built for Azure Web Apps that we can also put to good use with Azure Functions. Add a new step and search for the **Switch Azure Staging Deployment Slot** step in the step library. Provide the variables for `ResourceGroupName`, `AppName`, and `SlotName` that were provided in the first step above. For the `AzureAccount` field, you will currently need to get the account ID for the Azure account you have configured in Octopus. This can be seen in the URL when you view the account through the Octopus Portal. In the coming weeks, we expect this requirement to go away as we provide a typed variable for [Azure Accounts](https://octopus.com/docs/projects/variables/azure-account-variables) in the same way that we have done for [AWS Accounts](https://octopus.com/docs/projects/variables/aws-account-variables).
 
 ![Step 2: Slot Swap](step2_slot_swap.png)
 

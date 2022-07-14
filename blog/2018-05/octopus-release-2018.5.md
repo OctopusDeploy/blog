@@ -69,7 +69,7 @@ As of release 2018.5:
 
 - PEM files containing certificate chains can be uploaded. 
 - A new expanded [certificate variable](https://octopus.com/docs/deployment-process/variables/certificate-variables#expanded-properties) has been added: `MyCertificate.ChainPem` (assuming the certificate variable is named `MyCertificate`) which allows accessing the chain certificates in PEM format
-- When [exporting a certificate](https://octopus.com/docs/deploying-applications/certificates/export-certificate) containing a chain, the various certificate components can be optionally included (see image below)
+- When [exporting a certificate](https://octopus.com/docs/deployments/certificates/export-certificate) containing a chain, the various certificate components can be optionally included (see image below)
 
 ![Export certificate to PEM](download-pem-chain.png "width=500")
 

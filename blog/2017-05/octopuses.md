@@ -15,7 +15,7 @@ One great big Octopus Server isn't always a great idea though.
 
 You may have a large number of teams that have little in common. That was the case at Accenture, who [standardized on Octopus](https://channel9.msdn.com/Shows/ANZMVP/Updating-Octopus-Deploy-at-Accenture-with-Jim-Szubryt-and-Damian-Brady) across the organization, and had many hundreds of teams on a handful of very large Octopus Servers. For their scenario, it made more sense to split the big Octopus Servers into lots of small ones, effectively giving each team or handful of teams their own small, isolated Octopus Servers.
 
-Or perhaps your organization is [PCI compliant](https://octopus.com/docs/reference/pci-compliance-and-octopus-deploy), and requires a strict separation between your development and production environments. Customers in this situation often [manage an Octopus Server in each security zone](https://octopus.com/docs/patterns/isolated-octopus-deploy-servers) and synchronize projects across the two.
+Or perhaps your organization is [PCI compliant](https://octopus.com/docs/reference/pci-compliance-and-octopus-deploy), and requires a strict separation between your development and production environments. Customers in this situation often [manage an Octopus Server in each security zone](https://octopus.com/docs/installation/isolated-octopus-deploy-servers) and synchronize projects across the two.
 
 The more we thought about it, the more we realized there are a few compelling reasons why you might split up your Octopus Server:
 
@@ -56,8 +56,8 @@ Generally what is desired is a way to promote a release between Octopus Servers.
 
 Today, this is often tackled via a few approaches:
 
-- [Isolated Octopus Servers](https://octopus.com/docs/patterns/isolated-octopus-deploy-servers): placing an Octopus Server in each zone.
-- [Offline-Drop deployment targets](https://octopus.com/docs/deployment-targets/offline-package-drop): to deploy your release to machines that can't communicate with an Octopus Server.
+- [Isolated Octopus Servers](https://octopus.com/docs/installation/isolated-octopus-deploy-servers): placing an Octopus Server in each zone.
+- [Offline-Drop deployment targets](https://octopus.com/docs/infrastructure/deployment-targets/offline-package-drop): to deploy your release to machines that can't communicate with an Octopus Server.
 - The [Octopus Migrator utility](https://octopus.com/docs/octopus-rest-api/octopus.migrator.exe-command-line): to migrate entities between Octopus Servers.
 
 These all work; there are many customers using them every day. But they all have downsides:

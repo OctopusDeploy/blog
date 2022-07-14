@@ -37,7 +37,7 @@ An Octopus HA configuration requires four main components:
 - **A load balancer**: Load balancers direct user traffic bound for the Octopus web interface between the different Octopus Server nodes.
 - **Octopus Server nodes**:  These run the Octopus Server windows service. They serve user traffic and orchestrate deployments.
 - **A database**: Most data used by the Octopus Server nodes are stored in this database.
-- **Shared storage**: Some larger files (like [NuGet packages](https://octopus.com/docs/packaging-applications/package-repositories/index.md), artifacts, and deployment task logs) aren't suitable to be stored in the database and must be stored in a shared folder available to all nodes.
+- **Shared storage**: Some larger files (like [NuGet packages](https://octopus.com/docs/packaging-applications/package-repositories), artifacts, and deployment task logs) aren't suitable to be stored in the database and must be stored in a shared folder available to all nodes.
 
 ## Octopus virtual machines
 

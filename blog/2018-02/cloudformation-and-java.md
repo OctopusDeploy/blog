@@ -20,7 +20,7 @@ The application that we'll be deploying will be sourced from Maven central. To a
 
 ## The AWS Account
 
-Octopus CloudFormation steps authenticate with AWS through an AWS Account. These accounts are managed under {{Infrastructure>Accounts>Amazon Web Services Account}}. You can find more information on creating AWS Accounts through our [documentation](https://octopus.com/docs/infrastructure/aws/creating-an-aws-account), keeping in mind that the account needs to have some [common permissions](https://octopus.com/docs/deploying-applications/aws-deployments/permissions) to be effectively used to deploy CloudFormation templates.
+Octopus CloudFormation steps authenticate with AWS through an AWS Account. These accounts are managed under {{Infrastructure>Accounts>Amazon Web Services Account}}. You can find more information on creating AWS Accounts through our [documentation](https://octopus.com/docs/infrastructure/aws/creating-an-aws-account), keeping in mind that the account needs to have some [common permissions](https://octopus.com/docs/deployments/aws/permissions) to be effectively used to deploy CloudFormation templates.
 
 ![AWS Account](aws-account.png "width=500")
 

@@ -84,7 +84,7 @@ Depending on whether you are using [one of our plugins](#a-few-words-about-build
 | :----------: | :-----------------------: | :--------------------------------------: | ---------------------------------------- |
 |     Yes      |            Yes            | Use the step with the word "Pack" on its name provided by the plugin | Use the step with the words "Push package" on its name provided by the plugin |
 |     Yes      |            No             | Use the step with the word "Pack" on its name provided by the plugin | Use [Nuget.exe push](https://docs.microsoft.com/en-us/nuget/tools/cli-ref-push) |
-|      No      |            Yes            | Use [Nuget.exe pack](https://docs.microsoft.com/en-us/nuget/tools/cli-ref-pack) | Use [Nuget.exe push](https://docs.microsoft.com/en-us/nuget/tools/cli-ref-push) or [Octo.exe push](https://octopus.com/docs/octopus-rest-api/octopus-cli/pushing-packages) |
+|      No      |            Yes            | Use [Nuget.exe pack](https://docs.microsoft.com/en-us/nuget/tools/cli-ref-pack) | Use [Nuget.exe push](https://docs.microsoft.com/en-us/nuget/tools/cli-ref-push) or [Octo.exe push](https://octopus.com/docs/octopus-rest-api/examples/feeds/push-package-to-builtin-feed) |
 
 :::hint
 If you are using TeamCity, the step `Octopus Deploy: Push Package` will *pack* and *push* in one step
@@ -106,7 +106,7 @@ The only key recommendation here is that you version the package with the same v
 
 #### 2.1 - Upload a Test Package to Your Repository
 
-If you already finished step `1.2`, that means you already have a package in your repository, so you can skip to the next step. If you haven't finished that step yet, simply compile your app locally and package the output using [Octo.exe pack](https://octopus.com/docs/packaging-applications/creating-packages/nuget-packages/using-octo.exe). Once you have a package, push it to the [Octopus built-in repository](https://octopus.com/docs/packaging-applications/package-repositories/pushing-packages-to-the-built-in-repository#PushingpackagestotheBuilt-Inrepository-UsingtheOctopuswebportal) and make sure you can see it in the web portal under `Library -> Packages`.
+If you already finished step `1.2`, that means you already have a package in your repository, so you can skip to the next step. If you haven't finished that step yet, simply compile your app locally and package the output using [Octo.exe pack](https://octopus.com/docs/packaging-applications/create-packages/nuget-packages/using-octo.exe). Once you have a package, push it to the [Octopus built-in repository](https://octopus.com/docs/packaging-applications/package-repositories/pushing-packages-to-the-built-in-repository#PushingpackagestotheBuilt-Inrepository-UsingtheOctopuswebportal) and make sure you can see it in the web portal under `Library -> Packages`.
 
 You only need one package for the next step, which you'll use over and over until you get the Deployment Process right. If your deployment process uses more than one package (perhaps deploying a *WebApp* and a *Cloud Service* separately ), repeat this process for each package you need.
 
@@ -124,7 +124,7 @@ In the previous step, you learned how to create a release and trigger a deployme
 
 If you don't know about this CLI tool, here's the TL;DR, it's a command line application that talks to the [Octopus API](https://octopus.com/docs/octopus-rest-api) and helps you do some of the most frequently used actions against your Octopus Instance. You can read about all the functionality it provides in [this document](https://octopus.com/docs/octopus-rest-api/octopus-cli).
 
-The command you should be paying attention to is [create-release](https://octopus.com/docs/octopus-rest-api/octopus-cli/creating-releases). A few tips about this command:
+The command you should be paying attention to is [create-release](https://octopus.com/docs/octopus-rest-api/octopus-cli/create-release). A few tips about this command:
 
 - If you use the `--deployTo` parameter, it will not only create the release but also deploy it to an environment. It basically combines the commands `create-release` and `deploy-release`.
 - Use `--progress` to see the deployment log in the console as it executes. Otherwise, the command will only create a task in Octopus, and you'll be forced to go to the Web Portal to see how the deployment went.
@@ -162,7 +162,7 @@ If you are using a raw `Octo.exe` call, the equivalent of this feature is the `-
 :::
 
 :::warning
-If you run into issues with this step, check our [troubleshooting guide](https://octopus.com/docs/packaging-application/build-servers/troubleshooting-integrations-with-build-servers) to get some ideas on how to fix it or to learn how to properly ask for help in our forums.
+If you run into issues with this step, check our [troubleshooting guide](https://octopus.com/docs/packaging-applications/build-servers/troubleshooting-integrations-with-build-servers) to get some ideas on how to fix it or to learn how to properly ask for help in our forums.
 :::
 
 ## A Few Words About Build Server Plugins and Octo.exe
