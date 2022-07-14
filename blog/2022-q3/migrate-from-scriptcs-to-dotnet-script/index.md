@@ -20,7 +20,7 @@ This request for comments (RFC) aims to gather feedback on the demand for this f
 
 If you are using C# scripts in your deployment processes, and are deploying to Linux targets using SSH and Mono, or to Windows tentacle targets running Windows versions earlier than 2012 R2, the proposed changes could impact you.
 
-### How we propose to support dotnet-script
+## How we propose to support dotnet-script
 
 This RFC proposes removing `ScriptCS` in favour of `dotnet-script`.
 
