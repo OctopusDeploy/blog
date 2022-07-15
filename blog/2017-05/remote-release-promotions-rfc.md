@@ -221,7 +221,7 @@ Variable templates will make it much easier for a person importing a release bun
 This would also be really handy even if you are only promoting releases within your own Space. Using variable templates, if you introduce a new environment into your own Space, Octopus will prompt you for those variable values.
 :::
 
-We introduced the concept of [Variable Templates](https://octopus.com/docs/deploying-applications/variables/variable-templates) for multi-tenant deployments in Octopus 3.4. We will build on this concept further as part of this set of features.
+We introduced the concept of [Variable Templates](https://octopus.com/docs/projects/variables/variable-templates) for multi-tenant deployments in Octopus 3.4. We will build on this concept further as part of this set of features.
 
 ![Variable Template](variable-template-editor.png "width=500")
 

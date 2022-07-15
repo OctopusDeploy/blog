@@ -39,7 +39,7 @@ The self-contained Calamari is built with .NET Core 2.0. Because .NET Core 2.0 i
 
 Octopus supports custom scripts written in C# and this is powered by [ScriptCS](http://scriptcs.net/). In this release, we've upgraded the library so you get the most modern ScriptCS support available. There are some breaking changes in this ScriptCS release - read more below.
 
-Our [custom scripts documentation](https://octopus.com/docs/deploying-applications/custom-scripts) covers everything you need to get up and running with writing C# scripts or any of our other supported languages. 
+Our [custom scripts documentation](https://octopus.com/docs/deployments/custom-scripts) covers everything you need to get up and running with writing C# scripts or any of our other supported languages. 
 
 ## Okta authentication provider
 

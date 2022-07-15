@@ -34,7 +34,7 @@ Kudos to our marketing manager [Andrew](https://twitter.com/andrewmaherbne) who 
 
 * Microsoft's Azure Platform - [App Service](https://azure.microsoft.com/en-au/services/app-service/).
 * Provision our cloud infrastructure with an [Azure Resource Manager Template (ARM Template)](https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-overview).
-* Zero-downtime production deploy - [applying the blue-green deployment pattern](https://octopus.com/docs/deploying-applications/deploying-to-azure/deploying-a-package-to-an-azure-web-app/using-deployment-slots-with-azure-web-apps).
+* Zero-downtime production deploy - [applying the blue-green deployment pattern](https://octopus.com/docs/deployments/azure/deploying-a-package-to-an-azure-web-app/using-deployment-slots-with-azure-web-apps).
 
 ## Solution
 

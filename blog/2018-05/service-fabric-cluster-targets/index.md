@@ -40,7 +40,7 @@ Once we've successfully created our cluster, it should appear like this in our A
 
 ![Service Fabric Cluster Status](sf-cluster-status.png "width=500")
 
-In this case, we've set up both [Certificate](https://octopus.com/docs/deploying-applications/azure-deployments/deploying-to-service-fabric/connecting-securely-with-client-certificates) and [Azure Active Directory](https://octopus.com/docs/deploying-applications/azure-deployments/deploying-to-service-fabric/connecting-securely-with-azure-active-directory) security modes on our cluster so that we can easily test connections with either security mode.
+In this case, we've set up both [Certificate](https://octopus.com/docs/deployments/azure/service-fabric/connecting-securely-with-client-certificates) and [Azure Active Directory](https://octopus.com/docs/deployments/azure/service-fabric/connecting-securely-with-azure-active-directory) security modes on our cluster so that we can easily test connections with either security mode.
 
 ## Packaging for Service Fabric
 
@@ -50,13 +50,11 @@ The problem is, demo-friendly != real-world (_"Friends don't let friends right-c
 
 When deploying Service Fabric apps directly from Visual Studio, Microsoft only _partially_ package all of your files. During the deployment they actually _call back_ into your source code for the `PublishProfiles` and `ApplicationParameters` (so the package folder from your publish, by default, is useless to anything except Visual Studio).
 
-_Sad panda sigh..._
-
-To get around this, we've written specific [packaging documentation](https://octopus.com/docs/deploying-applications/azure-deployments/service-fabric/packaging) to help in your real-world deployment pipeline (and not from an over-developed IDE that's sitting on your intern's laptop).
+To get around this, we've written specific [packaging documentation](https://octopus.com/docs/deployments/azure/service-fabric/deploying-a-package-to-a-service-fabric-cluster) to help in your real-world deployment pipeline (and not from an over-developed IDE that's sitting on your intern's laptop).
 
 > It’s a figure of speech, Morty. They’re bureaucrats. I don’t respect them.
 
-For this example, we've used the [Custom build targets](https://octopus.com/docs/deploying-applications/azure-deployments/service-fabric/packaging#custom-build-targets) section of the packaging documentation to help us copy the `PublishProfiles` and `ApplicationParameters` that we need for our Service Fabric package, to ensure we have _everything_ needed for our deployment.
+For this example, we've used the [Custom build targets](https://octopus.com/docs/deployments/azure/service-fabric/packaging#custom-build-targets) section of the packaging documentation to help us copy the `PublishProfiles` and `ApplicationParameters` that we need for our Service Fabric package, to ensure we have _everything_ needed for our deployment.
 
 ![Custom Build Targets file](sf-solution-targets.png "width=500")
 
@@ -72,7 +70,7 @@ We can now zip that up using a SemVer-friendly package filename that can be cons
 
 ## Installing the Service Fabric SDK
 
-Because Microsoft loves their GAC, before anything deployment-related can work against Service Fabric, our deployment server needs to have the [Service Fabric SDK](https://g.octopushq.com/ServiceFabricSdkDownload) installed, and PowerShell script execution needs to be enabled (full instructions can be [found here](https://octopus.com/docs/deploying-applications/azure-deployments/deploying-to-service-fabric/deploying-a-package-to-a-service-fabric-cluster)).
+Because Microsoft loves their GAC, before anything deployment-related can work against Service Fabric, our deployment server needs to have the [Service Fabric SDK](https://g.octopushq.com/ServiceFabricSdkDownload) installed, and PowerShell script execution needs to be enabled (full instructions can be [found here](https://octopus.com/docs/deployments/azure/service-fabric/deploying-a-package-to-a-service-fabric-cluster)).
 
 ## It's Time to Deploy
 
@@ -84,7 +82,7 @@ Congratulations. If you've made it this far:
 
 Now we're ready for the deployment world! (the fun bit.)
 
-Before we continue, if you're using certificates for authentication, make sure you've [added the certificate to the Octopus Certificate Library](https://octopus.com/docs/deploying-applications/certificates/add-certificate) in preparation for its use in your new Service Fabric Cluster Target.
+Before we continue, if you're using certificates for authentication, make sure you've [added the certificate to the Octopus Certificate Library](https://octopus.com/docs/deployments/certificates/add-certificate) in preparation for its use in your new Service Fabric Cluster Target.
 
 ### Create an Octopus Service Fabric Cluster Target
 

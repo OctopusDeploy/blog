@@ -178,4 +178,4 @@ Under the `Runtime` tab we can see that the master and slave hosts are indeed co
 
 Using S3 buckets as a central point of configuration is an easy, convenient and reliable way to configure a WildFly domain in AWS. It removes the need to have fixed IP addresses, and works around the AWS limitation of preventing network broadcasts.
 
-If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
+If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deployments/java/deploying-java-applications).

@@ -33,14 +33,14 @@ This will become even more powerful when we ship operations focused [maintenance
 
 ## First-class Amazon Web Services S3 Support
 
-We're continuing to improve our Amazon Web Services (AWS) support by adding a [first-class S3 step](https://octopus.com/docs/deploying-applications/aws-deployments/s3). This greatly simplifies getting packages/files into S3 buckets and working with them in the AWS eco-system.
+We're continuing to improve our Amazon Web Services (AWS) support by adding a [first-class S3 step](https://octopus.com/docs/deployments/aws/aws-s3-create-bucket). This greatly simplifies getting packages/files into S3 buckets and working with them in the AWS eco-system.
 
 ![AWS S3 step screenshot](aws-s3-step.png "width=500")
 
 ## Required Steps
 
 Deployment-process steps can be skipped at deploy time.  This is very convenient, but there are times when you may want to prevent specific steps from being skipped. Manual-intervention steps are an obvious example (they were in fact already unable to be skipped if responsibility was restricted to specified teams).  Other examples might be steps which send notifications or run verification processes.  
-With 2018.4 you can [mark a step as required](https://octopus.com/docs/deployment-process/steps/conditions#required), and it will not be eligible to be skipped. 
+With 2018.4 you can [mark a step as required](https://octopus.com/docs/projects/steps/conditions#required), and it will not be eligible to be skipped. 
 
 ![Required steps screenshot](required-step.png "width=500")
 

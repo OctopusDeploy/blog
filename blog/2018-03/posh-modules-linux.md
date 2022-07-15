@@ -13,7 +13,7 @@ tags:
 
 ![Tux the Penguin reading a Powershell book](blogimage-powershell-linux.png)
 
-Octopus Deploy supports re-usable [PowerShell script modules](https://octopus.com/docs/deploying-applications/custom-scripts/script-modules) that can be included in deployments across all of your projects.  When a script module is included in a project, it will automatically become available to PowerShell scripts that run on Windows. You can also run your favorite PowerShell script modules on Linux, but they are not automatically made available to your PowerShell on Linux scripts. While we plan to provide first class PowerShell on Linux support, here is the trick to get them working.
+Octopus Deploy supports re-usable [PowerShell script modules](https://octopus.com/docs/deployments/custom-scripts/script-modules) that can be included in deployments across all of your projects.  When a script module is included in a project, it will automatically become available to PowerShell scripts that run on Windows. You can also run your favorite PowerShell script modules on Linux, but they are not automatically made available to your PowerShell on Linux scripts. While we plan to provide first class PowerShell on Linux support, here is the trick to get them working.
 
 Review the [PowerShell on Linux installation instructions](https://github.com/PowerShell/PowerShell/blob/master/docs/installation/linux.md) for more information.
 
@@ -26,7 +26,7 @@ function Say-Hello($name)
 }
 ```
 
-For help creating a script module in Octopus follow the [instructions in the documentation](https://octopus.com/docs/deploying-applications/custom-scripts/script-modules).
+For help creating a script module in Octopus follow the [instructions in the documentation](https://octopus.com/docs/deployments/custom-scripts/script-modules).
 
 We will use a project called `PowerShell modules on Linux` that includes the `Say Hello` script module. Our deployment process consists of a `Run a Script` step that will invoke the `Say-Hello` method from PowerShell. Our naive bash script would look like this:
 

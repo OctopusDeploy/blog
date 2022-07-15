@@ -65,7 +65,7 @@ This solution has some drawbacks.
 The second approach is to distribute the files to the Wildfly server via the Octopus deploy package step, and then upload the files using a local copy of the CLI tool to the Wildfly server running on the same instance.
 
 This solution addresses the drawbacks of the first scenario.
-* Files distributed via Octopus Deploy can take advantage of [delta copying](https://octopus.com/docs/deploying-applications/delta-compression-for-package-transfers). This means that potentially only the parts of the package that have changed are copied, reducing network traffic and improving deployment times.
+* Files distributed via Octopus Deploy can take advantage of [delta copying](https://octopus.com/docs/deployments/packages/delta-compression-for-package-transfers). This means that potentially only the parts of the package that have changed are copied, reducing network traffic and improving deployment times.
 * The Wildfly server only needs to expose its management interface to the localhost adapter, as all CLI commands will be run from the local server.
 * The Octopus Deploy server is only responsible for copying files and scripts, while the Wildfly server itself will run the scripts locally.
 

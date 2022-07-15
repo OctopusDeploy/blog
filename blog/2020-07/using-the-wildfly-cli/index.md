@@ -469,4 +469,4 @@ The CLI has a GUI mode which provides a file browser like interface for navigati
 
 In this post, we took a high level look at how the CLI works and what you can do with it. You can find more resources on the [JBoss Wiki](https://developer.jboss.org/wiki/CommandLineInterface) which goes into more detail and provides examples of administrative tasks.
 
-If you are interested in automating the deployment of your Java applications, try the free started edition of [Octopus Deploy](https://octopus.com/free), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
+If you are interested in automating the deployment of your Java applications, try the free started edition of [Octopus Deploy](https://octopus.com/free), and take a look at [our documentation](https://octopus.com/docs/deployments/java/deploying-java-applications).

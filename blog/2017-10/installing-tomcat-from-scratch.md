@@ -234,4 +234,4 @@ To learn more about the groups used by Tomcat to manage access to the administra
 
 In this blog post we've looked at a number of decisions that need be made around what version of Java to run, how to configure Tomcat as a service, and how to add users to the stock Tomcat installation.
 
-If you are interested in automating the deployment of your Java applications to Tomcat, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
+If you are interested in automating the deployment of your Java applications to Tomcat, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deployments/java/deploying-java-applications).

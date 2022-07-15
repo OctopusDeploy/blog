@@ -343,7 +343,7 @@ In this post, we saw how to configure a domain to create a cluster, and how to a
 
 We then deployed a distributable web app to the domain, and we forced traffic onto a new cluster node by shutting down the instance that created the original session.
 
-If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
+If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deployments/java/deploying-java-applications).
 
 ## Learn more
 

@@ -44,7 +44,7 @@ Our goal with this work is to help new and experienced users get to deploy their
 
 ## Update steps across all projects
 
-Updating steps across multiple projects requires a lot of work because each step needs to be updated manually. You have let us know about that [loud and clear](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/6072178-when-updating-a-step-template-update-across-all) in the past. Today we are happy to announce that we have automated [that process](https://octopus.com/docs/deploying-applications/step-templates/updating-step-templates) and all it requires from you is a single click.
+Updating steps across multiple projects requires a lot of work because each step needs to be updated manually. You have let us know about that [loud and clear](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/6072178-when-updating-a-step-template-update-across-all) in the past. Today we are happy to announce that we have automated [that process](https://octopus.com/docs/projects/updating-step-templates) and all it requires from you is a single click.
 
 ![Step Template Usage](step-templates-usage.png "width=500")
 
