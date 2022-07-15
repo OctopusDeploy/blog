@@ -117,4 +117,4 @@ You can then open http://localhost:8080 to view the application.
 
 Hollow JARs are a neat solution that provide a lot of flexibility in deployment strategies while retaining the convenience of an UberJAR. You can find more information on the different strategies from the blog post [The Skinny on Fat, Thin, Hollow, and Uber](https://developers.redhat.com/blog/2017/08/24/the-skinny-on-fat-thin-hollow-and-uber/).
 
-If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
+If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deployments/java/deploying-java-applications).

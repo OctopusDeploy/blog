@@ -30,7 +30,7 @@ Adding GitHub repositories as a feed type means that you can now deploy your ext
 
 ## Terraform Support
 
-This release includes two new steps: Apply a Terraform template, and Destroy Terraform resources. These steps allow Terraform templates to be executed as part of an Octopus deployment project, with integrated support for variable substitution and output variable capturing. Refer to the [documentation](https://octopus.com/docs/deploying-applications/terraform-deployments) for more information on these new steps.
+This release includes two new steps: Apply a Terraform template, and Destroy Terraform resources. These steps allow Terraform templates to be executed as part of an Octopus deployment project, with integrated support for variable substitution and output variable capturing. Refer to the [documentation](https://octopus.com/docs/deployments/terraform) for more information on these new steps.
 
 ![Terraform Steps](terraform-steps.png "width=500")
 
@@ -44,7 +44,7 @@ This is part of a [highly requested feature](https://octopusdeploy.uservoice.com
 
 ## Highlight Messages and Artifacts
 
-You can now write log messages that appear on the Task Summary tab of the Task page. These messages will also now appear blue and bolded within the task log and not be hidden under the `<n> additional lines not shown` fold. We have added helpers to log at this level (`highlight`). Refer to the [documentation](https://octopus.com/docs/deploying-applications/custom-scripts#Customscripts-Logging) for the syntax to use in your script.
+You can now write log messages that appear on the Task Summary tab of the Task page. These messages will also now appear blue and bolded within the task log and not be hidden under the `<n> additional lines not shown` fold. We have added helpers to log at this level (`highlight`). Refer to the [documentation](https://octopus.com/docs/deployments/custom-scripts/logging-messages-in-scripts) for the syntax to use in your script.
 
 Another log level, `wait`, has been added to indicate that the deployment is waiting for something (for example a execution mutex). These messages also appear as a different color in the log. It is primarily used by Octopus internally, but you can also log at this level. In the future we plan on adding a timeline view, which will use log messages at this level to show when a deployment is paused.
 

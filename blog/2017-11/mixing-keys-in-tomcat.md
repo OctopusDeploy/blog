@@ -83,4 +83,4 @@ In this screenshot we can see that the Tomcat server has exposed both the RSA an
 
 Tomcat is quite unique in its ability to support both RSA and ECDSA certificates for a single HTTPS port. This allows Tomcat to provide HTTPS to a wide range of clients without sacrificing security. This configuration can be achieved simply by defining two `<Connector>` elements with different `type` attributes.
 
-If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
+If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deployments/java/deploying-java-applications).

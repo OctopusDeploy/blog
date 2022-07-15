@@ -315,4 +315,4 @@ public class VersionTest {
 }
 ```
 
-If you are interested in automating the deployment of your Java applications, sign up for a starter license for [Octopus Deploy](https://octopus.com/free), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
+If you are interested in automating the deployment of your Java applications, sign up for a starter license for [Octopus Deploy](https://octopus.com/free), and take a look at [our documentation](https://octopus.com/docs/deployments/java/deploying-java-applications).

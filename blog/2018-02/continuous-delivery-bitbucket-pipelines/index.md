@@ -173,7 +173,7 @@ Create a new project via Projects -> Add Project, give it a name and make sure y
 
 #### Set up the Process
 
-For automatic release creation to work, we need to have at least one step that deploys a package; that's how Octopus knows which packages to watch for in the built-in feed. If you have an Azure account set up already, have a read of [this article](https://octopus.com/docs/deploying-applications/azure-deployments/web-apps/getting-started-with-azure-web-apps) for information on setting up an Azure deploy step. Otherwise, consult the Octopus docs for more information on deploying to your environment.
+For automatic release creation to work, we need to have at least one step that deploys a package; that's how Octopus knows which packages to watch for in the built-in feed. If you have an Azure account set up already, have a read of [this article](https://octopus.com/docs/deployments/azure/deploying-a-package-to-an-azure-web-app) for information on setting up an Azure deploy step. Otherwise, consult the Octopus docs for more information on deploying to your environment.
 
 #### Set up Automatic Release Creation
 

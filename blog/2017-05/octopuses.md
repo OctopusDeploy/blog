@@ -42,7 +42,7 @@ The _independent teams_ and _scale_ scenarios are typically dealt with by spread
 OK, now you've decided to shard across multiple servers; you've solved some problems, but you've replaced them with others: 
 - How do you manage identity and access control across your Octopus Servers? 
 - How do you manage Octopus upgrades across your Servers? 
-- What if you wish to share some things like [step templates](https://octopus.com/docs/deploying-applications/step-templates), [variable sets](https://octopus.com/docs/deploying-applications/variables/library-variable-sets), or even [deployment targets](https://octopus.com/docs/deployment-targets)?
+- What if you wish to share some things like [step templates](https://octopus.com/docs/octopus-rest-api/examples/step-templates), [variable sets](https://octopus.com/docs/projects/variables/library-variable-sets), or even [deployment targets](https://octopus.com/docs/infrastructure/deployment-targets)?
 
 To solve the identity and access control problem you could use one of our federated [authentication providers](https://octopus.com/docs/administration/authentication-providers) to enable single sign-on (SSO), but managing the rights each user is granted on each of your Octopus Servers can be painful.
 

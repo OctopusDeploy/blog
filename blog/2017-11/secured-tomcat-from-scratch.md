@@ -131,4 +131,4 @@ Click the `View certificate` to confirm that Tomcat is now configured with the s
 
 With Octopus 4.1 you can now manage your application and certificate deployment lifecycles with built in steps, while seamlessly consuming artifacts from Maven repositories.
 
-If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
+If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deployments/java/deploying-java-applications).

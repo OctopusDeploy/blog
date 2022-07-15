@@ -141,4 +141,4 @@ Now open up [https://somethingelse.com:62000](https://somethingelse.com:62000). 
 
 So we can see that a single instance of Tomcat on a single port can respond with multiple different certificates depending on the host that was requested. This is the benefit that SNI provides to web servers.
 
-If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
+If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deployments/java/deploying-java-applications).

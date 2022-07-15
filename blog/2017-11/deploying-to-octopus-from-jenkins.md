@@ -200,4 +200,4 @@ Which in turn deploys the application to Tomcat.
 
 Jenkins Pipelines are a powerful way to describe your build process, and by using the Octo CLI as a custom tool it is quite easy to integrate Octopus into your build pipeline.
 
-If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
+If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deployments/java/deploying-java-applications).

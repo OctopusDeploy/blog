@@ -276,4 +276,4 @@ By running tests with Arquillian, it is possible to test the actual functionalit
 
 You can get the source code to this project from [GitHub](https://github.com/OctopusDeploy/ArquillianTest).
 
-If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
+If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deployments/java/deploying-java-applications).

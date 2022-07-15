@@ -24,7 +24,7 @@ This month's release brings some exciting new features including support for Azu
 
 ## Introducing Azure Service Fabric support
 
-We are excited to announce that Octopus now includes first-class support for [Deploying Azure Service Fabric applications](https://octopus.com/docs/deploying-applications/deploying-to-service-fabric).
+We are excited to announce that Octopus now includes first-class support for [Deploying Azure Service Fabric applications](https://octopus.com/docs/deployments/azure/service-fabric/deploying-a-package-to-a-service-fabric-cluster).
 
 Since the [RFC](https://octopus.com/blog/rfc-azure-service-fabric) earlier this year, we've been busy creating new step templates to help you connect to and deploy your Service Fabric cluster applications.
 
@@ -62,7 +62,7 @@ Loading the the dashboard can be quite a data intensive operation for the Octopu
 
 ## Failing a script with a message
 
-The message on the deployment overview can now be customised, refer to [failing a script with a message](https://octopus.com/docs/deploying-applications/custom-scripts#failing-a-script-with-a-message)
+The message on the deployment overview can now be customised, refer to [failing a script with a message](https://octopus.com/docs/deployments/custom-scripts/logging-messages-in-scripts)
 
 ## Modify Task State
 

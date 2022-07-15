@@ -142,4 +142,4 @@ Where idempotency is required, CLI scripts are the best choice. They allow you t
 
 For immutable environments, you can’t go past the simplicity of editing XML files. Every sysadmin will know how to edit an XML file (whereas the CLI can be tricky for newcomers) and every deployment tool supports some kind of templating that will work with XML files. And as long as you are careful to clearly identify the changes that have been made to a stock config file, it is easy enough to port the changes to new versions of WildFly.
 
-If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
+If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deployments/java/deploying-java-applications).

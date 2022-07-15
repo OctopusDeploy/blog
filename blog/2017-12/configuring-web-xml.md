@@ -26,7 +26,7 @@ Octopus 4.1 is currently in beta, so if it is not available from the downloads p
 
 For this example we'll be installing the [Hawtio](http://hawt.io/) management application to WildFly. In particular we'll be installing the [io.hawt:hawtio-no-slf4j](https://mvnrepository.com/artifact/io.hawt/hawtio-no-slf4j) package.
 
-So download a copy of [WildFly 11](http://wildfly.org/downloads/), and [configure it with an admin user that can be used by Octopus](https://octopus.com/docs/deploying-applications/deploy-java-applications#deploying-to-wildflyjboss-eap).
+So download a copy of [WildFly 11](http://wildfly.org/downloads/), and [configure it with an admin user that can be used by Octopus](https://octopus.com/docs/deployments/java/deploying-java-applications#deploying-to-wildflyjboss-eap).
 
 ## Configuring the Maven Central Repository
 
@@ -189,4 +189,4 @@ Once logged in using the `monitor` user we created earlier, the welcome page wil
 
 With some simple C# scripting we can make whatever changes are required to XML files that we don't otherwise control. This is an example of the powerful customizations that can be applied to Java applications when being deployed by Octopus.
 
-If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
+If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deployments/java/deploying-java-applications).

@@ -240,4 +240,4 @@ UberJARs also have the effect of moving infrastructure into a Java build tool. F
 
 UberJARs have no management layer though. It is up to you to deploy, start and shutdown the application; you do not get the kind of native management tools that an application server provides. PaaS solutions will often provide tools for managing UberJARs though.
 
-If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
+If you are interested in automating the deployment of your Java applications, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deployments/java/deploying-java-applications).

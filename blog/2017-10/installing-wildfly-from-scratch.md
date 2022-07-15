@@ -298,7 +298,7 @@ The admin user we created earlier has access to all aspects of the admin console
 
 In this post we have seen how to run WildFly manually and as a service in both Windows and Linux, configured an admin user, and opened the admin console.
 
-If you are interested in automating the deployment of your Java applications to WildFly, [download a trail copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deploying-applications/deploy-java-applications).
+If you are interested in automating the deployment of your Java applications to WildFly, [download a trail copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deployments/java/deploying-java-applications).
 
 ## Learn more
 
