@@ -12,11 +12,17 @@ tags:
  - Product
 ---
 
-We received [customer feedback](https://help.octopus.com/t/consider-use-dotnet-script-vs-scriptcs/22144) and [uservoice voting](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/31454668-allow-the-use-of-c-script-csx-using-net-core) requesting an update of the tooling Octopus uses to run C# scripts, from [scriptcs](https://github.com/scriptcs/scriptcs) to [dotnet-script](https://github.com/filipw/dotnet-script). This would unlock newer C# language features in deployment scripts, allow referencing NuGet packages directly from within scripts, and removes the need to have Mono installed to run C# scripts on Linux deployment targets.
+We received [customer feedback](https://help.octopus.com/t/consider-use-dotnet-script-vs-scriptcs/22144) and [UserVoice voting](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/31454668-allow-the-use-of-c-script-csx-using-net-core) requesting we update the tooling Octopus uses to run C# scripts, from [scriptcs](https://github.com/scriptcs/scriptcs) to [dotnet-script](https://github.com/filipw/dotnet-script). This would: 
 
-We're keen to gather feedback on the demand for this functionality and raise awareness of the trade-offs in moving to dotnet-script and deprecating scriptcs. C# scripting accounts for ~5% of our script steps, so we want to understand the impact this change could have on our users.
+- Unlock newer C# language features in deployment scripts
+- Allow referencing NuGet packages directly from within scripts
+- Remove the need to have Mono installed to run C# scripts on Linux deployment targets
+
+C# scripting accounts for ~5% of our script steps, so we want to understand the impact this change could have on our users.
 
 If you're using C# scripts in your deployment processes, and are deploying to Linux targets using SSH and Mono, or to Windows Tentacle targets running Windows versions earlier than 2012 R2, the proposed changes could impact you.
+
+This post outlines the potential changes, plus the trade-offs in moving to dotnet-script and deprecating scripts. We've also included a link to a [GitHub issue](https://github.com/OctopusDeploy/StepsFeedback/issues/9) where you can provide feedback, and we can further gauge the demand for this functionality.
 
 ## How we propose to support dotnet-script
 
@@ -26,17 +32,17 @@ To deploy software to your server we use [Tentacle](https://github.com/OctopusDe
 
 Historically, Calamari required Mono to be installed on your Linux targets to execute `scriptcs` as it's built on the full .NET Framework. With the introduction of cross-platform .NET apps with netcore3.1 Linux can now natively run .NET apps removing the complexity and overhead of Mono. Linux targets currently receive the netcore3.1 Calamari by default, with the exception of [Linux SSH targets](https://octopus.com/docs/infrastructure/deployment-targets/linux/ssh-target#add-an-ssh-connection), which can specify to run scripts on Mono.
 
-`dotnet-script` is a modern implementation of C# scripting, built on .NET. It can run on all targets that support dotnet apps (netcore3.1 and newer). If we made this change, it would mean that C# scripts would only be able to be run on targets that support dotnet. Windows Server 2012 R2 and earlier only support .NET Framework, so these targets would lose the ability to run C# scripts.
+`dotnet-script` is a modern implementation of C# scripting, built on .NET. It can run on all targets that support .NET apps (netcore3.1 and newer). If we make this change, it would mean that C# scripts would only be able to be run on targets that support .NET. Windows Server 2012 R2 and earlier only support .NET Framework, so these targets would lose the ability to run C# scripts.
 
 ## Impacts
 
 ### Added functionality
-| Feature                               | ScriptCS          | dotnet-script    |
+| Feature                               | scriptcs          | dotnet-script    |
 |---------------------------------------|-------------------|------------------|
-| C# Version                            | 5                 | 8                |
-| Removes Mono Depedency for Linux      | ❌                | ✅              |
-| Nuget import support                  | ❌                | ✅              |
-| Allows future .Net 5 & 6 support      | ❌                | ✅              |
+| C# version                            | 5                 | 8                |
+| Removes Mono dependency for Linux      | ❌                | ✅              |
+| NuGet import support                  | ❌                | ✅              |
+| Allows future .NET 5 & 6 support      | ❌                | ✅              |
 
 ### Benefits of the proposed approach
 
@@ -44,7 +50,7 @@ All C# language features included up to [version 8](https://docs.microsoft.com/e
 
 Removing the dependency on Mono to execute scripts brings us inline with modern cross platform .NET capabilities reducing the complexity of calling into Mono and related issues.
 
-The Nuget import support from `dotnet-script` allows for the direct referencing of a nuget package in a script without having to [include the dll in the in the scripts packages](https://octopus.com/docs/octopus-rest-api/octopus.client/using-client-in-octopus). The new approach can be seen below.
+The NuGet import support from `dotnet-script` allows for the direct referencing of a NuGet package in a script without having to [include the dll in the scripts packages](https://octopus.com/docs/octopus-rest-api/octopus.client/using-client-in-octopus). The new approach can be seen below.
 
 ```
 #r "nuget: RestSharp, 108.0.1"
@@ -58,20 +64,22 @@ Console.WriteLine(response.Content);
 ```
 
 ### Linux SSH Targets using Mono
-One of the tradeoffs of this change would be that C# scripting would no longer be available on Linux deployment targets using SSH with Mono.
+One trade-off of this change is that C# scripting would no longer be available on Linux deployment targets using SSH with Mono.
 
 #### Migration
 
-To run C# scripts against your SSH linux targets, you'd need to reconfigure your SSH targets to use the self-contained Calamari which runs via netcore3.1. To do this, [select the Self-Contained Calamari target runtime on your SSH target](https://octopus.com/docs/infrastructure/deployment-targets/linux/ssh-target#self-contained-calamari). Targets using the Linux tentacle will continue to work as they always have.
+To run C# scripts against your SSH linux targets, you'd need to reconfigure your SSH targets to use the self-contained Calamari which runs via netcore3.1. 
 
-### Windows Server 2012R2 (and earlier) targets
-The other tradeoff with this change is that `dotnet-script` only works with netcore3.1 and above. This would make C# scripting unavailable to deployments against Windows Tentacles installed on versions of Windows earlier than 2012 R2, as these run .NET Framework builds of Calamari. 
+To do this, [select the Self-Contained Calamari target runtime on your SSH target](https://octopus.com/docs/infrastructure/deployment-targets/linux/ssh-target#self-contained-calamari). Targets using the Linux tentacle will continue to work as they always have.
+
+### Windows Server 2012 R2 (and earlier) targets
+The other trade-off with this change is that `dotnet-script` only works with netcore3.1 and above. This would make C# scripting unavailable to deployments against Windows Tentacles installed on versions of Windows earlier than 2012 R2, as these run .NET Framework builds of Calamari. 
 
 #### Workaround
 
 We developed a workaround so you can continue using scriptcs on your affected Windows targets, but you'll have to update your deployment process. 
 
-1. Add the [scriptcs nuget package](https://www.nuget.org/packages/scriptcs/) as a [referenced package](https://octopus.com/blog/script-step-packages).
+1. Add the [scriptcs NuGet package](https://www.nuget.org/packages/scriptcs/) as a [referenced package](https://octopus.com/blog/script-step-packages).
 2. Copy the body of your C# Script into the `$ScriptContent` variable in the PowerShell template below.
 
 :::info
@@ -100,11 +108,11 @@ We're still considering this change, so now is a great time to help shape this p
 
 Specifically, we want to know:
 
-- Will the limitations of Linux SSH targets or Windows versions older than 2012R2 affect you?
+- Will the limitations of Linux SSH targets or Windows versions older than 2012 R2 affect you?
 - If so, can you foresee any challenges that may stop you from upgrading these deployment targets or using alternative scripting languages?
 - Do the newer language features, easier NuGet package reference, and added reliability in removing Mono justify these changes?
 
-This feedback will help us deliver the best solution we can.
+Your feedback will help us deliver the best solution we can.
 
 <span><a class="btn btn-success" href="https://github.com/OctopusDeploy/StepsFeedback/issues/9">Provide feedback</a></span>
 
@@ -113,9 +121,9 @@ This feedback will help us deliver the best solution we can.
 In summary, the migration from `scriptcs` to `dotnet-script` will result in the following changes:
 
 - C# scripting deprecated for Linux SSH targets running Mono
-- C# scripting deprecated for Windows deployment targets running on versions earlier than 2012R2
+- C# scripting deprecated for Windows deployment targets running on versions earlier than 2012 R2
 - Increase support for language features from C# 5 to C# 8
-- Direct imports of Nuget packages in scripts
+- Direct imports of NuGet packages in scripts
 - Removal of Mono requirement for running C# scripts on Linux targets
 
 Thanks for reading this RFC. Any [feedback](https://github.com/OctopusDeploy/StepsFeedback/issues/9) you have is greatly appreciated.
