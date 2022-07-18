@@ -3,7 +3,7 @@ title: Using GitLab feeds with Octopus Deploy
 description: Learn how to connect GitLab feed types to Octopus Deploy.
 author: shawn.sesna@octopus.com
 visibility: public 
-published: 2022-07-20-1400
+published: 2022-07-19-1400
 metaImage: blogimage-usinggitlabfeedswithoctopus-2022.png
 bannerImage: blogimage-usinggitlabfeedswithoctopus-2022.png
 bannerImageAlt: Packages on a conveyer belt start in an orange machine, travel through a blue machine, and come out deployed with version numbers.
