@@ -50,7 +50,7 @@ Internally, design is a valuable function that contributes to the success of the
 
 We plan to continually invest in design at Octopus by:
 
-- Building a UX and design platform that can underpin the success of a world-class UX
+- Building a UX and design platform that can underpin the success of a world-class user experience
 - Including Product Designers in our Product teams
 - Evolving the structure of our team to allow for career progression
 - Evolving our brand and design standards 
