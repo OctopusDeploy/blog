@@ -21,7 +21,7 @@ Here we talk to Jessica Ross, Director of User Experience and Design.
 
 Our designers are embedded in the Marketing and R&D teams and are aligned with each team's mission.
 
-The product designers work with product managers and engineers. The designers look at the problems we're solving through the user experience lens and focus on delivering validated solutions that meet the needs of our customers. 
+The product designers work with product managers and engineers. The designers look at the problems we're solving through the user experience (UX) lens and focus on delivering validated solutions that meet the needs of our customers. 
 
 Our designers spend time with our customers to understand their pain points so they can provide a high-quality user experience.
 
