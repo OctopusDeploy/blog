@@ -17,7 +17,7 @@ tags:
   - Everything as Code
 ---
 
-Dealing with vulnerabilities is an unfortunate but essential part of software development. Even recently, we’ve seen [high-profile examples that highlight the importance of proactive risk management](https://octopus.com/blog/octopus-deploy-log4j-response), and prove that responsibility for vulnerabilities doesn't stop at deployment.
+Dealing with vulnerabilities is an unfortunate but essential part of software development. Even recently, we’ve seen [high-profile examples that highlight the importance of proactive risk management](https://octopus.com/blog/octopus-deploy-log4j-response), proving that responsibility for vulnerabilities doesn't stop at deployment.
 
 In this post, we explore:
 
@@ -31,11 +31,11 @@ Let's zero in on the word 'after' from our page heading for a moment. It's a sim
 There are 2 semantic reasons for this:
  
 - If testing picks up a would-be vulnerability before deployment, the code will never make it to an environment to be a vulnerability
-- An undetected and yet-to-be deployed vulnerability is, instead, a *risk* until it hits an environment where people can exploit it
+- An undetected, yet-to-be deployed vulnerability isn't really a vulnerability until it hits an environment where someone can exploit it
 
-In either case, problems can sneak through and become vulnerabilities no matter how rigorous your internal testing, automated or otherwise.
+Semantics aside, it's vital to realize that you can't expect testing to catch every problem in your code. Problems will sneak through no matter how rigorous your internal testing, automated or otherwise, as you won't always know what to look for.
 
-For this reason, you should never rely solely on internal pre-deployment testing. If you're not tracking vulnerabilities *after* deployment, then you're not really tracking them at all.
+And for this reason, you should never rely solely on internal pre-deployment testing. If you're not tracking vulnerabilities *after* deployment, then you're not really tracking them at all.
 
 ## You definitely want to be the ones finding a vulnerability
 
@@ -49,13 +49,17 @@ Failure to check for, find, and resolve vulnerabilities can lead to:
 
 You have a duty of care to your users, and doing everything you can to protect their interests is paramount. Not tracking vulnerabilities after deployment does your users a huge disservice, putting them and your own business interests at risk.
 
+It's not just those with ill-intent you need to worry about, either. Often, security researchers and library authors find vulnerabilities in code dependencies long after they're first deployed. With a lot of time passing before discovery, it means there's a good chance others included the vulnerabilities in their own software and possibly even iterated on it.
+
+This brings us nicely to our next point.
+
 ## You don't want to accidentally iterate on a problem
 
 The short sprints of DevOps processes help limit the likelihood of iterating on undiscovered problems. Short sprints also make it easier to pinpoint the update that introduced a problem.
 
 If you don't track what happens after deployment, you reintroduce the risk of iterating on vulnerabilities. This can make vulnerabilities harder to find, troubleshoot, and fix before it's too late.
 
-Check for vulnerabilities after deployment and you can save yourself time and stress in the future.
+Check for vulnerabilities after deployment and you can save yourself (and others) time and stress in the future.
 
 ## Managing vulnerabilities
 
@@ -67,13 +71,15 @@ Here are a few proactive things you can do to help protect your interests.
 
 While you are responsible for the safety of your own product, providers of the tools and infrastructure you use are fallible too. Even the biggest software and service providers, such as Microsoft, need to fix exploits.
 
-With that, it's important to ensure the products you use to deliver your software are:
+Amazon, as another example, uses the [Shared Responsibility Model](https://aws.amazon.com/compliance/shared-responsibility-model/). This model outlines expectations between the AWS services they offer, and their customers. In a nutshell, AWS are responsible for security *of* the cloud, and customers are responsible for security *in* in the cloud. This means the security of the operating systems and software you run on AWS infrastructure is on you.
+
+Regardless of your provider, though, you must ensure the products you use to deliver your software are:
 
 - As up-to-date as your company's policies allow
 - Patched and hot-fixed where urgent vulnerabilities exist
 - Still compliant with the promises you make to your customers
 
-You should also check service provider support and security pages for news on updates that will protect your product.
+You should regularly check service provider support and security pages for news on updates that will protect your product.
 
 ### Keep track of industry security news
 
