@@ -23,7 +23,7 @@ Our designers are embedded in the marketing and R&D teams and they're aligned wi
 
 The product designers work with product managers and engineers. The designers look at the problems we're solving through the user experience (UX) lens to deliver solutions that meet our customers' needs.
 
-We also make sure our designers spend time with our customers to understand their pain points so they can provide the best possible experience.
+We also make sure our designers spend time with our customers to understand their pain points, so they can provide the best possible experience.
 
 ## How do you know if the design and user experience work is successful?
 
@@ -44,7 +44,7 @@ We've had some new users say things can be hard to find and that some concepts a
 
 We've always tried to make Octopus an easy-to-use deployment tool that handles the complexity our customers need. We want our users to feel confident Octopus can guide them through setting up and maintaining complex deployment scenarios with an intuitive product, so they can progress their business with the latest DevOps technologies. 
 
-We'll continue doing this with exceptional designers focused on the quality of the UX and design experiences to help users to efficiently complete their tasks.
+We'll continue doing this with exceptional designers focused on the quality of the UX and design experiences to help users complete their tasks as efficiently as possible.
 
 Internally, design is really valuable and contributes to the success of the features and improvements that we ship to our customers. 
 
