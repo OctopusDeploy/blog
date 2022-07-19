@@ -1,7 +1,7 @@
 ---
 title: At the helm with Jessica Ross
 description: A series where we chat to people at Octopus about their role, what they’re working on to improve the product, and more. Hear from Jessica Ross, Director of User Experience and Design.
-author: shipra.mahindra@octopus.com
+author: jessica.ross@octopus.com
 visibility: public
 published: 2022-07-25-1400
 metaImage: blogimage-atthehelmwithjessross-2022.png
