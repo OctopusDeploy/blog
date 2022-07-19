@@ -1,21 +1,25 @@
 ---
 title: Configuring a GitHub NuGet registry as an external feed
-description: A guide to configuring a GitHub NuGet registry as an external feed for Octopus Deploy
+description: A guide to configuring a GitHub NuGet registry as an external feed for Octopus Deploy.
 author: shawn.sesna@octopus.com
-visibility: private
-published: 3020-01-01-1400
+visibility: public
+published: 2022-08-03-1400
 metaImage: blogimage-configuringagithubnugetregistry-2022.png
 bannerImage: blogimage-configuringagithubnugetregistry-2022.png
 bannerImageAlt: Packages being placed on a conveyor belt by a crane and being pushed into a machine representing the GitHub package registry
 isFeatured: false
 tags:
-  -
+  - DevOps
+  - GitHub Actions
 ---
 
-GitHub has become more than just a source code repository.  The folks at GitHub have developed exciting features such as their build server offering, GitHub Actions, issue tracking, and even a Package Registry which is compatible with Docker containers, npm, Maven, and NuGet packages as well as RubyGems.  In this post, you'll learn how to configure a GitHub Actions job to push a .NET Core NuGet package into the registry and connect the registry to Octopus Deploy as an [External Feed](https://octopus.com/docs/packaging-applications/package-repositories).
+GitHub has become more than just a source code repository.  The folks at GitHub have developed features like their build server offering, GitHub Actions, and issue tracking. They even developed GitHub Packages, a registry which is compatible with Docker containers, npm, Maven, NuGet packages, and RubyGems.  
+
+In this post, I show you how to configure a GitHub Actions job to push a .NET core NuGet package into the registry and connect the registry to Octopus Deploy as an [external feed](https://octopus.com/docs/packaging-applications/package-repositories).
 
 ## Configuring the .NET Core application
-To push packages to the Package Registry, you need to specify the `RepositoryUrl` element in the `.csproj` file.  This information is used by the `dotnet` commands when packing and pushing the packages to the registry.  Below is an example for the OctoPetShop Database project:
+
+To push packages to GitHub Packages, you need to specify the `RepositoryUrl` element in the `.csproj` file.  This information is used by the `dotnet` commands when packing and pushing the packages to the registry.  Below is an example for the OctoPetShop Database project:
 
 [OctopusSamples.OctoPetShop.Database.csproj](https://github.com/OctopusSamples/OctoPetShop/blob/master/OctopusSamples.OctoPetShop.Database/OctopusSamples.OctoPetShop.Database.csproj)
 ```xml
@@ -46,15 +50,20 @@ To push packages to the Package Registry, you need to specify the `RepositoryUrl
 ```
 
 ## Configuring GitHub Actions build
-Aside from building the application, the GitHub Actions job will need to perform the following activities:
-- Package the application components into a NuGet packages
-- Add the NuGet repository source
-- Push the packages into the Package Registry
 
-All of these commands are available within the `dotnet` CLI.
+Aside from building the application, the GitHub Actions job needs to perform the following activities:
+
+- Package the application components into NuGet packages
+- Add the NuGet repository source
+- Push the packages into the package registry
+
+All of these commands are available in the `dotnet` CLI.
 
 ### Package the application into a NuGet package
-Packing the application into a NuGet package can be done a multitude of ways.  This post uses the `dotnet pack` command built into the dotnet CLI.  To set the package version, use the MSBuild syntax of `-p:PackageVersion $PACKAGE_VERSION`.  The `$PACKAGE_VERSION` variable is declared earlier within the GitHub Actions YAML (see [here](https://github.com/OctopusSamples/OctoPetShop/blob/master/.github/workflows/dotnet-core-nuget.yml) for the entire process).  Below is an excert of the build to demonstrate the packing of the OctoPetShopDatabase project
+
+You can pack the application into a NuGet package in many ways. This post uses the `dotnet pack` command built into the .NET CLI.  
+
+To set the package version, use the MSBuild syntax of `-p:PackageVersion $PACKAGE_VERSION`.  The `$PACKAGE_VERSION` variable is declared earlier in the GitHub Actions YAML (see [our OctoPetShop sample](https://github.com/OctopusSamples/OctoPetShop/blob/master/.github/workflows/dotnet-core-nuget.yml) for the entire process).  Below is an excerpt of the build to show the packing of the OctoPetShop Database project:
 
 ```yaml
     - name: Pack OctoPetShopDatabase
@@ -63,7 +72,10 @@ Packing the application into a NuGet package can be done a multitude of ways.  T
 ```
 
 ### Add the NuGet repository source
-To target the GitHub Package registry, you'll need to add the registry as a source.  The `source` URL will be in the following format: `https://nuget.pkg.github.com/YourGitHubUsernameOrOrganizationName/index.json`.  In addition to the `source` URL, you will also need to specify credentials with sufficient permissions to push packages to the registry.  You can either create a Personal Access Token (PAT) or use the built-in secret available within GitHub Actions, `GITHUB_TOKEN`
+
+To target the GitHub Packages registry, you need to add the registry as a source.  The `source` URL is in the following format: `https://nuget.pkg.github.com/YourGitHubUsernameOrOrganizationName/index.json`.  
+
+You also need to specify credentials with sufficient permissions to push packages to the registry. You can create a Personal Access Token (PAT) or use the built-in secret available in GitHub Actions, `GITHUB_TOKEN`.
 
 ```yaml
     - name: Add source
@@ -71,8 +83,9 @@ To target the GitHub Package registry, you'll need to add the registry as a sour
         dotnet nuget add source "https://nuget.pkg.github.com/OctopusSamples/index.json" --username OctopusSamples --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github 
 ```
 
-### Push the package into the Package Registry
-The `push` command also needs credentials specified, `GITHUB_TOKEN` can also be used for the `--api-key` argument:
+### Push the package into the package registry
+
+You also need to specify credentials for the `push` command, and you can also use `GITHUB_TOKEN` for the `--api-key` argument:
 
 ```yaml
     - name: Push packages to GitHub Packages NuGet feed
@@ -80,50 +93,59 @@ The `push` command also needs credentials specified, `GITHUB_TOKEN` can also be 
         dotnet nuget push "$GITHUB_WORKSPACE/artifacts/OctopusSamples.OctoPetShop.Database/OctopusSamples.OctoPetShop.Database.$PACKAGE_VERSION.nupkg"  --api-key ${{ secrets.GITHUB_TOKEN }} --source "github"
 ```
 
-Once the packages have been pushed, they should appear in the Packages section of your GitHub project
+After you push the packages, they should appear in the **Packages** section of your GitHub project.
 
-![](github-packages.png)
+![GitHub project with Packages section highlighted](github-packages.png)
 
-## Configuring GitHub Package Registry as an External Feed
-GitHub Package Registries require authentication to be able to pull packages.  Before you can configure the feed, you will first need to create a PAT in GitHub.
+## Configuring GitHub package registry as an external feed
+
+GitHub Packages registries require authentication to pull packages.  Before you can configure the feed, you first need to create a PAT in GitHub.
 
 ### Creating a PAT in GitHub
-Creating a PAT is a relatively straightforward process.  To start, click on your profile in the upper right-hand corner and choose **Settings**
 
-![](github-profile-settings.png)
+Creating a PAT is relatively straightforward.  To start, click your profile in the upper right-hand corner and choose **Settings**.
 
-Scroll to bottom of the left-hand menu and click **Developer Settings**
+![GitHub project with Settings highlighted](github-profile-settings.png)
 
-![](github-developer-settings.png)
+Scroll to the bottom of the left-hand menu and click **Developer Settings**.
 
-Click on **Personal access tokens** then **Generate new token**
+![GitHub project with Developer Settings highlighted](github-developer-settings.png)
 
-![](github-generate-token.png)
+Click **Personal access tokens**, then **Generate new token**.
 
-Give the token a description, choose an expiration and assign the `read:packages` permission.  Click **Generate token**
+![GitHub project with Personal access tokens and Generate new token highlighted](github-generate-token.png)
 
-![](github-new-token.png)
+Give the token a description, choose an expiration, and assign the `read:packages` permission.  Click **Generate token**.
+
+![New personal access token screen](github-new-token.png)
 
 Copy the new token and save it in a safe location.
 
-### Create External Feed
-To create an External Feed, Click on **Library** -> **External Feeds** -> **ADD FEED**
+### Create external feed
 
-![](octopus-add-feed.png)
+To create an external feed, click **Library**, then **External Feeds**, and then **ADD FEED**.
+
+![Octopus dashboard with External Feeds highlighted](octopus-add-feed.png)
 
 Fill in the Feed form:
-- Feed Type: NuGet Feed
-- Name: Give a descriptive name
-- URL: https://nuget.pkg.github.com/YourGitHubUsernameOrOrganizationName/index.json
-- Credentials
-  - Username: Username for the token
-  - Password: PAT you generated earlier
 
-![](octopus-new-feed.png)
+- **Feed Type**: `NuGet Feed`
+- **Name**: Give a descriptive name
+- **URL**: `https://nuget.pkg.github.com/YourGitHubUsernameOrOrganizationName/index.json`
+- **Credentials**
+  - **Username**: Username for the token
+  - **Password**: PAT you generated earlier
 
-Click **SAVE AND TEST**.  Enter a partial name of the package(s) you created with your build to make sure that the feed is working correctly
+![External Feeds in Octopus Deploy](octopus-new-feed.png)
+
+Click **SAVE AND TEST**.  Enter a partial name of the package(s) you created with your build to make sure the feed is working correctly.
 
 ![](octopus-test-feed.png)
 
 ## Conclusion
-In this post, I demonstrated how to pack an application into a NuGet package using the dotnet CLI in GitHub Actions and push the package into the GitHub Package Registry as well as configure the Registry as an External Feed within Octopus Depoloy.
+
+In this post, I demonstrated how to pack an application into a NuGet package using the .NET CLI in GitHub Actions, and push the package into the GitHub Packages registry. I then showed you how to configure the registry as an external feed in Octopus Deploy.
+
+You might also be interested in my post about [using GitLab feeds with Octopus Deploy](https://octopus.com/blog/gitlab-external-feeds).
+
+Happy deployments!
