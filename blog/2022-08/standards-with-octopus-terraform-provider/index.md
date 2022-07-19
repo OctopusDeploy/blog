@@ -54,7 +54,9 @@ In the list above, you'll notice library variable sets for each cloud provider. 
 
 ## Using Octopus Deploy Runbooks to run Terraform commands
 
-I knew from the start I'd be using Octopus Deploy Runbooks to run the `terraform apply` or `terraform destroy` commands.  But where should those runbooks exist?  Storing the runbooks on the samples instance caused a "snake eating the tail" scenario.  And they could end up blocking sample deployments and other runbooks.  I opted to create a new instance, `samples-admin`, to house the runbooks.  
+I knew I'd be using Octopus Deploy Runbooks to run the `terraform apply` or `terraform destroy` commands.  But I wasn't sure where those runbooks should exist. Storing the runbooks on the samples instance caused a "snake eating the tail" scenario. And they could end up blocking sample deployments and other runbooks. 
+
+I opted to create a new instance, `samples-admin`, to house the runbooks.  
 
 The next step was developing a runbook structure to apply Terraform templates to all spaces on the samples instance.  The space list is dynamic; adding a space should automatically add to the process.  The Octopus Terraform Provider works best when targeting a specific space.  Therefore, I needed to run the `terraform apply` command for each space.  Having a single runbook with 34 static steps, each running `terraform apply` didn't scale well.  To solve this dilemma, I created the following runbooks:
 
@@ -62,15 +64,15 @@ The next step was developing a runbook structure to apply Terraform templates to
 
 ![enforce system-wide standards process](enforce-system-wide-standards-process.png)
 
-**Enforce Space Standards** - accepts a Space-Id as a prompted variable, runs a few API scripts to enforce retention policies, and runs the **Apply a Terraform Template** built-in step.  
+**Enforce Space Standards** - accepts a Space-ID as a prompted variable, runs a few API scripts to enforce retention policies, and runs the **Apply a Terraform Template** built-in step.  
 
 ![enforce space standards process](enforce-space-standards-proess.png)
 
-The Space-Id prompted variable has `Spaces-1` as the default if I want to test a change quickly on a single space.  
+The Space-ID prompted variable has `Spaces-1` as the default if I want to test a change quickly on a single space.  
 
 ![space id prompted variable](space-id-prompted-variable.png)
 
-**Create New Space** - accepts a Space Name as a prompted variable and runs an API script to create a space.  After the space is created, it calls the **Enforce System Wide Standards** runbook (using a prompted variable for a single space) to ensure permissions and resources are set up correctly for the new space.
+**Create New Space** - accepts a space name as a prompted variable and runs an API script to create a space.  After the space is created, it calls the **Enforce System Wide Standards** runbook (using a prompted variable for a single space) to ensure permissions and resources are set up correctly for the new space.
 
 ![create new space process](create-new-space-process.png)
 
@@ -89,7 +91,7 @@ All scripts and Terraform files used by these runbooks can be found in the [IaC 
 
 ## Terraform basics
 
-At the start of this, my experience with Terraform was limited to Proof of Concepts.  This section covers what I learned about using Terraform with Octopus Deploy.
+At the start of this, my experience with Terraform was limited to proof of concepts.  This section covers what I learned about using Terraform with Octopus Deploy.
 
 ### Resource ownership
 
@@ -197,7 +199,7 @@ $env:AWS_SECRET_ACCESS_KEY = $backendAccountSecretKey
 terraform init -no-color
 ```
 
-I solved the first problem ; next was reading the state file into memory.  You do that by running the `terraform show` command with the argument `-json` specified and running the `ConvertFrom-Json` cmdlet.
+I solved the first problem; next was reading the state file into memory.  I did that by running the `terraform show` command with the argument `-json` specified and running the `ConvertFrom-Json` cmdlet.
 
 ```PowerShell
 $currentStateAsJson = terraform show -json
@@ -295,7 +297,9 @@ Octopus Deploy supports all 3 options.  It's a matter of personal preference.  I
 
 ## Migrating to new resources
 
-I learned most lessons while doing a pilot template with a few items.  It didn't take long after the pilot was completed before those resources were created on all samples instances.  That was the easy part of this project.  Now it was time to migrate all the existing projects to use the new resources.  This is a non-trivial task and not something we could script away with some API scripts.  Each sample was spinning up its own infrastructure.  We needed to modify those samples to use the same base set of cloud resources and only create what was needed.
+I learned most lessons while doing a pilot template with a few items.  It didn't take long after the pilot was complete before those resources were created on all samples instances.  That was the easy part of this project.  
+
+Now it was time to migrate all the existing projects to use the new resources.  This was a non-trivial task and not something we could script away with some API scripts.  Each sample was spinning up its own infrastructure.  We needed to modify those samples to use the same base set of cloud resources and only create what was needed.
 
 Having the same library variable sets, accounts, and Worker Pools made the migration much easier, but it's still manual work.  I mention this because you'll probably have additional manual work if you want to implement something like this on an existing instance.  
 
@@ -303,6 +307,6 @@ Having the same library variable sets, accounts, and Worker Pools made the migra
 
 Before we started using the Octopus Terraform Provider, it took hours with copy/pasting to rotate a password or add a new resource group on all spaces.  Now it takes less than 30 minutes.  
 
-The Octopus Terraform Provider makes it easy to establish standards across all spaces on the [Octopus Deploy Samples Instance](https://samples.octopus.app).  After I learned the nuances of Terraform, I came to appreciate what it can offer.  I can share several resources between spaces but have the state of those resources managed by Terraform.  By doing this, I climit edit permissions in the Octopus UI and rely on version control features such as branching, reverting, and pull requests to create an approval process.
+The Octopus Terraform Provider makes it easy to establish standards across all spaces on the [Octopus Deploy samples instance](https://samples.octopus.app).  After learning the nuances of Terraform, I came to appreciate what it can offer.  I can now share several resources between spaces but have the state of those resources managed by Terraform.  By doing this, I limit edit permissions in the Octopus UI and rely on version control features such as branching, reverting, and pull requests to create an approval process.
 
 Happy deployments!
