@@ -1,9 +1,9 @@
 ---
 title: Introducing slugs in Config as Code
-description: A brief overview of slugs, and how they're used in Config as Code
+description: A brief overview of slugs, and how they're used in Config as Code.
 author: eoin.motherway@octopus.com
 visibility: public
-published: 3020-01-01-1400
+published: 2022-07-25-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt: 
