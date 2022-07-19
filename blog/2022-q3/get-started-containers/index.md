@@ -99,9 +99,9 @@ When deploying your app, your process will:
 - Pull the image from its repository
 - Deploy the image to a newly spun-up container on your hosting service
 
-## Deploying the Octopus underwater app
+## Something to deploy
 
-If you want to experiment with containerization but have nothing suitable to deploy, we've got you covered.
+You need something to deploy if you want to experiment with containerization. If you have nothing suitable, we've got you covered.
 
 The [Octopus underwater app](https://github.com/OctopusSamples/octopus-underwater-app) is a simple JavaScript app to help you test containerization with different service providers.
 
