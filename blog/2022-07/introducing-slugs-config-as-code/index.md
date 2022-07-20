@@ -15,7 +15,7 @@ tags:
 
 When we started developing the Configuration as Code feature, we decided to replace IDs with names in Octopus Configuration Language (OCL). This approach came with several drawbacks, though, leading us to replace names with slugs in OCL.
 
-This post explores the trade-offs by using names in OCL, what slugs are, and why we chose to implement them for Config as Code.
+This post explores the trade-offs when using names in OCL, what slugs are, and why we chose to implement them for Config as Code.
 
 ## IDs in OCL
 
@@ -65,15 +65,15 @@ We did this to improve the user experience when viewing version-controlled deplo
 
 While this worked initially, it presented some long-term drawbacks.
 
-## The trade-offs
+## The trade-offs using names
 
 Throughout the Octopus codebase, we generally assume all references to shared resources are made using IDs. When we introduced names in OCL, we broke this assumption.
 
-Now, ID properties can contain either a valid ID *or* the name of a resource that may or may not exist.
+ID properties could contain either a valid ID *or* the name of a resource that may or may not exist.
 
 This resulted in several breaking changes both internally and externally, as the _"names as IDs"_ approach also affected our API, meaning API consumers (including ourselves) had to be aware of names and IDs in responses too.
 
-Because IDs are also technically valid as names, it can be unclear whether a given value is an ID or a name, leaving it up to the user to guess which it is.
+Because IDs are also technically valid as names, it could be unclear whether a given value was an ID or a name, leaving it up to the user to guess which it was.
 
 Looking at the JSON below, there are a few issues:
 
