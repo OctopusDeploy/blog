@@ -1,7 +1,7 @@
 ---
 title: Testing Kubernetes locally
 description: Learn the tools available for developers testing Kubernetes on their local machines. 
-author: name.surname@octopus.com
+author: matthew.casperson@octopus.com
 visibility: private
 published: 3020-01-01-1400
 metaImage: placeholderimg.png
