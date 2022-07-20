@@ -13,7 +13,7 @@ tags:
   - Cloud Orchestration
 ---
 
-Kubernetes is a complex platform that is typically deployed across a number of servers to achieve high availability. However, creating multi-node clusters is often not practical for individual DevOps engineers testing their applications.
+Kubernetes is a complex platform typically deployed across a number of servers to achieve high availability. However, creating multi-node clusters is often not practical for individual DevOps engineers performing local testing.
 
 Fortunately, there are many options available for installing development Kubernetes clusters on a single machine. This allows DevOps engineers to verify many aspects of their code and deployment process before deploying their applications to a shared cluster.
 
@@ -21,15 +21,15 @@ In this post, we'll look at some of the options available to DevOps engineers fo
 
 ## Minikube
 
-[Minikube](https://minikube.sigs.k8s.io/docs/) is a cross-platform tool for creating single node Kubernetes clusters. [It also provides many example integration with Continuous Integration (CI) servers](https://github.com/minikube-ci/examples), allowing ephemeral test clusters to be created and destroyed as part of automated tests.
+[Minikube](https://minikube.sigs.k8s.io/docs/) is a cross-platform tool for creating single node Kubernetes clusters. [It also provides many examples of how it can be configured with Continuous Integration (CI) servers](https://github.com/minikube-ci/examples), allowing ephemeral test clusters to be created and destroyed as part of automated tests.
 
 ## kind
 
-[kind](https://kind.sigs.k8s.io/), which starts for Kubernetes in Docker, is a cross-platform tool that supports creating multi-node Kubernetes clusters all hosted as Docker containers. It can take a moment to wrap your mind around the concept of Docker running Kubernetes to orchestrate Docker containers, but tool works well and has the advantage of not requiring dedicated virtual machines in Windows and macOS.
+[kind](https://kind.sigs.k8s.io/), which stands for Kubernetes in Docker, is a cross-platform tool supporting the creation multi-node Kubernetes clusters all hosted as Docker containers. It can take a moment to wrap your mind around the concept of Docker running Kubernetes to orchestrate Docker containers, but the tool works well and has the advantage over other options of not requiring dedicated virtual machines in Windows and macOS.
 
 ## MicroK8s
 
-[MicroK8s](https://microk8s.io/) is both an option for local development on Windows, Linux, and macOS, and for production environments with the option of enterprise support and security maintenance. MicroK8s provides [addons](https://microk8s.io/docs/addons) providing an convenient way to install common features like an image registry, dashboards, ingress controllers and more.
+[MicroK8s](https://microk8s.io/) is both an option for local development on Windows, Linux, and macOS, and for production environments with the option of enterprise support and security maintenance. MicroK8s supports [addons](https://microk8s.io/docs/addons) providing a convenient way to install common features like an image registry, dashboards, ingress controllers and more.
 
 ## K3s
 
@@ -45,7 +45,7 @@ In this post, we'll look at some of the options available to DevOps engineers fo
 
 ## Conclusion
 
-Thanks the the eagre adoption of Kubernetes by the open-source community, DevOps engineers have a wide range of options for quickly spinning up development clusters on their local machines and creating ephemeral clusters as part of the CI tests. While Linux users have the most options, there are still plenty of active and well maintained projects for Windows and macOS users. So with usually no more than one or two commands and a few minutes, DevOps engineers can spin up a local cluster ready for testing.
+Thanks to the eagre adoption of Kubernetes by the open-source community, DevOps engineers have a wide range of options for quickly spinning up development clusters on their local machines and creating ephemeral clusters as part of the CI tests. While Linux users have the most options, there are still plenty of active and well maintained projects for Windows and macOS users. So with usually no more than one or two commands and a few minutes, DevOps engineers can spin up a local cluster ready for testing.
 
 ## Learn more
 
