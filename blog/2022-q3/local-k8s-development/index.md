@@ -37,7 +37,7 @@ You can find more information on integrating kind clusters with Octopus in the p
 
 ## K3s
 
-[K3s](https://k3s.io/) is a lightweight, production ready [Kubernetes distribution for Linux](https://rancher.com/docs/k3s/latest/en/installation/installation-requirements/#operating-systems). K3s has the ability to create multi-node clusters on a single machine with [k3d](https://github.com/k3d-io/k3d), providing a convenient solution for creating a development cluster.
+[K3s](https://k3s.io/) is a lightweight, production ready [Kubernetes distribution for Linux](https://rancher.com/docs/k3s/latest/en/installation/installation-requirements/#operating-systems) created by Rancher. K3s has the ability to create multi-node clusters on a single machine with [k3d](https://github.com/k3d-io/k3d), providing a convenient solution for creating a development cluster.
 
 Learn how to integrate Rancher an Octopus in the post [Deploying to Rancher with Octopus Deploy](https://octopus.com/blog/deploy-to-rancher-with-octopus).
 
