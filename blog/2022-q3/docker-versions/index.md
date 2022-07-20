@@ -40,7 +40,7 @@ For those that want to stick with Docker though, there are two options: `docker.
 
 The `docker.io` and `docker` packages are maintained by their respective Linux distributions. They are available to be installed without adding any additional package repositories. They are free and open source.
 
-`docker-ce` is a package provided by Docker. The package is available through a third party package repository provided for the major Linux distributions. Like the `docker.io` and `docker` pacakges, `docker-ce` is free an open source.
+`docker-ce` is a package provided by Docker. The package is available through a third party package repository provided for major Linux distributions. Like the `docker.io` and `docker` pacakges, `docker-ce` is free an open source.
 
 There are many discussions on the underlying differences between `docker.io`/`docker` and `docker-ce`. [This question on StackOverflow](https://stackoverflow.com/questions/45023363/what-is-docker-io-in-relation-to-docker-ce-and-docker-ee-now-called-mirantis-k), with close to 90 thousand views, lists some of the pros and cons of each package.
 
@@ -48,15 +48,15 @@ Personally, I install the `docker-ce` package, as it is usually more up to date.
 
 ## Docker desktop for everyone else
 
-[Docker Desktop](https://docs.docker.com/desktop/) is the only way to get the Docker Engine on Windows 10 or 11 and macOS operating systems. Docker Desktop is also available for Linux, although Linux users are free to install the Docker Engine separately.
+[Docker Desktop](https://docs.docker.com/desktop/) is the only way to install the Docker Engine on Windows 10 or 11 and macOS operating systems. Docker Desktop is also available for Linux, although Linux users are free to install the Docker Engine separately.
 
 Docker Desktop is a commercial application that [requires payment for some teams](https://docs.docker.com/subscription/#docker-desktop-license-agreement).
 
-## Windows containers
+## Windows server support
 
 [Windows server 2016 and 2019 include native support for running Docker](https://docs.microsoft.com/en-us/virtualization/windowscontainers/about/#the-microsoft-container-ecosystem), but only support running Windows containers.
 
-There is some advice available for running Linux containers on Windows server operating systems. [This post on Server Fault](https://serverfault.com/questions/970802/how-to-run-linux-docker-container-on-windows-server-2019/980454#980454) provides a summary and links to other resources. However, none of the information I have seen suggests that Linux containers on Windows server is a supported solution for production environments.
+There is some advice for running Linux containers on Windows server operating systems. [This post on Server Fault](https://serverfault.com/questions/970802/how-to-run-linux-docker-container-on-windows-server-2019/980454#980454) provides a summary and links to other resources. However, none of the information I have seen suggests that Linux containers on Windows server is a supported solution for production environments.
 
 ## Conclusion
 
