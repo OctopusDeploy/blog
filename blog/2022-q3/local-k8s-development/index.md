@@ -19,9 +19,9 @@ Fortunately, there are many options available for installing development Kuberne
 
 In this post, we'll look at some of the options available to DevOps engineers for running a development Kubernetes cluster.
 
-## Minikube
+## minikube
 
-[Minikube](https://minikube.sigs.k8s.io/docs/) is a cross-platform tool for creating single node Kubernetes clusters. [It also provides many examples of how it can be configured with Continuous Integration (CI) servers](https://github.com/minikube-ci/examples), allowing ephemeral test clusters to be created and destroyed as part of automated tests.
+[minikube](https://minikube.sigs.k8s.io/docs/) is a cross-platform tool for creating single node Kubernetes clusters. [It also provides many examples of how it can be configured with Continuous Integration (CI) servers](https://github.com/minikube-ci/examples), allowing ephemeral test clusters to be created and destroyed as part of automated tests.
 
 ## kind
 
