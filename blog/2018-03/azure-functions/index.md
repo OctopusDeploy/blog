@@ -70,7 +70,7 @@ These values are used during local development. If you run the solution from Vis
 
 ### Package for Octopus
 
-Unfortunately, due to the output of Azure Function projects, the standard [`OctoPack`](https://octopus.com/docs/packaging-applications/create-packages/nuget-packages/using-octopack) generated NuGet package will not work. The configuration files for the functions are generated _after_ the build phase, which is when Octopack is configured to kick in. We recommend using `dotnet publish` to publish the project to a directory, then package the generated files:
+Unfortunately, due to the output of Azure Function projects, the standard [`OctoPack`](https://octopus.com/docs/packaging-applications/create-packages/octopack) generated NuGet package will not work. The configuration files for the functions are generated _after_ the build phase, which is when Octopack is configured to kick in. We recommend using `dotnet publish` to publish the project to a directory, then package the generated files:
 
 ![folder](folder.png "width=500")
 

@@ -73,7 +73,7 @@ This snippet uses the APR protocol, which accepts the PEM files that were create
 
 ## Verifying the Configuration
 
-[High-Tech Bridge](https://www.htbridge.com/ssl/) has an online service for verifying the security configuration of a web server.
+[High-Tech Bridge](https://www.htbridge.com) has an online service for verifying the security configuration of a web server.
 
 In this screenshot we can see that the Tomcat server has exposed both the RSA and the ECDSA certificates.
 

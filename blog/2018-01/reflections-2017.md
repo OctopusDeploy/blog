@@ -12,8 +12,6 @@ tags:
 
 In January 2017 I outlined our [product roadmap for 2017](https://octopus.com/blog/roadmap-2017). With 2017 firmly in the rear view mirror, I wanted to take some time to reflect upon our progress for the year. This post won't just be about the roadmap though - I also want to give you some insight into Octopus as a company and how we've grown over the year, and share some of the challenges we've had. 
 
-![Octopus looking in the rear-view mirror at 2017](reflections-2017-blogimage.png)
-
 ## Kicking off
 
 We start each year with a "kick off" event, and in 2017 it was held in our office in Brisbane. At the time we were 23 people (21 in Brisbane, Dalmiro in Argentina, and Matt Richardson in Melbourne). We use the Kick Off event to try to get everyone on the same page for the year. We started a few new things this year: 
@@ -74,7 +72,7 @@ I said we'd commit to trying to address all UserVoice suggestions with over 200 
  - **235 votes**: [Version control of Octopus configuration](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/15698781-version-control-configuration)
    *Not done. We're still debating the best way to go about this. Expect an RFC on this this year.* 
  - **213 votes**: [Output variables for offline drops](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/9196032-output-variables-for-offline-drops)
-   *Not done. Might wait until [Remote Release Promotions](https://octopus.com/release-promotions) to resolve.*
+   *Not done.
  - **210 votes**: [Project dependencies](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/9811932-allow-project-dependencies-so-deploying-one-proj)
    *Not done. We'll make progress on this in 2018* 
  - **200 votes**: [Allow polling Tentacles to communicate on port 443](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/6703593-allow-polling-tentacles-to-contact-octopus-on-443)

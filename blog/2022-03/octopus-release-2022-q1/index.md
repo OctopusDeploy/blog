@@ -267,8 +267,6 @@ In this release, we introduced an update service for built-in steps using our ne
 
 The screenshot above shows the upgrade process for an example "Hello world" step. 
 
-[Learn more about the update process in the Octopus architecture documentation](https://github.com/OctopusDeploy/Architecture/blob/main/Steps/Concepts/Migration.md).
-
 ## Octopus Deploy acquired Dist
 
 Octopus acquired [Dist](https://www.dist.cloud/), a fast and reliable artifact repository for containers and Java artifacts. Octopus has a built-in package repository for various package formats, but it doesn’t support container images. We're exploring how the Dist team's technology and expertise can help us add this capability for a low latency, secure, and integrated container registry. 
