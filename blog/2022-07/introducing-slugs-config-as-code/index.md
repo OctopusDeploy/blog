@@ -1,12 +1,12 @@
 ---
 title: Introducing slugs in Config as Code
-description: A brief overview of slugs, and how they're used in Config as Code.
+description: A brief overview of slugs, why we chose to them, and how they're used in Config as Code.
 author: eoin.motherway@octopus.com
 visibility: public
 published: 2022-07-25-1400
 metaImage: blogimage-introducingslugs-cac-2022.png
 bannerImage: blogimage-introducingslugs-cac-2022.png
-bannerImageAlt: OCL text editor
+bannerImageAlt: OCL in a text editor
 isFeatured: false
 tags: 
   - Engineering
@@ -19,13 +19,13 @@ This post explores the trade-offs by using names in OCL, what slugs are, and why
 
 ## IDs in OCL
 
-Traditionally, Octopus uses unique IDs to reference shared resources from places such as deployment processes, runbooks, variables, etc.
+Traditionally, Octopus uses unique IDs to reference shared resources from places such as deployment processes, runbooks, and variables.
 
 On their own, IDs aren't very descriptive, they're simply made up of the resource type, and a unique number. For example, the ID of an environment might look something like `Environments-42`.
 
-IDs in Octopus lack context. An ID alone isn't enough information to know what that ID refers to. This generally isn't an issue for things like APIs, as API responses are generally designed to be read by other programs.
+IDs in Octopus lack context. An ID alone isn't enough information to know what that ID refers to. This isn't an issue for things like APIs, as API responses are usually designed to be read by other programs.
 
-OCL on the other hand is meant to be written and read by humans. Using IDs in OCL would make it hard to understand at a glance, as this example shows:
+OCL, however, is meant to be written and read by humans. Using IDs in OCL would make it hard to understand at a glance, as this example shows:
 
 ```ocl
 step "Run a Script" {
@@ -37,7 +37,7 @@ step "Run a Script" {
 }
 ```
 
-Out of context, it's not clear what this is doing. What environment is `Environments-42`? Which worker pool is `WorkerPools-4`? These IDs aren't exposed in many places, so trying to figure out what they refer to can be challenging.
+Out of context, it's not clear what this is doing. What environment is `Environments-42`? Which Worker Pool is `WorkerPools-4`? These IDs aren't exposed in many places, so trying to figure out what they refer to can be challenging.
 
 This isn't a great experience if you're just trying to read the OCL.
 
@@ -59,9 +59,9 @@ step "Run a Script" {
 
 Looking at the OCL above, it's much easier to understand what's going on compared to using IDs in OCL.
 
-After we decided to use names in OCL, we also decided to use names *in place of* of IDs in both the API and in the UI for version-controlled projects.
+After we decided to use names in OCL, we also decided to use names *in place of* IDs in both the API and in the UI for version-controlled projects.
 
-We did this to improve the user experience when viewing version-controlled deployment processes from the UI. If there were any broken references in the OCL (like a typo in a name), we'd show a warning where the broken reference was found, and allow it to be fixed from the UI, or the API
+We did this to improve the user experience when viewing version-controlled deployment processes from the UI. If there were any broken references in the OCL (like a typo in a name), we'd show a warning where the broken reference was found and allow it to be fixed from the UI or the API
 
 While this worked initially, it presented some long-term drawbacks.
 
@@ -69,11 +69,11 @@ While this worked initially, it presented some long-term drawbacks.
 
 Throughout the Octopus codebase, we generally assume all references to shared resources are made using IDs. When we introduced names in OCL, we broke this assumption.
 
-Now, ID properties could contain either a valid ID *or* the name of a resource that may or may not exist.
+Now, ID properties can contain either a valid ID *or* the name of a resource that may or may not exist.
 
 This resulted in several breaking changes both internally and externally, as the _"names as IDs"_ approach also affected our API, meaning API consumers (including ourselves) had to be aware of names and IDs in responses too.
 
-Because IDs are also technically valid as names, it can be unclear whether a given value is an ID or a name, leaving it up to the user to guess or assume whether a particular value is an ID or a name.
+Because IDs are also technically valid as names, it can be unclear whether a given value is an ID or a name, leaving it up to the user to guess which it is.
 
 Looking at the JSON below, there are a few issues:
 
@@ -91,13 +91,13 @@ Looking at the JSON below, there are a few issues:
 
 Using names as IDs also results in chatty API clients, as consumers need to make additional requests to the API to be able to fetch resources referenced by name.
 
-The generic list-style endpoints (E.g: `/environments?partialName=foobar`) would need to be used to find all matching resources, then the results would need to be filtered manually by the consumer. These requests might not be cheap, especially if pagination is taking place and multiple requests need to be made for a single resource.
+The generic list-style endpoints (for example, `/environments?partialName=foobar`) would need to be used to find all matching resources, then the results would need to be filtered manually by the consumer. These requests might not be cheap, especially if pagination is taking place and multiple requests need to be made for a single resource.
 
 Another minor issue caused by names in OCL was the inability to rename resources without breaking references. This was to be expected but left room for improvement.
 
 ## Introducing slugs
 
-With all of the grief caused by names as IDs, we considered using slugs.
+Given the drawbacks of using names as IDs, we considered using slugs.
 
 Slugs are human-readable, URL-friendly, unique identifiers. They're often used in places where names wouldn't be a great fit, such as URLs (including the URL for this post).
 
@@ -105,7 +105,7 @@ Slugs are often automatically generated based on a name. For example, an environ
 
 ## Slugs in Octopus
 
-To keep the scope small, we started by adding slugs to anything which can be referenced from a deployment process. So far, this includes:
+To keep the scope small, we started by adding slugs to anything that can be referenced from a deployment process. So far, this includes:
 
 - Accounts
 - Channels
@@ -120,11 +120,11 @@ To keep the scope small, we started by adding slugs to anything which can be ref
 
 We'll add slugs to more resource types as the need arises.
 
-Projects already had the concept of slugs, which mostly lined up with our own goals for slugs. We managed to re-purpose most of the existing project slug logic and apply it to the aforementioned resource types with a few adjustments.
+Projects already had the concept of slugs, which mostly lined up with our own goals. We managed to re-purpose most of the existing project slug logic and apply it to the aforementioned resource types with a few adjustments.
 
-- Any newly created or existing resources will have their slugs automatically generated based on their name.
+- Any newly created or existing resources have their slugs automatically generated based on their name.
 - Slugs can be modified independently of the name, allowing resources to be renamed without breaking any references. *This changes the existing behavior of project slugs.*
-  - Modifying slugs is generally not advised, as it can potentially lead to broken external references which will need to be updated manually (for example, deployment processes defined in OCL).
+  - Modifying slugs is generally not advised, as it can potentially lead to broken external references which need to be updated manually (for example, deployment processes defined in OCL).
 
 ## Slugs in OCL
 
@@ -146,18 +146,18 @@ step "run-a-script" {
 }
 ```
 
-It's much easier to understand which environments and Worker Pool this is referring to now, and we get the benefit of these slugs being unique, and re-usable between projects and spaces.
+It's much easier to understand which environments and Worker Pool this is referring to now. We also get the benefit of these slugs being unique and re-usable between projects and spaces.
 
 ## Isolating the abstraction leak
 
-At the time of writing, using slugs to reference shared resources only makes sense in OCL. Neither our front-end nor back-end is ready to use slugs for referencing these resources, and updating these to do so would be a non-trivial task.
+At the time of writing, using slugs to reference shared resources only makes sense in OCL. Neither our front-end or back-end is ready to use slugs for referencing these resources, and updating them to do so would be a non-trivial task.
 
 Because slugs can be used as a contextually unique ID, we can map between traditional IDs and slugs when reading and writing OCL from Octopus.
 This allows us to use slugs in OCL, while using IDs throughout the Octopus server, API, and front-end.
 
-If Octopus encounters a slug that it can't map to an ID, a validation error is returned, instead of allowing the broken reference. We can maintain the validity of the data we're working with.
+If Octopus encounters a slug that it can't map to an ID, a validation error is returned instead of allowing the broken reference. We can maintain the validity of the data we're working with.
 
-While this sacrifices the ability to view and edit broken references from the UI and API, we believe this is the right direction as it brings our API back into a consistent shape, and improves the stability and predictability of Octopus server when working with OCL.
+While this sacrifices the ability to view and edit broken references from the UI and API, we believe this is the right direction as it brings our API back into a consistent shape and improves the stability and predictability of Octopus server when working with OCL.
 
 ## The future of slugs
 
