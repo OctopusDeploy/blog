@@ -15,21 +15,21 @@ tags:
 
 Kubernetes is a complex platform typically deployed across a number of servers to achieve high availability. However, creating multi-node clusters is often not practical for individual DevOps engineers performing local testing.
 
-Fortunately, there are many options available for installing development Kubernetes clusters on a single machine. This allows DevOps engineers to verify many aspects of their code and deployment process before deploying their applications to a shared cluster.
+Fortunately, there are many options available for installing development Kubernetes clusters on a single machine. This allows DevOps engineers to verify many aspects of their code and deployment process before deploying to a shared cluster.
 
 In this post, we'll look at some of the options available to DevOps engineers for running a development Kubernetes cluster.
 
 ## minikube
 
-[minikube](https://minikube.sigs.k8s.io/docs/) is a cross-platform tool for creating single node Kubernetes clusters. [It also provides many examples of how it can be configured with Continuous Integration (CI) servers](https://github.com/minikube-ci/examples), allowing ephemeral test clusters to be created and destroyed as part of automated tests.
+[minikube](https://minikube.sigs.k8s.io/docs/) is a cross-platform tool for creating single node Kubernetes clusters. [It also provides many examples showing how it can be configured with Continuous Integration (CI) servers](https://github.com/minikube-ci/examples), allowing ephemeral test clusters to be created and destroyed as part of automated tests.
 
-Learn how to install minikube on Windows and connect it to Octopus in the post [Installing Minikube on Windows](https://octopus.com/blog/minikube-on-windows).
+Learn how to install minikube on Windows and connect it to Octopus in the post [Installing minikube on Windows](https://octopus.com/blog/minikube-on-windows).
 
 ## kind
 
-[kind](https://kind.sigs.k8s.io/), which stands for Kubernetes in Docker, is a cross-platform tool supporting the creation multi-node Kubernetes clusters all hosted as Docker containers. It can take a moment to wrap your mind around the concept of Docker running Kubernetes to orchestrate Docker containers, but the tool works well and has the advantage over other options of not requiring dedicated virtual machines in Windows and macOS.
+[kind](https://kind.sigs.k8s.io/), which stands for Kubernetes in Docker, is a cross-platform tool supporting the creation ofmulti-node Kubernetes clusters all hosted as Docker containers. It can take a moment to wrap your mind around the concept of Docker running Kubernetes to orchestrate Docker containers, but the tool works well and has the advantage over other options of not requiring dedicated virtual machines in Windows and macOS.
 
-You can find more information on integrating kind cluster with Octopus in the post [Kubernetes testing with KIND](https://octopus.com/blog/getting-started-with-kind-and-octopus).
+You can find more information on integrating kind clusters with Octopus in the post [Kubernetes testing with kind](https://octopus.com/blog/getting-started-with-kind-and-octopus).
 
 ## MicroK8s
 
