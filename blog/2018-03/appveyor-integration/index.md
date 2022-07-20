@@ -27,14 +27,14 @@ Looking at the build phase, you should notice a `Package Applications for Octopu
 
 ![AppVeyor Build Step](appveyor_build_step.png "width=800")
 
-This flag ensures that once the build has completed, the contents are zipped up into a package that can be pushed to Octopus Deploy. Although Octopus will accept any NuGet, zip, or tar package this flag will make use of `octo.exe` to [create a zip](https://octopus.com/docs/packaging-applications/create-packages/creating-zip-packages), named using the application name and version of this AppVeyor project.
+This flag ensures that once the build has completed, the contents are zipped up into a package that can be pushed to Octopus Deploy. Although Octopus will accept any NuGet, zip, or tar package this flag will make use of `octo.exe` to [create a zip](https://octopus.com/docs/packaging-applications/create-packages/), named using the application name and version of this AppVeyor project.
 
 ### Push
-In the `Deployment` configuration, select the new `Octopus Deploy` deployment provider. This feature performs all the appropriate calls to pass the package into Octopus and create a related Octopus [Release](https://octopus.com/docs/deployment-process/releases) .
+In the `Deployment` configuration, select the new `Octopus Deploy` deployment provider. This feature performs all the appropriate calls to pass the package into Octopus and create a related Octopus [Release](https://octopus.com/docs/releases) .
 
 ![AppVeyor Deployment Step](appveyor_build_deployment.png "width=800")
 
-After adding your Octopus Server URL and API Key, tick the `Push Packages` option to allow AppVeyor to auto-detect the Octopus package built in the previous step. AppVeyor will then push the package to the Octopus [built-in NuGet feed](https://octopus.com/docs/packaging-applications/package-repositories/pushing-packages-to-the-built-in-repository). Although Octopus supports [automatic release creation](https://octopus.com/docs/deployment-process/releases/automatic-release-creation) when a new package is available, in this scenario we will trigger it through AppVeyor. Click the `Create Release` checkbox and provide the name of the project, `RandomQuotes` which we will later set-up in Octopus and which AppVeyor will programmatically trigger.
+After adding your Octopus Server URL and API Key, tick the `Push Packages` option to allow AppVeyor to auto-detect the Octopus package built in the previous step. AppVeyor will then push the package to the Octopus [built-in NuGet feed](https://octopus.com/docs/octopus-rest-api/examples/feeds/push-package-to-builtin-feed/). Although Octopus supports [automatic release creation](https://octopus.com/docs/projects/project-triggers/automatic-release-creation) when a new package is available, in this scenario we will trigger it through AppVeyor. Click the `Create Release` checkbox and provide the name of the project, `RandomQuotes` which we will later set-up in Octopus and which AppVeyor will programmatically trigger.
 
 
 #### Source Controlled Configuration
@@ -53,7 +53,7 @@ After providing a role that maps to the target where we have IIS available, we w
 
 Configuring the website itself at its simplest consists of setting just two additional values, The `Website name` and the `AppPool`. For this example, we will host both `Staging` and `Production` on the same machine (not the best idea for a real project), so we will provide a different website name based on the environment being deployed. The `#{Octopus.Environment.Name}` section of the name will be replaced at deploy time with the name of the environment.
 
- In addition to the `Website Name` we have also decided to provide a different binding port between  `Staging` and `Production`. This value `#{CustomPort}` is set in the `Variables` section of the project and can be scoped to a different value based on various combinations of deployment contexts like environment, machine or [tenant](https://octopus.com/docs/deployment-patterns/multi-tenant-deployments), to name just a few.
+ In addition to the `Website Name` we have also decided to provide a different binding port between  `Staging` and `Production`. This value `#{CustomPort}` is set in the `Variables` section of the project and can be scoped to a different value based on various combinations of deployment contexts like environment, machine or [tenant](https://octopus.com/docs/tenants), to name just a few.
 
 ![Octopus Deploy variables](octopus_variables.png "width=800")
 
@@ -98,7 +98,7 @@ With the staging version of our application available we can inspect and test it
 
 Notice how the transformation has been applied changing the colour of the navbar, while the port and other variables have been updated based on the environment being deployed to.
 
-For more information about this new feature, be sure to read our [docs](https://octopus.com/docs/packaging-applications/build-servers/appveyor)
+For more information about this new feature, be sure to read our [AppVeyordocs](https://octopus.com/docs/packaging-applications/build-servers/appveyor)
 
 ## AppVeyor + Octopus = Deploy Any Time
 
