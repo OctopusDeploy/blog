@@ -1,7 +1,7 @@
 ---
 title: Sharing workers across spaces
 description: Learn methods to easily share workers between spaces
-author: andrew.corrigan@octopus.com
+author: shawn.sesna@octopus.com
 visibility: private
 published: 3020-01-01-1400
 metaImage: placeholderimg.png
