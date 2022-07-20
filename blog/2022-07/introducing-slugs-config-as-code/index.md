@@ -13,7 +13,7 @@ tags:
   - Configuration as Code
 ---
 
-When we started developing the Configuration as Code feature, we decided to replace IDs with names in Octopus Configuration Language (OCL). This approach came with several drawbacks, though, leading us to replace names with slugs in OCL.
+When we started developing the Configuration as Code feature, we decided to replace IDs with names in Octopus Configuration Language (OCL). This approach came with several drawbacks, though, leading us to replace names with [slugs in OCL](https://octopus.com/docs/projects/version-control/config-as-code-reference#slugs-in-ocl).
 
 This post explores the trade-offs when using names in OCL, what slugs are, and why we chose to implement them for Config as Code.
 
@@ -105,7 +105,7 @@ Slugs are often automatically generated based on a name. For example, an environ
 
 ## Slugs in Octopus
 
-To keep the scope small, we started by adding slugs to anything that can be referenced from a deployment process. So far, this includes:
+To keep the scope small, we started by adding [slugs](https://octopus.com/docs/projects/version-control/config-as-code-reference#slugs-in-ocl) to anything that can be referenced from a deployment process. So far, this includes:
 
 - Accounts
 - Channels
@@ -161,7 +161,7 @@ While this sacrifices the ability to view and edit broken references from the UI
 
 ## The future of slugs
 
-With much of the groundwork for slugs now complete, we can start adding slugs to more resource types and begin using them more heavily throughout the Octopus codebase.
+With much of the groundwork for [slugs](https://octopus.com/docs/projects/version-control/config-as-code-reference#slugs-in-ocl) now complete, we can start adding slugs to more resource types and begin using them more heavily throughout the Octopus codebase.
 
 Many other teams outside of Config as Code have shown interest in using slugs throughout their domains, so stay tuned to see how we use slugs next.
 
