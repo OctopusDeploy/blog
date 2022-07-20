@@ -45,7 +45,7 @@ In this post, we'll look at some of the options available to DevOps engineers fo
 
 ## Conclusion
 
-Thanks to the eagre adoption of Kubernetes by the open-source community, DevOps engineers have a wide range of options for quickly spinning up development clusters on their local machines and creating ephemeral clusters as part of the CI tests. While Linux users have the most options, there are still plenty of active and well maintained projects for Windows and macOS users. So with usually no more than one or two commands and a few minutes, DevOps engineers can spin up a local cluster ready for testing.
+Thanks to the eagre adoption of Kubernetes by the open-source community, DevOps engineers have a wide range of options for quickly spinning up development clusters on their local machines and creating ephemeral clusters in CI tests. While Linux users have the most options, there are still plenty of active and well maintained projects for Windows and macOS users. So, with usually no more than one or two commands and a few minutes, DevOps engineers can spin up a local cluster ready for testing.
 
 ## Learn more
 
