@@ -54,13 +54,13 @@ Docker Desktop is a commercial application that [requires payment for some teams
 
 ## Windows containers
 
-[Windows server 2016 and 2019 have native support for running Docker](https://docs.microsoft.com/en-us/virtualization/windowscontainers/about/#the-microsoft-container-ecosystem), but only support running Windows containers.
+[Windows server 2016 and 2019 include native support for running Docker](https://docs.microsoft.com/en-us/virtualization/windowscontainers/about/#the-microsoft-container-ecosystem), but only support running Windows containers.
 
-There is some advice available for running Linux containers on Windows server operating systems. [This post on Server Fault](https://serverfault.com/questions/970802/how-to-run-linux-docker-container-on-windows-server-2019/980454#980454) provides a summary and links to other resources. However, none of the information I have seen suggests that Linux containers on Windows server is a supported solution.
+There is some advice available for running Linux containers on Windows server operating systems. [This post on Server Fault](https://serverfault.com/questions/970802/how-to-run-linux-docker-container-on-windows-server-2019/980454#980454) provides a summary and links to other resources. However, none of the information I have seen suggests that Linux containers on Windows server is a supported solution for production environments.
 
 ## Conclusion
 
-Developers working on containerized applications will first need to install Docker. But, while the term "Docker" is synonymous with containers, there are many options to choose from, and some do not require any Docker specific tools at all. In this post we looked at the various tools and specifications that support containerized applications, and noted the options available for developers needing to work with containers.
+Developers working on containerized applications will first need to install a tool like Docker. But, while the term "Docker" is synonymous with containers, there are many options to choose from, and some do not require any Docker specific tools at all. In this post we looked at the various tools and specifications that support containerized applications, and noted the options available for developers needing to work with containers.
 
 ## Learn more
 
