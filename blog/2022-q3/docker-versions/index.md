@@ -4,9 +4,9 @@ description: Learn which version of Docker to installed for your operating syste
 author: matthew.casperson@octopus.com
 visibility: private
 published: 3020-01-01-1400
-metaImage: placeholderimg.png
-bannerImage: placeholderimg.png
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-gettingstartedcontainerisation-2022.png
+bannerImage: blogimage-gettingstartedcontainerisation-2022.png
+bannerImageAlt: Man sitting on top of container with green circle with a power up icon
 isFeatured: false
 tags: 
   - Containers
