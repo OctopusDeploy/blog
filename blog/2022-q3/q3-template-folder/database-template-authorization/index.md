@@ -89,7 +89,15 @@ SQL - Deploy DACPAC with AAD Auth support is written in PowerShell and makes use
 The Octopus Community recognizes the advantages of utilizing authentication mechanisms offered by cloud providers.  In this post, I've listed templates that have been updated with cloud provider authentication functionality.
 
 ## Learn more
+Our Samples instance has updated examples to use cloud-native authentication
+- [MySQL using Azure Managed Identity and Flyway](https://samples.octopus.app/app#/Spaces-242/projects/flyway-azure-paas/deployments/process)
+- [MySQL using Azure Managed Identity and Liquibase](https://samples.octopus.app/app#/Spaces-242/projects/liquibase-azure-paas/deployments/process)
+- [MySQL using Google Cloud Service Account and Flyway](https://samples.octopus.app/app#/Spaces-242/projects/flyway-gcp-service-account/deployments)
+- [MySQL using Google Cloud Service Account and Liquibase](https://samples.octopus.app/app#/Spaces-242/projects/liquibase-gcp-service-account/deployments/process)
+- [PostgreSQL using Azure Managed Identity and Flyway](https://samples.octopus.app/app#/Spaces-243/projects/flyway-azure-paas/deployments/process)
+- [PostgreSQL using Azure Managed Identity and Liquibase](https://samples.octopus.app/app#/Spaces-243/projects/liquibase-azure-paas/deployments/process)
+- [PostgreSQL using Google Cloud Service Account and Flyway](https://samples.octopus.app/app#/Spaces-243/projects/flyway-gcp-service-account/deployments/process)
+- [PostgreSQL using Google Cloud Service Account and Liquibase](https://samples.octopus.app/app#/Spaces-243/projects/liquibase-gcp-service-account/deployments/process)
 
-- [link](https://www.example.com/resource)
 
 Happy deployments! 
