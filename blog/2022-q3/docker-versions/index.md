@@ -16,11 +16,11 @@ Docker has matured over the years to offer a range of solutions for developers w
 
 ## The many facets of Docker
 
-Docker has been part of a large and ongoing movement focusing on building, distributing, and running containerized software. While the term "Docker" is often synonymous with containerization, it is worth understanding the various tools and specifications that work together to support containerized software.
+Docker is been part of a large and ongoing movement focusing on building, distributing, and running containerized software. While the term "Docker" is often synonymous with containerization, it is worth understanding the various tools and specifications working together to support containerized software.
 
-The core technologies that power Docker are defined by the [Open Container Initiative](https://opencontainers.org/) (OCI), which defines the format for distributable images, with the Image Specification (image-spec) and how those images are run with the Runtime Specification (runtime-spec).
+The core technologies that power Docker are defined by the [Open Container Initiative](https://opencontainers.org/) (OCI), which defines the format for distributable images with the Image Specification (image-spec) and how those images are run with the Runtime Specification (runtime-spec).
 
-The OCI runtime-spec is implemented by a number of [Container Runtimes](https://developers.redhat.com/blog/2018/02/22/container-terminology-practical-introduction#container_engine), including [runc](https://github.com/opencontainers/runc), [crun](https://github.com/containers/crun), and [katacontainers](https://github.com/kata-containers/kata-containers)). Container Runtimes perform the low level work required to execute containerized processes.
+The OCI runtime-spec is implemented by a number of [Container Runtimes](https://developers.redhat.com/blog/2018/02/22/container-terminology-practical-introduction#container_engine), including [runc](https://github.com/opencontainers/runc), [crun](https://github.com/containers/crun), and [katacontainers](https://github.com/kata-containers/kata-containers). Container Runtimes perform the low level work required to execute containerized processes.
 
 [Container Engines](https://developers.redhat.com/blog/2018/02/22/container-terminology-practical-introduction#container_engine) such as Docker with [containerd](https://containerd.io/) and [Podman](https://docs.podman.io/en/latest) with [conmon](https://github.com/containers/conmon) are used to pull OCI images and launch containers via a Container Runtime.
 
