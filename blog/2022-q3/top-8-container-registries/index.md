@@ -3,13 +3,13 @@ title: Top 8 container registries
 description: There are many container registry services, suitable for all different kinds of teams. We look at the top 8 and why you might consider them.
 author: andrew.corrigan@octopus.com
 visibility: private
-published: 3020-01-01-1400
+published: 2022-08-15-1400
 metaImage: placeholderimg.png
 bannerImage: placeholderimg.png
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags: 
-  - Containers Series
+  - DevOps
   - Containers
   - Cloud Orchestration
 ---
