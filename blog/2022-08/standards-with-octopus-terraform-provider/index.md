@@ -11,6 +11,7 @@ isFeatured: false
 tags:
 - DevOps
 - Runbooks
+- Terraform
 ---
 
 The [Octopus Deploy samples instance](https://samples.octopus.app) has grown significantly since we created it in late 2019.  It has over 30 spaces. That growth is a double-edged sword, though. The samples are helpful to our customers, but having many spaces makes routine maintenance tasks, like rotating an external feed password, time-consuming.  
