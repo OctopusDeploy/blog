@@ -42,8 +42,6 @@ kubectl port-forward service/k8dash 9999:80 -n kube-system
 
 ## Konstellate
 
-[Konstellate Homepage](https://github.com/containership/konstellate)
-
 > Visualize Kubernetes Applications
 
 Konstellate is not so much a Kubernetes dashboard as a tool for creating, linking, and visualizing Kubernetes resources.
