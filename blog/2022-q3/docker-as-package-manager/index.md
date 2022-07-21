@@ -48,7 +48,63 @@ As we'll see in the next sections, there are additional arguments required to re
 
 ## A practical example
 
-Let's look at helm as a practical example of running CLI tools from Docker images.
+Let's look at helm as a practical example of running CLI tools from Docker images. The first step is to download the image locally. Note this step is optional, because Docker will download missing images before running them:
+
+```bash
+docker pull alpine/helm
+```
+
+Run helm with no arguments with the following command. The `--rm` argument passed to `docker` cleans up the container when it is finished, which is desirable when running images for single operations:
+
+```bash
+docker run --rm alpine/helm
+```
+
+This results in the help text being printed to the console, just as if you had run a locally installed version of `helm` with no arguments.
+
+A common requirement of CLI tools used for DevOps automation is the ability to read files and directories, whether they are configuration files, larger packages like ZIP files, or directories with application code.
+
+By their nature, Docker containers are self contained and by default do not read files on the host. However, local files and directories can be mounted inside a Docker container with the `-v` argument, allowing the processes run in a Docker container to read and write files on the host.
+
+The command below mounts several shared directories with container cerated to run the `alpine/helm` image. This allows configuration settings, like helm repositories, to be accessed by the `helm` executable in the Docker container. It also passes the arguments `repo list`, which lists the configured repositories:
+
+```bash
+docker run --rm -v "$(pwd):/apps" -w /apps \
+    -v ~/.kube:/root/.kube -v ~/.helm:/root/.helm -v ~/.config/helm:/root/.config/helm \
+    -v ~/.cache/helm:/root/.cache/helm \
+    alpine/helm repo list
+```
+
+If you have not previously defined any helm repositories, the output of this command will be:
+
+```
+Error: no repositories to show
+```
+
+To demonstrate how the volume mounting works we'll configure a new helm repository using a locally installed version of `helm`:
+
+```bash
+helm repo add nginx-stable https://helm.nginx.com/stable
+```
+
+Running the helm Docker image to list the repositories shows that it has loaded the repository added by the locally installed copy of `helm`:
+
+```
+NAME            URL
+nginx-stable    https://helm.nginx.com/stable
+```
+
+This also works in reverse. Run the following command to add a second repository from the helm Docker image:
+
+```bash
+docker run --rm -v "$(pwd):/apps" -w /apps \
+    -v ~/.kube:/root/.kube -v ~/.helm:/root/.helm -v ~/.config/helm:/root/.config/helm \
+    -v ~/.cache/helm:/root/.cache/helm \
+    alpine/helm repo add kong https://charts.konghq.com
+```
+
+Then list the repos from the locally 
+
 
 ## Conclusion
 
