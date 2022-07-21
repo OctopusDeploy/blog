@@ -4,9 +4,9 @@ description: Learn how to manage your own version of the Azure CLI and why we no
 author: terence.wong@octopus.com
 visibility: public
 published: 2022-02-01-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: Terminal window says Octopus no longer maintains AZURE CLI tooling. Learn how to maintain your own version of the Azure CLI.
+metaImage: blogimage-creatingyourownversionazurecli-2022.png
+bannerImage: blogimage-creatingyourownversionazurecli-2022.png
+bannerImageAlt: Desktop screen in the clouds with an Octopus Deploy logo in front of it.
 isFeatured: false
 tags:
  - DevOps
