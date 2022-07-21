@@ -14,9 +14,9 @@ tags:
   - Cloud Orchestration
 ---
 
-Though they serve different purposes, container registries often get confused for their repository counterparts.
+Container registries often get confused for their repository counterparts, even though they serve different purposes.
 
-A container repository is storage for your containerized application images. Nowadays, most image repositories focus on the 'OCI' format, based on the container format Docker popularized and opened up to everyone. In fact, 'OCI images' and 'Docker images' are often used interchangeably in the marketing of registry providers.
+A container repository is storage for your containerized application images. These days, most image repositories focus on the 'OCI' format, based on the container format Docker popularized and opened up to everyone. In fact, 'OCI images' and 'Docker images' are often used interchangeably in the marketing of registry providers.
 
 :::hint
 OCI stands for 'Open Container Initiative'. The initiative is a container structure intended to act as the industry standard format. Most of the major players in tech, development, and cloud services back the initiative and support the OCI format. Read more about it on the [Open Container Initiative website](https://opencontainers.org/).
@@ -62,10 +62,10 @@ Azure's biggest selling point, however, is its registry geo-replication. This en
 
 Given GitHub's reach and that it's already available for all users, [GitHub's Container Registry](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-container-registry) (part of a bigger feature called [GitHub Packages](https://github.com/features/packages)) is one of the most approachable options.
 
-There are definite benefits to considering GitHub Packages for container management, including:
+The benefits to considering GitHub Packages for container management include:
 
-- Simplified user management - most of your users already have accounts, after all
-- GitHub Actions integration to push, publish and deploy images
+- Simplified user management - most of your users already have accounts
+- GitHub Actions integration to push, publish, and deploy images
 - Its cost relative to other services
 
 ## Google Container Registry
