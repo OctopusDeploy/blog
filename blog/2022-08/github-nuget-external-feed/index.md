@@ -22,6 +22,7 @@ In this post, I show you how to configure a GitHub Actions job to push a .NET co
 To push packages to GitHub Packages, you need to specify the `RepositoryUrl` element in the `.csproj` file.  This information is used by the `dotnet` commands when packing and pushing the packages to the registry.  Below is an example for the OctoPetShop Database project:
 
 [OctopusSamples.OctoPetShop.Database.csproj](https://github.com/OctopusSamples/OctoPetShop/blob/master/OctopusSamples.OctoPetShop.Database/OctopusSamples.OctoPetShop.Database.csproj)
+
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
 
@@ -57,9 +58,9 @@ Aside from building the application, the GitHub Actions job needs to perform the
 - Add the NuGet repository source
 - Push the packages into the package registry
 
-All of these commands are available in the `dotnet` CLI.
+All of these commands are available in the .NET CLI.
 
-### Package the application into a NuGet package
+### Packaging the application into a NuGet package
 
 You can pack the application into a NuGet package in many ways. This post uses the `dotnet pack` command built into the .NET CLI.  
 
@@ -71,7 +72,7 @@ To set the package version, use the MSBuild syntax of `-p:PackageVersion $PACKAG
         dotnet pack OctopusSamples.OctoPetShop.Database/OctopusSamples.OctoPetShop.Database.csproj --configuration Release --output "$GITHUB_WORKSPACE/artifacts/OctopusSamples.OctoPetShop.Database" -p:PackageVersion=$PACKAGE_VERSION
 ```
 
-### Add the NuGet repository source
+### Adding the NuGet repository source
 
 To target the GitHub Packages registry, you need to add the registry as a source.  The `source` URL is in the following format: `https://nuget.pkg.github.com/YourGitHubUsernameOrOrganizationName/index.json`.  
 
@@ -83,7 +84,7 @@ You also need to specify credentials with sufficient permissions to push package
         dotnet nuget add source "https://nuget.pkg.github.com/OctopusSamples/index.json" --username OctopusSamples --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github 
 ```
 
-### Push the package into the package registry
+### Pushing the package into the package registry
 
 You also need to specify credentials for the `push` command, and you can also use `GITHUB_TOKEN` for the `--api-key` argument:
 
@@ -121,7 +122,7 @@ Give the token a description, choose an expiration, and assign the `read:package
 
 Copy the new token and save it in a safe location.
 
-### Create external feed
+### Creating an external feed
 
 To create an external feed, click **Library**, then **External Feeds**, and then **ADD FEED**.
 
@@ -130,7 +131,7 @@ To create an external feed, click **Library**, then **External Feeds**, and then
 Fill in the Feed form:
 
 - **Feed Type**: `NuGet Feed`
-- **Name**: Give a descriptive name
+- **Name**: Enter a descriptive name
 - **URL**: `https://nuget.pkg.github.com/YourGitHubUsernameOrOrganizationName/index.json`
 - **Credentials**
   - **Username**: Username for the token
