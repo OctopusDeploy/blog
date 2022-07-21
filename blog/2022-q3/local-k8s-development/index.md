@@ -4,9 +4,9 @@ description: Learn the tools available for developers testing Kubernetes on thei
 author: matthew.casperson@octopus.com
 visibility: private
 published: 3020-01-01-1400
-metaImage: placeholderimg.png
-bannerImage: placeholderimg.png
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-kubernetes-containers-update.png
+bannerImage: blogimage-kubernetes-containers-update.png
+bannerImageAlt: Octopus at the helm of a boat
 isFeatured: false
 tags: 
   - Containers
