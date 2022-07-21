@@ -167,7 +167,7 @@ echo "##octopus[stdout-default]"
 
 ## Conclusion
 
-Docker images provide a consistent and convenient way to install and run common DevOps CLI tools, especially when compared to the process of writing OS specific commands to download binary files from unique URLs. In this post we looked at how to run a Docker image from the command line or in a script, and provides some tips to allow Docker images to run as drop in replacements for locally installed tools.
+Docker images provide a consistent and convenient way to install and run common DevOps CLI tools, especially when compared to the process of writing OS specific commands to download binary files from unique URLs. In this post we looked at how to run a Docker image from the command line or in a script, and provided some tips to allow Docker images to run as drop in replacements for locally installed tools.
 
 ## Learn more
 
