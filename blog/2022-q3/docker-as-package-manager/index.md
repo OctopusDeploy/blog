@@ -62,11 +62,11 @@ docker run --rm alpine/helm
 
 This results in the help text being printed to the console, just as if you had run a locally installed version of `helm` with no arguments.
 
-A common requirement of CLI tools used for DevOps automation is the ability to read files and directories, whether they are configuration files, larger packages like ZIP files, or directories with application code.
+A common requirement of CLI tools used for DevOps automation is the ability to read files and directories, whether they are configuration files, larger packages like zip files, or directories with application code.
 
 By their nature, Docker containers are self contained and by default do not read files on the host. However, local files and directories can be mounted inside a Docker container with the `-v` argument, allowing the processes run in a Docker container to read and write files on the host.
 
-The command below mounts several shared directories with container cerated to run the `alpine/helm` image. This allows configuration settings, like helm repositories, to be accessed by the `helm` executable in the Docker container. It also passes the arguments `repo list`, which lists the configured repositories:
+The command below mounts several shared directories with a container created to run the `alpine/helm` image. This allows configuration settings, like helm repositories, to be accessed by the `helm` executable in the Docker container. It also passes the arguments `repo list`, which lists the configured repositories:
 
 ```bash
 docker run --rm -v "$(pwd):/apps" -w /apps \
@@ -103,7 +103,7 @@ docker run --rm -v "$(pwd):/apps" -w /apps \
     alpine/helm repo add kong https://charts.konghq.com
 ```
 
-Then list the repos from the locally with the command:
+Then list the repos from the locally installed tool with the command:
 
 ```bash
 helm repo list
@@ -119,7 +119,7 @@ kong            https://charts.konghq.com
 
 ## Aliasing docker run commands
 
-While Docker provides a convenient ability to download and run images, the `docker run` command can become quite long tedious to type. Fortunately, it is possible to alias the `docker run` command so it can be used as a drop in replacement for a locally installed tool.
+While Docker provides a convenient ability to download and run images, the `docker run` command can become quite long and tedious to type. Fortunately, it is possible to alias the `docker run` command so it can be used as a drop in replacement for a locally installed tool.
 
 Use the `alias` command to map `docker run` to the `helm` command:
 
@@ -133,7 +133,7 @@ The previous alias command only works in the session it was defined in. If you l
 vim ~/.bash_aliases
 ```
 
-In many distributions, the `~/.bash_aliases` file is loaded automatically by the `~/.bashrc` file. If not, add the following code to the `~/.bashrc` file:
+In many Linux distributions, the `~/.bash_aliases` file is loaded automatically by the `~/.bashrc` file. If not, add the following code to the `~/.bashrc` file:
 
 ```bash
 if [ -f ~/.bash_aliases ]; then
@@ -149,7 +149,7 @@ If you are using aliases in a non-interactive shell (like running a script step 
 shopt -s expand_aliases
 ```
 
-The following snippet shows a script step downloading a Docker image and setting the aliases. The logging level has been set to verbose so the Docker image download messages don't fill the deployment logs. It also demonstrates passing environment variables to an aliased command via the `-e` arguments:
+The following snippet shows a script step downloading a Docker image and setting the aliases. The logging level has been set to verbose so the Docker image download messages don't fill the deployment logs. It also demonstrates passing environment variables to `docker run` via the `-e` arguments:
 
 ```bash
 echo "Downloading Docker images"
