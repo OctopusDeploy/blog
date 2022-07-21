@@ -36,6 +36,7 @@ Reporting
 Runbooks
 Serverless
 Step Templates
+Terraform
 Testing
 Trust and Security
 Variables
