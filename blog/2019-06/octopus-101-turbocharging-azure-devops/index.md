@@ -10,7 +10,7 @@ tags:
  - Events and Webinars
 ---
 
-We've started hosting regular Webinars, and up next in our Continuous Integration series, [Derek](https://twitter.com/OctoDerek), and [Ryan](https://twitter.com/ryanrousseau) are going to discuss [Turbo Charging Azure DevOps with Octopus Deploy](https://octopus.zoom.us/webinar/register/WN_93jsiLalSPCLfApxzfWNGA).
+We've started hosting regular Webinars, and up next in our Continuous Integration series, [Derek](https://twitter.com/OctoDerek), and [Ryan](https://twitter.com/ryanrousseau) are going to discuss Turbo Charging Azure DevOps with Octopus Deploy.
 
 We often still see, organizations and members of the Dev and Ops teams have automated the build & test, but still, need to deploy manually and out of hours. In this session, Derek and Ryan will take you through how to integrate Azure DevOps and Octopus Deploy using the [Azure DevOps & TFS extension](https://octopus.com/downloads). They will then configure an Azure pipeline, and lastly, pass the package through to Octopus Deploy which will then deploy to Azure from a single build and test from Development all the way to Production.
 
@@ -18,7 +18,7 @@ We often still see, organizations and members of the Dev and Ops teams have auto
 
 This session will run on July 17th, 2019, 4.30pm UTC/10.30am ET, and you can register [here](https://octopus.zoom.us/webinar/register/WN_93jsiLalSPCLfApxzfWNGA).
 
-Additionally, we have been running [Octopus 101: Getting Started Webinars](https://octopus.zoom.us/webinar/register/WN_5ZaCOiP5SXSUhSztPPuSgQ), and the next one is on June 26th, where Derek and Ryan will cover the core concepts of Octopus.
+Additionally, we have been running Octopus 101: Getting Started Webinars, and the next one is on June 26th, where Derek and Ryan will cover the core concepts of Octopus.
 
 Moreover, if you haven't seen them yet, check out our [Ask Octopus series](https://www.youtube.com/playlist?list=PLAGskdGvlaw3-cd9rPiwhwfUo7kDGnOBh).
 
