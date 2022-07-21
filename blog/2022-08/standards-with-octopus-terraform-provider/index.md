@@ -116,7 +116,7 @@ Terraform uses a state file to determine which resources to create, update, and 
 
 The state file is stored in a subdirectory in the working directory by default.  The kicker is Octopus Deploy deletes that working directory after each Terraform step runs.  That state file is automatically deleted.  The first time Octopus Deploy runs a `terraform apply` command, everything works because it's a brand new state file, and the resources won't exist.  But it fails on subsequent runs because the resource already exists in Octopus Deploy, but the state file thinks those resources don't exist.  
 
-Storing the state file in a local directory isn't recommended anyway.  Any sensitive values are stored unencrypted in the state file.  To store the state file, a [remote backend](https://www.terraform.io/language/settings/backends) is recommended to store the state file.  I opted for a secured S3 bucket with encryption turned on.
+Storing the state file in a local directory isn't recommended anyway.  Any sensitive values are stored unencrypted in the state file.  To store the state file, a [remote back-end](https://www.terraform.io/language/settings/backends) is recommended to store the state file.  I opted for a secured S3 bucket with encryption turned on.
 
 The state options were declared inline in my initial version of the Terraform files.  However, you can't use variables for state options.  In my ignorance, I decided to use Octostache and have Octopus Deploy replace those values when the runbook ran.
 
@@ -188,7 +188,7 @@ That wasn't as simple as running `terraform import`. I wanted my process to run 
 
 Invoking the Octopus Deploy API wasn't a problem for me.  I have [some experience working with the API](https://github.com/OctopusDeployLabs/SpaceCloner).  Everything else was new to me.  
 
-I want to log in to AWS the same way as the built-in steps in Octopus Deploy.  Octopus uses [environment variables](https://www.terraform.io/language/settings/backends/s3#credentials-and-shared-configuration) for credential backend.  In my case, I need to supply a value for `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
+I want to log in to AWS the same way as the built-in steps in Octopus Deploy.  Octopus uses [environment variables](https://www.terraform.io/language/settings/backends/s3#credentials-and-shared-configuration) for credential back-end.  In my case, I need to supply a value for `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
 
 ```PowerShell
 $backendAccountAccessKey = $OctopusParameters["Project.AWS.Backend.Account.AccessKey"]
