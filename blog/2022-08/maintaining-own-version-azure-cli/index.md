@@ -15,15 +15,13 @@ tags:
 
 Octopus Deploy previously supported the Azure Command Line Interface (CLI) as part of its [custom Worker Tools](https://github.com/OctopusDeploy/WorkerTools). As of Octopus 2021.1, however, Octopus no longer maintains the current Azure CLI version. If your deployments use the pre-bundled version, you'll receive a warning recommending you maintain your Worker image. 
 
-We don't recommend using the Azure tools bundled with Octopus Deploy. Octopus bundles versions of the Azure Resource Manager PowerShell modules (AzureRM) and Azure CLI. These were convenience mechanisms for users wanting to run scripts against Azure targets.
+The Azure tools bundled with Octopus Deploy were provided to make it easy for users who need to run scripts against Azure targets. Octopus bundles versions of the Azure Resource Manager PowerShell modules (AzureRM) and Azure CLI. Since Octopus 2021.1, we recommend maintaining your own worker container with the versioning you need to run your deployments. This way, the tooling provided matches the requirements specified by the deployment.
 
-The Azure tools bundled with Octopus Deploy are provided to make it easy for users who need to run scripts against Azure targets. Octopus bundles versions of the Azure Resource Manager PowerShell modules (AzureRM) and Azure CLI. However, since Octopus 2021.1, we recommend maintaining your Worker container with the versioning you need to run your deployments. This way, the tooling provided matches the requirements specified by the deployment.
-
-In this post, I run through an example of creating a custom Docker image with the latest Azure CLI version, hosting it on Docker Hub, and using it in an Octopus deployment.
+In this post, you can follow an example of creating a custom Docker image with the latest Azure CLI version, hosting it on Docker Hub, and using it in an Octopus deployment.
 
 ## Installing and pushing custom container
 
-I create a Dockerfile that specifies the operating system, as well as the Azure CLI install commands. Here I have set the latest version of the CLI to be installed (2.28.0)
+To begin, create a Dockerfile that specifies the operating system, as well as the Azure CLI install commands. The latest version of the CLI is set to be installed (2.28.0).
 
     FROM ubuntu:18.04
 
@@ -46,7 +44,7 @@ I create a Dockerfile that specifies the operating system, as well as the Azure 
     
 This Dockerfile can include other forms of tooling if required. Octopus is recommending all users maintain their tooling versions as this will ensure consistent deployment outcomes.
 
-I then run a docker buildx command to build and push my image to Docker Hub. I have an M1 Mac, and using multiple platforms ensures that Octopus Deploy will pull down the appropriate version.
+Run a docker buildx command to build and push the image to Docker Hub. These instructions are for an M1 Mac. Using multiple platforms ensures that Octopus Deploy will pull down the appropriate version.
 
     docker buildx build --platform linux/amd64,linux/arm64,linux/arm/v7 -t terenceocto/azcli:latest --push .
     
@@ -56,11 +54,11 @@ Upon success, Docker Hub will host the image on Docker Hub.
 
 ## Confirm Success
 
-I set up a deployment with the built-in Azure CLI and printed out the version to the screen.
+By [specifying a custom container](https://octopus.com/docs/projects/steps/execution-containers-for-workers), you can confirm the version number of the CLI with the built-in Azure CLI that prints out the version to the screen.
 
 ![az cli old](az-cli-old.png)
 
-I use the new custom image on Docker Hub and print out the version again. The Azure CLI is now up to date, and I can access it in my own Docker Hub repository.
+Using the custom container instructions, specify the new custom image in the Octopus UI and print out the version again. The Azure CLI is now up to date with the latest version.
 
 ![az cli new](az-cli-new.png)
 
