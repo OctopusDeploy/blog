@@ -4,9 +4,9 @@ description: This post demonstrates how Docker is a convenient solution for down
 author: matthew.casperson@octopus.com
 visibility: private
 published: 3020-01-01-1400
-metaImage: placeholderimg.png
-bannerImage: placeholderimg.png
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: octopus-docker.png
+bannerImage: octopus-docker.png
+bannerImageAlt: The Octopus and Docker logos side by side.
 isFeatured: false
 tags: 
   - DevOps
@@ -77,7 +77,7 @@ docker run --rm -v "$(pwd):/apps" -w /apps \
 
 If you have not previously defined any helm repositories, the output of this command will be:
 
-```
+```bash
 Error: no repositories to show
 ```
 
@@ -89,7 +89,7 @@ helm repo add nginx-stable https://helm.nginx.com/stable
 
 Running the helm Docker image to list the repositories shows that it has loaded the repository added by the locally installed copy of `helm`:
 
-```
+```bash
 NAME            URL
 nginx-stable    https://helm.nginx.com/stable
 ```
@@ -103,15 +103,75 @@ docker run --rm -v "$(pwd):/apps" -w /apps \
     alpine/helm repo add kong https://charts.konghq.com
 ```
 
-Then list the repos from the locally 
+Then list the repos from the locally with the command:
 
+```bash
+helm repo list
+```
+
+The local installation reflects the newly added repo:
+
+```bash
+NAME            URL
+nginx-stable    https://helm.nginx.com/stable
+kong            https://charts.konghq.com
+```
+
+## Aliasing docker run commands
+
+While Docker provides a convenient ability to download and run images, the `docker run` command can become quite long tedious to type. Fortunately, it is possible to alias the `docker run` command so it can be used as a drop in replacement for a locally installed tool.
+
+Use the `alias` command to map `docker run` to the `helm` command:
+
+```bash
+alias helm='docker run --rm -v $(pwd):/apps -w /apps -v ~/.kube:/root/.kube -v ~/.helm:/root/.helm -v ~/.config/helm:/root/.config/helm -v ~/.cache/helm:/root/.cache/helm alpine/helm'
+```
+
+The previous alias command only works in the session it was defined in. If you log out and back in, the alias is lost. To make the alias permanent, edit the `~/.bash_aliases` file, and add the same alias command above on a new line:
+
+```bash
+vim ~/.bash_aliases
+```
+
+In many distributions, the `~/.bash_aliases` file is loaded automatically by the `~/.bashrc` file. If not, add the following code to the `~/.bashrc` file:
+
+```bash
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+```
+
+## Using Docker images in Octopus script steps
+
+If you are using aliases in a non-interactive shell (like running a script step in an Octopus deployment), you need to ensure aliases are expanded by running the following command:
+
+```bash
+shopt -s expand_aliases
+```
+
+The following snippet shows a script step downloading a Docker image and setting the aliases. The logging level has been set to verbose so the Docker image download messages don't fill the deployment logs. It also demonstrates passing environment variables to an aliased command via the `-e` arguments:
+
+```bash
+echo "Downloading Docker images"
+
+echo "##octopus[stdout-verbose]"
+
+docker pull amazon/aws-cli 2>&1
+
+# Alias the docker run commands
+shopt -s expand_aliases
+alias aws='docker run --rm -i -v $(pwd):/build -e AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION -e AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID -e AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY amazon/aws-cli'
+
+echo "##octopus[stdout-default]"
+```
 
 ## Conclusion
 
-Close off the post by restating the main points of the post, share any closing thoughts, and invite feedback.
+Docker images provide a consistent and convenient way to install and run common DevOps CLI tools, especially when compared to the process of writing OS specific commands to download binary files from unique URLs. In this post we looked at how to run a Docker image from the command line or in a script, and provides some tips to allow Docker images to run as drop in replacements for locally installed tools.
 
 ## Learn more
 
-- [link](https://www.example.com/resource)
+If you are looking to build and deploy containerized applications to AWS platforms such as EKS and ECS, the [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/) populates a GitHub repository with a sample application built with GitHub Actions workflows and configures an Hosted Octopus instance with sample deployment projects demonstrating best practices such as vulnerability scanning and Infrastructure as Code (IaC). 
 
 Happy deployments! 
+
