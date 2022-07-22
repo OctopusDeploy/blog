@@ -86,14 +86,11 @@ Red Hat does also include a pared-down registry solution in their Kubernetes pla
 
 ## What's next
 
-**Replace this section with our series blurb**
+ We talk more about containerization and cloud orchestration in some of our recent posts, including:
 
-We're covering containerization in-depth over the next few months, covering:  
-
-- blog post
-- blog post
-- blog post
-  
-Why not follow the series etc etc?
+- [The benefits of containerization](https://octopus.com/blog/benefits-of-containerization)
+- [Containerization - what you need to get started](https://octopus.com/blog/get-started-containers)
+- [Monoliths versus microservices](https://octopus.com/blog/monoliths-vs-microservices)
+- [Microservices and frameworks](https://octopus.com/blog/microservices-and-frameworks)
 
 Happy deployments! 
