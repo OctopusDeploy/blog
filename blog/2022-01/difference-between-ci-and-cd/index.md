@@ -46,7 +46,7 @@ This means the process implemented by Continuous Integration servers is machine-
 
 The other important aspect of the Continuous Integration equation is that developers provide the inputs, and the outputs are created for developers or people in other technical roles. Employees outside the IT department rarely interact with the Continuous Integration server.
 
-## What is Continuous Deployment and Continuous Delivery?
+## What are Continuous Deployment and Continuous Delivery?
 
 Continuous Deployment takes the compiled artifacts from a successful build performed by the Continuous Integration server and deploys them into the production environment, resulting in a completely automated deployment workflow. In this scenario, Continuous Deployment is quite rightly an extension of Continuous Integration, and the distinction between the two becomes arbitrary.
 
