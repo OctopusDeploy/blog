@@ -14,7 +14,7 @@ tags:
  - Continuous Deployment
 ---
 
-The terms *Continuous Integration* and *Continuous Delivery/Deployment* tend to be combined into the acronym CI/CD to describe the process of building and deploying software, often without distinction between the two. The terms describe distinct processes, even if combining the them suggests that Continuous Delivery and Continuous Delivery/Deployment are an extension of Continuous Integration, and the execution of both processes is the responsibility of a single tool.
+The terms *Continuous Integration* and *Continuous Delivery/Deployment* tend to be combined into the acronym CI/CD to describe the process of building and deploying software, often without distinction between the two. The terms describe distinct processes, even if combining the them suggests that Continuous Delivery and Continuous Deployment are an extension of Continuous Integration, and the execution of both processes is the responsibility of a single tool.
 
 Assuming CI/CD is *just CI with a deployment step* ignores some fundamental differences between the two processes. In this post, we look at:
 
@@ -97,7 +97,7 @@ In short, a good deployment tool, like Octopus Deploy, facilitates the human dec
 
 ## Conclusion
 
-Recognizing the different requirements between a machine-driven Continuous Integration process and a human-driven Continuous Delivery process is essential for delivering features to your customers in a fast, reliable, and repeatable manner. This is why using dedicated tools for Continuous Integration and Continuous Deployment can make sense.
+Recognizing the different requirements between a machine-driven Continuous Integration process and a human-driven Continuous Delivery process is essential for delivering features to your customers in a fast, reliable, and repeatable manner. This is why using dedicated tools for Continuous Integration and Continuous Delivery can make sense.
 
 If you're looking for a Continuous Delivery tool, you can sign up for a [free trial of Octopus Deploy](https://octopus.com/start).
 
