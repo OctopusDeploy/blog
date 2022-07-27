@@ -14,7 +14,7 @@ tags:
  - Continuous Deployment
 ---
 
-The terms *Continuous Integration* and *Continuous Deployment* tend to be combined into the acronym CI/CD to describe the process of building and deploying software, often without distinction between the two. CI and CD are distinct processes, even if combining the terms suggests that Continuous Deployment is an extension of Continuous Integration, and the execution of both processes is the responsibility of a single tool.
+The terms *Continuous Integration* and *Continuous Delivery/Deployment* tend to be combined into the acronym CI/CD to describe the process of building and deploying software, often without distinction between the two. The terms describe distinct processes, even if combining them suggests that Continuous Delivery and Continuous Deployment are an extension of Continuous Integration, and the execution of both processes is the responsibility of a single tool.
 
 Assuming CI/CD is *just CI with a deployment step* ignores some fundamental differences between the two processes. In this post, we look at:
 
@@ -24,33 +24,33 @@ Assuming CI/CD is *just CI with a deployment step* ignores some fundamental diff
 
 ## What is Continuous Integration?  
 
-At a high level, CI tooling is concerned with: 
+At a high level, Continuous Integration tooling is concerned with: 
 
 - Taking the code written by developers and compiling it into an artifact
 - Running automated tests
 - Capturing the log files so any failed builds or tests can be resolved 
 
-A CI server facilitates this process by running builds and tests with each commit.
+A Continuous Integration server facilitates this process by running builds and tests with each commit.
 
-CI servers can be described as solving the equation:
+Continuous Integration servers can be described as solving the equation:
 
 `code + dependencies + build tools + execution environment = test results + logs + compiled artifact`
 
-![CI inputs and output graphic](input-output-graphic.png)
+![Continuous Integration inputs and output graphic](input-output-graphic.png)
 
-The left side of the equation takes the code written by developers, any dependencies of the code, a build tool, and the environment where the build and tests are executed. When these inputs are available, a CI server completes the build to produce the elements on the right side of the equation.
+The left side of the equation takes the code written by developers, any dependencies of the code, a build tool, and the environment where the build and tests are executed. When these inputs are available, a Continuous Integration server completes the build to produce the elements on the right side of the equation.
 
-When a CI server has been configured correctly, each commit to a repository results in the build being run, thus solving the equation without manual intervention from a human.
+When a Continuous Integration server has been configured correctly, each commit to a repository results in the build being run, thus solving the equation without manual intervention from a human.
 
-This means the process implemented by CI servers is machine-driven, so much so that it's common for CI servers to have read-only user interfaces, like the Jenkins Blue Ocean UI.
+This means the process implemented by Continuous Integration servers is machine-driven, so much so that it's common for Continuous Integration servers to have read-only user interfaces, like the Jenkins Blue Ocean UI.
 
-The other important aspect of the CI equation is that developers provide the inputs, and the outputs are created for developers or people in other technical roles. Employees outside the IT department rarely interact with the CI server.
+The other important aspect of the Continuous Integration equation is that developers provide the inputs, and the outputs are created for developers or people in other technical roles. Employees outside the IT department rarely interact with the Continuous Integration server.
 
-## What is Continuous Deployment?
+## What are Continuous Deployment and Continuous Delivery?
 
-Taken literally, CD takes the compiled artifacts from a successful build performed by the CI server and deploys them into the production environment. In this scenario, CD is quite rightly an extension of CI, and the distinction between the two becomes arbitrary.
+Continuous Deployment takes the compiled artifacts from a successful build performed by the Continuous Integration server and deploys them into the production environment, resulting in a completely automated deployment workflow. In this scenario, Continuous Deployment is quite rightly an extension of Continuous Integration, and the distinction between the two becomes somewhat arbitrary.
 
-Such commit-to-consumer pipelines are common in simple projects. More complex projects can also have a completely automated development pipeline, if the appropriate tests and monitoring systems are in place.
+Such commit-to-consumer workflows are common in simple projects. More complex projects can also have a completely automated deployment workflow, if the appropriate tests and monitoring systems are in place.
 
 But while fully automated deployments have many benefits, it's not uncommon for deployments to involve human decision-making. There are many valid reasons for not automatically deploying every commit to the main branch into production, including:
 
@@ -62,15 +62,17 @@ But while fully automated deployments have many benefits, it's not uncommon for 
 - Integrating deployments with back-end changes like databases
 - Not having 100% confidence in your tests
 
-Where CI tooling is machine-driven for many teams, CD is human-driven. Much of the grunt work of performing a deployment is still automated, but the decision to promote a release through to production is a human one. Importantly, the decision may not be made by technical employees, but rather product owners, managers, or someone who stayed up until midnight to click the deploy button.
+The term Continuous Delivery is used to distinguish workflows that incorporate human decision-making from Continuous Deployment workflows that are fully automated.
 
-## Why use separate CI and CD tools?
+Where Continuous Integration tooling is machine-driven for many teams, Continuous Delivery is human-driven. Much of the grunt work of performing a deployment is still automated, but the decision to promote a release through to production is a human one. Importantly, the decision may not be made by technical employees, but rather product owners, managers, or someone who stayed up until midnight to click the deploy button.
+
+## Why use separate Continuous Integration and Continuous Delivery tools?
 
 ![ci-cd-pipeline-diagram](ci-cd-pipeline-diagram.png "width=500")
 
 *A typical CI/CD pipeline, with no distinction between the two.*
 
-This slide is from a talk titled [How to build cloud-native CI/CD pipelines with Tekton on Kubernetes](https://developers.redhat.com/blog/2019/07/22/how-to-build-cloud-native-ci-cd-pipelines-with-tekton-on-kubernetes/?sc_cid=701f2000000RtqCAAS]). It's a classic example of how simple projects merge CI and CD into a single process where a production deployment starts as soon as the code has been compiled.
+This slide is from a talk titled [How to build cloud-native CI/CD pipelines with Tekton on Kubernetes](https://developers.redhat.com/blog/2019/07/22/how-to-build-cloud-native-ci-cd-pipelines-with-tekton-on-kubernetes/?sc_cid=701f2000000RtqCAAS]). It's a classic example of how simple projects merge Continuous Integration and Continuous Deployment into a single process where a production deployment starts as soon as the code has been compiled.
 
 There's nothing wrong with this process, and it works as intended if every part of the pipeline remains fully automated. But what happens if a human needs to test and approve the application before it's released?
 
@@ -87,17 +89,17 @@ This single decision point means our once machine-driven equation now:
 
 *Octopus dashboard with deploy buttons for humans.*
 
-This focus on the human element is frequently lost when CI/CD is presented as nothing more than a deployment step, automatically performed after the code has been compiled. For instance, the [Jenkins documentation](https://jenkins.io/doc/pipeline/tour/deployment/#stages-as-deployment-environments) recommends that the test and production environments are modeled as stages in a CI pipeline.
+This focus on the human element is frequently lost when CI/CD is presented as nothing more than a deployment step, automatically performed after the code has been compiled. For instance, the [Jenkins documentation](https://jenkins.io/doc/pipeline/tour/deployment/#stages-as-deployment-environments) recommends that the test and production environments are modeled as stages in a Continuous Integration pipeline.
 
-At first glance, this example appears to provide a point in the process for a human to approve the deployment, but what happens to a build that was never intended to be pushed to production?  Such a build would be canceled before the application is exposed to customers, resulting in a failed build. These failed builds are difficult to distinguish from builds that failed to compile or failed their tests, even though not promoting to production is the expected behavior of the CD process in this instance.
+At first glance, this example appears to provide a point in the process for a human to approve the deployment, but what happens to a build that was never intended to be pushed to production? Such a build would be canceled before the application is exposed to customers, resulting in a failed build. These failed builds are difficult to distinguish from builds that failed to compile or failed their tests, even though not promoting to production is the expected behavior of the Continuous Delivery process in this instance.
 
-In short, a good CD tool, like Octopus Deploy, facilitates the human decision-making process that is so common (if not essential) to deployments, or at the very least surfaces the current state of the deployments between environments, and automates the deployment, so promotions between environments are easy and reliable.
+In short, a good deployment tool, like Octopus Deploy, facilitates the human decision-making process that is so common (if not essential) to deployments, or at the very least surfaces the current state of the deployments between environments, and automates the deployment, so promotions between environments are easy and reliable.
 
 ## Conclusion
 
-Recognizing the different requirements between a machine-driven CI process and a human-driven CD process is essential for delivering features to your customers in a fast, reliable, and repeatable manner. This is why using dedicated tools for Continuous Integration and Continuous Deployment can make sense.
+Recognizing the different requirements between a machine-driven Continuous Integration process and a human-driven Continuous Delivery process is essential for delivering features to your customers in a fast, reliable, and repeatable manner. This is why using dedicated tools for Continuous Integration and Continuous Delivery can make sense.
 
-If you're looking for a CD tool, you can sign up for a [free trial of Octopus Deploy](https://octopus.com/start).
+If you're looking for a Continuous Delivery tool, you can sign up for a [free trial of Octopus Deploy](https://octopus.com/start).
 
 !include <q1-2022-newsletter-cta>
 
