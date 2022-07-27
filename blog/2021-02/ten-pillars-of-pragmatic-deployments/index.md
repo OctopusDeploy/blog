@@ -373,4 +373,4 @@ In practice a deployment process may be a single component in a wider ecosystem 
 
 Those are the ten pillars of pragmatic deployments that shape the [features](https://octopus.com/features) and philosophy of Octopus Deploy. I'm sure they will continue to evolve over time as new user cases emerge, but we believe they provide a solid foundation from which to keep building Octopus Deploy.
 
-Happy Deployments!
+Happy deployments!
