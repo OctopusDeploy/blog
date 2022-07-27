@@ -48,7 +48,7 @@ The other important aspect of the Continuous Integration equation is that develo
 
 ## What are Continuous Deployment and Continuous Delivery?
 
-Continuous Deployment takes the compiled artifacts from a successful build performed by the Continuous Integration server and deploys them into the production environment, resulting in a completely automated deployment workflow. In this scenario, Continuous Deployment is quite rightly an extension of Continuous Integration, and the distinction between the two becomes arbitrary.
+Continuous Deployment takes the compiled artifacts from a successful build performed by the Continuous Integration server and deploys them into the production environment, resulting in a completely automated deployment workflow. In this scenario, Continuous Deployment is quite rightly an extension of Continuous Integration, and the distinction between the two becomes somewhat arbitrary.
 
 Such commit-to-consumer workflows are common in simple projects. More complex projects can also have a completely automated deployment workflow, if the appropriate tests and monitoring systems are in place.
 
