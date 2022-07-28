@@ -4,9 +4,9 @@ description: This training series provides a step by step walkthrough building m
 author: name.surname@octopus.com
 visibility: private
 published: 3020-01-01-1400
-metaImage: placeholderimg.png
-bannerImage: placeholderimg.png
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-kubernetes.png
+bannerImage: blogimage-kubernetes.png
+bannerImageAlt: An octopus on a sail boat
 isFeatured: false
 tags: 
   - DevOps

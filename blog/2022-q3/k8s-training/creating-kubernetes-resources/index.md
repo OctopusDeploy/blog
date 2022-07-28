@@ -4,9 +4,9 @@ description: Learn to expose Kubernetes Pods to network traffic with Services
 author: matthew.casperson@octopus.com
 visibility: private
 published: 3020-01-01-1400
-metaImage: placeholderimg.png
-bannerImage: placeholderimg.png
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-kubernetes.png
+bannerImage: blogimage-kubernetes.png
+bannerImageAlt: An octopus on a sail boat
 isFeatured: false
 tags: 
   - DevOps
