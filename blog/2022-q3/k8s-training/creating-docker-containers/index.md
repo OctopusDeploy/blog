@@ -25,6 +25,8 @@ This video demonstrates how Docker images are built and run in containers and co
 
 * [kind](https://oc.to/LY8fg0)
 * [kubectl](https://oc.to/oN6lx6)
+* [Underwater sample app](https://github.com/OctopusSamples/octopus-underwater-app)
+* [Underwater app Docker image](https://hub.docker.com/r/octopussamples/underwater-app)
 
 ## Learn more
 
