@@ -1,6 +1,6 @@
 ---
 title: Creating Kubernetes Services
-description: Learn to expose Kubernetes Pods to network traffic with Services
+description: Learn about Kubernetes Pods, ReplicaSets, and Deployments
 author: matthew.casperson@octopus.com
 visibility: private
 published: 3020-01-01-1400
@@ -19,7 +19,7 @@ tags:
 
 !include <k8s-training-toc>
 
-This video demonstrates how to expose Kubernetes Pods to network traffic with Services.
+This video demonstrates Kubernetes Pods, ReplicaSets, and Deployments, deploying examples of each.
 
 ## Learn more
 
