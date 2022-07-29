@@ -27,6 +27,10 @@ This video introduces many Octopus concepts such as:
 
 It then demonstrates how to integrate Octopus with a Kubernetes cluster and perform a deployment.
 
+## Links
+
+* [Ask Ubuntu - Install libssl1.1 on 22.04](https://oc.to/WQcxtj)
+
 ## Learn more
 
 If you are looking to build and deploy containerized applications to AWS platforms such as EKS and ECS, the [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/) populates a GitHub repository with a sample application built with GitHub Actions workflows and configures an Hosted Octopus instance with sample deployment projects demonstrating best practices such as vulnerability scanning and Infrastructure as Code (IaC). 
