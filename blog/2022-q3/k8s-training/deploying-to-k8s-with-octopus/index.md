@@ -15,13 +15,14 @@ tags:
   - Cloud Orchestration
 ---
 
-<iframe src="https://fast.wistia.net/embed/iframe/bxms7lzejx?videoFoam=true" title="Section6 Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="100%" height="100%"></iframe>
+<iframe src="https://fast.wistia.net/embed/iframe/negi40uxs9?videoFoam=true" title="6. Deploying to Kubernetes with Octopus Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="100%" height="100%"></iframe>
 
 !include <k8s-training-toc>
 
 This video introduces many Octopus concepts such as:
 
 * Environments
+* Certificates
 * Targets
 * Workers
 
@@ -29,6 +30,7 @@ It then demonstrates how to integrate Octopus with a Kubernetes cluster and perf
 
 ## Links
 
+* [Octopus Trail](https://octopus.com/start)
 * [Ask Ubuntu - Install libssl1.1 on 22.04](https://oc.to/WQcxtj)
 * [Tentacle Downloads](https://octopus.com/downloads/tentacle#linux)
 
