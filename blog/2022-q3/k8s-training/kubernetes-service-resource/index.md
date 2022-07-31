@@ -21,6 +21,23 @@ tags:
 
 This video demonstrates how to expose Pods to network traffic via a Service.
 
+### Sample Service YAML
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: webapp
+spec:
+  selector:
+    app: webapp
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+```
+
 ## Links
 
 * [kind load balancer](https://oc.to/ilYOx0)
