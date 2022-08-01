@@ -1,5 +1,5 @@
 ---
-title: Use Octopus Terraform Provider to create standards
+title: Using the Octopus Terraform Provider to create standards
 description: Learn how to leverage the Octopus Deploy Terraform Provider to create standards for all spaces in your instance.
 author: bob.walker@octopus.com
 visibility: public
