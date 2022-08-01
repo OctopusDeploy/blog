@@ -7,3 +7,4 @@
 * [Multi-environment deployments](/blog/2022-q3/k8s-training/7-multi-environment-deployments/index.md)
 * [Installing a Dashboard](/blog/2022-q3/k8s-training/8-installing-dashboard/index.md)
 * [Observing Deployment Strategies](/blog/2022-q3/k8s-training/9-deployment-strategies/index.md)
+* [Blue/Green Deployment Strategy](/blog/2022-q3/k8s-training/10-blue-green-deployments/index.md)
