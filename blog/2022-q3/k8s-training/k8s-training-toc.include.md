@@ -5,3 +5,4 @@
 * [Creating Kubernetes Services](/blog/2022-q3/k8s-training/kubernetes-service-resource/index.md)
 * [Deploying to Kubernetes with Octopus](/blog/2022-q3/k8s-training/deploying-to-k8s-with-octopus/index.md)
 * [Multi-environment deployments](/blog/2022-q3/k8s-training/multi-environment-deployments/index.md)
+* [Installing a Dashboard](/blog/2022-q3/k8s-training/installing-dashboard/index.md)
