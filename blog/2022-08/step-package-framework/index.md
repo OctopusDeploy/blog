@@ -1,6 +1,6 @@
 ---
 title: Improving delivery of your deployment steps
-description: Our new step package framework means we can deliver new steps can to your Octopus instance faster, and without the need for upgrades. Learn more.
+description: Our new step package framework means we can deliver new steps to your Octopus instance faster, and without the need for upgrades. Learn more.
 author: shaun.hevey@octopus.com
 visibility: public
 published: 2022-08-08-1400
