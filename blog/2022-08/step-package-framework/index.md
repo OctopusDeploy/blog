@@ -237,4 +237,4 @@ We look forward to bringing you new and improved steps using this framework as w
 
 Happy deployments!
 
-*Thanks to Shaun Hevey, Matt Shepherd, Ray Nham, and Egor Pavlikhin who all contributed to this blog post.*
+*Thanks to Ray Nham, Egor Pavlikhin, and Matt Shepherd who all contributed to this blog post.*
