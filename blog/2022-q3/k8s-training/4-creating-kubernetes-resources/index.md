@@ -15,15 +15,11 @@ tags:
   - Docker 
 ---
 
-This post is the fourth in our Kubernetes training series, providing DevOps engineers with an introduction to Docker, Kubernetes, and Octopus. 
+This post is the fourth in our Kubernetes training series, providing DevOps engineers with an introduction to Docker, Kubernetes, and Octopus. You’ll learn how to create an automated, multi-environment deployment process so you can deploy containerized applications with speed and reliability. 
 
 This video demonstrates Kubernetes pods, ReplicaSets, and deployments, deploying examples of each.
 
 <p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/90jqp8rihi?videoFoam=true" title="Section 4 Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
-
-Work through the series using the links below.
-
-!include <k8s-training-toc>
 
 ## Sample Pod YAML
 
@@ -88,6 +84,10 @@ spec:
         - containerPort: 80
 ```
 
+Work through the series using the links below.
+
+!include <k8s-training-toc>
+  
 ## Links
 
 * [Octopus trial](https://octopus.com/start)
