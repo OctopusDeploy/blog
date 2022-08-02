@@ -13,6 +13,7 @@ tags:
   - Containers
   - Cloud Orchestration
   - Docker 
+  - Kubernetes
 ---
 
 This post is the fifth in our Kubernetes training series, providing DevOps engineers with an introduction to Docker, Kubernetes, and Octopus. You’ll learn how to create an automated, multi-environment deployment process so you can deploy containerized applications with speed and reliability. 
