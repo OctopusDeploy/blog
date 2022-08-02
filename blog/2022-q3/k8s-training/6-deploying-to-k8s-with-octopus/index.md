@@ -12,6 +12,7 @@ tags:
   - DevOps
   - Containers
   - Cloud Orchestration
+  - Docker 
 ---
 
 <p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/negi40uxs9?videoFoam=true" title="6. Deploying to Kubernetes with Octopus Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>

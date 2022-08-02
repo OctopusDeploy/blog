@@ -12,6 +12,7 @@ tags:
   - DevOps
   - Containers
   - Cloud Orchestration
+  - Docker 
 ---
 
 <p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/o14t9soemb?videoFoam=true" title="section1 Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
