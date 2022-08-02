@@ -1,5 +1,5 @@
 ---
-title: Difference between docker.io, docker-cd, and Docker Desktop
+title: "Difference between docker.io, docker-cd, and Docker Desktop"
 description: Learn which version of Docker to install for your operating system.
 author: matthew.casperson@octopus.com
 visibility: public
@@ -31,7 +31,7 @@ The interface between a developer and the software stack used to build, distribu
 
 The combination of a Container Runtime and the Docker Container Engine is referred to as the Docker Engine by the [Docker website](https://docs.docker.com/engine/).
 
-Now we're clearer about what we mean by "Docker", it's time to look at the options available to developers when working with containerized applications.
+Now we're clearer about what we mean by "Docker", it's time to look at the options available to developers when working with [containerized applications](https://octopus.com/blog/get-started-containers).
 
 ## Linux users are spoilt for choice
 
@@ -70,7 +70,7 @@ Developers working on containerized applications first need to install a tool li
 
 In this post, we looked at the various tools and specifications that support containerized applications, and noted the options available for developers working with containers.
 
-## Learn more
+## Learn more using the Octopus Workflow Builder
 
 If you want to build and deploy containerized applications to AWS platforms such as EKS and ECS, the [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/) populates a GitHub repository with a sample application built with GitHub Actions workflows. It configures a hosted Octopus instance with sample deployment projects demonstrating best practices such as vulnerability scanning and Infrastructure as Code (IaC). 
 
