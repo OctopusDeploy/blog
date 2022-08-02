@@ -3,7 +3,7 @@ title: Installing a Dashboard
 description: Learn how to install helm and then use it to install a dashboard to monitor the cluster
 author: matthew.casperson@octopus.com
 visibility: private
-published: 3020-01-01-1400
+published: 2022-01-01-1200
 metaImage: blogimage-kubernetes.png
 bannerImage: blogimage-kubernetes.png
 bannerImageAlt: An octopus on a sail boat

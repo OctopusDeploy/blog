@@ -3,7 +3,7 @@ title: Observing Deployment Strategies
 description: Watch in realtime as Pods are redeployed with different deployment strategies
 author: matthew.casperson@octopus.com
 visibility: private
-published: 3020-01-01-1400
+published: 2022-01-01-1200
 metaImage: blogimage-kubernetes.png
 bannerImage: blogimage-kubernetes.png
 bannerImageAlt: An octopus on a sail boat
