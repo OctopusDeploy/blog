@@ -10,7 +10,6 @@ bannerImageAlt: An octopus on a sail boat
 isFeatured: false
 tags: 
   - DevOps
-  - Containers Series
   - Containers
   - Cloud Orchestration
 ---
