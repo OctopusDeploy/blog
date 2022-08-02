@@ -15,7 +15,7 @@ tags:
   - Docker 
 ---
 
-This post is the tenth and final in our Kubernetes training series, providing DevOps engineers with an introduction to Docker, Kubernetes, and Octopus. You’ll learn how to create an automated, multi-environment deployment process so you can deploy containerized applications with speed and reliability.
+This post is the tenth in our Kubernetes training series, providing DevOps engineers with an introduction to Docker, Kubernetes, and Octopus. You’ll learn how to create an automated, multi-environment deployment process so you can deploy containerized applications with speed and reliability.
 
 Watch the blue/green deployment strategy, which is a custom strategy orchestrated by Octopus.
 
