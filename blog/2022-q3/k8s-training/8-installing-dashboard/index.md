@@ -17,9 +17,9 @@ tags:
 
 <iframe src="https://fast.wistia.net/embed/iframe/bupqioszse?videoFoam=true" title="8. Installing a Dashboard Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="100%" height="100%"></iframe>
 
-!include <k8s-training-toc>
-
 This video shows you how to install helm and then use it to install a dashboard to monitor the cluster.
+
+!include <k8s-training-toc>
 
 ## Links
 

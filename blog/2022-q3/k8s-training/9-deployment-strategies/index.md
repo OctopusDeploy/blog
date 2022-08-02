@@ -17,9 +17,9 @@ tags:
 
 <iframe src="https://fast.wistia.net/embed/iframe/zkgrplsaqy?videoFoam=true" title="9. Observing Deployment Strategies Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="100%" height="100%"></iframe>
 
-!include <k8s-training-toc>
+Watch in realtime as Pods are redeployed with different deployment strategies.
 
-Watch in realtime as Pods are redeployed with different deployment strategies
+!include <k8s-training-toc>
 
 ## Links
 

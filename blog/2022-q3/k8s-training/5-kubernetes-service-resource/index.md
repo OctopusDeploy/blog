@@ -17,9 +17,9 @@ tags:
 
 <iframe src="https://fast.wistia.net/embed/iframe/s3txr5gd65?videoFoam=true" title="Section5 Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="100%" height="100%"></iframe>
 
-!include <k8s-training-toc>
-
 This video demonstrates how to expose Pods to network traffic via a Service.
+
+!include <k8s-training-toc>
 
 ## Sample Service YAML
 

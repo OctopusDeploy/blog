@@ -17,9 +17,9 @@ tags:
 
 <iframe src="https://fast.wistia.net/embed/iframe/90jqp8rihi?videoFoam=true" title="Section 4 Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="100%" height="100%"></iframe>
 
-!include <k8s-training-toc>
-
 This video demonstrates Kubernetes Pods, ReplicaSets, and Deployments, deploying examples of each.
+
+!include <k8s-training-toc>
 
 ## Sample Pod YAML
 

@@ -17,8 +17,6 @@ tags:
 
 <iframe src="https://fast.wistia.net/embed/iframe/negi40uxs9?videoFoam=true" title="6. Deploying to Kubernetes with Octopus Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="100%" height="100%"></iframe>
 
-!include <k8s-training-toc>
-
 This video introduces many Octopus concepts such as:
 
 * Environments
@@ -27,6 +25,8 @@ This video introduces many Octopus concepts such as:
 * Workers
 
 It then demonstrates how to integrate Octopus with a Kubernetes cluster and perform a deployment.
+
+!include <k8s-training-toc>
 
 ## Links
 
