@@ -15,7 +15,7 @@ tags:
   - Cloud Orchestration
 ---
 
-<iframe src="https://fast.wistia.net/embed/iframe/zkgrplsaqy?videoFoam=true" title="9. Observing Deployment Strategies Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="100%" height="100%"></iframe>
+<iframe src="https://fast.wistia.net/embed/iframe/zkgrplsaqy?videoFoam=true" title="9. Observing Deployment Strategies Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="500px" height="400px"></iframe>
 
 Watch in realtime as Pods are redeployed with different deployment strategies.
 

@@ -15,7 +15,7 @@ tags:
   - Cloud Orchestration
 ---
 
-<iframe src="https://fast.wistia.net/embed/iframe/o14t9soemb?videoFoam=true" title="section1 Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="100%" height="100%"></iframe>
+<iframe src="https://fast.wistia.net/embed/iframe/o14t9soemb?videoFoam=true" title="section1 Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="500px" height="400px"></iframe>
 
 This video demonstrates how to install Docker on Linux and discusses how to install Docker Desktop on Windows and macOS.
 
