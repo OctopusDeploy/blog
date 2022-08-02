@@ -2,8 +2,8 @@
 title: Creating Kubernetes Services
 description: Learn about Kubernetes Pods, ReplicaSets, and Deployments
 author: matthew.casperson@octopus.com
-visibility: private
-published: 3020-01-01-1400
+visibility: public
+published: 2022-01-01-1200
 metaImage: blogimage-kubernetes.png
 bannerImage: blogimage-kubernetes.png
 bannerImageAlt: An octopus on a sail boat
@@ -14,7 +14,7 @@ tags:
   - Cloud Orchestration
 ---
 
-<iframe src="https://fast.wistia.net/embed/iframe/90jqp8rihi?videoFoam=true" title="Section 4 Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="500px" height="400px"></iframe>
+<p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/90jqp8rihi?videoFoam=true" title="Section 4 Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
 
 This video demonstrates Kubernetes Pods, ReplicaSets, and Deployments, deploying examples of each.
 

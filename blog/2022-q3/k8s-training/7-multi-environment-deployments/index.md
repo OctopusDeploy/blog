@@ -2,7 +2,7 @@
 title: Multi-environment deployments
 description: Learn how to progress deployments to multiple environments
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2022-01-01-1200
 metaImage: blogimage-kubernetes.png
 bannerImage: blogimage-kubernetes.png
@@ -14,7 +14,7 @@ tags:
   - Cloud Orchestration
 ---
 
-<iframe src="https://fast.wistia.net/embed/iframe/spzw52f0dn?videoFoam=true" title="Section7 Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="500px" height="400px"></iframe>
+<p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/spzw52f0dn?videoFoam=true" title="Section7 Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
 
 This video builds a second Kubernetes cluster for the production environment, adds it to Octopus, and demonstrates how deployments are progressed through multiple environments.
 

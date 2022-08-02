@@ -2,7 +2,7 @@
 title: Blue/Green Deployments
 description: Watch the Blue/Green deployment strategy
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2022-01-01-1200
 metaImage: blogimage-kubernetes.png
 bannerImage: blogimage-kubernetes.png
@@ -14,7 +14,7 @@ tags:
   - Cloud Orchestration
 ---
 
-<iframe src="https://fast.wistia.net/embed/iframe/u394adv05a?videoFoam=true" title="10. Blue/Green Deployments Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="500px" height="400px"></iframe>
+<p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/u394adv05a?videoFoam=true" title="10. Blue/Green Deployments Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
 
 Watch the Blue/Green deployment strategy, which is a custom strategy orchestrated by Octopus.
 

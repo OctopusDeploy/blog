@@ -2,7 +2,7 @@
 title: Creating Kubernetes Services
 description: Learn how to deploy to Kubernetes with Octopus
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2022-01-01-1200
 metaImage: blogimage-kubernetes.png
 bannerImage: blogimage-kubernetes.png
@@ -14,7 +14,7 @@ tags:
   - Cloud Orchestration
 ---
 
-<iframe src="https://fast.wistia.net/embed/iframe/negi40uxs9?videoFoam=true" title="6. Deploying to Kubernetes with Octopus Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="500px" height="400px"></iframe>
+<p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/negi40uxs9?videoFoam=true" title="6. Deploying to Kubernetes with Octopus Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
 
 This video introduces many Octopus concepts such as:
 
