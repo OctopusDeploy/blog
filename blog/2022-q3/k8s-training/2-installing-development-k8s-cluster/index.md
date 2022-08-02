@@ -1,5 +1,5 @@
 ---
-title: Installing a Development Kubernetes Cluster
+title: Installing a development Kubernetes cluster
 description: Learn to to install a local development Kubernetes cluster with kind.
 author: matthew.casperson@octopus.com
 visibility: public
@@ -16,7 +16,7 @@ tags:
   - Kubernetes
 ---
 
-This post is the second in our Kubernetes training series, providing DevOps engineers with an introduction to Docker, Kubernetes, and Octopus. 
+This post is the second in our Kubernetes training series, providing DevOps engineers with an introduction to Docker, Kubernetes, and Octopus. You’ll learn how to create an automated, multi-environment deployment process so you can deploy containerized applications with speed and reliability.  
 
 This video introduces Kubernetes and demonstrates how to install a local development cluster using kind.
 
