@@ -1,6 +1,6 @@
 ---
-title: Installing a development Kubernetes cluster
-description: Learn to install a local development Kubernetes cluster with kind.
+title: Creating Docker containers
+description: Learn how to create a Docker image and run it as a container.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2022-01-01-1200
