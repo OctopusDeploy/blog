@@ -21,7 +21,7 @@ tags:
 
 This video demonstrates how to expose Pods to network traffic via a Service.
 
-### Sample Service YAML
+## Sample Service YAML
 
 ```yaml
 apiVersion: v1

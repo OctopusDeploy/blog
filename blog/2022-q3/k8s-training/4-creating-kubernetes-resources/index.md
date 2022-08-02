@@ -21,7 +21,7 @@ tags:
 
 This video demonstrates Kubernetes Pods, ReplicaSets, and Deployments, deploying examples of each.
 
-### Sample Pod YAML
+## Sample Pod YAML
 
 ```yaml
 apiVersion: v1
@@ -36,7 +36,7 @@ spec:
     - containerPort: 80
 ```
 
-### Sample ReplicaSet YAML
+## Sample ReplicaSet YAML
 
 ```yaml
 apiVersion: apps/v1
@@ -60,7 +60,7 @@ spec:
         - containerPort: 80
 ```
 
-### Sample Deployment YAML
+## Sample Deployment YAML
 
 ```yaml
 apiVersion: apps/v1
