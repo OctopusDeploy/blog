@@ -16,7 +16,7 @@ tags:
   - Kubernetes
 ---
 
-This post is the sixth in our Kubernetes training series, providing DevOps engineers with an introduction to Docker, Kubernetes, and Octopus. 
+This post is the sixth in our Kubernetes training series, providing DevOps engineers with an introduction to Docker, Kubernetes, and Octopus. You’ll learn how to create an automated, multi-environment deployment process so you can deploy containerized applications with speed and reliability. 
 
 This video introduces many Octopus concepts such as:
 
