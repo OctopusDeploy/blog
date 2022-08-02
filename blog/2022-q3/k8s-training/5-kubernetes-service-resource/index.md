@@ -15,15 +15,11 @@ tags:
   - Docker 
 ---
 
-This post is the fifth in our Kubernetes training series, providing DevOps engineers with an introduction to Docker, Kubernetes, and Octopus. 
+This post is the fifth in our Kubernetes training series, providing DevOps engineers with an introduction to Docker, Kubernetes, and Octopus. You’ll learn how to create an automated, multi-environment deployment process so you can deploy containerized applications with speed and reliability. 
 
 This video demonstrates how to expose pods to network traffic via a service.
 
 <p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/s3txr5gd65?videoFoam=true" title="Section5 Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
-
-Work through the series using the links below.
-
-!include <k8s-training-toc>
 
 ## Sample Service YAML
 
@@ -41,6 +37,10 @@ spec:
       port: 80
       targetPort: 80
 ```
+
+Work through the series using the links below.
+
+!include <k8s-training-toc>
 
 ## Links
 
