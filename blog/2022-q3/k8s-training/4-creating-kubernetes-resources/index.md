@@ -1,6 +1,6 @@
 ---
 title: Creating Kubernetes pods, ReplicaSets, and deployments
-description: Learn about Kubernetes pods, ReplicaSets, and deployments from YAML manifests
+description: Learn how to create Kubernetes pods, ReplicaSets, and deployments from YAML manifests
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2022-01-01-1200
