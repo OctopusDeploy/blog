@@ -23,7 +23,7 @@ Watch the Blue/Green deployment strategy, which is a custom strategy orchestrate
 
 ## Links
 
-* [Octopus Trail](https://octopus.com/start)
+* [Octopus Trial](https://octopus.com/start)
 
 ## Learn more
 

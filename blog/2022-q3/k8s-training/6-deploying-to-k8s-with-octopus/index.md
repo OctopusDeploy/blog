@@ -30,7 +30,7 @@ It then demonstrates how to integrate Octopus with a Kubernetes cluster and perf
 
 ## Links
 
-* [Octopus Trail](https://octopus.com/start)
+* [Octopus Trial](https://octopus.com/start)
 * [Ask Ubuntu - Install libssl1.1 on 22.04](https://oc.to/WQcxtj)
 * [Tentacle Downloads](https://octopus.com/downloads/tentacle#linux)
 

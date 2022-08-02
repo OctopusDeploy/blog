@@ -86,7 +86,7 @@ spec:
 
 ## Links
 
-* [Octopus Trail](https://octopus.com/start)
+* [Octopus Trial](https://octopus.com/start)
 
 ## Learn more
 

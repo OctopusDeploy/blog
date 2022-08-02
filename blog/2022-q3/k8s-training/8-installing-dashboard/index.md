@@ -23,7 +23,7 @@ This video shows you how to install helm and then use it to install a dashboard 
 
 ## Links
 
-* [Octopus Trail](https://octopus.com/start)
+* [Octopus Trial](https://octopus.com/start)
 * [Helm](https://oc.to/56sP7x)
 * [Kube Ops View Helm Chart](https://oc.to/z53qjl)
 

@@ -40,6 +40,7 @@ spec:
 
 ## Links
 
+* [Octopus Trial](https://octopus.com/start)
 * [kind load balancer](https://oc.to/ilYOx0)
 
 ## Learn more

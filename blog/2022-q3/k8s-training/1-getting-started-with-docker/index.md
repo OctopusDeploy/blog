@@ -23,7 +23,7 @@ This video demonstrates how to install Docker on Linux and discusses how to inst
 
 ## Links
 
-* [Octopus Trail](https://octopus.com/start)
+* [Octopus Trial](https://octopus.com/start)
 * [Docker](https://oc.to/VqVKCI)
 
 ## Learn more

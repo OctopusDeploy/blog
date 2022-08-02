@@ -23,7 +23,7 @@ This video introduces Kubernetes and demonstrates how to install a local develop
 
 ## Links
 
-* [Octopus Trail](https://octopus.com/start)
+* [Octopus Trial](https://octopus.com/start)
 * [kind](https://oc.to/LY8fg0)
 * [kubectl](https://oc.to/oN6lx6)
 

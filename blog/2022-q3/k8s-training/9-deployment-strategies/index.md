@@ -23,7 +23,7 @@ Watch in realtime as Pods are redeployed with different deployment strategies.
 
 ## Links
 
-* [Octopus Trail](https://octopus.com/start)
+* [Octopus Trial](https://octopus.com/start)
 
 
 ## Learn more
