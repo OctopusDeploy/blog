@@ -15,7 +15,7 @@ tags:
   - Cloud Orchestration
 ---
 
-<iframe src="https://fast.wistia.net/embed/iframe/u394adv05a?videoFoam=true" title="10. Blue/Green Deployments Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="100%" height="100%"></iframe>
+<iframe src="https://fast.wistia.net/embed/iframe/u394adv05a?videoFoam=true" title="10. Blue/Green Deployments Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="500px" height="400px"></iframe>
 
 Watch the Blue/Green deployment strategy, which is a custom strategy orchestrated by Octopus.
 
