@@ -21,6 +21,10 @@ This video demonstrates Kubernetes pods, ReplicaSets, and deployments, deploying
 
 <p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/90jqp8rihi?videoFoam=true" title="Section 4 Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
 
+Work through the series using the links below.
+
+!include <k8s-training-toc>
+
 ## Sample Pod YAML
 
 ```yaml
@@ -83,10 +87,6 @@ spec:
         ports:
         - containerPort: 80
 ```
-
-Work through the series using the links below.
-
-!include <k8s-training-toc>
   
 ## Links
 
