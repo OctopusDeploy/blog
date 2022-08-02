@@ -1,6 +1,6 @@
 ---
 title: Improving delivery of your deployment steps
-description: Our new step package framework means we can deliver new steps to your Octopus instance faster, and without the need for upgrades. Learn more.
+description: Our new step package framework means we can deliver new steps to your Octopus instance faster and without the need for upgrades. Learn more.
 author: shaun.hevey@octopus.com
 visibility: public
 published: 2022-08-08-1400
@@ -37,7 +37,7 @@ To help guide you through the process of interacting with these services, we cre
 
 The step package framework is an evolution of how we develop these new steps for you to use in Octopus Deploy. 
 
-To understand why a new framework was required, we must first look at the problems we were trying to solve. Let’s look at how we previously created and deployed steps in Octopus.
+To understand why a new framework was required, we must first look at the problems we were trying to solve. 
 
 ### How we previously created steps for Octopus Deploy
 
@@ -45,14 +45,14 @@ As Octopus Deploy has evolved, step development has gone through several archite
 
 ![Blog diagram showing a Step UI component and Step Handler component](step-in-server.png "width=500")
 
-One advantage of this approach was the developer creating these steps had all the libraries and dependencies they needed to develop a step available to them at development time. This approach also enabled tight integration with our React front-end.
+One advantage of this approach was that the developer creating these steps had all the libraries and dependencies to develop a step available to them at development time. This approach also enabled tight integration with our React front-end.
 
 However, developing in the core of Octopus had several drawbacks, especially as we developed more steps: 
 
 - Steps could only be shipped as part of the whole Octopus Deploy installer. This meant that to try out new functionality, you had to upgrade your entire Octopus instance. As Octopus often sits in the middle of mission-critical infrastructure, upgrade cycles are long and infrequent meaning you might not be able to use new steps.
-- Any required changes to an existing step, including bug fixes, had to go through the whole shipping pipeline and required a  full instance upgrade before the issue was resolved. This meant even small fixes could take weeks to be updated, rather days or hours. 
-- Developing a new step required understanding several big components of Octopus and how they are interlinked. This resulted in increased  delivery times and made it hard to build experimental steps
-- Versioning steps independently of Octopus was impossible in any practical sense. For example, if a cloud provider shipped a new major version of their service, we would have to build many switches inside of the existing step, instead of just shipping a new version of an existing step that could be used alongside the original version
+- Any required changes to an existing step, including bug fixes, had to go through the whole shipping pipeline and required a  full instance upgrade before the issue was resolved. This meant even small fixes could take weeks to be updated, rather than days or hours. 
+- Developing a new step required understanding several big components of Octopus and how they are interlinked. This resulted in increased  delivery times and made it hard to build experimental steps.
+- Versioning steps independently of Octopus was impossible in any practical sense. For example, if a cloud provider shipped a new major version of their service, we'd have to build many switches inside of the existing step, instead of just shipping a new version of an existing step that could be used alongside the original version.
 
 In a rapidly changing environment where new cloud services pop up frequently, we realized we needed more flexibility in our approach to keep providing a world-class experience. With the number of steps in Octopus growing, the step package framework was built to solve these issues.
 
@@ -73,7 +73,7 @@ These new steps are built against the API that is exposed from the step package 
 The step package framework does this by contributing 2 components to Octopus Server: 
 
 1. First is a collection of components to acquire, register, and integrate step packages into Octopus Server, so that step packages can be added and configured to a deployment process. 
-2. Second is the step bootstrapper. The bootstrapper is invoked at step package execution time, and its responsibility is to provide the runtime configuration to the step package and then execute the executor code defined in the step package.
+2. Second is the step bootstrapper. The bootstrapper is invoked at step package execution time, and it provides the runtime configuration to the step package and then execute the executor code defined in the step package.
 
 ![Octopus Service step package framework components showing how they work together](step-package-framework-components.png "width=500")
 
@@ -83,13 +83,13 @@ In addition to the new framework, we also needed to create a new mechanism for d
 
 While designing the step package framework, we set ourselves several constraints to help shape the final design:
 
-- Steps must be easy to write, even for someone with very little knowledge of how Octopus works
-- The complexity of the underlying Octopus Server components must not leak into individual steps' code
-- Steps must be written in a way that is idiomatic for the ecosystem. For example, if we use JavaScript, it has to be written in a way that most JavaScript developers would expect
-- It should be easy to bring an external component or framework into your step
-- The UI code to configure a step should be declarative and abstract so that step authors don't need to know what specific components are rendered or their internal workings
+- Steps must be easy to write, even for someone with very little knowledge of how Octopus works.
+- The complexity of the underlying Octopus Server components must not leak into individual steps' code.
+- Steps must be written in a way that is idiomatic for the ecosystem. For example, if we use JavaScript, it has to be written in a way that most JavaScript developers would expect.
+- It should be easy to bring an external component or framework into your step.
+- The UI code to configure a step should be declarative and abstract so that step authors don't need to know what specific components are rendered or their internal workings.
 - Steps must be versioned and distributed out-of-band of Octopus Server
-- Step authors should be able to tell with certainty what inputs they receive from Octopus Server
+- Step authors should be able to tell with certainty what inputs they receive from Octopus Server.
 
 When it came to our design decisions, we had to make trade-offs on these guiding principles, as they weren’t all compatible. We made the following design decisions using these tradeoffs and constraints as a guide.
 
@@ -145,7 +145,7 @@ Our biggest goal for the new framework was the ability to ship new steps quickly
 - Which steps versions can be migrated silently, and which migrations require additional user input
 - What to do with incompatible steps
 
-We have solved this by producing granular compatibility manifests on both sides of the equation. Each version of Octopus Server has a set of ranges of internal components that it can guarantee are compatible, and we inject the specific versions of these components into the step package at build time. Then we can easily tell not only if a step package is compatible, but which specific portions of the package are already compatible and which require migration to the latest version.
+We solved this by producing granular compatibility manifests on both sides of the equation. Each version of Octopus Server has a set of ranges of internal components that it can guarantee are compatible, and we inject the specific versions of these components into the step package at build time. Then we can easily tell not only if a step package is compatible, but which specific portions of the package are already compatible and which require migration to the latest version.
 
 We also built implicit guarantees into Octopus Server around version numbers, so that step authors can be sure that if they, for example, start building a step for version 2022.1, their step is always going to run on that version no matter how many minor versions and hotfixes we release later on.
 
@@ -166,7 +166,7 @@ With both of these new steps, we started from a blank page, just as any other st
 
 #### The need for new UI components
 
-A step UI component is a part of the step package framework that lets the step authors define the user interface of the step. When the ECS project started, the framework supported most of the basic UI components that can be used to construct an interface with the same look and feel as other built-in Octopus steps. However, while working on the project, the team realized some advanced components were needed, such as the container image selector component.
+A step UI component is a part of the step package framework that lets the step authors define the user interface of the step. When the ECS project started, the framework supported most of the basic UI components that can be used to construct an interface with the same look and feel as other built-in Octopus steps. However, the team realized some advanced components were needed, such as the container image selector component.
 
 One feature that required a new UI component was the ability to allow exporting step information to a CloudFormation Template. Implementing these new UI components in our declarative UI presented some challenges. As this is a shared set of components for all step packages, we had to consider how to make the new component generic enough so it could be used by other step packages but still support all the functions required for the ECS steps. This challenge is a conscious trade-off built into the framework that significantly reduces the complexity of authoring a new step at the cost of exposing only a subset of Octopus functionality to the steps.
 
@@ -174,9 +174,9 @@ One feature that required a new UI component was the ability to allow exporting 
 
 One critical aspect the team considered during the development of the ECS steps was how to write integration tests. The tests are required to construct all resources needed in the cloud service so that the deployment of the steps being tested can be executed. 
 
-For the ECS steps we were building, we needed to set up a large number of resources in AWS before the tests could actually run. We decided to have a Terraform template spin up the resources for the integration test to eliminate the need for static resources. 
+We needed to set up a large number of resources in AWS before the tests could actually run. We decided to have a Terraform template spin up the resources for the integration test to eliminate the need for static resources. 
 
-Realizing these needs would also be applicable to other types of steps in future, such as those using Azure or GCP infrastructure, we decided to develop a testing framework that acquires and sets up infrastructure from a Terraform template supplied by the client. The client declares the required cloud provider (Azure, AWS, or GCP) and provides the credentials. The framework then outputs a random resource code that can both be used in the step authors’ own Terraform templates and in the tests to access and validate resources.
+Realizing these needs would also be applicable to other types of steps in future, such as those using Azure or GCP infrastructure, we developed a testing framework that acquires and sets up infrastructure from a Terraform template supplied by the client. The client declares the required cloud provider (Azure, AWS, or GCP) and provides the credentials. The framework then outputs a random resource code that can both be used in the step authors’ own Terraform templates and in the tests to access and validate resources.
 
 This testing framework facilitated the development of multiple integration tests we implemented in the ECS steps and is an essential tool for step authors working on any steps that require infrastructure setup in major cloud providers.
 
@@ -231,7 +231,7 @@ Upgrading to use the new major version is as easy as clicking the **Upgrade** bu
 
 ## Conclusion
 
-The step package framework is changing how we build and deliver new steps to your Octopus Server instances. It means that new steps can be delivered faster, and without the need for upgrades. 
+The step package framework is changing how we build and deliver new steps to your Octopus Server instances. It means that new steps can be delivered faster and without the need for upgrades. 
 
 We look forward to bringing you new and improved steps using this framework as we roll out even more functionality. 
 
