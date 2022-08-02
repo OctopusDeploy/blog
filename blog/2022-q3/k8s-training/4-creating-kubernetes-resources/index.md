@@ -1,6 +1,6 @@
 ---
-title: Creating Kubernetes Services
-description: Learn about Kubernetes Pods, ReplicaSets, and Deployments
+title: Creating Kubernetes services
+description: Learn about Kubernetes pods, ReplicaSets, and deployments.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2022-01-01-1200
@@ -15,9 +15,13 @@ tags:
   - Docker 
 ---
 
+This post is the fourth in our Kubernetes training series, providing DevOps engineers with an introduction to Docker, Kubernetes, and Octopus. 
+
+This video demonstrates Kubernetes pods, ReplicaSets, and deployments, deploying examples of each.
+
 <p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/90jqp8rihi?videoFoam=true" title="Section 4 Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
 
-This video demonstrates Kubernetes Pods, ReplicaSets, and Deployments, deploying examples of each.
+Work through the series using the links below.
 
 !include <k8s-training-toc>
 
@@ -86,10 +90,10 @@ spec:
 
 ## Links
 
-* [Octopus Trial](https://octopus.com/start)
+* [Octopus trial](https://octopus.com/start)
 
 ## Learn more
 
-If you are looking to build and deploy containerized applications to AWS platforms such as EKS and ECS, the [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/) populates a GitHub repository with a sample application built with GitHub Actions workflows and configures an Hosted Octopus instance with sample deployment projects demonstrating best practices such as vulnerability scanning and Infrastructure as Code (IaC). 
+If you're looking to build and deploy containerized applications to AWS platforms such as EKS and ECS, the [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/) populates a GitHub repository with a sample application built with GitHub Actions workflows and configures a hosted Octopus instance with sample deployment projects demonstrating best practices such as vulnerability scanning and Infrastructure as Code (IaC). 
 
 Happy deployments! 
