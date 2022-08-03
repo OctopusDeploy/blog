@@ -3,7 +3,7 @@ title: Continuous delivery with Octopus and Kubernetes
 description: This training series provides a step by step walk-through building multi-environment deployments with Octopus and Kubernetes
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2022-08-02-1200
+published: 2023-08-02-1200
 metaImage: blogimage-kubernetes.png
 bannerImage: blogimage-kubernetes.png
 bannerImageAlt: An octopus on a sail boat
