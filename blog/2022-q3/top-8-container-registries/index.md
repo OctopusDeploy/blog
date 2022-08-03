@@ -4,8 +4,8 @@ description: There are many container registry services, suitable for all differ
 author: andrew.corrigan@octopus.com
 visibility: private
 published: 2022-08-15-1400
-metaImage: placeholderimg.png
-bannerImage: placeholderimg.png
+metaImage: 
+bannerImage: 
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags: 
