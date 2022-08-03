@@ -4,9 +4,9 @@ description: There are many container registry services, suitable for all differ
 author: andrew.corrigan@octopus.com
 visibility: private
 published: 2022-08-15-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-top8containerregistries-2022.png
+bannerImage: blogimage-top8containerregistries-2022.png
+bannerImageAlt: Three-tiered shelf housing eight blue containers.
 isFeatured: false
 tags: 
   - DevOps
