@@ -78,9 +78,9 @@ It's not quite as feature-boastful as AWS or Azure, but Google Cloud's GCR is a 
 
 ## JFrog Container Registry
 
-Built upon another JFrog product, Artifactory, [JFrog Container Registry](https://jfrog.com/container-registry/) supports both Docker images and Helm Charts. It also offers the option to store any package type, thanks to its generic repositories.
+Built upon another JFrog product, Artifactory, [JFrog Container Registry](https://jfrog.com/container-registry/) supports Docker images *and* Helm Charts. JFrog Container Registry also offers the option to store any package type, thanks to its generic repositories.
 
-It has both cloud and self-hosted options (or a hybrid if you wish), and promises great scalability.
+JFrog has both cloud and self-hosted options (or a hybrid if you wish), and promises great scalability.
 
 ## Red Hat Quay
 
