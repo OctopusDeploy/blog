@@ -76,6 +76,12 @@ As with the other big names in cloud services, you may get locked into GCR depen
 
 It's not quite as feature-boastful as AWS or Azure, but Google Cloud's GCR is a worthy offering from one of the cloud-provider 'Big 3'.
 
+## JFrog Container Registry
+
+Built upon another JFrog product, Artifactory, [JFrog Container Registry](https://jfrog.com/container-registry/) supports both Docker images and Helm Charts. It also offers the option to store any package type, thanks to its generic repositories.
+
+It has both cloud and self-hosted options (or a hybrid if you wish), and promises great scalability.
+
 ## Red Hat Quay
 
 Unlike other options, [Red Hat Quay](https://www.redhat.com/en/technologies/cloud-computing/quay) offers private container registries only. This makes it a suitable option for enterprise-level customers in particular.
