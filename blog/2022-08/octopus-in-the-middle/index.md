@@ -1,4 +1,16 @@
-
+---
+title: "How Octopus Deploy makes for easier deployments"
+description: Learn about how Octopus Deploy works with different deployment tools and makes deployments easier
+author: terence.wong@octopus.com
+visibility: public
+published: 2021-09-01-1400
+bannerImage: blogimage-octopusmakesforeasierdeployments-2021.png
+metaImage: blogimage-octopusmakesforeasierdeployments-2021.png
+bannerImageAlt: Octopus tentacles slither out from an Octopus website window. Each tentacle holds a logo: Docker, AWS, GCP and CircleCI.
+isFeatured: false
+tags:
+- Product
+---
 
 Tools like build servers, image repositories, and deployment targets come in different shapes and sizes. Octopus Deploy supports a range of tools through a straightforward user interface and a best-in-class deployment experience. This blog shows you how Octopus Deploy works with other tools in your CI/CD pipeline to simplify complex deployments.
 
