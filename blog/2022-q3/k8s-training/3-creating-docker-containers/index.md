@@ -1,6 +1,6 @@
 ---
 title: Creating Docker containers
-description: Learn how to create a Docker image and run it as a container.
+description: Next in our Kubernetes training series, learn how to create a Docker image and run it as a container.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2022-01-01-1200
@@ -16,17 +16,17 @@ tags:
   - Kubernetes
 ---
 
-This post is the third in our Kubernetes training series, providing DevOps engineers with an introduction to Docker, Kubernetes, and Octopus. You’ll learn how to create an automated, multi-environment deployment process so you can deploy containerized applications with speed and reliability. 
+This post is the 3rd in our Kubernetes training series, providing DevOps engineers with an introduction to Docker, Kubernetes, and Octopus. 
 
 This video demonstrates how Docker images are built and run in containers and covers concepts such as Docker registries and repositories.
 
 <p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/nd7fym6ijr?videoFoam=true" title="Section 3 Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
 
-Work through the series using the links below.
+You can work through the series using the links below.
 
 !include <k8s-training-toc>
 
-## Links
+## Resources
 
 * [Octopus trial](https://octopus.com/start)
 * [kind](https://oc.to/LY8fg0)

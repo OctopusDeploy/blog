@@ -18,6 +18,8 @@ tags:
 
 This training series provides a step by step walk-through building multi-environment deployments with Octopus and Kubernetes.
 
+You can work through the series using the links below.
+
 !include <k8s-training-toc>
 
 ## Learn more

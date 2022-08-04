@@ -1,6 +1,6 @@
 ---
 title: Multi-environment deployments
-description: Learn how to progress deployments to multiple environments
+description: Learn how to progress deployments to multiple environments as part of our Kubernetes training series.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2022-01-01-1200
@@ -16,17 +16,17 @@ tags:
   - Kubernetes
 ---
 
-This post is the seventh in our Kubernetes training series, providing DevOps engineers with an introduction to Docker, Kubernetes, and Octopus. You’ll learn how to create an automated, multi-environment deployment process so you can deploy containerized applications with speed and reliability. 
+This post is the 7th in our Kubernetes training series, providing DevOps engineers with an introduction to Docker, Kubernetes, and Octopus.
 
 This video builds a second Kubernetes cluster for the production environment, adds it to Octopus, and demonstrates how deployments are progressed through multiple environments.
 
 <p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/spzw52f0dn?videoFoam=true" title="Section7 Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
 
-Work through the series using the links below.
+You can work through the series using the links below.
 
 !include <k8s-training-toc>
 
-## Links
+## Resources
 
 * [Octopus trial](https://octopus.com/start)
 
