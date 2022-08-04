@@ -1,6 +1,6 @@
 ---
 title: "Blue/green deployments"
-description: "Watch the blue/green deployment strategy."
+description: "Watch the blue/green deployment strategy, as part of our Kubernetes training series"
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2022-01-01-1200
@@ -15,17 +15,17 @@ tags:
   - Docker 
 ---
 
-This post is the tenth in our Kubernetes training series, providing DevOps engineers with an introduction to Docker, Kubernetes, and Octopus. You’ll learn how to create an automated, multi-environment deployment process so you can deploy containerized applications with speed and reliability.
+This post is the 10th in our Kubernetes training series, providing DevOps engineers with an introduction to Docker, Kubernetes, and Octopus. 
 
 Watch the blue/green deployment strategy, which is a custom strategy orchestrated by Octopus.
 
 <p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/u394adv05a?videoFoam=true" title="10. Blue/Green Deployments Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
 
-Work through the series using the links below.
+You can work through the series using the links below.
 
 !include <k8s-training-toc>
 
-## Links
+## Resources
 
 * [Octopus trial](https://octopus.com/start)
 

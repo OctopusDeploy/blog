@@ -1,6 +1,6 @@
 ---
 title: Creating Kubernetes services
-description: Learn how to expose pods to network traffic via a service.
+description: Learn how to expose pods to network traffic via a service, as part of our Kubernetes training series.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2022-01-01-1200
@@ -16,17 +16,22 @@ tags:
   - Kubernetes
 ---
 
-This post is the fifth in our Kubernetes training series, providing DevOps engineers with an introduction to Docker, Kubernetes, and Octopus. You’ll learn how to create an automated, multi-environment deployment process so you can deploy containerized applications with speed and reliability. 
+This post is the 5th in our Kubernetes training series, providing DevOps engineers with an introduction to Docker, Kubernetes, and Octopus. 
 
 This video demonstrates how to expose pods to network traffic via a service.
 
 <p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/s3txr5gd65?videoFoam=true" title="Section5 Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
 
-Work through the series using the links below.
+You can work through the series using the links below.
 
 !include <k8s-training-toc>
 
-## Sample Service YAML
+## Resources
+
+- [Octopus trial](https://octopus.com/start)
+- [kind load balancer](https://oc.to/ilYOx0)
+
+### Sample Service YAML
 
 ```yaml
 apiVersion: v1
@@ -43,10 +48,6 @@ spec:
       targetPort: 80
 ```
 
-## Links
-
-* [Octopus trial](https://octopus.com/start)
-* [kind load balancer](https://oc.to/ilYOx0)
 
 ## Learn more
 

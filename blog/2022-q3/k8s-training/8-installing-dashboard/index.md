@@ -1,6 +1,6 @@
 ---
 title: Installing a dashboard
-description: Learn how to install helm and then use it to install a dashboard to monitor the cluster.
+description: Learn how to install helm and then use it to install a dashboard to monitor the cluster, as part of our Kubernetes training series
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2022-01-01-1200
@@ -16,17 +16,17 @@ tags:
   - Kubernetes
 ---
 
-This post is the eighth in our Kubernetes training series, providing DevOps engineers with an introduction to Docker, Kubernetes, and Octopus. You’ll learn how to create an automated, multi-environment deployment process so you can deploy containerized applications with speed and reliability. 
+This post is the 8th in our Kubernetes training series, providing DevOps engineers with an introduction to Docker, Kubernetes, and Octopus. 
 
 This video shows you how to install helm and then use it to install a dashboard to monitor the cluster.
 
 <p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/bupqioszse?videoFoam=true" title="8. Installing a Dashboard Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
 
-Work through the series using the links below.
+You can work through the series using the links below.
 
 !include <k8s-training-toc>
 
-## Links
+## Resources
 
 * [Octopus trial](https://octopus.com/start)
 * [Helm](https://oc.to/56sP7x)

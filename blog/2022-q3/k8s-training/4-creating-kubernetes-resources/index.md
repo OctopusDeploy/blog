@@ -1,6 +1,6 @@
 ---
 title: Creating Kubernetes pods, ReplicaSets, and deployments
-description: Learn how to create Kubernetes pods, ReplicaSets, and deployments from YAML manifests
+description: Learn how to create Kubernetes pods, ReplicaSets, and deployments from YAML manifests, as part of our Kubernetes training series.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2022-01-01-1200
@@ -15,17 +15,21 @@ tags:
   - Docker 
 ---
 
-This post is the fourth in our Kubernetes training series, providing DevOps engineers with an introduction to Docker, Kubernetes, and Octopus. You’ll learn how to create an automated, multi-environment deployment process so you can deploy containerized applications with speed and reliability. 
+This post is the 4th in our Kubernetes training series, providing DevOps engineers with an introduction to Docker, Kubernetes, and Octopus.
 
 This video demonstrates Kubernetes pods, ReplicaSets, and deployments, deploying examples of each.
 
 <p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/90jqp8rihi?videoFoam=true" title="Section 4 Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
 
-Work through the series using the links below.
+You can work through the series using the links below.
 
 !include <k8s-training-toc>
 
-## Sample Pod YAML
+## Resources
+
+- [Octopus trial](https://octopus.com/start)
+
+### Sample Pod YAML
 
 ```yaml
 apiVersion: v1
@@ -40,7 +44,7 @@ spec:
     - containerPort: 80
 ```
 
-## Sample ReplicaSet YAML
+### Sample ReplicaSet YAML
 
 ```yaml
 apiVersion: apps/v1
@@ -64,7 +68,7 @@ spec:
         - containerPort: 80
 ```
 
-## Sample Deployment YAML
+### Sample Deployment YAML
 
 ```yaml
 apiVersion: apps/v1
@@ -88,9 +92,6 @@ spec:
         - containerPort: 80
 ```
   
-## Links
-
-* [Octopus trial](https://octopus.com/start)
 
 ## Learn more
 

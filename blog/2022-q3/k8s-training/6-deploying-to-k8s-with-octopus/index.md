@@ -1,6 +1,6 @@
 ---
 title: Deploying to Kubernetes with Octopus
-description: Learn how to configure a Kubernetes cluster as an Octopus target and deploy applications to it.
+description: Learn how to configure a Kubernetes cluster as an Octopus target and deploy applications to it, as part of Kubernetes training series.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2022-01-01-1200
@@ -16,7 +16,7 @@ tags:
   - Kubernetes
 ---
 
-This post is the sixth in our Kubernetes training series, providing DevOps engineers with an introduction to Docker, Kubernetes, and Octopus. You’ll learn how to create an automated, multi-environment deployment process so you can deploy containerized applications with speed and reliability. 
+This post is the 6th in our Kubernetes training series, providing DevOps engineers with an introduction to Docker, Kubernetes, and Octopus.
 
 This video introduces many Octopus concepts such as:
 
@@ -29,11 +29,11 @@ It then demonstrates how to integrate Octopus with a Kubernetes cluster and perf
 
 <p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/negi40uxs9?videoFoam=true" title="6. Deploying to Kubernetes with Octopus Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
 
-Work through the series using the links below.
+You can work through the series using the links below.
 
 !include <k8s-training-toc>
 
-## Links
+## Resources
 
 * [Octopus trial](https://octopus.com/start)
 * [Ask Ubuntu - Install libssl1.1 on 22.04](https://oc.to/WQcxtj)
