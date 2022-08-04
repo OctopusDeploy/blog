@@ -1,6 +1,6 @@
 ---
 title: Getting started with Docker
-description: Learn how to install Docker on your local workstation
+description: This post opens our Kubernetes training series. First, learn how to install Docker on your local workstation.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2022-01-01-1200
@@ -24,14 +24,14 @@ If you don't already have Octopus account, you can [start a free trial](https://
 
 <p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/o14t9soemb?videoFoam=true" title="section1 Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
 
-Work through the series using the links below.
+You can work through the series using the links below.
 
 !include <k8s-training-toc>
 
-## Links
+## Resources
 
 * [Octopus trial](https://octopus.com/start)
-* [Docker](https://oc.to/VqVKCI)
+* [Docker Desktop](https://oc.to/VqVKCI)
 
 ## Learn more
 
