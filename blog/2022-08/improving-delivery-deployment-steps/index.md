@@ -7,7 +7,7 @@ published: 2022-08-08-1400
 metaImage: blogimage-steppackageframeowkr-2022.png
 bannerImage: blogimage-steppackageframeowkr-2022.png
 bannerImageAlt: Octopus deployment process editor showing pluggable automation steps or components.
-isFeatured: true
+isFeatured: false
 tags:
 - Engineering
 - Product
@@ -22,8 +22,7 @@ In this post, we explore:
 - What the new framework is and our design decisions
 - How we tested and iterated the new framework 
 - The benefits for users of Octopus Deploy
-
-We also show you how new steps are delivered to your Octopus Server instance with our new step package feed.
+- How steps are delivered to your Octopus Server instance with our new step package feed
 
 ## Why create a new step package framework?
 
@@ -43,7 +42,7 @@ To understand why a new framework was required, we must first look at the proble
 
 As Octopus Deploy has evolved, step development has gone through several architectural implementations. Originally, steps were developed in the core of Octopus Deploy. This allowed for tight integration between the components that made up a step and the actual process of using those components to perform the defined deployment. 
 
-![Blog diagram showing a Step UI component and Step Handler component](img-stepinserver-2022.png "width=500")
+![Diagram showing a Step UI component and Step Handler component](img-stepinserver-2022.png "width=500")
 
 One advantage of this approach was that the developer creating these steps had all the libraries and dependencies to develop a step available to them at development time. This approach also enabled tight integration with our React front-end.
 
