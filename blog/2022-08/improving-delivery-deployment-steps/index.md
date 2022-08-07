@@ -43,7 +43,7 @@ To understand why a new framework was required, we must first look at the proble
 
 As Octopus Deploy has evolved, step development has gone through several architectural implementations. Originally, steps were developed in the core of Octopus Deploy. This allowed for tight integration between the components that made up a step and the actual process of using those components to perform the defined deployment. 
 
-![Blog diagram showing a Step UI component and Step Handler component](step-in-server.png "width=500")
+![Blog diagram showing a Step UI component and Step Handler component](img-stepinserver-2022.png "width=500")
 
 One advantage of this approach was that the developer creating these steps had all the libraries and dependencies to develop a step available to them at development time. This approach also enabled tight integration with our React front-end.
 
@@ -75,7 +75,7 @@ The step package framework does this by contributing 2 components to Octopus Ser
 1. First is a collection of components to acquire, register, and integrate step packages into Octopus Server, so that step packages can be added and configured to a deployment process. 
 2. Second is the step bootstrapper. The bootstrapper is invoked at step package execution time, and it provides the runtime configuration to the step package and then execute the executor code defined in the step package.
 
-![Octopus Service step package framework components showing how they work together](step-package-framework-components.png "width=500")
+![Octopus Service step package framework components showing how they work together](img-steppackageframeworkcomponents-2022.png "width=500")
 
 In addition to the new framework, we also needed to create a new mechanism for delivering step packages outside of Octopus Server releases. To do this, we built a globally accessible step package feed to ship the packaged steps. Unlike how NPM or NuGet feeds operate where any authenticated user can publish a package, the step package feed only contains packages developed and published by Octopus Deploy. After a step is written, built, and packaged, it's ready to be shipped to Octopus instances everywhere. We do this by publishing it to the step package feed.
 
