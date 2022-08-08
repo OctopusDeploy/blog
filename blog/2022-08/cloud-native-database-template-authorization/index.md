@@ -17,13 +17,15 @@ tags:
   - Step Templates
 ---
 
-Amazon Web Services (AWS), Azure, and Google Cloud Platform (GCP) have introduced passwordless authentication mechanisms where resources such as virtual machines (VMs) can be assigned an identity (Azure), a service account (GCP), or a role (AWS) that can be used to authenticate to other resources such as database server instances. Octopus Deploy contains several built-in steps that support authenticating to resources using this method, however, database deployments are almost entirely done using community step templates.  
+Amazon Web Services (AWS), Azure, and Google Cloud Platform (GCP) have introduced passwordless authentication mechanisms where resources such as virtual machines (VMs) can be assigned an identity (Azure), a service account (GCP), or a role (AWS) that can be used to authenticate to other resources such as database server instances. 
+
+Octopus Deploy has several built-in steps that support authenticating to resources using this method, however, database deployments are almost entirely done using community step templates.  
 
 The Octopus community has been hard at work updating templates to support cloud-native authentication. In this post, I list templates updated with cloud provider authentication functionality.
 
 ## Database technologies that support cloud-native authentication methods
 
-Not every database technology a cloud provider offers supports cloud-native authentication.  Below, I list by provider which technologies are supported:
+Only some database technologies offered by cloud providers support cloud-native authentication. Below, I list by provider which technologies are supported:
 
 AWS
 
@@ -68,7 +70,7 @@ The following community step templates have been updated to support using cloud-
 - [Postgres - Create User If Not Exists](https://library.octopus.com/step-templates/6e676055-fb63-450f-9d98-ac99c4a68023/actiontemplate-postgres--create-user-if-not-exists)
 - [SQL - Deploy DACPAC with AAD Auth support](https://library.octopus.com/step-templates/ae9d0024-a5aa-4aa8-95a9-cba53c291054/actiontemplate-sql-deploy-dacpac-with-aad-auth-support)
 
-With the exception of **SQL - Deploy DACPAC with AAD Auth support**, all of the above templates work on Windows (PowerShell, PowerShell Core) and Linux (PowerShell Core) and have been updated with an **Authentication Method** selector that supports the following types:
+With the exception of **SQL - Deploy DACPAC with AAD Auth support**, the templates above work on Windows (PowerShell, PowerShell Core) and Linux (PowerShell Core) and have been updated with an **Authentication Method** selector that supports the following types:
 
 - AWS EC2 IAM Role
 - Azure Managed Identity
@@ -104,7 +106,7 @@ In this post, I listed templates that have been updated with cloud provider auth
 
 ## Learn more
 
-Our Samples instance has updated examples to use cloud-native authentication:
+Our Samples instance has updated examples that use cloud-native authentication:
 
 - [MySQL using Azure Managed Identity and Flyway](https://samples.octopus.app/app#/Spaces-242/projects/flyway-azure-paas/deployments/process)
 - [MySQL using Azure Managed Identity and Liquibase](https://samples.octopus.app/app#/Spaces-242/projects/liquibase-azure-paas/deployments/process)
