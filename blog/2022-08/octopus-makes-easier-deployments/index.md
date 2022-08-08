@@ -1,9 +1,9 @@
 ---
-title: "How Octopus Deploy makes for easier deployments"
-description: Learn about how Octopus Deploy works with different deployment tools and makes deployments easier
+title: How Octopus Deploy makes for easier deployments
+description: Learn about how Octopus Deploy works with different deployment tools and makes deployments easier.
 author: terence.wong@octopus.com
 visibility: public
-published: 2021-09-01-1400
+published: 2022-08-17-1400
 bannerImage: blogimage-octopusmakesforeasierdeployments-2021.png
 metaImage: blogimage-octopusmakesforeasierdeployments-2021.png
 bannerImageAlt: Octopus tentacles slither out from an Octopus website window. Each tentacle holds a logo: Docker, AWS, GCP and CircleCI.
@@ -12,37 +12,39 @@ tags:
 - Product
 ---
 
-Tools like build servers, image repositories, and deployment targets come in different shapes and sizes. Octopus Deploy supports a range of tools through a straightforward user interface and a best-in-class deployment experience. This blog shows you how Octopus Deploy works with other tools in your CI/CD pipeline to simplify complex deployments.
+Tools like build servers, image repositories, and deployment targets come in different shapes and sizes. Octopus Deploy supports a range of tools through a straightforward user interface and a best-in-class deployment experience. 
 
-## Build Servers
+In this post, I show you how Octopus Deploy works with other tools in your CI/CD pipeline to simplify complex deployments.
 
-The role of a build server is to take raw code, build it, and package it into a form ready for deployment. Build servers can do this through YAML files. I built and pushed a sample web application called [Random Quotes](https://github.com/OctopusSamples/RandomQuotes-JS) with GitHub Actions to the Google Content Registry and Travis CI and CircleCI to push to DockerHub. Build servers are interchangeable, and they can push to any content registry.
+## Build servers
+
+Build servers take raw code, build it, and package it into a form ready for deployment. Build servers can do this through YAML files. I built and pushed a sample web application called [Random Quotes](https://github.com/OctopusSamples/RandomQuotes-JS) with GitHub Actions to the Google Content Registry and Travis CI and CircleCI to push to DockerHub. Build servers are interchangeable, and they can push to any content registry.
 
 ### GitHub Actions
 
-GitHub Actions allows DevOps operations to be performed directly on a GitHub repository. GitHub Actions uses workflows, a feature that allows configuration files to specify a deployment process. The GitHub community maintains templates that cover different deployment targets. I used a basic one to set up a job to deploy to GCR so it is easy to get started.
+GitHub Actions lets you perform DevOps operations directly in a GitHub repository. GitHub Actions uses workflows, a feature that allows configuration files to specify a deployment process. The GitHub community maintains templates that cover different deployment targets. I used a basic one to set up a job to deploy to GCR so it's easy to get started.
 
 ![GitHub Actions Success](github-actions-success.png "width=500")
 
 ### Travis CI
 
-Travis CI is an open-source continuous delivery tool. It is free to sign up and works with GitHub. I connected my GitHub repository to Travis CI. Travis CI automatically detects changes on the repository and triggers a build. There wasn't a Travis CI template to use, but there were resources online to make it work.
+Travis CI is an open-source continuous delivery tool. It's free to sign up and works with GitHub. I connected my GitHub repository to Travis CI. Travis CI automatically detected changes on the repository and triggered a build. There wasn't a Travis CI template to use, but there were resources online to make it work.
 
 ![TravisCI Success](travisci-success.png "width=500")
 
 ### Circle CI
 
-Circle CI is also free to start and works with GitHub. Circle CI does have templates that you can import. The templates were helpful in quickly setting up a deployment flow. The added benefit of templates along with a clearer UI made Circle CI easier for me to start with than Travis CI.
+Circle CI is also free and works with GitHub, plus has templates you can import. The templates were helpful in quickly setting up a deployment flow. The added benefit of templates along with a clearer UI made Circle CI easier for me to start with than Travis CI.
 
 ![CircleCI Success](circleci-success.png "width=500")
 
 ## Repositories
 
-An image repository is a place to store deployable images. Octopus Deploy uses these images and deploys them to a deployment target. Octopus Deploy supports image repositories like Docker Hub, Google Container Registry, Azure Container Registry, and AWS Elastic Container Registry. Octopus Deploy is repository agnostic, which gives you flexibility to store images where you want to.
+An image repository is a place to store deployable images. Octopus Deploy uses these images and deploys them to a deployment target. Octopus Deploy supports image repositories like Docker Hub, Google Container Registry, Azure Container Registry, and AWS Elastic Container Registry. Octopus Deploy is repository agnostic, giving you the flexibility to store images where you want to.
 
 ### Docker Hub
 
-Docker Hub is a central repository for Docker images that [works with Octopus Deploy](https://octopus.com/docs/packaging-applications/package-repositories/guides/container-registries/docker-hub). It is free to sign up and create public repositories. The Travis CI and Circle CI images can then be deployed to a target by Octopus Deploy. Docker Hub is popular because it is not tied to a specific Cloud vendor like Google, Microsoft or Amazon. Docker Hub provides repository functionality without the added bloat of additional cloud services. 
+Docker Hub is a central repository for Docker images that [works with Octopus Deploy](https://octopus.com/docs/packaging-applications/package-repositories/guides/container-registries/docker-hub). It's free to sign up and create public repositories. The Travis CI and Circle CI images can then be deployed to a target by Octopus Deploy. Docker Hub is popular because it is not tied to a specific Cloud vendor like Google, Microsoft or Amazon. Docker Hub provides repository functionality without the added bloat of additional cloud services. 
 
 ![Docker Hub](dockerhub.png "width=500")
 
