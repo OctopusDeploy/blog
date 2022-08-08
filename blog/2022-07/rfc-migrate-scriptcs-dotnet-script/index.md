@@ -22,7 +22,7 @@ C# scripting accounts for ~5% of our script steps, so we want to understand the 
 
 If you're using C# scripts in your deployment processes, and are deploying to Linux targets using SSH and Mono, or to Windows Tentacle targets running Windows versions earlier than 2012 R2, the proposed changes could impact you.
 
-This post outlines the potential changes, plus the trade-offs in moving to dotnet-script and deprecating scripts. We also created a [GitHub issue](https://github.com/OctopusDeploy/StepsFeedback/issues/9) where you can provide feedback, and we can further gauge the demand for this functionality.
+This post outlines the potential changes, plus the trade-offs in moving to dotnet-script and deprecating scriptcs. We also created a [GitHub issue](https://github.com/OctopusDeploy/StepsFeedback/issues/9) where you can provide feedback, and we can further gauge the demand for this functionality.
 
 ## How we propose to support dotnet-script
 
