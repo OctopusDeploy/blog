@@ -26,7 +26,7 @@ This post outlines the potential changes, plus the trade-offs in moving to dotne
 
 ## How we propose to support dotnet-script
 
-This Request for Comments (RFC) proposes removing `scriptcs` in favour of `dotnet-script`.
+This Request for Comments (RFC) proposes removing `scriptcs` in favor of `dotnet-script`.
 
 To deploy software to your server we use [Tentacle](https://github.com/OctopusDeploy/OctopusTentacle), a lightweight service responsible for communicating with Octopus Server, and invoking [Calamari](https://github.com/OctopusDeploy/Calamari). Calamari is a command-line tool that knows how to perform the deployment, and is the host process for all deployment actions including script execution. We currently build Calamari for .NET Framework 4.0.0, 4.5.2, and netcore3.1. Depending on your server OS, architecture and version, Tentacle receives one of these Calamari builds.
 
