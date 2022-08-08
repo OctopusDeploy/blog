@@ -105,7 +105,7 @@ Everything you need is already checked into source control.  All we need to do i
 
 ### Octopus Deploy configuration
 
-You need the step templates from Redgate to [create a database release](http://library.octopus.com/step-templates/c20b70dc-69aa-42a1-85db-6d37341b63e3/actiontemplate-redgate-create-database-release) and [deploy a database release](http://library.octopus.com/step-templates/7d18aeb8-5e69-4c91-aca4-0d71022944e8/actiontemplate-redgate-deploy-from-database-release).  When you browse the step template you might notice the step template to [deploy directly from a package](http://library.octopus.com/step-templates/19f750fb-2ce8-4361-859e-2dfcdf08a952/actiontemplate-redgate-deploy-from-package).  The state-based functionality for SQL Change Automation works by comparing the state of the database stored in the NuGet package with the destination database.  Each time it runs, it creates a new set of delta scripts to apply. The recommended process is:
+You need the step templates from Redgate to [create a database release](https://library.octopus.com/step-templates/c20b70dc-69aa-42a1-85db-6d37341b63e3/actiontemplate-redgate-create-database-release) and [deploy a database release](https://library.octopus.com/step-templates/7d18aeb8-5e69-4c91-aca4-0d71022944e8/actiontemplate-redgate-deploy-from-database-release).  When you browse the step template you might notice the step template to [deploy directly from a package](https://library.octopus.com/step-templates/19f750fb-2ce8-4361-859e-2dfcdf08a952/actiontemplate-redgate-deploy-from-package).  The state-based functionality for SQL Change Automation works by comparing the state of the database stored in the NuGet package with the destination database.  Each time it runs, it creates a new set of delta scripts to apply. The recommended process is:
 
 1. Download the database package to the jump box.
 2. Create the delta script by comparing the package on the jump box with the database on the SQL Server.
@@ -125,7 +125,7 @@ This process does the following:
 - Adds the SQL user to the database.
 - Adds the user to the role.  
 
-If you want your process to do that, you can download those step templates from the [Octopus Community Step Template Library](http://library.octopus.com/listing).  
+If you want your process to do that, you can download those step templates from the [Octopus Community Step Template Library](https://library.octopus.com/listing).  
 
 If this is the beginning of your automated database deployment journey, you don’t have to add all that functionality. The main steps you need from the above screenshot are:
 

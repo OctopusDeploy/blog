@@ -193,6 +193,4 @@ This was my first time taking a look at the execution container functionality wi
 
 The `octopusdeploy/worker-tools` image means you can get started straight away, with most tools required for deployments available within it.  In addition to this, if you roll your own images, you can add further flexibility to your deployment process and have the potential to reduce deployment times. 
 
-The Dockerfiles used in this article can be found in one of our sample repositories [here](https://github.com/OctopusSamples/ExecutionContainerImages).
-
 Happy Deployments!

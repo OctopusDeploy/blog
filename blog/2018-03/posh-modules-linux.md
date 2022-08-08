@@ -15,8 +15,6 @@ tags:
 
 Octopus Deploy supports re-usable [PowerShell script modules](https://octopus.com/docs/deployments/custom-scripts/script-modules) that can be included in deployments across all of your projects.  When a script module is included in a project, it will automatically become available to PowerShell scripts that run on Windows. You can also run your favorite PowerShell script modules on Linux, but they are not automatically made available to your PowerShell on Linux scripts. While we plan to provide first class PowerShell on Linux support, here is the trick to get them working.
 
-Review the [PowerShell on Linux installation instructions](https://github.com/PowerShell/PowerShell/blob/master/docs/installation/linux.md) for more information.
-
 For this example we will use a script module called `Say Hello` with the following content:
 
 ```
