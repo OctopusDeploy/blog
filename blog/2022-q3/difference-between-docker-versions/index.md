@@ -13,7 +13,7 @@ tags:
   - Docker
 ---
 
-Docker has matured over the years to offer a range of solutions for developers working with containers. This can lead to some confusion as developers must choose which version of Docker to install. 
+Docker has matured over the years to offer a range of solutions for developers working with containers. This can lead to some confusion, though, as developers need to choose which version of Docker to install. 
 
 In this post, I look at which options are available for which operating systems and offer advice on what choice to make.
 
@@ -72,6 +72,6 @@ In this post, we looked at the various tools and specifications that support con
 
 ## Learn more using the Octopus Workflow Builder
 
-If you want to build and deploy containerized applications to AWS platforms such as EKS and ECS, the [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/) populates a GitHub repository with a sample application built with GitHub Actions workflows. It configures a hosted Octopus instance with sample deployment projects demonstrating best practices such as vulnerability scanning and Infrastructure as Code (IaC). 
+If you want to build and deploy containerized applications to AWS platforms such as EKS and ECS, try the [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/). The Builder populates a GitHub repository with a sample application built with GitHub Actions workflows. It configures a hosted Octopus instance with sample deployment projects demonstrating best practices such as vulnerability scanning and Infrastructure as Code (IaC). 
 
 Happy deployments! 
