@@ -1,15 +1,16 @@
 ---
 title: Using Docker as a package manager
-description: This post demonstrates how Docker is a convenient solution for downloading and running many CLI tools
+description: This post demonstrates how Docker is a convenient solution for downloading and running many CLI tools.
 author: matthew.casperson@octopus.com
-visibility: private
-published: 3020-01-01-1400
-metaImage: octopus-docker.png
-bannerImage: octopus-docker.png
-bannerImageAlt: The Octopus and Docker logos side by side.
+visibility: public
+published: 2022-08-22-1400
+metaImage: blogimage-usingdockeruniversalpkgmanager-2022.png
+bannerImage: blogimage-usingdockeruniversalpkgmanager-2022.png
+bannerImageAlt: The Octopus and Docker logos connected by plugs with little stars around the connection.
 isFeatured: false
 tags: 
   - DevOps
+  - Docker
 ---
 
 A constant challenge when automating DevOps tasks is ensuring you have the correct tools for the job. Linux users have long enjoyed the ability to install tools from extensive and well maintained package repositories, while macOS users have HomeBrew and MacPorts, and Windows users have Chocolatey and winget. However, an increasing number of cloud based tools, such as platform specific CLI tools (eksctl, aws-iam-authenticator, kubectl, kind, helm, etc.) can only be reliably installed across multiple operating systems and Linux distributions via a direct binary download. Finding and downloading tools is a point of friction when automating DevOps tasks.
