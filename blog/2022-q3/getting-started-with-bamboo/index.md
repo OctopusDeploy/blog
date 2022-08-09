@@ -35,11 +35,12 @@ To follow along with the guide, you will need the following software set up on y
 
 ## Installing Bamboo on a Windows Server
 
-To try Bamboo, you can [download the latest release](https://www.atlassian.com/software/bamboo/download)
+To install Bamboo:
 
-Set the install location to a directory you can access, such as C:\Users\Username\Documents. Setting it to the Default location of C:\Program Files may result in permission errors.
-
-You will also be asked to set the Bamboo home directory, make sure this is a seperate directory from the install location with a folder name Bamboo-home.
+- [download the latest release](https://www.atlassian.com/software/bamboo/download)
+- Run the install executable
+- Set the install location to a directory you can access, such as C:\Users\Username\Documents. Setting it to the Default location of C:\Program Files may result in permission errors.
+- Set the Bamboo home directory, make sure this is a seperate directory from the install location with a folder name Bamboo-home.
 
 Once the install has finished, run the bamboo server:
 
@@ -49,44 +50,45 @@ Once the install has finished, run the bamboo server:
 
 ## Setting up users
 
-In the start up screen, you will be asked to set up an admin account. Fill out the details and store the details in a password manager.
+In the start up screen, you will be asked to set up an admin account. Fill out the details and store the details in a password manager. If you misplace your password, you will need to run through a recovery process.
 
 ## Agents
 
-Agents are the workers that execute workloads in Bamboo. Since you have installed the pre-requisite technology, you can use the local machine as an agent for testing purposes.
+Agents are the workers that execute workloads in Bamboo. Since you have installed the pre-requisite technology, you can use the local machine as an agent for testing purposes. To set up a local agent:
 
-In the Bamboo dashboard, go to the settings icon and agents
-
-Go to add local agent and give it a name
-
-Click **Save**
+- In the Bamboo dashboard, go to the settings icon and agents
+- Go to add local agent and give it a name
+- Click **Save**
 
 
 ## Setup project and plan
+
+Bamboo organises your workflow into projects and plans. A project can contain multiple plans and each plan is a process that executes a series of tasks. To get started, set up your first project and plan:
 
 In the home menu, click **Create** and **Create Plan**. Fill out the names of your project and plan
 
 ![Create Project and Plan](create-project-and-plan.png)
 
-## Connect to the underwater application github
-
 In the next screen check the box that says 'link new repository'
 
-We will be using the [Octopus Underwater App](https://github.com/OctopusSamples/octopus-underwater-app). To use this repository, fork it into you own account. 
+### Connect to the octopus underwater app reposotiry
 
-In the password settings, use a [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) to grant Bamboo access to repositories under your GitHub account.
+We will be using the [Octopus Underwater App](https://github.com/OctopusSamples/octopus-underwater-app). 
 
-Select the main branch
 
-Test the connection to make sure that Bamboo can connect to this repository
+To use this repository:
 
-## Configure plan
+- Fork it into you own GitHub account. 
+- In the password settings, use a [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) to grant Bamboo access to repositories under your GitHub account.
+- Select the main branch
+- Test the connection to make sure that Bamboo can connect to this repository
+- Click **Save and continue**
 
-Leave the isolate build as 'Agent environment'. This will use the local agent you set up earlier.
+### Configure plan
 
-Bamboo works by tasks. Each task is meant to execute a certain step in the CI pathway, such as checkout, build, pull, push etc.
+You wil now be on the configure job screen. Here you can configure the tasks that the plan will run to execute your job. Bamboo provides a suite of task steps that you can select from. These tasks execute a certain step in the CI pathway, such as checkout, build, pull, push etc. You will see that there is a source code checkout task pre-filled for you. This checks out the linked Github repository into Bamboo
 
-You will see that there is a source code checkout step pre-filled for you. This checks out the linked Github repository into Bamboo
+- Leave the isolate build as 'Agent environment'. This will use the local agent you set up earlier.
 
 First, add the build docker task:
 
