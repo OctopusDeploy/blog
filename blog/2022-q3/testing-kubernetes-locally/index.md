@@ -31,7 +31,7 @@ Learn how to install minikube on Windows and connect it to Octopus in the post [
 
 [kind](https://kind.sigs.k8s.io/), which stands for Kubernetes in Docker, is a cross-platform tool supporting the creation of multi-node Kubernetes clusters all hosted as Docker containers. It can take a moment to wrap your mind around the concept of Docker running Kubernetes to orchestrate Docker containers, but the tool works well and has the advantage over other options of not requiring dedicated virtual machines in Windows and macOS.
 
-You can find more information on integrating kind clusters with Octopus in the post [Kubernetes testing with kind](https://octopus.com/blog/getting-started-with-kind-and-octopus).
+You can find more information on integrating kind clusters with Octopus in the post [Kubernetes testing with kind](https://octopus.com/blog/kubernetes-with-kind).
 
 ## MicroK8s
 
