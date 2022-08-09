@@ -4,9 +4,9 @@ description: Learn about the tools available for developers testing Kubernetes o
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2022-08-17-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: Octopus at the helm of a boat
+metaImage: blogimage-testingkubernetes-2022.png
+bannerImage: blogimage-testingkubernetes-2022.png
+bannerImageAlt: Kubernetes logo on an open laptop screen
 isFeatured: false
 tags: 
   - DevOps
