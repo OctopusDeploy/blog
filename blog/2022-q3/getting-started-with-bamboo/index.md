@@ -27,9 +27,9 @@ This blog will take you through:
 
 To follow along with the guide, you will need the following software set up on your Windows Server:
 
-- Java 8 or 11, [according to Atlassian these are the versions they support](https://confluence.atlassian.com/bamboo/supported-platforms-289276764.html)
+- [Java 8 or 11](https://confluence.atlassian.com/bamboo/supported-platforms-289276764.html)
 - [Docker](https://docs.docker.com/desktop/install/windows-install/)
-- Git 
+- [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) 
 - A Github Account
 - DockerHub account
 
@@ -130,7 +130,9 @@ You will see the Octopus Underwater app where you can learn more about CI/CD and
 
 ## Learn more
 
-link to CI series
+If you are interested in more CI server resources, we did a [series on CI servers](https://octopus.com/blog/tag/CI%20Series) where we focussed on Jenkins, GitHub actions and fundamental CI concepts.
 
 ## Conclusion
+
+
 
