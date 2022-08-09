@@ -22,7 +22,7 @@ This blog will take you through:
 - Configuring a Bamboo plan to build and push a docker container to a container registry
 - Running and viewing the container image
 
-## Pre-requesites
+## Pre-requisites
 
 To follow along with the guide, you will need the following software and accounts:
 
