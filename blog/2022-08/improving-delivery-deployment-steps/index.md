@@ -57,7 +57,7 @@ In a rapidly changing environment where new cloud services pop up frequently, we
 
 ## Introducing the step package framework
 
-The step package framework is a collection of TypeScript libraries that support the creation and integration of steps into Octopus Server. It provides a CLI to ensemble step authors to build and package their new steps.
+The step package framework is a collection of TypeScript libraries that support the creation and integration of steps into Octopus Server. It provides a CLI to enable step authors to build and package their new steps.
 
 New steps built using the step package framework are now referred to as a step package. Step packages consist of several components: 
 
