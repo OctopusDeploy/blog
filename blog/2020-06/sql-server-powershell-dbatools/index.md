@@ -141,7 +141,7 @@ $db | Set-DbaDbOwner -TargetLogin MyLogin
 
 ### Run a SQL script {#script}
 
-James finished by demonstrating how to use the SqlServer cmdlet [Invoke-Sqlcmd](https://docs.microsoft.com/en-us/sql/database-engine/invoke-sqlcmd-cmdlet?view=sql-server-2014) to execute either some in-line SQL or a separate .sql script. This code seems simple enough, and the dbatools equivalent, [Invoke-DbaQuery](https://docs.dbatools.io/#Invoke-DbaQuery) looks and feels pretty similar. However, the dbatools equivalent is designed to be more convenient to use in a pipeline and to behave more consistently with other dbatools functions.
+James finished by demonstrating how to use the SqlServer cmdlet Invoke-Sqlcmd to execute either some in-line SQL or a separate .sql script. This code seems simple enough, and the dbatools equivalent, [Invoke-DbaQuery](https://docs.dbatools.io/#Invoke-DbaQuery) looks and feels pretty similar. However, the dbatools equivalent is designed to be more convenient to use in a pipeline and to behave more consistently with other dbatools functions.
 
 ```powershell
 # Run a query from a script

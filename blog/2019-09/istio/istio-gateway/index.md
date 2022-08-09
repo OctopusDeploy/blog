@@ -63,7 +63,7 @@ namespace: istio-system
 This is because this Gateway resource is going to be bound to a load balancer Service resource created when Istio was installed. The Service resource is called `istio-ingressgateway` and has a label of `istio: ingressgateway`.
 
 :::hint
-Specifically the `ingressgateway` was created because the Helm option `gateways.istio-ingressgateway.enabled` defaults to `true`. See the [documentation](https://istio.io/docs/reference/config/installation-options/) for more details.
+Specifically the `ingressgateway` was created because the Helm option `gateways.istio-ingressgateway.enabled` defaults to `true`.
 :::
 
 ![](ingressgateway.png "width=500")

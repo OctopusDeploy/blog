@@ -88,8 +88,6 @@ octo.pack({dependencies: 'prod', bypassDisk: true, root: "."},
     .finalize(true);
 ```
 
-The `octojs` library is open sourced on [GitHub](https://github.com/OctopusDeploy/octojs) along with [gulp](https://github.com/OctopusDeploy/gulp-octo) and [grunt](https://github.com/OctopusDeploy/grunt-octo) versions of these libraries that will help package your project during your build process (with a webpack version on the way).
-
 ## Let’s start treating Node.js like a serious language
 
 Node.js is a serious language, so we need to start treating it seriously in our CD pipelines. This means downloading dependencies and building (or transpiling) once on the build server and packaging the result along with the dependencies into a self-contained deployment package. Octopus JS libraries can help with this, but ultimately it doesn’t matter what tool you use to package and deploy your application, what matters is that it’s built once, and deployed across your environments.

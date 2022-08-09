@@ -121,7 +121,7 @@ let webApp = webApp {
 
 Here we assign the WebApp SKU to a variable named `webAppSku`. This is done by a helper function to return a strongly typed `Sku`. Then we create our `webApp` variable using the Farmer [Web App builder](https://compositionalit.github.io/farmer/api-overview/resources/web-app/).
 
-Next, we create our ARM deployment using the Farmer [ARM deployment builder](https://compositionalit.github.io/farmer/api-overview/resources/arm/), which in this example, consists of the location to deploy to, and the Azure WebApp as previously defined:
+Next, we create our ARM deployment using the Farmer ARM deployment builder, which in this example, consists of the location to deploy to, and the Azure WebApp as previously defined:
 
 ```fs
 let deployLocation = Location.FromString(azWebAppLocation)

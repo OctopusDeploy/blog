@@ -64,7 +64,7 @@ I would expect these commands to work in all recent versions of WildFly, and I w
 
 These CLI commands also offer a concise way to understand what changes are being made to the stock download. Unlike a template XML file where the changes are scattered throughout a large file, the CLI commands are easy to see and understand.
 
-And because you are applying targeted changes to the current configuration (as opposed to overwriting the entire XML file), CLI commands have the potential to be idempotent. With some use of the [CLI flow control statements](https://developer.jboss.org/wiki/If-elseControlFlow), it is possible to only apply a change if the current setting is not the desired state.
+And because you are applying targeted changes to the current configuration (as opposed to overwriting the entire XML file), CLI commands have the potential to be idempotent. With some use of the CLI flow control statements, it is possible to only apply a change if the current setting is not the desired state.
 
 CLI commands provide a level of error checking. To be fair the XML validation is quite strict in WildFly, so it unlikely that you could have invalid XML and a bootable server, but the CLI will offer more immediate feedback when you try to do something wrong.
 

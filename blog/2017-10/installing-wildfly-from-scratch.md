@@ -291,7 +291,7 @@ For reasons I do not understand, Chrome will not prompt you to save the credenti
 The admin console provides features for deploying web applications, changing settings, monitoring performance, viewing log files and more.
 
 :::hint
-The admin user we created earlier has access to all aspects of the admin console. If you need fine grained control, consider using Role Based Access Controls (RBAC). The [documentation](https://docs.jboss.org/author/display/WFLY/RBAC) has more details on enabling RBAC.
+The admin user we created earlier has access to all aspects of the admin console. If you need fine grained control, consider using Role Based Access Controls (RBAC). 
 :::
 
 ## Conclusion
