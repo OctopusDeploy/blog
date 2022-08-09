@@ -10,6 +10,7 @@ bannerImageAlt: The Octopus Deploy and Docker logos connected by plugs with litt
 isFeatured: false
 tags: 
   - DevOps
+  - Containers
   - Docker
 ---
 
