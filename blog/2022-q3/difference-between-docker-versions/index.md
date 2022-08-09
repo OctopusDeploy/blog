@@ -13,7 +13,7 @@ tags:
   - Docker
 ---
 
-Docker has matured over the years to offer a range of solutions for developers working with containers. This can lead to some confusion as developers must choose which version of Docker to install. 
+Docker has matured over the years to offer a range of solutions for developers working with containers. This can lead to some confusion, though, as developers need to choose which version of Docker to install. 
 
 In this post, I look at which options are available for which operating systems and offer advice on what choice to make.
 
