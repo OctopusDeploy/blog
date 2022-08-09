@@ -32,7 +32,7 @@ Another benefit not to be overlooked is the ability to execute Cake scripts loca
 
 Speaking of source control, your Cake script lives in your project repository. Your build process is versioned and can be changed and reviewed with the same code review process as your application code. Committing your script also couples your application code with the build process so you don’t have to change the build steps separately in your CI server. This linking of the application and build script is one of the reasons YAML is becoming a popular choice for modeling build pipelines. Cake has the added benefit of running those build steps right on your machine.
 
-Cake has [built-in support for lots of tools](https://cakebuild.net/dsl/) (including Octopus Deploy) and many others through [community-contributed add-ins](https://cakebuild.net/addins/). There’s a good chance the tools you’re using for your build are supported and if not, you can create an add-in to use in your script.
+Cake has [built-in support for lots of tools](https://cakebuild.net/dsl/) (including Octopus Deploy) and many others through [community-contributed add-ins](https://cakebuild.net/extensions/). There’s a good chance the tools you’re using for your build are supported and if not, you can create an add-in to use in your script.
 
 ## Example Cake script
 

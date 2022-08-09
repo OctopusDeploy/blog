@@ -99,7 +99,7 @@ groovy deploy-certificate.groovy --controller localhost --port 9990 --user admin
 ```
 
 :::hint
-The username and password need to match those that you have already configured with the [adduser script](https://docs.jboss.org/author/display/WFLY10/add-user+utility). You can verify that these credentials work by opening http://localhost:9990 and entering them when prompted to log in.
+The username and password need to match those that you have already configured with the adduser script. You can verify that these credentials work by opening http://localhost:9990 and entering them when prompted to log in.
 :::
 
 Behind the scenes the script starts by creating a security realm called `octopus-ssl-realm` which references the keystore:
@@ -180,8 +180,8 @@ If you are running WildFly as part of a domain, the command to secure the web in
 However, there are some important things to keep in mind about configuring members of a WildFly domain.
 
 The first thing is that the controller you are running the script against is the domain controller. Behind the scenes two files are being updated by the domain controller:
- * The `host.xml` file (or whatever you have passed into the `--host-config` [option](https://docs.jboss.org/author/display/WFLY8/Command+line+parameters) when the WildFly slave was started), which is located on the slave server filesystem.
- * The `domain.xml` file (or whatever you have passed to the `--domain-config` [option](https://docs.jboss.org/author/display/WFLY8/Command+line+parameters) when WildFly domain controller was started), which is located on the domain server filesystem.
+ * The `host.xml` file (or whatever you have passed into the `--host-config` option when the WildFly slave was started), which is located on the slave server filesystem.
+ * The `domain.xml` file (or whatever you have passed to the `--domain-config` option when WildFly domain controller was started), which is located on the domain server filesystem.
 
 The second thing is that the keystore path is relative to the slave server. So it is important to have copied the `keystore.jks` file to the slave server before running this command.
 ```bash

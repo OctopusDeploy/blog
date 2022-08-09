@@ -218,7 +218,7 @@ Create your new Project in Octopus, mine is called `Cloud Cost`, then define the
 - SubscriptionId (Type: String). The Subscription ID which can be retrieved from Azure PowerShell by running `Get-AzureRmSubscription`.
 - DateRangeInDays (Type: Integer). The script takes the current day and counts backwards by this many days to form a range to check usage cost.
 - DefaultNotifyCostLimit (Type: Integer). If a resource group isn't tagged with a `NotifyCostLimit`, Octopus will default to this value.
-- SlackHook (Type: String). The full URL of your slack hook, eg: (https://hooks.slack.com/services/XXXXXXXXX/XXXXXXXXX/XXXXXXXXXXXXXXX).
+- SlackHook (Type: String). The full URL of your slack hook.
 
 ![New Project Variables](saving-cloud-dollars_variables.png "width=500")
 

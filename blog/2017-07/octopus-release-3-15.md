@@ -1,6 +1,6 @@
 ---
 title: "Octopus July Release 3.15"
-description: This month's release includes multi-tenant deployment improvements, Octopus Server Let's Encrypt integration, the OctoWatch mobile app and more!
+description: This month's release includes multi-tenant deployment improvements, Octopus Server Let's Encrypt integration, and more!
 author: matt.richardson@octopus.com
 visibility: public
 published: 2017-07-11
@@ -13,7 +13,7 @@ tags:
 
 ![Octopus 3.14 release announcement](blogimage-release-3-15.png)
 
-This month's release includes a big improvement to multi-tenant deployments, Octopus Server Let's Encrypt integration, the OctoWatch mobile app and some great smaller improvements! 
+This month's release includes a big improvement to multi-tenant deployments, Octopus Server Let's Encrypt integration, and some great smaller improvements! 
 
 ## In this post
 
@@ -40,16 +40,6 @@ You let us know that we got this decision wrong (or at least incomplete). You to
 So, as of Octopus 3.15, how machines, accounts, and certificates participate in tenanted-deployments is explicitly configurable.
 
 ![Tenanted deployment configuration](tenanted-deployments-ui.png "width=500")
-
-## OctoWatch iOS app
-
-For iOS users who've been following along with [recent TLDR videos](https://www.youtube.com/watch?v=mZTLzcdHpwA&list=PLAGskdGvlaw39U9Ed9HhAHEr_AI3xNg56&index=8&t=569s), we have now released our first native iOS app, [OctoWatch](https://itunes.apple.com/us/app/octowatch/id1232940032?ls=1&mt=8) to the App Store.
-
-With [OctoWatch](https://itunes.apple.com/us/app/octowatch/id1232940032?ls=1&mt=8), you can easily keep track of the status of your machines, the state of your releases and the tasks that are currently running, *across multiple Octopus Servers*.
-
-![OctoWatch iOS app](octowatch-appstore.png "width=500")
-
-[OctoWatch](https://itunes.apple.com/us/app/octowatch/id1232940032?ls=1&mt=8) is open-source and was designed as a weekend exercise in React-Native. If you're running Octopus and you find this app useful (or if you have any ideas on how to make this app more useful), please reach out and let us know. If you'd like to contribute any ideas, we'd be happy to review a [pull request](https://github.com/OctopusDeploy/OctoWatch).
 
 ## Command-line interface improvements
 

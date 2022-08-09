@@ -14,7 +14,7 @@ When dealing with sensitive information like passwords, [Octopus Deploy provides
 
 If these passwords are for external systems like database servers, it is not uncommon to have to decrypt the passwords and store them in plain text in a configuration file somewhere to allow the password to actually be used.  But saving sensitive information in plain text is not ideal, because it makes it vulnerable to a host of unsophisticated attacks like looking over someone's shoulder as they edit the configuration file, or catching the contents of the contents file as it is shared in a chat system, email or posted to a help forum, or checked into the history of a version control system.
 
-WildFly mitigates a number of these vulnerabilities by placing sensitive information into a [vault](https://developer.jboss.org/wiki/JBossAS7SecuringPasswords).
+WildFly mitigates a number of these vulnerabilities by placing sensitive information into a vault.
 
 :::hint
 While a vault is considered security by obscurity, it is still worthwhile placing sensitive information into a vault as it means a casual observer of the configuration files won't be able to extract a password.
@@ -103,8 +103,6 @@ Passwords contained in the vault are accessed with through a special variable in
 :::hint
 As you can see, the actual password is no longer saved in plain text, and even if this configuration file were leaked, it would not reveal a compromising password.
 :::
-
-You can also access these passwords from code. See [Utilising masked passwords via the vault](https://developer.jboss.org/wiki/AS7UtilisingMaskedPasswordsViaTheVault) for an example.
 
 ## Next Steps
 These Groovy scripts are being developed as a proof of concept for what will eventually be migrated into steps provided directly in Octopus Deploy.

@@ -184,7 +184,7 @@ Operations can be performed in the current directory (as we have done in the exa
 The `:read-resource` operation is a common way to list the details of the current directory.
 
 :::hint
-WildFly represents objects using the [Dynamic Model Representation (DMR)](http://ksoong.org/jboss/2015/04/01/jboss-dmr/) format.
+WildFly represents objects using the Dynamic Model Representation (DMR) format.
 :::
 
 ```
@@ -360,8 +360,6 @@ The batch is empty.
 [standalone@localhost:9990 / #] discard-batch
 ```
 
-For more information on using batches in WildFly, see [CLI Batch Mode](https://developer.jboss.org/wiki/CLIBatchMode).
-
 ## Backing up the configuration
 
 You may wish to backup the current configuration before making any changes. This can as be done with the `:take-snapshot` operation.
@@ -467,6 +465,4 @@ The CLI has a GUI mode which provides a file browser like interface for navigati
 
 ## Conclusion
 
-In this post, we took a high level look at how the CLI works and what you can do with it. You can find more resources on the [JBoss Wiki](https://developer.jboss.org/wiki/CommandLineInterface) which goes into more detail and provides examples of administrative tasks.
-
-If you are interested in automating the deployment of your Java applications, try the free started edition of [Octopus Deploy](https://octopus.com/free), and take a look at [our documentation](https://octopus.com/docs/deployments/java/deploying-java-applications).
+In this post, we took a high level look at how the CLI works and what you can do with it.  If you are interested in automating the deployment of your Java applications, try the free started edition of [Octopus Deploy](https://octopus.com/free), and take a look at [our documentation](https://octopus.com/docs/deployments/java/deploying-java-applications).
