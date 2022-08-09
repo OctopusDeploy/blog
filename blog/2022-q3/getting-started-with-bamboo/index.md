@@ -37,7 +37,7 @@ To follow along with the guide, you will need the following software set up on y
 
 To install Bamboo:
 
-- [download the latest release](https://www.atlassian.com/software/bamboo/download)
+- [Download the latest release](https://www.atlassian.com/software/bamboo/download)
 - Run the install executable
 - Set the install location to a directory you can access, such as C:\Users\Username\Documents. Setting it to the Default location of C:\Program Files may result in permission errors.
 - Set the Bamboo home directory, make sure this is a seperate directory from the install location with a folder name Bamboo-home.
@@ -130,11 +130,6 @@ You will see the Octopus Underwater app where you can learn more about CI/CD and
 
 ![Octopus Underwater App](octopus-underwater-app.png)
 
-## Learn more
-
-If you are interested in more CI server resources, we did a [series on CI servers](https://octopus.com/blog/tag/CI%20Series) where we focussed on Jenkins, GitHub actions and fundamental CI concepts.
-
 ## Conclusion
 
-
-
+CI servers are an important part of the CI/CD process and you can use many different CI servers with Octopus Deploy to complete your deployments. Bamboo is a CI server by Atlassian that allows you to build and push Docker images to Docker repositories. This blog guided you in how to install Bamboo and set up a project and plan to build and push the Octopus Underwater App. This is a simple getting started case, and there are many more use cases that Bamboo can do. If you are interested in more CI server resources, we did a [series on CI servers](https://octopus.com/blog/tag/CI%20Series) where we focussed on Jenkins, GitHub actions and fundamental CI concepts. Y
