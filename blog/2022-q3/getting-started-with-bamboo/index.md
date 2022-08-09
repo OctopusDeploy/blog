@@ -126,7 +126,7 @@ To view the application locally:
 
 You will see the Octopus Underwater app where you can learn more about CI/CD and Octopus
 
-![Octopus Underwater App](underwaterapp-success.png)
+![Octopus Underwater App](octopus-underwater-app.png)
 
 ## Learn more
 
