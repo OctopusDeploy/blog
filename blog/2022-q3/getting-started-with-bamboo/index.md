@@ -13,19 +13,18 @@ tags:
   - Containers
 ---
 
-Continuous Integration (CI) servers are an important step in the CI/CD process. CI servers take a code repository, build it and push it to a central location where a continuous delivery (CD) tool like Octopus can take over and manage deployments. Bamboo is a CI server developed by Atlassian that can automate the building and testing of software applications.
+Continuous Integration (CI) servers are an important step in the CI/CD process. CI servers take a code repository, build it and push it to a central location where a continuous delivery (CD) tool like Octopus can take over and manage deployments. Bamboo is a CI server developed by Atlassian that can automate the building and testing of software applications. If you are beginning your CI/CD journey, it is hard to know where to start. Often it is useful to start with a simple use case, with a visible result. In this blog, you will build and push a software artifact where Octopus can take over and deploy it to a target environment.
 
 This blog will take you through:
 
 - Installing Bamboo on a Windows Server
 - Configuring a Bamboo project
-- Configuring a Bamboo plan 
-- Installing and configuring the dependencies required to build and push a docker container to a container registry
+- Configuring a Bamboo plan to build and push a docker container to a container registry
 - Running and viewing the container image
 
 ## Pre-requesites
 
-To follow along with the guide, you will need the following software set up on your Windows Server:
+To follow along with the guide, you will need the following software and accounts:
 
 - [Java 8 or 11](https://confluence.atlassian.com/bamboo/supported-platforms-289276764.html)
 - [Docker](https://docs.docker.com/desktop/install/windows-install/)
@@ -65,7 +64,8 @@ Agents are the workers that execute workloads in Bamboo. Since you have installe
 
 Bamboo organises your workflow into projects and plans. A project can contain multiple plans and each plan is a process that executes a series of tasks. To get started, set up your first project and plan:
 
-In the home menu, click **Create** and **Create Plan**. Fill out the names of your project and plan
+- In the home menu, click **Create** and **Create Plan**. 
+- Fill out the names of your project and plan
 
 ![Create Project and Plan](create-project-and-plan.png)
 
@@ -74,7 +74,6 @@ In the next screen check the box that says 'link new repository'
 ### Connect to the octopus underwater app reposotiry
 
 We will be using the [Octopus Underwater App](https://github.com/OctopusSamples/octopus-underwater-app). 
-
 
 To use this repository:
 
@@ -132,4 +131,4 @@ You will see the Octopus Underwater app where you can learn more about CI/CD and
 
 ## Conclusion
 
-CI servers are an important part of the CI/CD process and you can use many different CI servers with Octopus Deploy to complete your deployments. Bamboo is a CI server by Atlassian that allows you to build and push Docker images to Docker repositories. This blog guided you in how to install Bamboo and set up a project and plan to build and push the Octopus Underwater App. This is a simple getting started case, and there are many more use cases that Bamboo can do. If you are interested in more CI server resources, we did a [series on CI servers](https://octopus.com/blog/tag/CI%20Series) where we focussed on Jenkins, GitHub actions and fundamental CI concepts. Y
+CI servers are an important part of the CI/CD process and you can use many different CI servers with Octopus Deploy to complete your deployments. Bamboo is a CI server by Atlassian that allows you to build and push Docker images to Docker repositories. This blog guided you in how to install Bamboo and set up a project and plan to build and push the Octopus Underwater App. This is a simple getting started case, and there are many more use cases that Bamboo can do. If you are interested in more CI server resources, we did a [series on CI servers](https://octopus.com/blog/tag/CI%20Series) where we focussed on Jenkins, GitHub actions and fundamental CI concepts.
