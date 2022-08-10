@@ -15,7 +15,7 @@ tags:
 
 ![Announcing Linux worker pools on Octopus Cloud](octopus-linux-workers.png)
 
-With Octopus-hosted [dynamic worker pools](https://octopus.com/docs/infrastructure/workers/dynamic-worker-pools), you can spin up an [Octopus Cloud](https://octopus.com/pricing/cloud) instance and run PowerShell deployment or runbook steps on a Windows machine in minutes. Unfortunately, running a bash script on a Linux machine wasn't always as easy.
+With Octopus-hosted [dynamic worker pools](https://octopus.com/docs/infrastructure/workers/dynamic-worker-pools), you can spin up an [Octopus Cloud](https://octopus.com/docs/octopus-cloud) instance and run PowerShell deployment or runbook steps on a Windows machine in minutes. Unfortunately, running a bash script on a Linux machine wasn't always as easy.
 
 The lack of support for Linux workers on Octopus Cloud has made us a little sad ever since we launched. You've been able to add your own Linux workers, but it hasn't felt as natural as the built-in support for dynamic workers provided for Windows.
 
