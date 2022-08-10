@@ -34,7 +34,7 @@ Terraform providers are plugins that allow Terraform to interact with a wide var
 
 ## Getting started with the Terraform provider for Octopus Deploy
 
-Our Terraform provider allows teams to provision and configure Octopus Deploy instances. This applies to both on-premises Octopus servers and [Octopus Cloud](https://octopus.com/pricing/cloud) instances. 
+Our Terraform provider allows teams to provision and configure Octopus Deploy instances. This applies to both on-premises Octopus servers and [Octopus Cloud](https://octopus.com/docs/octopus-cloud) instances. 
 
 :::hint
 We use this Terraform provider internally to provision and configure Octopus instances, including Octopus Cloud. It’s a fantastic tool and we’re excited to see it used in teams in the community.
