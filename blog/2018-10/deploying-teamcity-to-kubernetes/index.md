@@ -13,11 +13,11 @@ tags:
 
 ![Octopus deploying a TeamCity container to Kubernetes illustration](blogimage-dockertok8.png)
 
-Hi!  My name is Bob Walker and I am a solution architect here at Octopus Deploy.  
+Hi!  My name is Bob Walker and I am a solutions architect here at Octopus Deploy.  
 
 My primary focus is making sure our customers are successful using Octopus Deploy.  That simple sentence covers a wide range of duties.  One day I could be reviewing configuration.  While the next, I might be working on a custom implementation using the API.  Or I might provide demos showing off all the new functionality we've been adding.  At Octopus Deploy we don't have a preference for which build server our customers use, and that flexibility is great for our customers because they can continue using their build tool of choice.  A side effect of that is I get to learn how to use every build server by creating builds to demo.  Speaking of which, if you'd like a demo please [click here](https://octopus.appointlet.com/s/sales-60/bob-ryan) to schedule one!
 
-A the time of this writing, we have two more solution architects focused on customer's success, Ryan Rousseau and Derek Campbell.  Whenever possible we share the demos we've set up.  Our backgrounds are in development or infrastructure, which means we really dislike it anytime we have to reinvent the wheel.  The easiest way we found to share demo resources is to use SaaS or IaaS whenever possible.  We use [Octopus Cloud](https://octopus.com/pricing/cloud) for our Demo Octopus instance.  In fact, we were one of the alpha users of Octopus Cloud and are one of the bleeding edge users.  We help dogfood Octopus Cloud every day.  
+A the time of this writing, we have two more solution architects focused on customer's success, Ryan Rousseau and Derek Campbell.  Whenever possible we share the demos we've set up.  Our backgrounds are in development or infrastructure, which means we really dislike it anytime we have to reinvent the wheel.  The easiest way we found to share demo resources is to use SaaS or IaaS whenever possible.  We use [Octopus Cloud](https://octopus.com/docs/octopus-cloud) for our Demo Octopus instance.  In fact, we were one of the alpha users of Octopus Cloud and are one of the bleeding edge users.  We help dogfood Octopus Cloud every day.  
 
 Our first two build servers, VSTS (now Azure DevOps) and AppVeyor, were rather easy to set up.  They are already SaaS.  But many of our users are using TeamCity.  All three of us have a local TeamCity instance.  It's time to move that to the cloud.
 
@@ -50,7 +50,7 @@ For fun, I am going to be using Octopus Deploy to deploy TeamCity to Kubernetes 
 
 First, we need to setup Octopus Deploy to deploy to the K8s cluster.  In order for that to happen, I need to create a K8s cluster first.  For the purposes of this article I will be using the Google Cloud Platform, or GCP, to host my K8s cluster.  
 
-Let's go to [Google Console Login](https://console.cloud.google.com).
+Let's go to [Google Console login](https://console.cloud.google.com).
 
 ### Creating the Cluster
 Once you create your account and login you will be sent to the dashboard.  On the left menu select Kubernetes.
