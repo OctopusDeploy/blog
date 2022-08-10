@@ -121,7 +121,7 @@ jobs:
 
 ![GitHub Actions Secrets for the Octopus Server URL and an API key](github-action-secrets.png)
 
-Note that we reference two secrets in this configuration. One is for the Octopus Server URL and the other is an API key to authenticate and integrate with our Octopus instance. In this case, I'm using an [Octopus Cloud instance](https://octopus.com/pricing/cloud), however, you can also connect to a [self-hosted Octopus instance](https://octopus.com/pricing/server) if it's publicly accessible.
+Note that we reference two secrets in this configuration. One is for the Octopus Server URL and the other is an API key to authenticate and integrate with our Octopus instance. In this case, I'm using an [Octopus Cloud instance](https://octopus.com/docs/octopus-cloud), however, you can also connect to a [self-hosted Octopus instance](https://octopus.com/docs/getting-started#self-hosted-octopus) if it's publicly accessible.
 
 
 :::hint
