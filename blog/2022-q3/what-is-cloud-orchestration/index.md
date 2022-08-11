@@ -13,9 +13,9 @@ tags:
   - Cloud Orchestration
 ---
 
-Wherever you work, you've probably noticed a big shift to the cloud in the applications you use. From storing data like emails or photos, to developing software in a cloud repository like Git, cloud solutions are dominating the market. A [study by Gartner](https://www.gartner.com/en/newsroom/press-releases/2022-02-09-gartner-says-more-than-half-of-enterprise-it-spending) indicates that revenue for cloud products will overtake traditional IT solutions in 2025. 
+Wherever you work, you've probably noticed a big shift to the cloud in the applications you use, from storing data like emails or photos, to developing software in a cloud repository like Git. Cloud solutions are dominating the market. A [study by Gartner](https://www.gartner.com/en/newsroom/press-releases/2022-02-09-gartner-says-more-than-half-of-enterprise-it-spending) indicates that revenue for cloud products will overtake traditional IT solutions in 2025. 
 
-If you work with cloud products, you want make them more efficient and cost-effective. Two ideas that can help you with that are:
+If you work with cloud products, you want make them more efficient and cost-effective. Two processes that can help you with that are:
 
 - Cloud orchestration
 - Cloud automation 
