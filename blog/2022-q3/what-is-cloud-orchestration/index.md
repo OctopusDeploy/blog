@@ -4,9 +4,9 @@ description: The post discusses cloud orchestration and cloud automation, as a s
 author: terence.wong@octopus.com
 visibility: public
 published: 2022-08-31-1400
-metaImage:
-bannerImage:
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-whatiscloudorchestrationcloudautomation-2022.png
+bannerImage: blogimage-whatiscloudorchestrationcloudautomation-2022.png
+bannerImageAlt: A cog surrounded by three arrows connected in a circle sits amongst clouds
 isFeatured: false
 tags:
   - DevOps
