@@ -4,9 +4,9 @@ description: This training series provides a step by step walk-through building 
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2023-08-02-1200
-metaImage: blogimage-kubernetes.png
-bannerImage: blogimage-kubernetes.png
-bannerImageAlt: An octopus on a sail boat
+metaImage: blogimage-testingkubernetes-2022.png
+bannerImage: blogimage-testingkubernetes-2022.png
+bannerImageAlt: Kubernetes logo on an open laptop screen
 isFeatured: false
 tags: 
   - DevOps
