@@ -41,8 +41,8 @@ Docker is not the only option available for Linux users. [Podman](https://docs.p
 
 If you want to stick with Docker though, there are 2 options: 
 
-- `docker.io` on Debian/Ubuntu 
-- `docker` on Fedora and `docker-ce`
+- `docker.io` on Debian/Ubuntu or `docker` on Fedora
+- `docker-ce`
 
 The `docker.io` and `docker` packages are maintained by their respective Linux distributions. They're available to be installed without adding any additional package repositories. They are free and open source.
 
