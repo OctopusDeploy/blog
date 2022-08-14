@@ -46,7 +46,7 @@ If you want to stick with Docker though, there are 2 options:
 
 The `docker.io` and `docker` packages are maintained by their respective Linux distributions. They're available to be installed without adding any additional package repositories. They are free and open source.
 
-`docker-ce` is a package provided by Docker. The package is available through a third-party package repository provided for major Linux distributions. Like the `docker.io` and `docker` pacakges, `docker-ce` is free an open source.
+`docker-ce` is a package provided by Docker. The package is available through a third-party package repository provided for major Linux distributions. Like the `docker.io` and `docker` packages, `docker-ce` is free an open source.
 
 There are many discussions on the underlying differences between `docker.io`/`docker` and `docker-ce`. [This question on StackOverflow](https://stackoverflow.com/questions/45023363/what-is-docker-io-in-relation-to-docker-ce-and-docker-ee-now-called-mirantis-k), with close to 90 thousand views, lists some of the pros and cons of each package.
 
