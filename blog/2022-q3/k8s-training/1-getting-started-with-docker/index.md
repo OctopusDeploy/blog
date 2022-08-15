@@ -14,6 +14,7 @@ tags:
   - Cloud Orchestration
   - Docker 
   - Kubernetes
+  - Kubernetes Training
 ---
 
 The video below is the first in our Kubernetes training series, providing DevOps engineers with an introduction to Docker, Kubernetes, and Octopus. In this series, you’ll learn how to create an automated, multi-environment deployment process so you can deploy containerized applications with speed and reliability. 

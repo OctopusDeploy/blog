@@ -14,6 +14,7 @@ tags:
   - Cloud Orchestration
   - Docker
   - Kubernetes
+  - Kubernetes Training
 ---
 
 This training series provides a step by step walk-through building multi-environment deployments with Octopus and Kubernetes.
