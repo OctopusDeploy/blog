@@ -86,7 +86,7 @@ RUN apt-get install -y python3
 
 ## Preventing prompt errors during package installation
 
-In addition, the installation of some packages attempts to open additional prompts to further customize installation options. In an non-interactive environment, such as during the construction of a Docker image, attempts to open these dialogs results in errors like:
+The installation of some packages attempts to open additional prompts to further customize installation options. In an non-interactive environment, such as during the construction of a Docker image, attempts to open these dialogs results in errors like:
 
 ```
 unable to initialize frontend: Dialog
