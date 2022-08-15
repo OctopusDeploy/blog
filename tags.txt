@@ -45,5 +45,6 @@ Workers
 # Tags for marketing themes
 CI Series
 Runbooks Series
+Kubernetes Training
 
 At The Helm
