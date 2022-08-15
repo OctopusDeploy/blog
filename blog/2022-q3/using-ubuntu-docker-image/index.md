@@ -144,7 +144,7 @@ It is possible to use the base Ubuntu Docker images with little further customiz
 ## Resources
 
 * [Octopus trial](https://octopus.com/start)
-* [NGINX Docker Image](https://hub.docker.com/_/ubuntu)
+* [Ubuntu Docker Image](https://hub.docker.com/_/ubuntu)
 * [Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
 
 ## Learn more
