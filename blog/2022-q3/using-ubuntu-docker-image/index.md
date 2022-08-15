@@ -59,13 +59,13 @@ FROM ubuntu:22.04
 
 ## Not installing suggested or recommended dependencies
 
-Some packages have a list of suggested or recommended packages that are not required but are installed by default. These additional dependencies can add to the size of the final Docker image unnecessarily, as noted in [this blog post in the Ubuntu website](https://ubuntu.com/blog/we-reduced-our-docker-images-by-60-with-no-install-recommends). 
+Some packages have a list of suggested or recommended dependencies that are not required but are installed by default. These additional dependencies can add to the size of the final Docker image unnecessarily, as noted in [this blog post in the Ubuntu website](https://ubuntu.com/blog/we-reduced-our-docker-images-by-60-with-no-install-recommends). 
 
 To disable the installation of these optional dependencies for all invocations of `apt-get`, the configuration file at `/etc/apt/apt.conf.d/00-docker` is created with the following settings:
 
 ```Dockerfile
 RUN echo 'APT::Install-Suggests "0";' >> /etc/apt/apt.conf.d/00-docker
-RUN echo -n 'APT::Install-Recommends "0";' >> /etc/apt/apt.conf.d/00-docker
+RUN echo 'APT::Install-Recommends "0";' >> /etc/apt/apt.conf.d/00-docker
 ```
 
 ## Installing additional packages
@@ -144,7 +144,7 @@ It is possible to use the base Ubuntu Docker images with little further customiz
 ## Resources
 
 * [Octopus trial](https://octopus.com/start)
-* [Ubuntu Docker Image](https://hub.docker.com/_/ubuntu)
+* [NGINX Docker Image](https://hub.docker.com/_/ubuntu)
 * [Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
 
 ## Learn more
