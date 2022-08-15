@@ -228,7 +228,7 @@ We can then find the image sizes with the command:
 docker image ls
 ```
 
-From this we can see the Debian image weighs around 140 MB while the Alpine image weights around 24 MB.
+From this we can see the Debian image weighs around 140 MB while the Alpine image weighs around 24 MB. This is quite a saving in image sizes.
 
 To base our images on the Alpine variant, we need to update the `Dockerfile`:
 
@@ -238,18 +238,20 @@ COPY index.html /usr/share/nginx/html/index.html
 COPY health-check.conf /etc/nginx/conf.d/health-check.conf
 ```
 
-Build the and run image with the commands:
+Build and run image with the commands:
 
 ```bash
 docker build . -t mynginx
 docker run -p 8080:80 -p 9090:90 mynginx
 ```
 
-Once again open [http://localhost:9090/nginx-health](http://localhost:9090/nginx-health) or [http://localhost:8080/index.html](http://localhost:8080/index.html) to view the web pages. Everything continues to work as it did, but our custom image is now much smaller.
+Once again open [http://localhost:9090/nginx-health](http://localhost:9090/nginx-health) or [http://localhost:8080/index.html](http://localhost:8080/index.html) to view the web pages. Everything continues to work as it did previously, but our custom image is now much smaller.
 
 ## Conclusion
 
-NGINX is a powerful web server, and the official NGINX Docker image provides DevOps teams with the ability to host custom web applications in Docker. NGINX also supports advanced scenarios thanks to its ability to read configuration files copied into a custom Docker image.
+NGINX is a powerful web server, and the official NGINX Docker image provides DevOps teams with the ability to host custom web applications in Docker. NGINX also supports advanced scenarios thanks to its ability to read configuration files copied into a custom Docker image. 
+
+In this post we learned how to create a custom Docker image hosting a static web application, added advanced NGINX configuration files to provide a health check endpoint, and compared the sizes of Debian and Alpine NGINX images.
 
 ## Resources
 
