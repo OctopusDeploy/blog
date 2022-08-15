@@ -16,9 +16,9 @@ tags:
   - Kubernetes
 ---
 
-This post opens our Kubernetes training series, providing DevOps engineers with an introduction to Docker, Kubernetes, and Octopus. You’ll learn how to create an automated, multi-environment deployment process so you can deploy containerized applications with speed and reliability. 
+The video below is the first in our Kubernetes training series, providing DevOps engineers with an introduction to Docker, Kubernetes, and Octopus. In this series, you’ll learn how to create an automated, multi-environment deployment process so you can deploy containerized applications with speed and reliability. 
 
-First is getting started with Docker. The video below demonstrates how to install Docker on Linux and discusses how to install Docker Desktop on Windows and macOS.
+First, we show you how to get started with Docker. The video demonstrates how to install Docker on Linux and discusses how to install Docker Desktop on Windows and macOS.
 
 If you don't already have Octopus account, you can [start a free trial](https://octopus.com/start).
 
