@@ -110,7 +110,7 @@ RUN apt-get update
 
 However, the package list is of little value once the required packages have been installed. It is best practice to remove any unnecessary files from a Docker image to ensure the resulting image is as small as it can be. To clean up the package list once the required packages have been installed, the files under `/var/lib/apt/lists/` are deleted.
 
-Here we update the package list, install the required packages, and clean up the package list as part of a single command, borken up over multiple lines with a backslash at the end of each line:
+Here we update the package list, install the required packages, and clean up the package list as part of a single command, broken up over multiple lines with a backslash at the end of each line:
 
 ```Dockerfile
 RUN DEBIAN_FRONTEND=noninteractive \
@@ -139,3 +139,16 @@ USER apprunner
 
 ## Conclusion
 
+It is possible to use the base Ubuntu Docker images with little further customization beyond installing and required additional packages. But with a few tweaks to limit optional packages from being installed, cleaning up package lists once the packages are installed, and creating new users with limited permissions to run custom applications, we can create smaller and more secure images for our custom applications.
+
+## Resources
+
+* [Octopus trial](https://octopus.com/start)
+* [Ubuntu Docker Image](https://hub.docker.com/_/ubuntu)
+* [Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
+
+## Learn more
+
+If you're looking to build and deploy containerized applications to AWS platforms such as EKS and ECS, the [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/) populates a GitHub repository with a sample application built with GitHub Actions workflows and configures a hosted Octopus instance with sample deployment projects demonstrating best practices such as vulnerability scanning and Infrastructure as Code (IaC). 
+
+Happy deployments! 
