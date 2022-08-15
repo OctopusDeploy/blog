@@ -98,7 +98,7 @@ These errors can be ignored as they do not prevent the packages from being insta
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python3
 ```
 
-The Docker website provides [official guidance on the use of the DEBIAN_FRONTEND environment variable](https://docs.docker.com/engine/faq/#why-is-debian_frontendnoninteractive-discouraged-in-dockerfiles). They consider it a cosmetic change, and recommend against permanently setting the environment variable. The command above sets the environment variable for the duration of the single `apt-get` command, meaning any subsequent calls to `apt-get` will not not have the `DEBIAN_FRONTEND` defined.
+The Docker website provides [official guidance on the use of the DEBIAN_FRONTEND environment variable](https://docs.docker.com/engine/faq/#why-is-debian_frontendnoninteractive-discouraged-in-dockerfiles). They consider it a cosmetic change, and recommend against permanently setting the environment variable. The command above sets the environment variable for the duration of the single `apt-get` command, meaning any subsequent calls to `apt-get` will not have the `DEBIAN_FRONTEND` defined.
 
 ## Cleaning up package lists
 
@@ -121,9 +121,9 @@ RUN DEBIAN_FRONTEND=noninteractive \
 
 ## Run as non-root user
 
-By default the root user is run by default in a Docker container. The root user typically has far more privileges than are required when running a custom application, and so creating a new user without root privileges provides better security.
+By default the root user is run in a Docker container. The root user typically has far more privileges than are required when running a custom application, and so creating a new user without root privileges provides better security.
 
-The `useradd` command [provides a non-interactive way to create new users](https://manpages.ubuntu.com/manpages/jammy/en/man8/useradd.8.html). This is not be be confused with the `adduser` command, which is a [higher level wrapper](https://manpages.ubuntu.com/manpages/jammy/en/man8/adduser.8.html) over `useradd`.
+The `useradd` command [provides a non-interactive way to create new users](https://manpages.ubuntu.com/manpages/jammy/en/man8/useradd.8.html). This is not to be confused with the `adduser` command, which is a [higher level wrapper](https://manpages.ubuntu.com/manpages/jammy/en/man8/adduser.8.html) over `useradd`.
 
 Once all configuration files have been edited and packages have been installed, we create a new user called `apprunner`:
 
@@ -131,7 +131,7 @@ Once all configuration files have been edited and packages have been installed, 
 RUN useradd -ms /bin/bash apprunner
 ```
 
-This user is then set as the default user for any further options:
+This user is then set as the default user for any further operations:
 
 ```Dockerfile
 USER apprunner
