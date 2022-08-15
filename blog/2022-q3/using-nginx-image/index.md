@@ -15,11 +15,11 @@ tags:
 
 Docker is a compelling platform to package and run web applications, especially when paired with one of the many Platform as a Service (PaaS) offerings provided by cloud platforms. NGINX has long provided DevOps teams with the ability to host web applications on Linux, and also provides an official Docker image to be used as the base for custom web applications. 
 
-In this post I'll explain how DevOps teams can use the [NGINX Docker image](https://hub.docker.com/_/nginx) to build, publish, and run web applications on Docker.
+In this post I'll explain how DevOps teams can use the [NGINX Docker image](https://hub.docker.com/_/nginx) to build and run web applications on Docker.
 
 ## Getting started with the base image
 
-NGINX is a versatile tool with many uses including a load balancer, reverse proxy, and network cache. However, when running NGINX in a Docker container, most of these high level features are delegated to other specialized platforms or other instances of NGINX. Typically, NGINX fulfils the function of a web server when running in a Docker container.
+NGINX is a versatile tool with many uses including a load balancer, reverse proxy, and network cache. However, when running NGINX in a Docker container, most of these high level functions are delegated to other specialized platforms or other instances of NGINX. Typically, NGINX fulfils the function of a web server when running in a Docker container.
 
 To create an NGINX container with the default web site, run the following command:
 
@@ -27,7 +27,7 @@ To create an NGINX container with the default web site, run the following comman
 docker run -p 8080:80 nginx
 ```
 
-This command will download the `nginx` image if it has not already been downloaded and create a container exposing port 80 in the container to port 8080 on the host machine. We can then open [http://localhost:8080/index.html](http://localhost:8080/index.html) to view the default "Welcome to nginx!" web site.
+This command will download the `nginx` image (if it has not already been downloaded) and create a container exposing port 80 in the container to port 8080 on the host machine. We can then open [http://localhost:8080/index.html](http://localhost:8080/index.html) to view the default "Welcome to nginx!" web site.
 
 To allow the NGINX container to expose custom web assets, we can mount a local directory inside the Docker container. 
 
@@ -41,7 +41,7 @@ Save the following HTML code to a file called `index.html`:
 </html>
 ```
 
-Then run the following command to mount the current directory as `/usr/share/nginx/html` inside the NGINX container with read only access:
+Then run the following command to mount the current directory under `/usr/share/nginx/html` inside the NGINX container with read only access:
 
 ```bash
 docker run -v $(pwd):/usr/share/nginx/html:ro -p 8080:80 nginx
@@ -76,9 +76,11 @@ docker run -p 8080:80 mynginx
 
 Note that we did not mount any directories this time. However, when we open [http://localhost:8080/index.html](http://localhost:8080/index.html) our custom HTML page is displayed because it was embedded in our custom image.
 
+NGINX is capable of much more than hosting static files. To unlock this functionality, we must use custom NGINX configuration files.
+
 ## Advanced NGINX configuration
 
-NGINX exposes its functionality via configuration files. The default NGINX image comes with a fairly simple default configuration file designed to host static we content. This file is located at `/etc/nginx/nginx.conf` in the default image, and has the following contents:
+NGINX exposes its functionality via configuration files. The default NGINX image comes with a simple default configuration file designed to host static web content. This file is located at `/etc/nginx/nginx.conf` in the default image, and has the following contents:
 
 ```
 user  nginx;
@@ -114,13 +116,13 @@ http {
 }
 ```
 
-There is no need to understand this configuration file in detail, but there is one line of interest that instructs NGINX to load additional configuration file from the `/etc/nginx/conf.d` directory:
+There is no need to understand this configuration file in detail, but there is one line of interest that instructs NGINX to load additional configuration files from the `/etc/nginx/conf.d` directory:
 
 ```
 include /etc/nginx/conf.d/*.conf;
 ```
 
-The existing file `/etc/nginx/conf.d` configures NGINX to function as a web server. Specifically the `location /` block loading files from `/usr/share/nginx/html` is why we mounted our HTML files to that directory previously:
+The default `/etc/nginx/conf.d` file configures NGINX to function as a web server. Specifically the `location /` block loading files from `/usr/share/nginx/html` is why we mounted our HTML files to that directory previously:
 
 ```
 server {
@@ -169,7 +171,7 @@ server {
 
 ```
 
-We can take advantage of the instruction to load any `*.conf` configuration files to customize NGINX. In this example we'll add a health check via a custom location listening on port 90 that responds to requests to the `/nginx-health` path with a HTTP 200 OK.
+We can take advantage of the instruction to load any `*.conf` configuration files in `/etc/nginx` to customize NGINX. In this example we'll add a health check via a custom location listening on port 90 that responds to requests to the `/nginx-health` path with a HTTP 200 OK.
 
 Save the following text to a file called `health-check.conf`:
 
@@ -199,13 +201,15 @@ Build the image with the command:
 docker build . -t mynginx
 ```
 
-Run the new image with the command. Note the new port being exposed on 9090:
+Run the new image with the command. Note the new port exposed on 9090:
 
 ```bash
 docker run -p 8080:80 -p 9090:90 mynginx
 ```
 
 Now open [http://localhost:9090/nginx-health](http://localhost:9090/nginx-health). The health check response is returned to indicate that the web server is up and running.
+
+The examples above base our custom images on the default `nginx` image. But there are other variants that provide much smaller image sizes without sacrificing any functionality.
 
 ## Choosing NGINX variants
 
@@ -252,6 +256,7 @@ NGINX is a powerful web server, and the official NGINX Docker image provides Dev
 * [Octopus trial](https://octopus.com/start)
 * [NGINX Docker Image](https://hub.docker.com/_/nginx)
 * [NGINX Docker Image Source Code](https://github.com/nginxinc/docker-nginx)
+* [Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
 
 ## Learn more
 
