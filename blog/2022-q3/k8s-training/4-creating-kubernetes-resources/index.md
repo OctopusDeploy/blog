@@ -13,6 +13,7 @@ tags:
   - Containers
   - Cloud Orchestration
   - Docker 
+  - Kubernetes Training
 ---
 
 This post is the 4th in our Kubernetes training series, providing DevOps engineers with an introduction to Docker, Kubernetes, and Octopus.
