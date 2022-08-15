@@ -139,7 +139,7 @@ USER apprunner
 
 ## Conclusion
 
-It is possible to use the base Ubuntu Docker images with little further customization beyond installing and required additional packages. But with a few tweaks to limit optional packages from being installed, cleaning up package lists once the packages are installed, and creating new users with limited permissions to run custom applications, we can create smaller and more secure images for our custom applications.
+It is possible to use the base Ubuntu Docker images with little further customization beyond installing any required additional packages. But with a few tweaks to limit optional packages from being installed, cleaning up package lists once the packages are installed, and creating new users with limited permissions to run custom applications, we can create smaller and more secure images for our custom applications.
 
 ## Resources
 
