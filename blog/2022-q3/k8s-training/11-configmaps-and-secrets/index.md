@@ -17,7 +17,7 @@ tags:
   - Kubernetes Training
 ---
 
-This post is the 12th in our Kubernetes training series, providing DevOps engineers with an introduction to Docker, Kubernetes, and Octopus. 
+This post is the 11th in our Kubernetes training series, providing DevOps engineers with an introduction to Docker, Kubernetes, and Octopus. 
 
 This video provides a demo where three separate applications are deployed to a cluster, each configured with either a Secret or a ConfigMap.
 
