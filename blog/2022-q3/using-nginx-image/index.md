@@ -9,6 +9,7 @@ bannerImage: blogimage-gettingstartedcontainerisation-2022.png
 bannerImageAlt: Man sitting on top of container with green circle with a power up icon
 isFeatured: false
 tags: 
+  - DevOps
   - Containers
   - Docker
 ---
