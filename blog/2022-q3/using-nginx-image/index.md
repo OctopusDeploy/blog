@@ -28,7 +28,7 @@ To create an NGINX container with the default web site, run the following comman
 docker run -p 8080:80 nginx
 ```
 
-This command will download the `nginx` image (if it has not already been downloaded) and create a container exposing port 80 in the container to port 8080 on the host machine. You can then open `http://localhost:8080/index.html` to view the default "Welcome to nginx!" web site.
+This command will download the `nginx` image (if it hasn't already been downloaded) and create a container exposing port 80 in the container to port 8080 on the host machine. You can then open `http://localhost:8080/index.html` to view the default "Welcome to nginx!" web site.
 
 To allow the NGINX container to expose custom web assets, you can mount a local directory inside the Docker container. 
 
@@ -50,7 +50,7 @@ docker run -v $(pwd):/usr/share/nginx/html:ro -p 8080:80 nginx
 
 Open `http://localhost:8080/index.html` again and you see the custom HTML page displayed.
 
-One of the benefits of Docker images is the ability to bundle all related files into a single distributable artifact. To realize this benefit you must create a new Docker image based on the NGINX image.
+One of the benefits of Docker images is the ability to bundle all related files into a single distributable artifact. To realize this benefit, you must create a new Docker image based on the NGINX image.
 
 ## Creating custom images based on NGINX
 
@@ -61,7 +61,7 @@ FROM nginx
 COPY index.html /usr/share/nginx/html/index.html
 ```
 
-`Dockerfile` contains instructions for building a custom Docker image. Here we use the `FROM` command to base our image on the NGINX one, and then use the `COPY` command to copy our `index.html` file into the new image under the `/usr/share/nginx/html` directory.
+`Dockerfile` contains instructions for building a custom Docker image. Here you use the `FROM` command to base your image on the NGINX one, and then use the `COPY` command to copy your `index.html` file into the new image under the `/usr/share/nginx/html` directory.
 
 Build the new image with the command:
 
@@ -75,7 +75,7 @@ This builds a new image called `mynginx`. Run the new image with the command:
 docker run -p 8080:80 mynginx
 ```
 
-Note that you did not mount any directories this time. However, when you open `http://localhost:8080/index.html` our custom HTML page is displayed because it was embedded in your custom image.
+Note that you didn't mount any directories this time. However, when you open `http://localhost:8080/index.html` your custom HTML page is displayed because it was embedded in your custom image.
 
 NGINX is capable of much more than hosting static files. To unlock this functionality, you must use custom NGINX configuration files.
 
@@ -231,7 +231,7 @@ docker image ls
 
 From this you can see the Debian image weighs around 140 MB while the Alpine image weighs around 24 MB. This is quite a saving in image sizes.
 
-To base our images on the Alpine variant, you need to update the `Dockerfile`:
+To base your images on the Alpine variant, you need to update the `Dockerfile`:
 
 ```Dockerfile
 FROM nginx:stable-alpine
@@ -250,9 +250,9 @@ Once again open `http://localhost:9090/nginx-health` or `http://localhost:8080/i
 
 ## Conclusion
 
-NGINX is a powerful web server, and the official NGINX Docker image provides DevOps teams with the ability to host custom web applications in Docker. NGINX also supports advanced scenarios thanks to its ability to read configuration files copied into a custom Docker image. 
+NGINX is a powerful web server, and the official NGINX Docker image allows DevOps teams to host custom web applications in Docker. NGINX also supports advanced scenarios thanks to its ability to read configuration files copied into a custom Docker image. 
 
-In this post you learned how to create a custom Docker image hosting a static web application, added advanced NGINX configuration files to provide a health check endpoint, and compared the sizes of Debian and Alpine NGINX images.
+In this post, you learned how to create a custom Docker image hosting a static web application, added advanced NGINX configuration files to provide a health check endpoint, and compared the sizes of Debian and Alpine NGINX images.
 
 ## Resources
 
