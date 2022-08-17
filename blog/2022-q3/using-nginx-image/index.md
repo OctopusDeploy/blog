@@ -28,9 +28,9 @@ To create an NGINX container with the default web site, run the following comman
 docker run -p 8080:80 nginx
 ```
 
-This command will download the `nginx` image (if it has not already been downloaded) and create a container exposing port 80 in the container to port 8080 on the host machine. We can then open `http://localhost:8080/index.html` to view the default "Welcome to nginx!" web site.
+This command will download the `nginx` image (if it has not already been downloaded) and create a container exposing port 80 in the container to port 8080 on the host machine. You can then open `http://localhost:8080/index.html` to view the default "Welcome to nginx!" web site.
 
-To allow the NGINX container to expose custom web assets, we can mount a local directory inside the Docker container. 
+To allow the NGINX container to expose custom web assets, you can mount a local directory inside the Docker container. 
 
 Save the following HTML code to a file called `index.html`:
 
@@ -48,13 +48,13 @@ Next, run the following command to mount the current directory under `/usr/share
 docker run -v $(pwd):/usr/share/nginx/html:ro -p 8080:80 nginx
 ```
 
-Open `http://localhost:8080/index.html` again and we will see the custom HTML page displayed.
+Open `http://localhost:8080/index.html` again and you see the custom HTML page displayed.
 
-One of the benefits of Docker images is the ability to bundle all related files into a single distributable artifact. To realize this benefit we must create a new Docker image based on the NGINX image.
+One of the benefits of Docker images is the ability to bundle all related files into a single distributable artifact. To realize this benefit you must create a new Docker image based on the NGINX image.
 
 ## Creating custom images based on NGINX
 
-To create our own Docker image, save the following text to a file called `Dockerfile`:
+To create your own Docker image, save the following text to a file called `Dockerfile`:
 
 ```dockerfile
 FROM nginx
@@ -75,9 +75,9 @@ This builds a new image called `mynginx`. Run the new image with the command:
 docker run -p 8080:80 mynginx
 ```
 
-Note that we did not mount any directories this time. However, when we open `http://localhost:8080/index.html` our custom HTML page is displayed because it was embedded in our custom image.
+Note that you did not mount any directories this time. However, when you open `http://localhost:8080/index.html` our custom HTML page is displayed because it was embedded in your custom image.
 
-NGINX is capable of much more than hosting static files. To unlock this functionality, we must use custom NGINX configuration files.
+NGINX is capable of much more than hosting static files. To unlock this functionality, you must use custom NGINX configuration files.
 
 ## Advanced NGINX configuration
 
@@ -117,13 +117,13 @@ http {
 }
 ```
 
-There is no need to understand this configuration file in detail, but there is one line of interest that instructs NGINX to load additional configuration files from the `/etc/nginx/conf.d` directory:
+There's no need to understand this configuration file in detail, but there is one line of interest that instructs NGINX to load additional configuration files from the `/etc/nginx/conf.d` directory:
 
 ```
 include /etc/nginx/conf.d/*.conf;
 ```
 
-The default `/etc/nginx/conf.d` file configures NGINX to function as a web server. Specifically the `location /` block loading files from `/usr/share/nginx/html` is why we mounted our HTML files to that directory previously:
+The default `/etc/nginx/conf.d` file configures NGINX to function as a web server. Specifically the `location /` block loading files from `/usr/share/nginx/html` is why you mounted your HTML files to that directory previously:
 
 ```
 server {
@@ -172,7 +172,7 @@ server {
 
 ```
 
-We can take advantage of the instruction to load any `*.conf` configuration files in `/etc/nginx` to customize NGINX. In this example we'll add a health check via a custom location listening on port 90 that responds to requests to the `/nginx-health` path with a HTTP 200 OK.
+You can take advantage of the instruction to load any `*.conf` configuration files in `/etc/nginx` to customize NGINX. In this example you add a health check via a custom location listening on port 90 that responds to requests to the `/nginx-health` path with a HTTP 200 OK.
 
 Save the following text to a file called `health-check.conf`:
 
@@ -210,28 +210,28 @@ docker run -p 8080:80 -p 9090:90 mynginx
 
 Now open `http://localhost:9090/nginx-health`. The health check response is returned to indicate that the web server is up and running.
 
-The examples above base our custom images on the default `nginx` image. But there are other variants that provide much smaller image sizes without sacrificing any functionality.
+The examples above base your custom images on the default `nginx` image. But there are other variants that provide much smaller image sizes without sacrificing any functionality.
 
 ## Choosing NGINX variants
 
 The default `nginx` image is based on [Debian](https://github.com/nginxinc/docker-nginx/blob/master/Dockerfile-debian.template). However, NGINX also provides images based on [Alpine](https://github.com/nginxinc/docker-nginx/blob/master/Dockerfile-alpine.template).
 
-Alpine is frequently used as a lightweight base for Docker images. To view the sizes of Docker images, they must first be pulled down to our local workstation:
+Alpine is frequently used as a lightweight base for Docker images. To view the sizes of Docker images, they must first be pulled down to your local workstation:
 
 ```bash
 docker pull nginx
 docker pull nginx:stable-alpine
 ```
 
-We can then find the image sizes with the command:
+You can then find the image sizes with the command:
 
 ```bash
 docker image ls
 ```
 
-From this we can see the Debian image weighs around 140 MB while the Alpine image weighs around 24 MB. This is quite a saving in image sizes.
+From this you can see the Debian image weighs around 140 MB while the Alpine image weighs around 24 MB. This is quite a saving in image sizes.
 
-To base our images on the Alpine variant, we need to update the `Dockerfile`:
+To base our images on the Alpine variant, you need to update the `Dockerfile`:
 
 ```Dockerfile
 FROM nginx:stable-alpine
@@ -246,13 +246,13 @@ docker build . -t mynginx
 docker run -p 8080:80 -p 9090:90 mynginx
 ```
 
-Once again open `http://localhost:9090/nginx-health` or `http://localhost:8080/index.html` to view the web pages. Everything continues to work as it did previously, but our custom image is now much smaller.
+Once again open `http://localhost:9090/nginx-health` or `http://localhost:8080/index.html` to view the web pages. Everything continues to work as it did previously, but your custom image is now much smaller.
 
 ## Conclusion
 
 NGINX is a powerful web server, and the official NGINX Docker image provides DevOps teams with the ability to host custom web applications in Docker. NGINX also supports advanced scenarios thanks to its ability to read configuration files copied into a custom Docker image. 
 
-In this post we learned how to create a custom Docker image hosting a static web application, added advanced NGINX configuration files to provide a health check endpoint, and compared the sizes of Debian and Alpine NGINX images.
+In this post you learned how to create a custom Docker image hosting a static web application, added advanced NGINX configuration files to provide a health check endpoint, and compared the sizes of Debian and Alpine NGINX images.
 
 ## Resources
 
@@ -263,6 +263,6 @@ In this post we learned how to create a custom Docker image hosting a static web
 
 ## Learn more
 
-If you'd like to build and deploy containerized applications to AWS platforms such as EKS and ECS, the [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/) populates a GitHub repository with a sample application built with GitHub Actions workflows and configures a hosted Octopus instance with sample deployment projects demonstrating best practices such as vulnerability scanning and Infrastructure as Code (IaC). 
+If you'd like to build and deploy containerized applications to AWS platforms such as EKS and ECS, try the [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/). The Builder populates a GitHub repository with a sample application built with GitHub Actions workflows and configures a hosted Octopus instance with sample deployment projects demonstrating best practices such as vulnerability scanning and Infrastructure as Code (IaC). 
 
 Happy deployments! 
