@@ -77,7 +77,7 @@ docker run --rm httpd:2.4 cat /usr/local/apache2/conf/httpd.conf > my-httpd.conf
 
 The resulting file is huge at over 500 lines of code, so I won't list it here.
 
-To have HTTPd load additional configuration files, you add a single line of code to the end of this file which instructs HTTPd to load files in the specified directory: 
+To have HTTPd load additional configuration files, you add a single directive to the end of this file which instructs HTTPd to load files in the specified directory: 
 
 ```
 IncludeOptional conf/sites/*.conf
@@ -113,7 +113,7 @@ Build the new image with the command:
 docker build . -t myhttpd
 ```
 
-Run the Docker image with the command. Note that you expose a new port to allow us to access the health check endpoint:
+Run the Docker image with the command. Note that you expose a new port to provide access to the health check endpoint:
 
 ```bash
 docker run -p 8080:80 -p 9090:90 myhttpd
@@ -123,7 +123,7 @@ Then open [http://localhost:9090/health](http://localhost:9090/health) to access
 
 ## Choosing HTTPd variants
 
-HTTPd images are provided based on Debian or Alpine. Alpine is frequently used as a lightweight base for Docker images. To view the sizes of Docker images, they must first be pulled down to your local workstation:
+HTTPd images are based on Debian or Alpine. Alpine is frequently used as a lightweight base for Docker images. To view the sizes of Docker images, they must first be pulled down to your local workstation:
 
 ```bash
 docker pull httpd:2.4
