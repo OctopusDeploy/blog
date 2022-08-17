@@ -49,7 +49,7 @@ FROM httpd:2.4
 COPY index.html /usr/local/apache2/htdocs/index.html
 ```
 
-`Dockerfile` contains instructions for building a custom Docker image. Here you use the `FROM` command to base your image on the NGINX one, and then use the `COPY` command to copy your `index.html` file into the new image under the `/usr/local/apache2/htdocs` directory.
+`Dockerfile` contains instructions for building a custom Docker image. Here you use the `FROM` command to base your image on the HTTPd one, and then use the `COPY` command to copy your `index.html` file into the new image under the `/usr/local/apache2/htdocs` directory.
 
 Build the new image with the command:
 
@@ -149,9 +149,9 @@ COPY my-httpd.conf /usr/local/apache2/conf/httpd.conf
 
 ## Conclusion
 
-HTTPd is a popular web server, and the official NGINX Docker image allows DevOps teams to host custom web applications in Docker. With a few small tweaks to the HTTPd configuration files it is also possible to use the full range of [HTTPd modules](https://httpd.apache.org/docs/current/mod/), unlocking many advanced features.
+HTTPd is a popular web server, and the official HTTPd Docker image allows DevOps teams to host custom web applications in Docker. With a few small tweaks to the HTTPd configuration files it is also possible to use the full range of [HTTPd modules](https://httpd.apache.org/docs/current/mod/), unlocking many advanced features.
 
-In this post, you learned how to create a custom Docker image hosting a static web application, added advanced HTTPd configuration files to provide a health check endpoint, and compared the sizes of Debian and Alpine NGINX images.
+In this post, you learned how to create a custom Docker image hosting a static web application, added advanced HTTPd configuration files to provide a health check endpoint, and compared the sizes of Debian and Alpine HTTPd images.
 
 ## Resources
 
