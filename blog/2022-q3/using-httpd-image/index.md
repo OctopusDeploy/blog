@@ -14,13 +14,13 @@ tags:
   - Cloud Orchestration
 ---
  
-The Apache HTTP Server is one of the most popular web servers available today, with [Wikipedia](https://en.wikipedia.org/wiki/Apache_HTTP_Server) reporting it is either the most used, or second most used, web server in March 2022. An [official HTTPd Docker image](https://hub.docker.com/_/httpd) is made available on Docker Hub and has been downloaded over one billion times, making it one of the most popular Docker images.
+The Apache HTTP Server is one of the most popular web servers available today. [Wikipedia](https://en.wikipedia.org/wiki/Apache_HTTP_Server) reports it is either the most used, or second most used, web server in March 2022. An [official HTTPd Docker image](https://hub.docker.com/_/httpd) is made available on Docker Hub and has been downloaded over one billion times, making it one of the most popular Docker images.
 
 In this post I'll show you how to get started with the HTTPd image to host your own web sites or build custom Docker images that embed HTTPd.
 
 ## Getting started
 
-The easiest way to use the HTTPd image is to have it host static we content from your local workstation. Save the following HTML code to a file called `index.html`:
+The easiest way to use the HTTPd image is to have it host static web content from your local workstation. Save the following HTML code to a file called `index.html`:
 
 ```html
 <html>
@@ -65,7 +65,7 @@ docker run -p 8080:80 myhttpd
 
 Note that you didn't mount any directories this time. However, when you open `http://localhost:8080/index.html` your custom HTML page is displayed because it was embedded in your custom image.
 
-HTTPd is capable of far more than hosting static web sites. To unlock the full potential of HTTPd we must add custom configuration files.
+HTTPd is capable of far more than hosting static web sites. To unlock the full potential of HTTPd you must add custom configuration files.
 
 ## Advanced HTTPd configuration
 
@@ -75,9 +75,9 @@ The standard configuration file embedded in the HTTPd image is extracted with th
 docker run --rm httpd:2.4 cat /usr/local/apache2/conf/httpd.conf > my-httpd.conf
 ```
 
-The resulting file is huge at over 500 lines of code, so we won't list it here.
+The resulting file is huge at over 500 lines of code, so I won't list it here.
 
-To have HTTPd load additional configuration files, we add a single line of code to the end of this file which instructs HTTPd to load files in the specified directory: 
+To have HTTPd load additional configuration files, you add a single line of code to the end of this file which instructs HTTPd to load files in the specified directory: 
 
 ```
 IncludeOptional conf/sites/*.conf
@@ -113,7 +113,7 @@ Build the new image with the command:
 docker build . -t myhttpd
 ```
 
-Run the Docker image with the command. Note that we expose a new port to allow us to access the health check endpoint:
+Run the Docker image with the command. Note that you expose a new port to allow us to access the health check endpoint:
 
 ```bash
 docker run -p 8080:80 -p 9090:90 myhttpd
