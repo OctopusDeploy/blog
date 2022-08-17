@@ -13,13 +13,13 @@ tags:
   - Docker
 ---
 
-Docker is a compelling platform to package and run web applications, especially when paired with one of the many Platform as a Service (PaaS) offerings provided by cloud platforms. NGINX has long provided DevOps teams with the ability to host web applications on Linux, and also provides an official Docker image to be used as the base for custom web applications. 
+Docker is a compelling platform to package and run web applications, especially when paired with one of the many Platform as a Service (PaaS) offerings provided by cloud platforms. NGINX has long provided DevOps teams with the ability to host web applications on Linux, and also provides an official Docker image to use as the base for custom web applications. 
 
 In this post I'll explain how DevOps teams can use the [NGINX Docker image](https://hub.docker.com/_/nginx) to build and run web applications on Docker.
 
 ## Getting started with the base image
 
-NGINX is a versatile tool with many uses including a load balancer, reverse proxy, and network cache. However, when running NGINX in a Docker container, most of these high level functions are delegated to other specialized platforms or other instances of NGINX. Typically, NGINX fulfils the function of a web server when running in a Docker container.
+NGINX is a versatile tool with many uses, including a load balancer, reverse proxy, and network cache. However, when running NGINX in a Docker container, most of these high level functions are delegated to other specialized platforms or other instances of NGINX. Typically, NGINX fulfils the function of a web server when running in a Docker container.
 
 To create an NGINX container with the default web site, run the following command:
 
@@ -27,7 +27,7 @@ To create an NGINX container with the default web site, run the following comman
 docker run -p 8080:80 nginx
 ```
 
-This command will download the `nginx` image (if it has not already been downloaded) and create a container exposing port 80 in the container to port 8080 on the host machine. We can then open [http://localhost:8080/index.html](http://localhost:8080/index.html) to view the default "Welcome to nginx!" web site.
+This command will download the `nginx` image (if it has not already been downloaded) and create a container exposing port 80 in the container to port 8080 on the host machine. We can then open `http://localhost:8080/index.html` to view the default "Welcome to nginx!" web site.
 
 To allow the NGINX container to expose custom web assets, we can mount a local directory inside the Docker container. 
 
@@ -41,13 +41,13 @@ Save the following HTML code to a file called `index.html`:
 </html>
 ```
 
-Then run the following command to mount the current directory under `/usr/share/nginx/html` inside the NGINX container with read only access:
+Next, run the following command to mount the current directory under `/usr/share/nginx/html` inside the NGINX container with read only access:
 
 ```bash
 docker run -v $(pwd):/usr/share/nginx/html:ro -p 8080:80 nginx
 ```
 
-Open [http://localhost:8080/index.html](http://localhost:8080/index.html) again and we will see the custom HTML page displayed.
+Open `http://localhost:8080/index.html` again and we will see the custom HTML page displayed.
 
 One of the benefits of Docker images is the ability to bundle all related files into a single distributable artifact. To realize this benefit we must create a new Docker image based on the NGINX image.
 
@@ -74,7 +74,7 @@ This builds a new image called `mynginx`. Run the new image with the command:
 docker run -p 8080:80 mynginx
 ```
 
-Note that we did not mount any directories this time. However, when we open [http://localhost:8080/index.html](http://localhost:8080/index.html) our custom HTML page is displayed because it was embedded in our custom image.
+Note that we did not mount any directories this time. However, when we open `http://localhost:8080/index.html` our custom HTML page is displayed because it was embedded in our custom image.
 
 NGINX is capable of much more than hosting static files. To unlock this functionality, we must use custom NGINX configuration files.
 
@@ -207,7 +207,7 @@ Run the new image with the command. Note the new port exposed on 9090:
 docker run -p 8080:80 -p 9090:90 mynginx
 ```
 
-Now open [http://localhost:9090/nginx-health](http://localhost:9090/nginx-health). The health check response is returned to indicate that the web server is up and running.
+Now open `http://localhost:9090/nginx-health`. The health check response is returned to indicate that the web server is up and running.
 
 The examples above base our custom images on the default `nginx` image. But there are other variants that provide much smaller image sizes without sacrificing any functionality.
 
@@ -238,14 +238,14 @@ COPY index.html /usr/share/nginx/html/index.html
 COPY health-check.conf /etc/nginx/conf.d/health-check.conf
 ```
 
-Build and run image with the commands:
+Build and run the image with the commands:
 
 ```bash
 docker build . -t mynginx
 docker run -p 8080:80 -p 9090:90 mynginx
 ```
 
-Once again open [http://localhost:9090/nginx-health](http://localhost:9090/nginx-health) or [http://localhost:8080/index.html](http://localhost:8080/index.html) to view the web pages. Everything continues to work as it did previously, but our custom image is now much smaller.
+Once again open `http://localhost:9090/nginx-health` or `http://localhost:8080/index.html` to view the web pages. Everything continues to work as it did previously, but our custom image is now much smaller.
 
 ## Conclusion
 
@@ -262,6 +262,6 @@ In this post we learned how to create a custom Docker image hosting a static web
 
 ## Learn more
 
-If you're looking to build and deploy containerized applications to AWS platforms such as EKS and ECS, the [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/) populates a GitHub repository with a sample application built with GitHub Actions workflows and configures a hosted Octopus instance with sample deployment projects demonstrating best practices such as vulnerability scanning and Infrastructure as Code (IaC). 
+If you'd like to build and deploy containerized applications to AWS platforms such as EKS and ECS, the [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/) populates a GitHub repository with a sample application built with GitHub Actions workflows and configures a hosted Octopus instance with sample deployment projects demonstrating best practices such as vulnerability scanning and Infrastructure as Code (IaC). 
 
 Happy deployments! 
