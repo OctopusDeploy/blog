@@ -13,9 +13,9 @@ tags:
   - Cloud Orchestration
 ---
 
-Wherever you work, you've probably noticed a big shift to the cloud in the applications you use, from storing data like emails or photos, to developing software in a cloud repository like Git. Cloud solutions are dominating the market. A [study by Gartner](https://www.gartner.com/en/newsroom/press-releases/2022-02-09-gartner-says-more-than-half-of-enterprise-it-spending) indicates that revenue for cloud products will overtake traditional IT solutions by 2025. 
+Wherever you work, you've probably noticed a big shift to the cloud in the applications you use. From storing data like emails or photos, to developing software in a cloud repository like Git, cloud solutions are dominating the market. A [study by Gartner](https://www.gartner.com/en/newsroom/press-releases/2022-02-09-gartner-says-more-than-half-of-enterprise-it-spending) indicates that revenue for cloud products will overtake traditional IT solutions by 2025. 
 
-If you work with cloud products, you want make them more efficient and cost-effective. Two processes that can help you with that are:
+If you work with cloud products, you want to make them more efficient and cost-effective. Two processes that can help you with that are:
 
 - Cloud orchestration
 - Cloud automation 
@@ -56,24 +56,24 @@ The diagram below shows how SaaS, IaaS, and PaaS work together to deliver cloud 
 
 ## Benefits of cloud orchestration
 
-Cloud orchestration lets you automate every part of your cloud solution. Cloud orchestration leads to:
+Cloud orchestration lets you automate every part of your cloud solution and leads to:
 
 - Increased efficiency
 - Cost reductions
 - Support for DevOps
 - Increased security
 
-When you automate processes in a cloud solution, the cloud solution can detect when peak times occur and deploy extra services to prevent services from being overloaded. Cloud solutions can also shut down any idle processes that aren't needed. The optimized allocation of resources increases the platform's efficiency and reduces costs. 
+You can automate processes in a cloud solution to detect when peak times occur and deploy extra services to prevent services from being overloaded. Cloud solutions can also shut down any idle processes you don't need. By optimizing the allocation of resources, you increase the platform's efficiency and reduce costs. 
 
-Cloud orchestration supports the DevOps framework by allowing continuous integration, monitoring, and testing. Cloud orchestration solutions manage all services, leading to frequent updates and faster troubleshooting. Your applications are more secure as you can patch vulnerabilities quickly.
+Cloud orchestration supports the DevOps framework by allowing continuous integration, monitoring, and testing. Cloud orchestration solutions manage all services so that you get more frequent updates and can troubleshoot faster. Your applications are also more secure as you can patch vulnerabilities quickly.
 
-The journey towards full cloud orchestration is hard to complete. To make the transition more manageable, you can find benefits along the way with cloud automation. For example, you might automate the database component and that speeds up manual data handling, or you install a smart scheduler for your Kubernetes workloads. Even small improvements can save you time and money.
+The journey towards full cloud orchestration is hard to complete. To make the transition more manageable, you can find benefits along the way with cloud automation. For example, you might automate the database component to speed up manual data handling, or install a smart scheduler for your Kubernetes workloads. Even small improvements can save you time and money.
 
 ## Cloud orchestration tools
 
-Terraform is an open-source Infrastructure as Code (IaC) tool. You specify your infrastructure in configuration files to deploy infrastructure on the cloud. IaC can be saved and restored between versions. Terraform is a common framework for deploying infrastructure solutions. 
+Terraform is an open-source Infrastructure as Code (IaC) tool, and a common framework for deploying infrastructure solutions. You specify your infrastructure in configuration files to deploy infrastructure on the cloud. IaC can be saved and restored between versions. 
 
-Kubernetes is a container orchestration tool developed by Google. Containers are lightweight computing units that make up a larger application. Kubernetes works with cloud providers to manage and deploy containers on infrastructure. Resources can be scaled up or down depending on demand, which saves costs and increases the reliability of the application.
+Kubernetes is a container orchestration tool developed by Google. Containers are lightweight computing units that make up a larger application. Kubernetes works with cloud providers to manage and deploy containers on infrastructure. Resources can be scaled up or down depending on demand, saving you money and improving the reliability of your application.
 
 Many PaaS cloud providers have tools that allow cloud orchestration, such as:
 
@@ -82,13 +82,17 @@ Many PaaS cloud providers have tools that allow cloud orchestration, such as:
 - IBM Cloud Orchestrator
 - Google Cloud Composer
 
-These tools let developers automate their cloud environments through Infrastructure as Code, deployment management GUIs, and integrations to other cloud solutions in the PaaS system. There are also dedicated cloud orchestration tools, such as:
+These tools let you automate your cloud environments through Infrastructure as Code, deployment management GUIs, and integrations to other cloud solutions in the PaaS system. 
 
-- RedHat Ansible
+There are also dedicated cloud orchestration tools, such as:
+
+- Red Hat Ansible
 - Cloudify
 - Morpheus
 
-These dedicated tools provide cloud provisioning, configuration management, and automation. All cloud orchestration tools work with technologies such as Terraform and Kubernetes. Your choice of tool will depend on a number of things: 
+These dedicated tools provide cloud provisioning, configuration management, and automation. All cloud orchestration tools work with technologies such as Terraform and Kubernetes. 
+
+Your choice of tool will depend on your: 
 
 - IT budget
 - Preferred languages
@@ -103,10 +107,12 @@ Octopus takes the application from code to build to deployment. After the deploy
 
 ## Conclusion
 
-Cloud orchestration and automation provide you with increased efficiency, reduced cost, support for DevOps, and increased security. 
+Cloud orchestration and automation provide you with increased efficiency, reduced costs, support for DevOps, and increased security. 
 
 Cloud services are usually accessed via Software as a Service (SaaS), Platform as a Service (PaaS), and Infrastructure as a Service (IaaS). Saas, PaaS, and IaaS provide on-demand services for you to access resources without managing them. You can combine SaaS, PaaS, and IaaS to achieve cloud orchestration and automation. 
 
-Popular frameworks and tools for cloud orchestration include Terraform, Kubernetes, PaaS orchestration tools, and dedicated orchestration tools. Octopus is a cloud-agnostic deployment tool that can work with your DevOps toolchain to achieve cloud orchestration and faster, more reliable deployments.
+Popular frameworks and tools for cloud orchestration include Terraform, Kubernetes, PaaS orchestration tools, and dedicated orchestration tools. 
+
+Octopus is a cloud-agnostic deployment tool that works with your DevOps toolchain to achieve cloud orchestration and faster, more reliable deployments.
 
 Happy deployments!
