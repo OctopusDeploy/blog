@@ -3,7 +3,7 @@ title: "What is cloud orchestration?"
 description: The post discusses cloud orchestration and cloud automation, as a service models, cloud orchestration tooling, and where Octopus fits in as a cloud-agnostic deployment tool.
 author: terence.wong@octopus.com
 visibility: public
-published: 2022-08-31-1400
+published: 2022-08-24-1400
 metaImage: blogimage-whatiscloudorchestrationcloudautomation-2022.png
 bannerImage: blogimage-whatiscloudorchestrationcloudautomation-2022.png
 bannerImageAlt: A cog surrounded by three arrows connected in a circle sits amongst clouds
