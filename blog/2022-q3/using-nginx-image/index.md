@@ -15,7 +15,7 @@ tags:
 
 Docker is a compelling platform to package and run web applications, especially when paired with one of the many Platform as a Service (PaaS) offerings provided by cloud platforms. NGINX has long provided DevOps teams with the ability to host web applications on Linux, and also provides an official Docker image to use as the base for custom web applications. 
 
-In this post I'll explain how DevOps teams can use the [NGINX Docker image](https://hub.docker.com/_/nginx) to build and run web applications on Docker.
+In this post, I explain how DevOps teams can use the [NGINX Docker image](https://hub.docker.com/_/nginx) to build and run web applications on Docker.
 
 ## Getting started with the base image
 
