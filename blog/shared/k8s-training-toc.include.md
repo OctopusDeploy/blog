@@ -8,3 +8,5 @@
 * [Installing a dashboard](/blog/2022-q3/k8s-training/8-installing-dashboard/index.md)
 * [Observing deployment strategies](/blog/2022-q3/k8s-training/9-deployment-strategies/index.md)
 * [Blue/green deployment strategy](/blog/2022-q3/k8s-training/10-blue-green-deployments/index.md)
+* [ConfigMaps and Secrets](/blog/2022-q3/k8s-training/11-configmaps-and-secrets/index.md)
+* [ConfigMaps and Secrets Demo](/blog/2022-q3/k8s-training/12-configmaps-and-secrets-demo/index.md)
