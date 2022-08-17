@@ -21,7 +21,7 @@ This post is the 11th in our Kubernetes training series, providing DevOps engine
 
 This video provides a demo where three separate applications are deployed to a cluster, each configured with either a Secret or a ConfigMap.
 
-<p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/a8nr9zh2ku?videoFoam=true" title="12. ConfigMap and Secret Demo" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
+<p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/49nxio4h5p?videoFoam=true" title="11. ConfigMaps and Secrets" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
 
 You can work through the series using the links below.
 
