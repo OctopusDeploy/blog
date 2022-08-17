@@ -36,7 +36,7 @@ Then run the HTTPd Docker image with the `index.html` file mounted under `/usr/l
 docker run -p 8080:80 -v "$PWD/index.html":/usr/local/apache2/htdocs/index.html httpd:2.4
 ```
 
-We can then open [http://localhost:8080/](http://localhost:8080/) to view the web page.
+You can then open [http://localhost:8080/](http://localhost:8080/) to view the web page.
 
 Mounting files in this way requires the individual web assets be packaged and distributed to any new server, which is inconvenient. A better solution is to build a custom Docker image that embeds the static web files.
 
