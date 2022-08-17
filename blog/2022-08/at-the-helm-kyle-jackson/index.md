@@ -4,8 +4,8 @@ description: A series where we chat to people at Octopus about their role, what 
 author: kyle.jackson@octopus.com
 visibility: public
 published: 2022-08-29-1400
-metaImage:
-bannerImage: 
+metaImage: blogimage-atthehelmwithkylejackson-2022.png
+bannerImage: blogimage-atthehelmwithkylejackson-2022.png
 bannerImageAlt: Octopus-branded security badge with text that says Kyle Jackson, Security Operations Manager, above the silhouette of a man.
 isFeatured: false
 tags: 
@@ -19,39 +19,43 @@ Here we talk to Kyle Jackson, Security Operations Manager.
 
 ## What does the Security Operations team do?
 
-The Security Operations team performs a lot of functions in Octopus Deploy however we group our work into two main categories being internal security and product security.
+The Security Operations team perform many functions, however we group our work into 2 main categories:
 
-Internal security we focus primarily on keeping our employees safe from attack as well a securing the systems our employees use. Product security we focus on securing the products our customers use which includes working with our engineering teams, security researchers on our bug bounty programs and communicating product vulnerabilities with our customers.
+- Internal security
+- Product security
+
+Internal security focuses primarily on keeping our employees safe from attacks, and securing the systems our employees use. 
+
+Product security focuses on securing the products our customers use, which includes working with our engineering teams, security researchers on our bug bounty programs, and communicating product vulnerabilities to our customers.
 
 ## What keeps you busy every day as Security Operations Manager?
 
-Every day is always different which is one of things I like about working in security operations.
+Every day is different, which is one of things I like about working in security operations.
 
-A big part of a typical day as the Security Operations Manager is being an escalation point for the other Securty Operations team members, working with other teams on their upcoming or in progress projects and general house keeping.
+A big part of a typical day as Security Operations Manager is being an escalation point for the other Security Operations team members, working with other teams on their upcoming or in progress projects, and general house keeping.
 
-Although the days are varied there is always the one consistent event and that is multiple meetings!
+Although the days are varied, something that's always consistent is multiple meetings!
 
 ## What are some of the biggest security threats and how do you manage them?
 
-Being a software vendor our biggest security threats generally gravitate around our product(s). However, we still have internal systems to support the business so these also attract their own threats as well.
+Being a software vendor, our biggest security threats gravitate around our product. However, we still have internal systems to support the business and these attract their own threats too.
 
-When it comes to our products and managing threats it is very much a collaborative process between the Security Operations team and the engineering teams. It is important that there is collaboration between the teams to ensure that engineering teams are aware of current and emerging threats and that the Security Operations team knows what new features are being worked on which could attract new threats.
+When it comes to managing our product threats, it's a very collaborative process between the Security Operations team and the engineering teams. Collaborating is important so that engineering teams are aware of current and emerging threats and the Security Operations team is aware of new features being worked on which could attract new threats.
 
-For our internal systems we rely heavily on identity and network segragtion to mitigate threats implementing an almost Zero-trust architecture. Although the key to manage threats is to continusouly review your threats and the controls that have been implemented to mitigate those threats.
+For our internal systems, we rely heavily on identity and network segregation to mitigate threats implementing an almost zero-trust architecture. The key, however, is continuously reviewing our threats and the controls we implemented to mitigate those threats.
 
 ## What drew you to work in security operations?
 
-I never really planned to work in security I kind of fell into it. I had been working as a consultant primarily on public cloud security and identity management 
-during which I was performing a lot of security incident response. I ended up leaving consultating to join Octopus Deploy as one of the first full time security employees in the company.
+I didn't plan to work in security, I kind of fell into it. I was working as a consultant primarily on public cloud security and identity management and I was performing a lot of security incident responses. I left consulting to join Octopus Deploy as one of the first full time security employees in the company.
 
 ## How do you plan for the future of Octopus Deploy’s security?
 
-It is a very collabrative process that involves understanding what the product teams are planning on shipping to our customers, what the compliance needs of the business is going to be and also what are the general security industry trends and what new threats are being identified that may impact Octopus Deploy.
+It's a very collaborative process that involves understanding what the product teams are planning on shipping to our customers, what the compliance needs of the business are going to be, where the general security industry trends are heading, and what new threats are being identified that might impact Octopus Deploy.
 
-Although a lot of information goes into the planning for the future of Octopus Deploy's security it is also important to have agility within the team to adjust course if new threats emerge or existing threats change.
+It takes a lot of time to gather information and plan for the future of Octopus Deploy's security, but it's also important our team is agile and can adjust course if new threats emerge or existing threats change.
 
 ## How do you unwind from your job?
 
-I have found working in Security Operations to be harder job to unwind from as everything moves so quickly you tend to spend a lot of time out of work hours keeping up with the latest information.
+Working in Security Operations is a hard job to unwind from as everything moves so quickly, so I tend to spend time out of work hours keeping up with the latest information.
 
-However, the key to unwinding is going to do something but leaving your phone/laptop behind as it is the only sure way to disconnect.
+However, I've found the key to unwinding is going to do something but leaving my phone and laptop behind, as it's the only sure way to disconnect.
