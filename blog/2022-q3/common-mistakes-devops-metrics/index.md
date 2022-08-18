@@ -12,39 +12,62 @@ tags:
   - DevOps
 ---
 
-Metrics are crucial to the process of continuous improvement. However, a balance must be struck between making information visible and being blinded by a flurry of data. You'll need to decide what data to collect as well as what smaller set of data you pay attention to at any time.
+Metrics are crucial to the process of continuous improvement. However, a balance must be struck between collecting data and making it visible and being flooded with information. You'll need to decide what data to collect as well as what smaller set of data you pay attention to at any time.
 
-If your car had a dashboard that displayed every metric it collects through the engine management system, there would be no window left to see the road. Early cars featured an ammeter, which measured the current between the battery and voltage regulator. This was important as it told you the charging system was working. There was no speedometer, because cars could only achieve a top speed of around 35 miles per hour and the suspension was enough to discourage travel at this speed on cobbled streets.
+If your car had a dashboard that displayed every metric it collects through the engine management system, there would be no window left to see the road.
 
-In a modern car, no dashboard space is given to an ammeter (though a battery light will illuminate if there is a problem), but you will find a speedometer. The current dashboard design reflects the difference in cars and also in the broader system they operate in. Roads are generally smoother, suspension systems are far better, and there are more cars on the road. Attitudes towards safety have also changed.
+Early cars featured an *ammeter*, which measured the electric current between the battery and voltage regulator. This was important as it told you the charging system was working. There was no speedometer. As cars could only achieve a top speed of 35 miles per hour and the suspension discouraged traveling at this speed, it wasn't necessary to measure velocity.
 
-In the same way, the metrics you collect and display will change over time as you respond to differences in team performance and the system they work within.
+In a modern car, no dashboard space is given to an ammeter (though a battery light will illuminate if there is a problem). But, you will find a speedometer in almost every car. The current dashboard design reflects the changes that have been developed in cars and also in the broader system they operate within. Engines are more powerful, suspension systems are better, roads are generally smoother, and there are more cars on the road. Attitudes towards safety have also changed.
 
-As you create and evolve your system of measurement, there are some common mistakes you'll want to avoid.
+Similarly, the metrics you collect and display will change over time as you respond to differences in the team and organization.
+
+As you create and evolve your system of measurement, there are some common mistakes you should avoid.
 
 ## Ignoring the data
 
-After all the money you spent collecting and visualizing metrics, you'll find that they aren't used. They might be viewed often, but they aren't being used to change and improve how you deliver value to your customers.
+The first problem with metrics is where great effort is expended to collect them, but they aren't used. This can happen even in organizations that regularly review the numbers.
+
+The data needs some process that generates insights, which in turn can be used to create theories that you use for experiments. The experiments should then provide new data to start the cycle again.
+
+![Data, Insight, Theory, Experiment](dite.png)
+
+The only good reason to collect that data is to learn more about the work you are doing and find ways to improve it. If you collect data 'just in case', the chances are it won't be used, or it will be used without a strong purpose.
+
+If you have a dashboard already, open it up and ask for each chart, 'what would do differently if this number went up, or down?' You can ask this question frequently, deleting any chart where you don't have an answer.
 
 ## Activity bias
 
-Activity metrics are perhaps the easiest to collect. You can tell how many hours were worked, the number of lines of code added and removed from version control, or the number of tickets completed. The problem is, not all activity represents progress.
+There are four levels of measurement, with activity often being the earliest and easiest to collect. You can usually track activity in near real time, and the activity won't result in a change to outputs or outcomes until some later time.
 
-You have to balance activity metrics with outcome-based measurements, which are harder to obtain. Outcome-based metrics are the only well to tell if all the motion is getting you the results you want.
+| Measurement level    | Software example  | Heating example             |
+|----------------------|-------------------|-----------------------------|
+| Activity             | Lines of code     | Power consumption           |
+| Outputs              | Features per week | Heating element temperature |
+| System output        | Lead time         | Room temperature            |
+| Outcomes             | User value        | People are comfortable      |
 
-## Measuring too much at once
+Activity metrics are usually built-in to the tools you use, so they are already available. The problem is, not all activity represents progress. Some activity might even reduce output and outcomes.
 
-This can happen gradually, or all at once. You should try to keep your set of current metrics lean and relevant. This means removing metrics from your dashboard when they are no longer useful, even though you enjoy seeing the data.
+You can use activity metrics to predict future changes to outputs and outcomes. To do this, you need to continually test that the relationship exists between your activity metric and your lagging output or outcome metrics.
 
-In some cases, you might decide to leave an automated alert in place to tell you if things are deteriorating, but your main view over metrics must be kept trim.
+If you only measure activity, you will get a lot of motion but no progress.
+
+## Tracking too much at once
+
+The number of metrics you collect and display can increase, often rapidly. Before long, your dashboard is filled with charts and you don't know what is important, and what isn't.
+
+You need to keep your set of metrics lean, current, and relevant. When a chart is no longer useful, you should remove it from your dashboard. You should also consider whether the metric still needs to be collected and retire it if you don't have a good reason to track it.
+
+Your dashboard should focus on key long-term output and outcome metrics, with only short-term activity metrics that are being used as part of your current improvement efforts.
 
 ## Jumping into tools
 
-Data visualization tools like Microsoft Power BI, Tableau, or Google Data Studio are among the coolest software products you'll ever have in your organization. Unlike the many business tools that have table-based and text-based interfaces, data tools have colorful animated charts.
+Data visualization tools like Microsoft Power BI, Tableau, or Google Data Studio are among the coolest software products you'll ever have in your organization. Many business tools have either table-based or text-based interfaces, but data tools have colorful animated charts.
 
-It is easy to be distracted by the task of creating a really exciting dashboard. If you don't start with metric design, you end up with lots of pleasing dashboards that don't impact your daily work. You'll definitely need these tools as they will help you explain reality with a compelling story, but design a lean and useful set of metrics first.
+It is easy to be distracted by the task of creating a really engaging dashboard. If you don't begin with metric design, you end up with lots of pleasing dashboards that have no impact your daily work. You'll definitely need these tools as they will help you explain reality with a compelling story, but design the metrics first.
 
-It is better to start in low-fidelity to collect meaningful metrics. You can use a whiteboard or a spreadsheet with manually entered data to test the data. Once you work out which measurements are useful to your organization right now, you can approach the task of automated collection and slick displays.
+It is better to start in low-fidelity to collect meaningful metrics. It's fine to start with a simple spreadsheet or even a whiteboard. Once you work out which measurements are currently useful to your team and organization, you can approach the task of automating the collection and creating slick displays.
 
 If you spend a great deal of time creating a stunning dashboard, you might be inadvertently making your metrics more permanent. If you fall in love with your dashboard, you won't want to change it when you need to remove a metric or measure something else.
 
@@ -63,6 +86,12 @@ In theory, if pull requests were completed in minutes, rather than hours, work w
 To test this theory, you need to collect the cycle time for pull requests from the time they are opened to the time the code is merged into the main branch. You also need to collect the total lead time for the change. You can now test your theory to see if faster pull request approvals reduce the overall lead time.
 
 The metrics also signal to the team what is important *at the current time*.
+
+## Relying on eyeballs
+
+When a dashboard is super-busy, it's often because there is no other mechanism for responding to data.
+
+For well-established data, it can be better to set up threshold-based or anomaly-based alerts. With alerts in place, you can remove the charts from your dashboard. You only need to review that data if you get an alert.
 
 ## Rewarding performance
 
