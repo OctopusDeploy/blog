@@ -2,7 +2,7 @@
 title: Using the Alpine Docker image
 description: A detailed look at how to use the Alpine Docker image
 author: matthew.casperson@octopus.com
-visibility: public
+visibility: private
 published: 2022-07-18-1400
 metaImage: blogimage-gettingstartedcontainerisation-2022.png
 bannerImage: blogimage-gettingstartedcontainerisation-2022.png
