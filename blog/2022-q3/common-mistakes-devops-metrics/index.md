@@ -12,7 +12,11 @@ tags:
   - DevOps
 ---
 
-Metrics are crucial to the process of continuous improvement. However, you must balance collecting and displaying data with being flooded with information. You'll need to decide what data to collect and what smaller set of data you pay attention to at any time.
+Metrics are crucial to DevOps and Continuous Delivery as part of the process of continuous improvement. However, you must balance collecting and displaying data with being flooded with information. You'll need to decide what data to collect and what smaller set of data you pay attention to at any time.
+
+:::hint
+You can [find out more about CI/CD](/devops/continuous-delivery/) and [how to get started with Continuous Delivery](/devops/continuous-delivery/get-started-with-continuous-delivery/) in our [DevOps Engineer's handbook](/devops/).
+:::
 
 If your car had a dashboard that displayed every metric it collects through the engine management system, there would be no space for a windscreen.
 
