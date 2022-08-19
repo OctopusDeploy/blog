@@ -16,7 +16,7 @@ Metrics are crucial to the process of continuous improvement. However, you must 
 
 If your car had a dashboard that displayed every metric it collects through the engine management system, there would be no space for a windscreen.
 
-Early cars featured an *ammeter*, which measured the electric current between the battery and voltage regulator. This was important as it told you the charging system was working. There was no speedometer. Cars could only achieve a top speed of 35 miles per hour, and the suspension discouraged traveling at this speed. It wasn't necessary to measure velocity.
+Early cars only featured an *ammeter* on their dashboard, which measured the electric current between the battery and voltage regulator. This was important as it told you the charging system was working. There was no speedometer. Cars could only achieve a top speed of 35 miles per hour, and the suspension discouraged traveling at this speed. It wasn't necessary to measure velocity.
 
 In a modern car, no dashboard space is given to an ammeter (though a battery light will illuminate if there is a problem). But, you will find a speedometer in almost every car. The current dashboard design reflects the development of cars and the broader system they operate within. Engines are more powerful, suspension systems are better, roads are generally smoother, and more cars are on the road. Attitudes towards safety have also changed.
 
@@ -30,7 +30,7 @@ The first problem with metrics is that great effort is expended to collect them,
 
 Your data needs some process that generates insights. You can turn what you discover from the information into theories you use for experiments. The experiments should then provide new data to start the cycle again.
 
-![Data, Insight, Theory, Experiment](dite.png)
+![The cycle of Data, Insight, Theory, Experiment](dite.png)
 
 The only good reason to collect DevOps metrics is to learn more about your work and find ways to improve it. If you collect data *just in case*, the chances are it will be misused or not used at all.
 
@@ -85,7 +85,7 @@ The metrics you collect also signal to the team what is important *at the curren
 
 You should create a simple dashboard to display the metrics you are tracking for experiments. This should be displayed on an information radiator so everyone on the team can see the data.
 
-However, if you only react to data when someone looks at a dashboard, you'll crowd the dashboard with too much information and miss key events. Long-term metrics you keep to track progress over time will seem as important as the short-term metrics you use to improve your software delivery.
+However, if you only react to data when someone looks at a dashboard, you'll crowd the dashboard with too much information and you'll miss key events. Long-term metrics you keep to track progress over time will seem as important as the short-term metrics you use to improve your software delivery.
 
 The key to resolving the problem of retaining long-term metrics without cluttering your dashboard is to put in place a monitoring and alerting process for the data. Automated alerts should tell you if the metrics cross a threshold, and you could use anomaly detection to tell you if something interesting has happened.
 
@@ -99,11 +99,11 @@ In the landmark book *Punished By Rewards*, Alfie Kohn explains that attempting 
 
 Using metrics to create a competitive atmosphere, either for individual performance, comparison of different teams, or to gamify the workplace (where you introduce game elements as a form of "fun" competition), all lead to trouble.
 
-Competition conflicts with what you really need in your organization; collaboration. If you work on the assumption that people want to do good work, you'll find you don't need to use rewards or punishments to get them to improve their software delivery.
+Competition conflicts with what you really need in your organization; collaboration. If you work on the assumption that people want to do good work, you'll find you don't need to use rewards or punishments to get them to improve their performance.
 
 ## Summary
 
-The 5 DORA metrics and the SPACE framework provide pre-built, balanced ways to measure software delivery performance. (There used to be 4 DORA metrics, but an additional reliability metric has since been added.)
+The 5 DORA metrics and the SPACE framework provide pre-built, balanced ways to measure software delivery performance. (There used to be 4 DORA metrics, but an additional *reliability* metric has since been added.)
 
 A good set of metrics will mix leading indicators to predict performance with lagging indicators that check the accuracy of predictions. Measurements should span activity, output, system output, and outcome categories.
 
