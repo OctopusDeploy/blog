@@ -3,7 +3,7 @@ title: Using the Ubuntu Docker image
 description: Learn how to create custom Docker images based on the official Ubuntu base image.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2022-08-09-1400
+published: 2022-09-07-1400
 metaImage: blogimage-gettingstartedcontainerisation-2022.png
 bannerImage: blogimage-gettingstartedcontainerisation-2022.png
 bannerImageAlt: Man sitting on top of container with green circle with a power up icon
