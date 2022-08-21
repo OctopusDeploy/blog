@@ -11,15 +11,16 @@ isFeatured: false
 tags: 
   - Containers
   - Docker
+  - DevOps
 ---
 
 The official Ubuntu Docker image is the most downloaded image from Docker Hub. With over one billion downloads, Ubuntu has proven itself to be a popular and reliable base image on which to build your own custom Docker images.
 
-In this post I'll show you how to make the most of the base Ubuntu images while building your own Docker images.
+In this post, I show you how to make the most of the base Ubuntu images while building your own Docker images.
 
 ## An example Dockerfile
 
-This is an example `Dockerfile` with the tweaks discussed in this post. We'll go through each of the settings in subsequent sections to explain what value they add:
+This is an example `Dockerfile` that includes the tweaks discussed in this post. We'll go through each of the settings to explain what value they add:
 
 ```Dockerfile
 FROM ubuntu:22.04
@@ -39,7 +40,7 @@ Build the image with the command:
 docker build . -t myubuntu
 ```
 
-Now that we have seen how to build a custom image from the Ubuntu base image, let's go through each of the settings to understand why they were added.
+Now that we've seen how to build a custom image from the Ubuntu base image, let's go through each of the settings to understand why they were added.
 
 ## Selecting a base image
 
@@ -51,7 +52,7 @@ LTS releases are supported for 5 years, and the associated Docker images are als
 
 When creating Docker images hosting production software, it makes sense to base your images from the latest LTS release. This allows DevOps teams to rebuild their custom images on top of the latest LTS base image, which automatically includes all updates, but is also not likely to include the kind of breaking changes that can be introduced between major operating system versions.
 
-We have used the Ubuntu 22.04 LTS Docker image as the base for our image:
+I have used the Ubuntu 22.04 LTS Docker image as the base for this image:
 
 ```Dockerfile
 FROM ubuntu:22.04
@@ -59,7 +60,7 @@ FROM ubuntu:22.04
 
 ## Not installing suggested or recommended dependencies
 
-Some packages have a list of suggested or recommended dependencies that are not required but are installed by default. These additional dependencies can add to the size of the final Docker image unnecessarily, as noted in [this blog post in the Ubuntu website](https://ubuntu.com/blog/we-reduced-our-docker-images-by-60-with-no-install-recommends). 
+Some packages have a list of suggested or recommended dependencies that are not required but are installed by default. These additional dependencies can add to the size of the final Docker image unnecessarily, as noted in [this blog post on the Ubuntu website](https://ubuntu.com/blog/we-reduced-our-docker-images-by-60-with-no-install-recommends). 
 
 To disable the installation of these optional dependencies for all invocations of `apt-get`, the configuration file at `/etc/apt/apt.conf.d/00-docker` is created with the following settings:
 
@@ -108,7 +109,7 @@ Before any packages can be installed, the package list must be updated by callin
 RUN apt-get update
 ```
 
-However, the package list is of little value once the required packages have been installed. It is best practice to remove any unnecessary files from a Docker image to ensure the resulting image is as small as it can be. To clean up the package list once the required packages have been installed, the files under `/var/lib/apt/lists/` are deleted.
+However, the package list is of little value after the required packages have been installed. It's best practice to remove any unnecessary files from a Docker image to ensure the resulting image is as small as it can be. To clean up the package list after the required packages have been installed, the files under `/var/lib/apt/lists/` are deleted.
 
 Here we update the package list, install the required packages, and clean up the package list as part of a single command, broken up over multiple lines with a backslash at the end of each line:
 
@@ -121,11 +122,11 @@ RUN DEBIAN_FRONTEND=noninteractive \
 
 ## Run as non-root user
 
-By default the root user is run in a Docker container. The root user typically has far more privileges than are required when running a custom application, and so creating a new user without root privileges provides better security.
+By default, the root user is run in a Docker container. The root user typically has far more privileges than are required when running a custom application, and so creating a new user without root privileges provides better security.
 
 The `useradd` command [provides a non-interactive way to create new users](https://manpages.ubuntu.com/manpages/jammy/en/man8/useradd.8.html). This is not to be confused with the `adduser` command, which is a [higher level wrapper](https://manpages.ubuntu.com/manpages/jammy/en/man8/adduser.8.html) over `useradd`.
 
-Once all configuration files have been edited and packages have been installed, we create a new user called `apprunner`:
+After all configuration files have been edited and packages have been installed, we create a new user called `apprunner`:
 
 ```Dockerfile
 RUN useradd -ms /bin/bash apprunner
@@ -139,7 +140,7 @@ USER apprunner
 
 ## Conclusion
 
-It is possible to use the base Ubuntu Docker images with little further customization beyond installing any required additional packages. But with a few tweaks to limit optional packages from being installed, cleaning up package lists once the packages are installed, and creating new users with limited permissions to run custom applications, we can create smaller and more secure images for our custom applications.
+It's possible to use the base Ubuntu Docker images with little further customization beyond installing any required additional packages. But with a few tweaks to limit optional packages from being installed, cleaning up package lists after the packages are installed, and creating new users with limited permissions to run custom applications, we can create smaller and more secure images for our custom applications.
 
 ## Resources
 
@@ -149,6 +150,6 @@ It is possible to use the base Ubuntu Docker images with little further customiz
 
 ## Learn more
 
-If you're looking to build and deploy containerized applications to AWS platforms such as EKS and ECS, the [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/) populates a GitHub repository with a sample application built with GitHub Actions workflows and configures a hosted Octopus instance with sample deployment projects demonstrating best practices such as vulnerability scanning and Infrastructure as Code (IaC). 
+If you want to build and deploy containerized applications to AWS platforms such as EKS and ECS, the [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/) populates a GitHub repository with a sample application built with GitHub Actions workflows and configures a hosted Octopus instance with sample deployment projects demonstrating best practices such as vulnerability scanning and Infrastructure as Code (IaC). 
 
 Happy deployments! 
