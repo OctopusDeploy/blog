@@ -14,9 +14,9 @@ tags:
   - Cloud Orchestration
 ---
  
-The Apache HTTP Server is one of the most popular web servers available today. [Wikipedia](https://en.wikipedia.org/wiki/Apache_HTTP_Server) reports it is either the most used, or second most used, web server in March 2022. An [official HTTPd Docker image](https://hub.docker.com/_/httpd) is made available on Docker Hub and has been downloaded over one billion times, making it one of the most popular Docker images.
+The Apache HTTP Server is one of the most popular web servers available today. [Wikipedia](https://en.wikipedia.org/wiki/Apache_HTTP_Server) reports it was either the most used, or second most used, web server in March 2022. An [official HTTPd Docker image](https://hub.docker.com/_/httpd) is available on Docker Hub and has been downloaded over one billion times, making it one of the most popular Docker images.
 
-In this post I'll show you how to get started with the HTTPd image to host your own web sites or build custom Docker images that embed HTTPd.
+In this post, I show you how to get started with the HTTPd image to host your own web sites or build custom Docker images that embed HTTPd.
 
 ## Getting started
 
@@ -36,9 +36,9 @@ Then run the HTTPd Docker image with the `index.html` file mounted under `/usr/l
 docker run -p 8080:80 -v "$PWD/index.html":/usr/local/apache2/htdocs/index.html httpd:2.4
 ```
 
-You can then open [http://localhost:8080/](http://localhost:8080/) to view the web page.
+You can then open `http://localhost:8080/` to view the web page.
 
-Mounting files in this way requires the individual web assets be packaged and distributed to any new server, which is inconvenient. A better solution is to build a custom Docker image that embeds the static web files.
+Mounting files in this way requires the individual web assets to be packaged and distributed to any new server, which is inconvenient. A better solution is to build a custom Docker image that embeds the static web files.
 
 ## Creating custom images based on HTTPd
 
@@ -49,7 +49,7 @@ FROM httpd:2.4
 COPY index.html /usr/local/apache2/htdocs/index.html
 ```
 
-`Dockerfile` contains instructions for building a custom Docker image. Here you use the `FROM` command to base your image on the HTTPd one, and then use the `COPY` command to copy your `index.html` file into the new image under the `/usr/local/apache2/htdocs` directory.
+`Dockerfile` contains instructions for building a custom Docker image. Here you use the `FROM` command to base your image on the HTTPd image, and then use the `COPY` command to copy your `index.html` file into the new image under the `/usr/local/apache2/htdocs` directory.
 
 Build the new image with the command:
 
@@ -149,7 +149,7 @@ COPY my-httpd.conf /usr/local/apache2/conf/httpd.conf
 
 ## Conclusion
 
-HTTPd is a popular web server, and the official HTTPd Docker image allows DevOps teams to host custom web applications in Docker. With a few small tweaks to the HTTPd configuration files it is also possible to use the full range of [HTTPd modules](https://httpd.apache.org/docs/current/mod/), unlocking many advanced features.
+HTTPd is a popular web server, and the official HTTPd Docker image allows DevOps teams to host custom web applications in Docker. With a few small tweaks to the HTTPd configuration files it's also possible to use the full range of [HTTPd modules](https://httpd.apache.org/docs/current/mod/), unlocking many advanced features.
 
 In this post, you learned how to create a custom Docker image hosting a static web application, added advanced HTTPd configuration files to provide a health check endpoint, and compared the sizes of Debian and Alpine HTTPd images.
 
