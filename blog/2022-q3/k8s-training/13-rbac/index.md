@@ -1,6 +1,6 @@
 ---
-title: "Role Based Access Control Demo"
-description: "Create an Octopus target authenticated with a service account, as part of our Kubernetes training series"
+title: "Role Based Access Control"
+description: "Learn the Kubernetes resources used to implement RBAC, as part of our Kubernetes training series"
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2022-01-01-1200
