@@ -12,6 +12,26 @@ tags:
   - DevOps
 ---
 
+## Outline
+
+- What is a SDLC
+  - Just a set of phases and quality gates you use to deliver software
+  - Created to solve problems with early code and fix approaches
+- Why did SDLC become a problem
+  - When your primary tool is a set of phases, every problem is solved by adding a new phase, or a new quality gate
+  - Adding phases made the transaction cost of delivering software higher and encouraged larger batches
+  - We discovered, perhaps a little late, that there is such a thing as too much process
+- Does an SDLC still exist in DevOps?
+  - There is still a set of steps you need to complete to create a software version
+  - Batch size keeps things small, so the SDLC is less important
+  - You mostly need a mechanism to discover what to build, and a deployment pipeline to take what you build through to your users
+  - A sample DevOps SDLC - Lean startup, impact mapping, specification by example, Continuous Delivery
+- The future of SDLC
+  - With small batches, you should be able to use a lightweight SDLC - in some cases, just Continuous Delivery applied within the correct culture... or, as we call it now, DevOps.
+
+
+## IDEAS...
+
 ## What is the SDLC
 
 The software development life cycle (SDLC) has been around in various forms since the dawn of software engineering. It was introduced to resolve issues with the previous way of writing software
@@ -21,6 +41,22 @@ The software development life cycle is a specific version of the systems develop
 ## The purpose of the SDLC
 
 Delivery all the software, at high quality, and the lowest cost
+
+In fast-forward, SDLC starts from code and fix, then steps get added to try and fix problems.
+
+- Too many bugs... add more testing
+- Unclear requirements... more detailed business analysis and requirement documents
+- The software design makes changes hard... add a systems analysis stage to convert requirements into a high-quality design
+- We lost all the code when the network drive failed... add version control tools
+- The software sometimes doesn't work on the test environment, depending on whose machine it was build... have a dedicated build machine and a process to build and package the software from that machine
+- Conflicting changes happen in version control... split into feature branches so no changes occur while a feature is build built
+- A problem is found just after go-live and we can't deploy because we added new changes since then... code freezes around go-live dates, and sign-offs from various managers before software can go live
+- We deployed just before our peak season and had a bug that cost us revenue... code freezes during the three peak months
+- We delivered a feature but users don't like it and it doesn't solve their problem... get users to sign off the business requirements
+
+It's not that the changes to the process are introduced in bad faith, it's just they don't meaningfully solve the problem. In many cases they introduce new, worse problems - like feature branching, which makes the integration stage vastly more complex and time consuming.
+
+The reality of passing a detailed to design to programmers to "simply implement" is that they actually need to repeat all the work of the design phase to implement the feature in real life. Theoretical designs are not reality-tested, so the programmer introducing the change needs to create a completely new design that will work in real life.
 
 ## What has changed
 
@@ -82,13 +118,19 @@ A plan-driven predictive project is assessed on whether the work matched the ori
 - It's hard to measure long tasks. A task in progress can be reported as 80% complete after week 1, and 80% complete after week 2, and so on. It's just hard to know how much longer it will take to resolve some tricky problem.
 - If you track progress by completed tasks, it is possible to see faster progress earlier in the plan when simpler tasks are being done. Although many teams know they should tackle the harder tasks first to reduce risk, their good judgment will be tempered to how they think the organization will respond to a slow-start profile. Often badly. It's easier to look on-track from day one, deferring risky items until later than it is to explain why things will start slow and gain momentum.
 
+Predictive approaches increase the risk and lower quality compared to working in small batches, so they make the problems they attempt to solve worse. It is also harder to add time-relative value if the up-front work means you don't start working on the idea for months.
+
+Even if you kept the phases of your traditional SDLC, but limited the batch size, you'd improve results. You'd also find that many of the activities no longer make sense, because there is so much less you need to control. Many control steps become immediately redundant and can be removed... others could be removed with appropriate automation in the deployment pipeline. Some you might keep, but adjust so they are appropriate to the batch size.
+
 The only way to deliver software with appropriate controls is to deliver something small quickly, and then deliver many more versions in quick succession to evolve the early version into a workable software product. The delivered software version is the reality check. Features can be seen, or they can't. There is no such thing as an 80% complete task, only 0% or 100%.
+
+
 
 ## Wordle
 
 Wordle was a game where you had to guess a word in six attempts. You entered a word and would be told whether a letter featured in the word and whether a correct letter was in the correct position. Using this information, you would make a second guess that you hoped would be closer to the correct word.
 
-The game was sold to the New York Times for a seven-figure sum in 2022.
+The game was sold to the New York Times for a sum in the "low seven-figures" in 2022.
 
 There are many clones of the game available, but nobody is queuing up to buy them. Being early is highly valuable in software delivery. Even with fewer features than the copycats, Wordle was worth more money because it was first.
 
