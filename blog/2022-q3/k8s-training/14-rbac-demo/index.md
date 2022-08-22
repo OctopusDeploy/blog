@@ -27,6 +27,76 @@ You can work through the series using the links below.
 
 !include <k8s-training-toc>
 
+## Example code
+
+### RBAC resources
+
+This is the compound YAML document containing the RBAC resources used to limit an service account to a single namespace:
+
+```yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: octopub-deployer
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: octopub-deployer-role
+rules:
+- apiGroups: ["", "extensions", "apps"]
+  resources: ["deployments", "replicasets", "pods", "services", "ingresses", "secrets", "configmaps"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+- apiGroups: [""]
+  resources: ["namespaces"]
+  verbs: ["get"]
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: octopub-deployer-rolebinding
+subjects:
+- kind: ServiceAccount
+  name: octopub-deployer
+  apiGroup: ""
+roleRef:
+  kind: Role
+  name: octopub-deployer-role
+  apiGroup: ""
+---
+apiVersion: v1
+kind: Secret
+type: kubernetes.io/service-account-token
+metadata:
+  name: octopub-deployer-secret
+  annotations:
+    kubernetes.io/service-account.name: "octopub-deployer"
+```
+
+### Target creation script
+
+This script creates a new Octopus token account and target by extracting the token from a secret and the Kubernetes URL from the current Kubernetes context:
+
+```bash
+SERVER=$(kubectl config view -o json | jq -r '.clusters[0].cluster.server')
+TOKEN=$(kubectl get secret octopub-deployer-secret -n octopub -o json | jq -r '.data.token' | base64 -d)
+
+echo "##octopus[create-tokenaccount \
+  name=\"$(encode_servicemessagevalue "Octopub #{Octopus.Environment.Name}")\" \
+  token=\"$(encode_servicemessagevalue "${TOKEN}")\" \
+  updateIfExisting=\"$(encode_servicemessagevalue 'True')\"]"
+
+echo "##octopus[create-kubernetestarget \
+  name=\"$(encode_servicemessagevalue "Octopub #{Octopus.Environment.Name}")\" \
+  octopusRoles=\"$(encode_servicemessagevalue 'Octopub')\" \
+  clusterUrl=\"$(encode_servicemessagevalue "${SERVER}")\" \
+  octopusAccountIdOrName=\"$(encode_servicemessagevalue "Octopub #{Octopus.Environment.Name}")\" \
+  namespace=\"$(encode_servicemessagevalue "octopub")\" \
+  octopusDefaultWorkerPoolIdOrName=\"$(encode_servicemessagevalue "Laptop")\" \
+  updateIfExisting=\"$(encode_servicemessagevalue 'True')\" \
+  skipTlsVerification=\"$(encode_servicemessagevalue 'True')\"]"
+```
+
 ## Resources
 
 * [Octopus trial](https://octopus.com/start)
