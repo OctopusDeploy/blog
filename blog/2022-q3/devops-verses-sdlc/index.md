@@ -34,6 +34,12 @@ The tipping point for too-much process is further left than you think... as will
 
 ![Capability decreases after the process tipping point](process-capability.jpg)
 
+Other differences in how we apply process...
+
+Traditionally we try to predict, but modern software delivery is adaptive. In practice, this means adjusting the plan continuously instead of trying to work it out up front. You can still control risks and budgets, but the software delivered so far is a better indication of progress than a partially filled task on a plan. Small batches are either done or not, large batches need some prediction of how complete they are and this is often monumentally wrong (especially when people defer complex stuff to stay on track).
+
+Being adaptive doesn't benefit the development team. It doesn't mean they deliver "whenever they want" - it means you can test the partially completed software, get feedback, and change direction as a business, instead of committing your whole budget to your most naive plan. Each software version increases your knowledge and enables better decision making than was possible when you had no live software.
+
 This chart will differ based on your team and culture. It is hard to measure process weight as organizations with too much process often can't tell whether people are working on real work activities or artificial work activities that result from the process. Often, they designate process-related activities as *real work* and fail to spot when individuals become fully dedicated to process and delivery no value-adding work.
 
 Process and culture... a bureaucratic culture loves a prescriptive process. By standardizing exactly how work is done, they believe it will be easier to train new people and pass important industry audits. The problem is that heavyweight process makes many activities outside of software delivery simpler, while increasing the difficulty of software delivery itself.
@@ -55,8 +61,43 @@ We've gained decades of experience that shows us increasing investment in activi
 
 Another recent shift in thinking is where to place the programming activity. Traditionally, writing code has been part of a *production* phase that occurs *after* the design phase. Increasingly, we recognize that writing code is part of the *design* phase. The *production* phase of software delivery starts when the code change is committed to version control. The production phase should be managed as a [deployment pipeline](https://octopus.com/devops/continuous-delivery/what-is-a-deployment-pipeline/) and [deployment pipelines should be automated as much as possible](https://octopus.com/devops/continuous-delivery/automate-everything/).
 
+When building a bridge, 10% of the job is design and the rest is construction. In software development, the design accounts for nearly the entire job as the source code is part of the design phase. The construction phase is entirely automated. Completely different ratios and costs, a different process is needed.
+
+
+"the requirements are always changing" - instead of trying to lock down the requirements, create a process where it is an accepted reality. A product manager could tell you precisely what they want to build, but when users handle it for the first time many assumptions could be invalidated. Even a feature that launches successfully today might be invalidated by competition in a week.
+
+Only requirements tied to fundamental laws of physics will be stable. For example, software that deals in weight, distance, velocity, planets, and other domains that obey natural laws. Landing a person on the moon is a very stable requirement, even though it's complex and costly. Creating a landing page that successfully converts visitors in paying subscribers is a constantly moving target. Trying to write line-of-business applications is a constantly moving target.
+
+
+If you took a process from a high-performing team, it would be too specific to use in another team. The process is built on specific skills the team has and is appropriate the problem they are solving within the industry they work. It is hard to generalize a process enough to re-use broadly, you might end up removing too much or leaving too much in. This is why as software industry we are converging on [DevOps](https://octopus.com/devops/) and [Continuous Delivery](https://octopus.com/devops/continuous-delivery/), because research is helping us to identify the parts that are important to be in our general method, and the parts that don't seem to move the needle on performance.
+
+Although process has a tipping point that means doing it more results in worse performance, no minimum batch size has yet been found. Some teams are making the most trivial changes and putting them live, ten minutes work or even less. As your batch size reduces, you must find ways to reduce the transaction cost of delivering a software version, which is why your deployment pipeline has to be automated.
+
+A plan-driven predictive project is assessed on whether the work matched the original plan. An adaptive project is assessed on whether more value is obtained than is put into creating the software. Adaptive methods should allow you to get a greater return on investment as you can adjust your direction often.
+
+## Why plan-driven methods fail
+
+- The plan as truth - important people basically expect the plan to be delivered and nobody has the courage to say that it isn't likely to happen. Some organizations think that optimism is an important aspect of hitting dates, which could be a  misapplication of sports psychology.
+- When you are hit by unexpected events early on, you say "these events were unexpected, but with a clear run from now we'll make up the time and be back on track"... it looks like everything is fine. However, you should be saying "we had four unexpected events in the first month that put us a week behind, we should expect similar things to happen each month making us even further behind"... but the culture may prevent attitudes other than optimism.
+- It's hard to measure long tasks. A task in progress can be reported as 80% complete after week 1, and 80% complete after week 2, and so on. It's just hard to know how much longer it will take to resolve some tricky problem.
+- If you track progress by completed tasks, it is possible to see faster progress earlier in the plan when simpler tasks are being done. Although many teams know they should tackle the harder tasks first to reduce risk, their good judgment will be tempered to how they think the organization will respond to a slow-start profile. Often badly. It's easier to look on-track from day one, deferring risky items until later than it is to explain why things will start slow and gain momentum.
+
+The only way to deliver software with appropriate controls is to deliver something small quickly, and then deliver many more versions in quick succession to evolve the early version into a workable software product. The delivered software version is the reality check. Features can be seen, or they can't. There is no such thing as an 80% complete task, only 0% or 100%.
+
+## Wordle
+
+Wordle was a game where you had to guess a word in six attempts. You entered a word and would be told whether a letter featured in the word and whether a correct letter was in the correct position. Using this information, you would make a second guess that you hoped would be closer to the correct word.
+
+The game was sold to the New York Times for a seven-figure sum in 2022.
+
+There are many clones of the game available, but nobody is queuing up to buy them. Being early is highly valuable in software delivery. Even with fewer features than the copycats, Wordle was worth more money because it was first.
+
+You can win over the longer term, none of us is using the Mosaic browser, or Netscape, or Internet Explorer. Re-solving a problem in a different way can bring new value that increases the competitiveness of a software product. However, an adaptive process will help find where this value is to be found.
+
 
 ## The SDLC still exists
+
+It still exits, but we've made it so small it now hardly matters... 
 
 At it's most general, the SDLC will always exist. You have a series of steps that have to be done in a specific order. Unlike early SDLCs, you can have fewer steps and you can make each step really small. For example, your product manager could spot an opportunity to add amazing value to the product on Monday morning. They could share this idea with the development team, and have the first code change available within 3 hours. The prototype could be tried out and the idea released, refined, or dropped. All within a day.
 
