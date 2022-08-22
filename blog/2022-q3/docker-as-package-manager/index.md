@@ -16,7 +16,7 @@ tags:
 
 A constant challenge when automating DevOps tasks is ensuring you have the correct tools for the job. Linux users have long enjoyed the ability to install tools from extensive and well maintained package repositories, while macOS users have HomeBrew and MacPorts, and Windows users have Chocolatey and winget. 
 
-However, an increasing number of cloud-based tools, such as platform specific CLI tools (for example eksctl, aws-iam-authenticator, kubectl, kind, and helm) can only be reliably installed across multiple operating systems and Linux distributions via a direct binary download. Finding and downloading tools is a point of friction when automating DevOps tasks.
+However, an increasing number of cloud-based tools, such as platform-specific CLI tools (for example eksctl, aws-iam-authenticator, kubectl, kind, and helm) can only be reliably installed across multiple operating systems and Linux distributions via a direct binary download. Finding and downloading tools is a point of friction when automating DevOps tasks.
 
 Docker provides a solution by allowing CLI-based tools to be run from a Docker image. 
 
@@ -173,7 +173,7 @@ echo "##octopus[stdout-default]"
 
 ## Conclusion
 
-Docker images provide a consistent and convenient way to install and run common DevOps CLI tools, especially when compared to writing OS specific commands to download binary files from unique URLs. 
+Docker images provide a consistent and convenient way to install and run common DevOps CLI tools, especially when compared to writing OS-commands to download binary files from unique URLs. 
 
 In this post, I looked at how to run a Docker image from the command-line or in a script, and provided some tips to allow Docker images to run as drop in replacements for locally installed tools.
 
