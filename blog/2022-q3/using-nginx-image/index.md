@@ -263,6 +263,6 @@ In this post, you learned how to create a custom Docker image hosting a static w
 
 ## Learn more
 
-If you'd like to build and deploy containerized applications to AWS platforms such as EKS and ECS, try the [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/). The Builder populates a GitHub repository with a sample application built with GitHub Actions workflows and configures a hosted Octopus instance with sample deployment projects demonstrating best practices such as vulnerability scanning and Infrastructure as Code (IaC). 
+If you want to build and deploy containerized applications to AWS platforms such as EKS and ECS, try the [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/). The Builder populates a GitHub repository with a sample application built with GitHub Actions workflows and configures a hosted Octopus instance with sample deployment projects demonstrating best practices such as vulnerability scanning and Infrastructure as Code (IaC). 
 
 Happy deployments! 
