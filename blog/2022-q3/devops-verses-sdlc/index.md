@@ -24,6 +24,22 @@ Delivery all the software, at high quality, and the lowest cost
 
 ## What has changed
 
+"Code and Fix". When you develop software with no process, you realize at some point that some level of process helps. When adding some process helps, it can be tempting to introduce more process, in the hope of getting more benefit. Code and fix still exists in some organizations where the software remains small enough to be managed with no formal process. Code and fix stops being viable once a software system grows beyond a trivial size. You can normally tell when this happens as the test cycle (the time between features being completed, and features being released) will grow faster than the software.
+
+"Heavyweight". The introduction of process improves performance compared to code and fix style development. A one sentence goal is a better plan than no plan, and a sketched out design is better than no design. Over time, the plan and the design become more detailed and early experiments find that a little more detail does in fact improve software delivery performance.
+
+"Agile". When you first learn to cook, you discover that adding seasoning makes food taste better, until you add too much and the dish becomes irretrievably inedible. It is not until someone uses *too much process* that the limit of process can be discovered. This is the tipping point where process stops brining benefits. If you continue past this point, you start to negatively impact software delivery performance. This discovery was made in the 1980s, but it took a long time for the discovery to reach the mainstream. Some organizations resist the discovery even now.
+
+The tipping point for too-much process is further left than you think... as will all curves of this type, you want to remain just below the tipping point, so you have a little room to add more process should you need it. If you operate at or above the tipping point and need to add more process, you immediately hit drops in quality or productivity. People tend to overshoot the curve, often never experiencing the peak performance, so they don't notice that the additional process is limiting their software delivery.
+
+![Capability decreases after the process tipping point](process-capability.jpg)
+
+This chart will differ based on your team and culture. It is hard to measure process weight as organizations with too much process often can't tell whether people are working on real work activities or artificial work activities that result from the process. Often, they designate process-related activities as *real work* and fail to spot when individuals become fully dedicated to process and delivery no value-adding work.
+
+Process and culture... a bureaucratic culture loves a prescriptive process. By standardizing exactly how work is done, they believe it will be easier to train new people and pass important industry audits. The problem is that heavyweight process makes many activities outside of software delivery simpler, while increasing the difficulty of software delivery itself.
+
+One of the strange themes of resistance to the discovery that there is such a thing as "too much process" is that as heavyweight methods fall out of use, they are re-invented with new names. Too much process is too much, even if you use agile-sounding words.
+
 Technically, quite a lot hasn't changed. All of the authors of papers on SDLC over the years have agreed that you should work in small batches.
 
 Herbert D. Benington (Lincoln Labs phased model, 1956) said that a small prototype should be created, and then evolved towards an operational product. Winston Royce (phased software development, 1970) said that risk increases in line project size and control steps add to the cost of the project. Barry Boehm (spiral model, 1988) encouraged people to work in small batches and tailor the process for each increment according to the risks.
