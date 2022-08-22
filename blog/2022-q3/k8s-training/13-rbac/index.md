@@ -37,6 +37,7 @@ You can work through the series using the links below.
 ## Resources
 
 * [Octopus trial](https://octopus.com/start)
+* [Mixing Kubernetes Roles, RoleBindings, ClusterRoles, and ClusterBindings](https://octopus.com/blog/k8s-rbac-roles-and-bindings)
 
 ## Learn more
 
