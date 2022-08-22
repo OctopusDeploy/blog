@@ -36,7 +36,7 @@ But what if there's a better way?
 
 Every major CLI tool and platform provides a well maintained Docker image these days. Whether the images are published by vendors themselves on repositories like [Docker Hub](https://hub.docker.com/) or maintained by a third party like [Bitnami](https://bitnami.com/), there's a good chance you'll find an up-to-date version of a CLI tool you need as a Docker image.
 
-The nice thing about running Docker images is that the commands to download an image and execute it are the same across all operating systems and for all tools.
+The nice thing about running Docker images is that the commands to download and execute an image are the same across all operating systems and for all tools.
 
 To download an image, reusing any previously downloaded images and with automatic retries, run the command:
 
