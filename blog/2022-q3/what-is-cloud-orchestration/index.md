@@ -46,7 +46,7 @@ SaaS is a software licensing and delivery model where a software solution is pro
 
 PaaS platforms give you a complete cloud development and deployment environment. You can load operating systems and development tools on VMs. PaaS provides a contained environment to build cloud applications without managing licensing or underlying application infrastructure. Think of the platforms used to build SaaS applications like Microsoft Azure, Google Cloud Platform, or Amazon Web Services.
 
-IaaS provides on-demand services to deploy IT infrastructures such as virtual machines, servers, networks, and storage. IaaS is pay-as-you-go, so you pay for the infrastructure you need when you need it. Think of IaaS as the infrastructure behind PaaS and SaaS systems. Examples of IaaS platforms include Digital Ocean or AWS EC2. 
+IaaS provides on-demand services to deploy IT infrastructures such as virtual machines, servers, networks, and storage. IaaS is pay-as-you-go, so you pay for the infrastructure you need when you need it. Think of IaaS as the infrastructure behind PaaS and SaaS systems. Examples of IaaS platforms include Digital Ocean and AWS EC2. 
 
 Developers build SaaS systems on IaaS and PaaS platforms, and developers build PaaS platforms on IaaS platforms. Together, "as a service" systems allow you to achieve cloud orchestration and automation. 
 
