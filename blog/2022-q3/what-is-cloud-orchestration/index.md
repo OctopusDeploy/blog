@@ -44,7 +44,7 @@ Developers access cloud services via 3 main models:
 
 SaaS is a software licensing and delivery model where a software solution is provided on-demand and hosted by the provider. SaaS solutions often have a subscription fee or use a freemium pricing model. The benefit of this approach is that you don't have to install and host the application and can access what you need. You probably already use SaaS solutions like Dropbox, Gmail, or Netflix. 
 
-PaaS platforms give you a complete cloud development and deployment environment. You can load operating systems and development tools on VMs. PaaS provides a contained environment to build cloud applications without managing licensing or underlying application infrastructure. Think of the platforms used to build SaaS applications like Microsoft Azure, Google Cloud Platform, or Amazon Web Services.
+PaaS platforms give you a complete cloud development and deployment environment. You can load operating systems and development tools on VMs. PaaS provides a contained environment to build cloud applications without managing licensing or underlying application infrastructure. Think of the platforms used to build SaaS applications like Microsoft Azure, Google Cloud Platform, and Amazon Web Services.
 
 IaaS provides on-demand services to deploy IT infrastructures such as virtual machines, servers, networks, and storage. IaaS is pay-as-you-go, so you pay for the infrastructure you need when you need it. Think of IaaS as the infrastructure behind PaaS and SaaS systems. Examples of IaaS platforms include Digital Ocean and AWS EC2. 
 
