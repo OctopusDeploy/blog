@@ -109,7 +109,7 @@ Octopus takes the application from code to build to deployment. After the deploy
 
 Cloud orchestration and automation provide you with increased efficiency, reduced costs, support for DevOps, and increased security. 
 
-Cloud services are usually accessed via Software as a Service (SaaS), Platform as a Service (PaaS), and Infrastructure as a Service (IaaS). Saas, PaaS, and IaaS provide on-demand services for you to access resources without managing them. You can combine SaaS, PaaS, and IaaS to achieve cloud orchestration and automation. 
+Cloud services are usually accessed via Software as a Service (SaaS), Platform as a Service (PaaS), and Infrastructure as a Service (IaaS). SaaS, PaaS, and IaaS provide on-demand services for you to access resources without managing them. You can combine SaaS, PaaS, and IaaS to achieve cloud orchestration and automation. 
 
 Popular frameworks and tools for cloud orchestration include Terraform, Kubernetes, PaaS orchestration tools, and dedicated orchestration tools. 
 
