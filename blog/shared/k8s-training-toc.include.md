@@ -12,3 +12,5 @@
 * [ConfigMaps and Secrets Demo](/blog/2022-q3/k8s-training/12-configmaps-and-secrets-demo/index.md)
 * [Role Based Access Control](/blog/2022-q3/k8s-training/13-rbac/index.md)
 * [Role Based Access Control Demo](/blog/2022-q3/k8s-training/14-rbac-demo/index.md)
+* [Ingress and Ingress Controllers](/blog/2022-q3/k8s-training/15-ingress/index.md)
+* [Ingress and Ingress Controllers Demo](/blog/2022-q3/k8s-training/16-ingress-demo/index.md)
