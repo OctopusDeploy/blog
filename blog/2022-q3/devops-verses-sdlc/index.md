@@ -30,7 +30,7 @@ tags:
   - With small batches, you should be able to use a lightweight SDLC - in some cases, just Continuous Delivery applied within the correct culture... or, as we call it now, DevOps.
 
 
-## IDEAS...
+## IDEAS... some of these will push into other posts I think!
 
 ## What is the SDLC
 
@@ -110,6 +110,34 @@ If you took a process from a high-performing team, it would be too specific to u
 Although process has a tipping point that means doing it more results in worse performance, no minimum batch size has yet been found. Some teams are making the most trivial changes and putting them live, ten minutes work or even less. As your batch size reduces, you must find ways to reduce the transaction cost of delivering a software version, which is why your deployment pipeline has to be automated.
 
 A plan-driven predictive project is assessed on whether the work matched the original plan. An adaptive project is assessed on whether more value is obtained than is put into creating the software. Adaptive methods should allow you to get a greater return on investment as you can adjust your direction often.
+
+
+In scientific management, some smart people were tasked with working out the most efficient process for a large number of workers to follow. The idea was that the workers could be quickly swapped out, effectively classifying them like other resources such as machines or sheet metal. In applying this to software development, a mistake was made thinking programmers were these workers, when in fact they are the computers. The programmers are the smart people telling the replaceable worker resources (computer) what to do, using specific language sets.
+
+It also turns out that the original scientific management was wrong in applying it to the workers, too - as they were closest to the work and sometimes understood the problem better than the smart people telling them to work in a way the workers knew was inefficient.
+
+Measurement-based management works for simple repetitive work, but that's exactly the kind of thing we should be automating in DevOps. For everything else, a delagatory style of management is better. Ref: Austin
+
+
+Broad vs Concrete... lightweight methods started concrete, with Extreme Programming. Over the course of a decade, broad methods gained popularity, because they appealed to people even outside of development. The problem with broad methods is in fact this appeal. It tempts people to believe once again that they can control how developers work as they understand  the elements of the broad method. Extreme Programming fell out of favor not because Scrum was better, but because there are elements in Extreme Programming that people outside of development simply don't get. Continuous Delivery returns us to a concrete method, inspired in part by Extreme Programming, which doesn't tell you how to pass work items around, but focuses on the technical practices that make a meaningful impact on your software delivery performance. There are still principles and values to explain why the practices matter, because both values and technical practices are needed.
+
+The software delivery method should be independent of your method for generating ideas and communicating them to developers. Continuous Delivery is generally applicable to all software delivery, but context dictates how you come up with ideas and share them. Organizations of different sizes, at different stages, and in different competitive environments need to respond to their specific context. A startup with a few hundred small company customers will need to respond in a different way to an SME with 10 blue chip customers. The environment might be one of product leadership where the organization has a clear vision for how to solve the problem, or it might be more customer-driven in generating requirements.
+
+The good parts...
+
+Scrum, mostly a management framework for software development -> continuous communication across business and technical team members, small batches, and frequent retrospectives to specifically improve the process
+
+XP, a mix of management and technical framework -> a strong set of inter-related technical practices backed up with principles that explain why the exist, the management part of XP is similar enough to Scrum that Scrum is often substituted
+
+Crystal, prioritizes habitability (i.e. the people doing the process are happy to use it) and encourages frequent delivery, reflective improvement, and close communication
+
+code and fix -> CD you'll be increasing discipline and lowering the levels of chaos
+
+heavyweight -> CD you'll be lowering the transaction cost of each deployment, and will replace a lot of unneccessary work with automation, freeing up people to make more valuable contributions
+
+agile -> CD depending on your agile flavour, you might already be very close to CD. You may have to organize your deployment pipeline and add some extra automation, and you may need to add further technical practices if you were following something more like Scrum and less like XP.
+
+> imposing agile methods on reluctant people is fundamentally at odds with the whole notion of agile development - Martin Fowler
 
 ## Why plan-driven methods fail
 
