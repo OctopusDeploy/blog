@@ -44,7 +44,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: octopub-deployer-role
 rules:
-- apiGroups: ["", "extensions", "apps"]
+- apiGroups: ["", "extensions", "apps", "networking.k8s.io"]
   resources: ["deployments", "replicasets", "pods", "services", "ingresses", "secrets", "configmaps"]
   verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
 - apiGroups: [""]
