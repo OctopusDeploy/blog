@@ -34,7 +34,7 @@ Cloud automation is a subset of cloud orchestration focused on automating the in
 
 Cloud orchestration and automation complement each other to produce an automated cloud system.
 
-## As a service models
+## As a Service models
 
 Developers access cloud services via 3 main models:
 
