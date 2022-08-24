@@ -70,11 +70,24 @@ If you want to migrate to the cloud, you need to understand the best practices t
 
 ## Octopus supporting resources
 
-At Octopus, we have authored several blogs and guides that can help you with cloud-migration. 
+At Octopus, we have authored several blogs and guides that can help you with cloud-migration. We focus on educating our users on the best practices of cloud-native deployments and giving them practical guides on how to get started.
 
 ### The ten pillars of pragmatic kubernetes deployments
 
-We wrote an [eBook on getting started with Kubernetes](https://github.com/OctopusDeploy/TenPillarsK8s/releases/tag/0.1.269-main) 
+Kubernetes is a popular container orchestration tool. It is open source and works on all the major cloud platforms. Despite its popularity, it can be intimidating to learn and know where to get started. To help our users use Kubernetes, we wrote an [eBook on getting started with Kubernetes](https://github.com/OctopusDeploy/TenPillarsK8s/releases/tag/0.1.269-main). The eBook takes users through the ten pillars of pragmatic kubernetes deployments:
+
+1. Repeatable deployments
+1. Verifiable deployments
+1. Seamless deployments
+1. Recoverable deployments
+1. Visible deployments
+1. Measurable deployments
+1. Auditable deployments
+1. Standardized deployments
+1. Maintainable deployments
+1. Coordinated deployments 
+
+Throughout the guide are practical steps that users can follow in an Octopus envirionment to set up their own Kubernetes deployments.
 
 ![Ten Pillars Cover](Kubernetescover.png)
 
