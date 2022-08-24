@@ -87,7 +87,7 @@ Kubernetes is a popular container orchestration tool. It is open source and work
 1. Maintainable deployments
 1. Coordinated deployments 
 
-The guide contains practical steps that users can follow in an Octopus environment to set up their Kubernetes deployments. To support this guide, we wrote an ultimate guide to Kubernetes microservice deployments](https://octopus.com/blog/ultimate-guide-to-k8s-microservice-deployments)
+The guide contains practical steps that users can follow in an Octopus environment to set up their Kubernetes deployments. To support this guide, we wrote an [ultimate guide to Kubernetes microservice deployments](https://octopus.com/blog/ultimate-guide-to-k8s-microservice-deployments)
 
 ![Ten Pillars Cover](Kubernetescover.png)
 
