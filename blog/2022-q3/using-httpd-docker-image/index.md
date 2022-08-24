@@ -1,6 +1,6 @@
 ---
 title: Using the HTTPd Docker image
-description: A detailed look at how to use the HTTPd web server with Docker
+description: A detailed look at how to use the HTTPd web server with Docker.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2022-09-08-1400
@@ -12,11 +12,12 @@ tags:
   - DevOps
   - Containers
   - Cloud Orchestration
+  - Docker
 ---
  
-The Apache HTTP Server is one of the most popular web servers available today. [Wikipedia](https://en.wikipedia.org/wiki/Apache_HTTP_Server) reports it was either the most used, or second most used, web server in March 2022. An [official HTTPd Docker image](https://hub.docker.com/_/httpd) is available on Docker Hub and has been downloaded over one billion times, making it one of the most popular Docker images.
+The Apache HTTP Server is one of the most popular web servers available. [Wikipedia](https://en.wikipedia.org/wiki/Apache_HTTP_Server) reports it was either the most used, or second most used, web server in March 2022. An [official HTTPd Docker image](https://hub.docker.com/_/httpd) is available on Docker Hub and has been downloaded over one billion times, making it one of the most popular Docker images.
 
-In this post, I show you how to get started with the HTTPd image to host your own web sites or build custom Docker images that embed HTTPd.
+In this post, I show you how to get started with the HTTPd image to host your own websites or build custom Docker images that embed HTTPd.
 
 ## Getting started
 
@@ -77,7 +78,7 @@ docker run --rm httpd:2.4 cat /usr/local/apache2/conf/httpd.conf > my-httpd.conf
 
 The resulting file is huge at over 500 lines of code, so I won't list it here.
 
-To have HTTPd load additional configuration files, you add a single directive to the end of this file which instructs HTTPd to load files in the specified directory: 
+To have HTTPd load additional configuration files, you add a single directive to the end of this file, which instructs HTTPd to load files in the specified directory: 
 
 ```
 IncludeOptional conf/sites/*.conf
@@ -156,7 +157,7 @@ In this post, you learned how to create a custom Docker image hosting a static w
 ## Resources
 
 * [Octopus trial](https://octopus.com/start)
-* [HTTPd Docker Image](https://hub.docker.com/_/httpd)
+* [HTTPd Docker image](https://hub.docker.com/_/httpd)
 * [Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
 
 ## Learn more
