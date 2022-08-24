@@ -105,4 +105,4 @@ We have created several blogs that are relevant to cloud-native technologies. So
 
 ## Conclusion
 
-Research and surveys have shown that cloud technologies provide a clear advantage over traditional systems. To help our users get started with cloud migration, we have provided whitepapers, free tools, external reports, and Octopus-published blogs and guides. These resources help give you a base understanding of cloud technologies and some practical tools and steps to start your migration efforts. We hope that these resources are useful to you, and good luck on your cloud migration journey!
+Research and surveys have shown that cloud technologies provide a clear advantage over traditional systems. To help our users get started with cloud migration, we have provided whitepapers, free tools, external reports, and Octopus-published blogs and guides. These resources help give you a base understanding of cloud technologies and some practical tools and steps to start your migration efforts. We hope that these resources are useful to you, and that they help you get started on your cloud migration journey!
