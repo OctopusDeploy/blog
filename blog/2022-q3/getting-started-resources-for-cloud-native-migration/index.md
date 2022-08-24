@@ -62,7 +62,7 @@ State of the cloud reports gives a snapshot of the significant trends toward clo
 
 ## Best-practice reports
 
-To migrate to the cloud, you need to understand the best practices that major cloud providers have used to become cloud-native. These reports suggest that planning is essential, and companies face implementation and operational concerns. When moving towards cloud-native, hybrid approaches are recommended to bridge the gap between traditional systems and complete cloud-native solutions.
+To migrate to the cloud, it's helpful to understand the best practices that major cloud providers have used to become cloud-native. These reports suggest that planning is essential, and companies face implementation and operational concerns. When moving towards cloud-native, hybrid approaches are recommended to bridge the gap between traditional systems and complete cloud-native solutions.
 
 - [Amazon](https://pages.awscloud.com/rs/112-TZM-766/images/AWS_Migration_8_Best_Practices_ebook_final.pdf)
 - [Microsoft](https://azure.microsoft.com/en-au/migration/migration-journey/#how-to-migrate)
