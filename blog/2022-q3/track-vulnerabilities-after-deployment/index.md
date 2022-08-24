@@ -1,45 +1,43 @@
 ---
 title: Why you should track vulnerabilities after deployment
-description: A surface-level look at why you should track vulnerabilities after deployment, plus the ways how.
+description: Find out why you should track vulnerabilities after deployment, plus the ways how.
 author: andrew.corrigan@octopus.com
 visibility: private
-published: 3020-01-01-1400
+published: 2022-09-06-1400
 metaImage: placeholderimg.png
 bannerImage: placeholderimg.png
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags: 
   - DevOps
-  - Containers Series
   - Containers
   - Cloud Orchestration
   - Testing
-  - Everything as Code
 ---
 
-Dealing with vulnerabilities is an unfortunate but essential part of software development. Even recently, we’ve seen [high-profile examples that highlight the importance of proactive risk management](https://octopus.com/blog/octopus-deploy-log4j-response), proving that responsibility for vulnerabilities doesn't stop at deployment.
+Dealing with vulnerabilities is an unfortunate but essential part of software development. There are [high-profile examples that highlight the importance of proactive risk management](https://octopus.com/blog/octopus-deploy-log4j-response), proving that responsibility for vulnerabilities doesn't stop at deployment.
 
-In this post, we explore:
+In this post, I explore:
 
 - Why you should track vulnerabilities after deploying your software
-- A few ways to track vulnerabilities and how to keep your users and business safe
+- Ways to track vulnerabilities and how to keep your users and business safe
 
-## All vulnerabilities are found *after* deployment
+## Vulnerabilities are found *after* deployment
 
-Let's zero in on the word 'after' from our page heading for a moment. It's a simple fact that software providers discover vulnerabilities *after* deployment, not before.
+It's a simple fact that software providers discover vulnerabilities *after* deployment, not before.
 
 There are 2 semantic reasons for this:
  
-- If testing picks up a would-be vulnerability before deployment, the code will never make it to an environment to be a vulnerability
+- If testing picks up a would-be vulnerability before deployment, the code never makes it to an environment to be a vulnerability
 - An undetected, yet-to-be deployed vulnerability isn't really a vulnerability until it hits an environment where someone can exploit it
 
-Semantics aside, it's vital to realize that you can't expect testing to catch every problem in your code. Problems will sneak through no matter how rigorous your internal testing, automated or otherwise, as you won't always know what to look for.
+Semantics aside, it's vital to know testing can't catch every problem in your code. Problems sneak through no matter how rigorous your internal testing, automated or otherwise, as you don't always know what to look for.
 
-And for this reason, you should never rely solely on internal pre-deployment testing. If you're not tracking vulnerabilities *after* deployment, then you're not really tracking them at all.
+For this reason, you should never rely solely on internal pre-deployment testing. If you're not tracking vulnerabilities *after* deployment, then you're going to miss some.
 
-## You definitely want to be the ones finding a vulnerability
+## You want to be the ones finding a vulnerability
 
-If you ship a vulnerability, it's best that *you* find it before someone with bad intentions. Hackers thrive on unmonitored apps and infrastructure, and not checking for vulnerabilities makes their lives easier.
+If you ship a vulnerability, it's best *you* find it before someone with bad intentions. Hackers thrive on unmonitored apps and infrastructure, and not checking for vulnerabilities makes their lives easier.
 
 Failure to check for, find, and resolve vulnerabilities can lead to:
 
@@ -47,9 +45,9 @@ Failure to check for, find, and resolve vulnerabilities can lead to:
 - Risks to company, employee, and customer data
 - Damage to your company's reputation and earnings
 
-You have a duty of care to your users, and doing everything you can to protect their interests is paramount. Not tracking vulnerabilities after deployment does your users a huge disservice, putting them and your own business interests at risk.
+You have a duty of care to your users to protect their interests. Not tracking vulnerabilities after deployment does your users a disservice, putting them and your own business interests at risk.
 
-It's not just those with ill-intent you need to worry about, either. Often, security researchers and library authors find vulnerabilities in code dependencies long after they're first deployed. With a lot of time passing before discovery, it means there's a good chance others included the vulnerabilities in their own software and possibly even iterated on it.
+It's not just those with ill-intent you need to worry about, either. Often, security researchers and library authors find vulnerabilities in code dependencies long after they're first deployed. With a lot of time passing before discovery, it means there's a good chance others included the vulnerabilities in their own software and possibly iterated on it.
 
 This brings us nicely to our next point.
 
@@ -59,19 +57,19 @@ The short sprints of DevOps processes help limit the likelihood of iterating on 
 
 If you don't track what happens after deployment, you reintroduce the risk of iterating on vulnerabilities. This can make vulnerabilities harder to find, troubleshoot, and fix before it's too late.
 
-Check for vulnerabilities after deployment and you can save yourself (and others) time and stress in the future.
+Checking for vulnerabilities after deployment can save yourself (and others) time and stress in the future.
 
 ## Managing vulnerabilities
 
-Now we understand *why* you should track vulnerabilities after deployment, let's look at *how*.  
+Now you understand *why* you should track vulnerabilities after deployment, let's look at *how*.  
   
 Here are a few proactive things you can do to help protect your interests.
 
 ### Patch and update your tools and infrastructure often
 
-While you are responsible for the safety of your own product, providers of the tools and infrastructure you use are fallible too. Even the biggest software and service providers, such as Microsoft, need to fix exploits.
+While you're responsible for the safety of your own product, providers of the tools and infrastructure you use are fallible too. Even the biggest software and service providers, such as Microsoft, need to fix exploits.
 
-Amazon, as another example, uses the [Shared Responsibility Model](https://aws.amazon.com/compliance/shared-responsibility-model/). This model outlines expectations between the AWS services they offer, and their customers. In a nutshell, AWS are responsible for security *of* the cloud, and customers are responsible for security *in* in the cloud. This means the security of the operating systems and software you run on AWS infrastructure is on you.
+Amazon, as another example, uses the [Shared Responsibility Model](https://aws.amazon.com/compliance/shared-responsibility-model/). This model outlines expectations between the AWS services they offer and their customers. In a nutshell, AWS are responsible for security *of* the cloud, and customers are responsible for security *in* the cloud. This means you're responsible for the security of the operating systems and software you run on AWS infrastructure.
 
 Regardless of your provider, though, you must ensure the products you use to deliver your software are:
 
@@ -94,7 +92,7 @@ The following websites report on new vulnerabilities and other cyber security co
 
 ### Use a vulnerability scanner
 
-Finally, you can use vulnerability scanners, which proactively check code and tools for known vulnerabilities.
+You can also use vulnerability scanners, which proactively check code and tools for known vulnerabilities.
 
 #### Example vulnerability scanners for code:
 
@@ -112,16 +110,8 @@ Finally, you can use vulnerability scanners, which proactively check code and to
 - [PortSwigger Burp Suite](https://portswigger.net/burp)  
 - [Amazon Inspector](https://aws.amazon.com/inspector/)
 
-## What's next?
+## Conclusion
 
-In this post we explored why you should check for vulnerabilities after deployment, and looked at some strategies to help manage that.
+In this post, I explored why you should check for vulnerabilities after deployment, and looked at some strategies to help manage that.
 
-Why not check out some of our recent Octopus blog posts, such as:
-
-- link
-- to
-- some
-- recent
-- posts
-
-Happy deployments (and follow-up testing)!
+Happy deployments!
