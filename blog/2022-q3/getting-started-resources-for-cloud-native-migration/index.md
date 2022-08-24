@@ -15,7 +15,7 @@ tags:
 
 Cloud-native technologies have emerged as a way to gain a competitive advantage through benefits like scalability, economies of scale, and global reach. Migrating to the cloud and modernizing systems are an important issues for most IT professionals. Despite the clear need, there can be some challenges to knowing where to start.
 
-At Octopus, we meet this challenge by providing some resources for getting started with cloud migration. These resources are a mix of Octopus developed tools, whitepapers and guides as well as external reports. This list of resources is exposes to you a wide variety of sources so you can have an informed opinion about the benefits of cloud but also practical tools to get started.
+At Octopus, we meet this challenge by providing some resources for getting started with cloud migration. These resources are a mix of Octopus developed tools, whitepapers and guides as well as external reports. This list of resources exposes to you a wide variety of sources so you can have an informed opinion about the benefits of cloud but also practical tools to get started.
 
 ## Whitepapers
 
