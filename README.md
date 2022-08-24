@@ -20,6 +20,6 @@ Posts are organized in year-month directories (i.e., 2020-01/), find or create t
 
 If you'd like feedback on a work in progress, create a draft PR and tag @TeganAli with your request.
 
-When you're happy with your post and think it's ready to be reviewed, create a PR and assign @TeganAli as reviewer.
+When you're happy with your post and think it's ready to be reviewed, create a PR, assign @TeganAli as reviewer, and drop a note in Slack in #topic-content-marketing.
 
 If you're drafting a post that you'd like to keep private until it's published, use the [internal blog drafts repo](https://github.com/OctopusDeploy/internal-blog-drafts).
