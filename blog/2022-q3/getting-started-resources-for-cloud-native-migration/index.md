@@ -33,17 +33,17 @@ The importance of continuous delivery whitepaper is a laye
 
 We have developed some free tools to address common customer problems. These tools help remove some of the barriers to getting started with modern CI/CD pipelines.
 
-### Workflow generator
+### Workflow Builder
 
-The workflow generator was born out of a need to get users started quickly in a cloud CI/CD workflow. Users provide a GitHub repository and credentials and the workflow generator will automatically set up a deployment pipeline, managed by Octopus and deployed to a cloud platform.
+The Octopus workflow builder was born out of a need to get users started quickly in a cloud CI/CD workflow. Users provide a GitHub repository and credentials and the workflow builder will automatically set up a deployment pipeline, managed by Octopus and deployed to a cloud platform.
 
-Pictures
+![Workflow Builder](workflowbuilder.png "width=500")
 
 ### Kubernetes YAML generator
 
 When you are working with Kubernetes, you will need to supply a YAML configuration file for your deployments. The Kubernetes YAML generator is a UI-based tool that lets you easily generate Kubernetes compliant YAML code. This code can be pasted directly into the Octopus UI to help you get started quickly with Kubernetes deployments.
 
-Pictures
+![YAML Generator](yaml-generator.png "width=500")
 
 ## External reports
 
