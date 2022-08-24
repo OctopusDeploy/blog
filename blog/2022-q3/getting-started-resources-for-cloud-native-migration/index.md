@@ -33,7 +33,7 @@ The importance of continuous delivery whitepaper provides a deep dive into conti
 
 ## Octopus free tools
 
-We have developed some free tools to address common customer problems. These tools help remove some of the barriers to getting started with modern CI/CD pipelines.
+While supporting our customers, we are seeing that customers would like to set up deployment pipelines but there are common barriers to getting started. Often, customers have a repository they want to deploy but to practically do this, they are required to perform scaffolding steps to support the deployment. These steps require knowledge of cloud platforms, containers, image repositories, infrastructure as code (IaC) and more. This locks out a portion of our userbase who don't have the time to learn these technologies and just want a simple deployment with a few clicks of a button. To address these issues, we have developed some free tools to help remove some of the barriers to getting started with modern CI/CD pipelines.
 
 ### Workflow Builder
 
