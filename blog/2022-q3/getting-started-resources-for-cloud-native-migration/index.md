@@ -2,7 +2,7 @@
 title: "Eight resources to get started with migrating to the cloud"
 description: This blog provides some resources to gettings started with migrating to the cloud. We supply some whitepapers, free tools, external reports, and Octopus authored blogs and guides to help users be informed about the cloud and get started.
 author: terence.wong@octopus.com
-visibility: public
+visibility: private
 published: 2023-08-24-1400
 metaImage: blogimage-whatiscloudorchestrationcloudautomation-2022.png
 bannerImage: blogimage-whatiscloudorchestrationcloudautomation-2022.png
