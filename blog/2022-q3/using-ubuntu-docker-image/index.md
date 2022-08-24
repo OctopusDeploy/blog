@@ -9,9 +9,10 @@ bannerImage: blogimage-usingdockeruniversalpkgmanager-2022.png
 bannerImageAlt: The Octopus Deploy and Docker logos connected by plugs with little stars around the connection.
 isFeatured: false
 tags: 
+  - DevOps
   - Containers
   - Docker
-  - DevOps
+
 ---
 
 The official Ubuntu Docker image is the most downloaded image from Docker Hub. With over one billion downloads, Ubuntu has proven itself to be a popular and reliable base image on which to build your own custom Docker images.
@@ -20,7 +21,7 @@ In this post, I show you how to make the most of the base Ubuntu images while bu
 
 ## An example Dockerfile
 
-This is an example `Dockerfile` that includes the tweaks discussed in this post. We'll go through each of the settings to explain what value they add:
+This is an example `Dockerfile` that includes the tweaks discussed in this post. I go through each of the settings to explain what value they add:
 
 ```Dockerfile
 FROM ubuntu:22.04
@@ -40,7 +41,7 @@ Build the image with the command:
 docker build . -t myubuntu
 ```
 
-Now that we've seen how to build a custom image from the Ubuntu base image, let's go through each of the settings to understand why they were added.
+Now that you've seen how to build a custom image from the Ubuntu base image, let's go through each of the settings to understand why they were added.
 
 ## Selecting a base image
 
@@ -50,9 +51,9 @@ LTS releases are supported for 5 years, and the associated Docker images are als
 
 > These images are also kept up to date, with the publication of rolled up security updated images on a regular cadence, and you should automate your use of the latest images to ensure consistent security coverage for your users.
 
-When creating Docker images hosting production software, it makes sense to base your images from the latest LTS release. This allows DevOps teams to rebuild their custom images on top of the latest LTS base image, which automatically includes all updates, but is also not likely to include the kind of breaking changes that can be introduced between major operating system versions.
+When creating Docker images hosting production software, it makes sense to base your images from the latest LTS release. This allows DevOps teams to rebuild their custom images on top of the latest LTS base image, which automatically includes all updates, but is also unlikely to include the kind of breaking changes that can be introduced between major operating system versions.
 
-I have used the Ubuntu 22.04 LTS Docker image as the base for this image:
+I used the Ubuntu 22.04 LTS Docker image as the base for this image:
 
 ```Dockerfile
 FROM ubuntu:22.04
@@ -60,7 +61,7 @@ FROM ubuntu:22.04
 
 ## Not installing suggested or recommended dependencies
 
-Some packages have a list of suggested or recommended dependencies that are not required but are installed by default. These additional dependencies can add to the size of the final Docker image unnecessarily, as noted in [this blog post on the Ubuntu website](https://ubuntu.com/blog/we-reduced-our-docker-images-by-60-with-no-install-recommends). 
+Some packages have a list of suggested or recommended dependencies that aren't required but are installed by default. These additional dependencies can add to the size of the final Docker image unnecessarily, as noted in [this blog post on the Ubuntu website](https://ubuntu.com/blog/we-reduced-our-docker-images-by-60-with-no-install-recommends). 
 
 To disable the installation of these optional dependencies for all invocations of `apt-get`, the configuration file at `/etc/apt/apt.conf.d/00-docker` is created with the following settings:
 
@@ -71,7 +72,7 @@ RUN echo 'APT::Install-Recommends "0";' >> /etc/apt/apt.conf.d/00-docker
 
 ## Installing additional packages
 
-Most custom images based on Ubuntu require additional packages to be installed. For example, to run custom applications written in Python, PHP, Java, Node.js, or DotNET, our custom image must have the packages associated with those languages installed.
+Most custom images based on Ubuntu require you to install additional packages. For example, to run custom applications written in Python, PHP, Java, Node.js, or DotNET, your custom image must have the packages associated with those languages installed.
 
 On a typical workstation or server, packages are installed with a simple command like:
 
@@ -79,7 +80,7 @@ On a typical workstation or server, packages are installed with a simple command
 apt-get install python3
 ```
 
-The process of installing new software in a Docker image is non-interactive, which means we do not have an opportunity to respond to prompts. This means we must add the `-y` argument to automatically answer "yes" to the prompt asking to continue with the package installation:
+The process of installing new software in a Docker image is non-interactive, which means you don't have an opportunity to respond to prompts. This means you must add the `-y` argument to automatically answer "yes" to the prompt asking to continue with the package installation:
 
 ```Dockerfile
 RUN apt-get install -y python3
@@ -93,7 +94,7 @@ The installation of some packages attempts to open additional prompts to further
 unable to initialize frontend: Dialog
 ```
 
-These errors can be ignored as they do not prevent the packages from being installed. But the errors can be prevented by setting the `DEBIAN_FRONTEND` environment variable to `noninteractive`:
+These errors can be ignored as they don't prevent the packages from being installed. But the errors can be prevented by setting the `DEBIAN_FRONTEND` environment variable to `noninteractive`:
 
 ```Dockerfile
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y python3
@@ -103,7 +104,7 @@ The Docker website provides [official guidance on the use of the DEBIAN_FRONTEND
 
 ## Cleaning up package lists
 
-Before any packages can be installed, the package list must be updated by calling:
+Before any packages can be installed, you need to update the package list by calling:
 
 ```Dockerfile
 RUN apt-get update
@@ -111,7 +112,7 @@ RUN apt-get update
 
 However, the package list is of little value after the required packages have been installed. It's best practice to remove any unnecessary files from a Docker image to ensure the resulting image is as small as it can be. To clean up the package list after the required packages have been installed, the files under `/var/lib/apt/lists/` are deleted.
 
-Here we update the package list, install the required packages, and clean up the package list as part of a single command, broken up over multiple lines with a backslash at the end of each line:
+Here you update the package list, install the required packages, and clean up the package list as part of a single command, broken up over multiple lines with a backslash at the end of each line:
 
 ```Dockerfile
 RUN DEBIAN_FRONTEND=noninteractive \
@@ -124,9 +125,11 @@ RUN DEBIAN_FRONTEND=noninteractive \
 
 By default, the root user is run in a Docker container. The root user typically has far more privileges than are required when running a custom application, and so creating a new user without root privileges provides better security.
 
-The `useradd` command [provides a non-interactive way to create new users](https://manpages.ubuntu.com/manpages/jammy/en/man8/useradd.8.html). This is not to be confused with the `adduser` command, which is a [higher level wrapper](https://manpages.ubuntu.com/manpages/jammy/en/man8/adduser.8.html) over `useradd`.
+The `useradd` command [provides a non-interactive way to create new users](https://manpages.ubuntu.com/manpages/jammy/en/man8/useradd.8.html). 
 
-After all configuration files have been edited and packages have been installed, we create a new user called `apprunner`:
+This isn't to be confused with the `adduser` command, which is a [higher level wrapper](https://manpages.ubuntu.com/manpages/jammy/en/man8/adduser.8.html) over `useradd`.
+
+After all configuration files have been edited and packages have been installed, you create a new user called `apprunner`:
 
 ```Dockerfile
 RUN useradd -ms /bin/bash apprunner
@@ -140,7 +143,7 @@ USER apprunner
 
 ## Conclusion
 
-It's possible to use the base Ubuntu Docker images with little further customization beyond installing any required additional packages. But with a few tweaks to limit optional packages from being installed, cleaning up package lists after the packages are installed, and creating new users with limited permissions to run custom applications, we can create smaller and more secure images for our custom applications.
+It's possible to use the base Ubuntu Docker images with little customization beyond installing any required additional packages. But with a few tweaks to limit optional packages from being installed, cleaning up package lists after the packages are installed, and creating new users with limited permissions to run custom applications, you can create smaller and more secure images for your custom applications.
 
 ## Resources
 
@@ -150,6 +153,6 @@ It's possible to use the base Ubuntu Docker images with little further customiza
 
 ## Learn more
 
-If you want to build and deploy containerized applications to AWS platforms such as EKS and ECS, the [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/) populates a GitHub repository with a sample application built with GitHub Actions workflows and configures a hosted Octopus instance with sample deployment projects demonstrating best practices such as vulnerability scanning and Infrastructure as Code (IaC). 
+If you want to build and deploy containerized applications to AWS platforms such as EKS and ECS, try the [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/). The Builder populates a GitHub repository with a sample application built with GitHub Actions workflows and configures a hosted Octopus instance with sample deployment projects demonstrating best practices such as vulnerability scanning and Infrastructure as Code (IaC). 
 
 Happy deployments! 
