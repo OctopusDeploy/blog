@@ -27,7 +27,9 @@ The migrating to the cloud whitepaper provides an argument for migrating to the 
 
 ### Importance of continuous delivery whitepaper
 
-The importance of continuous delivery whitepaper is a laye
+The importance of continuous delivery whitepaper makes the case for using continuous delivery in your deployment practices.
+
+![Importance of continuous delivery whitepaper cover](importance-of-continuous-delivery-whitepaper.png "width=500")
 
 ## Octopus free tools
 
@@ -64,6 +66,8 @@ At Octopus, we have authored several blogs and guides that can help you with clo
 ### The ten pillars of pragmatic kubernetes deployments
 
 We wrote an [eBook on getting started with Kubernetes](https://github.com/OctopusDeploy/TenPillarsK8s/releases/tag/0.1.269-main) 
+
+![Ten Pillars Cover](Kubernetescover.png "width=500")
 
 ### Relevant blog posts
 
