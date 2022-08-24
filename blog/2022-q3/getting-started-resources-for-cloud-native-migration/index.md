@@ -43,7 +43,7 @@ The Octopus workflow builder was born out of a need to get users started quickly
 
 ### Kubernetes YAML generator
 
-When you are working with Kubernetes, you will need to supply a YAML configuration file for your deployments. The Kubernetes YAML generator is a UI-based tool that lets you easily generate Kubernetes compliant YAML code. This code can be pasted directly into the Octopus UI to help you get started quickly with Kubernetes deployments.
+When you are working with Kubernetes, you will need to supply a YAML configuration file for your deployments. The Kubernetes YAML generator is a UI-based tool that lets you easily generate Kubernetes compliant YAML code. This code can be pasted directly into the Octopus UI to help you get started quickly with Kubernetes deployments. [We wrote a blog on how to get started and use the Kubernetes YAML generator.](https://octopus.com/blog/octopus-kubernetes-yaml-generator)
 
 ![YAML Generator](yaml-generator.png "width=500")
 
