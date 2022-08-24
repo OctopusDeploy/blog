@@ -1,9 +1,9 @@
 ---
 title: "Eight resources to get started with migrating to the cloud"
-description: The post discusses cloud orchestration and cloud automation, as a service models, cloud orchestration tooling, and where Octopus fits in as a cloud-agnostic deployment tool.
+description: This blog provides some resources to gettings started with migrating to the cloud. We supply some whitepapers, free tools, external reports, and Octopus authored blogs and guides to help users be informed about the cloud and get started.
 author: terence.wong@octopus.com
 visibility: public
-published: 2022-08-24-1400
+published: 2023-08-24-1400
 metaImage: blogimage-whatiscloudorchestrationcloudautomation-2022.png
 bannerImage: blogimage-whatiscloudorchestrationcloudautomation-2022.png
 bannerImageAlt: A cog surrounded by three arrows connected in a circle sits amongst clouds
@@ -13,21 +13,21 @@ tags:
   - Cloud Orchestration
 ---
 
-Cloud-native technologies have emerged as a way to gain a competitive advantage through benefits like scalability, economies of scale, and global reach. Migrating to the cloud and modernizing systems is an important issue for most IT professionals. Despite the clear need, there can be some challenges to knowing where to start.
+Cloud-native technologies have emerged as a way to gain a competitive advantage through benefits like scalability, economies of scale, and global reach. Migrating to the cloud and modernizing systems are an important issues for most IT professionals. Despite the clear need, there can be some challenges to knowing where to start.
 
-At Octopus, we meet this challenge by providing some resources for getting started with cloud migration. These resources are a mix of internally developed tools, whitepapers and guides as well as external reports 
+At Octopus, we meet this challenge by providing some resources for getting started with cloud migration. These resources are a mix of Octopus developed tools, whitepapers and guides as well as external reports. This list of resources is exposes to you a wide variety of sources so you can have an informed opinion about the benefits of cloud but also practical tools to get started.
 
 ## Whitepapers
 
-At Octopus, we want to provide you with in-depth research about issues that are important to us and our customers. As a cloud-native dedicated continuous delievery tool, we are invested in continuous delivery and cloud-native technologies.
+We want to provide you with in-depth research about issues that are important to us and our customers. As a cloud-native dedicated continuous delievery tool, we are invested in continuous delivery and cloud-native technologies. We have developed two whitepapers to address these issues to help inform our readers and give them actionable steps to move forward.
 
 ### Migrating to the cloud whitepaper
 
-The migrating to the cloud whitepaper provides an argument for migrating to the cloud as well as first steps to take when migrating.
+The migrating to the cloud whitepaper provides an argument for migrating to the cloud as well as first steps to take when migrating. It contains researched backed reports and distills cloud migration into a series of phases: strategy, implementation and operation. The whitepaper provides clear, actionable steps that your company can take when getting started with migrating to the cloud.
 
 ### Importance of continuous delivery whitepaper
 
-The importance of continuous delivery whitepaper makes the case for using continuous delivery in your deployment practices.
+The importance of continuous delivery whitepaper provides a deep dive into continuous delivery, the best practice principles, the benefits and why continuous delivery’s technical capabilities are fundamental to a successful DevOps adoption. The white paper includes case studies and  discussions on specific challenges your company may face when implementing continuous delivery.
 
 ![Importance of continuous delivery whitepaper cover](importance-of-continuous-delivery-white-paper.png)
 
@@ -53,11 +53,20 @@ When you are validating your cloud-native approach, it is useful to be aligned w
 
 ## State of the cloud reports
 
-State of the cloud reports give a snapshot in time of the major trends towards cloud-native.
+State of the cloud reports give a snapshot in time of the major trends towards cloud-native. The main trends in these reports are that cloud usage has increased and the trend is increasing towards the future. Companies are having to modernize their systems and workforce to maintain a competitive advantage.
+
+- [Hashicorp](https://www.hashicorp.com/state-of-the-cloud)
+- [Flexera](https://resources.flexera.com/web/pdf/Flexera-State-of-the-Cloud-Report-2022.pdf)
+- [Konveyor](https://www.konveyor.io/modernization-report/?utm_source=thenewstack&utm_medium=website&utm_campaign=platform)
+- [Foundary](https://resources.foundryco.com/download/cloud-computing-executive-summary)
 
 ## Best-practice reports
 
-If you want to migrate to the cloud, you need to understand the best practices that major cloud providers have used to become cloud native.
+If you want to migrate to the cloud, you need to understand the best practices that major cloud providers have used to become cloud native. These reports all suggest that planning is important and that there are implementation and operational concerns that companies will face. When moving towards cloud-native, hybrid approaches are recommended to bridge the gap between traditional systems and full cloud-native solutions.
+
+- [Amazon](https://pages.awscloud.com/rs/112-TZM-766/images/AWS_Migration_8_Best_Practices_ebook_final.pdf)
+- [Microsoft](https://azure.microsoft.com/en-au/migration/migration-journey/#how-to-migrate)
+- [Google](https://cloud.google.com/architecture/migration-to-gcp-getting-started)
 
 ## Octopus supporting resources
 
@@ -79,3 +88,7 @@ We have created several blogs that are relevant to cloud-native technologies. He
 1. [Monolith versus microservices](https://octopus.com/blog/monoliths-vs-microservices)
 1. [The benefits of containerization](https://octopus.com/blog/benefits-of-containerization)
 1. [The ultimate guide to Kubernetes microservice deployments](https://octopus.com/blog/ultimate-guide-to-k8s-microservice-deployments)
+
+## Conclusion
+
+This post has given you some resorces for getting started with cloud migration. We have provided some whitepapers, free tools, external reports, and Octopus published blogs and guides. These resources can provide you with a base understanding of cloud technologies and some practical tools and steps to get started with your migration efforts. 
