@@ -29,7 +29,7 @@ The migrating to the cloud whitepaper provides an argument for migrating to the 
 
 The importance of continuous delivery whitepaper makes the case for using continuous delivery in your deployment practices.
 
-![Importance of continuous delivery whitepaper cover](importance-of-continuous-delivery-whitepaper.png "width=500")
+![Importance of continuous delivery whitepaper cover](importance-of-continuous-delivery-white-paper.png "width=500")
 
 ## Octopus free tools
 
