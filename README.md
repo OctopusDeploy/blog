@@ -9,7 +9,8 @@ The repo includes [templates](templates/readme.md) to help you get started.
 See the [Octopus style guide](https://www.octopus.design/writing/) for the following information:
 
 - [Markdown quick reference](https://www.octopus.design/writing/markdown/)
-- [Writing tips for the blog](https://www.octopus.design/writing/writing-tips-blog/) 
+- [Writing tips for the blog](https://www.octopus.design/writing/educational-content/) 
+- [The Octopus voice and style](https://www.octopus.design/writing/writing-for-octopus/)
 
 # How to submit a blog post 
 
