@@ -87,20 +87,21 @@ Kubernetes is a popular container orchestration tool. It is open source and work
 1. Maintainable deployments
 1. Coordinated deployments 
 
-Throughout the guide are practical steps that users can follow in an Octopus envirionment to set up their own Kubernetes deployments.
+Throughout the guide are practical steps that users can follow in an Octopus envirionment to set up their own Kubernetes deployments. To support this guide we wrote an ultimate guide to Kubernetes microservice deployments](https://octopus.com/blog/ultimate-guide-to-k8s-microservice-deployments)
 
 ![Ten Pillars Cover](Kubernetescover.png)
 
-### Relevant blog posts
+### Other relevant blog posts
 
-We have created several blogs that are relevant to cloud-native technologies. Here are a few:
+We have created several blogs that are relevant to cloud-native technologies. Some of these blogs are educational about the benefits of the cloud, others are instructional, guiding you through how to set up a cloud-native workflow:
 
 1. [What is cloud orchestration?](https://octopus.com/blog/what-is-cloud-orchestration)
 1. [Microservices and frameworks](https://octopus.com/blog/microservices-and-frameworks)
 1. [Containerization - what you need to get started](https://octopus.com/blog/get-started-containers)
 1. [Monolith versus microservices](https://octopus.com/blog/monoliths-vs-microservices)
 1. [The benefits of containerization](https://octopus.com/blog/benefits-of-containerization)
-1. [The ultimate guide to Kubernetes microservice deployments](https://octopus.com/blog/ultimate-guide-to-k8s-microservice-deployments)
+1. [We have an entire series on continuous integration (CI) which gives practical examples of CI servers working in cloud-native technlogies](https://octopus.com/blog/tag/CI%20Series)
+
 
 ## Conclusion
 
