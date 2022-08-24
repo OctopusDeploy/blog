@@ -4,7 +4,7 @@ This repository contains the [Octopus.com/blog](https://octopus.com/blog/) posts
 
 Authors must sign the [Contribution License Agreement (CLA)](https://cla-assistant.io/OctopusDeploy/docs) before we can accept your contribution.
 
-The repo includes [templates](templates/readme.md) to help you get started.
+The repo includes [templates](https://github.com/OctopusDeploy/blog/tree/master/templates) to help you get started.
 
 See the [Octopus style guide](https://www.octopus.design/writing/) for the following information:
 
