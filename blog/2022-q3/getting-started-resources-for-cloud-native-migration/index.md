@@ -49,7 +49,7 @@ When working with Kubernetes, you must supply a YAML configuration file for your
 
 ## External reports
 
-When validating your cloud-native approach, aligning with the broader cloud community is helpful. External reports provide surveys of cloud usage, best practices, and use cases that you can use to back up your strategies.
+When validating your cloud-native approach, aligning with the broader cloud community is helpful. If you are wanting to convince senior management to migrate to the cloud, you will need a research backed statistics to valudate your argument. External reports provide surveys of cloud usage, best practices, and use cases that you can use to back up your strategies and gain momentum for cloud migration in your company.
 
 ## State of the cloud reports
 
