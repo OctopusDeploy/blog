@@ -12,7 +12,19 @@ tags:
   - DevOps
 ---
 
-The software development life cycle (SDLC) is a structured and methodical approach to software delivery. It was created in the 1960s to help with the development of large-scale business systems. After reaching a peak in the 1980s, traditional approaches based on the SDLC have increasingly been replaced with new approaches.
+
+Systems development life cycle - a specific structured and methodical approach to building information systems, often with both software and hardware.
+
+Software development life cycle - sometimes a software-only version of systems development life cycle, often used to mean just *whatever process you are using*, though it spans the full process from initial idea all the way through to retiring the software, hence life cycle. Traditionally, the phases have been reasonably comparable to the systems development life cycle... 
+
+Ask ten people and get eleven answers, so for the purposes of this article we'll focus on traditional software development life cycle, which is closely aligned to systems development life cycle. We'll also explain how modern software delivery is diverging from SDLC and why.
+
+Stupid terminology in our industry. I'll need to make a distinction between the formal and non-formal SDLC.
+
+
+
+
+The software development life cycle (SDLC) is a structured and methodical approach to software delivery. It was created in the 1960s to help with the development of large-scale business systems. After reaching a peak in the 1980s, traditional models based on the SDLC have increasingly been replaced with new approaches.
 
 There were good reasons for the introduction of the SDLC, but also some good reasons to move to modern software delivery methods now the context and constraints of software development have changed.
 
@@ -119,5 +131,13 @@ The real legacy of the SDLC should be what we learned from the first 4 decades o
 - It is possible to have too much process
 
 With the right culture and capabilities, and a deployment pipeline that is as automated as possible, you should be able to deliver frequent high-quality software versions.
+
+## Summary
+
+When you think of the software development life cycle now, just take you modern DevOps process and extend it back to the creation of the original idea, and into the future to imagine how the software will be retired. The main part, the bit in the middle where you continually increase the value of the software and improve its operation, is where most of the time and money is spent.
+
+The traditional formal method based on systems development life cycles is no longer appropriate to software delivery, given the huge changes to the constraints and to business competition.
+
+Further reading?
 
 Happy deployments! 
