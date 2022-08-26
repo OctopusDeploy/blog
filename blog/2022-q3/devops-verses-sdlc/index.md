@@ -12,6 +12,18 @@ tags:
   - DevOps
 ---
 
+If you are using a traditional software development life cycle (SDLC) you may have questions about where DevOps fits in. Can the two exist together, or are there too many conflicts? This article addresses confusion and conflicts between approaches.
+
+After summarizing DevOps and SDLC and defining success criteria for software delivery, we can address whether they can co-exist.
+
+## What is the SDLC
+
+The concept of a system life cycle emerged in the 1960s and offered a structured and methodical way to build, maintain, and eventually retire an information system. Early systems development projects required both software and hardware, such as [Project LINCOLN](https://www.ll.mit.edu/about/history/sage-semi-automatic-ground-environment-air-defense-system), which involved the introduction of new computer memory technology alongside software development.
+
+The software development life cycle is focused on the software aspect of systems.
+
+
+
 
 Systems development life cycle - a specific structured and methodical approach to building information systems, often with both software and hardware.
 
@@ -31,8 +43,6 @@ There were good reasons for the introduction of the SDLC, but also some good rea
 :::hint
 The SDLC is also referred to as the [*systems* development life cycle](https://en.wikipedia.org/wiki/Systems_development_life_cycle), or the *application* development life cycle.
 :::
-
-## What is the SDLC?
 
 The SDLC is a series of phases and control steps arranged in sequence, from initial need to a working product. The structure of the life cycle helped organizations ensure that a development was feasible, requirements were clear, and the correct system was delivered.
 
@@ -70,6 +80,38 @@ The phases used at Lincoln Labs were:
 9. System evaluation
 
 Many variations of the SDLC were created with different phases, which changed as both business and technology developed.
+
+## DevOps
+
+
+## Software delivery success
+
+Successful software delivery has some observable properties. You should be able to get changes sustainably, quickly, and safely from developer machines to the users of the software. This should be done at an acceptable cost to the organization. Few organizations would prefer changes to take longer, have more problems, or cost more.
+
+While you might *know it when you see it*, you might prefer to use more concrete measures of success. We have a [white paper that explains measurement frameworks](https://octopus.com/resource-center) such as DORA metrics and the SPACE framework.
+
+For the purposes of DevOps verses SDLC, we'll define success as:
+
+- TBC
+- TBC
+- TBC
+
+Most modern organizations will recognize these success factors, but there are rare cases where software delivery isn't the primary constraint. When your bottleneck exists outside of development, the organization should focus improvement efforts there first.
+
+If this applies to you, you can put in place the building blocks of high performance while the business works on their bottleneck. High-performance is just one outcome of DevOps practices, we share more [benefits of Continuous Delivery in our DevOps Engineer's Handbook](https://octopus.com/devops/continuous-delivery/why-adopt-continuous-delivery/).
+
+:::hint
+A constraint, or bottleneck, factor that limits your throughput. The Theory of Constraints advises you to find the primary constraint that is limiting the flow of work and manage all other work according to the bottleneck. 
+
+For example, you find that Pull Requests are getting stuck in a queue because only one person is allowed to review them. You should first set the rate of work before the review stage to match the speed reviews can be done. This prevents lots of potentially conflicting changes being made that will cause build failures, bugs, and rework.
+
+Once you've set the rate of previous steps, you review the tools, people, and policy to see how you could increase the flow through the bottleneck. You could allow more people to perform reviews, or switch to a different review strategy that has higher throughput, such as pair-programming. A new bottleneck will then surface elsewhere and you can repeat the process for that one.
+:::
+
+##
+
+
+
 
 ## Why the SDLC became a problem
 
