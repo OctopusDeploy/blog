@@ -14,37 +14,19 @@ tags:
 
 If you are using a traditional software development life cycle (SDLC) you may have questions about where DevOps fits in. Can the two exist together, or are there too many conflicts? This article addresses confusion and conflicts between approaches.
 
-After summarizing DevOps and SDLC and defining success criteria for software delivery, we can address whether they can co-exist.
+After summarizing the SDLC and defining success criteria for software delivery, we can address whether it can co-exist with DevOps.
 
 ## What is the SDLC
 
-The concept of a system life cycle emerged in the 1960s and offered a structured and methodical way to build, maintain, and eventually retire an information system. Early systems development projects required both software and hardware, such as [Project LINCOLN](https://www.ll.mit.edu/about/history/sage-semi-automatic-ground-environment-air-defense-system), which involved the introduction of new computer memory technology alongside software development.
+The concept of a system life cycle emerged in the 1960s and offered a structured and methodical way to build and operate an information system. Early systems development projects required both software and hardware, such as [Project LINCOLN and the SAGE program](https://www.ll.mit.edu/about/history/sage-semi-automatic-ground-environment-air-defense-system), which involved the introduction of new computer memory technology alongside software development.
 
-The software development life cycle is focused on the software aspect of systems.
+The [systems development life cycle](https://en.wikipedia.org/wiki/Systems_development_life_cycle) expressed stages and control steps as a series of phases, such as analysis, design, and development. A key feature of the full life cycle was that it included the retirement of the system.
 
+The *software development life cycle* was originally applied the systems development life cycle to software projects. The specific sequence of phases was different, but the overall concept was the same for all [early software delivery models](https://octopus.com/devops/history/early-software-delivery-models/).
 
+More recently, SDLC is being used to refer to any [software development process](https://en.wikipedia.org/wiki/Software_development_life_cycle). As we can't compare DevOps to every possible process (of which it's one), we'll stick to the formal definition of the SDLC as a traditional phased approach to software delivery.
 
-
-Systems development life cycle - a specific structured and methodical approach to building information systems, often with both software and hardware.
-
-Software development life cycle - sometimes a software-only version of systems development life cycle, often used to mean just *whatever process you are using*, though it spans the full process from initial idea all the way through to retiring the software, hence life cycle. Traditionally, the phases have been reasonably comparable to the systems development life cycle... 
-
-Ask ten people and get eleven answers, so for the purposes of this article we'll focus on traditional software development life cycle, which is closely aligned to systems development life cycle. We'll also explain how modern software delivery is diverging from SDLC and why.
-
-Stupid terminology in our industry. I'll need to make a distinction between the formal and non-formal SDLC.
-
-
-
-
-The software development life cycle (SDLC) is a structured and methodical approach to software delivery. It was created in the 1960s to help with the development of large-scale business systems. After reaching a peak in the 1980s, traditional models based on the SDLC have increasingly been replaced with new approaches.
-
-There were good reasons for the introduction of the SDLC, but also some good reasons to move to modern software delivery methods now the context and constraints of software development have changed.
-
-:::hint
-The SDLC is also referred to as the [*systems* development life cycle](https://en.wikipedia.org/wiki/Systems_development_life_cycle), or the *application* development life cycle.
-:::
-
-The SDLC is a series of phases and control steps arranged in sequence, from initial need to a working product. The structure of the life cycle helped organizations ensure that a development was feasible, requirements were clear, and the correct system was delivered.
+## Why was the SDLC created?
 
 You need to travel back in time to understand the motivation for the SDLC. Our [history of software delivery](https://www.octopus.com/devops/history/) follows the evolution of development process since 1950. Technology has played a major part in the changes. Just as scientists are limited by the equipment available for their experiments, early developers were limited by scarce machines that were expensive to run, long compile times, and limited tools for code editing.
 
@@ -65,7 +47,7 @@ So, the SDLC solved two problems:
 1. The problems scaling the code and fix approach to large-scale systems
 2. The specific technical limitations of the time
 
-The original phased model was created at MITs Lincoln Laboratory. The model has 9 phases that were intended to directly solve the problems faced by software teams in the 1950s. Their approach allowed them to scale their development efforts, share information about the system, and document what went wrong so the knowledge could be shared with existing and future contributors.
+The original phased model was created at MIT's Lincoln Laboratory. The model has 9 phases that were intended to directly solve the problems faced by software teams in the 1950s. Their approach allowed them to scale their development efforts, share information about the system, and document what went wrong so the knowledge could be shared with existing and future contributors.
 
 The phases used at Lincoln Labs were:
 
@@ -80,9 +62,6 @@ The phases used at Lincoln Labs were:
 9. System evaluation
 
 Many variations of the SDLC were created with different phases, which changed as both business and technology developed.
-
-## DevOps
-
 
 ## Software delivery success
 
@@ -108,11 +87,6 @@ For example, you find that Pull Requests are getting stuck in a queue because on
 Once you've set the rate of previous steps, you review the tools, people, and policy to see how you could increase the flow through the bottleneck. You could allow more people to perform reviews, or switch to a different review strategy that has higher throughput, such as pair-programming. A new bottleneck will then surface elsewhere and you can repeat the process for that one.
 :::
 
-##
-
-
-
-
 ## Why the SDLC became a problem
 
 When your primary tool for solving problems delivering software is a set of phases and control steps, you tend to solve most problems by adding more of them. As your process grows in size, it increases the transaction cost of each software version. Heavyweight processes were increasing in cost while machines were getting cheaper and compilation faster.
@@ -137,6 +111,8 @@ In addition to the shift in technological constraints, a new competitive landsca
 The SDLC was the correct solution at the time, but things have changed so much it is no longer a valid approach to software delivery.
 
 ## Does DevOps have an SDLC?
+
+DevOps is part of a wider process...
 
 In terms of a diagram representing tasks that need to be done to deliver software, there is still a life cycle for software development. However, the structured SDLC of phased software delivery is no longer seen as a good practice. The constraints of the time required problems to be solved with a process and those constraints no longer exist.
 
