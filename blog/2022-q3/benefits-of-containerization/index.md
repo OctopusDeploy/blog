@@ -1,6 +1,6 @@
 ---
 title: The benefits of containerization
-description: Learn about the benefits of containerization, the top container images, containerization technologies, and how Octopus works with containerization to make deployments easier.
+description: Containers have a range of benefits that can help you become more agile in software delivery. Containers complement your DevOps process. Containers are scalable and allocate resources efficiently. Containers are portable, build once, run anywhere. We cover these benefits and more in this blog.
 author: terence.wong@octopus.com
 visibility: public
 published: 2022-07-13-1400
@@ -14,9 +14,15 @@ tags:
   - Cloud Orchestration
 ---
 
-Containers are still a relatively new technology, and to the uninitiated they can seem quite confusing. 
+Containers are a tool that can help your business become more agile in your software development lifecycle. Containers have many benefits that can give you a competitive advantage compared with more traditional software delivery methods. 
 
-In this post, I share the benefits of containers, why containers are important for software development, how Octopus Deploy supports containers, and why you might consider adding them to your DevOps processes. 
+The benefits of containerization are:
+
+- Containers complement your DevOps process.
+- Containers are scalable, and allocate resources efficiently.
+- Containers are portable: build once, run anywhere.
+
+In this post, I explain what containers are, share why containers are important for software development, how Octopus Deploy supports containers, and why you might consider adding them to your DevOps processes. 
 
 ## What is containerization?
 
