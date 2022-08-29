@@ -4,15 +4,14 @@ description: Learn how to create custom Docker images based on the official Ubun
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2022-09-07-1400
-metaImage: blogimage-usingdockeruniversalpkgmanager-2022.png
-bannerImage: blogimage-usingdockeruniversalpkgmanager-2022.png
-bannerImageAlt: The Octopus Deploy and Docker logos connected by plugs with little stars around the connection.
+metaImage: blogimage-benefitscontainerisation-2022.png
+bannerImage: blogimage-benefitscontainerisation-2022.png
+bannerImageAlt: Man sitting on top of  container and gold circle with 3 stars.
 isFeatured: false
 tags: 
   - DevOps
   - Containers
   - Docker
-
 ---
 
 The official Ubuntu Docker image is the most downloaded image from Docker Hub. With over one billion downloads, Ubuntu has proven itself to be a popular and reliable base image on which to build your own custom Docker images.
