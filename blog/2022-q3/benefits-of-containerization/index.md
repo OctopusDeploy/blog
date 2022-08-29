@@ -16,12 +16,6 @@ tags:
 
 Containers are a tool that can help your business become more agile in your software development lifecycle. Containers have many benefits that can give you a competitive advantage compared with more traditional software delivery methods. 
 
-The benefits of containerization are:
-
-- Containers complement your DevOps process.
-- Containers are scalable, and allocate resources efficiently.
-- Containers are portable: build once, run anywhere.
-
 In this post, I explain what containers are, share why containers are important for software development, how Octopus Deploy supports containers, and why you might consider adding them to your DevOps processes. 
 
 ## What is containerization?
