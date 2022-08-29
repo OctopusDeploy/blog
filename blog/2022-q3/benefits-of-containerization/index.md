@@ -1,6 +1,6 @@
 ---
 title: The benefits of containerization
-description: Learn about the benefits of containerization, the top container images, containerization technologies, and how Octopus works with containerization to make deployments easier.
+description: Containers have a range of benefits that help you become more agile in software delivery. Containers are scalable, portable and complement your DevOps processes. 
 author: terence.wong@octopus.com
 visibility: public
 published: 2022-07-13-1400
@@ -14,9 +14,9 @@ tags:
   - Cloud Orchestration
 ---
 
-Containers are still a relatively new technology, and to the uninitiated they can seem quite confusing. 
+As a recent technology, containers have emerged as a tool that can help your business become more agile in your software development lifecycle. Containers have many benefits that can give you a competitive advantage compared with more traditional software delivery methods. 
 
-In this post, I share the benefits of containers, why containers are important for software development, how Octopus Deploy supports containers, and why you might consider adding them to your DevOps processes. 
+In this post, I explain what containers are, share the key benefits of containers for software development, and discuss why you might consider adding them to your DevOps processes. 
 
 ## What is containerization?
 
@@ -27,6 +27,16 @@ Containerization is the process of making an application runnable as a container
 Containerization has been widely adopted in recent years, partly due to the availability of cloud technologies. Cloud technologies let you scale and replicate containers, and they lower the barrier to entry. 
 
 If you work in DevOps, you've probably worked with containers before. If you're trying to get started, check out the [DockerHub library of images](https://hub.docker.com/search?q=) to see what images you can use or [our post on getting started with containers](https://octopus.com/blog/get-started-containers).
+
+## What are the benefits of containerization?
+
+Containerization can be a useful tool for you to enhance the software development lifecycle. 
+
+The benefits of using containers include that they:
+
+- Complement your DevOps process
+- Are scalable and allocate resources efficiently
+- Are portable so you can build once, run anywhere
 
 ### Containers complement your DevOps process
 
