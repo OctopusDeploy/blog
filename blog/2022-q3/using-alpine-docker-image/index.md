@@ -12,9 +12,11 @@ tags:
   - DevOps
   - Containers
   - Cloud Orchestration
+  - Docker
 ---
 
-Thanks to its small size, the [Alpine Docker image](https://hub.docker.com/_/alpine) is frequently used as the base for other custom images. With over a billion downloads on Docker Hub, Alpine is also one of the most popular images available.
+Thanks to its small size, the [Alpine Docker image](https://hub.docker.com/_/alpine) is frequently used as the base for other custom images. With over a billion downloads on Docker Hub, Alpine is also one of the most popular images available. (You can also read my [post about Ubuntu](https://octopus.com/blog/using-ubuntu-docker-image), which currently claims top spot as most downloaded image from Docker Hub.)
+
 
 In this post, I show you the best practices to adopt when basing your own images on Alpine.
 
@@ -34,7 +36,7 @@ RUN apk add --update-cache \
   && rm -rf /var/cache/apk/*
 ```
 
-A second option is to use the `apk add --no-cache` option. This is equivalent to the previous command, but it’s more concise:
+You can also use the `apk add --no-cache` option. This is equivalent to the previous command, but it’s more concise:
 
 ```dockerfile
 RUN apk add --no-cache nginx
@@ -59,7 +61,7 @@ RUN apk add --no-cache --virtual build-dependencies python-dev build-base wget \
 CMD ["myapp", "start"]
 ```
 
-While this example works, it is inefficient. Due to the way Docker caching is implemented, any changes to the files copied into the image with the instruction `COPY . /myapp` invalidates the cache, forcing subsequent instructions to be rerun. In practice, this means the example above will download, install, and delete the Python development libraries every time the Python code is changed.
+While this example works, it's inefficient. Due to the way Docker caching is implemented, any changes to the files copied into the image with the instruction `COPY . /myapp` invalidates the cache, forcing subsequent instructions to be rerun. In practice, this means the example above will download, install, and delete the Python development libraries every time the Python code is changed.
 
 A better solution is to use [multi-stage builds](https://docs.docker.com/develop/develop-images/multistage-build/). An example is shown below:
 
@@ -86,17 +88,17 @@ COPY --from=compile-image /myapp/ ./
 CMD ["/myapp/bin/python", "myapp.py", "start"]
 ```
 
-A multistage build allows you to create an image with development libraries required to build application source code. This "compile image" retains these development libraries between builds, removing the need to download them every time.
+A multistage build lets you create an image with development libraries required to build application source code. This "compile image" retains these development libraries between builds, removing the need to download them every time.
 
 A second image is created to host the executable application code and runtime libraries, but specifically does not include any libraries only required at compile time. This "runtime image" is as small as possible as it copies the files produced by the compile image without requiring the associated compile time libraries.
 
 ## musl vs glibc
 
-For the most part, Alpine can be used as a drop in replacement for any other base Docker image. However, it is important to be aware of the architectural differences between Alpine and other common base Docker images such as Ubuntu, Debian, or Fedora.
+For the most part, Alpine can be used as a drop-in replacement for any other base Docker image. However, it's important to be aware of the architectural differences between Alpine and other common base Docker images such as Ubuntu, Debian, or Fedora.
 
 Alpine uses the [musl C standard library](http://musl.libc.org/), while Ubuntu, Debian, and Fedora use [glibc](https://www.gnu.org/software/libc/). Here is a [detailed comparison of the two libraries](http://www.etalabs.net/compare_libcs.html).
 
-There are some circumstances where third party tools assume or require glibc. For example, the [Visual Studio Code remote container execution documentation](https://code.visualstudio.com/docs/remote/containers) provides this warning:
+There are some circumstances where third-party tools assume or require glibc. For example, the [Visual Studio Code remote container execution documentation](https://code.visualstudio.com/docs/remote/containers) provides this warning:
 
 > When using Alpine Linux containers, some extensions may not work due to glibc dependencies in native code inside the extension.
 
@@ -104,20 +106,22 @@ Alpine based images are also [not suitable for use as Octopus container images](
 
 > Linux distributions built on musl, most notably Alpine, do not support Calamari, and cannot be used as a container image. This is due to Calamari currently only being compiled against glibc and not musl.
 
-This [blog post](https://pythonspeed.com/articles/alpine-docker-python/) details some performance issues when building Python applications on Alpine:
+PythonSpeed's blog post, [Using Alpine can make Python Docker builds 50× slower](https://pythonspeed.com/articles/alpine-docker-python/), details some performance issues when building Python applications on Alpine:
 
 > Most Linux distributions use the GNU version (glibc) of the standard C library that is required by pretty much every C program, including Python. But Alpine Linux uses musl, those binary wheels are compiled against glibc, and therefore Alpine disabled Linux wheel support.
 
-Outside of specific use cases with known incompatibilities with musl, I've found Alpine to be a reliable and practical choice to base my own Docker images on. But it is good to be aware of the implications of using distributions implementing musl.
+Outside of specific use cases with known incompatibilities with musl, I've found Alpine to be a reliable and practical choice to base my own Docker images on. But it's good to be aware of the implications of using distributions implementing musl.
 
 ## Conclusion
 
-Alpine provides a lightweight and popular Docker image that can improve your image build and deployment times compared to other popular images like Ubuntu. Alpine uses the musl C standard library, which may introduce compatibility issues in some circumstances, but you can generally assume Alpine provides everything you need for your custom Docker images. Advanced features such as virtual packages may also allow you to keep image sizes down, although multi-stage builds are likely to be a better choice.
+Alpine provides a lightweight and popular Docker image that can improve your image build and deployment times compared to other popular images like Ubuntu. 
+
+Alpine uses the musl C standard library, which may introduce compatibility issues in some circumstances, but you can generally assume Alpine provides everything you need for your custom Docker images. Advanced features such as virtual packages may also allow you to keep image sizes down, although multi-stage builds are likely to be a better choice.
 
 ## Resources
 
 * [Octopus trial](https://octopus.com/start)
-* [Alpine Docker Image](https://hub.docker.com/_/alpine)
+* [Alpine Docker image](https://hub.docker.com/_/alpine)
 * [Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
 * [Multistage builds](https://docs.docker.com/develop/develop-images/multistage-build/)
 
