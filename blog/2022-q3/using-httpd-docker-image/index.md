@@ -4,9 +4,9 @@ description: A detailed look at how to use the HTTPd web server with Docker.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2022-09-08-1400
-metaImage: blogimage-gettingstartedcontainerisation-2022.png
-bannerImage: blogimage-gettingstartedcontainerisation-2022.png
-bannerImageAlt: Man sitting on top of  container with green circle with a power up icon
+metaImage: blogimage-top8containerregistries-2022.png
+bannerImage: blogimage-top8containerregistries-2022.png
+bannerImageAlt: Three-tiered shelf housing eight blue containers.
 isFeatured: false
 tags: 
   - DevOps
