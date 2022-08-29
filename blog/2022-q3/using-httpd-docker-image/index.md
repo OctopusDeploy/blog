@@ -154,6 +154,11 @@ HTTPd is a popular web server, and the official HTTPd Docker image allows DevOps
 
 In this post, you learned how to create a custom Docker image hosting a static web application, added advanced HTTPd configuration files to provide a health check endpoint, and compared the sizes of Debian and Alpine HTTPd images.
 
+You might also like to read about:
+
+- [Using the NGINX Docker image](https://octopus.com/blog/using-nginx-docker-image)
+- [Using the Ubuntu Docker image](https://octopus.com/blog/using-ubuntu-docker-image)
+
 ## Resources
 
 * [Octopus trial](https://octopus.com/start)
