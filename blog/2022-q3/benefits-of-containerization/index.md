@@ -1,6 +1,6 @@
 ---
 title: The benefits of containerization
-description: Containers have a range of benefits that can help you become more agile in software delivery. Containers complement your DevOps process. Containers are scalable and allocate resources efficiently. Containers are portable, build once, run anywhere. We cover these benefits and more in this blog.
+description: Containers have a range of benefits that help you become more agile in software delivery. Containers are scalable, portable and complement your DevOps processes. We cover these benefits and more in this blog.
 author: terence.wong@octopus.com
 visibility: public
 published: 2022-07-13-1400
