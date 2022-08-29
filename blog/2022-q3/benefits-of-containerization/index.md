@@ -34,6 +34,14 @@ Containerization has been widely adopted in recent years, partly due to the avai
 
 If you work in DevOps, you've probably worked with containers before. If you're trying to get started, check out the [DockerHub library of images](https://hub.docker.com/search?q=) to see what images you can use or [our post on getting started with containers](https://octopus.com/blog/get-started-containers).
 
+## What are the benefits of containerization?
+
+Containerization can be used in place of traditional methods to enhance the software development lifecycle. Our top three benefits for containerization are:
+
+- Containers complement your DevOps process.
+- Containers are scalable, and allocate resources efficiently.
+- Containers are portable: build once, run anywhere.
+
 ### Containers complement your DevOps process
 
 In our [introduction to DevOps post](https://octopus.com/blog/introduction-to-devops), we discussed how DevOps as a concept is about removing barriers that get in the way of software delivery. 
