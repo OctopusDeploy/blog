@@ -16,7 +16,7 @@ tags:
 
 Thanks to its small size, the [Alpine Docker image](https://hub.docker.com/_/alpine) is frequently used as the base for other custom images. With over a billion downloads on Docker Hub, Alpine is also one of the most popular images available.
 
-In this post I'll show you the best practices to adopt when basing your own images on Alpine.
+In this post, I show you the best practices to adopt when basing your own images on Alpine.
 
 ## Cleaning the cache
 
@@ -34,7 +34,7 @@ RUN apk add --update-cache \
   && rm -rf /var/cache/apk/*
 ```
 
-A second option is to use the `apk add --no-cache` option. This is equivalent to the previous command, but is more concise:
+A second option is to use the `apk add --no-cache` option. This is equivalent to the previous command, but it’s more concise:
 
 ```dockerfile
 RUN apk add --no-cache nginx
@@ -59,9 +59,9 @@ RUN apk add --no-cache --virtual build-dependencies python-dev build-base wget \
 CMD ["myapp", "start"]
 ```
 
-While this example works, it is inefficient. Due to the way Docker caching is implemented, any changes to the files copied into the image with the instruction `COPY . /myapp` invalidates the cache, forcing subsequent instructions to be rerun. In practice this means the example above will download, install, and delete the Python development libraries every time the Python code is changed.
+While this example works, it is inefficient. Due to the way Docker caching is implemented, any changes to the files copied into the image with the instruction `COPY . /myapp` invalidates the cache, forcing subsequent instructions to be rerun. In practice, this means the example above will download, install, and delete the Python development libraries every time the Python code is changed.
 
-A better solution is to use [multi-stage builds](https://docs.docker.com/develop/develop-images/multistage-build/). And example is shown below:
+A better solution is to use [multi-stage builds](https://docs.docker.com/develop/develop-images/multistage-build/). An example is shown below:
 
 ```dockerfile
 FROM alpine AS compile-image
@@ -94,7 +94,7 @@ A second image is created to host the executable application code and runtime li
 
 For the most part, Alpine can be used as a drop in replacement for any other base Docker image. However, it is important to be aware of the architectural differences between Alpine and other common base Docker images such as Ubuntu, Debian, or Fedora.
 
-Alpine uses the [musl C standard library](http://musl.libc.org/), while Ubuntu, Debian, and Fedora use [glibc](https://www.gnu.org/software/libc/). You can find a detailed comparison of the two libraries [here](http://www.etalabs.net/compare_libcs.html).
+Alpine uses the [musl C standard library](http://musl.libc.org/), while Ubuntu, Debian, and Fedora use [glibc](https://www.gnu.org/software/libc/). Here is a [detailed comparison of the two libraries](http://www.etalabs.net/compare_libcs.html).
 
 There are some circumstances where third party tools assume or require glibc. For example, the [Visual Studio Code remote container execution documentation](https://code.visualstudio.com/docs/remote/containers) provides this warning:
 
