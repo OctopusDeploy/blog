@@ -1,12 +1,12 @@
 ---
-title: Cloud-native database deployment authentication
-description: Our most popular database deployment templates have been updated with cloud-native authentication.
+title: "Cloud-native database deployment authentication"
+description: "Our most popular database deployment templates have been updated with cloud-native authentication."
 author: shawn.sesna@octopus.com
 visibility: public
-published: 2022-08-24-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+published: 2022-08-31-1400
+metaImage: blogimage-cloud-nativedatabasedeploymentauthentication-2022.png
+bannerImage: blogimage-cloud-nativedatabasedeploymentauthentication-2022.png
+bannerImageAlt: A blue database sits in a white cloud
 isFeatured: false
 tags: 
   - DevOps
@@ -21,7 +21,9 @@ Amazon Web Services (AWS), Azure, and Google Cloud Platform (GCP) have introduce
 
 Octopus Deploy has several built-in steps that support authenticating to resources using this method, however, database deployments are almost entirely done using community step templates.  
 
-The Octopus community has been hard at work updating templates to support cloud-native authentication. In this post, I list templates updated with cloud provider authentication functionality.
+The Octopus community has been hard at work updating templates to support cloud-native authentication. 
+
+In this post, I list templates updated with cloud provider authentication functionality.
 
 ## Database technologies that support cloud-native authentication methods
 
