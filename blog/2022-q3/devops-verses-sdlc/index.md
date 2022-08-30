@@ -79,6 +79,10 @@ While the first problem remained, the technical limitations in 1990 were nothing
 
 What the SDLC taught us was that there *was* such as thing as *too much process*.
 
+![Process weight and effectiveness](process-capability.jpg)
+
+*Capability verses process weight: Compared to code and fix, Adding process improves software delivery until the process becomes the constraining factor*
+
 There are complex relationships between batch size, deployment frequency, and risk. No matter how rigorously you test the functional and quality attributes of the system, the market risks remain until you release the software version to users. You only know that a feature is useful once people are using it.
 
 Large batches also cause a common error in automation economics. Common wisdom says you either:
