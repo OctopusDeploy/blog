@@ -32,11 +32,11 @@ If you work in DevOps, you've probably worked with containers before. If you're 
 
 Containerization can be a useful tool for you to enhance the software development lifecycle. 
 
-The benefits of using containers include that they:
+The benefits include:
 
-- Complement your DevOps process
-- Are scalable and allocate resources efficiently
-- Are portable so you can build once, run anywhere
+- Containers complement your DevOps process
+- Containers scalable and allocate resources efficiently
+- Containers are portable so you can build once, run anywhere
 
 ### Containers complement your DevOps process
 
