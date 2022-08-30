@@ -35,7 +35,7 @@ Containerization can be a useful tool for you to enhance the software developmen
 The benefits include:
 
 - Containers complement your DevOps process
-- Containers scalable and allocate resources efficiently
+- Containers are scalable and allocate resources efficiently
 - Containers are portable so you can build once, run anywhere
 
 ### Containers complement your DevOps process
