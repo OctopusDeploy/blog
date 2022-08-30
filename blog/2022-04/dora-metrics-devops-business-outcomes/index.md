@@ -204,6 +204,37 @@ I challenge you to answer the following questions:
 - How are you planning to track your performance against the DORA metrics over the next couple of years?
 - What changes are you going to make to drive improvement?
 
+## DORA Metrics in Octopus 
+
+Octopus Deploy 2022.3+ now includes support for DevOps Insights with built-in DORA metrics. This built-in reporting gives you better visibility into your company’s DevOps performance by surfacing the 4 key DORA metrics. These metrics help you make informed decisions on where to improve and celebrate your results. 
+
+** Project insights** are available for all Octopus projects including existing projects. 
+
+* Deployment Lead Time
+* Deployment Failure Rate
+* Deployment Frequency
+* Mean Time to Recovery
+
+**Enterprise-wide portfolio insights** [Space](https://octopus.com/docs/administration/spaces)-level and cover all projects within that space. 
+Space level insights are available via the Insights tab and provide actionable DORA metrics for more complex scenarios across a group of projects, environments, or tenants. This gives managers and decision makers far more insight into the DevOps performance of their organization in line with their business context, such as team, portfolio, or platform. 
+
+Space level insights:
+
+- Aggregate data across your space so you can compare and contrast metrics across projects to identify what is working and what isn’t
+- Inform better decision making: identify problems, track improvements, and celebrate successes 
+- Help you quantify DevOps performance based on what's actually happening as shown by data
+
+Space-level insights are available to [Enterprise tier](https://octopus.com/pricing) customers.
+
+Together these metrics help you qualify the results of your DevOps performance acros syour projects and portfolio. 
+
+* Get better visibility into the performance of your projects and teams
+* Eliminate “gut feel” and enable data-informed decisions to drive improvement 
+* Review and collect data over time to highlight the path to delivering greater value, faster
+* Share successes and learn from failures to continuously improve
+
+[Learn more](https://octopus.com/docs/insights?!?)
+
 ## Help us improve Octopus
 
 Are you interested in continuous improvement and measuring DORA metrics from your Octopus data? We are, too! We're exploring this space and looking for customers to prototype with us for fast feedback.
