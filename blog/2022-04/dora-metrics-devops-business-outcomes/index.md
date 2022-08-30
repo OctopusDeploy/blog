@@ -206,6 +206,8 @@ I challenge you to answer the following questions:
 
 ## DORA Metrics in Octopus 
 
+![DORA Metrics and DevOps Insights in Octopus](dora-metrics.png "width=500")
+
 Octopus Deploy 2022.3+ now includes support for DevOps Insights with built-in DORA metrics. This built-in reporting gives you better visibility into your company’s DevOps performance by surfacing the 4 key DORA metrics. These metrics help you make informed decisions on where to improve and celebrate your results. 
 
 ** Project insights** are available for all Octopus projects including existing projects. 
