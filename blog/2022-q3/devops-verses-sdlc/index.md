@@ -12,7 +12,7 @@ tags:
   - DevOps
 ---
 
-If you are using a traditional software development life cycle (SDLC) you may have questions about where DevOps fits in. Can the two exist together, or are there too many conflicts? This article addresses the differences between the two approaches.
+If you're using a traditional software development life cycle (SDLC) you may have questions about where DevOps fits in. Can the two exist together, or are there too many conflicts? This article addresses the differences between the two approaches.
 
 ## What is the SDLC
 
@@ -99,11 +99,11 @@ This creates a paradox, as the reason you don't perform a task frequently is tha
 
 In addition to the shift in technological constraints, a new competitive landscape has emerged where organizations that are slow to market lose business to smaller and faster companies.
 
-The SDLC was the correct solution at the time. Things have changed so much it is no longer a valid approach to software delivery.
+The SDLC was the correct solution at the time. Things have changed so much it's no longer a valid approach to software delivery.
 
 ## Does DevOps have an SDLC?
 
-The traditional SDLC is no longer seen as a good practice. Though it is possible to avoid it with appropriate care, it is more common for traditional phased approaches to result in large batches that are passed between specialized teams. This is incompatible with a DevOps approach, which seeks to reduce the size of batches and increase collaboration between different disciplines.
+The traditional SDLC is no longer seen as a good practice. Though it's possible to avoid it with appropriate care, it's more common for traditional phased approaches to result in large batches that are passed between specialized teams. This is incompatible with a DevOps approach, which seeks to reduce the size of batches and increase collaboration between different disciplines.
 
 Using an SDLC, you would arrange 20 people into 5 specialist teams to work on analysis, design, development, testing, and operations. These *horizontal teams* would perform their specialist task with work passed from team to team, like the baton in a relay race.
 
@@ -134,13 +134,13 @@ The real legacy of the SDLC should be what we learned from the first 4 decades o
 - You should work in small batches
 - You should deploy frequently
 - Start with a small working prototype, then evolve it
-- It is possible to have too much process
+- It's possible to have too much process
 
 With the right culture and capabilities, and a deployment pipeline that is as automated as possible, you should be able to deliver frequent high-quality software versions.
 
 ## Summary
 
-When you think of the software development life cycle now, just take you modern DevOps process and extend it back to the creation of the original idea, and into the future to imagine how the software could be retired when it is no longer valuable enough to maintain. The most important part (the bit in the middle where you continually increase the value of the software and improve its operation) is where most of your time and money will be spent.
+When you think of the software development life cycle now, just take you modern DevOps process and extend it back to the creation of the original idea, and into the future to imagine how the software could be retired when it's no longer valuable enough to maintain. The most important part (the bit in the middle where you continually increase the value of the software and improve its operation) is where most of your time and money will be spent.
 
 The traditional formal method based on the systems development life cycle is no longer appropriate to software delivery, given the changes to the underlying constraints and competition.
 
