@@ -121,7 +121,7 @@ Continuous Delivery is central to a DevOps process, but you still need a way to 
 
 1. [Impact Mapping](https://www.impactmapping.org/): A collaborative technique for generating product ideas connected to goals.
 1. [Specification by Example](https://en.wikipedia.org/wiki/Specification_by_example): A way to communicate requirements using examples, which can be turned into automated acceptance tests.
-1. [Continuous Delivery](/devops/continuous-delivery/): A software delivery process built around an automated deployment pipeline.
+1. [Continuous Delivery](https://octopus.com/devops/continuous-delivery/): A software delivery process built around an automated deployment pipeline.
 
 Continuous Delivery doesn't depend on any specific technique for generating ideas. For example, you could switch from Impact Mapping to Lean Startup or any other technique from your product management toolkit.
 
