@@ -1,6 +1,6 @@
 ---
-title: "Role Based Access Control Demo"
-description: "Create an Octopus target authenticated with a service account, as part of our Kubernetes training series"
+title: "Role Based Access Control demo"
+description: "Create an Octopus target authenticated with a service account, as part of our Kubernetes training series."
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2022-01-01-1200
@@ -105,6 +105,6 @@ echo "##octopus[create-kubernetestarget \
 
 ## Learn more
 
-If you're looking to build and deploy containerized applications to AWS platforms such as EKS and ECS, the [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/) populates a GitHub repository with a sample application built with GitHub Actions workflows and configures a hosted Octopus instance with sample deployment projects demonstrating best practices such as vulnerability scanning and Infrastructure as Code (IaC). 
+If you want to build and deploy containerized applications to AWS platforms such as EKS and ECS, try the [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/). The Builder populates a GitHub repository with a sample application built with GitHub Actions workflows and configures a hosted Octopus instance with sample deployment projects demonstrating best practices such as vulnerability scanning and Infrastructure as Code (IaC). 
 
 Happy deployments! 
