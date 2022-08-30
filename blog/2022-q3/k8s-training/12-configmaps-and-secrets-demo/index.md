@@ -1,5 +1,5 @@
 ---
-title: "ConfigMaps and Secrets Demo"
+title: "ConfigMaps and Secrets demo"
 description: "Watch as applications are deployed to a cluster configured with either a ConfigMap or Secret, as part of our Kubernetes training series"
 author: matthew.casperson@octopus.com
 visibility: public
