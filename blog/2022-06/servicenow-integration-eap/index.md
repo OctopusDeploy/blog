@@ -10,6 +10,7 @@ bannerImageAlt: ServiceNow and Octopus Deploy logos connected by plugs with litt
 tags:
 - Product
 - DevOps
+- Integrations
 ---
 
 ![ServiceNow integration for Octopus Deploy: early access preview](blogimage-snow-2022.png)
