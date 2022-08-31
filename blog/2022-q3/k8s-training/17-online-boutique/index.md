@@ -19,7 +19,7 @@ tags:
 
 This post is the 17th in our Kubernetes training series, providing DevOps engineers with an introduction to Docker, Kubernetes, and Octopus. 
 
-This video demonstrates how to import an existing complex microservice application into Octopus to provide independently deployable applications.
+This video demonstrates how to import an existing complex microservice application provided by Google called [Online Boutique](https://github.com/GoogleCloudPlatform/microservices-demo/) into Octopus to provide independently deployable applications.
 
 <p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/2662pwh511?videoFoam=true" title="17. Deploy Google's Online Boutique Microservice Stack in Octopus" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
 
