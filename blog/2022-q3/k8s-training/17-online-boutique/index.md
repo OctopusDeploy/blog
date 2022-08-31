@@ -1,6 +1,6 @@
 ---
-title: "Ingress and Ingress Controllers demo"
-description: "Learn how to deploy an Ingress Controller and expose services via Ingress resources, as part of our Kubernetes training series."
+title: "Deploy Google's Online Boutique Microservice Stack in Octopus"
+description: "Learn how to import an existing microservice application stack into Octopus, as part of our Kubernetes training series."
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2022-01-01-1200
@@ -17,11 +17,11 @@ tags:
   - Kubernetes Training
 ---
 
-This post is the 16th in our Kubernetes training series, providing DevOps engineers with an introduction to Docker, Kubernetes, and Octopus. 
+This post is the 17th in our Kubernetes training series, providing DevOps engineers with an introduction to Docker, Kubernetes, and Octopus. 
 
-This video demonstrates how to install an Ingress Controller and expose Services via Ingress resources.
+This video demonstrates how to import an existing complex microservice application into Octopus to provide independently deployable applications.
 
-<p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/3xssoy8h7y?videoFoam=true" title="16. Ingress and Ingress Controller Demo" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
+<p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/2662pwh511?videoFoam=true" title="17. Deploy Google's Online Boutique Microservice Stack in Octopus" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
 
 You can work through the series using the links below.
 
@@ -30,7 +30,7 @@ You can work through the series using the links below.
 ## Resources
 
 * [Octopus trial](https://octopus.com/start)
-* [kind Ingress documentation](https://kind.sigs.k8s.io/docs/user/ingress/#ingress-nginx)
+* [Online Boutique GitHub Repo](https://github.com/GoogleCloudPlatform/microservices-demo/)
 
 ## Learn more
 
