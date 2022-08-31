@@ -12,6 +12,7 @@ tags:
   - Product
   - DevOps
   - Continuous Integration
+  - Integrations
 ---
 
 Octopus Deploy now integrates with [Buildkite](https://buildkite.com/). Our new Buildkite plugins will allow your build agents to create and deploy releases, push build information, and run runbooks as part of a pipeline.  
