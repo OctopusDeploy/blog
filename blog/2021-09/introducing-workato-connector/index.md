@@ -10,6 +10,7 @@ bannerImageAlt: Workato connector for Octopus Deploy
 isFeatured: false
 tags:
   - Product
+  - Integrations
 ---
 
 A [Workato connector for Octopus Deploy](https://www.workato.com/integrations/community/octopus-deploy) is now available. Our support for Workato will make a wide variety of workflow scenarios possible for Octopus Deploy customers.
