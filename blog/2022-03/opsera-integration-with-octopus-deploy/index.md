@@ -13,6 +13,7 @@ tags:
   - DevOps
   - Continuous Integration
   - Continuous Deployment
+  - Integrations
 ---
 
 We've partnered with [Opsera](https://www.opsera.io/) to provide integration with Octopus Deploy. You can integrate Octopus with the 95+ platforms that Opsera supports as part of its no-code DevOps orchestration platform.
