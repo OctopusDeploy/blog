@@ -22,6 +22,7 @@ Getting Started
 GitHub Actions
 Google Cloud Platform
 Hackathon
+Integrations
 Java
 Jira
 Jenkins
