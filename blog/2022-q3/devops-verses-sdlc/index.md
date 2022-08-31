@@ -22,7 +22,7 @@ The [systems development life cycle](https://en.wikipedia.org/wiki/Systems_devel
 
 The *software development life cycle* was originally applied the systems development life cycle to software projects. The specific sequence of phases was different, but the overall concept was the same for many [early software delivery models](https://octopus.com/devops/history/early-software-delivery-models/).
 
-More recently, SDLC is being used informally to refer to any [software development process](https://en.wikipedia.org/wiki/Software_development_life_cycle). As we can't compare DevOps to every possible process (of which it's one), we'll stick to the formal definition of the SDLC as a traditional phased approach to software delivery.
+More recently, SDLC is being used informally to refer to *any* [software development process](https://en.wikipedia.org/wiki/Software_development_life_cycle). As we can't compare DevOps to every possible process (of which it's one), we'll stick to the formal definition of the SDLC as a traditional phased approach to software delivery.
 
 ## Why was the SDLC created?
 
@@ -38,26 +38,26 @@ Crucially, you wouldn't be able to search for answers on The Web. You'd have to 
 - 2008 - Stack Overflow arrives
 :::
 
-Before the SDLC was introduced, systems would be created using an ad-hoc *code and fix* approach. With no defined process or controls, and with many technological limitations, the phased model solved many problems organizations had at the time when creating large applications.
+Before the SDLC was introduced, systems would be created using an ad-hoc *code and fix* approach. With no defined process or controls, and with many technological limitations, the phased model solved many problems organizations had *at the time* when creating large applications.
 
 The SDLC solved two types of problem:
 
 1. Issues scaling the code and fix approach to large-scale systems
-2. Specific technical limitations of the time
+1. Specific technical limitations of the time
 
 The original phased model was created at MIT's Lincoln Laboratories. Their model had 9 phases that were intended to directly solve the problems faced by software teams in the 1950s. This allowed them to scale their development efforts, share information about the system, and document what went wrong so the knowledge could be shared with existing and future contributors.
 
 The phases used at Lincoln Labs were:
 
 1. Operational plan
-2. Machine and operational specifications
-3. Program specifications
-4. Coding specifications
-5. Coding
-6. Parameter testing
-7. Assembly testing
-8. Shakedown
-9. System evaluation
+1. Machine and operational specifications
+1. Program specifications
+1. Coding specifications
+1. Coding
+1. Parameter testing
+1. Assembly testing
+1. Shakedown
+1. System evaluation
 
 Many variations of the SDLC were created with different phases, which changed as both business and technology developed.
 
@@ -65,23 +65,23 @@ Many variations of the SDLC were created with different phases, which changed as
 
 Problems emerged from the SDLC due to two factors:
 
-1. Organizations had grown the number and complexity of phases in their SDLC
-2. The SDLC hadn't kept pace with improved tools
+1. Organizations had increased the number and complexity of phases in their SDLC
+1. The SDLC hadn't kept pace with improved tools
 
 When your primary tool for solving software delivery problems is a set of phases and control steps, you tend to solve most problems by adding more of them. As your process grows in size, it increases the transaction cost of each software version. Heavyweight processes were increasing in cost while machines were getting cheaper and compilation faster.
 
 The SDLC was originally introduced to solve two problems:
 
 1. Scaling software development to handle large-scale systems
-2. Specific technical limitations of the time
+1. Specific technical limitations of the time
 
-While the first problem remained, the technical limitations in 1990 were nothing like those in 1960. With  technical constraints fading, the SDLC itself became the limiting factor in software delivery. The SDLC was an even greater problem in organizations that treated the process as the goal, rather than a way to achieve organizational outcomes.
+While the first problem remained, the technical limitations in 1990 were nothing like those in 1960. With  technical constraints fading, the SDLC itself became a limiting factor in software delivery. The SDLC was an even greater problem in organizations that treated the process as the goal, rather than a way to achieve organizational outcomes.
 
 What the SDLC taught us was that there *was* such as thing as *too much process*.
 
 ![Process weight and effectiveness](process-capability.jpg)
 
-*Capability verses process weight: Compared to code and fix, Adding process improves software delivery until the process becomes the constraining factor*
+*Capability verses process weight: Compared to code and fix, Adding process improves software delivery until the process itself becomes the constraining factor*
 
 There are complex relationships between batch size, deployment frequency, and risk. No matter how rigorously you test the functional and quality attributes of the system, the market risks remain until you release the software version to users. You only know that a feature is useful once people are using it.
 
@@ -90,7 +90,7 @@ Large batches also cause a common error in automation economics. Common wisdom s
 - Automate the tasks you do most often, or that you 
 - Calculate the manual effort of the task multiplied by its frequency. 
 
-This creates a paradox, as the reason you don't perform a task frequently is that it's manual and expensive. Automation does reduce manual work, but it also allows you to perform tasks more frequently. Any economic model for automation should also account for:
+This creates a paradox, as the reason you don't perform a task frequently is that it's manual and expensive. Automation does reduce manual work, but it also allows you to perform tasks more frequently. Any economic model for automation should account for:
 
 - Increased frequency
 - Higher quality
@@ -105,7 +105,7 @@ The SDLC was the correct solution at the time. Things have changed so much it's 
 
 The traditional SDLC is no longer seen as a good practice. Though it's possible to avoid it with appropriate care, it's more common for traditional phased approaches to result in large batches that are passed between specialized teams. This is incompatible with a DevOps approach, which seeks to reduce the size of batches and increase collaboration between different disciplines.
 
-Using an SDLC, you would arrange 20 people into 5 specialist teams to work on analysis, design, development, testing, and operations. These *horizontal teams* would perform their specialist task with work passed from team to team, like the baton in a relay race.
+Using an SDLC, you would arrange 20 people into 5 specialist teams to work on phases such as analysis, design, development, testing, and operations. These *horizontal teams* would perform their specialist task with work passed from team to team, like the baton in a relay race.
 
 In DevOps you would arrange people into 4 cross-functional teams who could deliver software without hand-offs. Your *vertical teams* could each deliver and run an isolated component, like the line of players moving the ball towards the scoring line in a game of rugby.
 
@@ -119,11 +119,11 @@ Within DevOps and Continuous Delivery, there are still a series of tasks that ne
 
 Continuous Delivery is central to a DevOps process, but you still need a way to discover and share what to build. Your context will guide your selections, but an example process is shown below:
 
-1. [Impact Mapping](https://www.impactmapping.org/): A collaborative technique for generating product ideas connected to goals.
+1. [Impact Mapping](https://www.impactmapping.org/): A collaborative technique for generating ideas connected to goals.
 1. [Specification by Example](https://en.wikipedia.org/wiki/Specification_by_example): A way to communicate requirements using examples, which can be turned into automated acceptance tests.
 1. [Continuous Delivery](https://octopus.com/devops/continuous-delivery/): A software delivery process built around an automated deployment pipeline.
 
-Continuous Delivery doesn't depend on any specific technique for generating ideas. For example, you could switch from Impact Mapping to Lean Startup or any other technique from your product management toolkit.
+Continuous Delivery doesn't depend on any specific technique for generating ideas. For example, you could switch from Impact Mapping to Lean Startup or any other technique from your product management toolkit. DevOps recognizes that you will use appropriate Lean and Agile techniques alongside Continuous Delivery.
 
 ## The legacy of the SDLC
 
@@ -140,7 +140,7 @@ With the right culture and capabilities, and a deployment pipeline that is as au
 
 ## Summary
 
-When you think of the software development life cycle now, just take you modern DevOps process and extend it back to the creation of the original idea, and into the future to imagine how the software could be retired when it's no longer valuable enough to maintain. The most important part (the bit in the middle where you continually increase the value of the software and improve its operation) is where most of your time and money will be spent.
+When you think of the software development life cycle now, just take you modern DevOps process and extend it to encompass the creation of the original idea, and consider how software could be retired when it's no longer valuable enough to maintain. The most important part (the bit in the middle where you continually increase the value of the software and improve its operation) is where most of your time and money will be spent.
 
 The traditional formal method based on the systems development life cycle is no longer appropriate to software delivery, given the changes to the underlying constraints and competition.
 
