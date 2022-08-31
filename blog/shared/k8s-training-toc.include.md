@@ -14,4 +14,4 @@
 * [Role Based Access Control demo](/blog/2022-q3/k8s-training/14-rbac-demo/index.md)
 * [Ingress and Ingress Controllers](/blog/2022-q3/k8s-training/15-ingress/index.md)
 * [Ingress and Ingress Controllers demo](/blog/2022-q3/k8s-training/16-ingress-demo/index.md)
-* [Deploy Google's Online Boutique Microservice Stack in Octopus](/blog/2022-q3/k8s-training/17-online-boutique/index.md)
+* [Deploy Google's Online Boutique microservice stack in Octopus](/blog/2022-q3/k8s-training/17-online-boutique/index.md)

@@ -1,5 +1,5 @@
 ---
-title: "Deploy Google's Online Boutique Microservice Stack in Octopus"
+title: "Deploy Google's Online Boutique microservice stack in Octopus"
 description: "Learn how to import an existing microservice application stack into Octopus, as part of our Kubernetes training series."
 author: matthew.casperson@octopus.com
 visibility: public
