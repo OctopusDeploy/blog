@@ -3,7 +3,7 @@ title: "DORA metrics - The predictive link between DevOps practice and business 
 description: What are the DORA metrics? Why do they matter? How can you use them to drive improvement?
 author: alex.yates@octopus.com
 visibility: public
-published: 2022-04-06-1400
+published: 2022-09-15-1400
 metaImage: blogimage-dorametrics-2022.png
 bannerImage: blogimage-dorametrics-2022.png
 bannerImageAlt: A slightly transparent computer screen with someone analyzing data behind it, with different metrics floating around the person.
