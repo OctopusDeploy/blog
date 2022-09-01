@@ -219,7 +219,7 @@ These metrics help you make informed decisions on where to improve and celebrate
 
 **Project insights** are available for all Octopus projects, including existing projects. 
 
-**Space level insights** are available for [Enterprise](https://octopus.com/pricing) customers at a [space](https://octopus.com/docs/administration/spaces)-level and cover all projects in that space. 
+**Space level insights** are available for [Enterprise](https://octopus.com/pricing) customers at a [space](https://octopus.com/docs/administration/spaces) level and cover all projects in that space. 
 
 Space level insights are available via the **Insights** tab and provide actionable DORA metrics for more complex scenarios across a group of projects, environments, or tenants. This gives managers and decision makers more insight into the DevOps performance of their organization in line with their business context, such as team, portfolio, or platform. 
 
