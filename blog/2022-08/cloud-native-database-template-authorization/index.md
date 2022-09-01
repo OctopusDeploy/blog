@@ -83,7 +83,7 @@ With the exception of **SQL - Deploy DACPAC with AAD Auth support**, the templat
 ![Authentication Selector](authentication-selector.png)
 
 :::Info
-Flyway Database Migrations is PowerShell Core only.
+Flyway Database Migrations is only compatible with PowerShell Core.
 :::
 
 ### SQL - Deploy DACPAC with AAD Auth support
