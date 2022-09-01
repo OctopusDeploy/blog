@@ -51,7 +51,7 @@ GCP
 Both GCP and AWS support Windows Authentication for Microsoft SQL Server, however, the server must connect to an Active Directory domain on the cloud provider.
 
 :::warning
-Amazon Aurora and Azure Cosmo haven't been tested with the templates listed in this post.  
+Amazon Aurora and Azure Cosmos haven't been tested with the templates listed in this post.  
 ::::
 
 ## Step templates with cloud authentication support
