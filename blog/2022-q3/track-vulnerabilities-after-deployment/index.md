@@ -2,11 +2,11 @@
 title: Why you should track vulnerabilities after deployment
 description: Find out why you should track vulnerabilities after deployment, plus the ways how.
 author: andrew.corrigan@octopus.com
-visibility: private
+visibility: public
 published: 2022-09-06-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-runningunittestsingithubactions-2022.png
+bannerImage: blogimage-runningunittestsingithubactions-2022.png
+bannerImageAlt: Open laptop sits behind a screen in dark mode showing a table of rows with green ticks, red crosses, and orange exclamation marks to indicate test results.
 isFeatured: false
 tags: 
   - DevOps
