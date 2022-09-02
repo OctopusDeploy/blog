@@ -88,7 +88,7 @@ The following websites report on new vulnerabilities and other cyber security co
 - [The Hacker News](https://thehackernews.com/)
 - [Bleeping Computer](https://www.bleepingcomputer.com/)
 - [Cybernews](https://cybernews.com/security/)
-- [ZDNet](https://www.zdnet.com/topic/security/)
+- [ZDNET](https://www.zdnet.com/topic/security/)
 
 ### Use a vulnerability scanner
 
