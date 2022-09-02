@@ -4,8 +4,8 @@ description: Find out why you should track vulnerabilities after deployment, plu
 author: andrew.corrigan@octopus.com
 visibility: private
 published: 2022-09-06-1400
-metaImage: placeholderimg.png
-bannerImage: placeholderimg.png
+metaImage: 
+bannerImage: 
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags: 
