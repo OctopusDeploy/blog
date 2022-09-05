@@ -14,6 +14,7 @@ Community
 Containers
 Continuous Integration
 Continuous Deployment
+Continuous Delivery
 Configuration as Code
 Database Deployments
 Deployment Patterns
