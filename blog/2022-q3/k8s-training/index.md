@@ -12,6 +12,7 @@ tags:
   - DevOps
   - Containers
   - Cloud Orchestration
+  - Continuous Delivery
   - Docker
   - Kubernetes
   - Kubernetes Training
