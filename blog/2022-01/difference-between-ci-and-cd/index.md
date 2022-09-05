@@ -11,6 +11,7 @@ tags:
  - DevOps
  - CI Series
  - Continuous Integration
+ - Continuous Delivery
  - Continuous Deployment
 ---
 
