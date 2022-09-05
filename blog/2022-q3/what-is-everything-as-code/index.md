@@ -2,7 +2,7 @@
 title: What is everything as code?
 description: This post discusses the shift to Everything as Code. We look at the 2 main EaC applications, Infrastructure as Code and Configuration as Code, along with other IT applications and benefits.
 author: terence.wong@octopus.com
-visibility: pubclic
+visibility: public
 published: 2022-09-21-1400
 metaImage: placeholderimg.png
 bannerImage: placeholderimg.png
