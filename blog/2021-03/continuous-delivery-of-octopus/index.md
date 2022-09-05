@@ -10,6 +10,7 @@ bannerImageAlt: Versions
 tags:
   - Product
   - Engineering
+  - Continuous Delivery
 ---
 
 ![Versions](blogimage-versions.png)
