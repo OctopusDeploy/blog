@@ -79,7 +79,7 @@ As software projects get larger, the security risks increase with more data hand
 
 Many cloud providers like AWS, Azure, or Google have built-in security features such as IAM, secrets, and role-based permissions. You can use these features to manage some security concerns. Many customers are rightly concerned with security, and companies need to invest in certifications such as ISO 27001 and SOC II to certify their compliance with security regulations.
 
-On May 12, 2021, The US government released Executive Order 14028, "Improving the Nation's Cybersecurity". The Order requires all vendors of government software projects to produce a Software Bill of Materials (SBOM). The SBOMs detail all software components so that governments can screen software for cybersecurity. If you want an example of how to produce an SBOM and attach it to your deployment process, we created a free tool called Octopus Builder that helps with this.
+On May 12, 2021, The US government released Executive Order 14028, "Improving the Nation's Cybersecurity". The Order requires all vendors of government software projects to produce a Software Bill of Materials (SBOM). The SBOMs detail all software components so that governments can screen software for cybersecurity. If you want an example of how to produce an SBOM and attach it to your deployment process, we created a free tool called the [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/) that can help.
 
 ## Conclusion
 
