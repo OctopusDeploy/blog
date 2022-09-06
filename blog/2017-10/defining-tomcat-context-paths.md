@@ -16,6 +16,8 @@ Tomcat provides a number of ways to define the context path of a web app, althou
 
 In this blog post, we’ll explore the options Tomcat provides for deploying web applications and defining their context paths.
 
+[If you are looking to automate your Java deployments, click here to start a free Octopus trial.](https://oc.to/tomcat-context-paths-trials)
+
 ## The `<Host>` configuration element
 
 Many of the options available in Tomcat for deploying applications are defined in the `<Host>` element in the `config/server.xml` file.
@@ -172,7 +174,7 @@ This table summaries the various context paths that will be assigned to web appl
 | `<Context path="path/is/ignored" docBase="/apps/myapp#v1.war"/>` in `conf/Catalina/localhost/mydemo#version1.xml` (i.e. config for `/apps/myapp#v1.war`) | `/mydemo/version1` |
 | `<Context path="/path/is/ignored"/>` in `conf/Catalina/localhost/mydemo#version1.xml` (i.e. config for `webapps/mydemo#version1.war`) | `/mydemo/version1` |
 
-If you are interested in automating the deployment of your Java applications to Tomcat, [download a trial copy of Octopus Deploy](https://octopus.com/downloads), and take a look at [our documentation](https://octopus.com/docs/deployments/java/deploying-java-applications).
+If you are interested in automating the deployment of your Java applications to Tomcat, [start a free trial copy of Octopus Deploy](https://oc.to/tomcat-context-paths-trials-bottom), and take a look at [our documentation](https://octopus.com/docs/deployments/java/deploying-java-applications).
 
 ## Learn more
 
