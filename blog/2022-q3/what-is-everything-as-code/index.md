@@ -3,14 +3,15 @@ title: What is everything as code?
 description: This post discusses the shift to Everything as Code. We look at the 2 main EaC applications, Infrastructure as Code and Configuration as Code, along with other IT applications and benefits.
 author: terence.wong@octopus.com
 visibility: public
-published: 2022-09-21-1400
-metaImage: placeholderimg.png
-bannerImage: placeholderimg.png
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+published: 2022-09-13-1400
+metaImage: blogimage-buildservers.png
+bannerImage: blogimage-buildservers.png
+bannerImageAlt: 2 people writing code on laptops with arrows to a build server, then an arrow to the octopus logo in a cloud, and a rocket launching
 isFeatured: false
 tags:
   - DevOps
   - Cloud Orchestration
+  - Configuration as Code
 ---
 
 If you work in DevOps or Cloud, you've probably worked with tools like GitHub Actions, Jenkins, or Terraform to deliver your DevOps pipelines. You may have noticed these tools all represent parts of the DevOps pipeline as code, letting you store and reuse parts of the pipeline later.
