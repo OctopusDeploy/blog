@@ -27,7 +27,7 @@ Everything as Code is an approach to software development and DevOps that uses c
 
 Taken literally, EaC is an ideal state where every part of the software lifecycle is code. 
 
-The implementation of EaC today is far from that ideal, though, with EaC used as an umbrella term to cover specific applications of the "as-code" framework. Infrastructure as Code (IaC) and Configuration as Code (Config as Code) are widespread EaC applications, with other applications covering a range of IT fields. 
+The implementation of EaC today is far from that ideal, though, with EaC used as an umbrella term to cover specific applications of the "as code" framework. Infrastructure as Code (IaC) and Configuration as Code (Config as Code) are widespread EaC applications, with other applications covering a range of IT fields. 
 
 In this post, I discuss some applications of Everything as Code, the benefits, and my thoughts on moving towards EaC.
 
@@ -57,7 +57,7 @@ There are other examples of EaC, some more niche than others, such as:
 
 - **Environments as Code:** Tools that provision computing environments like Docker and Vagrant. Many cloud providers have their own compute Environments as Code offerings, such as Compute Engine by Google and EC2 by Amazon.
 
-- **Data analytics as Code:** You can represent data pipelines and machine learning processes as code. Data pipelines as code allow data scientists to port data analytics components from one project to another.
+- **Data Analytics as Code:** You can represent data pipelines and machine learning processes as code. Data pipelines as code allow data scientists to port data analytics components from one project to another.
 
 - **DevOps Pipelines as Code:** Tools like GitHub Actions and Jenkins represent DevOps Pipelines as Code. When a developer pushes a code change, a process is triggered to build the repository and produce an artifact or deploy a release.
 
@@ -82,6 +82,6 @@ While deployments as code in Octopus Deploy have significant benefits, there are
 
 Everything as Code (Eac) is an approach to software development and DevOps that uses code to define and manage IT resources. EaC has found many applications in Infrastructure as Code, Config as Code, and other areas of IT. If you work in DevOps and cloud, you've likely already seen benefits of EaC firsthand. 
 
-Although EaC is a promising end-state for organizations, there's an opportunity cost to convert parts of a platform to EaC, which will inform where you invest your resources. There will undoubtedly be parts of your platform that could benefit from an EaC approach, and the key is identifying those areas. 
+Although Everything as Code is a promising end-state for organizations, there's an opportunity cost to convert parts of a platform to EaC, which will inform where you invest your resources. There will undoubtedly be parts of your platform that could benefit from an EaC approach, and the key is identifying those areas. 
 
 Happy deployments!
