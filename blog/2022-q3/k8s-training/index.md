@@ -7,7 +7,7 @@ published: 2022-08-30-1200
 metaImage: blogimage-testingkubernetes-2022.png
 bannerImage: blogimage-testingkubernetes-2022.png
 bannerImageAlt: Kubernetes logo on an open laptop screen
-isFeatured: false
+isFeatured: true
 tags: 
   - DevOps
   - Containers
