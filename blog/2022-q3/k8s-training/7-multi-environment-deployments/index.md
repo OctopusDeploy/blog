@@ -22,6 +22,8 @@ This post is the 7th in our Kubernetes training series, providing DevOps enginee
 
 This video builds a second Kubernetes cluster for the production environment, adds it to Octopus, and demonstrates how deployments are progressed through multiple environments.
 
+[If you don't already have Octopus account, you can start a free trial.](https://oc.to/octopus-k8s-training-trial)
+
 <p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/spzw52f0dn?videoFoam=true" title="Section7 Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
 
 You can work through the series using the links below.
@@ -30,7 +32,7 @@ You can work through the series using the links below.
 
 ## Resources
 
-* [Octopus trial](https://octopus.com/start)
+* [Octopus trial](https://oc.to/octopus-k8s-training-trial)
 
 ## Learn more
 

@@ -22,6 +22,8 @@ This post is the 8th in our Kubernetes training series, providing DevOps enginee
 
 This video shows you how to install helm and then use it to install a dashboard to monitor the cluster.
 
+[If you don't already have Octopus account, you can start a free trial.](https://oc.to/octopus-k8s-training-trial)
+
 <p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/bupqioszse?videoFoam=true" title="8. Installing a Dashboard Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
 
 You can work through the series using the links below.
@@ -30,7 +32,7 @@ You can work through the series using the links below.
 
 ## Resources
 
-* [Octopus trial](https://octopus.com/start)
+* [Octopus trial](https://oc.to/octopus-k8s-training-trial)
 * [Helm](https://oc.to/56sP7x)
 * [Kube Ops View Helm Chart](https://oc.to/z53qjl)
 

@@ -22,6 +22,8 @@ This post is the 14th in our Kubernetes training series, providing DevOps engine
 
 This video demonstrates how to create an Octopus target that authenticates to the cluster with a service account token.
 
+[If you don't already have Octopus account, you can start a free trial.](https://oc.to/octopus-k8s-training-trial)
+
 <p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/e2foroyg61?videoFoam=true" title="14. RBAC Demo" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
 
 You can work through the series using the links below.
@@ -100,7 +102,7 @@ echo "##octopus[create-kubernetestarget \
 
 ## Resources
 
-* [Octopus trial](https://octopus.com/start)
+* [Octopus trial](https://oc.to/octopus-k8s-training-trial)
 * [Mixing Kubernetes Roles, RoleBindings, ClusterRoles, and ClusterBindings](https://octopus.com/blog/k8s-rbac-roles-and-bindings)
 * [Service messages](https://octopus.com/docs/deployments/custom-scripts/logging-messages-in-scripts#service-message)
 

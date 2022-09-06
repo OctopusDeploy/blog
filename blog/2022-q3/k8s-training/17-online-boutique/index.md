@@ -22,6 +22,8 @@ This post is the 17th in our Kubernetes training series, providing DevOps engine
 
 This video demonstrates how to import an existing complex microservice application provided by Google called [Online Boutique](https://github.com/GoogleCloudPlatform/microservices-demo/) into Octopus to provide independently deployable applications.
 
+[If you don't already have Octopus account, you can start a free trial.](https://oc.to/octopus-k8s-training-trial)
+
 <p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/2662pwh511?videoFoam=true" title="17. Deploy Google's Online Boutique Microservice Stack in Octopus" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
 
 You can work through the series using the links below.
@@ -30,7 +32,7 @@ You can work through the series using the links below.
 
 ## Resources
 
-* [Octopus trial](https://octopus.com/start)
+* [Octopus trial](https://oc.to/octopus-k8s-training-trial)
 * [Online Boutique GitHub Repo](https://github.com/GoogleCloudPlatform/microservices-demo/)
 
 ## Learn more

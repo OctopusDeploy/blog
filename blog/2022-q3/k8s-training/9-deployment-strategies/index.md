@@ -22,6 +22,8 @@ This post is the 9th in our Kubernetes training series, providing DevOps enginee
 
 Watch in realtime as pods are redeployed with different deployment strategies.
 
+[If you don't already have Octopus account, you can start a free trial.](https://oc.to/octopus-k8s-training-trial)
+
 <p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/zkgrplsaqy?videoFoam=true" title="9. Observing Deployment Strategies Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
 
 You can work through the series using the links below.
@@ -30,7 +32,7 @@ You can work through the series using the links below.
 
 ## Resources
 
-* [Octopus trial](https://octopus.com/start)
+* [Octopus trial](https://oc.to/octopus-k8s-training-trial)
 
 ## Learn more
 

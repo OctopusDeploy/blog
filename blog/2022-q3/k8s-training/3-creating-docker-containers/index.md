@@ -22,6 +22,8 @@ This post is the 3rd in our Kubernetes training series, providing DevOps enginee
 
 This video demonstrates how Docker images are built and run in containers and covers concepts such as Docker registries and repositories.
 
+[If you don't already have Octopus account, you can start a free trial.](https://oc.to/octopus-k8s-training-trial)
+
 <p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/nd7fym6ijr?videoFoam=true" title="Section 3 Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
 
 You can work through the series using the links below.
@@ -30,7 +32,7 @@ You can work through the series using the links below.
 
 ## Resources
 
-* [Octopus trial](https://octopus.com/start)
+* [Octopus trial](https://oc.to/octopus-k8s-training-trial)
 * [kind](https://oc.to/LY8fg0)
 * [kubectl](https://oc.to/oN6lx6)
 * [Octopus underwater sample app](https://github.com/OctopusSamples/octopus-underwater-app)

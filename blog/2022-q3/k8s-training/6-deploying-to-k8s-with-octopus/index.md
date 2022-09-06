@@ -29,6 +29,8 @@ This video introduces many Octopus concepts such as:
 
 It then demonstrates how to integrate Octopus with a Kubernetes cluster and perform a deployment.
 
+[If you don't already have Octopus account, you can start a free trial.](https://oc.to/octopus-k8s-training-trial)
+
 <p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/negi40uxs9?videoFoam=true" title="6. Deploying to Kubernetes with Octopus Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
 
 You can work through the series using the links below.
@@ -37,7 +39,7 @@ You can work through the series using the links below.
 
 ## Resources
 
-* [Octopus trial](https://octopus.com/start)
+* [Octopus trial](https://oc.to/octopus-k8s-training-trial)
 * [Ask Ubuntu - Install libssl1.1 on 22.04](https://oc.to/WQcxtj)
 * [Tentacle downloads](https://octopus.com/downloads/tentacle#linux)
 

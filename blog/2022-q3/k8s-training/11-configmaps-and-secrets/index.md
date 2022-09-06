@@ -22,6 +22,8 @@ This post is the 11th in our Kubernetes training series, providing DevOps engine
 
 This video introduces you to ConfigMaps and Secrets. It then discusses some common deployment concerns regarding deployment strategies and shared configuration resources.
 
+[If you don't already have Octopus account, you can start a free trial.](https://oc.to/octopus-k8s-training-trial)
+
 <p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/49nxio4h5p?videoFoam=true" title="11. ConfigMaps and Secrets" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
 
 You can work through the series using the links below.
@@ -30,7 +32,7 @@ You can work through the series using the links below.
 
 ## Resources
 
-* [Octopus trial](https://octopus.com/start)
+* [Octopus trial](https://oc.to/octopus-k8s-training-trial))
 
 ## Learn more
 

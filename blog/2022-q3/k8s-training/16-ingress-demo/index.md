@@ -22,6 +22,8 @@ This post is the 16th in our Kubernetes training series, providing DevOps engine
 
 This video demonstrates how to install an Ingress Controller and expose Services via Ingress resources.
 
+[If you don't already have Octopus account, you can start a free trial.](https://oc.to/octopus-k8s-training-trial)
+
 <p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/3xssoy8h7y?videoFoam=true" title="16. Ingress and Ingress Controller Demo" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
 
 You can work through the series using the links below.
@@ -30,7 +32,7 @@ You can work through the series using the links below.
 
 ## Resources
 
-* [Octopus trial](https://octopus.com/start)
+* [Octopus trial](https://oc.to/octopus-k8s-training-trial)
 * [kind Ingress documentation](https://kind.sigs.k8s.io/docs/user/ingress/#ingress-nginx)
 
 ## Learn more

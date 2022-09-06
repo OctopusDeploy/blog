@@ -22,6 +22,8 @@ This post is the 10th in our Kubernetes training series, providing DevOps engine
 
 Watch the blue/green deployment strategy, which is a custom strategy orchestrated by Octopus.
 
+[If you don't already have Octopus account, you can start a free trial.](https://oc.to/octopus-k8s-training-trial)
+
 <p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/u394adv05a?videoFoam=true" title="10. Blue/Green Deployments Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
 
 You can work through the series using the links below.
@@ -30,7 +32,8 @@ You can work through the series using the links below.
 
 ## Resources
 
-* [Octopus trial](https://octopus.com/start)
+* [Octopus trial](https://oc.to/octopus-k8s-training-trial)
+* [Deconstructing blue/green deployments in Kubernetes](https://octopus.com/blog/deconstructing-blue-green-deployments)
 
 ## Learn more
 

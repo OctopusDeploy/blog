@@ -22,6 +22,8 @@ This post is the 2nd in our Kubernetes training series, providing DevOps enginee
 
 This video introduces Kubernetes and demonstrates how to install a local development cluster using kind.
 
+[If you don't already have Octopus account, you can start a free trial.](https://oc.to/octopus-k8s-training-trial)
+
 <p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/toym6obhxl?videoFoam=true" title="section2 Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
 
 You can work through the series using the links below.
@@ -30,7 +32,7 @@ You can work through the series using the links below.
 
 ## Resources
 
-* [Octopus trial](https://octopus.com/start)
+* [Octopus trial](https://oc.to/octopus-k8s-training-trial)
 * [kind](https://oc.to/LY8fg0)
 * [kubectl](https://oc.to/oN6lx6)
 
