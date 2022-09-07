@@ -4,9 +4,9 @@ description: This post explains why testing is important. The post discusses the
 author: terence.wong@octopus.com
 visibility: private
 published: 3020-01-01-1400
-metaImage: placeholderimg.png
-bannerImage: placeholderimg.png
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-runningunittestsingithubactions-2022.png
+bannerImage: blogimage-runningunittestsingithubactions-2022.png
+bannerImageAlt: Open laptop sits behind a screen in dark mode showing a table of rows with green ticks, red crosses, and orange exclamation marks to indicate unit test results.
 isFeatured: false
 tags:
   - DevOps
