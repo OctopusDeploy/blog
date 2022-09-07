@@ -231,7 +231,7 @@ Space level insights:
 
 Together these metrics help you qualify the results of your DevOps performance across your projects and portfolio. 
 
-[Learn more about DevOps Insights](https://octopus.com/docs/insights?!?).
+[Learn more about DevOps Insights](https://octopus.com/docs/insights).
 
 ## Help us improve Octopus
 
