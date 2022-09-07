@@ -4,9 +4,9 @@ description: Find out what SBOMs are, learn about the US government's Executive 
 author: terence.wong@octopus.com
 visibility: public
 published: 2022-09-21-1400
-metaImage: placeholderimg.png
-bannerImage: placeholderimg.png
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-devsecopsvulnerabilities-2022.png
+bannerImage: blogimage-devsecopsvulnerabilities-2022.png
+bannerImageAlt: Blue DevOps infinity diagram outlined in green with a green security shield over the right top-hand corner.
 isFeatured: false
 tags:
   - DevOps
