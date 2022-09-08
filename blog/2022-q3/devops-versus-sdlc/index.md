@@ -4,8 +4,8 @@ description: Find out if the software development life cycle still has a place i
 author: steve.fenton@octopus.com
 visibility: public
 published: 2022-10-04-1400
-metaImage: software-development-life cycle.png
-bannerImage: software-development-life cycle.png
+metaImage: software-development-lifecycle.png
+bannerImage: software-development-lifecycle.png
 bannerImageAlt: Software packages moving along a conveyor belt and becoming versioned releases.
 isFeatured: false
 tags: 
