@@ -22,6 +22,8 @@ These days best practice demands even a single VM also requires a VPC, Internet 
 
 In this blog post, we’ll look at two CloudFormation templates to create Windows and Linux EC2 instances in their own VPC.
 
+[Automate your AWS deployments with a free Octopus trial.](https://oc.to/aws-cloudformation-ec2-examples-trials)
+
 ## The Windows CloudFormation template
 
 This example CloudFormation template creates a single Windows EC2 instance inside a VPC:
