@@ -1,11 +1,11 @@
 ---
 title: DevOps versus SDLC
-description: Find out if the software development lifecycle still has a place in the DevOps era.
+description: Find out if the software development life cycle still has a place in the DevOps era.
 author: steve.fenton@octopus.com
 visibility: public
 published: 2022-10-04-1400
-metaImage: software-development-lifecycle.png
-bannerImage: software-development-lifecycle.png
+metaImage: software-development-life cycle.png
+bannerImage: software-development-life cycle.png
 bannerImageAlt: Software packages moving along a conveyor belt and becoming versioned releases.
 isFeatured: false
 tags: 
@@ -13,15 +13,15 @@ tags:
   - Continuous Delivery
 ---
 
-If you're using a traditional software development lifecycle (SDLC) you may have questions about where DevOps fits in. Can the 2 exist together, or are there too many conflicts? This post addresses the differences between the 2 approaches.
+If you're using a traditional software development life cycle (SDLC) you may have questions about where DevOps fits in. Can the 2 exist together, or are there too many conflicts? This post addresses the differences between the 2 approaches.
 
 ## What is the SDLC?
 
-The concept of a lifecycle emerged in the 1960s and offered a structured and methodical way to build and operate an information system. Early systems development projects involved both software and hardware, such as [Project LINCOLN and the SAGE program](https://www.ll.mit.edu/about/history/sage-semi-automatic-ground-environment-air-defense-system), which involved the introduction of new computer memory technology and the development of software.
+The concept of a life cycle emerged in the 1960s, offering a structured and methodical way to build and operate an information system. Early systems development projects involved both software and hardware, such as [Project LINCOLN and the SAGE program](https://www.ll.mit.edu/about/history/sage-semi-automatic-ground-environment-air-defense-system), which involved the introduction of new computer memory technology and the development of software.
 
-The [systems development life cycle](https://en.wikipedia.org/wiki/Systems_development_life_cycle) expressed stages and control steps as a series of phases, such as analysis, design, and development. The full lifecycle covered everything from initial conception right through to retiring the system.
+The [systems development life cycle](https://en.wikipedia.org/wiki/Systems_development_life_cycle) expressed stages and control steps as a series of phases, such as analysis, design, and development. The full life cycle covered everything from initial conception right through to retiring the system.
 
-The *software development lifecycle* was originally applied the systems development lifecycle to software projects. The specific sequence of phases was different, but the overall concept was the same for many [early software delivery models](https://octopus.com/devops/history/early-software-delivery-models/).
+The *software development life cycle* originally applied the systems development life cycle to software projects. The specific sequence of phases was different, but the overall concept was the same for many [early software delivery models](https://octopus.com/devops/history/early-software-delivery-models/).
 
 More recently, SDLC is being used informally to refer to *any* [software development process](https://en.wikipedia.org/wiki/Software_development_life_cycle). As we can't compare DevOps to every possible process (of which it's one), we'll stick to the formal definition of the SDLC as a traditional phased approach to software delivery.
 
@@ -80,9 +80,7 @@ While the first problem remained, the technical limitations in 1990 were nothing
 
 The SDLC taught us that there *was* such as thing as *too much process*.
 
-![Process weight and effectiveness](process-capability.jpg)
-
-*Capability versus process weight: Compared to code and fix, adding process improves software delivery until the process itself becomes the constraining factor*
+![Process weight and effectiveness](process-capability.jpg)*Capability versus process weight: Compared to code and fix, adding process improves software delivery until the process itself becomes the constraining factor*
 
 There are complex relationships between batch size, deployment frequency, and risk. No matter how rigorously you test the functional and quality attributes of the system, the market risks remain until you release the software version to users. You only know that a feature is useful once people are using it.
 
@@ -108,10 +106,10 @@ Using an SDLC, you'd arrange 20 people into 5 specialist teams to work on phases
 In DevOps, you'd arrange people into 4 cross-functional teams who could deliver software without hand-offs. Your *vertical teams* could each deliver and run an isolated component, like the line of players moving the ball towards the scoring line in a game of rugby.
 
 :::hint
-If you want to find out more about team design, Matthew Skelton and Manuel Pais created *Team Topologies* to describe different interaction modes. You can use these to design healthy communication structures in your organization.
+If you want to find out more about team design, Matthew Skelton and Manuel Pais created [*Team Topologies*](https://teamtopologies.com/) to describe different interaction modes. You can use these to design healthy communication structures in your organization.
 :::
 
-In DevOps and Continuous Delivery, there are still a series of tasks that need to be completed to deliver software. Instead of a structured SDLC, you focus instead on reducing batch size, creating autonomous vertical teams, and automating your deployment pipeline. You can design a process that complements the DevOps culture and capabilities.
+In DevOps and Continuous Delivery, there are still a series of tasks that need to be completed to deliver software. Instead of a structured SDLC, you focus on reducing batch size, creating autonomous vertical teams, and automating your deployment pipeline. You can design a process that complements the DevOps culture and capabilities.
 
 ## A DevOps process
 
@@ -138,9 +136,9 @@ With the right culture and capabilities, and a deployment pipeline that is as au
 
 ## Summary
 
-When you think of the software development lifecycle now, just take your modern DevOps process and extend it to encompass the creation of the original idea, and consider how software could be retired when it's no longer valuable enough to maintain. The most important part (the bit in the middle where you continually increase the value of the software and improve its operation) is where most of your time and money will be spent.
+When you think of the software development life cycle now, just take your modern DevOps process and extend it to encompass the creation of the original idea, and consider how software could be retired when it's no longer valuable enough to maintain. The most important part (the bit in the middle where you continually increase the value of the software and improve its operation) is where most of your time and money will be spent.
 
-The traditional formal method based on the systems development lifecycle is no longer appropriate to software delivery, given the changes to the underlying constraints and competition.
+The traditional formal method based on the systems development life cycle is no longer appropriate to software delivery, given the changes to the underlying constraints and competition.
 
 If you want to learn more about DevOps and Continuous Delivery, you may find the following useful:
 
