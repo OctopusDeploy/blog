@@ -4,8 +4,8 @@ description: A detailed look at how to use the Alpine Docker image
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2022-09-12-1400
-metaImage: blogimage-gettingstartedwithdockeralpine-2022.png
-bannerImage: blogimage-gettingstartedwithdockeralpine-2022.png
+metaImage: 
+bannerImage: 
 bannerImageAlt: Man with a laptop leaning against a large 
 isFeatured: false
 tags: 
