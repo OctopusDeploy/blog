@@ -144,6 +144,12 @@ USER apprunner
 
 It's possible to use the base Ubuntu Docker images with little customization beyond installing any required additional packages. But with a few tweaks to limit optional packages from being installed, cleaning up package lists after the packages are installed, and creating new users with limited permissions to run custom applications, you can create smaller and more secure images for your custom applications.
 
+Learn how to use other popular container images:
+
+- [Using the NGINX Docker image](https://octopus.com/blog/using-nginx-docker-image)
+- [Using the HTTPd Docker image](https://octopus.com/blog/using-httpd-docker-image)
+- [Using the Alpine Docker image](https://octopus.com/blog/using-alpine-docker-image) 
+
 ## Resources
 
 * [Octopus trial](https://octopus.com/start)
