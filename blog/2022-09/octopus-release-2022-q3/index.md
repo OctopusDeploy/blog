@@ -212,7 +212,7 @@ Learn more about [Build Information and Issue Tracking](https://octopus.com/docs
 
 ## Easier onboarding for teams
 
-[Watch our video that demonstrates easier onboarding for teams](https://youtu.be/EHByk8vG8xM).
+[Watch our video showing you how easy it is to get started with Octopus Deploy](https://youtu.be/EHByk8vG8xM).
 
 Getting started with Octopus Deploy is now even easier. We revamped our getting started experience to help companies onboard new teams quickly and easily. 
 
