@@ -77,9 +77,9 @@ With version-controlled deployment processes and variables, Octopus provides saf
 Learn more about [Config as Code in Octopus](https://octopus.com/docs/projects/version-control). 
 :::
 
-### Config as Code demo
+<!-- ### Config as Code demo
 
-[TO DO: Add video link]() 
+[TO DO: Add video link]() -->
 
 ### Customers using Config as code
 
