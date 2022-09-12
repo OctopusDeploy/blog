@@ -254,6 +254,12 @@ NGINX is a powerful web server, and the official NGINX Docker image allows DevOp
 
 In this post, you learned how to create a custom Docker image hosting a static web application, added advanced NGINX configuration files to provide a health check endpoint, and compared the sizes of Debian and Alpine NGINX images.
 
+Learn how to use other popular container images:
+
+- [Using the Ubuntu Docker image](https://octopus.com/blog/using-ubuntu-docker-image)
+- [Using the HTTPd Docker image](https://octopus.com/blog/using-httpd-docker-image)
+- [Using the Alpine Docker image](https://octopus.com/blog/using-alpine-docker-image) 
+
 ## Resources
 
 * [Octopus trial](https://octopus.com/start)
