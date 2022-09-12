@@ -17,7 +17,6 @@ tags:
 
 Thanks to its small size, the [Alpine Docker image](https://hub.docker.com/_/alpine) is frequently used as the base for other custom images. With over a billion downloads on Docker Hub, Alpine is also one of the most popular images available. (You can also read my [post about Ubuntu](https://octopus.com/blog/using-ubuntu-docker-image), which currently claims top spot as most downloaded image from Docker Hub.)
 
-
 In this post, I show you the best practices to adopt when basing your own images on Alpine.
 
 ## Cleaning the cache
@@ -117,6 +116,12 @@ Outside of specific use cases with known incompatibilities with musl, I've found
 Alpine provides a lightweight and popular Docker image that can improve your image build and deployment times compared to other popular images like Ubuntu. 
 
 Alpine uses the musl C standard library, which may introduce compatibility issues in some circumstances, but you can generally assume Alpine provides everything you need for your custom Docker images. Advanced features such as virtual packages may also allow you to keep image sizes down, although multi-stage builds are likely to be a better choice.
+
+Learn how to use other popular container images:
+
+- [Using the NGINX Docker image](https://octopus.com/blog/using-nginx-docker-image)
+- [Using the Ubuntu Docker image](https://octopus.com/blog/using-ubuntu-docker-image)
+- [Using the HTTPd Docker image](https://octopus.com/blog/using-httpd-docker-image)
 
 ## Resources
 
