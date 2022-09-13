@@ -28,15 +28,15 @@ On May 12, 2021, The United States government released an Executive Order on [Im
 
 The Executive Order is trying to minimize the cybersecurity risk in the supply chain when people acquire software. Risk increases as the number of unknown components in the software applications increases. 
 
-The Executive Order requires all software bought by the US government to produce an SBOM. This has several implications for business inside and outside the US. Any US government project now has to produce SBOMs for security purposes. Any vendor that can't produce SBOMs for their products won't be approved to work with government projects. 
+The Executive Order requires all software bought by the US government to produce an SBOM. This has several implications for business inside and outside the US. Any US government project now has to produce SBOMs for security purposes. Any vendor that can't produce SBOMs for their products won't be approved to work on government projects. 
 
-The Order is likely the beginning of many similar orders to require SBOMs worldwide. As awareness of SBOMs increase, it's probable businesses will begin to demand SBOMs. If you work in software, SBOMs are probably in your future.
+The Order is likely the beginning of many similar orders to require SBOMs worldwide. As awareness of SBOMs increase, it's probable businesses will begin to demand SBOMs. If you work in software, SBOMs are likely in your future.
 
 ## What goes into SBOMs?
 
 The National Telecommunications and Information Administration (NTIA) provides guidelines on constructing an SBOM. NTIA conducted a proof of concept of SBOMs in healthcare, which informed the [baseline elements required for an SBOM](https://ntia.gov/files/ntia/publications/howto_guide_for_sbom_generation_v1.pdf). 
 
-The baseline elements are summarized here:
+The baseline elements include:
 
 - Author Name - The author of the SBOM document describing the Primary Component. The author may not be the same as the supplier of the Primary Component.
 - Supplier Name - the supplier of a component.
