@@ -128,7 +128,7 @@ Learn more about our [ServiceNow integration](https://octopus.com/docs/approvals
 
 ![Screenshot of Jira Service Management integration](jira-task-settings.png "width=500")
 
-Build on our ITSM change management support, our Jira Service Management integration is available as an early access preview (EAP). This integration links Octopus deployments to Jira Service Management change requests, making it easier to manage deployment pipelines at scale. It reduces the need for manually filling out change requests, making the process quicker and reducing errors.
+Building on our ITSM change management support, our Jira Service Management integration is available as an early access preview (EAP). This integration links Octopus deployments to Jira Service Management change requests, making it easier to manage deployment pipelines at scale. It reduces the need for manually filling out change requests, making the process quicker and reducing errors.
 
 Learn more about our [Jira Service Management integration](https://octopus.com/docs/approvals).
 
