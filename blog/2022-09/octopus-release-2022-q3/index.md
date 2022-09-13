@@ -25,7 +25,7 @@ As organizations continue to modernize, it's becoming increasingly important to 
 
 This release’s noteworthy updates include:
 
-- Config as Code - version controlled variables for version controlled projects
+- Config as Code - version-controlled variables for version-controlled projects
 - ITSM - change management without friction for ServiceNow
 - Jira Service Management - efficient change management approvals (early access)
 - DevOps Insights - DORA insights to quantify value and improvements (early access)
@@ -41,7 +41,7 @@ The 2022 Q3 release is available on Octopus Cloud and ready for download by our 
 
 To celebrate the release of Octopus 2022 Q3, we’re throwing a launch party **on October 5th**. This is an interactive YouTube Live stream where some of our product managers and tech leads will take you through the latest features, and answer any questions, including: 
 
-* Config as Code with version controlled variables
+* Config as Code with version-controlled variables
 * DevOps Insights 
 * Change management with ServiceNow
 
@@ -76,7 +76,7 @@ Octopus 2022 Q3 builds on the foundation of our [2022 Q1 release](https://octopu
 
 With version-controlled deployment processes and variables, Octopus provides safe, reliable, and auditable “As Code” deployment pipelines. This lets your teams work in line with your company's regulatory requirements and compliance policies, making auditing a much smoother process. 
 
-![Screenshot of Octopus Deploy version controlled variables](config-as-code-create-new-branch.png "width=500")
+![Screenshot of Octopus Deploy version-controlled variables](config-as-code-create-new-branch.png "width=500")
 
 - **Traceable end-to-end CI/CD “As Code” pipelines** - Octopus has built-in plugins for a wide range of CI servers for easy integration. You can pair Octopus with a CI server that supports build definitions as code, giving you complete traceability into changes to your software development process. Changes to your build and deployment pipelines can go through the same pull request review and approval process, improving the stability and reliability of your pipeline.
 - **Consistent processes and approvals** - Improve the quality of your code and meet compliance requirements by using pull request workflows to review and approve changes. Consistent processes contribute to quality releases, and you can enforce policies so that unapproved changes don't get merged.
@@ -128,7 +128,7 @@ Learn more about our [ServiceNow integration](https://octopus.com/docs/approvals
 
 ![Screenshot of Jira Service Management integration](jira-task-settings.png "width=500")
 
-Building on our ITSM change management support, our Jira Service Management integration is available as an early access preview (EAP). This integration links Octopus deployments to Jira Service Management change requests, making it easier to manage deployment pipelines at scale. It reduces the need for manually filling out change requests, making the process quicker and reducing errors.
+Build on our ITSM change management support, our Jira Service Management integration is available as an early access preview (EAP). This integration links Octopus deployments to Jira Service Management change requests, making it easier to manage deployment pipelines at scale. It reduces the need for manually filling out change requests, making the process quicker and reducing errors.
 
 Learn more about our [Jira Service Management integration](https://octopus.com/docs/approvals).
 
@@ -287,7 +287,7 @@ Check out our [public roadmap](https://octopus.com/roadmap) to stay informed and
 
 ## Conclusion
 
-Octopus 2022 Q3 delivers new features to support safe, reliable, and auditable “As code” CI/CD pipelines. Octopus 2022 Q3 builds on the foundation of our Q1 release with the addition of version controlled variables. This release also includes a number of additional features to support modern DevOps teams. 
+Octopus 2022 Q3 delivers new features to support safe, reliable, and auditable “As code” CI/CD pipelines. Octopus 2022 Q3 builds on the foundation of our Q1 release with the addition of version-controlled variables. This release also includes a number of additional features to support modern DevOps teams. 
 
 We’re continuing to add more functionality to our Config as Code solution, and look forward to seeing more version-controlled projects with the addition of variables. 
 
