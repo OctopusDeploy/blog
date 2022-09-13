@@ -4,8 +4,8 @@ description: The Executions API is a new set of endpoints that dramatically impr
 author: john.bristowe@octopus.com
 visibility: public
 published: 2022-10-05-1400
-metaImage: to-do.png
-bannerImage: to-do.png
+metaImage: executions-api-header-image.png
+bannerImage: executions-api-header-image.png
 bannerImageAlt: Faster deployments with the Executions API
 isFeatured: false
 tags:
