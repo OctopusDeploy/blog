@@ -80,7 +80,7 @@ While deployments as code in Octopus Deploy have significant benefits, there are
 
 ## Conclusion
 
-Everything as Code (Eac) is an approach to software development and DevOps that uses code to define and manage IT resources. EaC has found many applications in Infrastructure as Code, Config as Code, and other areas of IT. If you work in DevOps and cloud, you've likely already seen benefits of EaC firsthand. 
+Everything as Code (EaC) is an approach to software development and DevOps that uses code to define and manage IT resources. EaC has found many applications in Infrastructure as Code, Config as Code, and other areas of IT. If you work in DevOps and cloud, you've likely already seen benefits of EaC firsthand. 
 
 Although Everything as Code is a promising end-state for organizations, there's an opportunity cost to convert parts of a platform to EaC, which will inform where you invest your resources. There will undoubtedly be parts of your platform that could benefit from an EaC approach, and the key is identifying those areas. 
 
