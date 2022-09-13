@@ -30,7 +30,6 @@ This release’s noteworthy updates include:
 - Jira Service Management - efficient change management approvals (early access)
 - DevOps Insights - DORA insights to quantify value and improvements (early access)
 - GitHub Actions for Octopus Deploy v2
-- Easier onboarding for teams
 - Simpler cloud target discovery setup
 
 Together, these features support collaboration, scalability, and security for your deployments. 
@@ -219,18 +218,6 @@ This release introduces a new GitHub Action: [Push Build Information](https://gi
 You can use this feature to share release notes with stakeholders for each production deployment. You can also follow the links from deployments back to builds and commits when trying to isolate bugs that were introduced in specific releases. 
 
 Learn more about [Build Information and Issue Tracking](https://octopus.com/docs/packaging-applications/build-servers/build-information).
-
-## Easier onboarding for teams
-
-[Watch our video walk-through that helps you deploy with Octopus in minutes](https://youtu.be/EHByk8vG8xM).
-
-Getting started with Octopus Deploy is now even easier. We revamped our getting started experience to help companies onboard new teams quickly and easily. 
-
-Our customers told us that our existing “Space-level” wizard was difficult for new users to understand, and frustrated some experienced users who were ready to jump in. Based on this feedback, we improved the onboarding process by helping new users create their first project and deployment process with fewer clicks. 
-
-This update makes it easier for new teams to learn Octopus and get to a successful deployment faster. 
-
-Learn how to get started in our [guide to first deployments](https://to-do.com).
 
 ## Simpler cloud target discovery setup 
 
