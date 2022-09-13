@@ -180,6 +180,8 @@ Learn more about [how Space level insights can help your team make better decisi
 
 ### Customer feedback from the DevOps Insights Alpha Program
 
+We had several customers participate in our DevOps Insights Alpha Program and we thank you for your time and feedback. This has helped to shaped the feature for thousands of other customers.
+
 *"We used the DevOps Insights Alpha program and found it really useful. The insights give our teams easily accessible, concrete data to help validate our assumptions and make decisions. They provide proof-points to share with decision-makers and allow managers to find the information they need at a glance."*
 **Leslie Brody, Principle Site Reliability Engineer - IMO**
 
@@ -229,7 +231,7 @@ Learn more about how to [configure cloud connections](https://octopus.com/docs/i
 
 ## Breaking changes 
 
-This release contains two breaking changes:
+This release contains three breaking changes:
 
 ### Less requests made to external feeds when creating and viewing releases
 
