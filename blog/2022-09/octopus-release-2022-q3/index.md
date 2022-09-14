@@ -100,9 +100,11 @@ Learn more about [Config as Code in Octopus](https://octopus.com/docs/projects/v
 We have hundreds of customers using Config as Code in Octopus, including StackOverflow and Recruit Wizard.
 
 *“Config as Code allowed us to create our desired workflow for every kind of change we made. It brought to life the most valuable part of version controlling deployments, which is the iteration process (via branching) that it allows users to have”.* 
+
 **Chris Hunt, Staff Site Reliability Engineer - Stack Overflow**
 
 *“Branching in Config as Code allows us to make changes to the deployment process alongside our code changes. This is an absolute game-changer, especially as we add more and more engineers to the team”.* 
+
 **Ben Macpherson, CTO - Recruit Wizard**
 
 ## ServiceNow change management without friction
@@ -124,9 +126,11 @@ You get improved traceability out-of-the-box, and you can prove to auditors that
 - Add work notes to change requests with information about deployment start and finish time, and whether it was successful or not.
 - View and export audit logs of controlled deployments for easy compliance and post-deployment reconciliation.
 
-Learn more about our [ServiceNow integration](https://octopus.com/docs/approvals).
+Learn more about our [ServiceNow integration](https://octopus.com/docs/approvals/service-now).
 
-> The ServiceNow integration is available as part of our Enterprise subscription to help larger organizations with their change management. Contact our sales team for a demo and [learn more about Octopus Deploy pricing](https://octopus.com/pricing).
+:::hint
+The ServiceNow integration is available as part of our Enterprise subscription to help larger organizations with their change management. Contact our sales team for a demo and [learn more about Octopus Deploy pricing](https://octopus.com/pricing).
+:::
 
 ## Efficient change management approvals with Jira Service Management (early access preview)
 
@@ -134,7 +138,7 @@ Learn more about our [ServiceNow integration](https://octopus.com/docs/approvals
 
 Building on our ITSM change management support, our Jira Service Management integration is available as an early access preview (EAP). This integration links Octopus deployments to Jira Service Management change requests, making it easier to manage deployment pipelines at scale. It reduces the need for manually filling out change requests, making the process quicker and reducing errors.
 
-Learn more about our [Jira Service Management integration](https://octopus.com/docs/approvals).
+Learn more about our [Jira Service Management integration](https://octopus.com/docs/approvals/jira-service-management).
 
 ### What's included in our Jira Service Management support?
 
@@ -181,13 +185,16 @@ This release includes additional insights for Enterprise customers. Space level 
 
 Learn more about [how Space level insights can help your team make better decisions](https://octopus.com/docs/insights). 
 
-> Space level insights are available as a part of the Octopus Deploy Enterprise subscription. [Contact our sales team](mailto:sales@octopus.com) for a demo and to [learn more about Octopus Deploy pricing](https://octopus.com/pricing).
+:::hint
+Space level insights are available as a part of the Octopus Deploy Enterprise subscription. [Contact our sales team](mailto:sales@octopus.com) for a demo and to [learn more about Octopus Deploy pricing](https://octopus.com/pricing).
+:::
 
 ### Customer feedback from the DevOps Insights Alpha Program
 
 Several customers participated in our DevOps Insights Alpha Program, and we thank them for their time and feedback. They helped shape the feature for thousands of other customers.
 
 *"We used the DevOps Insights Alpha program and found it really useful. The insights give our teams easily accessible, concrete data to help validate our assumptions and make decisions. They provide proof-points to share with decision-makers and allow managers to find the information they need at a glance."*
+
 **Leslie Brody, Principle Site Reliability Engineer - IMO**
 
 ## GitHub Actions for Octopus Deploy v2
@@ -270,7 +277,7 @@ Learn more about this change in the [GitHub issue](https://github.com/OctopusDep
 
 Octopus Cloud users are already running this release. Self-hosted Octopus customers can download the latest version from our website.
 
-[Download Octopus 2022.3](https://octopus.com/downloads/)
+<span><a class="btn btn-success" href="https://octopus.com/downloads/">Download Octopus 2022.3</a></span>
 
 We encourage you to review the [steps for upgrading Octopus Server](https://octopus.com/docs/administration/upgrading). Please see the [release notes](https://octopus.com/downloads/whatsnew/2022.3) for further information.
 
