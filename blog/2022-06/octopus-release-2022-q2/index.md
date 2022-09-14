@@ -7,7 +7,7 @@ published: 2022-06-15-1400
 metaImage: newsimg-600x320-q2-launch-2022.png
 bannerImage: blogimage-q2launchazure2-2022.png
 bannerImageAlt: Octopus 2022 Q2 highlighting cloud native container deployments for Amazon ECS and Kubernetes.
-isFeatured: true
+isFeatured: false
 tags:
 - Product
 - DevOps
