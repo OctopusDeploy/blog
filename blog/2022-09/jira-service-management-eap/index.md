@@ -6,7 +6,7 @@ visibility: public
 published: 2022-09-20-1400
 metaImage: jsm-integration-blog-post.png
 bannerImage: jsm-integration-blog-post.png
-bannerImageAlt: Jira service management integration for Octopus Deploy
+bannerImageAlt: Jira and Octopus Deploy logos connected by plugs with little stars around the connection
 isFeatured: false
 tags:
 - Product
