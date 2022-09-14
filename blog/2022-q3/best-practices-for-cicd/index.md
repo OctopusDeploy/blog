@@ -6,7 +6,7 @@ visibility: public
 published: 2022-09-22-1400
 metaImage: blogimage-bestpracticecicd-2022.png
 bannerImage: blogimage-bestpracticecicd-2022.png
-bannerImageAlt: Person with a checklist stands in front of CI/CD DevOps infinity symbol.
+bannerImageAlt: Person with a checklist stands in front of DevOps infinity symbol.
 isFeatured: false
 tags:
   - DevOps
@@ -41,15 +41,15 @@ Committing a code change should trigger a CI/CD pipeline build. This trigger all
 
 Config as Code represents your deployment process in a Git-native system. Deployments inherit all the benefits of Git, such as branching, version control, and approvals as pull requests. 
 
-Config as Code lets users to store their deployment process in Git. Changes to deployments can be tested in a branch and validated through a pull request. Git-native deployments make it easier to transfer a deployment set up from one environment to another.
+Config as Code lets users store their deployment process in Git. Changes to deployments can be tested in a branch and validated through a pull request. Git-native deployments make it easier to transfer a deployment set up from one environment to another.
 
-In 2022 Q1, we released [Config as Code for Octopus Deploy](https://octopus.com/blog/octopus-release-2022-q1), and we believe we set an industry standard. Other Config as Code solutions sacrifice usability for functionality. In Octopus Deploy, users get all the features of Config as Code, whether they use the UI or the version-controlled implementation.
+In 2022 Q1, we released [Config as Code for Octopus Deploy](https://octopus.com/blog/octopus-release-2022-q1), and believe we set an industry standard. Other Config as Code solutions sacrifice usability for functionality. In Octopus Deploy, users get all the features of Config as Code, whether they use the UI or the version-controlled implementation.
 
 ## Choose a tool that lets you keep builds green
 
 A green build in a CI/CD pipeline means that every test passed, and the release has progressed to the next stage. Software teams aim to keep builds green. 
 
-To help keep builds green, software teams should choose a deployment tool that surfaces information to help. Many deployment processes only use a build server that pushes releases into production. In practice, only using a build server makes it harder to manage a release between different deployment stages. Using a dedicated deployment tool gives you a dedicated management layer to keep builds green.
+You should choose a deployment tool that surfaces information to help keep builds green. Many deployment processes only use a build server that pushes releases into production. In practice, only using a build server makes it harder to manage a release between different deployment stages. Using a dedicated deployment tool gives you a dedicated management layer to keep builds green.
 
 A build server doesn't include the concept of deployment stages. Octopus Deploy, however, separates a release into Test, Dev, and Production environments, and environments can exist at different release versions in each stage. Our UI shows each release's deployment stage and transition releases between stages. The Octopus UI also shows logs and error messages to help developers quickly identify failing builds.
 
@@ -57,7 +57,7 @@ A build server doesn't include the concept of deployment stages. Octopus Deploy,
 
 Testing code changes is essential to producing reliable releases. The testing suite should cover all use cases for the product, from functional to non-functional tests. These tests should be automated so that a code change can trigger an automated test and build. Automated tests improve the agility of a software development project so that releases can be live faster.
 
-A survey by [Mabel on the state of testing in DevOps](https://www.dropbox.com/s/nnagymzdcnoswc6/Benchmark-Report-State-of-Testing-in-DevOps.pdf?dl=0) indicates that automated testing (at least 4-5 different types of tests) is key to customer happiness. The [2021 State of DevOps DORA Report](https://www.dropbox.com/s/xycst8qsxnpsieu/state-of-devops-2021.pdf?dl=0), continuous testing is an indicator of success, with elite performers who meet their reliability targets 3.7 times more likely to leverage continuous testing.
+A survey by [Mabel on the state of testing in DevOps](https://www.dropbox.com/s/nnagymzdcnoswc6/Benchmark-Report-State-of-Testing-in-DevOps.pdf?dl=0) indicates that automated testing (at least 4-5 different types of tests) is key to customer happiness. In the [2021 State of DevOps DORA Report](https://www.dropbox.com/s/xycst8qsxnpsieu/state-of-devops-2021.pdf?dl=0), continuous testing is an indicator of success, with elite performers who meet their reliability targets 3.7 times more likely to leverage continuous testing.
 
 ## Strengthen the feedback loop through monitoring
 
@@ -65,11 +65,11 @@ Developers use telemetry data (logs, metrics, and traces) to understand their sy
 
 Monitoring key system metrics can help diagnose a system for vulnerabilities and identify improvements. In the DevOps community, [DORA metrics](https://cloud.google.com/blog/products/devops-sre/using-the-four-keys-to-measure-your-devops-performance) are commonly accepted as crucial metrics for the success of a deployment pipeline. 
 
-Octopus Deploy lets you measure results, compare project statuses, and continuously improve with [DevOps Insights focused on the DORA metrics](add-link-to-section-in-Q3-post).
+Octopus Deploy lets you measure results, compare project statuses, and continuously improve with [DevOps Insights focused on the DORA metrics](https://octopus.com/docs/insights).
 
 ## Use technologies that are fit-for-purpose
 
-Every year there are a new technologies that people claim will revolutionize the IT playing field. Whether it's containerization, machine learning, or blockchain, some technologies change the playing field, while others are too immature to make a real impact. When managing a CI/CD pipeline, it's essential to only choose technologies fit for purpose. 
+Every year there are a new technologies that people claim will revolutionize the IT playing field. Whether it's containerization, machine learning, or blockchain, some technologies change the playing field, while others are too immature to make a real impact. When managing a CI/CD pipeline, it's essential to only choose technologies fit-for-purpose. 
 
 While being cloud-native makes sense for some parts, forcing everything onto the cloud might not be the right solution. Adoption of new technologies can bring significant improvements, but taking a measured approach avoids unnecessary pain when the costs of adoption outweigh the benefits.
 
@@ -77,9 +77,11 @@ While being cloud-native makes sense for some parts, forcing everything onto the
 
 As software projects get larger, the security risks increase with more data handling, users, and dependencies. Your deployment process should have a security strategy. 
 
-Many cloud providers like AWS, Azure, or Google have built-in security features such as IAM, secrets, and role-based permissions. You can use these features to manage some security concerns. Many customers are rightly concerned with security, and companies need to invest in certifications such as ISO 27001 and SOC II to certify their compliance with security regulations.
+Many cloud providers like AWS, Azure, or Google have built-in security features such as IAM, secrets, and role-based permissions. You can use these features to manage some security concerns. 
 
-On May 12, 2021, The US government released Executive Order 14028, "Improving the Nation's Cybersecurity". The Order requires all vendors of government software projects to produce a Software Bill of Materials (SBOM). The SBOMs detail all software components so that governments can screen software for cybersecurity. If you want an example of how to produce an SBOM and attach it to your deployment process, we created a free tool called the [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/) that can help.
+Customers are increasingly concerned with security, and companies need to invest in certifications such as ISO 27001 and SOC II to certify their compliance with security regulations.
+
+On May 12, 2021, The US government released Executive Order 14028, "Improving the Nation's Cybersecurity". The Order requires all vendors of government software projects to produce a Software Bill of Materials (SBOM). The SBOMs detail all software components so that governments can screen software for cybersecurity. If you want an example of how to produce an [SBOM](https://octopus.com/blog/what-are-sboms) and attach it to your deployment process, we created a free tool called the [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/) that can help.
 
 ## Conclusion
 
