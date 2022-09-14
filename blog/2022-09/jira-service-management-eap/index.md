@@ -46,7 +46,7 @@ Integrating Jira Service Management with Octopus helps to make change management
 ## Getting started with the Jira Service Management integration
 
 :::hint
-[Read the latest version of the documentation]<https://octopus.com/docs/approvals> for the Jira Service Management integration.
+[Read the latest version of the documentation](https://octopus.com/docs/approvals) for the Jira Service Management integration.
 :::
 
 After [signing up for the EAP](https://octopusdeploy.typeform.com/jsm-eap), there are a few settings you need to configure to get started with the Jira Service Management  integration.
@@ -77,7 +77,7 @@ You also need to enter the **Key** for the Jira Service Management project.
 
 ![Screenshot of Octopus Deploy Jira Service Management Integration configure project](jsm-configure-project.png "width=500")
 
-## Setting up a prompted variable for linking to existing change requests
+## Setting up a prompted variable for linking to existing change requests {#prompted-variable}
 
 ![Screenshot of Octopus Deploy Jira Service Management Integration prompted variable](jsm-prompted-variable.png "width=500")
 
@@ -119,7 +119,7 @@ The change request must also remain in implementation for the duration of the de
 
 If you have an existing change request, you can link deployments to it rather than creating a new one.
 
-Assuming you created the [prompted variable for the change request number](https://docs.google.com/document/d/1ejUJRtsrRnR9Rc1HkAjPwBpjoPLV9by6dtgRa6playg/edit#heading=h.l0mf24650wjf), simply copy the change request number and paste it into the **Parameters** section when creating the deployment.
+Assuming you created the [prompted variable for the change request number](#prompted-variable), simply copy the change request number and paste it into the **Parameters** section when creating the deployment.
 
 If the change request is in the Implementing stage, Octopus automatically recognizes it's been approved.
 
@@ -131,6 +131,6 @@ We look forward to introducing new features to continue supporting your change m
 
 We’d love you to try this integration with your workflow and let us know how we can improve it.
 
-[Register for the Jira Service Management EAP.]<https://octopusdeploy.typeform.com/jsm-eap>
+[Register for the Jira Service Management EAP.](https://octopusdeploy.typeform.com/jsm-eap)
 
 Happy deployments!
