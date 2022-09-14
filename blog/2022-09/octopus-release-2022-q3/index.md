@@ -129,7 +129,7 @@ You get improved traceability out-of-the-box, and you can prove to auditors that
 Learn more about our [ServiceNow integration](https://octopus.com/docs/approvals/service-now).
 
 :::hint
-The ServiceNow integration is available as part of our Enterprise subscription to help larger organizations with their change management. Contact our sales team for a demo and [learn more about Octopus Deploy pricing](https://octopus.com/pricing).
+The ServiceNow integration is available as part of our Enterprise subscription to help larger organizations with their change management. [Contact our sales team](mailto:sales@octopus.com) for a demo and [learn more about Octopus Deploy pricing](https://octopus.com/pricing).
 :::
 
 ## Efficient change management approvals with Jira Service Management (early access preview)
