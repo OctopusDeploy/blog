@@ -3,10 +3,10 @@ title: Comparing Lean, Agile, and Continuous Delivery
 description: Are Agile and Lean principles still relevant and how do they compare to Continuous Delivery?
 author: steve.fenton@octopus.com
 visibility: public
-published: 2022-09-19-1400
-metaImage: placeholderimg.png
-bannerImage: placeholderimg.png
-bannerImageAlt: TBC
+published: 2022-09-28-1400
+metaImage: pblogimage-comparingagilecontinuousdeliveryprinciples-2022_01
+bannerImage: blogimage-comparingagilecontinuousdeliveryprinciples-2022_01
+bannerImageAlt: Person on laptop sits on one loop of the DevOps infinity symbol.
 isFeatured: false
 tags: 
   - DevOps
@@ -15,9 +15,9 @@ tags:
 
 With DevOps and Continuous Delivery gaining traction, are the principles behind Lean and Agile still relevant? How do they compare to the 5 Continuous Delivery principles, and what do any differences mean for software development teams?
 
-## Introduction
+## The beginnings of lightweight software delivery
 
-Throughout the 1990s, a revolution was brewing in the software development industry. The early phased models divided the delivery process into skill-based steps, with designs and documents used to run approval processes to control the project.
+Throughout the 1990s, a revolution was brewing in the software development industry. The early phased models divided the delivery process into skill-based steps, with designs and documents used to run approval processes to control a project.
 
 The process for delivering software was heavyweight and slow, with little indication that the overheads reduced the risks they tried to mitigate.
 
@@ -63,7 +63,7 @@ The principles are the only directly comparable elements of these 3 approaches.
 
 ### Continuous Delivery principles
 
-There are [5 principles](https://continuousdelivery.com/principles/) of Continuous Delivery.
+There are [5 principles](https://continuousdelivery.com/principles/) of Continuous Delivery:
 
 1. Build quality in
 2. Work in small batches
@@ -88,11 +88,11 @@ For example, working in small batches is widely understood to help achieve sever
 - Deliver working software frequently, from a couple of weeks to a couple of months, with a preference to the shorter timescale
 - Working software is the primary measure of progress.
 - Agile processes promote sustainable development. The sponsors, developers, and users should be able to maintain a constant pace indefinitely.
-- Simplicity--the art of maximizing the amount of work not done--is essential.
+- Simplicity - the art of maximizing the amount of work not done - is essential.
 
 The phrasing of the principle "work in small batches" is concise and easy to follow in practice. This Continuous Delivery principle contributes to the attainment of half of the Agile principles.
 
-There is also an amplification effect when you combine the 5 principles. To "deliver working software frequently," you need to work in small batches, increase automation, and build quality in.
+There is also an amplification effect when you combine the 5 principles. To "deliver working software frequently", you need to work in small batches, increase automation, and build quality in.
 
 Two Agile principles are not covered by Continuous Delivery:
 
@@ -119,7 +119,7 @@ With Agile, Continuous Delivery offered a concise alternative to 10 Agile princi
 
 In an organization that has fully adopted both Lean and Continuous Delivery, the respective principles are helpful to different groups. Lean principles and techniques are leadership tools, while Continuous Delivery provides an approach specific to the individual contributors' delivery efforts.
 
-For example, automation is a practical attack vector for eliminating waste, delivering quickly, and building integrity into the system with continuous delivery.
+For example, automation is a practical attack vector for eliminating waste, delivering quickly, and building integrity into the system with Continuous Delivery.
 
 ## Conclusion
 
