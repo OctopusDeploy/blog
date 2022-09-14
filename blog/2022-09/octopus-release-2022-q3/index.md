@@ -13,6 +13,7 @@ tags:
 - DevOps
 - Configuration as Code
 - GitHub Actions
+- Integrations
 ---
 
 The Octopus 2022 Q3 release is now available.
@@ -21,7 +22,7 @@ This release adds support for version-controlled variables for version-controlle
 
 We also have a number of other new features to help you build safe, reliable, and auditable “As Code” CI/CD pipelines. These include ITSM change management with our ServiceNow and Jira Service Management integrations, and built-in DevOps reporting.
 
-As organizations continue to modernize, it's becoming increasingly important to ensure you can safely and reliably audit your CI/CD pipelines. You need to monitor and secure your deployments, and your teams need to scale reliably with tools to collaborate as releases move from deployment through to testing and production. 
+As organizations continue to modernize, it's increasingly important that you can safely and reliably audit your CI/CD pipelines. You need to monitor and secure your deployments, and your teams need to scale reliably with tools to collaborate as releases move from deployment through to testing and production. 
 
 This release’s noteworthy updates include:
 
@@ -36,24 +37,30 @@ Together, these features support collaboration, scalability, and security for yo
 
 The 2022 Q3 release is available on Octopus Cloud and ready for download by our self-hosted customers.
 
-## YouTube Live launch party
+## YouTube live launch party
 
-To celebrate the release of Octopus 2022 Q3, we’re throwing a launch party **on October 5th**. This is an interactive YouTube Live stream where some of our product managers and tech leads will take you through the latest features, and answer any questions, including: 
+To celebrate the release of Octopus 2022 Q3, we’re throwing a launch party on **Wednesday, October 5, 2022**. During this interactive YouTube live stream, some of our product managers and tech leads will take you through the latest features and answer your questions. 
 
-* Config as Code with version-controlled variables
-* DevOps Insights 
-* Change management with ServiceNow
+Learn about: 
+
+- Config as Code with version-controlled variables
+- DevOps Insights 
+- Change management with ServiceNow
 
 Subscribe to our [YouTube channel](https://youtube.com/octopusdeploy) to get notified of the event. 
 
 ## Included in the Q3 release
 
 - Octopus Server 2022.3 ([release notes](https://octopus.com/downloads/whatsnew/2022.3))
-- Tentacle 6.1.1403
+- Tentacle 6.2.50
 - Plugins and tools 
   - Octopus Deploy for TeamCity 6.1.14
   - Octopus Deploy for Visual Studio Code 0.1.4
-  - Terraform Provider for Octopus Deploy 0.8 (TBA)
+<<<<<<< HEAD
+  - Terraform Provider for Octopus Deploy 0.8
+=======
+  - Terraform Provider for Octopus Deploy 0.8.1
+>>>>>>> 18451ef5ea44b0f1d310a1a8d2a051fc62bd635f
   - Octopus Deploy for Jira Service Management 1.0.9-AC (available now for Jira Service Management Cloud customers)
   - Octopus Deploy for Bamboo 2.4.5
 
@@ -90,9 +97,9 @@ Learn more about [Config as Code in Octopus](https://octopus.com/docs/projects/v
 
 [TO DO: Add video link]() -->
 
-### Customers using Config as code
+### Customers benefiting from Config as Code
 
-We currently have hundreds of customers using Config as Code in Octopus, including StackOverflow and Recruit Wizard.
+We have hundreds of customers using Config as Code in Octopus, including StackOverflow and Recruit Wizard.
 
 *“Config as Code allowed us to create our desired workflow for every kind of change we made. It brought to life the most valuable part of version controlling deployments, which is the iteration process (via branching) that it allows users to have”.* 
 **Chris Hunt, Staff Site Reliability Engineer - Stack Overflow**
@@ -127,7 +134,7 @@ Learn more about our [ServiceNow integration](https://octopus.com/docs/approvals
 
 ![Screenshot of Jira Service Management integration](jira-task-settings.png "width=500")
 
-Build on our ITSM change management support, our Jira Service Management integration is available as an early access preview (EAP). This integration links Octopus deployments to Jira Service Management change requests, making it easier to manage deployment pipelines at scale. It reduces the need for manually filling out change requests, making the process quicker and reducing errors.
+Building on our ITSM change management support, our Jira Service Management integration is available as an early access preview (EAP). This integration links Octopus deployments to Jira Service Management change requests, making it easier to manage deployment pipelines at scale. It reduces the need for manually filling out change requests, making the process quicker and reducing errors.
 
 Learn more about our [Jira Service Management integration](https://octopus.com/docs/approvals).
 
@@ -145,7 +152,7 @@ If your team uses Jira Service Management change management, we'd love you to tr
 
 ## DevOps Insights: Better visibility and actionable DORA metrics (early access preview)
 
-DevOps Insights (early access) in Octopus gives you better visibility into your company’s DevOps performance by surfacing insights based on the [4 key DORA metrics](https://octopus.com/docs/insights). These metrics help you qualify the results of your DevOps performance, and gain insights into areas for future improvement. 
+DevOps Insights (early access) in Octopus gives you better visibility into your company’s DevOps performance by surfacing insights based on the [4 key DORA metrics](https://octopus.com/docs/insights). These metrics help you qualify the results of your DevOps performance, and gain insights into areas for improvement. 
 
 - Get better visibility into the performance of your projects and teams.
 - Eliminate “gut feel” and use data to drive improvement and determine if a new process is working. 
@@ -164,7 +171,7 @@ Project level insights are available to all customers out-of-the-box as a new ta
 
 Learn how to use [Project level insights in our docs](https://octopus.com/docs/insights).  
 
-### Insight across projects and teams with the Space level insights (available to Enterprise customers)
+### Insights across projects and teams with Space level insights 
 
 ![Space level insights with Octopus Deploy DevOps Insights](devops-insights-space-level-insights.png "width=500")
 
@@ -176,7 +183,7 @@ This release includes additional insights for Enterprise customers. Space level 
 
 Learn more about [how Space level insights can help your team make better decisions](https://octopus.com/docs/insights). 
 
-> Space level insights are available as a part of the Octopus Deploy Enterprise subscription. Contact our sales team for a demo and to [learn more about Octopus Deploy pricing](https://octopus.com/pricing).
+> Space level insights are available as a part of the Octopus Deploy Enterprise subscription. [Contact our sales team](mailto:sales@octopus.com) for a demo and to [learn more about Octopus Deploy pricing](https://octopus.com/pricing).
 
 ### Customer feedback from the DevOps Insights Alpha Program
 
@@ -215,7 +222,7 @@ Actions output like this was previously limited to logs and annotations, which c
 
 ### Push Build Information
 
-This release introduces a new GitHub Action: [Push Build Information](https://github.com/marketplace/actions/push-build-information-to-octopus-deploy). This GitHub Action lets you provide detailed commit, build, and issue tracking information to Octopus, which can be surfaced as release notes. 
+This release introduces a new GitHub Action: [Push Build Information](https://github.com/marketplace/actions/push-build-information-to-octopus-deploy). This GitHub Action lets you provide detailed commit, build, and issue tracking information to Octopus, that can be surfaced as release notes. 
 
 You can use this feature to share release notes with stakeholders for each production deployment. You can also follow the links from deployments back to builds and commits when trying to isolate bugs that were introduced in specific releases. 
 
@@ -231,7 +238,7 @@ Learn more about how to [configure cloud connections](https://octopus.com/docs/i
 
 ## Breaking changes 
 
-This release contains three breaking changes:
+This release contains 3 breaking changes:
 
 ### Less requests made to external feeds when creating and viewing releases
 
@@ -249,7 +256,7 @@ Instead of using names, we've [introduced slugs into OCL](https://octopus.com/bl
 
 With this change, Git projects can reference shared resources from OCL using their unique slug instead of their name.
 
-Octopus Server will convert these slugs to the resource IDs when returning results via the API, allowing (most) scripts to be re-used between database and Git projects, without the need to account for names and IDs.
+Octopus Server will convert these slugs to the resource IDs when returning results via the API, allowing (most) scripts to be re-used between database and Git projects without the need to account for names and IDs.
 
 Learn more about this change in the [GitHub issue](https://github.com/OctopusDeploy/Issues/issues/7645).
 
