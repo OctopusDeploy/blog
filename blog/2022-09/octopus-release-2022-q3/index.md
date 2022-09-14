@@ -195,7 +195,7 @@ Several customers participated in our DevOps Insights Alpha Program, and we than
 
 > "We used the DevOps Insights Alpha program and found it really useful. The insights give our teams easily accessible, concrete data to help validate our assumptions and make decisions. They provide proof-points to share with decision-makers and allow managers to find the information they need at a glance."
 >
-> *Leslie Brody, Principle Site Reliability Engineer - IMO*
+> *Leslie Brody, Principal Site Reliability Engineer - IMO*
 
 ## GitHub Actions for Octopus Deploy v2
 
