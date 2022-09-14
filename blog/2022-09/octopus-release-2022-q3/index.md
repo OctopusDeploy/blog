@@ -74,13 +74,13 @@ The following table shows the Octopus Server releases with long term support.
 
 ## Config as Code - Version control your deployment process and configuration
 
-![Screenshot of Octopus Deploy version-controlled variables](config-as-code-commit.png "width=500")
+![Screenshot of Octopus Deploy version-controlled variables](config-as-code-new-branch.png "width=500")
 
 Octopus 2022 Q3 builds on the foundation of our [2022 Q1 release](https://octopus.com/blog/octopus-release-2022-q1) with the addition of version-controlled variables to further improve your development workflow. You can evolve your configuration variables and infrastructure settings alongside your deployment process and application code.
 
 With version-controlled deployment processes and variables, Octopus provides safe, reliable, and auditable “As Code” deployment pipelines. This lets your teams work in line with your company's regulatory requirements and compliance policies, making auditing a much smoother process. 
 
-![Screenshot of Octopus Deploy version-controlled variables](config-as-code-create-new-branch.png "width=500")
+![Screenshot of Octopus Deploy version-controlled variables](config-as-code-variables.png "width=500")
 
 - **Traceable end-to-end CI/CD “As Code” pipelines** - Octopus has built-in plugins for a wide range of CI servers for easy integration. You can pair Octopus with a CI server that supports build definitions as code, giving you complete traceability into changes to your software development process. Changes to your build and deployment pipelines can go through the same pull request review and approval process, improving the stability and reliability of your pipeline.
 - **Consistent processes and approvals** - Improve the quality of your code and meet compliance requirements by using pull request workflows to review and approve changes. Consistent processes contribute to quality releases, and you can enforce policies so that unapproved changes don't get merged.
@@ -94,7 +94,6 @@ Learn more about [Config as Code in Octopus](https://octopus.com/docs/projects/v
 ### Config as Code demo
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/lRLKt6b4uxE" frameborder="0" allowfullscreen></iframe>
-
 
 ### Customers benefiting from Config as Code
 
