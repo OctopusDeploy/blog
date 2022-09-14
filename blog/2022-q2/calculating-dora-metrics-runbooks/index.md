@@ -1053,6 +1053,35 @@ With a single click of the **RUN** button, you can quickly measure the performan
 
 ![Runbook run](runbook-run.png "width=500")
 
+## DORA Metrics in Octopus 
+
+![DORA Metrics and DevOps Insights in Octopus](dora-metrics.png "width=500")
+
+Octopus Deploy 2022.3+ includes support for DevOps Insights with built-in DORA metrics. This built-in reporting gives you better visibility into your company’s DevOps performance by surfacing the 4 key DORA metrics: 
+
+- Deployment Lead Time
+- Deployment Failure Rate
+- Deployment Frequency
+- Mean Time to Recovery
+
+These metrics help you make informed decisions on where to improve and celebrate your results. 
+
+**Project insights** are available for all Octopus projects, including existing projects. 
+
+**Space level insights** are available for [Enterprise](https://octopus.com/pricing) customers at a [space](https://octopus.com/docs/administration/spaces) level and cover all projects in that space. 
+
+Space level insights are available via the **Insights** tab and provide actionable DORA metrics for more complex scenarios across a group of projects, environments, or tenants. This gives managers and decision makers more insight into the DevOps performance of their organization in line with their business context, such as team, portfolio, or platform. 
+
+Space level insights:
+
+- Aggregate data across your space so you can compare and contrast metrics across projects to identify what's working and what isn’t
+- Inform better decision making: identify problems, track improvements, and celebrate successes 
+- Help you quantify DevOps performance based on what's actually happening as shown by data
+
+Together these metrics help you qualify the results of your DevOps performance across your projects and portfolio. 
+
+[Learn more about DevOps Insights](https://octopus.com/docs/insights).
+
 ## Conclusion
 
 The DORA metrics represent one of the few rigorously researched insights available to measure your team's DevOps performance. Between the information captured by Octopus build information packages and issue tracking platforms like GitHub Actions, you can rank your performance against thousands of other software development teams around the globe.
@@ -1062,3 +1091,4 @@ In this post, you saw a sample Python script that queried the Octopus and GitHub
 !include <q2-2022-newsletter-cta>
 
 Happy deployments!
+

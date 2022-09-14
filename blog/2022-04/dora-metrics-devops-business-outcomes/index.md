@@ -3,7 +3,7 @@ title: "DORA metrics - The predictive link between DevOps practice and business 
 description: What are the DORA metrics? Why do they matter? How can you use them to drive improvement?
 author: alex.yates@octopus.com
 visibility: public
-published: 2022-04-06-1400
+published: 2022-09-15-1400
 metaImage: blogimage-dorametrics-2022.png
 bannerImage: blogimage-dorametrics-2022.png
 bannerImageAlt: A slightly transparent computer screen with someone analyzing data behind it, with different metrics floating around the person.
@@ -203,6 +203,35 @@ I challenge you to answer the following questions:
 - How does your team score against the DORA metrics?
 - How are you planning to track your performance against the DORA metrics over the next couple of years?
 - What changes are you going to make to drive improvement?
+
+## DORA metrics in Octopus 
+
+![DORA Metrics and DevOps Insights in Octopus](dora-metrics.png "width=500")
+
+Octopus Deploy 2022.3+ includes support for DevOps Insights with built-in DORA metrics. This built-in reporting gives you better visibility into your company’s DevOps performance by surfacing the 4 key DORA metrics: 
+
+- Deployment Lead Time
+- Deployment Failure Rate
+- Deployment Frequency
+- Mean Time to Recovery
+
+These metrics help you make informed decisions on where to improve and celebrate your results. 
+
+**Project insights** are available for all Octopus projects, including existing projects. 
+
+**Space level insights** are available for [Enterprise](https://octopus.com/pricing) customers at a [space](https://octopus.com/docs/administration/spaces) level and cover all projects in that space. 
+
+Space level insights are available via the **Insights** tab and provide actionable DORA metrics for more complex scenarios across a group of projects, environments, or tenants. This gives managers and decision makers more insight into the DevOps performance of their organization in line with their business context, such as team, portfolio, or platform. 
+
+Space level insights:
+
+- Aggregate data across your space so you can compare and contrast metrics across projects to identify what's working and what isn’t
+- Inform better decision making: identify problems, track improvements, and celebrate successes 
+- Help you quantify DevOps performance based on what's actually happening as shown by data
+
+Together these metrics help you qualify the results of your DevOps performance across your projects and portfolio. 
+
+[Learn more about DevOps Insights](https://octopus.com/docs/insights).
 
 ## Help us improve Octopus
 
