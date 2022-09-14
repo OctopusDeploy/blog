@@ -56,11 +56,7 @@ Subscribe to our [YouTube channel](https://youtube.com/octopusdeploy) to get not
 - Plugins and tools 
   - Octopus Deploy for TeamCity 6.1.14
   - Octopus Deploy for Visual Studio Code 0.1.4
-<<<<<<< HEAD
-  - Terraform Provider for Octopus Deploy 0.8
-=======
   - Terraform Provider for Octopus Deploy 0.8.1
->>>>>>> 18451ef5ea44b0f1d310a1a8d2a051fc62bd635f
   - Octopus Deploy for Jira Service Management 1.0.9-AC (available now for Jira Service Management Cloud customers)
   - Octopus Deploy for Bamboo 2.4.5
 
