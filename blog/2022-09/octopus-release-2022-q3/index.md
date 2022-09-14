@@ -193,9 +193,9 @@ Space level insights are available as a part of the Octopus Deploy Enterprise su
 
 Several customers participated in our DevOps Insights Alpha Program, and we thank them for their time and feedback. They helped shape the feature for thousands of other customers.
 
-> "We used the DevOps Insights Alpha program and found it really useful. The insights give our teams easily accessible, concrete data to help validate our assumptions and make decisions. They provide proof-points to share with decision-makers and allow managers to find the information they need at a glance."
+> We used the DevOps Insights Alpha program and found it really useful. The insights give our teams easily accessible, concrete data to help validate our assumptions and make decisions. They provide proof-points to share with decision-makers and allow managers to find the information they need at a glance."
 >
-> *Leslie Brody, Principle Site Reliability Engineer - IMO*
+> *Leslie Brody, Principal Site Reliability Engineer - IMO*
 
 ## GitHub Actions for Octopus Deploy v2
 
@@ -245,7 +245,7 @@ Learn more about how to [configure cloud connections](https://octopus.com/docs/i
 
 This release contains 3 breaking changes:
 
-### Less requests made to external feeds when creating and viewing releases
+### Fewer requests made to external feeds when creating and viewing releases
 
 Historically, Octopus performs a package search to retrieve the published date when creating a release. This can result in release creation being blocked when retrieving this information causing delays.
 
