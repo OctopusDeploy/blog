@@ -4,8 +4,8 @@ description: Are Agile and Lean principles still relevant and how do they compar
 author: steve.fenton@octopus.com
 visibility: public
 published: 2022-09-28-1400
-metaImage: pblogimage-comparingagilecontinuousdeliveryprinciples-2022_01
-bannerImage: blogimage-comparingagilecontinuousdeliveryprinciples-2022_01
+metaImage: blogimage-comparingagilecontinuousdeliveryprinciples-2022_01.png
+bannerImage: blogimage-comparingagilecontinuousdeliveryprinciples-2022_01.png
 bannerImageAlt: Person on laptop sits on one loop of the DevOps infinity symbol.
 isFeatured: false
 tags: 
