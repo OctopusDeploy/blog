@@ -17,7 +17,7 @@ tags:
 
 In June 2021, we [shipped our first set of actions](https://octopus.com/blog/github-actions-for-octopus-deploy) in the GitHub Marketplace to integrate your GitHub workflows with Octopus Deploy. 
 
-We recently made updates to improve the usability of these actions, and have one new action in GitHub Actions for Octopus Deploy v2. 
+We recently improved the usability of these actions, and have one new action in GitHub Actions for Octopus Deploy v2. 
 
 Our updates include:
 
