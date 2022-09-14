@@ -4,9 +4,9 @@ description: 8 best practices for CI/CD, using agile, committing code frequently
 author: terence.wong@octopus.com
 visibility: public
 published: 2022-09-22-1400
-metaImage: placeholderimg.png
-bannerImage: placeholderimg.png
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-bestpracticecicd-2022.png
+bannerImage: blogimage-bestpracticecicd-2022.png
+bannerImageAlt: Person with a checklist stands in front of CI/CD DevOps infinity symbol.
 isFeatured: false
 tags:
   - DevOps
