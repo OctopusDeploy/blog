@@ -233,12 +233,13 @@ Together these metrics help you qualify the results of your DevOps performance a
 
 [Learn more about DevOps Insights](https://octopus.com/docs/insights).
 
-## Help us improve Octopus
+<!-- ## Help us improve Octopus
 
 Are you interested in continuous improvement and measuring DORA metrics from your Octopus data? We are, too! We're exploring this space and looking for customers to prototype with us for fast feedback.
 
 If this interests you, please apply for our Octopus Insights alpha program.
 
 <span><a class="btn btn-success" href="https://octopusdeploy.typeform.com/insights-alpha?utm_source=website&utm_medium=blog&utm_campaign=DORA+Metrics+-+The+predictive+link">Apply now</a></span>
+-->
 
 Happy deployments!
