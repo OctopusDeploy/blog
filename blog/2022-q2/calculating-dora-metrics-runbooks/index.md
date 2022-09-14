@@ -1053,9 +1053,9 @@ With a single click of the **RUN** button, you can quickly measure the performan
 
 ![Runbook run](runbook-run.png "width=500")
 
-## DORA Metrics in Octopus 
+## DORA metrics in Octopus 
 
-![DORA Metrics and DevOps Insights in Octopus](dora-metrics.png "width=500")
+![DORA metrics and DevOps Insights in Octopus](dora-metrics.png "width=500")
 
 Octopus Deploy 2022.3+ includes support for DevOps Insights with built-in DORA metrics. This built-in reporting gives you better visibility into your company’s DevOps performance by surfacing the 4 key DORA metrics: 
 
