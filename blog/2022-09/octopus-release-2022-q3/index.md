@@ -37,6 +37,7 @@ Together, these features support collaboration, scalability, and security for yo
 
 The 2022 Q3 release is available on Octopus Cloud and ready for download by our self-hosted customers.
 
+<!-- ### 
 ## YouTube live launch party
 
 To celebrate the release of Octopus 2022 Q3, we’re throwing a launch party on **Wednesday, October 5, 2022**. During this interactive YouTube live stream, some of our product managers and tech leads will take you through the latest features and answer your questions. 
@@ -48,6 +49,7 @@ Learn about:
 - Change management with ServiceNow
 
 Subscribe to our [YouTube channel](https://youtube.com/octopusdeploy) to get notified of the event. 
+-->
 
 ## Included in the Q3 release
 
