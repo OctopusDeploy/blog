@@ -245,7 +245,7 @@ Learn more about how to [configure cloud connections](https://octopus.com/docs/i
 
 This release contains 3 breaking changes:
 
-### Less requests made to external feeds when creating and viewing releases
+### Fewer requests made to external feeds when creating and viewing releases
 
 Historically, Octopus performs a package search to retrieve the published date when creating a release. This can result in release creation being blocked when retrieving this information causing delays.
 
