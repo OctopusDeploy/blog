@@ -99,13 +99,13 @@ Learn more about [Config as Code in Octopus](https://octopus.com/docs/projects/v
 
 We have hundreds of customers using Config as Code in Octopus, including StackOverflow and Recruit Wizard.
 
-*“Config as Code allowed us to create our desired workflow for every kind of change we made. It brought to life the most valuable part of version controlling deployments, which is the iteration process (via branching) that it allows users to have”.* 
+> Config as Code allowed us to create our desired workflow for every kind of change we made. It brought to life the most valuable part of version controlling deployments, which is the iteration process (via branching) that it allows users to have. 
+>
+> *Chris Hunt, Staff Site Reliability Engineer - Stack Overflow*
 
-**Chris Hunt, Staff Site Reliability Engineer - Stack Overflow**
-
-*“Branching in Config as Code allows us to make changes to the deployment process alongside our code changes. This is an absolute game-changer, especially as we add more and more engineers to the team”.* 
-
-**Ben Macpherson, CTO - Recruit Wizard**
+> Branching in Config as Code allows us to make changes to the deployment process alongside our code changes. This is an absolute game-changer, especially as we add more and more engineers to the team.
+>
+> *Ben Macpherson, CTO - Recruit Wizard*
 
 ## ServiceNow change management without friction
 
@@ -193,9 +193,9 @@ Space level insights are available as a part of the Octopus Deploy Enterprise su
 
 Several customers participated in our DevOps Insights Alpha Program, and we thank them for their time and feedback. They helped shape the feature for thousands of other customers.
 
-*"We used the DevOps Insights Alpha program and found it really useful. The insights give our teams easily accessible, concrete data to help validate our assumptions and make decisions. They provide proof-points to share with decision-makers and allow managers to find the information they need at a glance."*
-
-**Leslie Brody, Principle Site Reliability Engineer - IMO**
+> "We used the DevOps Insights Alpha program and found it really useful. The insights give our teams easily accessible, concrete data to help validate our assumptions and make decisions. They provide proof-points to share with decision-makers and allow managers to find the information they need at a glance."
+>
+> *Leslie Brody, Principle Site Reliability Engineer - IMO*
 
 ## GitHub Actions for Octopus Deploy v2
 
