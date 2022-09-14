@@ -1,5 +1,5 @@
 ---
-title: What’s new in GitHub Actions for Octopus Deploy
+title: New in GitHub Actions for Octopus Deploy
 description: We updated our GitHub Actions for Octopus Deploy with new features and to improve usability. Learn more.
 author: john.bristowe@octopus.com
 visibility: public
