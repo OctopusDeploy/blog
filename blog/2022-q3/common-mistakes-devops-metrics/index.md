@@ -4,8 +4,8 @@ description: TBC
 author: steve.fenton@octopus.com
 visibility: private
 published: 3020-01-01-1400
-metaImage: blogimage-calculatingdorametrics-2022.webp
-bannerImage: blogimage-calculatingdorametrics-2022.webp
+metaImage: blogimage-calculatingdorametrics-2022.png
+bannerImage: blogimage-calculatingdorametrics-2022.png
 bannerImageAlt: A magnifying glass highlights a chart on a dashboard shown on a laptop screen
 isFeatured: false
 tags:
