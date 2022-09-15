@@ -32,7 +32,7 @@ In order to configure the Mule Community Edition Runtime, you'll first need to i
 - JAVA_HOME: Set this to the location of your Java folder
 - MULE_HOME: Set this to the location of your Mule Runtime folder
 
-![](environment-variables.png)
+![Environment variables for mule](environment-variables.png)
 
 By default, the Mule Community Edition Runtime runs in the forground.  If you want to configure it to run as a service, follow the Mulesoft documentation:
 - [Linux](https://docs.mulesoft.com/mule-runtime/3.9/configuring-mule-as-a-linux-or-unix-daemon)
@@ -50,7 +50,7 @@ In this post, I'm going to create a simple Hello World API.  As the name implies
 ### Create the project
 1.  From within Anypoint Studio, click `File`->`New`-> `Mule Project`
 
-![](anypoint-new-project.png)
+![Create new Anypoint project](anypoint-new-project.png)
 
 2.  Give the project a name and click `Finish`
 
@@ -58,33 +58,33 @@ In this post, I'm going to create a simple Hello World API.  As the name implies
 
 3.  From the `Mule Pallete`, choose the `HTTP` category and drag a `Listener` to the canvas
 
-![](anypoint-add-listener.png)
+![Add an HTTP listener object](anypoint-add-listener.png)
 
 4.  Configure the listener `Connector configuration` by clicking on the green plus button
 
-![](anypoint-new-connector-configuration.png)
+![Create new connector configuration](anypoint-new-connector-configuration.png)
 
 5.  Configure the settings for the Connector configuration, for this post, I kept the defaults.
 
-![](anypoint-connector-configuration.png)
+![Define connector configuration](anypoint-connector-configuration.png)
 
 Click on the `Test Connection ...` button to ensure that this will work.
 
 6.  Define a path for the API, for this post, I chose `/hello-world`
 
-![](anypoint-general-path.png)
+![Add a path](anypoint-general-path.png)
 
 7.  Add a `Set Payload` object from the `Core` category of the `Mule Pallete` and drag it to the `Process` section of the message flow
 
-![](anypoint-add-payload.png)
+![Add a payload object to listener](anypoint-add-payload.png)
 
 8.  Disable the `fx` button by clicking on it and set a static message for the `Value`
 
-![](anypoint-hello-world-payload.png)
+![Define payload return message](anypoint-hello-world-payload.png)
 
 9.  Test your API by clicking in the green play button.  When the `Console` window shows a status of **DEPLOYED**, your API is ready.  Switch over to Postman (or a similar tool) to test your API.  Send a POST request to `http://localhost:8081/hello-world`
 
-![](postman-test-api.png)
+![Test local API with postman](postman-test-api.png)
 
 ## Creating a deployable file
 The Anypoint Studio software contains a version of Maven built into the product.  This means you can create a deployable artifact from within Anypoint Studio itself.  Alternatively, you could use Maven from a build server (or the command line) to produce the deployable file.
@@ -94,21 +94,21 @@ You are able to `Export` your project from Anypoint Studio by doing the followin
 
 1.  Click on `File` -> `Export`
 
-![](anypoint-export-project.png)
+![Export Anypoint project](anypoint-export-project.png)
 
 2.  Select an export wizard, for this post, I chose `Anypoint Studio Project to Mule Deployable Archive (includes Studio metadata)`.  Click Next
 
-![](anypoint-export-wizard.png)
+![Choose an export wizard](anypoint-export-wizard.png)
 
 3.  Select the proejct to export.  The `hello-world` project is the only one I've created.  Click Next.
 
 4.  Select a location to save the file to and click Finish
 
-![](anypoint-export-wizard-finish.png)
+![Finish the wizard](anypoint-export-wizard-finish.png)
 
 Once the save operation has completed, it will display where the file was saved and what the name is.  In my case, it was saved to `C:\Users\Shawn.Sesna\hello-world.jar`
 
-![](anypoint-export-saved.png)
+![Display saved file location](anypoint-export-saved.png)
 
 ### Maven
 You can also build the project by using Maven from either a build server or the command line.  In this post, I'm going to demonstrate the command line method, the build server method would be almost identacle.
@@ -123,7 +123,7 @@ mvn clean package
 
 3.  Once the build has completed, navigate to the `target` sub-folder.  The build will have produced a file called `hello-world-1.0.0-SNAPSHOT-mule-application.jar`
 
-![](maven-build-success.png)
+![Successuful maven build with generated .jar file](maven-build-success.png)
 
 ## Deploying the API
 
@@ -146,15 +146,15 @@ Do NOT tick the `Purge` option.  If there were other APIs deployed, this would d
 
 When done, it should look something like this
 
-![](octopus-deploy-java-archive.png)
+![Configured Deploy Java Archive step](octopus-deploy-java-archive.png)
 
 5.  Create a release and deploy
 
-![](octopus-deployment-complete.png)
+![Deployment successfully completed](octopus-deployment-complete.png)
 
 6.  Flip over to Postman and test out the API
 
-![](postman-octopus-test.png)
+![Use postman to test the deployed API](postman-octopus-test.png)
 
 ## Manipulating the API with Structured Configuration Variables
 So far, we've successfully deployed a simple API, however, this isn't terribly realistic.  It is more than likely that items within the API would need to be updated as it progresses through our environments.  Using the [Structured Configuration Variables](https://octopus.com/docs/projects/steps/configuration-features/structured-configuration-variables-feature) I can change the message that was displayed from `Hello World!` to something else.
@@ -166,21 +166,21 @@ The API message is stored within an XML file in the .jar package.  By determinin
 
 2.  Click on the **CONFIGURE FEATURES** button
 
-![](octopus-configure-features.png)
+![Click Configure Features button](octopus-configure-features.png)
 
 3.  Enable the **Structured Configuration Variables** feature
 
-![](octopus-structured-configuration-variables.png)
+![Enable Strucutred Configuration Variables feature](octopus-structured-configuration-variables.png)
 
 4.  The message is located in the hello-world.xml file, specify this file to perform replacement on
 
-![](octopus-structured-configuration-file.png)
+![Define file to perform replacement](octopus-structured-configuration-file.png)
 
 5.  Create an XPath Project variable and give it a value.  In this case, the XPath is `/*[local-name()='mule']/*[local-name()='flow']/*[local-name()='set-payload']/@value`
 
 6.  Create a release and deploy.  Once the deployment is complete, test your API to see the replaced message
 
-![](postman-changed-message.png)
+![Use postman to see changed message](postman-changed-message.png)
 
 ## Conclusion
 
