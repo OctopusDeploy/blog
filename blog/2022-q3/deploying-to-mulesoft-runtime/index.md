@@ -42,10 +42,10 @@ By default, the Mule Community Edition Runtime runs in the forground.  If you wa
 The installation of Maven is optional in that the Anypoint Studio software comes with Maven built into the product.  If your intention is to have a build server perform the build of the Anypoint Studio project, your build server would then need to have the Maven capability.  Most, if not all, of the modern build servers contain steps or tasks that do this as long as Maven is installed on the build agent.  Installing Maven is as simple as extracting the .zip file, then adding the folder to the `PATH` system environment variable.
 
 ### Postman
-Postman is a piece of software designed to make API calls and is commonly used for testing APIs.  Anything that has the ability to call an API would work, however, Postman makes this testing easier.
+Once your API has been created, you'll need a way to test to make sure it's operating as desired.  Any tool that capable of doing a POST request will work, however, the most popular API testing tool is Postman.  Postman is available for free and is available for Windows, Mac, and Linux operating systems.
 
 ## Creating the API
-In this post, I'm going to create a simple Hello World API.  As the name implies, the response from calling this API will simply be `Hello world`.  Real-world APIs would be far more complex than this, but this post is to demonstrate how to deploy the API.
+In this post, I'm going to create a simple Hello World API.  As the name implies, the response from calling this API will simply be `Hello world!`.  Real-world APIs would be far more complex than this, but this post is to demonstrate how to deploy the API using Octopus Deploy.
 
 ### Create the project
 1.  From within Anypoint Studio, click `File`->`New`-> `Mule Project`
@@ -78,7 +78,7 @@ Click on the `Test Connection ...` button to ensure that this will work.
 
 ![Add a payload object to listener](anypoint-add-payload.png)
 
-8.  Disable the `fx` button by clicking on it and set a static message for the `Value`
+8.  Disable the `fx` button by clicking on it and set a static message for the `Value`.  For this post, I used `Hello World!`
 
 ![Define payload return message](anypoint-hello-world-payload.png)
 
@@ -140,6 +140,8 @@ This post assumes you are familiar with Octopus Deploy and will not cover Octopu
 
 4.  The Mule Community Edition Runtime expects APIs to be deployed to a specific folder.  Within the `Deployment` section of the `Deploy Java Archive` step, ensure the `Use custom deployment directory` is ticked.  Enter the location for the Mule Community Edition Runtime `apps` folder.
 
+5.  Choose a final filename for the deployed .jar file.  If this is not filled in, Octopus will create the file similar to the following format `hello-world@S1.0.0@673BE843C229AA40AC1698CC82104BD0`.  While this will deploy and function, the next version such as 1.0.1, will be deployed as `hello-world@S1.0.1@673BE843C229AA40AC1698CC82104BD0`.  Mule will think this is a new API and attempt to deploy it which will conflict with the first.  If 1.0.1 has the same filename as 1.0.0, Mule will pick that up as a change and use the new API.
+
 :::warning
 Do NOT tick the `Purge` option.  If there were other APIs deployed, this would delete them all.
 :::
@@ -157,10 +159,27 @@ When done, it should look something like this
 ![Use postman to test the deployed API](postman-octopus-test.png)
 
 ## Manipulating the API with Structured Configuration Variables
-So far, we've successfully deployed a simple API, however, this isn't terribly realistic.  It is more than likely that items within the API would need to be updated as it progresses through our environments.  Using the [Structured Configuration Variables](https://octopus.com/docs/projects/steps/configuration-features/structured-configuration-variables-feature) I can change the message that was displayed from `Hello World!` to something else.
+So far, we've successfully deployed a simple API, however, this isn't terribly realistic.  It is more than likely that items within the API would need to be updated as it progresses through our environments.  Using the [Structured Configuration Variables](https://octopus.com/docs/projects/steps/configuration-features/structured-configuration-variables-feature), I can change the message that was displayed from `Hello World!` to something else.
 
 ### Updating the API message
 The API message is stored within an XML file in the .jar package.  By determining the XPath of the message, we can update the message to something else for our deployed API.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="1bcf8768-d2f4-449e-ace0-4a86472cc4e1" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="hello-worldFlow" doc:id="5b6f81da-ecf0-4a71-8299-c9918ed2ca69" >
+		<http:listener doc:name="Listener" doc:id="433558cb-1dcc-4385-8126-5b2801575a29" config-ref="HTTP_Listener_config" path="/hello-world"/>
+		<set-payload value="Hello World!" doc:name="Set Payload" doc:id="638c8080-540b-4fce-8539-a5e74350ab80" />
+	</flow>
+</mule>
+```
 
 1.  Edit the `Deploy Java Archive` step
 
