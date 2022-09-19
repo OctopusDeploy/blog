@@ -3,10 +3,10 @@ title: Faster deployments with the Executions API
 description: The Executions API is a new set of endpoints that dramatically improves the performance of operations.
 author: john.bristowe@octopus.com
 visibility: public
-published: 2022-10-05-1400
+published: 2022-10-03-1400
 metaImage: executions-api-header-image.png
 bannerImage: executions-api-header-image.png
-bannerImageAlt: Faster deployments with the Executions API
+bannerImageAlt: Green speedometer with the arrow at the maximum speed and where a greenrocket ship is launching.
 isFeatured: false
 tags:
 - Product
@@ -114,6 +114,6 @@ With the Executions API, you can specify names instead of IDs (whenever possible
 
 The Executions API dramatically improves the performance of operations like deployments, release creation, and runbook execution, and is available for customers running [Octopus Deploy 2022.3](https://octopus.com/downloads/). 
 
-The next step in our roadmap is to incorporate them into our existing integrations and tools. Work has started to include the Executions API with the new Octopus CLI. You should notice significantly improved deployment times when using the new Octopus CLI in conjunction with the Executions API.
+Our next step is to incorporate them into our existing integrations and tools. Work has started to include the Executions API with the new Octopus CLI. You should notice significantly improved deployment times when using the new Octopus CLI in conjunction with the Executions API.
 
 Happy deployments!
