@@ -73,13 +73,13 @@ We designed our solution to [avoid key anti-patterns](https://octopus.com/blog/s
 
 -- Chris Hunt, Staff Site Reliability Engineer at StackOverflow
 
-[Read more](stack-overflow.pdf) about how Stack Overflow uses Octopus Deploy and Config as Code.
+[Read more](https://i.octopus.com/case-studies/stack-overflow-case-study-2022.pdf) about how Stack Overflow uses Octopus Deploy and Config as Code.
 
 > Branching in Config as Code allows us to make changes to the deployment process alongside our code changes. This is an absolute game-changer, especially as we add more and more engineers to the team.
 
 -- Ben Macpherson, Chief Technology Officer at Recruit Wizard
 
-[Read more](recruit-wizard.pdf) about how Recruit Wizard uses Octopus Deploy and Config as Code.
+[Read more](https://i.octopus.com/case-studies/recruit-wizard-case-study-2022.pdf) about how Recruit Wizard uses Octopus Deploy and Config as Code.
 
 ## Why use Config as Code? 
 
