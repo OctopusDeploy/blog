@@ -163,9 +163,9 @@ variable "DeploymentPool" {
 
 We took a completely different approach to OCL serialization to achieve this, but we're happy with the result. It makes OCL easier to reason with and provides a great editing experience. This gives us options for how we define OCL schemas in the future, and will feed into enhancements we plan to make to the persistence and API layers.
 
-:::hint
+<!-- :::hint
 For a more detailed information and examples, check out the [variable OCL schema documentation](https://to-do).
-:::
+::: -->
 
 ## What's next?
 
