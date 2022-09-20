@@ -131,6 +131,6 @@ We look forward to introducing new features to continue supporting your change m
 
 We’d love you to try this integration with your workflow and let us know how we can improve it.
 
-[Register for the Jira Service Management EAP.](https://octopusdeploy.typeform.com/jsm-eap)
+[Register for the Jira Service Management EAP.](https://oc.to/jsm-eap)
 
 Happy deployments!
