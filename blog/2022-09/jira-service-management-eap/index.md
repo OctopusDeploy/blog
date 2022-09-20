@@ -49,7 +49,7 @@ Integrating Jira Service Management with Octopus helps to make change management
 [Read the latest version of the documentation](https://octopus.com/docs/approvals) for the Jira Service Management integration.
 :::
 
-After [signing up for the EAP](oc.to/jsm-eap), there are a few settings you need to configure to get started with the Jira Service Management  integration.
+After [signing up for the EAP](https://oc.to/jsm-eap), there are a few settings you need to configure to get started with the Jira Service Management  integration.
 
 Navigate to **Settings** and then to **Jira Service Management Integration**. Enable the integration with the check box, and add a connection.
 
