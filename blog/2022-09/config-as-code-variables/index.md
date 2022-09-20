@@ -3,14 +3,13 @@ title: Shaping Config as Code for variables
 description: Learn how customer feedback informed updates to Configuration as Code.
 author: dylan.lerch@octopus.com
 visibility: public
-published: 2022-10-05-1400
+published: 2022-09-28-1400
 metaImage: blog-post-cac-variables.png
 bannerImage: blog-post-cac-variables.png
 bannerImageAlt: Octopus UI and a config file in a text editor
 isFeatured: false
 tags:
 - Product
-- DevOps
 - Engineering 
 - Configuration as Code
 ---
@@ -25,7 +24,9 @@ In this post, I cover the changes we made and dive into the design of the variab
 
 Since the release of Config as Code in March 2022, we've been listening to everyone's feedback to continue improving our support.
 
-While there have been many feature requests, there was a clear theme: _Config as Code feels incomplete without variables in the Git repository_. It's clear though that this is the first update of many to Config as Code as we continue to evolve this feature to meet your needs. 
+While there have been many feature requests, there was a clear theme: _Config as Code feels incomplete without variables in the Git repository_. 
+
+Variables was first, but we'll continue listening to your feedback and evolving Config as Code to meet your needs. 
 
 ## Config as Code becomes more powerful
 
@@ -47,7 +48,7 @@ For now, *sensitive variables will remain in the Octopus database*. On the proje
 
 Regardless of the selected branch, commit, or tag you'll always be viewing and modifying the single shared set of sensitive variables. We're investigating the best way to securely store sensitive variables in Git. We hope to add support for this at some point in the future, but for now sensitive values remain in the database.
 
-### Getting started
+## Getting started
 
 After you upgrade to a [supported version](https://octopus.com/downloads), the project variables will automatically be migrated alongside your deployment process and deployment settings when converting the project to Git. You don't need to complete any additional steps.
 
@@ -61,7 +62,7 @@ Instead, we opted to have a transition phase, so everyone can perform the migrat
 
 ![Screenshot of Octopus project variables page showing database icon to the left of masked sensitive variable placeholder](git-variables-migration.png "width=500")
 
-Clicking the **Migrate Variables To Git** button shows a wizard that guides you through the migration. 
+Clicking the **MIGRATE VARIABLES TO GIT** button shows a wizard that guides you through the migration. 
 
 :::hint
 For more detailed documentation on the migration process, check out the [migrating variables to Git documentation](https://oc.to/ConfigAsCodeVariables).
@@ -162,7 +163,9 @@ variable "DeploymentPool" {
 
 We took a completely different approach to OCL serialization to achieve this, but we're happy with the result. It makes OCL easier to reason with and provides a great editing experience. This gives us options for how we define OCL schemas in the future, and will feed into enhancements we plan to make to the persistence and API layers.
 
-_For a more detailed information and examples, check out the [variable OCL schema documentation](https://to-do)_
+:::hint
+For a more detailed information and examples, check out the [variable OCL schema documentation](https://to-do).
+:::
 
 ## What's next?
 
