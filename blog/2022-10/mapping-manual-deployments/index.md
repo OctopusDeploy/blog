@@ -47,7 +47,7 @@ The first step is a paper exercise that helps design the process you'll use late
 
 When you have a manual release process, an existing document or checklist usually describes the steps to install the software. Your current documentation might also detail who can perform each action. Before you re-create this in Octopus, it's worth spending some time refining the stages to determine who does what, in which order.
 
-If your document is lengthy, you try dividing it with headings that provide a natural task list.
+If your document is lengthy, try dividing it with headings that provide a natural task list.
 
 You should end up with something similar to the following checklist:
 
@@ -68,7 +68,7 @@ Now you can transfer this into Octopus to get the benefits of workflow managemen
 
 ### Model your teams
 
-The sample checklist lists 3 teams in the *who* column responsible for the deployment: DBAs, Ops, and Test. When you create the process in Octopus, you can assign each step to a *responsible team*.
+The sample checklist includes 3 teams in the *who* column responsible for the deployment: DBAs, Ops, and Test. When you create the process in Octopus, you can assign each step to a *responsible team*.
 
 Follow these steps to create each team in Octopus:
 
@@ -114,7 +114,7 @@ Your completed lifecycle should contain a phase for each environment, as shown b
 
 ### Turn your checklist into a deployment process
 
-Now that your teams, environments, and lifecycles are configured, you can use them to define your manual deployment process. The process is stored in a *project* in Octopus Deploy, so the next step is creating a new project. To do this, follow these steps:
+Now your teams, environments, and lifecycles are configured, you can use them to define your manual deployment process. The process is stored in a *project* in Octopus Deploy, so the next step is creating a new project. To do this, follow these steps:
 
 1. Navigate to **Projects** and select **ADD PROJECT**.
 1. Add a **New project name**, such as `Manual Deployment`.
@@ -207,6 +207,6 @@ You may find existing step templates that will help you with your automation; fo
 
 ## Conclusion
 
-You can now map a manual deployment in Octopus deploy and understand some of the benefits of doing this. You can use Octopus's process control and tracking to introduce or improve several of the [ten pillars of pragmatic deployments](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments), as your deployments will be more repeatable, visible, auditable, standardized, and coordinated.
+You can now map a manual deployment in Octopus Deploy and understand some of the benefits of doing this. You can use Octopus's process control and tracking to introduce or improve several of the [ten pillars of pragmatic deployments](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments), as your deployments will be more repeatable, visible, auditable, standardized, and coordinated.
 
 Happy deployments!
