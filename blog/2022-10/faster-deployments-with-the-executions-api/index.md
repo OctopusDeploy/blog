@@ -15,7 +15,7 @@ tags:
 - Continuous Deployment
 ---
 
-The Executions API is a new set of endpoints that dramatically improves the performance of operations like deployments, release creation, and runbook execution. We designed and added these endpoints to Octopus Deploy 2022.3 after a review of these operations revealed several areas for improvement. The result is significantly better performance for these operations, for better scalability when conducting deployments.
+The Executions API is a new set of endpoints that dramatically improves the performance of operations like deployments, release creation, and runbook execution. We designed and added these endpoints as part of the [Octopus 2022 Q3 release](https://octopus.com/blog/octopus-release-2022-q3) after a review of these operations revealed several areas for improvement. The result is significantly better performance for these operations, for better scalability when conducting deployments.
 
 In this post, I dive into why we created the Executions API and how it enhances performance and developer experience. 
 
