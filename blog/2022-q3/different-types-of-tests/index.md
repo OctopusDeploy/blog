@@ -3,7 +3,7 @@ title: The different types of software tests
 description: Learn why testing is important, read about manual and automated testing, and functional and non-functional testing with examples.
 author: terence.wong@octopus.com
 visibility: public
-published: 2022-09-26-1400
+published: 2022-09-21-1400
 metaImage: blogimage-runningunittestsingithubactions-2022.png
 bannerImage: blogimage-runningunittestsingithubactions-2022.png
 bannerImageAlt: Open laptop sits behind a screen in dark mode showing a table of rows with green ticks, red crosses, and orange exclamation marks to indicate test results.
