@@ -3,7 +3,7 @@ title: "What are SBOMs?"
 description: Find out what SBOMs are, learn about the US government's Executive Order, and how Octopus can help with your SBOMs.
 author: terence.wong@octopus.com
 visibility: public
-published: 2022-09-21-1400
+published: 2022-09-26-1400
 metaImage: blogimage-devsecopsvulnerabilities-2022.png
 bannerImage: blogimage-devsecopsvulnerabilities-2022.png
 bannerImageAlt: Blue DevOps infinity diagram outlined in green with a green security shield over the right top-hand corner.
