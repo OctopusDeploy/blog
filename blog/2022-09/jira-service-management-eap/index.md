@@ -15,7 +15,7 @@ tags:
 - Integrations
 ---
 
-Our Jira Service Management integration is available as an early access preview (EAP).
+Our Jira Service Management integration is available as an early access preview (EAP) as part of [the Octopus 2022 Q3 release](https://octopus.com/blog/octopus-release-2022-q3).
 
 For teams using [Jira Service Management for change management](https://www.atlassian.com/software/jira/service-management/product-guide/getting-started/change-management), this integration connects Octopus deployments to change requests in Jira Service Management.
 
@@ -125,7 +125,7 @@ If the change request is in the Implementing stage, Octopus automatically recogn
 
 ## Conclusion
 
-The Jira Service Management integration is available as an early access preview (EAP). It helps automate your change management process, making it easier to achieve automated deployments that comply with your organization’s change management policy.
+The Jira Service Management integration is available as an early access preview (EAP) as part of [the Octopus 2022 Q3 release](https://octopus.com/blog/octopus-release-2022-q3). It helps automate your change management process, making it easier to achieve automated deployments that comply with your organization’s change management policy.
 
 We look forward to introducing new features to continue supporting your change management processes.
 
