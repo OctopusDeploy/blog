@@ -32,7 +32,7 @@ In addition, this post doesn't go into great detail about Vault server concepts 
 
 The step templates covered in this post perform both [Vault authentication](https://www.vaultproject.io/docs/concepts/auth) and secret retrieval for both versions 1 and 2 of the [Key-Value (kv)](https://www.vaultproject.io/docs/secrets/kv) Secrets Engine.
 
-All of the step templates make use of the Vault [HTTP API](https://www.vaultproject.io/api-docs) so there are no additional dependencies required to use them, except being able to connect to your Vault server. They've all been tested using Vault version **1.7.1** and can run on both Windows and Linux (with `Powershell Core` installed).
+All of the step templates make use of the Vault [HTTP API](https://www.vaultproject.io/api-docs) so there are no additional dependencies required to use them, except being able to connect to your Vault server. They've all been tested using Vault version **1.11.3** and can run on both Windows and Linux (with `Powershell Core` installed).
 
 ## Authentication {#authentication}
 
@@ -52,7 +52,7 @@ Upon authentication with Vault, a [token](https://www.vaultproject.io/docs/conce
 
 ### LDAP login step {#ldap-login}
 
-The [HashiCorp Vault - Login with LDAP](https://library.octopus.com/step-templates/de807003-3b05-4649-9af3-11a2c7722b3f/actiontemplate-hashicorp-vault-ldap-login) step template authenticates with a Vault Server using the [LDAP](https://www.vaultproject.io/docs/auth/ldap) authentication method. This allows Vault integration without having to duplicate username or password configuration.
+The [HashiCorp Vault - LDAP Login](https://library.octopus.com/step-templates/de807003-3b05-4649-9af3-11a2c7722b3f/actiontemplate-hashicorp-vault-ldap-login) step template authenticates with a Vault Server using the [LDAP](https://www.vaultproject.io/docs/auth/ldap) authentication method. This allows Vault integration without having to duplicate username or password configuration.
 
 You might choose to authenticate using LDAP if you already have an LDAP server available and use service accounts to control access to sensitive information.
 
@@ -68,6 +68,7 @@ The step template has the following parameters:
 
 - `Vault Server URL`: The URL of the Vault instance you are connecting to, including the port (The default is `8200`).
 - `API version`: Choose the API version to use from a drop-down list. Currently, there is only one option: `v1`.
+- `Namespace`: *Optional* The [namespace](https://www.vaultproject.io/docs/enterprise/namespaces) to use. Nested namespaces can be supplied, e.g., `ns1/ns2`. **Note:** Namespaces are only supported on [Vault Enterprise](https://www.hashicorp.com/products/vault).
 - `LDAP Auth Login path`: The path that the [LDAP method is mounted at](https://www.vaultproject.io/api-docs/auth/ldap). The default is `/auth/ldap`.
 - `Username`: The LDAP username.
 - `Password`: The LDAP password.
@@ -76,7 +77,7 @@ The step template has the following parameters:
 
 #### Using the LDAP login step {#ldap-login-use}
 
-The **LDAP login** step is added to deployment and runbook processes in the [same way as other steps](https://octopus.com/docs/projects/steps#adding-steps-to-your-deployment-processes).
+The **LDAP Login** step is added to deployment and runbook processes in the [same way as other steps](https://octopus.com/docs/projects/steps#adding-steps-to-your-deployment-processes).
 
 After you've added the step to your process, fill out the parameters in the step:
 
@@ -86,10 +87,10 @@ You can then execute the step in a runbook or deployment process. On successful 
 
 ![Vault LDAP login step task log](vault-ldap-login-step-output-variable.png)
 
-In subsequent steps, the output variable `#{Octopus.Action[HashiCorp Vault - Login with LDAP].Output.LDAPAuthToken}` can be used to authenticate and retrieve secrets.
+In subsequent steps, the output variable `#{Octopus.Action[HashiCorp Vault - LDAP Login].Output.LDAPAuthToken}` can be used to authenticate and retrieve secrets.
 
 :::hint
-**Tip:** Remember to replace `HashiCorp Vault - Login with LDAP` with the name of your step for any output variable names.
+**Tip:** Remember to replace `HashiCorp Vault - LDAP Login` with the name of your step for any output variable names.
 :::
 
 ### AppRole login step {#approle-login}
