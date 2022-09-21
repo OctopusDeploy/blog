@@ -14,34 +14,32 @@ tags:
   - Workers
 ---
 
-[Spaces](https://octopus.com/docs/administration/spaces) in Octopus Deploy are hard-walled and don't allow you to share anything between them (except users).  While this is great for isolation, it can be problematic for things you do want to share among all spaces, such as Workers.  That specific scenario is something we needed to solve to support our [Samples](https://samples.octopus.app) instance.  
+[Spaces](https://octopus.com/docs/administration/spaces) in Octopus Deploy are hard-walled and don't allow you to share anything between them (except users). This is great for isolation, but it can be problematic for things you want to share among all spaces, like Workers.  Sharing Workers is a scenario we solved to support our [Samples](https://samples.octopus.app) instance.  
 
 In this post, I explain our solution, which automates sharing Workers across multiple spaces.
 
 ## The problem
 
-The infrastructure for our [Samples](https://samples.octopus.app) instance is created and destroyed daily. As the Samples instance grew, more and more demands were being made on the [Dynamic Workers](https://octopus.com/docs/infrastructure/workers/dynamic-worker-pools) where cloud instances are allocated (one Windows and one Linux).  
+The infrastructure for our [Samples](https://samples.octopus.app) instance is created and destroyed daily. As the Samples instance grew, more demands were being made on the [Dynamic Workers](https://octopus.com/docs/infrastructure/workers/dynamic-worker-pools) where cloud instances are allocated (one Windows and one Linux).  
 
-We ran into a resource contention and a chicken and egg scenario because the [Runbooks](https://octopus.com/docs/runbooks) we used to create infrastructure would often use the **[Run Octopus Deploy Runbook](https://library.octopus.com/step-templates/0444b0b3-088e-4689-b755-112d1360ffe3/actiontemplate-run-octopus-deploy-runbook)** step template.  
-
-You could configure this step template to wait for the invoked runbook to complete; however, this sometimes meant the parent process would wait for the child process to complete, but the child process needed  exclusive access (see our [post explaining Workers](https://octopus.com/blog/workers-explained) for conditions where this can occur) and would wait for the first task to be complete.  
+We ran into resource contention issues because the [Runbooks](https://octopus.com/docs/runbooks) we used to create infrastructure would often use the **[Run Octopus Deploy Runbook](https://library.octopus.com/step-templates/0444b0b3-088e-4689-b755-112d1360ffe3/actiontemplate-run-octopus-deploy-runbook)** step template. You could configure this step template to wait for the invoked runbook to complete; however, this sometimes meant the parent process would wait for the child process to complete, but the child process needed  exclusive access (see our [post explaining Workers](https://octopus.com/blog/workers-explained) for conditions where this can occur) and would wait for the first task to finish.  
 
 ## The solutions
 
-We established that we needed more Workers available to perform the tasks. We came up with two solutions:
+We established we needed more Workers available to perform the tasks. We came up with 2 solutions:
 
 - Dedicated Workers
 - Shared Workers
 
 ### Solution 1: Dedicated Workers
 
-Our first iteration to solve this problem was to have each space create their own, dedicated worker.  While this worked well, there were two glaring issues; the workers were idle 99% of the day, and as more spaces were added, our costs would increase.  We reached the point where we needed to reevaluate our cloud resource usage and look for some cost savings.  Workers, along with other things such as database server instances, were identified as items that didn't need to be dedicated and could be shared.
+Our first iteration to solve this problem was to have each space create their own dedicated worker.  While this worked well, there were two glaring issues; the Workers were idle 99% of the day, and as more spaces were added, our costs increased.  We needed to re-evaluate our cloud resource usage and look for some cost savings.  Workers, along with other things such as database server instances, were identified as items that didn't need to be dedicated and could be shared.
 
 ### Solution 2: Shared Workers
 
-Each space in Samples was creating Workers using the cloud provider that suited their needs. To continue to support this, we decided to create Workers in all 3 cloud providers to share with all spaces.  
+Each space in Samples was creating Workers using the cloud provider that suited their needs. To keep supporting this, we creatde Workers in all 3 cloud providers to share with all spaces.  
 
-Using Terraform, we created Workers using the cloud provider scaling features so if we need more or less Workers, we simply adjust the scale accordingly. Provisioning Workers uses a runbook with the following steps:
+Using Terraform, we created Workers using the cloud provider scaling features, so if we need more or less Workers, we simply adjust the scale accordingly. Provisioning Workers uses a runbook with the following steps:
 
 - Get space list
 - Create Workers
@@ -50,7 +48,7 @@ Using Terraform, we created Workers using the cloud provider scaling features so
 
 #### Get Space List
 
-In order to add the Workers to all of the spaces, we first need to gather a list of all spaces on the instance.  The **Get Space List** step retrieves the list and sets the following output variables:
+To add the Workers to all of the spaces, we first need to gather a list of all spaces on the instance.  The **Get Space List** step retrieves the list and sets the following output variables:
 
 - `InitialSpaceName` - The name of the first space in our Spaces list, this value is used in the script that's run on the VMs so they can register themselves to the instance.
 - `InitialSpaceId` - The ID of the initial space the Workers will be added to.
