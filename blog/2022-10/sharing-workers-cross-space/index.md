@@ -4,9 +4,9 @@ description: Learn methods to easily share workers between spaces
 author: shawn.sesna@octopus.com
 visibility: private
 published: 3020-01-01-1400
-metaImage: placeholderimg.png
-bannerImage: placeholderimg.png
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-bestpracticesforoctopusspaces-2022.png
+bannerImage: blogimage-bestpracticesforoctopusspaces-2022.png
+bannerImageAlt: Overhead shot of a round table split into three equal parts, with people working on laptops and notebooks at each section.
 isFeatured: false
 tags: 
   - 
