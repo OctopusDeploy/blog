@@ -32,7 +32,7 @@ In addition, this post doesn't go into great detail about Vault server concepts 
 
 The step templates covered in this post perform both [Vault authentication](https://www.vaultproject.io/docs/concepts/auth) and secret retrieval for both versions 1 and 2 of the [Key-Value (kv)](https://www.vaultproject.io/docs/secrets/kv) Secrets Engine.
 
-All of the step templates make use of the Vault [HTTP API](https://www.vaultproject.io/api-docs) so there are no additional dependencies required to use them, except being able to connect to your Vault server. They've all been tested using Vault version **1.11.3** and can run on both Windows and Linux (with `Powershell Core` installed).
+All of the step templates make use of the Vault [HTTP API](https://www.vaultproject.io/api-docs) so there are no additional dependencies required to use them, except being able to connect to your Vault server. They've all been tested using Vault version **1.11.3**, including support for [namespaces](https://www.vaultproject.io/docs/enterprise/namespaces) (a Vault Enterprise feature), and can run on both Windows and Linux with `Powershell Core` installed.
 
 ## Authentication {#authentication}
 
