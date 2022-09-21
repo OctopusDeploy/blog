@@ -38,8 +38,8 @@ All of the step templates make use of the Vault [HTTP API](https://www.vaultproj
 
 Before interacting with Vault, you must authenticate against an auth method. Vault offers a number of different authentication options. The following step templates have been created to support Vault authentication:
 
-- [LDAP login](#ldap-login)
-- [AppRole login](#approle-login)
+- [LDAP Login](#ldap-login)
+- [AppRole Login](#approle-login)
 - [AppRole Get wrapped SecretID](#get-wrapped-secretid)
 - [AppRole Unwrap SecretID](#unwrap-secretid)
 - [AppRole Unwrap SecretID and Login](#unwrap-secretid-login)
@@ -95,7 +95,7 @@ In subsequent steps, the output variable `#{Octopus.Action[HashiCorp Vault - LDA
 
 ### AppRole login step {#approle-login}
 
-The [HashiCorp Vault - Login with AppRole](https://library.octopus.com/step-templates/e04a9cec-f04a-4da2-849b-1aed0fd408f0/actiontemplate-hashicorp-vault-approle-login) step template authenticates with a Vault Server using the [AppRole](https://www.vaultproject.io/docs/auth/approle) authentication method. This is perfect for use with Octopus. HashiCorp themselves recommend it for machines or apps:
+The [HashiCorp Vault - AppRole Login](https://library.octopus.com/step-templates/e04a9cec-f04a-4da2-849b-1aed0fd408f0/actiontemplate-hashicorp-vault-approle-login) step template authenticates with a Vault Server using the [AppRole](https://www.vaultproject.io/docs/auth/approle) authentication method. This is perfect for use with Octopus. HashiCorp themselves recommend it for machines or apps:
 
 > This auth method is oriented to automated workflows (machines and services), and is less useful for human operators.
 
@@ -125,6 +125,7 @@ The step template has the following parameters:
 
 - `Vault Server URL`: The URL of the Vault instance you are connecting to, including the port (The default is `8200`).
 - `API version`: Choose the API version to use from a drop-down list. Currently, there is only one option: `v1`.
+- `Namespace`: *Optional* The [namespace](https://www.vaultproject.io/docs/enterprise/namespaces) to use. Nested namespaces can be supplied, e.g., `ns1/ns2`. **Note:** Namespaces are only supported on [Vault Enterprise](https://www.hashicorp.com/products/vault).
 - `App Role Path`: The path where the [approle auth method is mounted](https://www.vaultproject.io/api-docs/auth/approle).
 - `Role ID`: The [RoleID](https://www.vaultproject.io/docs/auth/approle#roleid) of the AppRole.
 - `Secret ID`: The [SecretID](https://www.vaultproject.io/docs/auth/approle#secretid) of the AppRole.
@@ -133,7 +134,7 @@ The step template has the following parameters:
 
 #### Using the AppRole login step {#approle-login-use}
 
-The **AppRole login** step is added to deployment and runbook processes in the [same way as other steps](https://octopus.com/docs/projects/steps#adding-steps-to-your-deployment-processes).
+The **AppRole Login** step is added to deployment and runbook processes in the [same way as other steps](https://octopus.com/docs/projects/steps#adding-steps-to-your-deployment-processes).
 
 After you've added the step to your process, fill out the parameters in the step:
 
@@ -143,10 +144,10 @@ You can then execute the step in a runbook or deployment process. On successful 
 
 ![Vault AppRole login step task log](vault-approle-login-step-output-variable.png)
 
-In subsequent steps, the output variable `#{Octopus.Action[HashiCorp Vault - Login with AppRole].Output.AppRoleAuthToken}` can be used to authenticate and retrieve secrets.
+In subsequent steps, the output variable `#{Octopus.Action[HashiCorp Vault - AppRole Login].Output.AppRoleAuthToken}` can be used to authenticate and retrieve secrets.
 
 :::hint
-**Tip:** Remember to replace `HashiCorp Vault - Login with AppRole` with the name of your step for any output variable names.
+**Tip:** Remember to replace `HashiCorp Vault - AppRole Login` with the name of your step for any output variable names.
 :::
 
 ### AppRole best practices {#approle-best-practices}
