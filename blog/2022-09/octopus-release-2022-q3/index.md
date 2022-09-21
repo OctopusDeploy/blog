@@ -12,6 +12,7 @@ tags:
 - Product
 - DevOps
 - Configuration as Code
+- DORA Metrics
 - GitHub Actions
 - Integrations
 ---
