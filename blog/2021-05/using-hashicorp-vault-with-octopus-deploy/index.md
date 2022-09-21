@@ -39,6 +39,7 @@ All of the step templates make use of the Vault [HTTP API](https://www.vaultproj
 Before interacting with Vault, you must authenticate against an auth method. Vault offers a number of different authentication options. The following step templates have been created to support Vault authentication:
 
 - [LDAP Login](#ldap-login)
+- [JWT Login](#jwt-login)
 - [AppRole Login](#approle-login)
 - [AppRole Get wrapped SecretID](#get-wrapped-secretid)
 - [AppRole Unwrap SecretID](#unwrap-secretid)
@@ -91,6 +92,53 @@ In subsequent steps, the output variable `#{Octopus.Action[HashiCorp Vault - LDA
 
 :::hint
 **Tip:** Remember to replace `HashiCorp Vault - LDAP Login` with the name of your step for any output variable names.
+:::
+
+### JWT login step {#jwt-login}
+
+The [HashiCorp Vault - JWT Login](https://library.octopus.com/step-templates/d49bc861-cd36-4624-960c-77613a54b139/actiontemplate-hashicorp-vault-jwt-login) step template authenticates with a Vault Server using the [JWT](https://www.vaultproject.io/docs/auth/ldap) authentication method. This allows Vault integration using a [JSON Web Token](https://en.wikipedia.org/wiki/JSON_Web_Token).
+
+You might choose to authenticate using a JWT if you are already using this auth method in your organisation, and are seen as a good option when making requests over HTTP, as it's a self-contained token that can be generated anywhere.
+
+:::hint
+**Generating a JWT**
+Octopus has two existing step templates to generate a JWT, signed with a private key, but they aren't covered in this post. For more information see the step template descriptions:
+
+- [JWT - Generate JSON Web Token](https://library.octopus.com/step-templates/1ca0401c-dfca-420e-81ca-1f4b7cf02d2d/actiontemplate-jwt-generate-json-web-token)
+- [HashiCorp Vault - Generate JWT](https://library.octopus.com/step-templates/e72fd23a-3bfd-4758-a720-2462d5206f65/actiontemplate-hashicorp-vault-generate-jwt)
+:::
+
+After authentication, the `client_token` from the Vault response will be made available as a [sensitive output variable](https://octopus.com/docs/projects/variables/output-variables#sensitive-output-variables) named `JWTAuthToken` for use in other steps.
+
+#### JWT login parameters {#jwt-login-parameters}
+
+The step template has the following parameters:
+
+- `Vault Server URL`: The URL of the Vault instance you are connecting to, including the port (The default is `8200`).
+- `API version`: Choose the API version to use from a drop-down list. Currently, there is only one option: `v1`.
+- `Namespace`: *Optional* The [namespace](https://www.vaultproject.io/docs/enterprise/namespaces) to use. Nested namespaces can be supplied, e.g., `ns1/ns2`. **Note:** Namespaces are only supported on [Vault Enterprise](https://www.hashicorp.com/products/vault).
+- `JWT Auth Login path`: The path that the [JWT method is mounted at](https://www.vaultproject.io/api-docs/auth/jwt). The default is `/auth/jwt`.
+- `JWT role`: The Vault [JWT role](https://www.vaultproject.io/api-docs/auth/jwt#create-role).
+- `JWT Token`: The signed [JSON Web Token](https://tools.ietf.org/html/rfc7519) (JWT) to login with.
+
+![Parameters for the Vault JWT login step](vault-jwt-login-step-parameters.png)
+
+#### Using the JWT login step {#jwt-login-use}
+
+The **JWT Login** step is added to deployment and runbook processes in the [same way as other steps](https://octopus.com/docs/projects/steps#adding-steps-to-your-deployment-processes).
+
+After you've added the step to your process, fill out the parameters in the step:
+
+![Vault JWT login step used in a process](vault-jwt-login-step-in-process.png)
+
+You can then execute the step in a runbook or deployment process. On successful execution, the sensitive output variable name containing the token is displayed in the task log:
+
+![Vault JWT login step task log](vault-jwt-login-step-output-variable.png)
+
+In subsequent steps, the output variable `#{Octopus.Action[HashiCorp Vault - JWT Login].Output.JWTAuthToken}` can be used to authenticate and retrieve secrets.
+
+:::hint
+**Tip:** Remember to replace `HashiCorp Vault - JWT Login` with the name of your step for any output variable names.
 :::
 
 ### AppRole login step {#approle-login}
