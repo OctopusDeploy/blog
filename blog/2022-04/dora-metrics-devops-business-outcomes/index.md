@@ -10,6 +10,7 @@ bannerImageAlt: A slightly transparent computer screen with someone analyzing da
 isFeatured: false
 tags:
   - DevOps
+  - DORA Metrics
 ---
 
 > **The key to successful change is measuring and understanding the right things** with a focus on capabilities—not on maturity.”
