@@ -18,7 +18,7 @@ Storing sensitive values in Octopus Deploy solves many problems. If your organiz
 
 Octopus has supported the concept of [sensitive variables](https://octopus.com/docs/projects/variables/sensitive-variables) since [Octopus 2.0](https://octopus.com/blog/new-in-2.0/sensitive-variables), but customers often ask about support for secret managers. One in particular is [HashiCorp Vault](https://www.vaultproject.io/).
 
-In this post, I walk through a number of new [HashiCorp Vault step templates](https://library.octopus.com/listing/hashicorp%20vault) designed to retrieve secrets from Vault for use in your deployments or runbooks.
+In this post, I walk through a number of [HashiCorp Vault step templates](https://library.octopus.com/listing/hashicorp%20vault) we've introduced that are designed to retrieve secrets from Vault for use in your deployments or runbooks.
 
 <h2>In this post</h2>
 
