@@ -10,6 +10,7 @@ bannerImageAlt: A book with arms and legs holds an oversized magnifying glass ov
 isFeatured: false
 tags: 
   - DevOps
+  - DORA metrics
   - Runbooks Series
   - Runbooks
 ---
