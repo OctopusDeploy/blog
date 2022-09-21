@@ -19,6 +19,7 @@ Configuration as Code
 Database Deployments
 Deployment Patterns
 Docker
+DORA Metrics
 Getting Started
 GitHub Actions
 Google Cloud Platform
