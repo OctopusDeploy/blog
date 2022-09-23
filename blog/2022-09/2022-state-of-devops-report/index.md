@@ -4,9 +4,9 @@ description: Find out about the release of the 2022 Accelerate State of DevOps r
 author: steve.fenton@octopus.com
 visibility: private
 published: 2022-09-29-1400
-metaImage: blogimage-devsecopsvulnerabilities-2022.png
-bannerImage: blogimage-devsecopsvulnerabilities-2022.png
-bannerImageAlt: An infinity loop that represents the DevOps cycle.
+metaImage: blogimage-introductiontodevops-2022.png
+bannerImage: blogimage-introductiontodevops-2022.png
+bannerImageAlt: Blue octopus tentacle shaped like the DevOps infinity loop, with people on laptops sitting on and around the tentacle.
 isFeatured: false
 tags:
   - DevOps
