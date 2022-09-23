@@ -1,6 +1,6 @@
 ---
 title: Variable use in Octopus Deploy
-description: Find our why it's so hard to see where variables are used.
+description: Find out why it's so hard to see where variables are used.
 author: stephen.heise@octopus.com
 visibility: public
 published: 2022-10-12-1400
