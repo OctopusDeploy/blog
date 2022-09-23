@@ -3,7 +3,7 @@ title: Sharing Workers across spaces
 description: Learn methods to easily share Workers between spaces.
 author: shawn.sesna@octopus.com
 visibility: public
-published: 2022-10-11-1400
+published: 2022-10-10-1400
 metaImage: blogimage-bestpracticesforoctopusspaces-2022.png
 bannerImage: blogimage-bestpracticesforoctopusspaces-2022.png
 bannerImageAlt: Overhead shot of a round table split into three equal parts, with people working on laptops and notebooks at each section.
@@ -14,9 +14,9 @@ tags:
   - Workers
 ---
 
-[Spaces](https://octopus.com/docs/administration/spaces) in Octopus Deploy are hard-walled and don't allow you to share anything between them (except users). This is great for isolation, but it can be problematic for things you want to share among all spaces, like Workers.  Sharing Workers is a scenario we solved to support our [Samples](https://samples.octopus.app) instance.  
+[Spaces](https://octopus.com/docs/administration/spaces) in Octopus Deploy are hard-walled and don't allow you to share anything between them (except users). This is great for isolation but can be problematic for things you want to share among all spaces, like Workers.  Sharing Workers is a scenario we solved to support our [Samples](https://samples.octopus.app) instance.  
 
-In this post, I explain our solution, which automates sharing Workers across multiple spaces.
+In this post, I explain our solution, which automates sharing of Workers across multiple spaces.
 
 ## The problem
 
@@ -26,20 +26,25 @@ We ran into resource contention issues because the [Runbooks](https://octopus.co
 
 ## The solutions
 
-We established we needed more Workers available to perform the tasks. We came up with 2 solutions:
+We needed more Workers available to perform the tasks. We came up with 2 solutions:
 
 - Dedicated Workers
 - Shared Workers
 
 ### Solution 1: Dedicated Workers
 
-Our first iteration to solve this problem was to have each space create their own dedicated worker.  While this worked well, there were two glaring issues; the Workers were idle 99% of the day, and as more spaces were added, our costs increased.  We needed to re-evaluate our cloud resource usage and look for some cost savings.  Workers, along with other things such as database server instances, were identified as items that didn't need to be dedicated and could be shared.
+Our first iteration to solve this problem was to have each space create its own dedicated Worker.  While this worked well, there were 2 issues:
+
+- The Workers were idle 99% of the day
+- Our costs increased as we added more spaces
+
+We needed to re-evaluate our cloud resource usage and look for cost savings.  We identified Workers, along with things like database server instances, as items that could be shared rather than dedicated.
 
 ### Solution 2: Shared Workers
 
-Each space in Samples was creating Workers using the cloud provider that suited their needs. To keep supporting this, we creatde Workers in all 3 cloud providers to share with all spaces.  
+Each space in Samples created Workers using the cloud provider that suited their needs. To support this, we created Workers in all 3 cloud providers to share with all spaces. 
 
-Using Terraform, we created Workers using the cloud provider scaling features, so if we need more or less Workers, we simply adjust the scale accordingly. Provisioning Workers uses a runbook with the following steps:
+Using Terraform, we created Workers using the cloud provider scaling features, so if we need more or fewer Workers, we simply adjust the scale accordingly. Provisioning Workers uses a runbook with the following steps:
 
 - Get space list
 - Create Workers
@@ -48,7 +53,7 @@ Using Terraform, we created Workers using the cloud provider scaling features, s
 
 #### Get Space List
 
-To add the Workers to all of the spaces, we first need to gather a list of all spaces on the instance.  The **Get Space List** step retrieves the list and sets the following output variables:
+To add the Workers to all of the spaces, we first needed to gather a list of all spaces on the instance.  The **Get Space List** step retrieved the list and set the following output variables:
 
 - `InitialSpaceName` - The name of the first space in our Spaces list, this value is used in the script that's run on the VMs so they can register themselves to the instance.
 - `InitialSpaceId` - The ID of the initial space the Workers will be added to.
@@ -163,7 +168,7 @@ Set-OctopusVariable -name "WorkerPoolName" -value $workerPoolName
 
 ```
 
-#### Create Workers
+#### Creating Workers
 
 For our shared Workers, we separated the Terraform files into folders designated by the cloud provider.  Below are the snippets of Terraform we created for each provider (see the full implementation [in GitHub](https://github.com/OctopusSamples/IaC/tree/master/octopus-samples-instances/shared-workers-terraform)):
 
@@ -334,7 +339,7 @@ output "ip" {
 </details>
 
 
-The Terraform package includes a Bash script run on the VMs created by the cloud scaling technology.  When executed, the VM registers itself to the Space and Pool from the output variables of the `Get Space List` step.
+The Terraform package includes a Bash script run on the VMs created by the cloud scaling technology.  When executed, the VM registers itself to the Space and Pool from the output variables of the **Get Space List** step.
 
 ```bash
 #!/bin/bash
@@ -388,9 +393,9 @@ sudo /opt/octopus/tentacle/Tentacle register-worker --server "$serverUrl" --apiK
 sudo /opt/octopus/tentacle/Tentacle service --restart
 ```
 
-#### Wait for Workers to register themselves
+#### Waiting for Workers to register themselves
 
-Before you can add the Workers to the other spaces, the Workers need to register themselves. This step monitors the Worker Pool until the desired number of Worker machines are registered.
+Before we could add the Workers to the other spaces, the Workers needed to register themselves. This step monitored the Worker Pool until the desired number of Worker machines were registered.
 
 ```powershell
 # Define parameters 
@@ -440,9 +445,9 @@ if ($null -ne $workerPool)
 }
 ```
 
-#### Add Workers to remaining spaces
+#### Adding Workers to remaining spaces
 
-With the Workers added to the first space, we can use the API to add them to the remaining spaces.
+After we added the Workers to the first space, we used the API to add them to the remaining spaces.
 
 ```powershell
 function Get-OctopusItems
@@ -562,6 +567,6 @@ foreach ($spaceId in $remainingSpaceIds)
 
 ## Conclusion
 
-Sharing Workers across all spaces on Samples let us consolidate and make more efficient use of resources. I hope this post gives you some ideas on how to do the same.  
+Sharing Workers across all spaces on our [Samples](https://samples.octopus.app) instance let us consolidate and use resources more efficiently. I hope this post gives you some ideas on how to do the same.  
 
 Happy deployments!
