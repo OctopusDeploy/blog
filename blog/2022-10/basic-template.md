@@ -55,6 +55,16 @@ Essentially, Theory X responds to problems with: "See, it went wrong. We knew th
 
 > In 2022, we found that the biggest predictor of an organization's application-development security practices was cultural, not technical: high-trust, low-blame cultures focused on performance were significantly more likely to adopt emerging security practices. <cite>The Accelerate State of DevOps Report, 2022</cite>
 
+##
+
+If you are leading a team that has been subjected to years of unhealthy culture, you can't just snap your fingers and create a new world. Psychological safety requires long-term trust and empathy. You'll need to demonstrate how you respond to problems and gradually help the team lost the fear that was previously essential to their survival.
+
+Even if you are a fully subscribed Theory Y, generative culture leader, your organization might be immune to your personal efforts. Just because a team won't be roasted by you doesn't mean there aren't managers in other departments waiting to pounce on them. If you find yourself a righteous middle, between a scared team and a pathological organization, you have to consider whether building a modern culture as a silo is healthy for the team or the organization in the long term. Teams build in this way rarely survive your departure.
+
+If you can't make progress amongst your executive peers and the C-suite, it can be dangerous operating as a miniature sub-organization. It takes enormous energy to do this, but you might not be able to sustain it for months and years. If you eventually burn out, there is a danger you'll be assimilated into the pathological culture, or simply leave the organization, pulling the rug out from the team.
+
+##
+
 One of the tragically amusing parts of what we call *modern workplace culture* is the ideas will soon be a hundred years old. Hardly modern! This shows how long it takes to change the prevailing thinking about management. Far more than one generation.
 
 You'll find culture is the toughest nut to crack in DevOps. No matter how hard it is to automate your deployment pipeline, changing a collective management thought pipeline is far harder. You'll need to lean on studies that evidence the benefits of modern workplace culture, but you'll need more than hard numbers to convince most people.
