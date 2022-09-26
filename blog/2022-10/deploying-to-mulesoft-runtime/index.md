@@ -14,7 +14,7 @@ tags:
  - Java
 ---
 
-Mulesoft created a unique software that lets you create custom APIs that connect with both on-premises and cloud-based systems to retrieve or manipulate information.  
+Mulesoft created unique software that lets you create custom APIs to retrieve or manipulate information from on-premises or cloud-based systems. 
 
 In this post, I show you how to deploy a Mulesoft API to a server running the [Mule Runtime](https://docs.mulesoft.com/mule-runtime/4.4/) using Octopus Deploy.
 
