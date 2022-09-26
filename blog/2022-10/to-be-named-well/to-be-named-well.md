@@ -80,7 +80,7 @@ When you feel safe to speak up and nobody will be blamed, near-misses and minor 
 If you don't feel safe to report close-calls, the unspoken risks accumulate until, very often, a disaster happens.
 
 :::hint
-Matthew Syed - Black Box Thinking compares two safety-critical industries with different approaches to failure...
+Matthew Syed - Black Box Thinking compares two safety-critical industries with different approaches to failure... one that encourages people to speak up, so lessons can be learned and procedures changes... and one that discourages speaking up, which can't learn and improve.
 :::
 
 Outages and incidents fuel the increase in authoritarian and bureaucratic approaches. Policy constraints such as multiple sign-offs, or less frequent deployments, are the result of Theory X responses to past problems. There is no statistical basis for policy-based controls of software delivery risk.
