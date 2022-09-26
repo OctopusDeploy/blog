@@ -47,50 +47,16 @@ You either believe that:
 Many decisions in the workplace involve a trade-off, but these fundamental assumptions are mutually exclusive. If you believe Theory X, you'll centralize decision making, track individual performance, and use rewards and punishments to motivate workers.
 
 ::hint
-You can use external rewards to get short-term gains, but it ultimately fails as a strategy as it displaces internal motivation. Alfie Kohn looked at hundreds of studies and concluded that incentives cause temporary obedience, but result in lasting harm.
+When you use external rewards, you'll often achieve short-term gains. This ultimately fails as a strategy as it reduces internal motivation. Alfie Kohn looked at hundreds of studies and concluded that incentives cause temporary obedience, but result in lasting harm to motivation.
+
+Dan Pink expanded on Douglas McGregor's and Alfie Kohn's work in his popular book on motivation, *Drive*, which describes how people need context, autonomy, and purpose to reach high performance levels.
 :::
 
-Managers who believe Theory X are more likely to use rewards and punishments. They track individual performance and provide detailed work instructions that must be followed.
+With Theory Y, you focus on setting clear goals and let people direct their own efforts. When you do this, employees become the organization's most valuable asset.
 
+McGregor considered Theory X and Theory Y to be two options that a manager would choose from after assessing a workplace. You would review the work and the people and decide whether you need an authoritarian style, or a more hands-off approach. What we have learned through the study of system failures cultures with high-trust and low-blame are safer than bureaucratic or pathological cultures.
 
-
-
-You can probably imagine the different management styles that would result from each of these assumptions.
-
-If you believe people don't want to work, you'll think you need to use rewards and punishments to motivate them, give detailed specific instructions, and closely supervise their work.
-
-When you realize people are self-motivated and find work rewarding in itself
-
-Crucially, when someone isn't behaving like a Theory Y employee, you'll know that the broader system is likely to be impacting their behavior.
-
-
-
-
-
-
-
-A Theory X culture tends to focus on mechanisms to stimulate motivation, believing that without appropriate rewards and punishments employees won't do work. Managers tend to 
-
-
-Theory X was the prevailing assumption in the 20th century and remains common. It believes people are lazy and lack ambition, only working in return for a salary. 
-
-When you choose the first assumption, Theory X, your assumption that workers are lazy and lack skills
-
-Followers of Theory X believe that workers are lazy and will only do work in response to rewards and punishments. If you follow Theory Y, you understand that people are self-motivated and find work rewarding.
-
-
-McGregor referred to the first assumption as *Theory X*. This was the prevailing management theory at the time he wrote his book and it's still common today. The alternative assumption is called *Theory Y* and it underpins modern management thinking. Theory X and Theory Y aren't arranged on a sliding scale; they are mutually exclusive.
-
-Theory Y is fundamental to Lean and Agile, and is the basis of Westrum's *generative* culture and Dan Pink's work on context, autonomy, and purpose, which features in his popular book, *Drive*.
-
-While organizations have become adept at the theater of modern workplace management, you'll spot a Theory X culture the second something goes wrong.
-
-| Theory X | Theory Y|
-|----|-------|
-| Who's fault is this | Wha
-
-
-McGregor considered Theory X and Theory Y to be two options that a manager would choose from after assessing the workplace. You would review the work and the people and decide whether you need an authoritarian style, or a more hands-off approach. What we have learned through the study of system failures is that generative cultures are safer than bureaucratic or pathological cultures.
+Theory Y is foundational to Lean, Agile, and DevOps and is the underlying assumption of a generative culture.
 
 ## 
 
@@ -107,11 +73,15 @@ The civilian version of this is called [workplace empowerment](https://en.wikipe
 In a study into coal mines, the high-performing mines were found to use a similar approach. The miners would self-organize and assign roles based on what work needed to be done. The miners were more engaged in the work, had less time off, and out-performed mines run in an authoritarian style.
 
 
-##
+## 
 
 When you feel safe to speak up and nobody will be blamed, near-misses and minor faults fuel learning. Each incident results in positive action to make the workplace safer, whether the industry is a factory, nuclear power plant, aviation, or software delivery.
 
 If you don't feel safe to report close-calls, the unspoken risks accumulate until, very often, a disaster happens.
+
+:::hint
+Matthew Syed - Black Box Thinking compares two safety-critical industries with different approaches to failure...
+:::
 
 Outages and incidents fuel the increase in authoritarian and bureaucratic approaches. Policy constraints such as multiple sign-offs, or less frequent deployments, are the result of Theory X responses to past problems. There is no statistical basis for policy-based controls of software delivery risk.
 
@@ -157,6 +127,12 @@ DevOps for Dummies, by Emily Freeman, focuses particularly on the human and cult
 - DevOps for Dummies - Emily Freeman
 - The Human Side of Enterprise - Douglas McGregor
 - Punished by Rewards - Alfie Kohn
+- Understanding Systems Failures - Victor Bignell, Joyce Fortune
+- Black Box Thinking - Matthew Syed
 - Drive - Dan Pink
 
 Happy deployments!
+
+
+
+While organizations have become adept at the theater of modern workplace management, you'll spot a Theory X culture the second something goes wrong.
