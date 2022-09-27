@@ -12,6 +12,8 @@ tags:
   - DevOps
 ---
 
+**TODO**: Insert links to Andy's culture topic in the DevOps microsite.
+
 DevOps has brought the topic of organization culture firmly to the table. While culture was always an element of Agile and Lean, the research into DevOps has shown that it is just as important as the more technical capabilities.
 
 The DevOps structural equation model has 5 elements related to people and culture, so it's clear that human issues are crucial to high performance. The 5 cultural capabilities in the model are:
