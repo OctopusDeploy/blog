@@ -73,21 +73,19 @@ The civilian version of this is called [workplace empowerment](https://en.wikipe
 In a study into coal mines, the high-performing mines were found to use a similar approach. The miners would self-organize and assign roles based on what work needed to be done. The miners were more engaged in the work, had less time off, and out-performed mines run in an authoritarian style.
 
 
-## 
+## Culture predicts safety
 
-When you feel safe to speak up and nobody will be blamed, near-misses and minor faults fuel learning. Each incident results in positive action to make the workplace safer, whether the industry is a factory, nuclear power plant, aviation, or software delivery.
+When you feel safe to speak up and nobody will be blamed, near-misses and minor faults fuel learning. Each incident results in positive action to make the workplace safer, whether the industry is manufacturing, nuclear power plant, aviation, or software delivery.
 
 If you don't feel safe to report close-calls, the unspoken risks accumulate until, very often, a disaster happens.
 
-:::hint
-Matthew Syed - Black Box Thinking compares two safety-critical industries with different approaches to failure... one that encourages people to speak up, so lessons can be learned and procedures changes... and one that discourages speaking up, which can't learn and improve.
-:::
-
-Outages and incidents fuel the increase in authoritarian and bureaucratic approaches. Policy constraints such as multiple sign-offs, or less frequent deployments, are the result of Theory X responses to past problems. There is no statistical basis for policy-based controls of software delivery risk.
-
-Essentially, Theory X responds to problems with: "See, it went wrong. We knew they couldn't be trusted." Theory Y responds with curiosity, more concerned with changing the system to make problems less likely than in finding someone to blame.
+You don't have to be in a safety-critical industry to benefit from this relationship. The same cultural traits that predict safety are also related to communication, collaboration, innovation, and problem solving. Culture affects the flow of information, which is critical to all these activities.
 
 > In 2022, we found that the biggest predictor of an organization's application-development security practices was cultural, not technical: high-trust, low-blame cultures focused on performance were significantly more likely to adopt emerging security practices. <cite>The Accelerate State of DevOps Report, 2022</cite>
+
+Theory X restricts the flow of information and limits who can take action. Information is drawn up, and decisions are passed back down.
+
+Theory Y thinking leads to strong information flow and prompt action in response. Information flows freely and decisions are made close to the work.
 
 ##
 
