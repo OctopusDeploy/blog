@@ -106,38 +106,43 @@ Without a clear, robust, and sustained push, you won't make a dent on culture. Y
 
 ## Summary
 
-Mission command dates back to the 1800s
-Theory Y was in Douglas McGregor's 1960 book and dates back to the 1950s
-Westrum's organizational cultures were defined in the 1980s
+When people talk about culture in the context of DevOps, they are referring to Westrum's generative culture, which is based on McGregor's Theory Y assumption. In simple terms, you should aim to have a clear shared mission combined with decentralized decision making.
 
-The key to this is that we aren't suddenly discovering new information, but gradually coming around to these ideas.
+All modern software delivery methods refer to this concept of empowered teams in different ways.
 
+It's strange that we refer to this as *modern workplace culture* as the ideas are over a hundred years old. Mission command dates back to the 1800s, Theory X and Y are explained in a book from 1960, and Westrum's typology of organizational cultures was designed in the 1980s.
 
-The root of modern culture is planted in Douglas McGregor's *Theory Y* assumption that people want to do good work. From this, we can see the benefits of a clear shared vision, with decentralized decision making.
+This shows how long it has taken to change the prevailing thinking about management. Far more than a generation.
 
-Lean, Agile, and DevOps all advocate for this *empowered team* approach, using different terminology for local decision making.
-
-One of the tragically amusing parts of what we call *modern workplace culture* is the ideas will soon be a hundred years old. Hardly modern! This shows how long it takes to change the prevailing thinking about management. Far more than one generation.
-
-You'll find culture is the toughest nut to crack in DevOps. No matter how hard it is to automate your deployment pipeline, changing a collective management thought pipeline is far harder. You'll need to lean on studies that evidence the benefits of modern workplace culture, but you'll need more than hard numbers to convince most people.
+You'll find culture is the toughest nut to crack in DevOps. It is tempting to rely on the research and statistics to prove the case for a generative culture, but the reality is that cultural change will rely on compelling storytelling and creating a compelling vision of what the organization will look like.
 
 You can read more about DevOps culture [in our DevOps Engineer's Handbook](https://octopus.com/devops/)
 
-
-
 ## Further reading
 
-Ron Westrum's article, [a typology of organizational cultures](https://qualitysafety.bmj.com/content/13/suppl_2/ii22), describes the three dominant organization culture types.
+Related information:
 
-DevOps for Dummies, by Emily Freeman, focuses particularly on the human and cultural aspects of DevOps.
+- [TBC](ANDY'S CULTURE ARTICLE IN THE DEVOPS MICROSITE)
+- [A typology of organizational cultures](https://qualitysafety.bmj.com/content/13/suppl_2/ii22)
+
+Culture in DevOps:
 
 - DevOps for Dummies - Emily Freeman
+
+Management and motivation:
+
 - The Human Side of Enterprise - Douglas McGregor
 - Punished by Rewards - Alfie Kohn
-- Understanding Systems Failures - Victor Bignell, Joyce Fortune
-- Black Box Thinking - Matthew Syed
 - Radical Candor - Kim Scott
 - Drive - Dan Pink
+
+Culture and failure:
+
+- Understanding Systems Failures - Victor Bignell, Joyce Fortune
+- Black Box Thinking - Matthew Syed
+
+
+
 
 Happy deployments!
 
