@@ -84,11 +84,37 @@ Theory X restricts the flow of information and limits who can take action. Infor
 
 Theory Y thinking leads to strong information flow and prompt action in response. Information flows freely and decisions are made close to the work.
 
-##
+## Changing culture
 
-If you are leading a team that has been subjected to years of unhealthy culture, you can't just snap your fingers and create a new world. Psychological safety requires long-term trust and empathy. You'll need to demonstrate how you respond to problems and gradually help the team lost the fear that was previously essential to their survival.
+Cultural change starts with a clear vision of the future state. In the absence of this vision, inertia will maintain the current state. The vision needs to be pushed rapidly and forcefully and regularly reinforced.
 
-Even if you are a fully subscribed Theory Y, generative culture leader, your organization might be immune to your personal efforts. Just because a team won't be roasted by you doesn't mean there aren't managers in other departments waiting to pounce on them. If you find yourself a righteous middle, between a scared team and a pathological organization, you have to consider whether building a modern culture as a silo is healthy for the team or the organization in the long term. Teams build in this way rarely survive your departure.
+Managers need to understand they are enablers of self-organizing teams and that the talent of team members needs to be realized. The right systems must be put in place, and the wrong ones removed. Everyone should understand the intended communication style of the organization, for example we use Radical Candor.
+
+Communicate broadly and openly not via top-down cascades. Conversations rather than commands, authentic storytelling, deep listening
+
+Re-organization should be a last resort, as should management power-moves.
+
+
+You then need to implement the change in a manner consistent with the target state. Attempting to bring on a generative culture through pathological cultural behaviours won't cut it.
+
+Culture tends to survice a re-organiztion, moving people around and even replacing senior managers doesn't meaningfully impact culture.
+
+Out of Westrum's three organization types, generative cultures are most easy to displace.
+
+
+Start with leadership, create a clear vision of what the future state looks like, and use management tools to define and measure alignment. You need to use techniques consistent with the culture you want to install.
+
+Culture is bounded by edges and lifetimes. If your organization has many offices, each one might sustain a different culture over the long term, but a department is only likely to preserve a distinctive culture for the duration of its leader.
+
+That means lasting change can only start at the top and begins when the organization is selecting its leaders and is highly likely to self-perpetuate. If you are responsible for a smaller part of the organization, you can still
+
+If you are leading a team that has been subjected to years of unhealthy culture, you can't just snap your fingers and create a new reality. Psychological safety requires long-term trust and empathy. You'll need to demonstrate how you respond to problems and gradually help the team lost the fear that was previously essential to their survival.
+
+Even if you are a fully subscribed to concepts like Theory Y and generative culture, your organization might resist your personal efforts. Just because a team won't be roasted by you doesn't mean there aren't managers in other departments waiting to pounce on them.
+
+If you find yourself a righteous middle, between a fearful team and a pathological organization, you have to consider whether building a modern culture silo is healthy for the team or the organization in the long term. Teams built in this way rarely survive your departure.
+
+Culture is bounded by edges. One department in its own space may sustain a different culture to the rest of the organization. One operating unit within a large enterprise can sustain its own culture... it all depends on the leadership within the boundary.
 
 If you can't make progress amongst your executive peers and the C-suite, it can be dangerous operating as a miniature sub-organization. It takes enormous energy to do this, but you might not be able to sustain it for months and years. If you eventually burn out, there is a danger you'll be assimilated into the pathological culture, or simply leave the organization, pulling the rug out from the team.
 
