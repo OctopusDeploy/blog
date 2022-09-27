@@ -58,20 +58,17 @@ McGregor considered Theory X and Theory Y to be two options that a manager would
 
 Theory Y is foundational to Lean, Agile, and DevOps and is the underlying assumption of a generative culture.
 
-## 
+## Mission command
 
-The military has traditionally been seen as a Theory X culture. Decisions are made by a small central group and there are tight constraints around interactions. However, the modern military uses a *mission command* pattern that decentralizes decision making by providing clear goals. The soldiers with boots on the ground are allowed to respond immediately as events unfold, rather than waiting for orders. This is the application of Theory Y culture.
+Although military organizations are traditionally seen as Theory X cultures, modern military units operate using *mission command*. The mission command pattern decentralizes decision making by providing clear goals. The soldiers with boots on the ground are allowed to respond dynamically as events unfold, rather than waiting for orders. This is the application of Theory Y culture.
 
-Centralized intent + Decentralized execution, or shared vision implemented by cross-functional, self-organizing, autonomous teams.
+The civilian version of this is called [workplace empowerment](https://en.wikipedia.org/wiki/Empowerment#In_workplace_management), which requires that:
 
-The civilian version of this is called [workplace empowerment](https://en.wikipedia.org/wiki/Empowerment#In_workplace_management)
+- You share information with everyone
+- You create autonomy through boundaries
+- You replace hierarchy with self-directed teams
 
-- Share information with everyone
-- Create autonomy through boundaries
-- Replace hierarchy with self-directed teams
-
-In a study into coal mines, the high-performing mines were found to use a similar approach. The miners would self-organize and assign roles based on what work needed to be done. The miners were more engaged in the work, had less time off, and out-performed mines run in an authoritarian style.
-
+Workplace empowerment combines centralized intent with decentralized execution. In software delivery, this typically involves a shared vision implemented by a cross-functional self-organizing team.
 
 ## Culture predicts safety
 
