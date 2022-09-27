@@ -86,37 +86,23 @@ Theory Y thinking leads to strong information flow and prompt action in response
 
 ## Changing culture
 
-Cultural change starts with a clear vision of the future state. In the absence of this vision, inertia will maintain the current state. The vision needs to be pushed rapidly and forcefully and regularly reinforced.
+Changing team and organization culture is one of the toughest challenges you'll find in software delivery. Not even the most complex automation task in your deployment pipeline comes close. You'll need a clear vision of your intended future state, which needs to be pushed rapidly, firmly, and regularly to ensure the goal remains clear.
 
-Managers need to understand they are enablers of self-organizing teams and that the talent of team members needs to be realized. The right systems must be put in place, and the wrong ones removed. Everyone should understand the intended communication style of the organization, for example we use Radical Candor.
+You'll need leaders and managers to understand their role is to enable self-organizing teams that make use of the talent of each team member. You will need to move away from systems that centralize information and decision making and transfer to systems aligned to distributed responsibility.
 
-Communicate broadly and openly not via top-down cascades. Conversations rather than commands, authentic storytelling, deep listening
+For example, if you are using centralized tools to organize tasks and assign them people, you'll need to move to a system that aligns with setting a clear mission without removing the ability of teams to self-organize and respond to dynamic situations. You may need to replace a tool entirely, or use the tool in a new way. Your Gantt charts might have to go, but your task tracking app can remain if the team can re-purpose it.
 
-Re-organization should be a last resort, as should management power-moves.
+The leadership role in a culture change is to:
 
+- Relentlessly push the desired end state
+- Reinforce the role of leaders and managers as enablers
+- Ensure teams become self-organized
 
-You then need to implement the change in a manner consistent with the target state. Attempting to bring on a generative culture through pathological cultural behaviours won't cut it.
+A healthy culture should also be clear about the importance of the flow of information as well as setting a standard for communication style.
 
-Culture tends to survice a re-organiztion, moving people around and even replacing senior managers doesn't meaningfully impact culture.
+At Octopus we follow the Radical Candor approach. This allows us to be direct in our communications, but within a framework where we all care about each other. Radical Candor enables individuals to show courage and challenge others when they might otherwise remain silent. This ultimately means we can all do better work, without harmful or toxic behavior.
 
-Out of Westrum's three organization types, generative cultures are most easy to displace.
-
-
-Start with leadership, create a clear vision of what the future state looks like, and use management tools to define and measure alignment. You need to use techniques consistent with the culture you want to install.
-
-Culture is bounded by edges and lifetimes. If your organization has many offices, each one might sustain a different culture over the long term, but a department is only likely to preserve a distinctive culture for the duration of its leader.
-
-That means lasting change can only start at the top and begins when the organization is selecting its leaders and is highly likely to self-perpetuate. If you are responsible for a smaller part of the organization, you can still
-
-If you are leading a team that has been subjected to years of unhealthy culture, you can't just snap your fingers and create a new reality. Psychological safety requires long-term trust and empathy. You'll need to demonstrate how you respond to problems and gradually help the team lost the fear that was previously essential to their survival.
-
-Even if you are a fully subscribed to concepts like Theory Y and generative culture, your organization might resist your personal efforts. Just because a team won't be roasted by you doesn't mean there aren't managers in other departments waiting to pounce on them.
-
-If you find yourself a righteous middle, between a fearful team and a pathological organization, you have to consider whether building a modern culture silo is healthy for the team or the organization in the long term. Teams built in this way rarely survive your departure.
-
-Culture is bounded by edges. One department in its own space may sustain a different culture to the rest of the organization. One operating unit within a large enterprise can sustain its own culture... it all depends on the leadership within the boundary.
-
-If you can't make progress amongst your executive peers and the C-suite, it can be dangerous operating as a miniature sub-organization. It takes enormous energy to do this, but you might not be able to sustain it for months and years. If you eventually burn out, there is a danger you'll be assimilated into the pathological culture, or simply leave the organization, pulling the rug out from the team.
+Without a clear, robust, and sustained push, you won't make a dent on culture. You'll have to overcome inertia and battle organizational immune responses. Despite the difficulty, the research is conclusive that culture is crucial to high-performance.
 
 ## Summary
 
@@ -150,6 +136,7 @@ DevOps for Dummies, by Emily Freeman, focuses particularly on the human and cult
 - Punished by Rewards - Alfie Kohn
 - Understanding Systems Failures - Victor Bignell, Joyce Fortune
 - Black Box Thinking - Matthew Syed
+- Radical Candor - Kim Scott
 - Drive - Dan Pink
 
 Happy deployments!
