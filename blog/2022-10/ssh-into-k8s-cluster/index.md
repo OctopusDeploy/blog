@@ -3,11 +3,13 @@ title: SSH into to a Kubernetes cluster
 description: Learn how to set up a SSH bastion host in your Kubernetes cluster.
 author: matthew.casperson@octopus.com
 visibility: private
-published: 2999-01-01
-metaImage: 
-bannerImage: 
+metaImage: blogimage-testingkubernetes-2022.png
+bannerImage: blogimage-testingkubernetes-2022.png
+bannerImageAlt: Kubernetes logo on an open laptop screen
 tags:
- - Octopus
+ - Kubernetes
+ - Docker
+ - DevOps
 ---
 
 Jump boxes or bastion hosts are a common networking strategy to exposes a single secure entrypoint to the public internet in order to access a private network. This single point of entry allows security teams to closely monitor and control network access to the private network. Often the bastion host exposes a well known remote access service, like RDP or SSH, which teams can assume have been widely vetted and are trustworthy.
