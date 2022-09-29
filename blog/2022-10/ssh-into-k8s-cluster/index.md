@@ -107,9 +107,9 @@ sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 ```
 
 ```bash
-kubectl config set-cluster cfc --server=https://kubernetes.default --certificate-authority=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
-kubectl config set-context cfc --cluster=cfc
+kubectl config set-cluster localk8s --server=https://kubernetes.default --certificate-authority=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+kubectl config set-context localk8s --cluster=localk8s
 kubectl config set-credentials user --token=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
-kubectl config set-context cfc --user=user
-kubectl config use-context cfc
+kubectl config set-context localk8s --user=user
+kubectl config use-context localk8s
 ```
