@@ -19,17 +19,29 @@ At Octopus, we meet this challenge by providing some resources for getting start
 
 ## Whitepapers
 
-We want to provide in-depth research about important issues to our customers and us. As a cloud-native dedicated continuous delivery tool, we want to help our users understand continuous delivery and cloud-native technologies. To achieve this, we have developed two whitepapers to help inform our readers and give them actionable steps to get started.
+We want to provide in-depth research about important issues to our customers and us. As a cloud-native dedicated continuous delivery tool, we want to help our users understand continuous delivery and cloud-native technologies. To achieve this, we have developed four whitepapers to help inform our readers and give them actionable steps to get started.
 
-### Migrating to the cloud whitepaper
+### Migrating to the cloud
 
 The migrating to the cloud whitepaper provides an argument for migrating to the cloud and the first steps to take. It contains researched-backed reports and distills cloud migration into a series of phases: strategy, implementation, and operation. The whitepaper provides straightforward, actionable steps your company can take when migrating to the cloud.
 
-### Importance of continuous delivery whitepaper
+### Importance of continuous delivery
 
 The importance of continuous delivery whitepaper provides a deep dive into the best practice principles, benefits, and why continuous delivery's technical capabilities are fundamental to a successful DevOps adoption. The white paper includes case studies and discussions on challenges your company may face when implementing continuous delivery.
 
-![Importance of continuous delivery whitepaper cover](importance-of-continuous-delivery-white-paper.png)
+### How to map deployment pipelines
+
+The deployment pipeline is the key ingredient for Continuous Delivery. By mapping and improving the deployment pipeline, you can increase the frequency of deployments while reducing your change-related risk. High-performing teams use Continous Delivery to drive their software delivery and achieve higher levels of organizational performance.
+
+In this paper you will learn how to apply Lean thinking to start from where you are, mapping and improving your deployment pipeline while planning your adoption of the core technical practices.
+
+### Measuring Continuous Delivery and DevOps
+
+You might be introducing new practices and capabilities as part of Continuous Delivery and DevOps adoption, or making changes as part of continuous improvement. In either case, you need a way to tell if changes are improving your ability to deliver software and, ideally, if they help your organization achieve its goals.
+
+In this white paper, you find several approaches for measuring your progress. There are statement-based assessments and metric-driven measurements. You can use them at different times or combine them to create a custom view of your organization.
+
+<!--![Importance of continuous delivery whitepaper cover](importance-of-continuous-delivery-white-paper.png)-->
 
 ## Octopus free tools
 
