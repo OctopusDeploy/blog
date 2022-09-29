@@ -6,6 +6,7 @@ visibility: private
 metaImage: blogimage-testingkubernetes-2022.png
 bannerImage: blogimage-testingkubernetes-2022.png
 bannerImageAlt: Kubernetes logo on an open laptop screen
+published: 3020-01-01-1400
 tags:
  - Kubernetes
  - Docker
