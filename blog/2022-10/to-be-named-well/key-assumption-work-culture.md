@@ -4,25 +4,27 @@ description: Find out the key assumption that you must change for your organizat
 author: steve.fenton@octopus.com
 visibility: private
 published: 3020-01-01-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: collaboration-table.png
+bannerImage: collaboration-table.png
+bannerImageAlt: Five people sit working around a circular table
 isFeatured: false
 tags: 
   - DevOps
 ---
 
-**TODO**: Insert links to Andy's culture topic in the DevOps microsite.
+DevOps has brought the topic of [organization culture](https://octopus.com/devops/culture/) firmly to the table. While culture was always an element of Agile and Lean, the research into DevOps has shown that it is just as important as the more technical capabilities.
 
-DevOps has brought the topic of organization culture firmly to the table. While culture was always an element of Agile and Lean, the research into DevOps has shown that it is just as important as the more technical capabilities.
-
-The DevOps structural equation model has 5 elements related to people and culture, so it's clear that human issues are crucial to high performance. The 5 cultural capabilities in the model are:
+The DevOps structural equation model has several elements related to people and culture, so it's clear that human issues are an important part of the DevOps picture. The 5 cultural capabilities in the model are:
 
 - Climate for learning
 - Westrum organizational culture
 - Psychological safety
 - Job satisfaction
 - Identity
+
+The cultural capabilities drive software delivery and operations performance, which predict successful business outcomes.
+
+![The headline DevOps capabilities, showing culture as a driver for software delivery performance](simplified-structural-equation-model-2022.png)
 
 At the same time, there have been several HR hot topics across all industries that have trended over the past few years:
 
@@ -37,7 +39,7 @@ As Emily Freeman (author of DevOps for Dummies) [said](https://emilyfreeman.io/#
 
 So, where should you start when it comes to understanding culture in the context of DevOps?
 
-## Fundamental assumption
+## The fundamental assumption
 
 In 1960, Douglas McGregor published a book called *The Human Side of Enterprise*. In the book, he described how a fundamental assumption about human behavior results in different management styles,
 
@@ -46,15 +48,15 @@ You either believe that:
 - Theory X: People don't want to work and need to be motivated by rewards and punishments, or
 - Theory Y: People are intrinsically motivated to do good work
 
-Many decisions in the workplace involve a trade-off, but these fundamental assumptions are mutually exclusive. If you believe Theory X, you'll centralize decision-making, track individual performance, and use rewards and punishments to motivate workers.
+Many decisions in the workplace involve a trade-off, but these fundamental assumptions are mutually exclusive.
+
+If you believe Theory X, you'll centralize decision-making, track individual performance, and use rewards and punishments to motivate workers. With Theory Y, you focus on setting clear goals and let people direct their own efforts. When you do this, employees become the organization's most valuable asset.
 
 ::hint
 When you use external rewards, you'll often achieve short-term gains. This ultimately fails as a strategy as it reduces internal motivation. Alfie Kohn looked at hundreds of studies and concluded that incentives cause temporary obedience but result in lasting harm to motivation.
 
 Dan Pink expanded on Douglas McGregor's and Alfie Kohn's work in his famous book on motivation, *Drive*, which describes how people need context, autonomy, and purpose to reach high performance levels.
 :::
-
-With Theory Y, you focus on setting clear goals and let people direct their own efforts. When you do this, employees become the organization's most valuable asset.
 
 McGregor considered Theory X and Theory Y to be two options a manager would choose from after assessing a workplace. You would review the work and the people and decide whether you need an authoritarian style or a more hands-off approach. We've since learned through the study of system failures that cultures with high trust and low blame are safer than bureaucratic or pathological cultures.
 
@@ -82,9 +84,9 @@ You don't have to be in a safety-critical industry to benefit from this relation
 
 > In 2022, we found that the biggest predictor of an organization's application-development security practices was cultural, not technical: high-trust, low-blame cultures focused on performance were significantly more likely to adopt emerging security practices. <cite>The Accelerate State of DevOps Report, 2022</cite>
 
-Theory X restricts the flow of information and limits who can take action. Managers draw information up and pass decisions back down.
+Theory X management restricts the flow of information and limits who can take action. Managers draw information up and pass decisions back down.
 
-Theory Y thinking leads to strong information flow and prompt action in response. Information flows freely, and decisions are made close to the work.
+Theory Y leadership leads to strong information flow and prompt action in response. Information flows freely, and decisions are made close to the work.
 
 ## Changing culture
 
@@ -122,7 +124,7 @@ You can read more about DevOps culture [in our DevOps Engineer's Handbook](https
 
 Related information:
 
-- [TBC](ANDY'S CULTURE ARTICLE IN THE DEVOPS MICROSITE)
+- [Culture in The DevOps Engineer's handbook](https://octopus.com/devops/culture)
 - [A typology of organizational cultures](https://qualitysafety.bmj.com/content/13/suppl_2/ii22)
 
 Culture in DevOps:
