@@ -12,7 +12,7 @@ tags:
   - DevOps
 ---
 
-DevOps has brought the topic of [organization culture](https://octopus.com/devops/culture/) firmly to the table. While culture was always an element of Agile and Lean, the research into DevOps has shown that it is just as important as the more technical capabilities.
+DevOps has brought the topic of [organization culture](https://octopus.com/devops/culture/) firmly to the table. While culture was always an element of Agile and Lean, the research into DevOps has shown that it's just as important as the more technical capabilities.
 
 The DevOps structural equation model has several elements related to people and culture, so it's clear that human issues are an important part of the DevOps picture. The 5 cultural capabilities in the model are:
 
@@ -92,9 +92,9 @@ Theory Y leadership leads to strong information flow and prompt action in respon
 
 Changing team and organization culture is one of the toughest challenges in software delivery. Not even the most complex automation task in your deployment pipeline comes close. You'll need a clear vision of your intended future state, which needs to be pushed rapidly, firmly, and regularly to ensure the goal remains clear.
 
-You'll need leaders and managers to understand their role is to enable self-organizing teams that use each team member's talent. You will need to move away from systems that centralize information and decision-making and transfer to systems aligned to distributed responsibility.
+You'll need leaders and managers to understand their role is to enable self-organizing teams that use each team member's talent. You'll need to move away from systems that centralize information and decision-making and transfer to systems aligned to distributed responsibility.
 
-For example, suppose you are using centralized tools to organize tasks and assign them to people. In that case, you'll need to move to a system that aligns with setting a clear mission without removing the ability of teams to self-organize and respond to dynamic situations. You may need to replace a tool entirely or use the tool in a new way. Your Gantt charts might have to go, but your task tracking app can remain if the team can re-purpose it.
+For example, suppose you're using centralized tools to organize tasks and assign them to people. In that case, you'll need to move to a system that aligns with setting a clear mission without removing the ability of teams to self-organize and respond to dynamic situations. You may need to replace a tool entirely or use the tool in a new way. Your Gantt charts might have to go, but your task tracking app can remain if the team can re-purpose it.
 
 The leadership role in a culture change is to:
 
@@ -110,13 +110,13 @@ You won't make a dent in culture without a clear, robust, and sustained push. Yo
 
 ## Summary
 
-When people talk about culture in the context of DevOps, they are referring to Westrum's generative culture, which is based on McGregor's Theory Y assumption. Simply put, you should aim for a clear shared mission combined with decentralized decision-making.
+When people talk about culture in the context of DevOps, they're referring to Westrum's generative culture, which is based on McGregor's Theory Y assumption. Simply put, you should aim for a clear shared mission combined with decentralized decision-making.
 
 All modern software delivery methods refer to this concept of empowered teams in different ways.
 
 We refer to this as *modern workplace culture*, yet the ideas are over a hundred years old. Mission command dates back to the 1800s, Theory X and Y are explained in a book from 1960, and Westrum's typology of organizational cultures was designed in the 1980s.
 
-You'll find culture is the toughest nut to crack in DevOps. It is tempting to rely on research and statistics to prove the case for a generative culture. Still, the reality is that cultural change will depend on compelling storytelling and creating a compelling vision of what the organization will look like after the transition.
+You'll find culture is the toughest nut to crack in DevOps. It's tempting to rely on research and statistics to prove the case for a generative culture. Still, the reality is that cultural change will depend on compelling storytelling and creating a compelling vision of what the organization will look like after the transition.
 
 You can read more about DevOps culture [in our DevOps Engineer's Handbook](https://octopus.com/devops/)
 
