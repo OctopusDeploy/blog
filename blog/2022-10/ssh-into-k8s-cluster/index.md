@@ -139,14 +139,28 @@ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stabl
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 ```
 
-By default, pods have a number of files mounted under `/var/run/secrets/kubernetes.io/serviceaccount` that allow the pod to interact with the host cluster. Run the following commands to configure `kubectl` to access the cluster using these credentials:
+By default, pods have a number of files mounted under `/var/run/secrets/kubernetes.io/serviceaccount` that allow the pod to interact with the host cluster. Then save the following file to `~/.kube.config`:
 
-```bash
-kubectl config set-cluster localk8s --server=https://kubernetes.default --certificate-authority=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
-kubectl config set-context localk8s --cluster=localk8s
-kubectl config set-credentials user --token=$(cat /var/run/secrets/kubernetes.io/serviceaccount/token)
-kubectl config set-context localk8s --user=user
-kubectl config use-context localk8s
+```yaml
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+    server: https://kubernetes.default
+  name: localk8s
+contexts:
+- context:
+    cluster: localk8s
+    user: user
+  name: localk8s
+current-context: localk8s
+kind: Config
+preferences: {}
+users:
+- name: user
+  user:
+    tokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
 ```
 
 At this point you can run `kubectl` from your SSH session and interact with the parent cluster, providing a convenient and secure environment for cluster administration.
+
