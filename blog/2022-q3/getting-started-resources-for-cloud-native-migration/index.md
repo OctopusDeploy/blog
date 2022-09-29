@@ -35,7 +35,7 @@ The deployment pipeline is the key ingredient for Continuous Delivery. By mappin
 
 In this paper you will learn how to apply Lean thinking to start from where you are, mapping and improving your deployment pipeline while planning your adoption of the core technical practices.
 
-### Measuring Continuous Delivery and DevOps
+### Measuring continuous delivery and DevOps
 
 You might be introducing new practices and capabilities as part of Continuous Delivery and DevOps adoption, or making changes as part of continuous improvement. In either case, you need a way to tell if changes are improving your ability to deliver software and, ideally, if they help your organization achieve its goals.
 
