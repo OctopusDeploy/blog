@@ -22,6 +22,36 @@ The YAML file shown below deploys an instance of the `linuxserver/openssh-server
 
 ```yaml
 apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: k8s-admin
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: k8s-admin-role
+rules:
+- apiGroups: ["", "extensions", "apps", "networking.k8s.io"]
+  resources: ["deployments", "replicasets", "pods", "services", "ingresses", "secrets", "configmaps"]
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+- apiGroups: [""]
+  resources: ["namespaces"]
+  verbs: ["get"]  
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: k8s-admin-role-binding
+subjects:
+- kind: ServiceAccount
+  name: k8s-admin
+  apiGroup: ""
+roleRef:
+  kind: Role
+  name: k8s-admin-role
+  apiGroup: ""
+---
+apiVersion: v1
 kind: Service
 metadata:
   name: my-ssh-svc
@@ -50,6 +80,7 @@ spec:
       labels:
         app: ssh
     spec:
+      serviceAccountName: k8s-admin
       containers:
       - name: ssh
         image: lscr.io/linuxserver/openssh-server:latest
@@ -72,7 +103,7 @@ spec:
           value: "true"          
 ```
 
-Note that, for convenience, this SSH server allows password access, and the example YAML file embeds an insecure example password. A more robust solution is to use key files for authentication. The [documentation](https://hub.docker.com/r/linuxserver/openssh-server) contains examples showing how to use key files for authentication.
+Note that, for convenience, this SSH server allows password access, and the example YAML file embeds an insecure example password, and allows sudo access. A more robust solution is to use key files for authentication. The [documentation](https://hub.docker.com/r/linuxserver/openssh-server) contains examples showing how to use key files for authentication.
 
 Save the YAML above to a file called `ssh.yaml` and apply it with the command:
 
@@ -101,10 +132,14 @@ ssh admin@172.21.255.202 -p 2222
 
 You then have an interactive session inside the pod on the Kubernetes cluster.
 
+To do anything useful with the cluster, you will need to download `kubectl` and configure it to access the cluster from within the pod. Download and install `kubectl` with the commands:
+
 ```bash
-curl -LO "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 ```
+
+By default, pods have a number of files mounted under `/var/run/secrets/kubernetes.io/serviceaccount` that allow the pod to interact with the host cluster. Run the following commands to configure `kubectl` to access the cluster using these credentials:
 
 ```bash
 kubectl config set-cluster localk8s --server=https://kubernetes.default --certificate-authority=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt
@@ -113,3 +148,5 @@ kubectl config set-credentials user --token=$(cat /var/run/secrets/kubernetes.io
 kubectl config set-context localk8s --user=user
 kubectl config use-context localk8s
 ```
+
+At this point you can run `kubectl` from your SSH session and interact with the parent cluster, providing a convenient and secure environment for cluster administration.
