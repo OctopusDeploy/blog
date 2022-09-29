@@ -1,6 +1,6 @@
 ---
-title: The fundamental assumption of organizational culture
-description: Find out the key assumption that must change for organizations to adopt modern cultures.
+title: The key assumption of modern work culture
+description: Find out the key assumption that you must change for your organization to adopt modern culture.
 author: steve.fenton@octopus.com
 visibility: private
 published: 3020-01-01-1400
