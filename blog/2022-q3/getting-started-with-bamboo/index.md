@@ -69,7 +69,7 @@ Bamboo organises your workflow into projects and plans. A project can contain mu
 
 ![Create Project and Plan](create-project-and-plan.png)
 
-In the next screen check the box that says 'link new repository'
+In the next screen check the box that says **'link new repository'**
 
 ### Connect to the octopus underwater app reposotiry
 
