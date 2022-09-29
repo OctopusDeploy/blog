@@ -1,6 +1,6 @@
 ---
-title: Getting remote access to a Kubernetes cluster
-description: Learn the different ways to gain remote access to a Kubernetes cluster.
+title: SSH into to a Kubernetes cluster
+description: Learn how to set up a SSH bastion host in your Kubernetes cluster.
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2999-01-01
@@ -10,15 +10,15 @@ tags:
  - Octopus
 ---
 
-Jump boxes or bastion hosts are a common networking strategy that exposes a single secure entrypoint to the public internet in order to access a private network. This single point of entry allows security teams to closely monitor and control network access to the private network. Often the bastion host exposes a well known remote access service, like RDP or SSH, which teams can assume have been widely vetted and are trustworthy.
+Jump boxes or bastion hosts are a common networking strategy to exposes a single secure entrypoint to the public internet in order to access a private network. This single point of entry allows security teams to closely monitor and control network access to the private network. Often the bastion host exposes a well known remote access service, like RDP or SSH, which teams can assume have been widely vetted and are trustworthy.
 
-In this post you'll learn how to host a OpenSSH server in a Kubernetes cluster in order to perform administrative tasks.
+In this post you'll learn how to host an OpenSSH server in a Kubernetes cluster in order to perform administrative tasks.
 
 ## Deploy an SSH Server
 
 SSH servers have long been used to provide remote access to Linux servers, and it is relatively easy to host an SSH server as a Kubernetes pod.
 
-The YAML file shown below creates a service account with a role and role binding granting access to common resources in the current namespace. It then deploys an instance of the `linuxserver/openssh-server` image inheriting the permissions of the service account and exposes it via a load balancer service:
+The YAML file shown below creates a service account with a role and role binding granting access to common resources in the current namespace. It then deploys an instance of the `linuxserver/openssh-server` image, inheriting the permissions of the service account, and exposes it via a load balancer service:
 
 ```yaml
 apiVersion: v1
@@ -103,7 +103,7 @@ spec:
           value: "true"          
 ```
 
-Note that, for convenience, this SSH server allows password access, the example YAML file embeds an insecure example password, and allows sudo access. A more robust solution is to use key files for authentication. The [documentation](https://hub.docker.com/r/linuxserver/openssh-server) contains examples showing how to use key files for authentication.
+Note that, for convenience, this SSH server allows password access, the example YAML file embeds an insecure example password, and allows sudo access. A more robust solution is to use key files for authentication. Refer to the [documentation](https://hub.docker.com/r/linuxserver/openssh-server) contains examples showing how to use key files for authentication.
 
 Save the YAML above to a file called `ssh.yaml` and apply it with the command:
 
@@ -134,14 +134,14 @@ You then have an interactive session inside the pod on the Kubernetes cluster.
 
 ## Installing and configuring kubectl
 
-To do anything useful with the cluster, you will need to download `kubectl` and configure it to access the cluster from within the pod. Download and install `kubectl` with the commands:
+To do anything useful with the cluster, you need to download `kubectl` and configure it to access the cluster from within the pod. Download and install `kubectl` with the commands:
 
 ```bash
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 ```
 
-By default, pods have a number of files mounted under `/var/run/secrets/kubernetes.io/serviceaccount` that allow the pod to interact with the host cluster. To configure `kubectl` to use these file, save the following file to `~/.kube.config`:
+By default, pods have a number of files mounted under `/var/run/secrets/kubernetes.io/serviceaccount` that allow the pod to interact with the host cluster. To configure `kubectl` to use these files, save the following file to `~/.kube.config`:
 
 ```yaml
 apiVersion: v1
@@ -200,7 +200,7 @@ RUN printf 'mkdir /config/.kube \n\
 cp /opt/kubeconfig /config/.kube/config' >> /etc/cont-init.d/100-kubeconfig
 ```
 
-You then build the custom Docker image with the command, where `yourdockerregistry` is replaced with the name of a Docker registry you have the ability to push images to:
+You then build the custom Docker image with the following command, where `yourdockerregistry` is replaced with the name of a Docker registry you have the ability to push images to:
 
 ```bash
 docker build . -t yourdockerregistry/openssh-server:latest
