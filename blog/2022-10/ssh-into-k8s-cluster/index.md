@@ -14,11 +14,11 @@ Jump boxes or bastion hosts are a common networking strategy that exposes a sing
 
 In this post you'll learn some of the ways to gain remote access to a Kubernetes cluster in order to perform administrative tasks.
 
-## SSH Server
+## Deploy an SSH Server
 
 SSH servers have long been used to provide remote access to Linux servers, and it is relatively easy to host an SSH server as a Kubernetes pod.
 
-The YAML file shown below deploys an instance of the `linuxserver/openssh-server` image and exposes it via a loadbalancer service:
+The YAML file shown below creates a service account with a role and role binding granting access to common resources in the current namespace. It then deploys an instance of the `linuxserver/openssh-server` image inheriting the permissions of the service account and exposes it via a load balancer service:
 
 ```yaml
 apiVersion: v1
@@ -103,7 +103,7 @@ spec:
           value: "true"          
 ```
 
-Note that, for convenience, this SSH server allows password access, and the example YAML file embeds an insecure example password, and allows sudo access. A more robust solution is to use key files for authentication. The [documentation](https://hub.docker.com/r/linuxserver/openssh-server) contains examples showing how to use key files for authentication.
+Note that, for convenience, this SSH server allows password access, the example YAML file embeds an insecure example password, and allows sudo access. A more robust solution is to use key files for authentication. The [documentation](https://hub.docker.com/r/linuxserver/openssh-server) contains examples showing how to use key files for authentication.
 
 Save the YAML above to a file called `ssh.yaml` and apply it with the command:
 
@@ -111,7 +111,7 @@ Save the YAML above to a file called `ssh.yaml` and apply it with the command:
 kubectl apply -f ssh.yaml
 ```
 
-You can then find the IP address or hostname of the loadbalancer service with the command:
+You can then find the IP address or hostname of the load balancer service with the command:
 
 ```bash
 kubectl get service my-ssh-svc
@@ -131,6 +131,8 @@ ssh admin@172.21.255.202 -p 2222
 ```
 
 You then have an interactive session inside the pod on the Kubernetes cluster.
+
+## Installing and configuring kubectl
 
 To do anything useful with the cluster, you will need to download `kubectl` and configure it to access the cluster from within the pod. Download and install `kubectl` with the commands:
 
