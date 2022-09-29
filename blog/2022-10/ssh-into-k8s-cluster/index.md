@@ -2,7 +2,7 @@
 title: Getting remote access to a Kubernetes cluster
 description: Learn the different ways to gain remote access to a Kubernetes cluster.
 author: matthew.casperson@octopus.com
-visibility: public
+visibility: private
 published: 2999-01-01
 metaImage: 
 bannerImage: 
