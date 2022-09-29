@@ -2,7 +2,7 @@
 title: Getting remote access to a Kubernetes cluster
 description: Learn the different ways to gain remote access to a Kubernetes cluster.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2999-01-01
 metaImage: 
 bannerImage: 
@@ -10,9 +10,9 @@ tags:
  - Octopus
 ---
 
-Jump boxes or bastion hosts are a common networking strategy that exposes a single secure entrypoint to the public internet in order to access a private network. This single point of entry allows security teams to closely monitor and control network access to the private network. Often the bastion host exposes a well known remote access service, like RDP or SSH, which teams can assume have been widely vetted and can be trusted.
+Jump boxes or bastion hosts are a common networking strategy that exposes a single secure entrypoint to the public internet in order to access a private network. This single point of entry allows security teams to closely monitor and control network access to the private network. Often the bastion host exposes a well known remote access service, like RDP or SSH, which teams can assume have been widely vetted and are trustworthy.
 
-In this post you'll learn some of the ways to gain remote access to a Kubernetes cluster in order to perform administrative tasks.
+In this post you'll learn how to host a OpenSSH server in a Kubernetes cluster in order to perform administrative tasks.
 
 ## Deploy an SSH Server
 
@@ -166,3 +166,56 @@ users:
 
 At this point you can run `kubectl` from your SSH session and interact with the parent cluster, providing a convenient and secure environment for cluster administration.
 
+## Building a custom OpenSSH Docker image
+
+Downloading `kubectl` and copying the configuration file is easy enough, but the ephemeral nature of Kubernetes pods means that eventually the container will be deleted and recreated, forcing you to download and configure `kubectl` again.
+
+A better solution is to bake `kubectl` and its configuration file into a custom Docker image. This ensures the files are available in the container when it is first started.
+
+Save the following to a file called `Dockerfile`:
+
+```Dockerfile
+FROM lscr.io/linuxserver/openssh-server:latest
+RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" && \
+	install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+RUN printf 'apiVersion: v1\n\
+clusters:\n\
+- cluster:\n\
+    certificate-authority: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt\n\
+    server: https://kubernetes.default\n\
+  name: localk8s\n\
+contexts:\n\
+- context:\n\
+    cluster: localk8s\n\
+    user: user\n\
+  name: localk8s\n\
+current-context: localk8s\n\
+kind: Config\n\
+preferences: {}\n\
+users:\n\
+- name: user\n\
+  user:\n\
+    tokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token' >> /opt/kubeconfig
+RUN printf 'mkdir /config/.kube \n\
+cp /opt/kubeconfig /config/.kube/config' >> /etc/cont-init.d/100-kubeconfig
+```
+
+You then build the custom Docker image with the command, where `yourdockerregistry` is replaced with the name of a Docker registry you have the ability to push images to:
+
+```bash
+docker build . -t yourdockerregistry/openssh-server:latest
+```
+
+Replace the `image` property in the Kubernetes YAML file with:
+
+```
+image: yourdockerregistry/openssh-server:latest
+```
+
+Once the new SSH server pods are created using your custom image, `kubectl` and its configuration file are ready to use without first downloading them.
+
+## Conclusion
+
+A bastion host running OpenSSH on your Kubernetes cluster provides you with a single, secure entrypoint for administration and debugging tasks. By customizing the Docker image to include common tools like `kubectl`, DevOps teams can rely on the bastion host having any required tools for common administration tasks.
+
+Happy deployments!
