@@ -97,7 +97,7 @@ In the first version of Config as Code, we took our existing deployment process 
 
 Variables are passed through the API and persisted as a single-level array of variables. Multi-value variables are persisted as completely separate variables with the same name. Had we just written this directly into the Git repository, the OCL would have looked something like this.
 
-```hcl
+```ruby
 variable "DatabaseName" {
     value = "AU-BNE-TST-001"
     scope = {
@@ -135,7 +135,7 @@ variable "DatabaseName" {
 
 This was functional and the UI worked as expected, but the OCL editing experience wasn't ideal. There were repeated variable names and types, values for the same variable were easily separated, and it created unnecessary nesting. Instead, when serializing to OCL, we merge values for the same variable together, flatten out the scopes, and everything is a lot cleaner.
 
-```hcl
+```ruby
 variable "DatabaseName" {
     value "AU-BNE-TST-001" {
         environment = ["test"]
