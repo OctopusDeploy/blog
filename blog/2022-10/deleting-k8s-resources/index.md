@@ -2,7 +2,7 @@
 title: Bulk deletion of Kubernetes resources
 description: Learn how to delete Kubernetes resources like pods in bulk.
 author: matthew.casperson@octopus.com
-visibility: public
+visibility: private
 published: 3020-01-01-1400
 metaImage: blogimage-testingkubernetes-2022.png
 bannerImage: blogimage-testingkubernetes-2022.png
