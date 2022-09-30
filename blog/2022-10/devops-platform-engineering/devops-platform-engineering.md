@@ -60,27 +60,6 @@ You might think that making developers responsible for running their own code wo
 
 If an organization is making changes that go against the grain of common opinion, you can only judge on it on its long-term success. 
 
-
-INTRO THIS BIT
-
-
-### You built it, you run it
-
-For example, in a team with high-caliber individuals, it is absolutely possible for one team to develop, deploy, and operate their own application without depending on any external team. Such a team would be composed of diverse skill sets with lots of overlap on the core needs of the team. For example, most of the team can code, but each team member brings additional skills such as automation, quality assurance, security, or operations.
-
-To manage such a team, you need to pay careful attention to the balance of skills and work, but the outcome is that people outside of the organization believe the team is far bigger than it is, because they can deliver high value rapidly and safely.
-
-The single cross-functional team approach has a number of properties:
-
-- The goals of the team is naturally aligned
-- There are no external dependencies
-- The team culture and identity is strong
-
-
-- Skill load needs careful attention
-- The architecture needs strong team alignment
-- Hiring new team members is more challenging
-
 ## Platform engineering
 
 Platform Engineering is well-aligned to DevOps. An internal platform team is spun around 180 degrees to put the developers in the customer seat. The platform team creates an internal platform that reduces the operations and automation burden on the developers. The platform team provides low-friction pathways for developers to get a working environment and make it easy to do the right thing in terms of automation, persistence, security, deployments, monitoring, logging, and infrastructure.
@@ -104,7 +83,6 @@ This leads us to an interesting aside, related to the research into software del
 Platform development teams provide a way to scale software delivery to many teams, without losing "small-team" benefits. The key is to ensure the platform development team solves problems and reduces friction, rather than becoming a gate-keeping authority.
 
 
-
 ## Different paths to the same destination
 
 Many of the structures and practices that seem to conflict with DevOps are just different ways to reach the same place. They often refer to a different part of the whole, but the goals remain the same.
@@ -115,10 +93,6 @@ DevOps
 - Shorten and amplify feedback loops
 - Create a culture of continuous learning and improvement
 
-Site reliability engineering
-
-- x
-
 Platform engineering
 
 - Smooth the development experience
@@ -126,10 +100,7 @@ Platform engineering
 - Make it easy for developers to achieve system quality attributes (such as performance, observability, and security)
 
 
-
-
-
-There isn't a conflict between these different approaches. They are each appropriate in the right circumstances and can even compliment each other.
+There isn't a conflict between these different approaches. They are each appropriate in the right circumstances and can even complement each other.
 
 The key to making good choices is being context-aware. If you aren't solving inter-continental real-time systems to billions of users, copying Google won't work. Different industry, scale, and product combinations need different solutions. You wouldn't want want an organization to develop an emergency medical triage system in the same way someone develops a music streaming service, equally you wouldn't like the cost of a music streaming service that copied the software delivery practices of the medical company.
 
@@ -148,11 +119,11 @@ This may change as the situation evolves. You might grow the team, or the produc
 
 ## DevOps is dead, except it isn't
 
-There are some reports that DevOps is dead because developers don't want to deal with infrastructure, or because of the policy and cost constraints faced by growing organizations. These are challenges you will face if you are following a "you build it, you run it" approach, unless you observe and adapt as you grow.
+There are some reports that DevOps is dead because developers don't want to deal with infrastructure, or because of the policy and cost constraints faced by growing organizations. These *are* some of the challenges you will face if you are following a "you build it, you run it" approach, unless you observe and adapt as you grow.
 
-Site reliability engineering complements DevOps by providing one way you can solve this type of problem. Platform engineering is another way to guide your organization through these complexities. If you dropped DevOps and focused only on one of these, many other problems would stop being solved and some of these are bigger predictors of organizational performance, like culture.
+Platform engineering complements DevOps by providing one way you can solve these kinds of problem, a way to guide your organization through the complexity. If you dropped DevOps and focused only on platform engineering, many other problems would resurface. Some of these other areas are bigger predictors of organizational performance, like culture.
 
-DevOps includes a set of capabilities that include many that you would expect from your platform engineers and SREs (such as database change management, or monitoring and observability). But it also has many capabilities that fit outside of software delivery, like transformational leadership and lean product development, which are not part of these other approaches.
+DevOps includes a set of capabilities that include many that you would expect from your platform engineers. But, it also has many capabilities that fit outside of platform engineering and software delivery, like transformational leadership and lean product development.
 
 In the [2021 Puppet State of DevOps report](https://puppet.com/resources/report/2021-state-of-devops-report), they found platform teams scaled the benefit of DevOps adoptions.
 
@@ -176,6 +147,22 @@ Happy deployments!
 
 ## Cuts
 
+### You built it, you run it
+
+For example, in a team with high-caliber individuals, it is absolutely possible for one team to develop, deploy, and operate their own application without depending on any external team. Such a team would be composed of diverse skill sets with lots of overlap on the core needs of the team. For example, most of the team can code, but each team member brings additional skills such as automation, quality assurance, security, or operations.
+
+To manage such a team, you need to pay careful attention to the balance of skills and work, but the outcome is that people outside of the organization believe the team is far bigger than it is, because they can deliver high value rapidly and safely.
+
+The single cross-functional team approach has a number of properties:
+
+- The goals of the team is naturally aligned
+- There are no external dependencies
+- The team culture and identity is strong
+
+
+- Skill load needs careful attention
+- The architecture needs strong team alignment
+- Hiring new team members is more challenging
 
 ### Site Reliability Engineering (SRE)
 
