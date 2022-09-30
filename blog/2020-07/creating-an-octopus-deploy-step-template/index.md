@@ -208,4 +208,4 @@ I created a custom template for the Firebase CLI deploy command that I can use a
 
 ## Next time
 
-I mentioned that I wanted this step to cover all the deploy parameters and be usable by others. I will submit this step to the [Octopus Deploy Library](https://library.octopus.com) in a future post.
+I mentioned that I wanted this step to cover all the deploy parameters and be usable by others. Read my next post, [Contributing a step template to the Octopus Deploy Community Library](https://octopus.com/blog/contributing-a-step-template-to-the-octopus-deploy-community-library), to learn how I submit this step to the [Octopus Deploy Library](https://library.octopus.com).
