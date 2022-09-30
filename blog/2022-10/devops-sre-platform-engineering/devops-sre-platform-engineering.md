@@ -1,6 +1,6 @@
 ---
-title: DevOps, SRE, and Platform Engineering
-description: Why DevOps, Site Reliability Engineering, and Platform Engineering appear to be in conflict with each other.
+title: DevOps, SRE, and platform engineering
+description: Why DevOps, site reliability engineering, and platform engineering appear to be in conflict with each other, but work in harmony.
 author: steve.fenton@octopus.com
 visibility: private
 published: 3020-01-01-1400
@@ -12,10 +12,36 @@ tags:
   - tag
 ---
 
+When it first arrived, DevOps was vague and poorly defined. More recently, attempts have been made to define DevOps based on studying the differences between high-performing organizations and their lower-performing peers.
+
+We now have a clear picture of *good DevOps*, but also several other approaches that seem to compete with DevOps, like site reliability engineering (SRE) and platform engineering.
+
+In this article you'll find out the differences between these approaches and what problems they intend to solve. You'll then see how they fit together as part of a high performance software delivery effort that is designed around your specific situation.
+
+## Exploring the conflict
+
+Because DevOps didn't have a specific definition on day one, there are lots of different set-ups that have all been given the DevOps label. You'll find some organizations that look the same as they did before DevOps, some that have new roles, and others that have drastically changed their structure. How can all of these vastly different approaches all be called DevOps?
+
+The answer to this question is that there are many ways to organize people around the goal of delivering software quickly and safely into the hands of users. The objective for early DevOps was to remove the conflicting goals of development and operations, so any organization that has aligned these two disciplines and increased collaboration between the people writing, deploying, and operating software is entitled to claim the DevOps label.
+
+There is no specific requirement to change team structures or introduce new roles, so you might find any of the following set ups:
+
+1. A development team and an operations team working together to deliver software
+1. A cross-functional team who are responsible for everything, or "you build it, you run it"
+1. A development team, an operations team, and a third "DevOps" team working in the middle
+
+Each of these can be successful or represent an anti-pattern, but you can't determine this from outside of the organization because it very much depends on context that you can't see and whether their chosen set-up results in an improvement to software delivery and organizational performance.
+
+Organizations are also on a journey, so what they do today may be an improvement on what they were doing last year even though it doesn't meet your definition of a DevOps organization. They might look more like  you expect in the future, depending on whether they can resolve issues with their culture, architecture, and available skills.
+
+
+
+
+
 DevOps... does it mean
 
 1. You build it, you run it... get the developers to do the whole thing and fire your ops team
-1. A new team sat between Development and Operations called something like SREs, Platform Engineering, or just "DevOps"
+2. A new team sat between Development and Operations called something like SREs, Platform Engineering, or just "DevOps"
 
 Or does it just mean recognizing that the traditional development and operations silos contains a built-in conflict that is smothering your organization's software delivery capability?
 
