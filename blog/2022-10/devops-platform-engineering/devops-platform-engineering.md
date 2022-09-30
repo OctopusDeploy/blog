@@ -1,6 +1,6 @@
 ---
-title: DevOps, SRE, and platform engineering
-description: Why DevOps, site reliability engineering, and platform engineering appear to be in conflict with each other, but work in harmony.
+title: DevOps and platform engineering
+description: Why DevOps and platform engineering appear to be in conflict with each other, but actually work in harmony.
 author: steve.fenton@octopus.com
 visibility: private
 published: 3020-01-01-1400
@@ -12,17 +12,17 @@ tags:
   - tag
 ---
 
-When it first arrived, DevOps was vague and poorly defined. More recently, attempts have been made to define DevOps based on studying the differences between high-performing organizations and their lower-performing peers.
+When it first arrived, DevOps was loosely defined ("developers and ops working together"). More recently, attempts have been made to clarify what's involved in DevOps based on studying the differences between high-performing organizations and their lower-performing peers.
 
-We now have a clear picture of *good DevOps*, but also several other approaches that seem to compete or conflict with DevOps, like site reliability engineering (SRE) and platform engineering.
+While the idea remains to remove the friction that was created by developers and ops working in silos with conflicting goals, there are now specific capabilities and practices that predict performance. Just as we have formed a clear picture of *good DevOps*, claims have been made that DevOps is about to be replaced with new approaches, such as platform engineering.
 
-In this article you'll find out the differences between these approaches and what problems they intend to solve. You'll then see how they fit together as part of a high performance software delivery effort that is designed around your specific situation.
+In this article you'll find out the difference between DevOps and platform engineering and what problems they intend to solve. You'll then see how they fit together as part of a high performance software delivery process that is designed around your specific situation.
 
 ## Variations on a DevOps theme
 
-Because DevOps didn't have a very specific definition on day one, lots of different set-ups have been given given the DevOps label. You'll find some organizations that look the same as they did before DevOps, some that have new roles, and others that have drastically changed their structure. How can all of these vastly different approaches all be called DevOps?
+With such a general goal of brining developers and ops closer together, lots of different structural set-ups have used under the DevOps label. You'll find some organizations that look the same as they did before DevOps, some that have new roles, and others that have drastically changed their structure. How can all of these vastly different approaches all be called DevOps?
 
-The answer to this question is that there are many ways to organize people around the goal of delivering software quickly and safely into the hands of users. The objective for early DevOps was to remove the conflicting goals of development and operations, so any organization that has aligned these two disciplines and increased collaboration between the people writing, deploying, and operating software is entitled to claim the DevOps label.
+The answer to this question is that there are many ways to organize people around the goal of delivering software quickly and safely into the hands of users. Any organization that has aligned these two disciplines, removed conflicting goals, and increased collaboration between the people writing, deploying, and operating software is entitled to claim the DevOps label.
 
 There is no specific requirement to change team structures or introduce new roles, so you might find any of the following set ups:
 
@@ -30,9 +30,9 @@ There is no specific requirement to change team structures or introduce new role
 1. A cross-functional team who are responsible for everything, or "you build it, you run it"
 1. A development team, an operations team, and a third "DevOps" team working in the middle
 
-Each of these can be successful or represent an anti-pattern, but you can't determine this from outside of the organization because it very much depends on context that you can't see and whether their chosen set-up results in an improvement to software delivery and organizational performance.
+Each of these can be successful or represent an anti-pattern, but you can't determine this from outside of the organization because it very much depends on context that you can't see and whether their chosen set-up results in an improvement to their software delivery and organizational performance.
 
-Organizations are also on a journey, so what they do today may be an improvement on what they were doing last year even though it doesn't meet your definition of a DevOps organization. They might look more like  you expect in the future, depending on whether they can resolve issues with their culture, architecture, and available skills.
+Organizations are also on a journey, so what they do today may be an improvement on what they were doing last year even though it doesn't meet your definition of a DevOps organization. Later, they might look more like your expectation of a DevOps organization, depending on whether they can improve their culture, architecture, and skills.
 
 So, you should judge any specific organization by the trajectory of their improvement process, rather than on their current state.
 
@@ -81,23 +81,7 @@ The single cross-functional team approach has a number of properties:
 - The architecture needs strong team alignment
 - Hiring new team members is more challenging
 
-### Site Reliability Engineering (SRE)
-
-Site Reliability Engineering pre-dates DevOps and has been in use at Google since shortly after 2003. They describe it as "what happens when you treat operations as if it's a software problem" and they reference Margaret Hamilton work on the Apollo Project as the first great example of the discipline.
-
-A Site Reliability Engineering team has traditional operations responsibilities, such as keeping revenue-critical systems running and secure, but due to the scale of the operation, an engineering approach is required to manage the scale of the problem.
-
-Google hires SREs based on a combination of software engineering and operations skills, so either developers with operations knowledge, or system admins with programming skills.
-
-Because companies such as Google have created open-source tools in the SRE space, companies with smaller-scale operations are able to apply these tools in their own SRE endeavor. This means the economics are constantly shifting in favor of SRE practices at smaller scales. While a company with billions of users has the scale to invest in innovating their own tools to manage Site Reliability Engineering, organizations with thousands of users can re-use many of these tools to automate more of their own operations tasks.
-
-standardization and automation
-
-Importantly, Site Reliability Engineering manages availability using service level objectives that anticipate disruptions with error budgets. The service level objectives are used to encourage other systems to be robust to outages.
-
-Google recognize that Site Reliability Engineering is compatible with DevOps. SREs can be embedded within teams, or part of a dedicated SRE team.
-
-### Platform engineering
+## Platform engineering
 
 Platform Engineering is well-aligned to DevOps. An internal platform team is spun around 180 degrees to put the developers in the customer seat. The platform team creates an internal platform that reduces the operations and automation burden on the developers. The platform team provides low-friction pathways for developers to get a working environment and make it easy to do the right thing in terms of automation, persistence, security, deployments, monitoring, logging, and infrastructure.
 
@@ -170,11 +154,16 @@ Site reliability engineering complements DevOps by providing one way you can sol
 
 DevOps includes a set of capabilities that include many that you would expect from your platform engineers and SREs (such as database change management, or monitoring and observability). But it also has many capabilities that fit outside of software delivery, like transformational leadership and lean product development, which are not part of these other approaches.
 
+In the [2021 Puppet State of DevOps report](https://puppet.com/resources/report/2021-state-of-devops-report), they found platform teams scaled the benefit of DevOps adoptions.
+
+
+
 ## Conclusion
 
 You should consider site reliability engineering and platform engineering as part of your DevOps wider DevOps adoption. As all improvements ultimately need to be judged by their impact on the whole system, it isn't possible to prove the value of these activities without joining them to the other DevOps capabilities.
 
 As you grow your software delivery team, the complexity that comes with scale will need to be managed. Some organizations will limit complexity by limiting how much freedom teams have to make choices, but site reliability engineering and platform engineering provide a mechanism that manages complexity while preserving team autonomy.
+
 
 ## Further reading
 
@@ -186,6 +175,23 @@ Happy deployments!
 
 
 ## Cuts
+
+
+### Site Reliability Engineering (SRE)
+
+Site Reliability Engineering pre-dates DevOps and has been in use at Google since shortly after 2003. They describe it as "what happens when you treat operations as if it's a software problem" and they reference Margaret Hamilton work on the Apollo Project as the first great example of the discipline.
+
+A Site Reliability Engineering team has traditional operations responsibilities, such as keeping revenue-critical systems running and secure, but due to the scale of the operation, an engineering approach is required to manage the scale of the problem.
+
+Google hires SREs based on a combination of software engineering and operations skills, so either developers with operations knowledge, or system admins with programming skills.
+
+Because companies such as Google have created open-source tools in the SRE space, companies with smaller-scale operations are able to apply these tools in their own SRE endeavor. This means the economics are constantly shifting in favor of SRE practices at smaller scales. While a company with billions of users has the scale to invest in innovating their own tools to manage Site Reliability Engineering, organizations with thousands of users can re-use many of these tools to automate more of their own operations tasks.
+
+standardization and automation
+
+Importantly, Site Reliability Engineering manages availability using service level objectives that anticipate disruptions with error budgets. The service level objectives are used to encourage other systems to be robust to outages.
+
+Google recognize that Site Reliability Engineering is compatible with DevOps. SREs can be embedded within teams, or part of a dedicated SRE team.
 
 
 
