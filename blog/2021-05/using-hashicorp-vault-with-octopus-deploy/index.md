@@ -9,7 +9,9 @@ bannerImage: blogimage-hashicorp-vault-step-templates-2021.png
 bannerImageAlt: Using HashiCorp Vault with Octopus Deploy
 tags:
  - Product
+ - DevOps
  - Security
+ - Step Templates
 ---
 
 Storing sensitive values in Octopus Deploy solves many problems. If your organization has standardized on a secrets manager though, that might mean storing sensitive values twice, making secrets management more complicated.
