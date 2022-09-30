@@ -14,7 +14,7 @@ tags:
  - Java
 ---
 
-Mulesoft created unique software that lets you create custom APIs to retrieve or manipulate information from on-premises or cloud-based systems. 
+Mulesoft developed unique software that lets you create custom APIs to retrieve or manipulate information from on-premises or cloud-based systems. 
 
 In this post, I show you how to deploy a Mulesoft API to a server running the [Mule Runtime](https://docs.mulesoft.com/mule-runtime/4.4/), using Octopus Deploy.
 
@@ -29,7 +29,7 @@ To follow along with this post, you need to download the following software:
 
 ### Installing Anypoint Studio
 
-Anypoint Studio is available from Mulesoft as a 30-day trial.  After filling in the form, download the .zip file and extract it to your disk.  AnyPoint studio isn't "installed" on your machine and can be executed after it's been extracted.
+Anypoint Studio is available from Mulesoft as a 30-day trial.  After filling in the form, download the ZIP file and extract it to your disk.  AnyPoint Studio isn't "installed" on your machine, so you can execute AnyPoint Studio after it's been extracted.
 
 ### Configuring Mulesoft Runtime
 
@@ -51,19 +51,19 @@ By default, the Mule Community Runtime runs in the foreground.  To configure it 
 
 Installing Maven is optional because Anypoint Studio software comes with Maven built into the product. If you want a build server to build the Anypoint Studio project, your build server needs the Maven capability.  Most, if not all, modern build servers contain steps or tasks that do this if Maven is installed on the build agent.  
 
-Installing Maven is as simple as extracting the .zip file, then adding the folder to the `PATH` system environment variable.
+Installing Maven is as simple as extracting the ZIP file, then adding the folder to the `PATH` system environment variable.
 
 ### Testing with Postman
 
 After you create your API, you need to test it to make sure it's operating properly. Any tool capable of doing a POST request works, however, the most popular API testing tool is [Postman](https://www.postman.com/downloads/). 
 
-[Postman is free](https://identity.getpostman.com/signup) and is available for Windows, Mac, and Linux operating systems.
+[Postman is free](https://identity.getpostman.com/signup) and available for Windows, Mac, and Linux operating systems.
 
 ## Creating the API
 
 In this post, I create a simple "Hello World" API.  As the name implies, the response from calling this API is `Hello world!`.  
 
-Real-world APIs are far more complex, but this post is showing you how to deploy the API using Octopus Deploy.
+Real-world APIs are more complex, but in this post I'm showing you how to deploy the API using Octopus Deploy.
 
 ### Creating the project
 
@@ -87,7 +87,7 @@ Real-world APIs are far more complex, but this post is showing you how to deploy
 
 ![Define connector configuration](anypoint-connector-configuration.png)
 
-Click the **Test Connection ...** button to make sure this works.
+Click the **Test Connection...** button to make sure this works.
 
 6.  Define a path for the API. For this post, I chose `/hello-world`.
 
@@ -139,21 +139,21 @@ In this post, I show you the command-line method, but the build server method is
 
 1.  Navigate to the project folder. This folder already contains a `pom.xml` file that you use with Maven.
 
-2.  Run Maven with following command/goals:
+1.  Run Maven with following command/goals:
 
 ```
 mvn clean package
 ```
 
-2.  After the build is complete, navigate to the **target** sub-folder.  The build has produced a file called `hello-world-1.0.0-SNAPSHOT-mule-application.jar`.
+3.  After the build is complete, navigate to the **target** sub-folder.  The build has produced a file called `hello-world-1.0.0-SNAPSHOT-mule-application.jar`.
 
 ![Successuful maven build with generated .jar file](maven-build-success.png)
 
 ## Deploying the API
 
-As you can seen, the Anypoint Studio projects are compiled into .jar files.  Octopus Deploy doesn't have a specific step to deploy to the Mule Community Edition Runtime, however, it contains a **Deploy Java Archive** step.  
+As you can seen, the Anypoint Studio projects are compiled into JAR files.  Octopus Deploy doesn't have a specific step to deploy to the Mule Community Edition Runtime, however, it contains a **Deploy Java Archive** step.  
 
-After you place the .jar file in either the built-in repository, or an external one, you can proceed with configuring the deployment.
+After you place the JAR file in either the built-in repository, or an external one, you can proceed with configuring the deployment.
 
 ### Configuring the Deploy Java Archive step
 
@@ -169,7 +169,7 @@ To configure your Octopus Deploy project, use the following steps:
 
 1.  The Mule Community Edition Runtime expects APIs to be deployed to a specific folder. In the **Deployment** section of the **Deploy Java Archive** step, tick **Use custom deployment directory**.  Enter the location for the Mule Community Edition Runtime apps folder.
 
-1.  Choose a final filename for the deployed .jar file.  If you don't fill this in, Octopus creates the file similar to the following format `hello-world@S1.0.0@673BE843C229AA40AC1698CC82104BD0`. While this deploys and functions, the next version such as 1.0.1, is deployed as `hello-world@S1.0.1@673BE843C229AA40AC1698CC82104BD0`.  Mule will think this is a new API and attempt to deploy it, which conflicts with the first.  If `1.0.1` has the same filename as `1.0.0`, Mule sees a change and uses the new API.
+1.  Choose a final filename for the deployed JAR file.  If you don't fill this in, Octopus creates the file similar to the following format `hello-world@S1.0.0@673BE843C229AA40AC1698CC82104BD0`. While this deploys and functions, the next version such as 1.0.1, is deployed as `hello-world@S1.0.1@673BE843C229AA40AC1698CC82104BD0`.  Mule will think this is a new API and attempt to deploy it, which conflicts with the first.  If `1.0.1` has the same filename as `1.0.0`, Mule sees a change and uses the new API.
 
 :::warning
 Do NOT tick the **Purge** option.  If there are other APIs deployed, this deletes them all.
@@ -189,13 +189,13 @@ When you're done, it should look something like this:
 
 ## Manipulating the API with structured configuration variables
 
-You successfully deployed a simple API, however, this isn't terribly realistic.  It's more likely items in the API need to be updated as it progresses through your environments.  
+You successfully deployed a simple API, however, this isn't terribly realistic. It's more likely items in the API need to be updated as it progresses through your environments.  
 
 Using the [structured configuration variables](https://octopus.com/docs/projects/steps/configuration-features/structured-configuration-variables-feature), you can change the message displayed from `Hello World!` to something else.
 
 ### Updating the API message
 
-The API message is stored in an XML file in the .jar package.  By determining the XPath of the message, you can update the message for your deployed API.
+The API message is stored in an XML file in the JAR package.  By determining the XPath of the message, you can update the message for your deployed API.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -224,7 +224,7 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 
 ![Enable Strucutred Configuration Variables feature](octopus-structured-configuration-variables.png)
 
-4.  The message is located in the hello-world.xml file. Specify this file to perform replacement on.
+4.  The message is located in the hello-world.xml file. Specify this file to be replaced.
 
 ![Define file to perform replacement](octopus-structured-configuration-file.png)
 
