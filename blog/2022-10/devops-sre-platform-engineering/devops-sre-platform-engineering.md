@@ -14,13 +14,13 @@ tags:
 
 When it first arrived, DevOps was vague and poorly defined. More recently, attempts have been made to define DevOps based on studying the differences between high-performing organizations and their lower-performing peers.
 
-We now have a clear picture of *good DevOps*, but also several other approaches that seem to compete with DevOps, like site reliability engineering (SRE) and platform engineering.
+We now have a clear picture of *good DevOps*, but also several other approaches that seem to compete or conflict with DevOps, like site reliability engineering (SRE) and platform engineering.
 
 In this article you'll find out the differences between these approaches and what problems they intend to solve. You'll then see how they fit together as part of a high performance software delivery effort that is designed around your specific situation.
 
-## Exploring the conflict
+## Variations on a DevOps theme
 
-Because DevOps didn't have a specific definition on day one, there are lots of different set-ups that have all been given the DevOps label. You'll find some organizations that look the same as they did before DevOps, some that have new roles, and others that have drastically changed their structure. How can all of these vastly different approaches all be called DevOps?
+Because DevOps didn't have a very specific definition on day one, lots of different set-ups have been given given the DevOps label. You'll find some organizations that look the same as they did before DevOps, some that have new roles, and others that have drastically changed their structure. How can all of these vastly different approaches all be called DevOps?
 
 The answer to this question is that there are many ways to organize people around the goal of delivering software quickly and safely into the hands of users. The objective for early DevOps was to remove the conflicting goals of development and operations, so any organization that has aligned these two disciplines and increased collaboration between the people writing, deploying, and operating software is entitled to claim the DevOps label.
 
@@ -34,40 +34,41 @@ Each of these can be successful or represent an anti-pattern, but you can't dete
 
 Organizations are also on a journey, so what they do today may be an improvement on what they were doing last year even though it doesn't meet your definition of a DevOps organization. They might look more like  you expect in the future, depending on whether they can resolve issues with their culture, architecture, and available skills.
 
+So, you should judge any specific organization by the trajectory of their improvement process, rather than on their current state.
+
+## Patterns and anti-patterns
+
+Christopher Alexander developed patterns for building and architecture during the 1970s, and his work is often referenced by the software industry when they refer to design patterns. The first set of reusable software design patterns was created by the gang of four (Erich Gamma, Richard, Helm, Ralph Johnson, and John Vlissides) in 1994 and many remain in use today.
+
+Inspired by these design patterns, Andrew Koenig created a set of anti-patterns in 1995. These documented commonly used processes and actions that appeared to solve problems, but instead created more.
+
+When it comes to DevOps, people are quick to label a particular structure as an anti-pattern. While it may be true in general that adding a new team called "DevOps" is an anti-pattern, this doesn't stop it from working in some cases. The problems lead to this being an anti-pattern isn't the structure itself, but the cultural motivation for the structure.
+
+Some common DevOps structural anti-patters include:
+
+- Rebranding teams to add the word "DevOps"
+- Creating a new DevOps team that is separate to development and operations
+- Having developers expand their skills to simply cover everything
+
+In general cases, these are indeed anti-patterns, but only when they result in the behavior you would guess they would promote.
+
+You wouldn't expect rebranding teams would work if everything else remains the same, but it *is* true that team identity contributes to changes in culture and interactions.
+
+You'd imagine that adding another team between development and operations would only move them further apart, when we hoped we would be bringing them closer together, but it's possible this team will spread positive improvements and foster collaboration.
+
+You might think that making developers responsible for running their own code would create too many distractions, stretch people's skills too much, or result in burnout. Yet many teams are reporting success from a "you build it, you run it" approach, because they have the right mix of skills and techniques to do this well.
+
+If an organization is making changes that go against the grain of common opinion, you can only judge on it on its long-term success. 
 
 
+INTRO THIS BIT
 
-
-DevOps... does it mean
-
-1. You build it, you run it... get the developers to do the whole thing and fire your ops team
-2. A new team sat between Development and Operations called something like SREs, Platform Engineering, or just "DevOps"
-
-Or does it just mean recognizing that the traditional development and operations silos contains a built-in conflict that is smothering your organization's software delivery capability?
-
-The issue with development and operations has been that the performance measures for the two teams brings them into direct conflict with each other. Developers are expected to deliver value faster, and operations are expected to keep everything stable. When the two teams act in isolation, their goals bring them into conflict.
-
-The operations team doesn't want more frequent deployments, as deployments bring the risk of downtime and defeats their goal of keeping systems available.
-
-To align the goals of the teams, DevOps encourages a change to this system of opposition and the research shows that when developers and operations teams work towards the same goal, you can reduce lead times, deploy more often, have less downtime, and be more secure.
-
-## DevOps in practice
-
-What this looks like in practice can vary to a high degree. What looks wrong from an outside perspective may actually be the best available mode of operation given the constraints.
-
-A cautionary tale of anti-patterns and predictive indicators...
-
-Anti-patterns are very general descriptions, as an industry they amuse and delight us, but we must take care to understand what makes a pattern "anti". For example, you might find an anti-pattern named "Ops Embedded in Dev Team"... but the anti-pattern is where operations is not valued by the organization and operations tasks are treated in the same way as features, or as interruptions to feature development. In a high-performing team, operations is a first-class citizen.
-
-### Separate teams with shared goals
-
-Some organizations resolve the traditional development/operations conflict by re-aligning goals and creating the right environment for the teams to work more collaboratively. You still have development teams and operations teams, but instead of their interests being in opposition, they work together to deliver high quality software frequently and safely.
 
 ### You built it, you run it
 
-For example, in a team with high-calibre individuals, it is absolutely possible for one team to develop, deploy, and operate their own application without depending on any external team. Such a team would be composed of diverse skillsets with lots of overlap on the core needs of the team. For example, most of the team can code, but each team member brings additional skills such as automation, quality assurance, security, or operations.
+For example, in a team with high-caliber individuals, it is absolutely possible for one team to develop, deploy, and operate their own application without depending on any external team. Such a team would be composed of diverse skill sets with lots of overlap on the core needs of the team. For example, most of the team can code, but each team member brings additional skills such as automation, quality assurance, security, or operations.
 
-To manage such a team, you need to pay careful attention to the balance of skills and work, but the outcome is that people outside of the organization believe the team is far bigger than it is, becuase they can deliver high value rapidly and safely.
+To manage such a team, you need to pay careful attention to the balance of skills and work, but the outcome is that people outside of the organization believe the team is far bigger than it is, because they can deliver high value rapidly and safely.
 
 The single cross-functional team approach has a number of properties:
 
@@ -88,7 +89,7 @@ A Site Reliability Engineering team has traditional operations responsibilities,
 
 Google hires SREs based on a combination of software engineering and operations skills, so either developers with operations knowledge, or system admins with programming skills.
 
-Because companies such as Google have created open-source tools in the SRE space, companies with smaller-scale operations are able to apply these tools in their own SRE endeavor. This means the economics are constantly shifting in favour of SRE practices at smaller scales. While a company with billions of users has the scale to invest in innovating their own tools to manage Site Reliability Engineering, organizations with thousands of users can re-use many of these tools to automate more of their own operations tasks.
+Because companies such as Google have created open-source tools in the SRE space, companies with smaller-scale operations are able to apply these tools in their own SRE endeavor. This means the economics are constantly shifting in favor of SRE practices at smaller scales. While a company with billions of users has the scale to invest in innovating their own tools to manage Site Reliability Engineering, organizations with thousands of users can re-use many of these tools to automate more of their own operations tasks.
 
 standardization and automation
 
@@ -119,7 +120,30 @@ This leads us to an interesting aside, related to the research into software del
 Platform development teams provide a way to scale software delivery to many teams, without losing "small-team" benefits. The key is to ensure the platform development team solves problems and reduces friction, rather than becoming a gate-keeping authority.
 
 
-## Where's the conflict?
+
+## Different paths to the same destination
+
+Many of the structures and practices that seem to conflict with DevOps are just different ways to reach the same place. They often refer to a different part of the whole, but the goals remain the same.
+
+DevOps
+
+- Measure the performance of the whole system
+- Shorten and amplify feedback loops
+- Create a culture of continuous learning and improvement
+
+Site reliability engineering
+
+- x
+
+Platform engineering
+
+- Smooth the development experience
+- Create tools and workflows that enable self-service
+- Make it easy for developers to achieve system quality attributes (such as performance, observability, and security)
+
+
+
+
 
 There isn't a conflict between these different approaches. They are each appropriate in the right circumstances and can even compliment each other.
 
@@ -138,6 +162,20 @@ Don't you want your best developers writing code, not working on operations? Tha
 
 This may change as the situation evolves. You might grow the team, or the product might gain significant volumes or types of customers, or your competitors may come biting at your heels, or you might lose someone from your team who was driving a particular team design and it can't work without them. Your continuous improvement process should identify these changes and trigger an adaptation of how you work.
 
+## DevOps is dead, except it isn't
+
+There are some reports that DevOps is dead because developers don't want to deal with infrastructure, or because of the policy and cost constraints faced by growing organizations. These are challenges you will face if you are following a "you build it, you run it" approach, unless you observe and adapt as you grow.
+
+Site reliability engineering complements DevOps by providing one way you can solve this type of problem. Platform engineering is another way to guide your organization through these complexities. If you dropped DevOps and focused only on one of these, many other problems would stop being solved and some of these are bigger predictors of organizational performance, like culture.
+
+DevOps includes a set of capabilities that include many that you would expect from your platform engineers and SREs (such as database change management, or monitoring and observability). But it also has many capabilities that fit outside of software delivery, like transformational leadership and lean product development, which are not part of these other approaches.
+
+## Conclusion
+
+You should consider site reliability engineering and platform engineering as part of your DevOps wider DevOps adoption. As all improvements ultimately need to be judged by their impact on the whole system, it isn't possible to prove the value of these activities without joining them to the other DevOps capabilities.
+
+As you grow your software delivery team, the complexity that comes with scale will need to be managed. Some organizations will limit complexity by limiting how much freedom teams have to make choices, but site reliability engineering and platform engineering provide a mechanism that manages complexity while preserving team autonomy.
+
 ## Further reading
 
 - Site Reliability Engineering - Betsy Byers, et al
@@ -145,3 +183,41 @@ This may change as the situation evolves. You might grow the team, or the produc
 
 
 Happy deployments!
+
+
+## Cuts
+
+
+
+DevOps... does it mean
+
+1. You build it, you run it... get the developers to do the whole thing and fire your ops team
+2. A new team sat between Development and Operations called something like SREs, Platform Engineering, or just "DevOps"
+
+Or does it just mean recognizing that the traditional development and operations silos contains a built-in conflict that is smothering your organization's software delivery capability?
+
+The issue with development and operations has been that the performance measures for the two teams brings them into direct conflict with each other. Developers are expected to deliver value faster, and operations are expected to keep everything stable. When the two teams act in isolation, their goals bring them into conflict.
+
+The operations team doesn't want more frequent deployments, as deployments bring the risk of downtime and defeats their goal of keeping systems available.
+
+To align the goals of the teams, DevOps encourages a change to this system of opposition and the research shows that when developers and operations teams work towards the same goal, you can reduce lead times, deploy more often, have less downtime, and be more secure.
+
+
+
+As many years of research has proved, culture may well be the biggest predictor of software delivery performance and no amount of Agile, lean, DevOps, or 
+
+In response to the design patterns, a series of anti-patterns was devised in 
+
+What this looks like in practice can vary to a high degree. What looks wrong from an outside perspective may actually be the best available mode of operation given the constraints.
+
+A cautionary tale of anti-patterns and predictive indicators...
+
+Anti-patterns are very general descriptions, as an industry they amuse and delight us, but we must take care to understand what makes a pattern "anti". For example, you might find an anti-pattern named "Ops Embedded in Dev Team"... but the anti-pattern is where operations is not valued by the organization and operations tasks are treated in the same way as features, or as interruptions to feature development. In a high-performing team, operations is a first-class citizen.
+
+
+
+
+
+### Separate teams with shared goals
+
+Some organizations resolve the traditional development/operations conflict by re-aligning goals and creating the right environment for the teams to work more collaboratively. You still have development teams and operations teams, but instead of their interests being in opposition, they work together to deliver high quality software frequently and safely.
