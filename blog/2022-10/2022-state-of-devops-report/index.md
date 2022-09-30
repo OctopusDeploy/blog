@@ -2,8 +2,8 @@
 title: The 2022 Accelerate State of DevOps Report
 description: Find out about the release of the 2022 Accelerate State of DevOps report. 
 author: steve.fenton@octopus.com
-visibility: private
-published: 2022-09-29-1400
+visibility: public
+published: 2022-10-04-1400
 metaImage: blogimage-introductiontodevops-2022.png
 bannerImage: blogimage-introductiontodevops-2022.png
 bannerImageAlt: Blue octopus tentacle shaped like the DevOps infinity loop, with people on laptops sitting on and around the tentacle.
@@ -13,15 +13,15 @@ tags:
   - DORA Metrics
 ---
 
-Each year, we look forward to the release of the Accelerate State of DevOps Report at Octopus Deploy. The report, from Google Cloud and DORA, is academically rigorous and is the [longest-running research effort of its kind](https://www.devops-research.com/research.html), providing crucial insights into the practices and capabilities you need to achieve high performance in software delivery.
+Each year at Octopus Deploy, we look forward to the release of the Accelerate State of DevOps Reporty. The report, from Google Cloud and DORA, is an academically rigorous and [long-running research effort](https://www.devops-research.com/research.html), providing crucial insights into the practices and capabilities needed to achieve high performance in software delivery.
 
 From the report, we've learned what combination of technical and cultural techniques drives performance in software delivery and at the organization level. The capabilities and relationships have been analyzed from more than 33,000 survey responses.
 
-We're even more excited than usual this year, as Octopus has sponsored the 2022 Accelerate State of DevOps Report, published on September 28th.
+We're even more excited than usual this year, as Octopus sponsored the 2022 Accelerate State of DevOps Report, published on September 28, 2022.
 
 ## Background
 
-The Accelerate State of DevOps Report has been running for 8 years, tracking specific practices that predict high performance in software delivery. The report establishes links between techniques and outcomes called *predictive indicators*, which means when a team uses the practice, they and their organization are more likely to perform well.
+The Accelerate State of DevOps Report has been running for 8 years, tracking specific practices that predict high software delivery performance and organizational performance. The report establishes links between practices, capabilities, culture and important outcomes with the goal of being able talk about what tends to be associated with high performing teams and organizations.
 
 The DevOps capabilities work best together, amplifying the positive effects and increasing the cultural and organizational benefits.
 
@@ -40,13 +40,10 @@ The [DORA metrics](https://octopus.com/blog/dora-metrics-devops-business-outcome
 
 As always, the latest Accelerate State of DevOps Report contains new insights, and you'll find several changes in [this year's report](https://cloud.google.com/devops/state-of-devops/).
 
-One of the headlines is that the biggest predictor for security practices is cultural, not technical. You're more likely to adopt appropriate security practices if your team has a high-trust/low-blame culture. These practices increase software delivery and operational performance and reduce burnout.
+One of the headlines is that one of the biggest predictors for security practices is cultural, not technical. An organization is more likely to adopt appropriate security practices if it has a high-trust/low-blame culture. These practices increase software delivery and operational performance and reduce burnout.
 
-> It's more obvious than ever that organizational culture 
-> and modern development processes are the best place to start for 
-> organizations looking to improve their security posture.
-> 
-> <cite>Claire Peters, Google Cloud</cite>
+> "This year’s Accelerate State of DevOps report dug deep on security, and found that the biggest predictor of an organization's application-development security practices was cultural, not technical” said Claire Peters, DORA Research Lead, Google Cloud. “With security top of mind for every organization, we found that teams with high trust and low-blame cultures focused on performance were significantly more likely to successfully adopt effective security practices. It’s more obvious than ever that organizational culture and modern development processes are the best place to start for organizations looking to improve their security posture."
+
 
 There are also insights for:
 
