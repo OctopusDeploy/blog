@@ -127,20 +127,18 @@ DevOps includes a set of capabilities that include many that you would expect fr
 
 In the [2021 Puppet State of DevOps report](https://puppet.com/resources/report/2021-state-of-devops-report), they found platform teams scaled the benefit of DevOps adoptions.
 
-
-
 ## Conclusion
 
 You should consider site reliability engineering and platform engineering as part of your DevOps wider DevOps adoption. As all improvements ultimately need to be judged by their impact on the whole system, it isn't possible to prove the value of these activities without joining them to the other DevOps capabilities.
 
-As you grow your software delivery team, the complexity that comes with scale will need to be managed. Some organizations will limit complexity by limiting how much freedom teams have to make choices, but site reliability engineering and platform engineering provide a mechanism that manages complexity while preserving team autonomy.
+As you grow your software delivery team, the complexity that comes with scale will need to be managed. Some organizations will limit complexity by limiting how much freedom teams have to make choices, but platform engineering provides a mechanism that manages complexity while preserving team autonomy.
 
+If you are interested in using Octopus as the engine for your internal development platform, it can be used directly or through the API to give you runbooks, tenants, and infrastructure as code.
 
 ## Further reading
 
 - Site Reliability Engineering - Betsy Byers, et al
 - Building Secure and Reliable Systems - Heather Adkins, et al
-
 
 Happy deployments!
 
