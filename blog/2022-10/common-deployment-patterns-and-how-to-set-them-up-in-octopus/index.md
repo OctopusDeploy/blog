@@ -3,7 +3,7 @@ title: Common deployment patterns and how to use them in Octopus
 description: Deployment patterns are important to any development pipeline. This post looks at some common deployment patterns and explains how to set them up in Octopus.
 author: andrew.corrigan@octopus.com
 visibility: public
-published: 2021-11-08-1400
+published: 2022-10-24-1400
 metaImage: blogimage-commondeploymentpatternsandhowtousetheminoctopus-2021.png
 bannerImage: blogimage-commondeploymentpatternsandhowtousetheminoctopus-2021.png
 bannerImageAlt: Octopus logo surrounded by four blocks, representing deployments types of blue/green, canary, rolling/lighthouse, and multi-region.
