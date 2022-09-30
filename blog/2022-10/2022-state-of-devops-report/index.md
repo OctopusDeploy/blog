@@ -44,7 +44,6 @@ One of the headlines is that one of the biggest predictors for security practice
 
 "This year’s Accelerate State of DevOps report dug deep on security, and found that the biggest predictor of an organization's application-development security practices was cultural, not technical” said Claire Peters, DORA Research Lead, Google Cloud. “With security top of mind for every organization, we found that teams with high trust and low-blame cultures focused on performance were significantly more likely to successfully adopt effective security practices. It’s more obvious than ever that organizational culture and modern development processes are the best place to start for organizations looking to improve their security posture."
 
-
 There are also insights for:
 
 - The role of _reliability_ in performance
