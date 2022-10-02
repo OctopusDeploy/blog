@@ -6,14 +6,14 @@ visibility: public
 published: 2022-10-12-1400
 metaImage:
 bannerImage:
-bannerImageAlt: 
+bannerImageAlt:
 isFeatured: false
 tags:
  - DevOps
  - Variables
 ---
 
-Being able to see where variables are used has been a common feature request for Octopus Deploy. 
+Being able to see where variables are used has been a common feature request for Octopus Deploy.
 
 In this post, I explore some of the issues involved with delivering such a feature.
 
@@ -77,7 +77,7 @@ Doing a straight text search for variable names generates a false positive for `
 
 ## Other static searching options
 
-Currently, if a project has been version-controlled using Config as Code, the deployment process will be defined in text files. The intention is to add variables themselves and runbooks to Config as Code in the near future, which will mean that they will also be stored in text files. When that happens, finding variable uses (subject to the above limitations) will be as simple as doing a text search in any text editor.
+Currently, if a project has been version-controlled using Config as Code, the deployment process and variables will be defined in text files. Finding variable usages (subject to the above limitations) in can be done by a simple text search in any text editor. Runbooks will be added to Config as Code in the near future, which will mean that a text search will also find similar variable usages in runbooks.
 
 Another option that will work for non-version controlled projects is to use a PowerShell script to query the current API and search for usages. An example script is below. It will only search for usages of project variables, although could be extended to include library variable sets. It also only does a straight text search, so is subject to all the limitations discussed above and certainly is not guaranteed to find all variable usages.
 
