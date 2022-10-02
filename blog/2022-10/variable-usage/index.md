@@ -79,88 +79,10 @@ Doing a straight text search for variable names generates a false positive for `
 
 Currently, if a project has been version-controlled using Config as Code, the deployment process and variables will be defined in text files. Finding variable usages (subject to the above limitations) in can be done by a simple text search in any text editor. Runbooks will be added to Config as Code in the near future, which will mean that a text search will also find similar variable usages in runbooks.
 
-Another option that will work for non-version controlled projects is to use a PowerShell script to query the current API and search for usages. An example script is below. It will only search for usages of project variables, although could be extended to include library variable sets. It also only does a straight text search, so is subject to all the limitations discussed above and certainly is not guaranteed to find all variable usages.
+Another option that will work for non-version controlled projects is to use a PowerShell script to query the current API and search for usages. Two example scripts are below. They will only do a straight text search, so are subject to all the limitations discussed above and are certainly not guaranteed to find all variable usages.
 
-``` PowerShell
-$octopusURL = "http://yourinstance.octopus.app"
-$octopusAPIKey = "API-Key"
-$spaceName = "Default"
-
-# Set up
-$usages = @()
-$header = @{ "X-Octopus-ApiKey" = $octopusAPIKey }
-$space = (Invoke-RestMethod -Method Get -Uri "$octopusURL/api/spaces/all" -Headers $header) | Where-Object { $_.Name -eq $spaceName }
-$projects = Invoke-RestMethod -Method Get -Uri "$octopusURL/api/$($space.Id)/projects/all" -Headers $header
-
-foreach ($project in $projects) {
-    # Get project variables
-    $projectVariableSet = Invoke-RestMethod -Method Get -Uri "$octopusURL/api/$($space.Id)/variables/$($project.VariableSetId)" -Headers $header
-    $variableNames = ($projectVariableSet.Variables).Name | Sort-Object -Unique
-
-    foreach ($variableName in $variableNames) {
-        $escapedVariableName = $variableName -replace '[\[]', '`$&'
-        foreach ($sourceVariable in $projectVariableSet.Variables) {
-            if ($sourceVariable.Value -like "*#{$escapedVariableName}*") {
-                $usages += [pscustomobject]@{
-                    Project  = $project.Name
-                    Variable = $variableName
-                    Source   = "Project variable value, Project variable: $($sourceVariable.Name)"
-                    Usage    = $sourceVariable.Value
-                    Link     = "$octopusURL$($project.Links.Web)/variables"
-                }
-            }
-        }
-    }
-
-    # Get project deployment process
-    $url = "$octopusURL/api/$($space.Id)/deploymentprocesses/$($project.DeploymentProcessId)"
-    $steps = (Invoke-RestMethod -Method Get -Uri $url -Headers $header).Steps
-
-    foreach ($step in $steps) {
-        foreach ($variableName in $variableNames) {
-            $escapedVariableName = $variableName -replace '[\[]', '`$&'
-            $properties = $step.Actions.Properties | Get-Member | Where-Object { $_.MemberType -eq "NoteProperty" -and $_.Definition -like "*$escapedVariableName*" }
-            foreach ($property in $properties) {
-                $usages += [pscustomobject]@{
-                    Project  = $project.Name
-                    Variable = $variableName
-                    Source   = "Deployment process, Step: $($step.Name), Property: $($property.Name)"
-                    Usage    = $property.Definition
-                    Link     = "$octopusURL$($project.Links.Web)/deployments/process/steps?actionId=$($step.Actions[0].Id)"
-                }
-            }
-        }
-    }
-
-    $url = "$octopusURL/api/$($space.Id)/projects/$($project.Id)/runbooks"
-    $runbooks = (Invoke-RestMethod -Method Get -Uri $url -Headers $header).Items
-
-    foreach ($runbook in $runbooks) {
-        Write-Host $runbook.Name
-
-        $url = "$octopusURL/api/$($space.Id)/runbookProcesses/$($runbook.RunbookProcessId)"
-        $steps = (Invoke-RestMethod -Method Get -Uri $url -Headers $header).Steps
-
-        foreach ($step in $steps) {
-            foreach ($variableName in $variableNames) {
-                $escapedVariableName = $variableName -replace '[\[]', '`$&'
-                $properties = $step.Actions.Properties | Get-Member | Where-Object { $_.MemberType -eq "NoteProperty" -and $_.Definition -like "*$escapedVariableName*" }
-                foreach ($property in $properties) {
-                    $usages += [pscustomobject]@{
-                        Project  = $project.Name
-                        Variable = $variableName
-                        Source   = "Runbook: $($runbook.Name), Step: $($step.Name), Property: $($property.Name)"
-                        Usage    = $property.Definition
-                        Link     = "$octopusURL$($project.Links.Web)/operations/runbooks/$($runbook.Id)/process/$($runbook.RunbookProcessId)/steps?actionId=$($step.Id)"
-                    }
-                }
-            }
-        }
-    }
-}
-
-$usages | Sort-Object "Project", "Variable", "Source"  | Format-Table -AutoSize
-```
+- [Find variable usage](https://octopus.com/docs/octopus-rest-api/examples/variables/find-variable-usage)
+- [Find library variable set variables usage](https://octopus.com/docs/octopus-rest-api/examples/variables/find-variableset-variables-usage)
 
 ## Deployment-time search
 
