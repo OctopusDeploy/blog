@@ -61,7 +61,7 @@ We traced the network traffic sent between the Octopus CLI and the Octopus REST 
 17  200  GET      /api/{id}/releases/{id}
 ```
 
-The HTTP POST on line 16 is the HTTP request responsible for creating a release. Most of the HTTP requests before it are built into the Octopus CLI to qualify resource identifiers (i.e. what’s the ID of project, “OctoPets”?). This also represents a happy path; more network traffic can be involved if exceptions and/or errors are encountered and a resolution is required. To make matters worse, these HTTP requests are made sequentially:
+The HTTP POST on line 16 is the HTTP request responsible for creating a release. Most of the HTTP requests before it are built into the Octopus CLI to qualify resource identifiers (e.g. what’s the ID of project, “OctoPets”?). This also represents a happy path; more network traffic can be involved if exceptions and/or errors are encountered and a resolution is required. To make matters worse, these HTTP requests are made sequentially:
 
 ![Screenshot of executions API http requests](executions-api-requests.png "width=500")
 
