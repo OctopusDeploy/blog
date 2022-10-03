@@ -30,7 +30,7 @@ There is no specific requirement to change team structures or introduce new role
 1. A cross-functional team who are responsible for everything, or "you build it, you run it"
 1. A development team, an operations team, and a third "DevOps" team working in the middle
 
-Each of these can be successful or represent an anti-pattern, but you can't determine this from outside of the organization because it very much depends on context that you can't see and whether their chosen set-up results in an improvement to their software delivery and organizational performance.
+Each of these can be successful or represent an anti-pattern, but you can't determine this from outside the organization. The value (or absence of value) in any structure very much depends on context you can't see. It can only be determined by the change in software delivery and organizational performance.
 
 Organizations are also on a journey, so what they do today may be an improvement on what they were doing last year even though it doesn't meet your definition of a DevOps organization. Later, they might look more like your expectation of a DevOps organization, depending on whether they can improve their culture, architecture, and skills.
 
@@ -77,11 +77,10 @@ Puppet - % of organizations using internal platforms
 
 This leads us to an interesting aside, related to the research into software delivery. While you can see from these numbers that internal platforms are predictive indicators of performance, you also have to acknowledge 2 key facts:
 
-1. 8% of low performers are using internal platforms and it's not working
+1. 8% of low performers are using internal platforms and it's not working (or not yet working)
 2. 52% of high performers aren't using internal platforms, yet are working well
 
 Platform development teams provide a way to scale software delivery to many teams, without losing "small-team" benefits. The key is to ensure the platform development team solves problems and reduces friction, rather than becoming a gate-keeping authority.
-
 
 ## Different paths to the same destination
 
@@ -99,8 +98,7 @@ Platform engineering
 - Create tools and workflows that enable self-service
 - Make it easy for developers to achieve system quality attributes (such as performance, observability, and security)
 
-
-There isn't a conflict between these different approaches. They are each appropriate in the right circumstances and can even complement each other.
+There isn't a conflict between these different approaches. They are each appropriate in the right circumstances and even complement each other. Platform engineers are ideally placed to build a culture of constant growth and learning, and they can certainly help shorten and amplify feedback loops.
 
 The key to making good choices is being context-aware. If you aren't solving inter-continental real-time systems to billions of users, copying Google won't work. Different industry, scale, and product combinations need different solutions. You wouldn't want want an organization to develop an emergency medical triage system in the same way someone develops a music streaming service, equally you wouldn't like the cost of a music streaming service that copied the software delivery practices of the medical company.
 
@@ -119,13 +117,21 @@ This may change as the situation evolves. You might grow the team, or the produc
 
 ## DevOps is dead, except it isn't
 
-There are some reports that DevOps is dead because developers don't want to deal with infrastructure, or because of the policy and cost constraints faced by growing organizations. These *are* some of the challenges you will face if you are following a "you build it, you run it" approach, unless you observe and adapt as you grow.
+There are some reports that DevOps is dead because developers don't want to deal with infrastructure, or because of the policy and cost constraints faced by growing organizations. These *are* some of the challenges you will face if you are following a "you build it, you run it" approach, unless you carefully observe and adapt as you grow.
+
+When it comes to platform engineering, DevOps isn't competing with it. If anything DevOps encourages platform engineering as an approach to scaling. Platform teams capture and spread knowledge. They create smooth pathways for changes that speed up and amplify feedback.
 
 Platform engineering complements DevOps by providing one way you can solve these kinds of problem, a way to guide your organization through the complexity. If you dropped DevOps and focused only on platform engineering, many other problems would resurface. Some of these other areas are bigger predictors of organizational performance, like culture.
 
 DevOps includes a set of capabilities that include many that you would expect from your platform engineers. But, it also has many capabilities that fit outside of platform engineering and software delivery, like transformational leadership and lean product development.
 
 In the [2021 Puppet State of DevOps report](https://puppet.com/resources/report/2021-state-of-devops-report), they found platform teams scaled the benefit of DevOps adoptions.
+
+When people declared Agile was dead, what they meant is that they take all that stuff for granted. It wasn't dead, it was just obvious now in a way it wasn't in the 1990s. Of course the software needs to work. Of course we need to collaborate with the users of the software. Of course we're not going to set out a plan and then ignore all evidence that it's a bad plan.
+
+Similarly, the organizations talking about post-DevOps are those who are nailing it. They don't just have a platform engineering team, they have a great culture and strong technical practices.
+
+However, neither Agile or DevOps are irrelevant to organizations that aren't there yet. When a scuba diver reaches the surface, they can remove their mask and regulator but they would be unwise to instruct the divers below them to do the same.
 
 ## Conclusion
 
@@ -212,3 +218,8 @@ Anti-patterns are very general descriptions, as an industry they amuse and delig
 ### Separate teams with shared goals
 
 Some organizations resolve the traditional development/operations conflict by re-aligning goals and creating the right environment for the teams to work more collaboratively. You still have development teams and operations teams, but instead of their interests being in opposition, they work together to deliver high quality software frequently and safely.
+
+##
+
+
+Tightly controlled standards at one end, stopping stuff getting done. Total sprawl at the other end where every team is using a different language, framework, persistence store, and cloud provider.
