@@ -61,7 +61,7 @@ We traced the network traffic sent between the Octopus CLI and the Octopus REST 
 17  200  GET      /api/{id}/releases/{id}
 ```
 
-The HTTP POST on line 16 is the HTTP request responsible for creating a release. Most of the HTTP requests before it are built into the Octopus CLI to qualify resource identifiers (e.g. what’s the ID of project, “OctoPets”?). This also represents a happy path; more network traffic can be involved if exceptions and/or errors are encountered and a resolution is required. To make matters worse, these HTTP requests are made sequentially:
+The HTTP POST on line 16 is the HTTP request responsible for creating a release. Most of the HTTP requests before it are built into the Octopus CLI to qualify resource identifiers (e.g. what's the ID of project, "OctoPets"?). This also represents a happy path; more network traffic can be involved if exceptions and/or errors are encountered and a resolution is required. To make matters worse, these HTTP requests are made sequentially:
 
 ![Screenshot of executions API http requests](executions-api-requests.png "width=500")
 
@@ -80,7 +80,7 @@ The Executions API consists of the following operations and routes:
 | `tenanted-deployment`   	| `/api/{space-id}/deployments/create/tenanted/v1`   	|
 | `untenanted-deployment` 	| `/api/{space-id}/deployments/create/untenanted/v1` 	|
 
-These APIs incorporate all of the “heavy-lifting” performed by the Octopus CLI. Not only does this reduce the network traffic, it also moves this work closer to the data. The result is that the Executions API is 3x faster than the collective calls represented through the Octopus REST API:
+These APIs incorporate all of the "heavy-lifting" performed by the Octopus CLI. Not only does this reduce the network traffic, it also moves this work closer to the data. The result is that the Executions API is 3x faster than the collective calls represented through the Octopus REST API:
 
 ![Graph comparing the Executions API and Octopus Rest API](executions-api-performance-graph.png "width=500")
 
