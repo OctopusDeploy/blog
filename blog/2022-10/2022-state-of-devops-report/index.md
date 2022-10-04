@@ -21,7 +21,7 @@ We're even more excited than usual this year, as Octopus sponsored the 2022 Acce
 
 ## Background
 
-The Accelerate State of DevOps Report has been running for 8 years, tracking specific practices that predict high software delivery performance and organizational performance. The report establishes links between practices, capabilities, culture and important outcomes with the goal of being able talk about what tends to be associated with high performing teams and organizations.
+The Accelerate State of DevOps Report has been running for 8 years, tracking specific practices that predict high software delivery performance and organizational performance. The report establishes links between practices, capabilities, culture, and important outcomes with the goal of being able talk about what tends to be associated with high performing teams and organizations.
 
 The DevOps capabilities work best together, amplifying the positive effects and increasing the cultural and organizational benefits.
 
