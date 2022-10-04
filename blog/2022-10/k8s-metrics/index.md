@@ -25,7 +25,7 @@ Once the metrics service is installed, pod resources are displayed with the comm
 kubectl top pod
 ```
 
-The node resource usage is available with the command:
+Node resource usage is available with the command:
 
 ```
 kubectl top node
@@ -41,7 +41,7 @@ In this case, you can install the metrics server with the instructions [here](ht
 
 ## cgroup resource usage
 
-If the metrics service is not available, it is possible to determine the memory usage of a single pod by entering an interactive session and printing the contents of cgroup interface files.
+If the metrics service is not available, it is still possible to determine the memory usage of a single pod by entering an interactive session and printing the contents of cgroup interface files.
 
 Enter an interactive session with the following command, replacing `podname` with the name of the pod you wish to inspect:
 
@@ -61,7 +61,7 @@ Print the current cpu usage with the command:
 cat /sys/fs/cgroup/cpu/cpuacct.usage
 ```
 
-The value returned by `cpuacct.usage` is not immediately useful as [it returns](https://www.kernel.org/doc/Documentation/cgroup-v1/cpuacct.txt):
+Note the value returned by `cpuacct.usage` is not immediately useful as [it returns](https://www.kernel.org/doc/Documentation/cgroup-v1/cpuacct.txt):
 
 > the CPU time (in nanoseconds) obtained by this group
 
@@ -73,7 +73,7 @@ You can find more information on these files [here](https://www.kernel.org/doc/D
 
 If the directories `/sys/fs/cgroup/memory` or `/sys/fs/cgroup/cpu` do not exist, you are likely working on a system with cgroups v2.
 
-Print the current memory usage with the command:
+On systems with cgroups v2, print the current memory usage with the command:
 
 ```
 cat /sys/fs/cgroup/memory.current
@@ -85,7 +85,7 @@ Print the current cpu usage with the command:
 cat /sys/fs/cgroup/cpu.stat
 ```
 
-This will return a file with a value called `usage_usec`. As with value returned by the cgroup v1 `cpuacct.usage` file, this value must be converted into a CPU usage percentage to be useful. Note the `usage_usec` value is measured in milliseconds, unlike the value returned by the `cpuacct.usage` file, which is in nanoseconds. 
+This will print a file with a value called `usage_usec`. As with value returned by the cgroup v1 `cpuacct.usage` file, this value must be converted into a CPU usage percentage to be useful. Note the `usage_usec` value is measured in milliseconds, unlike the value returned by the `cpuacct.usage` file, which is in nanoseconds. Convert the `usage_usec` value to nanoseconds by multiplying it by 1000, at which point it can be used in the same calculations returned by the `cpuacct.usage` file.
 
 You can find more information on these files [here](https://www.kernel.org/doc/Documentation/cgroup-v2.txt).
 
