@@ -16,7 +16,7 @@ tags:
 
 Many customers have requested the ability to see where variables are used in Octopus Deploy.
 
-In this post, I explore some of the challenges with making variable use visible.
+In this post, I explore some of the challenges of finding all the places a variable might be used.
 
 ## Why people want to see variable use
 
@@ -40,7 +40,7 @@ Let’s have a look at how variable uses might be found and some of the challeng
 
 ## Static search
 
-Static search would use the current API to gather information about places where variables are used. Project variables and library variable sets can be searched. The following uses can be determined using the current API:
+A static search would use the current API to gather information about places where variables are used. Project variables and library variable sets can be searched. The following uses can be determined using the current API:
 
 - Variable values
 - Step parameters in the project’s deployment process or any runbooks
@@ -93,7 +93,7 @@ This type of search captures variable uses as they happen during a deployment. T
 - .NET configuration variables
 - Substitute variables in templates
 
-With these replacements, any matches could be sent back to the Octopus Server and stored. One advantage of this approach is that it can capture replacements in files sourced from outside of Octopus Deploy. Building the infrastructure into Octopus Deploy to support this type of search wouldn't be straightforward.
+Every time a variable match and replacement is done, the details could be sent back to the Octopus Server and stored. One advantage of this approach is that it can capture replacements in files sourced from outside of Octopus Deploy. Building the infrastructure into Octopus Deploy to support this type of search wouldn't be straightforward.
 
 It's interesting to consider how this type of search would work. Steps can be conditional and may only execute during a production deployment, for example. It therefore might need multiple deployments to capture all variable uses. Should Octopus Deploy try to capture variable uses from multiple deployments and somehow collate them? At what point should they be reset? How could a user be confident that uses from all possible deployment types have been captured?
 
@@ -105,7 +105,7 @@ A static search and deployment-time search would both capture different types of
 
 The question now becomes, should we build this? Is there enough value in a feature that will *probably* work *most* of the time? To be confident that a variable really is unused and can safely be removed, *all* variable uses need to be identified - something that can't be guaranteed. Even if this limitation is made very clear in the UI, it's inevitable some users will get caught out.
 
-As the deployment-time search requires a significant effort to build and wouldn't be straightforward to use, should we just build the static search? That feels like a half solution. How much value is there adding a static search to the UI when the same functionality can already be achieved with a PowerShell script?
+As building a deployment-time search would require a significant effort and wouldn't be straightforward to use, should we just build the static search? That feels like a half solution. How much value is there adding a static search to the UI when the same functionality can already be achieved with a PowerShell script?
 
 What do you think? We'd love to hear your thoughts in the comments below.
 
