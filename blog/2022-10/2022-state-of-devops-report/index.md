@@ -34,7 +34,7 @@ In 2021, the key insights included:
 
 The [DORA metrics](https://octopus.com/blog/dora-metrics-devops-business-outcomes) are one of the practical tools to emerge from the report. A 5th metric was added in 2021 for _reliability_.
 
-[Octopus Deploy 2022.3+](https://octopus.com/blog/octopus-release-2022-q3#devops-insights-better-visibility-and-actionable-dora-metrics-early-access-preview) includes DevOps Insights for better visibility into your company’s DevOps performance, by surfacing data based on the first 4 DORA metrics. Our [DevOps Insights](https://octopus.com/docs/insights) reporting helps you qualify the results of your DevOps performance and see where you can improve.
+[Octopus Deploy 2022.3+](https://octopus.com/blog/octopus-release-2022-q3#devops-insights-better-visibility-and-actionable-dora-metrics-early-access-preview) includes DevOps Insights for better visibility into your company's DevOps performance, by surfacing data based on the first 4 DORA metrics. Our [DevOps Insights](https://octopus.com/docs/insights) reporting helps you qualify the results of your DevOps performance and see where you can improve.
 
 ## New insights in 2022
 
@@ -42,7 +42,7 @@ As always, the latest Accelerate State of DevOps Report contains new insights, a
 
 One of the headlines is that one of the biggest predictors for security practices is cultural, not technical. An organization is more likely to adopt appropriate security practices if it has a high-trust/low-blame culture. These practices increase software delivery and operational performance and reduce burnout.
 
-"This year’s Accelerate State of DevOps report dug deep on security, and found that the biggest predictor of an organization's application-development security practices was cultural, not technical” said Claire Peters, DORA Research Lead, Google Cloud. “With security top of mind for every organization, we found that teams with high trust and low-blame cultures focused on performance were significantly more likely to successfully adopt effective security practices. It’s more obvious than ever that organizational culture and modern development processes are the best place to start for organizations looking to improve their security posture."
+"This year's Accelerate State of DevOps report dug deep on security, and found that the biggest predictor of an organization's application-development security practices was cultural, not technical" said Claire Peters, DORA Research Lead, Google Cloud. "With security top of mind for every organization, we found that teams with high trust and low-blame cultures focused on performance were significantly more likely to successfully adopt effective security practices. It's more obvious than ever that organizational culture and modern development processes are the best place to start for organizations looking to improve their security posture."
 
 There are also insights for:
 
