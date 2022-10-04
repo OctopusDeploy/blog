@@ -9,7 +9,7 @@ bannerImage:
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags: 
-  - tag
+  - DevOps
 ---
 
 In this post, you'll discover where platform engineering fits into your broader software delivery process. You'll see how platform engineering works with a DevOps process and why both DevOps and platform engineering can help your organization attain high performance.
