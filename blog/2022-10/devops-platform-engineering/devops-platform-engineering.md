@@ -113,10 +113,10 @@ Platform engineering wants you to:
 
 As you grow your software delivery team, you must carefully manage the complexity of scale. Some organizations limit complexity by limiting a team's autonomy, but platform engineering provides a mechanism that tames complexity while preserving development team autonomy.
 
-Happy deployments!
-
 ## Further reading
 
 - Building Secure and Reliable Systems - Heather Adkins, et al
 - Accelerate: The Science of Lean Software and DevOps - Nicole Forsgren PhD, et al
 - [Octopus DevOps Engineer's Handbook](https://octopus.com/devops/)
+
+Happy deployments!
