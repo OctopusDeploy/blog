@@ -46,15 +46,23 @@ Enter the platform engineering team.
 
 Despite many new teams and job titles springing up around DevOps, the platform engineering team is, perhaps, the most aligned to the mindset and objectives of DevOps.
 
-A platform team treats the developers as customers, smoothing a set of pathways that help developers spend less energy on non-programming tasks. They don't handle tickets, such as "create a new test database", but instead provide usable self-service mechanisms for teams to create the database easily themselves.
+Platform teams work with development teams to create one or more *golden pathways*, which represent a supported set of technology choices. These pathways don't prevent teams using something else, but they encourage more alignment without enforcing standard choices on other teams. Rather than pick up tickets to create new environment, platform teams provide easy-to-use self-service tools for the development teams' use.
 
-Platform teams work with development teams to create one or more *golden pathways*, which represent a supported set of technology choices. These pathways don't prevent teams using something else, but they encourage more alignment without enforcing standard choices on other teams.
+A critical part of platform engineering is how they treat developers as customers, solving their problems and reducing friction while advocating the adoption of aligned technology choices. For example, say your organization is great at running MySql databases and has worked out how to solve issues such as:
 
-A critical part of platform engineering is how they tread developers as customers, solving their problems and reducing friction while advocating the adoption of aligned technology choices.
+- Scaling
+- Backups
+- Maintenance
+- Security
+- Replication
+- Deployments
+- Test databases
 
-As a developer, by choosing to use a golden pathway, you get many of your needs for free. This accelerates your work and gives you a support channel when things go wrong.
+A team choosing MySql will get all these for free at the push of a button. Another team might still need to use something different, but they will be responsible for the choices they make off the beaten track.
 
-Platform engineering makes lots of things easy:
+When you choose a golden pathway, it accelerates your work, lets you focus on the differentiating work, and gives you a support channel when things go wrong.
+
+Platform engineering can make many tasks easier:
 
 - Build pipelines
 - Test and production environments
