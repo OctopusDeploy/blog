@@ -77,7 +77,7 @@ Platform engineering helps your organization scale its software delivery without
 
 ## DevOps and platform engineering
 
-As you can see, platform engineering complements, rather than competes, with DevOps. To provide further proof of this positive relationship, the [Puppet State of DevOps report](https://puppet.com/resources/report/2021-state-of-devops-report) found that DevOps high-performers are more likely to have a platform engineering team than low performers.
+As you can see, platform engineering complements, rather than competes, with DevOps. To provide further proof of this positive relationship, the [Puppet State of DevOps report](https://puppet.com/resources/report/2021-state-of-devops-report) found that DevOps high-performers are more likely to have platform engineering teams than low performers.
 
 ![DevOps teams using platform engineering, table follows](devops-platform-engineering-performance.png)
 
@@ -87,9 +87,9 @@ As you can see, platform engineering complements, rather than competes, with Dev
 | Mid      | 25%                         |
 | High     | 48%                         |
 
-Platform engineering alone doesn't provide a whole organization view of performance. The DevOps structural equation model shows us capabilities for leadership, management, culture, and product that are outside of the scope of a platform team.
+Platform engineering alone doesn't provide a whole organization view of performance. The DevOps structural equation model shows us capabilities for leadership, management, culture, and product that are outside of the scope of a platform team. This is why platform engineering belongs to a wider process, such as DevOps, rather than offering a replacement.
 
-Used together, platform engineering is an excellent tool for scaling software delivery.
+Used together with DevOps, platform engineering is an excellent tool for scaling your software delivery capability.
 
 DevOps:
 
