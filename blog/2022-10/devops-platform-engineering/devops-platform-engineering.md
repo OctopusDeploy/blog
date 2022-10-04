@@ -1,6 +1,6 @@
 ---
 title: DevOps and platform engineering
-description: Why DevOps and platform engineering appear to be in conflict with each other, but actually work in harmony.
+description: Find out where platform engineering fits into a DevOps process and why both DevOps and platform engineering can both help your organization attain high performance.
 author: steve.fenton@octopus.com
 visibility: private
 published: 3020-01-01-1400
@@ -12,9 +12,9 @@ tags:
   - tag
 ---
 
-In this post, you'll find out where platform engineering fits into your broader software delivery process. You'll see where platform engineering fits into a DevOps process and why both DevOps and platform engineering can both help your organization attain high performance.
+In this post, you'll find out where platform engineering fits into your broader software delivery process. You'll see where platform engineering works with a DevOps process and why both DevOps and platform engineering can both help your organization attain high performance.
 
-As part of this journey, some common claims will need to be challenged so we can all achieve a better developed understanding of where we are now and where we're heading in the future.
+The short description of DevOps is a reminder of how it evolved from a simple statement to a more complete picture. This is followed by an introduction to platform engineering, before they are pictured together.
 
 ## The quick version of DevOps
 
@@ -22,21 +22,25 @@ DevOps stems from the key idea of developers and ops working together. This had 
 
 To remedy this dev and ops started working more collaboratively and this turned out to be a more effective way to delivery high quality software.
 
-The vague value statement of "developers and ops working together" grew into a very well-defined set of capabilities, thanks to extensive research by Puppet and DORA. The DevOps "structural equation model" maps out these capabilities and their relationships.
+Over the course of ten years, the vague value statement of "developers and ops working together" grew into a very well-defined set of capabilities, thanks to extensive research by Puppet and DORA. The DevOps "structural equation model" maps the capabilities and relationships found in the research.
 
 ![The 2022 DevOps structural equation model](structural-equation-model-2022.png)
 
-This model is useful for teams looking for improvement opportunities and for organizations who want to get the benefits they see being reaped from DevOps teams and organizations elsewhere.
+This model is useful for teams looking for improvement opportunities and organizations seeking the benefits other organizations have attained with DevOps. You may have seen an older version of this diagram, which had fewer boxes.
 
-As you can see, the 2022 model is packed with ideas of specific changes you can make to become *more DevOps*. If you feel overwhelmed, check out [how to start using Continuous Delivery](https://octopus.com/devops/continuous-delivery/how-to-start-using-continuous-delivery/) in our [DevOps Engineer's handbook].
+As you can see, the 2022 model is packed with ideas for specific capabilities you can adopt to become *more DevOps*. If you feel overwhelmed, [how to start using Continuous Delivery](https://octopus.com/devops/continuous-delivery/how-to-start-using-continuous-delivery/) in our [DevOps Engineer's handbook] is a good place to start.
 
-The crucial insight into this model is the importance of culture to both the technical performance of the organization and its performance against commercial and non-commercial goals.
+The crucial insight in this model is the importance of culture to both the technical performance of your organization and its performance against commercial and non-commercial goals.
 
-In 2022, DevOps is...
+In 2022, DevOps has grown to mean:
 
 - Developers and ops working together
 - A well-defined set of technical and non-technical capabilities
-- Quite a lot like how the first computer systems were built and run by the same team
+- Assessing your success using whole-system measures
+
+If you've been around long enough, you might notice that many of the changes encouraged by DevOps look a lot like how systems were developed before dev and ops silos were created. Specialist teams were created for a reason, so as we back-up and try another path, we should ensure we don't repeat past mistakes. The problem of scale and specialization still exist, so how do we overcome them in a more healthy way?
+
+Enter the platform engineering team.
 
 ## Platform engineering
 
