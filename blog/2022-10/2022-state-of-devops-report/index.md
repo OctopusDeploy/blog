@@ -42,7 +42,7 @@ As always, the latest Accelerate State of DevOps Report contains new insights, a
 
 One of the headlines is that one of the biggest predictors for security practices is cultural, not technical. An organization is more likely to adopt appropriate security practices if it has a high-trust/low-blame culture. These practices increase software delivery and operational performance and reduce burnout.
 
-"This year's Accelerate State of DevOps report dug deep on security, and found that the biggest predictor of an organization's application-development security practices was cultural, not technical" said Claire Peters, DORA Research Lead, Google Cloud. "With security top of mind for every organization, we found that teams with high trust and low-blame cultures focused on performance were significantly more likely to successfully adopt effective security practices. It’s more obvious than ever that organizational culture and modern development processes are the best place to start for organizations looking to improve their security posture."
+"This year's Accelerate State of DevOps report dug deep on security, and found that the biggest predictor of an organization's application-development security practices was cultural, not technical" said Claire Peters, DORA Research Lead, Google Cloud. "With security top of mind for every organization, we found that teams with high trust and low-blame cultures focused on performance were significantly more likely to successfully adopt effective security practices. It's more obvious than ever that organizational culture and modern development processes are the best place to start for organizations looking to improve their security posture."
 
 There are also insights for:
 
