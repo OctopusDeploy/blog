@@ -67,7 +67,7 @@ The HTTP POST on line 16 is the HTTP request responsible for creating a release.
 
 These operations impose data inspection and decision tree execution in the Octopus REST API. This scenario was made worse if a release involved distinct package versions, which may have executed additional service operations. All of this network traffic resulted in more load, hurting our scalability. 
 
-We needed a better solution. We began work in 2022 Q2 to establish a new set of service endpoints collectively known as the Executions API. These APIs greatly reduce the amount of network traffic sent between the Octopus REST API and API clients such as the Octopus CLI.
+We needed a better solution. We began work in the second quarter of 2022 to establish a new set of service endpoints collectively known as the Executions API. These APIs greatly reduce the amount of network traffic sent between the Octopus REST API and API clients such as the Octopus CLI.
 
 ## Introducing the Executions API
 
