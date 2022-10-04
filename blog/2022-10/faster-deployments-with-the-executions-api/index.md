@@ -46,7 +46,7 @@ We traced the network traffic sent between the Octopus CLI and the Octopus REST 
  2  200  GET      /api
  3  200  GET      /api
  4  200  GET      /api
- 5  200  GET      /api/spacesk
+ 5  200  GET      /api/spaces
  6  200  GET      /api
  7  200  GET      /api/users/me
  8  200  GET      /api/users/{id}/spaces
