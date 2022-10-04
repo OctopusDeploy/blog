@@ -118,4 +118,5 @@ Happy deployments!
 ## Further reading
 
 - Building Secure and Reliable Systems - Heather Adkins, et al
+- Accelerate: The Science of Lean Software and DevOps - Nicole Forsgren PhD, et al
 - [Octopus DevOps Engineer's Handbook](https://octopus.com/devops/)
