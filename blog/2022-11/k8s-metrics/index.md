@@ -66,7 +66,7 @@ Note the value returned by `cpuacct.usage` is not immediately useful as [it retu
 
 > the CPU time (in nanoseconds) obtained by this group
 
-Converting this value into a more usable measurement like CPU usage percentage requires some calculation. This [post on Stack Exchange](https://unix.stackexchange.com/a/451005) provides more details.
+Converting this value into a more usable measurement like CPU usage percentage requires some calculation. This [post on Stack Exchange](https://unix.stackexchange.com/a/451005) provides more details, and this [Python code](https://github.com/ray-project/ray/blob/4acbf3645338cf0cda383c3c633b90e3554451fa/dashboard/k8s_utils.py) provides a useful practical example.
 
 You can find more information on these files [in the Linux kernel docs](https://www.kernel.org/doc/Documentation/cgroup-v1/00-INDEX).
 
