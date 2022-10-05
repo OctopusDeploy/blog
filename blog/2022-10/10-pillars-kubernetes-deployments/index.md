@@ -4,15 +4,13 @@ description: The 10 pillars of pragmatic Kubernetes deployments is a comprehensi
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2022-10-19-1400
-metaImage: blogimage-ten-pillars-of-k8s-deployments-2021.png
-bannerImage: blogimage-ten-pillars-of-k8s-deployments-2021.png
-bannerImageAlt: A book and ten pillars
+metaImage: imgblog-tenpillarspragmatickubernetesdeployment-2022.ai.png
+bannerImage: imgblog-tenpillarspragmatickubernetesdeployment-2022.ai.png
+bannerImageAlt: An open book sits in front of a Kubernetes-branded building with ten columns
 tags:
   - DevOps
   - Kubernetes
 ---
-
-![A book and ten pillars](blogimage-ten-pillars-of-k8s-deployments-2021.png)
 
 Following on from the [10 pillars of pragmatic deployments](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments), Matthew Casperson wrote an ebook about the [10 pillars of pragmatic **Kubernetes** deployments](https://github.com/OctopusDeploy/TenPillarsK8s/releases/latest) with Octopus Deploy.
 
