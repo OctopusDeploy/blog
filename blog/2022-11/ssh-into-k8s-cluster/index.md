@@ -1,27 +1,27 @@
 ---
-title: SSH into to a Kubernetes cluster
+title: SSH into a Kubernetes cluster
 description: Learn how to set up a SSH bastion host in your Kubernetes cluster.
 author: matthew.casperson@octopus.com
 visibility: private
+published: 2022-11-09-1400
 metaImage: blogimage-testingkubernetes-2022.png
 bannerImage: blogimage-testingkubernetes-2022.png
 bannerImageAlt: Kubernetes logo on an open laptop screen
-published: 3020-01-01-1400
 tags:
+ - DevOps
  - Kubernetes
  - Docker
- - DevOps
 ---
 
-Jump boxes or bastion hosts are a common networking strategy to exposes a single secure entrypoint to the public internet in order to access a private network. This single point of entry allows security teams to closely monitor and control network access to the private network. Often the bastion host exposes a well known remote access service, like RDP or SSH, which teams can assume have been widely vetted and are trustworthy.
+Jump boxes or bastion hosts are a common networking strategy to expose a single secure entry point to the public internet, to access a private network. This single point of entry lets security teams closely monitor and control network access to the private network. Often the bastion host exposes a well known remote access service, like RDP or SSH, which teams can assume have been widely vetted and are trustworthy.
 
-In this post you'll learn how to host an OpenSSH server in a Kubernetes cluster in order to perform administrative tasks.
+In this post, you learn how to host an OpenSSH server in a Kubernetes cluster, to perform administrative tasks.
 
-## Deploy an SSH Server
+## Deploying an SSH Server
 
-SSH servers have long been used to provide remote access to Linux servers, and it is relatively easy to host an SSH server as a Kubernetes pod.
+SSH servers have long been used to provide remote access to Linux servers, and it's relatively easy to host an SSH server as a Kubernetes pod.
 
-The YAML file shown below creates a service account with a role and role binding granting access to common resources in the current namespace. It then deploys an instance of the `linuxserver/openssh-server` image, inheriting the permissions of the service account, and exposes it via a load balancer service:
+The YAML file shown below creates a service account with a role and role-binding granting access to common resources in the current namespace. It then deploys an instance of the `linuxserver/openssh-server` image, inheriting the permissions of the service account, and exposes it via a load balancer service:
 
 ```yaml
 apiVersion: v1
@@ -106,7 +106,7 @@ spec:
           value: "true"          
 ```
 
-Note that, for convenience, this SSH server allows password access, the example YAML file embeds an insecure example password, and allows sudo access. A more robust solution is to use key files for authentication. Refer to the [documentation](https://hub.docker.com/r/linuxserver/openssh-server) contains examples showing how to use key files for authentication.
+Note that, for convenience, this SSH server allows password access, the example YAML file embeds an insecure example password, and allows sudo access. A more robust solution is to use key files for authentication. Refer to the [Docker Hub documentation](https://hub.docker.com/r/linuxserver/openssh-server) for examples showing how to use key files for authentication.
 
 Save the YAML above to a file called `ssh.yaml` and apply it with the command:
 
@@ -144,7 +144,7 @@ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stabl
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 ```
 
-By default, pods have a number of files mounted under `/var/run/secrets/kubernetes.io/serviceaccount` that allow the pod to interact with the host cluster. To configure `kubectl` to use these files, save the following file to `~/.kube.config`:
+By default, pods have a number of files mounted under `/var/run/secrets/kubernetes.io/serviceaccount` that let the pod interact with the host cluster. To configure `kubectl` to use these files, save the following file to `~/.kube.config`:
 
 ```yaml
 apiVersion: v1
@@ -167,13 +167,13 @@ users:
     tokenFile: /var/run/secrets/kubernetes.io/serviceaccount/token
 ```
 
-At this point you can run `kubectl` from your SSH session and interact with the parent cluster, providing a convenient and secure environment for cluster administration.
+You can now run `kubectl` from your SSH session and interact with the parent cluster, providing a convenient and secure environment for cluster administration.
 
 ## Building a custom OpenSSH Docker image
 
-Downloading `kubectl` and copying the configuration file is easy enough, but the ephemeral nature of Kubernetes pods means that eventually the container will be deleted and recreated, forcing you to download and configure `kubectl` again.
+Downloading `kubectl` and copying the configuration file is easy enough, but the ephemeral nature of Kubernetes pods means eventually the container will be deleted and recreated, forcing you to download and configure `kubectl` again.
 
-A better solution is to bake `kubectl` and its configuration file into a custom Docker image. This ensures the files are available in the container when it is first started.
+A better solution is baking `kubectl` and its configuration file into a custom Docker image. This ensures the files are available in the container when it's first started.
 
 Save the following to a file called `Dockerfile`:
 
@@ -215,10 +215,10 @@ Replace the `image` property in the Kubernetes YAML file with:
 image: yourdockerregistry/openssh-server:latest
 ```
 
-Once the new SSH server pods are created using your custom image, `kubectl` and its configuration file are ready to use without first downloading them.
+After the new SSH server pods are created using your custom image, `kubectl` and its configuration file are ready to use without first downloading them.
 
 ## Conclusion
 
-A bastion host running OpenSSH on your Kubernetes cluster provides you with a single, secure entrypoint for administration and debugging tasks. By customizing the Docker image to include common tools like `kubectl`, DevOps teams can rely on the bastion host having any required tools for common administration tasks.
+A bastion host running OpenSSH on your Kubernetes cluster provides you with a single, secure entry point for administration and debugging tasks. By customizing the Docker image to include common tools like `kubectl`, DevOps teams can rely on the bastion host having any required tools for common administration tasks.
 
 Happy deployments!
