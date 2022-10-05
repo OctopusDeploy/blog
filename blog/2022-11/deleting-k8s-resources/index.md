@@ -3,18 +3,21 @@ title: Bulk deletion of Kubernetes resources
 description: Learn how to delete Kubernetes resources like pods in bulk.
 author: matthew.casperson@octopus.com
 visibility: private
-published: 3020-01-01-1400
+published: 2022-11-14-1400
 metaImage: blogimage-testingkubernetes-2022.png
 bannerImage: blogimage-testingkubernetes-2022.png
 bannerImageAlt: Kubernetes logo on an open laptop screen
 isFeatured: false
 tags: 
+  - DevOps
   - Kubernetes
 ---
 
-Kubernetes makes it easy to create many resources at once, with the `kubectl apply -f filename.yaml` command creating all the resources in a compound YAML file. But how do you then delete multiple resources without specifying them individually? In this post you'll learn how to perform bulk deletions of Kubernetes resources.
+Kubernetes makes it easy to create many resources at once, with the `kubectl apply -f filename.yaml` command creating all the resources in a compound YAML file. But how do you then delete multiple resources without specifying them individually? 
 
-## Example deployment
+In this post, you learn how to perform bulk deletions of Kubernetes resources.
+
+## Example Kubernetes deployment
 
 Let's take a look at a typical YAML file describing a Kubernetes deployment and service:
 
@@ -69,7 +72,7 @@ kubectl get deployments
 kubectl get services
 ```
 
-You will see three pods, one deployment, and one service are created. The pods are not directly defined in the YAML file and are created by the deployment, with three pods created due to the `replicas` property being set to `3`.
+You see three pods, one deployment, and one service are created. The pods aren't directly defined in the YAML file and are created by the deployment, with three pods created due to the `replicas` property being set to `3`.
 
 ## Deleting resources from file
 
@@ -79,7 +82,7 @@ The easiest way to delete these resources is to use the `delete` command and pas
 kubectl delete -f nginx.yaml
 ```
 
-If you rerun the `kubectl get` commands above you'll see the pods, deployment, and service are deleted. Because the pods are managed by the deployment, deleting the deployment also deletes the pods.
+If you rerun the `kubectl get` commands above you see the pods, deployment, and service are deleted. Because the pods are managed by the deployment, deleting the deployment also deletes the pods.
 
 ## Manually deleting resources
 
@@ -101,7 +104,7 @@ This command deletes all the pods:
 kubectl delete --all pods
 ```
 
-The output of the command will look something like this:
+The output of the command looks something like this:
 
 ```bash
 pod "my-nginx-6595874d85-88jlr" deleted
@@ -115,7 +118,7 @@ However, something interesting happens when you confirm the pods are deleted. Ru
 kubectl get pods
 ```
 
-You will notice is that there are still 3 pods, with the output looking something like this:
+Notice that there are still 3 pods, with the output looking something like this:
 
 ```bash
 NAME                        READY   STATUS    RESTARTS   AGE
@@ -124,7 +127,7 @@ my-nginx-6595874d85-4vrfb   1/1     Running   0          76s
 my-nginx-6595874d85-4wj9p   1/1     Running   0          76s
 ```
 
-If you look closely, the pod names shown by the `kubectl get pods` command are different to those returned by the `kubectl delete --all pods` command. This is because the pods are managed by the deployment, and when the deployment sees that the pods it was managing have been deleted, it recreates new pods to fulfil its `replica` count.
+If you look closely, the pod names shown by the `kubectl get pods` command are different to those returned by the `kubectl delete --all pods` command. This is because the pods are managed by the deployment, and when the deployment sees that the pods it was managing have been deleted, it recreates new pods to fulfill its `replica` count.
 
 Deleting pods managed by a deployment essentially recreates them, which is useful if you want to force the pods to restart. But the only way to permanently delete the pods is to delete their parent deployment. This is done with the command:
 
@@ -132,7 +135,7 @@ Deleting pods managed by a deployment essentially recreates them, which is usefu
 kubectl delete --all deployments
 ```
 
-Once the deployment is deleted, there will be no deployments or pods.
+After the deployment is deleted, there's no deployments or pods.
 
 ## Deleting namespaces
 
@@ -166,7 +169,7 @@ This results in the namespace, and all the resources contained in it, being dele
 
 ## Shorthand "all" resource
 
-You can pass `all` for the resource type when calling `kubectl` to reference a common subset of Kubernetes resource types. So the following command will delete the service, deployment, and pods:
+You can pass `all` for the resource type when calling `kubectl` to reference a common subset of Kubernetes resource types. So the following command deletes the service, deployment, and pods:
 
 ```bash
 kubectl delete all --all
@@ -174,24 +177,26 @@ kubectl delete all --all
 
 The `all` type includes:
 
-* pod
-* service
-* daemonset
-* deployment
-* replicaset
-* statefulset
-* job
-* cronjobs
+- pod
+- service
+- daemonset
+- deployment
+- replicaset
+- statefulset
+- job
+- cronjobs
 
 ## Deleting resources matching a label
 
-Labels are used to enrich resources with metadata often describing things like the resource's purpose, environment, version etc. You can select resources based on these labels in order to delete them. This allows you to selectively delete groups of resources. The following command deletes deployments with the label called `app` set to `nginx`:
+Labels are used to enrich resources with metadata often describing things like the resource's purpose, environment, and version. You can select resources based on these labels to delete them. This lets you selectively delete groups of resources. 
+
+The following command deletes deployments with the label called `app` set to `nginx`:
 
 ```bash
 kubectl delete deployments -l app=nginx
 ```
 
-Likewise you can delete the services with the same label:
+Likewise, you can delete the services with the same label:
 
 ```bash
 kubectl delete service -l app=nginx
@@ -199,7 +204,7 @@ kubectl delete service -l app=nginx
 
 ## Dry runs
 
-Bulk deletion of resources is convenient, but dangerous. Fortunately, `kubectl` has the `--dry-run` argument that allows you to see the resources that would be deleted, but without actually deleting them. The following command previews the resources that would be matched by the `all` resource type:
+Bulk deletion of resources is convenient, but dangerous. Fortunately, `kubectl` has the `--dry-run` argument that lets you see the resources that would be deleted, but without actually deleting them. The following command previews the resources that would be matched by the `all` resource type:
 
 ```bash
 kubectl delete all --all --dry-run
@@ -209,11 +214,11 @@ kubectl delete all --all --dry-run
 
 Bulk deleting resources is easy with `kubectl`, and in this post you learned how to delete resources:
 
-* Defined in a YAML file
-* Matching a single resource type
-* Grouped in the `all` resource type
-* Contained in a namespace
-* With matching labels
+- Defined in a YAML file
+- Matching a single resource type
+- Grouped in the `all` resource type
+- Contained in a namespace
+- With matching labels
 
 You also learned how to use the `--dry-run` argument to preview any resources that would be deleted.
 
