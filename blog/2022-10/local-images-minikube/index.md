@@ -12,7 +12,7 @@ tags:
  - Docker
 ---
 
-[minikube](https://minikube.sigs.k8s.io/docs/start/) provides DevOps teams with a local development Kubernetes cluster. Developing Kubernetes applications locally will often entail building and local Docker images. While minikube will download any Docker images hosted on an external Docker registry, exposing locally built images requires loading the images into the minikube cluster and being aware of some edge cases that throw unhelpful error messages. 
+[minikube](https://minikube.sigs.k8s.io/docs/start/) provides DevOps teams with a local development Kubernetes cluster. Developing Kubernetes applications locally will often entail building and deploying local Docker images. While minikube will download any Docker images hosted on an external Docker registry, exposing locally built images requires loading the images into the minikube cluster and being aware of some edge cases that throw unhelpful error messages. 
 
 In this post I'll show you how to deploy locally built Docker images to minikube.
 
