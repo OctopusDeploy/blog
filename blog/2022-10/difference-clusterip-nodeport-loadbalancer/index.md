@@ -43,3 +43,30 @@ The diagram below shows how pods within the same cluster can communicate via the
 
 ## The NodePort service type
 
+The YAML below defines a `NodePort` service that directs traffic on port 30007 on each node (defined by the `nodePort` property) to port 8080 (defined by the `targetPort` property) on any pods with the label `app` set to `web`:
+
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-service
+spec:
+  type: NodePort
+  selector:
+    app: web
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+      nodePort: 30007
+```
+
+`NodePort` services expose pods internally the same way a `ClusterIP` service does. In addition, a `NodePort` service allows external clients to access pods via network ports opened on the Kubernetes nodes. These ports are typically in the range 30000-32768, although that range is customizable.
+
+`NodePort` services are useful for exposing pods to external traffic where external clients have network access to the Kubernetes nodes. For example, if your nodes have the hostnames `node1` and `node2`, the example service above allows clients to access http://node1:30007 or http://node2:30007. It doesn't matter which node the external client connects to, as Kubernetes configures the network routing to direct all traffic from port 30007 on *any* node to the appropriate pods.
+
+In practice I have not seen `NodePort` services used much in production systems. Unusual ports are frequently subject to restrictive firewall rules and it is hard to understand what service you are communicating with using a URL like http://node1:30007. `NodePort` services are great for testing though, as they may not require any additional infrastructure to expose pods to external traffic, making them a quick and easy way to debug a pod.
+
+The diagram below shows how external clients can communicate with pods via ports on the nodes exposed by the `NodePort` service:
+
+![](nodeport.png "width=500")
