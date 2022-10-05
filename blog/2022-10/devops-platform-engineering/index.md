@@ -28,11 +28,11 @@ Over ten years, the vague value statement of "developers and ops working togethe
 
 The DevOps *structural equation model* maps the capabilities and relationships found in the research. It was initially described in the book *Accelerate* and DORA has continued to update it as part of their research program.
 
-![The 2022 DevOps structural equation model](structural-equation-model-2022.png)*The 2022 DevOps structural equation model*
+![The 2021 DevOps structural equation model](structural-equation-model-2021.png)*The 2021 DevOps structural equation model*
 
 This model is helpful for teams looking for improvement opportunities and organizations looking to adopt DevOps and attain the benefits of high performance. You may have seen an older version of this diagram with fewer boxes.
 
-As you can see, the 2022 model is packed with ideas for specific capabilities you can adopt to become *more DevOps*. If you feel overwhelmed, read [how to start using Continuous Delivery](https://octopus.com/devops/continuous-delivery/how-to-start-using-continuous-delivery/) in our [DevOps Engineer's handbook].
+As you can see, the 2021 model is packed with ideas for specific capabilities you can adopt to become *more DevOps*. If you feel overwhelmed, read [how to start using Continuous Delivery](https://octopus.com/devops/continuous-delivery/how-to-start-using-continuous-delivery/) in our [DevOps Engineer's handbook].
 
 The crucial insight in this model is the importance of culture to your organization's technical performance and its performance against commercial and non-commercial goals.
 
