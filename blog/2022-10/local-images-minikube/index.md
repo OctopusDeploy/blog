@@ -91,13 +91,13 @@ kubectl apply -f underwater.yaml
 
 The application is then successfully deployed to the minikube cluster.
 
-One important thing to note is that the Docker image has no tag, which means it has the default tag of `latest`. So the `image` property in the YAML above could be replaced with the following text, as the two images references are equivalent:
+One important thing to note is that the Docker image has no tag, which means it has the default tag of `latest`. So the `image` property in the YAML above could be replaced with the following text, as the two image references are equivalent:
 
 ```
 image: underwater:latest
 ```
 
-Using images with the `latest` tag has special implications which required setting the `imagePullPolicy` to `Never` (or `IfNotPresent`). To understand why, you need to understand the default `imagePullPolicy`.
+Using images with the `latest` tag has special implications which required setting the `imagePullPolicy` to `Never` (or `IfNotPresent`). To understand why, you need to understand the default image pull policy.
 
 ## Using latest images
 
