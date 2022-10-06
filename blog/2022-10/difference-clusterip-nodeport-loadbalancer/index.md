@@ -33,9 +33,9 @@ spec:
       targetPort: 8080
 ```
 
-`ClusterIP` services expose pods to internal network traffic, but do not expose pods to any external traffic. For example, you may expose a database to other pods via a `ClusterIP` service because external clients should never have direct access to the database.
+`ClusterIP` services expose pods to internal network traffic. For example, you may expose a database to other pods via a `ClusterIP` service because external clients should never have direct access to the database.
 
-`ClusterIP` services expose the smallest surface area and should be used when pods only need to be exposed to other pods in the cluster.
+`ClusterIP` services expose the smallest surface area and should be used for pods that only need to be exposed to other pods in the cluster.
 
 The diagram below shows how pods within the same cluster can communicate via the `ClusterIP` service:
 
@@ -63,7 +63,7 @@ spec:
 
 `NodePort` services expose pods internally the same way a `ClusterIP` service does. In addition, a `NodePort` service allows external clients to access pods via network ports opened on the Kubernetes nodes. These ports are typically in the range 30000-32768, although that range is customizable.
 
-`NodePort` services are useful for exposing pods to external traffic where external clients have network access to the Kubernetes nodes. For example, if your nodes have the hostnames `node1` and `node2`, the example service above allows clients to access http://node1:30007 or http://node2:30007. It doesn't matter which node the external client connects to, as Kubernetes configures the network routing to direct all traffic from port 30007 on *any* node to the appropriate pods.
+`NodePort` services are useful for exposing pods to external traffic where clients have network access to the Kubernetes nodes. For example, if your nodes have the hostnames `node1` and `node2`, the example service above allows clients to access http://node1:30007 or http://node2:30007. It doesn't matter which node the external client connects to, as Kubernetes configures the network routing to direct all traffic from port 30007 on *any* node to the appropriate pods.
 
 In practice I have not seen `NodePort` services used much in production systems. Unusual ports are frequently subject to restrictive firewall rules and it is hard to understand what service you are communicating with using a URL like http://node1:30007. `NodePort` services are great for testing though, as they may not require any additional infrastructure to expose pods to external traffic, making them a quick and easy way to debug a pod.
 
