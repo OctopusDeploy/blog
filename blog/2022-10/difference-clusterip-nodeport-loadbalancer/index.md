@@ -4,8 +4,9 @@ description: Learn the differences between the three kinds of Kubernetes service
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2999-01-01
-metaImage: 
-bannerImage: 
+metaImage: blogimage-testingkubernetes-2022.png
+bannerImage: blogimage-testingkubernetes-2022.png
+bannerImageAlt: Kubernetes logo on an open laptop screen
 tags:
  - Kubernetes
 ---
