@@ -90,7 +90,7 @@ spec:
       targetPort: 8080
 ```
 
-`LoadBalancer` services expose pods internally the same way a `NodePort` service does. In addition, `LoadBalancer` services create external network infrastructure to direct external network requests to pods in the cluster. On cloud platforms like Azure, AWS, and GCP, the external load balancer is typically provided by one of the cloud providers existing load balancer services. For example, an [EKS cluster](https://aws.amazon.com/eks/) on AWS may create an [Elastic Load Balancer (ELB)](https://aws.amazon.com/elasticloadbalancing/) to expose pods to public network traffic.
+`LoadBalancer` services expose pods internally the same way a `NodePort` service does. In addition, `LoadBalancer` services create external network infrastructure to direct network requests to pods in the cluster. On cloud platforms like Azure, AWS, and GCP, the external load balancer is typically provided by one of the cloud provider's existing load balancer services. For example, an [EKS cluster](https://aws.amazon.com/eks/) on AWS may create an [Elastic Load Balancer (ELB)](https://aws.amazon.com/elasticloadbalancing/) to expose pods to public network traffic.
 
 `LoadBalancer` services are the best choice when pods need to be exposed to external clients via a predictable URL, or when additional control is required over the connections made by external clients. By utilizing existing load balancer solutions offered by cloud providers, `LoadBalancer` services allow administrators to configure additional settings like scaling, firewalls, routing and more on external traffic destined for the pods.
 
@@ -102,6 +102,6 @@ The diagram below shows how external clients can communicate with pods via a loa
 
 ## Conclusion
 
-The different types of services in Kubernetes provide multiple ways to expose pods to network traffic. Selecting the correct service depends on whether you need to expose a pod internally in a cluster, to external clients that have access to non-standard ports, or to external clients that require the scale and flexibility of dedicated load balancers. In this post you learned the difference between the `ClusterIP`, `NodePort`, and `LoadBalancer` services and when each type may be used.
+The different types of Kubernetes services provide multiple ways to expose pods to network traffic. Selecting the correct service depends on whether you need to expose a pod internally in a cluster, to external clients that have access to non-standard ports, or to external clients that require the scale and flexibility of dedicated load balancers. In this post you learned the difference between the `ClusterIP`, `NodePort`, and `LoadBalancer` services and when each type may be used.
 
 Happy deployments!
