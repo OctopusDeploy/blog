@@ -18,7 +18,7 @@ Storing sensitive values in Octopus Deploy solves many problems. If your organiz
 
 Octopus has supported the concept of [sensitive variables](https://octopus.com/docs/projects/variables/sensitive-variables) since [Octopus 2.0](https://octopus.com/blog/new-in-2.0/sensitive-variables), but customers often ask about support for secret managers. One in particular is [HashiCorp Vault](https://www.vaultproject.io/).
 
-In this post, I walk through a number of [HashiCorp Vault step templates](https://library.octopus.com/listing/hashicorp%20vault) we introduced that are designed to retrieve secrets from Vault for use in your deployments or runbooks.
+In this post, I walk through a number of [HashiCorp Vault step templates](https://library.octopus.com/listing/hashicorp%20vault) we introduced that are designed to retrieve secrets from Vault, for use in your deployments or runbooks.
 
 ## In this post
 
@@ -26,7 +26,7 @@ In this post, I walk through a number of [HashiCorp Vault step templates](https:
 
 ## Introduction
 
-This post assumes some familiarity with [custom step templates](https://octopus.com/docs/projects/custom-step-templates) and the Octopus [Community Library](https://octopus.com/docs/projects/community-step-templates). To learn more about these, you can read Ryan Rousseau's [two-part series](https://octopus.com/blog/creating-an-octopus-deploy-step-template) on creating your own step template and publishing it to the library.
+This post assumes you know about [custom step templates](https://octopus.com/docs/projects/custom-step-templates) and the Octopus [Community Library](https://octopus.com/docs/projects/community-step-templates). To learn more about these, you can read Ryan Rousseau's [two-part series](https://octopus.com/blog/creating-an-octopus-deploy-step-template) on creating your own step template and publishing it to the library.
 
 In addition, this post doesn't go into detail about Vault server concepts or how to configure a Vault server.
 
@@ -53,7 +53,7 @@ Upon authentication with Vault, a [token](https://www.vaultproject.io/docs/conce
 
 ### LDAP login step {#ldap-login}
 
-The [HashiCorp Vault - LDAP Login](https://library.octopus.com/step-templates/de807003-3b05-4649-9af3-11a2c7722b3f/actiontemplate-hashicorp-vault-ldap-login) step template authenticates with a Vault Server using the [LDAP](https://www.vaultproject.io/docs/auth/ldap) authentication method. This allows Vault integration without having to duplicate username or password configuration.
+The [HashiCorp Vault - LDAP Login](https://library.octopus.com/step-templates/de807003-3b05-4649-9af3-11a2c7722b3f/actiontemplate-hashicorp-vault-ldap-login) step template authenticates with a Vault Server using the [LDAP](https://www.vaultproject.io/docs/auth/ldap) authentication method. This allows Vault integration without duplicating username or password configuration.
 
 You might choose to authenticate using LDAP if you already have an LDAP server available and use service accounts to control access to sensitive information.
 
@@ -98,7 +98,7 @@ In subsequent steps, the output variable `#{Octopus.Action[HashiCorp Vault - LDA
 
 The [HashiCorp Vault - JWT Login](https://library.octopus.com/step-templates/d49bc861-cd36-4624-960c-77613a54b139/actiontemplate-hashicorp-vault-jwt-login) step template authenticates with a Vault Server using the [JWT](https://www.vaultproject.io/docs/auth/ldap) authentication method. This allows Vault integration using a [JSON Web Token](https://en.wikipedia.org/wiki/JSON_Web_Token).
 
-You might choose to authenticate using a JWT if you're already using this auth method in your organization. It's seen as a good option when making requests over HTTP, as it's a self-contained token that can be generated anywhere.
+You might choose to authenticate using a JWT if you're already using this auth method in your organization. It's a good option when making requests over HTTP, as it's a self-contained token that can be generated anywhere.
 
 :::hint
 **Generating a JWT**
@@ -200,7 +200,7 @@ In subsequent steps, the output variable `#{Octopus.Action[HashiCorp Vault - App
 
 ### AppRole best practices {#approle-best-practices}
 
-The [AppRole](https://www.vaultproject.io/docs/auth/approle) authentication method is considered a _trusted-broker_ method. This means that the onus of trust rests in the system acting as the authentication intermediary (the _broker_) between the client (typically an Octopus deployment target) and Vault.
+The [AppRole](https://www.vaultproject.io/docs/auth/approle) authentication method is considered a _trusted-broker_ method. This means the onus of trust rests in the system acting as the authentication intermediary (the _broker_) between the client (typically an Octopus deployment target) and Vault.
 
 An important best practice is to avoid storing an AppRole SecretID. Instead, use [response wrapping](https://www.vaultproject.io/docs/concepts/response-wrapping) to provide a [wrapping token](https://www.vaultproject.io/docs/concepts/response-wrapping#response-wrapping-tokens) that will provide an access mechanism to retrieve a SecretID when required. This method of obtaining a SecretID is also known as a [Pull mode](https://www.vaultproject.io/docs/auth/approle#pull-and-push-secretid-modes) as it requires the SecretID to be fetched or _pulled_ from the AppRole.
 
@@ -437,9 +437,9 @@ One of the key advantages of the `v2` Key-Value secrets engine is its support fo
 
 Retrieving a single secret requires:
 
-- The path to the secret,
-- An authentication token with permission to access the secret.
-- _Optionally_, a list of field names to retrieve.
+- The path to the secret
+- An authentication token with permission to access the secret
+- _Optionally_, a list of field names to retrieve
 
 This step template offers advanced features:
 
