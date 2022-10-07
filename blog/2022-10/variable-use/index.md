@@ -4,9 +4,9 @@ description: Find out why it's so hard to see where variables are used.
 author: stephen.heise@octopus.com
 visibility: public
 published: 2022-10-12-1400
-metaImage:
-bannerImage:
-bannerImageAlt:
+metaImage: blogimage-variableusageinoctopus-2022.png
+bannerImage: blogimage-variableusageinoctopus-2022.png
+bannerImageAlt: A magnifying glass over a computer screen magnifies a variable.  
 isFeatured: false
 tags:
  - Engineering
