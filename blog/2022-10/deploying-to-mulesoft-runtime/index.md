@@ -1,12 +1,12 @@
 ---
-title: How to deploy to Mulesoft Runtime using Octopus Deploy
-description: Learn how to deploy a Mulesoft API to a Mulesoft Runtime.
+title: How to deploy to MuleSoft Runtime using Octopus Deploy
+description: Learn how to deploy a MuleSoft API to a MuleSoft Runtime.
 author: shawn.sesna@octopus.com
 visibility: public
 published: 2022-10-17-1400
-metaImage: to-be-added-by-marketing
-bannerImage: to-be-added-by-marketing
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-mulesoftruntimeusingoctopus-2022.png
+bannerImage: blogimage-mulesoftruntimeusingoctopus-2022.png
+bannerImageAlt: A rocket launching towards a MuleSoft logo with paths leading to a database icon and a smartphone icon.
 isFeatured: false
 tags:
  - DevOps
@@ -14,26 +14,26 @@ tags:
  - Java
 ---
 
-Mulesoft developed unique software that lets you create custom APIs to retrieve or manipulate information from on-premises or cloud-based systems. 
+MuleSoft developed unique software that lets you create custom APIs to retrieve or manipulate information from on-premises or cloud-based systems. 
 
-In this post, I show you how to deploy a Mulesoft API to a server running the [Mule Runtime](https://docs.mulesoft.com/mule-runtime/4.4/), using Octopus Deploy.
+In this post, I show you how to deploy a MuleSoft API to a server running the [Mule Runtime](https://docs.mulesoft.com/mule-runtime/4.4/), using Octopus Deploy.
 
 ## Getting started
 
 To follow along with this post, you need to download the following software:
 
-- [Mulesoft Anypoint Studio](https://www.mulesoft.com/platform/studio)
+- [MuleSoft Anypoint Studio](https://www.mulesoft.com/platform/studio)
 - [Mule Community Edition Runtime](https://developer.mulesoft.com/download-mule-esb-runtime)
 - [Maven](https://maven.apache.org/download.cgi) (optional)
 - [Postman](https://www.postman.com/downloads/) (optional)
 
 ### Installing Anypoint Studio
 
-Anypoint Studio is available from Mulesoft as a 30-day trial.  After filling in the form, download the ZIP file and extract it to your disk.  AnyPoint Studio isn't "installed" on your machine, so you can execute AnyPoint Studio after it's been extracted.
+Anypoint Studio is available from MuleSoft as a 30-day trial.  After filling in the form, download the ZIP file and extract it to your disk.  AnyPoint Studio isn't "installed" on your machine, so you can execute AnyPoint Studio after it's been extracted.
 
-### Configuring Mulesoft Runtime
+### Configuring MuleSoft Runtime
 
-To configure the Mule Community Edition Runtime, first install and configure Java.  The Mulesoft documentation recommends [Java 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html), however, I successfully used [Microsoft OpenJDK 11](https://docs.microsoft.com/en-us/java/openjdk/download#openjdk-11).  
+To configure the Mule Community Edition Runtime, first install and configure Java.  The MuleSoft documentation recommends [Java 8](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html), however, I successfully used [Microsoft OpenJDK 11](https://docs.microsoft.com/en-us/java/openjdk/download#openjdk-11).  
 
 After you have Java and the Mule Runtime installed, create the following system environment variables:
 
@@ -42,7 +42,7 @@ After you have Java and the Mule Runtime installed, create the following system 
 
 ![Environment variables for mule](environment-variables.png)
 
-By default, the Mule Community Runtime runs in the foreground.  To configure it to run as a service, follow the Mulesoft documentation:
+By default, the Mule Community Runtime runs in the foreground.  To configure it to run as a service, follow the MuleSoft documentation:
 
 - [Configuring Mule as a Linux or daemon](https://docs.mulesoft.com/mule-runtime/3.9/configuring-mule-as-a-linux-or-unix-daemon)
 - [Configuring Mule as a Windows service](https://docs.mulesoft.com/mule-runtime/3.9/configuring-mule-as-a-windows-service) 
@@ -147,7 +147,7 @@ mvn clean package
 
 3.  After the build is complete, navigate to the **target** sub-folder.  The build has produced a file called `hello-world-1.0.0-SNAPSHOT-mule-application.jar`.
 
-![Successuful maven build with generated .jar file](maven-build-success.png)
+![Successful maven build with generated .jar file](maven-build-success.png)
 
 ## Deploying the API
 
@@ -236,6 +236,6 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 
 ## Conclusion
 
-In this post, I showed you how to create an API using the Mulesoft Anytime Studio, and how to deploy it with Octopus Deploy to a server running Mule Community Edition Runtime.  
+In this post, you learnt how to create an API using the MuleSoft Anytime Studio, and how to deploy it with Octopus Deploy to a server running Mule Community Edition Runtime.  
 
 Happy deployments!
