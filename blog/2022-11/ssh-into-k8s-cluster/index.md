@@ -15,7 +15,7 @@ tags:
 
 Jump boxes or bastion hosts are a common networking strategy to expose a single secure entry point to the public internet, to access a private network. This single point of entry lets security teams closely monitor and control network access to the private network. Often the bastion host exposes a well known remote access service, like RDP or SSH, which teams can assume have been widely vetted and are trustworthy.
 
-In this post, you learn how to host an OpenSSH server in a Kubernetes cluster to perform administrative tasks.
+In this post, I explain how to host an OpenSSH server in a Kubernetes cluster to perform administrative tasks.
 
 ## Deploying an SSH Server
 
