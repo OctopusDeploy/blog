@@ -9,8 +9,8 @@ bannerImage: blogimage-building-octopus-cli-vnext.png
 bannerImageAlt: Desktop screen in the clouds with an Octopus Deploy logo in front of it.
 isFeatured: false
 tags:
-  - Engineering
   - Product
+  - Engineering
 ---
 
 The Octopus CLI has served us well for many years. However, it has some limitations we want to address. 
