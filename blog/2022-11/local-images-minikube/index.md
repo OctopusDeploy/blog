@@ -1,24 +1,25 @@
 ---
 title: Using local images with minikube
-description: Learn how to deploy locally built Docker images to minikube
+description: Learn how to deploy locally built Docker images to minikube.
 author: matthew.casperson@octopus.com
-visibility: private
-published: 2999-01-01
+visibility: public
+published: 2022-11-21-1400
 metaImage: blogimage-microservicesframeworks-2022.jpg
 bannerImage: blogimage-microservicesframeworks-2022.jpg
 bannerImageAlt: 3 people building an unstable looking tower with blue blocks, beside 2 people building a stable, lower tower with blue blocks.
 tags:
+ - DevOps
  - Kubernetes
  - Docker
 ---
 
-[minikube](https://minikube.sigs.k8s.io/docs/start/) provides DevOps teams with a local development Kubernetes cluster. Developing Kubernetes applications locally will often entail building and deploying local Docker images. While minikube will download any Docker images hosted on an external Docker registry, exposing locally built images requires loading the images into the minikube cluster and being aware of some edge cases that throw unhelpful error messages. 
+[minikube](https://minikube.sigs.k8s.io/docs/start/) provides DevOps teams with a local development Kubernetes cluster. Developing Kubernetes applications locally often entails building and deploying local Docker images. While minikube will download any Docker images hosted on an external Docker registry, exposing locally built images requires loading the images into the minikube cluster and being aware of some edge cases that throw unhelpful error messages. 
 
-In this post I'll show you how to deploy locally built Docker images to minikube.
+In this post, I show you how to deploy locally built Docker images to minikube.
 
 ## Building the Docker images
 
-The [underwater sample app](https://github.com/OctopusSamples/octopus-underwater-app) provides a simple Docker image for testing. Run the following command to clone the git repo:
+The [Octopus underwater sample app](https://github.com/OctopusSamples/octopus-underwater-app) provides a simple Docker image for testing. Run the following command to clone the git repo:
 
 ```bash
 git clone https://github.com/OctopusSamples/octopus-underwater-app.git
@@ -42,7 +43,7 @@ Finally, run the Docker image with the command:
 docker run -p 5000:80 underwater
 ```
 
-The sample web app is then available at http://localhost:5000.
+The sample web app is then available at `http://localhost:5000`.
 
 ## Pushing images to minikube
 
@@ -91,13 +92,13 @@ kubectl apply -f underwater.yaml
 
 The application is then successfully deployed to the minikube cluster.
 
-One important thing to note is that the Docker image has no tag, which means it has the default tag of `latest`. So the `image` property in the YAML above could be replaced with the following text, as the two image references are equivalent:
+It's important to note that the Docker image has no tag, which means it has the default tag of `latest`. So the `image` property in the YAML above could be replaced with the following text, as the 2 image references are equivalent:
 
 ```
 image: underwater:latest
 ```
 
-Using images with the `latest` tag has special implications which required setting the `imagePullPolicy` to `Never` (or `IfNotPresent`). To understand why, you need to understand the default image pull policy.
+Using images with the `latest` tag has special implications which require setting the `imagePullPolicy` to `Never` (or `IfNotPresent`). To understand why, you need to understand the default image pull policy.
 
 ## Using latest images
 
@@ -141,22 +142,22 @@ View the status of the pods created by this deployment with the command:
 kubectl get pods
 ```
 
-You'll see that the status is `ImagePullBackOff`:
+You see that the status is `ImagePullBackOff`:
 
 ```bash
 NAME                          READY   STATUS             RESTARTS   AGE
 underwater-847d6f9646-pvzxb   0/1     ImagePullBackOff   0          15m
 ```
 
-This is because you deployed an image with the `latest` tag and did not specify the `imagePullPolicy`, meaning the default value of `Always` is used. This in turn means minikube attempts to download the image `docker.io/underwater:latest`, because images with no registry in their name default to `docker.io`. The image `docker.io/underwater:latest` does not exist, hence the `ImagePullBackOff` error.
+This is because you deployed an image with the `latest` tag and didn't specify the `imagePullPolicy`, meaning the default value of `Always` is used. This in turn means minikube attempts to download the image `docker.io/underwater:latest`, because images with no registry in their name default to `docker.io`. The image `docker.io/underwater:latest` does not exist, hence the `ImagePullBackOff` error.
 
-There are two ways around this:
+There are 2 ways around this:
 
-* Set `imagePullPolicy` to `Never` or `IfNotPresent`
-* Add a tag to the image, e.g. `docker build . -t underwaterapp:0.0.1` and `minikube image load underwater:0.0.1`
+- Set `imagePullPolicy` to `Never` or `IfNotPresent`
+- Add a tag to the image, e.g. `docker build . -t underwaterapp:0.0.1` and `minikube image load underwater:0.0.1`
 
 ## Conclusion
 
-Using locally built Docker images in minikube is an easy process, but you need to be aware of the rules surrounding the image pull policy to ensure Kubernetes does not attempt to download an non-existent image from the default Docker registry.
+Using locally built Docker images in minikube is an easy process, but you need to be aware of the rules surrounding the image pull policy to ensure Kubernetes doesn't attempt to download a non-existent image from the default Docker registry.
 
 Happy deployments!
