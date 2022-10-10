@@ -51,7 +51,7 @@ The new Octopus CLI (`octopus`) represents an evolution of the Octopus CLI. For 
 
 ![Demo: Create Release with Octopus CLI vNext](demo-create-release.gif)
 
-An interactive CLI will guide both first-time and experienced users down a path to the outcome they want. That stated, the new Octopus CLI will support automation as its primary use case.
+An interactive CLI will guide both first-time and experienced users down a path to the outcome they want. That said, the new Octopus CLI will support automation as its primary use case.
 
 ![Demo: Deploy Release with Octopus CLI vNext](demo-release-deploy.gif)
 
