@@ -36,6 +36,14 @@ You'll often find statements that mention the relationship between the SDO perfo
 
 Teams who excel in all five measures exhibit exceptional organizational performance.
 
+## Clusters
+
+- What is a cluster
+  - You throw down all the different organizations onto a chart and the clusters appear
+  - Organizations in a cluster are all similar to each other
+  - Organizations in one cluster are different to organizations in other clusters
+  - You create the clusters *after* the data, so they can change... they appear from the data
+
 ## Software delivery performance clusters
 
 If you've followed the report for a while, you'll be familiar with the software delivery performance clusters. Each group represents a different level of performance against throughput and stability metrics. This usually results in four clusters:
@@ -53,19 +61,21 @@ Organizations can assess their performance based on the same measures and identi
 
 ### How Software delivery clusters changed in 2022
 
-There are changes for all 4 clusters in the 2022 report. The most dramatic difference is that the elite cluster failed to emerge from the data, so it was removed. The other groups also changed:
+There are changes for all 4 clusters in the 2022 report. The most dramatic difference is that the elite cluster failed to emerge from the data, so the researchers had to remove it from this year's report. The other groups also changed:
 
 - The high-performance group was smaller
 - The medium group is performing better than before
 - The low group is performing better than before but has grown
 
+In the chart below, you'll find a comparison of 2021 and 2022. The performance axis shows how the clusters have moved over the past year. The medium and high clusters are both performing better. The circles indicate the number of organizations in each cluster.
+
 ![Comparison of performance](2021-2022-performance.png)
 
+You can draw some conclusions from this chart, such as the high-performance group has fewer organizations but performs better. Although the medium cluster is much larger, it also performs better than last year.
 
+Further research will be needed to understand the cause of the changes to clusters, but it is likely to relate to a demographic shift in respondents.
 
-Further research will be needed to understand the cause of these changes, but it is likely to relate to a change in demographics.
-
-In previous years, many respondents were highly experienced in software delivery. In 2022 the proportion of respondents with more than 10 years of experience fell by half. The change seems less surprising as most respondents have less experience than those answering the surveys in prior years.
+In previous years, many respondents had been in software delivery for a decade or more. In 2022 the proportion of respondents with more than 10 years of experience fell by half. The change seems less surprising as most respondents have less experience than those answering the surveys in prior years.
 
 ![Respondents in 2022 had less experience than last year](years-of-experience.png)
 
@@ -73,26 +83,9 @@ While you can see the clear change in demographics, what isn't known is whether 
 
 Removing the elite performance category doesn't mean these organizations gave up software development. It tells us that this year's respondents had less experience overall and performed less well against the throughput and stability metrics.
 
+### Performance still matters
 
-
-
-
-
-  - In 2022, just low, medium, and high (elite and high rolled into one)
-    - The high cluster (11%) performs between previous high and elite levels (as expected) but has got substantially smaller
-    - The medium cluster is performing better than previously, and is the largest cluster (69%)
-    - The low cluster is performing a little better than before, but has also grown (19%)
-    - Yes, it adds up to 99% and also... it kinda depends on who writes back each year... so make sure you respond next year to give us all the most complete picture
-    - Key fact... high performers deploy 417x more often than low performers!
-  - Cluster table based on original 4 DORA metrics
-
-
-
-- What is a cluster
-  - You throw down all the different organizations onto a chart and the clusters appear
-  - Organizations in a cluster are all similar to each other
-  - Organizations in one cluster are different to organizations in other clusters
-  - You create the clusters *after* the data, so they can change... they appear from the data
+Despite dramatic changes, one thing that remains the same is the gulf between high and low performers. The report still shows that software delivery performance predicts organizational outcomes.
 
 
 
