@@ -2,7 +2,7 @@
 title: Checking Kubernetes pod CPU and memory
 description: Learn how to check a pod's resource usage in Kubernetes
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2022-11-16-1400
 metaImage: blogimage-gettingstartedwithdockeralpine2-2022.png
 bannerImage: blogimage-gettingstartedwithdockeralpine2-2022.png
