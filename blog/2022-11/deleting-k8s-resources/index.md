@@ -2,7 +2,7 @@
 title: Bulk deletion of Kubernetes resources
 description: Learn how to delete Kubernetes resources like pods in bulk.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2022-11-14-1400
 metaImage: blogimage-testingkubernetes-2022.png
 bannerImage: blogimage-testingkubernetes-2022.png
@@ -15,7 +15,7 @@ tags:
 
 Kubernetes makes it easy to create many resources at once, with the `kubectl apply -f filename.yaml` command creating all the resources in a compound YAML file. But how do you then delete multiple resources without specifying them individually? 
 
-In this post, you learn how to perform bulk deletions of Kubernetes resources.
+In this post, I show you how to perform bulk deletions of Kubernetes resources.
 
 ## Example Kubernetes deployment
 
@@ -82,7 +82,7 @@ The easiest way to delete these resources is to use the `delete` command and pas
 kubectl delete -f nginx.yaml
 ```
 
-If you rerun the `kubectl get` commands above you see the pods, deployment, and service are deleted. Because the pods are managed by the deployment, deleting the deployment also deletes the pods.
+If you re-run the `kubectl get` commands above you see the pods, deployment, and service are deleted. Because the pods are managed by the deployment, deleting the deployment also deletes the pods.
 
 ## Manually deleting resources
 
