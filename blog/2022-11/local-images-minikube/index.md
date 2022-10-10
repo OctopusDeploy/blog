@@ -154,7 +154,7 @@ This is because you deployed an image with the `latest` tag and didn't specify t
 There are 2 ways around this:
 
 - Set `imagePullPolicy` to `Never` or `IfNotPresent`
-- Add a tag to the image, e.g. `docker build . -t underwaterapp:0.0.1` and `minikube image load underwater:0.0.1`
+- Add a tag to the image, for example, `docker build . -t underwaterapp:0.0.1` and `minikube image load underwater:0.0.1`
 
 ## Conclusion
 
