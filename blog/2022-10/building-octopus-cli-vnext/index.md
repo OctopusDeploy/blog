@@ -61,6 +61,7 @@ The new Octopus CLI is based on the Go programming language. The language and it
 
 Go is a highly-concurrent language that's well-suited for building a CLI. The [Go API Client for Octopus Deploy](https://github.com/OctopusDeploy/go-octopusdeploy) was also built to support the [Terraform Provider for Octopus Deploy](https://github.com/OctopusDeployLabs/terraform-provider-octopusdeploy). It's been put through its paces. 
 
+Finally, Go lends itself to a small runtime footprint through multi-platform support that's based on C++. This provides a small executable file size and a small set of requirements on the target environment – this combines to support scenarios where customers wish to use the CLI with Bash (for example) via `curl`.
 
 ## We need your help
 
