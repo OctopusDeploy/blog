@@ -17,7 +17,7 @@ Traditionally-speaking, building a command line interface (CLI) that's powerful 
 
 ## The State of the Octopus CLI (octo)
 
-The [Octopus CLI](https://github.com/OctopusDeploy/OctopusCLI) (`octo`) is built on C# and relies heavily on the [OctopusClients](https://github.com/OctopusDeploy/OctopusClients/tree/master/source/Octopus.Server.Client) library. It provides commands to facilitate the automation of deployments and runbook execution. Notable commands include `build-information`, `create-release`, `deploy-release`, `pack`, `push`, and `run-runbook`. The Octopus CLI remains one of the most productive means for interacting with the Octopus REST API. It empowers our customers to automate repetitive tasks while providing the flexibility to perform one-off commands. In fact, most of the integrations we build and maintain for supported CI platforms like Azure DevOps, GitHub Actions, and TeamCity use it to perform operations in concert with the Octopus REST API.
+The [Octopus CLI](https://github.com/OctopusDeploy/OctopusCLI) (`octo`) is built on C# and relies heavily on the [OctopusClients](https://github.com/OctopusDeploy/OctopusClients/tree/master/source/Octopus.Server.Client) library. It provides commands to facilitate the automation of deployments and runbook execution. Notable commands include `build-information`, `create-release`, `deploy-release`, `pack`, `push`, and `run-runbook`. The Octopus CLI remains one of the most productive means for interacting with the [Octopus REST API](https://octopus.com/docs/octopus-rest-api). It empowers our customers to automate repetitive tasks while providing the flexibility to perform one-off commands. In fact, most of the integrations we build and maintain for supported platforms like Azure DevOps, GitHub Actions, and TeamCity use it to perform operations in concert with the [Octopus REST API](https://octopus.com/docs/octopus-rest-api).
 
 The Octopus CLI has served us well for many years. However, there are a number of limitations that we wish to address:
 
@@ -43,7 +43,7 @@ The new Octopus CLI is based on the Go programming language. The language and it
 
 ## Why Use Go as a Programming Language?
 
-Go is a highly-concurrent language that is well-suited for building a CLI. Furthermore, the [Go API Client for Octopus Deploy](https://github.com/OctopusDeploy/go-octopusdeploy) has been built to support the [Terraform Provider for Octopus Deploy](https://github.com/OctopusDeployLabs/terraform-provider-octopusdeploy). It has been put through its paces. Finally, Go lends itself to a small runtime footprint through multiplatform support that's based on C++. This provides a small executable file size and a small set of requirements on the target environment – this combines to support scenarios where customers wish to use the CLI with Bash (for example) via curl commands.
+Go is a highly-concurrent language that is well-suited for building a CLI. Furthermore, the [Go API Client for Octopus Deploy](https://github.com/OctopusDeploy/go-octopusdeploy) has been built to support the [Terraform Provider for Octopus Deploy](https://github.com/OctopusDeployLabs/terraform-provider-octopusdeploy). It has been put through its paces. Finally, Go lends itself to a small runtime footprint through multiplatform support that's based on C++. This provides a small executable file size and a small set of requirements on the target environment – this combines to support scenarios where customers wish to use the CLI with Bash (for example) via `curl`.
 
 ## We Need Your Help
 
