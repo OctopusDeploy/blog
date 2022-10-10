@@ -47,36 +47,33 @@ If you've followed the report for a while, you'll be familiar with the software 
 | Medium            | 1-6 months     | Monthly to biannually          | 16-30%              | 1 day - 1 week       |
 | Low               | > 6 months     | Fewer than once every 6 months | 16-30%              | > 6 months           |
 
+Although the same names are used for the clusters each year, the overall performance of a cluster changes. For example, if you take an organization from the center of the medium performance group, you'll find their performance differs each year. Organizations at the edge of a cluster might move up or down each year. The clusters emerge from the data, not the other way around.
+
 Organizations can assess their performance based on the same measures and identify potential improvement areas.
 
-## What changed in 2022?
+### How Software delivery clusters changed in 2022
 
-- The elite cluster has gone
-- The high-performance group shrank
+There are changes for all 4 clusters in the 2022 report. The most dramatic difference is that the elite cluster failed to emerge from the data, so it was removed. The other groups also changed:
+
+- The high-performance group was smaller
 - The medium group is performing better than before
-- The low cluster is performing better than before but has grown
+- The low group is performing better than before but has grown
+
+![Comparison of performance](2021-2022-performance.png)
 
 
-Different people respond. This usually doesn't change the insights if the groups of respondents each year reflects the target population. However, there was a big demographic change this year with fewer experienced respondents.
+
+Further research will be needed to understand the cause of these changes, but it is likely to relate to a change in demographics.
+
+In previous years, many respondents were highly experienced in software delivery. In 2022 the proportion of respondents with more than 10 years of experience fell by half. The change seems less surprising as most respondents have less experience than those answering the surveys in prior years.
 
 ![Respondents in 2022 had less experience than last year](years-of-experience.png)
 
-This could mean either:
+While you can see the clear change in demographics, what isn't known is whether this makes the sample more or less representative of the software development industry. However, as an individual looking at the insights, you can now think about how the level of experience in your team might affect your performance. You may be more likely to be an elite performer if your team has more members with a decade or more of software development experience.
 
-- Past surveys have been skewed towards higher levels of experience because those were the organizations interested in DevOps
-- The 2022 survey may be skewed towards less experience as the researchers wanted to get more responses from individual contributors
-- A little of both
+Removing the elite performance category doesn't mean these organizations gave up software development. It tells us that this year's respondents had less experience overall and performed less well against the throughput and stability metrics.
 
 
-
-
-The latest [Accelerate State of DevOps Report] is missing the *elite* cluster. The data collected in 2022 didn't have a clear gap between hight and elite performers, so they had to be considered a single group.
-
-The performance of the high performance group increased, but 
-
-
-
-You might be surprised by this change, so it worth looking at the re
 
 
 
