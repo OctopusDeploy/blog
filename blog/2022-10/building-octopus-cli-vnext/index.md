@@ -1,6 +1,6 @@
 ---
 title: Building Octopus CLI vNext
-description: Introducing the evolution of the Octopus CLI
+description: Building the next version of the Octopus CLI
 author: john.bristowe@octopus.com
 visibility: public
 published: 2022-10-14-1400
@@ -10,16 +10,17 @@ bannerImageAlt: Desktop screen in the clouds with an Octopus Deploy logo in fron
 isFeatured: false
 tags:
   - CLI
+  - Product
   - Tools
 ---
 
-Traditionally-speaking, building a command line interface (CLI) that's powerful yet intuitive has been challenging. However, with various programming languages and frameworks, it's never been easier to build a CLI that users love. In this article, you'll learn how we're planning to dramatically improve the Octopus CLI.
+The Octopus CLI has served us well for many years. However, it has some limitations that we wish to address. In this article, we'll share with you our plans to evolve the CLI experience.
 
 ## The State of the Octopus CLI (octo)
 
 The [Octopus CLI](https://github.com/OctopusDeploy/OctopusCLI) (`octo`) is built on C# and relies heavily on the [OctopusClients](https://github.com/OctopusDeploy/OctopusClients/tree/master/source/Octopus.Server.Client) library. It provides commands to facilitate the automation of deployments and runbook execution. Notable commands include `build-information`, `create-release`, `deploy-release`, `pack`, `push`, and `run-runbook`. The Octopus CLI remains one of the most productive means for interacting with the [Octopus REST API](https://octopus.com/docs/octopus-rest-api). It empowers our customers to automate repetitive tasks while providing the flexibility to perform one-off commands. In fact, most of the integrations we build and maintain for supported platforms like Azure DevOps, GitHub Actions, and TeamCity use it to perform operations in concert with the [Octopus REST API](https://octopus.com/docs/octopus-rest-api).
 
-The Octopus CLI has served us well for many years. However, there are a number of limitations that we wish to address:
+The Octopus CLI has served us well for many years. However, it has some limitations that we wish to address:
 
 - **Built for automation, not for people:** when you use the Octopus CLI, it's evident that it was built primarily as an automation tool. The CLI needs to evolve to include a human-first design.
 - **Inconsistent command structure and output:** the Octopus CLI command structure is inconsistent due to commands being added over the years. The output is not governed by an overarching strategy. There are notable exceptions in the command structure that hurts consistency (e.g. pack). Furthemore, these commands are grouped by operations rather than by the target resource. This hurts the overall user experience and makes it difficult to evolve the set of commands.
@@ -41,7 +42,7 @@ An interactive CLI will guide both first-time and experienced users down a path 
 
 The new Octopus CLI is based on the Go programming language. The language and its supporting libraries are ideally suited for building a CLI. Furthermore, we wish to use this opportunity to improve the [Go API Client for Octopus Deploy](https://github.com/OctopusDeploy/go-octopusdeploy), which underpins the [Terraform Provider for Octopus Deploy](https://github.com/OctopusDeployLabs/terraform-provider-octopusdeploy).
 
-## Why Use Go as a Programming Language?
+## Why Use Go to Build a CLI?
 
 Go is a highly-concurrent language that is well-suited for building a CLI. Furthermore, the [Go API Client for Octopus Deploy](https://github.com/OctopusDeploy/go-octopusdeploy) has been built to support the [Terraform Provider for Octopus Deploy](https://github.com/OctopusDeployLabs/terraform-provider-octopusdeploy). It has been put through its paces. Finally, Go lends itself to a small runtime footprint through multiplatform support that's based on C++. This provides a small executable file size and a small set of requirements on the target environment – this combines to support scenarios where customers wish to use the CLI with Bash (for example) via `curl`.
 
