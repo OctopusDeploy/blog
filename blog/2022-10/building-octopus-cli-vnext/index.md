@@ -1,6 +1,6 @@
 ---
 title: Building Octopus CLI vNext
-description: Find out about the release of the 2022 Accelerate State of DevOps report.
+description: Introducing the evolution of the Octopus CLI
 author: john.bristowe@octopus.com
 visibility: public
 published: 2022-10-14-1400
