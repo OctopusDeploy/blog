@@ -1,5 +1,5 @@
 ---
-title: Building Octopus CLI vNext
+title: Building the Octopus CLI vNext
 description: Learn about our plans to build the next version of the Octopus CLI.
 author: john.bristowe@octopus.com
 visibility: public
@@ -13,7 +13,7 @@ tags:
   - Engineering
 ---
 
-The Octopus CLI has served us well for many years. However, it has some limitations we want to address. 
+The Octopus command-line interface (CLI) has served us well for many years. However, it has some limitations we want to address. 
 
 In this post, I share our plans to evolve the CLI experience with Octopus Deploy.
 
