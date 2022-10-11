@@ -112,43 +112,36 @@ Here are the SDO performance clusters:
 | Slowing  | 1 week - 1 month | Weekly or monthly          | 0-15%        | < 1 day        | Usually       |
 | Retiring | **1-6 months**   | **Monthly or bi-annually** | **46-60%**   | **1-6 months** | Usually       |
 
-These groups are more descriptive than the software delivery performance clusters. Rather than striving for high performance across all products and teams, an organization can take a more balanced approach. An organization can plan for different performance levels from teams working on their core product and teams working on a new product.
+These groups are more descriptive than the software delivery performance clusters. Rather than striving for high performance across all products and teams, an organization can take a more balanced approach. An organization can plan for different performance levels from teams working on their core product and others working on a new product.
 
-You need to approach this with caution. Where you value reliability, you may be tempted to lower expectations for deployment frequency to improve system stability. This is an example of an intuitive response that doesn't have the intended effect. Teams should be in the flowing cluster for any system vital to your organization.
+This approach isn't without its hazards. Many teams remain in the starting group permanently, never resolving the reliability issues that would unlock their software delivery performance. Equally, Not all teams in the retiring cluster are in the process of shutting down a system. The same performance characteristics would be present in an organization where the operations team acts as gatekeepers, preventing changes from moving through the system.
 
-There is a danger that these clusters will support a narrative of maturity-based performance. Organizations that adopt this mindset will consider their product stable and seek to lower expectations from flowing to slowing. This action is appropriate in fewer situations than people think. If you have an internal system that is complete, the slowing label may fit, but for software products, there are few cases where this is appropriate.
+You should view the cluster names as best-fit explanations for deliberate performance choices. You might choose to give up some reliability to encourage risk-taking and innovation on a new product concept. If you don't make intentional choices, you risk inventing a narrative to explain poor performance. Future research may test how accurate the cluster names are.
 
-To avoid this trap:
+The most practical application of the new clusters is to use them to focus your efforts on your core software systems. The systems you sell and the line-of-business applications that give you a competitive advantage are the ones to bring into a flowing state. Never classify these systems as *slowing*, and only designate a system as *retiring* when you have an active plan for its withdrawal or replacement.
 
-- Never use the *slowing* classification for software products
-- Only classify as system as *retiring* if you have an active plan to replace or withdraw it
+Teams in the flowing state more commonly use the capabilities of the DevOps structural equation model, such as:
 
-
-
-
-
-- The new clusters are based on all 5 SDO metrics
-  - Created because operations capability is critical for software delivery performance - organizations with great software delivery potential don't get results if the operations capability isn't there
-  - Less judgmental, more descriptive
-  - Starting, flowing (17%), slowing (>33%), retiring
-  - You should take action if your plan doesn't align to the cluster description, if you find yourself in the Slowing or Retiring cluster for a core software product, you need to take action
-  - If you are retiring software and find it ranks as retiring in the model, that's to be expected
-  - Bear in mind how Google operates, they have lots of software products in various stages of their lifecycle, from established search and advertising products, to flagship cloud products, to long-tooth products that are destined to follow Google Reader and Google+. If you are working at a product company, you might have one really critical product and you really need to be in the flowing state. For line of business apps you might happy to cruise in slowing mode if the apps aren't creating a core differentiation from competitors, but otherwise you'll want to aim for flowing too.
-  - *If your cluster doesn't match your product ambition, you need to pay attention to that and change*
-
-- The flowing state
-  - The following are more common in this cluster
+    - Deployment automation
     - Loosely coupled architectures
+    - [Continuous Delivery](https://octopus.com/devops/continuous-delivery/)
+    - Version control
     - Flexible work arrangements
-    - Version control and change management (code and configuration)
-    - Continuous integration - more frequent integrations to the main branch
-    - Continuous Delivery - they get changes into production safely, sustainably, and efficiently
-    - Unlike other clusters, they manage high SDO performance without documentation, other clusters perform less well unless they have more documentation
-    - The flowing cluster most needs generative culture and organizational performance suffers without it
 
-    - Other clusters may achieve an adequate performance level, but at a far greater cost and with burnout, unplanned work, and low rates of software change... the retiring cluster is where large organizations with an ops team that reign supreme exist... no changes happen without their approval, so things are reliable, but slow and people will burn out (DENPLAN :)) A large organization is likely to be successful for reasons other than technology
-    - It is likely more research is needed to further understand the clusters
+While some organizations achieve adequate performance without flowing software delivery and operations, they do so at greater cost with more burnout, unplanned work, and lower change rates.
 
-- The real measures are organization wide, real-world performance against your commercial and non-commercial goals
+## Conclusion
+
+The disappearance of the elite performance cluster may be related to the change in demographics.
+
+The new SDO performance clusters need further research and analysis but provide an interesting way to focus continuous improvement efforts if your organization has many software systems under development.
+
+The real measures are organization-wide, real-world performance against your commercial and non-commercial goals.
+
+## Further reading
+
+- [The 2022 State of DevOps Report](https://cloud.google.com/devops/state-of-devops/)
+- [The DevOps Engineer's handbook](https://octopus.com/devops/)
+- [White Paper: Measuring Continuous Delivery](https://octopus.com/whitepapers/lv-measuring-continuous-delivery-and-devops)
 
 Happy deployments!
