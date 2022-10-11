@@ -18,35 +18,33 @@ This post introduces you to the traditional performance groups, explains this ye
 
 ## Previous changes
 
-Some previous adjustments to the report have a bearing on the new changes that emerged this year. In past reports, 4 key metrics were used to predict the performance of an organization:
+Some previous adjustments to the report have a bearing on the new changes that emerged this year. In past reports, DORA (DevOps Research and Assessment) researchers used 4 key metrics to predict the performance of an organization:
 
  - Throughput
 
- 1. Deployment frequency (DF)
- 1. Lead time for changes (LT)
+ 1. Deployment frequency
+ 1. Lead time for changes
 
  - Stability
 
- 3. Change failure rate (CFR)
- 3. Mean time to recovery (MTTR)
+ 3. Change failure rate
+ 3. Mean time to recovery
 
-In 2018, a fifth metric was added for *availability*. The researchers later changed this to *reliability*. The original 4 metrics represented software delivery performance, but with the added reliability metric, the complete set measures software delivery and operational performance (often shortened to "SDO performance").
+In 2018, DORA added a new metric for *availability*. They later changed this to *reliability*. You could measure software delivery performance with the original 4 metrics, but using all 5 lets you measure software delivery *and operational* performance, often shortened to *SDO performance*.
 
-You'll often find statements that mention the relationship between the SDO performance metrics and broader organizational performance.
-
-Teams who excel in all five measures exhibit exceptional organizational performance.
+Performing well against all 5 measures drives organizational performance. The organization is more likely to achieve its goals where teams excel in these metrics.
 
 ## Clusters
 
-- What is a cluster
-  - You throw down all the different organizations onto a chart and the clusters appear
-  - Organizations in a cluster are all similar to each other
-  - Organizations in one cluster are different to organizations in other clusters
-  - You create the clusters *after* the data, so they can change... they appear from the data
+A cluster is a group of data whose members are more similar to each other than they are to items in another group. This is useful in the State of DevOps report as it allows many different organizations to be arranged methodically for comparison.
+
+The research team uses hierarchical clustering to discover the performance groups in the State of DevOps report. This technique doesn't define clusters in advance but lets them emerge from the data.
+
+These clusters are used to test hypotheses, such as "Continuous Delivery drives software delivery performance". Each time the researchers repeat the analysis on a different sample, they can test the validity of the hypothesis.
 
 ## Software delivery performance clusters
 
-If you've followed the report for a while, you'll be familiar with the software delivery performance clusters. Each group represents a different level of performance against throughput and stability metrics. This usually results in four clusters:
+If you've followed the State of DevOps Report for a while, you'll be familiar with the software delivery performance clusters. Each group represents a different level of performance against throughput and stability metrics. This usually results in four groups:
 
 | Performance level | Lead time      | Deployment frequency           | Change failure rate | Mean time to resolve |
 |-------------------|----------------|--------------------------------|---------------------|----------------------|
@@ -83,9 +81,49 @@ While you can see the clear change in demographics, what isn't known is whether 
 
 Removing the elite performance category doesn't mean these organizations gave up software development. It tells us that this year's respondents had less experience overall and performed less well against the throughput and stability metrics.
 
-### Performance still matters
+Despite dramatic changes, one thing that remains the same is the gap between high and low performers. The report still shows that software delivery performance predicts organizational outcomes.
 
-Despite dramatic changes, one thing that remains the same is the gulf between high and low performers. The report still shows that software delivery performance predicts organizational outcomes.
+## The SDO performance clusters
+
+The new clusters for SDO performance use all 5 metrics for throughput, stability, and operational performance:
+
+ - Throughput
+
+  1. Deployment frequency
+  2. Lead time for changes
+
+ - Stability
+
+  3. Change failure rate
+  3. Mean time to recovery
+
+- Operational performance
+
+  5. Reliability
+
+The reliability metric captures how often the team achieves its reliability targets. Each group's label suggests a scenario where you might expect the performance level. For example, the "starting" cluster exhibits performance you'd expect from a team starting out with modest performance against each dimension. In the early stages of development, the team may be focused more on innovation than reliability.
+
+Here are the SDO performance clusters:
+
+| Cluster  | Lead time        | Deployment frequency       | Failure rate | MTTR           | Reliability   |
+|----------|------------------|----------------------------|--------------|----------------|---------------|
+| Starting | 1 week - 1 month | Weekly or monthly          | **31-45%**   | 1-7 days       | **Sometimes** |
+| Flowing  | < 1 day          | On demand                  | 0-15%        | < 1 hour       | Usually       |
+| Slowing  | 1 week - 1 month | Weekly or monthly          | 0-15%        | < 1 day        | Usually       |
+| Retiring | **1-6 months**   | **Monthly or bi-annually** | **46-60%**   | **1-6 months** | Usually       |
+
+These groups are more descriptive than the software delivery performance clusters. Rather than striving for high performance across all products and teams, an organization can take a more balanced approach. An organization can plan for different performance levels from teams working on their core product and teams working on a new product.
+
+You need to approach this with caution. Where you value reliability, you may be tempted to lower expectations for deployment frequency to improve system stability. This is an example of an intuitive response that doesn't have the intended effect. Teams should be in the flowing cluster for any system vital to your organization.
+
+There is a danger that these clusters will support a narrative of maturity-based performance. Organizations that adopt this mindset will consider their product stable and seek to lower expectations from flowing to slowing. This action is appropriate in fewer situations than people think. If you have an internal system that is complete, the slowing label may fit, but for software products, there are few cases where this is appropriate.
+
+To avoid this trap:
+
+- Never use the *slowing* classification for software products
+- Only classify as system as *retiring* if you have an active plan to replace or withdraw it
+
+
 
 
 
