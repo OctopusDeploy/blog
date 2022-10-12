@@ -44,7 +44,7 @@ Researchers test hypotheses using clusters. For example, by grouping organizatio
 
 ## Software delivery performance clusters
 
-If you've followed the State of DevOps Report for a while, you'll be familiar with the software delivery performance clusters. Each group represents a different level of performance against throughput and stability metrics. This usually results in four clusters:
+If you've followed the State of DevOps Report for a while, you'll be familiar with the software delivery performance clusters. Each group represents a different level of performance against throughput and stability metrics. This usually results in four clusters.
 
 | Performance level | Lead time      | Deployment frequency           | Change failure rate | Mean time to resolve |
 |-------------------|----------------|--------------------------------|---------------------|----------------------|
@@ -57,25 +57,11 @@ Organizations can compare their software delivery performance to the clusters ba
 
 ### How Software delivery clusters changed in 2022
 
-There are changes for all 4 clusters in the 2022 report. The most dramatic difference is that the elite cluster failed to emerge from the data, so the researchers had to remove it from this year's report. The other groups also changed:
+The most apparent change to the clusters in 2022 is that there are only 3 performance groups, not 4. The removal of the elite performance group is described in more detail later, but let's first consider the changes to the other clusters as they are just as surprising.
 
-- The high-performance group represented a smaller proportion of respondents
-- The performance of the medium group was higher than last year
-- The low group is also performing better than 2021, but is also larger
+#### The low-performance group
 
-| Performance level | Lead time          | Deployment frequency       | Change failure rate | Mean time to resolve |
-|-------------------|--------------------|----------------------------|---------------------|----------------------|
-| 2021 Elite        | < 1 hour           | **Multiple times per day** | **0-15%**           | < 1 hour             |
-| 2021 High         | **1 day - 1 week** | Weekly to monthly          | 16-30%              | **< 1 day**          |
-| High (new)        | 1 day - 1 week     | Multiple times per day     | 0-15%               | < 1 day              |
-
-
-| Performance level | Lead time             | Deployment frequency  | Change failure rate | Mean time to resolve |
-|-------------------|-----------------------|-----------------------|---------------------|----------------------|
-| 2021 High         | 1 day - 1 week        | **Weekly to monthly** | **16-30%**          | < 1 day              |
-| 2021 Medium       | 1-6 months            | Monthly to biannually | **16-30%**          | **1 day - 1 week**   |
-| Medium (new)      | **Weekly to monthly** | **Weekly to monthly** | 16-30%              | 1 day - 1 week       |
-
+You'll find the performance of the lowest cluster has improved across 3 metrics, with lead time and deployment frequency matching last year's medium performance group. The mean time to resolve has also improved by more than 6x. However, the change failure rate has increased.
 
 | Performance level | Lead time      | Deployment frequency           | Change failure rate | Mean time to resolve |
 |-------------------|----------------|--------------------------------|---------------------|----------------------|
@@ -83,18 +69,32 @@ There are changes for all 4 clusters in the 2022 report. The most dramatic diffe
 | 2021 Low          | > 6 months     | Fewer than once every 6 months | 16-30%              | > 6 months           |
 | Low (new)         | 1-6 months     | Monthly to biannually          | **46-60%**          | **1 week - 1 month** |
 
+#### The medium-performance group
 
+The medium-performance group has improved against lead time and deployment frequency, matching last year's high-performance group for these metrics. They have also improved their mean time to resolve and kept the same change failure rates.
 
+| Performance level | Lead time             | Deployment frequency  | Change failure rate | Mean time to resolve |
+|-------------------|-----------------------|-----------------------|---------------------|----------------------|
+| 2021 High         | 1 day - 1 week        | **Weekly to monthly** | **16-30%**          | < 1 day              |
+| 2021 Medium       | 1-6 months            | Monthly to biannually | **16-30%**          | **1 day - 1 week**   |
+| Medium (new)      | **Weekly to monthly** | **Weekly to monthly** | 16-30%              | 1 day - 1 week       |
 
+#### The high-performance group
 
+The high-performance group merges the performance of last year's high and elite clusters.
 
-In the chart below, you'll find a comparison of 2021 and 2022. The performance axis shows how the clusters moved. The circles indicate each cluster's size.
+| Performance level | Lead time          | Deployment frequency       | Change failure rate | Mean time to resolve |
+|-------------------|--------------------|----------------------------|---------------------|----------------------|
+| 2021 Elite        | < 1 hour           | **Multiple times per day** | **0-15%**           | < 1 hour             |
+| 2021 High         | **1 day - 1 week** | Weekly to monthly          | 16-30%              | **< 1 day**          |
+| High (new)        | 1 day - 1 week     | Multiple times per day     | 0-15%               | < 1 day              |
 
-![Comparison of performance](2021-2022-performance.png)
+#### The elite performance group
 
-You can draw some conclusions from this chart, such as the high-performance group has fewer organizations but performs better. Although the medium cluster is much larger, it performs better than last year, too.
+Only 3 cluters emerged in 2022, so there is no elite-performance group this year. There are two explanations for this:
 
-Further research will be needed to understand the cause of the changes to clusters, but it is likely to relate to a demographic shift in respondents.
+1. The elite respondents in 2022 have been absorbed into the improved high-performance cluster.
+2. The demographic profile is different this year, compared to previous years
 
 In previous years, many respondents had been in software delivery for a decade or more. In 2022 the proportion of respondents with more than 10 years of experience fell by half. The change seems less surprising as most respondents have less experience than those answering the surveys in prior years.
 
@@ -107,6 +107,16 @@ Removing the elite performance category doesn't mean these organizations gave up
 ![The elite performance respondents didn't respond in great numbers in 2022](2021-2022-elite-performance.png)
 
 Despite dramatic changes, one thing that remains the same is the gap between high and low performers. The report still shows that software delivery performance predicts organizational outcomes.
+
+### Software delivery performance summary
+
+In the chart below, you'll find a comparison of 2021 and 2022. The performance axis shows how the clusters moved. The circles indicate each cluster's size.
+
+![Comparison of performance](2021-2022-performance.png)
+
+You can draw some conclusions from this chart, such as the high-performance group has fewer organizations but performs better. Although the medium cluster is much larger, it performs better than last year, too.
+
+Further research will be needed to understand the cause of the changes to clusters, but it is likely to relate to a demographic shift in respondents.
 
 ## The SDO performance clusters
 
