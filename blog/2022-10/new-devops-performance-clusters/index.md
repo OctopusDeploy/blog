@@ -77,7 +77,7 @@ The medium-performance group has improved against lead time and deployment frequ
 |-------------------|-----------------------|-----------------------|---------------------|----------------------|
 | 2021 High         | 1 day - 1 week        | **Weekly to monthly** | **16-30%**          | < 1 day              |
 | 2021 Medium       | 1-6 months            | Monthly to biannually | **16-30%**          | **1 day - 1 week**   |
-| Medium (new)      | **Weekly to monthly** | **Weekly to monthly** | 16-30%              | 1 day - 1 week       |
+| Medium (new)      | **Weekly to monthly** | Weekly to monthly | 16-30%              | 1 day - 1 week       |
 
 #### The high-performance group
 
@@ -157,11 +157,11 @@ The most practical application of the new clusters is to use them to focus your 
 
 Teams in the flowing state more commonly use the capabilities of the DevOps structural equation model, such as:
 
-    - Deployment automation
-    - Loosely coupled architectures
-    - [Continuous Delivery](https://octopus.com/devops/continuous-delivery/)
-    - Version control
-    - Flexible work arrangements
+- Deployment automation
+- Loosely coupled architectures
+- [Continuous Delivery](https://octopus.com/devops/continuous-delivery/)
+- Version control
+- Flexible work arrangements
 
 While some organizations achieve adequate performance without flowing software delivery and operations, they do so at greater cost with more burnout, unplanned work, and lower change rates.
 
@@ -177,6 +177,6 @@ The real measures are organization-wide, real-world performance against your com
 
 - [The 2022 State of DevOps Report](https://cloud.google.com/devops/state-of-devops/)
 - [The DevOps Engineer's handbook](https://octopus.com/devops/)
-- [White Paper: Measuring Continuous Delivery](https://octopus.com/whitepapers/lv-measuring-continuous-delivery-and-devops)
+- [White Paper: Measuring Continuous Delivery and DevOps](https://octopus.com/whitepapers/lv-measuring-continuous-delivery-and-devops)
 
 Happy deployments!
