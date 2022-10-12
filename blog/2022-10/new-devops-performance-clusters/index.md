@@ -12,13 +12,13 @@ tags:
   - DevOps
 ---
 
-The Accelerate State of DevOps Report contained a surprising change to the traditional performance clusters. The report also introduced a new way to group organizations using a different approach to clustering.
+This year, the Accelerate State of DevOps Report contained a few surprises. One of these was a change to the traditional performance clusters. The report also introduced a new way to group organizations using an extra dimension.
 
-This post introduces you to the traditional performance groups, explains this year's changes, and describes the new approach to clustering.
+This post introduces you to the original performance clusters, explains this year's changes, and describes how you can use the new groups.
 
 ## Previous changes
 
-Some previous adjustments to the report have a bearing on the new changes that emerged this year. In past reports, DORA (DevOps Research and Assessment) researchers used 4 key metrics to predict the performance of an organization:
+Some previous adjustments to the report have a bearing on the changes that emerged this year. In past reports, DORA (DevOps Research and Assessment) researchers used 4 key metrics to predict the performance of an organization:
 
  - Throughput
 
@@ -36,15 +36,15 @@ Performing well against all 5 measures drives organizational performance. The or
 
 ## Clusters
 
-A cluster is a group of data whose members are more similar to each other than they are to items in another group. This is useful in the State of DevOps report as it allows many different organizations to be arranged methodically for comparison.
+A cluster is a group of data whose members are more similar to each other than they are to items in another group. This is useful in the State of DevOps report as it allows many organizations to be arranged methodically for comparison.
 
 The research team uses hierarchical clustering to discover the performance groups in the State of DevOps report. This technique doesn't define clusters in advance but lets them emerge from the data.
 
-These clusters are used to test hypotheses, such as "Continuous Delivery drives software delivery performance". Each time the researchers repeat the analysis on a different sample, they can test the validity of the hypothesis.
+Researchers test hypotheses using clusters. For example, by grouping organizations based on their deployment frequency, they can see that organizations that deploy more often are more likely to achieve their goals. Each time the researchers repeat the analysis on a different sample, they can test the validity of the hypothesis. This is how we increase our confidence in the practices that drive performance.
 
 ## Software delivery performance clusters
 
-If you've followed the State of DevOps Report for a while, you'll be familiar with the software delivery performance clusters. Each group represents a different level of performance against throughput and stability metrics. This usually results in four groups:
+If you've followed the State of DevOps Report for a while, you'll be familiar with the software delivery performance clusters. Each group represents a different level of performance against throughput and stability metrics. This usually results in four clusters:
 
 | Performance level | Lead time      | Deployment frequency           | Change failure rate | Mean time to resolve |
 |-------------------|----------------|--------------------------------|---------------------|----------------------|
@@ -53,23 +53,46 @@ If you've followed the State of DevOps Report for a while, you'll be familiar wi
 | Medium            | 1-6 months     | Monthly to biannually          | 16-30%              | 1 day - 1 week       |
 | Low               | > 6 months     | Fewer than once every 6 months | 16-30%              | > 6 months           |
 
-Although the same names are used for the clusters each year, the overall performance of a cluster changes. For example, if you take an organization from the center of the medium performance group, you'll find their performance differs each year. Organizations at the edge of a cluster might move up or down each year. The clusters emerge from the data, not the other way around.
-
-Organizations can assess their performance based on the same measures and identify potential improvement areas.
+Organizations can compare their software delivery performance to the clusters based on throughput and stability metrics and identify potential improvement areas.
 
 ### How Software delivery clusters changed in 2022
 
 There are changes for all 4 clusters in the 2022 report. The most dramatic difference is that the elite cluster failed to emerge from the data, so the researchers had to remove it from this year's report. The other groups also changed:
 
-- The high-performance group was smaller
-- The medium group is performing better than before
-- The low group is performing better than before but has grown
+- The high-performance group represented a smaller proportion of respondents
+- The performance of the medium group was higher than last year
+- The low group is also performing better than 2021, but is also larger
 
-In the chart below, you'll find a comparison of 2021 and 2022. The performance axis shows how the clusters have moved over the past year. The medium and high clusters are both performing better. The circles indicate the number of organizations in each cluster.
+| Performance level | Lead time          | Deployment frequency       | Change failure rate | Mean time to resolve |
+|-------------------|--------------------|----------------------------|---------------------|----------------------|
+| 2021 Elite        | < 1 hour           | **Multiple times per day** | **0-15%**           | < 1 hour             |
+| 2021 High         | **1 day - 1 week** | Weekly to monthly          | 16-30%              | **< 1 day**          |
+| High (new)        | 1 day - 1 week     | Multiple times per day     | 0-15%               | < 1 day              |
+
+
+| Performance level | Lead time             | Deployment frequency  | Change failure rate | Mean time to resolve |
+|-------------------|-----------------------|-----------------------|---------------------|----------------------|
+| 2021 High         | 1 day - 1 week        | **Weekly to monthly** | **16-30%**          | < 1 day              |
+| 2021 Medium       | 1-6 months            | Monthly to biannually | **16-30%**          | **1 day - 1 week**   |
+| Medium (new)      | **Weekly to monthly** | **Weekly to monthly** | 16-30%              | 1 day - 1 week       |
+
+
+| Performance level | Lead time      | Deployment frequency           | Change failure rate | Mean time to resolve |
+|-------------------|----------------|--------------------------------|---------------------|----------------------|
+| 2021 Medium       | **1-6 months** | **Monthly to biannually**      | 16-30%              | 1 day - 1 week       |
+| 2021 Low          | > 6 months     | Fewer than once every 6 months | 16-30%              | > 6 months           |
+| Low (new)         | 1-6 months     | Monthly to biannually          | **46-60%**          | **1 week - 1 month** |
+
+
+
+
+
+
+In the chart below, you'll find a comparison of 2021 and 2022. The performance axis shows how the clusters moved. The circles indicate each cluster's size.
 
 ![Comparison of performance](2021-2022-performance.png)
 
-You can draw some conclusions from this chart, such as the high-performance group has fewer organizations but performs better. Although the medium cluster is much larger, it also performs better than last year.
+You can draw some conclusions from this chart, such as the high-performance group has fewer organizations but performs better. Although the medium cluster is much larger, it performs better than last year, too.
 
 Further research will be needed to understand the cause of the changes to clusters, but it is likely to relate to a demographic shift in respondents.
 
@@ -80,6 +103,8 @@ In previous years, many respondents had been in software delivery for a decade o
 While you can see the clear change in demographics, what isn't known is whether this makes the sample more or less representative of the software development industry. However, as an individual looking at the insights, you can now think about how the level of experience in your team might affect your performance. You may be more likely to be an elite performer if your team has more members with a decade or more of software development experience.
 
 Removing the elite performance category doesn't mean these organizations gave up software development. It tells us that this year's respondents had less experience overall and performed less well against the throughput and stability metrics.
+
+![The elite performance respondents didn't respond in great numbers in 2022](2021-2022-elite-performance.png)
 
 Despite dramatic changes, one thing that remains the same is the gap between high and low performers. The report still shows that software delivery performance predicts organizational outcomes.
 
