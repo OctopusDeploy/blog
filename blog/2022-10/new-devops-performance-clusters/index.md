@@ -1,6 +1,6 @@
 ---
 title: The new DevOps performance clusters
-description:
+description: Explains the changes and additions to performance clusters in The State of DevOps Report 2022.
 author: steve.fenton@octopus.com
 visibility: private
 published: 3020-01-01-1400
@@ -18,12 +18,12 @@ This post introduces you to the original performance clusters, explains this yea
 
 ## Previous changes
 
-Some previous adjustments to the report have a bearing on the changes that emerged this year. In past reports, DORA (DevOps Research and Assessment) researchers used 4 key metrics to predict the performance of an organization:
+Some previous adjustments to the report have a bearing on the changes that emerged this year. In past DevOps reports, DORA (DevOps Research and Assessment) researchers used 4 key metrics to divide organizations into sets based on performance:
 
  - Throughput
 
  1. Deployment frequency
- 1. Lead time for changes
+ 2. Lead time for changes
 
  - Stability
 
@@ -57,7 +57,7 @@ Organizations can compare their software delivery performance to the clusters ba
 
 ### How Software delivery clusters changed in 2022
 
-The most apparent change to the clusters in 2022 is that there are only 3 performance groups, not 4. The removal of the elite performance group is described in more detail later, but let's first consider the changes to the other clusters as they are just as surprising.
+The most apparent change to the clusters in 2022 is that there are only 3 performance groups, not 4. The removal of the elite performance group is described in more detail later, but let's first consider the changes to the other clusters, as they are just as surprising.
 
 #### The low-performance group
 
@@ -77,7 +77,7 @@ The medium-performance group has improved against lead time and deployment frequ
 |-------------------|-----------------------|-----------------------|---------------------|----------------------|
 | 2021 High         | 1 day - 1 week        | **Weekly to monthly** | **16-30%**          | < 1 day              |
 | 2021 Medium       | 1-6 months            | Monthly to biannually | **16-30%**          | **1 day - 1 week**   |
-| Medium (new)      | **Weekly to monthly** | Weekly to monthly | 16-30%              | 1 day - 1 week       |
+| Medium (new)      | **Weekly to monthly** | Weekly to monthly     | 16-30%              | 1 day - 1 week       |
 
 #### The high-performance group
 
@@ -94,27 +94,29 @@ The high-performance group merges the performance of last year's high and elite 
 Only 3 cluters emerged in 2022, so there is no elite-performance group this year. There are two explanations for this:
 
 1. The elite respondents in 2022 have been absorbed into the improved high-performance cluster.
-2. The demographic profile is different this year, compared to previous years
+2. The demographic profile is different this year compared to previous years
 
-In previous years, many respondents had been in software delivery for a decade or more. In 2022 the proportion of respondents with more than 10 years of experience fell by half. The change seems less surprising as most respondents have less experience than those answering the surveys in prior years.
+In previous years, many respondents had been in software delivery for over 10 years. In 2022 the proportion of respondents with more than a decade of experience fell by half. The change seems less surprising as most respondents have less experience than those answering the surveys in prior years.
 
 ![Respondents in 2022 had less experience than last year](years-of-experience.png)
 
-While you can see the clear change in demographics, what isn't known is whether this makes the sample more or less representative of the software development industry. However, as an individual looking at the insights, you can now think about how the level of experience in your team might affect your performance. You may be more likely to be an elite performer if your team has more members with a decade or more of software development experience.
+While you can see the clear change in demographics, what isn't known is whether this makes the sample more or less representative of the software development industry. Either way, the link between specific capabilities and outcomes remains consistent year on year.
+
+The demographic change and subsequent disappearance of the elite cluster suggest that experience drives performance.
 
 Removing the elite performance category doesn't mean these organizations gave up software development. It tells us that this year's respondents had less experience overall and performed less well against the throughput and stability metrics.
 
-![The elite performance respondents didn't respond in great numbers in 2022](2021-2022-elite-performance.png)
+![The elite performance respondents didn't respond in the same volume in 2022](2021-2022-elite-performance.png)
 
-Despite dramatic changes, one thing that remains the same is the gap between high and low performers. The report still shows that software delivery performance predicts organizational outcomes.
+Instead of disrupting the annual study of DevOps, the demographic change in respondents has provided a unique opportunity to discover new directions for exploration.
 
 ### Software delivery performance summary
 
-In the chart below, you'll find a comparison of 2021 and 2022. The performance axis shows how the clusters moved. The circles indicate each cluster's size.
+In the chart below, you'll find a comparison of 2021 and 2022. The vertical position of each cluster indicates the level of performance, and the circles show the size of each group.
 
 ![Comparison of performance](2021-2022-performance.png)
 
-You can draw some conclusions from this chart, such as the high-performance group has fewer organizations but performs better. Although the medium cluster is much larger, it performs better than last year, too.
+The chart shows the change in the survey responses' distribution and the performance increase.
 
 Further research will be needed to understand the cause of the changes to clusters, but it is likely to relate to a demographic shift in respondents.
 
@@ -151,9 +153,9 @@ These groups are more descriptive than the software delivery performance cluster
 
 This approach isn't without its hazards. Many teams remain in the starting group permanently, never resolving the reliability issues that would unlock their software delivery performance. Equally, Not all teams in the retiring cluster are in the process of shutting down a system. The same performance characteristics would be present in an organization where the operations team acts as gatekeepers, preventing changes from moving through the system.
 
-You should view the cluster names as best-fit explanations for deliberate performance choices. You might choose to give up some reliability to encourage risk-taking and innovation on a new product concept. If you don't make intentional choices, you risk inventing a narrative to explain poor performance. Future research may test how accurate the cluster names are.
+You can view the cluster names as best-fit explanations for deliberate performance choices. You might choose to give up some reliability to encourage risk-taking and innovation on a new product concept. If you don't make intentional choices, you risk inventing a narrative to explain poor performance. Future research may test how accurate the cluster names are.
 
-The most practical application of the new clusters is to use them to focus your efforts on your core software systems. The systems you sell and the line-of-business applications that give you a competitive advantage are the ones to bring into a flowing state. Never classify these systems as *slowing*, and only designate a system as *retiring* when you have an active plan for its withdrawal or replacement.
+The most practical application of the new clusters is to use them to focus your efforts on your core software systems. The systems you sell and the line-of-business applications that give you a competitive advantage are the ones to bring into a flowing state. Never classify these systems as *slowing*. Only designate a system as *retiring* when you have an active plan for its withdrawal or replacement.
 
 Teams in the flowing state more commonly use the capabilities of the DevOps structural equation model, such as:
 
@@ -163,7 +165,7 @@ Teams in the flowing state more commonly use the capabilities of the DevOps stru
 - Version control
 - Flexible work arrangements
 
-While some organizations achieve adequate performance without flowing software delivery and operations, they do so at greater cost with more burnout, unplanned work, and lower change rates.
+While some organizations achieve adequate performance without flowing software delivery and operations, they do so at a higher cost with more burnout, unplanned work, and lower change rates.
 
 ## Conclusion
 
@@ -171,7 +173,7 @@ The disappearance of the elite performance cluster may be related to the change 
 
 The new SDO performance clusters need further research and analysis but provide an interesting way to focus continuous improvement efforts if your organization has many software systems under development.
 
-The real measures are organization-wide, real-world performance against your commercial and non-commercial goals.
+When you assess your own performance, the real measures are organization-wide, real-world performance against your commercial and non-commercial goals.
 
 ## Further reading
 
