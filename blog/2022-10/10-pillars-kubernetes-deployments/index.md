@@ -12,7 +12,7 @@ tags:
   - Kubernetes
 ---
 
-Following on from the [10 pillars of pragmatic deployments](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments), Matthew Casperson wrote an ebook about the [10 pillars of pragmatic **Kubernetes** deployments](https://github.com/OctopusDeploy/TenPillarsK8s/releases/latest) with Octopus Deploy.
+Following on from the [10 pillars of pragmatic deployments](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments), I wrote an ebook about the [10 pillars of pragmatic **Kubernetes** deployments](https://github.com/OctopusDeploy/TenPillarsK8s/releases/latest) with Octopus Deploy.
 
 The 10 pillars speak to the needs of modern DevOps teams, always being asked to deliver more in less time. By understanding the value of each pillar, and learning practical implementations, DevOps teams can meet these challenges head-on.
 
