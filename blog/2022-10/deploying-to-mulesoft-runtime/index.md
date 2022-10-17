@@ -107,7 +107,7 @@ Click the **Test Connection...** button to make sure this works.
 
 ## Creating a deployable file
 
-The Anypoint Studio software contains a version of Maven built into the product.  This means you can create a deployable artifact in Anypoint Studio itself.  Alternatively, you can use Maven from a build server (or the command-line) to produce the deployable file.
+The Anypoint Studio software contains a version of Maven built into the product.  This means you can create a deployable artifact in Anypoint Studio itself.  Alternatively, you can use Maven from a build server (or the command line) to produce the deployable file.
 
 ### Anypoint Studio
 
@@ -133,7 +133,7 @@ After the save operation is complete, it displays where the file is saved and th
 
 ### Maven
 
-You can also build the project by using Maven from either a build server or the command-line.  
+You can also build the project by using Maven from either a build server or the command line.  
 
 In this post, I show you the command-line method, but the build server method is almost identical.
 
