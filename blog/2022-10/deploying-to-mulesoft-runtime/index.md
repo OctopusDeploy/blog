@@ -151,7 +151,7 @@ mvn clean package
 
 ## Deploying the API
 
-As you can seen, the Anypoint Studio projects are compiled into JAR files.  Octopus Deploy doesn't have a specific step to deploy to the Mule Community Edition Runtime, however, it contains a **Deploy Java Archive** step.  
+As you can see, the Anypoint Studio projects are compiled into JAR files.  Octopus Deploy doesn't have a specific step to deploy to the Mule Community Edition Runtime, however, it contains a **Deploy Java Archive** step.  
 
 After you place the JAR file in either the built-in repository, or an external one, you can proceed with configuring the deployment.
 
