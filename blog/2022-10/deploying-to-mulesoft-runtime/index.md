@@ -75,7 +75,7 @@ Real-world APIs are more complex, but in this post I'm showing you how to deploy
 
 ![](anypoint-project-name.png)
 
-3.  From the **Mule Pallete**, choose the **HTTP** category and drag a **Listener** to the canvas.
+3.  From the **Mule Palette**, choose the **HTTP** category and drag a **Listener** to the canvas.
 
 ![Add an HTTP listener object](anypoint-add-listener.png)
 
@@ -93,7 +93,7 @@ Click the **Test Connection...** button to make sure this works.
 
 ![Add a path](anypoint-general-path.png)
 
-7.  Add a **Set Payload** object from the **Core** category of the **Mule Pallete** and drag it to the **Process** section of the message flow.
+7.  Add a **Set Payload** object from the **Core** category of the **Mule Palette** and drag it to the **Process** section of the message flow.
 
 ![Add a payload object to listener](anypoint-add-payload.png)
 
