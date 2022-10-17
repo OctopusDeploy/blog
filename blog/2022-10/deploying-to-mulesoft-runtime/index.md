@@ -44,7 +44,7 @@ After you have Java and the Mule Runtime installed, create the following system 
 
 By default, the Mule Community Runtime runs in the foreground.  To configure it to run as a service, follow the MuleSoft documentation:
 
-- [Configuring Mule as a Linux or daemon](https://docs.mulesoft.com/mule-runtime/3.9/configuring-mule-as-a-linux-or-unix-daemon)
+- [Configuring Mule as a Linux or Unix daemon](https://docs.mulesoft.com/mule-runtime/3.9/configuring-mule-as-a-linux-or-unix-daemon)
 - [Configuring Mule as a Windows service](https://docs.mulesoft.com/mule-runtime/3.9/configuring-mule-as-a-windows-service) 
 
 ### Installing Maven
