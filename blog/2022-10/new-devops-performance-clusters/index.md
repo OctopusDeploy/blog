@@ -61,7 +61,7 @@ Organizations can compare their software delivery performance to the clusters ba
 
 ### How Software delivery clusters changed in 2022
 
-The most apparent change to the software delivery clusters in 2022 is that there are only 3 groups, rather than 4. The removal of the elite performance group is described in more detail later, but let's first consider the changes to the other clusters, as they are just as surprising.
+The most apparent change to the software delivery clusters in 2022 is that there are only 3 groups rather than 4. The removal of the elite performance group is described in more detail later, but let's first consider the changes to the other clusters, as they are just as surprising.
 
 #### The low-performance group
 
@@ -108,7 +108,7 @@ While you can see the clear change in demographics, what isn't known is whether 
 
 The demographic change and subsequent disappearance of the elite cluster suggest that experience drives performance. However, the link between specific capabilities and outcomes remains consistent each year.
 
-Removing the elite performance category doesn't mean these organizations gave up software development. Different people respond to the survey each year and there was an unusual shift in the type of respondent this time. This year's respondents had less experience overall, so it might not be surprising that they performed less well against the throughput and stability metrics.
+Removing the elite performance category doesn't mean these organizations gave up software development. Different people respond to the survey each year, and there was an unusual shift in the type of respondent this time. This year's respondents had less experience overall, so it might not be surprising that they performed less well against the throughput and stability metrics.
 
 ![The elite performance respondents didn't respond in the same volume in 2022](2021-2022-elite-performance.png)
 
@@ -169,7 +169,7 @@ Teams in the flowing state more commonly use the capabilities of the DevOps stru
 - Version control
 - Flexible work arrangements
 
-You can read more about [Continuous Delivery Capabilities](https://octopus.com/devops/continuous-delivery/technical-capabilities/) in our [DevOps Engineer's handbook](https://octopus.com/devops/).
+You can read more about [Continuous Delivery Capabilities](https://octopus.com/devops/continuous-delivery/technical-capabilities/) in the Octopus [DevOps Engineer's handbook](https://octopus.com/devops/).
 
 While some organizations achieve adequate performance without achieving the flowing state of SDO performance, they do so at a higher cost with increased burnout, more unplanned work, and lower change rates.
 
@@ -177,9 +177,9 @@ While some organizations achieve adequate performance without achieving the flow
 
 The original software delivery performance clusters remain critical in your assessment of performance in your organization. Operational performance unlocks the benefits of high performance, extending their impact to the organizational level. The new SDO performance clusters attempt to demonstrate the importance of reliability to software delivery but may be misleading due to the attempt to assign non-judgemental labels.
 
-The disappearance of the elite performance cluster is likely related to the demographic changes. Additionally, this may have led us to discover that a team needs experienced developers to achieve the highest performance levels.
+The disappearance of the elite performance cluster is likely related to demographic changes. Additionally, this may have led us to discover that a team needs experienced developers to achieve the highest performance levels.
 
-You must consolidate these industry-wide insights with a local measurement strategy to ensure your continuous improvement efforts are led by their actual impact on your organization. The State of DevOps report is a source of inspiration for specific measurable changes you make to your software delivery process.
+You must consolidate these industry-wide insights with a local measurement strategy to ensure your continuous improvement efforts are led by their actual impact on your organization. The State of DevOps report is a source of inspiration for specific and measurable changes you make to your software delivery process.
 
 ## Further reading
 
