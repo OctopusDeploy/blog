@@ -44,7 +44,7 @@ After you have Java and the Mule Runtime installed, create the following system 
 
 By default, the Mule Community Runtime runs in the foreground.  To configure it to run as a service, follow the MuleSoft documentation:
 
-- [Configuring Mule as a Linux or daemon](https://docs.mulesoft.com/mule-runtime/3.9/configuring-mule-as-a-linux-or-unix-daemon)
+- [Configuring Mule as a Linux or Unix daemon](https://docs.mulesoft.com/mule-runtime/3.9/configuring-mule-as-a-linux-or-unix-daemon)
 - [Configuring Mule as a Windows service](https://docs.mulesoft.com/mule-runtime/3.9/configuring-mule-as-a-windows-service) 
 
 ### Installing Maven
@@ -75,7 +75,7 @@ Real-world APIs are more complex, but in this post I'm showing you how to deploy
 
 ![](anypoint-project-name.png)
 
-3.  From the **Mule Pallete**, choose the **HTTP** category and drag a **Listener** to the canvas.
+3.  From the **Mule Palette**, choose the **HTTP** category and drag a **Listener** to the canvas.
 
 ![Add an HTTP listener object](anypoint-add-listener.png)
 
@@ -93,7 +93,7 @@ Click the **Test Connection...** button to make sure this works.
 
 ![Add a path](anypoint-general-path.png)
 
-7.  Add a **Set Payload** object from the **Core** category of the **Mule Pallete** and drag it to the **Process** section of the message flow.
+7.  Add a **Set Payload** object from the **Core** category of the **Mule Palette** and drag it to the **Process** section of the message flow.
 
 ![Add a payload object to listener](anypoint-add-payload.png)
 
@@ -107,7 +107,7 @@ Click the **Test Connection...** button to make sure this works.
 
 ## Creating a deployable file
 
-The Anypoint Studio software contains a version of Maven built into the product.  This means you can create a deployable artifact in Anypoint Studio itself.  Alternatively, you can use Maven from a build server (or the command-line) to produce the deployable file.
+The Anypoint Studio software contains a version of Maven built into the product.  This means you can create a deployable artifact in Anypoint Studio itself.  Alternatively, you can use Maven from a build server (or the command line) to produce the deployable file.
 
 ### Anypoint Studio
 
@@ -133,7 +133,7 @@ After the save operation is complete, it displays where the file is saved and th
 
 ### Maven
 
-You can also build the project by using Maven from either a build server or the command-line.  
+You can also build the project by using Maven from either a build server or the command line.  
 
 In this post, I show you the command-line method, but the build server method is almost identical.
 
@@ -151,7 +151,7 @@ mvn clean package
 
 ## Deploying the API
 
-As you can seen, the Anypoint Studio projects are compiled into JAR files.  Octopus Deploy doesn't have a specific step to deploy to the Mule Community Edition Runtime, however, it contains a **Deploy Java Archive** step.  
+As you can see, the Anypoint Studio projects are compiled into JAR files.  Octopus Deploy doesn't have a specific step to deploy to the Mule Community Edition Runtime, however, it contains a **Deploy Java Archive** step.  
 
 After you place the JAR file in either the built-in repository, or an external one, you can proceed with configuring the deployment.
 
