@@ -103,6 +103,10 @@ The guide contains practical steps that users can follow in an Octopus environme
 
 ![Ten Pillars Cover](Kubernetescover.png)
 
+### The DevOps engineer handbook
+
+Our DevOps engineer handbook provides you with a central place to learn about all things DevOps. We provide resources on common questions, definitions and debates in the field of DevOps. The handbook is a good tool to get up to speed with the latest trends in the DevOps space.
+
 ### Other relevant blog posts
 
 We have created several blogs that are relevant to cloud-native technologies. Some of these blogs are educational about the benefits of the cloud, and others are instructional, guiding you through how to set up a cloud-native workflow:
