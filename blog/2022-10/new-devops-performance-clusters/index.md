@@ -18,7 +18,7 @@ This post introduces you to the original performance clusters, explains this yea
 
 ## Previous changes
 
-This isn't the first time something has changed. You'll have seen changes over the last eight years as the researchers discover new connections or a new direction to explore. Some past changes have a direct impact on the new clustering technique.
+This isn't the first time something has changed. You'll have seen changes over the last eight years as the researchers discover new connections or a new direction to explore. Some past changes have had a direct impact on the new clustering technique.
 
 In past DevOps reports, DORA (DevOps Research and Assessment) researchers used 4 key metrics to divide organizations into sets based on performance:
 
@@ -32,11 +32,11 @@ In past DevOps reports, DORA (DevOps Research and Assessment) researchers used 4
  3. Change failure rate
  3. Mean time to recovery
 
-In 2018, DORA added a new metric for *availability*, to measure the operational performance of an organization. They later changed this to *reliability*.
+In 2018, DORA added a new metric for *availability* to measure the operational performance of an organization. They later changed this to *reliability*.
 
-You could measure software delivery performance with the original 4 metrics, but using all 5 lets you measure software delivery *and operational* performance, often shortened to *SDO performance*.
+You could measure software delivery performance with the original 4 metrics (often called the 4 keys), but using all 5 lets you measure software delivery *and operational* performance, often shortened to *SDO performance*.
 
-Performing well against all 5 measures drives organizational performance. The organization is more likely to achieve its goals where teams excel in these metrics. Operational performance also enables the relationship between software delivery performance and organizational outcomes.
+Performing well against all 5 measures drives organizational performance. Your organization is more likely to achieve its goals where teams excel in these metrics. Your operational performance enables the relationship between software delivery performance and organizational outcomes.
 
 ## Clusters
 
@@ -95,9 +95,9 @@ The high-performance group merges the performance of last year's high and elite 
 
 #### The elite performance group
 
-Only 3 cluters emerged in 2022, so there is no elite-performance group this year. There are two explanations for this:
+Only 3 clusters emerged in 2022, so there is no elite-performance group this year. There are two explanations for this:
 
-1. The elite respondents in 2022 have been absorbed into the improved high-performance cluster.
+1. The elite respondents in 2022 were absorbed into the improved high-performance cluster.
 2. The demographic profile is different this year compared to previous years
 
 In previous years, many respondents had been in software delivery for over 10 years. In 2022 the proportion of respondents with more than a decade of experience fell by half. The change seems less surprising as most respondents have less experience than those answering the surveys in prior years.
