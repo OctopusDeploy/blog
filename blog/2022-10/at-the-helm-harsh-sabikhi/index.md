@@ -2,10 +2,10 @@
 title: At the helm with Harsh Sabikhi
 description: A series where we chat to people at Octopus about their role, what they’re working on to improve the product, and more. Hear from Harsh Sabikhi, Senior Vice President, Revenue.
 author: harsh.sabikhi@octopus.com
-visibility: private
-published: 2022-10-25-1400
-metaImage: 
-bannerImage: 
+visibility: public
+published: 2022-10-24-1400
+metaImage: blogimage-atthehelmharshsabikhi-2022.png
+bannerImage: blogimage-atthehelmharshsabikhi-2022.png
 bannerImageAlt: Octopus-branded security badge with text that says Harsh Sabikhi, Senior Vice President, Revenue, above the silhouette of a man.
 isFeatured: false
 tags: 
