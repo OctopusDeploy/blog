@@ -45,4 +45,4 @@ I try to lead by example and lead from the front. For example, I just returned f
 
 ## What’s something surprising people might not know about you?
 
-I'm actually an Electrical Engineer by education, and I was a software developer for 6 years before moving into sales!
+I'm actually an electrical engineer by education, and I was a software developer for 6 years before moving into sales!
