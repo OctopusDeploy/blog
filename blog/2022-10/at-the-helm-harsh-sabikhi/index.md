@@ -33,7 +33,7 @@ Ultimately, we're responsible for ensuring our customers have a great experience
 
 ## How are you delivering value and improving the sales experience for our customers?
 
-First, we're structuring the organization into a named account model for the Enterprise segment (>2500 employees) where each customer has a dedicated Account Executive (AE). The (AE) is the main point of contact during the pre-sales stage.  If it's an existing account, customers also have a Customer Success Manager (CSM) as a post-sales contact.  
+First, we're structuring the organization into a named account model for the Enterprise segment (>2500 employees) where each customer has a dedicated Account Executive (AE). The AE is the main point of contact during the pre-sales stage.  If it's an existing account, customers also have a Customer Success Manager (CSM) as a post-sales contact.  
 
 The next thing we're doing is helping to improve the self-service experience with free trials and the ability to purchase Octopus directly from octopus.com.  
 
