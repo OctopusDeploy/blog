@@ -22,7 +22,7 @@ This blog will take you through:
 - Configuring a Bamboo plan to build and push a docker container to a container registry
 - Running and viewing the container image
 
-## Pre-requisites
+## Prerequisites
 
 To follow along with the guide, you will need the following software and accounts:
 
@@ -36,6 +36,7 @@ To follow along with the guide, you will need the following software and account
 
 To install Bamboo:
 
+- Sign up for a free trial which will give you an activation key
 - [Download the latest release](https://www.atlassian.com/software/bamboo/download)
 - Run the install executable
 - Set the install location to a directory you can access, such as C:\Users\Username\Documents. Setting it to the Default location of C:\Program Files may result in permission errors.
@@ -56,8 +57,8 @@ In the start up screen, you will be asked to set up an admin account. Fill out t
 Agents are the workers that execute workloads in Bamboo. Since you have installed the pre-requisite technology, you can use the local machine as an agent for testing purposes. To set up a local agent:
 
 - In the Bamboo dashboard, go to the settings icon and agents
-- Go to add local agent and give it a name
-- Click **Save**
+- Go to **Add local agent** and give it a name
+- Click **Add**
 
 
 ## Setup project and plan
@@ -78,14 +79,14 @@ We will be using the [Octopus Underwater App](https://github.com/OctopusSamples/
 To use this repository:
 
 - Fork it into you own GitHub account. 
-- In the password settings, use a [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) to grant Bamboo access to repositories under your GitHub account.
+- In the password settings of GitHub, use a [personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) to grant Bamboo access to repositories under your GitHub account.
 - Select the main branch
 - Test the connection to make sure that Bamboo can connect to this repository
 - Click **Save and continue**
 
-### Configure plan
+### Configure job
 
-You wil now be on the configure job screen. Here you can configure the tasks that the plan will run to execute your job. Bamboo provides a suite of task steps that you can select from. These tasks execute a certain step in the CI pathway, such as checkout, build, pull, push etc. You will see that there is a source code checkout task pre-filled for you. This checks out the linked Github repository into Bamboo
+You will now be on the configure job screen. Here you can configure the tasks that the plan will run to execute your job. Bamboo provides a suite of task steps that you can select from. These tasks execute a certain step in the CI pathway, such as checkout, build, pull, push etc. You will see that there is a source code checkout task pre-filled for you. This checks out the linked Github repository into Bamboo
 
 - Leave the isolate build as 'Agent environment'. This will use the local agent you set up earlier.
 
@@ -99,8 +100,8 @@ First, add the build docker task:
 
 Now, add the push docker task:
 
-- Click on **add Task** and search for 'Docker'
-- Set the command to Build a Docker Image
+- Click on **Add task** and search for 'Docker'
+- Set the command to Push a Docker Image
 - Set the repository to be [Your DockerHub Username]/[The tag of your image]
 - Check **Use the agent's native credentials**
 - Click **Save**
