@@ -3,7 +3,7 @@ title: SSH into a Kubernetes cluster
 description: Learn how to set up a SSH bastion host in your Kubernetes cluster.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2022-11-09-1400
+published: 2022-10-31-1400
 metaImage: blogimage-testingkubernetes-2022.png
 bannerImage: blogimage-testingkubernetes-2022.png
 bannerImageAlt: Kubernetes logo on an open laptop screen
@@ -17,7 +17,7 @@ Jump boxes or bastion hosts are a common networking strategy to expose a single 
 
 In this post, I explain how to host an OpenSSH server in a Kubernetes cluster to perform administrative tasks.
 
-## Deploying an SSH Server
+## Deploying an SSH server
 
 SSH servers have long been used to provide remote access to Linux servers, and it's relatively easy to host an SSH server as a Kubernetes pod.
 
