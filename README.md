@@ -6,11 +6,11 @@ Authors must sign the [Contribution License Agreement (CLA)](https://cla-assista
 
 The repo includes [templates](https://github.com/OctopusDeploy/blog/tree/master/templates) to help you get started.
 
-See the [Octopus style guide](https://www.octopus.design/writing/) for the following information:
+See the [Octopus style guide](https://www.octopus.design/932c0f1a9/p/26f741-writing) for the following information:
 
-- [Markdown quick reference](https://www.octopus.design/writing/markdown/)
-- [Writing tips for the blog](https://www.octopus.design/writing/educational-content/) 
-- [The Octopus voice and style](https://www.octopus.design/writing/writing-for-octopus/)
+- [Markdown quick reference](https://www.octopus.design/932c0f1a9/p/074e30-markdown-reference)
+- [Writing tips for the blog](https://www.octopus.design/932c0f1a9/p/901d2a-blog-content) 
+- [The Octopus voice and style](https://www.octopus.design/932c0f1a9/p/13df3a-voice-and-style)
 
 # How to submit a blog post 
 
