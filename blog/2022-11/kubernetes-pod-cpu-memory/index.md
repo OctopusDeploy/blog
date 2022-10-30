@@ -4,9 +4,9 @@ description: Learn how to check a pod's resource usage in Kubernetes
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2022-11-07-1400
-metaImage: blogimage-gettingstartedwithdockeralpine2-2022.png
-bannerImage: blogimage-gettingstartedwithdockeralpine2-2022.png
-bannerImageAlt: Man standing with a laptop in front of a large blue container
+metaImage: blogimage-benefitscontainerisation-2022.png
+bannerImage: blogimage-benefitscontainerisation-2022.png
+bannerImageAlt: Man sitting on top of  container and gold circle with 3 stars.container
 tags:
  - DevOps
  - Kubernetes
