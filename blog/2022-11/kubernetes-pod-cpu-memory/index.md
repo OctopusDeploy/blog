@@ -6,7 +6,7 @@ visibility: public
 published: 2022-11-07-1400
 metaImage: blogimage-benefitscontainerisation-2022.png
 bannerImage: blogimage-benefitscontainerisation-2022.png
-bannerImageAlt: Man sitting on top of  container and gold circle with 3 stars.container
+bannerImageAlt: Person  sitting on top of container and gold circle with 3 stars, looking at open laptop.
 tags:
  - DevOps
  - Kubernetes
