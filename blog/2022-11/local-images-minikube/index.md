@@ -3,12 +3,13 @@ title: Using local images with minikube
 description: Learn how to deploy locally built Docker images to minikube.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2022-11-21-1400
+published: 2022-11-09-1400
 metaImage: blogimage-microservicesframeworks-2022.jpg
 bannerImage: blogimage-microservicesframeworks-2022.jpg
-bannerImageAlt: 3 people building an unstable looking tower with blue blocks, beside 2 people building a stable, lower tower with blue blocks.
+bannerImageAlt: 3 people building an unstable-looking tower with blue blocks, beside 2 people building a stable, lower tower with blue blocks.
 tags:
  - DevOps
+ - Containers
  - Kubernetes
  - Docker
 ---
