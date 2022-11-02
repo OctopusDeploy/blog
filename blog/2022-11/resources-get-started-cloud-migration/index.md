@@ -2,8 +2,8 @@
 title: Resources to get started migrating to the cloud
 description: This post provides resources to get started with migrating to the cloud. It includes white papers, free tools, external reports, and Octopus authored posts and guides.
 author: terence.wong@octopus.com
-visibility: public
-published: 2022-11-22-1400
+visibility: private
+published: 2022-12-06-1400
 metaImage: blogimage-whatiscloudorchestrationcloudautomation-2022.png
 bannerImage: blogimage-whatiscloudorchestrationcloudautomation-2022.png
 bannerImageAlt: A cog surrounded by three arrows connected in a circle sits amongst clouds
@@ -19,7 +19,7 @@ At Octopus, we can help by providing you with resources for getting started with
 
 ## White papers
 
-As a cloud-native dedicated continuous delivery tool, we want to help our users understand Continuous Delivery and cloud-native technologies. To achieve this, we wrote 4 white papers to help inform you and give you actionable steps to start your journey to the cloud.
+As a cloud-native dedicated continuous delivery tool, we want to help our users understand Continuous Delivery and cloud-native technologies. We wrote 4 white papers to help educate you and give you actionable steps to start your journey to the cloud.
 
 ### Modernize your apps by moving to cloud-native
 
@@ -31,7 +31,7 @@ As a cloud-native dedicated continuous delivery tool, we want to help our users 
 
 The paper provides straightforward, actionable steps your company can take when migrating to the cloud.
 
-[Read the white paper, *Modernize your apps by moving to cloud-native*](https://preprod.octopus.com/whitepapers/lv-modernize-your-apps-by-moving-to-cloud-native). 
+[Read the white paper, *Modernize your apps by moving to cloud-native*](link to PDF here). 
 
 ### The importance of Continuous Delivery
 
@@ -55,7 +55,7 @@ In this white paper, you find several approaches for measuring your progress. Th
 
 [Read about *Measuring Continuous Delivery and DevOps*](https://i.octopus.com/whitepapers/measuring-continuous-delivery.pdf). 
 
-<!--![Importance of continuous delivery whitepaper cover](importance-of-continuous-delivery-white-paper.png)-->
+![Importance of continuous delivery white paper cover](importance-of-continuous-delivery-white-paper.png)
 
 ## Octopus free tools
 
@@ -113,9 +113,9 @@ To support this guide, we also wrote an [ultimate guide to Kubernetes microservi
 
 ![Ten Pillars Cover](Kubernetescover.png)
 
-<!--  ### The Octopus DevOps Engineer's handbook
+### The Octopus DevOps Engineer's handbook
 
-The Octopus DevOps Engineer's handbook provides you with a central place to learn about all things DevOps. We provide resources on common questions, definitions, and debates in the field of DevOps. The handbook is a great tool to get up to speed with the latest trends in the DevOps space. -->
+The Octopus DevOps Engineer's handbook provides you with a central place to learn about all things DevOps. We provide resources on common questions, definitions, and debates in the field of DevOps. The handbook is a great tool to get up to speed with the latest trends in the DevOps space. 
 
 ### More cloud-related blog posts
 
