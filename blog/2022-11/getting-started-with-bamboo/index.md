@@ -1,6 +1,6 @@
 ---
 title: Getting started with Bamboo
-description: Getting started with Bamboo. Learn how to install Bamboo, build and push a docker image to a container registry.
+description: Getting started with Bamboo. Learn how to install Bamboo, and build and push a Docker image to a container registry.
 author: terence.wong@octopus.com
 visibility: public
 published: 2022-11-21-1400
@@ -15,11 +15,9 @@ tags:
   - Getting Started
 ---
 
-Continuous Integration (CI) servers are an important step in the CI/CD process. CI servers take a code repository, build it, and push it to a central location where a continuous delivery (CD) tool like Octopus can take over and manage deployments. 
+Continuous Integration (CI) servers are an important part of the CI/CD process. CI servers take a code repository, build it, and push it to a central location where a continuous delivery (CD) tool like Octopus can take over and manage deployments. 
 
-Bamboo is a CI server developed by Atlassian that automates the building and testing of software applications. If you're beginning your CI/CD journey, it's helpful to begin with a simple use case, with a visible result. 
-
-In this post, you build and push a software artifact where Octopus can take over and deploy it to a target environment.
+Bamboo is a CI server developed by Atlassian that automates the building and testing of software applications. If you're beginning your CI/CD journey, it's helpful to begin with a simple use case, with a visible result. In this post, you build and push a software artifact where Octopus can take over and deploy it to a target environment.
 
 This post takes you through:
 
