@@ -42,9 +42,14 @@ No, your deployments will not be affected by this move. By making the incrementa
 
 Yes, we encourage you to upgrade your deployment targets that are still on either Windows 7 SP1 or Windows Server 2008 SP2 to a version that supports `.NET Framework 4.8`, ideally a version that is compatible with `.NET 6` and above.
 
+### What if we are unable to upgrade our deployment targets?
+
 Where you are unable to upgrade your deployment targets to a supported .NET version, you’ll need to lock your Tentacle version to ensure it remains functional for those particular deployment targets. To learn more about locking your Tentacle version, please read this [blog post](https://octopus.com/blog/tentacle-versioning) here.
 
-To learn more about compatible framework versions, please visit this [link from Microsoft](https://learn.microsoft.com/en-us/dotnet/framework/migration-guide/versions-and-dependencies#net-framework-48).
+To learn more about compatible .NET versions, please visit these Microsoft links.
+
+- [.NET Framework Compatibility](https://learn.microsoft.com/en-us/dotnet/framework/migration-guide/versions-and-dependencies#net-framework-48)
+- [.NET Linux Compatibility](https://learn.microsoft.com/en-us/dotnet/core/install/linux)
 
 ### When will the Windows Installer be upgraded to `.NET 6`?
 
