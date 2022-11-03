@@ -9,8 +9,8 @@ bannerImage: blogimage-security.png
 bannerImageAlt: Octopus on shield to represent security
 isFeatured: false
 tags:
-- Product
-- Trust and Security
+  - Product
+  - Trust and Security
 ---
 
 This week, there was a high severity vulnerability announced by OpenSSL that affects versions 3.x. We can confirm that Octopus Deploy depends on OpenSSL versions 1.x, which are not affected by this vulnerability.
