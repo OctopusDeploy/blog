@@ -1,5 +1,5 @@
 ---
-title: Octopus Deploy's response the OpenSSL vulnerability
+title: Octopus Deploy's response to the OpenSSL vulnerability
 description: Important information regarding CVE-2022-3786 for Octopus Deploy.
 author: colby.prior@octopus.com
 visibility: public
