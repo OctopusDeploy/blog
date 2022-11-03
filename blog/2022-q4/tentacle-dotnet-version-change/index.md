@@ -10,21 +10,23 @@ bannerImageAlt: Moving Tentacle from .NET Framework 4.5.2 & .NET Core 3.1 to .NE
 isFeatured: false
 tags:
   - Product
+  - Tentacle
 ---
 
-We are moving Tentacle to `.NET Framework 4.8` for the Windows installer, and `.NET 6` for everything else including the Windows Docker image, in the coming months.
+Due to .NET Framework 4.5.2 being EOL from 26 April 2022, wWe are moving Tentacle to .NET Framework 4.8 for Windows installers only, and .NET 6.0 for everything else including Windows Docker images.
 
-## The Change
+In this post, I’ll cover why we’re making this decision now, as well as the most common questions that you might have regarding the Tentacle bump.
+
+
+## Why are we doing this now?
 
 Tentacle had been on `.NET Framework 4.5.2` and `.NET Core 3.1` for some time. The decision to move these versions was taken in light of `.NET Framework 4.5.2` being EOL from 26 April 2022 and `.NET Core 3.1` being EOL from 13 December 2022, which means we'll be missing out on security patches and library updates. In order to ensure we can continue to provide our customers with software that is safe and secure, it is essential that we align with the support schedules of our underlying development frameworks.
 
-## The Plan
+## What is the plan moving forward?
 
 We are going to compile Tentacle for `.NET 6` as well as `.NET Framework 4.8` rather than only producing builds for `.NET 6`, as there are still a substantial number of deployment targets still using different versions of Windows 7 and 8 - including Windows 7 SP1 and Windows Server 2008 SP2 - which continue to require a supported .NET Framework version in the short to medium term and moving to `.NET 6` would cut off support for these servers. The `.NET 6` builds of Octopus Tentacle will be used for all other platforms, such as Linux packages and Docker Images.
 
-The rest of this blog post should answer some common questions. As always, please reach out to our support team if you have any questions or concerns. Happy Deployments!
-
-## FAQ
+## Most common questions you might have
 
 ### Do I need to do anything to effect the .NET version change?
 
@@ -54,3 +56,6 @@ To learn more about compatible .NET versions, please visit these Microsoft links
 ### When will the Windows Installer be upgraded to `.NET 6`?
 
 As an initial indication, we are likely to move Tentacle to `.NET 6` for the Windows installer either early or mid 2023 to give you time to upgrade your deployment targets to a version that supports `.NET 6` moving forward.
+
+## Conclusion
+Thanks for reading and we hope you found this blog post both useful and informative. As always, please reach out to our [support team](https://octopus.com/support) if you have any questions or concerns. Happy Deployments!
