@@ -1,9 +1,9 @@
 ---
 title: Using HashiCorp Vault with Octopus
-description: Introducing new step templates to allow secrets stored in HashiCorp Vault to be used in deployments or runbooks.
+description: Introducing step templates that allow secrets stored in HashiCorp Vault to be used in deployments or runbooks.
 author: mark.harrison@octopus.com
 visibility: public
-published: 2022-11-24-1400
+published: 2022-11-21-1400
 metaImage: blogimage-hashiecorpvaultintergration-2022.png
 bannerImage: blogimage-hashiecorpvaultintergration-2022.png
 bannerImageAlt: Using HashiCorp Vault with Octopus Deploy
@@ -18,7 +18,11 @@ Storing sensitive values in Octopus Deploy solves many problems. If your organiz
 
 Octopus has supported the concept of [sensitive variables](https://octopus.com/docs/projects/variables/sensitive-variables) since [Octopus 2.0](https://octopus.com/blog/new-in-2.0/sensitive-variables), but customers often ask about support for secret managers. One in particular is [HashiCorp Vault](https://www.vaultproject.io/).
 
-In this post, I walk through a number of [HashiCorp Vault step templates](https://library.octopus.com/listing/hashicorp%20vault) we introduced that are designed to retrieve secrets from Vault, for use in your deployments or runbooks.
+In this post, I walk through a number of [HashiCorp Vault step templates](https://library.octopus.com/listing/hashicorp%20vault) we introduced that are designed to retrieve secrets from Vault, for use in your deployments or runbooks. 
+
+:::success
+As of November 2022, our external secret storage templates for HashiCorp Vault were certified by HashiCorp, making Octopus Deploy a certified HashiCorp partner.
+:::
 
 ## In this post
 
