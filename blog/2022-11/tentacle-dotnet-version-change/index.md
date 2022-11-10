@@ -4,9 +4,9 @@ description: Learn why we're moving Tentacle from .NET Framework 4.5.2 & .NET Co
 author: ian.khor@octopus.com
 visibility: public
 published: 2022-11-16-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: blogimage-tentacle-2022.png
+bannerImage: blogimage-tentacle-2022.png
+bannerImageAlt: Octopus tentacle wrapped around the .NET logo in front of a server
 isFeatured: false
 tags:
   - Product
