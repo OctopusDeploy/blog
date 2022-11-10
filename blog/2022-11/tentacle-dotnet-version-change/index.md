@@ -67,6 +67,6 @@ We plan to move Tentacle to .NET 6 for the Windows installer in early to mid-202
 
 We hope this post explains why we're moving Tentacle to .NET Framework 4.8 for the Windows installer, and .NET 6 for everything else including the Windows Docker image. 
 
-If you have any questions or concerns, please get in touch with our [support team](https://octopus.com/support). 
+If you have any questions or concerns, please get in touch with our [support team](mailto:support@octopus.com). 
 
 Happy deployments!
