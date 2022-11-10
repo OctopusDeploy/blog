@@ -3,7 +3,7 @@ title: The difference between ClusterIP, NodePort, and LoadBalancer Kubernetes s
 description: Learn the differences between the three kinds of Kubernetes services, ClusterIP, NodePort, and LoadBalancer.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2022-11-23-1400
+published: 2022-11-14-1400
 metaImage: blogimage-testingkubernetes-2022.png
 bannerImage: blogimage-testingkubernetes-2022.png
 bannerImageAlt: Kubernetes logo on an open laptop screen
