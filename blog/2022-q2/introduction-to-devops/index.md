@@ -59,7 +59,7 @@ The methods to achieve that can differ and depend how entrenched people are in t
 
 In DevOps, if you can automate it, you should automate it.
 
-The benefits of automation are simple:
+The [benefits of automation](https://octopus.com/devops/continuous-delivery/automate-everything/) are simple:
 
 - Teams can focus more on the product
 - Results are repeatable and predictable
