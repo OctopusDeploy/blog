@@ -132,6 +132,8 @@ Given the concept is about a unifying purpose, DevOps is really everyone's role.
 
 Let's take a quick look at some of the common extra roles needed in DevOps and what they do. Some of the naming conventions and finer responsibilities may differ between organizations.
 
+The [DevOps Engineer's handbook](https://octopus.com/devops/team-structures/) explores DevOps team structures in more detail.
+
 ### DevOps Engineer
 
 The exact function of DevOps Engineers is often debated. The consensus, though, is that the role exists so everyone else can perform theirs as smoothly as possible.
