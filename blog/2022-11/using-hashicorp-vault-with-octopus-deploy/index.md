@@ -21,7 +21,7 @@ Octopus has supported the concept of [sensitive variables](https://octopus.com/d
 In this post, I walk through a number of [HashiCorp Vault step templates](https://library.octopus.com/listing/hashicorp%20vault) we introduced that are designed to retrieve secrets from Vault, for use in your deployments or runbooks. 
 
 :::success
-As of November 2022, our external secret storage templates for HashiCorp Vault were certified by HashiCorp, making Octopus Deploy a certified HashiCorp partner.
+As of November 2022, our external secret storage templates for HashiCorp Vault were certified by HashiCorp, making Octopus Deploy a [certified HashiCorp partner](https://www.hashicorp.com/partners/tech/octopus-deploy#all).
 :::
 
 ## In this post
@@ -494,7 +494,7 @@ In subsequent steps, the output variables created from matching secrets can be u
 
 ## Conclusion
 
-The templates covered in this post show how it's possible to extend the functionality of Octopus and retrieve secrets from Vault, or any other secrets manager, and use them in your deployments or runbooks.
+The templates covered in this post show how it's possible to extend the functionality of Octopus and retrieve secrets from Vault, or any other secrets manager, and use them in your deployments or runbooks. Be sure to check them out and more in the Secrets Management space in our [sample instance](https://samples.octopus.app/app#/Spaces-822).
 
 ## Learn more
 
