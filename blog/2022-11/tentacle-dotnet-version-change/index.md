@@ -36,7 +36,7 @@ You need to do the following if it applies to you:
 
 - If you haven't done so, install .NET Framework 4.8 on your Windows server operating system.
   - If you're on Windows Server 2022, you can ignore this step as you'll already have .NET Framework 4.8 installed. [Learn more in the Microsoft docs](https://learn.microsoft.com/en-us/dotnet/framework/migration-guide/versions-and-dependencies#net-framework-48).
-- Upgrade your existing Tentacle using the usual methods we support or the 2023.1 bundled Tentacle when it becomes available.
+- Upgrade your existing Tentacle using the usual methods we support, or use the version of Tentacle bundled with Octopus 2023.1 when it becomes available.
 
 ### Will my deployments be impacted?
 
