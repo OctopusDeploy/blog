@@ -30,13 +30,13 @@ The .NET 6 builds of Octopus Tentacle will be used for all other platforms, such
 
 ## Questions you might have
 
-### Do I need to do anything to affect the .NET version change?
+### Do I need to do anything about the .NET version change?
 
 You need to do the following if it applies to you:
 
 - If you haven't done so, install .NET Framework 4.8 on your Windows server operating system.
   - If you're on Windows Server 2022, you can ignore this step as you'll already have .NET Framework 4.8 installed. [Learn more in the Microsoft docs](https://learn.microsoft.com/en-us/dotnet/framework/migration-guide/versions-and-dependencies#net-framework-48).
-- Upgrade your existing Tentacle using the usual methods we support or the 2023.1 bundled Tentacle when it becomes available.
+- Upgrade your existing Tentacle using the usual methods we support, or use the version of Tentacle bundled with Octopus 2023.1 when it becomes available.
 
 ### Will my deployments be impacted?
 
@@ -46,7 +46,7 @@ No, your deployments won't be affected by this move. By making the incremental m
 
 Yes, we encourage you to upgrade your deployment targets that are still on Windows 7 SP1 or Windows Server 2008 SP2. 
 
-We recommend upgrading to a version that supports .NET Framework 4.8 and ideally a version compatible with .NET 6 and above.
+We recommend upgrading to a version that supports .NET Framework 4.8 and, ideally, a version compatible with .NET 6 and above.
 
 ### What if I can't upgrade my deployment targets?
 
