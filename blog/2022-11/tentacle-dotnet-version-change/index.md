@@ -46,7 +46,7 @@ No, your deployments won't be affected by this move. By making the incremental m
 
 Yes, we encourage you to upgrade your deployment targets that are still on Windows 7 SP1 or Windows Server 2008 SP2. 
 
-We recommend upgrading to a version that supports .NET Framework 4.8 and ideally a version compatible with .NET 6 and above.
+We recommend upgrading to a version that supports .NET Framework 4.8 and, ideally, a version compatible with .NET 6 and above.
 
 ### What if I can't upgrade my deployment targets?
 
