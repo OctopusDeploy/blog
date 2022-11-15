@@ -30,7 +30,7 @@ The .NET 6 builds of Octopus Tentacle will be used for all other platforms, such
 
 ## Questions you might have
 
-### Do I need to do anything to support the .NET version change?
+### Do I need to do anything about the .NET version change?
 
 You need to do the following if it applies to you:
 
