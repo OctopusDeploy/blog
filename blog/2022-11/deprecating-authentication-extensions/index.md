@@ -6,7 +6,7 @@ visibility: private
 published: 2022-11-22-1400
 metaImage: blogimage-deprecatingcustomauthproviders-2022x2.png
 bannerImage: blogimage-deprecatingcustomauthproviders-2022x2.png
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+bannerImageAlt: A stylized Octopus and shield icon
 isFeatured: false
 tags: 
   - Product
@@ -49,7 +49,9 @@ New environment variables need to be set with a value of `false` for the server 
 
 ### Updated identity
 
-If interacting with the configuration of custom providers via the API, they'll be exposed with a different ID. The ID of all custom authentication providers will include an `authentication-custom-` prefix rather than just `authentication-`. For example, the configuration for the built-in Active Directory authentication exposed from the `/api/configuration` endpoint will be `authentication-directoryservices`, but the configuration for an extension forked off that will appear as `authentication-custom-directoryservices`. This lets us load both the built-in and custom extensions side-by-side during the transition process.
+If interacting with the configuration of custom providers via the API, they'll be exposed with a different ID. The ID of all custom authentication providers will include an `authentication-custom-` prefix rather than just `authentication-`. 
+
+For example, the configuration for the built-in Active Directory authentication exposed from the `/api/configuration` endpoint will be `authentication-directoryservices`, but the configuration for an extension forked off that will appear as `authentication-custom-directoryservices`. This lets us load both the built-in and custom extensions side-by-side during the transition process.
 
 ### Side impact - custom route handlers
 
@@ -68,7 +70,7 @@ Based on feedback so far, we anticipate that most customizations are only improv
 
 Some of you may have implemented an entirely bespoke authentication mechanism. I you can't move to one provided, we want to better understand your requirements so we can work towards resolving missing capabilities. 
 
-Get in touch with us via [support@octopus.com](mailto:support@octopus.com]), or reply to this post to let us know if this will affect your instance.
+Get in touch with us via [support@octopus.com](mailto:support@octopus.com), or reply to this post to let us know if this will affect your instance.
 
 ## Conclusion
 
