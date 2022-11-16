@@ -11,8 +11,6 @@ isFeatured: false
 tags: 
   - Product
   - Engineering
-  - Trust and Security
-  - Integrations
 ---
 
 Octopus Server is deprecating support for BYO authentication mechanisms. 
