@@ -2,7 +2,7 @@
 title: Deprecating authentication extensions
 description: Find out why and when Octopus is deprecating support for custom authentication extensions.
 author: robert.erez@octopus.com
-visibility: private
+visibility: public
 published: 2022-11-22-1400
 metaImage: blogimage-deprecatingcustomauthproviders-2022x2.png
 bannerImage: blogimage-deprecatingcustomauthproviders-2022x2.png
