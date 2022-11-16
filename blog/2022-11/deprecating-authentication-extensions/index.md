@@ -21,21 +21,21 @@ In this post, I explain why this is happening and, if you're using a custom-buil
 
 ## Octopus server extensibility
 
-In Octopus 3.5 we [introduced the concept of server extensibility](https://octopus.com/blog/octopus-deploy-3.5#octopus-deploy-server-extensibility). This was primarily driven by customer demand, allowing our customers to adapt Octopus’ authentication mechanisms to their unique, specific requirements. 
+In Octopus 3.5 we [introduced the concept of server extensibility](https://octopus.com/blog/octopus-deploy-3.5#octopus-deploy-server-extensibility). This was primarily driven by customer demand, allowing our customers to adapt Octopus’ authentication mechanisms to their unique requirements. 
 
 At the time, opening the authentication pipeline for customization was a win-win; our customers could ensure the system worked precisely as required for their organization, and we could relieve some pressure supporting all the different mechanisms required. 
 
 We also saw it as an opportunity to re-architect how some of the core dependencies were included in the product, to simplify the development process. By breaking up the Octopus Server responsibilities, we wanted to decouple parts of the system from one another, allowing a faster development cycle.
 
-Octopus Server has grown significantly since this initial thinking was done and as we've grown, some of these assumptions we had previously made have not had their desired impact, and have instead caused other unwanted side-effects. In attempting to isolate Octopus dependencies out into separate libraries to open source authentication,  development across dependencies became much more difficult without making things easier for our customers.
+Octopus Server has grown significantly since then, and as we've grown, some of our previous assumptions haven't had the desired impact, but instead caused unwanted side-effects. In attempting to isolate Octopus dependencies out into separate libraries to open source authentication,  development across dependencies became more difficult without making things easier for our customers.
 
 ## Problems 
 
-When contracts for an extension library become publicly available for consumption, you commit yourself to the maintenance and continued functionality of that contract. This means architectural decisions made early on, which may have been right at the time, become very difficult to adapt, particularly when new functionality requires changes to that underlying system.
+When contracts for an extension library become publicly available for consumption, you commit yourself to the maintenance and continued functionality of that contract. This means architectural decisions made early on, which may have been right at the time, become difficult to adapt, particularly when new functionality requires changes to that underlying system.
 
-Due to the way the library dependency hierarchy is structured, changes to base libraries used by Octopus Server require users of these libraries to rebuild their customizations to continue using them. This adds unnecessary and oftentimes frustrating steps to what should be a simple Server upgrade process. 
+Due to the way the library dependency hierarchy is structured, changes to base libraries used by Octopus Server require users of these libraries to rebuild their customizations to continue using them. This adds unnecessary and oftentimes frustrating steps to what should be a simple server upgrade process. 
 
-Having core abstractions spread across libraries and repositories also impinges upon development - when you want to make cross-cutting changes, they are harder to reason about and execute when the code is not co-located within a single repository.
+Having core abstractions spread across libraries and repositories also impacts development - when you want to make cross-cutting changes, they're harder to reason about and execute when the code isn't co-located in a single repository.
 
 Although making the authentication providers _open for review_ was a reasonable move (and one that we continue to make for various libraries through our GitHub repositories), the way they're _open for extension_ no longer aligns with the technical direction we want to move in with Octopus Server. So, we decided to reconsider our current server extensibility model.
 
@@ -43,9 +43,9 @@ Although making the authentication providers _open for review_ was a reasonable 
 
 If you haven't built and installed custom authentication extensions for your Octopus Server instance, then these changes don't impact you. You can stop reading now and continue upgrading without any changes required.
 
-If you have built your own authentication assemblies from a direct fork of one of [our authentication libraries](https://octopus.com/docs/administration/server-extensibility/customizing-an-octopus-deploy-server-extension), there are some important changes listed below that you need to make so authentication continues working in new versions of Octopus Server from 2022.4. 
+If you have built your own authentication assemblies from a direct fork of one of [our authentication libraries](https://octopus.com/docs/administration/server-extensibility/customizing-an-octopus-deploy-server-extension), there are important changes listed below that you need to make so authentication continues working in new versions of Octopus Server from 2022.4. 
 
-In future builds of Octopus Server at the end of 2023 these work arounds will also be deprecated resulting in all custom authentication mechanisms no longer working.
+In future builds of Octopus Server at the end of 2023, these work arounds will also be deprecated, resulting in all custom authentication mechanisms no longer working.
 
 ### Enable with environment variable
 
@@ -73,7 +73,7 @@ Based on feedback so far, we anticipate most customizations are only improvement
 
 ### Get in touch if the changes impact you
 
-Some of you may have implemented an authentication mechanism forked off one of our libraries and some may have developed an entirely custom authentication provider. If you can't move to one of the built-in mechanisms, we want to better understand your requirements so we can work towards resolving missing capabilities. 
+Some of you may have implemented an authentication mechanism forked off one of our libraries, and some may have developed an entirely custom authentication provider. If you can't move to one of the built-in mechanisms, we want to better understand your requirements so we can work towards resolving missing capabilities. 
 
 Get in touch with us via [support@octopus.com](mailto:support@octopus.com), or reply to this post to let us know if this will affect your instance.
 
