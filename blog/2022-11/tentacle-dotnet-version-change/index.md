@@ -12,13 +12,13 @@ tags:
   - Product
 ---
 
-With .NET Framework 4.5.2 being end of life (EOL) from April 26, 2022, and .NET Core 3.1 being EOL from December 13, 2022, we're moving Tentacle to .NET Framework 4.8 for the Windows installer only, and .NET 6 for everything else including the Windows Docker image.
+With .NET Framework 4.5.2 reaching end of support from April 26, 2022, and .NET Core 3.1 reaching end of support from December 13, 2022, we're moving Tentacle to .NET Framework 4.8 for the Windows installer only, and .NET 6 for everything else including the Windows Docker image.
 
 In this post, I explain our decision and answer some questions you might have regarding the Tentacle bump.
 
 ## Why are we moving Tentacle now?
 
-Tentacle has been on .NET Framework 4.5.2 and .NET Core 3.1 for some time. We're moving these versions because .NET Framework 4.5.2 will be EOL from April 26, 2022, and .NET Core 3.1 will be EOL from December 13, 2022. After this, we'd miss out on security patches and library updates. 
+Tentacle has been on .NET Framework 4.5.2 and .NET Core 3.1 for some time. We're moving these versions because .NET Framework 4.5.2 will reach end of support from April 26, 2022, and .NET Core 3.1 will reach end of support from December 13, 2022. After this, we'd miss out on security patches and library updates. 
 
 To continue providing our customers with secure software, we must align with the support schedules of our underlying development frameworks.
 
