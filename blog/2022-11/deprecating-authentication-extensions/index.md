@@ -3,16 +3,16 @@ title: Deprecating authentication extensions
 description: The why and when of Octopus deprecating support for custom authentication extensions.
 author: robert.erez@octopus.com
 visibility: private
-published: 3020-01-01-1400
-metaImage: 
-bannerImage: 
+published: 2022-11-22-1400
+metaImage: blogimage-deprecatingcustomauthproviders-2022x2.png
+bannerImage: blogimage-deprecatingcustomauthproviders-2022x2.png
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags: 
+  - Product
   - Engineering
   - Trust and Security
   - Integrations
-  
 ---
 
 Octopus Server is deprecating support for BYO authentication mechanisms. This post will talk through why this is happening and, if you are using a custom-built authentication provider, what you need to do once the changes arrive.
