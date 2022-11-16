@@ -73,7 +73,7 @@ Based on feedback so far, we anticipate most customizations are only improvement
 
 Some of you may have implemented an authentication mechanism forked off one of our libraries, and some may have developed an entirely custom authentication provider. If you can't move to one of the built-in mechanisms, we want to better understand your requirements so we can work towards resolving missing capabilities. 
 
-Get in touch with us via [support@octopus.com](mailto:support@octopus.com), or reply to this post to let us know if this will affect your instance.
+Get in touch with us via [support@octopus.com](mailto:support@octopus.com) or comment below to let us know if this will affect your Octopus instance.
 
 ## Conclusion
 
