@@ -4,9 +4,9 @@ description: Learn how to grant an AWS federated user account to an EKS cluster.
 author: shawn.sesna@octopus.com
 visibility: private
 published: 3020-01-01-1400
-metaImage: placeholderimg.png
-bannerImage: placeholderimg.png
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-deploymentscreatingaeksclusterinaws-2022.png
+bannerImage: blogimage-deploymentscreatingaeksclusterinaws-2022.png
+bannerImageAlt: EKS hexagons falling into an AWS-styled cube
 isFeatured: false
 tags: 
   - DevOps
