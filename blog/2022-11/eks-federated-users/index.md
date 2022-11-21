@@ -14,7 +14,9 @@ tags:
   - Containers
 ---
 
-If you've ever worked with the Elastic Kubernetes Service (EKS) on AWS, chances are you experienced the frustration of permissions.  If you're not the creator of the EKS cluster, you can't see any information in the AWS Console other than it's overall status. There are plenty of tutorials demonstrating how to add additional user accounts, however, there isn't a definitive walk through of adding a federated user account.  
+If you've worked with the Elastic Kubernetes Service (EKS) on AWS, chances are you've experienced the frustration of permissions.  When you're not the creator of the EKS cluster, the only information you can see in the AWS console is the cluster's overall status. 
+
+There are many tutorials on adding additional user accounts; however, there isn't a definitive walk-through showing you how to add a federated user account. 
 
 In this post, I walk you through granting a federated user account to an EKS cluster.
 
@@ -22,7 +24,7 @@ In this post, I walk you through granting a federated user account to an EKS clu
 
 I decided to write this post after working with EKS on our [Samples](https://samples.octopus.app) instance.  One project created an EKS cluster and I needed to see the details of a deployment resource on the cluster.  The project used a [runbook](https://octopus.com/docs/runbooks) to create the EKS cluster using an AWS account.  Despite having full access to our AWS account, I couldn't see the details of the cluster.  To further complicate things, I logged into the AWS console using a federated user account.  While researching this topic, I found some tutorials, but nothing covered the entire process.  
 
-In this walk through, you learn how to:
+In this walk-through, you learn how to:
 
 - Create an EKS cluster using a different account
 - Find the information for the federated account(s)
@@ -30,14 +32,16 @@ In this walk through, you learn how to:
 
 ### Creating an EKS cluster
 
-When granting a federated user account to an EKS cluster, if you're not the creator of the EKS cluster, problems arise.  The cluster must first be created by a user other than yourself.  In my case, I created a user account with sufficient permissions to create EKS clusters.  I added the [AWS Account](https://octopus.com/docs/infrastructure/accounts/aws) in Octopus and used the following steps in a runbook to create a cluster:
+When granting a federated user account to an EKS cluster, problems arise if you're not the creator of the EKS cluster. A different user needs to first create the cluster. 
+
+In my case, I created a user account with sufficient permissions to create EKS clusters. I added the [AWS account](https://octopus.com/docs/infrastructure/accounts/aws) in Octopus and used the following steps in a runbook to create a cluster:
 
 - **Create EKS Cluster**
 - **Add cluster as deployment target**
 
-I'm using an Octopus Deploy runbook, but the **Create EKS Cluster** section isn't Octopus specific as it uses the AWS CLI to create the cluster.
+I'm using an Octopus Deploy runbook, but the **Create EKS Cluster** section isn't Octopus-specific as it uses the AWS CLI to create the cluster.
 
-#### Create EKS Cluster
+#### Create EKS cluster
 
 This step uses the **Run an AWS CLI Script** step in Octopus Deploy to create the EKS cluster.  
 
@@ -45,12 +49,12 @@ The following variables are required by the CLI to create the cluster:
 
 - ClusterName
 - Region
-- EKS Role arn
-- EKS Node Role arn
-- Subnet IDs (I use two)
+- EKS Role ARN
+- EKS Node Role ARN
+- Subnet IDs (I use 2)
 - Security Group ID
 
-This post assumes you know enough about AWS to know what those values need to be.  The following script uses the CLI to first create the EKS cluster then the nodegroup. After those activities are complete, it stores the URL endpoint for the cluster in an [output variable](https://octopus.com/docs/projects/variables/output-variables) for use in subsequent steps.  
+This post assumes you know enough about AWS to know what those values need to be. The following script uses the CLI to first create the EKS cluster then the nodegroup. After those activities are complete, it stores the URL endpoint for the cluster in an [output variable](https://octopus.com/docs/projects/variables/output-variables) for use in subsequent steps.  
 
 ```powershell
 # Get variables
@@ -110,15 +114,15 @@ Navigating to the cluster in the AWS console, you see the following message:
 
 You can see the cluster is active and healthy, but that's all.
 
-The solution is adding your user account to the `aws-auth` configmap.  However, the process is different with a federated account as they don't show up in the **IAM Users** section of the AWS console.  
+The solution is adding your user account to the `aws-auth` config map.  However, the process is different with a federated account as they don't show up in the **IAM Users** section of the AWS console.  
 
-Federated users are mapped to an AWS **Role**, so you need to identify which role your account is mapped to.  Thankfully, this is easily done by clicking your account in the upper right of the AWS console. This displays the role your federated account is mapped to.  
+Federated users are mapped to an **AWS Role**, so you need to identify which role your account is mapped to.  Thankfully, this is easily done by clicking your account in the upper right of the AWS console. This displays the role your federated account is mapped to.  
 
 In this case, you can see my account is mapped to the `AWSReservedSSO_DeveloperAccess_645f9848983dec35` role.
 
 ![AWS User Account](aws-iam-account.png)
 
-### Add the federated account to cluster
+### Add the federated account to the cluster
 
 Before adding the federated user(s), you must first get the current value of the `aws-auth` config map.  This can be done using a `kubectl` command, `kubectl get configmap/aws-auth -n kube-system`.  
 
@@ -171,7 +175,7 @@ The whole section should look similar to this:
   username: system:node:{{EC2PrivateDNSName}}
 ```
 
-The last step is replacing the existing `aws-auth` configmap with your altered version.  Do this using the `replace` command for the kubectl CLI.  Because I did this in an Octopus Deploy runbook, I used the following PowerShell for this alteration:
+The last step is replacing the existing `aws-auth` config map with your altered version.  Do this using the `replace` command for the kubectl CLI.  Because I did this in an Octopus Deploy runbook, I used the following PowerShell for this alteration:
 
 ```powershell
 # Get current aws-auth configmap
@@ -215,7 +219,7 @@ After applying the update, you might notice the `Node group` in a degraded state
 
 ![EKS node group degraded](aws-eks-nodegroup-degraded.png)
 
-If you notice this, check the `Health issues` of the node group.  If the `Issue type` is `AccessDenied` with a description of `The aws-auth ConfigMap in your cluster is invalid.`, ensure you encased the `{{SessionName}}` part of the federated account YAML in double quotes:
+If you notice this, check the **Health issues** of the node group.  If the **Issue type** is **AccessDenied** with a description of `The aws-auth ConfigMap in your cluster is invalid.`, ensure you encased the `{{SessionName}}` part of the federated account YAML in double quotes:
 
 ```yaml
 - rolearn: arn:aws:iam::<Your AWS Account ID>:role/AWSReservedSSO_DeveloperAccess_645f9848983dec35
@@ -230,6 +234,6 @@ The update may take around 10 minutes, but the health issue should resolve.
 
 ## Conclusion
 
-I spent a lot of time searching and gathering what was necessary to add a federated user account to an EKS cluster. The issue with`{{SessionName}}` needing to be encased in quotes was particularly time-consuming to solve.  I hope this post saves you time by walking you through the process.
+I spent a lot of time searching and gathering what was necessary to add a federated user account to an EKS cluster. The issue with`{{SessionName}}` needing to be encased in double quotes was particularly time-consuming to solve.  I hope this post saves you time by walking you through the process.
 
 Happy deployments! 
