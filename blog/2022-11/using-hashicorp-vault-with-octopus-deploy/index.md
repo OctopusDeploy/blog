@@ -14,7 +14,7 @@ tags:
  - Step Templates
 ---
 
-Storing sensitive values in Octopus Deploy solves many problems. If your organization has standardized on a secrets manager though, that might mean storing sensitive values twice, making secrets management more complicated.
+Storing sensitive values in Octopus Deploy solves many problems. If your organization has standardized on a secrets manager, though, that might mean storing sensitive values twice, making secrets management more complicated.
 
 Octopus has supported the concept of [sensitive variables](https://octopus.com/docs/projects/variables/sensitive-variables) since [Octopus 2.0](https://octopus.com/blog/new-in-2.0/sensitive-variables), but customers often ask about support for secret managers. One in particular is [HashiCorp Vault](https://www.vaultproject.io/).
 
