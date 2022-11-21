@@ -22,7 +22,7 @@ In this post, I walk you through granting a federated user account to an EKS clu
 
 ## What you'll learn
 
-I decided to write this post after working with EKS on our [Samples](https://samples.octopus.app) instance.  One project created an EKS cluster and I needed to see the details of a deployment resource on the cluster.  The project used a [runbook](https://octopus.com/docs/runbooks) to create the EKS cluster using an AWS account.  Despite having full access to our AWS account, I couldn't see the details of the cluster.  To further complicate things, I logged into the AWS console using a federated user account.  While researching this topic, I found some tutorials, but nothing covered the entire process.  
+I decided to write this post after working with EKS on our [Samples](https://samples.octopus.app) instance. I needed to see the details of a deployment resource on the cluster created by a project.  The project used a [runbook](https://octopus.com/docs/runbooks) to create the EKS cluster using an AWS account. Despite having full access to our AWS account, I couldn't see the cluster's details. To further complicate things, I logged into the AWS console using a federated user account.  While researching this topic, I found some tutorials, but nothing covered the entire process.  
 
 In this walk-through, you learn how to:
 
@@ -92,7 +92,7 @@ Set-OctopusVariable -name "EKSURL" -value $eksCluster.Cluster.Endpoint
 
 This steps adds the newly created cluster as a target in Octopus Deploy.  If you don't use Octopus, you can go to the next section, [Find the information for the federated account(s)](#info-federated).  
 
-This step uses the [New-OctopusKubernetesTarget](https://octopus.com/docs/infrastructure/deployment-targets/dynamic-infrastructure/kubernetes-target) cmdlet in a **Run a Script** step to add the newly created EKS cluster to Octopus Deploy.  The `$eksUrl` variable retrieves its value from the output variable of the previous step.
+This step uses the [New-OctopusKubernetesTarget](https://octopus.com/docs/infrastructure/deployment-targets/dynamic-infrastructure/kubernetes-target) cmdlet in a **Run a Script** step to add the newly-created EKS cluster to Octopus Deploy.  The `$eksUrl` variable retrieves its value from the output variable of the previous step.
 
 ```powershell
 # Get the variables
@@ -234,6 +234,6 @@ The update may take around 10 minutes, but the health issue should resolve.
 
 ## Conclusion
 
-I spent a lot of time searching and gathering what was necessary to add a federated user account to an EKS cluster. The issue with`{{SessionName}}` needing to be encased in double quotes was particularly time-consuming to solve.  I hope this post saves you time by walking you through the process.
+I spent a lot of time searching and gathering what was necessary to add a federated user account to an EKS cluster. The issue with `{{SessionName}}` needing to be encased in double quotes was particularly time-consuming to solve.  I hope this post saves you time by walking you through the process.
 
 Happy deployments! 
