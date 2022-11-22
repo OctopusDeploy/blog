@@ -128,9 +128,9 @@ By recognizing this, it allows your teams to:
 
 ## DevOps roles
 
-Given the concept is about a unifying purpose, DevOps is really everyone's role. That said, it's still important everyone knows their responsibilities. Adopting DevOps means adding some specialist roles that sit alongside development staples like coders, QA, designers, and more. The [DevOps Engineer's handbook explores team structures](https://octopus.com/devops/team-structures/) in more detail.
+Given the concept is about a unifying purpose, DevOps is really everyone's role. That said, it's still important everyone knows their responsibilities. Adopting DevOps means adding some specialist roles that sit alongside development staples like coders, QA, designers, and more.
 
-Let's take a quick look at some of the common extra roles needed in DevOps and what they do. Some of the naming conventions and finer responsibilities may differ between organizations.
+Let's take a quick look at some of the common extra roles needed in DevOps and what they do. Some of the naming conventions and finer responsibilities may differ between organizations. The DevOps Engineer's handbook [explores team structures](https://octopus.com/devops/team-structures/) in more detail.
 
 ### DevOps Engineer
 
