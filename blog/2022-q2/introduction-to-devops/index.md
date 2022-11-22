@@ -34,7 +34,7 @@ Typical barriers include:
 - Office politics
 - Counteractive support workflows
 
-The reason to overcome these barriers is simple: If the product is software, then all processes should work towards delivering that software, not against it.
+The reason to overcome these barriers is simple: if the product is software, then all processes should work towards delivering that software, not against it.
 
 Let's look at what we must consider when thinking about a DevOps approach.
 
