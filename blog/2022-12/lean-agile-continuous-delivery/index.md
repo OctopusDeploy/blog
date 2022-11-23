@@ -131,7 +131,7 @@ You can use the Continuous Delivery principles to guide your software delivery e
 
 ## Learn more
 
-- The DevOps engineer's handbook
+- [The DevOps engineer's handbook](https://octopus.com/devops/)
 - [The importance of Continuous Delivery (white paper)](https://i.octopus.com/whitepapers/importance-of-cd.pdf)
 - [Free tools](https://octopus.com/freetools)
 
