@@ -91,6 +91,6 @@ CI/CD is part of the DevOps model and helps bring software projects from code to
 
 Many tools can help you with CI/CD, from build servers and deployment tools to monitoring tools. Octopus Deploy fits into CI/CD as a Continuous Deployment solution making complex deployments easier.
 
-If you want to learn more about best practices for CI/CD, we have launched the [DevOps Engineers Handbook])https://octopus.com/devops/) which contains several resources for CI/CD._
+If you want to learn more about best practices for CI/CD, we have launched the [DevOps Engineers Handbook](https://octopus.com/devops/) which contains several resources for CI/CD._
 
 Happy deployments!
