@@ -19,7 +19,9 @@ Continuous Integration and Delivery (CI/CD) take software development from code 
 
 If you work in DevOps, you'd have used a build server like Jenkins, and a deployment tool like Octopus Deploy to complete your deployment process. Octopus Deploy supports the Continuous Delivery side of CI/CD, providing a best-in-class product that makes complex deployments easier. 
 
-At Octopus, we believe in the power of 8. An octopus has 8 arms, so here are 8 best practices to help your deployment journey.
+We have launched the [DevOps Engineers Handbook](https://octopus.com/devops/) that contains several DevOps resources, including CI/CD, so check it out if you want to know more.
+
+At Octopus, we believe in the power of 8. An octopus has 8 limbs, so here are 8 best practices to help your deployment journey.
 
 ## Adopt Agile methodologies
 
@@ -88,5 +90,7 @@ On May 12, 2021, The US government released Executive Order 14028, "Improving th
 CI/CD is part of the DevOps model and helps bring software projects from code to customers. If you work in DevOps and implement CI/CD, you want to ensure you follow industry-standard best practices for your pipeline. To help, this post lists 8 best practices you can use to make the most of CI/CD. 
 
 Many tools can help you with CI/CD, from build servers and deployment tools to monitoring tools. Octopus Deploy fits into CI/CD as a Continuous Deployment solution making complex deployments easier.
+
+If you want to learn more about best practices for CI/CD, we have launched the [DevOps Engineers Handbook])https://octopus.com/devops/) which contains several resources for CI/CD._
 
 Happy deployments!
