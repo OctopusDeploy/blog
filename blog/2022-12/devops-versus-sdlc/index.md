@@ -3,7 +3,7 @@ title: DevOps versus SDLC
 description: Find out if the software development life cycle still has a place in the DevOps era.
 author: steve.fenton@octopus.com
 visibility: public
-published: 2022-10-04-1400
+published: 2022-12-14-1400
 metaImage: software-development-lifecycle.png
 bannerImage: software-development-lifecycle.png
 bannerImageAlt: Software packages moving along a conveyor belt and becoming versioned releases.
@@ -142,7 +142,7 @@ The traditional formal method based on the systems development life cycle is no 
 
 If you want to learn more about DevOps and Continuous Delivery, you may find the following useful:
 
-- [The Octopus DevOps Engineer's Handbook](https://octopus.com/devops/)
+- [The Octopus DevOps engineer's handbook](https://octopus.com/devops/)
 - [Our white papers on Continuous Delivery](https://octopus.com/resource-center)
 
 Happy deployments! 
