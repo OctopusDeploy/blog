@@ -3,7 +3,7 @@ title: Common mistakes in DevOps metrics
 description: Learn what to avoid as you create and evolve your DevOps measurement system.
 author: steve.fenton@octopus.com
 visibility: public
-published: 2022-10-31-1400
+published: 2022-12-12-1400
 metaImage: blogimage-calculatingdorametrics-2022.png
 bannerImage: blogimage-calculatingdorametrics-2022.png
 bannerImageAlt: A magnifying glass highlights a chart on a dashboard shown on a laptop screen
@@ -17,7 +17,7 @@ tags:
 Metrics are crucial to DevOps and Continuous Delivery as part of the process of continuous improvement. However, you must balance collecting and displaying data with being flooded with information. You need to decide what data to collect and what smaller set of data you pay attention to at any time.
 
 :::hint
-You can [find out more about CI/CD](https://octopus.com/devops/continuous-delivery/) and [how to get started with Continuous Delivery](https://octopus.com/devops/continuous-delivery/get-started-with-continuous-delivery/) in our [DevOps Engineer's handbook](https://octopus.com/devops/).
+You can [find out more about CI/CD](https://octopus.com/devops/continuous-delivery/) and [how to get started with Continuous Delivery](https://octopus.com/devops/continuous-delivery/get-started-with-continuous-delivery/) in our [DevOps engineer's handbook](https://octopus.com/devops/).
 :::
 
 If your car had a dashboard that displayed every metric it collects through the engine management system, there'd be no space for a windscreen.
@@ -125,7 +125,7 @@ If you use metrics well, you'll amplify performance and learning as you seek to 
 
 - [*Punished By Rewards*](https://www.alfiekohn.org/punished-rewards/) - Alfie Kohn. 1993.
 - We have a white paper on [Measuring Continuous Delivery](https://octopus.com/resource-center), which describes different types of metrics and frameworks for measuring DevOps and Continuous Delivery
-- You can [find out more on DevOps and Continuous Delivery in our DevOps Engineer's Handbook](https://preprod.octopus.com/devops/)
+- You can [find out more on DevOps and Continuous Delivery in our DevOps engineer's handbook](https://octopus.com/devops/)
 - Learn more about Octopus Deploy's [DevOps Insights feature](https://octopus.com/docs/insights)
 
 Happy deployments!
