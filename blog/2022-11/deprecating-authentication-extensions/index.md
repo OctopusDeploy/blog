@@ -67,7 +67,7 @@ To improve our delivery process and strengthen the safety checks for authenticat
 
 Between now and the end of 2023, we'll continue to support extensions where possible, and review how we can consolidate the custom changes our customers have created into the official providers themselves. 
 
-Based on feedback so far, we anticipate most customizations are only improvements to the existing providers, however we'll investigate the impacts for users with completely custom integrations. Please let us know in the comments below if that includes you.
+Based on feedback so far, we anticipate most customizations are only improvements to the existing providers, however we'll investigate the impacts for users with completely custom integrations. Please let us know if that includes you.
 
 ### Get in touch if the changes impact you
 
