@@ -19,7 +19,7 @@ Or perhaps you're already an advocate of DevOps, you want to recommend a book fo
 
 This post is for you.
 
-What follows is a list of some of the most widely respected DevOps books and my personal recommendation about which one you (yes, you, specifically you) should read first.
+What follows is a list of some of the most widely respected DevOps books and my personal recommendation about which one you (yes, you, specifically you) should read first. If you're pressed for time, try our [recommendation tool](https://octopus.com/devops/reading-list) inspired by this post.    
 
 ## How to read this post
 
