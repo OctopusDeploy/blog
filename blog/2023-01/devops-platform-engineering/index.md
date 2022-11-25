@@ -3,7 +3,7 @@ title: DevOps and platform engineering
 description: Find out where platform engineering fits into a DevOps process and why both DevOps and platform engineering can help your organization attain high performance.
 author: steve.fenton@octopus.com
 visibility: private
-published: 3020-01-01-1400
+published: 2023-01-11-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
