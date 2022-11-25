@@ -15,7 +15,7 @@ tags:
  - GitHub Actions
 ---
 
-GitHub Actions is a Continuous Integration and Continuous Delivery (CI/CD) tool that uses automated actions to deploy your code. If you store your code in GitHub, GitHub Actions enhances every Github repository with CI/CD functionality, making deployments simple. 
+GitHub Actions is a Continuous Integration and Continuous Delivery (CI/CD) tool that uses automated actions to deploy your code. If you store your code in GitHub, GitHub Actions enhances every GitHub repository with CI/CD functionality, making deployments simple. 
 
 Many developers want an easy way to get started without the bloat of enterprise tools, and GitHub Actions fits that need. 
 
