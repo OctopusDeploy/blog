@@ -300,7 +300,7 @@ The Phoenix Project is told from Bill Palmer’s perspective, as a senior manage
 
 In contrast, The Unicorn Project tells the story of Maxine Chambers. She’s a senior developer who’s just been relegated to the phoenix project after getting the blame for a disaster that wasn’t her fault. Well respected by her team, she’s a strong leader who shuns formal management positions because she loves to code.
 
-Alongside some of the organizational themes, such as corporate bureaucracy, blame culture, and lengthy approval processes, “Unicorn” covers more technical topics, including continuous integration, data management, and functional programming. (Yeah, I admit I was a little surprised by that last one!)
+Alongside some of the organizational themes, such as corporate bureaucracy, blame culture, and lengthy approval processes, “Unicorn” covers more technical topics, including continuous integration (CI), data management, and functional programming. (Yeah, I admit I was a little surprised by that last one!)
 
 The primary focus of Unicorn is “The Five Ideals”:
 
@@ -552,6 +552,6 @@ Please leave a comment. I look forward to seeing your suggestions, and I hope to
 
 But more importantly, if you like books, I encourage you to buy one and set aside some time to start reading. In this crazy time more than ever before, I’ve found it especially cathartic and valuable to block out a few hours, pop the kettle on, turn off my devices, and to sit back with a notepad, pen, and a good book about how to prosper in the face of unexpected challenges and uncertain market conditions.
 
-!include <q2-2022-newsletter-cta>
+Read the rest of our [Runbooks series](https://octopus.com/blog/tag/Runbooks%20Series) or explore the [DevOps engineer's handbook](https://octopus.com/devops) to learn more about DevOps and CI/CD.
 
 Happy deployments!
