@@ -355,7 +355,7 @@ So if Jenkins ever refreshes their UI, you can be assured that the Octopus Guide
 
 ## Conclusion
 
-By adopting DevOps best practices like infrastructure as code, automated testing, and pipelines, it is possible to streamline some of the most manual, tedious, and expensive aspects of creating and maintaining significant volumes of high-quality documentation. 
+By adopting [DevOps best practices](https://octopus.com/devops) like infrastructure as code, automated testing, and pipelines, it is possible to streamline some of the most manual, tedious, and expensive aspects of creating and maintaining significant volumes of high-quality documentation. 
 
 With just a few months’ worth of work, a team of 2 produced thousands of screenshots, hours of video, and hundreds of thousands of words, all automatically generated and verified.
 
