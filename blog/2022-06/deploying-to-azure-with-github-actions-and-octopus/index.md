@@ -15,7 +15,7 @@ tags:
  - GitHub Actions
 ---
 
-GitHub Actions is a Continuous Integration and Continuous Delivery (CI/CD) tool that uses automated actions to deploy your code. If you store your code in GitHub, GitHub Actions enhances every Github repository with CI/CD functionality, making deployments simple. 
+GitHub Actions is a Continuous Integration and Continuous Delivery (CI/CD) tool that uses automated actions to deploy your code. If you store your code in GitHub, GitHub Actions enhances every GitHub repository with CI/CD functionality, making deployments simple. 
 
 Many developers want an easy way to get started without the bloat of enterprise tools, and GitHub Actions fits that need. 
 
@@ -286,6 +286,6 @@ This tutorial set up a continuous delivery flow with Octopus Deploy, GitHub Acti
 
 !include <github-actions-free-tool>
 
-For more on Continuous Integration (CI) and build servers, [check out our CI blog series](https://octopus.com/blog/tag/CI%20Series).
+For more on Continuous Integration (CI) and build servers, [check out our CI blog series](https://octopus.com/blog/tag/CI%20Series). Explore the [DevOps engineer's handbook](https://octopus.com/devops) to learn more about DevOps and CI/CD.
 
 Happy deployments!
