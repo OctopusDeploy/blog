@@ -3,7 +3,7 @@ title: What is GitOps?
 description: GitOps is an exciting new paradigm, but it can be hard to understand exactly what the term means. 
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2022-04-13-1400
+published: 2022-12-21-1400
 metaImage: blogimage-whatisgitops-2022.png
 bannerImage: blogimage-whatisgitops-2022.png
 bannerImageAlt: Person holds magnifying glass over GitOps logo,  surrounded by icons for declarative, versioned and immutable, pulled automatically, and continuously reconciled.
