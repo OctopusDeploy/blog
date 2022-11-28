@@ -13,7 +13,7 @@ tags:
 
 ![DevOps practices power Octopus documentation](devops_documentation_2020.png)
 
-We have detailed end-to-end CI/CD guides to the [Octopus documentation](https://octopus.com/docs/guides) to help teams configure their delivery pipelines. We applied DevOps principles to the process of software documentation that allowed us to create useful step-by-step guides, with automated screenshots and screencasts of each scenario being documented.
+We have detailed end-to-end CI/CD guides to the [Octopus documentation](https://octopus.com/docs/guides) to help teams configure their delivery pipelines. We applied [DevOps principles](https://octopus.com/devops) to the process of software documentation that allowed us to create useful step-by-step guides, with automated screenshots and screencasts of each scenario being documented.
 
 If you’ve ever tried supporting a friend, colleague, or customer with a technical issue over the phone, you know how inefficient that conversation can be:
 
