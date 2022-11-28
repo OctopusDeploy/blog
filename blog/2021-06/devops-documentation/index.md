@@ -43,7 +43,7 @@ Many of the applications included in the guides are released on a monthly or wee
 
 To achieve this, we needed a solution that could scale up far beyond a traditional write, commit, transform, and publish workflow. Without the luxury of throwing more people at the problem, we leaned heavily on DevOps practices such as: 
 
-- Automated testing (to ensure the process we were documenting worked as described).
+- [Automated testing](https://octopus.com/devops/continuous-delivery/software-testing-in-continuous-delivery) (to ensure the process we were documenting worked as described).
 - Infrastructure as code.
 - Automated pipelines to generate screenshots and video.
 
