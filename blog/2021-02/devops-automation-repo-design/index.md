@@ -52,11 +52,11 @@ A centralized design works best when the execution of the code is still manual, 
 
 Comparing a centralized repository design to a monolithic app might make you think you shouldn't use it. But it's an excellent place to start if your team or organization is new to automation or infrastructure as code in general. It's something you'll grow out of eventually, but I've found it's far better than jumping ahead to a more mature design which will add complexity, confusion, and reduce your rate of adoption.
 
-Having everything in one place keeps things simple. It's clear how to organize files and where you should commit your code. It's easy to track changes, and there is a single CI/CD pipeline to troubleshoot.
+Having everything in one place keeps things simple. It's clear how to organize files and where you should commit your code. It's easy to track changes, and there is a single [CI/CD pipeline](https://octopus.com/devops/continuous-delivery/what-is-a-deployment-pipeline) to troubleshoot.
 
 ## When is it time to refactor a repository?
 
-Friction is the best way to identify constraints, and over time your centralized repository’s codebase will start to get burdensome. This happens as you shift to automating the execution of tasks and stop running everything by hand. That’s when a centralized repository starts to make things complicated.
+Friction is the best way to identify constraints, and over time your centralized repository’s codebase will start to get burdensome. This happens as you shift to [automating the execution of tasks](https://octopus.com/devops/continuous-delivery/automate-everything) and stop running everything by hand. That’s when a centralized repository starts to make things complicated.
 
 The most significant disadvantage of a centralized repository is the number of workflows it contains. There is a lot of [toil](https://cloud.google.com/blog/products/management-tools/identifying-and-tracking-toil-using-sre-principles) to automate, and not all of them run at the same time.
 
@@ -90,4 +90,4 @@ Use a simple workflow tool such as [draw.io](https://draw.io) to draft the workf
 
 ## Conclusion
 
-Starting simple is the best way to begin your automation journey. Avoid over-engineering by using a centralized repository that holds all your automation processes. Refactor as soon as development slows down and friction increases. Use value stream mapping to identify the workflows that exist within your central repository. Decouple the code with the highest return on investment (ROI) to your team and add the most value.
+Starting simple is the best way to begin your [automation journey](https://octopus.com/devops/continuous-delivery/automate-everything). Avoid over-engineering by using a centralized repository that holds all your automation processes. Refactor as soon as development slows down and friction increases. Use value stream mapping to identify the workflows that exist within your central repository. Decouple the code with the highest return on investment (ROI) to your team and add the most value.
