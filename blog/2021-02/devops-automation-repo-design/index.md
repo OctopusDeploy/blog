@@ -56,7 +56,7 @@ Having everything in one place keeps things simple. It's clear how to organize f
 
 ## When is it time to refactor a repository?
 
-Friction is the best way to identify constraints, and over time your centralized repository’s codebase will start to get burdensome. This happens as you shift to automating the execution of tasks and stop running everything by hand. That’s when a centralized repository starts to make things complicated.
+Friction is the best way to identify constraints, and over time your centralized repository’s codebase will start to get burdensome. This happens as you shift to [automating the execution of tasks](https://octopus.com/devops/continuous-delivery/automate-everything) and stop running everything by hand. That’s when a centralized repository starts to make things complicated.
 
 The most significant disadvantage of a centralized repository is the number of workflows it contains. There is a lot of [toil](https://cloud.google.com/blog/products/management-tools/identifying-and-tracking-toil-using-sre-principles) to automate, and not all of them run at the same time.
 
