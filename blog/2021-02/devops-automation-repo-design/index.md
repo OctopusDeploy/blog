@@ -90,4 +90,4 @@ Use a simple workflow tool such as [draw.io](https://draw.io) to draft the workf
 
 ## Conclusion
 
-Starting simple is the best way to begin your [automation journey](. Avoid over-engineering by using a centralized repository that holds all your automation processes. Refactor as soon as development slows down and friction increases. Use value stream mapping to identify the workflows that exist within your central repository. Decouple the code with the highest return on investment (ROI) to your team and add the most value.
+Starting simple is the best way to begin your [automation journey](https://octopus.com/devops/continuous-delivery/automate-everything). Avoid over-engineering by using a centralized repository that holds all your automation processes. Refactor as soon as development slows down and friction increases. Use value stream mapping to identify the workflows that exist within your central repository. Decouple the code with the highest return on investment (ROI) to your team and add the most value.
