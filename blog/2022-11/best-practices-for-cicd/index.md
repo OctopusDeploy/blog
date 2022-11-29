@@ -1,5 +1,5 @@
 ---
-title: Best practices for CI/CD
+title: "Best practices for CI/CD"
 description: 8 best practices for CI/CD, using agile, committing code frequently, using Config as Code, keeping builds green, automating your tests, using a feedback loop, and using fit for purpose technologies.
 author: terence.wong@octopus.com
 visibility: public
@@ -87,7 +87,7 @@ On May 12, 2021, The US government released Executive Order 14028, "Improving th
 
 ## Conclusion
 
-CI/CD is part of the DevOps model and helps bring software projects from code to customers. If you work in DevOps and implement CI/CD, you want to ensure you follow industry-standard best practices for your pipeline. To help, this post covered 8 best practices you can use to make the most of CI/CD. 
+CI/CD is part of the DevOps model and helps bring software projects from code to customers. If you work in DevOps and implement CI/CD, you should follow industry-standard best practices for your pipeline. To help, this post covered 8 best practices you can use to make the most of CI/CD. 
 
 Many tools can help you with CI/CD, from build servers and deployment tools to monitoring tools. Octopus Deploy fits into CI/CD as a Continuous Deployment solution making complex deployments easier.
 
