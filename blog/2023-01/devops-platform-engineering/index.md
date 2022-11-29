@@ -64,9 +64,9 @@ A critical part of platform engineering is treating developers as customers, sol
 - Deployments
 - Test databases
 
-A team choosing MySql will get all these for free at the push of a button. Another team might still need to use something different, but they will be responsible for their selections when they step off the pathway.
+A team choosing MySql will get all these for free at the push of a button. Another team might still need to use something different, but they'll be responsible for their selections when they step off the pathway.
 
-Choosing a golden pathway accelerates your software delivery, lets you focus on the differentiating work, and gives you a support channel when things go wrong. Your time as a developer is best spent on the features that provide value to your customers, not on setting up builds, environments, and other similar activities.
+Choosing a golden pathway accelerates your software delivery, lets you focus on the differentiating work, and gives you a support channel when things go wrong. Your time as a developer is best spent on the features that provide value to your customers, not setting up builds, environments, and other similar activities.
 
 Platform engineering can make many tasks easier:
 
@@ -115,8 +115,8 @@ As you grow your software delivery team, you must carefully manage the complexit
 
 ## Further reading
 
-- Building Secure and Reliable Systems - Heather Adkins, et al
-- Accelerate: The Science of Lean Software and DevOps - Nicole Forsgren PhD, et al
+- [Building Secure and Reliable Systems - Heather Adkins, et al](https://www.oreilly.com/library/view/building-secure-and/9781492083115/)
+- [Accelerate: The Science of Lean Software and DevOps - Nicole Forsgren PhD, et al](https://itrevolution.com/product/accelerate/)
 - [DevOps engineer's handbook](https://octopus.com/devops/)
 
 Happy deployments!
