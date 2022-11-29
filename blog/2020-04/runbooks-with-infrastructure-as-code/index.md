@@ -193,5 +193,3 @@ I have two scheduled triggers, one to spin everything up, and another to tear ev
 There are a few changes to go from spinning up infrastructure using a deployment process to a runbook.  All in all, I am happy with those changes, and everything feels a lot cleaner.  
 
 My absolute favorite part about runbooks is not having to create a release for each run.  To get my CloudFormation template and bootstrap script right, I had to do a lot of runs before landing on something which worked.  Not having to do the release dance was very nice.
-
-This sample is available on our [samples instance](https://samples.octopus.app/app#/Spaces-102/projects/to-do-linux/operations/runbooks) for you to play around with.  You will need to sign in as a guest.  Don't worry about breaking anything; guest users have read-only permissions.
