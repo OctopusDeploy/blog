@@ -1,9 +1,9 @@
 ---
 title: Resources to get started migrating to the cloud
-description: This post provides resources to get started with migrating to the cloud. It includes white papers, free tools, external reports, and Octopus authored posts and guides.
+description: This post provides resources to get started with migrating to the cloud. It includes white papers, free tools, external reports, and Octopus-authored posts and guides.
 author: terence.wong@octopus.com
-visibility: private
-published: 2022-12-06-1400
+visibility: public
+published: 2023-01-16-1400
 metaImage: blogimage-whatiscloudorchestrationcloudautomation-2022.png
 bannerImage: blogimage-whatiscloudorchestrationcloudautomation-2022.png
 bannerImageAlt: A cog surrounded by three arrows connected in a circle sits amongst clouds
@@ -13,7 +13,7 @@ tags:
   - Cloud Orchestration
 ---
 
-Cloud-native technologies let companies gain a competitive advantage through scalability, economies of scale, and global reach. Migrating to the cloud and modernizing systems are important issues for most IT professionals. Despite the clear need, there are challenges knowing where to start.
+Cloud-native technologies can give you a competitive advantage through scalability, economies of scale, and global reach. Migrating to the cloud and modernizing systems are important issues for most IT professionals. Despite the clear need, there are challenges knowing where to start.
 
 At Octopus, we can help by providing you with resources for getting started with cloud migration. These resources are a mix of Octopus-developed tools, white papers, guides, and external reports. This list of resources exposes you to a wide variety of sources so you have an informed opinion about the benefits of the cloud, with practical tools to get started.
 
@@ -35,15 +35,15 @@ The paper provides straightforward, actionable steps your company can take when 
 
 ### The importance of Continuous Delivery
 
-*The Importance of Continuous Delivery* white paper is a deep-dive into the best practice principles and benefits of Continuous Delivery's technical capabilities, and how they're fundamental to successful DevOps adoption. You'll find case studies and a discussion about the challenges your company may face when implementing Continuous Delivery.
+*The Importance of Continuous Delivery* white paper is a deep-dive into the best practice principles and benefits of Continuous Delivery's technical capabilities, and how they're fundamental to successful DevOps adoption. You'll find case studies and a discussion about the challenges your company may face when implementing Continuous Delivery (CD).
 
 [Read about *The Importance of Continuous Delivery*](https://i.octopus.com/whitepapers/importance-of-cd.pdf[). 
 
 ### How to map your deployment pipeline
 
-Your deployment pipeline is the key ingredient for Continuous Delivery (CD). By mapping and improving your deployment pipeline, you can increase the frequency of deployments while reducing your change-related risk. High-performing teams use Continuous Delivery to drive their software delivery and achieve higher levels of organizational performance.
+Your deployment pipeline is the key ingredient for Continuous Delivery. By mapping and improving your deployment pipeline, you can increase the frequency of deployments while reducing your change-related risk. High-performing teams use CD to drive their software delivery and achieve higher levels of organizational performance.
 
-In this paper, will learn how to apply Lean thinking to start from where you are, mapping and improving your deployment pipeline while planning your adoption of the core technical CD practices.
+In this paper, you learn how to apply Lean thinking to start from where you are, and how to map and improve your deployment pipeline while planning your adoption of the core technical CD practices.
 
 [Read the paper, *How to map your deployment pipeline*](https://i.octopus.com/whitepapers/how-to-map-your-deployment-pipleline.pdf). 
 
@@ -59,11 +59,13 @@ In this white paper, you find several approaches for measuring your progress. Th
 
 ## Octopus free tools
 
-We know customers want to set up deployment pipelines, but there are common barriers to getting started. Often, you have a repository you want to deploy. To do this, you need to perform scaffolding steps to support the deployment. These steps require knowledge of cloud platforms, containers, image repositories, infrastructure as code (IaC), and more. Not everyone has the time to learn these technologies and just want a simple deployment with a few clicks of a button. To address this, we developed free tools that remove some of the barriers to getting started with modern CI/CD pipelines.
+We know customers want to set up deployment pipelines, but there are common barriers to getting started. Often, you have a repository you want to deploy. To do this, you need to perform scaffolding steps to support the deployment, requiring knowledge of cloud platforms, containers, image repositories, infrastructure as code (IaC), and more. Not everyone has the time to learn these technologies and just want a simple deployment with a few clicks of a button. To address this, we developed free tools that remove some of the barriers to getting started with modern CI/CD pipelines.
 
 ### Octopus Workflow Builder
 
 The [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/) was born out of a need to get customers started quickly in a cloud CI/CD workflow. The Octopus Workflow Builder populates a GitHub repository with a sample application built with GitHub Actions workflows and configures a hosted Octopus instance with sample deployment projects, demonstrating best practices such as vulnerability scanning and Infrastructure as Code (IaC).
+
+Also learn why we recommend you should [build with GitHub and deploy with Octopus](https://octopus.com/github).
 
 ![Workflow Builder](workflowbuilder.png "width=500")
 
