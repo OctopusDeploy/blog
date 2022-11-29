@@ -115,9 +115,9 @@ To support this guide, we also wrote an [ultimate guide to Kubernetes microservi
 
 ![Ten Pillars Cover](Kubernetescover.png)
 
-### The Octopus DevOps Engineer's handbook
+### The DevOps engineer's handbook
 
-The Octopus DevOps Engineer's handbook provides you with a central place to learn about all things DevOps. We provide resources on common questions, definitions, and debates in the field of DevOps. The handbook is a great tool to get up to speed with the latest trends in the DevOps space. 
+Our [DevOps engineer's handbook](https://octopus.com/devops/) provides you with a central place to learn about all things DevOps. We provide resources on common questions, definitions, and debates in the field of DevOps. The handbook is a great tool to get up to speed with the latest trends in the DevOps space. 
 
 ### More cloud-related blog posts
 
