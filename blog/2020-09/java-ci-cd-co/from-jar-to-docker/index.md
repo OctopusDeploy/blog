@@ -239,6 +239,6 @@ In this post, we took a typical Java application and containerized it as a Docke
 
 With these changes, we have created a [repeatable build and execution process](https://octopus.com/devops/continuous-delivery/what-is-a-deployment-pipeline) anyone can use with only Docker installed. If we switch to a newer version of Java, or even switch languages completely, the application can still be built and run with the same Docker commands.
 
-While the build process may be conveniently encapsulated by Docker, there is no guarantee that the source code compiles or that the tests all pass. As more developers begin working on an application, the health of the codebase is something that needs to be shared by a central _source of truth_ so everyone knows the state of the application. This is where a Continuous Integration (CI) server comes in. 
+While the build process may be conveniently encapsulated by Docker, there is no guarantee that the source code compiles or that the tests all pass. As more developers begin working on an application, the health of the codebase is something that needs to be shared by a central _source of truth_ so everyone knows the state of the application. This is where a [Continuous Integration](https://octopus.com/devops/continuous-delivery/continuous-delivery-capabilities) (CI) server comes in. 
 
 In the [next post](/blog/2020-09/java-ci-cd-co/from-local-to-ci/index.md) we’ll configure our application to be built by the popular and open source CI server Jenkins.
