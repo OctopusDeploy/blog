@@ -206,7 +206,7 @@ Check out our next post about testing in GitHub Actions:
 
 - [Running end-to-end tests in GitHub Actions](https://octopus.com/blog/githubactions-running-endtoend-tests)
 
-!include <github-actions-free-tool>
+Also learn why [GitHub and Octopus are better together](https://octopus.com/github) and [try our free GitHub Actions workflow tool](https://oc.to/GithubActionsWorkflowGenerator) to help you quickly generate customizable workflows for your GitHub Actions deployments.
   
 !include <githubactions-webinar-feb-2022>
   
