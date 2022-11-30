@@ -41,7 +41,7 @@ Committing a code change should trigger a CI/CD pipeline build. This trigger all
 
 ## Use Configuration as Code for your deployment process
 
-Config as Code represents your deployment process in a Git-native system. Deployments inherit all the benefits of Git, such as branching, version control, and approvals as pull requests. 
+Config as Code represents your deployment process in a Git-based system. Deployments inherit all the benefits of Git, such as branching, version control, and approvals as pull requests. 
 
 Config as Code lets you store your deployment process in Git. You can test changes to deployments in a branch and validate them through a pull request. Git-native deployments make it easier to transfer a deployment set up from one environment to another.
 
