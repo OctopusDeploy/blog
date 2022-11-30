@@ -17,7 +17,7 @@ tags:
 
 Continuous Integration and Delivery (CI/CD) take software development from code to a live product. CI/CD forms part of DevOps processes, with many commonly agreed-upon best practices you can follow to improve your deployment pipeline. 
 
-If you work in DevOps, you've probably used a build server like Jenkins and a deployment tool like Octopus Deploy to complete your deployment process. Octopus supports the Continuous Delivery side of CI/CD, providing a best-in-class product that makes complex deployments easier. 
+If you work in DevOps, you've probably used a build server like Jenkins and a deployment tool like Octopus Deploy to complete your deployment process. Octopus supports the Continuous Delivery side of CI/CD, providing a best-in-category product that makes complex deployments easier. 
 
 At Octopus, we believe in the power of 8. An octopus has 8 limbs, so here are 8 best practices to help your deployment journey.
 
@@ -29,11 +29,11 @@ Agile methodologies are vital to CI/CD and DevOps. Agile is a project management
 
 The principle of Agile is having frequent feedback through small development iterations so developers can closely align the final product with the user's needs. Agile methodologies contrast traditional waterfall methods, where projects are scoped and delivered in a single phase.
 
-We recommend software projects are managed according to Agile and Lean principles so the continuous feedback loop can improve the product. We've seen Agile start as a checklist for upper management to tick off. In the initial stages, software teams apply Agile to meet the checklist. As teams have permission to explore the Agile space, they start to see the real benefits.
+We recommend software projects are managed according to Agile and Lean principles so the continuous feedback loop can improve the product. We've seen Agile implemented as a checklist for upper management to tick off. In the initial stages, software teams apply Agile to meet the checklist. As teams have permission to explore the Agile space, they start to see the real benefits.
 
 ## Use version-controlled code, connected to the deployment process, committed frequently
 
-If you work in software, you've almost certainly used Git. The wars on source-controlled code have been fought and won, and Git is now synonymous with source-control. 
+If you work in software, you've almost certainly used Git. The wars on source-controlled code have been fought and won, and Git is now synonymous with source control. 
 
 Source-controlled code allows a complete history and rollback of code to previous versions. You can also resolve conflicts by using Git's merging methods.
 
@@ -41,9 +41,9 @@ Committing a code change should trigger a CI/CD pipeline build. This trigger all
 
 ## Use Configuration as Code for your deployment process
 
-Config as Code represents your deployment process in a Git-native system. Deployments inherit all the benefits of Git, such as branching, version control, and approvals as pull requests. 
+Config as Code represents your deployment process in a Git-based system. Deployments inherit all the benefits of Git, such as branching, version control, and approvals as pull requests. 
 
-Config as Code lets you store your deployment process in Git. You can test changes to deployments in a branch and validate them through a pull request. Git-native deployments make it easier to transfer a deployment set up from one environment to another.
+Config as Code lets you store your deployment process in Git. You can test changes to deployments in a branch and validate them through a pull request. Git-based deployments make it easier to transfer a deployment set up from one environment to another.
 
 In 2022 Q1, we released [Config as Code for Octopus Deploy](https://octopus.com/blog/octopus-release-2022-q1), and believe we set an industry standard. Other Config as Code solutions sacrifice usability for functionality. In Octopus, you get all the features of Config as Code, whether you use the UI or the version-controlled implementation.
 
@@ -73,7 +73,7 @@ Octopus lets you measure results, compare project statuses, and continuously imp
 
 Every year, there are a new technologies that people claim will revolutionize the IT playing field. Whether it's containerization, machine learning, or blockchain, some technologies change the playing field, while others are too immature to make a real impact. When managing a CI/CD pipeline, it's essential to only choose technologies fit-for-purpose. 
 
-While being cloud-native makes sense for some parts, forcing everything onto the cloud might not be the right solution. Adoption of new technologies can bring significant improvements, but taking a measured approach avoids unnecessary pain when the costs of adoption outweigh the benefits.
+While being cloud-first makes sense for some parts, forcing everything onto the cloud might not be the right solution. Adoption of new technologies can bring significant improvements, but taking a measured approach avoids unnecessary pain when the costs of adoption outweigh the benefits.
 
 ## Take security seriously
 
@@ -89,7 +89,7 @@ On May 12, 2021, The US government released Executive Order 14028, "Improving th
 
 CI/CD is part of the DevOps model and helps bring software projects from code to customers. If you work in DevOps and implement CI/CD, you should follow industry-standard best practices for your pipeline. To help, this post covered 8 best practices you can use to make the most of CI/CD. 
 
-Many tools can help you with CI/CD, from build servers and deployment tools to monitoring tools. Octopus Deploy fits into CI/CD as a Continuous Deployment solution making complex deployments easier.
+Many tools can help you with CI/CD, from build servers and deployment tools to monitoring solutions. Octopus Deploy fits into CI/CD as a Continuous Deployment solution making complex deployments easier.
 
 To learn even more about best practices for CI/CD, check out our [DevOps engineer's handbook](https://octopus.com/devops/).
 
