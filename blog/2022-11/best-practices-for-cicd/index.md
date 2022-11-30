@@ -43,7 +43,7 @@ Committing a code change should trigger a CI/CD pipeline build. This trigger all
 
 Config as Code represents your deployment process in a Git-based system. Deployments inherit all the benefits of Git, such as branching, version control, and approvals as pull requests. 
 
-Config as Code lets you store your deployment process in Git. You can test changes to deployments in a branch and validate them through a pull request. Git-native deployments make it easier to transfer a deployment set up from one environment to another.
+Config as Code lets you store your deployment process in Git. You can test changes to deployments in a branch and validate them through a pull request. Git-based deployments make it easier to transfer a deployment set up from one environment to another.
 
 In 2022 Q1, we released [Config as Code for Octopus Deploy](https://octopus.com/blog/octopus-release-2022-q1), and believe we set an industry standard. Other Config as Code solutions sacrifice usability for functionality. In Octopus, you get all the features of Config as Code, whether you use the UI or the version-controlled implementation.
 
