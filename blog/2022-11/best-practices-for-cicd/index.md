@@ -29,7 +29,7 @@ Agile methodologies are vital to CI/CD and DevOps. Agile is a project management
 
 The principle of Agile is having frequent feedback through small development iterations so developers can closely align the final product with the user's needs. Agile methodologies contrast traditional waterfall methods, where projects are scoped and delivered in a single phase.
 
-We recommend software projects are managed according to Agile and Lean principles so the continuous feedback loop can improve the product. We've seen Agile start as a checklist for upper management to tick off. In the initial stages, software teams apply Agile to meet the checklist. As teams have permission to explore the Agile space, they start to see the real benefits.
+We recommend software projects are managed according to Agile and Lean principles so the continuous feedback loop can improve the product. We've seen Agile implemented as a checklist for upper management to tick off. In the initial stages, software teams apply Agile to meet the checklist. As teams have permission to explore the Agile space, they start to see the real benefits.
 
 ## Use version-controlled code, connected to the deployment process, committed frequently
 
