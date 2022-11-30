@@ -73,7 +73,7 @@ Octopus lets you measure results, compare project statuses, and continuously imp
 
 Every year, there are a new technologies that people claim will revolutionize the IT playing field. Whether it's containerization, machine learning, or blockchain, some technologies change the playing field, while others are too immature to make a real impact. When managing a CI/CD pipeline, it's essential to only choose technologies fit-for-purpose. 
 
-While being cloud-native makes sense for some parts, forcing everything onto the cloud might not be the right solution. Adoption of new technologies can bring significant improvements, but taking a measured approach avoids unnecessary pain when the costs of adoption outweigh the benefits.
+While being cloud-first makes sense for some parts, forcing everything onto the cloud might not be the right solution. Adoption of new technologies can bring significant improvements, but taking a measured approach avoids unnecessary pain when the costs of adoption outweigh the benefits.
 
 ## Take security seriously
 
