@@ -87,13 +87,11 @@ Under **Configuration**, then **Spaces**, and then in each Octopus Space, you ca
 
 ![Octopus Deploy Spaces Personalized](spaces.png)
 
-## Next steps
+## Conclusion
 
 I'm really starting to feel comfortable using Octopus Deploy. There's always more to learn but the jigsaw pieces are coming together.
 
-If there's anything you want me to cover or answer about Octopus Deploy, please let me know and I can address them in part 4. Reach out to [sarah.lean@octopus.com](mailto:sarah.lean@octopus.com) or leave a comment below.
-
-We'll add links to other posts in the series as they become available.
+If there's anything else you want covered, please leave a comment below.
 
 !include <zero-to-hero>
 
