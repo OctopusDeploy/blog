@@ -17,7 +17,7 @@ tags:
 
 Continuous Integration and Delivery (CI/CD) take software development from code to a live product. CI/CD forms part of DevOps processes, with many commonly agreed-upon best practices you can follow to improve your deployment pipeline. 
 
-If you work in DevOps, you've probably used a build server like Jenkins and a deployment tool like Octopus Deploy to complete your deployment process. Octopus supports the Continuous Delivery side of CI/CD, providing a best-in-class product that makes complex deployments easier. 
+If you work in DevOps, you've probably used a build server like Jenkins and a deployment tool like Octopus Deploy to complete your deployment process. Octopus supports the Continuous Delivery side of CI/CD, providing a best-in-category product that makes complex deployments easier. 
 
 At Octopus, we believe in the power of 8. An octopus has 8 limbs, so here are 8 best practices to help your deployment journey.
 
