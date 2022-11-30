@@ -80,6 +80,6 @@ Be sure to check back to see how I'm progressing. We'll add links to other posts
  
  !include <zero-to-hero>
 
-Let me know if you have any questions by reaching out to [sarah.lean@octopus.com](mailto:sarah.lean@octopus.com) or leaving a comment below.
+Let me know if you have any questions by leaving a comment below.
 
 Happy deployments!
