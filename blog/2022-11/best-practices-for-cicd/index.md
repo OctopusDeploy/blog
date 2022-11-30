@@ -89,7 +89,7 @@ On May 12, 2021, The US government released Executive Order 14028, "Improving th
 
 CI/CD is part of the DevOps model and helps bring software projects from code to customers. If you work in DevOps and implement CI/CD, you should follow industry-standard best practices for your pipeline. To help, this post covered 8 best practices you can use to make the most of CI/CD. 
 
-Many tools can help you with CI/CD, from build servers and deployment tools to monitoring tools. Octopus Deploy fits into CI/CD as a Continuous Deployment solution making complex deployments easier.
+Many tools can help you with CI/CD, from build servers and deployment tools to monitoring solutions. Octopus Deploy fits into CI/CD as a Continuous Deployment solution making complex deployments easier.
 
 To learn even more about best practices for CI/CD, check out our [DevOps engineer's handbook](https://octopus.com/devops/).
 
