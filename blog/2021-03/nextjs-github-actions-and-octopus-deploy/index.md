@@ -22,13 +22,13 @@ Our project's source code can be found in our [Octopus Sample GitHub repo](https
 
 ## Build and package
 
-Before we can deploy our blog using Octopus, we'll need to package the site and push it to a package repository. Packaging our site is useful for many reasons and you can read more about why it's important in this post [Packaging Node.js applications](https://octopus.com/blog/deploying-nodejs).
+Before we can deploy our blog using Octopus, we'll need to package the site and push it to a package repository. Packaging our site is part of [building a deployment pipeline](https://octopus.com/devops/continuous-delivery/what-is-a-deployment-pipeline), and you can read more about why it's important in the post [Packaging Node.js applications](https://octopus.com/blog/deploying-nodejs).
 
-For simplicity, we'll use Octopus's [built in repository](https://octopus.com/docs/packaging-applications/package-repositories/built-in-repository). And since our project is already hosted on GitHub, let's setup a GitHub Action that helps us create our package. Our workflow should look something like this:
+For simplicity, we'll use Octopus's [built in repository](https://octopus.com/docs/packaging-applications/package-repositories/built-in-repository). And since our project is already hosted on GitHub, let's set up a GitHub Action that helps us create our package. Our workflow should look something like this:
 
 For each push to our `main` branch, we will:
 - Checkout the source code.
-- Run `npm ci` to get our `node_modules` dependencies (implicit in this step is having node.js setup in our Actions environment).
+- Run `npm ci` to get our `node_modules` dependencies (implicit in this step is having node.js set up in our Actions environment).
 - Tag our commit with a new version number.
 - Use `next export` to generate our static asset files.
 - Bundle those assets into our package.
@@ -166,7 +166,7 @@ In this example, we're *pushing* our package from GitHub Actions to our Octopus 
 
 ## Deploy
 
-Now that we've setup our continuous integration process, it's time to deploy our website. We'll use Octopus Deploy to upload our package to AWS S3. Conveniently, it already has a [built in step template](https://octopus.com/docs/deployment-examples/aws-deployments/s3) designed for this. For static content sites like the one we've built here, S3 buckets are a great choice because they require very little configuration (no need to install and configure a web server), are inexpensive, and of course you benefit from the reliability of the AWS cloud platform.
+Now that we've set up our continuous integration process, it's time to deploy our website. We'll use Octopus Deploy to upload our package to AWS S3. Conveniently, it already has a [built in step template](https://octopus.com/docs/deployment-examples/aws-deployments/s3) designed for this. For static content sites like the one we've built here, S3 buckets are a great choice because they require very little configuration (no need to install and configure a web server), are inexpensive, and of course you benefit from the reliability of the AWS cloud platform.
 
 ### AWS S3
 
@@ -202,7 +202,7 @@ Lastly, let's create the one and only step in our project by adding the **Upload
 
 Configuring this step is straightforward. You can follow along with our documentation, which [explains the step template options](https://octopus.com/docs/deployment-examples/aws-deployments/s3) and links to more information.
 
-Pay attention to the **Package Target** options. By default, the step is setup to deploy the entire package file without extracting it. Our asset files are inside the package and we need them extracted and placed at the root of the bucket for S3 to serve them. To accomplish this, follow these steps:
+Pay attention to the **Package Target** options. By default, the step is set up to deploy the entire package file without extracting it. Our asset files are inside the package and we need them extracted and placed at the root of the bucket for S3 to serve them. To accomplish this, follow these steps:
 
 1. Select the **Specific file(s) within the package** option.
 2. Click **ADD A FILE SELECTION**.
