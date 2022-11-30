@@ -33,7 +33,7 @@ We recommend software projects are managed according to Agile and Lean principle
 
 ## Use version-controlled code, connected to the deployment process, committed frequently
 
-If you work in software, you've almost certainly used Git. The wars on source-controlled code have been fought and won, and Git is now synonymous with source-control. 
+If you work in software, you've almost certainly used Git. The wars on source-controlled code have been fought and won, and Git is now synonymous with source control. 
 
 Source-controlled code allows a complete history and rollback of code to previous versions. You can also resolve conflicts by using Git's merging methods.
 
