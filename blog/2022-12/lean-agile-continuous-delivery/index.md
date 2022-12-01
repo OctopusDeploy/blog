@@ -63,7 +63,7 @@ The principles are the only directly comparable elements of these 3 approaches.
 
 ### Continuous Delivery principles
 
-There are [5 principles](https://continuousdelivery.com/principles/) of Continuous Delivery:
+There are [5 principles](https://octopus.com/devops/continuous-delivery/continuous-delivery-principles/) of Continuous Delivery:
 
 1. Build quality in
 2. Work in small batches
