@@ -24,6 +24,32 @@ This video demonstrates how to expose pods to network traffic via a service.
 
 [If you don't already have Octopus account, you can start a free trial.](https://oc.to/octopus-k8s-training-trial)
 
+:::note
+MetalLB has been updated since this video was recorded to use Custom Resource Definitions (CRDs).
+
+You can still apply these manifests to apply version 0.1.12, which is the version used by this video:
+
+* https://raw.githubusercontent.com/metallb/metallb/v0.12.1/manifests/namespace.yaml
+* https://raw.githubusercontent.com/metallb/metallb/v0.12.1/manifests/metallb.yaml
+
+And then apply this ConfigMap:
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: metallb-system
+  name: config
+data:
+  config: |
+    address-pools:
+    - name: default
+      protocol: layer2
+      addresses:
+      - 172.19.255.200-172.19.255.250
+```
+:::
+
 <p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/s3txr5gd65?videoFoam=true" title="Section5 Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
 
 You can work through the series using the links below.
