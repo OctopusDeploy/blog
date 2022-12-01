@@ -32,11 +32,11 @@ Eventually we'd like to drop support for .NET Framework and have everything runn
 
 ### Do I need to do anything about the .NET version change?
 
-- If you're on Windows
-  - Any version before Windows Server 2022 will need .NET Framework 4.8 runtime installed.
-  - For Windows Server 2022 and later there's nothing to do.
-- If you're on Linux/Mac
-  - Make sure your OS is compatible with .NET 6.
+| OS                                     | Action                                 |
+| -------------------------------------- | -------------------------------------- |
+| Windows (before Windows Server 2022)   | Install .NET Framework 4.8 runtime     |
+| Windows (Windows Server 2022 or later) | Nothing                                |
+| Linux/MacOs                            | Make sure OS is compatible with .NET 6 |
 
 When this version of Tentacle becomes available, you can upgrade your existing Tentacles using any of the methods we support.
 
