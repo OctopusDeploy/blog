@@ -24,7 +24,7 @@ This video demonstrates how to expose pods to network traffic via a service.
 
 [If you don't already have Octopus account, you can start a free trial.](https://oc.to/octopus-k8s-training-trial)
 
-:::note
+:::hint
 MetalLB has been updated since this video was recorded to use Custom Resource Definitions (CRDs).
 
 You can still apply these manifests to apply version 0.12, which is the version used by this video:
