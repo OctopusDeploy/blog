@@ -18,7 +18,7 @@ In this post, I explain our decision and answer some questions you might have re
 
 ## Why are we moving Tentacle now?
 
-Tentacle has been on .NET Framework 4.5.2 and .NET Core 3.1 for some time. We're moving these versions because .NET Framework 4.5.2 has reached end of support on April 26, 2022, and .NET Core 3.1 will reach end of support from December 13, 2022. After this, we'd miss out on security patches and library updates.
+Tentacle has been on .NET Framework 4.5.2 and .NET Core 3.1 for some time. We're moving these versions because .NET Framework 4.5.2 reached end of support on April 26, 2022, and .NET Core 3.1 will reach end of support from December 13, 2022. After this, we'd miss out on security patches and library updates.
 
 To continue providing our customers with secure software, we must align with the support schedules of our underlying development frameworks.
 
