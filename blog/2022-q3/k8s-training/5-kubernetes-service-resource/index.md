@@ -27,7 +27,7 @@ This video demonstrates how to expose pods to network traffic via a service.
 :::note
 MetalLB has been updated since this video was recorded to use Custom Resource Definitions (CRDs).
 
-You can still apply these manifests to apply version 0.1.12, which is the version used by this video:
+You can still apply these manifests to apply version 0.12, which is the version used by this video:
 
 * https://raw.githubusercontent.com/metallb/metallb/v0.12.1/manifests/namespace.yaml
 * https://raw.githubusercontent.com/metallb/metallb/v0.12.1/manifests/metallb.yaml
