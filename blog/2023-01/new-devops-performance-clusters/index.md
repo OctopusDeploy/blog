@@ -2,8 +2,8 @@
 title: The new DevOps performance clusters
 description: Explains the changes and additions to performance clusters in The State of DevOps Report 2022.
 author: steve.fenton@octopus.com
-visibility: private
-published: 3020-01-01-1400
+visibility: public
+published: 2023-01-18-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
@@ -12,13 +12,13 @@ tags:
   - DevOps
 ---
 
-This year, the Accelerate State of DevOps Report contained a few surprises. One of these was a change to the traditional performance clusters. The report also introduced a new way to group organizations using an extra dimension.
+In 2022, the Accelerate State of DevOps Report contained a few surprises. One was a change to the traditional performance clusters. The report also introduced a new way to group organizations using an extra dimension.
 
-This post introduces you to the original performance clusters, explains this year's changes, and describes how you can use the new groups.
+This post introduces you to the original performance clusters, explains the changes, and describes how you can use the new groups.
 
 ## Previous changes
 
-This isn't the first time something has changed. You'll have seen changes over the last eight years as the researchers discover new connections or a new direction to explore. Some past changes have had a direct impact on the new clustering technique.
+This isn't the first time something has changed. You'll have seen changes over the last 8 years as the researchers discover new connections or a new direction to explore. Some past changes have had a direct impact on the new clustering technique.
 
 In past DevOps reports, DORA (DevOps Research and Assessment) researchers used 4 key metrics to divide organizations into sets based on performance:
 
@@ -48,7 +48,7 @@ Researchers test hypotheses using clusters. For example, by grouping organizatio
 
 ## Software delivery performance clusters
 
-If you've followed the State of DevOps Report for a while, you'll be familiar with the software delivery performance clusters. Each group represents a different level of performance against throughput and stability metrics. This usually results in four clusters.
+If you've followed the State of DevOps Report for a while, you'll be familiar with the software delivery performance clusters. Each group represents a different level of performance against throughput and stability metrics. This usually results in 4 clusters.
 
 | Performance level | Lead time      | Deployment frequency           | Change failure rate | Mean time to resolve |
 |-------------------|----------------|--------------------------------|---------------------|----------------------|
@@ -59,9 +59,9 @@ If you've followed the State of DevOps Report for a while, you'll be familiar wi
 
 Organizations can compare their software delivery performance to the clusters based on throughput and stability metrics and identify potential improvement areas.
 
-### How Software delivery clusters changed in 2022
+### How software delivery clusters changed in 2022
 
-The most apparent change to the software delivery clusters in 2022 is that there are only 3 groups rather than 4. The removal of the elite performance group is described in more detail later, but let's first consider the changes to the other clusters, as they are just as surprising.
+The most apparent change to the software delivery clusters in 2022 was that there are only 3 groups rather than 4. The removal of the elite performance group is described in more detail later, but let's first consider the changes to the other clusters, as they're just as surprising.
 
 #### The low-performance group
 
@@ -95,7 +95,7 @@ The high-performance group merges the performance of last year's high and elite 
 
 #### The elite performance group
 
-Only 3 clusters emerged in 2022, so there is no elite-performance group this year. There are two explanations for this:
+Only 3 clusters emerged in 2022, so there's no elite-performance group this year. There are 2 explanations for this:
 
 1. The elite respondents in 2022 were absorbed into the improved high-performance cluster.
 2. The demographic profile is different this year compared to previous years
@@ -108,7 +108,7 @@ While you can see the clear change in demographics, what isn't known is whether 
 
 The demographic change and subsequent disappearance of the elite cluster suggest that experience drives performance. However, the link between specific capabilities and outcomes remains consistent each year.
 
-Removing the elite performance category doesn't mean these organizations gave up software development. Different people respond to the survey each year, and there was an unusual shift in the type of respondent this time. This year's respondents had less experience overall, so it might not be surprising that they performed less well against the throughput and stability metrics.
+Removing the elite performance category doesn't mean these organizations gave up software development. Different people respond to the survey each year, and there was an unusual shift in the type of respondents this time. This year's respondents had less experience overall, so it might not be surprising that they performed less well against the throughput and stability metrics.
 
 ![The elite performance respondents didn't respond in the same volume in 2022](2021-2022-elite-performance.png)
 
@@ -116,11 +116,11 @@ Instead of disrupting the annual study of DevOps, the demographic change in resp
 
 ### Software delivery performance summary
 
-In the chart below, you'll find a comparison of 2021 and 2022. The vertical position of each cluster indicates the level of performance, and the circles show the size of each group.
+In the chart below, you find a comparison of 2021 and 2022. The vertical position of each cluster indicates the level of performance, and the circles show the size of each group.
 
 ![Comparison of performance](2021-2022-performance.png)
 
-The changes in performance and distribution mean you could consider these as 3 new performance clusters rather than an evolution of previous ones. Further research will be needed to understand these changes, but it is likely to relate to the demographic shift in respondents.
+The changes in performance and distribution mean you could consider these as 3 new performance clusters rather than an evolution of previous ones. Further research is needed to understand these changes, but it's likely to relate to the demographic shift in respondents.
 
 ## The SDO performance clusters
 
@@ -169,7 +169,7 @@ Teams in the flowing state more commonly use the capabilities of the DevOps stru
 - Version control
 - Flexible work arrangements
 
-You can read more about [Continuous Delivery Capabilities](https://octopus.com/devops/continuous-delivery/technical-capabilities/) in the Octopus [DevOps Engineer's handbook](https://octopus.com/devops/).
+You can read more about [Continuous Delivery capabilities](https://octopus.com/devops/continuous-delivery/technical-capabilities/) in the [DevOps engineer's handbook](https://octopus.com/devops/).
 
 While some organizations achieve adequate performance without achieving the flowing state of SDO performance, they do so at a higher cost with increased burnout, more unplanned work, and lower change rates.
 
@@ -184,7 +184,7 @@ You must consolidate these industry-wide insights with a local measurement strat
 ## Further reading
 
 - [The 2022 State of DevOps Report](https://cloud.google.com/devops/state-of-devops/)
-- [The DevOps Engineer's handbook](https://octopus.com/devops/)
+- [The DevOps engineer's handbook](https://octopus.com/devops/)
 - [White Paper: Measuring Continuous Delivery and DevOps](https://octopus.com/whitepapers/lv-measuring-continuous-delivery-and-devops)
 
 Happy deployments!
