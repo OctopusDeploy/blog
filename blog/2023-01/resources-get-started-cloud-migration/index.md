@@ -15,7 +15,7 @@ tags:
 
 Cloud-native technologies can give you a competitive advantage through scalability, economies of scale, and global reach. Migrating to the cloud and modernizing systems are important issues for most IT professionals. Despite the clear need, there are challenges knowing where to start.
 
-At Octopus, we can help by providing you with resources for getting started with cloud migration. These resources are a mix of Octopus-developed tools, white papers, guides, and external reports. This list of resources exposes you to a wide variety of sources so you have an informed opinion about the benefits of the cloud, with practical tools to get started.
+At Octopus, we can help by providing you with resources for getting started with cloud migration. They're a mix of Octopus-developed tools, white papers, guides, and external reports. This list of resources exposes you to a wide variety of sources so you have an informed opinion about the benefits of the cloud, with practical tools to start your journey.
 
 ## White papers
 
@@ -43,7 +43,7 @@ The paper provides straightforward, actionable steps your company can take when 
 
 Your deployment pipeline is the key ingredient for Continuous Delivery. By mapping and improving your deployment pipeline, you can increase the frequency of deployments while reducing your change-related risk. High-performing teams use CD to drive their software delivery and achieve higher levels of organizational performance.
 
-In this paper, you learn how to apply Lean thinking to start from where you are, and how to map and improve your deployment pipeline while planning your adoption of the core technical CD practices.
+In this paper, you learn how to apply Lean thinking to start from where you are. You also learn how to map and improve your deployment pipeline while planning your adoption of the core technical CD practices.
 
 [Read the paper, *How to map your deployment pipeline*](https://i.octopus.com/whitepapers/how-to-map-your-deployment-pipleline.pdf). 
 
@@ -59,11 +59,11 @@ In this white paper, you find several approaches for measuring your progress. Th
 
 ## Octopus free tools
 
-We know customers want to set up deployment pipelines, but there are common barriers to getting started. Often, you have a repository you want to deploy. To do this, you need to perform scaffolding steps to support the deployment, requiring knowledge of cloud platforms, containers, image repositories, infrastructure as code (IaC), and more. Not everyone has the time to learn these technologies and just want a simple deployment with a few clicks of a button. To address this, we developed free tools that remove some of the barriers to getting started with modern CI/CD pipelines.
+We know customers want to set up deployment pipelines, but there are common barriers to getting started. Often, you have a repository you want to deploy. To do this, you need to perform scaffolding steps to support the deployment, which requires knowledge of cloud platforms, containers, image repositories, infrastructure as code (IaC), and more. Not everyone has the time to learn these technologies and just want a simple deployment in a few clicks. To address this, we developed free tools that remove some of the barriers to getting started with modern CI/CD pipelines.
 
 ### Octopus Workflow Builder
 
-The [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/) was born out of a need to get customers started quickly in a cloud CI/CD workflow. The Octopus Workflow Builder populates a GitHub repository with a sample application built with GitHub Actions workflows and configures a hosted Octopus instance with sample deployment projects, demonstrating best practices such as vulnerability scanning and Infrastructure as Code (IaC).
+The [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/) was born out of a need to get customers started quickly in a cloud CI/CD workflow. The Builder populates a GitHub repository with a sample application built with GitHub Actions workflows and configures a hosted Octopus instance with sample deployment projects, demonstrating best practices such as vulnerability scanning and Infrastructure as Code (IaC).
 
 Also learn why we recommend you should [build with GitHub and deploy with Octopus](https://octopus.com/github).
 
@@ -105,7 +105,7 @@ At Octopus, we've written posts and guides to help you with cloud migration. We 
 
 ### 10 pillars of pragmatic Kubernetes deployments
 
-Kubernetes is a popular container orchestration tool. It's open source and works on all the major cloud platforms. Despite its popularity, it can be intimidating to learn. To help you use Kubernetes, we wrote an ebook on getting started with Kubernetes, called [The 10 pillars of pragmatic Kubernetes deployments](https://github.com/OctopusDeploy/TenPillarsK8s/releases/tag/0.1.269-main). 
+Kubernetes is a popular container orchestration tool. It's open source and works on all the major cloud platforms. Despite its popularity, it can be intimidating to learn. To help you use Kubernetes, we wrote an ebook on getting started, called [The 10 pillars of pragmatic Kubernetes deployments](https://github.com/OctopusDeploy/TenPillarsK8s/releases/tag/0.1.269-main). 
 
 The 10 pillars speak to the needs of modern DevOps teams, always being asked to deliver more in less time. By understanding the value of each pillar, and learning practical implementations, DevOps teams can meet these challenges head-on.
 
@@ -117,11 +117,11 @@ To support this guide, we also wrote an [ultimate guide to Kubernetes microservi
 
 ### The DevOps engineer's handbook
 
-Our [DevOps engineer's handbook](https://octopus.com/devops/) provides you with a central place to learn about all things DevOps. We provide resources on common questions, definitions, and debates in the field of DevOps. The handbook is a great tool to get up to speed with the latest trends in the DevOps space. 
+Our [DevOps engineer's handbook](https://octopus.com/devops/) provides you with a central place to learn about all things DevOps. We provide definitions, answers to common questions, and debates in the field of DevOps. The handbook is a great tool to get you up to speed with the latest trends in the DevOps space. 
 
 ### More cloud-related blog posts
 
-We've written many posts relevant to cloud-native technologies. Some of these posts are educational, about the benefits of the cloud, and others are instructional, walking you through how to set up a cloud-native workflow:
+We've written many posts relevant to cloud technologies. Some of these posts are educational, about the benefits of the cloud, and others are instructional, walking you through how to set up a cloud-native workflow:
 
 - [What is cloud orchestration?](https://octopus.com/blog/what-is-cloud-orchestration)
 - [Microservices and frameworks](https://octopus.com/blog/microservices-and-frameworks)
@@ -134,6 +134,8 @@ We also have an entire [series on Continuous Integration (CI)](https://octopus.c
 
 ## Conclusion
 
-Research and surveys show that cloud technologies have a clear advantage over traditional systems. To help you get started with cloud migration, you can access white papers, free tools, external reports, and Octopus-published posts and guides. These resources aim to help you understand cloud technologies and provide practical tools and steps to start your migration efforts. We hope you find these resources useful on your cloud migration journey.
+Research and surveys show that cloud technologies have a clear advantage over traditional systems. To help you get started with cloud migration, you can access white papers, free tools, external reports, and Octopus-published posts and guides. These resources aim to help you understand cloud technologies and provide practical tools and steps to start your migration efforts. 
+
+We hope you find these resources useful on your cloud migration journey.
 
 Happy deployments!
