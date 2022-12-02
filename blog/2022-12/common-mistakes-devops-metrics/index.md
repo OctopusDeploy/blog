@@ -3,7 +3,7 @@ title: Common mistakes in DevOps metrics
 description: Learn what to avoid as you create and evolve your DevOps measurement system.
 author: steve.fenton@octopus.com
 visibility: public
-published: 2022-12-12-1400
+published: 2022-12-07-1400
 metaImage: blogimage-calculatingdorametrics-2022.png
 bannerImage: blogimage-calculatingdorametrics-2022.png
 bannerImageAlt: A magnifying glass highlights a chart on a dashboard shown on a laptop screen
@@ -107,24 +107,24 @@ Using metrics to create a competitive atmosphere, either for individual performa
 
 Competition conflicts with what you really need in your organization; collaboration. If you work on the assumption that people want to do good work, you'll find you don't need to use rewards or punishments to get them to improve their performance.
 
-## Summary
+## Conclusion
 
 The 5 DORA metrics and the SPACE framework provide pre-built, balanced ways to measure software delivery performance. (There used to be 4 DORA metrics, but an additional *reliability* metric was added.)
 
 A good set of metrics will mix leading indicators to predict performance with lagging indicators that check the accuracy of predictions. Measurements should span activity, output, system output, and outcome categories.
 
-We cover DevOps and Continuous Delivery metrics in detail in our [white paper on measuring Continuous Delivery](https://octopus.com/whitepapers/lv-measuring-continuous-delivery-and-devops).
+We cover DevOps and Continuous Delivery metrics in detail in our [white paper on measuring Continuous Delivery](https://i.octopus.com/whitepapers/measuring-continuous-delivery.pdf).
 
-Our [DevOps Insights in Octopus](https://octopus.com/blog/octopus-release-2022-q3#devops-insights-better-visibility-and-actionable-dora-metrics-early-access-preview) gives you better visibility into your company’s DevOps performance by surfacing insights based on 4 key DORA metrics. These metrics help you qualify the results of your DevOps performance, and gain insights into areas for improvement.
+Our [DevOps Insights in Octopus](https://octopus.com/blog/octopus-release-2022-q3#devops-insights-better-visibility-and-actionable-dora-metrics-early-access-preview) give you better visibility into your company’s DevOps performance by surfacing insights based on 4 key DORA metrics. These metrics help you qualify the results of your DevOps performance, and gain insights into areas for improvement.
 
 Whatever you measure, you need to constantly refine your metrics to ensure they remain useful to your team and organization. Ideally, the metrics you collect are relevant to a specific experiment you're running to test a theory.
 
-If you use metrics well, you'll amplify performance and learning as you seek to become one of the elite performers in software delivery.
+If you use metrics well, you amplify performance and learning as you seek to become one of the elite performers in software delivery.
 
 ## Further reading
 
 - [*Punished By Rewards*](https://www.alfiekohn.org/punished-rewards/) - Alfie Kohn. 1993.
-- We have a white paper on [Measuring Continuous Delivery](https://octopus.com/resource-center), which describes different types of metrics and frameworks for measuring DevOps and Continuous Delivery
+- We have a white paper on [Measuring Continuous Delivery](https://i.octopus.com/whitepapers/measuring-continuous-delivery.pdf), which describes different types of metrics and frameworks for measuring DevOps and Continuous Delivery
 - You can [find out more on DevOps and Continuous Delivery in our DevOps engineer's handbook](https://octopus.com/devops/)
 - Learn more about Octopus Deploy's [DevOps Insights feature](https://octopus.com/docs/insights)
 
