@@ -10,6 +10,7 @@ bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags: 
   - DevOps
+  - DORA Metrics
 ---
 
 In 2022, the Accelerate State of DevOps Report contained a few surprises. One was a change to the traditional performance clusters. The report also introduced a new way to group organizations using an extra dimension.
@@ -25,7 +26,7 @@ In past DevOps reports, DORA (DevOps Research and Assessment) researchers used 4
  - Throughput
 
  1. Deployment frequency
- 2. Lead time for changes
+ 1. Lead time for changes
 
  - Stability
 
@@ -65,7 +66,7 @@ The most apparent change to the software delivery clusters in 2022 was that ther
 
 #### The low-performance group
 
-You'll find the performance of the lowest cluster has improved across 3 metrics, with lead time and deployment frequency matching last year's medium performance group. The mean time to resolve has also improved by more than 6x. However, the change failure rate has increased.
+You'll find the performance of the lowest cluster improved across 3 metrics, with lead time and deployment frequency matching the medium performance group in 2021. The mean time to resolve has also improved by more than 6x. However, the change failure rate has increased.
 
 | Performance level | Lead time      | Deployment frequency           | Change failure rate | Mean time to resolve |
 |-------------------|----------------|--------------------------------|---------------------|----------------------|
@@ -75,7 +76,7 @@ You'll find the performance of the lowest cluster has improved across 3 metrics,
 
 #### The medium-performance group
 
-The medium-performance group has improved against lead time and deployment frequency, matching last year's high-performance group for these metrics. They have also reduced their mean time to resolve and kept the same change failure rates.
+The medium-performance group improved against lead time and deployment frequency, matching 2021's high-performance group for these metrics. They also reduced their mean time to resolve and kept the same change failure rates.
 
 | Performance level | Lead time             | Deployment frequency  | Change failure rate | Mean time to resolve |
 |-------------------|-----------------------|-----------------------|---------------------|----------------------|
@@ -85,7 +86,7 @@ The medium-performance group has improved against lead time and deployment frequ
 
 #### The high-performance group
 
-The high-performance group merges the performance of last year's high and elite clusters.
+The high-performance group merges the performance of 2021's high and elite clusters.
 
 | Performance level | Lead time          | Deployment frequency       | Change failure rate | Mean time to resolve |
 |-------------------|--------------------|----------------------------|---------------------|----------------------|
@@ -95,16 +96,16 @@ The high-performance group merges the performance of last year's high and elite 
 
 #### The elite performance group
 
-Only 3 clusters emerged in 2022, so there's no elite-performance group this year. There are 2 explanations for this:
+Only 3 clusters emerged in 2022, so there's no elite-performance group in 2022. There are 2 explanations for this:
 
 1. The elite respondents in 2022 were absorbed into the improved high-performance cluster.
-2. The demographic profile is different this year compared to previous years
+2. The demographic profile is different in 2022 compared to previous years
 
 In previous years, many respondents had been in software delivery for over 10 years. In 2022 the proportion of respondents with more than a decade of experience fell by half. The change seems less surprising as most respondents have less experience than those answering the surveys in prior years.
 
 ![Respondents in 2022 had less experience than last year](years-of-experience.png)
 
-While you can see the clear change in demographics, what isn't known is whether this makes the sample more or less representative of the software development industry. When reviewing your team's performance level, you can compare your team's experience with survey respondents to see whether you have access to highly experienced developers who can make a big impact.
+While you can see the clear change in demographics, it's not known whether this makes the sample more or less representative of the software development industry. When reviewing your team's performance level, you can compare your team's experience with survey respondents to see whether you have access to highly experienced developers who can make a big impact.
 
 The demographic change and subsequent disappearance of the elite cluster suggest that experience drives performance. However, the link between specific capabilities and outcomes remains consistent each year.
 
@@ -129,7 +130,7 @@ As well as changes to the software delivery groups, DORA added a new breakdown t
  - Throughput
 
   1. Deployment frequency
-  2. Lead time for changes
+  1. Lead time for changes
 
  - Stability
 
