@@ -3,7 +3,7 @@ title: DevOps versus SDLC
 description: Find out if the software development life cycle still has a place in the DevOps era.
 author: steve.fenton@octopus.com
 visibility: public
-published: 2022-12-14-1400
+published: 2022-12-12-1400
 metaImage: software-development-lifecycle.png
 bannerImage: software-development-lifecycle.png
 bannerImageAlt: Software packages moving along a conveyor belt and becoming versioned releases.
@@ -13,7 +13,9 @@ tags:
   - Continuous Delivery
 ---
 
-If you're using a traditional software development life cycle (SDLC) you may have questions about where DevOps fits in. Can the 2 exist together, or are there too many conflicts? This post addresses the differences between the 2 approaches.
+If you're using a traditional software development life cycle (SDLC) you may have questions about where DevOps fits in. Can the 2 exist together, or are there too many conflicts? 
+
+This post addresses the differences between the 2 approaches.
 
 ## What is the SDLC?
 
@@ -134,11 +136,13 @@ The real legacy of the SDLC should be what we learned from the first 4 decades o
 
 With the right culture and capabilities, and a deployment pipeline that is as automated as possible, you should be able to deliver frequent high-quality software versions.
 
-## Summary
+## Conclusion
 
 When you think of the software development life cycle now, just take your modern DevOps process and extend it to encompass the creation of the original idea, and consider how software could be retired when it's no longer valuable enough to maintain. The most important part (the bit in the middle where you continually increase the value of the software and improve its operation) is where most of your time and money will be spent.
 
 The traditional formal method based on the systems development life cycle is no longer appropriate to software delivery, given the changes to the underlying constraints and competition.
+
+## Learn more
 
 If you want to learn more about DevOps and Continuous Delivery, you may find the following useful:
 
