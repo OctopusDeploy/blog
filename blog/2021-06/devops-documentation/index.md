@@ -13,7 +13,7 @@ tags:
 
 ![DevOps practices power Octopus documentation](devops_documentation_2020.png)
 
-We have detailed end-to-end CI/CD guides to the [Octopus documentation](https://octopus.com/docs/guides) to help teams configure their delivery pipelines. We applied DevOps principles to the process of software documentation that allowed us to create useful step-by-step guides, with automated screenshots and screencasts of each scenario being documented.
+We have detailed end-to-end CI/CD guides to the [Octopus documentation](https://octopus.com/docs/guides) to help teams configure their delivery pipelines. We applied [DevOps principles](https://octopus.com/devops) to the process of software documentation that allowed us to create useful step-by-step guides, with automated screenshots and screencasts of each scenario being documented.
 
 If you’ve ever tried supporting a friend, colleague, or customer with a technical issue over the phone, you know how inefficient that conversation can be:
 
@@ -43,7 +43,7 @@ Many of the applications included in the guides are released on a monthly or wee
 
 To achieve this, we needed a solution that could scale up far beyond a traditional write, commit, transform, and publish workflow. Without the luxury of throwing more people at the problem, we leaned heavily on DevOps practices such as: 
 
-- Automated testing (to ensure the process we were documenting worked as described).
+- [Automated testing](https://octopus.com/devops/continuous-delivery/software-testing-in-continuous-delivery) (to ensure the process we were documenting worked as described).
 - Infrastructure as code.
 - Automated pipelines to generate screenshots and video.
 
@@ -355,7 +355,7 @@ So if Jenkins ever refreshes their UI, you can be assured that the Octopus Guide
 
 ## Conclusion
 
-By adopting DevOps best practices like infrastructure as code, automated testing, and pipelines, it is possible to streamline some of the most manual, tedious, and expensive aspects of creating and maintaining significant volumes of high-quality documentation. 
+By adopting [DevOps best practices](https://octopus.com/devops) like infrastructure as code, automated testing, and pipelines, it is possible to streamline some of the most manual, tedious, and expensive aspects of creating and maintaining significant volumes of high-quality documentation. 
 
 With just a few months’ worth of work, a team of 2 produced thousands of screenshots, hours of video, and hundreds of thousands of words, all automatically generated and verified.
 
