@@ -105,7 +105,7 @@ As an industry, many organizations who hadn't attempted to work remotely are now
 
 Regarding word counts, Continuous Delivery principles are conveyed in 21 words, rather than 180 words for Agile principles. A combination of hindsight and incisive editing has given us a compass to check our direction, with the detail provided in the specific practices of Continuous Delivery.
 
-> It's easy to get bogged down in the details of implementing Continuous Delivery — tools, architecture, practices, politics — if you find yourself lost, try revisiting these principles and you may find it helps you re-focus on what's important." - [Jez Humble](https://continuousdelivery.com/principles/)
+> It's easy to get bogged down in the details of implementing Continuous Delivery — tools, architecture, practices, politics — if you find yourself lost, try revisiting these principles and you may find it helps you re-focus on what's important." — [Jez Humble](https://continuousdelivery.com/principles/)
 
 You don't have to throw out The Agile Manifesto to move forwards; it's part of the geography that Continuous Delivery and DevOps are building on. The industry will continue to discover new and better ways of developing software. It's increasingly evident that technical practices and cultural capabilities are vital.
 
