@@ -57,7 +57,7 @@ There are other techniques and capabilities in Lean and Continuous Delivery that
 
 Lean expands on its principles by describing techniques covering the whole software development process with advice on planning, design, testing, and maintenance.
 
-Continuous Delivery uses the deployment pipeline (from the code commit to the software running in production) to focus efforts on improving the flow of change. Specific technical capabilities are described in detail to enable the *early and continuous delivery of valuable software*.
+Continuous Delivery uses the deployment pipeline to focus efforts on improving the flow of change, from the code commit to the software running in production. Specific technical capabilities are described in detail to enable the *early and continuous delivery of valuable software*.
 
 The principles are the only directly comparable elements of these 3 approaches.
 
