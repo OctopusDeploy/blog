@@ -43,7 +43,7 @@ The chart is divided into 5 groups with different attitudes to new technology:
 
 The early majority and late majority represent two-thirds of the adoption lifecycle. Still, for new technology (or, in the case of InfoQ, a new idea) to move into the majority, it must cross the chasm from the early adopters to the mainstream majorities.
 
-![The adoption of culture and methods for software development](infoq-culture-and-methods-2022.jpg)*Source: [InfoQ Software Development Culture and Methods 2022](https://www.infoq.com/articles/culture-trends-2022/)*
+![The adoption of culture and methods for software development](infoq-culture-and-methods-2022.jpg)Source: [InfoQ Software Development Culture and Methods 2022](https://www.infoq.com/articles/culture-trends-2022/)
 
 While adaptive modes of software delivery are embedded in the late majority, the capabilities needed for continuous modes of delivery are still making their way across the chasm. Some practices (such as DevSecOps) have made the leap, while other key elements, like team topologies and empowered teams, remain at the early adopter stage.
 
@@ -57,7 +57,7 @@ There are other techniques and capabilities in Lean and Continuous Delivery that
 
 Lean expands on its principles by describing techniques covering the whole software development process with advice on planning, design, testing, and maintenance.
 
-Continuous Delivery uses the deployment pipeline (from the code commit to the software running in production) to focus efforts on improving the flow of change. Specific technical capabilities are described in detail to enable the *early and continuous delivery of valuable software*.
+Continuous Delivery uses the deployment pipeline to focus efforts on improving the flow of change, from the code commit to the software running in production. Specific technical capabilities are described in detail to enable the *early and continuous delivery of valuable software*.
 
 The principles are the only directly comparable elements of these 3 approaches.
 
@@ -85,7 +85,7 @@ For example, working in small batches is widely understood to help achieve sever
 
 - Our highest priority is to satisfy the customer through early and continuous delivery of valuable software.
 - Welcome changing requirements, even late in development. Agile processes harness change for the customer's competitive advantage.
-- Deliver working software frequently, from a couple of weeks to a couple of months, with a preference to the shorter timescale
+- Deliver working software frequently, from a couple of weeks to a couple of months, with a preference to the shorter timescale.
 - Working software is the primary measure of progress.
 - Agile processes promote sustainable development. The sponsors, developers, and users should be able to maintain a constant pace indefinitely.
 - Simplicity - the art of maximizing the amount of work not done - is essential.
@@ -105,7 +105,7 @@ As an industry, many organizations who hadn't attempted to work remotely are now
 
 Regarding word counts, Continuous Delivery principles are conveyed in 21 words, rather than 180 words for Agile principles. A combination of hindsight and incisive editing has given us a compass to check our direction, with the detail provided in the specific practices of Continuous Delivery.
 
-> It's easy to get bogged down in the details of implementing Continuous Delivery — tools, architecture, practices, politics — if you find yourself lost, try revisiting these principles and you may find it helps you re-focus on what's important. - [Jez Humble](https://continuousdelivery.com/principles/)
+> It's easy to get bogged down in the details of implementing Continuous Delivery — tools, architecture, practices, politics — if you find yourself lost, try revisiting these principles and you may find it helps you re-focus on what's important." — [Jez Humble](https://continuousdelivery.com/principles/)
 
 You don't have to throw out The Agile Manifesto to move forwards; it's part of the geography that Continuous Delivery and DevOps are building on. The industry will continue to discover new and better ways of developing software. It's increasingly evident that technical practices and cultural capabilities are vital.
 
