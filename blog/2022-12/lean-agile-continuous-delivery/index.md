@@ -43,7 +43,7 @@ The chart is divided into 5 groups with different attitudes to new technology:
 
 The early majority and late majority represent two-thirds of the adoption lifecycle. Still, for new technology (or, in the case of InfoQ, a new idea) to move into the majority, it must cross the chasm from the early adopters to the mainstream majorities.
 
-![The adoption of culture and methods for software development](infoq-culture-and-methods-2022.jpg)*Source: [InfoQ Software Development Culture and Methods 2022](https://www.infoq.com/articles/culture-trends-2022/)*
+![The adoption of culture and methods for software development](infoq-culture-and-methods-2022.jpg)Source: [InfoQ Software Development Culture and Methods 2022](https://www.infoq.com/articles/culture-trends-2022/)
 
 While adaptive modes of software delivery are embedded in the late majority, the capabilities needed for continuous modes of delivery are still making their way across the chasm. Some practices (such as DevSecOps) have made the leap, while other key elements, like team topologies and empowered teams, remain at the early adopter stage.
 
