@@ -97,8 +97,6 @@ GitHub Actions is an ideal solution if you:
 - Like all your tools in one place
 - Already use GitHub
 
-!include <github-actions-free-tool>
-
 You can also learn more about [building with GitHub and deploying with Octopus](https://octopus.com/github), and use our [verified actions in the GitHub Marketplace](https://github.com/marketplace?query=octopus&type=actions&verification=verified_creator).
   
 !include <githubactions-webinar-feb-2022>
