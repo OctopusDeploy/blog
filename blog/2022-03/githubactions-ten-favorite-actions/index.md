@@ -18,7 +18,7 @@ tags:
 
 Although relatively new to the world of continuous integration (CI), GitHub’s adding of ‘Actions’ has seen its strong community build useful tasks that plug right into your repository.
 
-Actions allow you to run non-standard tasks to help you test, build, and push your work to your deployment tools.
+Actions let you run non-standard tasks to help you test, build, and push your work to your deployment tools.
 
 In no particular order, here are 10 of our favorites, plus [how to install them](#install-actions).
 
