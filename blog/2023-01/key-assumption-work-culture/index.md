@@ -41,7 +41,7 @@ So, where should you start when it comes to understanding culture in the context
 
 ## The fundamental assumption
 
-In 1960, Douglas McGregor published a book called *The Human Side of Enterprise*. In the book, he described how a fundamental assumption about human behavior results in different management styles,
+In 1960, Douglas McGregor published a book called *The Human Side of Enterprise*. In the book, he described how a fundamental assumption about human behavior results in different management styles.
 
 You either believe that:
 
@@ -76,7 +76,7 @@ Workplace empowerment combines centralized intent with decentralized execution. 
 
 ## Culture predicts safety
 
-When you feel safe to speak up, and nobody will be blamed, near-misses and minor faults fuel learning. Each incident results in positive action to make the workplace safer, whether the industry is manufacturing, nuclear power plant, aviation, or software delivery.
+When you feel safe to speak up and nobody will be blamed, near-misses and minor faults fuel learning. Each incident results in positive action to make the workplace safer, whether the industry is manufacturing, nuclear power plant, aviation, or software delivery.
 
 If you don't feel safe to report close calls, the unspoken risks accumulate until, very often, a disaster happens.
 
@@ -119,13 +119,13 @@ We refer to this as *modern workplace culture*, yet the ideas are over a hundred
 
 You'll find culture is the toughest nut to crack in DevOps. It's tempting to rely on research and statistics to prove the case for a generative culture. Still, the reality is that cultural change depends on compelling storytelling and creating a compelling vision of what the organization will look like after the transition.
 
-You can read more about DevOps culture [in our DevOps Engineer's Handbook](https://octopus.com/devops/)
+You can read more about DevOps culture [in our DevOps engineer's handbook](https://octopus.com/devops/)
 
 ## Further reading
 
 Related information:
 
-- [Culture in The DevOps Engineer's handbook](https://octopus.com/devops/culture/)
+- [Culture in The DevOps engineer's handbook](https://octopus.com/devops/culture/)
 - [A typology of organizational cultures](https://qualitysafety.bmj.com/content/13/suppl_2/ii22)
 
 Culture in DevOps:
