@@ -280,7 +280,7 @@ Change the year to `2021` and commit the code to GitHub. The commit and push wil
 
 ## Conclusion
 
-GitHub Actions is a CI/CD platform that enhances all GitHub projects with CI/CD capabilities. GitHub Actions makes it easy for developers to deploy their GitHub projects. Octopus Deploy works with GitHub Actions to provide a dedicated continuous delivery tool for managing deployments. The CI/CD process can be connected to a cloud target, such as Microsoft Azure or Amazon Web Services, to give the application a deployment target.
+GitHub Actions is a CI/CD platform that enhances all GitHub projects with CI/CD capabilities. GitHub Actions makes it easy for developers to deploy their GitHub projects. [Octopus Deploy works with GitHub Actions](https://octopus.com/github) to provide a dedicated continuous delivery tool for managing deployments. The CI/CD process can be connected to a cloud target, such as Microsoft Azure or Amazon Web Services, to give the application a deployment target.
 
 This tutorial set up a continuous delivery flow with Octopus Deploy, GitHub Actions, Docker, and Azure. GitHub automatically detects changes to the code, triggers a build, and pushes to Docker. Octopus Deploy then creates a new release and deploys the Azure Web Application. 
 
