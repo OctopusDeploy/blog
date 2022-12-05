@@ -54,7 +54,9 @@ If you're using GitHub as your code repository, the good news is that you alread
 
 Where’s the catch? While public repositories can use GitHub Actions for free, it’s pay-as-you-go for everyone else, billed per minute for the time workflows take to run. All users get free monthly minutes, though, and you’re only charged if you exceed the number allowed by your plan.
 
-Like Jenkins, [GitHub also has an actions marketplace](https://github.com/marketplace) brimming with community-created apps and workflows to help with Continuous Integration and more.
+Like Jenkins, [GitHub also has an actions marketplace](https://github.com/marketplace) brimming with community-created apps and workflows to help with Continuous Integration and more. 
+
+As an official GitHub technology partner, Octopus Deploy has a range of [verified Octopus actions in the GitHub Marketplace](https://github.com/marketplace?query=octopus&type=actions&verification=verified_creator) to help with your deployments. You can also learn more about [building with GitHub and deploying with Octopus](https://octopus.com/github).
 
 ## What's next?
 

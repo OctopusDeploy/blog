@@ -113,7 +113,7 @@ We’ve created 5 useful plugins for those using Octopus to deploy through their
 - [Start Runbooks](https://github.com/marketplace/actions/run-runbook-in-octopus-deploy)
 - [Push Build Information](https://github.com/marketplace/actions/push-build-information-to-octopus-deploy)
 
-Given the nature of GitHub Actions as a service, other users have [contributed some Octopus-related actions](https://github.com/marketplace?type=&verification=&query=Octopus+) too. Check those out if you’re after even more integration with Octopus.
+Given the nature of GitHub Actions as a service, other users have [contributed some Octopus-related actions](https://github.com/marketplace?type=&verification=&query=Octopus+) too. Check those out if you’re after even more integration with Octopus. You can also learn why we recommend you [build with GitHub and deploy with Octopus](https://octopus.com/github).
 
 ## How to install actions {#install-actions}
 

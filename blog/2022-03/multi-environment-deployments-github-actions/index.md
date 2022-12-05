@@ -218,6 +218,8 @@ Check out our other posts about deploying with GitHub Actions, Kubernetes, and O
 
 !include <github-actions-free-tool>
 
+You can also learn more about [building with GitHub and deploying with Octopus](https://octopus.com/github), and use our [verified actions in the GitHub Marketplace](https://github.com/marketplace?query=octopus&type=actions&verification=verified_creator).
+
 !include <githubactions-webinar-feb-2022>
 
 !include <q1-2022-newsletter-cta>
