@@ -85,7 +85,7 @@ For example, working in small batches is widely understood to help achieve sever
 
 - Our highest priority is to satisfy the customer through early and continuous delivery of valuable software.
 - Welcome changing requirements, even late in development. Agile processes harness change for the customer's competitive advantage.
-- Deliver working software frequently, from a couple of weeks to a couple of months, with a preference to the shorter timescale
+- Deliver working software frequently, from a couple of weeks to a couple of months, with a preference to the shorter timescale.
 - Working software is the primary measure of progress.
 - Agile processes promote sustainable development. The sponsors, developers, and users should be able to maintain a constant pace indefinitely.
 - Simplicity - the art of maximizing the amount of work not done - is essential.
