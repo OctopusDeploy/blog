@@ -18,7 +18,7 @@ tags:
 
 GitHub Actions allows developers to perform DevOps operations in a GitHub repository. The GitHub community maintains templates that integrate third-party tools and repositories, like Jenkins or Amazon Elastic Container Registry (ECR). 
 
-Although GitHub Actions provides a contained solution, a dedicated continuous delivery tool like Octopus Deploy provides you with benefits such as environments, a dashboard to visualize environments, and a standardized step template library for a consistent user experience. 
+Although GitHub Actions provides a contained solution, a dedicated Continuous Delivery tool like Octopus Deploy provides you with benefits such as environments, a dashboard to visualize environments, and a standardized step template library for a consistent user experience. 
 
 In this post, I show you how to build a Docker image in a GitHub Actions workflow, publish the image to Amazon Elastic Container Registry (ECR), and use Octopus to deploy the image to a web application on Amazon Elastic Kubernetes Service (EKS).
 
@@ -29,7 +29,7 @@ To follow along, you need:
 - An Amazon Web Services (AWS) account 
 - A GitHub account
 
-This post uses the [Octopus underwater app repository](https://github.com/OctopusSamples/octopus-underwater-app). You can fork the repository and follow along. Alternatively, the github-octopus branch contains the template files you need to complete the steps in this post. You have to replace some values with your own, but I've included my values in this post as a reference.
+This post uses the [Octopus underwater app repository](https://github.com/OctopusSamples/octopus-underwater-app). You can fork the repository and follow along. Alternatively, the github-octopus branch contains the template files you need to complete the steps in this post. You have to replace some values with your own, but I include my values in this post as a reference.
 
 ## Amazon Web Services setup
 
