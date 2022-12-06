@@ -123,7 +123,7 @@ If you use metrics well, you amplify performance and learning as you seek to bec
 
 ## Further reading
 
-- [*Punished By Rewards*](https://www.alfiekohn.org/punished-rewards/) - Alfie Kohn. 1993.
+- [Punished By Rewards](https://www.alfiekohn.org/punished-rewards/) by Alfie Kohn (1993)
 - We have a white paper on [Measuring Continuous Delivery](https://i.octopus.com/whitepapers/measuring-continuous-delivery.pdf), which describes different types of metrics and frameworks for measuring DevOps and Continuous Delivery
 - You can learn more about DevOps and Continuous Delivery in our [DevOps engineer's handbook](https://octopus.com/devops/)
 - Learn about Octopus Deploy's [DevOps Insights feature](https://octopus.com/docs/insights)
