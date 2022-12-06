@@ -101,7 +101,7 @@ With metrics tracked automatically, you can remove them from the dashboard to fr
 
 If your team is working to increase their deployment rate, it can be tempting to incentivize them with a reward if they achieve daily deployments. This approach to motivation leads to poor outcomes. A team might let other critical work slip to achieve the goal - not to cheat the system but because you made daily deployments more important than anything else.
 
-In the landmark book [*Punished By Rewards*](https://www.alfiekohn.org/punished-rewards/), Alfie Kohn explains that attempting to manage people with incentives leads to long-term harm for your organization. Hundreds of studies have found that people do worse work when offered rewards.
+In the landmark book [Punished By Rewards](https://www.alfiekohn.org/punished-rewards/), Alfie Kohn explains that attempting to manage people with incentives leads to long-term harm for your organization. Hundreds of studies have found that people do worse work when offered rewards.
 
 Using metrics to create a competitive atmosphere, either for individual performance, comparison of different teams, or to gamify the workplace (where you introduce game elements as a form of "fun" competition), all lead to trouble.
 
