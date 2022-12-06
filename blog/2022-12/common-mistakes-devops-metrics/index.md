@@ -51,7 +51,7 @@ There are 4 levels of measurement, with activity often being the earliest and ea
 | System output        | Lead time         | Room temperature            |
 | Outcomes             | User value        | People are comfortable      |
 
-Activity metrics are usually built-in to your existing tools, so they're already available. The problem is not all activity represents progress. Some activities might even reduce output and result in worse outcomes.
+Activity metrics are usually a built-in feature of your existing tools, so they're already available. The problem is not all activity represents progress. Some activities might even reduce output and result in worse outcomes.
 
 You can use activity metrics to predict future changes to outputs and outcomes. To do this, you must continually test the relationship between your activity metrics and your related output or outcome metrics.
 
