@@ -119,4 +119,4 @@ Of course, we're always working to improve Octopus, so what's in our future? For
 
 [Keep an eye on our roadmap](https://octopus.com/company/roadmap) for more information on these features and discover what else might be on the horizon.
 
-Happy deployments!
+Happy deployments, everyone!
