@@ -51,7 +51,7 @@ There are 4 levels of measurement, with activity often being the earliest and ea
 | System output        | Lead time         | Room temperature            |
 | Outcomes             | User value        | People are comfortable      |
 
-Activity metrics are usually built-in to your existing tools, so they're already available. The problem is not all activity represents progress. Some activities might even reduce output and result in worse outcomes.
+Activity metrics are usually a built-in feature of your existing tools, so they're already available. The problem is not all activity represents progress. Some activities might even reduce output and result in worse outcomes.
 
 You can use activity metrics to predict future changes to outputs and outcomes. To do this, you must continually test the relationship between your activity metrics and your related output or outcome metrics.
 
@@ -101,11 +101,11 @@ With metrics tracked automatically, you can remove them from the dashboard to fr
 
 If your team is working to increase their deployment rate, it can be tempting to incentivize them with a reward if they achieve daily deployments. This approach to motivation leads to poor outcomes. A team might let other critical work slip to achieve the goal - not to cheat the system but because you made daily deployments more important than anything else.
 
-In the landmark book [*Punished By Rewards*](https://www.alfiekohn.org/punished-rewards/), Alfie Kohn explains that attempting to manage people with incentives leads to long-term harm for your organization. Hundreds of studies have found that people do worse work when offered rewards.
+In the landmark book [Punished By Rewards](https://www.alfiekohn.org/punished-rewards/), Alfie Kohn explains that attempting to manage people with incentives leads to long-term harm for your organization. Hundreds of studies have found that people do worse work when offered rewards.
 
 Using metrics to create a competitive atmosphere, either for individual performance, comparison of different teams, or to gamify the workplace (where you introduce game elements as a form of "fun" competition), all lead to trouble.
 
-Competition conflicts with what you really need in your organization; collaboration. If you work on the assumption that people want to do good work, you'll find you don't need to use rewards or punishments to get them to improve their performance.
+Competition conflicts with what you really need in your organization: collaboration. If you work on the assumption that people want to do good work, you'll find you don't need to use rewards or punishments to get them to improve their performance.
 
 ## Conclusion
 
@@ -123,7 +123,7 @@ If you use metrics well, you amplify performance and learning as you seek to bec
 
 ## Further reading
 
-- [*Punished By Rewards*](https://www.alfiekohn.org/punished-rewards/) - Alfie Kohn. 1993.
+- [Punished By Rewards](https://www.alfiekohn.org/punished-rewards/) by Alfie Kohn (1993)
 - We have a white paper on [Measuring Continuous Delivery](https://i.octopus.com/whitepapers/measuring-continuous-delivery.pdf), which describes different types of metrics and frameworks for measuring DevOps and Continuous Delivery
 - You can learn more about DevOps and Continuous Delivery in our [DevOps engineer's handbook](https://octopus.com/devops/)
 - Learn about Octopus Deploy's [DevOps Insights feature](https://octopus.com/docs/insights)
