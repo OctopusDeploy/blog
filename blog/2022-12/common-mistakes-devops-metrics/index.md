@@ -105,7 +105,7 @@ In the landmark book [Punished By Rewards](https://www.alfiekohn.org/punished-re
 
 Using metrics to create a competitive atmosphere, either for individual performance, comparison of different teams, or to gamify the workplace (where you introduce game elements as a form of "fun" competition), all lead to trouble.
 
-Competition conflicts with what you really need in your organization; collaboration. If you work on the assumption that people want to do good work, you'll find you don't need to use rewards or punishments to get them to improve their performance.
+Competition conflicts with what you really need in your organization: collaboration. If you work on the assumption that people want to do good work, you'll find you don't need to use rewards or punishments to get them to improve their performance.
 
 ## Conclusion
 
