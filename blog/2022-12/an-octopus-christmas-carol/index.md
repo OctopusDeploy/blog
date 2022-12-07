@@ -70,7 +70,7 @@ Not only does it look great (if we say so ourselves), it better explains the pro
 Announced in February earlier this year, [we acquired Dist](https://octopus.com/blog/octopus-acquires-dist) - a cloud container and artifact repository service.
 
 The acquisition helps us make Octopus's cloud functionality and support even better.
-
+<!---
 ### Octopus is more secure than ever thanks to our ISO27001 certification
 
 Octopus has always taken security seriously, but we understand our customers can't just take our word for it. Our Trust team's goal for 2022 was to get ISO27001 certification, the best-known standard in managing information security.
@@ -84,6 +84,7 @@ To do this, our team:
 That hard work paid off in Q4 2022, as we successfully passed our audits and received our official ISO27001 certification. We hope this certification gives you peace of mind.
 
 The certificate will soon be on our website to download, but our journey doesn't end there. We aim to add to our security qualifications in 2023, so keep your eyes peeled for new developments next year.
+--->
 
 ### We launched the DevOps engineers handbook
   
@@ -92,12 +93,13 @@ DevOps can be confusing, so we created the [DevOps engineers handbook](https://o
 At launch, we're focusing heavily on our specialist subject - Continuous Delivery - but the handbook will soon expand and evolve.
 
 Plus, if you're looking for DevOps book recommendations, we got you covered with our [interactive reading list](https://octopus.com/devops/reading-list/).
-
+<!---
 ### We had a record quarter (may need to cut)
 
 We ended 2022 on a new high! Quarter 4 was a record quarter for business completed.
 
 We look forward to building on this and helping more organizations deliver software faster and more reliably.
+--->
 
 ### 2022 in stats (Unfinished)
 
