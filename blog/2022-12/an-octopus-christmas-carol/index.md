@@ -99,12 +99,12 @@ We look forward to building on this and helping more organizations deliver softw
 --->
 ### 2022 in stats (Unfinished)
 
-Let's end the 2022 milestones with some fun stats about Octopus's year (from the time of writing):
+Let's end the 2022 milestones with some fun stats about Octopus's year (at the time of writing):
 
-- **number of deployments by customers this year**
+- Our customers made over 36,479,186 deployments
+- We had over 9,080 new trials
 - Our team grew by 61, putting us at 240 Octonauts
-- **number of new trials**
-- 673,058 pageviews on our blog - [How to install Jenkins on Docker](https://octopus.com/blog/jenkins-docker-install-guide) was our most popular post, with 33,392 views
+- We had 673,058 pageviews on our blog - [How to install Jenkins on Docker](https://octopus.com/blog/jenkins-docker-install-guide) was our most popular post, with 33,392 views
 - Octopus Server had the following code changes:
    - 18062 files changed
    - 649364 lines added
