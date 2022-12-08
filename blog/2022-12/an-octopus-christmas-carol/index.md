@@ -53,7 +53,7 @@ In 2022, we launched a heap of new features to save you time and effort with you
 
 ### We made free tools
 
-We developed easy-to-use tools that help make building a deployment pipeline a breeze.
+We developed easy-to-use tools that help make building deployment pipelines a breeze.
 
 - [GitHub Actions workflow generator](https://octopus.com/freetools/github-actions-workflow-generator) - Create customizable workflows for your GitHub Actions deployments
 - [Jenkins pipeline generator](https://octopus.com/freetools/jenkins-pipeline-generator) - Quickly build a customizable Jenkins pipeline
@@ -81,11 +81,10 @@ To do this, our team:
 - Refreshed our security policies and training
 - Made sure our documentation matched our actions at every step of the development lifecycle
 
-That hard work paid off in Q4 2022, as we successfully passed our audits and received our official ISO27001 certification. We hope this certification gives you peace of mind.
+The hard work paid off in Q4 2022, as we successfully passed our audits and received our official ISO27001 certification. We hope this certification gives you peace of mind.
 
-The certificate will soon be on our website to download, but our journey doesn't end there. We aim to add to our security qualifications in 2023, so keep your eyes peeled for new developments next year.
+The certificate will be on our website to download soon, but our journey doesn't end there. We aim to add to our security qualifications in 2023, so keep your eyes peeled for new developments.
 --->
-
 ### We launched the DevOps engineers handbook
   
 DevOps can be confusing, so we created the [DevOps engineers handbook](https://octopus.com/devops/) to help others learn about its processes and philosophies.
@@ -100,7 +99,6 @@ We ended 2022 on a new high! Quarter 4 was a record quarter for business complet
 
 We look forward to building on this and helping more organizations deliver software faster and more reliably.
 --->
-
 ### 2022 in stats (Unfinished)
 
 Let's end the 2022 milestones with some fun stats about Octopus's year:
@@ -113,12 +111,12 @@ Let's end the 2022 milestones with some fun stats about Octopus's year:
 
 ## Deployments yet to come
 
-Of course, we're always working to improve Octopus, so what's in our future? For the moment, we're developing the following features:
+Of course, we're always working to improve Octopus, so what's in our future? For the moment, we're working on:
 
 - Dynamic environment support - Easily provision infrastructure for testing new feature branches, integrations, and more
 - Config as Code for Octopus Runbooks - See and manage your runbook processes in your Git repository, just like you already can with your deployment processes
 - Octopus CLI vNext - We're adding new functions, like an easy-to-use interactive mode and more
 
-[Keep an eye on our roadmap](https://octopus.com/company/roadmap) for more information on these features and discover what else might be on the horizon.
+[Keep an eye on our roadmap](https://octopus.com/company/roadmap) for more information on these features and to discover what else might be on the horizon.
 
 Happy deployments, everyone!
