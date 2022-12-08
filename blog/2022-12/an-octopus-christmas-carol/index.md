@@ -29,9 +29,7 @@ Before we look at Octopus in 2022, let's take a moment to see where we left off 
 - Saw our revenue grow by 60%
 - Passed our first audit
 - Launched new features in early access preview, like Config as Code and Amazon ECS support
-- Opened our new office in South Bank, Brisbane. Just look at it!
-
-[Image of the new office with its big tentacle]
+- Opened our new office in South Bank, Brisbane. [Just look at it](https://my.matterport.com/show/?m=K6SW8Scyrxg)!
 
 ## Deployments present
 
