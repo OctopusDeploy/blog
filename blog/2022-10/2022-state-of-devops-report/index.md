@@ -54,6 +54,6 @@ There are also insights for:
 
 We asked you to participate in the Accelerate State of DevOps survey in some of our newsletters this year. Thank you to everyone who responded and shared their experiences.
 
-You can [read the full report here](https://cloud.google.com/devops/state-of-devops/).
+You can [read the full report here](https://cloud.google.com/devops/state-of-devops/). Check out the DevOps engineer's handbook to [learn more about DevOps metrics](https://octopus.com/devops/metrics).
 
 Happy deployments!
