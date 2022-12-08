@@ -59,7 +59,7 @@ The methods to achieve that can differ and depend how entrenched people are in t
 
 In DevOps, if you can automate it, you should automate it.
 
-The benefits of automation are simple:
+The [benefits of automation](https://octopus.com/devops/continuous-delivery/automate-everything/) are simple:
 
 - Teams can focus more on the product
 - Results are repeatable and predictable
@@ -130,7 +130,7 @@ By recognizing this, it allows your teams to:
 
 Given the concept is about a unifying purpose, DevOps is really everyone's role. That said, it's still important everyone knows their responsibilities. Adopting DevOps means adding some specialist roles that sit alongside development staples like coders, QA, designers, and more.
 
-Let's take a quick look at some of the common extra roles needed in DevOps and what they do. Some of the naming conventions and finer responsibilities may differ between organizations.
+Let's take a quick look at some of the common extra roles needed in DevOps and what they do. Some of the naming conventions and finer responsibilities may differ between organizations. The DevOps engineer's handbook [explores team structures](https://octopus.com/devops/team-structures/) in more detail.
 
 ### DevOps Engineer
 
@@ -294,6 +294,6 @@ Octopus fits nicely into a DevOps environment in 2 key ways:
 
 If you're not already using Octopus Deploy, you can [sign up for a free trial](https://octopus.com/start).
 
-!include <q2-2022-newsletter-cta>
+Read the rest of our [Runbooks series](https://octopus.com/blog/tag/Runbooks%20Series) or explore the [DevOps engineer's handbook](https://octopus.com/devops) to learn more about DevOps and CI/CD.
 
 Happy deployments!
