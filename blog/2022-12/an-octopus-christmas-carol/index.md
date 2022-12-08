@@ -46,9 +46,9 @@ In 2022, we launched a heap of new features to save you time and effort with you
 - [Automatic cloud target discovery](https://octopus.com/docs/infrastructure/deployment-targets/cloud-target-discovery) - Connect your credentials, and Octopus can find your deployment targets on Azure, Amazon Web Services (AWS), and Google Cloud Services (GCS) via tags.
 - [Improvements to Octopus's deployment steps](https://octopus.com/blog/improving-delivery-deployment-steps) - We made a new framework for deployment steps, making them easier to understand, write, and manage.
 - New integrations, including:
-   - [GitHub Actions deployments](https://octopus.com/github) - Install the Octopus CLI, push packages, trigger runbooks, and more.
+   - [New GitHub Actions](https://octopus.com/github) - Install the Octopus CLI, push packages, trigger runbooks, and more.
    - [Buildkite](https://octopus.com/blog/introducing-buildkite-integration) - Use the Octopus CLI to create releases, push build information, and trigger runbooks through Buildkite.
-   - [Jira Service Management](https://octopus.com/blog/jira-service-management-eap) and [ServiceNow](https://octopus.com/blog/servicenow-integration-eap) (both early access preview) - Simplify and automate your ITSM approval and change management processes.
+   - [Jira Service Management](https://octopus.com/blog/jira-service-management-eap) and [ServiceNow](https://octopus.com/blog/servicenow-integration-eap) - Simplify and automate your ITSM approval and change management processes.
    - [Amazon ECS support](https://octopus.com/docs/deployments/aws) - Easily deploy ECS services through Octopus's UI. We also improved our AWS CloudFormation step template.
 
 ### Free tools to help you
@@ -101,13 +101,17 @@ We look forward to building on this and helping more organizations deliver softw
 --->
 ### 2022 in stats (Unfinished)
 
-Let's end the 2022 milestones with some fun stats about Octopus's year:
+Let's end the 2022 milestones with some fun stats about Octopus's year (from the time of writing):
 
 - **number of deployments by customers this year**
+- Our team grew by 61, putting us at 240 Octonauts
 - **number of new trials**
 - 673,058 pageviews on our blog - [How to install Jenkins on Docker](https://octopus.com/blog/jenkins-docker-install-guide) was our most popular post, with 33,392 views
-- **number of lines of code (Waiting for Ben Pearce)**
-- Our team grew by 61, putting us at 240 Octonauts
+- Octopus Server had the following code changes:
+   - 18062 files changed
+   - 649364 lines added
+   - 361422 lines deleted
+   - 63987 lines modified
 
 ## Deployments yet to come
 
