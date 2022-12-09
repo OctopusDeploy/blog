@@ -33,14 +33,14 @@ Before we look at Octopus in 2022, let's take a moment to see where we left off 
 
 ## Deployments present
 
-2022 has also been a phenomenal year for Octopus. Let’s explore some of our most noteworthy highlights.
+2022 has also been a phenomenal year for Octopus. Let’s explore some noteworthy highlights.
 
 ### How we improved Octopus
 
 In 2022, we launched a heap of new features to save you time and effort with your deployments. Plus, we created more integrations for the services you use.
 
-- [Config as Code for deployments](https://octopus.com/blog/octopus-release-2022-q1) left early access.
-- [DevOps Insights](https://octopus.com/docs/insights) (early access preview) - Octopus uses DORA metrics to show you how your organization is performing.
+- [Config as Code for deployments](https://octopus.com/blog/octopus-release-2022-q1) - Left early access and became generally available.
+- [DevOps Insights](https://octopus.com/docs/insights) (early access preview) - See how your organization is performing with built-in insights based on the 4 key DORA metrics.
 - [Automatic cloud target discovery](https://octopus.com/docs/infrastructure/deployment-targets/cloud-target-discovery) - Connect your credentials, and Octopus can find your deployment targets on Azure, Amazon Web Services (AWS), and Google Cloud Services (GCS) via tags.
 - [Improvements to Octopus's deployment steps](https://octopus.com/blog/improving-delivery-deployment-steps) - We made a new framework for deployment steps, making them easier to understand, write, and manage.
 - New integrations, including:
@@ -59,7 +59,7 @@ We developed easy-to-use tools that help you build deployment pipelines.
 
 ### Our homepage has a new look
 
-Though we're still making tweaks and there's more to come, [Octopus.com](https://octopus.com) has a fresh new look!
+Though we're still making tweaks and there's more to come, [Octopus.com](https://octopus.com) has been updated.
 
 Not only does it look great (if we say so ourselves), it better explains the problems Octopus Deploy solves and how it helps you deliver software faster.
 
@@ -68,6 +68,7 @@ Not only does it look great (if we say so ourselves), it better explains the pro
 Announced in February, [we acquired Dist](https://octopus.com/blog/octopus-acquires-dist) - a cloud container and artifact repository service.
 
 The acquisition helps us make Octopus's cloud functionality and support even better.
+
 <!---
 ### Octopus is more secure than ever thanks to our ISO27001 certification
 
@@ -87,33 +88,33 @@ The certificate will be on our website to download soon, but our journey doesn't
   
 DevOps can be confusing, so we created the [DevOps engineer's handbook](https://octopus.com/devops/) to help others learn about its processes and philosophies.
 
-At launch, we're focusing heavily on our specialist subject - Continuous Delivery - but the handbook will expand and evolve.
+To start, we're focusing heavily on our specialist subject - Continuous Delivery - but the handbook will expand and evolve.
 
-Plus, if you're looking for DevOps book recommendations, we got you covered with our [interactive reading list](https://octopus.com/devops/reading-list/).
+Plus, if you're looking for DevOps book recommendations, check out our [interactive reading list](https://octopus.com/devops/reading-list/).
 <!---
 ### We had a record quarter (may need to cut)
 
-We ended 2022 on a new high! Quarter 4 was a record quarter for business completed.
+We're ending 2022 on a high! Quarter 4 was a record quarter for business completed.
 
 We look forward to building on this and helping more organizations deliver software faster and more reliably.
 --->
 ### 2022 in stats (Unfinished)
 
-Let's end the 2022 milestones with some fun stats about Octopus's year (at the time of writing):
+To finish, here are some fun stats about Octopus's year (at the time of writing):
 
 - Our customers made over 36,479,186 deployments
 - We had over 9,080 new trials
 - Our team grew by 61, putting us at 240 Octonauts
 - We had 673,058 pageviews on our blog - [How to install Jenkins on Docker](https://octopus.com/blog/jenkins-docker-install-guide) was our most popular post, with 33,392 views
 - Octopus Server had the following code changes:
-   - 18062 files changed
-   - 649364 lines added
-   - 361422 lines deleted
-   - 63987 lines modified
+   - 18,062 files changed
+   - 649,364 lines added
+   - 361,422 lines deleted
+   - 63,987 lines modified
 
 ## Deployments yet to come
 
-Of course, we're always working to improve Octopus, so what's in our future? For the moment, we're working on:
+We're always working to improve Octopus, so what's in our future? For the moment, we're working on:
 
 - Dynamic environment support - Easily provision infrastructure for testing new feature branches, integrations, and more.
 - Config as Code for Octopus Runbooks - See and manage your runbook processes in your Git repository, just like you already can with your deployment processes.
