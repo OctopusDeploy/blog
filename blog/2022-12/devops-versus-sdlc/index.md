@@ -45,7 +45,7 @@ Before the SDLC was introduced, systems were created using an ad-hoc *code and f
 
 The SDLC solved 2 types of problem:
 
-1. Issues scaling the code and fix approach to large-scale systems
+1. Issues scaling the *code and fix* approach to large-scale systems
 1. Specific technical limitations of the time
 
 The original phased model was created at MIT's Lincoln Laboratories. Their model had 9 phases that were intended to directly solve the problems faced by software teams in the 1950s. This let them scale their development efforts, share information about the system, and document what went wrong so the knowledge could be shared with existing and future contributors.
