@@ -59,7 +59,7 @@ We developed easy-to-use tools that help you build deployment pipelines.
 
 ### Our homepage has a new look
 
-Though we're still making tweaks and there's more to come, [octopus.com](https://octopus.com) has been updated.
+Though we're still making tweaks and there's more to come, we updated [octopus.com](https://octopus.com).
 
 Not only does it look great (if we say so ourselves), it better explains the problems Octopus Deploy solves and how it helps you deliver software faster.
 
