@@ -105,13 +105,7 @@ After it's installed, just add your scripts to your repository and kick them off
 
 ## Bonus round: Octopus
 
-We’ve created 5 useful plugins for those using Octopus to deploy through their environments.
-
-[Install Octopus CLI](https://github.com/marketplace/actions/install-octopus-cli) lets you install the [Octopus Command Line Interface](https://octopus.com/docs/octopus-rest-api/octopus-cli) on runners (GitHub-hosted or otherwise). You can extend its use with our other 4 actions too, using the Octopus CLI to:
-- [Push Packages](https://github.com/marketplace/actions/push-package-to-octopus-deploy)
-- [Create Releases](https://github.com/marketplace/actions/create-release-in-octopus-deploy)
-- [Start Runbooks](https://github.com/marketplace/actions/run-runbook-in-octopus-deploy)
-- [Push Build Information](https://github.com/marketplace/actions/push-build-information-to-octopus-deploy)
+As an official GitHub technology partner, Octopus Deploy has [10 verified Octopus actions in the GitHub Marketplace](https://github.com/marketplace?query=octopus&type=actions&verification=verified_creator) that make it easy to automate your deployment processes, execute tasks, create packages, and more.
 
 Given the nature of GitHub Actions as a service, other users have [contributed some Octopus-related actions](https://github.com/marketplace?type=&verification=&query=Octopus+) too. Check those out if you’re after even more integration with Octopus. You can also learn why we recommend you [build with GitHub and deploy with Octopus](https://octopus.com/github).
 
