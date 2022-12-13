@@ -51,7 +51,7 @@ We recently moved our CLI implementation from C# to Go (for more information on 
 
 **install-octopus-cli-action** v3 (or greater) will only install the new Go-based CLI (`octopus`). If you're writing new workflows, we strongly recommend using v3. The Go-based CLI (`octopus`) has new features and improvements missing from the C#-based CLI, however, there are some minor differences. If necessary, these CLIs can be used side-by-side.
 
-## Environment variables names
+## Environment variable names
 
 We [advocate using environment variables, rather than the CLI parameters, in the actions](https://octopus.com/blog/new-in-github-actions#improved-usability) as this has security benefits.
 
@@ -87,7 +87,7 @@ Tenanted deployments have different semantics to "standard" deployments. Primari
 While this is the initial version of these actions, we decided to release them as v3 to make it easier to reason about these new actions as a matching set. The versions will diverge again over time as we move forward and make patches/updates to the actions individually.
 :::
 
-# Actions for creating Zip and NuGet packages
+## Actions for creating Zip and NuGet packages
 
 GitHub Actions for Octopus Deploy v3 introduces 2 new actions for package creation:
 
@@ -117,9 +117,9 @@ We show you in more detail how to use the JSON arrays in the examples below.
 
 On the output of the `await-task-action`, note that the action fails if the task doesn't complete successfully. You can then use the [step's outcome](https://docs.github.com/en/actions/learn-github-actions/contexts#steps-context) with the `completed_successfully` if you want to take different action in the workflow based on whether the deployment/run failed versus some other failure (like comms lost to the Octopus instance).
 
-# Common workflow patterns
+## Common workflow patterns
 
-## All-in-one
+### All-in-one
 
 All-in-one is the pattern we see most widely used, driven by how the CLI encourages you to do things. It centers around all actions being steps in the one job:
 
@@ -193,7 +193,7 @@ This pattern has the following disadvantages:
 - You can't see at a glance which task is for which environment
 - Steps execute serially, so the wait for the second deployment doesn't start waiting until the wait for the first is complete
 
-## Separate the actions into multiple jobs
+### Separate the actions into multiple jobs
 
 In this example, we illustrate a workflow that uses multiple jobs to coordinate the actions. It uses both jobs and a feature in GitHub Actions called [matrixes](https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs):
 
@@ -345,7 +345,7 @@ This pattern has the following disadvantages:
 - The workflow is more complex to setup. Passing outputs from steps across job boundaries requires a bit more work in the YAML
 - The matrix can feel like overkill if there's only a single deployment
 
-## Runbook runs
+### Runbook runs
 
 Executing runbooks is similar to deploying releases. We won't provide a full example here but want to call out one specific aspect of the output data that action provides, and what that means for the matrix configuration.
 
@@ -369,7 +369,7 @@ name: ${{ matrix.deployment.environmentName }} - ${{ matrix.deployment.tenantNam
 
 This is important because in the summary view, the GitHub Actions UI truncates long values. Having the most important information up front makes it easier to find at a glance (you can always see the full details after you drill in, it just takes extra clicking).
 
-# Conclusion
+## Conclusion
 
 GitHub Actions for Octopus Deploy v3 delivers significant improvements to v2, with [5 new actions](https://github.com/marketplace?query=octopus&type=actions&verification=verified_creator) added to the product lineup. These new actions enhance the ability to automate deployment processes, execute tasks, and create packages. They also greatly improve the overall user experience. 
 
