@@ -37,7 +37,7 @@ In this post, I do a technical deep dive into the key changes of this iteration 
 
 Removing the dependency on the Octopus CLI is the biggest architectural change to our GitHub Actions. 
 
-Our actions no longer use the Octopus CLI to perform work. Instead, they interact with the Octopus API directly from TypeScript. This means your workflows start and execute far faster than before.
+Our actions no longer use the Octopus CLI to perform work. Instead, they interact with the Octopus API directly from TypeScript. This means your workflows start and execute far quicker than before.
 
 :::hint
 You can still use the Octopus CLI, but you're no longer required to include the **install-octopus-cli-action** in your workflow if you only need to use our other actions. 
@@ -371,7 +371,7 @@ This is important because in the summary view, the GitHub Actions UI truncates l
 
 ## Conclusion
 
-GitHub Actions for Octopus Deploy v3 delivers significant improvements to v2, with [5 new actions](https://github.com/marketplace?query=octopus&type=actions&verification=verified_creator) added to the product lineup. These new actions enhance the ability to automate deployment processes, execute tasks, and create packages. They also greatly improve the overall user experience. 
+GitHub Actions for Octopus Deploy v3 delivers significant improvements to v2, with [5 new actions](https://github.com/marketplace?query=octopus&type=actions&verification=verified_creator) added to the lineup. These new actions enhance the ability to automate deployment processes, execute tasks, and create packages. They also greatly improve the overall user experience. 
 
 We use these actions ourselves, which is a testament to their effectiveness and reliability. We hope this latest release helps you by providing powerful, user-friendly actions for managing your GitHub deployments.
 
