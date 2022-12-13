@@ -125,7 +125,7 @@ You can read more about DevOps culture [in our DevOps engineer's handbook](https
 
 Related information:
 
-- [Culture in The DevOps engineer's handbook](https://octopus.com/devops/culture/)
+- [The DevOps engineer's handbook](https://octopus.com/devops/)
 - [A typology of organizational cultures](https://qualitysafety.bmj.com/content/13/suppl_2/ii22)
 
 Culture in DevOps:
