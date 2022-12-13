@@ -16,7 +16,7 @@ tags:
 
 We published our first set of [GitHub Actions to the GitHub Marketplace in June 2021](https://octopus.com/blog/github-actions-for-octopus-deploy). Then in September 2022, [we updated our actions to include many new features](https://octopus.com/blog/new-in-github-actions). 
 
-As part of our third iteration of GitHub Actions for Octopus Deploy, we've made further improvements and added 5 new actions.
+As part of our third iteration of GitHub Actions for Octopus Deploy, we made further improvements and added 5 new actions.
 
 Highlights include:
 
@@ -35,9 +35,9 @@ In this post, I do a technical deep dive into the key changes of this iteration 
 
 ## Octopus CLI is no longer required
 
-Removing the dependency on the Octopus CLI is the big architectural change to our GitHub Actions. 
+Removing the dependency on the Octopus CLI is the biggest architectural change to our GitHub Actions. 
 
-Our actions no longer use the Octopus CLI to perform work; instead, they interact with the Octopus API directly from TypeScript. This means your workflows start and execute far faster than before.
+Our actions no longer use the Octopus CLI to perform work. Instead, they interact with the Octopus API directly from TypeScript. This means your workflows start and execute far faster than before.
 
 :::hint
 You can still use the Octopus CLI, but you're no longer required to include the **install-octopus-cli-action** in your workflow if you only need to use our other actions. 
@@ -53,7 +53,7 @@ We recently moved our CLI implementation from C# to Go (for more information on 
 
 ## Environment variable names
 
-We [advocate using environment variables, rather than the CLI parameters, in the actions](https://octopus.com/blog/new-in-github-actions#improved-usability) as this has security benefits.
+We [advocate using environment variables](https://octopus.com/blog/new-in-github-actions#improved-usability) in the actions, rather than the CLI parameters, for the security benefits.
 
 We still encourage you to use environment variables for setting sensitive values (i.e. API keys), but in the new version of the actions, the names have changed, because it's no longer the Octopus CLI picking them up.
 
@@ -77,14 +77,14 @@ As an example, the `--variable` parameter often tripped people up. It only works
 
 Based on ongoing issues with these parameters, we dropped them in GitHub Actions for Octopus Deploy v2 to remove the confusion. Our goal was what we now have in v3, separate actions for queuing deployments (and runbooks runs).
 
-The Octopus CLI (`octo`) also bundled the concept of whether to wait for the deployment to complete into the same command. We separated this into its own action too. This might seem overkill at first, but when used in conjunction with other features of GitHub Actions, it allows greater flexibility. We talk about this in more detail in the examples below.
+The Octopus CLI (`octo`) also bundled the concept of whether to wait for the deployment to complete into the same command. We separated this into its own action too. This might seem excessive at first, but when used in conjunction with other features of GitHub Actions, it allows greater flexibility. We talk about this in more detail in the examples below.
 
 :::hint 
 Tenanted deployments have different semantics to "standard" deployments. Primarily, they support a different multiplicity on the environments you can deploy to (standard can deploy to multiple environments, tenanted can only deploy to a single environment). To make this clear in the action contracts, **deploy-release-tenanted-action** is separate to **deploy-release-action**.
 :::
 
 :::warning 
-While this is the initial version of these actions, we decided to release them as v3 to make it easier to reason about these new actions as a matching set. The versions will diverge again over time as we move forward and make patches/updates to the actions individually.
+While this is the initial version of these actions, we decided to release them as v3 to make it easier to reason about these new actions as a matching set. The versions will diverge again over time as we move forward and make patches and updates to the actions individually.
 :::
 
 ## Actions for creating Zip and NuGet packages
@@ -342,12 +342,12 @@ Using this pattern provides the following benefits:
 
 This pattern has the following disadvantages:
 
-- The workflow is more complex to setup. Passing outputs from steps across job boundaries requires a bit more work in the YAML
-- The matrix can feel like overkill if there's only a single deployment
+- The workflow is more complex to setup - passing outputs from steps across job boundaries requires a bit more work in the YAML
+- The matrix can feel excessive if there's only a single deployment
 
 ### Runbook runs
 
-Executing runbooks is similar to deploying releases. We won't provide a full example here but want to call out one specific aspect of the output data that action provides, and what that means for the matrix configuration.
+Executing runbooks is similar to deploying releases. We won't provide a full example here, but want to call out one specific aspect of the output data that action provides, and what it means for the matrix configuration.
 
 In the previous example, this entry binds the name of the matrix job to the tenant's name from the JSON output data:
 
@@ -355,7 +355,7 @@ In the previous example, this entry binds the name of the matrix job to the tena
 name: ${{ matrix.deployment.tenantName }}
 ```
 
-With runbook runs, the output data contains both the `tenantName` and the `environmentName`, because it allows you to request multiples of both at once and executes for any matching tenants with a connection to the given project, for the given environments. This means your matrix name can do something like this, depending on which value is more important to you:
+With runbook runs, the output data contains both the `tenantName` and the `environmentName`, because it allows you to request multiples of both at once and executes for any matching tenants with a connection to the given project for the given environments. This means your matrix name can do something like this, depending on which value is more important to you:
 
 ```yaml
 name: ${{ matrix.deployment.tenantName }} - ${{ matrix.deployment.environmentName }}
