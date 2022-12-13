@@ -12,7 +12,7 @@ tags:
   - Company
 ---
 
-The end of 2022 is fast approaching. As most of the Octopus team prepares for a break (don’t worry, we’re still available to help if you need), we thought it a great time to take a breath and reflect.
+The end of 2022 is fast approaching. As most of the Octopus team prepares for a break (don’t worry, we’re still available to help if you need), we wanted to take a breath and reflect.
 
 So, *'come in, come in, and know us better'* as we take a trip with the ghosts of deployments past, present, and yet to come. 
 
