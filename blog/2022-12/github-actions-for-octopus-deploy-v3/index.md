@@ -23,12 +23,12 @@ Highlights include:
 - We eliminated the dependency on the Octopus CLI, which also means standard environment variable names have changed
 - [install-octopus-cli-action](https://github.com/marketplace/actions/install-octopus-cli) now installs [our Go-based CLI (`octopus`)](https://github.com/OctopusDeploy/cli)
 - There are new actions for deploying releases and executing runbooks:
-   - [deploy-release-action](https://github.com/marketplace/actions/deploy-release-action)
-   - [deploy-release-tenanted-action](https://github.com/marketplace/actions/deploy-release-tenanted-action)
-   - [await-task-action](https://github.com/marketplace/actions/await-task-action)
+   - [deploy-release-action](https://github.com/marketplace/actions/deploy-a-release-in-octopus-deploy)
+   - [deploy-release-tenanted-action](https://github.com/marketplace/actions/deploy-a-tenanted-release-in-octopus-deploy)
+   - [await-task-action](https://github.com/marketplace/actions/wait-watch-an-execution-task-in-octopus-deploy)
 - There are new actions for creating Zip and NuGet packages:
-   - [create-zip-package-action](https://github.com/marketplace/actions/create-zip-package-action) 
-   - [create-nuget-package-action](https://github.com/marketplace/actions/create-nuget-package-action)
+   - [create-zip-package-action](https://github.com/marketplace/actions/create-zip-package-for-octopus-deploy) 
+   - [create-nuget-package-action](https://github.com/marketplace/actions/create-nuget-package-for-octopus-deploy)
 - Chaining actions is a built-in feature
 
 In this post, I do a technical deep dive into the key changes of this iteration and show you examples using the new actions.
@@ -67,9 +67,9 @@ We still encourage you to use environment variables for setting sensitive values
 
 GitHub Actions for Octopus Deploy v3 introduces 3 new actions for deployments and runbook runs:
 
-- [deploy-release-action](https://github.com/marketplace/actions/deploy-release-action)
-- [deploy-release-tenanted-action](https://github.com/marketplace/actions/deploy-release-tenanted-action)
-- [await-task-action](https://github.com/marketplace/actions/await-task-action)
+- [deploy-release-action](https://github.com/marketplace/actions/deploy-a-release-in-octopus-deploy)
+- [deploy-release-tenanted-action](https://github.com/marketplace/actions/deploy-a-tenanted-release-in-octopus-deploy)
+- [await-task-action](https://github.com/marketplace/actions/wait-watch-an-execution-task-in-octopus-deploy)
 
 In v1 of the **create-release-action**, we supported the old `deploy-to` parameter from the Octopus CLI (`octo`). Unfortunately, this brought with it all of the other deployment-related switches that the Octopus CLI (`octo`) supports. This bloated the action parameters, making them complex and confusing. 
 
@@ -91,8 +91,8 @@ While this is the initial version of these actions, we decided to release them a
 
 GitHub Actions for Octopus Deploy v3 introduces 2 new actions for package creation:
 
-- [create-zip-package-action](https://github.com/marketplace/actions/create-zip-package-action)
-- [create-nuget-package-action](https://github.com/marketplace/actions/create-nuget-package-action)
+- [create-zip-package-action](https://github.com/marketplace/actions/create-zip-package-for-octopus-deploy) 
+- [create-nuget-package-action](https://github.com/marketplace/actions/create-nuget-package-for-octopus-deploy)
 
 Zip and NuGet packages are archive files used to distribute and deploy software applications. 
 
@@ -121,7 +121,7 @@ On the output of the `await-task-action`, note that the action fails if the task
 
 ### All-in-one
 
-All-in-one is the pattern we see most widely used, driven by how the CLI encourages you to do things. It centers around all actions being steps in the one job:
+All-in-one is the pattern we see most widely used, driven by how the CLI encourages you to do things. It's about all actions being steps in the one job:
 
 ```yaml
 - name: Create Zip package 🐙
