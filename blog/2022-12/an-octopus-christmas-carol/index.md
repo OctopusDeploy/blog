@@ -2,11 +2,11 @@
 title: An Octopus Christmas Carol
 description: A look at Octopus in 2022 through the lens of deployments past, present, and yet to come
 author: andrew.corrigan@octopus.com
-visibility: private
+visibility: public
 published: 2022-12-19-1400
 metaImage: blogimage-anoctopuschristmascarol-2022.png
 bannerImage: blogimage-anoctopuschristmascarol-2022.png
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+bannerImageAlt: Rocket in front of a an apen laptop with a Christmas scene on screen including a Christmas tree, presents, and a Scrooge-like Octopus.
 isFeatured: false
 tags: 
   - Company
@@ -44,7 +44,7 @@ In 2022, we launched a heap of new features to save you time and effort with you
 - [Automatic cloud target discovery](https://octopus.com/docs/infrastructure/deployment-targets/cloud-target-discovery) - Connect your credentials, and Octopus can find your deployment targets on Azure, Amazon Web Services (AWS), and Google Cloud Services (GCS) via tags.
 - [Improvements to Octopus's deployment steps](https://octopus.com/blog/improving-delivery-deployment-steps) - We made a new framework for deployment steps, making them easier to understand, write, and manage.
 - New integrations, including:
-   - [New GitHub Actions](https://octopus.com/github) - Install the Octopus CLI, push packages, trigger runbooks, and more.
+   - [New GitHub Actions](https://octopus.com/github) - We now have 10 verified Octopus actions [in the GitHub Marketplace](https://github.com/marketplace?query=octopus&type=actions&verification=verified_creator).
    - [Buildkite](https://octopus.com/blog/introducing-buildkite-integration) - Use the Octopus CLI to create releases, push build information, and trigger runbooks through Buildkite.
    - [Jira Service Management](https://octopus.com/blog/jira-service-management-eap) and [ServiceNow](https://octopus.com/blog/servicenow-integration-eap) - Simplify and automate your ITSM approval and change management processes.
    - [Amazon ECS support](https://octopus.com/docs/deployments/aws) - Easily deploy ECS services through Octopus's UI. We also improved our AWS CloudFormation step template.
@@ -97,11 +97,11 @@ We're ending 2022 on a high! Quarter 4 was a record quarter for business complet
 
 We look forward to building on this and helping more organizations deliver software faster and more reliably.
 --->
-### 2022 in stats (Unfinished)
+### 2022 in stats
 
 To finish, here are some fun stats about Octopus's year (at the time of writing):
 
-- Our customers made over 36,479,186 deployments
+- Our customers completed over 36,479,186 deployments
 - We had over 9,080 new trials
 - Our team grew by 61, putting us at 240 Octonauts
 - We had 673,058 pageviews on our blog - [How to install Jenkins on Docker](https://octopus.com/blog/jenkins-docker-install-guide) was our most popular post, with 33,392 views
@@ -117,8 +117,8 @@ We're always working to improve Octopus, so what's in our future? For the moment
 
 - Dynamic environment support - Easily provision infrastructure for testing new feature branches, integrations, and more.
 - Config as Code for Octopus Runbooks - See and manage your runbook processes in your Git repository, just like you already can with your deployment processes.
-- Octopus CLI vNext - We're adding new functions, like an easy-to-use interactive mode and more.
+- Octopus CLI vNext - We're adding new functions, like an easy-to-use interactive mode.
 
-[Keep an eye on our roadmap](https://octopus.com/company/roadmap) for more information on these features and to discover what else might be on the horizon.
+[Keep an eye on our roadmap](https://octopus.com/company/roadmap) for more information on these features and to discover what else is on the horizon.
 
 Happy deployments, everyone!
