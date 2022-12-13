@@ -4,8 +4,8 @@ description: A look at Octopus in 2022 through the lens of deployments past, pre
 author: andrew.corrigan@octopus.com
 visibility: private
 published: 2022-12-19-1400
-metaImage: placeholderfeatureimage.png
-bannerImage: placeholderfeatureimage.png
+metaImage: blogimage-anoctopuschristmascarol-2022.png
+bannerImage: blogimage-anoctopuschristmascarol-2022.png
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags: 
@@ -27,7 +27,7 @@ Before we look at Octopus in 2022, let's take a moment to see where we left off 
 - Grew our team from 77 to 179 people
 - Announced an [investment from Insight Partners](https://octopus.com/blog/insight-investment)
 - Saw our revenue grow by 60%
-- Passed our first audit
+- Passed our first finance audit
 - Launched new features in early access preview, like Config as Code and Amazon ECS support
 - Opened our new office in South Bank, Brisbane. [Just look at it](https://my.matterport.com/show/?m=K6SW8Scyrxg)!
 
@@ -69,10 +69,9 @@ Announced in February, [we acquired Dist](https://octopus.com/blog/octopus-acqui
 
 The acquisition helps us make Octopus's cloud functionality and support even better.
 
-<!---
-### Octopus is more secure than ever thanks to our ISO27001 certification
+### Octopus is more secure than ever thanks to our ISO 27001 certification
 
-Octopus has always taken security seriously, but we understand our customers can't just take our word for it. Our Trust team's goal for 2022 was to get ISO27001 certification, the best-known standard in managing information security.
+Octopus has always taken security seriously, but we understand our customers can't just take our word for it. Our Trust team's goal for 2022 was to get [ISO 27001 certification](https://www.iso.org/isoiec-27001-information-security.html), the best-known standard in managing information security.
 
 To do this, our team:
 
@@ -80,10 +79,10 @@ To do this, our team:
 - Refreshed our security policies and training
 - Made sure our documentation matched our actions at every step of the development lifecycle
 
-The hard work paid off in late 2022, as we successfully passed our audits and received our official ISO27001 certification. We hope this certification gives you peace of mind.
+The hard work paid off late 2022, as we successfully passed our audits and received our official ISO 27001 certification. We hope this certification gives you peace of mind.
 
-The certificate will be on our website to download soon, but our journey doesn't end there. We aim to add to our security qualifications in 2023, so keep your eyes peeled for new developments.
---->
+The certificate will be on our website to download soon, but our journey doesn't end there. We aim to add to our security qualifications in 2023, so stay tuned for new developments.
+
 ### We launched the DevOps engineer's handbook
   
 DevOps can be confusing, so we created the [DevOps engineer's handbook](https://octopus.com/devops/) to help others learn about its processes and philosophies.
