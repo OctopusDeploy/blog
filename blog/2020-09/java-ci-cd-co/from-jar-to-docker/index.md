@@ -22,7 +22,7 @@ This post is part of a series that demonstrates a sample deployment pipeline wit
 
 There is perhaps no public project that better exemplifies a long-lived Java application than [Spring PetClinic](https://projects.spring.io/spring-petclinic/). It started life way back in the early 2000s, and is still proudly featured on the Spring website.
 
-Our journey through the [DevOps lifecycle](https://octopus.com/devops) starts with a local build of PetClinic on a local workstation. By the end of this blog post, we’ll have containerized this application with Docker to provide a [repeatable build and execution environment](https://octopus.com/devops/continuous-delivery/what-is-a-deployment-pipeline).
+Our journey through the [DevOps lifecycle](https://octopus.com/devops/) starts with a local build of PetClinic on a local workstation. By the end of this blog post, we’ll have containerized this application with Docker to provide a [repeatable build and execution environment](https://octopus.com/devops/continuous-delivery/what-is-a-deployment-pipeline).
 
 ## Start with a local build
 

@@ -286,6 +286,6 @@ This tutorial set up a continuous delivery flow with Octopus Deploy, GitHub Acti
 
 !include <github-actions-free-tool>
 
-For more on Continuous Integration (CI) and build servers, [check out our CI blog series](https://octopus.com/blog/tag/CI%20Series). Explore the [DevOps engineer's handbook](https://octopus.com/devops) to learn more about DevOps and CI/CD.
+For more on Continuous Integration (CI) and build servers, [check out our CI blog series](https://octopus.com/blog/tag/CI%20Series). Explore the [DevOps engineer's handbook](https://octopus.com/devops/) to learn more about DevOps and CI/CD.
 
 Happy deployments!
