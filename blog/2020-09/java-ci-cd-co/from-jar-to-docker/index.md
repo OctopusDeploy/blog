@@ -22,7 +22,7 @@ This post is part of a series that demonstrates a sample deployment pipeline wit
 
 There is perhaps no public project that better exemplifies a long-lived Java application than [Spring PetClinic](https://projects.spring.io/spring-petclinic/). It started life way back in the early 2000s, and is still proudly featured on the Spring website.
 
-Our journey through the [DevOps lifecycle](https://octopus.com/devops/) starts with a local build of PetClinic on a local workstation. By the end of this blog post, we’ll have containerized this application with Docker to provide a [repeatable build and execution environment](https://octopus.com/devops/continuous-delivery/what-is-a-deployment-pipeline).
+Our journey through the [DevOps lifecycle](https://octopus.com/devops/) starts with a local build of PetClinic on a local workstation. By the end of this blog post, we’ll have containerized this application with Docker to provide a [repeatable build and execution environment](https://octopus.com/devops/continuous-delivery/what-is-a-deployment-pipeline/).
 
 ## Start with a local build
 
@@ -237,8 +237,8 @@ Docker will download the image if it is not available locally, and then run it a
 
 In this post, we took a typical Java application and containerized it as a Docker image. This image was uploaded to a Docker registry making it publicly available.
 
-With these changes, we have created a [repeatable build and execution process](https://octopus.com/devops/continuous-delivery/what-is-a-deployment-pipeline) anyone can use with only Docker installed. If we switch to a newer version of Java, or even switch languages completely, the application can still be built and run with the same Docker commands.
+With these changes, we have created a [repeatable build and execution process](https://octopus.com/devops/continuous-delivery/what-is-a-deployment-pipeline/) anyone can use with only Docker installed. If we switch to a newer version of Java, or even switch languages completely, the application can still be built and run with the same Docker commands.
 
-While the build process may be conveniently encapsulated by Docker, there is no guarantee that the source code compiles or that the tests all pass. As more developers begin working on an application, the health of the codebase is something that needs to be shared by a central _source of truth_ so everyone knows the state of the application. This is where a [Continuous Integration](https://octopus.com/devops/continuous-delivery/continuous-delivery-capabilities) (CI) server comes in. 
+While the build process may be conveniently encapsulated by Docker, there is no guarantee that the source code compiles or that the tests all pass. As more developers begin working on an application, the health of the codebase is something that needs to be shared by a central _source of truth_ so everyone knows the state of the application. This is where a [Continuous Integration](https://octopus.com/devops/continuous-delivery/continuous-delivery-capabilities/) (CI) server comes in. 
 
 In the [next post](/blog/2020-09/java-ci-cd-co/from-local-to-ci/index.md) we’ll configure our application to be built by the popular and open source CI server Jenkins.

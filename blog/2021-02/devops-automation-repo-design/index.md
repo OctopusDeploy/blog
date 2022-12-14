@@ -52,7 +52,7 @@ A centralized design works best when the execution of the code is still manual, 
 
 Comparing a centralized repository design to a monolithic app might make you think you shouldn't use it. But it's an excellent place to start if your team or organization is new to automation or infrastructure as code in general. It's something you'll grow out of eventually, but I've found it's far better than jumping ahead to a more mature design which will add complexity, confusion, and reduce your rate of adoption.
 
-Having everything in one place keeps things simple. It's clear how to organize files and where you should commit your code. It's easy to track changes, and there is a single [CI/CD pipeline](https://octopus.com/devops/continuous-delivery/what-is-a-deployment-pipeline) to troubleshoot.
+Having everything in one place keeps things simple. It's clear how to organize files and where you should commit your code. It's easy to track changes, and there is a single [CI/CD pipeline](https://octopus.com/devops/continuous-delivery/what-is-a-deployment-pipeline/) to troubleshoot.
 
 ## When is it time to refactor a repository?
 
