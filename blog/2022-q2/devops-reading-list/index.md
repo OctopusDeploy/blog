@@ -552,6 +552,6 @@ Please leave a comment. I look forward to seeing your suggestions, and I hope to
 
 But more importantly, if you like books, I encourage you to buy one and set aside some time to start reading. In this crazy time more than ever before, I’ve found it especially cathartic and valuable to block out a few hours, pop the kettle on, turn off my devices, and to sit back with a notepad, pen, and a good book about how to prosper in the face of unexpected challenges and uncertain market conditions.
 
-Read the rest of our [Runbooks series](https://octopus.com/blog/tag/Runbooks%20Series) or explore the [DevOps engineer's handbook](https://octopus.com/devops) to learn more about DevOps and CI/CD.
+Read the rest of our [Runbooks series](https://octopus.com/blog/tag/Runbooks%20Series) or explore the [DevOps engineer's handbook](https://octopus.com/devops/) to learn more about DevOps and CI/CD.
 
 Happy deployments!

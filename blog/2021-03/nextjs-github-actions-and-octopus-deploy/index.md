@@ -22,7 +22,7 @@ Our project's source code can be found in our [Octopus Sample GitHub repo](https
 
 ## Build and package
 
-Before we can deploy our blog using Octopus, we'll need to package the site and push it to a package repository. Packaging our site is part of [building a deployment pipeline](https://octopus.com/devops/continuous-delivery/what-is-a-deployment-pipeline), and you can read more about why it's important in the post [Packaging Node.js applications](https://octopus.com/blog/deploying-nodejs).
+Before we can deploy our blog using Octopus, we'll need to package the site and push it to a package repository. Packaging our site is part of [building a deployment pipeline](https://octopus.com/devops/continuous-delivery/what-is-a-deployment-pipeline/), and you can read more about why it's important in the post [Packaging Node.js applications](https://octopus.com/blog/deploying-nodejs).
 
 For simplicity, we'll use Octopus's [built in repository](https://octopus.com/docs/packaging-applications/package-repositories/built-in-repository). And since our project is already hosted on GitHub, let's set up a GitHub Action that helps us create our package. Our workflow should look something like this:
 

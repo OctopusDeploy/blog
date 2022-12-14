@@ -294,6 +294,6 @@ Octopus fits nicely into a DevOps environment in 2 key ways:
 
 If you're not already using Octopus Deploy, you can [sign up for a free trial](https://octopus.com/start).
 
-Read the rest of our [Runbooks series](https://octopus.com/blog/tag/Runbooks%20Series) or explore the [DevOps engineer's handbook](https://octopus.com/devops) to learn more about DevOps and CI/CD.
+Read the rest of our [Runbooks series](https://octopus.com/blog/tag/Runbooks%20Series) or explore the [DevOps engineer's handbook](https://octopus.com/devops/) to learn more about DevOps and CI/CD.
 
 Happy deployments!
