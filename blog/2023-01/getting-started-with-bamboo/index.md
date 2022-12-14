@@ -4,9 +4,9 @@ description: Getting started with Bamboo. Learn how to install Bamboo, and build
 author: terence.wong@octopus.com
 visibility: public
 published: 2023-01-04-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: blogimage-gettingstartedwithbamboo-2022x2.png
+bannerImage: blogimage-gettingstartedwithbamboo-2022x2.png
+bannerImageAlt: Bamboo logo
 isFeatured: false
 tags: 
   - DevOps
@@ -64,7 +64,6 @@ Agents are the Workers that execute workloads in Bamboo. Because you installed t
 - In the Bamboo dashboard, go to the settings icon and **Agents**
 - Go to **Add local agent** and give it a name
 - Click **Add**
-
 
 ## Setting up the project and plan
 
