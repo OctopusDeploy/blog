@@ -81,7 +81,7 @@ The diagram below shows how external clients can communicate with pods via ports
 
 ## The LoadBalancer service type
 
-The YAML below defines a `LoadBalancer` service that directs traffic from port 80 (defined by the `targetPort` property) on a public load balancer and internal service to port 8080 (defined by the `targetPort` property) on any pods with the label `app` set to `web`:
+The YAML below defines a `LoadBalancer` service that directs traffic from port 80 (defined by the `port` property) on a public load balancer and internal service to port 8080 (defined by the `targetPort` property) on any pods with the label `app` set to `web`:
 
 ```yaml
 apiVersion: v1
