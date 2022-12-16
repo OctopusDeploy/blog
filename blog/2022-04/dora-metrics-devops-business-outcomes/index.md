@@ -232,7 +232,7 @@ Space level insights:
 
 Together these metrics help you qualify the results of your DevOps performance across your projects and portfolio. 
 
-Learn more about [DevOps Insights](https://octopus.com/docs/insights) in our product documentation. Explore the [DevOps engineer's handbook](https://octopus.com/devops) to read more about DevOps and CI/CD.
+Learn more about [DevOps Insights in our docs](https://octopus.com/docs/insights). Explore the [DevOps engineer's handbook](https://octopus.com/devops) to read more about DevOps and CI/CD.
 
 <!-- ## Help us improve Octopus
 
