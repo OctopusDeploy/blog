@@ -49,7 +49,7 @@ The other important aspect of the Continuous Integration equation is that develo
 
 ## What are Continuous Deployment and Continuous Delivery?
 
-[Continuous Deployment](https://octopus.com/devops/continuous-delivery/what-is-continuous-deployment) takes the compiled artifacts from a successful build performed by the Continuous Integration server and deploys them into the production environment, resulting in a completely automated deployment workflow. In this scenario, Continuous Deployment is quite rightly an extension of Continuous Integration, and the distinction between the two becomes somewhat arbitrary.
+[Continuous Deployment](https://octopus.com/devops/continuous-delivery/what-is-continuous-deployment/) takes the compiled artifacts from a successful build performed by the Continuous Integration server and deploys them into the production environment, resulting in a completely automated deployment workflow. In this scenario, Continuous Deployment is quite rightly an extension of Continuous Integration, and the distinction between the two becomes somewhat arbitrary.
 
 Such commit-to-consumer workflows are common in simple projects. More complex projects can also have a completely automated deployment workflow, if the appropriate tests and monitoring systems are in place.
 
@@ -103,6 +103,6 @@ Recognizing the different requirements between a machine-driven Continuous Integ
 
 If you haven't used Octopus before, you can [sign up for a free trial](https://octopus.com/start).
 
-Explore the [DevOps engineer's handbook](https://octopus.com/devops) to learn more about DevOps and CI/CD, or read the rest of our [Continuous Integration series](https://octopus.com/blog/tag/CI%20Series).
+Explore the [DevOps engineer's handbook](https://octopus.com/devops/) to learn more about DevOps and CI/CD, or read the rest of our [Continuous Integration series](https://octopus.com/blog/tag/CI%20Series).
 
 Happy deployments!
