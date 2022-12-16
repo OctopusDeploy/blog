@@ -41,7 +41,7 @@ Continuous Integration servers can be described as solving the equation:
 
 The left side of the equation takes the code written by developers, any dependencies of the code, a build tool, and the environment where the build and tests are executed. When these inputs are available, a Continuous Integration server completes the build to produce the elements on the right side of the equation.
 
-When a Continuous Integration server has been configured correctly, each commit to a repository results in the build being run, thus solving the equation without manual intervention from a human.
+When a Continuous Integration server has been configured correctly, each commit to a repository results in the build being run, thus [solving the equation without manual intervention from a human](https://octopus.com/devops/continuous-delivery/continuous-delivery-capabilities/#1-continuous-integration-ci).
 
 This means the process implemented by Continuous Integration servers is machine-driven, so much so that it's common for Continuous Integration servers to have read-only user interfaces, like the Jenkins Blue Ocean UI.
 
