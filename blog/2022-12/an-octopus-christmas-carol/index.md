@@ -90,13 +90,13 @@ DevOps can be confusing, so we created the [DevOps engineer's handbook](https://
 To start, we're focusing heavily on our specialist subject - Continuous Delivery - but the handbook will expand and evolve.
 
 Plus, if you're looking for DevOps book recommendations, check out our [interactive reading list](https://octopus.com/devops/reading-list/).
-<!---
-### We had a record quarter (may need to cut)
+
+### We had a record quarter
 
 We're ending 2022 on a high! Quarter 4 was a record quarter for business completed.
 
 We look forward to building on this and helping more organizations deliver software faster and more reliably.
---->
+
 ### 2022 in stats
 
 To finish, here are some fun stats about Octopus's year (at the time of writing):
