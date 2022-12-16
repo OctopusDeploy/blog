@@ -103,6 +103,6 @@ Recognizing the different requirements between a machine-driven Continuous Integ
 
 If you haven't used Octopus before, you can [sign up for a free trial](https://octopus.com/start).
 
-!include <q1-2022-newsletter-cta>
+Read the rest of our [Continuous Integration series](https://octopus.com/blog/tag/CI%20Series), or explore the [DevOps engineer's handbook](https://octopus.com/devops) to read more about DevOps and CI/CD.
 
 Happy deployments!
