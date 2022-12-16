@@ -324,7 +324,7 @@ jobs:
 
     steps:
       - name: Waiting for deployment in Octopus Deploy 🐙
-        uses: OctopusDeploy/await-task-action@enh-initialversion
+        uses: OctopusDeploy/await-task-action@v3
         with:
           server_task_id: ${{ matrix.deployment.serverTaskId }}
 ```
