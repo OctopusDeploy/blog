@@ -19,7 +19,7 @@ tags:
 
 In 2009, inspired by [John Allspaw and Paul Hammonds’ talk at Velocity](https://www.youtube.com/watch?v=LdOe18KhtT4), Patrick Debois organized a conference. In homage to John and Paul, Patrick called his conference “DevOps Days”. In doing so, he unintentionally gave a broad and fragmented coalition of geeks a unified name and identity. “DevOps” was now a thing… But it was notoriously hard to define.
 
-A passionate and diverse community of tech folks [had converged](https://itrevolution.com/the-convergence-of-devops/). They agreed on some broad ideas (covering a variety of topics) but struggled to concisely articulate them as a single thing. It’s hard to neatly tie so many ideas about culture, automation, lean IT, metrics, and sharing into a short and focused elevator pitch.  
+A passionate and diverse community of tech folks [had converged](https://itrevolution.com/the-convergence-of-devops/). They agreed on some broad ideas (covering a variety of topics) but struggled to concisely articulate them as a single thing. It’s hard to neatly tie [so many ideas about culture, automation, lean IT, metrics, and sharing](https://octopus.com/devops/) into a short and focused elevator pitch.  
 
 Making matters worse, public perception was… mixed. To some, this fledgling movement came across as naïve and dangerous. These DevOps hippies were actively promoting that developers should push directly to production! In the early days, not a lot of senior folks in “serious” businesses took these DevOps pioneers seriously.
 
@@ -49,7 +49,7 @@ Their conclusions were striking.
 
 Nicole, Gene, and Jez wanted to understand why some teams perform better than others. To do that, they first needed a yardstick to measure the “performance” of an IT team. This was no small feat. The authors discussed the challenges with various traditional metrics such as lines of code, story points, and utilization etc. Defining the performance of an individual or team based solely on the work they put in was problematic.
 
-The authors chose instead to focus on outcomes rather than outputs. When they did, they noticed something unique about 4 specific metrics, that covered a balance of both performance and stability. These metrics have become known as the “DORA metrics”:
+The authors chose instead to focus on outcomes rather than outputs. When they did, they noticed something unique about 4 specific metrics, that covered a balance of both performance and stability. These metrics have become known as the “[DORA metrics](https://octopus.com/devops/metrics/#what-are-dora-metrics)”:
 
 -	Deployment frequency
 -	Lead time
@@ -232,7 +232,7 @@ Space level insights:
 
 Together these metrics help you qualify the results of your DevOps performance across your projects and portfolio. 
 
-[Learn more about DevOps Insights](https://octopus.com/docs/insights).
+Learn more about [DevOps Insights in our docs](https://octopus.com/docs/insights). Explore the [DevOps engineer's handbook](https://octopus.com/devops/) to read more about DevOps and CI/CD.
 
 <!-- ## Help us improve Octopus
 
