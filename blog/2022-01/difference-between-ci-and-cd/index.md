@@ -41,7 +41,7 @@ Continuous Integration servers can be described as solving the equation:
 
 The left side of the equation takes the code written by developers, any dependencies of the code, a build tool, and the environment where the build and tests are executed. When these inputs are available, a Continuous Integration server completes the build to produce the elements on the right side of the equation.
 
-When a Continuous Integration server has been configured correctly, each commit to a repository results in the build being run, thus solving the equation without manual intervention from a human.
+When a Continuous Integration server has been configured correctly, each commit to a repository results in the build being run, thus [solving the equation without manual intervention from a human](https://octopus.com/devops/continuous-delivery/continuous-delivery-capabilities/#1-continuous-integration-ci).
 
 This means the process implemented by Continuous Integration servers is machine-driven, so much so that it's common for Continuous Integration servers to have read-only user interfaces, like the Jenkins Blue Ocean UI.
 
@@ -49,7 +49,7 @@ The other important aspect of the Continuous Integration equation is that develo
 
 ## What are Continuous Deployment and Continuous Delivery?
 
-Continuous Deployment takes the compiled artifacts from a successful build performed by the Continuous Integration server and deploys them into the production environment, resulting in a completely automated deployment workflow. In this scenario, Continuous Deployment is quite rightly an extension of Continuous Integration, and the distinction between the two becomes somewhat arbitrary.
+[Continuous Deployment](https://octopus.com/devops/continuous-delivery/what-is-continuous-deployment/) takes the compiled artifacts from a successful build performed by the Continuous Integration server and deploys them into the production environment, resulting in a completely automated deployment workflow. In this scenario, Continuous Deployment is quite rightly an extension of Continuous Integration, and the distinction between the two becomes somewhat arbitrary.
 
 Such commit-to-consumer workflows are common in simple projects. More complex projects can also have a completely automated deployment workflow, if the appropriate tests and monitoring systems are in place.
 
@@ -63,7 +63,7 @@ But while fully automated deployments have many benefits, it's not uncommon for 
 - Integrating deployments with back-end changes like databases
 - Not having 100% confidence in your tests
 
-The term Continuous Delivery is used to distinguish workflows that incorporate human decision-making from Continuous Deployment workflows that are fully automated.
+The term [Continuous Delivery](https://octopus.com/devops/continuous-delivery/what-is-continuous-deployment/#addressing-the-confusion-between-continuous-delivery-and-continuous-deployment) is used to distinguish workflows that incorporate human decision-making from Continuous Deployment workflows that are fully automated.
 
 Where Continuous Integration tooling is machine-driven for many teams, Continuous Delivery is human-driven. Much of the grunt work of performing a deployment is still automated, but the decision to promote a release through to production is a human one. Importantly, the decision may not be made by technical employees, but rather product owners, managers, or someone who stayed up until midnight to click the deploy button.
 
@@ -103,6 +103,6 @@ Recognizing the different requirements between a machine-driven Continuous Integ
 
 If you haven't used Octopus before, you can [sign up for a free trial](https://octopus.com/start).
 
-!include <q1-2022-newsletter-cta>
+Explore the [DevOps engineer's handbook](https://octopus.com/devops/) to learn more about DevOps and CI/CD, or read the rest of our [Continuous Integration series](https://octopus.com/blog/tag/CI%20Series).
 
 Happy deployments!
