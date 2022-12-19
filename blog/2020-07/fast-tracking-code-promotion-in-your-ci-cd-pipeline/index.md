@@ -120,7 +120,7 @@ Those are excellent questions and can be broken down by framing them into one of
 
 Not every code change needs to go through hours of regression testing and load testing. In fact, most code changes shouldn’t need to if you follow lean/agile development methodologies. If a change is simple and it isn’t pulling new data from a database or doing any advanced calculations, the change can probably be deployed to production without the full suite of testing as the risk is low and confidence is high.
 
-All pipeline events should be triggered from source control. To ensure changes will run through the pre-approved CI/CD pipeline, I will create a new GIT branch with a naming convention similar to the following:
+All pipeline events should be triggered from source control. To ensure changes will run through the pre-approved CI/CD pipeline, I will create a new Git branch with a naming convention similar to the following:
 
 `feature-pa-eado-4287-add_status_response`
 
@@ -160,25 +160,25 @@ In a later blog post, we will discuss how non-pre-approved changes will run thro
     4. CD at end-to-end testing: Validates frontend making API call returns successful response.
     5. CD post git tag: `dev_success`.
 4. Test environment:
-    1. GIT tag `dev_success` triggers CD binary deploy: Copies and unzips package to the web server.
+    1. Git tag `dev_success` triggers CD binary deploy: Copies and unzips package to the web server.
     2. CD binary validate: Validates the web server returns 200 response.
     3. CD at integration testing: Validates 200 response from load balanced URI.
     4. CD at end-to-end testing: Validates frontend making API call returns successful response.
     5. CD post git tag: `test_success`.
 5. QA environment:
-    1. GIT tag `test_success` triggers CD binary deploy. Copies and unzips package to the web server.
+    1. Git tag `test_success` triggers CD binary deploy. Copies and unzips package to the web server.
     2. CD binary validate: Validates the web server returns 200 response.
     3. CD at integration testing: Validates 200 response from load balanced URI.
     4. CD at end-to-end testing: Validates frontend making API call returns successful response.
     5. CD post git tag: `qa_success`.
 6. Pre-production environment:
-    1. GIT tag `qa_success` triggers CD binary deploy: Copies and unzips package to the web server.
+    1. Git tag `qa_success` triggers CD binary deploy: Copies and unzips package to the web server.
     2. CD binary validate: Validates the web server returns 200 response.
     3. CD at integration testing: Validates 200 response from load balanced URI.
     4. CD at end-to-end testing: Validates frontend making API call returns successful response.
     5. CD post git tag: `preprod_success`.
 7. Production environment:
-    1. GIT tag `preprod_success` triggers CD binary deploy: Copies and unzips package to the web server.
+    1. Git tag `preprod_success` triggers CD binary deploy: Copies and unzips package to the web server.
     2. CD binary validate: Validates the web server returns 200 response.
     3. CD at integration testing: Validates 200 response from load balanced URI.
     4. CD at end-to-end testing: Validates frontend making API call returns successful response.
@@ -192,4 +192,4 @@ In a later blog post, we will discuss how non-pre-approved changes will run thro
 
 ## Conclusion
 
-Deploying code to production quickly is the greatest challenge facing development teams. Code promotion and deployment is all about having confidence. In order to have that confidence, our CI/CD pipeline must contain the four layers of the testing pyramid. Determining when each layer of the testing pyramid is executed in which deployment environment becomes the next challenge, but defining a pre-approved deployment pipeline for small, low-risk changes helps balance speed with quality, and using GIT branches and tags to trigger your pre-approved pipeline helps give deployment responsibility to those who know the code best, the developers.
+Deploying code to production quickly is the greatest challenge facing development teams. Code promotion and deployment is all about having confidence. In order to have that confidence, our CI/CD pipeline must contain the four layers of the testing pyramid. Determining when each layer of the testing pyramid is executed in which deployment environment becomes the next challenge, but defining a pre-approved deployment pipeline for small, low-risk changes helps balance speed with quality, and using Git branches and tags to trigger your pre-approved pipeline helps give deployment responsibility to those who know the code best, the developers.
