@@ -22,7 +22,7 @@ This post is part of a series that demonstrates a sample deployment pipeline wit
 
 [In the previous blog post](/blog/2020-09/java-ci-cd-co/from-ci-to-cloud/index.md) we used Octopus to build a Kubernetes cluster in AWS using EKS, and then deployed the Docker image created by Jenkins as a Kubernetes deployment and service.
 
-However, we still don’t have a complete deployment pipeline solution, as Jenkins is not integrated with Octopus, leaving us to manually coordinate builds and deployments.
+However, we still don’t have a complete [deployment pipeline](https://octopus.com/devops/continuous-delivery/what-is-a-deployment-pipeline/) solution, as Jenkins is not integrated with Octopus, leaving us to manually coordinate builds and deployments.
 
 In this blog post, we’ll extend our Jenkins build to call Octopus and initiate a deployment when our Docker image has been pushed to Docker Hub. We will also create additional environments, and manage the release from a local development environment to the final production environment.
 
