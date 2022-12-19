@@ -77,7 +77,7 @@ The same is true of DevOps. Build and release pipelines are the tip of the icebe
 
 **So, what is “DevOps” anyway?**
 
-Let’s look at a few of the most widely accepted definitions of DevOps:
+Let’s look at a few of the most widely accepted definitions of [DevOps](https://octopus.com/devops/):
 
 -	[Calms](https://www.atlassian.com/devops/frameworks/calms-framework) (Culture, automation, lean, measurements, sharing)
 -	[The Three Ways](https://itrevolution.com/the-three-ways-principles-underpinning-devops/) (Flow, Feedback, Continual Experimentation and Learning)
