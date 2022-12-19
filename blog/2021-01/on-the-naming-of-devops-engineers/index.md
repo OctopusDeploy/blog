@@ -134,3 +134,5 @@ The one place where I support using "DevOps" in a job title is for a "DevOps Coa
 Fundamentally, it makes a lot more sense if job titles reflect what a person is required to do, rather than the development philosophy of the wider organization. 
 
 (Even if what they are required to do is solely to manage an Octopus Deploy server.)
+
+Read the [DevOps engineer's handbook](https://octopus.com/devops/) to learn more about the principles and practices of DevOps and how to create an ideal DevOps culture.
