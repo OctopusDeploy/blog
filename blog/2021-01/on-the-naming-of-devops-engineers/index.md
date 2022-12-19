@@ -63,11 +63,11 @@ The important point is that, like DevOps, if an organization uses the “Spotify
 
 Here’s an example of one of the engineering implications, copied verbatim from the whitepaper:
 
-> “Technically, anyone is allowed to edit any system. Since the squads are effectively feature teams, they normally need to update multiple systems to get a new feature into production.”
+> Technically, anyone is allowed to edit any system. Since the squads are effectively feature teams, they normally need to update multiple systems to get a new feature into production.”
 
 Since squads are aligned to business objectives, rather than specific services or codebases, some form of standardized build and release process is likely to be a necessity. In fact, this is implied pretty heavily here:
 
-> “At Spotify there is a separate operations team, but their job is not to make releases for the squads – their job is to give the squads the support they need to release code themselves.”
+> At Spotify there is a separate operations team, but their job is not to make releases for the squads – their job is to give the squads the support they need to release code themselves.”
 
 So, would you call that operations team a “Spotify Model Team”? Is it made up of “Spotify Model Engineers”? Hmmm, that doesn’t sound right, does it?
 
