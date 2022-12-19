@@ -17,7 +17,7 @@ Back in November, I shared my [DevOps Reading List](https://octopus.com/blog/dev
 
 While I was grateful for the endorsement, I felt uncomfortable about my words being used in that context. You see, I don’t like the title “DevOps Engineer”.
 
-In this post I’m going to start by attempting to articulate why many folks in the DevOps community wince when they hear the words “DevOps Engineer” or “DevOps Team”. Then I’ll suggest a few other job titles that might be more appropriate, and which might avoid raising eyebrows within the community.
+In this post I’m going to start by attempting to articulate why many folks in the DevOps community wince when they hear the words “DevOps Engineer” or “[DevOps Team](https://octopus.com/devops/team-structures/)”. Then I’ll suggest a few other job titles that might be more appropriate, and which might avoid raising eyebrows within the community.
 
 And by the way, I know this is a pretty hot topic. It’s not my intention to start a [flame war](https://www.urbandictionary.com/define.php?term=flame%20war). I do not mean to undermine the valuable and important work that is done every day by excellent “DevOps Engineers” around the world. In fact, while I dislike the naming convention, I actually hold the view that the people who find themselves with the “DevOps Engineer” job title are typically undervalued and under-appreciated.
 
@@ -63,11 +63,11 @@ The important point is that, like DevOps, if an organization uses the “Spotify
 
 Here’s an example of one of the engineering implications, copied verbatim from the whitepaper:
 
-> “Technically, anyone is allowed to edit any system. Since the squads are effectively feature teams, they normally need to update multiple systems to get a new feature into production.”
+> Technically, anyone is allowed to edit any system. Since the squads are effectively feature teams, they normally need to update multiple systems to get a new feature into production.”
 
 Since squads are aligned to business objectives, rather than specific services or codebases, some form of standardized build and release process is likely to be a necessity. In fact, this is implied pretty heavily here:
 
-> “At Spotify there is a separate operations team, but their job is not to make releases for the squads – their job is to give the squads the support they need to release code themselves.”
+> At Spotify there is a separate operations team, but their job is not to make releases for the squads – their job is to give the squads the support they need to release code themselves.”
 
 So, would you call that operations team a “Spotify Model Team”? Is it made up of “Spotify Model Engineers”? Hmmm, that doesn’t sound right, does it?
 
@@ -77,20 +77,20 @@ The same is true of DevOps. Build and release pipelines are the tip of the icebe
 
 **So, what is “DevOps” anyway?**
 
-Let’s look at a few of the most widely accepted definitions of DevOps:
+Let’s look at a few of the most widely accepted definitions of [DevOps](https://octopus.com/devops/):
 
 -	[Calms](https://www.atlassian.com/devops/frameworks/calms-framework) (Culture, automation, lean, measurements, sharing)
 -	[The Three Ways](https://itrevolution.com/the-three-ways-principles-underpinning-devops/) (Flow, Feedback, Continual Experimentation and Learning)
 -	[Accelerate metrics](https://octopus.com/blog/devops-reading-list#accelerate) (Lead time, deployment frequency, MTTR, change failure %)
 
-In all cases, the scope of DevOps is clearly much broader than a deployment pipeline or a single person/team. It’s about the practice and performance of the whole IT organization.
+In all cases, the scope of DevOps is clearly much broader than a [deployment pipeline](https://octopus.com/devops/continuous-delivery/what-is-a-deployment-pipeline/) or a single person/team. It’s about the practice and performance of the whole IT organization.
 
 Accelerate goes on to define [24 capabilities](https://itrevolution.com/24-key-capabilities-to-drive-improvement-in-software-delivery/) that contribute to high IT performance. Of these 24 capabilities only two, (“use version control for all production artifacts” and “automate your deployment process”), neatly match the infrastructure as code/deployment pipeline DevOps job description. There are probably other capabilities that correlate, but these capabilities don’t map neatly to a single person. These are organizational capabilities, rather than individual capabilities. Most of them simply do not make sense if they are tasked to a single person. For example:
 
--	Use trunk-based development methods
--	Use a loosely coupled architecture
--	Shift-left on security
--	Support a generative culture
+-	Use [trunk-based development](https://octopus.com/devops/continuous-delivery/continuous-delivery-capabilities/#2-trunk-based-development) methods
+-	Use a [loosely coupled architecture](https://octopus.com/devops/continuous-delivery/continuous-delivery-capabilities/#5-loosely-coupled-architecture)
+-	[Shift-left](https://octopus.com/devops/continuous-delivery/continuous-delivery-capabilities/#3-continuous-testing) on security
+-	Support a [generative culture](https://octopus.com/devops/#creating-an-ideal-devops-culture)
 
 While deployment pipelines are certainly important, even critical, they are just one detail. It’s important not to get lost in that specific detail at the expense of the big picture.
 
@@ -121,11 +121,11 @@ You can measure the performance of a “Software Developer”, “Systems Admini
 
 For the record, I’m not saying I fundamentally disagree with asking one person or a team to develop shared tools for the benefit of the wider organization. Those shared tools may well include deployment and self-service environment-provisioning platforms.
 
-Team Topologies refers to these teams as “[Platform Teams](https://www.atlassian.com/devops/frameworks/team-topologies#:~:text=products%20and%20services.-,Platform%20team,stream%2Daligned%20team%20can%20use.)”. [Site Reliability Engineering](https://octopus.com/blog/devops-reading-list#sre) also advocates for this, talking at length about the role and scope of the “Site Reliability Engineering” role/team. However, in both cases, DevOps is recognized as a broader topic than simply the job description of the individuals in these teams/with these roles. In fact, upon reflection, [it appears that I subconsciously and accidentally plagiarized them with my interface metaphor above](https://cloud.google.com/blog/products/gcp/sre-vs-devops-competing-standards-or-close-friends).
+Team Topologies refers to these teams as “[Platform Teams](https://www.atlassian.com/devops/frameworks/team-topologies#:~:text=products%20and%20services.-,Platform%20team,stream%2Daligned%20team%20can%20use.)”. [Site Reliability Engineering](https://octopus.com/blog/devops-reading-list#sre) also advocates for this, talking at length about the role and scope of the “Site Reliability Engineering” role/team. However, in both cases, DevOps is recognized as a broader topic than simply the job description of the individuals in these teams/with these roles. In fact, upon reflection, [it appears that I subconsciously and accidentally plagiarized them with my interface metaphor above](https://cloud.google.com/blog/products/gcp/sre-vs-devops-competing-standards-or-close-friends). The DevOps engineer’s handbook [explores team structures](https://octopus.com/devops/team-structures/) in more detail.
 
 More simply, for an engineer who specializes in looking after a build/release pipelines, why not “Build/Release Engineer”. For someone who looks after some cloud infrastructure, how about “Infrastructure Engineer”, or plain old “Systems Administrator”?
 
-If a person is expected to build multiple internal tools for other software teams, why not plain old “Software Developer”? Before you raise any eyebrows, consider the titles given to the folks who build, maintain, or administrate your CRM, HR, and accounting systems? You might have a “CRM Developer”, but I’m guessing these folks aren’t called “Sales Engineers”, “HR Administrators”, or “Accountants”. Those job titles all mean something else entirely.
+If a person is expected to build multiple internal tools for other software teams, why not plain old “Software Developer”? Before you raise any eyebrows, consider the titles given to the folks who build, maintain, or administrate your CRM, HR, and accounting systems. You might have a “CRM Developer”, but I’m guessing these folks aren’t called “Sales Engineers”, “HR Administrators”, or “Accountants”. Those job titles all mean something else entirely.
 
 After all, while most software developers are learning to work in new ways, not many people are seriously suggesting that they need a new job title just because we are moving away from waterfall project management styles towards DevOps.
 
@@ -134,3 +134,5 @@ The one place where I support using "DevOps" in a job title is for a "DevOps Coa
 Fundamentally, it makes a lot more sense if job titles reflect what a person is required to do, rather than the development philosophy of the wider organization. 
 
 (Even if what they are required to do is solely to manage an Octopus Deploy server.)
+
+Read the [DevOps engineer's handbook](https://octopus.com/devops/) to learn more about the principles and practices of DevOps and how to create an ideal DevOps culture.
