@@ -194,6 +194,6 @@ In this post we triggered a deployment in Octopus after Jenkins finished buildin
 
 We now have the ability to promote a change from the application source code to production with a few simple button clicks. Those responsible for release management need no special tools other than a web browser. Each build and deployment is tracked, audited, and summarized in the Jenkins and Octopus dashboards.
 
-But those that have seen their code put in customer’s hands know that while nothing inspires more confidence than the first 10 minutes of a production deployment, it is the following hours and days that are hard. Database backups need to be managed, operating system updates need to be scheduled, logs need to be collected to diagnose support issues, and some good, old fashioned turning-it-off-and-on-again will need to be performed.
+But those that have seen their code put in customers’ hands know that while nothing inspires more confidence than the first 10 minutes of a production deployment, it is the following hours and days that are hard. Database backups need to be managed, operating system updates need to be scheduled, logs need to be collected to diagnose support issues, and some good, old fashioned turning-it-off-and-on-again will need to be performed.
 
 In the [next blog post](/blog/2020-09/java-ci-cd-co/from-cd-to-co/index.md) we’ll show examples of these maintenance processes implemented in runbooks to complete the final stage of our pipeline: operations.
