@@ -87,10 +87,10 @@ In all cases, the scope of DevOps is clearly much broader than a [deployment pip
 
 Accelerate goes on to define [24 capabilities](https://itrevolution.com/24-key-capabilities-to-drive-improvement-in-software-delivery/) that contribute to high IT performance. Of these 24 capabilities only two, (“use version control for all production artifacts” and “automate your deployment process”), neatly match the infrastructure as code/deployment pipeline DevOps job description. There are probably other capabilities that correlate, but these capabilities don’t map neatly to a single person. These are organizational capabilities, rather than individual capabilities. Most of them simply do not make sense if they are tasked to a single person. For example:
 
--	Use trunk-based development methods
--	Use a loosely coupled architecture
--	Shift-left on security
--	Support a generative culture
+-	Use [trunk-based development](https://octopus.com/devops/continuous-delivery/continuous-delivery-capabilities/#2-trunk-based-development) methods
+-	Use a [loosely coupled architecture](https://octopus.com/devops/continuous-delivery/continuous-delivery-capabilities/#5-loosely-coupled-architecture)
+-	[Shift-left](https://octopus.com/devops/continuous-delivery/continuous-delivery-capabilities/#3-continuous-testing) on security
+-	Support a [generative culture](https://octopus.com/devops/#creating-an-ideal-devops-culture)
 
 While deployment pipelines are certainly important, even critical, they are just one detail. It’s important not to get lost in that specific detail at the expense of the big picture.
 
