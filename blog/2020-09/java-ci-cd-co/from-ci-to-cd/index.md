@@ -197,3 +197,5 @@ We can now promote a change from the application source code to production with 
 But those who have seen their code put in customers’ hands know that while nothing inspires more confidence than the first 10 minutes of a production deployment, the following hours and days are hard. Database backups need to be managed, operating system updates need to be scheduled, logs need to be collected to diagnose support issues, and some good, old-fashioned turning-it-off-and-on-again will need to be performed.
 
 In the [next blog post](/blog/2020-09/java-ci-cd-co/from-cd-to-co/index.md), we’ll show examples of these maintenance processes implemented in runbooks to complete the final stage of our pipeline: operations.
+ 
+Explore the [DevOps engineer's handbook](https://octopus.com/devops/) to learn more about DevOps and CI/CD.
