@@ -193,3 +193,5 @@ In a later blog post, we will discuss how non-pre-approved changes will run thro
 ## Conclusion
 
 Deploying code to production quickly is the greatest challenge facing development teams. Code promotion and deployment is all about having confidence. In order to have that confidence, our CI/CD pipeline must contain the four layers of the testing pyramid. Determining when each layer of the testing pyramid is executed in which deployment environment becomes the next challenge, but defining a pre-approved deployment pipeline for small, low-risk changes helps balance speed with quality, and using Git branches and tags to trigger your pre-approved pipeline helps give deployment responsibility to those who know the code best, the developers.
+
+Explore the [DevOps engineer's handbook](https://octopus.com/devops/) to learn more about DevOps, CI/CD, and the role of software testing in Continuous Delivery.
