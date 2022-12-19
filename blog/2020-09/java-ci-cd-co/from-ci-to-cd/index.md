@@ -144,20 +144,20 @@ Here is the corresponding deployment in Octopus:
 ![The Octopus deployment](octopusdeployment.png "width=500")
 *The Octopus deployment.*
 
-## Continuous deployment vs continuous delivery
+## Continuous Deployment vs Continuous Delivery
 
 Over the years the [CD half of the acronym CI/CD](https://octopus.com/devops/continuous-delivery/what-is-continuous-deployment/) has settled on two definitions:
 
 * Continuous Deployment, which means a completely automatic deployment pipeline where each commit goes to production, assuming all tests and other automated requirements are met.
 * Continuous Delivery, which means each commit *could* go to production through an automated, but not necessarily automatic, deployment pipeline. The decision to promote through environments (or not) is still made by a human.
 
-While continuous deployment, by its very definition, removes all the friction from a deployment process, there are many valid reasons to implement continuous delivery. For example, you may need to orchestrate deployments with other teams, product owners may need to sign off new features, regulatory requirements may demand that production infrastructure not be modified by developers without some review process, or you may simply want to retain the ability to manually test and verify a release before it goes to production.
+While Continuous Deployment, by its very definition, removes all the friction from a deployment process, there are many valid reasons to implement Continuous Delivery. For example, you may need to orchestrate deployments with other teams, product owners may need to sign off new features, regulatory requirements may demand that production infrastructure not be modified by developers without some review process, or you may simply want to retain the ability to manually test and verify a release before it goes to production.
 
 :::hint
-If you read blog posts on best practices concerning CI/CD, you may be left with the impression that continuous deployment is something that you *must* strive to implement. While the practices that allow for a true continuous deployment pipeline will have value, most of the development teams we talk to report that continuous delivery works for them.
+If you read blog posts on best practices concerning CI/CD, you may be left with the impression that Continuous Deployment is something that you *must* strive to implement. While the practices that allow for a true Continuous Deployment pipeline will have value, most of the development teams we talk to report that Continuous Delivery works for them.
 :::
 
-For this blog we will create a continuous delivery pipeline, which manages releases to multiple environments through the Octopus dashboard.
+For this blog we will create a Continuous Delivery pipeline, which manages releases to multiple environments through the Octopus dashboard.
 
 ## Add the environments
 
@@ -190,7 +190,7 @@ And with that, we have a complete deployment pipeline.
 
 ## Conclusion
 
-In this post we triggered a deployment in Octopus after Jenkins finished building and pushing the Docker image. This means we have implemented continuous integration with Jenkins testing, building, and publishing the Docker image, and continuous delivery with Octopus providing automatic deployment to a development environment, with an automated process ready to be manually triggered in other environments.
+In this post we triggered a deployment in Octopus after Jenkins finished building and pushing the Docker image. This means we have implemented Continuous Integration with Jenkins testing, building, and publishing the Docker image, and Continuous Delivery with Octopus providing automatic deployment to a development environment, with an automated process ready to be manually triggered in other environments.
 
 We now have the ability to promote a change from the application source code to production with a few simple button clicks. Those responsible for release management need no special tools other than a web browser. Each build and deployment is tracked, audited, and summarized in the Jenkins and Octopus dashboards.
 
