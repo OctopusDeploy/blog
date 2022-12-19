@@ -17,7 +17,7 @@ Back in November, I shared my [DevOps Reading List](https://octopus.com/blog/dev
 
 While I was grateful for the endorsement, I felt uncomfortable about my words being used in that context. You see, I don’t like the title “DevOps Engineer”.
 
-In this post I’m going to start by attempting to articulate why many folks in the DevOps community wince when they hear the words “DevOps Engineer” or “DevOps Team”. Then I’ll suggest a few other job titles that might be more appropriate, and which might avoid raising eyebrows within the community.
+In this post I’m going to start by attempting to articulate why many folks in the DevOps community wince when they hear the words “DevOps Engineer” or “[DevOps Team](https://octopus.com/devops/team-structures/)”. Then I’ll suggest a few other job titles that might be more appropriate, and which might avoid raising eyebrows within the community.
 
 And by the way, I know this is a pretty hot topic. It’s not my intention to start a [flame war](https://www.urbandictionary.com/define.php?term=flame%20war). I do not mean to undermine the valuable and important work that is done every day by excellent “DevOps Engineers” around the world. In fact, while I dislike the naming convention, I actually hold the view that the people who find themselves with the “DevOps Engineer” job title are typically undervalued and under-appreciated.
 
