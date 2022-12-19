@@ -3,7 +3,7 @@ title: What is GitOps?
 description: GitOps is an exciting new paradigm, but it can be hard to understand exactly what the term means. 
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2022-04-13-1400
+published: 2022-12-21-1400
 metaImage: blogimage-whatisgitops-2022.png
 bannerImage: blogimage-whatisgitops-2022.png
 bannerImageAlt: Person holds magnifying glass over GitOps logo,  surrounded by icons for declarative, versioned and immutable, pulled automatically, and continuously reconciled.
@@ -13,7 +13,7 @@ tags:
  - Runbooks Series
 ---
 
-GitOps is a relatively new addition to the growing list of "Ops" paradigms taking shape in our industry. It all started with DevOps, and while the term DevOps has been around for some years now, it seems we still can't agree whether it's a process, mindset, job title, set of tools, or some combination of them all. We captured our thoughts about DevOps in our [introduction to DevOps](https://octopus.com/blog/introduction-to-devops) post.
+GitOps is a relatively new addition to the growing list of "Ops" paradigms taking shape in our industry. It all started with DevOps, and while the term DevOps has been around for some years now, it seems we still can't agree whether it's a process, mindset, job title, set of tools, or some combination of them all. We captured our thoughts about DevOps in our [introduction to DevOps](https://octopus.com/blog/introduction-to-devops) post, and we dive even deeper in our [DevOps engineer's handbook](https://octopus.com/devops/).
 
 The term GitOps suffers from the same ambiguity, so in this post we look at: 
 
@@ -173,12 +173,8 @@ GitOps tools also tend to assume that because everything is in Git, the intent o
 
 As you project the natural evolution of a GitOps workflow, you're likely to conclude that so many automated processes rely on the declarative configuration being in a specific location and format, that Git commits must be treated in much the same way as a database migration. The inputs to a GitOps process must be managed and orchestrated, and the outputs must be tested, measured, and maintained. Meanwhile the processing between the Git repo and cluster should be automated, rendering much of what we talk about as GitOps today as simply an intermediate step in a specialized CI/CD pipeline or DevOps workflow.
 
-Perhaps the biggest source of confusion around GitOps is the misconception that it represents an end-to-end solution, and that you implement GitOps and GitOps focused tooling to the exclusion of alternative processes and platforms. 
+Perhaps the biggest source of confusion around GitOps is the misconception that it represents an end-to-end solution, and that you implement GitOps and GitOps-focused tooling to the exclusion of alternative processes and platforms. 
 
 In practice, GitOps encapsulates one step in your infrastructure and deployment pipelines, and must be complemented with other processes and platforms to fulfill common business requirements.
-
-## Follow our series about Runbooks
-
-For the next few months, we're focusing on Runbooks and how they can help manage your infrastructure. We’ll include a summary of the blog posts in our monthly newsletter. [Sign up to follow along](#newsletter).
 
 Happy deployments!
