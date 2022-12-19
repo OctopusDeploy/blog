@@ -15,7 +15,7 @@ tags:
 
 One of the biggest challenges software development teams face in 2020 is the need to deliver code to production faster. To do this seamlessly, we need a completely automated deployment process, and it must be repeatable through multiple environments. Also, to confidently deploy to production without service interruption, we must have successful tests pass in each layer of the testing pyramid.
 
-Defining this process can be challenging, and visualizing it can be even more difficult; thankfully, Octopus Deploy makes both easy for us! In this post, I define a _pre-approved_ production-ready deployment pipeline as well as discuss the details of each step involved.
+Defining this process can be challenging, and visualizing it can be even more difficult; thankfully, Octopus Deploy makes both easy for us! In this post, I define a _pre-approved_ production-ready [deployment pipeline](https://octopus.com/devops/continuous-delivery/what-is-a-deployment-pipeline/) as well as discuss the details of each step involved.
 
 ## The automated testing pyramid
 
