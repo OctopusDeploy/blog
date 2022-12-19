@@ -28,10 +28,10 @@ Source: https://blog.octo.com/wp-content/uploads/2018/10/integration-tests-1024x
 
 As you can see from the diagram, the four layers of tests are:
 
-- **Unit tests**: These need to be successful during the continuous integration stages of our pipeline.
-- **Component tests**: These need to be successful during the continuous integration stages of our pipeline.
-- **Integration tests**: These need to be successful during the continuous delivery stages of our pipeline.
-- **End-to-end tests**: These need to be successful during the continuous delivery stages of our pipeline.
+- **Unit tests**: These need to be successful during the Continuous Integration stages of our pipeline.
+- **Component tests**: These need to be successful during the Continuous Integration stages of our pipeline.
+- **Integration tests**: These need to be successful during the Continuous Delivery stages of our pipeline.
+- **End-to-end tests**: These need to be successful during the Continuous Delivery stages of our pipeline.
 
 ## Scenario
 
@@ -58,7 +58,7 @@ Organizational policy dictates that any code promoted to production must be depl
 
 Each of these environments are _static integration_ environments, meaning that all components of our application live in each of these environments. We want to ensure we do not have configuration drift. In a later blog post, I’ll discuss how to make _static integration_ environments and _ephemeral dynamic environments_ co-exist within our CI/CD pipeline. For now, we’ll keep it simple.
 
-## Continuous integration stages
+## Continuous Integration stages
 
 Our goal with any code promotion is to build once, deploy everywhere. Building the deployable object is obviously the first step before we can even begin to think about deploying it. At build time, we have several stages that must occur:
 
@@ -70,25 +70,25 @@ Our goal with any code promotion is to build once, deploy everywhere. Building t
 6. Build: Binary builds and packaging
 7. Post-build: Push binary to an artifact repository
 
-These are the smallest definable units or stages that must happen during our pre-approved deployment pipeline. Each stage must pass successfully based upon pre-defined rules configured by our tooling administrators, information security, and software architects. After continuous integration stages pass successfully, we are ready for the continuous delivery stages.
+These are the smallest definable units or stages that must happen during our pre-approved deployment pipeline. Each stage must pass successfully based upon pre-defined rules configured by our tooling administrators, information security, and software architects. After the Continuous Integration stages pass successfully, we are ready for the Continuous Delivery stages.
 
-## Continuous delivery
+## Continuous Delivery
 
 ![](what-is-continuous-delivery.jpg)
 
-First, let’s define the difference between continuous delivery and continuous deployment. From [Digestible DevOps: The 7 DevOps Practices](https://levelup.gitconnected.com/digestible-devops-the-7-devops-practices-8bd8b34e1418):
+First, let’s define the difference between Continuous Delivery and Continuous Deployment. From [Digestible DevOps: The 7 DevOps Practices](https://levelup.gitconnected.com/digestible-devops-the-7-devops-practices-8bd8b34e1418):
 
 > Delivery: “The practice of making every change to source code ready for a production release as soon as automated testing validates it. This includes automatically building, testing and deploying.”
 
 > Deployment: “Continuous Deployment is the practice that strives to automate production deployment end to end.”
 
-For continuous delivery, we want to get our deployable binary to our lowest integration environment to ensure the binary:
+For Continuous Delivery, we want to get our deployable binary to our lowest integration environment to ensure the binary:
 
 1. Executes as desired.
 2. Run our minimal required phase three and four automated tests, and they pass successfully.
 3. Stage for code promotion (or auto-promote).
 
-Often the continuous delivery aspect of our pipeline executes as a secondary phase of the continuous integration pipeline. This is the aspect most often confused and difficult to troubleshoot for developers because this is where traditionally _operations_ folks step into the picture. Unlike the continuous integration piece of the pipeline, we introduce many new points of failure here, including:
+Often the Continuous Delivery aspect of our pipeline executes as a secondary phase of the Continuous Integration pipeline. This is the aspect most often confused and difficult to troubleshoot for developers because this is where traditionally _operations_ folks step into the picture. Unlike the Continuous Integration piece of the pipeline, we introduce many new points of failure here, including:
 
 - Network connectivity.
 - Namespace collision.
@@ -96,7 +96,7 @@ Often the continuous delivery aspect of our pipeline executes as a secondary pha
 - Mixing deployment issues with automated testing issues.
 - Integrating multiple tools and troubleshooting those integrations.
 
-One of the great things about Octopus Deploy is that it has a built-in artifact repository, so we don’t have to introduce another potential point of failure by storing our artifacts in a third-party location or tool. This means we can be confident that new artifact events do, in fact, trigger our continuous delivery steps in our pipeline. We should clearly define the difference between our continuous delivery automation and our integration/end-to-end testing stages to make it clear where in our pipeline something might have failed. Those steps can be defined as:
+One of the great things about Octopus Deploy is that it has a built-in artifact repository, so we don’t have to introduce another potential point of failure by storing our artifacts in a third-party location or tool. This means we can be confident that new artifact events do, in fact, trigger our Continuous Delivery steps in our pipeline. We should clearly define the difference between our Continuous Delivery automation and our integration/end-to-end testing stages to make it clear where in our pipeline something might have failed. Those steps can be defined as:
 
 - CD binary deploy.
 - CD binary validate.
@@ -113,8 +113,8 @@ This begs the question, which tests need to run, when do they need to run, how t
 
 Those are excellent questions and can be broken down by framing them into one of two categories:
 
-- Pre-Approved CI/CD Pipeline.
-- Extensive CI/CD Pipeline.
+- Pre-approved CI/CD pipeline.
+- Extensive CI/CD pipeline.
 
 ## What changes can be run through the pre-approved pipeline?
 
@@ -143,7 +143,7 @@ In a later blog post, we will discuss how non-pre-approved changes will run thro
     2. Writes unit tests that satisfies the acceptance criteria.
     3. Writes code that satisfies the unit test.
     4. Validates tests pass successfully locally, `git push` to source control.
-2. Continuous integration (Jenkins):
+2. Continuous Integration (Jenkins):
     1. Pre-build: Code linting/formatting.
     2. Pre-build: Unit tests.
     3. Pre-build: Component tests.
