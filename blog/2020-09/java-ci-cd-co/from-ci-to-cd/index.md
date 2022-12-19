@@ -20,7 +20,7 @@ This post is part of a series that demonstrates a sample deployment pipeline wit
 
 ![](releasedeploy.svg "width=300")
 
-[In the previous blog post](/blog/2020-09/java-ci-cd-co/from-ci-to-cloud/index.md) we used Octopus to build a Kubernetes cluster in AWS using EKS, and then deployed the Docker image created by Jenkins as a Kubernetes deployment and service.
+[In the previous blog post](/blog/2020-09/java-ci-cd-co/from-ci-to-cloud/index.md), we used Octopus to build a Kubernetes cluster in AWS using EKS, and then deployed the Docker image created by Jenkins as a Kubernetes deployment and service.
 
 However, we still don’t have a complete [deployment pipeline](https://octopus.com/devops/continuous-delivery/what-is-a-deployment-pipeline/) solution, as Jenkins is not integrated with Octopus, leaving us to manually coordinate builds and deployments.
 
@@ -28,7 +28,7 @@ In this blog post, we’ll extend our Jenkins build to call Octopus and initiate
 
 ## Install the Jenkins plugins
 
-Octopus provides a plugin for Jenkins that exposes integration steps in both freestyle projects and pipeline scripts. This plugin is installed by navigating to **{{ Manage Jenkins, Manage Plugins }}**. From here you can search for "Octopus" and install the plugin.
+Octopus provides a plugin for Jenkins that exposes integration steps in both freestyle projects and pipeline scripts. This plugin is installed by navigating to **{{ Manage Jenkins, Manage Plugins }}**. From here, you can search for "Octopus" and install the plugin.
 
 The Octopus plugin uses the [Octopus CLI](https://octopus.com/docs/octopus-rest-api/octopus-cli) to integrate with the Octopus Server. We can install the CLI manually on the agent, but for this example we’ll use the **Custom Tools** plugin to download the Octopus CLI and push it to the agent:
 
@@ -146,7 +146,7 @@ Here is the corresponding deployment in Octopus:
 
 ## Continuous Deployment vs Continuous Delivery
 
-Over the years the [CD half of the acronym CI/CD](https://octopus.com/devops/continuous-delivery/what-is-continuous-deployment/) has settled on two definitions:
+Over the years, the [CD half of the acronym CI/CD](https://octopus.com/devops/continuous-delivery/what-is-continuous-deployment/) has settled on two definitions:
 
 * Continuous Deployment, which means a completely automatic deployment pipeline where each commit goes to production, assuming all tests and other automated requirements are met.
 * Continuous Delivery, which means each commit *could* go to production through an automated, but not necessarily automatic, deployment pipeline. The decision to promote through environments (or not) is still made by a human.
@@ -157,7 +157,7 @@ While Continuous Deployment, by its very definition, removes all the friction fr
 If you read blog posts on best practices concerning CI/CD, you may be left with the impression that Continuous Deployment is something that you *must* strive to implement. While the practices that allow for a true Continuous Deployment pipeline will have value, most of the development teams we talk to report that Continuous Delivery works for them.
 :::
 
-For this blog we will create a Continuous Delivery pipeline, which manages releases to multiple environments through the Octopus dashboard.
+For this blog, we will create a Continuous Delivery pipeline that manages releases to multiple environments through the Octopus dashboard.
 
 ## Add the environments
 
@@ -190,10 +190,10 @@ And with that, we have a complete deployment pipeline.
 
 ## Conclusion
 
-In this post we triggered a deployment in Octopus after Jenkins finished building and pushing the Docker image. This means we have implemented Continuous Integration with Jenkins testing, building, and publishing the Docker image, and Continuous Delivery with Octopus providing automatic deployment to a development environment, with an automated process ready to be manually triggered in other environments.
+In this post, we triggered a deployment in Octopus after Jenkins finished building and pushing the Docker image. This means we have implemented Continuous Integration with Jenkins testing, building, and publishing the Docker image, and Continuous Delivery with Octopus providing automatic deployment to a development environment, with an automated process ready to be manually triggered in other environments.
 
-We now have the ability to promote a change from the application source code to production with a few simple button clicks. Those responsible for release management need no special tools other than a web browser. Each build and deployment is tracked, audited, and summarized in the Jenkins and Octopus dashboards.
+We can now promote a change from the application source code to production with a few simple button clicks. Those responsible for release management need no special tools other than a web browser. Each build and deployment is tracked, audited, and summarized in the Jenkins and Octopus dashboards.
 
-But those that have seen their code put in customers’ hands know that while nothing inspires more confidence than the first 10 minutes of a production deployment, it is the following hours and days that are hard. Database backups need to be managed, operating system updates need to be scheduled, logs need to be collected to diagnose support issues, and some good, old fashioned turning-it-off-and-on-again will need to be performed.
+But those who have seen their code put in customers’ hands know that while nothing inspires more confidence than the first 10 minutes of a production deployment, the following hours and days are hard. Database backups need to be managed, operating system updates need to be scheduled, logs need to be collected to diagnose support issues, and some good, old-fashioned turning-it-off-and-on-again will need to be performed.
 
-In the [next blog post](/blog/2020-09/java-ci-cd-co/from-cd-to-co/index.md) we’ll show examples of these maintenance processes implemented in runbooks to complete the final stage of our pipeline: operations.
+In the [next blog post](/blog/2020-09/java-ci-cd-co/from-cd-to-co/index.md), we’ll show examples of these maintenance processes implemented in runbooks to complete the final stage of our pipeline: operations.
