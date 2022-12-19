@@ -76,7 +76,7 @@ These are the smallest definable units or stages that must happen during our pre
 
 ![](what-is-continuous-delivery.jpg)
 
-First, let’s define the [difference between [Continuous Delivery](https://octopus.com/devops/continuous-delivery/) and [Continuous Deployment](https://octopus.com/devops/continuous-delivery/what-is-continuous-deployment/). From [Digestible DevOps: The 7 DevOps Practices](https://levelup.gitconnected.com/digestible-devops-the-7-devops-practices-8bd8b34e1418):
+First, let’s define the difference between [Continuous Delivery](https://octopus.com/devops/continuous-delivery/) and [Continuous Deployment](https://octopus.com/devops/continuous-delivery/what-is-continuous-deployment/). From [Digestible DevOps: The 7 DevOps Practices](https://levelup.gitconnected.com/digestible-devops-the-7-devops-practices-8bd8b34e1418):
 
 > Delivery: “The practice of making every change to source code ready for a production release as soon as automated testing validates it. This includes automatically building, testing and deploying.”
 
