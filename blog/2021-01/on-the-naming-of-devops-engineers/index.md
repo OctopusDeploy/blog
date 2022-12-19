@@ -125,7 +125,7 @@ Team Topologies refers to these teams as “[Platform Teams](https://www.atlassi
 
 More simply, for an engineer who specializes in looking after a build/release pipelines, why not “Build/Release Engineer”. For someone who looks after some cloud infrastructure, how about “Infrastructure Engineer”, or plain old “Systems Administrator”?
 
-If a person is expected to build multiple internal tools for other software teams, why not plain old “Software Developer”? Before you raise any eyebrows, consider the titles given to the folks who build, maintain, or administrate your CRM, HR, and accounting systems? You might have a “CRM Developer”, but I’m guessing these folks aren’t called “Sales Engineers”, “HR Administrators”, or “Accountants”. Those job titles all mean something else entirely.
+If a person is expected to build multiple internal tools for other software teams, why not plain old “Software Developer”? Before you raise any eyebrows, consider the titles given to the folks who build, maintain, or administrate your CRM, HR, and accounting systems. You might have a “CRM Developer”, but I’m guessing these folks aren’t called “Sales Engineers”, “HR Administrators”, or “Accountants”. Those job titles all mean something else entirely.
 
 After all, while most software developers are learning to work in new ways, not many people are seriously suggesting that they need a new job title just because we are moving away from waterfall project management styles towards DevOps.
 
