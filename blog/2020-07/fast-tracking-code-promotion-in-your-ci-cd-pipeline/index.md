@@ -9,6 +9,7 @@ bannerImage: cicd-pipeline-promotion.png
 bannerImageAlt: Fast track code promotion in your CI/CD pipeline
 tags:
  - DevOps
+ - Testing
 ---
 
 ![Fast track code promotion in your CI/CD pipeline](cicd-pipeline-promotion.png)
