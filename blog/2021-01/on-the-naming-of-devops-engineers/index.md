@@ -83,7 +83,7 @@ Let’s look at a few of the most widely accepted definitions of [DevOps](https:
 -	[The Three Ways](https://itrevolution.com/the-three-ways-principles-underpinning-devops/) (Flow, Feedback, Continual Experimentation and Learning)
 -	[Accelerate metrics](https://octopus.com/blog/devops-reading-list#accelerate) (Lead time, deployment frequency, MTTR, change failure %)
 
-In all cases, the scope of DevOps is clearly much broader than a deployment pipeline or a single person/team. It’s about the practice and performance of the whole IT organization.
+In all cases, the scope of DevOps is clearly much broader than a [deployment pipeline](https://octopus.com/devops/continuous-delivery/what-is-a-deployment-pipeline/) or a single person/team. It’s about the practice and performance of the whole IT organization.
 
 Accelerate goes on to define [24 capabilities](https://itrevolution.com/24-key-capabilities-to-drive-improvement-in-software-delivery/) that contribute to high IT performance. Of these 24 capabilities only two, (“use version control for all production artifacts” and “automate your deployment process”), neatly match the infrastructure as code/deployment pipeline DevOps job description. There are probably other capabilities that correlate, but these capabilities don’t map neatly to a single person. These are organizational capabilities, rather than individual capabilities. Most of them simply do not make sense if they are tasked to a single person. For example:
 
