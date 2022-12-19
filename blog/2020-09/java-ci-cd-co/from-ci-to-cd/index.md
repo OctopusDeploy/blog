@@ -146,7 +146,7 @@ Here is the corresponding deployment in Octopus:
 
 ## Continuous deployment vs continuous delivery
 
-Over the years the CD half of the acronym CI/CD has settled on two definitions:
+Over the years the [CD half of the acronym CI/CD](https://octopus.com/devops/continuous-delivery/what-is-continuous-deployment/) has settled on two definitions:
 
 * Continuous Deployment, which means a completely automatic deployment pipeline where each commit goes to production, assuming all tests and other automated requirements are met.
 * Continuous Delivery, which means each commit *could* go to production through an automated, but not necessarily automatic, deployment pipeline. The decision to promote through environments (or not) is still made by a human.
