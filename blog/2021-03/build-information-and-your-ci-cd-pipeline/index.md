@@ -137,7 +137,7 @@ In Octopus, we can see that the title of the work item has been updated to the d
 
 ## Keeping everyone informed
 
-So far we've shown how the build information can be accessed via the Octopus Deploy Web Portal. However, not everyone in an organization has access to Octopus Deploy, such as Quality Assurance (QA) teams. Octopus Deploy has some built-in variables that can be used to share the build information.
+So far, we've shown how the build information can be accessed via the Octopus Deploy Web Portal. However, not everyone in an organization has access to Octopus Deploy, such as Quality Assurance (QA) teams. Octopus Deploy has some built-in variables that can be used to share the build information.
 
 ### Project release notes template
 
