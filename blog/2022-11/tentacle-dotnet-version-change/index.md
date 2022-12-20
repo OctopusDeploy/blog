@@ -38,7 +38,7 @@ In the near future, we'd like to drop support for .NET Framework and have everyt
 | Windows (Windows Server 2022 or later) | Nothing                                |
 | Linux/MacOs                            | Make sure OS is compatible with .NET 6 |
 
-When Tentacle `6.3` becomes available, you can upgrade your existing Tentacles using any of the methods we support.
+When Tentacle 6.3 becomes available, you can upgrade your existing Tentacles using any of the methods we support.
 
 To learn more about compatible .NET versions, please visit these Microsoft docs pages:
 
