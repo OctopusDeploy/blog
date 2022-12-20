@@ -131,7 +131,7 @@ Now the image is on DockerHub, any CD tool can deploy it locally or to a cloud p
 
 - [Azure](https://octopus.com/blog/deploying-java-app-docker-google-azure)
 - [AWS through GitHub Actions](https://octopus.com/blog/multi-environment-deployments-github-actions)
-- [AWS through Jenkins](https://octopus.com/blog/multi-environment-deployments-jenkins).
+- [AWS through Jenkins](https://octopus.com/blog/multi-environment-deployments-jenkins)
 
 To view the application locally:
 
