@@ -259,3 +259,5 @@ Jenkins provides a central platform through which multiple developers can have t
 In this post, we stepped through the process of running Jenkins as a Docker container, connecting a node to perform the builds, and wrote a Jenkins pipeline to define how Jenkins will build and push the Docker image. The end result of this is a Continuous Integration system that can automatically build and publish our application, removing the need for individual developers to manually manage this process. We have achieved Continuous Integration.
 
 The [next step](/blog/2020-09/java-ci-cd-co/from-ci-to-cloud/index.md) is to deploy our newly created Docker images somewhere. To do this we will configure a Kubernetes cluster in AWS.
+
+Explore the [DevOps engineer's handbook](https://octopus.com/devops/) to learn more about Continuous Integration and Continuous Delivery (CI/CD).
