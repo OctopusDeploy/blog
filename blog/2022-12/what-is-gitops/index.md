@@ -35,11 +35,11 @@ The term GitOps was originally coined in a blog post by WeaveWorks called [GitOp
 >
 >    Diff tools detect any divergence and notify us via Slack alerts; and sync tools enable convergence
 >
->    Rollback and audit logs are also provided via Git  
+>    Rollback and audit logs are also provided via Git"  
 
 Since that original blog post, initiatives like the [GitOps Working Group](https://github.com/cncf/tag-app-delivery/tree/main/gitops-wg) have been organized to:
 
-> clearly define a vendor-neutral, principle-led meaning of GitOps, which will establish a foundation for interoperability between tools, conformance, and certification.
+> clearly define a vendor-neutral, principle-led meaning of GitOps, which will establish a foundation for interoperability between tools, conformance, and certification."
 
 This working group recently released version one of their [principles](https://github.com/open-gitops/documents/blob/main/PRINCIPLES.md), which states that:
 
@@ -51,7 +51,7 @@ This working group recently released version one of their [principles](https://g
 >
 >    Pulled Automatically - Software agents automatically pull the desired state declarations from the source.
 >
->    Continuously Reconciled - Software agents continuously observe actual system state and attempt to apply the desired state.
+>    Continuously Reconciled - Software agents continuously observe actual system state and attempt to apply the desired state."
 
 The contrast between low level implementations of GitOps found in most blog posts and the high level ideals of a GitOps system described by the working group is worth discussion, as the differences between them is a source of much confusion.
 
