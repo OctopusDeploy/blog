@@ -1,6 +1,6 @@
 ---
 title: Getting started with Bamboo
-description: Getting started with Bamboo. Learn how to install Bamboo, and build and push a Docker image to a container registry.
+description: Learn how to install Bamboo, and build and push a Docker image to a container registry.
 author: terence.wong@octopus.com
 visibility: public
 published: 2023-01-04-1400
@@ -19,7 +19,7 @@ Continuous Integration (CI) servers are an important part of the CI/CD process. 
 
 Bamboo is a CI server developed by Atlassian that automates the building and testing of software applications. If you're beginning your CI/CD journey, it's helpful to begin with a simple use case, with a visible result. 
 
-In this post, you build and push a software artifact where Octopus can take over and deploy it to a target environment.
+In this post, I show you how to build and push a software artifact where Octopus can take over and deploy it to a target environment.
 
 You learn how to:
 
@@ -28,7 +28,7 @@ You learn how to:
 - Configure a Bamboo plan to build and push a Docker container to a container registry
 - Run and view the container image
 
-## Prerequisites
+## Getting set up
 
 To follow this post, you need the following software and accounts:
 
@@ -59,9 +59,11 @@ In the start up screen, you're asked to set up an admin account. Fill out the de
 
 ## Agents
 
-Agents are the Workers that execute workloads in Bamboo. Because you installed the pre-requisite technology, you can use the local machine as an agent for testing purposes. To set up a local agent:
+Agents are the Workers that execute workloads in Bamboo. Because you installed the pre-requisite technology, you can use the local machine as an agent for testing purposes. 
 
-- In the Bamboo dashboard, go to the settings icon and **Agents**
+To set up a local agent:
+
+- In the Bamboo dashboard, go to the settings icon and select **Agents**
 - Go to **Add local agent** and give it a name
 - Click **Add**
 
@@ -71,12 +73,12 @@ Bamboo organizes your workflow into projects and plans. A project can contain mu
 
 To get started, set up your first project and plan:
 
-- In the home menu, click **Create** and **Create Plan** 
+- In the home menu, select **Create** and then **Create Plan** 
 - Fill out the name of your project and plan
 
 ![Create Project and Plan in Bamboo](create-project-and-plan.png)
 
-In the next screen, check the box that says **Link new repository**.
+On the next screen, check the box that says **Link new repository**.
 
 ### Connect to the Octopus underwater app repository
 
@@ -92,7 +94,7 @@ To use this repository:
 
 ### Configuring the job
 
-On the **Configure Job** screen, configure the tasks that the plan runs to execute your job. Bamboo provides a suite of task steps that you can select from. These tasks execute a certain step in the CI pathway, such as checkout, build, pull, push. 
+On the **Configure Job** screen, configure the tasks that the plan runs to execute your job. Bamboo provides a suite of task steps you can select from. These tasks execute a certain step in the CI pathway, such as checkout, build, pull, push. 
 
 There's a source code checkout task pre-filled for you. This checks out the linked GitHub repository into Bamboo.
 
@@ -125,7 +127,7 @@ Navigate to your DockerHub account to confirm the image has been pushed to the r
 
 ## Deploy step
 
-Now the image is on DockerHub, any CD tool can use that to deploy it locally or to a cloud platform. We have guides explaining how to do this for: 
+Now the image is on DockerHub, any CD tool can deploy it locally or to a cloud platform. We have guides explaining how to do this for: 
 
 - [Azure](https://octopus.com/blog/deploying-java-app-docker-google-azure)
 - [AWS through GitHub Actions](https://octopus.com/blog/multi-environment-deployments-github-actions)
@@ -145,7 +147,7 @@ You see the Octopus underwater app where you can learn more about CI/CD and Octo
 
 CI servers are an important part of the CI/CD process, and you can use many different CI servers with Octopus Deploy to complete your deployments. Bamboo by Atlassian lets you build and push Docker images to Docker repositories. 
 
-In this post, you learnt how to install Bamboo and set up a project and plan to build and push the Octopus underwater app. This is a simple example to get started, but there are many more ways to use Bamboo. 
+In this post, you learned how to install Bamboo and set up a project and plan to build and push the Octopus underwater app. This is a simple example to get started, but there are many more ways to use Bamboo. 
 
 If you're interested in more CI server resources, check out our [series on CI servers](https://octopus.com/blog/tag/CI%20Series) where we focussed on Jenkins, GitHub Actions, and fundamental CI concepts.
 
