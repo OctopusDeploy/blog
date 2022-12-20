@@ -57,7 +57,7 @@ We recommend upgrading to a version that supports at least .NET Framework 4.8 an
 
 ### What if I can't upgrade my deployment targets?
 
-If you can't upgrade to a supported .NET version, you need to lock your Tentacle version to avoid it automatically upgrading. Locking ensures your Tentacles remain functional. The latest version of Tentacle before this upgrade is `6.2.277`.
+If you can't upgrade to a supported .NET version, you need to lock your Tentacle version to avoid it automatically upgrading. Locking ensures your Tentacles remain functional. The latest version of Tentacle before this upgrade is 6.2.277.
 
 To learn more about locking your Tentacle version, please read [our post about Tentacle versioning](https://octopus.com/blog/tentacle-versioning#lock-on-the-tentacle).
 
