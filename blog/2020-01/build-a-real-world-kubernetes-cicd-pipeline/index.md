@@ -231,3 +231,5 @@ The form method dynamically writes the YAML at deploy-time, you’ll need to mak
 
 ## Conclusion
 In this post, I demonstrated how to use Kubernetes in a CI/CD pipeline.  I also demonstrated a method of deploying to Kubernetes that only uses the CD portion of the pipeline.
+
+Explore the [DevOps engineer's handbook](https://octopus.com/devops/) to learn more about DevOps, CI/CD, and deployment pipelines.
