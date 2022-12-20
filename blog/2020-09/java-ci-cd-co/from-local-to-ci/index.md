@@ -21,7 +21,7 @@ This post is part of a series that demonstrates a sample deployment pipeline wit
 
 ![](buildtest.svg "width=300")
 
-[In the previous post](/blog/2020-09/java-ci-cd-co/from-jar-to-docker/index.md) we took a typical Java application and created a `Dockerfile` that takes care of building the code and running the resulting JAR file. By leveraging the existing Docker images provided by tools like Maven and Java itself, we created a repeatable and self-contained build process, and the resulting Docker image can be executed by anyone with only Docker installed.
+[In the previous post](/blog/2020-09/java-ci-cd-co/from-jar-to-docker/index.md), we took a typical Java application and created a `Dockerfile` that takes care of building the code and running the resulting JAR file. By leveraging the existing Docker images provided by tools like Maven and Java itself, we created a repeatable and self-contained build process, and the resulting Docker image can be executed by anyone with only Docker installed.
 
 This is a solid foundation for our build process. However, as more developers start working on a shared codebase, testing requirements expand, and the resulting packages grow in size, teams require a central shared server to manage builds. This is the role of a Continuous Integration (CI) server.
 
@@ -66,7 +66,7 @@ This may also be found at: /var/jenkins_home/secrets/initialAdminPassword
 *************************************************************
 ```
 
-When you open http://localhost:8081 you will be prompted to enter this password to unlock Jenkins:
+When you open http://localhost:8081, you will be prompted to enter this password to unlock Jenkins:
 
 ![Unlock Jenkins with the generated password](unlock.png "width=500")
 *Unlock Jenkins with the generated password.*
@@ -106,7 +106,7 @@ Enter a path for the **Remote root directory**. Because I am running the node on
 
 The node is now configured in Jenkins, but since there is no node running it is shown as disconnected.
 
-If you click the new node you'll see a screen that provides instructions for running the agent. Click the **agent.jar** link to download the agent file and run the command shown on the screen to connect the agent to Jenkins:
+If you click the new node, you'll see a screen that provides instructions for running the agent. Click the **agent.jar** link to download the agent file and run the command shown on the screen to connect the agent to Jenkins:
 
 ![Instructions for connecting a node](agentdownload.png "width=500")
 *Instructions for connecting a node.*
