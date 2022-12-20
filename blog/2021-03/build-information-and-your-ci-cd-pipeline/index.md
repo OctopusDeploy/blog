@@ -63,7 +63,7 @@ git commit -m "[OPS-1] Fixed tax rate calculation.  Tax rate now pulled using ne
 
 ## Configure the build to push build information
 
-Octopus Deploy provides first-class integration with many [build servers](https://octopus.com/docs/packaging-applications/build-servers) in the form of plugins:
+Octopus Deploy provides built-in integration with many [build servers](https://octopus.com/docs/packaging-applications/build-servers) in the form of plugins:
 
 - Azure DevOps
 - TeamCity
