@@ -24,7 +24,7 @@ To continue providing our customers with secure software, we must align with the
 
 ## What's the plan for Tentacle moving forward?
 
-Starting with version `6.3` Tentacle will require .NET Framework 4.8 for the Windows installer, and .NET 6 for everything else. There are still many deployment targets using different versions of Windows 7 and 8 (including Windows 7 SP1 and Windows Server 2008 SP2), which need a supported .NET version for the short to medium term.
+Starting with version 6.3, Tentacle will require .NET Framework 4.8 for the Windows installer, and .NET 6 for everything else. There are still many deployment targets using different versions of Windows 7 and 8 (including Windows 7 SP1 and Windows Server 2008 SP2), which need a supported .NET version for the short to medium term.
 
 In the near future, we'd like to drop support for .NET Framework and have everything running on .NET 6.
 
