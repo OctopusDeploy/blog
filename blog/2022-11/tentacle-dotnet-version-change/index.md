@@ -24,9 +24,9 @@ To continue providing our customers with secure software, we must align with the
 
 ## What's the plan for Tentacle moving forward?
 
-As a first step, we're moving Tentacle to .NET Framework 4.8 for the Windows installer, and .NET 6 for everything else. There are still many deployment targets using different versions of Windows 7 and 8 (including Windows 7 SP1 and Windows Server 2008 SP2), which need a supported .NET version for the short to medium term.
+Starting with version 6.3, Tentacle will require .NET Framework 4.8 for the Windows installer, and .NET 6 for everything else. There are still many deployment targets using different versions of Windows 7 and 8 (including Windows 7 SP1 and Windows Server 2008 SP2), which need a supported .NET version for the short to medium term.
 
-Eventually we'd like to drop support for .NET Framework and have everything running on .NET 6.
+In the near future, we'd like to drop support for .NET Framework and have everything running on .NET 6.
 
 ## Questions you might have
 
@@ -38,7 +38,7 @@ Eventually we'd like to drop support for .NET Framework and have everything runn
 | Windows (Windows Server 2022 or later) | Nothing                                |
 | Linux/MacOs                            | Make sure OS is compatible with .NET 6 |
 
-When this version of Tentacle becomes available, you can upgrade your existing Tentacles using any of the methods we support.
+When Tentacle 6.3 becomes available, you can upgrade your existing Tentacles using any of the methods we support.
 
 To learn more about compatible .NET versions, please visit these Microsoft docs pages:
 
@@ -57,7 +57,7 @@ We recommend upgrading to a version that supports at least .NET Framework 4.8 an
 
 ### What if I can't upgrade my deployment targets?
 
-If you can't upgrade to a supported .NET version, you need to lock your Tentacle version to avoid it automatically upgrading. Locking ensures your Tentacles remain functional.
+If you can't upgrade to a supported .NET version, you need to lock your Tentacle version to avoid it automatically upgrading. Locking ensures your Tentacles remain functional. The latest version of Tentacle before this upgrade is 6.2.277.
 
 To learn more about locking your Tentacle version, please read [our post about Tentacle versioning](https://octopus.com/blog/tentacle-versioning#lock-on-the-tentacle).
 
