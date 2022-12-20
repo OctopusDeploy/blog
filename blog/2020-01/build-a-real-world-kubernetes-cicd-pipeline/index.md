@@ -23,9 +23,9 @@ Docker containers and Kubernetes are excellent technologies to have in your DevO
 
 ---
 
-In the [last post](/blog/2020-01/kubernetes-for-the-uninitiated/index.md), I showed you how to set up a Kubernetes cluster using our OctoPetShop containers.
+In the [last post](/blog/2020-01/kubernetes-for-the-uninitiated/index.md), I showed you how to set up a Kubernetes cluster using our OctoPetShop containers. We created the YAML files for the web front-end, product service, and shopping cart service.
 
-In this post, I configure the YAML files we created into a CI/CD pipeline.
+In this post, I adjust the YAML files and set up the Continuous Integration and Continuous Delivery (CI/CD) pipeline.
 
 ## Create the build definition
 Kubernetes doesn’t have anything that needs to be built, other than the Docker images it uses.  However, the YAML files that we created can be placed in source control and versioned so using a build server is still relevant.  Our [OctoPetShop](https://github.com/OctopusSamples/OctoPetShop) repo contains a k8s folder where we’ve placed all of the YAML files necessary to create our cluster. We’ll use this repo as our source.  We’re using TeamCity as our build server for consistency.
@@ -112,9 +112,9 @@ For demonstration purposes, we’re using the built-in NuGet repository for Octo
 
 ![](teamcity-build-step-push.png)
 
-Our build definition will now package all the YAML files for our deployment and ship them over to our Octopus Deploy server!  Now comes the Continuous Delivery part.
+Our build definition will now package all the YAML files for our deployment and ship them over to our Octopus Deploy server!  Now comes the [Continuous Delivery](https://octopus.com/devops/continuous-delivery/) part.
 
-## Configure continuous delivery with Octopus Deploy
+## Configure Continuous Delivery with Octopus Deploy
 With our YAML files package in Octopus Deploy, we can create our deployment process.  In this section, we’ll do the following:
 - Create a new project.
 - Define our deployment steps.
@@ -231,3 +231,5 @@ The form method dynamically writes the YAML at deploy-time, you’ll need to mak
 
 ## Conclusion
 In this post, I demonstrated how to use Kubernetes in a CI/CD pipeline.  I also demonstrated a method of deploying to Kubernetes that only uses the CD portion of the pipeline.
+
+Explore the [DevOps engineer's handbook](https://octopus.com/devops/) to learn more about DevOps, CI/CD, and deployment pipelines.
