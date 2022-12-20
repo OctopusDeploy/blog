@@ -21,7 +21,7 @@ This post is part of a series that demonstrates a sample deployment pipeline wit
 
 ![](buildtest.svg "width=300")
 
-[In the previous post](/blog/2020-09/java-ci-cd-co/from-jar-to-docker/index.md) we took a typical Java application and created a `Dockerfile` that takes care of building the code and running the resulting JAR file. By leveraging the existing Docker images provided by tools like Maven and Java itself, we created a repeatable and self-contained build process, and the resulting Docker image can be executed by anyone with only Docker installed.
+[In the previous post](/blog/2020-09/java-ci-cd-co/from-jar-to-docker/index.md), we took a typical Java application and created a `Dockerfile` that takes care of building the code and running the resulting JAR file. By leveraging the existing Docker images provided by tools like Maven and Java itself, we created a repeatable and self-contained build process, and the resulting Docker image can be executed by anyone with only Docker installed.
 
 This is a solid foundation for our build process. However, as more developers start working on a shared codebase, testing requirements expand, and the resulting packages grow in size, teams require a central shared server to manage builds. This is the role of a Continuous Integration (CI) server.
 
@@ -66,7 +66,7 @@ This may also be found at: /var/jenkins_home/secrets/initialAdminPassword
 *************************************************************
 ```
 
-When you open http://localhost:8081 you will be prompted to enter this password to unlock Jenkins:
+When you open http://localhost:8081, you will be prompted to enter this password to unlock Jenkins:
 
 ![Unlock Jenkins with the generated password](unlock.png "width=500")
 *Unlock Jenkins with the generated password.*
@@ -106,7 +106,7 @@ Enter a path for the **Remote root directory**. Because I am running the node on
 
 The node is now configured in Jenkins, but since there is no node running it is shown as disconnected.
 
-If you click the new node you'll see a screen that provides instructions for running the agent. Click the **agent.jar** link to download the agent file and run the command shown on the screen to connect the agent to Jenkins:
+If you click the new node, you'll see a screen that provides instructions for running the agent. Click the **agent.jar** link to download the agent file and run the command shown on the screen to connect the agent to Jenkins:
 
 ![Instructions for connecting a node](agentdownload.png "width=500")
 *Instructions for connecting a node.*
@@ -256,6 +256,8 @@ With this, we have successfully configured Jenkins to compile and test the appli
 
 Jenkins provides a central platform through which multiple developers can have their code built, tested, and distributed. Jenkins maintains a history of the changes and whether they resulted in successful builds, maintains the credentials required to distribute Docker images, and removes the need for individuals to upload what could be potentially large Docker images with each build.
 
-In this post, we stepped through the process of running Jenkins as a Docker container, connecting a node to perform the builds, and wrote a Jenkins pipeline to define how Jenkins will build and push the Docker image. The end result of this is a continuous integration system that can automatically build and publish our application, removing the need for individual developers to manually manage this process. We have achieved continuous integration.
+In this post, we stepped through the process of running Jenkins as a Docker container, connecting a node to perform the builds, and wrote a Jenkins pipeline to define how Jenkins will build and push the Docker image. The end result of this is a Continuous Integration system that can automatically build and publish our application, removing the need for individual developers to manually manage this process. We have achieved Continuous Integration.
 
 The [next step](/blog/2020-09/java-ci-cd-co/from-ci-to-cloud/index.md) is to deploy our newly created Docker images somewhere. To do this we will configure a Kubernetes cluster in AWS.
+
+Explore the [DevOps engineer's handbook](https://octopus.com/devops/) to learn more about Continuous Integration and Continuous Delivery (CI/CD).
