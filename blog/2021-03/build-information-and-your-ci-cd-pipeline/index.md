@@ -63,14 +63,14 @@ git commit -m "[OPS-1] Fixed tax rate calculation.  Tax rate now pulled using ne
 
 ## Configure the build to push build information
 
-Octopus Deploy provides first-class integration with many [build servers](https://octopus.com/docs/packaging-applications/build-servers) in the form of plugins:
+Octopus Deploy provides official plugins to integrate with the following [build servers](https://octopus.com/docs/packaging-applications/build-servers):
 
 - Azure DevOps
 - TeamCity
 - Jenkins
 - Bamboo
 
-In addition to the available plugins, there are some community supported integrations with online-only build servers:
+In addition to the available plugins, there are some community-supported integrations with online-only build servers:
 
 - CircleCI
 - GitHub Actions
@@ -137,7 +137,7 @@ In Octopus, we can see that the title of the work item has been updated to the d
 
 ## Keeping everyone informed
 
-So far we've shown how the build information can be accessed via the Octopus Deploy Web Portal. However, not everyone in an organization has access to Octopus Deploy, such as Quality Assurance (QA) teams. Octopus Deploy has some built-in variables that can be used to share the build information.
+So far, we've shown how the build information can be accessed via the Octopus Deploy Web Portal. However, not everyone in an organization has access to Octopus Deploy, such as Quality Assurance (QA) teams. Octopus Deploy has some built-in variables that can be used to share the build information.
 
 ### Project release notes template
 
@@ -223,6 +223,8 @@ This will allow you to send an email to stakeholders informing them of the progr
 
 ## Conclusion
 
-Including build information in Octopus Deploy can be an incredibly powerful communication tool. I hope this post demonstrates the different ways it can be used in your CI/CD pipeline.  
+Including build information in Octopus Deploy can be an incredibly powerful communication tool. I hope this post demonstrates the different ways it can be used in your CI/CD pipeline.
+
+Explore the [DevOps engineer's handbook](https://octopus.com/devops/) to learn more about DevOps and CI/CD.
 
 Happy deployments!
