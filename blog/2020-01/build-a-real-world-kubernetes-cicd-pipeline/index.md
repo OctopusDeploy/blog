@@ -112,7 +112,7 @@ For demonstration purposes, we’re using the built-in NuGet repository for Octo
 
 ![](teamcity-build-step-push.png)
 
-Our build definition will now package all the YAML files for our deployment and ship them over to our Octopus Deploy server!  Now comes the Continuous Delivery part.
+Our build definition will now package all the YAML files for our deployment and ship them over to our Octopus Deploy server!  Now comes the [Continuous Delivery](https://octopus.com/devops/continuous-delivery/) part.
 
 ## Configure continuous delivery with Octopus Deploy
 With our YAML files package in Octopus Deploy, we can create our deployment process.  In this section, we’ll do the following:
