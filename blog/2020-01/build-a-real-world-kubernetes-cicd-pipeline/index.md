@@ -23,9 +23,9 @@ Docker containers and Kubernetes are excellent technologies to have in your DevO
 
 ---
 
-In the [last post](/blog/2020-01/kubernetes-for-the-uninitiated/index.md), I showed you how to set up a Kubernetes cluster using our OctoPetShop containers.
+In the [last post](/blog/2020-01/kubernetes-for-the-uninitiated/index.md), I showed you how to set up a Kubernetes cluster using our OctoPetShop containers. We created the YAML files for the web front-end, product service, and shopping cart service.
 
-In this post, I configure the YAML files we created into a CI/CD pipeline.
+In this post, I adjust the YAML files and set up the Continuous Integration and Continuous Delivery (CI/CD) pipeline.
 
 ## Create the build definition
 Kubernetes doesn’t have anything that needs to be built, other than the Docker images it uses.  However, the YAML files that we created can be placed in source control and versioned so using a build server is still relevant.  Our [OctoPetShop](https://github.com/OctopusSamples/OctoPetShop) repo contains a k8s folder where we’ve placed all of the YAML files necessary to create our cluster. We’ll use this repo as our source.  We’re using TeamCity as our build server for consistency.
