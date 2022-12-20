@@ -70,7 +70,7 @@ Octopus Deploy provides built-in integration with many [build servers](https://o
 - Jenkins
 - Bamboo
 
-In addition to the available plugins, there are some community supported integrations with online-only build servers:
+In addition to the available plugins, there are some community-supported integrations with online-only build servers:
 
 - CircleCI
 - GitHub Actions
