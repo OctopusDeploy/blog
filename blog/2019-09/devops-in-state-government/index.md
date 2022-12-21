@@ -61,7 +61,7 @@ DSC also reduced friction between operations and application development because
 
 ## The (eventual) result
 
-None of this happened overnight. At this point, we’re at the beginning of 2019 and close to the end of my career in state government, but I’d implemented Continuous Integration (CI) with builds that automatically ran whenever a check-in was performed. Most projects had implemented Continuous Delivery (CD), so after a CI build completed, it would automatically deploy to the lower-level environments for the testers and business analysts to begin their approval processes. I’d automated the following:
+None of this happened overnight. At this point, we’re at the beginning of 2019 and close to the end of my career in state government, but I’d implemented Continuous Integration (CI) with builds that automatically ran whenever a check-in was performed. Most projects had implemented [Continuous Delivery](https://octopus.com/devops/continuous-delivery/) (CD), so after a CI build completed, it would automatically deploy to the lower-level environments for the testers and business analysts to begin their approval processes. I’d automated the following:
 
 1. Deployment of ASP.NET web code.
 2. Windows Services.
