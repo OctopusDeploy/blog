@@ -76,3 +76,5 @@ I remember a compliment from a developer who said he loved the fact he could cli
 ## Conclusion
 
 Introducing change and DevOps concepts in a government organization can be slow and challenging, but it’s definitely possible. I was successful by prioritizing and tackling the biggest problems first, buying tools to simplify and standardize, and by focusing on communication and collaboration to get other teams on board we made constant progress that allowed us to chip away at the obstacles one by one.
+
+Explore the [DevOps engineer's handbook](https://octopus.com/devops/) to learn more about DevOps and CI/CD.
