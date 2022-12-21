@@ -21,7 +21,7 @@ In 2011, I was hired as a Configuration Manager at a small US state government a
 - Reduce the length of time it took to deliver software.
 - Eliminate the need to deploy on weekends. 
 
-In this post, I’ll cover the approaches I took to achieve this and some common pitfalls you might face in a similar environment.
+In this post, I cover the approaches I took to achieve this and some common pitfalls you might face in a similar environment.
 
 ## Prioritizing and tackling the biggest problems first
 
