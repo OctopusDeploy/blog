@@ -43,13 +43,13 @@ With these two improvements, the skepticism and reluctance to change started to 
 
 ## Building vs. buying tools
 
-The team used my in-house deployment solution until a contractor demonstrated a tool he used for [automating deployments](https://octopus.com/devops/continuous-delivery/automate-everything/), Octopus Deploy. I was reluctant to abandon my creation, but I’d also taken on the responsibilities of the Data Team supervisor, which meant I had less time to code, and I couldn’t keep up with feature requests. Octopus Deploy, on the other hand, had a team of developers doing this as their full-time job. Setting aside my pride, I duplicated the functionality of my solution in only a few weeks with Octopus, and full Octopus adoption followed a few months later.
+The team used my in-house deployment solution until a contractor demonstrated a tool he used for automating deployments, Octopus Deploy. I was reluctant to abandon my creation, but I’d also taken on the responsibilities of the Data Team supervisor, which meant I had less time to code, and I couldn’t keep up with feature requests. Octopus Deploy, on the other hand, had a team of developers doing this as their full-time job. Setting aside my pride, I duplicated the functionality of my solution in only a few weeks with Octopus, and full Octopus adoption followed a few months later.
 
 I was happy to implement some early improvements with the in-house tools I developed, but moving to an off-the-shelf solution was the right move for the long term.
 
 ## From confrontation to collaboration
 
-As we automated more processes, the tension between the teams, and the constant finger-pointing, began to ease. With well defined and automated processes in place, the teams started working together to solve problems instead of looking for ways to blame each other. It was difficult at first, but I built trust with the teams by talking to them individually to get them on board, and then together to agree on new processes.
+As we [automated more processes](https://octopus.com/devops/continuous-delivery/automate-everything/), the tension between the teams, and the constant finger-pointing, began to ease. With well defined and automated processes in place, the teams started working together to solve problems instead of looking for ways to blame each other. It was difficult at first, but I built trust with the teams by talking to them individually to get them on board, and then together to agree on new processes.
 
 ## Constant progress and next steps
 
