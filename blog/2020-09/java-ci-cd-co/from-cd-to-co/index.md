@@ -263,5 +263,7 @@ Traditional deployment pipelines end with the deployment, but in reality what ha
 Fundamentally, runbooks treat the scripts and workflows that keep deployments running as a valuable product in their own right. Taking the [best practices from Continuous Delivery](https://octopus.com/devops/continuous-delivery/) and extending them to operations tasks ensures that the entire application lifecycle is managed in a cohesive way by your DevOps teams.
 
 With this blog post, we end our journey from a locally-built legacy Java application to a complete [deployment pipeline](https://octopus.com/devops/continuous-delivery/what-is-a-deployment-pipeline/) integrating Jenkins, Octopus, Docker, and AWS EKS. I hope the example pipeline provides a foundation for implementing Continuous Integration (CI), release management, and Continuous Operations in your organization.
+ 
+Explore the [DevOps engineer's handbook](https://octopus.com/devops/) to learn more about DevOps and Continuous Delivery.
 
 Happy deployments!
