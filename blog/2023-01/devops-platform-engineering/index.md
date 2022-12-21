@@ -14,8 +14,6 @@ tags:
 
 In this post, you discover where platform engineering fits into your broader software delivery process. You see how platform engineering works with a DevOps process and why both DevOps and platform engineering can help your organization attain high performance.
 
-After a short refresher on DevOps, you find an overview of platform engineering and how it fits with a DevOps process.
-
 ## The quick version of DevOps
 
 DevOps stems from the simple idea of developers and ops working together. This became difficult to do in many organizations because these teams had conflicting goals.
