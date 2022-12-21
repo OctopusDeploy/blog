@@ -27,7 +27,7 @@ In this post, we look at how Octopus complements your build server of choice and
 
 ## Build servers provide Continuous Integration, Octopus provides Continuous Deployment
 
-We talk a lot about CI/CD on this blog. Though ‘CI’ and ‘CD’ combine to make a catchy acronym and share the belief that repetition gives confidence, they’re separate concepts.
+We talk a lot about CI/CD on this blog. Though ‘CI’ and ‘CD’ combine to make a catchy acronym and share the belief that repetition gives confidence, they’re [separate concepts](https://octopus.com/devops/).
 
 CI exists mostly to serve developers. It's about automating tasks that used to slow them down, such as compiling, building, and testing code. These are the same functions build servers excel at, so it’s no accident that many in DevOps refer to build servers as ‘CI platforms’.
 
