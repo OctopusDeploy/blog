@@ -264,4 +264,4 @@ Fundamentally, runbooks treat the scripts and workflows that keep deployments ru
 
 With this blog post we end our journey from a locally built legacy Java application to a complete deployment pipeline integrating Jenkins, Octopus, Docker, and AWS EKS. I hope the examples have provided a useful insight into how each of these tools integrates with one another, and that this example pipeline provides a useful foundation on which to implement CI, release management, and operations in your own organization.
 
-Happy Deployments!
+Happy deployments!
