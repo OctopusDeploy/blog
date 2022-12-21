@@ -23,11 +23,11 @@ As a deployment tool that sits between packages and their destinations, however,
 
 Build servers can deploy too, but they don’t solve the same problems Octopus does.
 
-In this post, we look at how Octopus complements your build server of choice and completes your development pipeline.
+In this post, we look at how Octopus complements your build server of choice and completes your [development pipeline](https://octopus.com/devops/continuous-delivery/what-is-a-deployment-pipeline/).
 
-## Build servers provide continuous integration, Octopus provides continuous deployment
+## Build servers provide Continuous Integration, Octopus provides Continuous Deployment
 
-We talk a lot about CI/CD on this blog. Though ‘CI’ and ‘CD’ combine to make a catchy acronym and share the belief that repetition gives confidence, they’re separate concepts.
+We talk a lot about CI/CD on this blog. Though ‘CI’ and ‘CD’ combine to make a catchy acronym and share the belief that repetition gives confidence, they’re [separate concepts](https://octopus.com/devops/).
 
 CI exists mostly to serve developers. It's about automating tasks that used to slow them down, such as compiling, building, and testing code. These are the same functions build servers excel at, so it’s no accident that many in DevOps refer to build servers as ‘CI platforms’.
 
@@ -153,5 +153,7 @@ Over the course of [our series on Continuous Integration and build servers](http
 We also explained how CI and CD are separate concepts solving different problems, yet are 2 sides of the same coin and combine for something greater.
 
 Finally, we offered insight into how Octopus can help complete your full CI/CD pipeline. But don’t just take our word for it, [sign up for a free trial](https://octopus.com/start) to see it in action for yourself.
+
+Explore the [DevOps engineer's handbook](https://octopus.com/devops/) to learn more about DevOps, CI/CD, and deployment pipelines.
 
 Happy deployments!
