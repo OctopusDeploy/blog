@@ -13,21 +13,15 @@ tags:
 
 ![Illustration showing an infinite feedback loop surrounding a government building](blogimage-devopgovernment.png)
 
-Governments are often slow moving bureaucracies, but that doesn’t mean it’s impossible to implement better processes within government agencies. 
+Governments are often slow-moving bureaucracies, but that doesn’t mean it’s impossible to implement better processes within government agencies. 
 
 In 2011, I was hired as a Configuration Manager at a small US state government agency. I had a challenging mandate that took years to achieve:
 
 - Automate the manual processes to improve the reliability of software deployment.
-- Reduce the length of time it took to deliver.
+- Reduce the length of time it took to deliver software.
 - Eliminate the need to deploy on weekends. 
 
-In this post, I’ll cover the approaches I took to achieve this and some of the common pitfalls you might face in a similar environment. 
-
-- Prioritizing and tackling the biggest problems first.
-- Building vs. buying tools.
-- Communication and collaboration.
-- Constant progress and next steps.
-- The (eventual) result.
+In this post, I’ll cover the approaches I took to achieve this and some common pitfalls you might face in a similar environment.
 
 ## Prioritizing and tackling the biggest problems first
 
@@ -67,7 +61,7 @@ DSC also reduced friction between operations and application development because
 
 ## The (eventual) result
 
-None of this happened overnight. At this point, we’re at the beginning of 2019 and close to the end of my career in state government, but I’d implemented Continuous Integration (CI) with builds that automatically ran whenever a check-in was performed. Most projects had implemented Continuous Delivery (CD), so after a CI build completed, it would automatically deploy to the lower-level environments for the testers and business analysts to begin their approval processes. I’d automated the following;
+None of this happened overnight. At this point, we’re at the beginning of 2019 and close to the end of my career in state government, but I’d implemented Continuous Integration (CI) with builds that automatically ran whenever a check-in was performed. Most projects had implemented Continuous Delivery (CD), so after a CI build completed, it would automatically deploy to the lower-level environments for the testers and business analysts to begin their approval processes. I’d automated the following:
 
 1. Deployment of ASP.NET web code.
 2. Windows Services.
