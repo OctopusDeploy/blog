@@ -21,7 +21,7 @@ This post is part of a series that demonstrates a sample deployment pipeline wit
 
 ![](operate.svg "width=300")
 
-[In the previous blog post](/blog/2020-09/java-ci-cd-co/from-ci-to-cd/index.md), we integrated Jenkins and Octopus to trigger a deployment to Kubernetes after the Docker image was pushed to Docker Hub. We also added additional environments in Octopus to represent the canonical {{ Dev, Test, Prod }} progression. This left us with a [deployment pipeline](https://octopus.com/devops/continuous-delivery/what-is-a-deployment-pipeline/) with automated (if not necessarily automatic) release management between environments.
+[In the previous blog post](/blog/2020-09/java-ci-cd-co/from-ci-to-cd/index.md), we integrated Jenkins and Octopus to trigger a deployment to Kubernetes after the Docker image was pushed to Docker Hub. We also added additional environments in Octopus to represent the canonical {{ Dev, Test, Prod }} progression. This left us with a deployment pipeline with automated (if not necessarily automatic) release management between environments.
 
 While a traditional deployment pipeline ends with a deployment to production, Octopus provides a solution for the operate phase of the DevOps lifecycle with runbooks. By automating common tasks like database backups, log collection, and service restarts with runbooks, the combination of Jenkins and Octopus provides a complete deployment and operations pipeline covering the [entire lifecycle of an application](https://octopus.com/devops/#principles-and-practices-of-devops).
 
@@ -262,6 +262,6 @@ Traditional deployment pipelines end with the deployment, but in reality what ha
 
 Fundamentally, runbooks treat the scripts and workflows that keep deployments running as a valuable product in their own right. Taking the [best practices from Continuous Delivery](https://octopus.com/devops/continuous-delivery/) and extending them to operations tasks ensures that the entire application lifecycle is managed in a cohesive way by your DevOps teams.
 
-With this blog post, we end our journey from a locally-built legacy Java application to a complete deployment pipeline integrating Jenkins, Octopus, Docker, and AWS EKS. I hope the example pipeline provides a foundation for implementing Continuous Integration (CI), release management, and Continuous Operations in your organization.
+With this blog post, we end our journey from a locally-built legacy Java application to a complete [deployment pipeline](https://octopus.com/devops/continuous-delivery/what-is-a-deployment-pipeline/) integrating Jenkins, Octopus, Docker, and AWS EKS. I hope the example pipeline provides a foundation for implementing Continuous Integration (CI), release management, and Continuous Operations in your organization.
 
 Happy deployments!
