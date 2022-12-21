@@ -43,7 +43,7 @@ With these two improvements, the skepticism and reluctance to change started to 
 
 ## Building vs. buying tools
 
-The team used my in-house deployment solution until a contractor demonstrated a tool he used for automating deployments, Octopus Deploy. I was reluctant to abandon my creation, but I’d also taken on the responsibilities of the Data Team supervisor, which meant I had less time to code, and I couldn’t keep up with feature requests. Octopus Deploy, on the other hand, had a team of developers doing this as their full-time job. Setting aside my pride, I duplicated the functionality of my solution in only a few weeks with Octopus, and full Octopus adoption followed a few months later.
+The team used my in-house deployment solution until a contractor demonstrated a tool he used for [automating deployments](https://octopus.com/devops/continuous-delivery/automate-everything/), Octopus Deploy. I was reluctant to abandon my creation, but I’d also taken on the responsibilities of the Data Team supervisor, which meant I had less time to code, and I couldn’t keep up with feature requests. Octopus Deploy, on the other hand, had a team of developers doing this as their full-time job. Setting aside my pride, I duplicated the functionality of my solution in only a few weeks with Octopus, and full Octopus adoption followed a few months later.
 
 I was happy to implement some early improvements with the in-house tools I developed, but moving to an off-the-shelf solution was the right move for the long term.
 
