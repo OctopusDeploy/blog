@@ -39,7 +39,7 @@ I started at the beginning of the process with the builds so I could eliminate t
 
 Next, I wrote a couple of small console applications to deploy the web code and the databases. The first used Microsoft Web Deploy to automate consistent deployments of the web code. We still updated connection strings manually, which isn’t great, but it was a start. The second console application ran a series of database scripts within a single transaction and rolled back the database deployment in the event of a failure. This method reduced the error rate and the time it took for deployments since the DBAs no longer had to open the scripts and manually execute them.
 
-With these two improvements, the skepticism and reluctance to change started to fade. We later merged the console applications into a single automated deployment solution which further reduced the failed deployment rate and sped up the deployment process, all but eliminating the need for weekend work. This progress made for much happier devs and operations folks.
+With these two improvements, the skepticism and reluctance to change started to fade. We later merged the console applications into a single automated deployment solution which further reduced the failed deployment rate and sped up the deployment process, all but eliminating the need for weekend work. This progress made for much [happier devs and operations folks](https://octopus.com/devops/#creating-an-ideal-devops-culture).
 
 ## Building vs. buying tools
 
