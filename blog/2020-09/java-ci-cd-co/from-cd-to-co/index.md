@@ -29,7 +29,7 @@ While a traditional deployment pipeline ends with a deployment to production, Oc
 
 Before we can create runbooks for database backups, we need a database.
 
-You would typically use a hosted service like RDS in a production setting. RDS provides out-of-the-box high availability, backups, maintenance windows, security, and more, all of which requires a significant effort to replicate with a local database. However, for the demonstration purposes of this blog, we’ll deploy MySQL to EKS and point our PetClinic application to it. We can then script common management tasks against the database to demonstrate the kind of continuous operations that keep a production deployment running.
+You would typically use a hosted service like RDS in a production setting. RDS provides out-of-the-box high availability, backups, maintenance windows, security, and more, all of which requires a significant effort to replicate with a local database. However, for the demonstration purposes of this blog, we’ll deploy MySQL to EKS and point our PetClinic application to it. We can then script common management tasks against the database to demonstrate the kind of Continuous Operations that keep a production deployment running.
 
 We’ll use the official [MySQL](https://hub.docker.com/_/mysql) Docker image, but we also need some additional tools on the image to allow us to transfer a backup to a second location. Since we are using AWS to host our Kubernetes cluster, we’ll backup our database to S3. This means we need the AWS CLI included in the MySQL Docker image to transfer a database backup.
 
@@ -174,7 +174,7 @@ We now have a MySQL database and have configured PetClinic to use it as a data s
 
 ## Backup the database
 
-Perhaps one of the most obvious tasks to perform in the continuous operations phase of a DevOps lifecycle is backing up the database. 
+Perhaps one of the most obvious tasks to perform in the Continuous Operations phase of a DevOps lifecycle is backing up the database. 
 
 The [MySQL Docker image](https://hub.docker.com/_/mysql) documentation provides an example command to backup the database with `mysqldump` run inside the active container with `docker exe`. We’ll take that example and rewrite it as a call to `kubectl exe` to perform the backup on a running pod.
 
@@ -260,7 +260,7 @@ Again, this is an example of encapsulating business knowledge in a runbook to re
 
 Traditional deployment pipelines end with the deployment, but in reality what happens after a deployment is as critical as the deployment itself. This is where the idea of Continuous Operations comes in. Runbooks gives your team the tools they need to support applications from the first code commit to weeks, months, or years after a production deployment. Because Octopus already understands your infrastructure and how to deploy to it, runbooks can easily take advantage of the existing credentials, targets, and environments to implement the operations stage of the DevOps lifecycle.
 
-Fundamentally, runbooks treat the scripts and workflows that keep deployments running as a valuable product in their own right. Taking the best practices from continuous delivery and extending them to operations tasks ensures that the entire application lifecycle is managed in a cohesive way by your DevOps teams.
+Fundamentally, runbooks treat the scripts and workflows that keep deployments running as a valuable product in their own right. Taking the best practices from Continuous Delivery and extending them to operations tasks ensures that the entire application lifecycle is managed in a cohesive way by your DevOps teams.
 
 With this blog post we end our journey from a locally built legacy Java application to a complete deployment pipeline integrating Jenkins, Octopus, Docker, and AWS EKS. I hope the examples have provided a useful insight into how each of these tools integrates with one another, and that this example pipeline provides a useful foundation on which to implement CI, release management, and operations in your own organization.
 
