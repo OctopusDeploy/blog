@@ -13,21 +13,15 @@ tags:
 
 ![Illustration showing an infinite feedback loop surrounding a government building](blogimage-devopgovernment.png)
 
-Governments are often slow moving bureaucracies, but that doesn’t mean it’s impossible to implement better processes within government agencies. 
+Governments are often slow-moving bureaucracies, but that doesn’t mean it’s impossible to implement better processes within government agencies. 
 
 In 2011, I was hired as a Configuration Manager at a small US state government agency. I had a challenging mandate that took years to achieve:
 
 - Automate the manual processes to improve the reliability of software deployment.
-- Reduce the length of time it took to deliver.
+- Reduce the length of time it took to deliver software.
 - Eliminate the need to deploy on weekends. 
 
-In this post, I’ll cover the approaches I took to achieve this and some of the common pitfalls you might face in a similar environment. 
-
-- Prioritizing and tackling the biggest problems first.
-- Building vs. buying tools.
-- Communication and collaboration.
-- Constant progress and next steps.
-- The (eventual) result.
+In this post, I cover the approaches I took to achieve this and some common pitfalls you might face in a similar environment.
 
 ## Prioritizing and tackling the biggest problems first
 
@@ -45,7 +39,7 @@ I started at the beginning of the process with the builds so I could eliminate t
 
 Next, I wrote a couple of small console applications to deploy the web code and the databases. The first used Microsoft Web Deploy to automate consistent deployments of the web code. We still updated connection strings manually, which isn’t great, but it was a start. The second console application ran a series of database scripts within a single transaction and rolled back the database deployment in the event of a failure. This method reduced the error rate and the time it took for deployments since the DBAs no longer had to open the scripts and manually execute them.
 
-With these two improvements, the skepticism and reluctance to change started to fade. We later merged the console applications into a single automated deployment solution which further reduced the failed deployment rate and sped up the deployment process, all but eliminating the need for weekend work. This progress made for much happier devs and operations folks.
+With these 2 improvements, the skepticism and reluctance to change started to fade. We later merged the console applications into a single automated deployment solution which further reduced the failed deployment rate and sped up the deployment process, all but eliminating the need for weekend work. This progress made for much [happier devs and operations folks](https://octopus.com/devops/continuous-delivery/why-adopt-continuous-delivery/).
 
 ## Building vs. buying tools
 
@@ -55,7 +49,7 @@ I was happy to implement some early improvements with the in-house tools I devel
 
 ## From confrontation to collaboration
 
-As we automated more processes, the tension between the teams, and the constant finger-pointing, began to ease. With well defined and automated processes in place, the teams started working together to solve problems instead of looking for ways to blame each other. It was difficult at first, but I built trust with the teams by talking to them individually to get them on board, and then together to agree on new processes.
+As we [automated more processes](https://octopus.com/devops/continuous-delivery/automate-everything/), the tension between the teams, and the constant finger-pointing, began to ease. With well-defined and automated processes in place, the teams started [working together to solve problems](https://octopus.com/devops/continuous-delivery/continuous-delivery-principles/#5-everyones-responsible) instead of looking for ways to blame each other. It wasn’t easy at first, but I built trust with the teams by talking to them individually to get them on board and then together to agree on new processes.
 
 ## Constant progress and next steps
 
@@ -67,7 +61,7 @@ DSC also reduced friction between operations and application development because
 
 ## The (eventual) result
 
-None of this happened overnight. At this point, we’re at the beginning of 2019 and close to the end of my career in state government, but I’d implemented Continuous Integration (CI) with builds that automatically ran whenever a check-in was performed. Most projects had implemented Continuous Delivery (CD), so after a CI build completed, it would automatically deploy to the lower-level environments for the testers and business analysts to begin their approval processes. I’d automated the following;
+None of this happened overnight. At this point, we’re at the beginning of 2019 and close to the end of my career in state government, but I’d implemented Continuous Integration (CI) with builds that automatically ran whenever a check-in was performed. Most projects had implemented [Continuous Delivery](https://octopus.com/devops/continuous-delivery/) (CD), so after a CI build completed, it would automatically deploy to the lower-level environments for the testers and business analysts to begin their approval processes. I’d automated the following:
 
 1. Deployment of ASP.NET web code.
 2. Windows Services.
@@ -82,3 +76,5 @@ I remember a compliment from a developer who said he loved the fact he could cli
 ## Conclusion
 
 Introducing change and DevOps concepts in a government organization can be slow and challenging, but it’s definitely possible. I was successful by prioritizing and tackling the biggest problems first, buying tools to simplify and standardize, and by focusing on communication and collaboration to get other teams on board we made constant progress that allowed us to chip away at the obstacles one by one.
+
+Explore the [DevOps engineer's handbook](https://octopus.com/devops/) to learn more about DevOps and CI/CD.
