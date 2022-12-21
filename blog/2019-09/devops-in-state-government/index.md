@@ -49,7 +49,7 @@ I was happy to implement some early improvements with the in-house tools I devel
 
 ## From confrontation to collaboration
 
-As we [automated more processes](https://octopus.com/devops/continuous-delivery/automate-everything/), the tension between the teams, and the constant finger-pointing, began to ease. With well defined and automated processes in place, the teams started working together to solve problems instead of looking for ways to blame each other. It was difficult at first, but I built trust with the teams by talking to them individually to get them on board, and then together to agree on new processes.
+As we [automated more processes](https://octopus.com/devops/continuous-delivery/automate-everything/), the tension between the teams, and the constant finger-pointing, began to ease. With well-defined and automated processes in place, the teams started working together to solve problems instead of looking for ways to blame each other. It wasn’t easy at first, but I built trust with the teams by talking to them individually to get them on board and then together to agree on new processes.
 
 ## Constant progress and next steps
 
