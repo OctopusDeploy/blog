@@ -46,3 +46,5 @@ If your deployment process is not completely automated, then by definition it re
 As tempting as it is to represent an entire CI/CD workflow with a single PaC implementation, anyone attempting to do so must first consider if these two processes are compatible enough from a business point of view to be merged, and if the tooling that hosts the PaC adequately supports the nonfunctional requirements of the deployment process.
 
 Many teams will find these two processes have fundamentally different timelines, responsible parties, reporting requirements, and security restrictions. Even if the CI and CD processes are ultimately defined in code, they may be easier to manage as separate entities that can be edited, deployed, and secured with processes more aligned to their audience.
+
+Explore the [DevOps engineer's handbook](https://octopus.com/devops/) to learn more about DevOps, CI/CD, and deployment pipelines.
