@@ -21,7 +21,7 @@ This post is part of a series that demonstrates a sample deployment pipeline wit
 
 ![](operate.svg "width=300")
 
-[In the previous blog post](/blog/2020-09/java-ci-cd-co/from-ci-to-cd/index.md) we integrated Jenkins and Octopus to trigger a deployment to Kubernetes after the Docker image was pushed to Docker Hub. We also added additional environments in Octopus to represent the canonical {{ Dev, Test, Prod }} progression. This left us with a deployment pipeline with automated (if not necessarily automatic) release management between environments.
+[In the previous blog post](/blog/2020-09/java-ci-cd-co/from-ci-to-cd/index.md), we integrated Jenkins and Octopus to trigger a deployment to Kubernetes after the Docker image was pushed to Docker Hub. We also added additional environments in Octopus to represent the canonical {{ Dev, Test, Prod }} progression. This left us with a deployment pipeline with automated (if not necessarily automatic) release management between environments.
 
 While a traditional deployment pipeline ends with a deployment to production, Octopus provides a solution for the operate phase of the DevOps lifecycle with runbooks. By automating common tasks like database backups, log collection, and service restarts with runbooks, the combination of Jenkins and Octopus provides a complete deployment and operations pipeline covering the entire lifecycle of an application.
 
@@ -29,7 +29,7 @@ While a traditional deployment pipeline ends with a deployment to production, Oc
 
 Before we can create runbooks for database backups, we need a database.
 
-In a production setting you would typically use a hosted service like RDS. RDS provides out-of-the-box high availability, backups, maintenance windows, security, and more, all of which requires a significant effort to replicate with a local database. However, for the demonstration purposes of this blog, we’ll deploy MySQL to EKS and point our PetClinic application to it. We can then script common management tasks against the database to demonstrate the kind of continuous operations that keep a production deployment running.
+You would typically use a hosted service like RDS in a production setting. RDS provides out-of-the-box high availability, backups, maintenance windows, security, and more, all of which requires a significant effort to replicate with a local database. However, for the demonstration purposes of this blog, we’ll deploy MySQL to EKS and point our PetClinic application to it. We can then script common management tasks against the database to demonstrate the kind of continuous operations that keep a production deployment running.
 
 We’ll use the official [MySQL](https://hub.docker.com/_/mysql) Docker image, but we also need some additional tools on the image to allow us to transfer a backup to a second location. Since we are using AWS to host our Kubernetes cluster, we’ll backup our database to S3. This means we need the AWS CLI included in the MySQL Docker image to transfer a database backup.
 
