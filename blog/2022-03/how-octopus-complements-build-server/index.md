@@ -23,7 +23,7 @@ As a deployment tool that sits between packages and their destinations, however,
 
 Build servers can deploy too, but they don’t solve the same problems Octopus does.
 
-In this post, we look at how Octopus complements your build server of choice and completes your development pipeline.
+In this post, we look at how Octopus complements your build server of choice and completes your [development pipeline](https://octopus.com/devops/continuous-delivery/what-is-a-deployment-pipeline/).
 
 ## Build servers provide continuous integration, Octopus provides continuous deployment
 
