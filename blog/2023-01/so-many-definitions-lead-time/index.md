@@ -38,13 +38,39 @@ When you measure the same system from a perspective other than the customer, you
 
 Customers don't care about cycle times. If you were waiting for months for your car to be delivered, you would not be consoled by how quickly the factory put it together. You might worry about where the finished car has been sitting for the past six months.
 
+IMAGE TO SHOW THE DIFFERENT MEASUREMENTS OF TIME IN SOFTWARE DELIVERY
+
 ## All measurements are useful
 
-Lead time is valuable because it represents the customer's perception. Identifying your customer and tracking lead times as they see them will ensure any improvements you make impact their experience. Any improvements that speed up a part of your process without reducing lead times is a signal you've optimized the wrong part of the system.
+Lead time is valuable because it represents the customer's perception. Identifying your customer and tracking lead times as they see them will ensure any improvements you make impact their experience. If you make an improvement that doesn't reduce the lead time, you have optimized the wrong part of your system. In some cases, reducing the time for the wrong part of the system can even increase the overall lead time if it adds additional stress to the constraint.
+
+:::hint
+A _constraint_ is a bottleneck that limits the speed of flow for the whole system. Resolving a constraint causes the bottleneck to move, so the process of identifying and resolving constraints is continuous. Software delivery represents a constraint to most organizations as technology is such a key competitive advantage.
+:::
 
 The Theory of Constraints, created by Eli Goldratt, tells us that there is only one constraint in the system. Optimizing anywhere other than the constraint will fail to improve the performance of the whole system.
 
 However, while lead time is vital to ensure your improvement efforts are worthwhile, you may need other measurements to help you find the constraint. Cycle times and other part-system timers will help you work out where optimization is likely to reduce the overall lead time.
+
+## Common software delivery constraints
+
+There are some common constraints in software delivery, which you should look at to assess whether they are increasing your lead time:
+
+- Working in large batches
+- Pull request approval queues
+- Having too many branches, or branches that exist for too long
+- Manual testing
+- Policy constraints, such as unnecessary approvals
+
+These constraints are reflected in the Continuous Delivery commit cycle, which has the following timings:
+
+- Commits every 15 minutes
+- Initial build feedback in 5 minutes
+- Any failures fixed or the change reverted after 10 minutes
+
+![The Continuous Delivery commit cycle](commit-cycle.png)
+
+
 
 ...
 
