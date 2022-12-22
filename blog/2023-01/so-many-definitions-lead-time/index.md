@@ -12,7 +12,7 @@ tags:
   - DevOps
 ---
 
-When someone mentions lead times in software delivery, they might mean the definition of lead time from Lead Software Development, the one from DevOps, or something else entirely. Why are there so many definitions of lead time and how do you put them to use?
+When someone mentions lead times in software delivery, it often isn't clear whether they mean the definition of lead times from Lean Software Development, the one from DevOps, or something else entirely. Why are there so many definitions of lead time and how do you put them to use?
 
 ## Lead time definitions
 
@@ -25,12 +25,6 @@ In Lean Software Development, created by Mary and Tom Poppendieck based on the L
 What all of these lead times have in common is that they represent a customer measurement. The reason they differ is the customer is different. Toyota was measuring the system from the perspective of a car buyer, the Poppendiecks were measuring the software development system as the business sees it, and DevOps measures the deployment pipeline from the perspective of the developer as the customer.
 
 The key to successful lead time measurement is that it represents how a customer views the elapsed time. If you run a coffee shop, you might measure the time between a customer placing an order and being handed their coffee. However, this doesn't capture the lead time of the whole system, which should start from when the customer joins the queue. It is important to capture the customer's perception of time.
-
-Passive waiting time should always be included in lead time measurements, but you may be able to omit active waiting time. A famous example of this was the problem faced by [Houston Airport](https://www.theguardian.com/lifeandstyle/2018/sep/07/how-to-beat-bottlenecks-oliver-burkeman), where passengers complained about the wait times for their luggage. The airport hired additional staff and managed to reduce the wait to 8 minutes, but this didn't stop complaints.
-
-Upon discovering that passengers were walking for 1 minute, and waiting for 7 minutes, the solution was to move baggage reclaim to increase the walking time. In general, passengers preferred a longer walk with a shorter wait - even though the luggage was still 8 minutes away from disembarkment.
-
-Despite the success of shifting to active waiting, some passengers may have been negatively impacted by having to travel further to reclaim their luggage. The complaints of minority groups are often lost in averages.
 
 ## Cycle times
 
