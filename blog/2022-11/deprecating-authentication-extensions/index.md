@@ -41,13 +41,15 @@ Although making the authentication providers _open for review_ was a reasonable 
 
 If you haven't built and installed custom authentication extensions for your Octopus Server instance, then these changes don't impact you. You can stop reading now and continue upgrading without any changes required.
 
-In the short term, custom extensions will continue to work as they have in the past. You will need to recompile your libraries to account for dependency changes, but the same mechnaism for loading them into an Octopus Server instance will remain unchanged. In future builds of Octopus Server at the end of 2023 however, all custom authentication mechanisms will stop working entirely.
+In the short term, custom extensions will work as they have in the past. You need to recompile your libraries to account for dependency changes, but the mechanism for loading them into an Octopus Server instance will remain unchanged. In future builds of Octopus Server at the end of 2023, however, all custom authentication mechanisms will stop working.
 
-**Note: An earlier version of this blog indicated that environment variables would need to be set and authentication identities changed in API calls. Recent updates to the product means that these workarounds are no longer required.**
+:::warning
+An earlier version of this post indicated that environment variables would need to be set and authentication identities changed in API calls. Recent updates to the product mean these workarounds are no longer required.
+:::
 
 ### Side impact - custom route handlers
 
-A side-effect of supporting authentication extensibility is the ability to inject a custom HTTP handler to respond to API requests. With these initial changes, this undocumented ability will be unaffected however this capability will also be removed when the extensions are fully deprecated. 
+A side-effect of supporting authentication extensibility is the ability to inject a custom HTTP handler to respond to API requests. With these initial changes, this undocumented ability will be unaffected, however this capability will also be removed when the extensions are fully deprecated. 
 
 ## What to expect next
 
