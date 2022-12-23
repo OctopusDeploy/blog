@@ -41,25 +41,15 @@ Although making the authentication providers _open for review_ was a reasonable 
 
 If you haven't built and installed custom authentication extensions for your Octopus Server instance, then these changes don't impact you. You can stop reading now and continue upgrading without any changes required.
 
-If you have built your own authentication assemblies from a direct fork of one of [our authentication libraries](https://octopus.com/docs/administration/server-extensibility/customizing-an-octopus-deploy-server-extension), there are important changes listed below that you need to make so authentication continues working in new versions of Octopus Server from 2022.4. 
+In the short term, custom extensions will work as they have in the past. You need to recompile your libraries to account for dependency changes, but the mechanism for loading them into an Octopus Server instance will remain unchanged. In future builds of Octopus Server at the end of 2023, however, all custom authentication mechanisms will stop working.
 
-In future builds of Octopus Server at the end of 2023, these work arounds will also be deprecated, resulting in all custom authentication mechanisms no longer working.
-
-### Enable with environment variable
-
-New environment variables need to be set with a value of `false` for the server to ignore similar built-in authentication providers, so they don't conflict with the extension you're loading. These environment variables need to be accessible to the process running Octopus Server, which ensures that Octopus Server correctly uses your extension rather than the standard built-in ones. Details for these variables can be found in our [docs](https://docs.octopus.com).
-
-### Updated identity
-
-If interacting with the configuration of custom providers via the API, they'll be exposed with a different ID. The ID of all custom authentication providers will include an `authentication-custom-` prefix rather than just `authentication-`. 
-
-For example, the configuration for the built-in Active Directory authentication exposed from the `/api/configuration` endpoint will be `authentication-directoryservices`, but the configuration for an extension forked off that will appear as `authentication-custom-directoryservices`. 
-
-This lets us load both the built-in and custom extensions side-by-side during the transition process.
+:::warning
+An earlier version of this post indicated that environment variables would need to be set and authentication identities changed in API calls. Recent updates to the product mean these workarounds are no longer required.
+:::
 
 ### Side impact - custom route handlers
 
-A side-effect of supporting authentication extensibility is the ability to inject a custom HTTP handler to respond to API requests. With the initial changes, this ability will be unaffected, however this capability will also be removed when the extensions are fully deprecated. 
+A side-effect of supporting authentication extensibility is the ability to inject a custom HTTP handler to respond to API requests. With these initial changes, this undocumented ability will be unaffected, however this capability will also be removed when the extensions are fully deprecated. 
 
 ## What to expect next
 
