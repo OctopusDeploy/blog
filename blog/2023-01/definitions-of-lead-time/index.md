@@ -82,8 +82,10 @@ These constraints are reflected in the Continuous Delivery commit cycle, which h
 
 ![The Continuous Delivery commit cycle](commit-cycle.png)
 
+## Conclusion
 
+The different definitions of lead time reflect various customer perceptions of parts of the same process. You can use as many measurements of lead and cycle times as you need to find and resolve constraints in your system.
 
-...
+When you make an improvement or optimization, lead time can help you understand whether are making a positive impact on the whole system.
 
 Happy deployments!
