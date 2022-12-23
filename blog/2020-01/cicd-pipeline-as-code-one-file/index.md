@@ -37,7 +37,7 @@ Deployments are also the responsibility of many people beyond the development te
 
 Security also becomes a concern as different groups are ultimately responsible for different stages of the deployment process.
 
-When a single PaC file is extended from building and testing into deployment, it moves from being the domain of developers looking to solve the very specific and time limited problem of compiling, validating, and packaging code to being subject to the many and varied requirements of multiple teams over a significantly extended timeframe.
+When you extend a single PaC file from building and testing into deployment, it moves from the domain of developers looking to solve the specific and time-limited problem of compiling, validating, and packaging code to satisfying the requirements of multiple teams over an extended timeframe. Modern software delivery practices encourage us to [distinguish releases from deployments](https://octopus.com/devops/continuous-delivery/deployments-vs-releases/); separating the concepts relieves tension between development and operations.
 
 If your deployment process is not completely automated, then by definition it requires human input, and any process that involves multiple teams over a period of days, weeks, or months will inevitably create a wide range of decision points, conflicting goals, and uncertainties around the state of the system. The developer-centric tooling that pioneered the PaC concept is often not well suited to dealing with the very human requirements of managing a long-running deployment workflow, forcing teams to try to represent these long-running and manual processes in a PaC file that was designed to support short-lived and disposable interactions.
 
@@ -46,3 +46,5 @@ If your deployment process is not completely automated, then by definition it re
 As tempting as it is to represent an entire CI/CD workflow with a single PaC implementation, anyone attempting to do so must first consider if these two processes are compatible enough from a business point of view to be merged, and if the tooling that hosts the PaC adequately supports the nonfunctional requirements of the deployment process.
 
 Many teams will find these two processes have fundamentally different timelines, responsible parties, reporting requirements, and security restrictions. Even if the CI and CD processes are ultimately defined in code, they may be easier to manage as separate entities that can be edited, deployed, and secured with processes more aligned to their audience.
+
+Explore the [DevOps engineer's handbook](https://octopus.com/devops/) to learn more about DevOps, CI/CD, and deployment pipelines.
