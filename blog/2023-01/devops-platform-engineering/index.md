@@ -52,7 +52,7 @@ Despite many new teams and job titles springing up around DevOps, the platform e
 
 Platform teams work with development teams to create one or more *golden pathways* representing a supported set of technology choices. These pathways don't prevent teams from using something else. Pathways encourage alignment without enforcing centralized decisions on development teams. Rather than pick up tickets, such as "create a test environment", platform teams create easy-to-use self-service tools for the development teams' use.
 
-A critical part of platform engineering is treating developers as customers, solving their problems and reducing friction while advocating the adoption of aligned technology choices. For example, say your organization has plenty of experience running MySql databases and has worked out how to solve issues such as:
+A critical part of platform engineering is treating developers as customers, solving their problems and reducing friction while advocating the adoption of aligned technology choices. For example, say your organization has plenty of experience running MySQL databases and has worked out how to solve issues such as:
 
 - Scaling
 - Backups
@@ -62,7 +62,7 @@ A critical part of platform engineering is treating developers as customers, sol
 - Deployments
 - Test databases
 
-A team choosing MySql will get all these for free at the push of a button. Another team might still need to use something different, but they'll be responsible for their selections when they step off the pathway.
+A team choosing MySQL will get all these for free at the push of a button. Another team might still need to use something different, but they'll be responsible for their selections when they step off the pathway.
 
 Choosing a golden pathway accelerates your software delivery, lets you focus on the differentiating work, and gives you a support channel when things go wrong. Your time as a developer is best spent on the features that provide value to your customers, not setting up builds, environments, and other similar activities.
 
