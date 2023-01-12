@@ -170,7 +170,7 @@ Teams in the flowing state more commonly use the capabilities of the DevOps stru
 - Version control
 - Flexible work arrangements
 
-You can read more about [Continuous Delivery capabilities](https://octopus.com/devops/continuous-delivery/technical-capabilities/) in the [DevOps engineer's handbook](https://octopus.com/devops/).
+You can read more about [Continuous Delivery capabilities](https://octopus.com/devops/continuous-delivery/#continuous-delivery-capabilities) in the [DevOps engineer's handbook](https://octopus.com/devops/).
 
 While some organizations achieve adequate performance without achieving the flowing state of SDO performance, they do so at a higher cost with increased burnout, more unplanned work, and lower change rates.
 
