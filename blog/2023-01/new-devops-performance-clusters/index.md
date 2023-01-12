@@ -4,9 +4,9 @@ description: Explains the changes and additions to performance clusters in The S
 author: steve.fenton@octopus.com
 visibility: public
 published: 2023-01-18-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-dorametrics-2023.png
+bannerImage: blogimage-dorametrics-2023.png
+bannerImageAlt: A slightly transparent computer screen with someone analyzing data behind it, with different metrics floating around the person. 
 isFeatured: false
 tags: 
   - DevOps
@@ -176,7 +176,7 @@ While some organizations achieve adequate performance without achieving the flow
 
 ## Conclusion
 
-The original software delivery performance clusters remain critical in your assessment of performance in your organization. Operational performance unlocks the benefits of high performance, extending their impact to the organizational level. The new SDO performance clusters attempt to demonstrate the importance of reliability to software delivery but may be misleading due to the attempt to assign non-judgemental labels.
+The original software delivery performance clusters remain critical in your assessment of performance in your organization. Operational performance unlocks the benefits of high performance, extending their impact to the organizational level. The new SDO performance clusters attempt to demonstrate the importance of reliability to software delivery but may be misleading due to the attempt to assign non-judgmental labels.
 
 The disappearance of the elite performance cluster is likely related to demographic changes. Additionally, this may have led us to discover that a team needs experienced developers to achieve the highest performance levels.
 
