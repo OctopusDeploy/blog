@@ -3,7 +3,7 @@ title: An introduction to build servers and Continuous Integration
 description: This post opens our series about Continuous Integration and build servers, with an overview on the benefits of build servers, particularly Jenkins and GitHub Actions.
 author: andrew.corrigan@octopus.com
 visibility: public
-published: 2022-01-10-1400
+published: 2023-02-01-1400
 metaImage: blogimage-buildservers.png
 bannerImage: blogimage-buildservers.png
 bannerImageAlt: 2 people writing code on laptops with arrows to a build server, then an arrow to the octopus logo in a cloud, and a rocket launching
@@ -18,7 +18,9 @@ tags:
 
 When you're developing and deploying software, one of the first things to figure out is how to take your code and deploy your working application to a production environment where people can interact with your software.
 
-Most development teams understand the importance of version control to coordinate code commits, and build servers to compile and package their software, but Continuous Integration (CI) is a big topic. Over the next few months, we’re going into detail about [Continuous Integration](https://octopus.com/blog/tag/CI%20Series) and how two of the most popular build servers, [Jenkins](https://www.jenkins.io/) and [GitHub Actions](https://github.com/features/actions), can help with your CI processes.
+Most development teams understand the importance of version control to coordinate code commits, and build servers to compile and package their software, but Continuous Integration (CI) is a big topic. 
+
+In our blog series on [Continuous Integration](https://octopus.com/blog/tag/CI%20Series), we go into detail about Continuous Integration and how 2 of the most popular build servers, [Jenkins](https://www.jenkins.io/) and [GitHub Actions](https://github.com/features/actions), can help with your CI processes.
 
 ## Why build servers are important
 
@@ -60,17 +62,15 @@ As an official GitHub technology partner, Octopus Deploy has a range of [verifie
 
 ## What's next?
 
-Over the coming weeks, we'll share [guides for Jenkins and GitHub Actions, and more](https://octopus.com/blog/tag/CI%20Series).
+In our [CI series](https://octopus.com/blog/tag/CI%20Series), we share guides for Jenkins and GitHub Actions, and more.
 
-In the meantime, if you're not already using Octopus Deploy, you can [sign up for a free trial](https://octopus.com/start).
+If you're not already using Octopus Deploy, you can [sign up for a free trial](https://octopus.com/start).
 
-You can also check out some of our previous posts on build servers, CI, and some of the ideas we’ll approach in [this series](https://octopus.com/blog/tag/CI%20Series):
+You can also check out our other posts on build servers and CI:
 
 - [Octopus vs. build servers](https://octopus.com/blog/octopus-vs-build-server)
 - [Integration 101: Octopus and build servers](https://octopus.com/blog/octopus-build-server-integration-101)
 - [Java CI/CD: Octopus, Jenkins, Java, Kubernetes, and the DevOps lifecycle (series)](https://octopus.com/blog/java-ci-cd-co/)
 - [The ten pillars of pragmatic deployments](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments)
-
-!include <q1-2022-newsletter-cta>
 
 Happy deployments!
