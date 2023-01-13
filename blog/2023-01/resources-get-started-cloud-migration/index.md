@@ -3,7 +3,7 @@ title: Resources to get started migrating to the cloud
 description: This post provides resources to get started with migrating to the cloud. It includes white papers, free tools, external reports, and Octopus-authored posts and guides.
 author: terence.wong@octopus.com
 visibility: public
-published: 2023-01-16-1400
+published: 2023-01-30-1400
 metaImage: blogimage-whatiscloudorchestrationcloudautomation-2022.png
 bannerImage: blogimage-whatiscloudorchestrationcloudautomation-2022.png
 bannerImageAlt: A cog surrounded by three arrows connected in a circle sits amongst clouds
@@ -13,15 +13,15 @@ tags:
   - Cloud Orchestration
 ---
 
-Cloud-native technologies can give you a competitive advantage through scalability, economies of scale, and global reach. Migrating to the cloud and modernizing systems are important issues for most IT professionals. Despite the clear need, there are challenges knowing where to start.
+Cloud-native technologies can give you a competitive advantage through scalability, economies of scale, and global reach. Migrating to the cloud and modernizing systems are important issues for most IT professionals. Despite the clear need to modernize, there are challenges knowing where to start.
 
 At Octopus, we can help by providing you with resources for getting started with cloud migration. They're a mix of Octopus-developed tools, white papers, guides, and external reports. This list of resources exposes you to a wide variety of sources so you have an informed opinion about the benefits of the cloud, with practical tools to start your journey.
 
 ## White papers
 
-As a cloud-native dedicated continuous delivery tool, we want to help our users understand Continuous Delivery and cloud-native technologies. We wrote 4 white papers to help educate you and give you actionable steps to start your journey to the cloud.
+As a cloud-native dedicated continuous delivery tool, we want to help our users understand Continuous Delivery and cloud-native technologies. We wrote white papers to help educate you and give you actionable steps to start your journey to the cloud.
 
-### Modernize your apps by moving to cloud-native
+<!--  ### Modernize your apps by moving to cloud-native
 
 *Modernize your apps by moving to cloud-native* is a white paper that provides an argument for migrating to the cloud and the first steps to take. It contains researched-backed reports and distills cloud migration into a series of phases: 
 
@@ -32,12 +32,13 @@ As a cloud-native dedicated continuous delivery tool, we want to help our users 
 The paper provides straightforward, actionable steps your company can take when migrating to the cloud.
 
 [Read the white paper, *Modernize your apps by moving to cloud-native*](link to PDF here). 
+-->
 
 ### The importance of Continuous Delivery
 
 *The Importance of Continuous Delivery* white paper is a deep-dive into the best practice principles and benefits of Continuous Delivery's technical capabilities, and how they're fundamental to successful DevOps adoption. You'll find case studies and a discussion about the challenges your company may face when implementing Continuous Delivery (CD).
 
-[Read about *The Importance of Continuous Delivery*](https://i.octopus.com/whitepapers/importance-of-cd.pdf[). 
+[Read about *The Importance of Continuous Delivery*](https://i.octopus.com/whitepapers/importance-of-cd.pdf). 
 
 ### How to map your deployment pipeline
 
@@ -59,11 +60,11 @@ In this white paper, you find several approaches for measuring your progress. Th
 
 ## Octopus free tools
 
-We know customers want to set up deployment pipelines, but there are common barriers to getting started. Often, you have a repository you want to deploy. To do this, you need to perform scaffolding steps to support the deployment, which requires knowledge of cloud platforms, containers, image repositories, infrastructure as code (IaC), and more. Not everyone has the time to learn these technologies and just want a simple deployment in a few clicks. To address this, we developed free tools that remove some of the barriers to getting started with modern CI/CD pipelines.
+We know customers want to set up deployment pipelines, but there are common barriers to getting started. Often, you have a repository you want to deploy. To do this, you need to perform scaffolding steps to support the deployment, which requires knowledge of cloud platforms, containers, image repositories, infrastructure as code (IaC), and more. Not everyone has the time to learn these technologies. Many people just want a simple deployment in a few clicks. To address this, we developed free tools that remove some of the barriers to getting started with modern CI/CD pipelines.
 
 ### Octopus Workflow Builder
 
-The [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/) was born out of a need to get customers started quickly in a cloud CI/CD workflow. The Builder populates a GitHub repository with a sample application built with GitHub Actions workflows and configures a hosted Octopus instance with sample deployment projects, demonstrating best practices such as vulnerability scanning and Infrastructure as Code (IaC).
+The [Octopus Workflow Builder](https://octopusworkflowbuilder.octopus.com/#/) gets you started quickly in a cloud CI/CD workflow. The Builder populates a GitHub repository with a sample application built with GitHub Actions workflows and configures a hosted Octopus instance with sample deployment projects, demonstrating best practices such as vulnerability scanning and Infrastructure as Code (IaC).
 
 Also learn why we recommend you should [build with GitHub and deploy with Octopus](https://octopus.com/github).
 
