@@ -33,7 +33,7 @@ At the same time, there have been several HR hot topics across all industries th
 - The 4-day work week
 - Hybrid working
 
-As Emily Freeman (author of DevOps for Dummies) [said](https://emilyfreeman.io/#:~:text=I%20believe%20the%20biggest%20challenges%20facing%20tech%20aren%E2%80%99t%20technical%2C%20but%20human.):
+As Emily Freeman (author of DevOps for Dummies) [said](https://emilyfreeman.io/#:~:text=I%20believe%20the%20biggest%20challenges%20facing%20tech%20aren%E2%80%99t%20technical%2C%20but%20human):
 
 > The biggest challenges facing tech aren't technical, but human.
 
