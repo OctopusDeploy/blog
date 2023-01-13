@@ -12,7 +12,7 @@ tags:
   - DevOps
 ---
 
-DevOps has brought the topic of organization culture firmly to the table. While culture was always an element of Agile and Lean, the research into DevOps has shown it's just as important as the more technical capabilities.
+DevOps has brought the topic of organizational culture firmly to the table. While culture was always an element of Agile and Lean, the research into DevOps has shown it's just as important as the more technical capabilities.
 
 The DevOps structural equation model has several elements related to people and culture, so it's clear that human issues are an important part of the DevOps picture. The 5 cultural capabilities in the model are:
 
@@ -30,10 +30,10 @@ At the same time, there have been several HR hot topics across all industries th
 
 - Work to rule (quiet quitting)
 - The Great Resignation / Reshuffle
-- The 4-day work week
+- The 4-day workweek
 - Hybrid working
 
-As Emily Freeman (author of DevOps for Dummies) [said](https://emilyfreeman.io/#:~:text=I%20believe%20the%20biggest%20challenges%20facing%20tech%20aren%E2%80%99t%20technical%2C%20but%20human):
+As [Emily Freeman](https://emilyfreeman.io/) (author of DevOps for Dummies):
 
 > The biggest challenges facing tech aren't technical, but human.
 
@@ -55,7 +55,7 @@ If you believe Theory X, you centralize decision-making, track individual perfor
 ::hint
 When you use external rewards, you often achieve short-term gains. This ultimately fails as a strategy as it reduces internal motivation. Alfie Kohn looked at hundreds of studies and concluded that incentives cause temporary obedience but result in lasting harm to motivation.
 
-Dan Pink expanded on Douglas McGregor's and Alfie Kohn's work in his famous book on motivation, *Drive*, which describes how people need context, autonomy, and purpose to reach high performance levels.
+Dan Pink expanded on Douglas McGregor's and Alfie Kohn's work in his famous book on motivation, *Drive*, which describes how people need context, autonomy, and purpose to reach high-performance levels.
 :::
 
 McGregor considered Theory X and Theory Y to be 2 options a manager would choose from after assessing a workplace. You would review the work and the people and decide whether you need an authoritarian style or a more hands-off approach. We've since learned through the study of system failures, that cultures with high trust and low blame are safer than bureaucratic or pathological cultures.
@@ -95,7 +95,7 @@ Changing team and organization culture is one of the toughest challenges in soft
 
 You need leaders and managers to understand their role is to enable self-organizing teams that use each team member's talent. You need to move away from systems that centralize information and decision-making and transfer to systems aligned to distributed responsibility.
 
-For example, suppose you use centralized tools to organize tasks and assign them to people. In that case, you need to move to a system that aligns with setting a clear mission without removing the ability of teams to self-organize and respond to dynamic situations. You may need to replace a tool entirely or use the tool in a new way. Your Gantt charts might have to go, but your task tracking app can remain if the team can re-purpose it.
+For example, suppose you use centralized tools to organize tasks and assign them to people. In that case, you need to move to a system that aligns with setting a clear mission without removing the ability of teams to self-organize and respond to dynamic situations. You may need to replace a tool entirely or use the tool in a new way. Your Gantt charts might have to go, but your task-tracking app can remain if the team can re-purpose it.
 
 The leadership role in a culture change is to:
 
