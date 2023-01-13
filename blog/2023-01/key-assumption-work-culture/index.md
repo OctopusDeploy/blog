@@ -3,7 +3,7 @@ title: The key assumption of modern work culture
 description: Find out the key assumption that you must change for your organization to adopt modern culture.
 author: steve.fenton@octopus.com
 visibility: public
-published: 2023-01-23-1400
+published: 2023-01-25-1400
 metaImage: collaboration-table.png
 bannerImage: collaboration-table.png
 bannerImageAlt: Five people sit working around a circular table
@@ -12,7 +12,7 @@ tags:
   - DevOps
 ---
 
-DevOps has brought the topic of [organization culture](https://octopus.com/devops/culture/) firmly to the table. While culture was always an element of Agile and Lean, the research into DevOps has shown that it's just as important as the more technical capabilities.
+DevOps has brought the topic of organization culture firmly to the table. While culture was always an element of Agile and Lean, the research into DevOps has shown it's just as important as the more technical capabilities.
 
 The DevOps structural equation model has several elements related to people and culture, so it's clear that human issues are an important part of the DevOps picture. The 5 cultural capabilities in the model are:
 
@@ -30,7 +30,7 @@ At the same time, there have been several HR hot topics across all industries th
 
 - Work to rule (quiet quitting)
 - The Great Resignation / Reshuffle
-- The four-day work week
+- The 4-day work week
 - Hybrid working
 
 As Emily Freeman (author of DevOps for Dummies) [said](https://emilyfreeman.io/#:~:text=I%20believe%20the%20biggest%20challenges%20facing%20tech%20aren%E2%80%99t%20technical%2C%20but%20human.):
