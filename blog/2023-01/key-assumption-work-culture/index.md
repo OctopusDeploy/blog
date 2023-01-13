@@ -52,10 +52,12 @@ Many decisions in the workplace involve a trade-off, but these fundamental assum
 
 If you believe Theory X, you centralize decision-making, track individual performance, and use rewards and punishments to motivate workers. With Theory Y, you focus on setting clear goals and let people direct their own efforts. When you do this, employees become the organization's most valuable asset.
 
-::hint
+:::hint
+
 When you use external rewards, you often achieve short-term gains. This ultimately fails as a strategy as it reduces internal motivation. Alfie Kohn looked at hundreds of studies and concluded that incentives cause temporary obedience but result in lasting harm to motivation.
 
 Dan Pink expanded on Douglas McGregor's and Alfie Kohn's work in his famous book on motivation, *Drive*, which describes how people need context, autonomy, and purpose to reach high-performance levels.
+
 :::
 
 McGregor considered Theory X and Theory Y to be 2 options a manager would choose from after assessing a workplace. You would review the work and the people and decide whether you need an authoritarian style or a more hands-off approach. We've since learned through the study of system failures, that cultures with high trust and low blame are safer than bureaucratic or pathological cultures.
