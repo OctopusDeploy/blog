@@ -24,7 +24,7 @@ The DevOps structural equation model has several elements related to people and 
 
 The cultural capabilities drive software delivery and operations performance, which predict successful business outcomes.
 
-![The headline DevOps capabilities, showing culture as a driver for software delivery performance](simplified-structural-equation-model-2022.png)
+![The headline DevOps capabilities showing culture as a driver for software delivery performance](simplified-structural-equation-model-2022.png)
 
 At the same time, there have been several HR hot topics across all industries that have trended over the past few years:
 
