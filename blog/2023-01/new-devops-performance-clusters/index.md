@@ -19,7 +19,7 @@ This post introduces you to the original performance clusters, explains the chan
 
 ## Previous changes
 
-This isn't the first time something has changed. You'll have seen changes over the last 8 years as the researchers discover new connections or a new direction to explore. Some past changes have had a direct impact on the new clustering technique.
+This isn't the first time something has changed. There have been changes over the last 8 years as the researchers discover new connections or a new direction to explore. Some past changes have had a direct impact on the new clustering technique.
 
 In past DevOps reports, DORA (DevOps Research and Assessment) researchers used 4 key metrics to divide organizations into sets based on performance:
 
