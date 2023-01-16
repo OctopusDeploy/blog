@@ -95,7 +95,7 @@ If you don't feel safe to report close calls, the unspoken risks accumulate unti
 
 You don't have to be in a safety-critical industry to benefit from this relationship. The same cultural traits that predict safety are also related to communication, collaboration, innovation, and problem-solving. Culture affects the flow of information, which is critical to all these activities.
 
-> In 2022, we found that the biggest predictor of an organization's application-development security practices was cultural, not technical: high-trust, low-blame cultures focused on performance were significantly more likely to adopt emerging security practices. 
+> In 2022, we found that the biggest predictor of an organization's application-development security practices was cultural, not technical: high-trust, low-blame cultures focused on performance were significantly more likely to adopt emerging security practices." 
 > <cite>The Accelerate State of DevOps Report, 2022</cite>
 
 Theory X management restricts the flow of information and limits who can take action. Managers draw information up and pass decisions back down.
