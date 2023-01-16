@@ -30,12 +30,12 @@ At the same time, there have been several HR hot topics across all industries th
 
 - Work to rule (quiet quitting)
 - The Great Resignation / Reshuffle
-- The 4-day workweek
+- The 4-day work week
 - Hybrid working
 
-As [Emily Freeman](https://emilyfreeman.io/) (author of DevOps for Dummies):
+As [Emily Freeman](https://emilyfreeman.io/) (author of DevOps for Dummies) said:
 
-> The biggest challenges facing tech aren't technical, but human.
+> The biggest challenges facing tech aren't technical, but human."
 
 So, where should you start when it comes to understanding culture in the context of DevOps?
 
@@ -50,7 +50,18 @@ You either believe that:
 
 Many decisions in the workplace involve a trade-off, but these fundamental assumptions are mutually exclusive.
 
-If you believe Theory X, you centralize decision-making, track individual performance, and use rewards and punishments to motivate workers. With Theory Y, you focus on setting clear goals and let people direct their own efforts. When you do this, employees become the organization's most valuable asset.
+If you believe Theory X, you:
+
+- Centralize decision-making
+- Track individual performance
+- Use rewards and punishments to motivate workers 
+
+With Theory Y, you: 
+
+- Focus on setting clear goals
+- Let people direct their own efforts 
+
+When you follow Theory Y, employees become the organization's most valuable asset.
 
 :::hint
 
@@ -60,7 +71,7 @@ Dan Pink expanded on Douglas McGregor's and Alfie Kohn's work in his famous book
 
 :::
 
-McGregor considered Theory X and Theory Y to be 2 options a manager would choose from after assessing a workplace. You would review the work and the people and decide whether you need an authoritarian style or a more hands-off approach. We've since learned through the study of system failures, that cultures with high trust and low blame are safer than bureaucratic or pathological cultures.
+McGregor considered Theory X and Theory Y to be 2 options a manager would choose from after assessing a workplace. You'd review the work and the people and decide whether you need an authoritarian style or a more hands-off approach. We've since learned through the study of system failures, that cultures with high trust and low blame are safer than bureaucratic or pathological cultures.
 
 Theory Y is foundational to Lean, Agile, and DevOps and is the underlying assumption of a generative culture.
 
@@ -95,7 +106,7 @@ Theory Y leadership leads to strong information flow and prompt action in respon
 
 Changing team and organization culture is one of the toughest challenges in software delivery. Not even the most complex automation task in your deployment pipeline comes close. You need a clear vision of your intended future state, which needs to be pushed rapidly, firmly, and regularly to ensure the goal remains clear.
 
-You need leaders and managers to understand their role is to enable self-organizing teams that use each team member's talent. You need to move away from systems that centralize information and decision-making and transfer to systems aligned to distributed responsibility.
+You need leaders and managers to understand their roles are to enable self-organizing teams that use each team member's talent. You need to move away from systems that centralize information and decision-making and transfer to systems aligned to distributed responsibility.
 
 For example, suppose you use centralized tools to organize tasks and assign them to people. In that case, you need to move to a system that aligns with setting a clear mission without removing the ability of teams to self-organize and respond to dynamic situations. You may need to replace a tool entirely or use the tool in a new way. Your Gantt charts might have to go, but your task-tracking app can remain if the team can re-purpose it.
 
@@ -107,9 +118,9 @@ The leadership role in a culture change is to:
 
 A healthy culture should also be clear about the importance of the flow of information and must set a standard for communication style.
 
-At Octopus, we follow the Radical Candor approach. This allows us to be direct in our communications but in a framework where we all care about each other. Radical Candor enables individuals to show courage and challenge others when they might otherwise remain silent. This ultimately means we can all do better work without harmful or toxic behavior.
+At Octopus, we follow the Radical Candor approach. This lets us be direct in our communications, but in a framework where we all care about each other. Radical Candor lets individuals show courage and challenge others when they might otherwise remain silent. This ultimately means we can all do better work without harmful or toxic behavior.
 
-You won't make a dent in culture without a clear, robust, and sustained push. You have to overcome inertia and battle organizational immune responses. Despite the difficulty, the research is conclusive that culture is crucial to high performance.
+You won't make a dent in culture without a clear, robust, and sustained push. You have to overcome inertia and battle organizational immune responses. Despite the difficulty, the research is conclusive that culture is vital to high performance.
 
 ## Conclusion
 
@@ -117,7 +128,7 @@ When people talk about culture in the context of DevOps, they're referring to We
 
 All modern software delivery methods refer to this concept of empowered teams in different ways.
 
-We refer to this as *modern workplace culture*, yet the ideas are over a hundred years old. Mission command dates back to the 1800s, Theory X and Y are explained in a book from 1960, and Westrum's typology of organizational cultures was designed in the 1980s.
+We refer to this as *modern workplace culture*, yet the ideas are over 100 years old. Mission command dates back to the 1800s, Theory X and Y are explained in a book from 1960, and Westrum's typology of organizational cultures was designed in the 1980s.
 
 You'll find culture is the toughest nut to crack in DevOps. It's tempting to rely on research and statistics to prove the case for a generative culture. Still, the reality is that cultural change depends on compelling storytelling and creating a compelling vision of what the organization will look like after the transition.
 
