@@ -3,7 +3,7 @@ title: Multi-environment deployments with GitHub Actions and Octopus
 description: As part of our series about Continuous Integration, learn how to build a Docker image in GitHub Actions, push to ECR, and deploy to EKS with Octopus.
 author: terence.wong@octopus.com
 visibility: public
-published: 2022-03-16-1400
+published: 2023-02-20-1400
 metaImage: blogimage-multienvironmentdeploymentsgithubactions.png
 bannerImage: blogimage-multienvironmentdeploymentsgithubactions.png
 bannerImageAlt: A map with a boat with shipping containers sailing between islands which represent environments.
