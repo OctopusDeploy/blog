@@ -3,7 +3,7 @@ title: Deploying to Amazon EKS with GitHub Actions
 description: As part of our series about Continuous Integration, learn how to build a workflow in GitHub Actions, push to ECR, and deploy to EKS.
 author: terence.wong@octopus.com
 visibility: public
-published: 2022-03-15-1400
+published: 2023-02-15-1400
 metaImage: blogimage-githubactionscreatedeploymentineks-2022.png
 bannerImage: blogimage-githubactionscreatedeploymentineks-2022.png
 bannerImageAlt: Illustration of a workflow, connected to Docker-type logo, connected to ECR, connected to rocket, connected to EKS-type logo.
@@ -183,9 +183,5 @@ Check out our other posts about deploying with GitHub Actions, Kubernetes, and O
 !include <github-actions-free-tool>
 
 You can also learn more about [building with GitHub and deploying with Octopus](https://octopus.com/github), and use our [verified actions in the GitHub Marketplace](https://github.com/marketplace?query=octopus&type=actions&verification=verified_creator). 
-
-!include <githubactions-webinar-feb-2022>
-
-!include <q1-2022-newsletter-cta>
 
 Happy deployments!
