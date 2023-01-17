@@ -103,9 +103,9 @@ These differences are summarized below:
 
 ## The DevOps capability model
 
-The DevOps capability model is called the *structural equation model* (SEM) and is sometimes referred to as the *big friendly diagram (BFD)*.
+The DevOps capability model is called the *structural equation model* (SEM) and is sometimes referred to as the *big friendly diagram (BFD)*. 
 
-PUT THE MODEL HERE...
+![2022 DevOps structural equation model](2022-structural-equation-model.png)
 
 How to use capability models
 
