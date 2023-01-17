@@ -3,7 +3,7 @@ title: Building and publishing a Docker image to ECR using GitHub Actions
 description: As part of our series about Continuous Integration, learn how to build a Docker image in GitHub Actions and publish it to ECR.
 author: terence.wong@octopus.com
 visibility: public
-published: 2022-03-14-1400
+published: 2023-02-14-1400
 metaImage: blogimage-githubactionsbuilddockerimageinworkflowandpublishtoecr-2022.png
 bannerImage: blogimage-githubactionsbuilddockerimageinworkflowandpublishtoecr-2022.png
 bannerImageAlt: Illustration of a workflow connected to an illustration representing Docker connected to illustration representing ECR.
