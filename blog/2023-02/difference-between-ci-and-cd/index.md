@@ -100,7 +100,6 @@ In short, a good deployment tool, like Octopus Deploy, facilitates the human dec
 
 Recognizing the different requirements between a machine-driven Continuous Integration process and a human-driven Continuous Delivery process is essential for delivering features to your customers in a fast, reliable, and repeatable manner. This is why using dedicated tools for Continuous Integration and Continuous Delivery can make sense. You can give it a try by [building with GitHub and deploying with Octopus](https://octopus.com/github).
 
-
 If you haven't used Octopus before, you can [sign up for a free trial](https://octopus.com/start).
 
 Explore the [DevOps engineer's handbook](https://octopus.com/devops/) to learn more about DevOps and CI/CD, or read the rest of our [Continuous Integration series](https://octopus.com/blog/tag/CI%20Series).
