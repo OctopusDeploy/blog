@@ -125,8 +125,6 @@ If the actions we’ve chosen don’t suit your project or you need something ou
 
 !include <github-actions-free-tool>
 
-!include <githubactions-webinar-feb-2022>
-
-!include <q1-2022-newsletter-cta>
+You can also learn more about how [Octopus takes your GitHub deployments to the next level](https://octopus.com/github).
 
 Happy deployments!
