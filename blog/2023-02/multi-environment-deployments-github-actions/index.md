@@ -16,9 +16,9 @@ tags:
  - AWS
 ---
 
-GitHub Actions allows developers to perform DevOps operations in a GitHub repository. The GitHub community maintains templates that integrate third-party tools and repositories, like Jenkins or Amazon Elastic Container Registry (ECR). 
+GitHub Actions allows developers to automate software workflows in a GitHub repository. The GitHub community maintains templates that integrate third-party tools and repositories, like Jenkins or Amazon Elastic Container Registry (ECR). 
 
-Although GitHub Actions provides a contained solution, a dedicated Continuous Delivery tool like Octopus Deploy provides you with benefits such as environments, a dashboard to visualize environments, and a standardized step template library for a consistent user experience. 
+Although GitHub Actions provides a contained solution, combining it with a dedicated Continuous Delivery tool like Octopus Deploy provides you with benefits such as environments, a dashboard to visualize environments, and a standardized step template library for a consistent user experience. It's why we recommend you [build with GitHub and deploy with Octopus](https://octopus.com/github).
 
 In this post, I show you how to build a Docker image in a GitHub Actions workflow, publish the image to Amazon Elastic Container Registry (ECR), and use Octopus to deploy the image to a web application on Amazon Elastic Kubernetes Service (EKS).
 
@@ -211,7 +211,7 @@ In this post, you used GitHub Actions and Octopus Deploy to deploy a web applica
 
 Octopus Deploy integrates with several cloud repositories and has in-built support for release management. GitHub Actions has community-developed step templates. The experience with these may vary from template to template. Through its UI, Octopus Deploy provides a standardized experience for step templates. Octopus also integrates with different repositories and cloud providers. 
 
-Check out our other posts about deploying with GitHub Actions, Kubernetes, and Octopus Deploy:
+Check out the rest of our [CI series](https://octopus.com/blog/tag/CI%20Series) and our other posts about deploying with GitHub Actions, Kubernetes, and Octopus Deploy:
 
 - [Building and publishing a Docker image to ECR using GitHub Actions](https://octopus.com/blog/githubactions-docker-ecr)
 - [Deploying to Amazon EKS with GitHub Actions](https://octopus.com/blog/deploying-amazon-eks-github-actions)
@@ -219,9 +219,5 @@ Check out our other posts about deploying with GitHub Actions, Kubernetes, and O
 !include <github-actions-free-tool>
 
 You can also learn more about [building with GitHub and deploying with Octopus](https://octopus.com/github), and use our [verified actions in the GitHub Marketplace](https://github.com/marketplace?query=octopus&type=actions&verification=verified_creator).
-
-!include <githubactions-webinar-feb-2022>
-
-!include <q1-2022-newsletter-cta>
 
 Happy deployments!
