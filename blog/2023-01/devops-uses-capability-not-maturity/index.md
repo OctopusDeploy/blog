@@ -32,8 +32,8 @@ For example, a simple maturity model for riding a bike might have 5 levels of ma
 1. Walk upright on two legs
 2. Ride a balance bike
 3. Ride a balance bike with both feet off the ground
-4. Ride a pedal-bicyle from a starting point facing downhill
-5. Ride a pedal-bicyle from a starting point facing uphill
+4. Ride a pedal bike from a starting point facing downhill
+5. Ride a pedal bike from a starting point facing uphill
 
 The sequence of maturity levels provides you with a useful roadmap to follow if you want to learn to ride a bike. Each maturity level is easier to reach from the level below, as the earlier levels provide a basis for increasing your skills and progressing to the next stage. You can also assess someone by asking them to demonstrate each level.
 
@@ -103,9 +103,20 @@ These differences are summarized below:
 
 ## The DevOps capability model
 
-The DevOps capability model is called the *structural equation model* (SEM) and is sometimes referred to as the *big friendly diagram (BFD)*. 
+The DevOps capability model is called the *structural equation model* (SEM) and is sometimes referred to as the *big friendly diagram (BFD)*. It arranges the capabilities into groups and maps the relationships they have to outcomes.
+
+![2020 DevOps structural equation model](2020-structural-equation-model.png)
+
+Each of the arrows describes a predictive relationship. These show that adopting a capability and building the skills in using it are likely to positively improve the next capability.
+
+For example, [Continuous Delivery](https://octopus.com/devops/continuous-delivery/) depends on several [technical capabilities](https://octopus.com/devops/continuous-delivery/continuous-delivery-capabilities/), like version control and trunk-based development but leads to increased software delivery performance and reduced burnout (among other benefits).
+
+If you find this version of the model overwhelming, the 2022 version offers a simpler view, with many of the groups collapsed. Using simplified views of the model can help you navigate it before you drill into the more detailed lists of capabilities.
 
 ![2022 DevOps structural equation model](2022-structural-equation-model.png)
+
+
+
 
 How to use capability models
 
