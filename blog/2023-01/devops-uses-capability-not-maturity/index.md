@@ -62,7 +62,7 @@ Maturity models are not appropriate to DevOps because:
 - They assume there is a known answer to the current context
 - They focus on arriving at a fixed end state
 - They encourage standardization, not innovation and experimentation
-- They have linear progression
+- They have a linear progression
 - They are activity-based
 
 For DevOps, a different kind of model is needed.
@@ -115,28 +115,25 @@ If you find this version of the model overwhelming, the 2022 version offers a si
 
 ![2022 DevOps structural equation model](2022-structural-equation-model.png)
 
+## How to use the DevOps model
 
+Depending on which version you look at, the model can seem overwhelming. However, the purpose of the model isn't to provide a list of all the techniques and practices you must adopt. Instead, you can use the model as part of your continuous improvement process to identify which capabilities may help you make your next change.
 
+As the capability model is outcome-based, your first task is to find a way to measure the outcomes for your team and organization. Any improvement you make should eventually move the needle on these outcomes, though a single capability on its own may not make a detectable difference. The [DORA metrics](https://octopus.com/devops/metrics/) are a good place to start, as they use throughput and stability metrics to create a balanced picture of successful software delivery.
 
-How to use capability models
+Once you can measure the impact of changes, you can review the capability model and select one that you believe will bring the biggest benefit for your specific scenario. Different selections will work for different organizations and teams based on their goals and their current situation.
 
-Capability models are outcome-based, so you need a handle on outcomes. You can start with the DORA metrics, but if you *can* measure business outcomes, that would be a major step forward. The SPACE framework can help you design better sets of measurements (you shouldn't depend on any single number).
-
-Select the capabilities that will bring the most benefit to your specific scenario, which differs by organization, team, goals, and point in time.
-
-The highest performers are looking to make gains year-on-year - never satisfied, always improving.
-
-
+The highest performers use this process of continuous improvement to make gains every year. The high performers are never done and persistently seek new opporunities to make gains. This is why the high performance of today will not be enough to remain competitive in the future.
 
 ## Conclusion
 
 DevOps shouldn't be assessed against a maturity model and you should be wary of anyone who tries to introduce one. Instead, use the structural equation model from Accelerate and the State of DevOps reports as part of your continuous improvement efforts.
 
-
-Further reading
+## Further reading
 
 - [DevOps engineer's handbook](https://octopus.com/devops/)
-- [Accelerate: The Science of Lean Software and DevOps - Nicole Forsgren PhD, et al](https://itrevolution.com/product/accelerate/), part of our [DevOps reading list](https://octopus.com/devops/reading-list/)
+- [Measuring Continous Delivery and DevOps](https://octopus.com/whitepapers/lv-measuring-continuous-delivery-and-devops)
+- [Accelerate: The Science of Lean Software and DevOps - Dr Nicole Forsgren et al](https://itrevolution.com/product/accelerate/), part of our [DevOps reading list](https://octopus.com/devops/reading-list/)
 
 
 
