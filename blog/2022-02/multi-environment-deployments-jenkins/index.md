@@ -18,7 +18,7 @@ tags:
 
 During a deployment process, an artifact is built by a build server before being deployed. Jenkins is a build server designed for multi-environment settings. Jenkins can package and push your artifact to a central repository. From here, a Continuous Delivery (CD) tool can take the artifact and deploy it. 
 
-Octopus Deploy is a best in class CD tool that helps with this process. Octopus can interface with and deploy to major cloud providers like Azure, Google, and Amazon. 
+Octopus Deploy is a best-in-class CD tool that helps with this process. Octopus can interface with and deploy to major cloud providers like Azure, Google, and Amazon. 
 
 In this post, I show you how to build and push the Octopus underwater app to Amazon Elastic Container Registry (ECR). Jenkins will trigger a deployment in Octopus Deploy. Octopus will then deploy the app to Amazon Elastic Kubernetes Service (EKS). 
 
