@@ -3,7 +3,7 @@ title: An introduction to build servers and Continuous Integration
 description: This post opens our series about Continuous Integration and build servers, with an overview on the benefits of build servers, particularly Jenkins and GitHub Actions.
 author: andrew.corrigan@octopus.com
 visibility: public
-published: 2023-02-01-1400
+published: 2023-01-30-1400
 metaImage: blogimage-buildservers.png
 bannerImage: blogimage-buildservers.png
 bannerImageAlt: 2 people writing code on laptops with arrows to a build server, then an arrow to the octopus logo in a cloud, and a rocket launching
@@ -68,7 +68,7 @@ In our [CI series](https://octopus.com/blog/tag/CI%20Series), we share guides fo
 
 If you're not already using Octopus Deploy, you can [sign up for a free trial](https://octopus.com/start).
 
-You can also check out our other posts on build servers and CI:
+You can also check out some of other posts on build servers and CI:
 
 - [Octopus vs. build servers](https://octopus.com/blog/octopus-vs-build-server)
 - [Integration 101: Octopus and build servers](https://octopus.com/blog/octopus-build-server-integration-101)
