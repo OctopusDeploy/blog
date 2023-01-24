@@ -56,7 +56,7 @@ Maturity models are most commonly used in due-diligence frameworks to ensure sup
 
 In DevOps, the context and challenges faced by organizations and teams are so important, a maturity model is not an appropriate tool. If you want to apply a maturity model to DevOps, you may need to adjust your mindset and approach as there's no fixed end state to DevOps. Neither should the capabilities be adopted in a pre-determined order.
 
-Maturity models are not appropriate to DevOps because they:
+Maturity models are not appropriate for DevOps because they:
 
 - Assume there is a known answer to your current context
 - Focus on arriving at a fixed end state
@@ -128,7 +128,7 @@ As the capability model is outcome-based, your first task is finding a way to me
 
 The [DORA metrics](https://octopus.com/devops/metrics/) are a good place to start, as they use throughput and stability metrics to create a balanced picture of successful software delivery. In the longer term, it's best to connect your measurements to business outcomes. Whatever you measure, everyone involved in software delivery and operations needs to share the same goals.
 
-After you can measure the impact of changes, you can review the capability model and select one you believe will bring the biggest benefit for your specific scenario.
+After you can measure the impact of changes, you can review the capability model and select something you believe will bring the biggest benefit to your specific scenario.
 
 The highest performers use this process of continuous improvement to make gains every year. The high performers are never *done* and persistently seek new opportunities to build performance. This is why the high performance of today won't be enough to remain competitive in the future.
 
