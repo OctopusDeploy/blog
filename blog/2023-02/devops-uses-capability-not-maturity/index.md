@@ -12,7 +12,9 @@ tags:
   - tag
 ---
 
-As DevOps adoption increases, it becomes more likely the certification industrial complex will attempt to apply a maturity model. This article explains why a maturity model is not appropriate and what you should use instead.
+As DevOps adoption increases, it becomes more likely the certification industrial complex will attempt to apply a maturity model. 
+
+In this post, I explain why a maturity model isn't appropriate and what you should use instead.
 
 ## What is a maturity model?
 
@@ -36,7 +38,7 @@ The sequence of maturity levels provides you with a useful roadmap to follow and
 
 You can create a maturity model by designing the levels first and expanding each one with characteristics, or you can collect together all the characteristics before arranging them into levels.
 
-You'll find maturity models are commonly used as part of standards and their certification process. Most process certifications will require you to demonstrate that:
+You'll find maturity models are commonly used as part of standards and their certification process. Most process certifications require you to demonstrate that:
 
 1. You have documented your process
 2. People follow the documented process
@@ -48,21 +50,21 @@ When you plan to achieve a certification, your roadmap is clear; until you docum
 
 You can use a maturity model to assess whether a set of activities is taking place, but not whether these activities impact your key outcomes. Maturity models are rigid and require you to adopt all characteristics to achieve maturity levels. You have to trust that following the model will bring you the same benefits experienced by the model's authors.
 
-The sequence of maturity levels might not work for everyone. They could slow down your progress or even have counter-productive outcomes. A maturity model doesn't take into account the unique challenges facing your business - it may not even solve the kind of problems you are facing. It also defines an end point that may not be good enough.
+The sequence of maturity levels might not work for everyone. They could slow down your progress or even have counter-productive outcomes. A maturity model doesn't take into account the unique challenges facing your business - it may not even solve the kind of problems you're facing. It also defines an end point that may not be good enough.
 
-Maturity models are most commonly used within due-diligence frameworks to ensure suppliers meet a minimum standard for process or security. If you were cynical, you might argue that they are used to ensure an organization can't be blamed when one of its suppliers makes a mistake.
+Maturity models are most commonly used in due-diligence frameworks to ensure suppliers meet a minimum standard for process or security. If you were cynical, you might argue they're used to ensure an organization can't be blamed when one of its suppliers makes a mistake.
 
-In DevOps, the context and challenges faced by organizations and teams are so important, a maturity model is not an appropriate tool. If you want to apply a maturity model to DevOps, you may need to adjust your mindset and approach as there is no fixed end state to DevOps. Neither should the capabilities be adopted in a pre-determined order.
+In DevOps, the context and challenges faced by organizations and teams are so important, a maturity model is not an appropriate tool. If you want to apply a maturity model to DevOps, you may need to adjust your mindset and approach as there's no fixed end state to DevOps. Neither should the capabilities be adopted in a pre-determined order.
 
-Maturity models are not appropriate to DevOps because:
+Maturity models are not appropriate to DevOps because they:
 
-- They assume there is a known answer to your current context
-- They focus on arriving at a fixed end state
-- They encourage standardization, not innovation and experimentation
-- They have a linear progression
-- They are activity-based
+- Assume there is a known answer to your current context
+- Focus on arriving at a fixed end state
+- Encourage standardization, not innovation and experimentation
+- Have a linear progression
+- Are activity-based
 
-For DevOps, a different kind of model is needed.
+For DevOps, you need a different kind of model.
 
 ## Capability models
 
@@ -79,15 +81,17 @@ A capability model:
 - Understands that the landscape is always changing
 - Is outcome-based
 
-When you use a capability model, you are accepting that high-performance today will not be sufficient in the future. Business, technology, and competition are always on the move and you need to install a mindset that can keep pace.
+When you use a capability model, you accept that high-performance today won't be sufficient in the future. Business, technology, and competition are always on the move and you need a mindset that can keep pace.
 
 ## Maturity vs capability models
 
-A maturity model tends to measure activities, such as whether a certain tool or process has been implemented. In contrast, capability models are outcome-based, which means you need to use measurements of key outcomes to confirm that changes result in improvements. For example, the DevOps capability model is aligned with the [DORA metrics](https://octopus.com/devops/metrics/). Using throughput and stability metrics will help you assess the effectiveness of improvements.
+A maturity model tends to measure activities, such as whether a certain tool or process has been implemented. In contrast, capability models are outcome-based, which means you need to use measurements of key outcomes to confirm that changes result in improvements. 
+
+For example, the DevOps capability model is aligned with the [DORA metrics](https://octopus.com/devops/metrics/). Using throughput and stability metrics helps you assess the effectiveness of improvements.
 
 While maturity models tend to focus on a fixed standardized list of activities, capability models are dynamic and contextual. A capability model expects you to select capabilities that you believe will improve your performance given your current goals, industry, organization, team, and the scenario you face at this current point in time.
 
-You level up within a maturity model based on proficiency against the activities. In a capability model, you constantly add gains as you continuously improve your skills and techniques.
+You level up in a maturity model based on proficiency against the activities. In a capability model, you constantly add gains as you continuously improve your skills and techniques.
 
 Gartner:
 
@@ -108,7 +112,9 @@ The DevOps capability model is the *structural equation model* (SEM), sometimes 
 
 ![2020 DevOps structural equation model](2020-structural-equation-model.png)
 
-Each of the arrows describes a predictive relationship. You can use this map to work out what items will help you solve the problems you are facing. For example, [Continuous Delivery](https://octopus.com/devops/continuous-delivery/) depends on several [technical capabilities](https://octopus.com/devops/continuous-delivery/continuous-delivery-capabilities/), like version control and trunk-based development, and leads to increased software delivery performance and reduced burnout (among other benefits).
+Each of the arrows describes a predictive relationship. You can use this map to work out what items will help you solve the problems you're facing. 
+
+For example, [Continuous Delivery](https://octopus.com/devops/continuous-delivery/) depends on several [technical capabilities](https://octopus.com/devops/continuous-delivery/continuous-delivery-capabilities/), like version control and trunk-based development, and leads to increased software delivery performance and reduced burnout (among other benefits).
 
 If you find this version of the model overwhelming, the 2022 version offers a simpler view, with many of the groups collapsed. Using simplified views of the model can help you navigate it before you drill into the more detailed lists of capabilities.
 
@@ -118,13 +124,13 @@ If you find this version of the model overwhelming, the 2022 version offers a si
 
 Depending on which version you look at, the model can seem overwhelming. However, the purpose of the model isn't to provide a list of all the techniques and practices you must adopt. Instead, you can use the model as part of your continuous improvement process to identify which capabilities may help you make your next change.
 
-As the capability model is outcome-based, your first task is to find a way to measure the outcomes for your team and organization. Any improvement you make should eventually move the needle on these outcomes, though a single capability on its own may not make a detectable difference.
+As the capability model is outcome-based, your first task is finding a way to measure the outcomes for your team and organization. Any improvement you make should eventually move the needle on these outcomes, although a single capability on its own may not make a detectable difference.
 
-The [DORA metrics](https://octopus.com/devops/metrics/) are a good place to start, as they use throughput and stability metrics to create a balanced picture of successful software delivery. In the longer term, it is best to connect your measurements to business outcomes. Whatever you measure, everyone involved in software delivery and operations needs to share the same goals.
+The [DORA metrics](https://octopus.com/devops/metrics/) are a good place to start, as they use throughput and stability metrics to create a balanced picture of successful software delivery. In the longer term, it's best to connect your measurements to business outcomes. Whatever you measure, everyone involved in software delivery and operations needs to share the same goals.
 
-Once you can measure the impact of changes, you can review the capability model and select one that you believe will bring the biggest benefit for your specific scenario.
+After you can measure the impact of changes, you can review the capability model and select one you believe will bring the biggest benefit for your specific scenario.
 
-The highest performers use this process of continuous improvement to make gains every year. The high performers are never *done* and persistently seek new opportunities to build performance. This is why the high performance of today will not be enough to remain competitive in the future.
+The highest performers use this process of continuous improvement to make gains every year. The high performers are never *done* and persistently seek new opportunities to build performance. This is why the high performance of today won't be enough to remain competitive in the future.
 
 ## Conclusion
 
@@ -135,7 +141,7 @@ The DevOps capability model supports the need for constant incremental gains and
 ## Further reading
 
 - [DevOps engineer's handbook](https://octopus.com/devops/)
-- [Measuring Continous Delivery and DevOps](https://octopus.com/whitepapers/lv-measuring-continuous-delivery-and-devops)
+- [Measuring Continuous Delivery and DevOps](https://octopus.com/whitepapers/lv-measuring-continuous-delivery-and-devops)
 - [Accelerate: The Science of Lean Software and DevOps - Dr. Nicole Forsgren et al](https://itrevolution.com/product/accelerate/), part of our [DevOps reading list](https://octopus.com/devops/reading-list/)
 - Use 8 Simple Steps to Get DevOps Right - Gartner (Daniel Betts, George Spafford)
 
