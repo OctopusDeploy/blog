@@ -12,7 +12,7 @@ tags:
   - tag
 ---
 
-As DevOps adoption increases, it becomes more likely the certification industrial complex will attempt to apply a maturity model. 
+Your approach to DevOps is likely to be influenced by the methods and practices that came before. For organizations that gave teams autonomy to adapt their process, DevOps would have been a natural progression. Where an organization has been more prescriptive in the past, people will look for familiar tools to run a DevOps implementation, such as maturity models.
 
 In this post, I explain why a maturity model isn't appropriate and what you should use instead.
 
