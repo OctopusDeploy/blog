@@ -9,7 +9,8 @@ bannerImage:
 bannerImageAlt: 
 isFeatured: false
 tags: 
-  - tag
+  - DevOps
+  - DORA Metrics
 ---
 
 Your approach to DevOps is likely to be influenced by the methods and practices that came before. For organizations that gave teams autonomy to adapt their process, DevOps would have been a natural progression. Where an organization has been more prescriptive in the past, people will look for familiar tools to run a DevOps implementation, such as maturity models.
@@ -34,9 +35,9 @@ For example, a maturity model for riding a bike might have 5 levels of maturity:
 4. Ride a pedal bike from a starting point facing downhill
 5. Ride a pedal bike from a starting point facing uphill
 
-The sequence of maturity levels provides you with a useful roadmap to follow and you may already be able to achieve the lower levels. Each maturity level is easier to reach from the level below, as the earlier levels provide a basis for increasing your skills and progressing to the next stage. You can also assess someone by asking them to demonstrate their ability at each level.
+The sequence of maturity levels is a useful roadmap to follow and you may already be able to achieve the lower levels. Each maturity level is easier to reach from the level below, as the earlier levels provide a basis for increasing your skills and progressing to the next stage. You can also assess someone by asking them to demonstrate their ability at each level.
 
-You can create a maturity model by designing the levels first and expanding each one with characteristics, or you can collect together all the characteristics before arranging them into levels.
+You can create a maturity model by designing the levels first and expanding each with characteristics, or you can collect together all the characteristics before arranging them into levels.
 
 You'll find maturity models are commonly used as part of standards and their certification process. Most process certifications require you to demonstrate that:
 
@@ -89,7 +90,7 @@ A maturity model tends to measure activities, such as whether a certain tool or 
 
 For example, the DevOps capability model is aligned with the [DORA metrics](https://octopus.com/devops/metrics/). Using throughput and stability metrics helps you assess the effectiveness of improvements.
 
-While maturity models tend to focus on a fixed standardized list of activities, capability models are dynamic and contextual. A capability model expects you to select capabilities that you believe will improve your performance given your current goals, industry, organization, team, and the scenario you face at this current point in time.
+While maturity models tend to focus on a fixed standardized list of activities, capability models are dynamic and contextual. A capability model expects you to select capabilities that you believe will improve your performance given your current goals, industry, organization, team, and the scenario you face at this point in time.
 
 You level up in a maturity model based on proficiency against the activities. In a capability model, you constantly add gains as you continuously improve your skills and techniques.
 
@@ -132,7 +133,7 @@ The highest performers use this process of continuous improvement to make gains 
 
 ## Conclusion
 
-DevOps shouldn't be assessed against a maturity model. You should be wary of anyone who tries to introduce one. Instead, use the structural equation model from Accelerate and the State of DevOps reports as part of your continuous improvement efforts.
+DevOps shouldn't be assessed against a maturity model. You should be wary of anyone who tries to introduce one. Instead, use the structural equation model from Accelerate and the [State of DevOps reports](https://cloud.google.com/devops/state-of-devops/) as part of your continuous improvement efforts.
 
 The DevOps capability model supports the need for constant incremental gains and encourages teams to experiment with their tools and processes.
 
