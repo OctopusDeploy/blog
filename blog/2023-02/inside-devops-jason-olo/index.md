@@ -1,7 +1,7 @@
 ---
 title: Inside DevOps with Jason Dunnivant from Olo
 description: A series where we share lessons learned from those on the frontlines of DevOps. Our first post features Jason Dunnivant, Release Engineer at Olo. 
-author: joanna.Wyganowska@octopus.com
+author: joanna.wyganowska@octopus.com
 visibility: private
 published: 2023-02-07-1400
 metaImage: 
@@ -15,7 +15,7 @@ tags:
 
 This post opens our Inside DevOps series, where we share lessons learned from those on the frontlines of DevOps. 
 
-Our first post features [Jason Dunnivant](https://www.linkedin.com/in/jasondunnivant/), Release Engineer at [Olo](https://www.olo.com/). Olo is a leading open SaaS platform for restaurants that enables hospitality at every touchpoint.
+[Jason Dunnivant](https://www.linkedin.com/in/jasondunnivant/), Release Engineer at [Olo](https://www.olo.com/), features first. Olo is a leading open SaaS platform for restaurants that enables hospitality at every touchpoint.
 
 ## Jason, I reached out to you to start our blog series as I'm fascinated by your dedication to DevOps. You even have a tattoo of Octopus Deploy!
 
