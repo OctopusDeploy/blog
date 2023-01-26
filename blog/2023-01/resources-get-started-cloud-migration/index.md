@@ -21,7 +21,7 @@ At Octopus, we can help by providing you with resources for getting started with
 
 As a cloud-native dedicated continuous delivery tool, we want to help our users understand Continuous Delivery and cloud-native technologies. We wrote white papers to help educate you and give you actionable steps to start your journey to the cloud.
 
-<!--  ### Modernize your apps by moving to cloud-native
+### Modernize your apps by moving to cloud-native
 
 *Modernize your apps by moving to cloud-native* is a white paper that provides an argument for migrating to the cloud and the first steps to take. It contains researched-backed reports and distills cloud migration into a series of phases: 
 
@@ -32,7 +32,6 @@ As a cloud-native dedicated continuous delivery tool, we want to help our users 
 The paper provides straightforward, actionable steps your company can take when migrating to the cloud.
 
 [Read the white paper, *Modernize your apps by moving to cloud-native*](link to PDF here). 
--->
 
 ### The importance of Continuous Delivery
 
