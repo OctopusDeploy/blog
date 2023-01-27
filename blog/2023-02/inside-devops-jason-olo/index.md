@@ -21,7 +21,7 @@ This post opens our Inside DevOps series, where we share lessons learned from th
 
 **Jason Dunnivant**: As you can see, I am a true fan of your product.
 
-![Alt text, a description of the image](/path/to/image.png "width=500")*Optional caption text*
+![Jason Dunnivant sitting at his desk with his forearm out to show his Octopuds Deploy tattoo](photo-jason-dunnivant.jpg "width=500")*Jason Dunnivant and his Octopus Deploy tattoo*
 
 ## What is DevOps to you? How do you define it?
 
