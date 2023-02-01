@@ -21,7 +21,7 @@ In this post, we detail what happened and our learnings.
 
 As a result of this incident, we're strengthening our relationship with Azure and improving our monitoring of their availability.
 
-### Key timings
+## Key timings
 
 | Event                        | Time period |
 | ---------------------------- | ----------- |
@@ -31,7 +31,7 @@ As a result of this incident, we're strengthening our relationship with Azure an
 
 ## Incident timeline
 
-Thursday, January 25, 2023 _(all dates and times below are shown in UTC)_
+Wednesday, January 25, 2023 _(all dates and times below are shown in UTC)_
 
 **_7:45:_** An Octopus engineer noted access to Azure’s portal was down due to request timeouts. Azure’s status page was still green (working) for all services. The engineer identified it was likely the connectivity issues were in Azure’s internal networks regardless of the status page, as it doesn't always accurately reflect the current status. They also noted it was possible the network issue was preventing Azure from updating their status page. The engineer noted an increased load on the database used by octopus.com/OctopusID, and there was a risk of customer-facing login issues if it continued.
 
