@@ -19,7 +19,7 @@ See the [Octopus style guide](https://www.octopus.design/932c0f1a9/p/26f741-writ
 
 Internal authors can create a branch for their work, external authors need to fork the repo.
 
-Posts are organized in year-month directories (i.e., 2020-01/). Find or create the directory that is roughly when your post is going out and add your files there. 
+Posts are organized in year-month directories (i.e., 2023-01/). Find or create the directory that is roughly when your post is going out and add your files there. 
 
 If you'd like feedback on a work in progress, create a draft PR and tag @TeganAli with your request.
 
