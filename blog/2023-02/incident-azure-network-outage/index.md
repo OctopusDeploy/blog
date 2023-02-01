@@ -3,7 +3,7 @@ title: Network Connectivity Disruption on January 25, 2023
 description: Public incident report on network connectivity disruption from January 25, 2023
 author: alix.klingenberg@octopus.com
 visibility: public
-published: 2023-02-01-1800
+published: 2023-02-01-1400
 metaImage: blogimage-incidentazurenetworkoutage-2023x2.png
 bannerImage: blogimage-incidentazurenetworkoutage-2023x2.png
 bannerImageAlt: A stylized Octopus and shield icon
