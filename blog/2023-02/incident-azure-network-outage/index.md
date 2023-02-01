@@ -52,7 +52,7 @@ _9:33_ - 9:59: On-call engineers note that there are status updates from Azure i
 
 _10:57:_ On-call engineers confirm with support engineers that customers are starting to see their connectivity restored to the impacted Octopus services. Engineers confirm that internal services also affected by the upstream outage are starting to recover.
 
-_11:37_ The incident is declared resolved and the status page is updated accordingly.
+_11:37:_ The incident is declared resolved and the status page is updated accordingly.
 
 ## Technical Details
 
