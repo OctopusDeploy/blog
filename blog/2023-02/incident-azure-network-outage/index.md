@@ -32,17 +32,26 @@ As a result of this incident, we are strengthening our relationship with Azure a
 
 Thursday, 25 January, 2023 _(all dates and times below are shown in UTC)_
 
-_7:45:_ An Octopus engineer notes that access to Azure’s portal is down due to request timeouts.
-Azure’s status page is still green (working) for all services. The engineer identifies that it is likely that the connectivity issues are within Azure’s internal networks regardless of the status page, as it does not always accurately reflect the current status. They also note that it is possible that the network issue is preventing Azure from updating their status page. The engineer notes that we are starting to see increased load on the database used by Octopus.com/OctopusID, and that there is a risk of customer-facing login issues if it continues.
+_7:45:_ An Octopus engineer notes that access to Azure’s portal is down due to request timeouts. Azure’s status page is still green (working) for all services. The engineer identifies that it is likely that the connectivity issues are within Azure’s internal networks regardless of the status page, as it does not always accurately reflect the current status. They also note that it is possible that the network issue is preventing Azure from updating their status page. The engineer notes that we are starting to see increased load on the database used by Octopus.com/OctopusID, and that there is a risk of customer-facing login issues if it continues.
+
 _7:51:_ A support engineer notes that a customer reported being unable to log in using OctopusID approximately an hour ago.
+
 _7:51 - 8:14:_ Octopus engineers continue to monitor internal services and note similar issues with external services. All observed issues are consistent with a cloud provider network outage.
+
 _8:14:_ An Octopus engineer declares an incident and starts the incident response process.
+
 _8:14 - 8:19:_ On-call engineers investigate the customer impact and update [our status page](https://status.octopus.com/) to reflect the partial outage for Octopus.com/OctopusID, Octopus Cloud and the Cloud Control Center. They also pause any internal processes (e.g. deployments of Octopus Server to Octopus Cloud) that could potentially exacerbate the incident.
+
 _8:33:_ An on-call engineer notes that Azure’s status page now shows that they are investigating significant network issues across all regions.
+
 _8:33 - 8:42:_ On-call engineers continue to monitor the upstream network outage and provide guidance to support teams to point impacted customers to our status page.
+
 _8:42:_ Based on the continued outage and significant customer impact, the outage is upgraded to major on Octopus’s status page.
+
 _9:33_ - 9:59: On-call engineers note that there are status updates from Azure indicating that the cause of the outage has been identified and that resolution of the incident is in progress.
+
 _10:57:_ On-call engineers confirm with support engineers that customers are starting to see their connectivity restored to the impacted Octopus services. Engineers confirm that internal services also affected by the upstream outage are starting to recover.
+
 _11:37_ The incident is declared resolved and the status page is updated accordingly.
 
 ## Technical Details
