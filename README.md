@@ -1,5 +1,7 @@
 # Octopus blog
 
+The Octopus blog is one of the ways we talk to our customers and help future customers discover Octopus. We do this by publishing posts that resonate with our users (and potential users) on topics of interest to them that demonstrate our domain expertise.
+
 This repository contains the [Octopus.com/blog](https://octopus.com/blog/) posts.
 
 Authors must sign the [Contribution License Agreement (CLA)](https://cla-assistant.io/OctopusDeploy/docs) before we can accept your contribution.
