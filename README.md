@@ -26,3 +26,5 @@ If you'd like feedback on a work in progress, create a draft PR and tag @TeganAl
 When you're happy with your post and think it's ready to be reviewed, create a PR, assign @TeganAli as reviewer, and drop a note in Slack in #topic-content-marketing.
 
 If you're drafting a post that you'd like to keep private until it's published, use the [internal blog drafts repo](https://github.com/OctopusDeploy/internal-blog-drafts).
+
+The editing process takes time and we have a schedule full of blog posts, so giving us at least 2 weeks notice is preferred and appreciated. For time-sensitive posts, we'll do our best to get the post published as soon as possible. Please consider that the design team also needs time to create a blog image.
