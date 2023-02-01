@@ -3,7 +3,7 @@ title: "Octopus Cloud connectivity disruption - report and learnings"
 description: Public incident report and our learnings about the Octopus Cloud network connectivity disruption from January 25, 2023.
 author: alix.klingenberg@octopus.com
 visibility: public
-published: 2023-02-01-1400
+published: 2023-02-01
 metaImage: blogimage-incidentazurenetworkoutage-2023x2.png
 bannerImage: blogimage-incidentazurenetworkoutage-2023x2.png
 bannerImageAlt: A stylized Octopus and shield icon
