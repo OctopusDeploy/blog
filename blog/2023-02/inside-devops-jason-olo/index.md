@@ -2,11 +2,11 @@
 title: Inside DevOps with Jason Dunnivant from Olo
 description: A series where we share lessons learned from those on the frontlines of DevOps. Our first post features Jason Dunnivant, Release Engineer at Olo. 
 author: joanna.wyganowska@octopus.com
-visibility: private
-published: 2023-02-07-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+visibility: public
+published: 2023-02-13-1400
+metaImage: blogimage-inside-devops-1500x800-2023x2.png
+bannerImage: blogimage-inside-devops-1500x800-2023x2.png
+bannerImageAlt: stylized image of Joanna and Jason seated and talking to each other with a speech bubble that says Inside DevOps
 isFeatured: false
 tags: 
   - DevOps
