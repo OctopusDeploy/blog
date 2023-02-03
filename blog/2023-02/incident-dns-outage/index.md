@@ -51,7 +51,7 @@ _(All dates and times below are shown in UTC)_
 
 **_02:39_** The engineer switched the AFD WAF from prevention mode to detection mode due to it blocking valid traffic.
 
-**_07:05 _** A network outage in Azure obscured the issue - see our [Octopus Cloud connectivity disruption report](https://octopus.com/blog/cloud-connectivity-disruption-report-learnings).
+**_07:05_** A network outage in Azure obscured the issue - see our [Octopus Cloud connectivity disruption report](https://octopus.com/blog/cloud-connectivity-disruption-report-learnings).
 
 **_12:21_** An application support engineer in the EU region reported experiencing intermittent 404s on the `octopus.com` domain.
 
@@ -195,7 +195,7 @@ There were 2 red herrings that weren’t contributing factors:
 - The 404 errors from the WAF
 - The CNAME flattening on the apex domain
 
-In practice, removing the proxy and switching to AFD’s WAF is irrelevant to this issue - we included them here because they created a red herring when attempting to determine the causes.
+In practice, removing the proxy and switching to AFD’s WAF were unrelated to this issue. However, they created significant noise which obscured the real problem.
 
 Similarly, using CNAME flattening on the apex domain made the causes unclear. CNAME flattening is where the DNS provider creates a series of A Records instead of a single CNAME record for dynamic resolution of the underlying IP address. You can learn more in this [explainer by Cloudflare](https://blog.cloudflare.com/introducing-cname-flattening-rfc-compliant-cnames-at-a-domains-root/).
 
