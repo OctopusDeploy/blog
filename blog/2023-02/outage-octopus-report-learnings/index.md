@@ -109,11 +109,11 @@ Our engineers focused on the failing route in the AFD profile.
 
 **_03:12_** The incident was escalated internally to bring in senior engineering management staff due to the length of time without a clear path to resolution.
 
-:::hint
 **_04:15_** A problem with the routing was identified: renewed focus on the AFD profile.
-:::
 
+:::hint
 **_04:19_** Status Page updated: Incident status changed to identified.
+:::
 
 **_05:42_** Previous cloud provider advised that their hosts were resolving to the correct IP addresses and recommended requesting public resolvers to flush their DNS caches.
 
