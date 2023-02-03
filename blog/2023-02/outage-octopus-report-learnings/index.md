@@ -21,7 +21,7 @@ In this post, we detail what happened, our response, and our learnings.
 
 On January 25, we undertook scheduled maintenance on the `octopus.com` and `octopusdeploy.com` domains as part of a planned DNS and routing provider migration. In this step of the migration, the routing setup in one Azure Front Door (AFD) profiles was transferred to another AFD profile. The new AFD profile didn’t behave as expected.
 
-We identified that a subset of requests in certain regions were incorrectly routed by the new AFD profile, resulting in HTTP 404 responses. We publicized the service interruption for the scheduled maintenance on our Status Page. 
+We identified that a subset of requests in certain regions were incorrectly routed by the new AFD profile, resulting in HTTP 404 responses. We publicized the service interruption for the scheduled maintenance on our Status Page.
 
 We treated this as an incident because the maintenance didn’t go as planned and there were complicating factors:
 
@@ -31,7 +31,6 @@ We treated this as an incident because the maintenance didn’t go as planned an
 - The issue occurred during an Australian public holiday where many of our engineers are based
 
 The changes to the AFD profiles couldn’t be safely rolled back.
-
 
 ## Key timings
 
@@ -174,7 +173,7 @@ The 404s were occurring because customers' requests were being routed to the inc
 
 ### What we observed
 
-A specific AFD endpoint, `octo-public-prod-endpoint-f2e5gmecbdf3bfg9.z01.azurefd.net`, for the `octopus.com` domain was dynamically resolving to one of 2 IP addresses. One of the 2 IP addresses returned a 404 on all the associated routes, `/signin`, `/docs`, and `/blog`, while the other IP address worked. 
+A specific AFD endpoint, `octo-public-prod-endpoint-f2e5gmecbdf3bfg9.z01.azurefd.net`, for the `octopus.com` domain was dynamically resolving to one of 2 IP addresses. One of the 2 IP addresses returned a 404 on all the associated routes, `/signin`, `/docs`, and `/blog`, while the other IP address worked.
 
 This indicated the CNAME warning was unlikely the cause, as some traffic was being successfully routed.
 
@@ -201,7 +200,7 @@ Similarly, using CNAME flattening on the apex domain made the causes unclear. CN
 
 Based on our best understanding of the problem, we created a `www` subdomain on the affected domains. We created a CNAME record on this subdomain to give AFD authoritative control over resolving all requests to that domain. We then redirected traffic from the affected domains to the appropriate `www` subdomains.
 
-This mitigation helped initially, but the incorrect IP address resolution in the AFD endpoint reappeared. The IP issue resolved after Azure advised they'd made changes to our AFD profile. 
+This mitigation helped initially, but the incorrect IP address resolution in the AFD endpoint reappeared. The IP issue resolved after Azure advised they'd made changes to our AFD profile.
 
 We understand Azure moved the affected AFD profile “from a legacy platform to the most updated platform,” but we haven’t had official confirmation at the time of writing.
 
@@ -224,5 +223,3 @@ We ran an incident review and identified areas of improvement:
 ## Conclusion
 
 Octopus Deploy takes service availability seriously. The time to resolution on this incident was longer than we aim for. We apologize for the disruption to our customers due to this outage.
-
-We're continuing to investigate the complexities of this incident so our remediations will be effective and our customers can focus on happy deployments.
