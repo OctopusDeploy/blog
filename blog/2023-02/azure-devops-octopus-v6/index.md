@@ -4,8 +4,8 @@ description: Find out what's new in v6 of the Octopus Azure DevOps plugin and wh
 author: shannon.lewis@octopus.com
 visibility: public
 published: 2023-02-06-1400
-metaImage: azure-devops-plugin-v6.png
-bannerImage: azure-devops-plugin-v6.png
+metaImage: blogimage-azure-devops-plugin-v6-2023x2.png
+bannerImage: blogimage-azure-devops-plugin-v6-2023x2.png
 bannerImageAlt: Stylized screenshot of Azure DevOps showing Create Octopus Release
 isFeatured: false
 tags: 
