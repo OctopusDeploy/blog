@@ -2,11 +2,11 @@
 title: Why are there so many definitions of lead time?
 description: Find out why there are multiple definitions of lead time and how you can use them to improve software delivery.
 author: steve.fenton@octopus.com
-visibility: private
-published: 2023-02-15-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+visibility: public
+published: 2023-02-20-1400
+metaImage: blogimage-whyaretheresomanydefinitionsofleadtime-2023.png
+bannerImage: blogimage-whyaretheresomanydefinitionsofleadtime-2023.png
+bannerImageAlt: A green rocket on a launch pad next to a 
 isFeatured: false
 tags: 
   - DevOps
