@@ -18,15 +18,20 @@ In this post, I look at why there are so many definitions of lead time and how y
 
 ## Lead time definitions
 
-The [DevOps definition of lead time for changes](https://octopus.com/devops/metrics/) is the time between a developer committing code into version control and the change being deployed to the production environment. This definition covers a smaller part of the software delivery process than the Lean definition.
+The [DevOps definition of lead time for changes](https://octopus.com/devops/metrics/) is the time between a developer committing code into version control and someone deploying that change to the production environment. This definition covers a smaller part of the software delivery process than the Lean definition.
 
-In Lean Software Development, created by Mary and Tom Poppendieck based on the lean manufacturing movement, lead time is measured from when a requirement is discovered to the point when that requirement is fulfilled.
+Mary and Tom Poppendieck created Lean Software Development based on the lean manufacturing movement, and they measured lead time from when you discover a requirement to when someone fulfills that requirement.
 
-The Lean movement is based on the Toyota Production System, which defined lead time as the time between a customer placing an order and receiving their car.
+The Lean movement, based on the Toyota Production System, defines lead time as the time between a customer placing an order and receiving their car.
 
 ## Lead time is a customer measurement
 
-All these lead times represent a customer measurement. But they differ because the customer is different. Toyota measured the system from the perspective of a car buyer, the Poppendiecks measured the software development system as the users see it, and DevOps measures the deployment pipeline from the perspective of the developer as the customer.
+All these lead times represent a customer measurement. But they differ because the customer is different. 
+
+- Toyota measured the system from the perspective of a car buyer
+- The Poppendiecks measured the software development system as the users see it
+- DevOps measures the deployment pipeline from the perspective of the developer as the customer
+
 
 | Lead time                 | Customer  | Start       | End                   |
 |---------------------------|-----------|-------------|-----------------------|
@@ -36,19 +41,19 @@ All these lead times represent a customer measurement. But they differ because t
 
 The key to successful lead time measurement is representing how the customer views the elapsed time.
 
-:::hint
-If you run a coffee shop, you might measure the time between a customer placing an order and being handed their coffee. You might consider a 2-minute lead time to be good as your competitors take 3 minutes between the order and its fulfillment.
+:::hint 
+If you run a coffee shop, you might measure the time between a customer placing an order and handing them their coffee. You might consider a 2-minute lead time to be good as your competitors take 3 minutes between the order and its fulfillment.
 
-However, your competitor is using a whole-system lead time, which starts when the customer joins the queue. They added another barista and reduced the queue from 15 minutes to just 7. Their customers get coffee in 10 minutes, but your customers have to wait 17 minutes (and you are losing customers who abandon the idea when they see the queue).
+However, your competitor is using a whole-system lead time, which starts when the customer joins the queue. They added another barista and reduced the queue from 15 minutes to 7. Their customers get coffee in 10 minutes, but your customers have to wait 17 minutes (and you're losing customers who leave when they see the queue).
 
-Unless your lead time represents the customer's complete view of the system, you're likely to optimize the wrong things.
+Unless your lead time represents the customer's complete view of the system, you're likely to optimize the wrong things. 
 :::
 
 ## Cycle times
 
 When you measure a part of the system, you're collecting a *cycle time*. In the car industry, it's useful to track how long it takes for a car to move along the production line. In software delivery, it's common to collect the cycle time from when a work item starts to when it's closed. This indicates the performance of software delivery without the varying wait times that can occur before work begins.
 
-Your customer doesn't care about cycle times, as the coffee shop example shows. While you can use cycle times to measure different parts of the whole system to identify bottlenecks that constrain the flow of work, you should always keep the complete system in mind.
+As the coffee shop example shows, your customer doesn't care about cycle times. While you can use cycle times to measure different parts of the system to identify bottlenecks constraining the flow of work, you should always keep the complete system in mind.
 
 In software delivery, it's common to find a large proportion of elapsed time is due to work waiting in a queue. For example, a requirement that would take a few days to deliver might sit in a backlog for months, or a pull request may wait for approval for hours or even days. You can identify these delays by subdividing your system and measuring each part.
 
@@ -58,12 +63,14 @@ Lead times measure the real output of a system, but cycle times help you find th
 
 ## All measurements are useful
 
-Lead time is valuable because it represents the customer's perception. Identifying your customer and tracking lead times as they see them ensures any improvements you make impact their experience. If you make an improvement that doesn't reduce the lead time, you've optimized the wrong part of your system. In some cases, reducing the time for the wrong part of the system can even increase the overall lead time if it adds additional stress at the constraint.
+Lead time is valuable because it represents the customer's perception. Identifying your customer and tracking lead times as they see them ensures any improvements you make impact their experience. 
+
+If you make an improvement that doesn't reduce the lead time, you've optimized the wrong part of your system. In some cases, reducing the time for the wrong part of the system can even increase the overall lead time if it adds additional stress at the constraint.
 
 :::hint
 A _constraint_ is a bottleneck that limits the speed of flow for the whole system. Resolving a constraint causes the bottleneck to move, so the process of identifying and resolving constraints is continuous.
 
-Software delivery represents a constraint to most organizations as technology is such a key competitive advantage. However, this isn't a granular enough identification to make improvements, so you need to look at your software delivery value stream and make improvements where they increase the flow of work in the system.
+Software delivery represents a constraint to most organizations as technology is such a key competitive advantage. However, this isn't a granular enough identification to make improvements. You need to look at your software delivery value stream and make improvements where they increase the flow of work in the system. 
 :::
 
 The Theory of Constraints, created by Eli Goldratt, tells us there's only one constraint in a system. Optimizing anywhere other than the constraint will fail to improve the performance of the whole system.
@@ -93,6 +100,6 @@ Some of these constraints are reflected in the [Continuous Delivery commit cycle
 
 The different definitions of lead time reflect various customer perceptions of parts of the same process. You can use as many measurements of lead and cycle times as you need to find and resolve constraints in your system. You can track the lead times over the long term and use cycle times temporarily as part of a specific improvement exercise.
 
-When you make an improvement or optimization, lead time can help you understand whether you're making a positive impact on the whole system.
+When you improve or optimize, lead time can help you understand if you're positively impacting the whole system.
 
 Happy deployments!
