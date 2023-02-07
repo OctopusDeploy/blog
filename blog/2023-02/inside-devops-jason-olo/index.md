@@ -10,7 +10,7 @@ bannerImageAlt: stylized image of Joanna and Jason seated and talking to each ot
 isFeatured: false
 tags: 
   - DevOps
-  - Inside DevOps
+  - Inside DevOps 
 ---
 
 This post opens our Inside DevOps series, where we share lessons learned from those on the frontlines of DevOps. 
