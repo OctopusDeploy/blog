@@ -1,9 +1,9 @@
 ---
 title: Continuous Integration vs Continuous Deployment
-description: CI/CD are frequently referred to by a single acronym as if they were a single process. This post looks at the fundamental differences between CI and CD.
+description: CI/CD is frequently referred to by a single acronym as if it was a single process. This post looks at the fundamental differences between CI and CD.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2022-01-12-1400
+published: 2023-02-08-1400
 metaImage: blogimage-introcicd.png
 bannerImage: blogimage-introcicd.png
 bannerImageAlt: CI CD equation says code plus dependencies plus build tools plus execution environment equals test results plus logs plus compiled artifact
@@ -99,7 +99,6 @@ In short, a good deployment tool, like Octopus Deploy, facilitates the human dec
 ## Conclusion
 
 Recognizing the different requirements between a machine-driven Continuous Integration process and a human-driven Continuous Delivery process is essential for delivering features to your customers in a fast, reliable, and repeatable manner. This is why using dedicated tools for Continuous Integration and Continuous Delivery can make sense. You can give it a try by [building with GitHub and deploying with Octopus](https://octopus.com/github).
-
 
 If you haven't used Octopus before, you can [sign up for a free trial](https://octopus.com/start).
 
