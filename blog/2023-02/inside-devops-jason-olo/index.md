@@ -10,6 +10,7 @@ bannerImageAlt: stylized image of Joanna and Jason seated and talking to each ot
 isFeatured: false
 tags: 
   - DevOps
+  - Inside DevOps
 ---
 
 This post opens our Inside DevOps series, where we share lessons learned from those on the frontlines of DevOps. 
@@ -65,5 +66,5 @@ Another best practice is involving the development team in the deployment proces
 **Jason Dunnivant**: Anytime!
 
 :::hint
-If you’d like to feature in our series, [Inside DevOps](https://octopus.com/blog/tag/Inside%20DevOps%), please reach out to [Joanna on LinkedIn](https://www.linkedin.com/in/joannawyganowska/) to set up time for a quick chat.
+If you’d like to feature in our series, Inside DevOps, please reach out to [Joanna on LinkedIn](https://www.linkedin.com/in/joannawyganowska/) to set up time for a quick chat.
 :::
