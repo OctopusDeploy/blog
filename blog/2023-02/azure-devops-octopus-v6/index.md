@@ -15,7 +15,7 @@ tags:
   - Integrations
 ---
 
-In this post, you learn what's new in v6 of the Octopus Azure DevOps plugin being released this week, understand some of the decisions that went in to the updates, and get a quick tour of the updated plugin.
+In this post, you learn what's new in v6 of the Octopus Azure DevOps plugin, understand some of the decisions that went in to the updates, and get a quick tour of the updated plugin.
 
 The updates include:
 
@@ -266,7 +266,7 @@ As noted in the YAML example, the Await step has internal knowledge of the outpu
 
 The new steps and updates to the Octopus Azure DevOps plugin improve the automation of deployment processes, task execution, and the creation of packages. This gives you more consistency and a more seamless user experience. 
 
-Additionally, the marketplace listing for the plugin is undergoing a comprehensive revamp to include detailed information on all input and output variables, to aid you if you're using YAML pipelines.
+To help if you use YAML pipelines, we also updated the marketplace listing with detailed information on all input and output variables.
 
 Our goal with this release is to empower you with robust and user-friendly steps to manage your deployments, and we believe it will significantly enhance your experience.
 
