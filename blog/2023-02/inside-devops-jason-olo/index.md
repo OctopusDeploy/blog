@@ -25,7 +25,7 @@ This post opens our Inside DevOps series, where we share lessons learned from th
 
 ## What is DevOps to you? How do you define it?
 
-To me, DevOps is an approach to automating as many things as possible, so people don’t need to do them manually. With a DevOps mindset, we can relieve our software engineers from mundane tasks, such as provisioning infrastructure, and let them focus on what they love to do – developing software.
+**Jason Dunnivant**: To me, DevOps is an approach to automating as many things as possible, so people don’t need to do them manually. With a DevOps mindset, we can relieve our software engineers from mundane tasks, such as provisioning infrastructure, and let them focus on what they love to do – developing software.
 
 ## How did your DevOps journey start?
 
