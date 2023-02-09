@@ -19,7 +19,7 @@ This post opens our Inside DevOps series, where we share lessons learned from th
 
 **Jason, I reached out to you to start our blog series as I'm fascinated by your dedication to DevOps. You even have a tattoo of Octopus Deploy!**
 
-*Jason Dunnivant*: As you can see, I am a true fan of your product.
+*Jason*: As you can see, I am a true fan of your product.
 
 ![Jason Dunnivant sitting at his desk with his forearm out to show his Octopuds Deploy tattoo](photo-jason-dunnivant-x0.25.jpg "width=500")*Jason Dunnivant and his Octopus Deploy tattoo*
 
