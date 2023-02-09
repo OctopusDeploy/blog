@@ -59,11 +59,11 @@ Another best practice is involving the development team in the deployment proces
 
 **Thank you for that recommendation; we’ll make sure to add it to our [DevOps reading list](https://octopus.com/devops/reading-list/). Last question: what’s one thing about you that might surprise us?**
 
-*Jason Dunnivant*: A fun fact about me is that I’m a nuisance alligator trapper with The Florida Fish and Wildlife Conservation Commission.
+*Jason*: A fun fact about me is that I’m a nuisance alligator trapper with The Florida Fish and Wildlife Conservation Commission.
 
 **Oh wow – it will be hard to beat that one! Jason, thank you again for spending time with me, and happy deployments!**
 
-*Jason Dunnivant*: Anytime!
+*Jason*: Anytime!
 
 :::hint
 If you’d like to feature in our series, Inside DevOps, please reach out to [Joanna on LinkedIn](https://www.linkedin.com/in/joannawyganowska/) to set up time for a quick chat.
