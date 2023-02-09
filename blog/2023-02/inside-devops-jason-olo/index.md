@@ -17,13 +17,13 @@ This post opens our Inside DevOps series, where we share lessons learned from th
 
 [Jason Dunnivant](https://www.linkedin.com/in/jasondunnivant/), Release Engineer at [Olo](https://www.olo.com/), features first. Olo is a leading open SaaS platform for restaurants that enables hospitality at every touchpoint.
 
-## Jason, I reached out to you to start our blog series as I'm fascinated by your dedication to DevOps. You even have a tattoo of Octopus Deploy!
+**Jason, I reached out to you to start our blog series as I'm fascinated by your dedication to DevOps. You even have a tattoo of Octopus Deploy!**
 
-**Jason Dunnivant**: As you can see, I am a true fan of your product.
+*Jason Dunnivant*: As you can see, I am a true fan of your product.
 
 ![Jason Dunnivant sitting at his desk with his forearm out to show his Octopuds Deploy tattoo](photo-jason-dunnivant-x0.25.jpg "width=500")*Jason Dunnivant and his Octopus Deploy tattoo*
 
-## What is DevOps to you? How do you define it?
+**What is DevOps to you? How do you define it?**
 
 **Jason Dunnivant**: To me, DevOps is an approach to automating as many things as possible, so people don’t need to do them manually. With a DevOps mindset, we can relieve our software engineers from mundane tasks, such as provisioning infrastructure, and let them focus on what they love to do – developing software.
 
