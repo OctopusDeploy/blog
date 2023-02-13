@@ -4,9 +4,9 @@ description: Public incident report and our learnings about the Octopus Cloud ne
 author: alix.klingenberg@octopus.com
 visibility: public
 published: 2023-02-01
-metaImage: blogimage-incidentazurenetworkoutage-2023x2.png
-bannerImage: blogimage-incidentazurenetworkoutage-2023x2.png
-bannerImageAlt: A stylized Octopus and shield icon
+metaImage: blogimage-incidentreport-2023.png
+bannerImage: blogimage-incidentreport-2023.png
+bannerImageAlt: A person adding a tick to a checklist which is above an item marked with an exclamation mark
 isFeatured: false
 tags:
   - Engineering
