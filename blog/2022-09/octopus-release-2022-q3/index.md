@@ -7,7 +7,7 @@ published: 2022-09-14-1400
 metaImage: octopus-2002-q3.png
 bannerImage: octopus-2002-q3.png
 bannerImageAlt: Octopus 2022 Q3 
-isFeatured: true
+isFeatured: false
 tags:
 - Product
 - DevOps
