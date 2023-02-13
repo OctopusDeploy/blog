@@ -7,7 +7,7 @@ published: 2023-01-11-1400
 metaImage: blogimage-devopsandplatformengineering-2022x1.png
 bannerImage: blogimage-devopsandplatformengineering-2022x1.png
 bannerImageAlt: Stylized image of DevOps infinity symbol with a car driving on it and increasing speed over golden arrows.
-isFeatured: false
+isFeatured: true
 tags: 
   - DevOps
 ---
