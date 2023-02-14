@@ -23,7 +23,7 @@ As of 2022 there were still a few thousand Windows VMs deployed by the Azure VM 
 
 ## How to provision Tentacle VMs going forward
 
-We recommend using [ARM templates](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/overview) and [Custom Script Extensions](https://learn.microsoft.com/en-us/azure/virtual-machines/extensions/custom-script-windows) to deploy Tentacles from now on.
+We recommend using [ARM templates](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/overview) and [Powershell DSC Extensions](https://learn.microsoft.com/en-us/azure/virtual-machines/extensions/dsc-windows) to deploy Tentacles from now on.
 
 Below we outline the basic steps to creating such a deployment.
 
@@ -122,11 +122,20 @@ configuration OctopusTentacle
 }
 ```
 
-### Using ARM template to provision Tentacle VM
+### Prepare the ARM template
+
+#### `location` of the DSC Extension
+
+The DSC Extension needs to be deployed to the same `location` as the VM in order to find it. You can use the same expression for both the VM and the extension's location such as `[resourceGroup().location]`, or use a parameter such as `[parameters('vmLocation')]`.
+
+When defining the location as a parameter, the value needs to be the id of the region, e.g. `australiacentral` or `westus2`. One way to see the list of all regions and their ids is using the command `az account list-locations -o table`. If it's an existing VM, you can also find this by going to the VM page and looking at `JSON View`.
+
+#### Using ARM template to provision Tentacle VM
 
 The easiest option is to deploy Tentacle along with your VM and other related resources. Everything is defined together and deployed at the same time, and can be easily redeployed if needed.
 
-Here's what the ARM template might look like. Note that this tempalte deploys the VM and the extension to the same location as the resource group. If you need the VM in a different region, make sure the extension has the same `location` as the VM.
+Here's what the ARM template might look like.
+
 
 ```json
 {
@@ -443,7 +452,7 @@ Here's what the ARM template might look like. Note that this tempalte deploys th
 
 For more examples, see [Installing the Tentacle via DSC in an ARM template](https://octopus.com/docs/infrastructure/deployment-targets/tentacle/windows/azure-virtual-machines/via-an-arm-template-with-dsc).
 
-### Use ARM template to install Tentacle onto existing VM
+#### Use ARM template to install Tentacle onto existing VM
 
 It's also possible to use an ARM template to deploy Tentacle onto an existing VM. The extension needs to be deployed to the same region as the VM in order to find it. Therefore we need to provide both the name and location of the VM.
 
@@ -557,6 +566,6 @@ To deploy the ARM template you can do it
 
 ## Conclusion
 
-With the Azure VM Extension going away, it is now recommended to use ARM templates and script extensions to deploy your Windows Tentacle VMs in Azure. This should give you more control over how you deploy your VMs and Tentacles. It will also allow us to update Tentacle with more confidence moving forwards so we can bring you a more robust and smooth deployment experience.
+With the Azure VM Extension going away, it is now recommended to use ARM templates and DSC extensions to deploy your Windows Tentacle VMs in Azure. This should give you more control over how you deploy your VMs and Tentacles. It will also allow us to update Tentacle with more confidence moving forwards so we can bring you a more robust and smooth deployment experience.
 
 Happy deployments!
