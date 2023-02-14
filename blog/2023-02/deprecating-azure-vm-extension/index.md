@@ -441,6 +441,8 @@ Here's what the ARM template might look like. Note that this tempalte deploys th
 }
 ```
 
+For more examples, see [Installing the Tentacle via DSC in an ARM template](https://octopus.com/docs/infrastructure/deployment-targets/tentacle/windows/azure-virtual-machines/via-an-arm-template-with-dsc).
+
 ### Use ARM template to install Tentacle onto existing VM
 
 It's also possible to use an ARM template to deploy Tentacle onto an existing VM. The extension needs to be deployed to the same region as the VM in order to find it. Therefore we need to provide both the name and location of the VM.
