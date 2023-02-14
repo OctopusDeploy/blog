@@ -548,6 +548,11 @@ To deploy the ARM template you can do it
 - [using Azure CLI](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-cli)
 - or [using Octopus](https://octopus.com/docs/runbooks/runbook-examples/azure/resource-groups)
 
+## Next Steps
+
+1. Shortly after this post, we're going to re-publish Tentacle `6.3` to our downloads page and `Chocolatey`. We've had to pull the latest Tentacle from these sources because of the Azure VM Extension issues described above. If you start having issues with the extension, this is likely why.
+1. At a later date, within one year at the latest, we're going to remove the Azure VM Extension from the marketplace, thus completing the deprecation process.
+
 ## Conclusion
 
 With the Azure VM Extension going away, it is now recommended to use ARM templates and script extensions to deploy your Windows Tentacle VMs in Azure. This should give you more control over how you deploy your VMs and Tentacles. It will also allow us to update Tentacle with more confidence moving forwards so we can bring you a more robust and smooth deployment experience.
