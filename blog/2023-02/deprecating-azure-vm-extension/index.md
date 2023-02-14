@@ -268,12 +268,12 @@ Here's what the ARM template might look like.
       "properties": {
         "securityRules": [
           {
-            "name": "allow_rdp",
+            "name": "allow_listening_tentacle",
             "properties": {
-              "description": "Allow inbound RDP",
+              "description": "Allow inbound Tentacle connection",
               "protocol": "Tcp",
               "sourcePortRange": "*",
-              "destinationPortRange": "3389",
+              "destinationPortRange": "10933",
               "sourceAddressPrefix": "*",
               "destinationAddressPrefix": "*",
               "access": "Allow",
@@ -450,6 +450,8 @@ Here's what the ARM template might look like.
 }
 ```
 
+The network group security rule in this example allows for Listening Tentacles to be talked to via the default port 10933. Polling Tentacles don't require an open port and can be deployed without one.
+
 For more examples, see [Installing the Tentacle via DSC in an ARM template](https://octopus.com/docs/infrastructure/deployment-targets/tentacle/windows/azure-virtual-machines/via-an-arm-template-with-dsc).
 
 #### Use ARM template to install Tentacle onto existing VM
@@ -562,7 +564,7 @@ To deploy the ARM template you can do it
 ## Next Steps
 
 1. Shortly after this post, we're going to re-publish Tentacle `6.3` to our downloads page and `Chocolatey`. We've had to pull the latest Tentacle from these sources because of the Azure VM Extension issues described above. If you start having issues with the extension, this is likely why.
-1. At a later date, within one year at the latest, we're going to remove the Azure VM Extension from the marketplace, thus completing the deprecation process.
+1. We're going to remove the Azure VM Extension from the marketplace at the end of March 2023, thus completing the deprecation process.
 
 ## Conclusion
 
