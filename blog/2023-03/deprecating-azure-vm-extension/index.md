@@ -3,7 +3,7 @@ title: Deprecating Azure VM Extension for Tentacle
 description: Find out why the Azure VM Extension is deprecated and the recommended way to deploy Tentacle Windows VMs in the future.
 author: veo.chen@octopus.com
 visibility: private
-published: 2023-02-14-1400
+published: 2023-03-01-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt: Deprecating Azure VM Extension for Tentacle
