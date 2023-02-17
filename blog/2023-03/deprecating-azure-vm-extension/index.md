@@ -1,12 +1,12 @@
 ---
 title: Removing the Azure VM extension for Tentacle
-description: Find out why the Azure VM Extension was deprecated and the recommended way to deploy Tentacle Windows VMs in the future.
+description: Find out why the Azure VM extension was deprecated and the recommended way to deploy Tentacle Windows VMs in the future.
 author: veo.chen@octopus.com
 visibility: private
 published: 2023-03-01-1400
 metaImage: 
 bannerImage: 
-bannerImageAlt: Deprecating Azure VM Extension for Tentacle
+bannerImageAlt: Deprecating Azure VM extension for Tentacle
 isFeatured: false
 tags: 
   - Product
@@ -14,17 +14,17 @@ tags:
   - Azure
 ---
 
-The [Azure VM Extension for Tentacle](https://github.com/OctopusDeploy/AzureVMExtension) was deprecated in 2021 but never removed from the marketplace. It's no longer fully compatible with newer versions of Tentacle, so we're removing it in late March 2023. 
+The [Azure VM extension for Tentacle](https://github.com/OctopusDeploy/AzureVMExtension) was deprecated in 2021 but never removed from the marketplace. It's no longer fully compatible with newer versions of Tentacle, so we're removing it in late March 2023. 
 
 In this post, I walk you through alternatives if your workflow is impacted. 
 
 :::hint
-The VM Extension only applies to Windows VMs in Azure.
+The VM extension only applies to Windows VMs in Azure.
 :::
 
 ## Why we're removing the Azure VM extension for Tentacle
 
-In [https://octopus.com/blog/tentacle-dotnet-version-change](https://octopus.com/blog/tentacle-dotnet-version-change) we explained that we're no longer supporting older .NET versions in Tentacle. This means Windows VMs without .NET 4.8 runtime no longer run the latest version of Tentacle.
+In a recent [blog post about the Tentacle .NET version change](https://octopus.com/blog/tentacle-dotnet-version-change), we explained we're no longer supporting older .NET versions in Tentacle. This means Windows VMs without .NET 4.8 runtime no longer run the latest version of Tentacle.
 
 In 2022, there were still a few thousand Windows VMs deployed by the Azure VM extension. We deprecated the extension a couple years ago, as Azure was moving towards ARM templates and script extensions. As a result, the extension no longer works when deploying to VMs with older OS versions. 
 
@@ -32,22 +32,22 @@ We're also going to remove the extension from the marketplace in late March 2023
 
 ## How to provision Tentacle VMs going forward
 
-We recommend using [ARM templates](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/overview) and [Powershell DSC Extensions](https://learn.microsoft.com/en-us/azure/virtual-machines/extensions/dsc-windows) to deploy Tentacles from now on.
+We recommend using [ARM templates](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/overview) and [PowerShell DSC extensions](https://learn.microsoft.com/en-us/azure/virtual-machines/extensions/dsc-windows) to deploy Tentacles from now on.
 
 Below are basic steps to do this.
 
 ### Tentacle version & .NET version
 
-Whatever your provisioning method, Tentacle from `6.3` onwards requires the .NET 4.8 runtime to run on Windows. We recommend OS versions that have .NET 4.8 installed by default. If not, install on your VM using the ARM template or the DSC config.
+Whatever your provisioning method, Tentacle from 6.3 onwards requires the .NET 4.8 runtime to run on Windows. We recommend OS versions that have .NET 4.8 installed by default. If not, install on your VM using the ARM template or the DSC config.
 
-Alternatively, you can lock the Tentacle version to `6.2` which is compatible with most old .NET framework versions. After the version is locked, you can use the DSC config to install a `6.2` Tentacle and ignore newer versions. An example DSC config is shown in the next section.
+Alternatively, you can lock the Tentacle version to 6.2 which is compatible with most old .NET framework versions. After the version is locked, you can use the DSC config to install a 6.2 Tentacle and ignore newer versions. An example DSC config is shown in the next section.
 
 - See [.NET Framework & Windows OS versions](https://learn.microsoft.com/en-us/dotnet/framework/migration-guide/versions-and-dependencies#net-framework-48) for whether .NET 4.8 is or can be installed on a given OS version.
 - See [Tentacle versioning and when to update](https://octopus.com/blog/tentacle-versioning) for how to lock your Tentacle version.
 
 ### Preparing the DSC extension
 
-Octopus Deploy offers a [DSC module](https://github.com/OctopusDeploy/OctopusDSC) that you can use to deploy Tentacles. As explained in [Installing the Tentacle via DSC in an ARM template](https://octopus.com/docs/infrastructure/deployment-targets/tentacle/windows/azure-virtual-machines/via-an-arm-template-with-dsc), the first step is creating a zip file containing the DSC source and a DSC config. The config file can remain simple, or you can modify it to accept parameters for your workflow. For example, here we add a `CommunicationMode` parameter to deploy Tentacles in different modes.
+Octopus Deploy offers a [DSC module](https://github.com/OctopusDeploy/OctopusDSC) that you can use to deploy Tentacles. As explained in [Installing the Tentacle via DSC in an ARM template](https://octopus.com/docs/infrastructure/deployment-targets/tentacle/windows/azure-virtual-machines/via-an-arm-template-with-dsc), the first step is creating a ZIP file containing the DSC source and a DSC config. The config file can remain simple, or you can modify it to accept parameters for your workflow. For example, here we add a `CommunicationMode` parameter to deploy Tentacles in different modes.
 
 ```powershell
 configuration OctopusTentacle
@@ -87,7 +87,7 @@ configuration OctopusTentacle
 }
 ```
 
-If you're locking Tentacle to version `6.2`, update the DSC config to only download `6.2` during installation.
+If you're locking Tentacle to version 6.2, update the DSC config to only download 6.2 during installation.
 
 ```powershell
 configuration OctopusTentacle
@@ -133,13 +133,15 @@ configuration OctopusTentacle
 
 ### Preparing the ARM template
 
-#### `location` of the DSC Extension
+#### Location of the DSC extension
 
-The DSC Extension needs to be deployed to the same `location` as the VM to find it. You can use the same expression for both the VM and the extension's locations, such as `[resourceGroup().location]`, or use a parameter such as `[parameters('vmLocation')]`.
+The DSC extension needs to be deployed to the same location as the VM to find it. You can use the same expression for both the VM and the extension's locations, such as `[resourceGroup().location]`, or use a parameter such as `[parameters('vmLocation')]`.
 
-When defining the location as a parameter, the value needs to be the ID of the region, e.g. `australiacentral` or `westus2`. 
+When defining the location as a parameter, the value must be the ID of the region, for example, `australiacentral` or `westus2`. 
 
-To see the list of all regions and their IDs, use the command `az account list-locations -o table`. If it's an existing VM, you can also find this by going to the VM page and looking at `JSON View`.
+To see the list of all regions and their IDs, use the command `az account list-locations -o table`. 
+
+If it's an existing VM, you can also find this by going to the VM page and looking at **JSON View**.
 
 #### Using ARM template to provision Tentacle VM
 
@@ -461,13 +463,13 @@ Here's what the ARM template might look like.
 }
 ```
 
-The network group security rule in this example allows for Listening Tentacles to be talked to via the default port 10933. Polling Tentacles don't require an open port and can be deployed without one.
+In this example, the network group security rule allows Listening Tentacles to be talked to via the default port 10933. Polling Tentacles don't require an open port and can be deployed without one.
 
 For more examples, see [Installing the Tentacle via DSC in an ARM template](https://octopus.com/docs/infrastructure/deployment-targets/tentacle/windows/azure-virtual-machines/via-an-arm-template-with-dsc).
 
 #### Using an ARM template to install Tentacle onto an existing VM
 
-It's also possible to use an ARM template to deploy Tentacle onto an existing VM. The extension needs to be deployed to the same region as the VM to find it. You need to provide both the name and location of the VM.
+It's also possible to use an ARM template to deploy Tentacle onto an existing VM. The extension needs to be deployed to the same region as the VM to find it. You must provide both the name and location of the VM.
 
 Here's what the ARM template might look like.
 
@@ -570,11 +572,11 @@ You can deploy the ARM template from:
 
 - [Azure Portal](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/quickstart-create-templates-use-the-portal)
 - [Azure CLI](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/deploy-cli)
--[Octopus](https://octopus.com/docs/runbooks/runbook-examples/azure/resource-groups)
+- [Octopus Deploy](https://octopus.com/docs/runbooks/runbook-examples/azure/resource-groups)
 
 ## Next steps
 
-1. Soon, we're going to re-publish Tentacle `6.3` to our downloads page and `Chocolatey`. We had to pull the latest Tentacle from these sources because of the Azure VM extension issues described in this post. If you have issues with the extension, this is likely why.
+1. We're going to republish Tentacle 6.3 to our downloads page and Chocolatey. We had to pull the latest Tentacle from these sources because of the Azure VM extension issues described in this post. If you have issues with the extension, this is likely why.
 1. We're going to remove the Azure VM extension from the marketplace at the end of March 2023, thus completing the deprecation process.
 
 ## Conclusion
