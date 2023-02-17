@@ -576,7 +576,7 @@ You can deploy the ARM template from:
 
 ## Next steps
 
-1. We're going to republish Tentacle 6.3 to our downloads page and Chocolatey. We had to pull the latest Tentacle from these sources because of the Azure VM extension issues described in this post. If you have issues with the extension, this is likely why.
+1. We're going to republish Tentacle 6.3 to our downloads page and Chocolatey on March 8th 2023. We had to pull the latest Tentacle from these sources because of the Azure VM extension issues described in this post. If you have issues with the extension, this is likely why.
 1. We're going to remove the Azure VM extension from the marketplace at the end of March 2023, thus completing the deprecation process.
 
 ## Conclusion
