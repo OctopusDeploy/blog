@@ -73,7 +73,7 @@ A _constraint_ is a bottleneck that limits the speed of flow for the whole syste
 Software delivery represents a constraint to most organizations as technology is such a key competitive advantage. However, this isn't a granular enough identification to make improvements. You need to look at your software delivery value stream and make improvements where they increase the flow of work in the system. 
 :::
 
-The Theory of Constraints, created by Eli Goldratt, tells us there's only one constraint in a system. Optimizing anywhere other than the constraint will fail to improve the performance of the whole system.
+The Theory of Constraints, created by Eli Goldratt, tells us there's always at least one constraint in a system. Optimizing anywhere other than the constraint will fail to improve the performance of the whole system.
 
 Cycle times and other part-system timers help you work out where optimization is likely to reduce the overall lead time, so you can use cycle times and lead times together to assess the improvement.
 
