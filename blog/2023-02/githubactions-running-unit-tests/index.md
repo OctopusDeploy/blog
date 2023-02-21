@@ -3,7 +3,7 @@ title: Running unit tests in GitHub Actions
 description: As part of our series about Continuous Integration and build servers, learn how to run unit tests in GitHub Actions and process the results.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2023-02-08-1400
+published: 2023-02-22-1400
 metaImage: blogimage-runningunittestsingithubactions-2022.png
 bannerImage: blogimage-runningunittestsingithubactions-2022.png
 bannerImageAlt: Open laptop sits behind a screen in dark mode showing a table of rows with green ticks, red crosses, and orange exclamation marks to indicate unit test results.
@@ -198,14 +198,14 @@ GitHub Actions is primarily a task execution environment designed to verify and 
 
 In this post, you learned:
 
-- Some of the questions to ask when evaluating third party actions to process test results.
-- How to write basic workflows for testing Java and DotNET Core applications.
-- How to process test results and display the generated reports.
+- Some of the questions to ask when evaluating third party actions to process test results
+- How to write basic workflows for testing Java and DotNET Core applications
+- How to process test results and display the generated reports
 
 Check out our next post about testing in GitHub Actions:
 
 - [Running end-to-end tests in GitHub Actions](https://octopus.com/blog/githubactions-running-endtoend-tests)
 
-Also learn why [GitHub and Octopus are better together](https://octopus.com/github). 
+You can also learn why [GitHub and Octopus are better together](https://octopus.com/github). 
 
 Happy deployments!
