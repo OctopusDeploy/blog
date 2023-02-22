@@ -4,9 +4,9 @@ description: Find out why the Azure VM extension was deprecated and the recommen
 author: veo.chen@octopus.com
 visibility: private
 published: 2023-03-01-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: Deprecating Azure VM extension for Tentacle
+metaImage: blogimage-deprecateazurevmextension-2023-v2.png
+bannerImage: blogimage-deprecateazurevmextension-2023-v2.png
+bannerImageAlt: Azure VM logo on a laptop screen in the clouds
 isFeatured: false
 tags: 
   - Product
