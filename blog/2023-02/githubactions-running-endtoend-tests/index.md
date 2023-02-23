@@ -3,7 +3,7 @@ title: Running end-to-end tests in GitHub Actions
 description: As part of our series about Continuous Integration, learn how to run end-to-end tests in GitHub Actions and capture the results.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2023-02-13-1400
+published: 2023-02-27-1400
 metaImage: blogimage-githubactionsrunendtoendtests-2022.png
 bannerImage: blogimage-githubactionsrunendtoendtests-2022.png
 bannerImageAlt:  A Github Actions logo-shaped road with two roads, one with a car that’s completed the end-to-end test and one that's in progress.
@@ -20,9 +20,9 @@ GitHub Actions has a large ecosystem of high quality third-party actions, plus n
 
 In this post, I show you how to run browser tests with Cypress and API tests with Postman as part of a GitHub Actions workflow.
 
-## Prerequisites
+## Getting started
 
-GitHub Actions is a hosted service, so the only prerequisite is a GitHub account. All other dependencies like, Software Development Kits (SDKs) or testing tools, are provided by the Docker images or GitHub actions published by testing platforms.
+GitHub Actions is a hosted service, so all you need to get started is a GitHub account. All other dependencies like, Software Development Kits (SDKs) or testing tools, are provided by the Docker images or GitHub Actions published by testing platforms.
 
 ## Running browser tests with Cypress
 
