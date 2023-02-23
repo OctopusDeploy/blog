@@ -20,9 +20,9 @@ Verifying code changes with unit tests is a critical process in typical developm
 
 In this post, I show you how to add unit tests to a GitHub Actions workflow and configure custom actions to process the results.
 
-## Prerequisites
+## Getting started
 
-GitHub Actions is a hosted service, so the only prerequisite is a GitHub account. All other dependencies like Software Development Kits (SDKs) are installed during the execution of the GitHub Actions workflow.
+GitHub Actions is a hosted service, so you all need to get started is a GitHub account. All other dependencies like Software Development Kits (SDKs) are installed during the execution of the GitHub Actions workflow.
 
 ## Selecting an action
 
