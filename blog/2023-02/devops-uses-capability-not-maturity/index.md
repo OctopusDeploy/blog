@@ -94,8 +94,6 @@ While maturity models tend to focus on a fixed standardized list of activities, 
 
 You level up in a maturity model based on proficiency against the activities. In a capability model, you constantly add gains as you continuously improve your skills and techniques.
 
-> While there is no standard approach or definition for DevOps, successful initiatives start with a focus on delivering continuous, iterative improvements rooted in customer value. *Use 8 Simple Steps to Get DevOps Right - Gartner (Daniel Betts, George Spafford)*
-
 These differences are summarized below:
 
 | Maturity model | Capability model |
