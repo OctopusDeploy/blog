@@ -14,7 +14,7 @@ tags:
   - Azure
 ---
 
-The [Azure VM extension for Tentacle](https://github.com/OctopusDeploy/AzureVMExtension) was deprecated in 2021 but never removed from the marketplace. It's no longer fully compatible with newer versions of Tentacle, so we're removing it in late March 2023. 
+The [Azure VM extension for Tentacle](https://github.com/OctopusDeploy/AzureVMExtension) was deprecated in 2021 but never removed from the marketplace. It's no longer fully compatible with newer versions of Tentacle, so we plan to remove it in late March 2023. 
 
 In this post, I walk you through alternatives if your workflow is impacted. 
 
@@ -47,7 +47,7 @@ Alternatively, you can lock the Tentacle version to 6.2 which is compatible with
 
 ### Preparing the DSC extension
 
-Octopus Deploy offers a [DSC module](https://github.com/OctopusDeploy/OctopusDSC) that you can use to deploy Tentacles. As explained in [Installing the Tentacle via DSC in an ARM template](https://octopus.com/docs/infrastructure/deployment-targets/tentacle/windows/azure-virtual-machines/via-an-arm-template-with-dsc), the first step is creating a ZIP file containing the DSC source and a DSC config. The config file can remain simple, or you can modify it to accept parameters for your workflow. For example, here we add a `CommunicationMode` parameter to deploy Tentacles in different modes.
+Octopus Deploy offers a [DSC module](https://github.com/OctopusDeploy/OctopusDSC) that you can use to deploy Tentacles. As explained in [our docs](https://octopus.com/docs/infrastructure/deployment-targets/tentacle/windows/azure-virtual-machines/via-an-arm-template-with-dsc), the first step is creating a ZIP file containing the DSC source and a DSC config. The config file can remain simple, or you can modify it to accept parameters for your workflow. For example, here we add a `CommunicationMode` parameter to deploy Tentacles in different modes.
 
 ```powershell
 configuration OctopusTentacle
@@ -465,7 +465,7 @@ Here's what the ARM template might look like.
 
 In this example, the network group security rule allows Listening Tentacles to be talked to via the default port 10933. Polling Tentacles don't require an open port and can be deployed without one.
 
-For more examples, see [Installing the Tentacle via DSC in an ARM template](https://octopus.com/docs/infrastructure/deployment-targets/tentacle/windows/azure-virtual-machines/via-an-arm-template-with-dsc).
+For more examples, see our documentation about [installing the Tentacle via DSC in an ARM template](https://octopus.com/docs/infrastructure/deployment-targets/tentacle/windows/azure-virtual-machines/via-an-arm-template-with-dsc).
 
 #### Using an ARM template to install Tentacle onto an existing VM
 
@@ -576,8 +576,8 @@ You can deploy the ARM template from:
 
 ## Next steps
 
-1. We're planning to republ Tentacle 6.3 to our downloads page and Chocolatey on Wednesday, March 8, 2023. We had to pull the latest Tentacle from these sources because of the Azure VM extension issues described in this post. If you have issues with the extension, this is likely why.
-1. We're going to remove the Azure VM extension from the marketplace at the end of March 2023, to complete the deprecation process.
+1. We plan to republish Tentacle 6.3 to our downloads page and Chocolatey on Wednesday, March 8, 2023. We had to pull the latest Tentacle from these sources because of the Azure VM extension issues described in this post. If you have issues with the extension, this is likely why.
+1. We plan to remove the Azure VM extension from the marketplace at the end of March 2023, to complete the deprecation process.
 
 ## Conclusion
 
