@@ -6,7 +6,7 @@ visibility: public
 published: 2023-02-27-1400
 metaImage: blogimage-githubactionsrunendtoendtests-2022.png
 bannerImage: blogimage-githubactionsrunendtoendtests-2022.png
-bannerImageAlt:  A Github Actions logo-shaped road with two roads, one with a car that’s completed the end-to-end test and one that's in progress.
+bannerImageAlt: A Github Actions logo-shaped road with two roads, one with a car that’s completed the end-to-end test and one that's in progress.
 isFeatured: false
 tags: 
   - DevOps
