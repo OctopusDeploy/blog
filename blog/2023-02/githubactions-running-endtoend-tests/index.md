@@ -16,7 +16,7 @@ tags:
   - Testing
 ---
 
-GitHub Actions has a large ecosystem of high quality third-party actions, plus native support for executing build steps inside Docker containers. This means it's easy to run end-to-end tests as part of a workflow, often only requiring a single step to run testing tools with all the required dependencies.
+GitHub Actions has a large ecosystem of high quality third-party actions, plus built-in support for executing build steps inside Docker containers. This means it's easy to run end-to-end tests as part of a workflow, often only requiring a single step to run testing tools with all the required dependencies.
 
 In this post, I show you how to run browser tests with Cypress and API tests with Postman as part of a GitHub Actions workflow.
 
