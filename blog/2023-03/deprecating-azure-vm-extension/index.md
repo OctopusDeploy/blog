@@ -14,7 +14,7 @@ tags:
   - Azure
 ---
 
-The [Azure VM extension for Tentacle](https://github.com/OctopusDeploy/AzureVMExtension) was deprecated in 2021 but never removed from the marketplace. It's no longer fully compatible with newer versions of Tentacle, so we plan to remove it in late March 2023. 
+The [Azure VM extension for Tentacle](https://github.com/OctopusDeploy/AzureVMExtension) was deprecated in 2021 but we didn't remove it from the marketplace. It's no longer fully compatible with newer versions of Tentacle, so we plan to remove it in late March 2023. 
 
 In this post, I walk you through alternatives if your workflow is impacted. 
 
@@ -24,7 +24,7 @@ The VM extension only applies to Windows VMs in Azure.
 
 ## Why we're removing the Azure VM extension for Tentacle
 
-In a recent [blog post about the Tentacle .NET version change](https://octopus.com/blog/tentacle-dotnet-version-change), we explained we're no longer supporting older .NET versions in Tentacle. This means Windows VMs without .NET 4.8 runtime no longer run the latest version of Tentacle.
+In a recent [post about the Tentacle .NET version change](https://octopus.com/blog/tentacle-dotnet-version-change), we explained we're no longer supporting older .NET versions in Tentacle. This means Windows VMs without .NET 4.8 runtime no longer run the latest version of Tentacle.
 
 In 2022, there were still a few thousand Windows VMs deployed by the Azure VM extension. We deprecated the extension a couple years ago, as Azure was moving towards ARM templates and script extensions. As a result, the extension no longer works when deploying to VMs with older OS versions. 
 
