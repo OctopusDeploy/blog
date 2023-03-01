@@ -13,58 +13,73 @@ tags:
   - Inside DevOps
 ---
 
-This post opens our Inside DevOps series, where we share lessons learned from those on the frontlines of DevOps. 
-
-[Jason Dunnivant](https://www.linkedin.com/in/jasondunnivant/), Release Engineer at [Olo](https://www.olo.com/), features first. Olo is a leading open SaaS platform for restaurants that enables hospitality at every touchpoint.
-
-**Jason, I reached out to you to start our blog series as I'm fascinated by your dedication to DevOps. You even have a tattoo of Octopus Deploy!**
-
-*Jason*: As you can see, I am a true fan of your product.
-
-![Jason Dunnivant sitting at his desk with his forearm out to show his Octopuds Deploy tattoo](photo-jason-dunnivant-x0.25.jpg "width=500")*Jason Dunnivant and his Octopus Deploy tattoo*
-
-**What is DevOps to you? How do you define it?**
-
-*Jason*: To me, DevOps is an approach to automating as many things as possible, so people don’t need to do them manually. With a DevOps mindset, we can relieve our software engineers from mundane tasks, such as provisioning infrastructure, and let them focus on what they love to do – developing software.
+This post is the next in our [Inside DevOps series](https://octopus.com/blog/tag/Inside%20DevOps), where we share lessons learned from those on the frontlines of DevOps.
+  
+Hear from [Stephen Shamakian](https://www.linkedin.com/in/stephenshamakian/), DevOps Senior Principal Engineer at a leading health solutions company.
 
 **How did your DevOps journey start?**
 
-*Jason*: My career path is probably not typical for a software person. I was in the military and have a degree in psychology. I was working at a gas station, working on my degree, when I received an offer to work in tech support. I then moved to a network administration role. My manager told me I was a smart guy, so I started learning how to code and became a developer. For the last few years, I’ve been the release engineer for Olo.
+*Stephen*:  I started in a web engineering role and found myself solving problems via automation. The projects I remember most were SSL Cert renewals and IIS Deployments.
+ 
+At the time, the IIS deployment automation was a constant issue. I wanted to make our developers’ lives easier and keep them focused on what they love to do. We built something in-house, but I was looking for a more advanced system with a good UI and a powerful API for extensibility. 
 
-**Was your degree in psychology helpful in any way?**
+That’s when I found Octopus Deploy, which sparked my interest in DevOps. From there, I branched out, but Octopus remains an integral part of this journey! Currently, we have ~13,000 projects and ~4,300 users of Octopus.
 
-*Jason*: It helped me be able to step into someone else’s shoes, which was very important during my tech support times. That skill remains relevant in my current job as well.
+**And what DevOps means to you?**
+
+*Stephen*: It is not an original idea, but it’s the one that has resonated with me the most: DevOps is not just one thing; it’s a combination of 3 things: 
+
+- People
+- Processes
+- Tools
+- 
+All 3 are equally important for the system to work well. 
+
+For DevOps to work, you need buy-in from people so they embrace the cultural change that comes with the new tools and processes you’re introducing. You also need to define a CI/CD process and automate it. The third aspect is using the right tools. I view the tools as the vehicles that get you down the road. They’re important, as they help meld the people and process parts together.
+
+**What are some DevOps best practices your organization has implemented?**
+
+*Stephen*: We’re driving towards standardizing our DevOps pipeline enterprise-wide. We follow a build-once-deploy-many process. Before Octopus, we were building and deploying for every environment. This added a lot of intermittent failures. It caused audit concerns, and introduced potential risks to the process. We’ve fully moved away from that older, ineffective process. We’ve also moved to a change ticket-controlled production deployment process. All production deploys must have a scheduled change ticket assigned to them and a valid window to proceed. This lets us track and audit changes across the environment.
+
+**What's the most challenging part of DevOps?**
+
+*Stephen*: Well, going back to the 3 pillars that define DevOps for me, it’s a split between people and process. DevOps is very much a culture change in how development, operations, and even security work together. Even though DevOps aims to improve this, in many cases, these areas still function in silos. There are times when one area implements something that blocks another. And as a DevOps leader, you’re often in the middle trying to figure out the best path forward and an acceptable middle ground.
 
 **What’s the most challenging part of DevOps?**
 
-*Jason*: I think the most challenging part of DevOps is that it covers so many aspects of software operations, and people come to you with so many different requests. I found, however, that the best approach is to stay open-minded and not be afraid to try things that haven’t been done before.
+*Stephen*: I think the most challenging part of DevOps is that it covers so many aspects of software operations, and people come to you with so many different requests. I found, however, that the best approach is to stay open-minded and not be afraid to try things that haven’t been done before.
 
-**And what’s the most rewarding part of your job?**
+**And what's the most rewarding part of DevOps?**
 
-*Jason*: Getting to help people. Developers just want to develop, and I can make their lives easier.
+*Stephen*: The automation, by far! Seeing something you worked very hard on pay off by enabling quick and reliable deployments for years to come is priceless! It’s like you’re breathing life into a process that never existed before, and it’s now functioning completely autonomously. Hence it has a life of its own. That’s super rewarding to experience in this role.
 
-**What are some DevOps best practices you or your organization have implemented?**
+**What advice would you give folks just starting their DevOps journey?**
 
-*Jason*: There are many best practices that our company has implemented. One is using microservices so that we can release faster and independently from other components of our software platform. We integrate our system with over 300 other software technologies, so this approach lets us get software into production faster. We release to production twice a day or even more often, and we strive to have ‘single Jira ticket deployments’, where we push fixes to production so quickly there’s only a single initial ticket to close. This is in big part possible because we use Octopus. Our deployment process has over 100 steps, yet we can deploy it in around 20 minutes, so it becomes pretty much a non-event for us – it’s such a well-orchestrated deployment process that no one is stressing about it. 
+*Stephen*: This is a hard one as DevOps, for the most part, has two foundational paths. You can come at it from an infrastructure or a development angle. 
 
-Another best practice is involving the development team in the deployment process. We accomplish this by using Configuration as Code (CAC) in Octopus. The dev team uses an environment they’re familiar with to add and modify deployment steps, which then go through the review and approval process with my team. This way, we can scale and deliver features to our clients faster while ensuring the separation of duties required by The Sarbanes-Oxley Act (SOX).
+If you’re on the infrastructure path, I think the basics of system administration are a good start. The next step is viewing things with an automation mindset. For example, how can you script a task you perform manually? From there, learning scripting languages, like PowerShell and Python, is huge for any DevOps-related role. 
 
-**What advice would you give folks starting their DevOps journey?**
+If you want to get into DevOps through the development path, then learning the basics of a language and building simple applications are foundational. But to take that a step further, how do the build mechanisms work to compile your code? How do you automate that? 
 
-*Jason*: Get your hands dirty – just create your Azure environment, download Octopus, and start playing with it.
+It’s a great time for beginners, though. There are training resources online, cloud providers for virtual labs, and of course, Octopus Deploy providing you with best practices for software deployments.
 
-**What DevOps book do you recommend reading?**
+You also have to work on your soft skills. You need to be able to explain complex technical concepts in an understandable way, so you can get buy-in for proposed process changes. 
 
-*Jason*: I actually haven't read that much recently, but I learn something new every day by working with my teammates, so I learn through osmosis. But one book, most helpful to me was [*Cloud Native DevOps with Kubernetes: Building, Deploying, and Scaling Modern Applications in the Cloud*](https://www.amazon.com/Cloud-Native-DevOps-Kubernetes-Applications/dp/1492040762), by Justin Domingus and John Arundel.
+**Can you recommend a good DevOps book?**
 
-**Thank you for that recommendation; we’ll make sure to add it to our [DevOps reading list](https://octopus.com/devops/reading-list/). Last question: what’s one thing about you that might surprise us?**
+*Stephen*: It’s been a while since I read it, but I loved The Phoenix Project. I still recall a lot of what they talked about in that book day-to-day on the job. 
 
-*Jason*: A fun fact about me is that I’m a nuisance alligator trapper with The Florida Fish and Wildlife Conservation Commission.
+**As we are building a DevOps community, what is one thing about you that might surprise us?**
 
-**Oh wow – it will be hard to beat that one! Jason, thank you again for spending time with me, and happy deployments!**
+*Stephen*: I am an avid learner of rocket systems, especially SpaceX and NASA-related rockets and ships. I try never to miss a launch as it’s such a fascinating process. It kind of reminds me of application deployments!
 
-*Jason*: Anytime!
+**Great comparison. Yes, deploying software (without Octopus) is like launching a rocket, with manual checklists in place and a countdown, hoping that nothing blows up.**
+
+**Stephen,it was a pleasure talking to you!**
+
+*Stephen*: I enjoyed our conversation!
+
 
 :::hint
-If you’d like to feature in our series, Inside DevOps, please reach out to [Joanna on LinkedIn](https://www.linkedin.com/in/joannawyganowska/) to set up time for a quick chat.
+If you’d like to feature in our series, [Inside DevOps](https://octopus.com/blog/tag/Inside%20DevOps), please reach out to [Joanna on LinkedIn](https://www.linkedin.com/in/joannawyganowska/) to set up time for a quick chat.
 :::
