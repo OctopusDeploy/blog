@@ -63,7 +63,7 @@ You also have to work on your soft skills. You need to be able to explain comple
 
 **Can you recommend a good DevOps book?**
 
-*Stephen*: It’s been a while since I read it, but I loved The Phoenix Project. I still recall a lot of what they talked about in that book day-to-day on the job. 
+*Stephen*: It’s been a while since I read it, but I loved [The Phoenix Project](https://octopus.com/devops/reading-list/#the-phoenix-project-book). I still recall a lot of what they talked about in that book day-to-day on the job. 
 
 **As we're building a DevOps community, what is one thing about you that might surprise us?**
 
