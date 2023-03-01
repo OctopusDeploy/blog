@@ -19,20 +19,20 @@ Hear from [Stephen Shamakian](https://www.linkedin.com/in/stephenshamakian/), De
 
 **How did your DevOps journey start?**
 
-*Stephen*:  I started in a web engineering role and found myself solving problems via automation. The projects I remember most were SSL Cert renewals and IIS Deployments.
+*Stephen*:  I started in a web engineering role and found myself solving problems via automation. The projects I remember most were SSL cert renewals and IIS deployments.
  
 At the time, the IIS deployment automation was a constant issue. I wanted to make our developers’ lives easier and keep them focused on what they love to do. We built something in-house, but I was looking for a more advanced system with a good UI and a powerful API for extensibility. 
 
 That’s when I found Octopus Deploy, which sparked my interest in DevOps. From there, I branched out, but Octopus remains an integral part of this journey! Currently, we have ~13,000 projects and ~4,300 users of Octopus.
 
-**And what DevOps means to you?**
+**And what does DevOps means to you?**
 
-*Stephen*: It is not an original idea, but it’s the one that has resonated with me the most: DevOps is not just one thing; it’s a combination of 3 things: 
+*Stephen*: It's not an original idea, but it’s the one that has resonated with me the most: DevOps isn't just one thing; it’s a combination of 3 things: 
 
 - People
 - Processes
 - Tools
-- 
+
 All 3 are equally important for the system to work well. 
 
 For DevOps to work, you need buy-in from people so they embrace the cultural change that comes with the new tools and processes you’re introducing. You also need to define a CI/CD process and automate it. The third aspect is using the right tools. I view the tools as the vehicles that get you down the road. They’re important, as they help meld the people and process parts together.
@@ -44,10 +44,6 @@ For DevOps to work, you need buy-in from people so they embrace the cultural cha
 **What's the most challenging part of DevOps?**
 
 *Stephen*: Well, going back to the 3 pillars that define DevOps for me, it’s a split between people and process. DevOps is very much a culture change in how development, operations, and even security work together. Even though DevOps aims to improve this, in many cases, these areas still function in silos. There are times when one area implements something that blocks another. And as a DevOps leader, you’re often in the middle trying to figure out the best path forward and an acceptable middle ground.
-
-**What’s the most challenging part of DevOps?**
-
-*Stephen*: I think the most challenging part of DevOps is that it covers so many aspects of software operations, and people come to you with so many different requests. I found, however, that the best approach is to stay open-minded and not be afraid to try things that haven’t been done before.
 
 **And what's the most rewarding part of DevOps?**
 
@@ -69,7 +65,7 @@ You also have to work on your soft skills. You need to be able to explain comple
 
 *Stephen*: It’s been a while since I read it, but I loved The Phoenix Project. I still recall a lot of what they talked about in that book day-to-day on the job. 
 
-**As we are building a DevOps community, what is one thing about you that might surprise us?**
+**As we're building a DevOps community, what is one thing about you that might surprise us?**
 
 *Stephen*: I am an avid learner of rocket systems, especially SpaceX and NASA-related rockets and ships. I try never to miss a launch as it’s such a fascinating process. It kind of reminds me of application deployments!
 
