@@ -3,7 +3,7 @@ title: Deploying to Amazon EKS with GitHub Actions
 description: As part of our series about Continuous Integration, learn how to build a workflow in GitHub Actions, push to ECR, and deploy to EKS.
 author: terence.wong@octopus.com
 visibility: public
-published: 2023-02-15-1400
+published: 2023-03-08-1400
 metaImage: blogimage-githubactionscreatedeploymentineks-2022.png
 bannerImage: blogimage-githubactionscreatedeploymentineks-2022.png
 bannerImageAlt: Illustration of a workflow, connected to Docker-type logo, connected to ECR, connected to rocket, connected to EKS-type logo.
@@ -15,20 +15,20 @@ tags:
  - GitHub Actions
 ---
 
-In a DevOps process, a CI server, like Github Actions, builds a code repository and pushes the software artifact to a container registry, ready for deployment. Before GitHub Actions was introduced, a third-party tool like Jenkins had to execute DevOps operations on the GitHub repository. 
+In a DevOps process, a CI server, like GitHub Actions, builds a code repository and pushes the software artifact to a container registry, ready for deployment. Before GitHub Actions was introduced, a third-party tool like Jenkins had to execute DevOps operations on the GitHub repository. 
 
 GitHub Actions introduces DevOps operations inside your GitHub repository, making it easier for you to implement DevOps processes. 
 
 In this post, you build a Docker image in a GitHub Actions workflow, publish the image to Amazon Elastic Container Registry (ECR), and deploy it to Amazon Elastic Kubernetes Service (EKS). 
 
-## Prerequisites
+## Getting started
 
 To follow along with this post, you need:
 
 - An Amazon Web Services (AWS) account 
 - A GitHub account
 
-This post uses the [Octopus underwater app repository](https://github.com/OctopusSamples/octopus-underwater-app). You can fork the repository and follow along. Alternatively, the github-deployment branch contains the template files you need to complete the steps in this post. You have to replace some values with your own, but I've included my values as a reference.
+This post uses the [Octopus underwater app repository](https://github.com/OctopusSamples/octopus-underwater-app). You can fork the repository and follow along. Alternatively, the github-deployment branch contains the template files you need to complete the steps in this post. You have to replace some values with your own, but I include my values as a reference.
 
 ## Amazon Web Services setup
 
@@ -98,7 +98,7 @@ spec:
 
 You then need to create a workflow file in the repository. 
 
-A Github Actions workflow contains instructions on performing operations on the code repository. Several pre-built step templates allow you to do many different tasks on a code repository. In this example, you use a step template to build and push the code to an AWS ECR repository and deploy it to EKS.
+A GitHub Actions workflow contains instructions on performing operations on the code repository. Several pre-built step templates allow you to do many different tasks on a code repository. In this example, you use a step template to build and push the code to an AWS ECR repository and deploy it to EKS.
 
 Create a file named `main.yml` in the .github/workflow directory of the root folder. Paste the following code in the main.yml file:
 
@@ -169,11 +169,11 @@ I found that using a new step template in GitHub required some new learning each
 
 ## Conclusion
 
-Github Actions allows developers to perform DevOps operations in their Github repositories, simplifying the deployment process. 
+GitHub Actions allows developers to perform DevOps operations in their GitHub repositories, simplifying the deployment process. 
 
 In this post, you built and pushed a GitHub repository to Amazon ECR and deployed it to Amazon EKS. The next post will look at using Octopus Deploy to manage the deployment process.
 
-Templates are available for different third-party integrations. However, the user experience may vary between templates because they're community-maintained. In a future post, we'll cover how Octopus Deploy integrates with Github Actions and provides standardized templates for continuous deployment, while offering a rich user experience. 
+Templates are available for different third-party integrations. However, the user experience may vary between templates because they're community-maintained. In a future post, we'll cover how Octopus Deploy integrates with GitHub Actions and provides standardized templates for continuous deployment, while offering a rich user experience. 
 
 Check out our other posts about deploying with GitHub Actions, Kubernetes, and Octopus Deploy:
 
