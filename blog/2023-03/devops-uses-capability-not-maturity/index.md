@@ -140,6 +140,5 @@ The DevOps capability model supports the need for constant incremental gains and
 - [DevOps engineer's handbook](https://octopus.com/devops/)
 - [Measuring Continuous Delivery and DevOps](https://octopus.com/whitepapers/lv-measuring-continuous-delivery-and-devops)
 - [Accelerate: The Science of Lean Software and DevOps - Dr. Nicole Forsgren et al](https://itrevolution.com/product/accelerate/), part of our [DevOps reading list](https://octopus.com/devops/reading-list/)
-- Use 8 Simple Steps to Get DevOps Right - Gartner (Daniel Betts, George Spafford)
 
 Happy deployments!
