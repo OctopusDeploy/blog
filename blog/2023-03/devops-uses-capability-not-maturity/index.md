@@ -1,12 +1,12 @@
 ---
 title: DevOps uses a capability model, not a maturity model
 description: As DevOps adoption increases, it becomes more likely the certification industrial complex will try to apply the wrong model.
-author: firstname.surname@octopus.com
-visibility: private
-published: 3020-01-01-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+author: steve.fenton@octopus.com
+visibility: public
+published: 2023-03-22-1400
+metaImage: blogimage-maturitycapabilitiesmodel-2022.png
+bannerImage: blogimage-maturitycapabilitiesmodel-2022.png
+bannerImageAlt: Three cubes connected from smallest to biggest
 isFeatured: false
 tags: 
   - DevOps
@@ -29,7 +29,7 @@ Maturity models:
 
 For example, a maturity model for riding a bike might have 5 levels of maturity:
 
-1. Walk upright on two legs
+1. Walk upright on 2 legs
 2. Ride a balance bike with a walking motion
 3. Ride a balance bike with both feet off the ground
 4. Ride a pedal bike from a starting point facing downhill
