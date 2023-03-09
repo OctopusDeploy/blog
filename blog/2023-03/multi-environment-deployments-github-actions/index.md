@@ -206,9 +206,9 @@ Go to the IP address `http://127.0.0.1:28021/` in your browser to view your web 
 
 ## Conclusion
 
-In this post, you used GitHub Actions and Octopus Deploy to deploy a web application to Amazon EKS. When you use Octopus Deploy as a stage in your CI/CD toolchain, you benefit from a dedicated continuous delivery tool. 
+In this post, you used GitHub Actions and Octopus Deploy to deploy a web application to Amazon EKS. When you use Octopus Deploy in your CI/CD toolchain, you benefit from a dedicated continuous delivery tool. 
 
-Octopus Deploy integrates with several cloud repositories and has in-built support for release management. GitHub Actions has community-developed step templates. The experience with these may vary from template to template. Through its UI, Octopus Deploy provides a standardized experience for step templates. Octopus also integrates with different repositories and cloud providers. 
+Octopus Deploy integrates with many cloud repositories and has in-built support for release management. GitHub Actions has community-developed step templates. The experience with these may vary from template to template. Through its UI, Octopus Deploy provides a standardized experience for step templates. Octopus also integrates with different repositories and cloud providers. 
 
 Check out the rest of our [CI series](https://octopus.com/blog/tag/CI%20Series) and our other posts about deploying with GitHub Actions, Kubernetes, and Octopus Deploy:
 
