@@ -3,7 +3,7 @@ title: Multi-environment deployments with GitHub Actions and Octopus
 description: As part of our series about Continuous Integration, learn how to build a Docker image in GitHub Actions, push to ECR, and deploy to EKS with Octopus.
 author: terence.wong@octopus.com
 visibility: public
-published: 2023-02-20-1400
+published: 2023-03-13-1400
 metaImage: blogimage-multienvironmentdeploymentsgithubactions.png
 bannerImage: blogimage-multienvironmentdeploymentsgithubactions.png
 bannerImageAlt: A map with a boat with shipping containers sailing between islands which represent environments.
@@ -22,7 +22,7 @@ Although GitHub Actions provides a contained solution, combining it with a dedic
 
 In this post, I show you how to build a Docker image in a GitHub Actions workflow, publish the image to Amazon Elastic Container Registry (ECR), and use Octopus to deploy the image to a web application on Amazon Elastic Kubernetes Service (EKS).
 
-## Prerequisites
+## Getting started
 
 To follow along, you need:
 
@@ -67,7 +67,6 @@ Go to **Settings**, then **Secrets**, and then **New repository secret**.
    - To create one, go to **Your User Name**, then **Profile**, then **My API Keys**, then **New API key**
 
 You need to create a workflow file in the repository. A GitHub Actions workflow contains instructions on performing operations on the code repository. Several pre-built step templates allow you to do many different tasks on a code repository. In this example, you use a step template to build and push the code to an AWS ECR repository and deploy it from Octopus.
-
 
 Create a file named `main.yml` in the .github/workflow directory of the root folder. Paste the following code in the main.yml file:
 
