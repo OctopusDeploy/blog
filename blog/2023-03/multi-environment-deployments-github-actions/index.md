@@ -3,7 +3,7 @@ title: Multi-environment deployments with GitHub Actions and Octopus
 description: As part of our series about Continuous Integration, learn how to build a Docker image in GitHub Actions, push to ECR, and deploy to EKS with Octopus.
 author: terence.wong@octopus.com
 visibility: public
-published: 2022-03-16-1400
+published: 2023-03-13-1400
 metaImage: blogimage-multienvironmentdeploymentsgithubactions.png
 bannerImage: blogimage-multienvironmentdeploymentsgithubactions.png
 bannerImageAlt: A map with a boat with shipping containers sailing between islands which represent environments.
@@ -16,13 +16,13 @@ tags:
  - AWS
 ---
 
-GitHub Actions allows developers to perform DevOps operations in a GitHub repository. The GitHub community maintains templates that integrate third-party tools and repositories, like Jenkins or Amazon Elastic Container Registry (ECR). 
+GitHub Actions allows developers to automate software workflows in a GitHub repository. The GitHub community maintains templates that integrate third-party tools and repositories, like Jenkins or Amazon Elastic Container Registry (ECR). 
 
-Although GitHub Actions provides a contained solution, a dedicated Continuous Delivery tool like Octopus Deploy provides you with benefits such as environments, a dashboard to visualize environments, and a standardized step template library for a consistent user experience. 
+Although GitHub Actions provides a contained solution, combining it with a dedicated Continuous Delivery tool like Octopus Deploy provides you with benefits such as environments, a dashboard to visualize environments, and a standardized step template library for a consistent user experience. It's why we recommend you [build with GitHub and deploy with Octopus](https://octopus.com/github).
 
 In this post, I show you how to build a Docker image in a GitHub Actions workflow, publish the image to Amazon Elastic Container Registry (ECR), and use Octopus to deploy the image to a web application on Amazon Elastic Kubernetes Service (EKS).
 
-## Prerequisites
+## Getting started
 
 To follow along, you need:
 
@@ -67,7 +67,6 @@ Go to **Settings**, then **Secrets**, and then **New repository secret**.
    - To create one, go to **Your User Name**, then **Profile**, then **My API Keys**, then **New API key**
 
 You need to create a workflow file in the repository. A GitHub Actions workflow contains instructions on performing operations on the code repository. Several pre-built step templates allow you to do many different tasks on a code repository. In this example, you use a step template to build and push the code to an AWS ECR repository and deploy it from Octopus.
-
 
 Create a file named `main.yml` in the .github/workflow directory of the root folder. Paste the following code in the main.yml file:
 
@@ -207,11 +206,11 @@ Go to the IP address `http://127.0.0.1:28021/` in your browser to view your web 
 
 ## Conclusion
 
-In this post, you used GitHub Actions and Octopus Deploy to deploy a web application to Amazon EKS. When you use Octopus Deploy as a stage in your CI/CD toolchain, you benefit from a dedicated continuous delivery tool. 
+In this post, you used GitHub Actions and Octopus Deploy to deploy a web application to Amazon EKS. When you use Octopus Deploy in your CI/CD toolchain, you benefit from a dedicated continuous delivery tool. 
 
-Octopus Deploy integrates with several cloud repositories and has in-built support for release management. GitHub Actions has community-developed step templates. The experience with these may vary from template to template. Through its UI, Octopus Deploy provides a standardized experience for step templates. Octopus also integrates with different repositories and cloud providers. 
+Octopus Deploy integrates with many cloud repositories and has in-built support for release management. GitHub Actions has community-developed step templates. The experience with these may vary from template to template. Through its UI, Octopus Deploy provides a standardized experience for step templates. Octopus also integrates with different repositories and cloud providers. 
 
-Check out our other posts about deploying with GitHub Actions, Kubernetes, and Octopus Deploy:
+Check out the rest of our [CI series](https://octopus.com/blog/tag/CI%20Series) and our other posts about deploying with GitHub Actions, Kubernetes, and Octopus Deploy:
 
 - [Building and publishing a Docker image to ECR using GitHub Actions](https://octopus.com/blog/githubactions-docker-ecr)
 - [Deploying to Amazon EKS with GitHub Actions](https://octopus.com/blog/deploying-amazon-eks-github-actions)
@@ -219,9 +218,5 @@ Check out our other posts about deploying with GitHub Actions, Kubernetes, and O
 !include <github-actions-free-tool>
 
 You can also learn more about [building with GitHub and deploying with Octopus](https://octopus.com/github), and use our [verified actions in the GitHub Marketplace](https://github.com/marketplace?query=octopus&type=actions&verification=verified_creator).
-
-!include <githubactions-webinar-feb-2022>
-
-!include <q1-2022-newsletter-cta>
 
 Happy deployments!
