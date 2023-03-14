@@ -3,7 +3,7 @@ title: 10 of our favorite actions for GitHub Actions
 description: GitHub Actions is a newcomer to Continuous Integration and provides CI as a Service. Here are 10 of our favorite actions to install from the GitHub Marketplace.
 author: andrew.corrigan@octopus.com
 visibility: public
-published: 2022-03-21-1400
+published: 2023-03-15-1400
 metaImage: blogimage-githubconfigurationtop10plugins-2022.png
 bannerImage: blogimage-githubconfigurationtop10plugins-2022.png
 bannerImageAlt: Blue plug in a white and purple socket.
@@ -121,12 +121,10 @@ Installing actions in GitHub is simple:
 
 ## What next?
 
-If the actions we’ve chosen don’t suit your project or you need something outside the scope of CI, there's plenty more to choose from. Search through the [GitHub marketplace](https://github.com/marketplace?type=actions) for more.
+If the actions we chose don’t suit your project or you need something outside the scope of CI, there's plenty more to choose from. Search through the [GitHub marketplace](https://github.com/marketplace?type=actions) for more.
 
 !include <github-actions-free-tool>
 
-!include <githubactions-webinar-feb-2022>
-
-!include <q1-2022-newsletter-cta>
+You can also learn more about how [Octopus takes your GitHub deployments to the next level](https://octopus.com/github).
 
 Happy deployments!
