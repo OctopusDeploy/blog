@@ -3,7 +3,7 @@ title: Inside DevOps with Stephen Shamakian
 description: A series where we share lessons learned from those on the frontlines of DevOps. Our next post features Stephen Shamakian, DevOps Senior Principal Engineer.
 author: joanna.wyganowska@octopus.com
 visibility: public
-published: 2023-03-22-1400
+published: 2023-03-20-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt: stylized image of Joanna and Stephen seated and talking to each other with a speech bubble that says Inside DevOps
@@ -51,7 +51,7 @@ For DevOps to work, you need buy-in from people so they embrace the cultural cha
 
 **What advice would you give folks just starting their DevOps journey?**
 
-*Stephen*: This is a hard one as DevOps, for the most part, has two foundational paths. You can come at it from an infrastructure or a development angle. 
+*Stephen*: This is a hard one as DevOps, for the most part, has 2 foundational paths. You can come at it from an infrastructure or a development angle. 
 
 If you’re on the infrastructure path, I think the basics of system administration are a good start. The next step is viewing things with an automation mindset. For example, how can you script a task you perform manually? From there, learning scripting languages, like PowerShell and Python, is huge for any DevOps-related role. 
 
@@ -71,7 +71,7 @@ You also have to work on your soft skills. You need to be able to explain comple
 
 **Great comparison. Yes, deploying software (without Octopus) is like launching a rocket, with manual checklists in place and a countdown, hoping that nothing blows up.**
 
-**Stephen,it was a pleasure talking to you!**
+**Stephen, it was a pleasure talking to you!**
 
 *Stephen*: I enjoyed our conversation!
 
