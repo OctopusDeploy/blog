@@ -3,13 +3,15 @@ title: Structured Variable Replacement for Kubernetes through Raw Yaml Steps
 description: Injecting Octopus variables into your Kubernetes yaml scripts have become easier to perform by extending support for the existing structured variable replacement functionality.
 author: robert.erez@octopus.com
 visibility: private
-published: 
+published: 3020-01-01-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt: 
 isFeatured: false
 tags:
  - Kubernetes
+ - Containers
+ - Variables
 ---
 
 When developing your kubernetes configurations locally you are probably building up your deployment yaml files using values that allow you to evaluate and test the process against a non production system, such as a local minikube instance. Once you know that works, you probably want to take that exact yaml into your Octopus Deployment instance for use in real deployments with just some tweaks of the property values, perhaps replacing the replica count to handle the expected production loads, or configure specific node-affinity values to correctly distribute the pods throughout your cluster.   
