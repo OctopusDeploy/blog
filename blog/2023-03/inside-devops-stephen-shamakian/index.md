@@ -4,9 +4,9 @@ description: A series where we share lessons learned from those on the frontline
 author: joanna.wyganowska@octopus.com
 visibility: public
 published: 2023-03-20-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: stylized image of Joanna and Stephen seated and talking to each other with a speech bubble that says Inside DevOps
+metaImage: blogimage-insidedevopsstephenshamakian-2022.png
+bannerImage: blogimage-insidedevopsstephenshamakian-2022.png
+bannerImageAlt: Photo Stephen Shamakian
 isFeatured: false
 tags: 
   - DevOps
