@@ -25,7 +25,7 @@ In this post, I show you how it works.
 
 ## How to use the improved structured variable replacement for Kubernetes 
 
-1. Register a Kubernetes cluster in your infrastructure. You can see our [Kubernetes clusters documentation](https://octopus.com/docs/infrastructure/deployment-targets/kubernetes-target) for setup instructions. For this post, I run this locally, so use a local cluster.
+1. Register a Kubernetes cluster in your infrastructure. You can see our [Kubernetes clusters documentation](https://octopus.com/docs/infrastructure/deployment-targets/kubernetes-target) for setup instructions. For this post, I run this locally, so I use a local cluster.
 
 ![A kubernetes target](kubernetes-target.png)
 
