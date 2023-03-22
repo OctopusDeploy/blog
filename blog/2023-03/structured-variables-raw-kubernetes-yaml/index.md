@@ -1,5 +1,5 @@
 ---
-title: Structured variable replacement for Kubernetes through raw YAML steps
+title: Using variables for Kubernetes without breaking YAML
 description: Injecting Octopus variables into your Kubernetes YAML scripts is easier to perform with extended support for the existing structured variable replacement functionality.
 author: robert.erez@octopus.com
 visibility: public
