@@ -4,9 +4,9 @@ description: Injecting Octopus variables into your Kubernetes YAML scripts is ea
 author: robert.erez@octopus.com
 visibility: public
 published: 2023-03-27-1400
-metaImage: blogimage-kubernetes.png
-bannerImage: blogimage-kubernetes.png
-bannerImageAlt: Kubernetes logo
+metaImage: 
+bannerImage: 
+bannerImageAlt: 
 isFeatured: false
 tags:
  - Product
