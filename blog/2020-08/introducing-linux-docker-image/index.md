@@ -257,6 +257,16 @@ spec:
       storage: 1Gi
 ```
 
+### Helm Chart
+
+The easiest way to deploy Octopus into a Kubernetes cluster is with the official [Helm chart](https://github.com/OctopusDeploy/helm-charts/tree/main/charts/octopus-deploy).
+
+[Complete installation instructions for the Helm chart are available](https://github.com/OctopusDeploy/helm-charts/tree/main/charts/octopus-deploy#usage). 
+
+### Directly deploying resources 
+
+This section explores deploying the Octopus components without using Helm. 
+
 The Octopus web interface is a React single page application (SPA) that can direct all backend requests to any Octopus node. This means we can expose all Octopus nodes through a single load balancer for the web interface. Below is the YAML for a load balancer service directing web traffic on port 80 to pods with the label `app:octopus`:
 
 ```YAML
@@ -453,31 +463,6 @@ The `octopus-web` service is used to access the web interface. As we noted previ
 The `octopus-0` service is used to point Polling Tentacles to the first node, and the `octopus-1` service is used to point Polling Tentacles to the second node. We have also exposed the web interface through these services, which gives support teams the ability to directly interact with a given node, but the `octopus-web` service should be used for day to day work. The [documentation](https://octopus.com/docs/administration/high-availability/maintain/polling-tentacles-with-ha) provides details on connecting Polling Tentacles to HA nodes.
 
 For a greater degree of reliability, pod [anti-affinity rules](https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity) could be used to ensure Octopus pods are not placed onto the same node. This ensures the loss of a node does not bring down the Octopus cluster.
-
-## Octopus Helm chart
-
-For convenience, the Kubernetes resources described above have been bundled into a Helm chart. To add the Helm repository, run the following commands:
-
-```
-helm repo add octopus https://octopus-helm-charts.s3.amazonaws.com
-helm repo update
-```
-
-Then install the chart with the command:
-
-```
-helm install octopus octopus/octopusdeploy --set octopus.licenseKeyBase64=<your Octopus license key base64 encoded> --set octopus.acceptEula=Y --set mssql-linux.acceptEula.value=Y
-```
-
-The default values of the chart are configured to create a single node Octopus cluster with `ReadWriteOnce` volumes. These values are well supported by default in Kubernetes clusters.
-
-To deploy a HA cluster, you need to define some additional values specific to the cluster you are deploying to. For example, when deploying to Azure AKS, the following values are used to create `ReadWriteMany` volumes shared between three Octopus HA nodes:
-
-```
-helm install octopus octopus/octopusdeploy --set octopus.replicaCount=3 --set octopus.storageClassName=azurefile --set octopus.licenseKeyBase64=<your Octopus license key base64 encoded> --set octopus.acceptEula=Y --set mssql-linux.acceptEula.value=Y
-```
-
-The chart source code is available on [GitHub](https://github.com/OctopusSamples/OctopusHelmChart).
 
 ## Adding deployment targets
 
