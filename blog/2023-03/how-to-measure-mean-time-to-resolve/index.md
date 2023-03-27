@@ -52,7 +52,7 @@ Should you classify something as an incident if a system failed, but didn't impa
 
 Incident data doesn't follow a normal distribution, it skews heavily left... this is mostly a good thing because we resolve things quickly a lot of the time (under 2 hours) but it also means a long thin tail of values that can create wild variation, no matter which average you use. If you don't have a normal distribution, you shouldn't use the mean. Median (used by DORA) and mode are also problematic and don't represent the data accurately. Averages have too much variance based on the weight of the short resolutions and the pull of outliers.
 
-Štěpán Davidovič’s - Google study? Ran Monte Carlo simulations to compare a control group with artifically reduced incident durations and found that MTTR increased between 20-40% of the time, despite the durations being artifically reduced.
+Štěpán Davidovič’s - Google study? Ran Monte Carlo simulations to compare a control group with artificially reduced incident durations and found that MTTR increased between 20-40% of the time, despite the durations being artificially reduced.
 
 ### Where restore times remain useful
 
@@ -66,37 +66,53 @@ Resolution times are the start of your journey into exploring incidents and impr
 
 If incidents require a code fix, the restore time will reflect the performance of your deployment pipeline. Being able to quickly and safely deploy new versions of your software has positive effects beyond incident management. The restore times also encourage the introduction of monitoring and alerting tools, which significantly improve your ability to detect problems before a customer is impacted. You may find it useful to use time to restore to drive deployment automation and monitoring, which will improve your software delivery performance dramatically.
 
+You will likely reach a point where time to restore no longer offers you the prompts needed to find the next level of improvements. When you can easily deploy changes and receive early warnings of faults, you'll need some new measurement ideas. This is where the SPACE framework can help you measure your incident response capability.
+
+## Using the SPACE Framework to measure incident response
+
+[The SPACE framework](https://octopus.com/devops/metrics/space-framework/)
+
+Satisfaction and wellbeing
+
+Are people managing incidents happy with:
+
+- The incident management process
+- The on-call schedule
+- How easy it is to escalate or access specialists to help during an incident
+- What local times did pagers go off
+
+Performance
+
+- System reliability
+- Time between incident conditions and awareness of the incident
+
+The time to restore service would fit into this category.
+
+Activity
+
+Things you can count
+
+- Number of alerts raised by monitoring tools
+- Number of incidents raised
+- Number of concurrent incidents
+
+Communication and collaboration
+
+- Number of people involved per incident
+- How many different teams were involved in an incident
+- Number of chat channels opened for an incident
+- How many times the incident report was viewed (or given a positive rating, or referenced in other incidents)
+
+Efficieny and flow
+
+- Number of times an incident is reassigned
+- Number of attempts before a successful mitigation
 
 
-It is likely that you will reach a point where time to restore no longer offers you the prompts needed to find the next level of improvements. When you can easily deploy changes and receive early warnings of faults, you'll need some new measurement ideas.
 
-## Start with your incident response process
 
-You need a really precise definition of incidents and how you capture incident metadata.
 
-### Clear up your incident definitions
-
-A basic incident definition might be that it meets a particular definition, such as:
-
-- It has a business impact
-- It needs immediate attention
-- It requires coordination
-
-You should also have a consistent definition for measuring the duration of incidents. It may help to collect timings for different stages, you can analyze them and find improvement opportunities.
-
-Here are some common incident lifecycle stages:
-
-- First impact
-- Alert raised
-- Mitigation attempted (possibly multiple attempts)
-- Mitigation success
-- Full recovery
-
-A good monitoring and alerting strategy can mean you are alerted before an incident becomes service impacting, rather than waiting for customers to tell you about an incident via your support channels.
-
-The idea isn't to come up with a number to track you incident response performance, but to collect sufficient metadata to be able to analyze incidents and learn from them.
-
-### Incidents as socio-technical systems
+### Incidents as socio-technical systems MERGE INTO ABOVE
 
 There's a certain pattern that emerges from incident response. The situation is dynamic and uncertain, and the different specialists involved need to quickly and accurately share information and plan their activities. The coordination has a cost, but this is offset by the benefit of having experts on hand who can manage specific parts of an incident. 
 
