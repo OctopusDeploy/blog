@@ -3,7 +3,7 @@ title: How Octopus complements your build server
 description: "Learn how Octopus Deploy complements your choice of build server and completes your CI/CD pipeline."
 author: andrew.corrigan@octopus.com
 visibility: public
-published: 2022-03-23-1400
+published: 2023-04-03-1400
 metaImage: blogimage-howoctopuscomplimentsyourciserver-2022.png
 bannerImage: blogimage-howoctopuscomplimentsyourciserver-2022.png
 bannerImageAlt: People writing code with an arrow showing it delivered to a build server then an arrow to the Octopus Deploy logo as a puzzle piece.
@@ -17,7 +17,7 @@ tags:
   - Testing
 ---
 
-We spent the last few months exploring 2 build server options in Jenkins and GitHub Actions. As we discovered, Jenkins is a traditional build server with a self-managed instance at its center, while GitHub Actions performs similar tasks but as a service in a product you may already use. Either is worthwhile as part of a Continuous Integration and Continuous Deployment (CI/CD) workflow, depending on your needs.
+Our [Continuous Integration series](https://octopus.com/blog/tag/CI%20Series) explored 2 build server options in Jenkins and GitHub Actions. As we discovered, Jenkins is a traditional build server with a self-managed instance at its center, while GitHub Actions performs similar tasks but as a service in a product you may already use. Either is worthwhile as part of a Continuous Integration and Continuous Deployment (CI/CD) workflow, depending on your needs.
 
 As a deployment tool that sits between packages and their destinations, however, Octopus is build server agnostic. Octopus supports all major automation services on the market, but why should you connect them to Octopus?
 
@@ -144,7 +144,7 @@ This could include performing:
 - File cleanup
 - The running of scripts in any language you need
 
-We'll cover Octopus Runbooks in more detail starting next month, but in the meantime, check out our [Runbooks documentation](https://octopus.com/docs/runbooks) for more information.
+We cover Octopus Runbooks in more detail in our [Runbooks series](https://octopus.com/blog/tag/Runbooks%20Series).
 
 ## Conclusion
 
@@ -153,6 +153,8 @@ Over the course of [our series on Continuous Integration and build servers](http
 We also explained how CI and CD are separate concepts solving different problems, yet are 2 sides of the same coin and combine for something greater.
 
 Finally, we offered insight into how Octopus can help complete your full CI/CD pipeline. But don’t just take our word for it, [sign up for a free trial](https://octopus.com/start) to see it in action for yourself.
+
+You can also learn more about why we recommend you [build with GitHub and deploy with Octopus](https://octopus.com/github).
 
 Explore the [DevOps engineer's handbook](https://octopus.com/devops/) to learn more about DevOps, CI/CD, and deployment pipelines.
 
