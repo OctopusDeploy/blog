@@ -1,6 +1,6 @@
 ---
-title: How to measure DevOps mean time to resolve
-description: Find out why mean time to resolve has problems and what to do about it.
+title: How to measure DevOps mean time to recovery
+description: Find out why mean time to recovery has problems and what to do about it.
 author: steve.fenton@octopus.com
 visibility: private
 published: 3020-01-01-1400
@@ -13,58 +13,80 @@ tags:
   - DORA Metrics
 ---
 
-One of the DORA Community discussions last year touched on Mean Time To Recovery (MTTR) and whether it was a valid measure for software delivery performance. MTTR is one of the [DORA Metrics](https://octopus.com/devops/metrics/dora-metrics/) and is used for the performance clusters in the Accelerate State of DevOps report.
+It is very easy to overthink your DevOps metrics. If you've read the amazing and rigorous research undertaken by [DORA](https://www.devops-research.com/research.html), you might worry that you don't have the scientific and statistics knowledge to do the same for your team.
 
+The good news is, you don't have to. The metrics you collect in your team aren't intended for peer-reviewed publication in a journal. They just need to be good enough to assist your continuous improvement process.
 
-The Verica Open Incident Database (VOID) takes inspiration from the aviation industry, where incidents and near-misses are treated as an opportunity to study, learn, and share information. Not all software is safety-critical, but it is playing an ever-increasing role in industries that are, such as transport, infrastructure, and healthcare. The resulting socio-technical systems are complex and may be best understood by analyzing failures.
-
-High-trust and low-blame cultures learn and improve when something goes wrong. LINK TO DEVOPS CULTURE
-
-An annual report based on the incident database of more than 10,000 incidents from almost 600 organizations... questions MTTR.
-
-> MTTR isn’t a viable metric for the reliability of complex software systems for a myriad of reasons, notably due to its underlying variance. - The VOID Report
+One metric that is currently the subject of broader discussion is mean time to recovery (MTTR). In this article you'll see how MTTR is valid for research, the arguments against it, and what you can use to measure your software delivery performance.
 
 ## What is MTTR
 
-Mean time to recover... the average (median) time to recover from an incident.
+Mean time to restore, or mean time to recovery, is one of the [DORA Metrics](https://octopus.com/devops/metrics/dora-metrics/), which predict software delivery performance and several organizational outcomes. If you perform well against all the metrics, you'll have working software sooner, happier employees, and a competitive advantage in your industry.
 
-You measure from when an incident started, to when it ended, and then convert all your incidents into a median
+To measure MTTR, you need to collect the duration of each incident from when it started, to when it ended. You would then sort all the incidents by duration and pick the middle one to obtain the *median* incident duration. We'll talk about the shortfalls of averaging incident duration for your team shortly.
 
 :::hint
-To calculate an average, you'd sum all the durations and divide it by the number of incidents. This is the *mean* average.
+To calculate an average, you'd sum all the durations and divide the total by the number of incidents. This is the *mean* average.
 
 DORA uses the *median* average in their research. To calculate this, you'd arrange all incident durations from smallest to largest, then pick the value from the middle of the list. If the list has an even number of entries, you'd average the two middle values.
 :::
 
 ### Why MTTR is useful for industry research
 
-When you compare organizations, you aren't trying to find the root cause of problems or improve their process - you are creating a benchmark for comparison.
+When you are researching performance across many organizations and industries, you can't ask people to provide a list of all incidents for analysis. This would deter many people from responding to the research survey. That means you need to ask them to summarize their experience by providing a comparable number.
 
-People inside these organizations need to be interested in a more fine-grained level of details.
+The [DORA quick check](https://www.devops-research.com/quickcheck.html) phrases the MTTR question like this:
+
+*For the primary application or service you work on, how long does it generally take to restore service when a service incident or a defect that impacts users occurs (for example, unplanned outage, service impairment)?*
+
+- More than six months
+- One to six months
+- One week to one month
+- One day to one week
+- Less than one day
+- Less than one hour
+
+Most people working in software delivery have a feel for the typical duration of incidents, especially with the broad buckets used in the answer. You can probably answer this for your team from memory with a reasonable level of accuracy.
+
+The researchers can use this information to find [performance groups](https://octopus.com/blog/new-devops-performance-clusters) in the data. They can also look for relationships between various practices and their impact on business outcomes. The DevOps structural equation model is built using these findings.
 
 ### The reason MTTR isn't right for your team
 
-MTTR is actually a pretty good metric... if you have a huge number of incidents. When you have a small sample, which really most of us are hoping to achieve, it stops working in a reasonable way. If you really want to use MTTR, you need to aim for perhaps 10,000 incidents a month. This isn't an aspirational goal.
+While MTTR is useful in research for comparisons and clustering, this isn't how you'll use incident information in your organization. Your main use of incident duration is to learn from service outages and improve how you handle them in the future.
 
-The exact start time and end time of an incident can be tricky to pin down. Do you start the clock when the CPUs get hot, when the response times slow down, or when the first customer gets an error? The same goes for the end time - is it when customers can use the system again, or when you've mitigated the issue, finished fixing a bug, or when you've put in a permanent fix to prevent a similar incident in the future? These factors make it hard to create a reusable definition of incident duration.
+For continuous improvement purposes, using an average hides important signals. You need more fine-grained information to understand how well you handle faults and to find their causes.
 
-Should you classify something as an incident if a system failed, but didn't impact customers. For example, your instant-search feature may have stopped working, but the fallback of letting users round-trip the search form to get a response still worked - is this an incident? It's quite subjective. What if your web server crashed, but your edge cache continued to serve requests?
+The Verica Open Incident Database (VOID) has more than 10,000 incidents shared by almost 600 organizations. In [the VOID report](https://www.thevoid.community/report), they provide an analysis of the incidents. The 2022 report made the following comment about MTTR:
 
-Incident data doesn't follow a normal distribution, it skews heavily left... this is mostly a good thing because we resolve things quickly a lot of the time (under 2 hours) but it also means a long thin tail of values that can create wild variation, no matter which average you use. If you don't have a normal distribution, you shouldn't use the mean. Median (used by DORA) and mode are also problematic and don't represent the data accurately. Averages have too much variance based on the weight of the short resolutions and the pull of outliers.
+> MTTR isn’t a viable metric for the reliability of complex software systems for a myriad of reasons, notably due to its underlying variance.
 
-Štěpán Davidovič’s - Google study? Ran Monte Carlo simulations to compare a control group with artificially reduced incident durations and found that MTTR increased between 20-40% of the time, despite the durations being artificially reduced.
+Within your organization, MTTR will only be a useful measure if you have thousands of incidents each month. Most teams will be hoping for a smaller number of incidents. With fewer incidents, the use of averages results in a highly volatile metric, which can go up even when incident management improves.
+
+Averages are most useful when you have a normal distribution. Incident durations skew heavily to the left of the chart as most incidents can be solved quickly. The VOID database found most incidents are resolved in under 2 hours. There is then a long thin tail of values that can cause wild variation in mean and median averages.
+
+You could eliminate this variation by excluding outliers, but then you'd be hiding valuable information. You need a better way to use this data to improve your process.
 
 ### Where restore times remain useful
 
-The first thing to throw out is the M in MTTR. Don't track the mean time to resolve, track the time to resolve each incident.
+Instead of zipping up your incidents into an average, plot each duration on a chart. You can use a scatter plot or a box-and-whisker chart to visualize durations without losing fidelity. This will show you trends and outliers, which is more useful than an average.
 
-Plot the data as a time series, using either a scatter chart or a box-and-whisker diagram.
+![A scatter plot showing incident durations](time-to-restore-scatter.png)
 
-As part of your continuous improvement process, you can assess both the trend (whether you are resolving incidents faster or slower over time) and outliers (incidents that took far longer to solve than normal) to kick off conversations about how things could be improved.
+You can now understand the trend in resoltion times to see if you are improving over time. You can also identify outliers that took longer to solve and have conversations about how these could be handled better. Resolution times remain useful as part of your journey into exploring incidents and improving incident management and system stability.
 
-Resolution times are the start of your journey into exploring incidents and improving incident response and system stability.
+If incidents require a code fix, the restore time will reflect the performance of your deployment pipeline. Being able to quickly and safely deploy new versions of your software has positive effects beyond incident management. The restore times also encourage the introduction of monitoring and alerting tools, which significantly improve your ability to detect problems before a customer is impacted.
 
-If incidents require a code fix, the restore time will reflect the performance of your deployment pipeline. Being able to quickly and safely deploy new versions of your software has positive effects beyond incident management. The restore times also encourage the introduction of monitoring and alerting tools, which significantly improve your ability to detect problems before a customer is impacted. You may find it useful to use time to restore to drive deployment automation and monitoring, which will improve your software delivery performance dramatically.
+To get the most out of incident duration data, make sure you have consistent definitions for:
+
+- What is an incident
+- What the start time is
+- What the end time is
+
+Should you classify something as an incident if a system failed, but didn't impact customers. For example, your instant-search feature may have stopped working, but the fallback of letting users round-trip the search form to get a response still worked - is this an incident? It's quite subjective. What if your web server crashed, but your edge cache continued to serve requests?
+
+The exact start time and end time of an incident can be tricky to pin down. Do you start the clock when the CPUs get hot, when the response times slow down, or when the first customer gets an error? The same goes for the end time - is it when customers can use the system again, or when you've mitigated the issue, finished fixing a bug, or when you've put in a permanent fix to prevent a similar incident in the future?
+
+By creating a strong definition for indicents and their measurement, you can make sure your data is useful in a comparison.
 
 You will likely reach a point where time to restore no longer offers you the prompts needed to find the next level of improvements. When you can easily deploy changes and receive early warnings of faults, you'll need some new measurement ideas. This is where the SPACE framework can help you measure your incident response capability.
 
@@ -110,21 +132,6 @@ Efficieny and flow
 
 
 
-
-
-### Incidents as socio-technical systems MERGE INTO ABOVE
-
-There's a certain pattern that emerges from incident response. The situation is dynamic and uncertain, and the different specialists involved need to quickly and accurately share information and plan their activities. The coordination has a cost, but this is offset by the benefit of having experts on hand who can manage specific parts of an incident. 
-
-Cost of co-ordination (Dr. Laura Maquire) advocates for socio-technical measurement system for incidents.
-
-- How many people involved and from how many teams
-- What time of day people were paged
-- How many tools were needed
-- How many chat channels were opened
-- How many concurrent incidents
-- How many people view the incident report
-
 These measurements are useful as they highlight the hidden costs of managing incidents and provide concrete areas that could be improved.
 
 And while you're at it... ask your customers how they rate your reliability!
@@ -138,7 +145,7 @@ Introduce time to restore scatter charts alongside any existing metrics you have
 
 Once the new concepts become established, you can de-prioritize MTTR and shift the focus onto the more useful metrics.
 
-The same process can help you normalize the process of changing metrics over time, for example if you expand from [DORA metrics](https://octopus.com/devops/metrics/dora-metrics/) to [the SPACE Framework](https://octopus.com/devops/metrics/space-framework/).
+The same process can help you normalize the process of changing metrics over time, for example, if you expand from [DORA metrics](https://octopus.com/devops/metrics/dora-metrics/) to [the SPACE Framework](https://octopus.com/devops/metrics/space-framework/).
 
 ## Beyond the numbers
 
@@ -214,8 +221,9 @@ Study what goes Right Along with what goes wrong
 
 ## Further reading
 
-- [DevOps engineer's handbook](https://octopus.com/devops/)
-- [Measuring Continuous Delivery and DevOps](https://octopus.com/whitepapers/lv-measuring-continuous-delivery-and-devops)
+- [DevOps metrics](https://octopus.com/devops/metrics/)
+- [Measuring Continuous Delivery and DevOps white paper](https://octopus.com/whitepapers/lv-measuring-continuous-delivery-and-devops)
+- [DORA DevOps research](https://www.devops-research.com/research.html)
 - [The Verica Open Incident Database (VOID)](https://www.thevoid.community/)
 
 Happy deployments!
