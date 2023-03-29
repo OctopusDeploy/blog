@@ -3,7 +3,7 @@ title: How Octopus complements your build server
 description: "Learn how Octopus Deploy complements your choice of build server and completes your CI/CD pipeline."
 author: andrew.corrigan@octopus.com
 visibility: public
-published: 2023-02-22-1400
+published: 2023-04-03-1400
 metaImage: blogimage-howoctopuscomplimentsyourciserver-2022.png
 bannerImage: blogimage-howoctopuscomplimentsyourciserver-2022.png
 bannerImageAlt: People writing code with an arrow showing it delivered to a build server then an arrow to the Octopus Deploy logo as a puzzle piece.
