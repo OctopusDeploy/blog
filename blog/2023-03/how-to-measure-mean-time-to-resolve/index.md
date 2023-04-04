@@ -79,83 +79,98 @@ If incidents require a code fix, the restore time will reflect the performance o
 To get the most out of incident duration data, make sure you have consistent definitions for:
 
 - What is an incident
-- What the start time is
-- What the end time is
+- What is the start time
+- What is the end time
 
 Should you classify something as an incident if a system failed, but didn't impact customers. For example, your instant-search feature may have stopped working, but the fallback of letting users round-trip the search form to get a response still worked - is this an incident? It's quite subjective. What if your web server crashed, but your edge cache continued to serve requests?
 
 The exact start time and end time of an incident can be tricky to pin down. Do you start the clock when the CPUs get hot, when the response times slow down, or when the first customer gets an error? The same goes for the end time - is it when customers can use the system again, or when you've mitigated the issue, finished fixing a bug, or when you've put in a permanent fix to prevent a similar incident in the future?
 
-By creating a strong definition for indicents and their measurement, you can make sure your data is useful in a comparison.
+By creating a strong definition for indicates and their measurement, you can make sure your data is comparable.
 
 You will likely reach a point where time to restore no longer offers you the prompts needed to find the next level of improvements. When you can easily deploy changes and receive early warnings of faults, you'll need some new measurement ideas. This is where the SPACE framework can help you measure your incident response capability.
 
 ## Using the SPACE Framework to measure incident response
 
-[The SPACE framework](https://octopus.com/devops/metrics/space-framework/)
+You can take a more holistic view of incident response and incident management using [the SPACE framework](https://octopus.com/devops/metrics/space-framework/). Here are a number of ideas that align to the 5 SPACE categories:
 
-Satisfaction and wellbeing
+- Satisfaction and wellbeing
+- Performance
+- Activity
+- Communication and collaboration
+- Efficiency and flow
 
-Are people managing incidents happy with:
+You don't have to use all these metrics at once. The SPACE framework recommends you use a mix of instrumented and perceptual measures across at least 3 dimensions. Your goal is to create a balanced set of measurements that helps you improve the process.
+
+### Satisfaction and wellbeing
+
+Perceptual measures work best here, so survey the people managing incidents to see how happy they are with:
 
 - The incident management process
 - The on-call schedule
 - How easy it is to escalate or access specialists to help during an incident
+
+You can also review instrumented data to determine how reasonable the on-call schedule is:
+
 - What local times did pagers go off
 
-Performance
+### Performance
 
-- System reliability
-- Time between incident conditions and awareness of the incident
+You can measure incident management performance using metrics such as:
 
-The time to restore service would fit into this category.
+- Whether systems perform against their reliability targets
+- The time between incident conditions and awareness of the incident
+- The time it takes to resolve an incident
 
-Activity
+### Activity
 
-Things you can count
+Your incident activity doesn't just have to be about the number of incidents. There are plenty of activity metrics you can use to understand incidents. You'll find most of these numbers in your existing systems:
 
 - Number of alerts raised by monitoring tools
 - Number of incidents raised
 - Number of concurrent incidents
 
-Communication and collaboration
+### Communication and collaboration
 
-- Number of people involved per incident
+The flow of information is crucial to incident management. You ought to include this dimension in your measurement strategy for incidents. Having high-quality communication will reduce the time it takes to resolve faults. You can measure:
+
+- The number of people involved in each incident
 - How many different teams were involved in an incident
-- Number of chat channels opened for an incident
+- The number of chat channels opened for an incident
 - How many times the incident report was viewed (or given a positive rating, or referenced in other incidents)
 
-Efficieny and flow
+### Efficieny and flow
 
-- Number of times an incident is reassigned
-- Number of attempts before a successful mitigation
+You will often uncover waste in your system when you use efficiency and flow metrics. If an incident is passed around, progress stalls and resolution takes longer. These metrics can help you spot problems:
 
+- How often an incident is reassigned
+- The number of mitigation attempts per incident
 
+### Incident management SPACE framework summary
 
-These measurements are useful as they highlight the hidden costs of managing incidents and provide concrete areas that could be improved.
+You should be free to build and adjust your metrics as you gain insight and improve your system. You may find it useful to start with satisfaction, communication, and efficiency as these are likely to give you early wins.
 
-And while you're at it... ask your customers how they rate your reliability!
+If you already survey customers, you should ask them to rate your reliability.
 
-
-These will have more direct impact on your incident response process than time to recover.
+The SPACE framework provides a way to build measurements that can have a more direct influence on your incident management than recovery times alone.
 
 ## Transitioning from MTTR
 
-Introduce time to restore scatter charts alongside any existing metrics you have, including MTTR. The idea is to familiarize the new measurements before you retire the old ones.
-
-Once the new concepts become established, you can de-prioritize MTTR and shift the focus onto the more useful metrics.
+If you have been reporting mean time to restore, you'll confuse people if you just drop it. Instead, introduce new measurements alongside MTTR to familiarize people with the new concepts. You can demote the importance of MTTR in your dashboards by moving it further away from the "top left" of the dashboard. You can eventually remove it.
 
 The same process can help you normalize the process of changing metrics over time, for example, if you expand from [DORA metrics](https://octopus.com/devops/metrics/dora-metrics/) to [the SPACE Framework](https://octopus.com/devops/metrics/space-framework/).
 
 ## Beyond the numbers
 
-Metrics are useful because they prevent you from fooling yourself with convincing narratives. If you work without any measurements, you'll explain away incidents that take too long to resolve. It was an exceptional case. It could never happen again. The numbers will quickly dispel the illusions we sometimes create, as they tell you that the incident isn't unusual and similar things happen repeatedly.
+Metrics are useful because they stop you fooling yourself with convincing narratives. Without numbers, it's possible to dismiss an incident as a one-off, when it is more frequent than you thought. Phrases such as "one-off" and "exceptional/edge case" should warn you of narrative fallacy.
 
-What you really must do is run retrospectives for each incident. The numbers will contribute to the information you have to come up with improvement ideas. Running the retrospective as soon as the incident is resolved ensures vital context isn't lost as people move on to other things and forget the details.
-
-It is more important to learn from incidents than it is to achieve some arbitrary goals around time to recover.
+Despite the role numbers play, they can only tell you there is a problem, not how to solve it. You'll need to go beyond numbers and use incident retrospectives and reviews to work out how to improve incident management in your organization.
 
 The numbers don't drive continuous improvement, they just remind you of the reality so you can apply some human ingenuity and make things better each week, forever. Use the numbers to identify and remove bias and logical fallacy from your discussions, so you can deal with the reality that is before you.
+
+You should run incident retrospectives soon after each incident, before vital context is lost and before the assembled team disperses back to their day jobs. Incident reviews can be done periodically and involves working through recent incidents to look for patterns and improvements in the absence of *incident adrenaline*.
+
+It is more important to learn from incidents than it is to achieve some arbitrary goals around time to recover.
 
 ## Incident fallacies
 
@@ -213,6 +228,9 @@ incidents like this less impactful
 
 ## Conclusion
 
+Do we want DORA to change how they measure software delivery - no. The survey collects how long it generally takes to restore service. If you have adopted some of the measurements in this article, you'll be able to answer more accurately. For industry analysis, this seems like a sensible way to gauge one of many factors in the research.
+
+> For the primary application or service you work on, how long does it generally take to restore service when a service incident or a defect that impacts users occurs (e.g., unplanned outage, service impairment)?
 
 Treat incidents as opportunities to learn
 Favor in-depth analysis over shallow metrics
@@ -227,3 +245,19 @@ Study what goes Right Along with what goes wrong
 - [The Verica Open Incident Database (VOID)](https://www.thevoid.community/)
 
 Happy deployments!
+
+
+
+Other notes...
+
+
+
+One of the DORA Community discussions last year touched on mean time to recovery (MTTR) and whether it was a valid measure for software delivery performance. MTTR is one of the [DORA Metrics](https://octopus.com/devops/metrics/dora-metrics/) and is used to assess software delivery performance in the Accelerate State of DevOps report.
+
+
+The Verica Open Incident Database (VOID) takes inspiration from the aviation industry, where incidents and near-misses are treated as an opportunity to study, learn, and share information. Not all software is safety-critical, but it is playing an ever-increasing role in industries that are, such as transport, infrastructure, and healthcare. The resulting socio-technical systems are complex and may be best understood by analyzing failures.
+
+High-trust and low-blame cultures learn and improve when something goes wrong. LINK TO DEVOPS CULTURE
+
+
+Štěpán Davidovič’s - Google study? Ran Monte Carlo simulations to compare a control group with artificially reduced incident durations and found that MTTR increased between 20-40% of the time, despite the durations being artificially reduced.
