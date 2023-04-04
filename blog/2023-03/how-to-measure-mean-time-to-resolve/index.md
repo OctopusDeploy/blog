@@ -72,7 +72,7 @@ Instead of zipping up your incidents into an average, plot each duration on a ch
 
 ![A scatter plot showing incident durations](time-to-restore-scatter.png)
 
-You can now understand the trend in resoltion times to see if you are improving over time. You can also identify outliers that took longer to solve and have conversations about how these could be handled better. Resolution times remain useful as part of your journey into exploring incidents and improving incident management and system stability.
+You can now understand the trend in resolution times to see if you are improving over time. You can also identify outliers that took longer to solve and have conversations about how these could be handled better. Resolution times remain useful as part of your journey into exploring incidents and improving incident management and system stability.
 
 If incidents require a code fix, the restore time will reflect the performance of your deployment pipeline. Being able to quickly and safely deploy new versions of your software has positive effects beyond incident management. The restore times also encourage the introduction of monitoring and alerting tools, which significantly improve your ability to detect problems before a customer is impacted.
 
@@ -82,9 +82,11 @@ To get the most out of incident duration data, make sure you have consistent def
 - What is the start time
 - What is the end time
 
-Should you classify something as an incident if a system failed, but didn't impact customers. For example, your instant-search feature may have stopped working, but the fallback of letting users round-trip the search form to get a response still worked - is this an incident? It's quite subjective. What if your web server crashed, but your edge cache continued to serve requests?
+Should you classify something as an incident if a system failed, but didn't impact customers? For example, your instant-search feature may have stopped working, but the fallback of letting users round-trip the search form to get a response still worked - is this an incident? It's quite subjective. What if your web server crashed, but your edge cache continued to serve requests?
 
-The exact start time and end time of an incident can be tricky to pin down. Do you start the clock when the CPUs get hot, when the response times slow down, or when the first customer gets an error? The same goes for the end time - is it when customers can use the system again, or when you've mitigated the issue, finished fixing a bug, or when you've put in a permanent fix to prevent a similar incident in the future?
+These are the kind of questions you'll need to ask to create a shared definition of an incident.
+
+The exact start time and end time of an incident can be tricky to pin down. Do you start the clock when the CPUs get hot, when the response times slow down, or when the first customer gets an error? The same goes for the end time. Is it when customers can use the system again or when you've mitigated the issue? Perhaps it's when you've finished fixing a bug, or when you've put in a permanent fix to prevent a similar incident in the future.
 
 By creating a strong definition for indicates and their measurement, you can make sure your data is comparable.
 
@@ -92,7 +94,7 @@ You will likely reach a point where time to restore no longer offers you the pro
 
 ## Using the SPACE Framework to measure incident response
 
-You can take a more holistic view of incident response and incident management using [the SPACE framework](https://octopus.com/devops/metrics/space-framework/). Here are a number of ideas that align to the 5 SPACE categories:
+You can take a more holistic view of incident response and incident management using [the SPACE framework](https://octopus.com/devops/metrics/space-framework/). Here are several ideas that align with the 5 SPACE categories:
 
 - Satisfaction and wellbeing
 - Performance
@@ -100,7 +102,7 @@ You can take a more holistic view of incident response and incident management u
 - Communication and collaboration
 - Efficiency and flow
 
-You don't have to use all these metrics at once. The SPACE framework recommends you use a mix of instrumented and perceptual measures across at least 3 dimensions. Your goal is to create a balanced set of measurements that helps you improve the process.
+You don't have to use all these metrics at once. The SPACE framework recommends you use a mix of instrumented and perceptual measures across at least 3 dimensions and to cover individual, team, and system measures. Your goal is to create a balanced set of measurements that helps you improve the process.
 
 ### Satisfaction and wellbeing
 
@@ -139,7 +141,7 @@ The flow of information is crucial to incident management. You ought to include 
 - The number of chat channels opened for an incident
 - How many times the incident report was viewed (or given a positive rating, or referenced in other incidents)
 
-### Efficieny and flow
+### Efficiency and flow
 
 You will often uncover waste in your system when you use efficiency and flow metrics. If an incident is passed around, progress stalls and resolution takes longer. These metrics can help you spot problems:
 
@@ -156,7 +158,7 @@ The SPACE framework provides a way to build measurements that can have a more di
 
 ## Transitioning from MTTR
 
-If you have been reporting mean time to restore, you'll confuse people if you just drop it. Instead, introduce new measurements alongside MTTR to familiarize people with the new concepts. You can demote the importance of MTTR in your dashboards by moving it further away from the "top left" of the dashboard. You can eventually remove it.
+If you have been reporting mean time to recovery, you'll confuse people if you just drop it. Instead, introduce new measurements alongside MTTR to familiarize people with the new concepts. You can demote the importance of MTTR in your dashboards by moving it further away from the "top left" of the dashboard. You can eventually remove it.
 
 The same process can help you normalize the process of changing metrics over time, for example, if you expand from [DORA metrics](https://octopus.com/devops/metrics/dora-metrics/) to [the SPACE Framework](https://octopus.com/devops/metrics/space-framework/).
 
@@ -170,61 +172,13 @@ The numbers don't drive continuous improvement, they just remind you of the real
 
 You should run incident retrospectives soon after each incident, before vital context is lost and before the assembled team disperses back to their day jobs. Incident reviews can be done periodically and involves working through recent incidents to look for patterns and improvements in the absence of *incident adrenaline*.
 
-It is more important to learn from incidents than it is to achieve some arbitrary goals around time to recover.
-
-## Incident fallacies
-
-The most common fallacies preventing teams from improving their software delivery performance are...
-
-https://en.wikipedia.org/wiki/List_of_fallacies
-
-- Appeal to probability
-- Questionable cause
-- Relevance fallacy
-
-### Appeal to probability
-
-- Appeal to probability: Assuming you know the cause of an incident because your idea seems highly likely. You need to work out how to test your theory.
-
-### Questionable cause
-
-When two things happen a similar times it is easy to draw false conclusions either about the presence of a relationship, or the direction of that relationship. For example, you might believe your incident was caused by a high number of concurrent requests on your load balancer, which overloaded your web servers. If you dig deeper, you are likely to find the concurrent requests are a symptom of the load balancer getting slower responses from the web server (possibly caused by the database being overloaded, which left the web server waiting a long time for data).
-
-You should build an incident dashboard within your monitoring tool with metrics from all suspect components. Good monitoring tools will help you identify the precise order of the failure cascade. If you have the database load, web server response times, and load balancer queues visualized on time series charts, you can quickly see which one faulted first and prove that the load balancer queue didn't occur until after the problem started (or, indeed, that it *did* fail first as we can change our mind in the face of evidence).
-
-### Relevance fallacy
-
-Highly relevant to incident retrospectives, relevance fallacies lead you to dismiss possibilities because they sound outlandish or incredible. 
-
-Set a clear divergent stage of the retrospective where all ideas are accepted without question and added to the list of possibilities. Ask everyone to hold onto their thoughts and judgments at this stage as you just want all ideas. Once you have exhausted the suggestions, you can pick one or two possibilities and work out how they might be eliminated. You can then test them to see if they remain possible or should be discarded. Repeat this until you narrow down the items.
-
-## Use incident reviews, not root cause analysis
-
 Be cautious about root cause analysis as software systems rarely have a single root cause, it's normally a combination of several contributing factors. Root cause analysis typically focuses on the people closest to the incident not on the broader systemic issues. Aim instead for a post-incident review that details all the things that were happening and what was done to mitigate and solve it. Your incident reviews can contribute directly to a reduction in resolution times as they capture the learning and make it available to people handling the next incident.
 
 > Safety is the capability to absorb an incident, not the absence of failure, and incident reviews are blameless learning opportunities. - Adrian Cockcroft
 
 The cause of an incident is never a person, it's a whole system within which people work. If someone logged onto a server and accidentally selected "shut down" instead of "log out", that's a fault in the system. Why hasn't the "shut down" option been hidden? Why do they even need to access servers directly - couldn't this be done with a runbook?
 
-You can use past incident reports for analysis and to run review workshops where you discuss the incident. This spreads knowledge and generates ideas that can improve your current process and change future decisions.
-
-
-The previous incident reporting format Microsoft used was:
-
-- Summary of impact
-- Preliminary root cause
-- Mitigation
-- Next steps
-
-The post-incident review format Microsoft uses for incidents is:
-
-- What happened?
-- What went wrong, and why?
-- How did we respond?
-- How are we making incidents like this less likely 
-or less impactful?
-- How can our customers and partners make 
-incidents like this less impactful
+It is more important to learn from incidents than it is to achieve some arbitrary goals around time to recover.
 
 ## Conclusion
 
@@ -245,19 +199,3 @@ Study what goes Right Along with what goes wrong
 - [The Verica Open Incident Database (VOID)](https://www.thevoid.community/)
 
 Happy deployments!
-
-
-
-Other notes...
-
-
-
-One of the DORA Community discussions last year touched on mean time to recovery (MTTR) and whether it was a valid measure for software delivery performance. MTTR is one of the [DORA Metrics](https://octopus.com/devops/metrics/dora-metrics/) and is used to assess software delivery performance in the Accelerate State of DevOps report.
-
-
-The Verica Open Incident Database (VOID) takes inspiration from the aviation industry, where incidents and near-misses are treated as an opportunity to study, learn, and share information. Not all software is safety-critical, but it is playing an ever-increasing role in industries that are, such as transport, infrastructure, and healthcare. The resulting socio-technical systems are complex and may be best understood by analyzing failures.
-
-High-trust and low-blame cultures learn and improve when something goes wrong. LINK TO DEVOPS CULTURE
-
-
-Štěpán Davidovič’s - Google study? Ran Monte Carlo simulations to compare a control group with artificially reduced incident durations and found that MTTR increased between 20-40% of the time, despite the durations being artificially reduced.
