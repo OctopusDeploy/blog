@@ -68,7 +68,7 @@ Let's explore how they help with containers.
 
 [Docker](https://www.docker.com/) is a service that helps you package, test, and manage software using Docker's [OCI image format](https://opencontainers.org/). Docker made the OCI format open source, and it's now the industry standard on nearly all container services.
 
-One of Docker's most popular fservices is its container registry, [Docker Hub](https://hub.docker.com/). Docker Hub lets you store and organize all your container images so they're easy to find and deploy.
+One of Docker's most popular services is its container registry, [Docker Hub](https://hub.docker.com/). Docker Hub lets you store and organize all your container images so they're easy to find and deploy.
 
 ### Kubernetes
 
@@ -88,8 +88,9 @@ In this post we explained:
 - The benefits and differences between containers and VMs
 - What Docker and Kubernetes bring to container management
 
+Octopus can help simplify container deployments for DevOps teams. [Read more about how Octopus can help you deploy and manage containers](link-to-website-page). <- placeholder link!
+
 For more on containers:
 
-- Read [how Octopus can help you deploy and manage containers](link-to-website-page) --- THIS WILL LINK TO THE CONTAINERS WEBSITE PAGE
 - See everything you need to [get started with containers](https://octopus.com/blog/get-started-containers)
 - Follow our guide for [building and deploying a Java app with Docker, Google, Azure, and Octopus](https://octopus.com/blog/deploying-java-app-docker-google-azure)
