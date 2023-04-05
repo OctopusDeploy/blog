@@ -1,9 +1,9 @@
 ---
 title: A beginner's guide to containers
-description: A brief overview at contrainers - what they are and why they're useful
+description: A brief overview at containers - what they are and why they're useful.
 author: nikita.dergilev@octopus.com
-visibility: private
-published: 3020-01-01-1400
+visibility: public
+published: 2023-04-17-1400
 metaImage: placeholderfeatured.png
 bannerImage: placeholderfeatured.png
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
@@ -18,7 +18,7 @@ Containers are a popular way to deliver applications. They're well suited to tho
 
 But what are they exactly? How do they work? Why should you use them? And how do they differ from related services?
 
-Worry not! This blog explains everything beginners need to know about containers.
+This post explains everything beginners need to know about containers.
 
 ## Containers in a nutshell
 
@@ -29,17 +29,17 @@ Containers are lightweight virtual environments. They package everything needed 
 - Libraries
 - Dependencies
 
-With everything needed in one deployable format, containers are very versatile. You can host, deploy, and move your applications almost anywhere.
+With everything in one deployable format, containers are versatile. You can host, deploy, and move your applications almost anywhere.
 
-Containers are also very easy to spin up and tear down, so they're an excellent option for applications that need to scale with demand.
+Containers are also easy to spin up and tear down, so they're an excellent option for applications that need to scale with demand.
 
 ## How containers differ to virtual machines
 
-Virtual machines (VMs) are digital computers that run on servers or other computers. VMs allow you to install and use common operating systems like Microsoft Windows or Linux. Tech teams commonly used VMs to reduce space taken by physical servers.
+Virtual machines (VMs) are digital computers that run on servers or other computers. VMs let you install and use common operating systems like Microsoft Windows or Linux. Tech teams commonly use VMs to reduce space taken by physical servers.
 
 Containers, however, are standalone virtual environments without the bloat of an operating system.
 
-These are the key difference between the 2 technologies:
+These are the key differences between the 2 technologies:
 
 - Isolation - Containers isolate at the operating system level. VMs isolate at the hardware level.
 - Management - You can't change containers after deployment, only destroy and replace them. VMs allow for the same changes as physical computers.
@@ -56,11 +56,11 @@ Containers, however, offer the following benefits:
 - Ensure your application and infrastructure are the same across all instances, no matter where you host
 - Recover faster due to the speed and ease of spinning 
 
-We went into more depth on [the benefits of containers in a previous blog](https://octopus.com/blog/benefits-of-containerization).
+We went into more depth on [the benefits of containers in a previous post](https://octopus.com/blog/benefits-of-containerization).
 
 ## Where Docker and Kubernetes fit alongside containers
 
-If working in software development, you’ve likely heard of 'Docker' and 'Kubernetes'. Neither is essential for small projects, but together they solve most problems you'd likely find with containers.
+If you work in software development, you’ve likely heard of Docker and Kubernetes. Neither is essential for small projects, but together they solve the most common problems with containers.
 
 Let's explore how they help with containers.
 
@@ -94,3 +94,5 @@ For more on containers:
 
 - See everything you need to [get started with containers](https://octopus.com/blog/get-started-containers)
 - Follow our guide for [building and deploying a Java app with Docker, Google, Azure, and Octopus](https://octopus.com/blog/deploying-java-app-docker-google-azure)
+
+Happy deployments!
