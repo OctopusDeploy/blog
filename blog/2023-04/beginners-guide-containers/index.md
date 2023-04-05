@@ -4,8 +4,8 @@ description: A brief overview at contrainers - what they are and why they're use
 author: nikita.dergilev@octopus.com
 visibility: private
 published: 3020-01-01-1400
-metaImage: 
-bannerImage: 
+metaImage: placeholderfeatured.png
+bannerImage: placeholderfeatured.png
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags: 
