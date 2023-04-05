@@ -4,11 +4,12 @@ description: A brief overview at containers - what they are and why they're usef
 author: nikita.dergilev@octopus.com
 visibility: public
 published: 2023-04-17-1400
-metaImage: placeholderfeatured.png
-bannerImage: placeholderfeatured.png
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-gettingstartedwithdockeralpine2-2022.png
+bannerImage: blogimage-gettingstartedwithdockeralpine2-2022.png
+bannerImageAlt: Man standing with a laptop in front of a large blue container
 isFeatured: false
 tags: 
+  - DevOps
   - Containers
   - Kubernetes
   - Docker
