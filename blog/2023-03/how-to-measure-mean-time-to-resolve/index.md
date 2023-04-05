@@ -13,23 +13,21 @@ tags:
   - DORA Metrics
 ---
 
-It's possible to overthink your DevOps metrics. If you've read the fantastic rigorous research undertaken by [DORA](https://www.devops-research.com/research.html), you might worry that you need science and statistics expertise to do the same for your team.
+It's possible to overthink your DevOps metrics. If you've read the research undertaken by [DORA](https://www.devops-research.com/research.html), you might worry that you need science and statistics expertise to do the same for your team.
 
-The good news is, you don't have to. The metrics you collect in your team aren't intended for peer-reviewed publication in a journal. They just need to be good enough to assist your continuous improvement process.
+The good news is, you don't need advanced skills to use metrics in your team. You only need information that's good enough to guide your process of continuous improvement.
 
-One metric that's currently the subject of broader discussion is mean time to recovery (MTTR). In this article, you'll see how MTTR is valid for research, the arguments against it, and what you can use to measure your software delivery performance.
+One metric that's currently the subject of broader discussion is mean time to recovery (MTTR). In this article, you'll see how MTTR is valid for research, the arguments against it, and whether you should use it to measure your software delivery performance.
 
 ## What is MTTR
 
-Mean time to restore, or mean time to recovery, is one of the [DORA Metrics](https://octopus.com/devops/metrics/dora-metrics/), which predict software delivery performance and several organizational outcomes. If you perform well against all the metrics, you'll have working software sooner, happier employees, and a competitive advantage in your industry.
+MTTR is the mean time to recovery, sometimes referred to as mean time to restore. It's the time it takes to get a system operational after a fault. It has become a common measure of software delivery performance as part of the [DORA Metrics](https://octopus.com/devops/metrics/dora-metrics/).
 
-To measure MTTR, you need to collect the duration of each incident from when it started to when it ended. You would then sort all the incidents by duration and pick the middle one to obtain the *median* incident duration. We'll talk about the shortfalls of averaging incident duration for your team shortly.
+If you perform well against all DORA metrics, you'll have working software sooner, happier employees, and a competitive advantage in your industry.
 
-:::hint
-To calculate an average, you'd sum all the durations and divide the total by the number of incidents. This is the *mean* average.
+To collect *mean* time to recovery, you need to collect the duration of each incident from when it started to when it ended. You then sum the durations and divide the total by the number of incidents. Some teams calculate the *median* time to recovery by ordering all incidents and selecting the middle value.
 
-DORA uses the *median* average in their research. To calculate this, you'd arrange all incident durations from smallest to largest, then pick the value from the middle of the list. You'd average the two middle values if the list has an even number of entries.
-:::
+Recovery times are impacted by many parts of your software delivery process, such as architecture, documentation, observability, and deployment pipeline performance. When you can recover quickly, incidents have less impact and customers are happier.
 
 ### Why MTTR is useful for industry research
 
