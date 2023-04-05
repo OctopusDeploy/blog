@@ -31,18 +31,16 @@ Recovery times are impacted by many parts of your software delivery process, suc
 
 ### Why MTTR is useful for industry research
 
-When researching performance across many organizations and industries, you can't ask people to provide a list of all incidents for analysis. This would deter many people from responding to the research survey. That means you must ask them to summarize their experience by providing a comparable number.
+To perform their research, DORA needs to provide survey questions that are answerable across a range of organizations with different data and performance levels. The [DORA quick check](https://www.devops-research.com/quickcheck.html) phrases the MTTR question as:
 
-The [DORA quick check](https://www.devops-research.com/quickcheck.html) phrases the MTTR question like this:
-
-*For the primary application or service you work on, how long does it generally take to restore service when a service incident or a defect that impacts users occurs (for example, unplanned outage, service impairment)?*
-
-- More than six months
-- One to six months
-- One week to one month
-- One day to one week
-- Less than one day
-- Less than one hour
+> For the primary application or service you work on, how long does it generally take to restore service when a service incident or a defect that impacts users occurs (for example, unplanned outage, service impairment)?
+>
+> - More than six months
+> - One to six months
+> - One week to one month
+> - One day to one week
+> - Less than one day
+> - Less than one hour
 
 Most people working in software delivery have a feel for the typical duration of incidents, especially with the broad buckets used in the answer. You can probably answer this for your team from memory with reasonable accuracy.
 
