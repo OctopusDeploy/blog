@@ -25,7 +25,7 @@ If you'd like feedback on a work in progress, create a draft PR and tag @TeganAl
 
 When you're happy with your post and it's ready to be reviewed, create a PR, assign @TeganAli as reviewer, and drop a note in Slack in #topic-content-marketing.
 
-When submitting your post in #topic-content-marketing, you also need to provide copy for a Twitter post and LinkedIn post. (The marketing team will edit and post these on social media.) Please make sure your tweet is no more than 280 characters, including spaces and the link to the blog post. LinkedIn posts have a 3000-character limit, so you can include more detail, but still keep it brief. Please also refer to our [writing tips for social media](https://octopushq.atlassian.net/wiki/spaces/MAR/pages/2608464184/Writing+tips+for+social+media) before writing your posts. 
+When submitting your post in #topic-content-marketing, you also need to provide copy for a Twitter post and LinkedIn post. (The marketing team will edit and post these on social media.) Please make sure your tweet is no more than 280 characters, including spaces and the link to the blog post. LinkedIn posts have a 3000-character limit, so you can include more detail, but still keep it brief. Please also refer to our [writing tips for social media](https://octopushq.atlassian.net/wiki/spaces/MAR/pages/2608464184/Writing+tips+for+social+media) before writing your social posts. 
 
 If you're drafting a post that you'd like to keep private until it's published, use the [internal blog drafts repo](https://github.com/OctopusDeploy/internal-blog-drafts).
 
