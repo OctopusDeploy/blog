@@ -42,7 +42,7 @@ Containers, however, are standalone virtual environments without the bloat of an
 
 These are the key differences between the 2 technologies:
 
-- Isolation - Containers isolate at the operating system level. VMs isolate at the hardware level.
+- Isolation - Containers isolate per instance. VMs isolate per operating system.
 - Management - You can't change containers after deployment, only destroy and replace them. VMs allow for the same changes as physical computers.
 - Resources - Containers need fewer resources as they don't emulate operating systems. VMs need extra resources to power their operating systems.
 - Portability - You can move containers between hosting environments without major changes to the infrastructure. To move VMs, you must reconfigure your virtual and physical infrastructure.
