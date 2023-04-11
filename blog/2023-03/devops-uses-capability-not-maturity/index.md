@@ -131,7 +131,7 @@ The highest performers use this process of continuous improvement to make gains 
 
 ## Conclusion
 
-DevOps shouldn't be assessed against a maturity model. You should be wary of anyone who tries to introduce one. Instead, use the structural equation model from Accelerate and the [State of DevOps reports](https://cloud.google.com/devops/state-of-devops/) as part of your continuous improvement efforts.
+DevOps shouldn't be assessed against a maturity model. You should be wary of anyone who tries to introduce one. Instead, use the structural equation model from Accelerate and the [State of DevOps reports](https://dora.dev/publications/) as part of your continuous improvement efforts.
 
 The DevOps capability model supports the need for constant incremental gains and encourages teams to experiment with their tools and processes.
 
