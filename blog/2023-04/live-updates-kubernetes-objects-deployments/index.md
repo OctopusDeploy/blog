@@ -50,7 +50,7 @@ In this demo, you create a simple project that uses a **[Deploy raw Kubernetes Y
 
 ![screenshot showing the Deploy raw Kubernetes YAML step](raw-yaml-step.png)
 
-You need to create a Kubernetes deployment resource with 3 replicas that run the nginx container.To do this, use this YAML as an inline script:
+You need to create a Kubernetes deployment resource with 3 replicas that run the nginx container. To do this, use this YAML as an inline script:
 
     ```yaml
     apiVersion: apps/v1
@@ -80,9 +80,9 @@ You need to create a Kubernetes deployment resource with 3 replicas that run the
 
 ### Step 3: Configuring the status check options
 
-You'll notice a new section has been added for the Kubernetes Object Status check. I'll explain these options in more detail shortly.
+There's a new section added for the Kubernetes Object Status check. I explain these options in more detail shortly.
 
-    ![screenshot showing the Kubernetes object status check configuration section](kubernetes-object-status-check-configuration.png)
+![screenshot showing the Kubernetes object status check configuration section](kubernetes-object-status-check-configuration.png)
 
 For now, you can leave everything as default. That's everything you need to make it work.
 
@@ -92,13 +92,13 @@ Next, create a release and a deployment from this project.
 
 ![screenshot showing the page to create the deployment](create-deployment.png)
 
-After the deployment starts, you'll find a new **OBJECT STATUS** tab next to the **TASK LOG** tab.
+After the deployment starts, you find a new **OBJECT STATUS** tab next to the **TASK LOG** tab.
 
 Click the tab to see the object status updates.
 
 ![screenshot highlighting the kubernetes object status check header](object-status-tab.png)
 
-From the table, you'll see one Kubernetes deployment resource, one replica, and 3 pods.
+From the table, you see one Kubernetes deployment resource, one replica, and 3 pods.
 
 As you didn't define the ReplicaSet and the Pods in the YAML file, but they're child objects of the deployment, Octopus shows them for you as well.
 
@@ -106,7 +106,7 @@ As you didn't define the ReplicaSet and the Pods in the YAML file, but they're c
 
 ### Step 5: Understanding the settings
 
-Now you've seen how the Kubernetes Object Status feature works, I'll revisit the configuration settings and explain how to configure them for your use case.
+Now you've seen how the Kubernetes Object Status feature works, I revisit the configuration settings and explain how to configure them for your use case.
 
 Whenever a new project is created, the Kubernetes Object Status option is enabled by default, **Check that Kubernetes objects are running successfully**.
 
@@ -119,12 +119,12 @@ You can also configure 2 optional timeouts:
 - **Step execution timeout**
 
 ![screenshot of the step execution timeout section](step-execution-timeout.png)
-This timeout is the total time allowed for all Kubernetes objects in the action to be deployed. If any resources are not in a successful state by the end of this timeout period the step will stop executing and be marked as failed. You can disable this timeout if you don't want to set a time limit.
+This timeout is the total time allowed for all Kubernetes objects in the action to be deployed. If any resources are not in a successful state by the end of this timeout period, the step will stop executing and be marked as failed. You can disable this timeout if you don't want to set a time limit.
 
 - **Status stabilization timeout**
 
 ![screenshot of the stabilization timeout section](status-stabilization-timeout.png)
-This timeout adds more stability to your deployment. Sometimes a Kubernetes object can have temporary failures but fix itself eventually.
+This timeout adds more stability to your deployment. Sometimes a Kubernetes object can have temporary failures but fixes itself eventually.
 
 For example, a pod may fail to spin up due to a temporary connection issue to the container registry, but it will be created successfully when the internet connection is back.
 
