@@ -1,9 +1,9 @@
 ---
-title: Getting Live Updates of Kubernetes Objects during Deployment
-description: Introducing the Kubernetes object status check feature which provides a live update of Kubernetes objects during deployment.
+title: Getting live updates of Kubernetes objects during deployment
+description: Introducing the Kubernetes Object Status check feature, providing a live update of Kubernetes objects during deployment.
 author: yihao.wang@octopus.com
 visibility: private
-published: 3020-01-01-1400
+published: 2023-04-24-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
@@ -13,49 +13,44 @@ tags:
   - Kubernetes
 ---
 
-Kubernetes has become the de facto standard for container orchestration,
-but deploying to a Kubernetes cluster is often a tricky process.
-Once DevOps engineers have created Kubernetes objects in the cluster using manifest files,
-they typically need to run a sequence of `kubectl get` or `kubect describe` commands,
-until they confirm that the deployed objects are in fact up and running.
+Kubernetes has become the standard for container orchestration. Deploying to a Kubernetes cluster can be tricky, though. After you create Kubernetes objects in your cluster using manifest files, you typically need to run a sequence of  `kubectl get` or `kubect describe` commands. You need to do this until you confirm the deployed objects are running.
 
-The good news is, you no longer have to do this every time if you deploy to a Kubernetes cluster via Octopus.
+We're pleased to have addressed this with our new feature, Kubernetes Object Status.
 
-The Kubernetes object status check feature will give you live updates during the deployment process 
-for the statuses of all the Kubernetes objects you are deploying.
-This provides you extra visibility to the cluster to help you verify Kubernetes objects' statuses,
-and detect any errors in the deployment as early as possible.
+This feature gives you live status updates during the deployment process for all the Kubernetes objects you're deploying.
 
-![screenshot showing the Kubernetes object status check page](status-check-page.png)
+You get greater visibility of your cluster to verify the status of your Kubernetes objects and detect deployment errors as early as possible.
 
-Now, let's have a look at how this works.
+![Octopus release dashboard showing the Kubernetes object status check page](status-check-page.png)
 
-## Using object status check for Kubernetes deployments
+In this post, I show you how our new Kubernetes Object Status feature works.
 
-1. Register a cluster
+## Using the Kubernetes Object Status for deployments
 
-    Before we start, we need a Kubernetes cluster as the deployment target. 
-    If you are not familiar with the process,
-    you can find instructions [here](https://octopus.com/docs/infrastructure/deployment-targets/kubernetes-target).
+### Step 1: Registering a cluster
 
-    In this post, we will be using a local cluster that runs on Minikube, 
-    but this works for cloud clusters as well.
+Before you start, you need to register a Kubernetes cluster as the deployment target. 
 
-    ![screenshot demoing a configured Kubernetes cluster as a deployment target](cluster-configuration.png)
+You can the [steps in our docs](https://octopus.com/docs/infrastructure/deployment-targets/kubernetes-target) if you don't know how to do this.
 
-2. Create a project
+In this post, I use a local cluster that runs on Minikube, but this works for cloud clusters as well.
 
-    Next, we will create a project that deploys to the Kubernetes cluster we just registered.
+![screenshot demoing a configured Kubernetes cluster as a deployment target](cluster-configuration.png)
 
-    Most built-in steps that deploy to Kubernetes clusters support object status checks. 
-    Exceptions are [Upgrade a Helm Chart](https://octopus.com/docs/deployments/kubernetes/helm-update) (support for this step is coming soon) and "Run a kubectl CLI Script".
+### Step 2: Creating a project
 
-    In this demo, we will create a simple project that uses a [Deploy raw Kubernetes YAML](https://octopus.com/docs/deployments/kubernetes#raw-yaml-step) step.
+Next, you need to create a project that deploys to the Kubernetes cluster you just registered.
 
-    ![screenshot showing the Deploy raw Kubernetes YAML step](raw-yaml-step.png)
+Most built-in steps that deploy to Kubernetes clusters support object status checks. Exceptions are: 
 
-    We going to create a Kubernetes Deployment resource with 3 replicas that run the nginx container.
-    To do this, we put this YAML as an inline script.
+- **[Upgrade a Helm Chart](https://octopus.com/docs/deployments/kubernetes/helm-update)** (support for this step is coming soon) 
+- **Run a kubectl CLI Script**
+
+In this demo, you create a simple project that uses a **[Deploy raw Kubernetes YAML](https://octopus.com/docs/deployments/kubernetes#raw-yaml-step)** step.
+
+![screenshot showing the Deploy raw Kubernetes YAML step](raw-yaml-step.png)
+
+You need to create a Kubernetes deployment resource with 3 replicas that run the nginx container.To do this, use this YAML as an inline script:
 
     ```yaml
     apiVersion: apps/v1
@@ -80,97 +75,82 @@ Now, let's have a look at how this works.
             name: nginx
     ```
     
-    > In this demo, I created the objects in the `octopus` namespace. Please remember to change this to the namespace that your deployment target has been configured with.
+:::hint For this demo, I created the objects in the `octopus` namespace. Please remember to change this to the namespace that your deployment target has been configured with.
+:::
 
-3. Configure the status check options
+### Step 3: Configuring the status check options
 
-    You will notice that a new section has been added for the Kubernetes object status check.
-    I will explain these options in more detail shortly.
+You'll notice a new section has been added for the Kubernetes Object Status check. I'll explain these options in more detail shortly.
 
     ![screenshot showing the Kubernetes object status check configuration section](kubernetes-object-status-check-configuration.png)
 
-    For now, we just leave everything as default, 
-    and that's pretty much everything you need to make it work!
+For now, you can leave everything as default. That's everything you need to make it work.
 
-4. View the live updates from the cluster
+### Step 4: Viewing the live updates from the cluster
 
-    Now, let's create a release and a deployment from this project.
+Next, create a release and a deployment from this project.
 
-    ![screenshot showing the page to create the deployment](create-deployment.png)
+![screenshot showing the page to create the deployment](create-deployment.png)
 
-    Once the deployment starts, 
-    you can find a new "OBJECT STATUS" tab that has been added next to the "TASK LOGS" tab.
-    Simply click on the tab and we will see the object status updates.
+After the deployment starts, you'll find a new **OBJECT STATUS** tab next to the **TASK LOG** tab.
 
-    ![screenshot highlighting the kubernetes object status check header](object-status-tab.png)
+Click the tab to see the object status updates.
 
-    From the table, we can see one Kubernetes Deployment resource, 
-    one Replicas, 
-    and three Pods.
-    We did not define the ReplicaSet and the Pods in the YAML file, 
-    but since they are child objects of the Deployment,
-    Octopus shows them for you as well.
+![screenshot highlighting the kubernetes object status check header](object-status-tab.png)
 
-    ![screenshot showing the deployed resources](resources-table.png)
+From the table, you'll see one Kubernetes deployment resource, one replica, and 3 pods.
 
-5. Understand the settings
+As you didn't define the ReplicaSet and the Pods in the YAML file, but they're child objects of the deployment, Octopus shows them for you as well.
 
-    Now we had a walk-through of the Kubernetes object status check feature, 
-    let's revisit the configuration settings and understand how to configure them for your use case.
+![screenshot showing the deployed resources](resources-table.png)
 
-    Whenever a new project is created,
-    the Kubernetes object status check option is enabled by default ("Check that Kubernetes objects are running successfully").
-    If you are re-configuring a project which has been created before the release of this feature,
-    the Kubernetes object status check will not be enabled, 
-    until you manually do so.
+### Step 5: Understanding the settings
 
-    ![screenshot of the Kubernetes object status check options](kubernetes-object-status-check-options.png)
+Now you've seen how the Kubernetes Object Status feature works, I'll revisit the configuration settings and explain how to configure them for your use case.
 
-    You can also configure two optional timeouts.
+Whenever a new project is created, the Kubernetes Object Status option is enabled by default, **Check that Kubernetes objects are running successfully**.
 
-    - **Step execution timeout**
+If you're re-configuring a project you created before the release of this feature, the Kubernetes Object Status check won't be enabled until you enable it manually.
 
-      ![screenshot of the step execution timeout section](step-execution-timeout.png)
-      This timeout is the total time allowed for all Kubernetes objects in the action to be deployed.
-      If any resources are not in a successful state by the end of this timeout period,
-      the step will stop executing and will be marked as failed.
-      You can disable this timeout if you don't want to set a time limit.
-    - **Status stabilization timeout**
+![screenshot of the Kubernetes object status check options](kubernetes-object-status-check-options.png)
 
-      ![screenshot of the stabilization timeout section](status-stabilization-timeout.png)
-      This timeout adds more stability to your deployment.
-      Sometimes a Kubernetes object can have temporary failures but will self-heal eventually.
-      For example, a pod may fail to spin up due to a temporary connection issue to the container registry,
-      but it will be created successfully when the internet connection is back.
-      You can use the stabilisation timeout to prevent this kind of temporary failure from causing a failed deployment.
-      When this timeout is enabled, Octopus will wait for the period configured after the step fails or succeeds.
-      The step will be marked as failed or succeeded only if the status does not change throughout this timeout period.
+You can also configure 2 optional timeouts:
 
+- **Step execution timeout**
+
+![screenshot of the step execution timeout section](step-execution-timeout.png)
+This timeout is the total time allowed for all Kubernetes objects in the action to be deployed. If any resources are not in a successful state by the end of this timeout period the step will stop executing and be marked as failed. You can disable this timeout if you don't want to set a time limit.
+
+- **Status stabilization timeout**
+
+![screenshot of the stabilization timeout section](status-stabilization-timeout.png)
+This timeout adds more stability to your deployment. Sometimes a Kubernetes object can have temporary failures but fix itself eventually.
+
+For example, a pod may fail to spin up due to a temporary connection issue to the container registry, but it will be created successfully when the internet connection is back.
+
+You can use the stabilization timeout to prevent this kind of temporary failure from causing a failed deployment.
+
+When this timeout is enabled, Octopus will wait for the period configured after the step fails or succeeds. The step will be marked as failed or succeeded only if the status does not change throughout this timeout period.
 
 ## Caveats
 
-This feature can be super handy for Kubernetes deployments, but there are some caveats worth calling out.
+This feature is helpful for Kubernetes deployments, but there are some caveats worth calling out.
 
-First, the "OBJECT STATUS" tab only updates during the deployment process.
-Once the deployment succeeds or fails, Octopus does not do further checks for the deployed resources.
-This means any later updates to those objects, either done manually or by another deployment, won't be reflected in the table.
+1. The **OBJECT STATUS** tab only updates during the deployment process.
+After the deployment succeeds or fails, Octopus does not do further checks for the deployed resources. Any later updates to those objects, performed manually or by another deployment, won't be reflected in the table.
 
-Second, if you are deploying with a "Deploy Kubernetes containers" step,
-there is an existing option "Wait for the deployment to succeed" that allows you to wait until the completion of the deployment.
-This option is not compatible with the object status check feature because it uses the `kubectl rollout status` command under the hood.
-We recommend not using this option for any new deployments and use the object status check feature instead.
+1. If you're deploying with a **Deploy Kubernetes containers** step, the option **Wait for the deployment to succeed** lets you wait until the deployment is complete. This option is not compatible with the Kubernetes Object Status feature because it uses the `kubectl rollout status` command. We don't recommend this option for new deployments. We recommend you use the Kubernetes Object Status feature for new deployments instead.
 
-Finally, we currently do not support object status checks on resources deployed via the [Upgrade a Helm chart step](https://octopus.com/docs/deployments/kubernetes/helm-update) step, 
-or deployments that are configured with a [blue/green strategy](https://octopus.com/docs/deployments/kubernetes/deploy-container#bluegreen-deployment-strategy). (But don't worry, we are planning to add the support for these shortly.)
+1. We do not support object status checks on resources deployed via the **[Upgrade a Helm chart](https://octopus.com/docs/deployments/kubernetes/helm-update)** step. We also do not support checks on deployments configured with a [blue/green strategy](https://octopus.com/docs/deployments/kubernetes/deploy-container#bluegreen-deployment-strategy). However, we plan to add support for these soon.
 
 ## Conclusion
 
-The Kubernetes object status check feature provides live updates during the deployment process for the Kubernetes objects being deployed.
-It provides more visibility, gives you more confidence that your deployment is up and running,
-and helps you detect and identify any errors in the deployment as early as possible.
+The Kubernetes Object Status feature provides live updates during the deployment process for the Kubernetes objects being deployed.
 
-We hope you like this feature. Please don't hesitate to share your experience with this feature or any recommendations [here](/)!
+It provides you with greater visibility, gives you more confidence that your deployment is running, and helps you detect and identify errors in the deployment as early as possible.
 
-> The Kubernetes object status check feature will be available for Octopus cloud users from early May. But if you want to try it now, please just [let us know](/)!
+We hope you like this feature. Please share your experience with this feature or any recommendations [here](/)!
+
+The Kubernetes object status check feature will be available for Octopus Cloud users from early May. To try it now, please just [let us know](/)!
 
 Happy deployments!
