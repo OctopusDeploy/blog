@@ -4,9 +4,9 @@ description: Introducing the Kubernetes Object Status check feature, providing a
 author: yihao.wang@octopus.com
 visibility: private
 published: 2023-04-24-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-k8objectsstatusfeature-2023.png
+bannerImage: blogimage-k8objectsstatusfeature-2023.png
+bannerImageAlt: Octopus logo connected to two Kubernetes logo in front of a stylized Octopus dashboard
 isFeatured: false
 tags: 
   - Product
