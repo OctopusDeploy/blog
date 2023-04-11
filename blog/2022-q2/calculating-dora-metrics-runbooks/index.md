@@ -15,7 +15,7 @@ tags:
   - Runbooks
 ---
 
-The [DevOps Research and Assessment (DORA)](https://www.devops-research.com/research.html) annual report captures input from thousands of professionals worldwide, and ranks the performance of software development teams using four key metrics:
+The [DevOps Research and Assessment (DORA)](https://dora.dev/) annual report captures input from thousands of professionals worldwide, and ranks the performance of software development teams using four key metrics:
 
 - Deployment Frequency - How often an organization successfully releases to production.
 - Lead Time for Changes - The amount of time it takes a commit to get into production.
