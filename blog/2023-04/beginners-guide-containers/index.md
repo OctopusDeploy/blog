@@ -1,6 +1,6 @@
 ---
 title: A beginner's guide to containers
-description: A brief overview at containers - what they are and why they're useful.
+description: A brief overview at containers covering what they are and why they're useful.
 author: nikita.dergilev@octopus.com
 visibility: public
 published: 2023-04-17-1400
@@ -17,13 +17,13 @@ tags:
 
 Containers are a popular way to deliver applications. They're well suited to those working in many environments or building software in microservices.
 
-But what are they exactly? How do they work? Why should you use them? And how do they differ from related services?
+But what are containers exactly? How do containers work? Why should you use them? And how do they differ from related services?
 
 This post explains everything beginners need to know about containers.
 
 ## Containers in a nutshell
 
-Containers are lightweight virtual environments. They package everything needed to run an application or microservice, including:
+Containers are lightweight virtual environments. They package everything you need to run an application or microservice, including:
 
 - Code
 - Configuration files
@@ -43,7 +43,7 @@ Containers, however, are standalone virtual environments without the bloat of an
 These are the key differences between the 2 technologies:
 
 - Isolation - Containers isolate per instance. VMs isolate per operating system.
-- Management - You can't change containers after deployment, only destroy and replace them. VMs allow for the same changes as physical computers.
+- Management - You can't change containers after deployment, you can only destroy and replace them. VMs allow for the same changes as physical computers.
 - Resources - Containers need fewer resources as they don't emulate operating systems. VMs need extra resources to power their operating systems.
 - Portability - You can move containers between hosting environments without major changes to the infrastructure. To move VMs, you must reconfigure your virtual and physical infrastructure.
 
@@ -89,7 +89,7 @@ In this post we explained:
 - The benefits and differences between containers and VMs
 - What Docker and Kubernetes bring to container management
 
-Octopus can help simplify container deployments for DevOps teams. [Read more about how Octopus can help you deploy and manage containers](link-to-website-page). <- placeholder link!
+<!-- Octopus can help simplify container deployments for DevOps teams. [Read more about how Octopus can help you deploy and manage containers](link-to-website-page).-->
 
 For more on containers:
 
