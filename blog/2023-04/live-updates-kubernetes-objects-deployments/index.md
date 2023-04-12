@@ -1,5 +1,5 @@
 ---
-title: Getting live updates of Kubernetes objects during deployment
+title: Live updates of Kubernetes objects during deployment
 description: Introducing the Kubernetes Object Status check feature, providing a live update of Kubernetes objects during deployment.
 author: yihao.wang@octopus.com
 visibility: private
@@ -31,9 +31,9 @@ In this post, I show you how our new Kubernetes Object Status feature works.
 
 Before you start, you need to register a Kubernetes cluster as the deployment target. 
 
-You can the [steps in our docs](https://octopus.com/docs/infrastructure/deployment-targets/kubernetes-target) if you don't know how to do this.
+You can follow the [steps in our docs](https://octopus.com/docs/infrastructure/deployment-targets/kubernetes-target) to do this.
 
-In this post, I use a local cluster that runs on Minikube, but this works for cloud clusters as well.
+In this post, I use a local cluster that runs on Minikube, but this process works for cloud clusters as well.
 
 ![screenshot demoing a configured Kubernetes cluster as a deployment target](cluster-configuration.png)
 
@@ -46,11 +46,11 @@ Most built-in steps that deploy to Kubernetes clusters support object status che
 - **[Upgrade a Helm Chart](https://octopus.com/docs/deployments/kubernetes/helm-update)** (support for this step is coming soon) 
 - **Run a kubectl CLI Script**
 
-In this demo, you create a simple project that uses a **[Deploy raw Kubernetes YAML](https://octopus.com/docs/deployments/kubernetes#raw-yaml-step)** step.
+In this post, you create a simple project that uses a **[Deploy raw Kubernetes YAML](https://octopus.com/docs/deployments/kubernetes#raw-yaml-step)** step.
 
 ![screenshot showing the Deploy raw Kubernetes YAML step](raw-yaml-step.png)
 
-You need to create a Kubernetes deployment resource with 3 replicas that run the nginx container. To do this, use this YAML as an inline script:
+You need to create a Kubernetes deployment resource with 3 replicas that run the NGINX container. To do this, use this YAML as an inline script:
 
     ```yaml
     apiVersion: apps/v1
@@ -75,7 +75,7 @@ You need to create a Kubernetes deployment resource with 3 replicas that run the
             name: nginx
     ```
     
-:::hint For this demo, I created the objects in the `octopus` namespace. Please remember to change this to the namespace that your deployment target has been configured with.
+:::hint For this post, I created the objects in the `octopus` namespace. Please remember to change this to the namespace that your deployment target is configured with.
 :::
 
 ### Step 3: Configuring the status check options
@@ -84,17 +84,17 @@ There's a new section added for the Kubernetes Object Status check. I explain th
 
 ![screenshot showing the Kubernetes object status check configuration section](kubernetes-object-status-check-configuration.png)
 
-For now, you can leave everything as default. That's everything you need to make it work.
+For now, you can leave all the default options and it will work.
 
-### Step 4: Viewing the live updates from the cluster
+### Step 4: Viewing live updates from the cluster
 
-Next, create a release and a deployment from this project.
+Next, create a release and a deployment for this project.
 
 ![screenshot showing the page to create the deployment](create-deployment.png)
 
 After the deployment starts, you find a new **OBJECT STATUS** tab next to the **TASK LOG** tab.
 
-Click the tab to see the object status updates.
+Click **OBJECT STATUS** to see the object status updates.
 
 ![screenshot highlighting the kubernetes object status check header](object-status-tab.png)
 
@@ -130,7 +130,7 @@ For example, a pod may fail to spin up due to a temporary connection issue to th
 
 You can use the stabilization timeout to prevent this kind of temporary failure from causing a failed deployment.
 
-When this timeout is enabled, Octopus will wait for the period configured after the step fails or succeeds. The step will be marked as failed or succeeded only if the status does not change throughout this timeout period.
+When this timeout is enabled, Octopus waits for the period configured after the step fails or succeeds. The step is marked as failed or successful only if the status does not change throughout this timeout period.
 
 ## Caveats
 
@@ -149,8 +149,6 @@ The Kubernetes Object Status feature provides live updates during the deployment
 
 It provides you with greater visibility, gives you more confidence that your deployment is running, and helps you detect and identify errors in the deployment as early as possible.
 
-We hope you like this feature. Please share your experience with this feature or any recommendations [here](/)!
-
-The Kubernetes object status check feature will be available for Octopus Cloud users from early May. To try it now, please just [let us know](/)!
+We'd love feedback on this feature while we continue to refine it. If you're an Octopus Cloud user, it’s available now as an early access preview (EAP). [Register for the Kubernetes Object Status EAP](https://oc.to/EAP).
 
 Happy deployments!
