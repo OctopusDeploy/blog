@@ -184,7 +184,7 @@ You must consolidate these industry-wide insights with a local measurement strat
 
 ## Further reading
 
-- [The 2022 State of DevOps Report](https://cloud.google.com/devops/state-of-devops/)
+- [The 2022 State of DevOps Report](https://dora.dev/publications/)
 - [The DevOps engineer's handbook](https://octopus.com/devops/)
 - [White paper: Measuring Continuous Delivery and DevOps](https://octopus.com/whitepapers/lv-measuring-continuous-delivery-and-devops)
 

@@ -13,7 +13,7 @@ tags:
   - DORA Metrics
 ---
 
-Each year at Octopus Deploy, we look forward to the release of the Accelerate State of DevOps Report. The report, from Google Cloud and DORA, is an academically rigorous and [long-running research effort](https://www.devops-research.com/research.html), providing crucial insights into the practices and capabilities needed to achieve high performance in software delivery.
+Each year at Octopus Deploy, we look forward to the release of the Accelerate State of DevOps Report. The report, from Google Cloud and DORA, is an academically rigorous and [long-running research effort](https://dora.dev/research/), providing crucial insights into the practices and capabilities needed to achieve high performance in software delivery.
 
 From the report, we've learned what combination of technical and cultural techniques drives performance in software delivery and at the organization level. The capabilities and relationships have been analyzed from more than 33,000 survey responses.
 
@@ -38,7 +38,7 @@ The [DORA metrics](https://octopus.com/blog/dora-metrics-devops-business-outcome
 
 ## New insights in 2022
 
-As always, the latest Accelerate State of DevOps Report contains new insights, and you'll find several changes in [this year's report](https://cloud.google.com/devops/state-of-devops/).
+As always, the latest Accelerate State of DevOps Report contains new insights, and you'll find several changes in [this year's report](https://dora.dev/publications/).
 
 One of the headlines is that one of the biggest predictors for security practices is cultural, not technical. An organization is more likely to adopt appropriate security practices if it has a high-trust/low-blame culture. These practices increase software delivery and operational performance and reduce burnout.
 
@@ -54,6 +54,6 @@ There are also insights for:
 
 We asked you to participate in the Accelerate State of DevOps survey in some of our newsletters this year. Thank you to everyone who responded and shared their experiences.
 
-You can [read the full report here](https://cloud.google.com/devops/state-of-devops/). Check out the DevOps engineer's handbook to [learn more about DevOps metrics](https://octopus.com/devops/metrics).
+You can [read the full report here](https://dora.dev/publications/). Check out the DevOps engineer's handbook to [learn more about DevOps metrics](https://octopus.com/devops/metrics).
 
 Happy deployments!
