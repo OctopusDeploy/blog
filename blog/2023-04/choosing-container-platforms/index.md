@@ -15,7 +15,7 @@ tags:
   - Docker
 ---
 
-There are many container platforms to choose from. Finding the right one for your project boils down to:
+There are many container platforms to choose from. Finding the right platform for your project boils down to:
 
 - Where you want or need to run them
 - Flexibility needed
@@ -144,7 +144,7 @@ In these situations, you should standardize as much as possible. In this case, l
 
 ## Octopus can help with container deployments
 
-Regardless of the container platform you opt for, Octopus can help:
+Regardless of the container platform you opt for, Octopus can help in the following ways:
 
 - Built-in multi-tenancy helps with distributed computing so you can deploy to any combo of customers with ease.
 - Standardize deployments for different customers and infrastructure. Use snapshots and variables to manage environmental differences.
