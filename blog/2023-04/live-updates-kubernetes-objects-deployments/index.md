@@ -2,7 +2,7 @@
 title: Live updates of Kubernetes objects during deployment
 description: Introducing the Kubernetes Object Status check feature, providing a live update of Kubernetes objects during deployment.
 author: yihao.wang@octopus.com
-visibility: private
+visibility: public
 published: 2023-04-24-1400
 metaImage: blogimage-k8objectsstatusfeature-2023.png
 bannerImage: blogimage-k8objectsstatusfeature-2023.png
@@ -75,7 +75,8 @@ You need to create a Kubernetes deployment resource with 3 replicas that run the
             name: nginx
     ```
     
-:::hint For this post, I created the objects in the `octopus` namespace. Please remember to change this to the namespace that your deployment target is configured with.
+:::hint 
+For this post, I created the objects in the `octopus` namespace. Please remember to change this to the namespace that your deployment target is configured with.
 :::
 
 ### Step 3: Configuring the status check options
@@ -119,11 +120,13 @@ You can also configure 2 optional timeouts:
 - **Step execution timeout**
 
 ![screenshot of the step execution timeout section](step-execution-timeout.png)
+
 This timeout is the total time allowed for all Kubernetes objects in the action to be deployed. If any resources are not in a successful state by the end of this timeout period, the step will stop executing and be marked as failed. You can disable this timeout if you don't want to set a time limit.
 
 - **Status stabilization timeout**
 
 ![screenshot of the stabilization timeout section](status-stabilization-timeout.png)
+
 This timeout adds more stability to your deployment. Sometimes a Kubernetes object can have temporary failures but fixes itself eventually.
 
 For example, a pod may fail to spin up due to a temporary connection issue to the container registry, but it will be created successfully when the internet connection is back.
