@@ -3,10 +3,10 @@ title: Choosing a container platform
 description: A look at different container platforms and their suitability.
 author: nikita.dergilev@octopus.com
 visibility: public
-published: 2023-04-17-1400
-metaImage: placeholderimage.png
-bannerImage: placeholderimage.png
-bannerImageAlt: placeholder
+published: 2023-04-19-1400
+metaImage: pblogimage-top8containerregistries-2022.png
+bannerImage: blogimage-top8containerregistries-2022.png
+bannerImageAlt: Three-tiered shelf housing eight blue containers.
 isFeatured: false
 tags: 
   - DevOps
