@@ -115,7 +115,7 @@ Let's look at some PaaS options.
 
 [Kubernetes](https://kubernetes.io/) again! It's the most popular cloud option, given most cloud providers support it or have their own version. For example, you have:
 
-- [Azure Kubernetes Service (AKS)](https://azure.microsoft.com/en-au/products/kubernetes-service/)in Microsoft Azure
+- [Azure Kubernetes Service (AKS)](https://azure.microsoft.com/en-au/products/kubernetes-service/) in Microsoft Azure
 - [Elastic Kubernetes Service (EKS)](https://aws.amazon.com/eks/) in Amazon Web Services (AWS)
 - [Google Kubernetes Engine (GKE)](https://cloud.google.com/kubernetes-engine) in Google Cloud Services (GCS)
 - [IBM Cloud Kubernetes Services](https://www.ibm.com/cloud/free/kubernetes) in IBM Cloud Foundry
@@ -173,7 +173,7 @@ Regardless of the container platform you opt for, Octopus can help in the follow
 
 - Built-in multi-tenancy helps with distributed computing so you can deploy to any combination of customers with ease.
 - Standardize deployments for different customers and infrastructure. Use snapshots and variables to manage environmental differences.
-- Though you can use YAML, Helm Charts, or custom scripts, anyone can create container deployments in Octopus's easy-to-use UI.
+- Though you can use YAML, Helm charts, or custom scripts, anyone can create container deployments in Octopus's easy-to-use UI.
 
 [Read more about how Octopus can help with even the most complex deployments](https://octopus.com/).
 
