@@ -4,7 +4,7 @@ description: A look at different container platforms and their suitability.
 author: nikita.dergilev@octopus.com
 visibility: public
 published: 2023-04-19-1400
-metaImage: pblogimage-top8containerregistries-2022.png
+metaImage: blogimage-top8containerregistries-2022.png
 bannerImage: blogimage-top8containerregistries-2022.png
 bannerImageAlt: Three-tiered shelf housing eight blue containers.
 isFeatured: false
@@ -19,35 +19,38 @@ There are many container platforms to choose from. Finding the right platform fo
 
 - Where you want or need to run them
 - Your team's knowledge at the time
-- Flexibility needed
+- The flexibility you need
 - Company policy
 - Budget
 
 It's important to check the pros and cons of each platform and weigh them against your product's needs.
 
-In this blog, we help break down the suitability of each platform.
+In this post, I help break down the suitability of each platform.
 
-## Containers on-premise
+## Containers on-premises
 
-There are 2 main strategies for running containers on-premise, distributed computing and using private data centers.
+There are 2 main strategies for running containers on-premises:
+
+- Distributed computing
+- Using private data centers
 
 ### Distributed computing
 
-Distributed computing is when you deploy to many similar (but not always indentical) targets to counter network risks or high remote running costs. It's common for businesses like fast-food restaurants, gyms, and hospitals.  
+Distributed computing is when you deploy to many similar (but not always identical) targets to counter network risks or high remote running costs. It's common for businesses like fast-food restaurants, gyms, and hospitals.  
 
 The main challenges with distributed computing are:
 
-- Deployment standardization - You must manage differences between sites, like network speeds, maintenance windows, or customer's policies
-- Maintenance costs - Though hardware might be cheap or useful for cross-purposes, don't forget cost of maintenance or service outages
-- Support and recovery options - Consider who's supporting the local hardware or running recovery procedures
+- Deployment standardization - You must manage differences between sites, like network speeds, maintenance windows, or customers' policies.
+- Maintenance costs - Though hardware might be cheap or useful for cross-purposes, don't forget the cost of maintenance or service outages.
+- Support and recovery options - Consider who's supporting the local hardware or running recovery procedures.
 
 Let's look at the best container options for distributed computing.
 
-#### K3s
+#### K3s (lightweight Kubernetes distribution)
 
 We recommend [Kubernetes](https://kubernetes.io/) as it has good community support and offers great standardization.
 
-[K3s](https://k3s.io/) is a lightweight and easy-to-install Kubernetes distribution. It's suitable for small to medium-sized companies that don't need advanced Kubernetes features. K3s still have standard Kubernetes features like scalability and network management, but with less complexity.
+[K3s](https://k3s.io/) is a lightweight and easy-to-install Kubernetes distribution. It's suitable for small to medium-sized companies that don't need advanced Kubernetes features. K3s still has standard Kubernetes features like scalability and network management, but with less complexity.
 
 You also still define resources using the same YAML files you would for any other Kubernetes setup, so it's easy to find examples and community help.
 
@@ -73,8 +76,8 @@ Private data centers are the most sophisticated and centralized hosting option. 
 
 The main challenges with private data centers are:
 
-- Expense - Running a private data center can cost you not only financially, but also in maintenance and the expertise needed
-- Disaster recovery - No data center offers 100% availability, so you might need to consider extra data centers for disaster cutover
+- Expense - Running a private data center can cost you financially, and also in maintenance and the expertise needed.
+- Disaster recovery - No data center offers 100% availability, so you might need to consider extra data centers for disaster cutover.
 
 Let's look at the best container options for private data centers.
 
@@ -115,7 +118,7 @@ Let's look at some PaaS options.
 - [Azure Kubernetes Service (AKS)](https://azure.microsoft.com/en-au/products/kubernetes-service/)in Microsoft Azure
 - [Elastic Kubernetes Service (EKS)](https://aws.amazon.com/eks/) in Amazon Web Services (AWS)
 - [Google Kubernetes Engine (GKE)](https://cloud.google.com/kubernetes-engine) in Google Cloud Services (GCS)
-- [IBM Cloud Kubernetes Services](https://www.ibm.com/cloud/free/kubernetes?utm_content=SRCWW&p1=Search&p4=43700074964128080&p5=e&gclid=CjwKCAjwitShBhA6EiwAq3RqA9qVQzKIVn3EKo3rY-nTUogVF5ajHpZEU_NzGNFy-dy8dIy1meYiaBoCNmgQAvD_BwE&gclsrc=aw.ds) in IBM Cloud Foundry
+- [IBM Cloud Kubernetes Services](https://www.ibm.com/cloud/free/kubernetes) in IBM Cloud Foundry
 
 These services make Kubernetes easier to use, especially thanks to:
 
@@ -125,9 +128,9 @@ These services make Kubernetes easier to use, especially thanks to:
 
 You'll still need to consider:
 
-- Vendors may support Kubernetes differently - Make sure your cloud service offers the features and updates you need
-- Supporting tools - Cloud providers may have options like container registries and load balancing tools
-- Understanding of Kubernetes - A cloud provider will reduce Kubernete's complexity, but you'll still need to understand it
+- Vendors may support Kubernetes differently - Make sure your cloud service offers the features and updates you need.
+- Supporting tools - Cloud providers may have options like container registries and load balancing tools.
+- Understanding of Kubernetes - A cloud provider will reduce Kubernetes' complexity, but you still need to understand it.
 
 #### Vendor alternatives
 
@@ -150,15 +153,17 @@ Example services include:
 
 The main challenges with private data centers are:
 
-- Whether the provider supports the solution well enough - Check when the vendor introduced the service, if it's still supported, the userbase size, and if there's a development roadmap
-- Hidden limits - Some services may limit how many containers you can deploy, so make sure the service allows everything your software needs
-- Tool compatability - Make sure the service works alongside your CI/CD tooling to avoid custom scripting
+- Whether the provider supports the solution well enough - Check when the vendor introduced the service, if it's still supported, the user base size, and if there's a development roadmap.
+- Hidden limits - Some services limit how many containers you can deploy, so make sure the service allows everything your software needs.
+- Tool compatibility - Make sure the service works alongside your CI/CD tooling to avoid custom scripting.
 
-Though these options tend to lack the flexibility of other platforms, they're easier to use. That makes them a good choice for small to medium-sized engineering teams or simple applications. Of all the options, we recommend considering proprietary services if they suit your software. Otherwise, if limitations are a problem, Kubernetes should be your next step.
+Though these options tend to lack the flexibility of other platforms, they're easier to use. That makes them a good choice for small to medium-sized engineering teams or simple applications. 
+
+Of all the options, we recommend considering proprietary services if they suit your software. Otherwise, if limitations are a problem, Kubernetes should be your next step.
 
 ## Hybrid setups
 
-Organizations may need to use more than one container platform. For example, you might need to use different cloud services at the same time or use cloud and private data centers together.
+You may need to use more than one container platform. For example, you might need to use different cloud services at the same time or use cloud and private data centers together.
 
 In these situations, you should standardize as much as possible. In this case, look for the platforms best supported by your provider, though it's likely you'll land on Kubernetes as it's the best for standardization.
 
@@ -166,18 +171,20 @@ In these situations, you should standardize as much as possible. In this case, l
 
 Regardless of the container platform you opt for, Octopus can help in the following ways:
 
-- Built-in multi-tenancy helps with distributed computing so you can deploy to any combo of customers with ease.
+- Built-in multi-tenancy helps with distributed computing so you can deploy to any combination of customers with ease.
 - Standardize deployments for different customers and infrastructure. Use snapshots and variables to manage environmental differences.
-- Though you can use YAML, Helm Charts, or customer scripts, anyone can create container deployments in Octopus's easy-to-use UI.
+- Though you can use YAML, Helm Charts, or custom scripts, anyone can create container deployments in Octopus's easy-to-use UI.
 
 [Read more about how Octopus can help with even the most complex deployments](https://octopus.com/).
 
 ## Conclusion
 
-In this post, we covered the different container platforms and highlighted scenarios where they would be a good fit.
+In this post, we covered the different container platforms and highlighted scenarios where they'd be a good fit.
 
 For more on containers:
 
 - See everything you need to [get started with containers](https://octopus.com/blog/get-started-containers)
 - Follow our guide for [building and deploying a Java app with Docker, Google, Azure, and Octopus](https://octopus.com/blog/deploying-java-app-docker-google-azure)
 - Read about [the container registries we recommend](https://octopus.com/blog/top-8-container-registries)
+
+Happy deployments!
