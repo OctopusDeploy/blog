@@ -1,5 +1,5 @@
 ---
-title: Containerization - what you need to get started
+title: Containers - what you need to get started
 description: A high-level look at what you need to get started with containerization.
 author: andrew.corrigan@octopus.com
 visibility: public
@@ -120,7 +120,7 @@ His guide walks you through a complete pipeline, including:
 
 ## What's next?
 
-In this post, we explored the basic components that make containerized applications possible. We have more posts about containerization on the way, including:
+In this post, we explored the basic components that make containerized applications possible. We have more posts about containers on the way, including:
 
 - Registries you should consider
 - More detailed looks at containerization's benefits
