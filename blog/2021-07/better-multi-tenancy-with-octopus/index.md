@@ -13,11 +13,11 @@ tags:
  - Multi-Tenancy
 ---
 
-Most people using Octopus will deploy projects to one or more environment. For customers providing Software as a Service (SaaS) applications, they typically need to deploy multiple instances of the application for each of their customers.
+Most people using Octopus will deploy projects to one or more environments. For customers providing Software as a Service (SaaS) applications, they typically need to deploy multiple instances of the application for each of their customers.
 
-Fortunately, there's a feature that's been around since [Octopus 3.4](https://octopus.com/blog/whats-new-multi-tenant-deployments) designed exactly for these types of deployment, [multi-tenancy](https://octopus.com/docs/tenants).
+Fortunately, there's a feature that's been around since [Octopus 3.4](https://octopus.com/blog/whats-new-multi-tenant-deployments) designed exactly for these types of deployments, [multi-tenancy](https://octopus.com/docs/tenants).
 
-In this post, I look at two approaches to deploying applications without tenants, and discuss the benefits of using the multi-tenancy feature. 
+In this post, I look at 2 approaches to deploying applications without tenants, and discuss the benefits of using the multi-tenancy feature. 
 
 !toc
 
@@ -36,7 +36,7 @@ To demonstrate how you can model deployments of multiple instances of an applica
 
 ## Deploying without tenants {#deploying-without-tenants}
 
-There are two main implementations we see when deploying multiple instances of the same application for each customer:
+There are 2 main implementations we see when deploying multiple instances of the same application for each customer:
 
 1. Using [multiple projects](#using-multiple-projects)
 1. Using [multiple environments](#using-multiple-environments)
@@ -63,11 +63,11 @@ So why choose multiple Octopus projects to deploy instances of an application to
 
 1. **Clear customer release dashboard overview**
 
-    This approach allows you to see which release has been deployed to which environment, for each customer on the dashboard overview.
+    This approach lets you see which release has been deployed to which environment for each customer on the dashboard overview.
 
-1. **Variable and Deployment process isolation**
+1. **Variable and deployment process isolation**
 
-    Multiple projects allow for complete isolation of variables, and deployment process for a customer. For example, making a change to one project's process only affects that one customer. You can also tailor the deployment process for the customer depending on the features they've signed up for. 
+    Multiple projects allow for complete isolation of variables, and deployment process for a customer. For example, making a change to one project's process only affects that one customer. You can also tailor the deployment process for the customer depending on the features they signed up for. 
 
     In the below example, only **Capital Animal Hospital** has a step for applying custom branding:
 
@@ -75,13 +75,13 @@ So why choose multiple Octopus projects to deploy instances of an application to
 
 1. **Simpler environment and variable scoping**
 
-    Environments don't need to be duplicated per customer, resulting in simpler lifecycle configuration. Variables can also be scoped to each environment without risk of choosing the wrong "customer" scoping.
+    Environments don't need to be duplicated per customer, resulting in simpler lifecycle configuration. Variables can also be scoped to each environment without the risk of choosing the wrong "customer" scoping.
 
     ![Multi-tenancy multiple projects variable scoping](multiple-projects-variable-scoping.png)
 
 #### Multiple projects cons {#multiple-projects-cons}
 
-While multiple projects can be used to deploy customer instances separately, there are a number of problems with this approach.
+While multiple projects can be used to deploy customer instances separately, there are usually many problems associated with this approach.
 
 1. **Duplicated project configuration**
 
@@ -89,7 +89,7 @@ While multiple projects can be used to deploy customer instances separately, the
 
 1. **Different deployment target roles per customer**
 
-    If your customers have isolated infrastructure, you need a unique way for Octopus to know which deployment targets belong to the customer you're deploying to. This results in each customers' deployment targets needing target roles that include a differentiator per customer. This is typically a customer name, code or ID.
+    If your customers have isolated infrastructure, you need a unique way for Octopus to know which deployment targets belong to the customer you're deploying to. This results in each customers' deployment targets needing target roles that include a differentiator per customer. This is typically a customer name, code, or ID.
 
     ![Multi-tenancy multiple projects customer target roles](multiple-projects-customer-target-roles.png)
 
@@ -134,7 +134,7 @@ Although you can use multiple customer environments, there are usually many prob
 
 1. **Multiple environments created per customer**
 
-    For each customer, you need to create a new environment record for each customer environment, which doesn't scale. For example, if you have 10 customers, and 4 environments (Development, Test, Staging and Production), you need to create 40 customer environments.
+    For each customer, you need to create a new environment record for each customer environment, which doesn't scale. For example, if you have 10 customers, and 4 environments (Development, Test, Staging, and Production), you need to create 40 customer environments.
 
 1. **Complicated variable scoping**
 
@@ -160,13 +160,13 @@ Although you can use multiple customer environments, there are usually many prob
 
 ## Deploying with tenants {#deploying-with-tenants}
 
-Using tenants in Octopus allows you to easily create customer specific deployment pipelines without duplicating project configuration. You can manage separate instances of your application in multiple environments in a single Octopus project.
+Using tenants in Octopus lets you easily create customer specific deployment pipelines without duplicating project configuration. You can manage separate instances of your application in multiple environments in a single Octopus project.
 
 Using our **Vet Clinic** company, here's what the dashboard overview might look like using tenants to model each customer:
 
 ![Tenanted dashboard overview](tenanted-dashboard-overview.png)
 
-This gives us a concise overview showing which release is in which environment. Instead of multiple rows per customer project, this is replaced with a discrete count of tenants who have been deployed to each environment.
+This gives you a concise overview showing which release is in which environment. Instead of multiple rows per customer project, this is replaced with a discrete count of tenants who have been deployed to each environment.
 
 If we navigate to the project, we see a more granular overview, this time showing which tenant has what release in each environment:
 
@@ -186,11 +186,11 @@ There are a number of multi-tenancy features working together to make this happe
 
 ### Tenants {#tenants}
 
-Tenants in Octopus are the backbone of the multi-tenancy feature. They usually represent the customers of your application, especially when it comes to SaaS products.
+Tenants in Octopus are the backbone of the Multi-tenancy feature. They usually represent the customers of your application, especially when it comes to SaaS products.
 
 ![Tenants screen](tenants-screen.png)
 
-Although we discuss the use of tenants to model customers in this post, we designed tenants to be generic so that they can satisfy multiple use cases. Tenants can also represent:
+Although we discuss the use of tenants to model customers in this post, we designed tenants to be generic so they can satisfy multiple use cases. Tenants can also represent:
 
 - Geographical regions or data centers
 - Developers, testers, or teams
@@ -210,27 +210,27 @@ There's also a mode where you can require a tenant for all deployments, which di
 
 ![Tenant project settings](multi-tenant-project-settings.png)
 
-Onboarding a new customer as a tenant in Octopus can be as simple as creating your tenant, connecting your project to each applicable environment and entering your variable values, then deploying.
+Onboarding a new customer as a tenant in Octopus can be as simple as creating your tenant, connecting your project to each applicable environment, and entering your variable values, then deploying.
 
 ### Tenant tags {#tenant-tags}
 
 In Octopus, [tenant tags](https://octopus.com/docs/tenants/tenant-tags) help you classify your tenants using custom tags, and tailor tenanted deployments for your projects and environments. 
 
-Tenant tags also make it easier to work with tenants as groups instead of individuals. As tenant tags are fully customizable, you can apply meaningful metadata to tenants. This allows you to describe them using your own terminology, and tailor the deployment process to their needs.
+Tenant tags also make it easier to work with tenants as groups instead of individuals. As tenant tags are fully customizable, you can apply meaningful metadata to tenants. This lets you describe them using your own terminology, and tailor the deployment process to their needs.
 
 In the tenant overview below, **Capital Animal Hospital** has the `Branding` tag included:
 
 ![Tenant tag for branding](tenant-tag-branding.png)
 
-This indicates that they've opted-in for customized branding of their instance of the **Vet Clinic** application.
+This indicates they've opted-in for customized branding of their instance of the **Vet Clinic** application.
 
-When you build out the deployment process, you can include a tenant tag as a run condition to customize the process for your customers. By applying tags to steps, you are able to specify steps that should only run for customers that match selected tenant tags.
+When you build out the deployment process, you can include a tenant tag as a run condition to customize the process for your customers. By applying tags to steps, you can specify steps that should only run for customers that match selected tenant tags.
 
 ![Tenant tag applied to step](tenant-tag-branding-step.png)
 
 You can associate multiple tenants with the same tag. This automatically groups these tenants together and enables any tenant with the `Branding` tag to have the custom branding step included as part of any deployment for that tenant.
 
-Tenant tags can also be used to associate multiple tenants with deployment targets and channels, and even choosing which tenants to deploy to. They're a powerful way to help you simplify and scale your deployments.
+Tenant tags can also be used to associate multiple tenants with deployment targets and channels, and even choose which tenants to deploy to. They're a powerful way to help you simplify and scale your deployments.
 
 ### Tenant variables {#tenant-variables}
 
@@ -240,18 +240,18 @@ You often want to define variable values that are different for each customer. F
 - A tenant-specific URL
 - Contact details for a tenant
 
-Using an untenanted project, you would define these values in the project itself. With a tenanted project, you can set these values directly on the tenant for any connected projects.
+Using an untenanted project, you'd define these values in the project itself. With a tenanted project, you can set these values directly on the tenant for any connected projects.
 
-With tenants, there are two types of variable you can specify: 
+With tenants, there are 2 types of variable you can specify: 
 
-- **project variable templates** 
-- **common variables**.
+- **Project variable templates** 
+- **Common variables**.
 
 These both use the [variable templates](https://octopus.com/docs/projects/variables/variable-templates) feature.
 
 #### Project variable templates {#project-variable-templates}
 
-Project variables allow you to specify a variable which a tenant can change. A perfect example is a connection string or a database server. With project variables you define them at the project level using [project templates](https://octopus.com/docs/projects/variables/variable-templates#project-templates).
+Project variables allow you to specify a variable which a tenant can change. A perfect example is a connection string or a database server. With project variables, you define them at the project level using [project templates](https://octopus.com/docs/projects/variables/variable-templates#project-templates).
 
 ![](project-template-screen.png)
 
@@ -289,11 +289,11 @@ This also means any changes you make to tenant variables will take immediate eff
 
 #### Missing variables {#missing-variables} 
 
-One of the great things about tenant variables is the guard rails they put in place for your deployments. Defining either a project template or common variable without a default value means any tenant must provide a value for that variable. Octopus won't allow a deployment to occur without one:
+One of the great things about tenant variables is the guard rails they put in place for your deployments. Defining either a project template or common variable without a default value means any tenant must provide a value for that variable. Octopus won't let a deployment occur without one:
 
 ![Missing tenant variable](missing-tenant-variable.png)
 
-But those guard rails don't start just at deployment. Octopus will also warn you about any missing values in the tenant's variable overview too:
+But those guard rails don't start just at deployment. Octopus also warns you about any missing values in the tenant's variable overview too:
 
 ![Warning of missing tenant variable](warning-missing-tenant-variable.png)
 
@@ -334,7 +334,7 @@ We recommend keeping tenanted and untenanted deployment targets separate, partic
 
 This post covers common approaches when customers deploy multiple instances of the same application for each of their customers without tenants. It also details how you can use the multi-tenancy feature to model this too.
 
-I hope you can see how the Octopus multi-tenancy feature solves some of the problems presented when deploying without tenants, and how it can be leveraged for scalable, reusable, simplified deployments.
+I hope you can see how the Octopus multi-tenancy feature solves some of the problems presented when deploying without tenants, and how it can be used for scalable, reusable, simplified deployments.
 
 ## Learn more {#learn-more}
 
@@ -345,7 +345,5 @@ I hope you can see how the Octopus multi-tenancy feature solves some of the prob
 ## Watch the webinar: Better multi-tenancy deployments using Octopus Deploy
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/dD8psiK1wL4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-We host webinars regularly. See the [webinars page](https://octopus.com/events) for past webinars and details about upcoming webinars. 
 
 Happy deployments!
