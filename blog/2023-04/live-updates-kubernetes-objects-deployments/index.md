@@ -152,6 +152,6 @@ The Kubernetes Object Status feature provides live updates during the deployment
 
 It provides you with greater visibility, gives you more confidence that your deployment is running, and helps you detect and identify errors in the deployment as early as possible.
 
-We'd love feedback on this feature while we continue to refine it. If you're an Octopus Cloud customer, it’s available now as an early access preview (EAP). [Register for the Kubernetes Object Status EAP](https://oc.to/EAP).
+We'd love feedback on this feature while we continue to refine it. If you're an Octopus Cloud customer, you can register for the early access preview (EAP) available now. [Register for the Kubernetes Object Status EAP](https://oc.to/EAP).
 
 Happy deployments!
