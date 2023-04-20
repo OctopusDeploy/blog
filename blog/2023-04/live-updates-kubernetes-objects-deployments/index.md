@@ -3,7 +3,7 @@ title: Live updates of Kubernetes objects during deployment
 description: Introducing the Kubernetes Object Status check feature, providing a live update of Kubernetes objects during deployment.
 author: yihao.wang@octopus.com
 visibility: public
-published: 2023-04-24-1400
+published: 2023-04-26-1400
 metaImage: blogimage-k8objectsstatusfeature-2023.png
 bannerImage: blogimage-k8objectsstatusfeature-2023.png
 bannerImageAlt: Octopus logo connected to two Kubernetes logo in front of a stylized Octopus dashboard
@@ -13,7 +13,7 @@ tags:
   - Kubernetes
 ---
 
-Kubernetes has become the standard for container orchestration. Deploying to a Kubernetes cluster can be tricky, though. After you create Kubernetes objects in your cluster using manifest files, you typically need to run a sequence of  `kubectl get` or `kubect describe` commands. You need to do this until you confirm the deployed objects are running.
+Kubernetes has become the standard for container orchestration. Deploying to a Kubernetes cluster can be tricky, though. After you create Kubernetes objects in your cluster using manifest files, you typically need to run a sequence of `kubectl get` or `kubect describe` commands. You need to do this until you confirm the deployed objects are running.
 
 We're pleased to have addressed this with our new feature, Kubernetes Object Status.
 
