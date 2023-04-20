@@ -43,7 +43,7 @@ Next, you need to create a project that deploys to the Kubernetes cluster you ju
 
 Most built-in steps that deploy to Kubernetes clusters support object status checks. Exceptions are: 
 
-- **[Upgrade a Helm Chart](https://octopus.com/docs/deployments/kubernetes/helm-update)** (support for this step is coming soon) 
+- **[Upgrade a Helm chart](https://octopus.com/docs/deployments/kubernetes/helm-update)** (support for this step is coming soon) 
 - **Run a kubectl CLI Script**
 
 In this post, you create a simple project that uses a **[Deploy raw Kubernetes YAML](https://octopus.com/docs/deployments/kubernetes#raw-yaml-step)** step.
