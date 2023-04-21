@@ -93,9 +93,9 @@ Next, create a release and a deployment for this project.
 
 ![screenshot showing the page to create the deployment](create-deployment.png)
 
-After the deployment starts, you find a new **OBJECT STATUS** tab next to the **TASK LOG** tab.
+After the deployment starts, you find a new **KUBERNETES OBJECT STATUS** tab next to the **TASK LOG** tab.
 
-Click **OBJECT STATUS** to see the object status updates.
+Click **KUBERNETES OBJECT STATUS** to see the object status updates.
 
 ![screenshot highlighting the kubernetes object status check header](object-status-tab.png)
 
@@ -133,13 +133,13 @@ For example, a pod may fail to spin up due to a temporary connection issue to th
 
 You can use the stabilization timeout to prevent this kind of temporary failure from causing a failed deployment.
 
-When this timeout is enabled, Octopus waits for the period configured after the step fails or succeeds. The step is marked as failed or successful only if the status does not change throughout this timeout period.
+When this timeout is set above 0, Octopus waits for the period configured after the step fails or succeeds. The step is marked as failed or successful only if the status does not change throughout this timeout period.
 
 ## Caveats
 
 This feature is helpful for Kubernetes deployments, but there are some caveats worth calling out.
 
-1. The **OBJECT STATUS** tab only updates during the deployment process.
+1. The **KUBERNETES OBJECT STATUS** tab only updates during the deployment process.
 After the deployment succeeds or fails, Octopus does not do further checks for the deployed resources. Any later updates to those objects, performed manually or by another deployment, won't be reflected in the table.
 
 1. If you're deploying with a **Deploy Kubernetes containers** step, the option **Wait for the deployment to succeed** lets you wait until the deployment is complete. This option is not compatible with the Kubernetes Object Status feature because it uses the `kubectl rollout status` command. We don't recommend this option for new deployments. We recommend you use the Kubernetes Object Status feature for new deployments instead.
