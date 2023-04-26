@@ -13,7 +13,7 @@ tags:
   - DORA Metrics
 ---
 
-Mean time to recovery (MTTR) has become widely known thanks to the DevOps "four keys" and the [DORA State of DevOps Report](https://dora.dev/publications/).
+Mean time to recovery (MTTR) gained fame thanks to the DevOps "four keys" and the [DORA State of DevOps Report](https://dora.dev/publications/).
 
 In this article, you'll discover:
 
@@ -26,15 +26,22 @@ In this article, you'll discover:
 
 MTTR is the mean time to recovery, sometimes called mean time to restore. It's the time it takes to get a system operational following a fault. It has become a standard measure of software delivery performance as part of the [DORA Metrics](https://octopus.com/devops/metrics/dora-metrics/).
 
-If you perform well against all DORA metrics, you will likely have working software sooner, happier employees, and a competitive advantage in your industry.
+If you perform well against all DORA metrics, you'll have working software sooner, happier employees, and a competitive advantage in your industry.
 
 To collect *mean* time to recovery, you need to collect the duration of each incident from when it started to when it ended. You then sum the durations and divide the total by the number of incidents. Some teams calculate the *median* time to recovery by ordering all incidents and selecting the middle value.
 
-Recovery times are impacted by many parts of your software delivery process, such as architecture, documentation, observability, and deployment pipeline performance. When you can recover quickly, incidents have less impact, and customers are happier.
+Your software delivery process impacts recovery times, in particular:
+
+- Architecture
+- Documentation
+- Observability
+- Deployment pipeline performance
+
+When you can recover quickly, incidents have less impact, and customers are happier. You should inspect and adapt your process to make recovery quick and low-risk.
 
 ### Why MTTR is useful for industry research
 
-To perform their research, DevOps Research and Assessment (DORA) needs to provide survey questions that are answerable across a range of organizations with different data and performance levels. The [DORA quick check](https://dora.dev/quickcheck/) phrases the MTTR question as:
+DevOps Research and Assessment (DORA) use a survey as part of their research. Questions need to be answerable across a range of organizations with different data and performance levels. The [DORA quick check](https://dora.dev/quickcheck/) phrases the MTTR question as:
 
 > For the primary application or service you work on, how long does it generally take to restore service when a service incident or a defect that impacts users occurs (for example, unplanned outage, service impairment)?
 >
@@ -45,15 +52,15 @@ To perform their research, DevOps Research and Assessment (DORA) needs to provid
 > - Less than one day
 > - Less than one hour
 
-Most people working in software delivery have a feel for the typical duration of incidents, especially with the broad buckets used in the answer. You can probably answer this for your team from memory with reasonable accuracy.
+Most people working in software delivery have a feel incidents duration. The broad buckets used in the survey make it easy to choose an answer. You can probably answer this for your team from memory with reasonable accuracy.
 
 The researchers can use this information to find [performance groups](https://octopus.com/blog/new-devops-performance-clusters) in the data. They can also look for relationships between various practices and their impact on business outcomes. The DevOps structural equation model is built using these findings.
 
 ### Why MTTR might mislead your team
 
-While MTTR is helpful in research for comparisons and clustering, this differs from how you'll use incident information in your team. Your primary use of this information is to learn from service outages and improve how you handle them in the future, not to compare yourself to other teams or organizations.
+While MTTR is helpful in research for performance clustering, this isn't how you'll use incident information in your team. You should use the information to learn from service outages and improve how you handle them in the future. The goal isn't to compare yourself to other teams or organizations.
 
-For continuous improvement purposes, using an average hides essential signals. You need more fine-grained information to understand how well you handle faults and to find their causes.
+For continuous improvement purposes, using an average hides essential signals. You need fine-grained information to understand how well you handle faults and to find their causes.
 
 The Verica Open Incident Database (VOID) has over 10,000 incidents shared by almost 600 organizations. They analyze these incidents in [the VOID report](https://www.thevoid.community/report). The 2022 report made the following comment about MTTR:
 
@@ -67,15 +74,15 @@ You could eliminate this variation by excluding outliers, but then you'd hide va
 
 ### Where restore times remain useful
 
-Instead of zipping up your incidents into an average number, plot each duration on a chart. Using a scatter plot or a box-and-whisker chart lets you visualize durations without losing fidelity. This will show you trends and outliers, which is more valuable than an average.
+Instead of zipping up your incidents into an average number, plot each duration on a chart. Use a scatter plot or box-and-whisker chart to visualize durations without losing fidelity. This will show you trends and outliers, which is more valuable than an average.
 
 ![A scatter plot showing incident durations](time-to-restore-scatter.png)
 
-You can now understand the trend in resolution times to see if you are improving over time. You can also identify outliers that took longer to solve and discuss how you could handle them better. Resolution times remain useful as part of your journey into exploring incidents and improving incident management and system stability.
+You can now understand the trend in resolution times to see if you are improving over time. You can also identify the outliers and discuss how you could handle them better. Resolution times remain useful as part of your journey into exploring incidents. Use them to improve incident management and system stability.
 
-If incidents require a code fix, the restore time will be subject to the performance of your deployment pipeline. Being able to quickly and safely deploy new versions of your software has positive effects beyond incident management.
+If incidents need a code fix, the restore time will depend on your deployment pipeline's performance. Being able to quickly and safely deploy new versions of your software also has positive effects beyond incident management.
 
-Using restore times encourages you to introduce monitoring and alerting tools, significantly improving your ability to detect problems before a customer is impacted.
+Using restore times encourages you to introduce monitoring and alerting tools, significantly improving your ability to detect problems before a customer is affected.
 
 ### Have a clear definition for incidents
 
