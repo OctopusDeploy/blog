@@ -358,7 +358,7 @@ If <a href="https://www.octopus.com/blog/devops-reading-list#handbook">The DevOp
 
 In many ways, the book is a response to the critique that “DevOps” is a buzzword or a cult, full of warm and fluffy ideas that might sound nice and make sense for a small business or start-up, but which do not practically scale for large organizations or are not compatible with tightly regulated industries like healthcare or finance.
 
-The authors achieve this by analyzing the data from the 2014-2017 [State of DevOps Reports](https://www.devops-research.com/research.html). Forsgren, [a well-respected and published researcher](https://nicolefv.com/research), applies various scientific and statistical methods to the data to see what they can teach us. Her findings are striking.
+The authors achieve this by analyzing the data from the 2014-2017 [State of DevOps Reports](https://dora.dev/publications/). Forsgren, [a well-respected and published researcher](https://nicolefv.com/research), applies various scientific and statistical methods to the data to see what they can teach us. Her findings are striking.
 
 Long story short: The business benefits of DevOps are real and predictable.
 
@@ -502,7 +502,7 @@ Since 2012, a team of researchers from Puppet and DORA, with the support of vari
 
 The data from the 2014-2017 reports were used by Forsgren, Humble, and Kim to produce [Accelerate](#accelerate) in 2018, which I believe remains the best evidence our industry possesses for the value of DevOps.
 
-[You can review all the DORA State of DevOps Reports (2014-2019 at the time of writing) here](https://www.devops-research.com/research.html).
+[You can review all the DORA State of DevOps Reports (2014-2019 at the time of writing) here](https://dora.dev/publications/).
 
 ### Beyond The Phoenix Project
 
