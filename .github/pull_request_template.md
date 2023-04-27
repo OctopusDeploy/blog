@@ -18,6 +18,7 @@ The design team will work on a design for the blog image. Add any ideas you have
 - [ ] The images I've included follow the [rules for working with images](https://www.octopus.design/writing/working-with-images/).
 - [ ] I've added alt text for all the images I've included (alt text describes image to people unable to see it, 125 characters max)
 - [ ] One screenshot (if any are included) is suitable for Twitter. This screenshot should be 16:9 ratio and at least 1200 x 675 pixels. For screenshots from the Octopus Web Portal, please use Chrome and the browser’s zoom function to remove as much white space as possible. If screenshots are annotated (e.g., with boxes or arrows), please also provide a version that is unannotated for use on Twitter. Do not use dark mode for the Octopus Web Portal.
+- [ ] I've drafted social media posts for Twitter and LinkedIn.
 
 ## How to review this PR
 <!-- If there's anything you'd like reviewers to focus on, mention it here. -->
