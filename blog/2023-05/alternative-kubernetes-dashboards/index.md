@@ -13,8 +13,6 @@ tags:
  - Containers
 ---
 
-![Alternative Kubernetes Dashboards](alternate-kubernetes-dashboards.png)
-
 In the beginning, there was *the* [Kubernetes Dashboard](https://github.com/kubernetes/dashboard). This dashboard is the default option for anyone who wants to monitor a Kubernetes cluster, but over the years a number of alternatives have been developed that are worth looking into.
 
 In this post, I take a look at some of these alternative Kubernetes dashboards.
