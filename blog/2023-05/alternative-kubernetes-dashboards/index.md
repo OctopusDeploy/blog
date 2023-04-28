@@ -23,7 +23,7 @@ For this post, I ran minikube locally, populated with the [Bookinfo](https://ist
 
 ## K8Dash
 
-[K8Dash Homepage](https://github.com/herbrandson/k8dash)
+[K8Dash homepage](https://github.com/herbrandson/k8dash)
 
 > K8Dash is the easiest way to manage your Kubernetes cluster.
 
@@ -65,7 +65,7 @@ Overall, though, this is a useful app, and definitely a project to keep an eye o
 
 ## Kubernator
 
-[Kubernator Homepage](https://github.com/smpio/kubernator)
+[Kubernator homepage](https://github.com/smpio/kubernator)
 
 > In contrast to high-level Kubernetes Dashboard, Kubernator provides low-level control and clean view on all objects in a cluster with the ability to create new ones, edit, and resolve conflicts.
 
@@ -90,7 +90,7 @@ Next, just open the [service proxy URL](http://localhost:8001/api/v1/namespaces/
 
 ## Kubernetes Operational View
 
-[Kubernetes Operational View Homepage](https://github.com/hjacobs/kube-ops-view)
+[Kubernetes Operational View homepage](https://github.com/hjacobs/kube-ops-view)
 
 > Read-only system dashboard for multiple K8s clusters
 
@@ -113,7 +113,7 @@ kubectl port-forward service/kube-ops-view 8080:80
 
 ## Kubricks
 
-[Kubricks Homepage](https://kubricks.io/)
+[Kubricks homepage](https://github.com/kubricksllc/Kubricks/blob/master/README.md)
 
 > Visualizer/troubleshooting tool for single Kubernetes clusters
 
@@ -137,7 +137,7 @@ Installation is easy with downloads for macOS and Linux.
 
 ## Octant
 
-[Octant Homepage](https://github.com/vmware-tanzu/octant)
+[Octant homepage](https://github.com/vmware-tanzu/octant)
 
 > A web-based, highly extensible platform for developers to better understand the complexity of Kubernetes clusters.
 
@@ -156,7 +156,7 @@ Installation was easy with packages available from Brew and Chocolatey, and comp
 
 ## Weave Scope
 
-[Weave Scope Homepage](https://github.com/weaveworks/scope)
+[Weave Scope homepage](https://github.com/weaveworks/scope)
 
 > Monitoring, visualization & management for Docker & Kubernetes
 
