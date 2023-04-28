@@ -1,26 +1,25 @@
 ---
-title: Alternative Kubernetes Dashboards
+title: Alternative Kubernetes dashboards
 description: A look at some alternative Kubernetes dashboards
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2020-09-22
-metaImage: alternate-kubernetes-dashboards.png
-bannerImage: alternate-kubernetes-dashboards.png
-bannerImageAlt: Alternative Kubernetes Dashboards
+published: 2023-05-01-1400
+metaImage: blogimage-alternative-kubernetes-dashboards-2023.png
+bannerImage: blogimage-alternative-kubernetes-dashboards-2023.png
+bannerImageAlt: Person standing in front of a giant dashboard displaying a graph, pie chart, and data in a table.
 tags:
  - DevOps
  - Kubernetes
+ - Containers
 ---
 
-![Alternative Kubernetes Dashboards](alternate-kubernetes-dashboards.png)
+In the beginning, there was *the* [Kubernetes Dashboard](https://github.com/kubernetes/dashboard). This dashboard is the default option for anyone who wants to monitor a Kubernetes cluster, but over the years a number of alternatives have been developed that are worth looking into.
 
-In the beginning there was *the* [Kubernetes Dashboard](https://github.com/kubernetes/dashboard). This dashboard is the default option for anyone who wants to monitor a Kubernetes cluster, but over the years a number of alternatives have been developed that are worth looking into.
-
-In this blog, we’ll take a look at some of these alternative Kubernetes dashboards.
+In this post, I take a look at some of these alternative Kubernetes dashboards.
 
 ## The sample Kubernetes cluster
 
-For this post I ran minikube locally, populated with the [Bookinfo](https://istio.io/docs/examples/bookinfo/) application provided by Istio.
+For this post, I ran minikube locally, populated with the [Bookinfo](https://istio.io/docs/examples/bookinfo/) application provided by Istio.
 
 ## K8Dash
 
@@ -28,7 +27,7 @@ For this post I ran minikube locally, populated with the [Bookinfo](https://isti
 
 > K8Dash is the easiest way to manage your Kubernetes cluster.
 
-K8Dash has a clean, modern interface that should be familiar to anyone who has used the official Kubernetes Dashboard. A K8Dash’s selling point is that the interface is automatically updated, removing the need to manually refresh the page to see the current state of the cluster.
+K8Dash has a clean, modern interface that should be familiar to anyone who has used the official Kubernetes Dashboard. A K8Dash’s selling point is that the interface is automatically updated, so you don't need to manually refresh the page to see the current state of the cluster.
 
 Installation was painless with the following commands:
 
@@ -46,7 +45,7 @@ kubectl port-forward service/k8dash 9999:80 -n kube-system
 
 Konstellate is not so much a Kubernetes dashboard as a tool for creating, linking, and visualizing Kubernetes resources.
 
-The main canvas allows you to add new Kubernetes resources like Deployments, Services, and Ingresses. A dynamic user interface allows you to build up the YAML description of these resources, exposing the available child properties with an associated description.
+The main canvas lets you add new Kubernetes resources like Deployments, Services, and Ingresses. A dynamic user interface lets you build up the YAML description of these resources, exposing the available child properties with an associated description.
 
 ![](konstellate2.png "width=500")
 ![](konstellate3.png "width=500")
@@ -56,25 +55,25 @@ Two related entities can then be connected, with Konstellate displaying the asso
 ![](konstellate1.png "width=500")
 ![](konstellate4.png "width=500")
 
-If there is one challenge I’ve found editing YAML by hand it is that I am forever Googling the exact property names and their relationships. The context aware Konstellate editor is a great way to explore the various properties available for a given entity.
+One challenge I found editing YAML by hand is that I'm forever Googling the exact property names and their relationships. The context aware Konstellate editor is a great way to explore the various properties available for a given entity.
 
-A killer feature would have been the ability to visualize the resources in an existing cluster, but this has yet to be implemented.
+It would be great if you could visualize the resources in an existing cluster, but this has yet to be implemented.
 
-Konstellate is built from source, and does not provide any pre-built Docker images or binaries that I could see. All you need is Clojure and a single command to build and run the app, but it can take a few minutes for all the dependencies to download. The GitHub page links to a demo, but it was down when I tried it.
+Konstellate is built from source, and doesn't provide any pre-built Docker images or binaries that I could see. All you need is Clojure and a single command to build and run the app, but it can take a few minutes for all the dependencies to download. The GitHub page links to a demo, but it was down when I tried it.
 
-Overall though this is a very cool app, and definitely a project to keep an eye on.
+Overall, though, this is a useful app, and definitely a project to keep an eye on.
 
 ## Kubernator
 
 [Kubernator Homepage](https://github.com/smpio/kubernator)
 
-> In contrast to high-level Kubernetes Dashboard, Kubernator provides low-level control and clean view on all objects in a cluster with the ability to create new ones, edit and resolve conflicts.
+> In contrast to high-level Kubernetes Dashboard, Kubernator provides low-level control and clean view on all objects in a cluster with the ability to create new ones, edit, and resolve conflicts.
 
 Kubernator is a capable YAML editor linked directly into a Kubernetes cluster. The navigation tree displays a filesystem like view of the cluster, while the editor provides features like tabs, keyboard shortcuts and diff views.
 
 ![](kubernator1.png "width=500")
 
-In addition to editing raw YAML, Kubernator will visualize the Role Based Access Control (RBAC) resources showing the relationships between users, groups, service accounts, roles, and cluster roles.
+In addition to editing raw YAML, Kubernator visualizes the Role Based Access Control (RBAC) resources showing the relationships between users, groups, service accounts, roles, and cluster roles.
 
 ![](kubernator2.png "width=500")
 
@@ -101,9 +100,9 @@ Built on WebGL, KOV visualizes your Kubernetes dashboard as a series of nested b
 
 ![](kov2.png "width=500")
 
-KOV is a readonly dashboard, so you can’t manage a cluster with it or set alerts.
+KOV is a read only dashboard, so you can’t manage a cluster with it or set alerts.
 
-However, I’ve used KOV as a way of demonstrating how a Kubernetes cluster works as pods and nodes are added and removed, with people saying that this particular visualization was the first time that they understood what Kubernetes was.
+However, I used KOV to demonstrate how a Kubernetes cluster works as pods and nodes are added and removed, with people saying that this particular visualization was the first time they understood what Kubernetes was.
 
 KOV provides a collection of YAML files that can be deployed as a group to an existing cluster, making installation easy:
 
@@ -118,7 +117,7 @@ kubectl port-forward service/kube-ops-view 8080:80
 
 > Visualizer/troubleshooting tool for single Kubernetes clusters
 
-Kubricks is a desktop application that visualizes the Kubernetes cluster and allows you to drill down from the node level to a traffic view mirroring the way kube-proxy directs incoming requests to different pods through services.
+Kubricks is a desktop application that visualizes the Kubernetes cluster and lets you drill down from the node level to a traffic view mirroring the way kube-proxy directs incoming requests to different pods through services.
 
 My minikube cluster isn’t that interesting to look at with only a single node:
 
@@ -132,7 +131,7 @@ Here is the Kubricks traffic view:
 
 ![](kubricks3.png "width=500")
 
-I have to admit that I struggled to understand what Kubricks was showing me. To see the connections between points in the traffic graph I had to zoom out to the point where the labels were hard to read, and the node view appeared to be missing some of the pods.
+I struggled to understand what Kubricks was showing me. To see the connections between points in the traffic graph, I had to zoom out to the point where the labels were hard to read, and the node view appeared to be missing some of the pods.
 
 Installation is easy with downloads for macOS and Linux.
 
@@ -166,7 +165,7 @@ Weave Scope provides a visualization of the Kubernetes nodes, pods, and containe
 ![](scope2.png "width=500")
 ![](scope3.png "width=500")
 
-Of more interest is Weave Scope’s ability to capture how the pods are communicating with each other. This insight is not something other dashboards I’ve tested here provide.
+Of more interest is Weave Scope’s ability to capture how the pods are communicating with each other. This insight is not provided by other dashboards I tested here.
 
 ![](scope4.png "width=500")
 
@@ -181,4 +180,6 @@ kubectl port-forward -n weave "$(kubectl get -n weave pod --selector=weave-scope
 
 ## Conclusion
 
-If the official Kubernetes dashboard isn’t meeting your needs, there is a huge range of high quality, free and open source alternatives to choose from. Overall I was impressed at how easy these dashboards were to install, and it’s clear that a great deal of work has gone into their design, with most offering at least one compelling reason to switch.
+If the official Kubernetes dashboard isn’t meeting your needs, there's a huge range of high quality, free, and open source alternatives to choose from. Overall, I was impressed at how easy these dashboards were to install, and it’s clear that a great deal of work has gone into their design, with most offering at least one compelling reason to switch.
+
+Happy deployments!
