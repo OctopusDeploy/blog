@@ -4,9 +4,9 @@ description: A look at some alternative Kubernetes dashboards
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2023-05-01-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: blogimage-alternative-kubernetes-dashboards-2023.png
+bannerImage: blogimage-alternative-kubernetes-dashboards-2023.png
+bannerImageAlt: Person standing in front of a giant dashboard displaying a graph, pie chart, and data in a table.
 tags:
  - DevOps
  - Kubernetes
