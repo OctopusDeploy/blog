@@ -113,8 +113,8 @@ As you grow your software delivery team, you must carefully manage the complexit
 
 ## Further reading
 
+- [DevOps engineer's handbook - Platform Engineering](https://octopus.com/devops/platform-engineering)
 - [Building Secure and Reliable Systems - Heather Adkins, et al](https://www.oreilly.com/library/view/building-secure-and/9781492083115/)
 - [Accelerate: The Science of Lean Software and DevOps - Nicole Forsgren PhD, et al](https://itrevolution.com/product/accelerate/)
-- [DevOps engineer's handbook](https://octopus.com/devops/)
 
 Happy deployments!
