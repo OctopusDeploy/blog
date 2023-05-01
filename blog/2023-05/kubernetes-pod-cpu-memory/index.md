@@ -10,6 +10,7 @@ bannerImageAlt: Person  sitting on top of container and gold circle with 3 stars
 tags:
  - DevOps
  - Kubernetes
+ - Containers
 ---
 
 Tracking the resource usage of local processes is relatively easy in Linux with the `top` or `htop` command. But how do you track resource usage of pods spread across a Kubernetes cluster?
