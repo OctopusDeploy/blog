@@ -36,15 +36,29 @@ The tools cover workloads such as:
 
 The 2023 State of CD report highlights the importance of a cohesive DevOps toolchain and the problems that occur when you get it wrong.
 
+## The importance of CI/CD tools
+
+The research found that developers using CI/CD tools deploy more often, have shorter lead times, and restore services faster when there's an incident.
+
+> Those who use CI/CD tools are significantly less likely to be low performers than those who do not
+
 ## Integrating best-in-class tools
 
-There is no available platform that handles the complete DevOps workflow. If there was, it would likely be weak in several areas. While a source control platform can successfully provide build pipeline, it's never likely to provide a great monitoring and alerting story.
+There is no available platform that handles the complete DevOps workflow. If there was, it would likely be weak in many areas. The concept of an all-in-one platform usually features a strong source control and build server story, but it gets weaker as you move from the central features. In other words, it's not all-in-one, it's many-but-not-all.
 
 A great DevOps toolchain selects best-in-class tools for crucial workflows like source control, builds, deployments, and monitoring. 
 
 The research backs up the benefits of a multi-technology approach. Developers with a single-technology approach were more likely to be low performers, whereas teams with 10 or more tools were more likely to be high performers.
 
 The critical thing to manage when you build a DevOps toolchain is the integrations. You need to minimize dependencies between tools and ensure selected tools don't unduly limit your options.
+
+There are three factors that impact interoperability:
+
+1. The selected tool's integration points
+2. How well you minimize dependencies
+3. The design of your integrations
+
+You should consider interoperability during your selection phase as this is difficult to overcome after you've purchased licenses.
 
 ## Key tool selection considerations
 
