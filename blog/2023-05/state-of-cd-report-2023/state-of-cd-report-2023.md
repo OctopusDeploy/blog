@@ -54,6 +54,8 @@ Arrange the toolchain as a sequence where possible, this reduces the number of t
 
 ## Conclusion
 
+The research shows that software delivery performance is improved when developers use the right combination of DevOps technologies. Teams who limit developers to too few tools are most likely to underperform.
 
+To avoid the pitfalls of integrating many tools, careful tool selection and strong integration design will ensure performance gets a sustainable increase.
 
 Happy deployments!
