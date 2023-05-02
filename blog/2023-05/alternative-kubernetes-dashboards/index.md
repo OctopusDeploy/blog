@@ -111,7 +111,7 @@ kubectl apply -f deploy
 kubectl port-forward service/kube-ops-view 8080:80
 ```
 
-## Kubricks
+<!-- ## Kubricks
 
 [Kubricks homepage](https://github.com/kubricksllc/Kubricks/blob/master/README.md)
 
@@ -133,7 +133,7 @@ Here is the Kubricks traffic view:
 
 I struggled to understand what Kubricks was showing me. To see the connections between points in the traffic graph, I had to zoom out to the point where the labels were hard to read, and the node view appeared to be missing some of the pods.
 
-Installation is easy with downloads for macOS and Linux.
+Installation is easy with downloads for macOS and Linux. -->
 
 ## Octant
 
