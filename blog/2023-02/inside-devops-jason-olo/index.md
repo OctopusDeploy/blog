@@ -13,7 +13,7 @@ tags:
   - Inside DevOps
 ---
 
-This post opens our Inside DevOps series, where we share lessons learned from those on the frontlines of DevOps. 
+This post opens our [Inside DevOps series](https://octopus.com/blog/tag/Inside%20DevOps), where we share lessons learned from those on the frontlines of DevOps. 
 
 [Jason Dunnivant](https://www.linkedin.com/in/jasondunnivant/), Release Engineer at [Olo](https://www.olo.com/), features first. Olo is a leading open SaaS platform for restaurants that enables hospitality at every touchpoint.
 
@@ -66,5 +66,5 @@ Another best practice is involving the development team in the deployment proces
 *Jason*: Anytime!
 
 :::hint
-If you’d like to feature in our series, Inside DevOps, please reach out to [Joanna on LinkedIn](https://www.linkedin.com/in/joannawyganowska/) to set up time for a quick chat.
+If you’d like to feature in our series, [Inside DevOps](https://octopus.com/blog/tag/Inside%20DevOps), please reach out to [Joanna on LinkedIn](https://www.linkedin.com/in/joannawyganowska/) to set up time for a quick chat.
 :::
