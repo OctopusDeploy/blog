@@ -3,9 +3,9 @@ title: How to measure DevOps mean time to recovery
 description: Find out why mean time to recovery has problems and what to do about it.
 author: steve.fenton@octopus.com
 visibility: private
-published: 3020-01-01-1400
-metaImage: 
-bannerImage: 
+published: 2023-05-15-1400
+metaImage: blogimage-meantimerecovermetric-2023.png
+bannerImage: blogimage-meantimerecovermetric-2023.png
 bannerImageAlt: 
 isFeatured: false
 tags: 
@@ -15,7 +15,7 @@ tags:
 
 Mean time to recovery (MTTR) gained fame thanks to the DevOps "four keys" and the [DORA State of DevOps Report](https://dora.dev/publications/).
 
-In this article, you'll discover:
+In this post, you'll discover:
 
 - What MTTR measures
 - Why it's useful for industry research
@@ -24,11 +24,15 @@ In this article, you'll discover:
 
 ## What MTTR measures
 
-MTTR is the mean time to recovery, sometimes called mean time to restore. It's the time it takes to get a system operational following a fault. It has become a standard measure of software delivery performance as part of the [DORA Metrics](https://octopus.com/devops/metrics/dora-metrics/).
+MTTR is the mean time to recovery, sometimes called mean time to restore. It's the time it takes to get a system operational following a fault. It's become a standard measure of software delivery performance as part of the [DORA Metrics](https://octopus.com/devops/metrics/dora-metrics/).
 
-If you perform well against all DORA metrics, you'll have working software sooner, happier employees, and a competitive advantage in your industry.
+When you perform well against all DORA metrics, you have working software sooner, happier employees, and a competitive advantage in your industry.
 
-To collect *mean* time to recovery, you need to collect the duration of each incident from when it started to when it ended. You then sum the durations and divide the total by the number of incidents. Some teams calculate the *median* time to recovery by ordering all incidents and selecting the middle value.
+### How to calculate MTTR
+
+To collect *mean* time to recovery, you need to collect the duration of each incident from when it started to when it ended. You then sum the durations and divide the total by the number of incidents. 
+
+Some teams calculate the *median* time to recovery by ordering all incidents and selecting the middle value.
 
 Your software delivery process impacts recovery times, in particular:
 
@@ -52,13 +56,13 @@ DevOps Research and Assessment (DORA) use a survey as part of their research. Qu
 > - Less than one day
 > - Less than one hour
 
-Most people working in software delivery have a feel incidents duration. The broad buckets used in the survey make it easy to choose an answer. You can probably answer this for your team from memory with reasonable accuracy.
+Most people working in software delivery have a feel for incidents duration. The broad buckets used in the survey make it easy to choose an answer. You can probably answer this for your team from memory with reasonable accuracy.
 
-The researchers can use this information to find [performance groups](https://octopus.com/blog/new-devops-performance-clusters) in the data. They can also look for relationships between various practices and their impact on business outcomes. The DevOps structural equation model is built using these findings.
+The researchers use this information to find [performance groups](https://octopus.com/blog/new-devops-performance-clusters) in the data. They also look for relationships between various practices and their impact on business outcomes. Researchers build the DevOps structural equation model using these findings.
 
 ### Why MTTR might mislead your team
 
-While MTTR is helpful in research for performance clustering, this isn't how you'll use incident information in your team. You should use the information to learn from service outages and improve how you handle them in the future. The goal isn't to compare yourself to other teams or organizations.
+While MTTR is helpful in research for performance clustering, this isn't how you use incident information in your team. You should use the information to learn from service outages and improve how you handle them in the future. The goal isn't to compare yourself to other teams or organizations.
 
 For continuous improvement purposes, using an average hides essential signals. You need fine-grained information to understand how well you handle faults and to find their causes.
 
@@ -66,23 +70,23 @@ The Verica Open Incident Database (VOID) has over 10,000 incidents shared by alm
 
 > MTTR isn't a viable metric for the reliability of complex software systems for many reasons, notably due to its underlying variance.
 
-While variability smoothes out when you have very large numbers, your frequency is unlikely to result in the thousands of monthly incidents required for a useful average. With fewer incidents, averages become a volatile metric. The average may even increase despite improvements in incident management.
+Variability smoothes out when you have very large numbers. But your frequency is unlikely to result in the thousands of monthly incidents required for a useful average. With fewer incidents, averages become a volatile metric. The average may even increase despite improvements in incident management.
 
-The VOID database also found that most incidents are resolved in under 2 hours, with a long thin tail of values that nudge the average up and down in a way that doesn't represent how customers view the system's reliability.
+The VOID database also found that most incidents get resolved in under 2 hours, with a long thin tail of values that nudge the average up and down in a way that doesn't represent how customers view the system's reliability.
 
 You could eliminate this variation by excluding outliers, but then you'd hide valuable information. You need a better way to use this data to improve your process.
 
 ### Where restore times remain useful
 
-Instead of zipping up your incidents into an average number, plot each duration on a chart. Use a scatter plot or box-and-whisker chart to visualize durations without losing fidelity. This will show you trends and outliers, which is more valuable than an average.
+Instead of zipping up your incidents into an average number, plot each duration on a chart. Use a scatter plot or box-and-whisker chart to visualize durations without losing fidelity. This shows you trends and outliers, which is more valuable than an average.
 
 ![A scatter plot showing incident durations](time-to-restore-scatter.png)
 
-You can now understand the trend in resolution times to see if you are improving over time. You can also identify the outliers and discuss how you could handle them better. Resolution times remain useful as part of your journey into exploring incidents. Use them to improve incident management and system stability.
+You can now understand the trend in resolution times to see if you're improving over time. You can also identify the outliers and discuss how you could handle them better. Resolution times remain useful as part of your journey into exploring incidents. Use them to improve incident management and system stability.
 
-If incidents need a code fix, the restore time will depend on your deployment pipeline's performance. Being able to quickly and safely deploy new versions of your software also has positive effects beyond incident management.
+If incidents need a code fix, the restore time depends on your deployment pipeline's performance. Being able to quickly and safely deploy new versions of your software also helps beyond incident management.
 
-Using restore times encourages you to introduce monitoring and alerting tools, significantly improving your ability to detect problems before a customer is affected.
+Using restore times encourages you to introduce monitoring and alerting tools. This significantly improves your ability to detect problems before you impact customers.
 
 ### Have a clear definition for incidents
 
@@ -96,7 +100,7 @@ You need a clear shared definition of an incident. It should cover whether you c
 
 The same goes for start time and end time. Do you start the clock when the conditions causing the incident first occur or when the problem becomes visible to customers? Depending on your definition of an incident, you may end up with a negative incident duration where you resolve a fault before it impacts customers.
 
-Agreeing on the definition of an incident and how to measure its duration will make your metrics more comparable.
+Agreeing on the definition of an incident and how to measure its duration makes your metrics more comparable.
 
 When you've used DORA metrics for a long time, they may no longer inspire you to find the next level of improvement. You can design a new measurement system with the SPACE framework.
 
@@ -110,7 +114,7 @@ You can take a more holistic view of incident response and management using [the
 - Communication and collaboration
 - Efficiency and flow
 
-You don't have to use all these metrics at once. The SPACE framework recommends you use a mix of instrumented and perceptual measures across at least 3 dimensions and cover individual, team, and system levels. Your goal is to create a balanced set of measurements that helps you improve the process.
+You don't have to use all these metrics at once. The SPACE framework recommends using a mix of instrumented and perceptual measures across at least 3 dimensions. It also recommends covering individual, team, and system levels. Your goal is to create a balanced set of measurements that helps you improve the process.
 
 ### Satisfaction and wellbeing
 
@@ -145,15 +149,15 @@ Your incident activity doesn't just have to be about the number of incidents. Th
 The flow of information is crucial to incident management. You should include this dimension in your measurement strategy for incidents. Having high-quality communication will reduce the time it takes to resolve faults. You can measure:
 
 - The number of people involved in each incident
-- How many different teams were involved in an incident
+- How many different teams each incident involves
 - The number of chat channels opened for an incident
-- How many times the incident report was viewed (or given a positive rating, or referenced in other incidents)
+- How many times people view the incident report (or give a positive rating, or reference it in other incidents)
 
 ### Efficiency and flow
 
-You will often uncover waste in your system when you use efficiency and flow metrics. If an incident is passed around, progress stalls and resolution takes longer. These metrics can help you spot problems:
+You'll often uncover waste in your system when you use efficiency and flow metrics. If you pass an incident around, progress stalls, and resolution takes longer. These metrics can help you spot problems:
 
-- How often an incident is reassigned
+- How often you reassign an incident 
 - The number of mitigation attempts per incident
 
 ### Incident management SPACE framework summary
@@ -166,7 +170,7 @@ The SPACE framework provides a way to build measurements that can directly influ
 
 ## Transitioning from MTTR
 
-If you have been reporting mean time to recovery, you'll confuse people if you just drop it. Instead, introduce new measurements alongside MTTR to familiarize people with the new concepts. You can demote the importance of MTTR in your dashboards by moving it further away from the "top left" of the dashboard. You can eventually remove it.
+If you've been reporting mean time to recovery, you'll confuse people if you just drop it. Instead, introduce new measurements alongside MTTR to familiarize people with the new concepts. You can demote the importance of MTTR in your dashboards by moving it further away from the "top left" of the dashboard. You can eventually remove it.
 
 The same process can help you normalize changing metrics over time. For example, if you expand from [DORA metrics](https://octopus.com/devops/metrics/dora-metrics/) to [the SPACE Framework](https://octopus.com/devops/metrics/space-framework/).
 
@@ -174,11 +178,11 @@ The same process can help you normalize changing metrics over time. For example,
 
 Metrics are useful because they stop you from fooling yourself with convincing narratives. Without numbers, you may dismiss an incident as a one-off when it is more frequent than you thought. Phrases like "one-off", "exceptional", or "edge case" should warn you of narrative fallacy.
 
-Despite the role numbers play, they can only tell you there is a problem, not how to solve it. You'll need to go beyond numbers and use incident retrospectives and reviews to work out how to improve incident management in your organization.
+Despite the role numbers play, they can only tell you there's a problem, not how to solve it. You'll need to go beyond numbers and use incident retrospectives and reviews to work out how to improve incident management in your organization.
 
 The numbers don't drive continuous improvement. They remind you of reality so you can apply some human ingenuity and improve things each week, forever. Use the numbers to identify and remove bias and logical fallacy from your discussions so that you can deal with the reality before you.
 
-You should run incident retrospectives soon after each incident before vital context is lost and the assembled team returns to their day jobs.
+You should run incident retrospectives soon after each incident. This prevents you from losing vital context when the assembled team returns to their day jobs.
 
 Be cautious about root cause analysis, as software systems rarely have a single root cause. It's usually a combination of several contributing factors. Root cause analysis focuses on the people closest to the incident, not the broader systemic issues. Aim instead for a post-incident review that details everything that happened and what you did to mitigate and solve it.
 
@@ -186,11 +190,11 @@ Your incident reviews can contribute directly to reducing resolution times as th
 
 > Safety is the capability to absorb an incident, not the absence of failure, and incident reviews are blameless learning opportunities. - Adrian Cockcroft
 
-The cause of an incident is never a person. It's a whole system within which people work. If someone logged onto a server and accidentally selected "shut down" instead of "log out", that's a fault in the system. Why hasn't the "shut down" option been hidden? Why do they need to access servers directly? Couldn't this be done with a runbook?
+The cause of an incident is never a person. It's a whole system in which people work. If someone logged onto a server and accidentally selected "shut down" instead of "log out", that's a fault in the system. Why isn't the "shut down" option hidden? Why do they need to access servers directly? Can we do this with a runbook?
 
-Periodic reviews allow you to review all recent incidents to find patterns and think up improvements in the absence of *incident adrenaline*.
+Periodic reviews let you review recent incidents to find patterns and think up improvements in the absence of *incident adrenaline*.
 
-It is more important to learn from incidents than it is to achieve some arbitrary goals around time to recover.
+Learning from incidents is more important than achieving some arbitrary goals around time to recover.
 
 ## Conclusion
 
@@ -198,10 +202,10 @@ Do we want DORA to change how they measure software delivery - no. The survey co
 
 > For the primary application or service you work on, how long does it generally take to restore service when a service incident or a defect that impacts users occurs (e.g., unplanned outage, service impairment)?
 
-Treat incidents as opportunities to learn
-Favour in-depth analysis over shallow metrics
-Treat humans as solutions, not problems
-Study what goes Right Along with what goes wrong
+- Treat incidents as opportunities to learn
+- Favour in-depth analysis over shallow metrics
+- Treat humans as solutions, not problems
+- Study what goes right along with what goes wrong
 
 ## Further reading
 
