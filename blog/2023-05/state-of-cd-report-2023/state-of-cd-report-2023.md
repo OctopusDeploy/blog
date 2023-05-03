@@ -12,17 +12,17 @@ tags:
   - DevOps
 ---
 
-The [2023 State of CD report](https://cd.foundation/reports/) was released this week. The report is commissioned by the Continuous Delivery Foundation and authored by SlashData. The report looks into the adoption, practices, and performance of teams with a focus on DevOps and Continuous Delivery.
+The [2023 State of CD report](https://cd.foundation/reports/) was released this week. The report is commissioned by the Continuous Delivery Foundation and authored by SlashData. The State of CD report looks into the adoption, practices, and performance of teams with a focus on DevOps and Continuous Delivery.
 
-One of the many interesting sections in this year's report looked at DevOps-related technologies. Inspired by the data in the report, we take a deep dive into high-performance DevOps toolchains.
+One of the many interesting sections in this year's report looked at DevOps-related technologies. Inspired by this insight, we take a deep dive into high-performance DevOps toolchains.
 
 ## DevOps toolchains
 
-DevOps is not just about tools. A decade of research has shown that transformational leadership, high-trust low-blame culture, and Lean product management are as crucial as your software delivery process. 
+DevOps isn't just about tools. Transformational leadership, Lean product management, technical practices, and organizational culture are critical elements of high-performance software delivery. Despite this, your DevOps toolchain can make or break your DevOps efforts.
 
-While there are no tools to fix your organizational culture, there are many choices when it comes to improving your ability to create, deploy, and operate your software. The tricky part is creating a coherent DevOps toolchain that increases your capabilities without adding to your workload or limiting your choices.
+A cohesive DevOps toolchain involves more than selecting great tools. You also need to consider interoperability and apply some design to how you assemble them. The technical skills you apply to your code will help you create a solid toolchain.
 
-The tools cover workloads such as:
+*DevOps tools* is a term that covers workloads like:
 
 - Work item management
 - Source control
@@ -34,7 +34,14 @@ The tools cover workloads such as:
 - Monitoring and observability
 - Incident management
 
-The 2023 State of CD report highlights the importance of a cohesive DevOps toolchain and the problems that occur when you get it wrong.
+There are many great options, but the selection and assembly process needs some thought. The toolchain should boost your performance, but some tools, or combinations of tools, will make your life more difficult.
+
+The [2023 State of CD report](https://cd.foundation/reports/) looked at this in depth, finding:
+
+- CI/CD tools help you achieve high performance
+- Interoperability issues can emerge from your toolchain
+
+READ PAGE 34 and grok what this means!!!
 
 ## The importance of CI/CD tools
 
