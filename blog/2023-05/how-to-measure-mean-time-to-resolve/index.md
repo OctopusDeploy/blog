@@ -56,7 +56,7 @@ DevOps Research and Assessment (DORA) use a survey as part of their research. Qu
 > - Less than one day
 > - Less than one hour
 
-Most people working in software delivery have a feel for incidents duration. The broad buckets used in the survey make it easy to choose an answer. You can probably answer this for your team from memory with reasonable accuracy.
+Most people working in software delivery have a feel for incident duration. The broad buckets used in the survey make it easy to choose an answer. You can probably answer this for your team from memory with reasonable accuracy.
 
 The researchers use this information to find [performance groups](https://octopus.com/blog/new-devops-performance-clusters) in the data. They also look for relationships between various practices and their impact on business outcomes. Researchers build the DevOps structural equation model using these findings.
 
