@@ -6,7 +6,7 @@ visibility: private
 published: 2023-05-15-1400
 metaImage: blogimage-meantimerecovermetric-2023.png
 bannerImage: blogimage-meantimerecovermetric-2023.png
-bannerImageAlt: 
+bannerImageAlt: Person crouching ready to start a sprint on the top of a giant stop watch.
 isFeatured: false
 tags: 
   - DevOps
