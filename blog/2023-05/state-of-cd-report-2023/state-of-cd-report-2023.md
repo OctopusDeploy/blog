@@ -76,6 +76,8 @@ There are three factors that impact interoperability:
 
 You should consider interoperability during your selection phase as this is difficult to overcome after you've purchased licenses. You can interate your design to improve it over time.
 
+Another consideration is balancing the number of tools you self-host. Hosting a complete toolchain is no small endeavor and the work involved in keeping it updated, stable, and responsive shouldn't be taken lightly. Use managed services to reduce the operational burden of your tools and self-host where there is a strong reason to do so.
+
 ## Key tool selection considerations
 
 For critical areas, choose best-in-class tools.
