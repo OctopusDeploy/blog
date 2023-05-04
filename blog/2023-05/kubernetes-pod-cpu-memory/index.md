@@ -3,13 +3,14 @@ title: Checking Kubernetes pod CPU and memory
 description: Learn how to check a pod's resource usage in Kubernetes.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2022-11-07-1400
+published: 2023-05-08-1400
 metaImage: blogimage-benefitscontainerisation-2022.png
 bannerImage: blogimage-benefitscontainerisation-2022.png
 bannerImageAlt: Person  sitting on top of container and gold circle with 3 stars, looking at open laptop.
 tags:
  - DevOps
  - Kubernetes
+ - Containers
 ---
 
 Tracking the resource usage of local processes is relatively easy in Linux with the `top` or `htop` command. But how do you track resource usage of pods spread across a Kubernetes cluster?
@@ -38,7 +39,7 @@ The following error indicates that the metrics server is not installed:
 error: Metrics API not available
 ```
 
-In this case, you can install the metrics server with the instructions [here](https://github.com/kubernetes-sigs/metrics-server).
+In this case, you can install the metrics server with the [instructions on GitHub](https://github.com/kubernetes-sigs/metrics-server).
 
 ## cgroup resource usage
 
