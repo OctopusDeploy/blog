@@ -24,7 +24,7 @@ In this post, you'll discover:
 
 ## What MTTR measures
 
-MTTR is the mean time to recovery, sometimes called mean time to restore. It's the time it takes to get a system operational following a fault. It's become a standard measure of software delivery performance as part of the [DORA Metrics](https://octopus.com/devops/metrics/dora-metrics/).
+MTTR is the mean time to recovery, sometimes called mean time to restore. It's the time it takes to get a system operational following a fault. It's become a standard measure of software delivery performance as part of the [DORA metrics](https://octopus.com/devops/metrics/dora-metrics/).
 
 When you perform well against all DORA metrics, you have working software sooner, happier employees, and a competitive advantage in your industry.
 
