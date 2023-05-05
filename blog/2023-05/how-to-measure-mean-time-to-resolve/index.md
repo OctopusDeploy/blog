@@ -1,12 +1,12 @@
 ---
-title: How to measure DevOps mean time to recovery
+title: How to measure DevOps mean time to recovery (MTTR)
 description: Find out why mean time to recovery has problems and what to do about it.
 author: steve.fenton@octopus.com
-visibility: private
+visibility: public
 published: 2023-05-15-1400
 metaImage: blogimage-meantimerecovermetric-2023.png
 bannerImage: blogimage-meantimerecovermetric-2023.png
-bannerImageAlt: Person crouching ready to start a sprint on the top of a giant stop watch.
+bannerImageAlt: Person crouching ready to start a sprint on top of a giant stop watch.
 isFeatured: false
 tags: 
   - DevOps
@@ -176,9 +176,9 @@ The same process can help you normalize changing metrics over time. For example,
 
 ## Beyond the numbers
 
-Metrics are useful because they stop you from fooling yourself with convincing narratives. Without numbers, you may dismiss an incident as a one-off when it is more frequent than you thought. Phrases like "one-off", "exceptional", or "edge case" should warn you of narrative fallacy.
+Metrics are useful because they stop you from fooling yourself with convincing narratives. Without numbers, you may dismiss an incident as a one-off when it's more frequent than you thought. Phrases like "one-off", "exceptional", or "edge case" should warn you of narrative fallacy.
 
-Despite the role numbers play, they can only tell you there's a problem, not how to solve it. You'll need to go beyond numbers and use incident retrospectives and reviews to work out how to improve incident management in your organization.
+Despite the role numbers play, they can only tell you there's a problem, not how to solve it. You need to go beyond numbers and use incident retrospectives and reviews to work out how to improve incident management in your organization.
 
 The numbers don't drive continuous improvement. They remind you of reality so you can apply some human ingenuity and improve things each week, forever. Use the numbers to identify and remove bias and logical fallacy from your discussions so that you can deal with the reality before you.
 
@@ -198,7 +198,7 @@ Learning from incidents is more important than achieving some arbitrary goals ar
 
 ## Conclusion
 
-Do we want DORA to change how they measure software delivery - no. The survey collects how long it generally takes to restore service. You can answer more accurately if you have adopted some of the measurements in this article. For industry analysis, this is a sensible way to gauge one of many factors in the research.
+Do we want DORA to change how they measure software delivery? No. The survey collects how long it generally takes to restore service. You can answer more accurately if you adopt some of the measurements in this article. For industry analysis, this is a sensible way to gauge one of many factors in the research.
 
 > For the primary application or service you work on, how long does it generally take to restore service when a service incident or a defect that impacts users occurs (e.g., unplanned outage, service impairment)?
 
