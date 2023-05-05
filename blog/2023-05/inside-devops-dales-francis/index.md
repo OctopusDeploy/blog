@@ -1,6 +1,6 @@
 ---
 title: Inside DevOps with Dale Francis from Climavision
-description: A series where we share lessons learned from those on the frontlines of DevOps. Our next post features Dales Francis, Director, Product Development at Climavision.
+description: A series where we share lessons learned from those on the frontlines of DevOps. This post features Dales Francis, Director, Product Development at Climavision.
 author: joanna.wyganowska@octopus.com
 visibility: public
 published: 2023-05-22-1400
@@ -31,11 +31,13 @@ When you can take into account how you deploy your code, where it's hosted, and 
 
 **What’s the biggest challenge Octopus has helped you with?**
 
-*Dale*: It provided us with psychological safety around releases. Everything is a snapshot at the time of release creation, so I know that if anything goes wrong, I can re-deploy the previous version with certainty that everything will be back up again. Especially in a world of high service level agreements (SLAs), the ability to roll back almost instantly is critical. What could take 3-4 hours, we can do with Octopus in a matter of minutes.
+*Dale*: It provides us with psychological safety around releases. Everything is a snapshot at the time of release creation, so I know that if anything goes wrong, I can re-deploy the previous version with certainty that everything will be back up again. Especially in a world of high service level agreements (SLAs), the ability to roll back almost instantly is critical. What could take 3-4 hours, we can do with Octopus in a matter of minutes.
 
 **What’s the most rewarding part of DevOps?**
 
-*Dale*: When you solve a problem so day-to-day operations become simple and the experience for developers is so much better. Maturing as a DevOps organization also lets you focus more on solving business problems, rather than fighting technical issues.
+*Dale*: When you solve a problem so day-to-day operations become simple and the experience for developers is so much better. 
+
+Maturing as a DevOps organization also lets you focus more on solving business problems, rather than fighting technical issues.
 
 **Are there any pitfalls to avoid when implementing DevOps?**
 
@@ -49,13 +51,13 @@ When you can take into account how you deploy your code, where it's hosted, and 
 
 *Dale*: A little goes a long way. It's surprising what even the simplest bit of automation will do to improve day-to-day development. After you see that improvement, you'll become hooked and start to see more and more of these little quick wins. And these wins add up, and you can deliver more value to your team. This positive cycle allows for in-depth and informed discussions on implementing even greater improvements.
 
-**What DevOps book would you recommend reading?**
+**What DevOps book do you recommend reading?**
 
-*Dale*: Here are 3 books I send out to anyone who starts on my team:
+*Dale*: I send 3 books to anyone who starts on my team:
 
-1. Terraform: Up & Running: Writing Infrastructure as Code
-1. Kubernetes: Up and Running: Dive into the Future of Infrastructure 
-1. Learning Helm: Managing Apps on Kubernetes
+1. [Terraform: Up & Running: Writing Infrastructure as Code](https://www.amazon.com/gp/product/1492046906)
+1. [Kubernetes: Up and Running: Dive into the Future of Infrastructure](https://www.amazon.com/gp/product/1492046531) 
+1. [Learning Helm: Managing Apps on Kubernetes](https://www.amazon.com/gp/product/1492083658)
 
 **And what is one thing about you that might surprise us?**
 
