@@ -8,21 +8,28 @@ metaImage:
 bannerImage: 
 bannerImageAlt: 
 isFeatured: false
-tags: 
+tags:
   - DevOps
 ---
 
 The [2023 State of CD report](https://cd.foundation/reports/) was released this week. The report is commissioned by the Continuous Delivery Foundation and authored by SlashData. The State of CD report looks into the adoption, practices, and performance of teams with a focus on DevOps and Continuous Delivery.
 
-One of the many interesting sections in this year's report looked at DevOps-related technologies. Inspired by this insight, we take a deep dive into high-performance DevOps toolchains.
+One of the many interesting sections in this year's report looked at DevOps-related technologies. Inspired by this insight, we take a deep dive into how to build high-performance DevOps toolchains.
 
-## DevOps toolchains
+## DevOps tools and toolchains
 
-DevOps isn't just about tools. Transformational leadership, Lean product management, technical practices, and organizational culture are critical elements of high-performance software delivery. Despite this, your DevOps toolchain can make or break your DevOps efforts.
+You will have heard that DevOps isn't just about tools. There are several critical elements of high-performance software delivery, such as:
 
-A cohesive DevOps toolchain involves more than selecting great tools. You also need to consider interoperability and apply some design to how you assemble them. The technical skills you apply to your code will help you create a solid toolchain.
+- Transformational leadership
+- Lean product management
+- Technical practices
+- Organizational culture
 
-*DevOps tools* is a term that covers workloads like:
+Even your change approval process impacts your software delivery and, ultimately, your success as an organization. Despite being about *more* than tools, your DevOps toolchain remains crucial.
+
+When you select great tools and arrange them well, you create a cohesive DevOps toolchain. You can deploy frequently and reliably with a high degree of confidence. If you get it wrong, the tools get in the way and slow you down.
+
+A set of DevOps tools becomes a *toolchain* when it covers the whole Continuous Delivery pipeline:
 
 - Work item management
 - Source control
@@ -34,60 +41,77 @@ A cohesive DevOps toolchain involves more than selecting great tools. You also n
 - Monitoring and observability
 - Incident management
 
-There are many great options, but the selection and assembly process needs some thought. The toolchain should boost your performance, but some tools, or combinations of tools, will make your life more difficult.
+You'll be spoiled for choice when you look at [DevOps tools](https://octopus.com/devops/continuous-delivery/continuous-delivery-tools/). A great toolchain is a union of strong tools and simple integration design. Some tools, or combinations of tools, will make your life more difficult.
 
-The [2023 State of CD report](https://cd.foundation/reports/) looked at this in depth. The researches looked at the impact of tools and technologies on:
+## DevOps tool research
+
+The [2023 State of CD report](https://cd.foundation/reports/) looked at this in depth. The researchers looked at the impact of tools and technologies on:
 
 - Lead time for changes
 - Deployment frequency
 - Time to restore service
 
-...
-
-The result was that using DevOps tools and technologies predicts high performance.
-
-> Those using 10 or more tools are more than twice as likely to be high performers than those only using a single technology
-
-If you combine best-in-class tools to create a custom DevOps toolchain, you'll be more successful than if you try and deliver software with a single technology selection. There is a trade off between simplicity and performance, and naive approaches will bring fewer benefits than a toolchain tailored to your circumstances.
-
-Equally, interoperability should be high on your list of priorities both for tool selection and toolchain design.
-
-Tools can help you perform better, particular tools associated with continuous integration and deployment automation. The tools you select to form a DevOps toolchain can dramatically alter the benefits you get.
-
-## The importance of CI/CD tools
-
-The research found that developers using CI/CD tools deploy more often, have shorter lead times, and restore services faster when there's an incident.
+The report found that high performers use more tools than low performers. Almost 45% of low performers were using a single tool and deploying less frequently than once a month. High performers were 2x more likely to be using 10+ tools than a single tool. Teams were significantly less likely to be low performers if they used CI/CD tools to automate builds and deployments.
 
 > Those who use CI/CD tools are significantly less likely to be low performers than those who do not
 
-## Integrating best-in-class tools
+To achieve similar results, you need to assemble the correct tools in the right way. Teams who self-hosted multiple CI/CD tools tended to be lower performers as interoperability issues and manual handling slow the deployment pipeline.
 
-There is no available platform that handles the complete DevOps workflow. If there was, it would likely be weak in some key areas. It's common to find a source control platform with a built in build server, but this is still just part of the toolchain.
+## High-performance DevOps toolchains
 
-A great DevOps toolchain selects best-in-class tools for crucial workflows like source control, builds, deployments, and monitoring. The report backs up the benefits of a multi-technology approach.
+There are 4 steps to building high-performance DevOps toolchains.
 
-The critical thing to manage when you build a DevOps toolchain is the integrations. You need to minimize dependencies between tools and ensure selected tools don't unduly limit your options.
+1. Select best-in-class tools
+2. Prefer managed solutions
+3. Keep workloads clean
+4. Limit tool dependencies
 
-There are three factors that impact interoperability:
+### Select best-in-class tools
 
-1. The selected tool's integration points
-2. How well you minimize dependencies
-3. The design of your integrations
+For the critical elements of your toolchain, you need best-in-class tools. In particular, you need the best tools you can get for your build server, deployment automation, and monitoring. Specilized tools will be carefully designed to simplify complex workloads.
 
-You should consider interoperability during your selection phase as this is difficult to overcome after you've purchased licenses. You can interate your design to improve it over time.
+It is often *possible* to run workloads on a general purpose platform. You may even save some money by adding workloads to an existing tool. However, you tend to pay in other ways, such as longer lead times and lower deployment frequency.
 
-Another consideration is balancing the number of tools you self-host. Hosting a complete toolchain is no small endeavor and the work involved in keeping it updated, stable, and responsive shouldn't be taken lightly. Use managed services to reduce the operational burden of your tools and self-host where there is a strong reason to do so.
+Low performance in software delivery is always more expensive than the tools.
 
-## Key tool selection considerations
+### Prefer managed solutions
 
-For critical areas, choose best-in-class tools.
+Another consideration is balancing the number of tools you self-host. Hosting a complete toolchain is no small endeavor and the work involved in keeping it updated, stable, and responsive shouldn't be taken lightly.
 
-Arrange the toolchain as a sequence where possible, this reduces the number of tools each tool needs to know about. For example, if your build server knows about source control and your deployment tool, it should mean other tools don't need to depend on them. It should be possible to change your source control provider with no disruption to tools that lay beyond the build server.
+You can use managed services to reduce the operational burden of your tools. Only self-host where you have a strong reason to do so.
+
+### Keep workloads clean
+
+Don't clutter a workload with too many tools. If you need to cobble together several tools to perform one workload, such as building a software version, it will slow you down. Subtle issues will routinely crop up and need to be fixed, moving focus away from delivering valuable software.
+
+### Limit tool dependencies
+
+Keep the dependencies between tools minimal and simple. You don't want to spend time investigating interoperability issues as it stops you doing more valuable work.
+
+Control should be passed along the pipeline, with tools only being aware of tools that precede or follow them.
+
+For example, consider this common Continuous Delivery pipleine:
+
+1. Version control (Git)
+2. Build server (Jenkins)
+3. Artifact repository (Octopus)
+4. Deployment automation (Octopus)
+5. Monitoring and alerting (DataDog)
+6. On call and incident management (PagerDuty)
+
+You can replace Jenkins with a different build server as long as you make sure the output is pushed to your artifact repository in the same format. None of the other tools are impacted, so this is a well-designed toolchain.
+
+If you had to update your deployment process or version control, it would suggest they are too tightly coupled to Jenkins.
 
 ## Conclusion
 
-The research shows that software delivery performance is improved when developers use the right combination of DevOps technologies. Teams who limit developers to too few tools are most likely to underperform.
+A strong DevOps toolchain is a mix of great tools and good design. Combining tools into a cohesive toolchain improves performance, while poor tools, the overheads of self-hosting, and interoperability issues cause slow downs.
 
-To avoid the pitfalls of integrating many tools, careful tool selection and strong integration design will ensure performance gets a sustainable increase.
+Keep in mind the 4 steps to a great toolchain:
+
+1. Select best-in-class tools
+2. Prefer managed solutions
+3. Keep workloads clean
+4. Limit tool dependencies
 
 Happy deployments!
