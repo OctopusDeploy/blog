@@ -194,7 +194,7 @@ The cause of an incident is never a person. It's a whole system in which people 
 
 Periodic reviews let you review recent incidents to find patterns and think up improvements in the absence of *incident adrenaline*.
 
-Learning from incidents is more important than achieving some arbitrary goals around time to recover.
+Learning from incidents is more important than achieving arbitrary goals around time to recover.
 
 ## Conclusion
 
@@ -203,7 +203,7 @@ Do we want DORA to change how they measure software delivery? No. The survey col
 > For the primary application or service you work on, how long does it generally take to restore service when a service incident or a defect that impacts users occurs (e.g., unplanned outage, service impairment)?
 
 - Treat incidents as opportunities to learn
-- Favour in-depth analysis over shallow metrics
+- Favor in-depth analysis over shallow metrics
 - Treat humans as solutions, not problems
 - Study what goes right along with what goes wrong
 
