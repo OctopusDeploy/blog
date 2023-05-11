@@ -3,22 +3,23 @@ title: Creating a high-performance DevOps toolchain
 description: Discover the elements of a high-performance DevOps toolchain and the research that backs it up.
 author: steve.fenton@octopus.com
 visibility: private
-published: 3020-01-01-1400
+published: 2022-05-17-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt: 
 isFeatured: false
 tags:
   - DevOps
+  - Continuous Delivery
 ---
 
-This week, the [2023 State of CD report](https://cd.foundation/reports/) was released. The report is commissioned by the Continuous Delivery Foundation and authored by SlashData. The State of CD report looks at the adoption, practices, and performance of teams using DevOps and Continuous Delivery.
+This week, the [2023 State of CD report](https://cd.foundation/reports/) was released. The Continuous Delivery Foundation commission the report and it's authored by SlashData. The State of CD report looks at the adoption, practices, and performance of teams using DevOps and Continuous Delivery.
 
 One of the many interesting sections in this year's report looked at DevOps-related technologies. Inspired by this insight, we take a deep dive into how to build high-performance DevOps toolchains.
 
 ## DevOps tools and toolchains
 
-You will have heard that DevOps isn't just about tools. There are several other critical elements of high-performance software delivery:
+DevOps isn't just about tools. There are several other critical elements of high-performance software delivery:
 
 - Transformational leadership
 - Lean product management
@@ -41,11 +42,11 @@ A set of DevOps tools becomes a *toolchain* when it covers the whole Continuous 
 - Monitoring and observability
 - Incident management
 
-You'll be spoiled for choice when you look at [DevOps tools](https://octopus.com/devops/continuous-delivery/continuous-delivery-tools/). A great toolchain is a union of solid tools and simple integration design. Some tools, or combinations of tools, will make your life more difficult.
+You're spoiled for choice when you look at [DevOps tools](https://octopus.com/devops/continuous-delivery/continuous-delivery-tools/). A great toolchain is a union of solid tools and simple integration design. Some tools, or combinations of tools, will make your life more difficult.
 
 ## DevOps tool research
 
-The [2023 State of CD report](https://cd.foundation/reports/) looked at this in depth. The researchers looked at the impact of tools and technologies on:
+The [2023 State of CD report](https://cd.foundation/reports/) looked at tools in depth. The researchers looked at the impact of tools and technologies on:
 
 - Lead time for changes
 - Deployment frequency
@@ -59,7 +60,7 @@ To achieve similar results, you need to assemble the correct tools in the right 
 
 ## High-performance DevOps toolchains
 
-There are 4 steps to building high-performance DevOps toolchains.
+There are 4 steps to building high-performance DevOps toolchains:
 
 1. Select best-in-class tools
 2. Prefer managed solutions
@@ -70,19 +71,19 @@ There are 4 steps to building high-performance DevOps toolchains.
 
 For the critical elements of your toolchain, you need best-in-class tools. In particular, you need the best tools you can get for your build server, deployment automation, and monitoring. Specialized tools are carefully designed to simplify complex workloads.
 
-It is often *possible* to run workloads on a general-purpose platform. You may save some money by adding workloads to an existing tool. But, you tend to pay in other ways, such as longer lead times and lower deployment frequency.
+It's often *possible* to run workloads on a general-purpose platform. You may save some money by adding workloads to an existing tool. But, you tend to pay in other ways, such as longer lead times and lower deployment frequency.
 
 Low performance in software delivery can be more expensive than licenses for tools.
 
 ### Prefer managed solutions
 
-You need to limit the number of tools you self-host. Hosting a complete toolchain is no small endeavor, and the work involved in keeping it updated, stable, and responsive shouldn't be taken lightly.
+You need to limit the number of tools you self-host. Hosting a complete toolchain is no small endeavor. You shouldn't take lightly the work involved in keeping it updated, stable, and responsive.
 
 You can use managed services to reduce the operational burden of your tools. Only self-host where you have a strong reason to do so.
 
 ### Keep workloads clean
 
-Don't clutter a workload with too many tools. It will slow you down if you need to cobble together several tools to perform one workload, such as building a software version. Subtle issues will routinely crop up and must be fixed, which moves your focus away from delivering valuable software.
+Don't clutter a workload with too many tools. It will slow you down if you need to cobble together several tools to perform one workload, such as building a software version. Subtle issues will routinely crop up that you must fix, which moves your focus away from delivering valuable software.
 
 ### Limit tool dependencies
 
@@ -99,13 +100,13 @@ For example, consider this common Continuous Delivery pipeline:
 5. Monitoring and alerting (DataDog)
 6. On-call and incident management (PagerDuty)
 
-You can replace Jenkins with a different build server as long as you ensure the output is pushed to your artifact repository in the same format. None of the other tools are impacted, so this is a well-designed toolchain.
+You can replace Jenkins with a different build server if you ensure you push the output to your artifact repository in the same format. You don't impact the other tools, so this is a well-designed toolchain.
 
-If you had to update your deployment process or version control, it would suggest they are too tightly coupled to Jenkins.
+If you had to update your deployment process or version control, it would suggest they're too tightly coupled to Jenkins.
 
 ## Conclusion
 
-A strong DevOps toolchain is a mix of great tools and sound design. Combining tools into a cohesive toolchain improves performance, while poor tools, self-hosting overheads, and interoperability issues cause slowdowns.
+A strong DevOps toolchain is a mix of great tools and sound design. Combining tools into a cohesive toolchain improves performance. However, poor tools, self-hosting overheads, and interoperability issues cause slowdowns.
 
 Keep in mind the 4 steps to a great toolchain:
 
