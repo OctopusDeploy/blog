@@ -1,9 +1,9 @@
 ---
 title: Redesigned Tenants overview dashboard
-description: A blog post to highlight the new tenant overview dashboard that rolled out as an EAP to all cloud customers and any customer running Octopus version 2023.2.10424.The blog post should highlight the new features and functionality of the dashboard, and end with a CTA to provide feedback on the inbuilt Typeform link
+description: Learn how we redesigned our Tenants overview dashboard to make it easier to view and manage thousands of tenants.
 author: ian.khor@octopus.com
 visibility: private
-published: 3020-01-01-1400
+published: 2022-05-24-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
@@ -11,15 +11,18 @@ isFeatured: false
 tags: 
   - tag
 ---
-Tenants in Octopus have become the standard way for our customers to create customer specific deployment pipelines without duplicating project configurations. It is best used to deploy multiple instances of an application for each of our customers. Customers found it difficult to administer, manage or view their tenants using the old dashboard, especially in cases where they had 100s or 1000s of tenants in their Octopus instance.
 
-We are pleased to have addressed this using our new redesigned tenant overview dashboard.
+Tenants in Octopus are the standard way for you to create customer-specific deployment pipelines without duplicating project configurations. Tenants help you deploy multiple instances of an application for each of your customers. 
 
-The new dashboard gives customers better overall visibility of their tenant and tenant related items, including projects, environments and tags associated with said tenant. Additionally, the new dashboard is speedy and performant under large data loads, meaning you can easily manage and administer your 100s and 1000s of tenants without worrying about the dashboard hanging, crashing or slowing down to a crawl.
+We received feedback that we could improve the dashboard, to make it easier to administer manage, and view hundreds or thousands of tenants.
+
+We addressed this by redesigning the tenant overview dashboard.
+
+The new dashboard gives you better overall visibility of your tenants and tenant-related items. This includes projects, environments, and tenant tags. The new dashboard is also fast and performant under large data loads. You can easily manage and administer hundreds or thousands of tenants, knowing the dashboard won't hang, crash, or slow down.
 
 ![Screenshot 2023-05-11 at 3 36 14 pm](https://github.com/OctopusDeploy/blog/assets/102109515/636e1c21-f7bb-479d-92ce-8a05f9ed847d)
 
-In this post, I’ll show you how the new redesigned Tenant Overview dashboard works
+In this post, I show you how the new redesigned Tenants overview dashboard works.
 
 ## **Using a new data table**
 
