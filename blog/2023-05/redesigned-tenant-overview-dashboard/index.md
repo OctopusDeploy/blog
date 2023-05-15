@@ -15,21 +15,21 @@ tags:
 
 Tenants in Octopus are the standard way for you to create customer-specific deployment pipelines without duplicating project configurations. Tenants help you deploy multiple instances of an application for each of your customers. 
 
-We received feedback that we could improve the dashboard, to make it easier to administer manage, and view hundreds or thousands of tenants.
+We received feedback that we could improve our Tenants overview dashboard, to make it easier to administer manage, and view hundreds or thousands of tenants.
 
-We addressed this by redesigning the tenant overview dashboard.
+We addressed this by redesigning the dashboard.
 
-The new dashboard gives you better overall visibility of your tenants and tenant-related items. This includes projects, environments, and tenant tags. The new dashboard is also fast and performant under large data loads. You can easily manage and administer hundreds or thousands of tenants, knowing the dashboard won't hang, crash, or slow down.
+The new Tenants overview dashboard gives you better overall visibility of your tenants and tenant-related items. This includes projects, environments, and tenant tags. The new dashboard is also fast and performant under large data loads. You can easily manage and administer thousands of tenants, knowing the dashboard won't hang, crash, or slow down.
 
 In this post, I show you how the new redesigned Tenants overview dashboard works.
 
 ## Using a new data table
 
-Previously, the Tenants overview dashboard looked something like this:
+Before this redesign, the Tenants overview dashboard looked like this:
 
 Some customers found it challenging to navigate through this card-style format to see lots of data at the same time. We solved this by displaying the information in a data table style format.
 
-Visualizing the information this way preserves existing functionality around viewing tenants. It also lets you see other tenant-related information that you couldn't see with the old card-style format, namely:
+Visualizing the information this way preserves existing functionality for viewing tenants. It also lets you see other tenant-related information that you couldn't see with the card-style format, namely:
 
 - The name and number of tenant tags associated with each tenant
 - The projects associated with each tenant
@@ -37,15 +37,15 @@ Visualizing the information this way preserves existing functionality around vie
 
 ## Expandable rows to view additional information
 
-The data table format allows Octopus to provide more information at a glance. By default, the table reveals some information about tenant tags, projects, and environments. It then hides the rest of the information in an expandable row.
+The data table format allows Octopus to provide more information at a glance. By default, the table reveals high-level information about tenant tags, projects, and environments. It then hides the rest of the information in an expandable row.
 
-You can open the expandable row if you want more information about those items. This displays all information about tenant tags, projects, and environments for that tenant. You can see all the related information or retract the row to keep your view clean and organized.
+You can open the expandable row if you want more detail about those items. This displays all information about tenant tags, projects, and environments for that tenant. You can see all the related information or retract the row to keep your view clean and organized.
 
 ## Pagination and results controls
 
-The Tenants overview dashboard now has additional pagination and results limitation/expansion controls. Result limitation/expansion options range from 30, 50, and 100 results. Pagination follows the option selected for results limitation. For example, if you want to see 30 results, each dashboard page will show up to 30 results before paginating to the next page.
+The Tenants overview dashboard now has additional pagination and results limitation and expansion controls. You can choose to see 30, 50, or 100 results. Pagination follows the option selected for results limitation. For example, if you select 50 results, each dashboard page shows up to 50 results before you need to click through to the next page.
 
-The pagination and results limitation means the new dashboard suits different use cases. You can see all data at once or just some, depending on your preferences and needs.
+The pagination and results limitation means the new dashboard suits different use cases. You can see all data or just some, depending on your preferences and needs.
 
 ## Performant under large data loads
 
