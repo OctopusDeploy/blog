@@ -37,7 +37,7 @@ A set of DevOps tools becomes a *toolchain* when it covers the whole Continuous 
 - Build and test automation
 - Security testing 
 - Artifact repositories
-- Infrastructure as code and configuration management 
+- Infrastructure as Code and configuration management 
 - Deployment automation
 - Monitoring and observability
 - Incident management
