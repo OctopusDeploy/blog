@@ -59,15 +59,15 @@ The Tenants overview dashboard now has additional pagination and results limitat
 
 The pagination and results limitation means the new dashboard suits different use cases. You can see all data or just some, depending on your preferences and needs.
 
-## Maintaining Existing Filtering & Name Search Function
+## Maintaining existing filtering and name search function
 
 ![blogimage-firstnamesearch](https://github.com/OctopusDeploy/blog/assets/102109515/77718673-c7ba-48d8-9d19-77cb2fc9039a)
 
-The redesigned tenant overview dashboard maintains the advanced filters that customers are familiar with. We have preserved the 'Filter by name' search bar on the top left hand side of the page, where you can simply type in the name of a tenant to immediately start narrowing down the tenant that you are looking for.
+We kept the advanced filters on the dashboard. You can still find the **Filter by name** search bar on the top left-hand side of the page. Use the search bar to type in a tenant's name to narrow down the results and find the tenant you're looking for.
 
 ![blogimage-advancedfilters](https://github.com/OctopusDeploy/blog/assets/102109515/8b6e444b-adfc-4e4f-a33d-a4072932de95)
 
-Additionally, the current advanced filters can also be used with the redesigned tenant overview dashboard to search for a particular tenant or other tenant related items.
+You can also use these advanced filters with the new dashboard to search for a particular tenant or other tenant-related items.
 
 ## Performant under large data loads
 
