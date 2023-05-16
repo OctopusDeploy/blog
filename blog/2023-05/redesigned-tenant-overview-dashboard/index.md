@@ -47,6 +47,12 @@ The Tenants overview dashboard now has additional pagination and results limitat
 
 The pagination and results limitation means the new dashboard suits different use cases. You can see all data or just some, depending on your preferences and needs.
 
+## Maintaining Existing Filtering & Name Search Function
+
+The redesigned tenant overview dashboard maintains the advanced filters that customers are familiar with. We have preserved the 'Filter by name' search bar on the top left hand side of the page, where you can simply type in the name of a tenant to immediately start narrowing down the tenant that you are looking for.
+
+Additionally, the current advanced filters can also be used with the redesigned tenant overview dashboard to search for a particular tenant or other tenant related items.
+
 ## Performant under large data loads
 
 Finally, the new dashboard is performant and fast under large data loads. This is the case even if you have hundreds or thousands of tenants to view, manage, and administer. The dashboard is more responsive and reliable, without long loading times or sluggish UI performance.
