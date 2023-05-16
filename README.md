@@ -25,7 +25,7 @@ If you'd like feedback on a work in progress, create a draft PR and tag @TeganAl
 
 When you're happy with your post and it's ready to be reviewed, create a PR, assign @TeganAli as reviewer, and drop a note in Slack in #topic-content-marketing.
 
-When submitting your post in #topic-content-marketing, you also need to provide copy for a Twitter post **and** LinkedIn post to promote your blog post, in #topic-social-media. (The marketing team will edit and post these on social media.) 
+When submitting your post in #topic-content-marketing, you also need to provide copy for a Twitter post **and** LinkedIn post to promote your blog post, in **#topic-social-media**. (The marketing team will edit and post these on social media.) 
 
 - Please make sure your tweet is no more than 280 characters, including spaces and the link to the blog post. 
 - LinkedIn posts have a 3000-character limit, so you can include more detail, but still keep it brief. 
