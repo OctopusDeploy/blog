@@ -3,7 +3,7 @@ title: Creating a high-performance DevOps toolchain
 description: Discover the elements of a high-performance DevOps toolchain and the research that backs it up.
 author: steve.fenton@octopus.com
 visibility: public
-published: 2022-05-17-1400
+published: 2023-05-17-1400
 metaImage: blogimage-highperformancedevopstoolchain-2023.png
 bannerImage: blogimage-highperformancedevopstoolchain-2023.png
 bannerImageAlt: Stylized image of two people doing maintenance work on a DevOps infinity symbol with a cog and timer at its center.
