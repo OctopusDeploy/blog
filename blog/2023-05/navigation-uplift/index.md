@@ -19,7 +19,7 @@ Incoming UI goodness!
 We have listened to our customer feedback about the experience of Octopus Deploy. Our particular team is focusing on the Navigation experience. Let's take a look at our first step in improving our navigation. See the below for a before and after.
 
 ### Before
-![Screen shot of Octopus Deploy Navigation beforehand](navigation-before.png)
+![Screen shot of Octopus Deploy Navigation beforehand](Navigation-Before.png)
 
 ### After!
 
@@ -27,7 +27,7 @@ We have listened to our customer feedback about the experience of Octopus Deploy
 - **Stronger Visual Hierarchy:** You can easily identify which section of app you are located in
 - **Configuration / Administration:** Moved to a cog icon on the far right following standard navigation patterns
 
-![Screen shot of Octopus Deploy Navigation beforehand](navigation-after.png)
+![Screen shot of Octopus Deploy Navigation beforehand](Navigation-After.png)
 
 
 A little bit of background…
