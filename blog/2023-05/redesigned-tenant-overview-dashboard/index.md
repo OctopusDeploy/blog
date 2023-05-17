@@ -29,11 +29,11 @@ In this post, I show you how the new redesigned Tenants overview dashboard works
 
 Before this redesign, the Tenants overview dashboard looked like this:
 
-![An image of the old tenant overview dashboard](blogimage-oldtenantoverviewdashboard.png)
+![The old tenant overview dashboard](blogimage-oldtenantoverviewdashboard.png)
 
 Some customers found it challenging to navigate through this card-style format to see lots of data at the same time. We solved this by displaying the information in a data table style format.
 
-![An image of the new data style format in the new tenant overview dashboard](blogimage-newdatastyletableformat.png)
+![The new data style format in the new tenant overview dashboard](blogimage-newdatastyletableformat.png)
 
 Visualizing the information this way preserves existing functionality for viewing tenants. It also lets you see other tenant-related information that you couldn't see with the card-style format, namely:
 
@@ -43,7 +43,7 @@ Visualizing the information this way preserves existing functionality for viewin
 
 ## Expandable rows to view additional information
 
-![A gif of how the expandable rows work in the new tenant overview dashboard](blogimage-expandablerows.gif)
+![The expandable rows in the new tenant overview dashboard](blogimage-expandablerows.gif)
 
 The data table format allows Octopus to provide more information at a glance. By default, the table reveals high-level information about tenant tags, projects, and environments. It then hides the rest of the information in an expandable row.
 
@@ -51,9 +51,9 @@ You can open the expandable row if you want more detail about those items. This 
 
 ## Pagination and results controls
 
-![A gif of how the pagination controls work in the new tenant overview dashboard](blogimage-paginationcontrol.gif)
+![The pagination controls in the new tenant overview dashboard](blogimage-paginationcontrol.gif)
 
-![A gif of how the results controls work in the new tenant overview dashboard](blogimage-resultscontrol.gif)
+![The results controls in the new tenant overview dashboard](blogimage-resultscontrol.gif)
 
 The Tenants overview dashboard now has additional pagination and results limitation and expansion controls. You can choose to see 30, 50, or 100 results. Pagination follows the option selected for results limitation. For example, if you select 50 results, each dashboard page shows up to 50 results before you need to click through to the next page.
 
@@ -61,11 +61,11 @@ The pagination and results limitation means the new dashboard suits different us
 
 ## Maintaining existing filtering and name search function
 
-![A gif of how the name search works in the new tenant overview dashboard](blogimage-firstnamesearch.gif)
+![The name search in the new tenant overview dashboard](blogimage-firstnamesearch.gif)
 
 We kept the advanced filters on the dashboard. You can still find the **Filter by name** search bar on the top left-hand side of the page. Use the search bar to type in a tenant's name to narrow down the results and find the tenant you're looking for.
 
-![A gif of how the advanced filters work on the new tenant overview dashboard](blogimage-advancedfilters.gif)
+![The advanced filters ion the new tenant overview dashboard](blogimage-advancedfilters.gif)
 
 You can also use these advanced filters with the new dashboard to search for a particular tenant or other tenant-related items.
 
@@ -77,7 +77,7 @@ Finally, the new dashboard is performant and fast under large data loads. This i
 
 The new Tenants overview dashboard provides greater visibility and better tools to manage and administer your tenants at scale. 
 
-We'd love feedback on this feature while we continue to refine it. If you're an Octopus Cloud customer or running Octopus server version 2023.2.10424 and above, it's available now as an early access preview (EAP). 
+We'd love feedback on this feature while we continue to refine it. If you're an Octopus Cloud customer, it's available now as an early access preview (EAP). 
 
 <span><a class="btn btn-success" href="https://octopusdeploy.typeform.com/to/CxkblnbR">Share your feedback</a></span>
 
