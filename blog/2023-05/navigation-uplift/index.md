@@ -21,11 +21,11 @@ We have listened to our customer feedback about the experience of Octopus Deploy
 ### Before
 ![Screen shot of Octopus Deploy Navigation beforehand](Navigation-Before.png)
 
-### After!
+### After :D
 
 - **Spaces:** Square instead of round. We will be moving away from the use of circles from spaces and projects. This helps with easier visual identification of elements across the app.
 - **Stronger Visual Hierarchy:** You can easily identify which section of app you are located in
-- **Configuration / Administration:** Moved to a cog icon on the far right following standard navigation patterns
+- **Configuration / Administration:** Moved to a cog icon on the far right following standard navigation ux patterns
 
 ![Screen shot of Octopus Deploy Navigation beforehand](Navigation-After.png)
 
@@ -42,11 +42,10 @@ Design System. Design System. Design System. But first design tokens. We started
 
 ## Upcoming changes
 
-To continue bringing a modern UI across Octopus Deploy we are tackling the Page header section. and moving down the page to our page headers, breadcrumbs. This is creating a simpler layout to support easier navigation between areas of the app. With each change applied to the navigation it will bring more visual consistency and correction of the information architecture.
-
+To continue bringing a modern UI across Octopus Deploy we are tackling the Page header section next. and moving down the page to our page headers, breadcrumbs. This is creating a simpler layout to support easier navigation between areas of the app. With each change applied to the navigation it will bring more visual consistency and correction of the information architecture.
 
 
 
 Octopus is dedicated to improving its user experience. This is the first of many milestones ahead of us to achieve our North Star navigation experience. 
 
-Sign up to take part in our customer research program where you will see up and coming concepts we are testing. 
+
