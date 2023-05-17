@@ -36,7 +36,7 @@ Despite the obvious benefit of sourcing files without the need to package them, 
 * You can reference folders or use glob to define multiple files (in this case, they will be applied all at once in the alphabetical order).
 * If you need to define a specific order, you can define multiple paths.
 
-The points above unlock scenarious like deploying multiple services within one step. Let's say you might want tp deploy all Secrets and ConfigMaps first (i.e. `/configuration/*-secret*.yaml` and `/configuration/*-configmap.yaml' or `/configuration/secrets-and-configs/*'). Deploy your first service after that (e.g. '/configuration/db-*.yaml`) and the second service after that (e.g. `/configuration/web-*.yaml'). You might notice that a file like `/configuration-db-configmap.yaml` will be reference twice, it's not neat but the deployment will totally work anyway (just the second deployment won't cause any changes).
+The points above unlock scenarious like deploying multiple services within one step. Let's say you might want tp deploy all Secrets and ConfigMaps first (i.e. `/configuration/*-secret*.yaml` and `/configuration/*-configmap.yaml` or `/configuration/secrets-and-configs/*`). Deploy your first service after that (e.g. `/configuration/db-*.yaml`) and the second service after that (e.g. `/configuration/web-*.yaml`). You might notice that a file like `/configuration-db-configmap.yaml` will be reference twice, it's not neat but the deployment will totally work anyway (just the second deployment won't cause any changes).
 
 
 
