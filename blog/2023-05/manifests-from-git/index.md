@@ -38,6 +38,33 @@ Despite the obvious benefit of sourcing files without the need to package them, 
 
 The points above unlock scenarious like deploying multiple services within one step. Let's say you might want tp deploy all Secrets and ConfigMaps first (i.e. `/configuration/*-secret*.yaml` and `/configuration/*-configmap.yaml` or `/configuration/secrets-and-configs/*`). Deploy your first service after that (e.g. `/configuration/db-*.yaml`) and the second service after that (e.g. `/configuration/web-*.yaml`). You might notice that a file like `/configuration-db-configmap.yaml` will be reference twice, it's not neat but the deployment will totally work anyway (just the second deployment won't cause any changes).
 
+There is also nothing wrong in using the same files multiple times in different steps. In this case, you can consider the files as templates and modify them with [Octopus variables](https://octopus.com/docs/projects/variables) embeded in YAML.
+
+You can also use [structured configuration variables](https://octopus.com/blog/structured-variables-raw-kubernetes-yaml) if you don't want to change your YAML files, so you can still use them for deployments outside of Octopus.
+
+Finally, you can also use Octopus variables in the paths or repository links, making really powerful step templates.
+
+### Example
+
+Imagine we have a complex app consists of 100 microservices. We combined these microservices in three groups similar enuogh, so we can define standard YAML files for each group. At the same time, we still want to modify some parameters for each app (like the image name).
+
+We also want our software teams to easily configure new deployment without diving deep in YAML configurations.
+
+In this case, we can create three new repos with configuratio files, one for each group of microservices. We could store all the ocnfiguration files in one repo, and it will work as well, but just for the sake of the example, let's say we have three.
+
+We can create a new step template from the `Deploy raw Kubernetes YAML` and specify git repo path with the `Octopus.ProjectGroup.Name`. This allows us to use project group name as a reference. 
+
+After that we can specify multiple paths to the YAML templates (if we keep the structure in all three template repos same).
+
+We can use variables like `Octopus.Project.Name` in combination with `Octopus.Release.Number` to modify YAML fils defining container images, namespaces and other configuration parameters which don't require fine tuning.
+
+Finally, we can expose (i.e. allow to modify when using the step template) variables like number of replica sets or container ports.
+
+In this scenario, a new app deployment configuration would be as simple as creating a new project, adding a step template and specifying a few variables.
+
+### How it works
+
+
 
 
 
