@@ -19,13 +19,15 @@ Incoming UI goodness!
 We have listened to our customer feedback about the experience of Octopus Deploy. Our particular team is focusing on the Navigation experience. Let's take a look at our first step in improving our navigation. See the below for a before and after.
 
 ### Before
+![Screen shot of Octopus Deploy Navigation beforehand](navigation-before.png)
 
 ### After!
 
 - **Spaces:** Square instead of round. We will be moving away from the use of circles from spaces and projects. This helps with easier visual identification of elements across the app.
-- **Stronger Visual Hierarchy:*** You can easily identify which section of app you are located in
-- **Configuration / Administration:*** Moved to a cog icon on the far right following standard navigation patterns
+- **Stronger Visual Hierarchy:** You can easily identify which section of app you are located in
+- **Configuration / Administration:** Moved to a cog icon on the far right following standard navigation patterns
 
+![Screen shot of Octopus Deploy Navigation beforehand](navigation-after.png)
 
 
 A little bit of background…
@@ -44,6 +46,7 @@ To continue bringing a modern UI across Octopus Deploy we are tackling the Page 
 
 
 
+
 Octopus is dedicated to improving its user experience. This is the first of many milestones ahead of us to achieve our North Star navigation experience. 
 
-Sign up to take part in our customer research program where you will see up and coming concepts we are testing. There is an incentive ;). 
+Sign up to take part in our customer research program where you will see up and coming concepts we are testing. 
