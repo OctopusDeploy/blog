@@ -4,9 +4,9 @@ description: Learn how we redesigned our Tenants overview dashboard to make it e
 author: ian.khor@octopus.com
 visibility: private
 published: 2022-05-24-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-tennetsoverviewdashboard-2023.png
+bannerImage: blogimage-tennetsoverviewdashboard-2023.png
+bannerImageAlt: Stylized image of two people working on the tenants overview dashboard UI
 isFeatured: false
 tags: 
   - Product
