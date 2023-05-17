@@ -117,25 +117,19 @@ If you're re-configuring a project you created before the release of this featur
 
 ![screenshot of the Kubernetes object status check options](kubernetes-object-status-check-options.png)
 
-You can also configure 2 optional timeouts:
+You can also configure 2 options:
 
-- **Step execution timeout**
+- **Step timeout**
 
-![screenshot of the step execution timeout section](step-execution-timeout.png)
+This timeout is the total time allowed for all Kubernetes objects in the action to be deployed. If any resources defined directly in this step are not in a successful state by the end of this timeout period, the step will stop executing and be marked as failed. You can disable this timeout if you don't want to set a time limit.
 
-This timeout is the total time allowed for all Kubernetes objects in the action to be deployed. If any resources are not in a successful state by the end of this timeout period, the step will stop executing and be marked as failed. You can disable this timeout if you don't want to set a time limit.
+- **Wait for Jobs to complete during deployment**
 
-- **Status stabilization timeout**
+You will find this option if the step you are deploying supports Kubernetes Jobs, such as the **[Deploy raw Kubernetes YAML](https://octopus.com/docs/deployments/kubernetes#raw-yaml-step)** step, and the **Deploy Kubernetes containers** step with "Jobs" as the resource type.
 
-![screenshot of the stabilization timeout section](status-stabilization-timeout.png)
+When this option is checked, Octopus will wait until any Kubernetes Jobs created in the deployment to complete or fail before finishing this step. Otherwise, Octopus treats Jobs as successful as soon as they are created without waiting for their execution.
 
-This timeout adds more stability to your deployment. Sometimes a Kubernetes object can have temporary failures but fixes itself eventually.
-
-For example, a pod may fail to spin up due to a temporary connection issue to the container registry, but it will be created successfully when the internet connection is back.
-
-You can use the stabilization timeout to prevent this kind of temporary failure from causing a failed deployment.
-
-When this timeout is set above 0, Octopus waits for the period configured after the step fails or succeeds. The step is marked as failed or successful only if the status does not change throughout this timeout period.
+By default, this option is unchecked. This is compatible with the current behaviour, which is not waiting for Jobs to execute.
 
 ## Caveats
 
