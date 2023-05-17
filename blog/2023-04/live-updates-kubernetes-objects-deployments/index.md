@@ -133,7 +133,7 @@ You find this option if the step you're deploying supports Kubernetes Jobs. This
 
 When you check this option, Octopus waits for Kubernetes Jobs created in the deployment to complete or fail before finishing this step. Otherwise, Octopus treats Jobs as successful as soon as they're created without waiting for their execution.
 
-By default, this option is unchecked. This is compatible with the current behavior, which doesn't wait for jobs to execute.
+By default, this option is unchecked. This is compatible with the current behavior, which doesn't wait for Jobs to execute.
 
 ## Caveats
 
