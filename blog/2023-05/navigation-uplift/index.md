@@ -4,8 +4,8 @@ description: A look into the changes we are making to the navigation experience 
 author: emily.pearce@octopus.com
 visibility: private
 published: 2023-05-17-2000
-metaImage: Uplifted-Navigation-BlogV2.png
-bannerImage: Uplifted-Navigation-BlogV2.png
+metaImage: Uplifted-Navigation-Blogv3.png
+bannerImage: Uplifted-Navigation-Blogv3.png
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags: 
