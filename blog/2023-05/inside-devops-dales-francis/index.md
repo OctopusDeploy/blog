@@ -4,8 +4,8 @@ description: A series where we share lessons learned from those on the frontline
 author: joanna.wyganowska@octopus.com
 visibility: public
 published: 2023-05-22-1400
-metaImage: 
-bannerImage: 
+metaImage: blogimage-insidedevopsdalefrancis-2023.png
+bannerImage: blogimage-insidedevopsdalefrancis-2023.png
 bannerImageAlt: Photo of Dale Francis
 isFeatured: false
 tags: 
