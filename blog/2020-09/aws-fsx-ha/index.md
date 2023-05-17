@@ -35,6 +35,7 @@ Unlike the other file storage options that AWS has, the FSx for Windows File Ser
 The first step in this process is to select the file system type that you’re going to use.  As stated previously, your selections are:
 - FSx for Windows File Server
 - FSx for Lustre
+
 This post uses FSx for Windows File Server.
 
 ### Step 2: Specify file system details
