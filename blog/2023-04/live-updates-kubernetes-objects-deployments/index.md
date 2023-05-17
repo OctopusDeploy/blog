@@ -129,7 +129,7 @@ This timeout is the total time allowed for all Kubernetes objects in the action 
 
 - **Wait for Jobs to complete during deployment**
 
-You find this option if the step you're deploying supports Kubernetes jobs. This includes the **[Deploy raw Kubernetes YAML](https://octopus.com/docs/deployments/kubernetes#raw-yaml-step)** step, and the **Deploy Kubernetes containers** step with `Jobs` as the resource type.
+You find this option if the step you're deploying supports Kubernetes Jobs. This includes the **[Deploy raw Kubernetes YAML](https://octopus.com/docs/deployments/kubernetes#raw-yaml-step)** step, and the **Deploy Kubernetes containers** step with `Jobs` as the resource type.
 
 When you check this option, Octopus waits for Kubernetes Jobs created in the deployment to complete or fail before finishing this step. Otherwise, Octopus treats Jobs as successful as soon as they're created without waiting for their execution.
 
