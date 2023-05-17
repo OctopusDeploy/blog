@@ -55,6 +55,18 @@ From `2023.4` (likely released late November 2023) we will begin entirely disabl
 ## How to start using .NET Core instead
 When configuring a SSH target, the `Target Runtime` has already been defaulted `Self-contained Calamari` (.NET Core) for several years. If your target has this selected, then it is already using the .NET Core version of Calamari and these changes won't apply to you. If however your target has `Calamari on Mono` then you will need to make some changes before Mono support is disabled in Octopus Server.
 
+### Listing Affected Targets
+If you have lots of targets and are unsure if any are currently reliant on Mono, the below code snippet shows how to query your instances with the C# [OctopusClient](https://octopus.com/docs/octopus-rest-api/octopus.client).
+```c#
+var client = new OctopusClient(new OctopusServerEndpoint("https://octopus.acme.corp/", "API-XRLLCHXXXXIZGHDNC1OEUVRXXXXX"));
+var sshEndpoints = client.Repository.Machines.List(commStyles: "Ssh");
+var monoEndpoints = sshEndpoints.Items
+  .Where(p => p.Endpoint is SshEndpointResource sshEndpoint && sshEndpoint.DotNetCorePlatform is null);
+foreach (var endpoint in monoEndpoints) {
+	Console.WriteLine($"SSH endpoint `{endpoint.Name}` is still running Mono. Time to convert to .NET Core!");
+}
+```
+
 ### Library Dependencies
 Although in future you will no longer need to install Mono on your target to utilize it as a Deployment Target, there are still some dependencies that .NET Core require to be present. 
 
