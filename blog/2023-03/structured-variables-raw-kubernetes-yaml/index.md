@@ -19,7 +19,7 @@ When developing your Kubernetes configurations locally, you're probably building
 
 Previously, you had to embed [Octostache variable templates](https://octopus.com/docs/projects/variables/variable-substitutions) into your YAML. This resulted in configuration you couldn't invoke locally without replacing the invalid values. 
 
-Templating is a common pattern for managing Kubernetes configuration files. Version 2023.1 of Octopus Deploy brings the power of structured variable replacements to help make this process easier. In this post, I show you how it works.
+Templating is a common pattern for managing Kubernetes configuration files. Version 2023.2 of Octopus Deploy brings the power of structured variable replacements to help make this process easier. In this post, I show you how it works.
 
 ## How to use the improved structured variable replacement for Kubernetes 
 
