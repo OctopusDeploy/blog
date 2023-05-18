@@ -3,7 +3,7 @@ title: Redesigned Tenants overview dashboard
 description: Learn how we redesigned our Tenants overview dashboard to make it easier to view and manage thousands of tenants.
 author: ian.khor@octopus.com
 visibility: public
-published: 2022-05-24-1400
+published: 2023-05-24-1400
 metaImage: blogimage-tennetsoverviewdashboard-2023.png
 bannerImage: blogimage-tennetsoverviewdashboard-2023.png
 bannerImageAlt: Stylized image of two people working on the tenants overview dashboard UI
