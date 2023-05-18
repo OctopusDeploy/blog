@@ -2,7 +2,7 @@
 title: Redesigned Tenants overview dashboard
 description: Learn how we redesigned our Tenants overview dashboard to make it easier to view and manage thousands of tenants.
 author: ian.khor@octopus.com
-visibility: private
+visibility: public
 published: 2022-05-24-1400
 metaImage: blogimage-tennetsoverviewdashboard-2023.png
 bannerImage: blogimage-tennetsoverviewdashboard-2023.png
@@ -13,9 +13,9 @@ tags:
   - Multi-Tenancy
 ---
 
-Tenants in Octopus are the standard way for you to create customer-specific deployment pipelines without duplicating project configurations. Tenants help you deploy multiple instances of an application for each of your customers. 
+Tenants in Octopus are the standard way for you to create customer-specific deployment pipelines without duplicating project configuration. Tenants help you deploy multiple instances of an application for each of your customers. 
 
-We received feedback that we could improve our Tenants overview dashboard, to make it easier to administer manage, and view hundreds or thousands of tenants.
+We received feedback that we could improve our Tenants overview dashboard, to make it easier to administer, manage, and view hundreds or thousands of tenants.
 
 We addressed this by redesigning the dashboard.
 
@@ -31,7 +31,7 @@ Before this redesign, the Tenants overview dashboard looked like this:
 
 ![The old tenant overview dashboard](blogimage-oldtenantoverviewdashboard.png)
 
-Some customers found it challenging to navigate through this card-style format to see lots of data at the same time. We solved this by displaying the information in a data table style format.
+Some customers found it challenging to navigate through this card-style format to see lots of data at the same time. We solved this by displaying the information in a data table format.
 
 ![The new data style format in the new tenant overview dashboard](blogimage-newdatastyletableformat.png)
 
@@ -43,31 +43,31 @@ Visualizing the information this way preserves existing functionality for viewin
 
 ## Expandable rows to view additional information
 
-![The expandable rows in the new tenant overview dashboard](blogimage-expandablerows.gif)
-
 The data table format allows Octopus to provide more information at a glance. By default, the table reveals high-level information about tenant tags, projects, and environments. It then hides the rest of the information in an expandable row.
 
 You can open the expandable row if you want more detail about those items. This displays all information about tenant tags, projects, and environments for that tenant. You can see all the related information or retract the row to keep your view clean and organized.
 
+![The expandable rows in the new tenant overview dashboard](blogimage-expandablerows.gif)
+
 ## Pagination and results controls
-
-![The pagination controls in the new tenant overview dashboard](blogimage-paginationcontrol.gif)
-
-![The results controls in the new tenant overview dashboard](blogimage-resultscontrol.gif)
 
 The Tenants overview dashboard now has additional pagination and results limitation and expansion controls. You can choose to see 30, 50, or 100 results. Pagination follows the option selected for results limitation. For example, if you select 50 results, each dashboard page shows up to 50 results before you need to click through to the next page.
 
 The pagination and results limitation means the new dashboard suits different use cases. You can see all data or just some, depending on your preferences and needs.
 
-## Maintaining existing filtering and name search function
+![The pagination controls in the new tenant overview dashboard](blogimage-paginationcontrol.gif)
 
-![The name search in the new tenant overview dashboard](blogimage-firstnamesearch.gif)
+![The results controls in the new tenant overview dashboard](blogimage-resultscontrol.gif)
+
+## Maintaining existing filtering and name search function
 
 We kept the advanced filters on the dashboard. You can still find the **Filter by name** search bar on the top left-hand side of the page. Use the search bar to type in a tenant's name to narrow down the results and find the tenant you're looking for.
 
-![The advanced filters ion the new tenant overview dashboard](blogimage-advancedfilters.gif)
+![The name search in the new tenant overview dashboard](blogimage-firstnamesearch.gif)
 
 You can also use these advanced filters with the new dashboard to search for a particular tenant or other tenant-related items.
+
+![The advanced filters ion the new tenant overview dashboard](blogimage-advancedfilters.gif)
 
 ## Performant under large data loads
 
