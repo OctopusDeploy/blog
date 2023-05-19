@@ -1,6 +1,6 @@
 ---
 title: Cloud nomad architecture
-description: As more organizations rethink their cloud and microservices decisions, it's time for cloud nomad architectures.
+description: As more organizations rethink their cloud and microservices decisions, it's time for cloud-nomad architectures.
 author: steve.fenton@octopus.com
 visibility: private
 published: 3020-01-01-1400
@@ -12,37 +12,37 @@ tags:
   - DevOps
 ---
 
-Over the past 5 years, organizations have been quietly rethinking their approach to cloud and microservice architectures.
+Over the past 5 years, organizations have been quietly rethinking their approach to cloud hosting and microservice architectures.
 
-Though the cloud offers a seemingly infinite ability to scale. But, this can lead to unpredictable costs, especially with volatile costs such as egress charges. With microservices, many organizations are finding the cost of complexity now outweighs the benefits.
+The cloud offers a seemingly infinite ability to scale. However, this can lead to unpredictable spending, especially with volatile costs such as egress charges. At the same time, many organizations are finding the cost of complexity with microservices outweighs the benefits.
 
-Rather than reverting to the old state, the organizations are pushing forward based on the hard lessons learned over the last decade. To take advantage of the new reality, you'll need to apply cloud nomad architectures.
+Rather than reverting to the old state, the organizations are pushing forward based on the hard lessons learned over the last decade. To take advantage of the new reality, you'll need to apply cloud-nomad architectures.
 
 This article explains what they are and why they are needed.
 
 ## Cloud-native architecture
 
-You may be familiar with cloud-native architecture, which encourages application design that maximizes the benefits of cloud environments. To be *cloud native* you'll use technologies like containers, microservices, and immutable infrastructure to build loosely-coupled systems that are easy to manage and operate.
+You may be familiar with cloud-native architecture, which encourages application design that maximizes the benefits of cloud environments. To be *cloud-native* you'll use technologies like containers, microservices, and immutable infrastructure to build loosely-coupled systems that are easy to manage and operate.
 
 The [Cloud Native Computing Foundation (CNCF)](https://www.cncf.io/) promotes cloud-native computing and manages over 100 projects that help you achieve it. Their most famous project is Kubernetes.
 
 In the rush to the cloud, powered by microservices rocket fuel, many organizations have let their context fade into the background. With the boosters cooling down, it's time to recognize the power of gravity.
 
-Enter, cloud nomad architecture.
+Enter, cloud-nomad architecture.
 
-## What is cloud nomad architecture?
+## What is cloud-nomad architecture?
 
 Ancient hunter-gatherers learned to move to where the food was. Rather than having a fixed home, they would migrate based on seasonal availability of water, plants, and animals. In more modern times, tinkers and traders moved to where they could find new customers.
 
 To maintain mobility, nomads developed portable dwellings or temporary shelters like [goahti](https://en.wikipedia.org/wiki/Goahti), [tipis](https://en.wikipedia.org/wiki/Tipi), and [wickiups](https://en.wikipedia.org/wiki/Wigwam).
 
-The ability to easily move to a new location is central to cloud nomad architecture.
+The ability to easily move to a new location is central to cloud-nomad architecture.
 
-The CNCF definition of cloud native encompasses public and private clouds. You should be able to run your cloud native application on the public cloud, in a data centre, on using on-prem infrastructure. Taking this a step further, to say that it should be easy to move between these options, gives us cloud nomad architecture.
+The CNCF definition of cloud-native encompasses public and private clouds. You should be able to run your cloud-native application on the public cloud, in a data centre, on using on-prem infrastructure. Taking this a step further, to say that it should be easy to move between these options, gives us cloud-nomad architecture.
 
 To achieve this, you must avoid depending on vendor-specific features and embrace ephemeral infrastrcuture. You need infrastructure automation that works across different hosting scenarios.
 
-Cloud nomad architecture also encourages you to balance your microservice architecture against Conway's Law. If you have 5 teams in your organization and 100 microservices, the complexity will likely outweigh the benefits.
+Cloud-nomad architecture also encourages you to balance your microservice architecture against Conway's Law. If you have 5 teams in your organization and 100 microservices, the complexity will likely outweigh the benefits.
 
 :::hint
 Mel Conway wrote a 1967 paper titled [How Do Committees Invent](http://www.melconway.com/Home/Committees_Paper.html), where he made a social observation that can be summarized as:
@@ -54,7 +54,7 @@ Mel Conway wrote a 1967 paper titled [How Do Committees Invent](http://www.melco
 Fred Brooks shared this idea in *The Mythical Man Month*, and named it *Conway's Law*. You can find this book in our [DevOps reading list](https://octopus.com/devops/reading-list/#the-mythical-man-month-book).
 :::
 
-A cloud nomad architecture has all the properties of cloud-native architecture. Additionally:
+A cloud-nomad architecture has all the properties of cloud-native architecture. Additionally:
 
 - It is minimally complex, 
 - It values portability by avoiding vendor-specific dependencies
@@ -115,7 +115,7 @@ The number of services appropriate to your organization will vary You should aim
 
 There has been a recent trend of organizations moving some or all of their workloads back to on-prem datacentres. Some of these have been high-profile, such as [Basecamp](https://world.hey.com/dhh/why-we-re-leaving-the-cloud-654b47e0), but far more are happening quietly.
 
-One of the key drives is cost, but in many cases organizations are finding a positive performance impact from moving back to on-prem infrastructure.
+One of the key drives is cost, but in many cases, organizations are finding a positive performance impact from moving back to on-prem infrastructure.
 
 Just as new monoliths have positive design elements that were learned from writing microservices, on-prem infrastructure can benefit from cloud-native developments. You don't need to abandon containers when you leave the public cloud, they can benefit your new on-prem strategy.
 
