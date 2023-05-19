@@ -62,33 +62,48 @@ Finally, we can expose (i.e. allow to modify when using the step template) varia
 
 In this scenario, a new app deployment configuration would be as simple as creating a new project, adding a step template and specifying a few variables.
 
-### How it works
+### How to configure
 
+1. Open the process editor and find a `Deploy raw Kubernetes YAML` step you want to modify (or add a new one).
+2. Choose the option to source YAML manifests from Git (the default option for newly added steps).
+3. Choose Git cretentials (or add new to the library following the link).
+4. Specify a Git repo URI. You can use variable in this row, it might be handy if you want to create a step template. You cannot scope this variable per environment, it should be one value per project.
+5. Specify files you want to use for the deployment (provide path).
+6. Save the process configuration.
 
+Now you can create a release and deploy it. Octopus will clone your Git repo, find files you specified and deploy them.
 
+Variables replacement including stuctured configuration variables will work as usual. Thereforefore, you can use Octopus variables in your YAML files if needed.
 
+#### How to configure file paths
 
+You can configure multiple paths. Paths should be separated by `;`.
 
+Each path can point to one or multiple files.
 
+* If you want to point to one file, just type the path to it including folder structure. E.g. `configs/yaml/deployment.yaml`
+* If you want to fetch multiple files with one path, you can use glob patterns. E.g. `configs/yaml/appname-*.yaml`. In this case, if there are multiple files like `appname-service.yaml` and `appname-deployment.yaml` in this folder, Octopus will apply all of them but will ignore files like `someoneselseapp-deployment.yaml`.
 
+You can use glob to specify a folder, e.g. `configs/yaml/*.*`
 
+#### How Octopus will apply files from the paths
 
-The body of the post is where you share your hypothesis, how-to, or story.
+Octopus applys all files from one path at once using `kubectl apply`. The files will be apllied in tha alphabetical order. Therefore, if you want to enforce a specific application order within one path, you need to name the files accordingly.
 
-If there are any previous posts on the same topic, please link to them to help with our SEO efforts. For example:
-Our post about [DORA metrics](https://octopus.com/blog/dora-metrics-devops-business-outcomes) discusses how agility-based metrics can help improve profitability, market share, and productivity. 
+Octopus applys files from different paths in sequence using multiple `kubectl apply` commands. Octopus doesn't want for the first applyed for a cluster to implement the first configuration before applying the second one. However, it waits for the `kubectl` command to complete.
 
-### Subheadings
+⚠️ You can use paths to enforce a paritucular order of files application.
 
-Use three ### to include H3 headings.
+You can also use variables in the path row and specify multiple files in a variable.
 
-Use **Bold** text for UI labels, use single back-tics for `parameters` and `filepaths`, and three back-tics for code blocks:
+#### When Octopus will fetch files from Git
 
-```
-Write-Host "Hello, World!"
-```
+⚠️ Octopus will fetch files from the provided repo at the moment of release creation. It means you can add new files to Git before the release but after you configured the step, and Octopus will use them for deployments (if they meet the path configuration). However, if you add new files after a release was created, Octopus won't deploy these files with this release.
 
-Use the following (minus the backtics) to include images:
+### What you see at on the release page
+
+Octopus shows you the list of saved with the release files.
+
 
 ```
 ![Alt text, a description of the image](/path/to/image.png "width=500")*Optional caption text*
@@ -97,24 +112,8 @@ If including images, please include alt text. Alt text is primarily used to desc
 
 ## Conclusion
 
-Close off the post by restating the main points of the post, share any closing thoughts, and invite feedback.
+Sourcing files from Git enable Kubernetes configuration templating at a new level. Give it a try and share your thoughts with us.
 
 ## Learn more
 
 - [link](https://www.example.com/resource)
-
-## Register for the webinar: {webinar title here}
-
-Short webinar description here, for example: A robust rollback strategy is key to any deployment strategy. In this webinar, we’ll cover best practices for IIS deployments, Tomcat, and full stack applications with a database. We’ll also discuss how to get the rollback strategy right for your situation. 
-
-We're running 3 sessions of the webinar, from {webinar dates here, for example: 4 November to 5 November, 2021.}
-
-<span><a class="btn btn-success" href="/events/rollback-strategies-with-octopus-deploy">Register now</a></span>
-
-## Watch the webinar: {webinar title here}
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/F_V7r80aDbo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-We host webinars regularly. See the [webinars page](https://octopus.com/events) for details about upcoming events, and live stream recordings.
-
-Happy deployments!
