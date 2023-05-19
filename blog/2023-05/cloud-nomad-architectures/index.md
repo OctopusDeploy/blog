@@ -12,13 +12,19 @@ tags:
   - DevOps
 ---
 
-As more organizations rethink their cloud and microservices decisions, it's time for cloud nomad architectures. This article explains cloud nomad architecture and why it has become important.
+Over the past 5 years, organizations have been quietly rethinking their approach to cloud and microservice architectures.
+
+Though the cloud offers a seemingly infinite ability to scale. But, this can lead to unpredictable costs, especially with volatile costs such as egress charges. With microservices, many organizations are finding the cost of complexity now outweighs the benefits.
+
+Rather than reverting to the old state, the organizations are pushing forward based on the hard lessons learned over the last decade. To take advantage of the new reality, you'll need to apply cloud nomad architectures.
+
+This article explains what they are and why they are needed.
 
 ## Cloud-native architecture
 
-You may be familiar with cloud-native architecture, which provides an approach to application design intended to maximize the benefits of cloud environments. To be *cloud native* you'll use technologies like containers, microservices, and immutable infrastructure to build loosely-coupled systems that are easy to manage and operate.
+You may be familiar with cloud-native architecture, which encourages application design that maximizes the benefits of cloud environments. To be *cloud native* you'll use technologies like containers, microservices, and immutable infrastructure to build loosely-coupled systems that are easy to manage and operate.
 
-The [Cloud Native Computing Foundation (CNCF)](https://www.cncf.io/) promotes cloud-native computing and manages over 100 projects that help achieve it. Their most famous project is Kubernetes.
+The [Cloud Native Computing Foundation (CNCF)](https://www.cncf.io/) promotes cloud-native computing and manages over 100 projects that help you achieve it. Their most famous project is Kubernetes.
 
 In the rush to the cloud, powered by microservices rocket fuel, many organizations have let their context fade into the background. With the boosters cooling down, it's time to recognize the power of gravity.
 
@@ -26,9 +32,17 @@ Enter, cloud nomad architecture.
 
 ## What is cloud nomad architecture?
 
-Cloud nomad architecture is a reminder that the CNCF definition of cloud encompasses public and private clouds. You may be using a public cloud provider, a data center provider, or your on-prem infrastructure to create cloud-native applications.
+Ancient hunter-gatherers learned to move to where the food was. Rather than having a fixed home, they would migrate based on seasonal availability of water, plants, and animals. In more modern times, tinkers and traders moved to where they could find new customers.
 
-You also need to balance your microservice architecture against Conway's Law. If you have 5 teams in your organization and 100 microservices, the complexity will likely outweigh the benefits.
+To maintain mobility, nomads developed portable dwellings or temporary shelters like [goahti](https://en.wikipedia.org/wiki/Goahti), [tipis](https://en.wikipedia.org/wiki/Tipi), and [wickiups](https://en.wikipedia.org/wiki/Wigwam).
+
+The ability to easily move to a new location is central to cloud nomad architecture.
+
+The CNCF definition of cloud native encompasses public and private clouds. You should be able to run your cloud native application on the public cloud, in a data centre, on using on-prem infrastructure. Taking this a step further, to say that it should be easy to move between these options, gives us cloud nomad architecture.
+
+To achieve this, you must avoid depending on vendor-specific features and embrace ephemeral infrastrcuture. You need infrastructure automation that works across different hosting scenarios.
+
+Cloud nomad architecture also encourages you to balance your microservice architecture against Conway's Law. If you have 5 teams in your organization and 100 microservices, the complexity will likely outweigh the benefits.
 
 :::hint
 Mel Conway wrote a 1967 paper titled [How Do Committees Invent](http://www.melconway.com/Home/Committees_Paper.html), where he made a social observation that can be summarized as:
@@ -40,30 +54,34 @@ Mel Conway wrote a 1967 paper titled [How Do Committees Invent](http://www.melco
 Fred Brooks shared this idea in *The Mythical Man Month*, and named it *Conway's Law*. You can find this book in our [DevOps reading list](https://octopus.com/devops/reading-list/#the-mythical-man-month-book).
 :::
 
-A cloud nomad architecture has all the properties of cloud-native architecture. It's also easy to move and minimally complex.
+A cloud nomad architecture has all the properties of cloud-native architecture. Additionally:
 
-### A tent is easy to move
+- It is minimally complex, 
+- It values portability by avoiding vendor-specific dependencies
+- It automatically provisions infrastructure in a vendor-agnostic way
 
+Like nomadic shelters, your application should be easy to pack up, move, and set up in a new location. When the shelter is too heavy, has too many parts, or depends on finding highly specific replacement parts it becomes less portable.
 
-Your application may be cloud-native, but it should also be portable. It should require minimal effort to move your application from public to private cloud. You should be able to run it on both at the same time.
-
-To satisfy cloud nomad architecture, you must avoid depending on vendor-specific features and APIs. If you can't quickly pack up your tent and move, you're not a cloud nomad. Too many organizations find themselves in a situation where the cost to move is greater than paying a premium to a vendor.
-
-### Teams and services
+## Teams and microservices
 
 A key benefit of a service-oriented architecture is it lets a team work independently without tripping over the work of other teams. Other teams consume a service based on a well-defined interface (usually an API), which means the internal code can be easily changed without conflicts with work being done elsewhere.
 
-Small teams using trunk-based development often don't see the problems microservices solve. When you have fewer than 10 developers all committing code many times a day, you don't experience code conflicts and the knock-on effects of a large merge. As your development organization grows, it gets harder to introduce change at the same velocity without generating pain for developers.
+Small teams using trunk-based development often don't encounter the problems microservices solve. When you have fewer than 10 developers all committing code many times a day, you won't experience code conflicts and the knock-on effects of a large merge.
 
-By splitting code along team boundaries, you get to keep all the benefits of small teams in exchange for a little coordination cost.
+As your development organization grows, it gets harder to introduce change at the same velocity without generating pain for developers. By splitting code along team boundaries, you get to keep the benefits of small teams in exchange for a little coordination cost.
 
-For example, as your e-commerce company grows, you may decide to split out the product search into an API. You reduce complexity for the website team and allow the search team to rapidly innovate the search tools without tripping over the changes being made by other teams.
+If you worked in a small e-commerce company, you might scale by splitting both your development team and your software architecture to create:
 
-As you move away from the service-per-team model, the coordination and dependencies increase at a faster rate than the benefits accrue. You may be able to manage a factor of 2x services to teams, but as the ratio increases things get out of control.
+- A product search team who manages a search API
+- E-commerce team who manages the website
+
+If you've read Team Topologies, you'll recognize these as stream-aligned teams.
+
+When you don't match the architecture and team designs, you start to create problems at a faster rate than the benefits accrue. You may not see the problems at a factor of 2x services to teams, but as the ratio increases you'll soon come unstuck.
 
 To reduce the downside of large numbers of services, you can design complexity controls. For example, [Monzo used service isolation](https://monzo.com/blog/we-built-network-isolation-for-1-500-services) to reduce the number of links between their 1,500 services. However, in most cases, organizations eventually realize they have been fighting Conway's Law and seek to reduce the number of services.
 
-## Moving away from microservices
+### Moving away from microservices
 
 Some of the early pioneers of microservices have started backing up in recent years. Some are moving to a monolithic architecture, and others are reducing the number of services.
 
