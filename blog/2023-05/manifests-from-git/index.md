@@ -20,45 +20,53 @@ In this blog post we'll show how to use YAML manifests from Git in Octopus for K
 
 ## Body
 
-Octopus suggests two strategies to configure your Kubernetes deployments. You can create the configuration in Octopus using our buil-in steps like `Deploy Kubernetes containers`. This approach allows you to start fast and simple and evolve your configuration in Octopus leveraging our UI.
+Octopus suggests two strategies to configure your Kubernetes deployments. You can create the configuration in Octopus using our built-in steps like `Deploy Kubernetes containers`. This approach allows you to start fast and evolve your configuration in Octopus, leveraging our UI.
 
-An alternative approach is to create end evolve your configuration as YAML code from the beginning. This blog post will focus on this method.
+An alternative approach is to create and evolve your configuration as YAML code. This blog post will focus on this method.
 
-Till recently there were two ways to deploy YAML in Octopus. You could paste code in Octopus (in a scipt or the `Deploy raw Kubernetes YAML` step), or you could provide code with a package.
+Till recently, there were two ways to deploy YAML in Octopus. You could paste code in Octopus (in a script or the `Deploy raw Kubernetes YAML` step) or provide code with a package.
 
-We've just added a new method — referencing files from a Git repo. This is the newest addition and now the default option for the `Deploy raw Kubernetes YAML` step.
+We've added a new method — referencing files from a Git repo. This is the latest addition and now the default option for the `Deploy raw Kubernetes YAML` step.
 
 ### What it does
 
-Despite the obvious benefit of sourcing files without the need to package them, the new functionality introduces a few more imprivements
+Despite the obvious benefit of sourcing files without the need to package them, the new functionality introduces a few more improvements.
 
-* You can reference multiple files in one step. No need to run multiple steps or conbine everything in one YAML file.
-* You can reference folders or use glob to define multiple files (in this case, they will be applied all at once in the alphabetical order).
-* If you need to define a specific order, you can define multiple paths.
+* You can reference many files in one step. No need to run multiple steps or combine everything in one YAML file.
+* You can reference folders or use glob to define multiple files (in this case, they will be applied all at once in alphabetical order).
+* You can define multiple paths if you need to define a specific order.
 
-The points above unlock scenarious like deploying multiple services within one step. Let's say you might want tp deploy all Secrets and ConfigMaps first (i.e. `/configuration/*-secret*.yaml` and `/configuration/*-configmap.yaml` or `/configuration/secrets-and-configs/*`). Deploy your first service after that (e.g. `/configuration/db-*.yaml`) and the second service after that (e.g. `/configuration/web-*.yaml`). You might notice that a file like `/configuration-db-configmap.yaml` will be reference twice, it's not neat but the deployment will totally work anyway (just the second deployment won't cause any changes).
+The points above unlock scenarios like deploying many apps within one step. Let's say you might want to
 
-There is also nothing wrong in using the same files multiple times in different steps. In this case, you can consider the files as templates and modify them with [Octopus variables](https://octopus.com/docs/projects/variables) embeded in YAML.
+* deploy all Secrets and ConfigMaps first (i.e. `/configuration/*-secret*.yaml` and `/configuration/*-configmap.yaml` or `/configuration/secrets-and-configs/*`),
+
+* deploy your first app after that (e.g. `/configuration/db-*.yaml`),
+
+* and the second app at the end (e.g. `/configuration/web-*.yaml`). 
+
+You might notice that a file like `/configuration-db-configmap.yaml` will be referenced twice. It's not neat, but the deployment will work anyway (the second deployment won't cause any changes).
+
+There is also nothing wrong with using the same files multiple times in different steps. In this case, you can consider the files templates and change them with [Octopus variables](https://octopus.com/docs/projects/variables) embedded in YAML.
 
 You can also use [structured configuration variables](https://octopus.com/blog/structured-variables-raw-kubernetes-yaml) if you don't want to change your YAML files, so you can still use them for deployments outside of Octopus.
 
-Finally, you can also use Octopus variables in the paths or repository links, making really powerful step templates.
+Finally, you can use Octopus variables in the paths or repository links, making powerful step templates.
 
 ### Example
 
-Imagine we have a complex app consists of 100 microservices. We combined these microservices in three groups similar enuogh, so we can define standard YAML files for each group. At the same time, we still want to modify some parameters for each app (like the image name).
+Imagine we have a complex app consisting of 100 microservices. We combined these microservices in three similar groups so that we could define YAML files for each group. At the same time, we still want to change some parameters for each app (like the image name).
 
-We also want our software teams to easily configure new deployment without diving deep in YAML configurations.
+We also want our software teams to quickly configure new deployments without diving deep into YAML configurations.
 
-In this case, we can create three new repos with configuratio files, one for each group of microservices. We could store all the ocnfiguration files in one repo, and it will work as well, but just for the sake of the example, let's say we have three.
+In this case, we can create three new repos with configuration files. One for each group of microservices. We could store all the configuration files in one repo. It will also work, but for the sake of the example, let's say we have three.
 
-We can create a new step template from the `Deploy raw Kubernetes YAML` and specify git repo path with the `Octopus.ProjectGroup.Name`. This allows us to use project group name as a reference. 
+We can create a new step template from the `Deploy raw Kubernetes YAML` and specify a git repo path with the `Octopus.ProjectGroup.Name`. This allows us to use the project group name as a reference. 
 
-After that we can specify multiple paths to the YAML templates (if we keep the structure in all three template repos same).
+After that, we can specify multiple paths to the YAML templates (if we keep the structure in all three template repos the same).
 
-We can use variables like `Octopus.Project.Name` in combination with `Octopus.Release.Number` to modify YAML fils defining container images, namespaces and other configuration parameters which don't require fine tuning.
+We can use variables like `Octopus.Project.Name` in combination with `Octopus.Release.Number` to modify YAML files. For example, we can change container images, namespaces and other configuration parameters. In this case, software engineers won't have to specify these values for their deployment.
 
-Finally, we can expose (i.e. allow to modify when using the step template) variables like number of replica sets or container ports.
+Finally, we can expose (i.e. allow to modify when using the step template) variables like the number of replica sets or container ports.
 
 In this scenario, a new app deployment configuration would be as simple as creating a new project, adding a step template and specifying a few variables.
 
@@ -66,43 +74,43 @@ In this scenario, a new app deployment configuration would be as simple as creat
 
 1. Open the process editor and find a `Deploy raw Kubernetes YAML` step you want to modify (or add a new one).
 2. Choose the option to source YAML manifests from Git (the default option for newly added steps).
-3. Choose Git cretentials (or add new to the library following the link).
-4. Specify a Git repo URI. You can use variable in this row, it might be handy if you want to create a step template. You cannot scope this variable per environment, it should be one value per project.
-5. Specify files you want to use for the deployment (provide path).
+3. Choose Git credentials (or add new ones to the library following the link).
+4. Specify a Git repo URI. You can use a variable in this row; it might be handy to create a step template. You cannot scope this variable per environment; it should be one value per project.
+5. Specify the files you want to use for the deployment (provide path).
 6. Save the process configuration.
 
-Now you can create a release and deploy it. Octopus will clone your Git repo, find files you specified and deploy them.
+Now you can create a release and deploy it. Octopus will clone your Git repo, find the files you specified and deploy them.
 
-Variables replacement including stuctured configuration variables will work as usual. Thereforefore, you can use Octopus variables in your YAML files if needed.
+Variables replacement, including structured configuration variables, will work as usual. Therefore, you can use Octopus variables in your YAML files if needed.
 
 #### How to configure file paths
 
 You can configure multiple paths. Paths should be separated by `;`.
 
-Each path can point to one or multiple files.
+Each path can point to one or many files.
 
-* If you want to point to one file, just type the path to it including folder structure. E.g. `configs/yaml/deployment.yaml`
-* If you want to fetch multiple files with one path, you can use glob patterns. E.g. `configs/yaml/appname-*.yaml`. In this case, if there are multiple files like `appname-service.yaml` and `appname-deployment.yaml` in this folder, Octopus will apply all of them but will ignore files like `someoneselseapp-deployment.yaml`.
+* If you want to point to one file, type the path to it, including folder structure. E.g. `configs/yaml/deployment.yaml`
+* If you want to fetch a few files with one path, you can use glob patterns. E.g. `configs/yaml/appname-*.yaml`. In this case, if there are multiple files like `appname-service.yaml` and `appname-deployment.yaml` in this folder, Octopus will apply them but will ignore files like `someoneselseapp-deployment.yaml`.
 
 You can use glob to specify a folder, e.g. `configs/yaml/*.*`
 
 #### How Octopus will apply files from the paths
 
-Octopus applys all files from one path at once using `kubectl apply`. The files will be apllied in tha alphabetical order. Therefore, if you want to enforce a specific application order within one path, you need to name the files accordingly.
+Octopus applies all files from one path at once using `kubectl apply`. The files will be applied in alphabetical order. Therefore, if you want to enforce a specific application order within one path, you need to name the files accordingly.
 
-Octopus applys files from different paths in sequence using multiple `kubectl apply` commands. Octopus doesn't want for the first applyed for a cluster to implement the first configuration before applying the second one. However, it waits for the `kubectl` command to complete.
+Octopus applies files from different paths in sequence using multiple `kubectl apply` commands. Octopus doesn't want the first applied for a cluster to implement the first configuration before applying the second one. However, it waits for the `kubectl` command to complete.
 
-⚠️ You can use paths to enforce a paritucular order of files application.
+⚠️ You can use paths to enforce a particular order of files application.
 
 You can also use variables in the path row and specify multiple files in a variable.
 
 #### When Octopus will fetch files from Git
 
-⚠️ Octopus will fetch files from the provided repo at the moment of release creation. It means you can add new files to Git before the release but after you configured the step, and Octopus will use them for deployments (if they meet the path configuration). However, if you add new files after a release was created, Octopus won't deploy these files with this release.
+⚠️ Octopus will fetch files from the provided repo at the moment of release creation. It means you can add new files to Git before the release but after configuring the step. Octopus will use them for deployments (if they meet the path configuration). Yet, if you add new files after a release is created, Octopus won't deploy these files with this release.
 
-### What you see at on the release page
+### What you see on the release page
 
-Octopus shows you the list of saved with the release files.
+Octopus shows you the list of saved release files.
 
 
 ```
