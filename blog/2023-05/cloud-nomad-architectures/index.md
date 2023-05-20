@@ -12,126 +12,100 @@ tags:
   - DevOps
 ---
 
-Over the past 5 years, organizations have been quietly rethinking their approach to cloud hosting and microservice architectures.
+A quiet revolution has occurred in the software industry, with many organizations pulling away from cloud computing and microservices. These decisions are mainly influenced by cost control and performance.
 
-The cloud offers a seemingly infinite ability to scale. However, this can lead to unpredictable spending, especially with volatile costs such as egress charges. At the same time, many organizations are finding the cost of complexity with microservices outweighs the benefits.
+This article:
 
-Rather than reverting to the old state, the organizations are pushing forward based on the hard lessons learned over the last decade. To take advantage of the new reality, you'll need to apply cloud-nomad architectures.
+- Looks at these repatriation and consolidation trend
+- Explains why it's a step forward, not a step back
+- Introduces cloud-nomad architecture
 
-This article explains what they are and why they are needed.
+## The discovery process
 
-## Cloud-native architecture
+When a new technology or technique arrives in the software industry, you have to imagine its impact on the software you create. Only after you've used it in many different scenarios can you discover the real benefits and the limits and costs. This shouldn't be called a *hype cycle*. It's simply part of the discovery process.
 
-You may be familiar with cloud-native architecture, which encourages application design that maximizes the benefits of cloud environments. To be *cloud-native* you'll use technologies like containers, microservices, and immutable infrastructure to build loosely-coupled systems that are easy to manage and operate.
+Cloud computing and microservices have shared a combined discovery process. Both ideas were around for some time before they caught on, and they shared explosive growth between 2010 and 2020. The result of all that growth is that the industry has developed a stronger sense of where they work best and, most importantly, where they don't work well.
 
-The [Cloud Native Computing Foundation (CNCF)](https://www.cncf.io/) promotes cloud-native computing and manages over 100 projects that help you achieve it. Their most famous project is Kubernetes.
+This has led to an increasing number of stories where organizations:
 
-In the rush to the cloud, powered by microservices rocket fuel, many organizations have let their context fade into the background. With the boosters cooling down, it's time to recognize the power of gravity.
+- Move applications away from the cloud to on-premises infrastructure, known as *repatriation*
+- Consolidate microservices into fewer macroservices
 
-Enter, cloud-nomad architecture.
+Crucially, this trend doesn't mean we were all wrong with cloud and microservices. We just went too far, and now it's time to rebalance.
 
-## What is cloud-nomad architecture?
+### The repatriation trend
 
-Ancient hunter-gatherers learned to move to where the food was. Rather than having a fixed home, they would migrate based on seasonal availability of water, plants, and animals. In more modern times, tinkers and traders moved to where they could find new customers.
+A survey by [Virtana](https://www.virtana.com/wp-content/uploads/2021/02/Virtana-StateofHybridCloud-Survey-Report_Feb2021_FINAL.pdf) found that 95% of organizations had started their cloud migration, but 72% went on to repatriate applications.
 
-To maintain mobility, nomads developed portable dwellings or temporary shelters like [goahti](https://en.wikipedia.org/wiki/Goahti), [tipis](https://en.wikipedia.org/wiki/Tipi), and [wickiups](https://en.wikipedia.org/wiki/Wigwam).
+One of the key drivers is cost. Not only can on-prem infrastructure work out significantly cheaper over 5 years, but the costs are also more predictable. The cloud offers a seemingly infinite ability to scale. However, this can lead to unpredictable spending, especially with volatile costs such as egress charges.
 
-The ability to easily move to a new location is central to cloud-nomad architecture.
+Though cost is the top reason for repatriation, organizations often report improved performance running their applications on their on-prem infrastructure.
 
-The CNCF definition of cloud-native encompasses public and private clouds. You should be able to run your cloud-native application on the public cloud, in a data centre, on using on-prem infrastructure. Taking this a step further, to say that it should be easy to move between these options, gives us cloud-nomad architecture.
+A crucial consideration for repatriation is that it's now possible to use cloud-native technology on your private infrastructure, like infrastructure-as-code and containers. Moving applications back to on-prem infrastructure or private clouds is a further step forward rather than a return to old ways.
 
-To achieve this, you must avoid depending on vendor-specific features and embrace ephemeral infrastrcuture. You need infrastructure automation that works across different hosting scenarios.
+Dropbox was an early example of this trend, [repatriating over 600 petabytes of data](http://web.archive.org/web/20170629062600/https://insights.hpe.com/articles/cloud-or-on-premises-for-dropbox-the-answer-is-yes-1702.html) in 2016 for their US-based customers. At the time, they decided to continue using the cloud for European customers to satisfy data residency requirements.
 
-Cloud-nomad architecture also encourages you to balance your microservice architecture against Conway's Law. If you have 5 teams in your organization and 100 microservices, the complexity will likely outweigh the benefits.
+More recently, 37signals, the creators of Basecamp and Hey, [repatriated workloads](https://world.hey.com/dhh/five-values-guiding-our-cloud-exit-638add47) with an estimated cost saving of $7 million over 5 years. They also found significant performance benefits as a result of this move.
+
+You don't need to pick a single hosting strategy for all workloads. You can use a mixture of public cloud, private cloud, and on-premises infrastructure, just as you can use multiple cloud vendors.
+
+### The microservice consolidation trend
+
+With microservices, many companies are opting to consolidate them either into fewer *macroservices* or into a single monolithic application.
+
+When organizations return to a monolith, they are taking care to ensure a loosely coupled architecture. When organizations move to macroservices are used, they pay attention to Conway's Law by organizing teams and services around business capabilities. A sprinkling of domain-driven design and team topologies is crucial here.
 
 :::hint
-Mel Conway wrote a 1967 paper titled [How Do Committees Invent](http://www.melconway.com/Home/Committees_Paper.html), where he made a social observation that can be summarized as:
+Mel Conway wrote a 1967 paper titled [How Do Committees Invent](http://www.melconway.com/Home/Committees_Paper.html), where he made a social observation that you can summarize as:
 
 > Any organization that designs a system (defined broadly) 
 > will produce a design whose structure is a copy of the 
 > organization's communication structure.
 
-Fred Brooks shared this idea in *The Mythical Man Month*, and named it *Conway's Law*. You can find this book in our [DevOps reading list](https://octopus.com/devops/reading-list/#the-mythical-man-month-book).
+Fred Brooks shared this idea in *The Mythical Man Month*, and named it *Conway's Law*. This book is in our [DevOps reading list](https://octopus.com/devops/reading-list/#the-mythical-man-month-book).
 :::
 
-A cloud-nomad architecture has all the properties of cloud-native architecture. Additionally:
+Microservices aim to trade some performance in exchange for operational benefits. You can deploy and scale small services independently, but they must pass data out of process to other services. Some sophistication is needed to monitor, debug, and troubleshoot a microservice architecture.
 
-- It is minimally complex, 
-- It values portability by avoiding vendor-specific dependencies
-- It automatically provisions infrastructure in a vendor-agnostic way
+Organizations must know the trade-offs and take action when the benefits evaporate. For example, [Segment (Twilio)](https://segment.com/blog/goodbye-microservices/) found microservices were making it *harder* to change the code. Dependency management was a nightmare; they found it hard to manage the scaling.
+
+Amazon Prime's [Video Quality Analysis team](https://www.primevideotech.com/video-streaming/scaling-up-the-prime-video-audio-video-monitoring-service-and-reducing-costs-by-90) consolidated the stream monitoring into a single service. This was a closer match to the team design. Within the service, the architecture is still loosely coupled, but data no longer needs to be passed over the wire to different services.
+
+Many people will argue that macroservices represent "microservices done correctly". It might be more appropriate to say they are service-oriented architecture done right.
+
+## What is cloud-nomad architecture?
+
+With organizations drastically rethinking their approach to architecture and infrastructure, a cloud-nomad architecture provides a way to maintain maximum options for an organization.
+
+A cloud-native architecture encourages application design that maximizes the benefits of cloud environments. Cloud-nomad architecture takes this further, requiring the software to be easily movable.
+
+To be cloud-native, you'll use technologies like containers, microservices, and immutable infrastructure to build loosely-coupled systems that are easy to manage and operate. Cloud-nomad means you can shift the application between cloud vendors, private clouds, and traditional data centers.
+
+Cloud-nomad architecture encompasses the trend toward fewer services that are hostable anywhere, thanks to modern cloud-native technology.
+
+### Portable shelters
+
+Ancient hunter-gatherers learned to move to where the food was. Rather than having a fixed home, they would migrate based on the seasonal availability of water, plants, and animals. In more modern times, tinkers and traders moved to where they could find new customers.
+
+To maintain mobility, nomads developed portable dwellings or temporary shelters like [goahti](https://en.wikipedia.org/wiki/Goahti), [tipis](https://en.wikipedia.org/wiki/Tipi), and [wickiups](https://en.wikipedia.org/wiki/Wigwam).
+
+The ability to easily move to a new location is central to cloud-nomad architecture.
+
+### A step or two further than cloud-native
+
+The CNCF definition of cloud-native encompasses public and private clouds. You should be able to run your cloud-native application on the public cloud, in a data center, or using on-prem infrastructure. Taking this a step further, to say that it should be easy to move between these options, gives us cloud-nomad architecture.
+
+To achieve this, you must avoid depending on vendor-specific features and embrace ephemeral infrastructure. You need infrastructure automation that works across different hosting scenarios.
+
+Cloud-nomad architecture also encourages you to balance your microservice architecture against Conway's Law. The complexity will likely outweigh the benefits if you have 5 teams in your organization and 100 microservices. Many teams found that excessive numbers of services cost too much to run, caused performance problems, and made it harder to change their applications.
+
+A cloud-nomad architecture has all the properties of cloud-native architecture. Additionally, it:
+
+- Is minimally complex, 
+- Values portability by avoiding vendor-specific dependencies
+- Automatically provisions infrastructure in a vendor-agnostic way
 
 Like nomadic shelters, your application should be easy to pack up, move, and set up in a new location. When the shelter is too heavy, has too many parts, or depends on finding highly specific replacement parts it becomes less portable.
-
-## Teams and microservices
-
-A key benefit of a service-oriented architecture is it lets a team work independently without tripping over the work of other teams. Other teams consume a service based on a well-defined interface (usually an API), which means the internal code can be easily changed without conflicts with work being done elsewhere.
-
-Small teams using trunk-based development often don't encounter the problems microservices solve. When you have fewer than 10 developers all committing code many times a day, you won't experience code conflicts and the knock-on effects of a large merge.
-
-As your development organization grows, it gets harder to introduce change at the same velocity without generating pain for developers. By splitting code along team boundaries, you get to keep the benefits of small teams in exchange for a little coordination cost.
-
-If you worked in a small e-commerce company, you might scale by splitting both your development team and your software architecture to create:
-
-- A product search team who manages a search API
-- E-commerce team who manages the website
-
-If you've read Team Topologies, you'll recognize these as stream-aligned teams.
-
-When you don't match the architecture and team designs, you start to create problems at a faster rate than the benefits accrue. You may not see the problems at a factor of 2x services to teams, but as the ratio increases you'll soon come unstuck.
-
-To reduce the downside of large numbers of services, you can design complexity controls. For example, [Monzo used service isolation](https://monzo.com/blog/we-built-network-isolation-for-1-500-services) to reduce the number of links between their 1,500 services. However, in most cases, organizations eventually realize they have been fighting Conway's Law and seek to reduce the number of services.
-
-### Moving away from microservices
-
-Some of the early pioneers of microservices have started backing up in recent years. Some are moving to a monolithic architecture, and others are reducing the number of services.
-
-When an organization moved from a monolith to microservices, and back again, it's likely they ended up with a better-designed monolith. Just because the code is in once place doesn't mean it can't be organized or divided between many teams.
-
-A successful monolith incorporates strong isolated units of code without the performance overheads of making external calls or the complexity of managing versions of APIs.
-
-An alternative to the full monolith approach is to move from many tiny services to fewer larger services. This has been termed macroservices, mescoservices, or plain old service-oriented architecture. The goal of this design is to get better aligned to Conway's Law and remove unnecessary complexity and reduce performance problems.
-
-::hint
-What should we call appropriately sized services?
-
-In social psychology, macro analysis is "monolithic". It studies large social units, like global and national systems. Micro analysis falls at the other end of the scale. It's concerned with individuals, partners, and households. Mesco analysis refers to the study of things of moderate size, like communities.
-
-Although *mescoservices* would be the most apt, it's likely *macroservices* will become the software industry term.
-:::
-
-For example, [Gergely Orosz](https://lobste.rs/s/mc3k1c/at_uber_we_re_moving_many_our) confirmed this approach was being taken by Uber. They found that running thousands of microservices caused more long-term problems than it solved. In particular, problems emerge around:
-
-- Security
-- Monitoring
-- Testing
-- Maintenance
-- CI/CD
-- Service levels
-- Keeping library versions updated
-
-The number of services appropriate to your organization will vary You should aim to find the right balance, rather than following general trends or hype cycles.
-
-## Moving back on-prem
-
-There has been a recent trend of organizations moving some or all of their workloads back to on-prem datacentres. Some of these have been high-profile, such as [Basecamp](https://world.hey.com/dhh/why-we-re-leaving-the-cloud-654b47e0), but far more are happening quietly.
-
-One of the key drives is cost, but in many cases, organizations are finding a positive performance impact from moving back to on-prem infrastructure.
-
-Just as new monoliths have positive design elements that were learned from writing microservices, on-prem infrastructure can benefit from cloud-native developments. You don't need to abandon containers when you leave the public cloud, they can benefit your new on-prem strategy.
-
-Whether you run on public cloud, private cloud, or on-prem, it's critical to maintain your ability to change your mind later. Being able to move easily is the key to keeping options open.
-
-## Accepting gravity before you jump
-
-The gravitational effect on cloud and microservices isn't new, it's the result of people experiencing the predicted effects of the over-enthusiastic adoption of a cool idea.
-
-The fundamental reasons for using public cloud remain, such as accessing temporary resources to scale to demand for a short time. Trying to manage unpredictable loads on your own infrastructure means maintaining capacity that may rarely be used, which is expensive. Managing normal loads is often cheaper to do yourself.
-
-Similarly, Conway's Law requires you to think about your team design. It will require the team's code to be isolated from other code, but services aren't the only way to do that. Having more services than teams indicates they are being created for some other reason. You should know what that reason is and work out if microservices are the most appropriate solution.
-
-There has always been a tendency for organizations to jump into new concepts with both feet. It's not only developers keen to broaden their experience, some organizations like to project a modern image by adopting trendy practices and technologies.
-
-Perhaps the general lesson is to be more skeptical of hype trains. To tie this back to the original metaphor, it's about building gravity into your model before you jump.
 
 ## Conclusion
 
