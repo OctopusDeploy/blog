@@ -23,7 +23,7 @@ This is a design issue. It's a tricky design issue due to the combination of the
 - complex information structures
 - complex interactions around how to do X or Y in octopus
 - visual design & page layouts not helping a user understand where they are
-- best practises around when to use search vs when to use navigation
+- when to use search vs when to use navigation
 
 We spent time reimagining our UI to help understand how all these elements could work together harmoniously. We then took our concept to customers and Devops professionals to see if this was in fact true. The feedback we received was highly positive and the learnings valuable. However, it would be a big change and the path to achieve this isn’t so simple.  
 
