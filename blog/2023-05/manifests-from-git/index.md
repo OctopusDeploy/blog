@@ -98,7 +98,7 @@ You can use glob to specify a folder, e.g. `configs/yaml/*.*`
 
 Octopus applies all files from one path at once using `kubectl apply`. The files will be applied by kubectl itself in alphabetical order. Therefore, if you want to enforce a specific application order within one path, you need to name the files accordingly.
 
-Octopus applies files from different paths in sequence using multiple `kubectl apply` commands. Octopus doesn't want the first applied for a cluster to implement the first configuration before applying the second one. However, it waits for the `kubectl` command to complete.
+Octopus applies files from different paths in sequence using multiple `kubectl apply` commands. Octopus doesn't wait for the cluster to implement the first applied configuration before executing the next `kubectl apply` command. However, it waits for the `kubectl` command to complete.
 
 ⚠️ You can use paths to enforce a particular order of files application.
 
