@@ -10,7 +10,7 @@ Is this post for a specific release? If so which one?
 
 The design team will work on a design for the blog image. Add any ideas you have about the graphic image here.
 
-# Pre-requisites
+# Prerequisites
 
 - [ ] The draft is complete and this post is ready to be reviewed.
 - [ ] I'm familiar with the [writing for Octopus TL;DR](https://www.octopus.design/932c0f1a9/p/901d2a-blog-content).
@@ -26,5 +26,5 @@ The design team will work on a design for the blog image. Add any ideas you have
 
 
 ## Publication date
-<!-- if there are considerations for when to publish this post, mention that here. i.e., this post is supporting material for a webinar I'll be conducting on date, or this post should not published until after a specific release (please include the date) -->
+<!-- If there are considerations for when to publish this post, mention them here. For example, this post is supporting material for a webinar I'll be conducting on date, or this post should not published until after a specific release (and please include the date) -->
 
