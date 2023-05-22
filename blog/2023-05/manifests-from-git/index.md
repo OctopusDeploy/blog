@@ -28,6 +28,8 @@ Until recently, there were also two ways to deploy YAML in Octopus. You could pa
 
 We've added a new method — referencing files from a Git repo. This is the latest addition and now the default option for the `Deploy raw Kubernetes YAML` step.
 
+![New option on the step configuration to fetch files from Git repos](/blog/2023-05/manifests-from-git/git-manifest-enable.png "width=500")
+
 ### What it does
 
 Despite the clear benefit of sourcing files without the need to package them, the new functionality introduces a few more improvements.
@@ -60,13 +62,17 @@ We also want our software teams to quickly configure new deployments without div
 
 In this case, we can create three new repos with configuration files. One for each group of microservices. Storing all the configuration files in one repo will also work, but for the sake of the example, let's say we have three.
 
-We can create a new step template from the `Deploy raw Kubernetes YAML` and specify a git repo path with the `Octopus.ProjectGroup.Name`. This allows us to use the project group name as a reference. 
+We can create a new step template from the `Deploy raw Kubernetes YAML` and specify a git repo path with the `Octopus.ProjectGroup.Name`. This allows us to use the project group name as a reference.
+
+![Adding variable to the Git path row](/blog/2023-05/manifests-from-git/git-manifest-paths.png "width=500")
 
 After that, we can specify multiple paths to the YAML templates (if we keep the structure in all three template repos the same).
 
 We can use variables like `Octopus.Project.Name` in combination with `Octopus.Release.Number` to modify YAML files. For example, we can change container images, namespaces and other configuration parameters. In this case, software engineers won't have to specify these values for their deployment.
 
 Finally, we can expose (i.e. allow to modify when using the step template) variables like the number of replica sets or container ports.
+
+![Variables exposed via step templates](/blog/2023-05/manifests-from-git/git-manifest-step-template.png "width=500")
 
 In this scenario, a new app deployment configuration would be as simple as creating a new project, adding a step template and specifying a few variables.
 
@@ -91,6 +97,8 @@ Each path can point to one or many files.
 
 * If you want to point to one file, type the path to it, including folder structure. E.g. `configs/yaml/deployment.yaml`
 * If you want to fetch a several files with one path, you can use glob patterns. E.g. `configs/yaml/appname-*.yaml`. In this case, if there are multiple files like `appname-service.yaml` and `appname-deployment.yaml` in this folder, Octopus will apply them but will ignore files like `someoneselseapp-deployment.yaml`.
+
+![Multiple paths example](/blog/2023-05/manifests-from-git/git-manifest-paths.png "width=500")
 
 You can use glob to specify a folder, e.g. `configs/yaml/*.*`
 
