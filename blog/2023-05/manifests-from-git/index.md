@@ -14,9 +14,7 @@ tags:
   - Kubernetes
 ---
 
-See https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags,
-
-In this blog post we'll show how to use YAML manifests from Git in Octopus for Kubernetes deployments. It's an simple but powerful tool enabling complex scenarioes like configuration templating.
+In this blog post, we'll show you how to use YAML manifests from Git in Octopus for Kubernetes deployments. It's a simple but powerful tool enabling complex scenarios like configuration templating.
 
 ## Body
 
@@ -36,9 +34,9 @@ Despite the clear benefit of sourcing files without the need to package them, th
 
 * You can reference many files in one step. No need to run multiple steps or combine everything in one YAML file.
 * You can reference folders or use globs to define multiple files (in this case, they will be applied all at once in alphabetical order).
-* You can define multiple paths if you need to define a specific order.
+* You can provide multiple paths if you need to define a specific order.
 
-The points above unlock scenarios like deploying many apps within one step. Let's say you might want to
+The points above unlock scenarios like deploying many apps within one step. Let's say you might want to:
 
 * deploy all Secrets and ConfigMaps first (i.e. `/configuration/*-secret*.yaml` and `/configuration/*-configmap.yaml` or `/configuration/secrets-and-configs/*`),
 
@@ -46,9 +44,9 @@ The points above unlock scenarios like deploying many apps within one step. Let'
 
 * and the second app at the end (e.g. `/configuration/web-*.yaml`). 
 
-You might notice that a file like `/configuration-db-configmap.yaml` will be referenced twice. It's not neat, but the deployment will work anyway (unless it includes jobs, the second deployment typically wont have any effect).
+You might notice that a file like `/configuration-db-configmap.yaml` will be referenced twice. It's not neat, but the deployment will work anyway (unless it includes jobs, the second deployment typically won't have any effect).
 
-There is also nothing wrong with using the same files multiple times in different steps. In this case, you can consider the files templates and change them with [Octopus variables](https://octopus.com/docs/projects/variables) embedded in YAML.
+There is also nothing wrong with using the same files multiple times in different steps. In this case, you can consider the files as templates and change them with [Octopus variables](https://octopus.com/docs/projects/variables) embedded in YAML.
 
 You can also use [structured configuration variables](https://octopus.com/blog/structured-variables-raw-kubernetes-yaml) if you don't want to change your YAML files, so you can still use them for deployments outside of Octopus.
 
@@ -60,9 +58,9 @@ Imagine we have a complex app consisting of 100 microservices. We combined these
 
 We also want our software teams to quickly configure new deployments without diving deep into YAML configurations.
 
-In this case, we can create three new repos with configuration files. One for each group of microservices. Storing all the configuration files in one repo will also work, but for the sake of the example, let's say we have three.
+In this case, we can create three new repos with configuration files (one for each group of microservices). Storing all the configuration files in one repo will also work, but for the sake of the example, let's say we have three.
 
-We can create a new step template from the `Deploy raw Kubernetes YAML` and specify a git repo path with the `Octopus.ProjectGroup.Name`. This allows us to use the project group name as a reference.
+We can create a new step template from the `Deploy raw Kubernetes YAML` step and specify a git repo path with the `Octopus.ProjectGroup.Name`. This allows us to use the project group name as a reference.
 
 ![Adding variable to the Git path row](/blog/2023-05/manifests-from-git/git-manifest-paths.png "width=500")
 
@@ -87,7 +85,7 @@ In this scenario, a new app deployment configuration would be as simple as creat
 
 Now you can create a release and deploy it. Octopus will clone your Git repo, find the files you specified and deploy them.
 
-Variables replacement, including structured configuration variables, will work as usual. Therefore, you can use Octopus variables in your YAML files if needed.
+Variable replacement, including structured configuration variables, will work as usual. Therefore, you can use Octopus variables in your YAML files if needed.
 
 #### How to configure file paths
 
@@ -108,13 +106,13 @@ Octopus applies all files from one path at once using `kubectl apply`. The files
 
 Octopus applies files from different paths in sequence using multiple `kubectl apply` commands. Octopus doesn't wait for the cluster to implement an applied configuration before executing the following `kubectl apply` command. However, it waits for the `kubectl` command to complete.
 
-⚠️ You can use paths to enforce a particular order of files application.
+⚠️ You can use paths to enforce a particular order of file application.
 
 You can also use variables in the path row and specify multiple files in a variable.
 
 #### When Octopus will fetch files from Git
 
-⚠️ Octopus will record the specific hash specified during release creation, and during deployment will fetch files from the provided repo. It means you can add new files to Git before the release but after configuring the step. Octopus will use those files for deployments (if they meet the path configuration). but if you add new files after a release is created, Octopus won't deploy these files with that release.
+⚠️ Octopus will record the specific hash specified during release creation, and during deployment will fetch files from the provided repo. It means you can add new files to Git before the release but after configuring the step. Octopus will use those files for deployments (if they meet the path configuration). But if you add new files after a release is created, Octopus won't deploy these files with that release.
 
 ### What you see on the release page
 
@@ -124,7 +122,6 @@ Octopus shows you the list of saved release files.
 ```
 ![Alt text, a description of the image](/path/to/image.png "width=500")*Optional caption text*
 ```
-If including images, please include alt text. Alt text is primarily used to describe images to people unable to see them, and can be 125 characters max including spaces. You can also include an image caption if the reader would benefit from additional information or context.
 
 ## Conclusion
 
