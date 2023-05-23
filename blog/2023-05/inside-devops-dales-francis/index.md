@@ -45,7 +45,7 @@ Maturing as a DevOps organization also lets you focus more on solving business p
 
 **What are some DevOps best practices you’ve implemented at Climavision?**
 
-*Dale*: In our organization, alongside our source code, we have folders for Infrastructure as Code (IAC). We use IAC to automate the target resources we deploy to, but we also use it to create the repository and Octopus project.
+*Dale*: In our organization, alongside our source code, we have folders for Infrastructure as Code (IaC). We use IaC to automate the target resources we deploy to, but we also use it to create the repository and Octopus project.
 
 **What advice would you give to someone just starting their DevOps journey?**
 
