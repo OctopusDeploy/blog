@@ -3,7 +3,7 @@ title: Octopus UI navigation uplift
 description: Find out about the changes we're making to the navigation experience in Octopus Deploy.
 author: emily.pearce@octopus.com
 visibility: private
-published: 2023-06-05-2000
+published: 2023-05-31-2000
 metaImage: Uplifted-Navigation-Blogv3.png
 bannerImage: Uplifted-Navigation-Blogv3.png
 bannerImageAlt: A person on a ladder helping put together the new navigation
