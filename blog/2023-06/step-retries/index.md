@@ -16,6 +16,7 @@ tags:
 Octopus 2023.2 introduces step retries, a new feature allowing the automation of retries within steps. This feature is beneficial when dealing with steps that commonly fail due to temporary or transient errors during deployment.
 
 The video below demonstrates an in-depth dive into the new feature:
+<iframe width="560" height="315" src="https://youtu.be/2KzwjpdZz70" frameborder="0" allowfullscreen></iframe>
 
 ## How do auto-retries work?
 Users can enable retries on individual steps found within the ‘Conditions’ section of each step as below:
