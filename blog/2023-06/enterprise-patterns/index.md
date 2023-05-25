@@ -56,11 +56,11 @@ Like the independent space pattern, the independent instance pattern is easy to 
 
 ![Tenant per customer diagram](tenants.png "width=500")
 
-Octopus has long supported the ability to partition deployment processes across multiple tenants, allowing each tenant to progress their own deployments independently. The RBAC rules in Octopus can be scoped to tenants, allowing fine grained access to resources like targets, accounts, certificates, and variables.
+Octopus has long supported the ability to partition deployment processes across multiple tenants, allowing each tenant to progress their own deployments independently. The RBAC rules in Octopus can be scoped to tenants, allowing fine grained access to resources like targets, accounts, and certificates.
 
 Tenants are a natural solution for teams that need to independently deploy applications to multiple downstream customers. Tenants can also be used to represent concepts such as regions, release rings, or teams.
 
-However, the RBAC controls around tenants are not expressive enough to isolate customers if they log into the Octopus installation and are granted permissions to see a single tenant. For example, channels, tasks, audit logs etc. can not be scoped to a tenant.
+However, the RBAC controls around tenants are not expressive enough to isolate customers if they log into the Octopus installation and are granted permissions to see a single tenant. For example, channels, tasks, and audit logs can not be scoped to a tenant.
 
 You can find more information about tenants in the [documentation](https://octopus.com/docs/tenants).
 
@@ -77,7 +77,7 @@ You can find more information about tenants in the [documentation](https://octop
 
 ![Managed spaces diagram](managed-spaces.png "width=500")
 
-This solution represents a typical "hub and spoke", or platform engineering, approach where each customer or business unit has their own space, and some or all of the space configuration is centrally managed.
+This solution represents a typical "hub and spoke", or platform engineering, approach where each application stack or business unit has their own space, and some or all of the space configuration is centrally managed.
 
 Each space is represented by a tenant in the management space, with deployment projects or runbooks used to configure the managed spaces. The Terraform provider or raw API scripting can be used to push configuration for shared resources, like template projects, to the managed spaces.
 
@@ -95,11 +95,9 @@ Each space is represented by a tenant in the management space, with deployment p
 
 ![Managed instances diagram](managed-instances.png "width=500")
 
-Like the `Managed space per business unit/application` pattern, this pattern represents a typical "hub and spoke", or platform engineering, approach. However, each customer or team gets their own Octopus installation.
+Like the `Managed space per business unit/application` pattern, this pattern represents a typical "hub and spoke", or platform engineering, approach. However, each business unit or region gets their own Octopus installation.
 
 Each managed Octopus instance is represented by a tenant in the management space, with deployment projects or runbooks used to configure the managed Octopus instances. The Terraform provider or raw API scripting can be used to push configuration for shared resources, like template projects, to the managed instances.
-
-This solution also provides the ability to locate Octopus instances in different regions.
 
 | Feature  | Solves  |
 |---|---|
