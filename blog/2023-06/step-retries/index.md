@@ -1,7 +1,7 @@
 ---
 title: Introducing step retries
 description: Step retries is a new feature to combat transient connectivity issues and improve deployment success rates
-author: chris.kim@octopus.com
+author: michelle.obrien@octopus.com
 visibility: public
 published: 2099-06-01-1200
 metaImage: 
