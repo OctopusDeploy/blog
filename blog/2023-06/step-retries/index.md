@@ -20,7 +20,7 @@ The video below demonstrates an in-depth dive into the new feature:
 
 ## How do step retries work?
 Users can enable retries on individual steps found within the ‘Conditions’ section of each step as below:
-![step retries](blogimage-stepautoretries-2023.png)
+![step retries](stepautoretries.png)
 
 When you enable retries for a step, and an action within that step fails, Octopus will retry from the failed action (note that the entire step does not retry from the beginning). In the event of a subsequent failure, there will be a 15-second delay before the action retries. A final retry with a 15-second delay will also take place. If any of these retries are successful, the deployment will proceed. However, if all three retries are unsuccessful, the step will fail, or guided failure mode will activate if enabled.
 
