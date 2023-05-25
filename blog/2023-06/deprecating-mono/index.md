@@ -124,9 +124,9 @@ FreeBSD does [not currently support .NET Core](https://github.com/dotnet/runtime
 
 ## Conclusion
 
-There are costs with any software supporting older platforms and frameworks. Mono has served Octopus well for deployments using Linux targets, but it's time for us to use more modern solutions that are now available.
+There are costs with any software supporting older platforms and frameworks. Mono has served Octopus well for deployments using Linux targets, but it's time for us to use more modern solutions.
 
-If you reply on Mono, we recommend switching your targets to use self-contained Calamari now. This will avoid future issues when we disable Mono in Octopus Server. In most cases, this requires minimal changes to your system and will mostly be the flick of a switch on the SSH target settings page.
+If you rely on Mono, we recommend switching your targets now to use self-contained Calamari. This will avoid issues when we disable Mono in Octopus Server. In most cases, this requires minimal changes to your system and will mostly be the flick of a switch on the SSH target settings page.
 
 Please add your thoughts, comments, or questions about this change to our [GitHub issue](https://github.com/OctopusDeploy/Issues/issues/8146).
 
