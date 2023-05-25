@@ -129,7 +129,7 @@ This approach has the benefit of only requiring very simple projects to be creat
 
 ![Custom UI diagram](custom-ui.png "width=500")
 
-This is the most advanced pattern of all, requiring the development of a custom web user interface to orchestrate deployments with backend Octopus installation.
+This is the most advanced pattern of all, requiring the development of a custom web user interface to orchestrate deployments with a backend Octopus installation.
 
 The custom UI provides an almost unlimited ability to control and customize the end user's experience.
 
