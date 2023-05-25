@@ -20,7 +20,7 @@ Over time we have seen a number of common patterns emerge with Octopus installat
 
 The most common pattern is to partition a single Octopus installation into separate spaces. Octopus is fairly agnostic as to what any individual space represents, but it is common to provide a space for business units or application stacks. As long as the space represents a stable context for the projects it holds (meaning Octopus projects are unlikely to move between spaces even as people move between teams or security requirements change), spaces are a convenient method of splitting projects and defining security boundaries.
 
-This pattern is very easy to implement as it often involves little more that creating a new space and assigning security permissions. We expect most Octopus users to naturally adopt spaces as their usage of the platform grows.
+This pattern is very easy to implement as it often involves little more than creating a new space and assigning security permissions. We expect most Octopus users to naturally adopt spaces as their usage of the platform grows.
 
 However, spaces do have some limitations. Because spaces are limited to a single Octopus installation, and Octopus installations require a low latency connection to the database, spaces do not provide the ability to co-locate Octopus with geographically dispersed teams. In addition, all tasks initiated by spaces use a shared task queue. When projects in a space queue many tasks, other spaces have to wait for their deployments to be processed. This is commonly known as the "noisy neighbor" problem.
 
@@ -41,7 +41,7 @@ Independent instances provide geographically disperse teams the ability to deplo
 
 Enterprises may also choose to deploy independent Octopus instances within the scope of PCI or other security regulations to perform deployments to secure environments. This frees teams from having to lock down their regular Octopus instance to meet specialized security requirements.
 
-Like the independent space pattern, the independent instance pattern is easy to implement as it only requires the deployment of another Octopus instance. However, due to the lack of centralized management of independent instances, common settings like SMTP servers, subscriptions, audit log streaming and more must be manually configured on each instance.
+Like the independent space pattern, the independent instance pattern is easy to implement as it only requires the deployment of another Octopus instance. However, due to the lack of centralized management of independent instances, common settings like authentication, SMTP servers, subscriptions, audit log streaming and more must be manually configured on each instance.
 
 | Feature  | Solves  |
 |---|---|
@@ -56,7 +56,7 @@ Like the independent space pattern, the independent instance pattern is easy to 
 
 ![Tenant per customer diagram](tenants.png "width=500")
 
-Octopus has long supported the ability to partition deployment processes across multiple tenants, allowing each tenant to progress their own deployments independently. The RBAC rules in Octopus can be scoped to tenants, along with resources like targets, accounts, certificates, and variables.
+Octopus has long supported the ability to partition deployment processes across multiple tenants, allowing each tenant to progress their own deployments independently. The RBAC rules in Octopus can be scoped to tenants, allowing fine grained access to resources like targets, accounts, certificates, and variables.
 
 Tenants are a natural solution for teams that need to independently deploy applications to multiple downstream customers. Tenants can also be used to represent concepts such as regions, release rings, or teams.
 
