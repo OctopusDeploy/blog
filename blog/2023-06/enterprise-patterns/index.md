@@ -172,10 +172,10 @@ The patterns described here cover the majority of implementations we expect ente
 
 Some of these patterns, like "independent space per business unit/application", "independent instance per business unit/region", and "tenant per customer", either require little effort to deploy or are deeply embedded into Octopus. We won't cover these patterns in any more detail, as they are covered by the existing documentation.
 
-The "custom UI over Octopus installation" is an advanced pattern that requires a dedicated development team to build a web application that consumes the Octopus REST API. This blog series won't go into any additional detail on how to write such a custom UI, but those interested in this pattern can refer to the API documentation for more information.
+The "custom UI over Octopus installation" is an advanced pattern that requires a dedicated development team to build a web application that consumes the Octopus REST API. This blog series won't go into any additional detail on how to write such a custom UI, but those interested in this pattern can refer to the [API documentation]((https://octopus.com/docs/octopus-rest-api)) for more information.
 
 The remaining patterns, "managed space per business unit/application", "managed instance per business unit/region", "facade space per customer", and "managed instance per environment", will be covered in detail in subsequent posts. 
 
-We also provide a reference implementation in the form of a Docker Compose stack that provisions a preconfigured Octopus instance with sample projects demonstrating how to deploy and synchronize Octopus projects between spaces and instances. The reference implementation is described in more detail in the [next post](/blog/2023-06/reference-implementation/index.md).
+We also provide a reference implementation in the form of a Docker Compose stack that provisions a preconfigured Octopus instance with sample projects. These projects demonstrate the deployment and synchronization of Octopus projects between spaces and instances. The reference implementation is described in more detail in the [next post](/blog/2023-06/reference-implementation/index.md).
 
 We are currently refining our approach to these enterprise patterns, so if you have any suggestions or feedback about the approach described here, please leave a comment on [this GitHub issue](https://github.com/OctopusSolutionsEngineering/EnterprisePatternsReferenceImplementation/issues/1).
