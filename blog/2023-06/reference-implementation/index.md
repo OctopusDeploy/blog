@@ -14,7 +14,6 @@ It is one thing to talk about [enterprise deployment patterns](/blog/2023-06/ent
 
 * Managed space per business unit/application
 * Managed instance per business unit/region
-* Facade space per customer
 * Managed instance per environment
 
 This post describes how to install and use the reference implementation.
