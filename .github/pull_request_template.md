@@ -19,7 +19,7 @@ The design team will work on a design for the blog image. Add any ideas you have
 - [ ] The images I've included follow the [rules for working with images](https://www.octopus.design/932c0f1a9/p/5061d7-working-with-images).
 - [ ] I've added alt text for all the images I've included (alt text describes image to people unable to see it, 125 characters max)
 - [ ] I've drafted social media posts for Twitter and LinkedIn and will post them for review in #topic-social-media.
-- [ ] I've dropped a note in Slack in #topic-content-marketing to let Tegan Ali know my post is ready for review.
+- [ ] I've dropped a note in Slack in #topic-content-marketing to let Tegan Ali know my post is ready for review. (No need to fill out a content brief.)
 
 ## How to review this PR
 
