@@ -23,7 +23,7 @@ Posts are organized in year-month directories (i.e., 2023-01/). Find or create t
 
 If you'd like feedback on a work in progress, create a draft PR and tag @TeganAli with your request.
 
-When you're happy with your post and it's ready to be reviewed, create a PR, assign @TeganAli as reviewer, and drop a note in Slack in #topic-content-marketing.
+When you're happy with your post and it's ready to be reviewed, create a PR, assign @TeganAli as reviewer, and drop a note in Slack in #topic-content-marketing. (No need to fill out a content brief.)
 
 When submitting your post in #topic-content-marketing, you also need to provide copy for a Twitter post **and** LinkedIn post to promote your blog post in **#topic-social-media**. (The marketing team will edit and post these on social media.) 
 
