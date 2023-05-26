@@ -12,30 +12,30 @@ tags:
   - DevOps
 ---
 
-A quiet revolution has occurred in the software industry, with many organizations pulling away from cloud computing and microservices. These decisions are mainly influenced by cost control and performance.
+A quiet revolution has occurred in the software industry, with many organizations backing away from cloud computing and microservices. These decisions are mainly influenced by cost control and performance.
 
 This article:
 
-- Looks at these repatriation and consolidation trend
+- Looks at the repatriation and consolidation trends
 - Explains why it's a step forward, not a step back
 - Introduces cloud-nomad architecture
 
 ## The discovery process
 
-When a new technology or technique arrives in the software industry, you have to imagine its impact on the software you create. Only after you've used it in many different scenarios can you discover the real benefits and the limits and costs. This shouldn't be called a *hype cycle*. It's simply part of the discovery process.
+When a new technology or technique arrives in the software industry, you must imagine its impact on the software you create. You can discover the benefits, limits, and costs only after using the new technology in many different scenarios. This shouldn't be called a *hype cycle*. It's simply part of the discovery process.
 
-Cloud computing and microservices have shared a combined discovery process. Both ideas were around for some time before they caught on, and they shared explosive growth between 2010 and 2020. The result of all that growth is that the industry has developed a stronger sense of where they work best and, most importantly, where they don't work well.
+Cloud computing and microservices have shared their discovery timeline. Both ideas were around for some time before they caught on, and they each grew rapidly between 2010 and 2020. The result of all that growth is that the industry has developed a stronger sense of where they work best and, most importantly, where they don't work well.
 
 This has led to an increasing number of stories where organizations:
 
 - Move applications away from the cloud to on-premises infrastructure, known as *repatriation*
 - Consolidate microservices into fewer macroservices
 
-Crucially, this trend doesn't mean we were all wrong with cloud and microservices. We just went too far, and now it's time to rebalance.
+Crucially, this trend doesn't mean we were wrong to use cloud and microservices. In some cases, we just went too far. Now it's time to rebalance.
 
 ### The repatriation trend
 
-A survey by [Virtana](https://www.virtana.com/wp-content/uploads/2021/02/Virtana-StateofHybridCloud-Survey-Report_Feb2021_FINAL.pdf) found that 95% of organizations had started their cloud migration, but 72% went on to repatriate applications.
+A survey by [Virtana](https://www.virtana.com/wp-content/uploads/2021/02/Virtana-StateofHybridCloud-Survey-Report_Feb2021_FINAL.pdf) found that 95% of organizations had started a cloud migration, but 72% went on to repatriate applications.
 
 One of the key drivers is cost. Not only can on-prem infrastructure work out significantly cheaper over 5 years, but the costs are also more predictable. The cloud offers a seemingly infinite ability to scale. However, this can lead to unpredictable spending, especially with volatile costs such as egress charges.
 
@@ -65,7 +65,7 @@ Mel Conway wrote a 1967 paper titled [How Do Committees Invent](http://www.melco
 Fred Brooks shared this idea in *The Mythical Man Month*, and named it *Conway's Law*. This book is in our [DevOps reading list](https://octopus.com/devops/reading-list/#the-mythical-man-month-book).
 :::
 
-Microservices aim to trade some performance in exchange for operational benefits. You can deploy and scale small services independently, but they must pass data out of process to other services. Some sophistication is needed to monitor, debug, and troubleshoot a microservice architecture.
+Microservices aim to trade some performance in exchange for operational benefits. You can deploy and scale small services independently, but they must pass data out-of-process to other services. Some sophistication is needed to monitor, debug, and troubleshoot a microservice architecture.
 
 Organizations must know the trade-offs and take action when the benefits evaporate. For example, [Segment (Twilio)](https://segment.com/blog/goodbye-microservices/) found microservices were making it *harder* to change the code. Dependency management was a nightmare; they found it hard to manage the scaling.
 
@@ -89,11 +89,11 @@ Ancient hunter-gatherers learned to move to where the food was. Rather than havi
 
 To maintain mobility, nomads developed portable dwellings or temporary shelters like [goahti](https://en.wikipedia.org/wiki/Goahti), [tipis](https://en.wikipedia.org/wiki/Tipi), and [wickiups](https://en.wikipedia.org/wiki/Wigwam).
 
-The ability to easily move to a new location is central to cloud-nomad architecture.
+The ability to move easily to a new location is central to cloud-nomad architecture.
 
 ### A step or two further than cloud-native
 
-The CNCF definition of cloud-native encompasses public and private clouds. You should be able to run your cloud-native application on the public cloud, in a data center, or using on-prem infrastructure. Taking this a step further, to say that it should be easy to move between these options, gives us cloud-nomad architecture.
+The CNCF definition of cloud-native encompasses public and private clouds. You should be able to run your cloud-native application on the public cloud, in a data center, or using on-prem infrastructure. Taking this a step further, to say that it should also be easy to move between these options, gives us cloud-nomad architecture.
 
 To achieve this, you must avoid depending on vendor-specific features and embrace ephemeral infrastructure. You need infrastructure automation that works across different hosting scenarios.
 
@@ -109,6 +109,6 @@ Like nomadic shelters, your application should be easy to pack up, move, and set
 
 ## Conclusion
 
-Cloud-native architectures lend themselves well to satisfying Conway's Law with minimal complexity. A key measure of their success should be how easy it is to move your workloads to different cloud providers or back to your on-prem infrastructure.
+When designing software, it's common for developers to create an abstraction to make it easier to change the selected database. In many cases, the database switch never happens. A far more common scenario is changing where software runs. The core idea of cloud-nomad architecture is ensuring you can move the application without major changes. A key measure of success should be how easy it is to move your workloads to different cloud providers or back to your on-prem infrastructure.
 
 Happy deployments!
