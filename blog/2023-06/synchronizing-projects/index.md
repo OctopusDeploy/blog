@@ -41,6 +41,8 @@ In practice you can optimize any two concerns of the enterprise patterns triad:
 * You can have many projects and allow end users to modify those projects. But you will be limited in your ability to centrally update those projects.
 * You can centrally update projects and have end users modify them. But you won't be able to support many projects.
 
+![The enterprise patterns triad diagram](triad.png "width=500")
+
 Keep these limitations in mind as you design your own enterprise patterns implementation.
 
 ## Levels of control in downstream projects
