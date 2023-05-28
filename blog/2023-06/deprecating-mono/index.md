@@ -24,7 +24,7 @@ We created a [GitHub issue] (https://github.com/OctopusDeploy/Issues/issues/8146
 
 ## What is Mono?
 
-Mono provides a [CLI](https://en.wikipedia.org/wiki/Common_Language_Infrastructure) (Common Language Infrastructure) virtual machine which can run on various non-Windows platforms. The CLI comprises the runtime required to execute .NET code previously compiled into CIL (Common Intermediate Language). This includes components such as the JIT compiler, garbage collector, and library loader. These components are typically provided by the .NET Framework installed on a Windows machine. 
+Mono impliments a [CLI](https://en.wikipedia.org/wiki/Common_Language_Infrastructure) (Common Language Infrastructure) virtual machine which can run on various non-Windows platforms. The CLI comprises the runtime required to execute .NET code previously compiled into CIL (Common Intermediate Language). This includes components such as the JIT compiler, garbage collector, and library loader. These components are typically provided by the .NET Framework installed on a Windows machine. 
 
 The Mono CLI also includes its own implementation of the .NET Framework Base Class Library. Although compatible with Microsoft's .NET Framework classes, it's separate from the standard .NET Framework libraries used on a typical machine using .NET Full Framework. They are, therefore, also different from the APIs provided by .NET Core libraries.
 
