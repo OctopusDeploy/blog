@@ -18,6 +18,14 @@ It is one thing to talk about [enterprise deployment patterns](/blog/2023-06/ent
 
 This post describes how to install and use the reference implementation.
 
+## Support Levels
+
+The process presented in this blog post is part of a pilot programme to support platform engineering teams. It incorporates tools with varying levels of official support. The Octopus support teams will make reasonable endeavours to support teams that wish to use this process. However, existing support Service Level Agreements (SLAs) do not apply to the tools described below.
+
+:::warning
+This blog post describes tools and processes we are seeking feedback on. They are not covered by existing SLAs, and should not be relied on for production deployments.
+:::
+
 ## Prerequisite tools
 
 To use the reference implementation, you must ensure you have a number of prerequisite tools installed:
