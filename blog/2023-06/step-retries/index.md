@@ -1,17 +1,16 @@
 ---
 title: Introducing step retries
-description: Step retries is a new feature to combat transient connectivity issues and improve deployment success rates
+description: Learn about our new step retries feature to combat transient connectivity issues and improve deployment success rates.
 author: michelle.obrien@octopus.com
 visibility: public
-published: 2099-06-01-1200
-metaImage: 
-bannerImage: 
-bannerImageAlt:
+published: 2023-06-21-1200
+metaImage: img-q2launch-whatsnew-retriesandtimeouts-2023.png
+bannerImage: img-q2launch-whatsnew-retriesandtimeouts-2023.png
+bannerImageAlt: Try again in front of green circle
 isFeatured: false
 tags:
   - Product
 ---
-
 
 Octopus 2023.2 introduces step retries, a new feature allowing the automation of retries within steps. This feature is beneficial when dealing with steps that frequently fail due to temporary or transient errors during deployment.
 
