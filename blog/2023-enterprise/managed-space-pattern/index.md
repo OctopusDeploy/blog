@@ -6,6 +6,8 @@ visibility: public
 published: 2999-01-01
 metaImage: 
 bannerImage: 
+bannerImageAlt: People building an unstable tower with blue blocks, beside 2 people building a stable, lower tower with blue blocks.
+isFeatured: false
 tags:
  - Octopus
 ---
