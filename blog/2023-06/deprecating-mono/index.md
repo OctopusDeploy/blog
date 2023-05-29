@@ -11,7 +11,6 @@ isFeatured: false
 tags: 
 - Product
 - Linux
-
 ----
 
 Octopus is planning to deprecate support for Mono in a future release. 
@@ -30,6 +29,8 @@ The Mono CLI also includes its own implementation of the .NET Framework Base Cla
 
 Mono provides a fantastic set of tools that opened up .NET development for (and on) non-Windows machines before Microsoft fully supported it.
 
+![Mono Logo](mono-logo2.png)
+
 ## The history of Mono at Octopus
 
 In 2015, the release of Octopus 3.0 introduced support for [deploying releases on Linux via SSH Targets](https://octopus.com/blog/deployment-targets-in-octopus-3#multiple-types-of-machines-deployment-targets). The Octopus deployment execution engine framework, [Calamari](https://github.com/OctopusDeploy/Calamari), was originally built only on .NET Full Framework. 
@@ -43,6 +44,8 @@ Mono served its purpose well. However, with .NET Core now the dominant cross-pla
 For some users, the Mono dependency itself was never viable, so in [early 2017 we introduced support for  Raw Octopus](https://octopus.com/blog/trying-raw-octopus). This lets you run scripts through the SSH shell without Calamari's helpful orchestration. As a result, this runs without any of the dependencies required to run Calamari, .NET or otherwise. Due to it's simplicity, this option has always been a niche fallback mechanism for very constrained platforms.
 
 The API surface area provided by the release of .NET Core 2.0 in mid 2017 let us quickly work towards [Mono-less SSH targets in 3.16](https://octopus.com/blog/octopus-release-3-16#ssh-targets-sans-mono). This was the first release that let you run Octopus deployments on a Linux system with .NET Core. It was quickly taken up by customers as a simpler way to run their deployment workloads on Linux servers.
+
+![DotNet Core Logo](dotnetcore-logo.png)
 
 ## Why are we deprecating mono?
 
