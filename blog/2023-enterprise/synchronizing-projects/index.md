@@ -3,13 +3,13 @@ title: Synchronizing projects in managed spaces
 description: Learn how to implement the full lifecycle of projects created as part of the enterprise patterns
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2999-01-01
+published: 2023-01-08-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt: People building an unstable tower with blue blocks, beside 2 people building a stable, lower tower with blue blocks.
 isFeatured: false
 tags:
- - Octopus
+ - DevOps
 ---
 
 In the [previous post](/blog/2023-06/managed-space-pattern/index.md) we learned how to configure the management space, serialize template projects to Terraform modules, fork Git repositories for CaC enabled projects, and apply the Terraform modules to a managed space. This effectively allowed us to push template projects into managed spaces with a few clicks.

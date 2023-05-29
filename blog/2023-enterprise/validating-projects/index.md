@@ -3,13 +3,13 @@ title: Validating Config-as-Code projects
 description: Learn how to implement automated checks of Config-as-Code projects during pull requests
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2999-01-01
+published: 2023-01-09-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt: People building an unstable tower with blue blocks, beside 2 people building a stable, lower tower with blue blocks.
 isFeatured: false
 tags:
- - Octopus
+ - DevOps
 ---
 
 We noted in the [previous post](/blog/2023-06/synchronizing-projects/index.md) that there is a trade off between granting end users control over their downstream projects and the ability to push incremental changes made to the upstream projects; the more control end users have, the harder it is to push updates to many projects.

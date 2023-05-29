@@ -3,13 +3,13 @@ title: Exploring the managed instance and space patterns
 description: Learn how to implement the managed instance and space patterns in Octopus
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2999-01-01
+published: 2023-01-06-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt: People building an unstable tower with blue blocks, beside 2 people building a stable, lower tower with blue blocks.
 isFeatured: false
 tags:
- - Octopus
+ - DevOps
 ---
 
 In the [previous post](/blog/2023-06/reference-implementation/index.md) we learned how to deploy the enterprise patterns reference implementation. This created and configured an Octopus instance complete with all the resources required to demonstrate the "managed space per business unit/application" and "managed instance per business unit/region" patterns. 

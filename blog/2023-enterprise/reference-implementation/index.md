@@ -3,13 +3,13 @@ title: Enterprise Deployment Patterns Reference Implementation
 description: Learn how to deploy the example reference implementation demonstrating the enterprise patterns
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2999-01-01
+published: 2023-01-07-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt: People building an unstable tower with blue blocks, beside 2 people building a stable, lower tower with blue blocks.
 isFeatured: false
 tags:
- - Octopus
+ - DevOps
 ---
 
 It is one thing to talk about [enterprise deployment patterns](/blog/2023-06/enterprise-patterns/index.md) in abstract terms, but at the end of the day teams can only realize the value of these patterns by implementing them. To that end we have developed the [enterprise patterns reference implementation](https://github.com/OctopusSolutionsEngineering/EnterprisePatternsReferenceImplementation), which is a Docker Compose based application stack deploying and configuring a sample Octopus instance containing practical examples of the following patterns:
