@@ -4,9 +4,9 @@ description:  The ten pillars of pragmatic deployments that shape how we develop
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2021-02-22-1400
-metaImage: blogimage-the-ten-pillars-of-pragmatic-deployments-2021.png
-bannerImage: blogimage-the-ten-pillars-of-pragmatic-deployments-2021.png
-bannerImageAlt: The ten pillars of pragmatic deployments
+metaImage: blogimage-10-pillars-2023x2.png
+bannerImage: blogimage-10-pillars-2023x2.png
+bannerImageAlt: Building with ten pillars
 isFeatured: true
 tags:
  - DevOps
