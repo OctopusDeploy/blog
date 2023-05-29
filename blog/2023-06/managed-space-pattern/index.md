@@ -14,6 +14,14 @@ In the [previous post](/blog/2023-06/reference-implementation/index.md) we learn
 
 In this post we'll walk through the implementation of these patterns.
 
+## Support Levels
+
+The process presented in this blog post is part of a pilot programme to support platform engineering teams. It incorporates tools with varying levels of official support. The Octopus support teams will make reasonable endeavours to support teams that wish to use this process. However, existing support Service Level Agreements (SLAs) do not apply to the tools described below.
+
+:::warning
+This blog post describes tools and processes we are seeking feedback on. They are not covered by existing SLAs, and should not be relied on for production deployments.
+:::
+
 ## Managed spaces vs managed instances
 
 The enterprise patterns distinguish between the concept of a managed space and a managed instance. This is because spaces have subtle, yet significant, differences in functionality to instances, specifically:
