@@ -1,1 +1,1 @@
-
+This blog describes that now polling tentacles can be configured to use port 443 in Octopus Cloud and single Octopus execution servers/nodes in self hosted. While using 443 is possible with multipls Octopus execution nodes (self -hosted) this is not described in this blog as it is more complex and out of scope.
