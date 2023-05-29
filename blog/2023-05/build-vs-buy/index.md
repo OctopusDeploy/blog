@@ -1,22 +1,22 @@
 ---
 title: Building versus buying software
-description: Probing the pros and cons of building software yourself versus buying a product.
+description: Probing the pros and cons of building software yourself compared to buying a product.
 author: shawn.sesna@octopus.com
 visibility: public
-published: 2023-05-29-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+published: 2023-05-31-1400
+metaImage: blogimage-build-vs-buy-2023x2.png
+bannerImage: blogimage-build-vs-buy-2023x2.png
+bannerImageAlt: Two people building with blocks vs someone at a storefront of a software store
 isFeatured: false
 tags: 
   - Engineering
 ---
 
-Whether to build or buy software is a dilemma many organizations face. There's almost always a commercially-available tool or solution. However, you must weigh up competing factors when deciding whether to buy or build to determine how much money *and* time it will cost.  
+Whether to build or buy software is a dilemma many organizations face. There's almost always a commercially-available tool or solution to address your needs. However, you must weigh up competing factors when deciding whether to buy or build to determine how much money *and* time it will cost.  
 
-In this post, I explore what you should consider before deciding whether to build or buy software.
+In this post, I explore what you should consider before deciding whether to build or buy a software solution.
 
-## Deciding whether to build or buy software
+## Considerations when deciding whether to build or buy
 
 The considerations when deciding to build your own solution or purchase a product usually include: 
 
@@ -48,7 +48,7 @@ However, one benefit of an in-house solution is no annual cost other than the ti
 
 Maintenance of a solution is crucial to keeping it operating effectively. New versions of Operating Systems (OS) or development frameworks require you to test your solution to ensure it continues functioning. Providers of off-the-shelf solutions perform this activity to remain in business. If you build your own solution, you need to include time in your schedule to adapt your solution to changes.  
 
-One potential pitfall of a built solution is that it doesn't get the attention it requires as it "just works" ... until it doesn't. Best case, you discover this early and allow time to resolve any issues. In the worst case, you find out at a crucial moment, leading to a mad scramble to fix it.
+One potential pitfall of an in-house solution is that it doesn't get the attention it requires as it "just works" ... until it doesn't. Best case, you discover this early and allow time to resolve any issues. In the worst case, you find out at a crucial moment, leading to a mad scramble to fix it.
 
 #### Security 
 
