@@ -10,6 +10,7 @@ bannerImageAlt: People building an unstable tower with blue blocks, beside 2 peo
 isFeatured: false
 tags:
  - DevOps
+ - Enterprise
 ---
 
 In the [previous post](/blog/2023-06/reference-implementation/index.md) we learned how to deploy the enterprise patterns reference implementation. This created and configured an Octopus instance complete with all the resources required to demonstrate the "managed space per business unit/application" and "managed instance per business unit/region" patterns. 

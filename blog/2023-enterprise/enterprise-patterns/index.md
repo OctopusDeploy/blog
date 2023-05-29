@@ -1,6 +1,6 @@
 ---
 title: Octopus enterprise deployment patterns
-description: Learn the common deployment strategies enterprise teams can adopt with Octopus
+description: Learn the common deployment strategies enterprise teams can adopt with Octopus.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2023-01-05-1400
@@ -10,6 +10,7 @@ bannerImageAlt: People building an unstable tower with blue blocks, beside 2 peo
 isFeatured: false
 tags:
  - DevOps
+ - Enterprise
 ---
 
 Supporting software deployments and maintaining applications in large enterprise environments is often not as simple as configuring a single, shared Octopus instance that everyone can use. Practical constraints such as network latency between geographically distributed teams, the desire for business units to control their own infrastructure and processes, business acquisitions that bring established DevOps systems, and compliance with standards like PCI are common and valid reasons to configure multiple Octopus spaces and instances.
