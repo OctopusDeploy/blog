@@ -17,7 +17,7 @@ In Octopus Deploy deployment targets communicate with the Octopus Cloud server u
 
 ## Using port 443 for polling tentacles - How it works
 
-The Octopus server requires polling tentacle traffic and the Web app/API traffic to be on separate ports. To achieve this, we have configured a second url, to be used for the polling tentacle traffic.  This allows port 443 to be used for both the Octopus app and polling tentacles. The result is customers’ firewall rules only need to have port 443 open for outgoing traffic, there is no longer any need to have an exception approved to open port 10943.
+The Octopus server requires polling tentacle traffic and the Web app/API traffic to be on separate ports. So that polling tentacles can also use port 443, we have configured a second url that is used to re-route polling tentacle traffic to a separate server port. The result is customers’ firewall rules only need to have port 443 open for outgoing traffic and there is no longer any need to have an exception approved to open port 10943.
 
 For Octopus Cloud, this second URL is your Octopus Cloud URL with the word “polling” added as a sub domain i.e., https://polling.YOUR_INSTANCE.octopus.app. You, the customer, will need to configure the polling tentacle to use this additional url and port 443, nothing else to do for Octopus Cloud.
 
