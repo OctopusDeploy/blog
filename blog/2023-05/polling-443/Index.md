@@ -13,7 +13,7 @@ tags:
   - Tentacles
 ---
 
-In Octopus Deploy deployment targets communicate with the Octopus Cloud server using tentacles. We have introduced a new capability to configure polling tentacles to use port 443 as opposed to port 10943, which was the only previous option. Using port 443 typically complies with an organisation’s firewall rules for outgoing encrypted traffic and so avoids the need for authorisation for a firewall rule exception. Port 10943 is an unassigned port in the [IANA port listing](https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml?&page=120), and therefore looks suspicious to some. Approval of firewall exceptions can take 6 months and significant effort.
+In Octopus Deploy deployment targets communicate with the Octopus Cloud server using tentacles. We have introduced a new capability to configure polling tentacles to use port 443 as opposed to port 10943, which was the only previous option. Using port 443 typically complies with an organisation’s firewall rules for outgoing encrypted traffic and so avoids the need for authorisation of a firewall rule exception. Port 10943 is an unassigned port in the [IANA port listing](https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml?&page=120), and therefore looks suspicious to some. Approval of firewall exceptions can take 6 months and significant effort.
 
 ## Using port 443 for polling tentacles - how it works
 
