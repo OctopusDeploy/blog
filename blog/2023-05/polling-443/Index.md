@@ -13,27 +13,23 @@ tags:
   - Tentacles
 ---
 
-In Octopus Deploy deployment targets communicate with the Octopus Cloud server using tentacles. We have introduced a new capability to configure polling tentacles to use port 443 as opposed to port 10943, which was the only previous option. Using port 443 typically complies with an organisation’s firewall rules for outgoing encrypted traffic and so avoids the need to get authorisation for a firewall rule exception. Port 10943 is an unassigned port in the [IANA port listing](https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml?&page=120), and therefore looks suspicious to some. Approval of firewall exceptions can take 6 months and significant effort.
+In Octopus Deploy deployment targets communicate with the Octopus Cloud server using tentacles. We have introduced a new capability to configure polling tentacles to use port 443 as opposed to port 10943, which was the only previous option. Using port 443 typically complies with an organisation’s firewall rules for outgoing encrypted traffic and so avoids the need for authorisation for a firewall rule exception. Port 10943 is an unassigned port in the [IANA port listing](https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml?&page=120), and therefore looks suspicious to some. Approval of firewall exceptions can take 6 months and significant effort.
 
-## Using port 443 for polling tentacles - How it works
+## Using port 443 for polling tentacles - how it works
 
-The Octopus server requires polling tentacle traffic and the Web app/API traffic to be on separate ports. So that polling tentacles can also use port 443, we have configured a second url that is used to re-route polling tentacle traffic to a separate server port. The result is customers’ firewall rules only need to have port 443 open for outgoing traffic and there is no longer any need to have an exception approved to open port 10943.
+The Octopus server requires polling tentacle traffic and the Web app/API traffic to be on separate ports. So that polling tentacles can also use port 443, we have configured a second url that is used to re-route polling tentacle traffic to the expected server port. The result is customers’ firewall rules only need to have port 443 open for outgoing traffic which avaoids the need to apply to security to grant an exception and open port 10943.
 
 For Octopus Cloud, this second URL is your Octopus Cloud URL with the word “polling” added as a sub domain i.e., https://polling.YOUR_INSTANCE.octopus.app. You, the customer, will need to configure the polling tentacle to use this additional url and port 443, nothing else to do for Octopus Cloud.
 
 This is illustrated in the diagram.
-Use the following (minus the backtics) to include images:
 
-![image shows polling tentacles configured to use a second url and port 443 so that traffic passes through the customer firewall. It then shows the traffic entring the Octopus Cloud firewall on 443 and being redirected to port 10943 on the Octopus server.]([(https://github.com/OctopusDeploy/blog/blob/Polling-tentacles-over-443/blog/2023-05/polling-443/OC-polling-tentacles-over-443.png) "width=500")*Octopus Cloud-solution overview*
-
-If including images, please include alt text. Alt text is primarily used to describe images to people unable to see them, and can be 125 characters max including spaces. You can also include an image caption if the reader would benefit from additional information or context.
-
+![an image shows polling tentacles configured to use a second url and port 443 so that traffic passes unhindered through the customer firewall. It then shows the traffic entering the Octopus Cloud firewall on 443 and being redirected to port 10943 on the Octopus server.](OC-polling-tentacles-over-443.png "width=500")*Figure 1: Octopus Cloud-solution overview*
 
 Within Octopus Cloud we have configured a reverse proxy that allows web app traffic to pass through on 443 but redirects polling traffic to the Octopus server port 10943, which is what the Octopus server expects. This also makes this change backward compatible with previous polling tentacles that are still communicating over 10943.
 
 ### Some things to note
 
-This capability is available from polling tentacle version 6.3.417 (or later), so you will need to upgrade any existing polling tentacles to use port 443. Also, because of the backward compatibility of this solution, it is possible to run a mix of polling tentacles, some configured to run over port 443 and others over 10943. This may be useful if you are in the process of updating polling tentacles to use port 443, but you have port 10943 polling tentacles that need to operate in the meantime.
+This capability is available from polling tentacle version 6.3.417 (or later), so you will need to upgrade any existing polling tentacles to use port 443. Also, because of the backward compatibility of this solution, it is possible to run a mix of polling tentacles, some configured to run over port 443 and others over 10943. This may be useful if you are in the process of updating polling tentacles to use port 443, but you have polling tentacles configured use port 10943 and they still need to operate.
 
 ### What about self-hosted Octopus Deploy?
 
@@ -46,11 +42,6 @@ For multiple OD execution servers, a solution to use port 443 for polling tentac
 Polling tentacles can be configured to use port 443 for tentacle communication in Octopus Cloud. This removes the need to have a non-standard port open in the customer firewall, so saving what can be significant effort and up to 6 months delay in getting policy exemptions and custom firewall rules approved.
 
 A similar approach can be used for self-hosted OD where there is a single execution server. For multiple executions servers, while it is possible, configuration is more complex.
-
-
-## Conclusion
-
-Close off the post by restating the main points of the post, share any closing thoughts, and invite feedback.
 
 ## Learn more
 
