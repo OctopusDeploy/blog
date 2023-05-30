@@ -207,4 +207,4 @@ We also provide a reference implementation in the form of a Docker Compose stack
 
 We're currently refining our approach to these enterprise patterns, so if you have any suggestions or feedback about the approach described here, please leave a comment on [this GitHub issue](https://github.com/OctopusSolutionsEngineering/EnterprisePatternsReferenceImplementation/issues/1).
 
-Happy deployments
+Happy deployments!

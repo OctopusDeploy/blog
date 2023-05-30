@@ -3,7 +3,7 @@ title: Enterprise deployment patterns reference implementation
 description: Learn how to deploy the example reference implementation demonstrating the enterprise patterns.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2023-01-07-1400
+published: 2023-01-06-1400
 metaImage: blogimage-microservicesframeworks-2022.jpg
 bannerImage: blogimage-microservicesframeworks-2022.jpg
 bannerImageAlt: People building an unstable tower with blue blocks, beside 2 people building a stable, lower tower with blue blocks.
@@ -23,7 +23,7 @@ This post describes how to install and use the reference implementation.
 
 ## Support levels
 
-The process presented in this post is part of a pilot program to support platform engineering teams. It incorporates tools with varying levels of official support. The Octopus support teams will make reasonable endeavors to help teams that wish to use this process. However, existing support Service Level Agreements (SLAs) do not apply to many of the tools described below.
+The process presented in this post is part of a pilot program to support platform engineering teams. It incorporates tools with varying levels of official support. The Octopus support team will make reasonable endeavors to help customers that wish to use this process. However, existing support Service Level Agreements (SLAs) do not apply to many of the tools described below.
 
 :::warning 
 This post describes tools and processes we're seeking feedback on. They're not covered by existing SLAs, and you shouldn't apply them to production systems, or rely on them for production deployments. 
