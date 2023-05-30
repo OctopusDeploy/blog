@@ -37,7 +37,7 @@ A solution for many OD execution servers needs more complex configuration. This 
 
 ## Conclusion
 
-Octopus Cloud can use port 443 for polling tentacle communication. This removes the need to have a non-standard port open in the customer firewall. This saves the effort and up to 6 months delay for approval of firewall exemptions and custom rules.
+Octopus Cloud can use port 443 for polling tentacle communication. This removes the need to have a non-standard port open in the customer's firewall. This saves the effort and up to 6 months delay for approval of firewall exemptions and custom rules.
 
 A similar approach works for self-hosted OD where there is a single execution server. For multiple executions servers, while it is possible, configuration is more complex.
 
