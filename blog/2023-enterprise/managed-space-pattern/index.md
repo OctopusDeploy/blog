@@ -4,8 +4,8 @@ description: Learn how to implement the managed instance and space patterns in O
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2023-01-06-1400
-metaImage: 
-bannerImage: 
+metaImage: blogimage-microservicesframeworks-2022.jpg
+bannerImage: blogimage-microservicesframeworks-2022.jpg
 bannerImageAlt: People building an unstable tower with blue blocks, beside 2 people building a stable, lower tower with blue blocks.
 isFeatured: false
 tags:
