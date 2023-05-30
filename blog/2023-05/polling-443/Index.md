@@ -24,9 +24,8 @@ For Octopus Cloud, this second URL is your Octopus Cloud URL with the word “po
 This is illustrated in the diagram.
 Use the following (minus the backtics) to include images:
 
-```
-![Alt text, a description of the image](/path/to/image.png "width=500")*Octopus Cloud-solution overview*
-```
+![image shows polling tentacles configured to use a second url and port 443 so that traffic passes through the customer firewall. It then shows the traffic entring the Octopus Cloud firewall on 443 and being redirected to port 10943 on the Octopus server.]([(https://github.com/OctopusDeploy/blog/blob/Polling-tentacles-over-443/blog/2023-05/polling-443/OC-polling-tentacles-over-443.png) "width=500")*Octopus Cloud-solution overview*
+
 If including images, please include alt text. Alt text is primarily used to describe images to people unable to see them, and can be 125 characters max including spaces. You can also include an image caption if the reader would benefit from additional information or context.
 
 
