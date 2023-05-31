@@ -19,7 +19,7 @@ If you've configured your Octopus Server instance to deploy to SSH targets via M
 
 I walk you through the history of Mono at Octopus, and the steps we're taking to remove it as a dependency for Linux deployments.
 
-We created a [GitHub issue] (https://github.com/OctopusDeploy/Issues/issues/8146) where you can provide feedback or ask questions after you read this post.
+We created a [GitHub issue](https://github.com/OctopusDeploy/Issues/issues/8146) where you can provide feedback or ask questions after you read this post.
 
 ## What is Mono?
 
@@ -47,7 +47,7 @@ The API surface area provided by the release of .NET Core 2.0 in mid 2017 let us
 
 ![DotNet Core Logo](dotnetcore-logo.png)
 
-## Why are we deprecating mono?
+## Why are we deprecating Mono?
 
 Developing an application that runs on multiple platforms and runtimes has a non-zero cost. And we must balance that cost against the value it brings.
 
@@ -77,7 +77,7 @@ If your target has **Calamari on Mono**, then you need to make some changes befo
 
 ### Listing affected targets
 
-If you have many targets and are unsure if any are reliant on Mono, the code snippet below shows how to query your instances with the C#  [OctopusClient](https://octopus.com/docs/octopus-rest-api/octopus.client).
+If you have many targets and are unsure if any are reliant on Mono, the code snippet below shows how to query your instances with the C# [Octopus.Client](https://octopus.com/docs/octopus-rest-api/octopus.client).
 
 ```c#
 var client = new OctopusClient(new OctopusServerEndpoint("https://octopus.acme.corp/", "API-XRLLCHXXXXIZGHDNC1OEUVRXXXXX"));
@@ -93,7 +93,7 @@ foreach (var endpoint in monoEndpoints) {
 
 With .NET Core, you no longer need to install Mono on your target to use it as a deployment target. However, it still has some dependencies.
 
-Often, mainly when using pre-configured VMs from a cloud vendor, these dependencies may already be available on your system. In these cases, you don't need to update the target itself. If you're manually building your machine,follow [the .NET Core guides](https://learn.microsoft.com/en-us/dotnet/core/install/linux-scripted-manual#dependencies) relevant to your distribution to see if anything is missing and install accordingly.
+Often, mainly when using pre-configured VMs from a cloud vendor, these dependencies may already be available on your system. In these cases, you don't need to update the target itself. If you're manually building your machine, follow [the .NET Core guides](https://learn.microsoft.com/en-us/dotnet/core/install/linux-scripted-manual#dependencies) relevant to your distribution to see if anything is missing and install accordingly.
 
 ### Updating your Octopus target
 
