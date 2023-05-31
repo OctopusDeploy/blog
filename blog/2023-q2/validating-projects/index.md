@@ -11,6 +11,7 @@ isFeatured: false
 tags:
  - DevOps
  - Configuration as Code
+ - Enterprise
 ---
 
 We noted in the [previous post](https://octopus.com/blog/synchronizing-projects) that there's a trade-off between granting end users control over their downstream projects and the ability to push incremental changes made to the upstream projects; the more control end users have, the harder it is to push updates to many projects.
