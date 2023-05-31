@@ -113,7 +113,7 @@ For the majority of our Mono users, the changes will be minor. There are potenti
 
 ### ScriptCS
 
-At the time of writing, we don't support ScriptCS on the .NET Core version of Calamari, but scheduled updates are due to change this. Read [our post about migrating from scriptcs to dotnet-script](https://octopus.com/blog/rfc-migrate-scriptcs-dotnet-script) for our plans and [our workaround](https://octopus.com/blog/rfc-migrate-scriptcs-dotnet-script#workaround), if this affects you.
+At the time of writing, we don't support scriptsc on the .NET Core version of Calamari, but updates scheduled for June 30, 2023, are due to change this. Read [our post about migrating from scriptcs to dotnet-script](https://octopus.com/blog/rfc-migrate-scriptcs-dotnet-script) for our plans and [our workaround](https://octopus.com/blog/rfc-migrate-scriptcs-dotnet-script#workaround), if this affects you.
 
 ### RHEL6
 
