@@ -18,7 +18,7 @@ In Octopus Deploy, deployment targets communicate with Octopus Cloud using Tenta
 
 Port 10943 is an unassigned port in the [IANA port listing](https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml?&page=120), and therefore looks suspicious to some. 
 
-Port 443 often meets an organization’s firewall rules for outgoing encrypted traffic. This avoids lengthy approval processes to get authorization for firewall rule exceptions for port 10944. 
+Port 443, however, often meets an organization’s firewall rules for outgoing encrypted traffic. This avoids lengthy approval processes to get authorization for firewall rule exceptions for port 10944. 
 
 In this post, I explain how to use port 443 for Polling Tentacles.
 
