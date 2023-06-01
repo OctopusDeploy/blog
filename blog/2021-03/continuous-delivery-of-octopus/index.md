@@ -32,7 +32,7 @@ What does this mean for you?
 
 Well, instead of us having to make a deliberate decision to deploy a release, we now automatically create a release from every commit to a releasable branch that passes all the tests. Successful builds roll out to our internal environments and then after a suitable "bake time", onto Octopus Cloud, and then to the website. This means we are constantly "drinking our own champagne" in the pursuit of delivering a quality product.
 
-You can read more about how we see the differences between [continuous delivery and continuous deployment](blog/2021-02/ten-pillars-of-pragmatic-deployments/index.md#continuous-integration-continuous-delivery-and-continuous-deployment).
+You can read more about how we see the differences between [continuous delivery and continuous deployment](https://octopus.com/blog/ten-pillars-of-pragmatic-deployments#continuous-integration-continuous-delivery-and-continuous-deployment).
 
 ### Nightly builds
 
