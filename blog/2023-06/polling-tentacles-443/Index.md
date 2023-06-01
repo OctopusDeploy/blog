@@ -21,7 +21,7 @@ The Octopus server needs polling tentacle and web app traffic to be on separate 
 
 This second URL is your Octopus Cloud URL prefixed with “polling” e.g., https://polling.YOUR_INSTANCE.octopus.app. Using this new domain and port 443 when configuring the polling tentacles is all you need to do.
 
-![an image shows polling tentacles configured to use a second url and port 443 so that traffic passes unhindered through the customer firewall. It then shows the traffic entering the Octopus Cloud firewall on 443 and being redirected to port 10943 on the Octopus server.](OC-polling-tentacles-over-443.png "width=500")*Figure 1: Octopus Cloud-solution overview*
+![an image shows polling tentacles configured to use a second url and port 443 so that traffic passes unhindered through the customer firewall. It then shows the traffic entering the Octopus Cloud firewall on 443 and being redirected to port 10943 on the Octopus server.](oc-polling-tentacles-over-443.png "width=500")*Figure 1: Octopus Cloud-solution overview*
 
 In Octopus Cloud, a reverse proxy redirects polling traffic to port 10943 on the Octopus server. Web app traffic passes through on port 443, which is what the Octopus server expects. This is backward compatible with polling tentacles that are still communicating over 10943.
 
