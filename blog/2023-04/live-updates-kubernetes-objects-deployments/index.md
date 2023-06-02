@@ -83,7 +83,8 @@ For this post, I created the objects in the `octopus` namespace. Please remember
 
 There's a new section added for the Kubernetes Object Status check. I explain these options in more detail shortly.
 
-:::hint We do not support object status checks for deployments configured using a [blue/green strategy](https://octopus.com/docs/deployments/kubernetes/deploy-container#bluegreen-deployment-strategy) yet. For these deployments, you can't select this option. We plan to add support soon. 
+:::hint 
+We do not support object status checks for deployments configured using a [blue/green strategy](https://octopus.com/docs/deployments/kubernetes/deploy-container#bluegreen-deployment-strategy) yet. For these deployments, you can't select this option. We plan to add support soon. 
 :::
 
 ![Octopus process editor showing the Kubernetes object status check configuration section](kubernetes-object-status-check-configuration.png)
