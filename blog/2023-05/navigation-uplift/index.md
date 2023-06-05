@@ -66,6 +66,6 @@ We'll be looking at the page header section in the Octopus app next, as we conti
 
 Each change to the navigation will deliver more visual consistency and improve the information architecture.
 
-We're dedicated to improving the Octopus Deploy UX. This is the first of many milestones to achieve a world-class navigation experience. 
+We're dedicated to improving the Octopus Deploy UX. This is the first of many milestones to achieve a world-class navigation experience. If you'd like to help us continue to improve Octopus, check out [our careers page](https://octopus.com/company/careers).
 
 Happy deployments!
