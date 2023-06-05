@@ -154,8 +154,8 @@ We also explained how CI and CD are separate concepts solving different problems
 
 Finally, we offered insight into how Octopus can help complete your full CI/CD pipeline. But don’t just take our word for it, [sign up for a free trial](https://octopus.com/start) to see it in action for yourself.
 
-You can also learn more about why we recommend you [build with GitHub and deploy with Octopus](https://octopus.com/github).
-
 Explore the [DevOps engineer's handbook](https://octopus.com/devops/) to learn more about DevOps, CI/CD, and deployment pipelines.
+
+You can also learn more about why we recommend you [build with GitHub and deploy with Octopus](https://octopus.com/github). There's lots of exciting work going on in this space at Octopus right now. If you're a software engineer and this is something you’re interested in, please keep an eye on [our careers page](https://octopus.com/company/careers).
 
 Happy deployments!
