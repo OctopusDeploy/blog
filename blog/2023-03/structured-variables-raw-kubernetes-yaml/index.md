@@ -117,4 +117,6 @@ Injecting Octopus variables into your Kubernetes YAML scripts is now easier. Thi
 
 Structured variable substitution gives you a lightweight way to keep your configurations clean, while customizing them for scoping conditions relevant to your deployment scenario.
 
+There is a lot of exciting work going on in this space right now, and if you feel like this is something you’d be interested in, please keep an eye on [our careers page](https://octopus.com/company/careers).
+
 Happy deployments!
