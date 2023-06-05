@@ -96,4 +96,6 @@ For more on containers:
 - See everything you need to [get started with containers](https://octopus.com/blog/get-started-containers)
 - Follow our guide for [building and deploying a Java app with Docker, Google, Azure, and Octopus](https://octopus.com/blog/deploying-java-app-docker-google-azure)
 
+There's lots of exciting work going on in this space at Octopus right now. If you're a software engineer and this is something you’re interested in, please keep an eye on [our careers page](https://octopus.com/company/careers).
+
 Happy deployments!
