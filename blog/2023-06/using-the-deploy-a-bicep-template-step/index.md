@@ -11,6 +11,7 @@ isFeatured: false
 tags:
   - Product
   - Azure
+  - Step Templates
 ---
 
 Bicep is a human-readable language for deploying resources using ARM templates. Our latest step makes deploying Azure resources using Bicep more intuitive and user-friendly. 
