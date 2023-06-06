@@ -116,13 +116,9 @@ You can also use variables in the path row and specify multiple files in a varia
 
 ### What you see on the release page
 
-Octopus shows you the list of saved release files.
+When you create a release, Octopus shows you the list of saved release files and Git references.
 
-
-```
-![Alt text, a description of the image](/path/to/image.png "width=500")*Optional caption text*
-```
-If including images, please include alt text. Alt text is primarily used to describe images to people unable to see them, and can be 125 characters max including spaces. You can also include an image caption if the reader would benefit from additional information or context.
+![Release page with files sourced from Git](/blog/2023-05/manifests-from-git/git-manifest-release-page.png "width=500")
 
 ## Conclusion
 
@@ -130,4 +126,4 @@ Sourcing files from Git enable Kubernetes configuration templating at a new leve
 
 ## Learn more
 
-- [link](https://www.example.com/resource)
+- [A LINK TO DOCS SHOULD BE HERE](https://www.example.com/resource)
