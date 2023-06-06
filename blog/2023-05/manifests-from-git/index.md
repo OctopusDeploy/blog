@@ -14,8 +14,6 @@ tags:
   - Kubernetes
 ---
 
-See https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags,
-
 In this blog post we'll show how to use YAML manifests from Git in Octopus for Kubernetes deployments. It's an simple but powerful tool enabling complex scenarioes like configuration templating.
 
 ## Body
