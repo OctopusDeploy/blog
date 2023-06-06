@@ -4,8 +4,8 @@ description: Learn how to configure our new Deploy a Bicep Template step
 author: isaac.calligeros@octopus.com
 visibility: public
 published: 2023-06-06-1400
-metaImage: 
-bannerImage: 
+metaImage: blogimage-azurebicepandoctopusdeploy-2022.png
+bannerImage: blogimage-azurebicepandoctopusdeploy-2022.png
 bannerImageAlt: Bicep logo, a mechanical arm with bolts for shoulders and elbow.
 isFeatured: false
 tags:
