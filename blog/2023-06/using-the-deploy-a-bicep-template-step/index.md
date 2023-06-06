@@ -1,6 +1,6 @@
 ---
-title: Using the Deploy a Bicep Template step
-description: Learn how to configure our new Deploy a Bicep Template step
+title: Using the Deploy a Bicep template step
+description: Learn how to configure our new Deploy a Bicep template step
 author: isaac.calligeros@octopus.com
 visibility: public
 published: 2023-06-06-1400
@@ -13,13 +13,13 @@ tags:
   - Azure
 ---
 
-Bicep is a human-readable language for deploying resources using ARM templates. Our latest step makes deploying Azure Resources using Bicep more intuitive and user-friendly. 
+Bicep is a human-readable language for deploying resources using ARM templates. Our latest step makes deploying Azure resources using Bicep more intuitive and user-friendly. 
 
-In this post, I walk you through configuring our new **Deploy a Bicep Template** step.
+In this post, I walk you through configuring our new **Deploy a Bicep template** step.
 
 ## Getting started
 
-To start, add the **Deploy a Bicep Template** step to your deployment process. This step depends on the [Bicep module](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/install) of the Azure CLI in the execution environment. Assuming the Azure CLI is already installed and on path, install the Bicep module using:
+To start, add the **Deploy a Bicep template** step to your deployment process. This step depends on the [Bicep module](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/install) of the Azure CLI in the execution environment. Assuming the Azure CLI is already installed and on path, install the Bicep module using:
 
 ```
 az bicep install
@@ -27,9 +27,9 @@ az bicep install
 
 ![Deploy a Bicep Template process editor](bicep-process-editor.png "width=500")
 
-## Configuring the Deploy a Bicep Template step
+## Configuring the Deploy a Bicep template step
 
-You can store the templates using the source code editor or packages when configuring the **Deploy a Bicep Template** step.
+You can store the templates using the source code editor or packages when configuring the **Deploy a Bicep template** step.
  
 The first and easier option is the Source Code editor. Here you can directly edit your Bicep template. 
 
@@ -55,7 +55,7 @@ In incremental mode, resources that exist in the resource group but are not spec
 
 In complete mode, Resource Manager deletes resources that exist in the resource group but aren't specified in the template.
 
-## Account setup
+## Account configuration
 
 You need an Azure account along with a target resource group. For help configuring an Azure account, read our docs about [connecting an Azure account to Octopus Deploy](https://octopus.com/docs/infrastructure/accounts/azure#azure-service-principal). 
 
@@ -65,6 +65,8 @@ When specifying a resource group if it does not exist, it gets created as part o
 
 ## Conclusion
 
-Like our existing Deploy an ARM template step, Bicep deployments will periodically poll and report the deployment state. Output parameters such as the Deployment name are available using #{AzureRmOutputs[DeploymentName]} along with [resource properties](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/template-functions-deployment#example) via #{AzureRmOutputs[PropertyName]}. Please reach out via our [community Slack](https://octopus.com/slack) if you have any questions, comments or feedback.
+Like our existing **Deploy an ARM template** step, Bicep deployments will periodically poll and report the deployment state. Output parameters such as the deployment name are available using `#{AzureRmOutputs[DeploymentName]}` along with [resource properties](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/template-functions-deployment#example) via `#{AzureRmOutputs[PropertyName]}`. 
+
+Please reach out via our [Community Slack](https://octopus.com/slack) if you have any questions, comments, or feedback.
 
 Happy deployments!
