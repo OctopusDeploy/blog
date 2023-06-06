@@ -39,7 +39,7 @@ Alternatively, you can store your Bicep files in a package and provide a path to
 
 To provide parameters to these Bicep templates, you get a list of key-value pairs.
 
-For example given a Bicep template with the following param definitions
+For example, imagine you're given a Bicep template with the following param definitions:
 
 ```
 param appicationName string
