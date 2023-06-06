@@ -20,7 +20,7 @@ In this blog post we'll show how to use YAML manifests from Git in Octopus for K
 
 ## Body
 
-Octopus suggests two strategies to configure your Kubernetes deployments. First, you can create the configuration in Octopus using our built-in steps like `Deploy Kubernetes containers`. This approach allows you to start fast and evolve your configuration in Octopus, leveraging our UI. 
+Octopus suggests two strategies to configure your Kubernetes deployments. First, you can create the configuration in Octopus using our built-in steps like `Deploy Kubernetes containers`. This approach allows you to start fast and evolve your configuration in Octopus, leveraging our UI.
 
 An alternative approach is to create and evolve your configuration as YAML code. This blog post will focus on this method.
 
@@ -35,7 +35,7 @@ We've added a new method — referencing files from a Git repo. This is the late
 Despite the clear benefit of sourcing files without the need to package them, the new functionality introduces a few more improvements.
 
 * You can reference many files in one step. No need to run multiple steps or combine everything in one YAML file.
-* You can reference folders or use globs to define multiple files (in this case, they will be applied all at once in alphabetical order).
+* You can use glob patterns to define multiple files (in this case, they will be applied all at once in alphabetical order).
 * You can define multiple paths if you need to define a specific order.
 
 The points above unlock scenarios like deploying many apps within one step. Let's say you might want to
@@ -44,9 +44,9 @@ The points above unlock scenarios like deploying many apps within one step. Let'
 
 * deploy your first app after that (e.g. `/configuration/db-*.yaml`),
 
-* and the second app at the end (e.g. `/configuration/web-*.yaml`). 
+* and the second app at the end (e.g. `/configuration/web-*.yaml`).
 
-You might notice that a file like `/configuration-db-configmap.yaml` will be referenced twice. It's not neat, but the deployment will work anyway (unless it includes jobs, the second deployment typically wont have any effect).
+You might notice that a file like `/configuration-db-configmap.yaml` would be referenced twice. It's not neat, but the deployment will work anyway (unless it includes jobs, the second deployment typically wont have any effect).
 
 There is also nothing wrong with using the same files multiple times in different steps. In this case, you can consider the files templates and change them with [Octopus variables](https://octopus.com/docs/projects/variables) embedded in YAML.
 
@@ -100,7 +100,7 @@ Each path can point to one or many files.
 
 ![Multiple paths example](/blog/2023-05/manifests-from-git/git-manifest-paths.png "width=500")
 
-You can use glob to specify a folder, e.g. `configs/yaml/*.*`
+You can use glob to specify a folder, e.g. `configs/yaml/*`
 
 #### How Octopus will apply files from the paths
 
@@ -114,7 +114,7 @@ You can also use variables in the path row and specify multiple files in a varia
 
 #### When Octopus will fetch files from Git
 
-⚠️ Octopus will record the specific hash specified during release creation, and during deployment will fetch files from the provided repo. It means you can add new files to Git before the release but after configuring the step. Octopus will use those files for deployments (if they meet the path configuration). but if you add new files after a release is created, Octopus won't deploy these files with that release.
+⚠️ Octopus will record the commit hash specified during release creation (this may be the tip of a branch or label), and during deployment will fetch files from the provided repo. This means that if you add new files to Git before creating a release but after configuring the step, Octopus will still use those files for deployments (if they meet the path configuration). But if you add or update files to the same branch after a release is created, Octopus won't deploy these files with that release.
 
 ### What you see on the release page
 
