@@ -19,7 +19,9 @@ In this post, I walk you through configuring our new **Deploy a Bicep template**
 
 ## Getting started
 
-To start, add the **Deploy a Bicep template** step to your deployment process. This step depends on the [Bicep module](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/install) of the Azure CLI in the execution environment. Assuming the Azure CLI is already installed and on path, install the Bicep module using:
+You need an Azure account to use the **Deploy a Bicep template** step. For help configuring an Azure account, read our docs about [connecting an Azure account to Octopus Deploy](https://octopus.com/docs/infrastructure/accounts/azure#azure-service-principal). 
+
+To get started using the new step, add the **Deploy a Bicep template** step to your deployment process. This step depends on the [Bicep module](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/install) of the Azure CLI in the execution environment. Assuming the Azure CLI is already installed and on path, install the Bicep module using:
 
 ```
 az bicep install
@@ -57,7 +59,7 @@ In complete mode, Resource Manager deletes resources that exist in the resource 
 
 ## Account configuration
 
-You need an Azure account along with a target resource group. For help configuring an Azure account, read our docs about [connecting an Azure account to Octopus Deploy](https://octopus.com/docs/infrastructure/accounts/azure#azure-service-principal). 
+You need an Azure account along with a target resource group.
 
 When specifying a resource group if it does not exist, it gets created as part of the deployment process. If the resource group does not exist and it's being created as a part of the deployment, you must specify the resource group location.
 
