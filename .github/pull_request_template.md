@@ -14,7 +14,7 @@ The design team will work on a design for the blog image. Add any ideas you have
 
 - [ ] The draft is complete and this post is ready to be reviewed.
 - [ ] I'm familiar with the [guide for blog content basics](https://www.octopus.design/932c0f1a9/p/901d2a-blog-content).
-- [ ] I've checked the content using Grammarly and the [Hemingway app](https://hemingwayapp.com/) to remove typos, grammatical errors, and passive voice. 
+- [ ] I've checked the content using Grammarly (Octopus has a corporate license) and the [Hemingway app](https://hemingwayapp.com/) to remove typos, grammatical errors, and passive voice. 
 - [ ] The PR build passes validation, and if it doesn't, I've checked the [common validations errors](https://www.octopus.design/932c0f1a9/p/901d2a-blog-content/t/817249) and none of those apply.
 - [ ] The images I've included follow the [rules for working with images](https://www.octopus.design/932c0f1a9/p/5061d7-working-with-images).
 - [ ] I've added alt text for all the images I've included (alt text describes image to people unable to see it, 125 characters max)
