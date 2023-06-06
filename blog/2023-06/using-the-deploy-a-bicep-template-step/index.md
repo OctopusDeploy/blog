@@ -33,7 +33,7 @@ az bicep install
 
 You can store the templates using the source code editor or packages when configuring the **Deploy a Bicep template** step.
  
-The first and easier option is the Source Code editor. Here you can directly edit your Bicep template. 
+The first and easier option is the source code editor. Here you can directly edit your Bicep template. 
 
 Alternatively, you can store your Bicep files in a package and provide a path to the template. When you use packages, you can provide many Bicep templates and reference modules in [local files](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/modules#local-file) using relative paths. You need to provide the relative path to the Bicep template file contained in the package when using packages.
 
