@@ -63,4 +63,8 @@ When specifying a resource group if it does not exist, it gets created as part o
 
 ![Bicep Account Configuration](bicep-account.png "width=500")
 
+## Conclusion
+
+Like our existing Deploy an ARM template step, Bicep deployments will periodically poll and report the deployment state. Output parameters such as the Deployment name are available using #{AzureRmOutputs[DeploymentName]} along with [resource properties](https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/template-functions-deployment#example) via #{AzureRmOutputs[PropertyName]}. Please reach out via our [community Slack](https://octopus.com/slack) if you have any questions, comments or feedback.
+
 Happy deployments!
