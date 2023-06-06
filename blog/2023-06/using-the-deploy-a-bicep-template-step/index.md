@@ -31,21 +31,21 @@ az bicep install
 
 You can store the templates using the source code editor or packages when configuring the **Deploy a Bicep Template** step.
  
-The first and easier option is the Source Code editor. Here you can directly edit your bicep template. 
+The first and easier option is the Source Code editor. Here you can directly edit your Bicep template. 
 
-Alternatively, you can store your bicep files in a package and provide a path to the template. When you use packages, you can provide many bicep templates and reference modules in [local files](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/modules#local-file) using relative paths. You need to provide the relative path to the Bicep template file contained in the package when using packages.
+Alternatively, you can store your Bicep files in a package and provide a path to the template. When you use packages, you can provide many Bicep templates and reference modules in [local files](https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/modules#local-file) using relative paths. You need to provide the relative path to the Bicep template file contained in the package when using packages.
 
 ![Code Editor or Package Selector](codeeditor-or-package-selector.png "width=500")
 
 To provide parameters to these Bicep templates, you get a list of key-value pairs.
 
-For example given a bicep template with the following param definitions
+For example given a Bicep template with the following param definitions
 
 ```
 param appicationName string
 param location string
 ```
-The following parameters definitions
+You can provide the following parameter definitions using the key-value pairs below. In this example the parameter `applicationName` gets replaced with the value `mypetshop` during the deployment.
 
 ![Bicep Parameters](bicep-parameters.png "width=500")
 
