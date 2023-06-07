@@ -4,9 +4,9 @@ description: Learn how to use port 443 for Polling Tentacles instead of the non-
 author: jonathan.hardy@octopus.com
 visibility: public
 published: 2023-06-12-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-polling-tentacles-over-port-443-2023-x2.png
+bannerImage: blogimage-polling-tentacles-over-port-443-2023-x2.png
+bannerImageAlt: Port 443 between an Octopus Tentacle and a cloud with an Octopus logo on it.
 isFeatured: false
 tags: 
   - Product
@@ -18,7 +18,7 @@ In Octopus Deploy, deployment targets communicate with Octopus Cloud using Tenta
 
 Port 10943 is an unassigned port in the [IANA port listing](https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xhtml?&page=120), and therefore looks suspicious to some. 
 
-Port 443, however, often meets an organization’s firewall rules for outgoing encrypted traffic. This avoids lengthy approval processes to get authorization for firewall exceptions for port 10944. 
+Port 443, however, often meets an organization’s firewall rules for outgoing encrypted traffic. This avoids lengthy approval processes to get authorization for firewall exceptions for port 10943. 
 
 In this post, I explain how to use port 443 for Polling Tentacles.
 
