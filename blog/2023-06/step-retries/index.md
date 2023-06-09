@@ -28,7 +28,7 @@ When you enable retries for a step and an action in that step fails, Octopus wil
 
 If there's a subsequent failure, there's a 15-second delay before the action retries. 
 
-A final retry with a 15-second delay will also take place. 
+A third and final retry with a 15-second delay will also take place. 
 
 If any of these retries are successful, the deployment will proceed. However, if all 3 retries are unsuccessful, the step will fail, or guided failure mode will activate if enabled.
 
