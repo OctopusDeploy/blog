@@ -12,7 +12,7 @@ tags:
   - Product
 ---
 
-Octopus 2023.2 introduces step retries, a new feature that lets you add automatic retries and timeouts to deployments. This feature helps when you're dealing with steps that frequently fail due to temporary or transient errors during deployment.
+Octopus 2023.2 introduces step retries, a new feature that lets you add automatic retries and timeouts to deployments. This feature helps you with steps that frequently fail due to temporary or transient errors during deployment.
 
 Watch the video below to see this new feature in action:
 
