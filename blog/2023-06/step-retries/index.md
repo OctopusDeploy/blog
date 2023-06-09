@@ -43,7 +43,7 @@ You can use step retries on all steps except for:
 
 ### Can I customize the number of retries?
 
-Not at this stage, but please feel free to [provide feedback]((https://octopusdeploy.typeform.com/to/UOObqaxV)) if you'd like this functionality.
+Not at this stage, but please feel free to [provide feedback](https://octopusdeploy.typeform.com/to/UOObqaxV) if you'd like this functionality.
 
 ### Can I set retries to default to ‘on’ for all my steps?
 
