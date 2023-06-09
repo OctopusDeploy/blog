@@ -263,8 +263,8 @@ Learn how to use other popular container images:
 ## Resources
 
 * [Octopus trial](https://octopus.com/start)
-* [NGINX Docker Image](https://hub.docker.com/_/nginx)
-* [NGINX Docker Image Source Code](https://github.com/nginxinc/docker-nginx)
+* [NGINX Docker image](https://hub.docker.com/_/nginx)
+* [NGINX Docker image source code](https://github.com/nginxinc/docker-nginx)
 * [Dockerfile reference](https://docs.docker.com/engine/reference/builder/)
 
 ## Learn more
