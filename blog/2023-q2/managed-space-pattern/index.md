@@ -71,13 +71,17 @@ Note that you may not know the `ManagedTenant.Octopus.SpaceId` value just yet, a
 
 ## Creating managed spaces
 
-The next step is to create a runbook to create managed spaces for each tenant. The reference implementation defines a tenanted runbook called **Create Client Space** in the **__ Create Client Space** project.
+The next step is to create a runbook to create managed spaces for each tenant. The reference implementation defines a tenanted runbook called **Create Client Space** in the **__ Client Space** project:
+
+![Create client space project screenshot](create-client-space.png "width=500")
 
 :::hint
 The double dash prefix on project and runbook names is a convention used by the reference implementation to group these resources in the UI and distinguish them from the template projects.
 :::
 
-This runbook makes use of the [Octopus Terraform provider](https://registry.terraform.io/providers/OctopusDeployLabs/octopusdeploy/latest/docs) to create the new space as part of a **Apply a Terraform template** step.
+This runbook makes use of the [Octopus Terraform provider](https://registry.terraform.io/providers/OctopusDeployLabs/octopusdeploy/latest/docs) to create the new space as part of a **Apply a Terraform template** step:
+
+![Top of the Create Client Space step](create-space-step-top.png "width=500")
 
 See the Terraform configuration to create a new space below:
 
