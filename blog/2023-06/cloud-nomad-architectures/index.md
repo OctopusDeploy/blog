@@ -1,5 +1,5 @@
 ---
-title: Cloud nomad architecture
+title: Cloud-nomad architecture
 description: As more organizations rethink their cloud and microservices decisions, it's time for cloud-nomad architectures.
 author: steve.fenton@octopus.com
 visibility: public
