@@ -67,7 +67,7 @@ We want to provide time before removing Mono, so you can make the required chang
 
 Releases from 2023.2 will show warning messages in your logs if the Calamari execution occurs via Mono. Your deployments will function as normal. However, we hope the messages will remind you the changes are approaching.
 
-From 2023.4 (likely released late in 2023), we'll begin disabling Mono functionality by default in new builds of Octopus Server. At this point, rather than just attempting to use .NET Core, deployments relying on Mono targets will fail with messaging to advise the options available.
+From 2024.1 (likely released early in 2024), we'll begin disabling Mono functionality by default in new builds of Octopus Server. At this point, rather than just attempting to use .NET Core, deployments relying on Mono targets will fail with messaging to advise the options available.
 
 ## How to start using .NET Core
 
