@@ -1,6 +1,6 @@
 ---
-title: Introducing step retries
-description: Learn about our new step retries feature to combat transient connectivity issues and improve deployment success rates.
+title: Introducing Step Retries
+description: Learn about our new Step Retries feature to combat transient connectivity issues and improve deployment success rates.
 author: michelle.obrien@octopus.com
 visibility: public
 published: 2023-06-19-1200
@@ -12,13 +12,13 @@ tags:
   - Product
 ---
 
-Octopus 2023.2 introduces step retries, a new feature that lets you add automatic retries and timeouts to deployments. This feature helps you with steps that frequently fail due to temporary or transient errors during deployment.
+Octopus 2023.2 introduces Step Retries, a new feature that lets you add automatic retries to deployments. This feature helps you with steps that frequently fail due to temporary or transient errors during deployment.
 
 Watch the video below to see this new feature in action:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/2KzwjpdZz70" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-## How do step retries work?
+## How do Step Retries work?
 
 You can enable retries on individual steps found in the **Conditions** section of each step, as shown below:
 
@@ -32,9 +32,9 @@ A third and final retry with a 15-second delay will also take place.
 
 If any of these retries are successful, the deployment will proceed. However, if all 3 retries are unsuccessful, the step will fail, or guided failure mode will activate if enabled.
 
-### Are there any steps I can't use step retries for?
+### Are there any steps I can't use Step Retries for?
 
-You can use step retries on all steps except for:
+You can use Step Retries on all steps except for:
 
 - **Send an Email** step
 - **Manual Intervention** step 
@@ -55,7 +55,7 @@ If enabled, guided failure mode will begin if all 3 retries are unsuccessful.
 
 ## Conclusion
 
-To help improve the success rate and automation of deployments, you can now add automatic retries and timeouts to deployments. This lets you enable retries automatically from a failed action. The result is fewer manual interventions when transient connectivity issues interrupt your deployments.
+To help improve the success rate and automation of deployments, you can now add automatic retries to deployments. This lets you enable retries automatically from a failed action. The result is fewer manual interventions when transient connectivity issues interrupt your deployments.
 
 ## Feedback
 
