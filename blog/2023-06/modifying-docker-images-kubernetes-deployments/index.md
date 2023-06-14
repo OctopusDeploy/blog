@@ -3,17 +3,15 @@ title: Modifying Docker images during Kubernetes deployments
 description: With the help of some open source Docker image tools and Kubernetes' mounting options, it’s possible to deploy a single image across multiple environments that include templated files.
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2019-11-20
+published: 2023-06-28-1400
 metaImage: kubernetes-template-files.png
 bannerImage: kubernetes-template-files.png
 bannerImageAlt: Using template files in Kubernetes
 tags:
- - Engineering
+ - DevOps
  - Kubernetes
  - Docker
 ---
-
-![Using template files in Kubernetes](kubernetes-template-files.png)
 
 If you have ever deployed an application in Octopus before, you have probably made use of variable substitution in files as a way of taking a generic application package and injecting environment specific configuration during deployment. This process is convenient because you can produce a single application artifact, and each environment is then responsible for customizing it to match the local infrastructure.
 
@@ -196,3 +194,5 @@ If we then progress this deployment to the next environment, we can see that the
 File variable replacements are a convenient way to create generic packages that can be deployed to any environment. Although it takes a few additional steps, this same workflow can be applied to Kubernetes deployments.
 
 By taking advantage of `skopeo` and `umoci` to download and extract the Docker images, and then using ConfigMaps as volume mounts in Kubernetes, we can achieve the effect of replacing templated files during deployments without having to publish environment specific Docker images.
+
+Happy deployments!
