@@ -12,7 +12,7 @@ tags:
   - Product
 ---
 
-We've received [user voice](https://octopusdeploy.uservoice.com/forums/170787-product-feedback/suggestions/6396476-add-timeout-support-for-individual-steps-and-overa) feedback requesting Execution Timeouts, a feature to handle hung deployment processes. We're excited to announce that Octopus 2023.3 introduces Execution Timeouts, a way to configure automatic step cancellations. Some deployment processes such as Azure FTP connections and CloudFormation updates include long-running actions. These can last for hours or even hang indefinitely. With Execution Timeouts, you can now set a time limit in minutes within steps a step configuration. When this timeout lapses, the action fails and the deployment process continues. Paired with auto-retries, this increases the likelihood of successful deployments.
+We've received [user voice](https://octopusdeploy.uservoice.com/forums/170787-product-feedback/suggestions/6396476-add-timeout-support-for-individual-steps-and-overa) feedback requesting Execution Timeouts, a feature to handle hung deployment processes. We're excited to announce that Octopus 2023.3 introduces Execution Timeouts, a way to configure automatic step cancellations. Some deployment processes such as Azure FTP connections and CloudFormation updates include long-running actions. These can last for hours or even hang indefinitely. With Execution Timeouts, you can now set a time limit in minutes within steps a step configuration. When this timeout lapses, the action fails, and the deployment process continues. Paired with auto-retries, this increases the likelihood of successful deployments.
 
 Watch the video below to see this new feature in action:
 
