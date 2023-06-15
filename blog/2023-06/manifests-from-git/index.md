@@ -28,7 +28,7 @@ Referencing files from a Git repo is the latest addition and the new default opt
 
 ![New option on the step configuration to fetch files from Git repos](/blog/2023-06/manifests-from-git/git-manifest-enable.png "width=500")
 
-### What it does
+### What the new feature does
 
 Despite the clear benefit of sourcing files without the need to package them, the new functionality introduces a few more improvements.
 
@@ -46,29 +46,31 @@ The points above unlock scenarios like deploying many apps within one step. Let'
 
 You might notice that a file like `/configuration-db-configmap.yaml` would be referenced twice. It's not neat, but the deployment will work anyway (unless it includes jobs, the second deployment typically wont have any effect).
 
-There is also nothing wrong with using the same files multiple times in different steps. In this case, you can consider the files templates and change them with [Octopus variables](https://octopus.com/docs/projects/variables) embedded in YAML.
+There is also nothing wrong with using the same files multiple times in different steps. In this case, you can consider the file templates and change them with [Octopus variables](https://octopus.com/docs/projects/variables) embedded in YAML.
 
 You can also use [structured configuration variables](https://octopus.com/blog/structured-variables-raw-kubernetes-yaml) if you don't want to change your YAML files, so you can still use them for deployments outside of Octopus.
 
 Finally, you can use Octopus variables in the paths or repository links, making powerful step templates.
 
-### Using templates
+### How to create a template
 
-Imagine we have a complex app consisting of 100 microservices. We combined these microservices in three similar groups so that we could define YAML files for each group. At the same time, we still want to change some parameters for each app (like the image name).
+Imagine you're a member of a platform team owning Kubernetes clusters and deployment pipelines. Your company develops a complex app consisting of 100 microservices. You combined these microservices in three similar groups so that you could define YAML templates for each group. You still need to change some parameters for each app (like the image name).
 
-We also want our software teams to quickly configure new deployments without diving deep into YAML configurations.
+In this case, you can create three new repos with configuration files. One for each group of microservices. Storing all the configuration files in one repo will also work, but for the sake of the example, let's say you have three.
 
-In this case, we can create three new repos with configuration files. One for each group of microservices. Storing all the configuration files in one repo will also work, but for the sake of the example, let's say we have three.
+There are two ways of modifying configuration files with Octopus. The most straightforward one is to use Octopus variables. In this case, you need to replace values you want to change in your configuration files with variables like `#{containerImage}` or `#{appLabel}`. You can combine variables; for example, the value for `spec.template.spec.containers[0].image` can look like `#{containerImage}:#{containerTag}`. You can even use [extended syntax](https://octopus.com/docs/projects/variables/variable-substitutions#VariableSubstitutionSyntax-ExtendedSyntax) to cater for advanced scenarios.
 
-We can create a new step template from the `Deploy raw Kubernetes YAML` and specify a git repo path with the `Octopus.ProjectGroup.Name`. This allows us to use the project group name as a reference.
+Files with Octopus variables are easy to inspect, and you can achieve tremendous flexibility with variables. However, sometimes you might need to have valid YAML in your repository. For example, if you need to test the configuration locally. In this case, you can take another step and use [structured variable replacement](https://octopus.com/blog/structured-variables-raw-kubernetes-yaml).
 
-![Adding variable to the Git path row](/blog/2023-06/manifests-from-git/git-manifest-paths.png "width=500")
+Despite the option you choose, you can configure some variables for all projects using [library sets](https://octopus.com/docs/projects/variables/library-variable-sets). It's handy if all your apps, for example, should have a certain number of replicas in a given environment. Project-specific variables can be configured at the project level.
 
-After that, we can specify multiple paths to the YAML templates (if we keep the structure in all three template repos the same).
+### Hiding complexity
 
-We can use variables like `Octopus.Project.Name` in combination with `Octopus.Release.Number` to modify YAML files. For example, we can change container images, namespaces and other configuration parameters. In this case, software engineers won't have to specify these values for their deployment.
+You might want to hide Kubernetes complexity from your software teams by exposing a limited number of properties a team should change to make the template work. We can achieve this by creating a step template. With step templates, there is no need for software teams to learn YAML, know where templates are stored  or even fill in all the variables when creating a project.
 
-Finally, we can expose (i.e. allow to modify when using the step template) variables like the number of replica sets or container ports.
+You can create a new step template from the `Deploy raw Kubernetes YAML`, and use variables like `Octopus.Project.Name`, `Octopus.Release.Number`, and many other [system variables](https://octopus.com/docs/projects/variables/system-variables) so software teams won't have to fill in these values. For example, your `spec.template.spec.containers[0].image` can actually look like `#{Octopus.Project.Name}:#{Octopus.Release.Number}`. 
+
+Finally, you can expose (i.e. allow to modify when using the step template) variables like the number of replica sets or container ports.
 
 ![Variables exposed via step templates](/blog/2023-06/manifests-from-git/git-manifest-step-template.png "width=500")
 
@@ -76,12 +78,16 @@ In this scenario, a new app deployment configuration would be as simple as creat
 
 ### How to configure
 
+Now you just need to configure the deployment step.
+
 1. Open the process editor and find a `Deploy raw Kubernetes YAML` step you want to modify (or add a new one).
 2. Choose the option to source YAML manifests from Git (the default option for newly added steps).
 3. Choose Git credentials (or add new ones to the library following the link).
-4. Specify a Git repo URI. You can use a variable in this row; it might be handy to create a step template. You cannot scope this variable per environment; it should be one value per project.
-5. Specify the files you want to use for the deployment (provide path).
-6. Save the process configuration.
+4. Specify a Git repo URI. You can use a variable in this row (e.g. `Octopus.ProjectGroup.Name`). You cannot scope this variable per environment; it should be one value per project.
+6. Specify the files you want to use for the deployment (provide path).
+7. Save the process configuration.
+
+![Adding variable to the Git path row](/blog/2023-06/manifests-from-git/git-manifest-paths.png "width=500")
 
 Now you can create a release and deploy it. Octopus will clone your Git repo, find the files you specified and deploy them.
 
@@ -122,7 +128,9 @@ When you create a release, Octopus shows you the list of saved release files and
 
 ## Conclusion
 
-Sourcing files from Git enable Kubernetes configuration templating at a new level. Give it a try and share your thoughts with us.
+Sourcing files from Git enable Kubernetes configuration templating. You can make Kubernetes deployments easy for people in your company and maintain standardisation at the same time.
+
+There are many other ways to use this feature. We're looking forward to hearing your thoughts so we can improve it further. Feel free to leave your feedback in the feedback form you find when you configure the `Deploy raw Kubernetes YAML` step.
 
 ## Learn more
 
