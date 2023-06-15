@@ -14,17 +14,17 @@ tags:
   - Kubernetes
 ---
 
-In this blog post we'll show how to use YAML manifests from Git in Octopus for Kubernetes deployments. It's an simple but powerful tool enabling complex scenarios like configuration templating.
+There are a few ways to configure Kubernetes, but the de-facto default option we think about mentioning Kubernetes is the declarative configuration with YAML manifests. Another de-facto standard is storing configurations in Git. It's a natural choice for engineers who used to evolve and audit all other code this way.
 
-## Body
+Till now, you cannot source configuration files directly from Git; an interim step was required – packaging files and sending them to Octopus. This approach has a few advantages, like no dependency on Git at the moment of deployment or easy release management. And yet it didn't feel like the most native way to deploy to Kubernetes.
 
-Octopus suggests two strategies to configure your Kubernetes deployments. First, you can create the configuration in Octopus using our built-in steps like `Deploy Kubernetes containers`. This approach allows you to start fast and evolve your configuration in Octopus, leveraging our UI.
+That's why we introduce an improvement allowing you to source files directly from Git. We managed to preserve the benefits of the package approach, so you won't have to give up on release immutability.
 
-An alternative approach is to create and evolve your configuration as YAML code. This blog post will focus on this method.
+Having said that, we don't see the new way to source YAML manifests as just an alternative to packages. It enables more advanced scenarios. In this blog post, we'll illustrate one of them — configuration templating. In this scenario, you can reference the same set of YAML files in multiple projects and modify them with Octopus variables on the project level. It works well in case you manage multiple similar services and aim to save time and introduce standards in how they should be configured.
 
-Until recently, there were also two ways to deploy YAML in Octopus. You could paste code in Octopus (in a script or the `Deploy raw Kubernetes YAML` step) or provide code with a package.
+## Templating Kubernetes configuration when sourcing YAML files from GIt
 
-We've added a new method — referencing files from a Git repo. This is the latest addition and now the default option for the `Deploy raw Kubernetes YAML` step.
+Referencing files from a Git repo is the latest addition and the new default option for the `Deploy raw Kubernetes YAML` step.
 
 ![New option on the step configuration to fetch files from Git repos](/blog/2023-05/manifests-from-git/git-manifest-enable.png "width=500")
 
@@ -52,7 +52,7 @@ You can also use [structured configuration variables](https://octopus.com/blog/s
 
 Finally, you can use Octopus variables in the paths or repository links, making powerful step templates.
 
-### Example
+### Using templates
 
 Imagine we have a complex app consisting of 100 microservices. We combined these microservices in three similar groups so that we could define YAML files for each group. At the same time, we still want to change some parameters for each app (like the image name).
 
