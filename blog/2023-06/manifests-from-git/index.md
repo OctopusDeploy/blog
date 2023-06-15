@@ -1,12 +1,12 @@
 ---
 title: Sourcing Kubernetes manifests from Git
-description: You can now reference YAML configurations from your Git repository in the "Deploy raw Kubernetes YAML" step. Say goodbye to building packages and copying and pasting code.
+description: You can now reference YAML configurations from your Git repository in the Deploy raw Kubernetes YAML step. Say goodbye to building packages and copying and pasting code.
 author: nikita.dergilev@octopus.com
 visibility: public
 published: 2023-06-26-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-usinggittosourcekubernetes-2023-1500x800px.png
+bannerImage: blogimage-usinggittosourcekubernetes-2023-1500x800px.png
+bannerImageAlt: Kubernetes logo and Octopus branded terminal showing output from a task log.
 isFeatured: false
 tags: 
   - Product
@@ -18,7 +18,7 @@ There are several ways to configure Kubernetes, but a default option is a declar
 
 Until now, you couldn't source configuration files directly from Git. You needed an interim step involving packaging files and sending them to Octopus. This approach has advantages, like no dependency on Git at the moment of deployment and easy release management. However, it doesn't feel like the simplest way to deploy to Kubernetes.
 
-That's why we've introduced an improvement so you can source files directly from Git. We preserved the benefits of the package approach, so you won't have to give up on your release immutability.
+That's why we introduced an improvement so you can source files directly from Git. We preserved the benefits of the package approach, so you won't have to give up on your release immutability.
 
 The new way to source YAML manifests isn't just an alternative to packages. It enables more advanced scenarios. 
 
