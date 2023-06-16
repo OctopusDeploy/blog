@@ -51,7 +51,7 @@ More recently, 37signals, the creators of Basecamp and Hey, [repatriated workloa
 
 You don't need to pick a single hosting strategy for all workloads. You can use a mixture of public cloud, private cloud, and on-premises infrastructure, just as you can use multiple cloud vendors.
 
-### The microservice consolidation trend
+### The microservices consolidation trend
 
 With microservices, many companies are opting to consolidate them either into fewer *macroservices* or into a single monolithic application.
 
@@ -87,7 +87,7 @@ Cloud-nomad architecture encompasses the trend toward fewer services you can hos
 
 ### Portable shelters
 
-Ancient hunter-gatherers learned to move to where the food was. Rather than having a fixed home, they would migrate based on the seasonal availability of water, plants, and animals. In more modern times, tinkers and traders moved to where they could find new customers.
+Ancient hunter-gatherers learned to move to where the food was. Rather than having a fixed home, they migrated based on the seasonal availability of water, plants, and animals. In more modern times, tinkers and traders moved to where they could find new customers.
 
 To maintain mobility, nomads developed portable dwellings or temporary shelters like [goahti](https://en.wikipedia.org/wiki/Goahti), [tipis](https://en.wikipedia.org/wiki/Tipi), and [wickiups](https://en.wikipedia.org/wiki/Wigwam).
 
