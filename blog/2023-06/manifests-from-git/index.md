@@ -145,8 +145,8 @@ There are many other ways to use this feature.
 
 We look forward to hearing your thoughts so we can improve it further. Feel free to leave your feedback in Octopus when you configure the **Deploy raw Kubernetes YAML** step. You'll find a survey link [in Octopus](https://octopus.com/signin), in a banner above the container steps.
 
-## Learn more
+<!-- ## Learn more
 
-- [A LINK TO DOCS SHOULD BE HERE](https://www.example.com/resource)
+- [A LINK TO DOCS SHOULD BE HERE](https://www.example.com/resource)-->
 
 Happy deployments!
