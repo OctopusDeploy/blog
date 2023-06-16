@@ -70,7 +70,7 @@ You might want to hide Kubernetes complexity from your software teams by exposin
 
 With step templates, there's no need for software teams to learn YAML, know where to store templates, or fill in the variables when creating a project.
 
-so software teams won't have to fill in these values, you can create a new step template from the `Deploy raw Kubernetes YAML`, and use variables. For example:
+So software teams won't have to fill in these values, you can create a new step template from the **Deploy raw Kubernetes YAML** step, and use variables. For example:
 
 - `Octopus.Project.Name`
 - `Octopus.Release.Number`
