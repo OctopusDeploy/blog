@@ -36,7 +36,7 @@ Sourcing files without the need to package them is one clear benefit of this new
 
 - You can reference many files in one step. There's no need to run multiple steps or combine everything in one YAML file.
 - You can use glob patterns to define multiple files (in this case, they're applied all at once in alphabetical order).
-- You can define multiple paths if you need to define a specific order.
+- You can provide multiple paths if you need to define a specific order.
 
 The benefits listed above unlock scenarios like deploying many apps in one step. For example, you might want to:
 
