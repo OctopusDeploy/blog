@@ -13,17 +13,17 @@ tags:
  - Docker
 ---
 
-If you have ever deployed an application in Octopus before, you have probably made use of variable substitution in files as a way of taking a generic application package and injecting environment specific configuration during deployment. This process is convenient because you can produce a single application artifact, and each environment is then responsible for customizing it to match the local infrastructure.
+If you've ever deployed an application in Octopus before, you probably made use of variable substitution in files as a way of taking a generic application package and injecting environment specific configuration during deployment. This process is convenient because you can produce a single application artifact, and each environment is then responsible for customizing it to match the local infrastructure.
 
-Replacing files in application packages like ZIPs or NUPKGs is straight forward because theses files are standard archives, and can be easily modified after they are downloaded from the artifact repository but before they are deployed to their final target.
+Replacing files in application packages like ZIPs or NUPKGs is straight forward because theses files are standard archives, and can be easily modified after they're downloaded from the artifact repository but before they're deployed to their final target.
 
-Docker image files aren’t quite as easy to work with. For a start, there is some magic in the way the layers are built up to ensure that both new and deleted files are respected, meaning unpacking a Docker image file is not as simple as untar-ing the individual layers. Second, Kubernetes expects to pull down an image directly from a repository, which removes Octopus from the pipeline as far as distributing customized artifacts is concerned.
+Docker image files aren’t quite as easy to work with. For a start, there's some magic in the way the layers are built up to ensure that both new and deleted files are respected, meaning unpacking a Docker image file is not as simple as untar-ing the individual layers. Second, Kubernetes expects to pull down an image directly from a repository, which removes Octopus from the pipeline as far as distributing customized artifacts is concerned.
 
-The good news is that we can take advantage of some open source tools created by the community for downloading and unpacking Docker images, and then use the native ability in Kubernetes to mount individual files into Pods to achieve much the same end result as deploying a modified package.
+The good news is that we can take advantage of some open source tools created by the community for downloading and unpacking Docker images, and then use the built-in ability in Kubernetes to mount individual files into Pods to achieve much the same end result as deploying a modified package.
 
 ## The sample application
 
-To demonstrate template file processing we have a very simple Docker image based on HTTPD that will display a HTML page with the name of the current environment. The code for this image can be found on [GitHub](https://github.com/OctopusDeploy/DockerFileReplacementDemo) and has been published as the image [mcasperson/dockerfilereplacement](https://hub.docker.com/r/mcasperson/dockerfilereplacement).
+To demonstrate template file processing, we have a very simple Docker image based on HTTPD that will display a HTML page with the name of the current environment. The code for this image can be found on [GitHub](https://github.com/OctopusDeploy/DockerFileReplacementDemo) and has been published as the image [mcasperson/dockerfilereplacement](https://hub.docker.com/r/mcasperson/dockerfilereplacement).
 
 The HTML file that is displayed by the Docker app is shown below. The string `#{Octopus.Environment.Name}` is intended to be replaced with the name of the environment once the deployment has been completed with Octopus:
 
@@ -112,7 +112,7 @@ read_file template.html TemplateHtml
 echo -e $TemplateHtml
 ```
 
-Once we have the contents of the file, we save it as an [output variable](https://octopus.com/docs/deployment-process/variables/output-variables):
+After we have the contents of the file, we save it as an [output variable](https://octopus.com/docs/deployment-process/variables/output-variables):
 
 ```bash
 set_octopusvariable "TemplateHtml" ${TemplateHtml}
@@ -177,7 +177,7 @@ For convenience, this Pod will be exposed directly by a LoadBalancer service. Th
 
 ## The processed result
 
-Once this deployment completes, we will have a public IP that we can use to access the web server. Now when we open the `template.html` page, we get the HTML template file with the variables replaced. This means we now see the name of the environment in the body of the web page.
+After this deployment completes, we'll have a public IP that we can use to access the web server. Now when we open the `template.html` page, we get the HTML template file with the variables replaced. This means we now see the name of the environment in the body of the web page.
 
 ![](k8s-pod.png "width=500")
 
