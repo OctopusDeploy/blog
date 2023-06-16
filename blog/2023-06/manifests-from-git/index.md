@@ -46,7 +46,7 @@ The benefits listed above unlock scenarios like deploying many apps in one step.
 
 You might notice that a file like `/configuration-db-configmap.yaml` gets referenced twice. It's not neat, but the deployment works anyway (unless it includes jobs, the second deployment typically won't have any effect).
 
-There is also nothing wrong with using the same files multiple times in different steps. You can consider the file templates and change them with [Octopus variables](https://octopus.com/docs/projects/variables) embedded in YAML.
+There is also nothing wrong with using the same files multiple times in different steps. You can consider the files as templates and change them with [Octopus variables](https://octopus.com/docs/projects/variables) embedded in YAML.
 
 You can also use [structured configuration variables](https://octopus.com/blog/structured-variables-raw-kubernetes-yaml) if you don't want to change your YAML files, so you can still use them for deployments outside of Octopus.
 
