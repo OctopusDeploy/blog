@@ -14,7 +14,7 @@ tags:
   - Kubernetes
 ---
 
-There are several ways to configure Kubernetes, but a default option is a declarative configuration with YAML manifests. Another standard is storing your configuration in Git. It's a natural choice if you evolve and audit all your other code this way.
+There are several ways to configure Kubernetes, but a default option is declarative configuration with YAML manifests. Another standard is storing your configuration in Git. It's a natural choice if you evolve and audit all your other code this way.
 
 Until now, you couldn't source configuration files directly from Git. You needed an interim step involving packaging files and sending them to Octopus. This approach has advantages, like no dependency on Git at the moment of deployment and easy release management. However, it doesn't feel like the simplest way to deploy to Kubernetes.
 
@@ -46,7 +46,7 @@ The benefits listed above unlock scenarios like deploying many apps in one step.
 
 You might notice that a file like `/configuration-db-configmap.yaml` gets referenced twice. It's not neat, but the deployment works anyway (unless it includes jobs, the second deployment typically won't have any effect).
 
-There is also nothing wrong with using the same files multiple times in different steps. You can consider the files as templates and change them with [Octopus variables](https://octopus.com/docs/projects/variables) embedded in YAML.
+You can also use the same files multiple times in different steps. You can consider the files as templates and change them with [Octopus variables](https://octopus.com/docs/projects/variables) embedded in YAML.
 
 You can also use [structured configuration variables](https://octopus.com/blog/structured-variables-raw-kubernetes-yaml) if you don't want to change your YAML files, so you can still use them for deployments outside of Octopus.
 
@@ -62,7 +62,7 @@ There are 2 ways of modifying configuration files with Octopus. The most straigh
 
 Files with Octopus variables are easy to inspect, and you have tremendous flexibility with variables. However, sometimes you need valid YAML in your repository. For example, if you need to test the configuration locally. In this case, you can take another step and use [structured variable replacement](https://octopus.com/blog/structured-variables-raw-kubernetes-yaml).
 
-Despite the option you choose, you can configure some variables for all projects using [library sets](https://octopus.com/docs/projects/variables/library-variable-sets). It's helpful if all your apps, for example, have a certain number of replicas in a given environment. You can configure project-specific variables at the project level.
+Whatever option you choose, you can configure some variables for all projects using [library sets](https://octopus.com/docs/projects/variables/library-variable-sets). It's helpful if all your apps, for example, have a certain number of replicas in a given environment. You can configure project-specific variables at the project level.
 
 ### Hiding complexity
 
@@ -86,7 +86,7 @@ In this scenario, a new app deployment configuration is as simple as creating a 
 
 ### How to configure the deployment step
 
-Now you just need to configure the deployment step.
+To configure the deployment step:
 
 1. Open the process editor and find the **Deploy raw Kubernetes YAML** step you want to modify, or add a new one.
 1. Choose the option to source YAML manifests from Git - the default option for newly added steps.
@@ -141,7 +141,9 @@ When you create a release, Octopus shows you the list of saved release files and
 
 Sourcing files from Git enables Kubernetes configuration templating. You can make Kubernetes deployments easy for people in your company and maintain standardization at the same time.
 
-There are many other ways to use this feature. We're looking forward to hearing your thoughts so we can improve it further. Feel free to leave your feedback via the form you find in Octopus when you configure the **Deploy raw Kubernetes YAML** step.
+There are many other ways to use this feature. 
+
+We look forward to hearing your thoughts so we can improve it further. Feel free to leave your feedback in Octopus when you configure the **Deploy raw Kubernetes YAML** step. You'll find a survey link [in Octopus](https://octopus.com/signin), in a banner above the container steps.
 
 ## Learn more
 
