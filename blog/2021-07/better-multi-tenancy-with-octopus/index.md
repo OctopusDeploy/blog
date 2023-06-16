@@ -30,7 +30,7 @@ This post assumes knowledge of some key Octopus concepts, including:
 - Variables
 - Lifecycles
 
-If you're new to Octopus, I recommend reading our [Getting started with Octopus guide](https://octopus.com/docs/getting-started). 
+If you're new to Octopus, I recommend reading our [Getting started with Octopus guide](https://octopus.com/docs/getting-started) and [tenanted deployments](https://octopus.com/use-case/tenanted-deployments) use case page. 
 
 To demonstrate how you can model deployments of multiple instances of an application with Octopus, I use a fictitious company called **Vet Clinic**, deploying the Java application, [Pet Clinic](https://github.com/spring-projects/spring-petclinic). 
 

@@ -404,7 +404,7 @@ To start using your new tenants with your deployments, you need to set up your [
 
 ## Conclusion
 
-Multi-tenancy in Octopus is a powerful feature that you can leverage to create scalable, reusable, simplified deployments. Converting a sizable existing project to multi-tenancy can seem like a momentous task though. 
+[Multi-tenancy](https://octopus.com/use-case/tenanted-deployments) in Octopus is a powerful feature that you can leverage to create scalable, reusable, simplified deployments. Converting a sizable existing project to multi-tenancy can seem like a momentous task though. 
 
 This post shows a few of the steps to convert an existing project to multi-tenancy. I hope it demonstrates how the Octopus API helps you automate the steps in the process, saving you time and the possibility of hundreds of mouse clicks in the UI.
 
