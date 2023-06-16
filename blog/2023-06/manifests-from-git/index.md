@@ -122,7 +122,7 @@ Octopus applies all files from one path at the same time using `kubectl apply`. 
 Octopus applies files from different paths in sequence using multiple `kubectl apply` commands. Octopus doesn't wait for the cluster to implement an applied configuration before executing the following `kubectl apply` command. However, it waits for the `kubectl` command to complete.
 
 :::hint
-You can use paths to enforce a particular order of files application.
+You can use paths to enforce a particular order of file application.
 :::
 
 You can also use variables in the path row and specify multiple files in a variable.
