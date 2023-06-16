@@ -99,7 +99,7 @@ Now you just need to configure the deployment step.
 
 Now you can create a release and deploy it. Octopus will clone your Git repo, find the files you specified, and deploy them.
 
-Variables replacement, including structured configuration variables, will work as usual. Therefore, you can use Octopus variables in your YAML files if needed.
+Variable replacement, including structured configuration variables, will work as usual. Therefore, you can use Octopus variables in your YAML files if needed.
 
 #### How to configure file paths
 
