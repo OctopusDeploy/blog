@@ -1,6 +1,6 @@
 ---
 title: Sourcing Kubernetes manifests from Git
-description: You can now reference YAML configurations from your Git repository in the Deploy raw Kubernetes YAML step. Say goodbye to building packages and copying and pasting code.
+description: You can now reference YAML configurations from your Git repository in the Deploy raw Kubernetes YAML step.
 author: nikita.dergilev@octopus.com
 visibility: public
 published: 2023-06-26-1400
@@ -18,7 +18,7 @@ There are several ways to configure Kubernetes, but a default option is declarat
 
 Until now, you couldn't source configuration files directly from Git. You needed an interim step involving packaging files and sending them to Octopus. This approach has advantages, like no dependency on Git at the moment of deployment and easy release management. However, it doesn't feel like the simplest way to deploy to Kubernetes.
 
-That's why we introduced an improvement so you can source files directly from Git. We preserved the benefits of the package approach, so you won't have to give up on your release immutability.
+That's why we introduced an improvement so you can source files directly from Git. We preserved the benefits of the package approach, so you won't have to give up on your release immutability. 
 
 The new way to source YAML manifests isn't just an alternative to packages. It enables more advanced scenarios. 
 
@@ -139,11 +139,11 @@ When you create a release, Octopus shows you the list of saved release files and
 
 ## Conclusion
 
-Sourcing files from Git enables Kubernetes configuration templating. You can make Kubernetes deployments easy for people in your company and maintain standardization at the same time.
+Sourcing files from Git enables Kubernetes configuration templating. You can make Kubernetes deployments easy for people in your company and maintain standardization at the same time. There are many other ways to use this feature. 
 
-There are many other ways to use this feature. 
+If you're an Octopus Cloud customer, the feature will be available in early July. For Octopus Server customers, it will be available later in the year, in Octopus 2023.3.
 
-We look forward to hearing your thoughts so we can improve it further. Feel free to leave your feedback in Octopus when you configure the **Deploy raw Kubernetes YAML** step. You'll find a survey link [in Octopus](https://octopus.com/signin), in a banner above the container steps.
+We look forward to hearing your thoughts after you try using the feature, so we can improve it further. Feel free to leave your feedback in Octopus when you configure the **Deploy raw Kubernetes YAML** step. You'll find a survey link [in Octopus](https://octopus.com/signin) when the feature is available, in a banner above the container steps.
 
 <!-- ## Learn more
 
