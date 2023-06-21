@@ -4,9 +4,9 @@ description: As more organizations rethink their cloud and microservices decisio
 author: steve.fenton@octopus.com
 visibility: public
 published: 2023-06-21-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: blogimage-cloudnomad-2023.png
+bannerImage: blogimage-cloudnomad-2023.png
+bannerImageAlt: Kombi van carrying a server in a cloud
 isFeatured: false
 tags: 
   - DevOps
