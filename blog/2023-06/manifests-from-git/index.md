@@ -22,7 +22,7 @@ That's why we introduced an improvement so you can source files directly from Gi
 
 The new way to source YAML manifests isn't just an alternative to packages. It enables more advanced scenarios. 
 
-In this post, I illustrate one of those advanced scenarios — configuration templating. You can reference the same set of YAML files in multiple projects and modify them with Octopus variables on the project level. It's helpful if you manage many similar services, saving you time and introducing standards for configuring them.
+In this post, I walk you through one of those advanced scenarios — configuration templating. You can reference the same set of YAML files in multiple projects and modify them with Octopus variables on the project level. It's helpful if you manage many similar services, saving you time and introducing standards for configuring them.
 
 ## Templating Kubernetes configuration when sourcing YAML files from Git
 
