@@ -9,6 +9,7 @@ bannerImage: blogimage-mixingkubernetesroles-2023.png
 bannerImageAlt: Treasure chest with Kubernetes logo sticker sits under a palm tree on a desert island
 tags:
  - DevOps
+ - Containers
  - Kubernetes
 ---
 
