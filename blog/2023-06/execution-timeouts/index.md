@@ -34,6 +34,7 @@ You can use Execution Timeouts on all steps except for:
 - **Manual Intervention** step
 - **Health Check** step
 - **Deploy a Release** step
+- **Kubernetes** steps, these have a kubernetes specific implementation in the step configuration.
 
 ### How are Execution Timeouts configured?
 
