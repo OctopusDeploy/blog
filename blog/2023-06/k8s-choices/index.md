@@ -13,17 +13,15 @@ tags:
   - Kubernetes
 ---
 
-Kubernetes is a powerful but complicated platform. One has to make multiple architectural decisions before moving to Kubernetes. Here are just a few of these: 
-- choosing between self-hosted and managed,
-- considering app architecture and which parts to run on Kubernetes (e.g. only stateless services or migrate stateful components as well),
-- security (RBAC, network),
-- how to organise the network layer.
+Kubernetes is a powerful but complicated platform. One has to make multiple decisions before moving to Kubernetes. For this blog post, I will keep architectural  choices like self-hosted/managed or mono/microservices aside and focus on what to consider before automating deployments to Kubernetes.
 
-In this blog post, I will focus on just one impactful decision — how to organise your CD pipeline and manage Kubernetes configurations. 
+Being simple in the beginning, a deployment process can become a real headache in the future as the complexity of your application and infrastructure grows. This headache can come from unexpected places like the cost of onboarding new team members or the development pace in the future. That is why we should think about a deployment process in the business context.
 
-## Body
+Therefore, the blog post starts with ownership of Kubernetes clusters and the deployment process. The team structure will define if you need to standardise deployments and the level of expertise you could expect from a person running a deployment. The first point below addresses the ownership question; other points cover resulting technological choices.
 
-### Centralisation vs Silos
+## Questions to ask before configuring deployments to Kubernetes
+
+### Team structure and ownership — Centralisation vs Autonomy
 
 Will you have a centralised team (e.g. a platform team) to manage Kubernetes clusters and CD pipelines? Or will each software team own their deployment configurations and, maybe, manage separate clusters? The choice depends on factors such as organizational structure, scale, resource availability, desired level of standardisation and autonomy.
 
@@ -35,13 +33,13 @@ The decentralised approach will give more autonomy to the software teams, potent
 
 The choice you make will impact other decisions down the line. The centralised approach will require templating capabilities and tools to hide Kubernetes complexity from software teams. 
 
-### What use for configuration
+### How to write Kubernetes configurations
 
 Now that you know how centralised you want to be, you can decide how you want to write Kubernetes configurations.
 
-The recommended way to manage Kubernetes is to provide declarative configurations for resources in JSON/YAML format. In most cases, it makes sense to follow this recommendation. However, there is more than one way to create such configurations.
+The recommended way to manage Kubernetes is to provide declarative configurations for resources in JSON/YAML format. In most cases, it makes sense to follow this recommendation. However, there is more than one way to create and manage such configurations.
 
-You need to provide a version of a resource manifest to each cluster you're going to run your application on. Therefore, you might need three versions of the same resource if you have three environments. Same with tenants (e.g. if your app runs in multiple regions). You might want to standardise your configurations (see the centralisation vs silos above); thus, you might reuse the same resource manifest for different apps.
+You need to provide a version of a resource manifest to each cluster you're going to run your application on. Therefore, you might need three variations of the same resource if you have three environments. Same with tenants (e.g. if your app runs in multiple regions). You might want to standardise your configurations (see the centralisation vs silos above); thus, you might reuse the same resource manifest for different apps.
 
 As you can see, writing and maintaining configurations per app, environment, and tenant isn't always a viable option. Multiple alternatives are available to solve this problem.
 
@@ -57,17 +55,9 @@ Some of the options above are mutually exclusive. For example, it would be hard 
 
 Despite the configuration method to choose, you'll have to deal with variables in some form. The question is where to keep them. 
 
-You can choose to store them all in a CD tool or put all variables in your customisation/variables files, or you can choose a hybrid approach. The decision here depends on who will manage the variables and the CD process overall. 
+You can store them all in a CD tool or put all variables in your customisation/variables files or choose a hybrid approach. The decision here depends on who will manage the variables and the CD process overall. 
 
 Another aspect of this problem is if you want to deploy the variables with the app or if you want to have a separate process for this. Some Octopus customers combine all the ConfiguMaps and Secrets in one project and redeploy them every time they update the values. Such a solution can work well if you reuse some values for multiple apps.
-
-### Dependencies
-
-If your applications have dependencies, you must solve the dependency problem. For example, one app update might trigger redeployment for other apps, or you might need to hold a deployment for one app till specific versions of the other apps are deployed.
-
-There are multiple strategies to manage dependencies. You can have a process outside of the CD tool, e.g. orchestrate dependencies in your work management tool, adding dependencies to tasks. You can use mechanisms provided by Helm. Another alternative is to use a CD tool.
-
-Octopus can coordinate multiple projects; read more about it in [our other post](https://octopus.com/docs/projects/coordinating-multiple-projects). Flux CD also allows describing dependencies between resources.
 
 ### Adding new apps
 
@@ -79,7 +69,7 @@ If you lean on a CD tool, you can use the functionality available in the tool. O
 
 An alternative approach would be cloning a Helm chart from a template or forking a Kustomize repo. It depends on the tool you use.
 
-Of course, you can combine a few strategies, e.g. use Helm for templating Kubernetes configuration and use Terraform to create an Octopus project with one step — update Helm chart.
+Of course, you can combine a few strategies, e.g., use Helm to template Kubernetes configuration and use Terraform to create an Octopus project with one step — update Helm chart.
 
 ![Alt text, a description of the image](/path/to/image.png "width=500")*Optional caption text*
 
@@ -90,7 +80,6 @@ Before configuring a CD pipeline for apps running on Kubernetes, there are a few
 - Start with choosing a centralised vs siloed approach
 - Consider what you want to use to create and template configurations
 - Think about where you store variables and how you deploy them
-- If you have dependencies between apps, think about how to manage this
 - Find a way to create new projects
 
 ## Learn more
