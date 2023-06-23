@@ -4,9 +4,9 @@ description: This post looks at the results of mixing the various roles and bind
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2020-11-04
-metaImage: blogimage-k8s-roles.png
-bannerImage: blogimage-k8s-roles.png
-bannerImageAlt: Mixing Kubernetes Roles, RoleBindings, ClusterRoles, and ClusterBindings
+metaImage: 
+bannerImage: 
+bannerImageAlt: 
 tags:
  - DevOps
  - Kubernetes
