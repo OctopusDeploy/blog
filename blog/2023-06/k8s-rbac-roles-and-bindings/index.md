@@ -3,16 +3,14 @@ title: Mixing Kubernetes Roles, RoleBindings, ClusterRoles, and ClusterBindings
 description: This post looks at the results of mixing the various roles and bindings available in Kubernetes
 author: matthew.casperson@octopus.com
 visibility: public
-published: 2020-11-04
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+published: 2023-07-03-1400
+metaImage: blogimage-mixingkubernetesroles-2023.png
+bannerImage: blogimage-mixingkubernetesroles-2023.png
+bannerImageAlt: Treasure chest with Kubernetes logo sticker sits under a palm tree on a desert island
 tags:
  - DevOps
  - Kubernetes
 ---
-
-![Mixing Kubernetes Roles, RoleBindings, ClusterRoles, and ClusterBindings](blogimage-k8s-roles.png)
 
 At some point, as your Kubernetes cluster grows in complexity, the question of role-based security will become important. Typically, this means breaking the cluster up into namespaces and limiting access to namespaced resources to specific accounts.
 
