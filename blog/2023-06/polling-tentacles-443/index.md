@@ -1,5 +1,5 @@
 ---
-title: Polling Tentacles over standard HTTPS ports
+title: Polling Tentacles over standard HTTPS port
 description: Learn how to use port 443 for Polling Tentacles instead of the non-standard 10943. 
 author: jonathan.hardy@octopus.com
 visibility: public
