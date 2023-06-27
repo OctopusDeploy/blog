@@ -123,7 +123,7 @@ NAME        CREATED AT
 testadmin   2020-08-24T23:35:16Z
 ```
 
-Note that the `roleRef` property does not have a `namespace` field. This is the `RoleRef` [API documentation](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/#roleref-v1-rbac-authorization-k8s-io):
+Note that the `roleRef` property does not have a `namespace` field. This is the `RoleRef` [API documentation](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.26/#roleref-v1-rbac-authorization-k8s-io):
 
 ![RoleRef API documentation](roleref.png "width=500")
 
