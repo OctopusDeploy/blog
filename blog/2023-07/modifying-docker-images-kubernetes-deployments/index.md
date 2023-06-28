@@ -55,7 +55,7 @@ The first tool is called [skopeo](https://github.com/containers/skopeo). We’ll
 
 The second tool is called [umoci](https://umo.ci/). We’ll use `umoci` to unpack the file downloaded by `skopeo`, allowing us access to the final directory structure created by all the individual layers in a Docker image.
 
-While both these tools are open source, getting binary builds can be challenging. For this exercise, I am using a SUSE Linux VM (i.e. SUSE Linux Enterprise Server) as an [Octopus worker](https://octopus.com/docs/infrastructure/workers). SUSE created `umoci` and provides [binary downloads from the GitHub releases page](https://github.com/openSUSE/umoci/releases), while the standard SUSE package repositories contain a build of `skopeo`, which means we don’t have to go through the pain of trying to build these tools ourselves.
+While both these tools are open source, getting binary builds can be challenging. For this exercise, I am using a SUSE Linux VM (i.e. SUSE Linux Enterprise Server) as an [Octopus Worker](https://octopus.com/docs/infrastructure/workers). SUSE created `umoci` and provides [binary downloads from the GitHub releases page](https://github.com/openSUSE/umoci/releases), while the standard SUSE package repositories contain a build of `skopeo`, which means we don’t have to go through the pain of trying to build these tools ourselves.
 
 ## Downloading and extracting the Docker image
 
@@ -193,6 +193,6 @@ If we then progress this deployment to the next environment, we can see that the
 
 File variable replacements are a convenient way to create generic packages that can be deployed to any environment. Although it takes a few additional steps, this same workflow can be applied to Kubernetes deployments.
 
-By taking advantage of `skopeo` and `umoci` to download and extract the Docker images, and then using ConfigMaps as volume mounts in Kubernetes, we can achieve the effect of replacing templated files during deployments without having to publish environment specific Docker images.
+By taking advantage of `skopeo` and `umoci` to download and extract the Docker images, and then using ConfigMaps as volume mounts in Kubernetes, we can achieve the effect of replacing templated files during deployments without having to publish environment-specific Docker images.
 
 Happy deployments!
