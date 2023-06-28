@@ -4,9 +4,9 @@ description: With the help of some open source Docker image tools and Kubernetes
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2023-07-03-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: blogimage-templatefilesinkubernetes-2023.png
+bannerImage: blogimage-templatefilesinkubernetes-2023.png
+bannerImageAlt: Whale-shaped boat holding 3 blocks called dev, test, prod near 3 buoys called dev, test, prod.
 tags:
  - DevOps
  - Kubernetes
