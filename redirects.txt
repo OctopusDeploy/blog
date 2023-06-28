@@ -22,3 +22,4 @@ blog/2019-06/octopus-101-turbocharging-azure-devops/index.md -> blog/2019-09/azu
 blog/2023-02/cloud-connectivity-disruption-report-learnings/index.md -> blog/2023-02/cloud-connectivity-disruption-report-learnings-feb23/index.md
 blog/2023-02/outage-octopus-report-learnings/index.md -> blog/2023-02/outage-octopus-report-learnings-feb23/index.md
 blog/2023-05/high-performance-devops-toolchains/high-performance-devops-toolchains -> blog/2023-05/high-performance-devops-toolchains/index.md
+blog/2019-11/using-template-files-in-kubernetes/index.md -> blog/2023-07/modifying-docker-images-kubernetes-deployments/index.md
