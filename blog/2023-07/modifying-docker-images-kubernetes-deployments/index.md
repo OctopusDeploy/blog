@@ -4,9 +4,9 @@ description: With the help of some open source Docker image tools and Kubernetes
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2023-07-03-1400
-metaImage: kubernetes-template-files.png
-bannerImage: kubernetes-template-files.png
-bannerImageAlt: Using template files in Kubernetes
+metaImage: 
+bannerImage: 
+bannerImageAlt: 
 tags:
  - DevOps
  - Kubernetes
