@@ -1,7 +1,7 @@
 ---
-title: Title
+title: Octopus Script Editor Uplift
 description: A brief summary of the post, 170 characters max including spaces.
-author: firstname.surname@octopus.com
+author: ellen.long@octopus.com
 visibility: private
 published: 3020-01-01-1400
 metaImage: 
@@ -14,52 +14,48 @@ tags:
 
 See https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags,
 
-Introductory paragraph that tells the reader why they should read on.
+Over the course of 2022, we ran a series of usability tests to evaluate the first deployment experience. Our aim was to gain valuable insights into the user journey and identify areas of improvement. One of the areas we identified was the script editor. Although functional, it had some usability issues and wasn’t occupying a prominent position within the script steps. We took this as an opportunity to give the script editor a fresh new look and uplift the user experience.
 
-## Body
 
-The body of the post is where you share your hypothesis, how-to, or story.
+## Before
+<img width="1042" alt="blogimage-scripteditorbefore-2023" src="https://github.com/OctopusDeploy/blog/assets/80728059/12dc26da-b0f8-4a35-bc04-8c9cd86e9538">
 
-If there are any previous posts on the same topic, please link to them to help with our SEO efforts. For example:
-Our post about [DORA metrics](https://octopus.com/blog/dora-metrics-devops-business-outcomes) discusses how agility-based metrics can help improve profitability, market share, and productivity. 
 
-### Subheadings
+## After
+<img width="1042" alt="blogimage-scripteditorafter-2023" src="https://github.com/OctopusDeploy/blog/assets/80728059/7d2149a7-b58f-49ed-b424-de58bb27ba04">
 
-Use three ### to include H3 headings.
 
-Use **Bold** text for UI labels, use single back-tics for `parameters` and `filepaths`, and three back-tics for code blocks:
+## What we changed
 
-```
-Write-Host "Hello, World!"
-```
+### Improved hierarchy and visual prominence
+To enhance the visual hierarchy of the script editor, we moved it higher in the Run a Script step and inverted it to dark theme. This styling treatment gives the script editor prominence, making it the star of script steps.
 
-Use the following (minus the backtics) to include images:
+![blogimage-scriptplacement-2023](https://github.com/OctopusDeploy/blog/assets/80728059/4becc8a8-d190-4310-9a97-11b300ee1872)
 
-```
-![Alt text, a description of the image](/path/to/image.png "width=500")*Optional caption text*
-```
-If including images, please include alt text. Alt text is primarily used to describe images to people unable to see them, and can be 125 characters max including spaces. You can also include an image caption if the reader would benefit from additional information or context.
 
-## Conclusion
+### All the actions, in one place
+To make the script editor easier to use, we introduced a toolbar to house its actions: language selector, copy to clipboard, insert variable and full screen buttons. Before, functionality was scattered and inconsistent across inline and full screen mode, limiting what you could do in either mode. By introducing this toolbar, all actions are available to you regardless of the mode you prefer to read and edit your code in, and you no longer need to dart your cursor around the screen to click on them.
 
-Close off the post by restating the main points of the post, share any closing thoughts, and invite feedback.
+In addition to centralizing the actions, we added labels to buttons. Previously, these action buttons only had icons, making it difficult to discern their purpose and functionality. This was especially troublesome for the insert variable action as its ambiguous icon was also inconspicuously placed. With the addition of labels, you can now understand what a button does at a glance.
 
-## Learn more
+![blogimage-scripttoolbar-2023](https://github.com/OctopusDeploy/blog/assets/80728059/e25279ea-7d3c-4afb-8fcb-77ba72705d99)
 
-- [link](https://www.example.com/resource)
 
-## Register for the webinar: {webinar title here}
+### Other notable changes
+Alongside the major enhancements, we also implemented several smaller yet impactful quality of life updates. Notably, we’ve introduced placeholder “hello world” text that changes to reflect the syntax of the language you’ve selected, and to enhance your coding experience the editor now conveniently expands when you click into it to give you more room to read and edit your code inline.
 
-Short webinar description here, for example: A robust rollback strategy is key to any deployment strategy. In this webinar, we’ll cover best practices for IIS deployments, Tomcat, and full stack applications with a database. We’ll also discuss how to get the rollback strategy right for your situation. 
+![bloggif-scriptexpand-2023](https://github.com/OctopusDeploy/blog/assets/80728059/3e05afd0-8d7b-44e6-9c61-15ed2f7b9ecd)
 
-We're running 3 sessions of the webinar, from {webinar dates here, for example: 4 November to 5 November, 2021.}
 
-<span><a class="btn btn-success" href="/events/rollback-strategies-with-octopus-deploy">Register now</a></span>
+## Expanding the scope
+Our initial plan was to only roll these changes out to script editors in steps, but once we saw the benefits of the changes we decided to ship the update to all instances of the editor in Octopus. We did this by componentizing the script editor to make actions within the toolbar togglable. Depending on where the script editor is, it may need more or less functionality, and we can toggle parts off depending on where it’s used. 
 
-## Watch the webinar: {webinar title here}
+For example, the code editor in script steps has the full toolbar, whereas the code editor for variables only requires the language selector and copy to clipboard actions.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/F_V7r80aDbo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+## What’s next?
 
-We host webinars regularly. See the [webinars page](https://octopus.com/events) for details about upcoming events, and live stream recordings.
+If you’re an Octopus Cloud customer, the new script editor is now available! Please have a play around and share your feedback.
+
+<span><a class="btn btn-success" href="https://octopusdeploy.typeform.com/to/bJfRWHyf" target="_blank">Share your feedback</a></span>
 
 Happy deployments!
