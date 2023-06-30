@@ -18,19 +18,18 @@ Over the course of 2022, we ran a series of usability tests to evaluate the firs
 
 
 ## Before
-<img width="1042" alt="blogimage-scripteditorbefore-2023" src="https://github.com/OctopusDeploy/blog/assets/80728059/12dc26da-b0f8-4a35-bc04-8c9cd86e9538">
+![](blogimage-scripteditorbefore-2023.png "width=500")
 
 
 ## After
-<img width="1042" alt="blogimage-scripteditorafter-2023" src="https://github.com/OctopusDeploy/blog/assets/80728059/7d2149a7-b58f-49ed-b424-de58bb27ba04">
-
+![](blogimage-scripteditorafter-2023.png "width=500")
 
 ## What we changed
 
 ### Improved hierarchy and visual prominence
 To enhance the visual hierarchy of the script editor, we moved it higher in the Run a Script step and inverted it to dark theme. This styling treatment gives the script editor prominence, making it the star of script steps.
 
-![blogimage-scriptplacement-2023](https://github.com/OctopusDeploy/blog/assets/80728059/4becc8a8-d190-4310-9a97-11b300ee1872)
+![](blogimage-scriptplacement-2023.png "width=500")
 
 
 ### Centralized and easy to use actions
@@ -38,19 +37,21 @@ To make the script editor easier to use, we introduced a toolbar to house its ac
 
 In addition to centralizing the actions, we looked at how they were presented. Previously, action buttons were icons, which in our observations of users, made it difficult to discern their purpose and functionality. This was especially troublesome for the insert variable action as its ambiguous icon was also inconspicuously placed. Our solution was to add button labels. Now, you can understand what a button does at a glance.
 
-![blogimage-scripttoolbar-2023](https://github.com/OctopusDeploy/blog/assets/80728059/e25279ea-7d3c-4afb-8fcb-77ba72705d99)
+![](blogimage-scripttoolbar-2023.png "width=500")
 
 
 ### Other notable changes
 Alongside the major enhancements, we also implemented several smaller yet impactful quality of life updates. Notably, we’ve introduced placeholder “hello world” text that changes to reflect the syntax of the language you’ve selected, and to enhance your coding experience the editor now conveniently expands when you click into it to give you more room to read and edit your code inline.
 
-![bloggif-scriptexpand-2023](https://github.com/OctopusDeploy/blog/assets/80728059/3e05afd0-8d7b-44e6-9c61-15ed2f7b9ecd)
+![](bloggif-scriptexpand-2023.gif "width=500")
 
 
 ## Expanding the scope
 Our initial plan was to only roll these changes out to script editors in steps, but once we saw the benefits of the changes we decided to ship the update to all instances of the editor in Octopus. We did this by componentizing the script editor to make actions within the toolbar togglable. Depending on where the script editor is, it may need more or less functionality, and we can toggle parts off depending on where it’s used. 
 
 For example, the code editor in script steps has the full toolbar, whereas the code editor for variables only requires the language selector and copy to clipboard actions.
+
+![](blogimage-scriptcomponentization-2023.png "width=500")
 
 ## What’s next?
 
