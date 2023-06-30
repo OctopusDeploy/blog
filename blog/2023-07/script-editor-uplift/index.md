@@ -1,6 +1,6 @@
 ---
 title: Octopus Script Editor Uplift
-description: A brief summary of the post, 170 characters max including spaces.
+description: Find out how we improved the script editor experience in the Octopus Deploy product.
 author: ellen.long@octopus.com
 visibility: private
 published: 3020-01-01-1400
