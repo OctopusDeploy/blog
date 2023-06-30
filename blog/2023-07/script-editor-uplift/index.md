@@ -33,10 +33,10 @@ To enhance the visual hierarchy of the script editor, we moved it higher in the 
 ![blogimage-scriptplacement-2023](https://github.com/OctopusDeploy/blog/assets/80728059/4becc8a8-d190-4310-9a97-11b300ee1872)
 
 
-### All the actions, in one place
+### Centralized and easy to use actions
 To make the script editor easier to use, we introduced a toolbar to house its actions: language selector, copy to clipboard, insert variable and full screen buttons. Before, functionality was scattered and inconsistent across inline and full screen mode, limiting what you could do in either mode. By introducing this toolbar, all actions are available to you regardless of the mode you prefer to read and edit your code in, and you no longer need to dart your cursor around the screen to click on them.
 
-In addition to centralizing the actions, we added labels to buttons. Previously, these action buttons only had icons, making it difficult to discern their purpose and functionality. This was especially troublesome for the insert variable action as its ambiguous icon was also inconspicuously placed. With the addition of labels, you can now understand what a button does at a glance.
+In addition to centralizing the actions, we looked at how they were presented. Previously, action buttons were icons, which in our observations of users, made it difficult to discern their purpose and functionality. This was especially troublesome for the insert variable action as its ambiguous icon was also inconspicuously placed. Our solution was to add button labels. Now, you can understand what a button does at a glance.
 
 ![blogimage-scripttoolbar-2023](https://github.com/OctopusDeploy/blog/assets/80728059/e25279ea-7d3c-4afb-8fcb-77ba72705d99)
 
@@ -54,7 +54,9 @@ For example, the code editor in script steps has the full toolbar, whereas the c
 
 ## What’s next?
 
-If you’re an Octopus Cloud customer, the new script editor is now available! Please have a play around and share your feedback.
+The new script editor provides an enhanced experience that makes it easier for you to read and edit your code in the Octopus product. 
+
+We’d love to hear your feedback on this feature update and we want to know how you use the script editor. Do you prefer to edit code directly in Octopus, or copy and paste it in from somewhere else? Let us know below!
 
 <span><a class="btn btn-success" href="https://octopusdeploy.typeform.com/to/bJfRWHyf" target="_blank">Share your feedback</a></span>
 
