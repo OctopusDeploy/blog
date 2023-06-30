@@ -4,8 +4,8 @@ description: Learn about the benefits of using the multi-tenancy feature in Octo
 author: mark.harrison@octopus.com
 visibility: public
 published: 2021-07-26-1400
-metaImage: blogimage-better-multi-tenancy-with-octopus-deploy-2021.png
-bannerImage: blogimage-better-multi-tenancy-with-octopus-deploy-2021.png
+metaImage: 
+bannerImage: 
 bannerImageAlt: Three customers in front of three databases linked to the Octopus Deploy logo
 isFeatured: false
 tags:
