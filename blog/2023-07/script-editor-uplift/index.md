@@ -9,7 +9,7 @@ bannerImage:
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags: 
-  - tag
+  - Product
 ---
 
 See https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags,
