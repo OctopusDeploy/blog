@@ -18,18 +18,18 @@ Over the course of 2022, we ran a series of usability tests to evaluate the firs
 
 
 ## Before
-![](blogimage-scripteditorbefore-2023.png "width=500")
+![Screenshot of the previous script editor.](blogimage-scripteditorbefore-2023.png "width=500")
 
 
 ## After
-![](blogimage-scripteditorafter-2023.png "width=500")
+![Screenshot of the new dark theme script editor.](blogimage-scripteditorafter-2023.png "width=500")
 
 ## What we changed
 
 ### Improved hierarchy and visual prominence
 To enhance the visual hierarchy of the script editor, we moved it higher in the Run a Script step and inverted it to dark theme. This styling treatment gives the script editor prominence, making it the star of script steps.
 
-![](blogimage-scriptplacement-2023.png "width=500")
+![Before and after screenshots comparing the previous and current placement of the script editor in the Run a Script deployment process step.](blogimage-scriptplacement-2023.png "width=500")
 
 
 ### Centralized and easy to use actions
@@ -37,13 +37,13 @@ To make the script editor easier to use, we introduced a toolbar to house its ac
 
 In addition to centralizing the actions, we looked at how they were presented. Previously, action buttons were icons, which in our observations of users, made it difficult to discern their purpose and functionality. This was especially troublesome for the insert variable action as its ambiguous icon was also inconspicuously placed. Our solution was to add button labels. Now, you can understand what a button does at a glance.
 
-![](blogimage-scripttoolbar-2023.png "width=500")
+![Screenshots showing the before and after placement of script editor actions.](blogimage-scripttoolbar-2023.png "width=500")
 
 
 ### Other notable changes
 Alongside the major enhancements, we also implemented several smaller yet impactful quality of life updates. Notably, we’ve introduced placeholder “hello world” text that changes to reflect the syntax of the language you’ve selected, and to enhance your coding experience the editor now conveniently expands when you click into it to give you more room to read and edit your code inline.
 
-![](bloggif-scriptexpand-2023.gif "width=500")
+![Gif shows the script editor expands when it is clicked, and placeholder “Hello World” syntax changes when a different coding language is selected.](bloggif-scriptexpand-2023.gif "width=500")
 
 
 ## Expanding the scope
@@ -51,7 +51,7 @@ Our initial plan was to only roll these changes out to script editors in steps, 
 
 For example, the code editor in script steps has the full toolbar, whereas the code editor for variables only requires the language selector and copy to clipboard actions.
 
-![](blogimage-scriptcomponentization-2023.png "width=500")
+![Screenshots comparing two versions of the script editor's toolbar. The first shows the script editor with all the toolbar actions, the second shows less actions.](blogimage-scriptcomponentization-2023.png "width=500")
 
 ## What’s next?
 
