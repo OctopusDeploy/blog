@@ -4,15 +4,13 @@ description: Find out how we improved the script editor experience in the Octopu
 author: ellen.long@octopus.com
 visibility: private
 published: 3020-01-01-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-scripteditoruplift-2023.png
+bannerImage: blogimage-scripteditoruplift-2023.png
+bannerImageAlt: Two vector people putting together and painting the new Octopus script editor UI.
 isFeatured: false
 tags: 
   - Product
 ---
-
-See https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags,
 
 Over the course of 2022, we ran a series of usability tests to evaluate the first deployment experience. Our aim was to gain valuable insights into the user journey and identify areas of improvement. One of the areas we identified was the script editor. Although functional, it had some usability issues and wasn’t occupying a prominent position within the script steps. We took this as an opportunity to give the script editor a fresh new look and uplift the user experience.
 
