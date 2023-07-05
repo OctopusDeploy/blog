@@ -12,9 +12,7 @@ tags:
   - Product
 ---
 
-During 2022, we ran a series of usability tests to evaluate our customers' first deployment experience. 
-
-We aimed to gain valuable insights into the user journey and discover areas of improvement. 
+During 2022, we ran a series of usability tests to evaluate our customers' first deployment experience. We aimed to gain valuable insights into the user journey and discover areas of improvement. 
 
 One area we identified was the script editor. Although functional, there were usability issues and the script editor wasn’t in a prominent position in the script steps. We decided to give the script editor a fresh look and improve the user experience.
 
@@ -78,7 +76,7 @@ For example, the code editor in script steps has the full toolbar. The code edit
 
 The new script editor provides an improved experience. It's now easier for you to read and edit your code in the Octopus product. 
 
-We’d love to hear your feedback on this update and to learn how you use the script editor. Do you prefer to edit code directly in Octopus, or copy and paste it in from somewhere else? Let us know by sharing your feedback.
+We’d love to hear your feedback on this update and to learn how you use the script editor. Do you prefer to edit code directly in Octopus, or copy and paste it in from somewhere else? Let us know in our feedback survey.
 
 <span><a class="btn btn-success" href="https://octopusdeploy.typeform.com/to/bJfRWHyf">Share your feedback</a></span>
 
