@@ -37,7 +37,7 @@ Here you can see what the script editor looks like now.
 
 To enhance the visual hierarchy of the script editor, we moved it higher in the Run a Script step and inverted it to dark theme. This styling treatment gives the script editor prominence, making it the star of script steps.
 
-![Before and after screenshots comparing the previous and current placement of the script editor in the Run a Script deployment process step.](blogimage-scriptplacement-2023.png "width=500")
+![Before and after screenshots comparing placement of the script editor in the Run a Script deployment process step.](blogimage-scriptplacement-2023.png "width=500")
 
 
 ### Centralized and easy to use actions
@@ -70,7 +70,7 @@ We componentized the script editor to make actions in the toolbar togglable. Dep
 
 For example, the code editor in script steps has the full toolbar. The code editor for variables, however, only requires the **Language selector** and **Copy to clipboard** actions.
 
-![Screenshots comparing two versions of the script editor's toolbar. The first shows the script editor with all the toolbar actions, the second shows less actions.](blogimage-scriptcomponentization-2023.png "width=500")
+![Screenshots comparing two versions of the script editor's toolbar. The first with all the toolbar actions, the second shows less actions.](blogimage-scriptcomponentization-2023.png "width=500")
 
 ## Conclusion
 
