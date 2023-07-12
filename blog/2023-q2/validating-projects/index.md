@@ -6,7 +6,7 @@ visibility: public
 published: 2023-01-09-1400
 metaImage: blogimage-enterprise-series-validating-projects-2023.png
 bannerImage: blogimage-enterprise-series-validating-projects-2023.png
-bannerImageAlt: People building an unstable tower with blue blocks, beside 2 people building a stable, lower tower with blue blocks.
+bannerImageAlt: Stylized person in front of laptop looking at code, with a green tick of approval.
 isFeatured: false
 tags:
  - DevOps

@@ -6,7 +6,7 @@ visibility: public
 published: 2023-01-08-1400
 metaImage: blogimage-enterprise-series-synchronizing-projects-2023.png
 bannerImage: blogimage-enterprise-series-synchronizing-projects-2023.png
-bannerImageAlt: People building an unstable tower with blue blocks, beside 2 people building a stable, lower tower with blue blocks.
+bannerImageAlt: Symbol of two arrows is syncing.
 isFeatured: false
 tags:
  - DevOps
