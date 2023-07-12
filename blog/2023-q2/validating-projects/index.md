@@ -4,8 +4,8 @@ description: Learn how to implement automated checks of Config as Code projects 
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2023-01-09-1400
-metaImage: blogimage-microservicesframeworks-2022.jpg
-bannerImage: blogimage-microservicesframeworks-2022.jpg
+metaImage: blogimage-enterprise-series-validating-projects-2023.png
+bannerImage: blogimage-enterprise-series-validating-projects-2023.png
 bannerImageAlt: People building an unstable tower with blue blocks, beside 2 people building a stable, lower tower with blue blocks.
 isFeatured: false
 tags:
