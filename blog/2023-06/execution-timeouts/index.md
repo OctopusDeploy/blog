@@ -1,20 +1,20 @@
 ---
 title: Introducing Execution Timeouts
-description: Learn about our new Execution Timeouts feature to handle unexpectedly long-running processes
+description: Learn about our new Execution Timeouts feature to handle unexpectedly long-running processes.
 author: isaac.calligeros@octopus.com
 visibility: public
 published: 2023-07-31-1200
-metaImage: execution-timeout-logo.png
-bannerImage: execution-timeout-logo.png
+metaImage: blogimage-executiontimeout-2023.png
+bannerImage: blogimage-executiontimeout-2023.png
 bannerImageAlt: TODO
-isFeatured: false
+isFeatured: Person sitting cross-legged with a laptop in front of a giant hourglass and alarm clock.
 tags:
   - Product
 ---
 
 We received [user voice feedback](https://octopusdeploy.uservoice.com/forums/170787-product-feedback/suggestions/6396476-add-timeout-support-for-individual-steps-and-overa) requesting execution timeouts to handle hung deployment processes.
 
-Octopus 2023.3 introduces Execution Timeouts, a feature to configure automatic step cancellations. Some deployment processes, such as Azure FTP connections and CloudFormation updates, include long-running actions. These can last for hours or even hang indefinitely. With Execution Timeouts, you can set a time limit in minutes within a step's configuration. When this timeout lapses, the action fails, and the deployment process continues. Paired with [Step Retries](https://octopus.com/blog/step-retries), this increases the likelihood of successful deployments.
+Octopus 2023.3 introduces Execution Timeouts, a feature to configure automatic step cancellations. Some deployment processes, such as Azure FTP connections and CloudFormation updates, include long-running actions. These can last for hours or even hang indefinitely. With Execution Timeouts, you can set a time limit, in minutes, in a step's configuration. When this timeout lapses, the action fails, and the deployment process continues. Paired with [Step Retries](https://octopus.com/blog/step-retries), this increases the likelihood of successful deployments.
 
 Watch the video below to see this new feature in action:
 
