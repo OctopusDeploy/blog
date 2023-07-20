@@ -4,24 +4,24 @@ description: Andy looks at why 'multi-tenancy' is a tricky thing to define and h
 author: andrew.corrigan@octopus.com
 visibility: private
 published: 3020-01-01-1400
-metaImage: 
-bannerImage: 
+metaImage: blogimage-whatismultitenancy-2023_1.png
+bannerImage: blogimage-whatismultitenancy-2023_1.png
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags: 
   - tag
 ---
 
-The term 'multi-tenancy' has been around for a long time and applies many aspects of the tech industry. As we explored in our blog, [what is multi-tenancy?](updatelink), the definition can depend on your industry, style of delivery, and system architecture. Ask different people what it means and you'll likely get a few answers.
+The term 'multi-tenancy' has been around for a long time and applies many aspects of the tech industry. As we explored in our blog, [what is multi-tenancy?](updatelink), the definition can depend on your industry, style of delivery, and system architecture. Ask several people what it means and you'll likely get different answers.
 
 The most common examples of multi-tenancy sees software split by:
 
 - **Customer** - Software as a Service (SaaS) applications where each customer gets the same product but with individual resources.
 - **Location** - You serve customers or locations worldwide and need to make adjustments for regional differences.
-- **Hosting** - Where you deliver your software to many hosting services or platforms, like the cloud, data centers, on-premises, or hybrid. 
-- **Business model** - You serve branches or chains as with stores, hospitals, hotels, schools, or more.
+- **Hosting** - Where you deliver your software to many hosting solutions, like the cloud, data centers, on-premises, or hybrid. 
+- **Business model** - You serve brick and mortar locations, like retail stores, hospitals, hotels, schools, or more.
 
-However, modern development makes the term... blurrier. When researching that last blog, I thought about how many applications could easily slot into more than one or even all these categories.
+However, modern development makes the term blurrier. When researching that last blog, I thought about how many applications could easily slot into more than one or even all these categories.
 
 That got me thinking...
 
@@ -31,9 +31,9 @@ When I joined Octopus as a technical content creator, my tech knowledge was most
 
 Learning how communication methods differ between customer-facing tech and developer-facing tech was... eye-opening. Not least due to the weird and wonderful ways the software industry names the tools and philosophies it creates for itself.
 
-Finding out, for example, that 'Continuous Delivery' and 'Continuous Deployment' were disparate concepts (but also not really - [we wrote about it already](https://octopus.com/devops/continuous-delivery/what-is-continuous-deployment/)) that folk in DevOps both shortened to 'CD' was baffling to me, a relative outsider.
+Finding out, for example, that 'Continuous Delivery' and 'Continuous Deployment' were disparate concepts (but also not really - [we wrote about that](https://octopus.com/devops/continuous-delivery/what-is-continuous-deployment/)) and folk in DevOps shortened both to 'CD' was baffling to me, a relative outsider.
 
-The term 'multi-tenancy' follows a similar confusing path given the many scenarios described further up the page. These are, of course, simplified slices of a much bigger picture, but when one app can hit more than one category, where do you draw the definition?
+The term 'multi-tenancy' follows a similarly confusing path given the many scenarios described further up the page. These are, of course, simplified slices of a much bigger picture, but when one app can hit more than one category, where do you draw the line?
 
 Take Microsoft 365 (M365). M365 is Microsoft's classic Office suite modernized and delivered in a SaaS format. M365 users can access the suite through traditional desktop installs and cloud versions on almost any device.
 
@@ -43,17 +43,17 @@ Microsoft sells M365 to everyone:
 - Businesses
 - Enterprises (usually through resellers)
 
-That's 3 intended customer types for the product, and each delivered differently. We could easily call M365 a multi-tenancy service at its highest level. At least based on our earlier definitions.
+That's 3 intended customer types for the product, each delivered differently. We could easily call M365 a multi-tenancy service here at its highest level. At least based on our earlier definitions.
 
 However, each scenario could also be multi-tenancy in its own right. After all, Personal M365 is a different product to the Professional versions. Personal users get their own cloud space and resources, so you could consider each customer a tenant.
 
-M365 Business clients get an entire manageable instance of M365 and can assign individual access to their employees under their company banner. In this scenario, you could also consider each *business* as a tenant too.
+M365 Business clients get an entire manageable instance of M365 and can assign individual access to staff under their company banner. In this scenario, you could also consider each *business* a tenant too.
 
-Some businesses even have *multiple* instances of 'Business M365'. My last employer had 2: one for head office staff and one for branch staff. Guess what we called this setup internally? Yup, you guessed it: multi-tenancy.
+Some businesses even have *multiple* instances of Business M365. My last employer had 2: one for head office staff and one for branch staff. Guess what we called this setup internally? Yup, you guessed it: multi-tenancy.
 
 I haven't even touched on how delivery methods for updates differ between the desktop and cloud application versions. What about narrowing it down to platform of choice, like Windows or MacOS? What about each application included in M365?
 
-It's entirely likely that Microsoft doesn't refer to any of this as 'multi-tenancy' internally. Regardless, each of these scenarios slots nicely into one of [multi-tenancy's common descriptions](updatelink). M365 is layers upon layers of structures you could label as multi-tenancy all the way down.
+It's entirely likely that Microsoft doesn't refer to much of this as 'multi-tenancy' internally (though M365's API does authenticate against a tenant). Regardless, each of these scenarios slots nicely into one of multi-tenancy's common descriptions. M365 is layers upon layers of structures you could easily label as multi-tenancy all the way down.
 
 And that's just one service. At what point does 'multi-tenancy' have so many definitions that it stops meaning anything at all?
 
@@ -67,20 +67,20 @@ The bloated nature of the term 'multi-tenancy', however, posed a few challenges 
 
 Instead, we decided to focus one the one thing that unites all these examples of multi-tenancy. It just happens that one thing is also Octopus's specialty: the deployment process.
 
-A common strategy to deliver software to a multi-tenancy applications in all the examples above is with 'tenanted deployments'.
+A common strategy to deliver software to multi-tenancy applications in all the examples above is to use 'tenanted deployments'.
 
 Done manually, or in other deployment solutions, tenanted deployments cause duplication and manual processes. Duplication and manual processes introduce risks - risks that cause delivery rates to slow.
 
-And these are the problems that Octopus's Tenant's feature solves for most multi-tenancy instances, so that's what it means to us.
+These are the problems that Octopus's Tenant's feature solves for most multi-tenancy instances. So that's what it means to us.
 
 ## Conclusion
 
-'Multi-tenancy' is term that may have had humble singular beginnings, but has become quite abstract in modern development. It now means so many things that it almost means nothing without clarification.
+'Multi-tenancy' is a term that may have had humble, singular beginnings, but has become almost abstract in modern development. It now means so many things that it almost means nothing without clarification.
 
-For us, we were able to explain Octopus's value to multi-tenancy better when we freed ourselves from the term and focused on the problems it introduces, rather than the methodologies themselves.
+We were able to explain Octopus's value to multi-tenancy better when we freed ourselves from the term and focused on the problems it introduces, rather than the methodologies themselves.
 
-And that's why we're shifting our focus from 'multi-tenancy' to the bit we actually help you with; tenanted deployments.
+That's why we're shifting our focus from 'multi-tenancy' to the bit we actually help you with; tenanted deployments.
 
 ## What's next
 
-See Octopus's Tenants feature page for more information on how Octopus can help you deploy your multi-tenancy applications faster and more reliably.
+See Octopus's [Tenants use-case page](https://octopus.com/use-case/tenanted-deployments) for more information on how Octopus can help you deploy your multi-tenancy applications faster and more reliably.
