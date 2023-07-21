@@ -1,15 +1,16 @@
 ---
-title: Why 'multi-tenancy' can be a confusing term and what that means to Octopus
-description: Andy looks at why 'multi-tenancy' is a tricky thing to define and how that affected Octopus's messaging
+title: Why multi-tenancy can be a confusing term and what that means to Octopus
+description: Andy looks at why multi-tenancy is a tricky thing to define and how that affected Octopus's messaging.
 author: andrew.corrigan@octopus.com
 visibility: private
-published: 3020-01-01-1400
+published: 2023-07-31-1400
 metaImage: blogimage-whatismultitenancy-2023_1.png
 bannerImage: blogimage-whatismultitenancy-2023_1.png
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags: 
-  - tag
+  - DevOps
+  - Multi-Tenancy
 ---
 
 The term 'multi-tenancy' has been around for a long time and applies to many aspects of the tech industry. As we explored in our post, [what is multi-tenancy?](updatelink), the definition can depend on your industry, style of delivery, and system architecture. Ask several people what it means and you'll likely get different answers.
