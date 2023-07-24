@@ -21,7 +21,7 @@ In this post, I show you how to deploy the [eShopOnWeb](https://github.com/Octop
 
 ## Getting started
 
-Before you can deploy to Azure Container Apps, you need a few things configured:
+Before you can deploy to Azure Container Apps, you need to configure:
 
 - A container registry for your containers
 - A build server to push your containers to the registry
@@ -30,9 +30,9 @@ Before you can deploy to Azure Container Apps, you need a few things configured:
 
 ### Configuring the container registry
 
-The first thing you need is a place to push your containers to.  Octopus is compatible with a variety of Docker container registries, but this post will make use of an Azure Container Registry.  If you already have a Docker Container Registry configured, you can skip to the next section.
+First, you need a place to push your containers. Octopus is compatible with a variety of Docker container registries, but this post uses an Azure Container Registry. If you already have a Docker Container Registry configured, you can skip to the next section.
 
-To create an Azure Container Registry, click on **Create a resource** in the Azure Portal.
+To create an Azure Container Registry, click **Create a resource** in the Azure Portal.
 
 ![Azure Create Resource](azure-create-resource.png)
 
@@ -44,7 +44,7 @@ Fill in the required inputs and click **Create**.
 
 ![Azure Create Container Registry Create screen](azure-create-container-registry-final.png)
 
-After you create the resource, copy the login server information. You'll need this information when you configure the Docker build task and the Octopus Deploy external feed.
+After you create the resource, copy the login server information. You need this information when you configure the Docker build task and the Octopus Deploy external feed.
 
 ![Newly created ACR resource](new-azure-container-registry.png)
 
@@ -53,14 +53,14 @@ After you create the resource, copy the login server information. You'll need th
 
 Now that you have a container registry, you need to configure a build server to push your containers to the registry.  
 
-For this post, I use Azure DevOps to demonstrate building the eShopOnWeb containers and pushing them to an Azure Container Registry.  eShopOnWeb consists of 2 containers:
+For this post, I use Azure DevOps to show building the eShopOnWeb containers and pushing them to an Azure Container Registry. eShopOnWeb consists of 2 containers:
 
 - API
 - Web
 
 My build consists of 2 Docker build tasks, both using the `buildAndPush` command.  
 
-#### Add Docker build task
+#### Adding the Docker build task
 
 Filter the list of tasks by typing `docker` into the search bar. Then choose the Docker task.
 
@@ -68,10 +68,10 @@ Filter the list of tasks by typing `docker` into the search bar. Then choose the
 
 The Docker task needs a Docker Registry service connection.  Select **New** and fill in the form details.
 
-- Docker Registry: The login server from your ACR in URL format = `https://<Login server>`, example `https://octopusdeploy.azurecr.io`
-- Docker ID: User ID for logging into your ACR.  I chose to use an app registration, so the value of the ID is the application (client) ID of the app registration
-- Docker Password: Password for the User ID. If you're using an app registration, this is the secret for the app registration
-- The rest of the fields can be default
+- Docker Registry: The login server from your ACR in URL format = `https://<Login server>`, example `https://octopusdeploy.azurecr.io`.
+- Docker ID: User ID for logging into your ACR.  I chose to use an app registration, so the value of the ID is the application (client) ID of the app registration.
+- Docker Password: Password for the User ID. If you're using an app registration, this is the secret for the app registration.
+- The rest of the fields can use the defaults.
 
 ![New Azure DevOps Service Connection](azure-devops-service-connection.png)
 
@@ -96,7 +96,7 @@ After you queue a new build, it should push your containers into your registry.
 
 ### Configuring the Octopus Deploy external feed
 
-Now the containers are hosted in ACR, you need to configure an external feed in Octopus. Navigate to **Library**->**External Feeds** and click **ADD FEED**.
+Now the containers are hosted in ACR, you need to configure an external feed in Octopus. Navigate to **Library**, then **External Feeds**, then click **ADD FEED**.
 
 ![Navigate to Libary, External Feed](octopus-library-external-feed.png)
 
@@ -104,15 +104,15 @@ Select the feed type. For this post, I'm using **Azure Container Registry**.
 
 ![Select Azure Container Registry](octopus-azure-container-registry.png)
 
-Similar to the Service Connection in Azure DevOops, add the feed details:
+Similar to the Service Connection in Azure DevOps, add the feed details:
 
 - Name: A meaningful name for the External Feed
 - URL: `https://<Login Server>` - example: `https://octopusdeploy.azurecr.io`
 - Credentials:
   - Feed Username: User to connect to the registry. I used an app registration.
-  - Feed Password:  Password for the user account. Mine was the secret for the app registration
+  - Feed Password:  Password for the user account. Mine was the secret for the app registration.
 
-After you fill in that information, click **SAVE AND TEST**.  
+Next, click **SAVE AND TEST**.  
 
 Enter the image name, full or partial, you want to search for.
 
@@ -123,16 +123,16 @@ Enter the image name, full or partial, you want to search for.
 This post assumes you know how to create an Octopus project and won't cover that topic.  For the eShopOnWeb Octopus project, configure the following variables:
 
 - Project.Azure.Account: An Azure Service Prinicipal account variable. (Optional, the templates used can use Managed Identity)
-- Project.Azure.ContainerApp.Api.Name: Value to set for the Container Name, ex: #{Octopus.Environment.Name}-eshop-api
-- Project.Azure.ContainerApp.Environment.Name: Name of the Azure Container App Environment to create/use, ex: #{Octopus.Environment.Name | ToLower}
-**Note:** Azure Container App Environment names **must** be lower case.
-- Project.Azure.ContainerApp.Web.Name: Value to set for the Container Name, ex: #{Octopus.Environment.Name | ToLower}-eshop-web
-- Project.Azure.Region.Code: The short name for the Azure Region, ex: westus3
+- Project.Azure.ContainerApp.Api.Name: Value to set for the Container Name, example: `#{Octopus.Environment.Name}-eshop-api`
+- Project.Azure.ContainerApp.Environment.Name: Name of the Azure Container App environment to create/use, example: `#{Octopus.Environment.Name | ToLower}`
+**Note:** Azure Container App environment names **must** be lower case.
+- Project.Azure.ContainerApp.Web.Name: Value to set for the Container Name, example: `#{Octopus.Environment.Name | ToLower}-eshop-web`
+- Project.Azure.Region.Code: The short name for the Azure Region, example: `westus3`
 - Project.Azure.ResourceGroup.Name: Name of the Azure Resource Group to create the resources in.
-- Project.Catalog.Database.Name: Name of the Catalog database for eShopOnWeb, ex: #{Octopus.Environment.Name}-eshop-catalog
-- Project.Identity.Database.Name: Name of the Identity database for eShopOnWeb, ex: #{Octopus.Environment.Name}-eshop-identity
-- Project.SQL.DNS: The DNS name for the SQL database server, ex: `<YourAzureSQLServer>.database.windows.net`
-- Project.SQL.User.Name: Name of the SQL account for database access, ex: eShopUser
+- Project.Catalog.Database.Name: Name of the Catalog database for eShopOnWeb, example: `#{Octopus.Environment.Name}-eshop-catalog`
+- Project.Identity.Database.Name: Name of the Identity database for eShopOnWeb, example: `#{Octopus.Environment.Name}-eshop-identity`
+- Project.SQL.DNS: The DNS name for the SQL database server, example: `<YourAzureSQLServer>.database.windows.net`
+- Project.SQL.User.Name: Name of the SQL account for database access, example: `eShopUser`
 - Project.SQL.User.Password: Password for the SQL account
 
 ![Octopus project variables](octopus-project-variables.png)
@@ -141,14 +141,16 @@ This post assumes you know how to create an Octopus project and won't cover that
 
 With the External Feed and project variables configured, you can now configure the deployment process.  For the eShopOnWeb application, the process consists of the following steps:
 
-- Azure - Create Container App Environment
-- Azure - Deploy api Container App
+- Azure - Create Container App environment
+- Azure - Deploy API Container App
 - Get API DNS
 - Azure Deploy web Container App
 
 #### Azure - Creating the container app environment
 
-To deploy to Azure Container App, you must first have an Azure Container App environment.  Add the **[Azure - Create Container App Environment](https://library.octopus.com/step-templates/9b4b9fdc-2f97-4507-8df5-a0c1dd7464a5/actiontemplate-azure-create-container-app-environment)** community step template to your process.  The template will first check to see if it already exists, if not, create it.  
+To deploy to Azure Container App, you must first have an Azure Container App environment.  
+
+Add the **[Azure - Create Container App Environment](https://library.octopus.com/step-templates/9b4b9fdc-2f97-4507-8df5-a0c1dd7464a5/actiontemplate-azure-create-container-app-environment)** community step template to your process.  The template will first check to see if it already exists, if not, create it.  
 
 This template takes the following input:
 
@@ -211,12 +213,13 @@ Secrets:
   }
 ]
 ```
-- Container Ingress Port: 80
+- Container Ingress Port: `80`
 - External Ingress: Unchecked (False)
 
 ![Azure - Deploy Container App](octopus-azure-deploy-container.png)
 
 #### Get API DNS
+
 The eShopOnWeb web container needs the URL to the API container.  This step runs the following code to retrieve that value and sets an output variable. This code assumes that the Az PowerShell modules aren't installed, so it does it dynamically.
 
 ```powershell
@@ -235,16 +238,17 @@ $apiContainerApp = Get-AzContainerApp -Name "$($OctopusParameters["Project.Azure
 Set-OctopusVariable -name "DNS" -value $apiContainerApp.IngressFQDN
 ```
 
-#### Azure Deploy web Container App
-- Azure Resource Group Name: #{Project.Azure.ResourceGroup.Name}
-- Azure Account Subscription Id: #{Project.Azure.Account.SubscriptionNumber}
-- Azure Account Client Id: #{Project.Azure.Account.Client}
-- Azure Account Tenant Id: #{Project.Azure.Account.TenantId}
-- Azure Account Password:  #{Project.Azure.Account.Password}
-- Container App Environment Name:  #{Project.Azure.ContainerApp.Environment.Name}
-- Azure Location: #{Project.Azure.Region.Code}
-- Container Name: #{Project.Azure.ContainerApp.Web.Name}
-- Container Image: Choose eshop-web from feed list.
+#### Azure - Deploy web container app
+
+- Azure Resource Group Name: `#{Project.Azure.ResourceGroup.Name}`
+- Azure Account Subscription Id: `#{Project.Azure.Account.SubscriptionNumber}`
+- Azure Account Client Id: `#{Project.Azure.Account.Client}`
+- Azure Account Tenant Id: `#{Project.Azure.Account.TenantId}`
+- Azure Account Password: `#{Project.Azure.Account.Password}`
+- Container App Environment Name:  `#{Project.Azure.ContainerApp.Environment.Name}`
+- Azure Location: `#{Project.Azure.Region.Code}`
+- Container Name: `#{Project.Azure.ContainerApp.Web.Name}`
+- Container Image: Choose `eshop-web` from feed list.
 - Environment Variables:
 
 ```json
