@@ -94,3 +94,5 @@ Octopus is aiming to make the platform support schedule more predictable by anno
 Although Microsoft themselves have dropped support for Windows Server 2003 several years ago, Octopus Deploy has continued to invest in ensuring customers who rely on this OS can deploy to it. Unfortunately supporting these outdated platforms has not only a cost for us, but encourages bad practices.
 
 We hope that the new yearly deprecation schedule provides some much needed guidance and predictability in anticipating the changes to our support policy when it comes to the deployment targets.
+
+As usual if there is anything in this post which concerns you or you would like further information, please get in touch via support or add a comment below.
