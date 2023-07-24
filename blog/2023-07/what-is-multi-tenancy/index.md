@@ -1,15 +1,16 @@
 ---
-title: What is multi-tenancy?
-description: We expore the various definitions of the term 'multi-tenancy'.
+title: "What is multi-tenancy?"
+description: We explore the various definitions of the term multi-tenancy.
 author: andrew.corrigan@octopus.com
 visibility: private
-published: 3020-01-01-1400
+published: 2023-07-31-1400
 metaImage: blogimage-whatismultitenancy-2023.png
 bannerImage: blogimage-whatismultitenancy-2023.png
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags: 
-  - tag
+  - DevOps
+  - Multi-Tenancy
 ---
 
 'Multi-tenancy' was once a term that described a very particular software architecture: Where an application lives on a server for other computers - tenants - to use it.
@@ -38,7 +39,7 @@ Here, your tenants could be your customers or infrastructure.
 
 This is where organizations, like big enterprises, serve customers worldwide.
 
-Worldwide or regional support usually means accountings for regional differences, whether that's region-specific:
+Worldwide or regional support usually means accounting for regional differences. That includes region-specific:
 
 - Content
 - Languages
@@ -66,19 +67,21 @@ For example, you may need to deliver your software to your customer's own:
 
 - Cloud services
 - On-premises servers or desktop computers
-- Data Center
+- Data centers
 - Hybrid setups
 
-Here, your tenants could be a deployment target or group of deployment targets.
+Here, your tenants could be a deployment target or a group of deployment targets.
 
 ## And everything in between
 
-At this stage, you may be thinking, '*our multi-tenancy application fits a couple of these descriptions*,' and you'd be absolutely right!
+At this stage, you may be thinking, "*our multi-tenancy application fits a couple of these descriptions*", and you'd be absolutely right.
 
 These scenarios can crossover, for sure. And some apps may use more than one multi-tenancy variation at different stages.
 
-That's because software development is only growing more complex and with it, the term evolves too. The lines we draw between these scenarios are blurry and will only get blurrier still.
+That's because software development is only growing more complex and with it, the term evolves too. The lines we draw between these scenarios are blurry and will only get blurrier.
 
 ## What next?
 
 See Octopus's [Tenants use-case page](https://octopus.com/use-case/tenanted-deployments) for more information on how Octopus can help you deploy your multi-tenancy applications faster and more reliably.
+
+Happy deployments!
