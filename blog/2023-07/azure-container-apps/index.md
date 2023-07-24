@@ -142,7 +142,7 @@ This post assumes you know how to create an Octopus project and won't cover that
 With the External Feed and project variables configured, you can now configure the deployment process.  For the eShopOnWeb application, the process consists of the following steps:
 
 - Azure - Create Container App environment
-- Azure - Deploy API Container App
+- Azure - Deploy api Container App
 - Get API DNS
 - Azure Deploy web Container App
 
