@@ -4,9 +4,9 @@ description: Learn how to deploy Azure Container Apps with Octopus Deploy.
 author: shawn.sesna@octopus.com
 visibility: private
 published: 2023-07-26-1400
-metaImage: to-be-added-by-marketing
-bannerImage: to-be-added-by-marketing
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-howtodeploytoazurecontainerapps-2023.png
+bannerImage: blogimage-howtodeploytoazurecontainerapps-2023.png
+bannerImageAlt: Person with open laptop sitting on a container with the Azure Container Apps logo on it.
 isFeatured: false
 tags:
  - DevOps
@@ -146,7 +146,7 @@ With the External Feed and project variables configured, you can now configure t
 - Get API DNS
 - Azure Deploy web Container App
 
-#### Azure - Creating the container app environment
+#### Azure - Create Container App Environment step
 
 To deploy to Azure Container App, you must first have an Azure Container App environment.  
 
@@ -166,7 +166,7 @@ This template takes the following input:
 
 The template sets an output variable called `ManagedEnvironmentId` which is the ID value of the environment it created or found if it already exists.
 
-#### Azure - Deploying the API container app
+#### Azure - Deploy api Container App step
 
 Add an **[Azure - Deploy Container App](https://library.octopus.com/step-templates/db701b9a-5dbe-477e-b820-07f9e354f634/actiontemplate-azure-deploy-container-app)** community step template to your process.
 
@@ -218,7 +218,7 @@ Secrets:
 
 ![Azure - Deploy Container App](octopus-azure-deploy-container.png)
 
-#### Get API DNS
+#### Get API DNS step
 
 The eShopOnWeb web container needs the URL to the API container.  This step runs the following code to retrieve that value and sets an output variable. This code assumes that the Az PowerShell modules aren't installed, so it does it dynamically.
 
@@ -238,7 +238,7 @@ $apiContainerApp = Get-AzContainerApp -Name "$($OctopusParameters["Project.Azure
 Set-OctopusVariable -name "DNS" -value $apiContainerApp.IngressFQDN
 ```
 
-#### Azure - Deploy web container app
+#### Azure - Deploy web Container App step
 
 - Azure Resource Group Name: `#{Project.Azure.ResourceGroup.Name}`
 - Azure Account Subscription Id: `#{Project.Azure.Account.SubscriptionNumber}`
