@@ -13,7 +13,7 @@ tags:
   - Multi-Tenancy
 ---
 
-The term 'multi-tenancy' has been around for a long time and applies to many aspects of the tech industry. As we explored in our post, [what is multi-tenancy?](updatelink), the definition can depend on your industry, style of delivery, and system architecture. Ask several people what it means and you'll likely get different answers.
+The term 'multi-tenancy' has been around for a long time and applies to many aspects of the tech industry. As we explored in our post, [What is multi-tenancy?](https://octopus.com/blog/what-is-multi-tenancy), the definition can depend on your industry, style of delivery, and system architecture. Ask several people what it means and you'll likely get different answers.
 
 The most common examples of multi-tenancy see software split by:
 
