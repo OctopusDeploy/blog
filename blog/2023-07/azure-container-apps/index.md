@@ -2,7 +2,7 @@
 title: How to deploy Azure Container Apps
 description: Learn how to deploy Azure Container Apps with Octopus Deploy.
 author: shawn.sesna@octopus.com
-visibility: private
+visibility: public
 published: 2023-07-26-1400
 metaImage: blogimage-howtodeploytoazurecontainerapps-2023.png
 bannerImage: blogimage-howtodeploytoazurecontainerapps-2023.png
@@ -13,7 +13,7 @@ tags:
  - Azure
  - Kubernetes
 ---
-Containerizing your application is the modern-day approach to application development.  The most popular platform for hosting containers is Kubernetes.  However, not everyone wants or needs to know how to operate a Kubernetes cluster. Some people just want to deploy their apps.  
+Containerizing your application is the modern-day approach to application development. The most popular platform for hosting containers is Kubernetes. However, not everyone wants or needs to know how to operate a Kubernetes cluster. Some people just want to deploy their apps.  
 
 Azure Container Apps deploys containers to a Kubernetes cluster managed by Azure. This lets developers focus on what they do best, write code.  
 
