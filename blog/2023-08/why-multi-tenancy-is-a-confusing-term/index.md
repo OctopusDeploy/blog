@@ -2,11 +2,11 @@
 title: Why multi-tenancy can be a confusing term and what that means to Octopus
 description: Andy looks at why multi-tenancy is a tricky thing to define and how that affected Octopus's messaging.
 author: andrew.corrigan@octopus.com
-visibility: private
+visibility: public
 published: 2023-08-02-1400
 metaImage: blogimage-whatismultitenancy-2023_1.png
 bannerImage: blogimage-whatismultitenancy-2023_1.png
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+bannerImageAlt: Octopus infinity light cycle leaving Octopus Deploy with question marks and digital packages hovering above, beside a man looking confused.
 isFeatured: false
 tags: 
   - DevOps
