@@ -90,6 +90,8 @@ There are still options available for these cases which will provide some capabi
 ## Deprecations In Future
 Octopus is aiming to make the platform support schedule more predictable by announcing and putting into effect target deprecations in the first Octopus Server release of the calendar year. We want to encourage users to keep their targets up to date with vendor supported platforms and are realigning our target policies with this in mind. 
 
+Our goal is to anchor our platform support for Octopus Targets to the support provided by vendors who maintain the Operating System themselves. For example, for Windows targets this would mean a commitment of support for platforms through to their [Extended Support](https://learn.microsoft.com/en-us/lifecycle/policies/fixed#extended-support) date, for Ubuntu distros as [Long Term Support (LTS)](https://ubuntu.com/about/release-cycle) and for Red Hat as the [Extended Life Phase (ELP)](https://access.redhat.com/support/policy/updates/errata)
+
 ## Summary
 Although Microsoft themselves have dropped support for Windows Server 2003 several years ago, Octopus Deploy has continued to invest in ensuring customers who rely on this OS can deploy to it. Unfortunately supporting these outdated platforms has not only a cost for us, but encourages bad practices.
 
