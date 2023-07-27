@@ -4,9 +4,9 @@ description: Octopus Deploy will begin to reasess the way it supports Operating 
 author: robert.erez@octopus.com
 visibility: private
 published: 2026-06-05-1400
-metaImage: na
-bannerImage: na
-bannerImageAlt: na
+metaImage: 
+bannerImage: 
+bannerImageAlt: 
 isFeatured: false
 tags: 
 - Product
@@ -21,11 +21,11 @@ Microsoft Windows Server 2003, a twenty year old Operating System, was marked as
 
 Not only are we doing a disservice to our customers by not encouraging them to upgrade their systems, in doing so we hold back our own codebase which is required in many cases to cater for this lowest common OS denominator.
 
-Although there may always be a long tail of customers requiring deployments to machines which are not running the latest version of the various supported platforms, it is still important that the guidance we provide has some alignment with what the platform vendors themselves suggest. 
+Although there may continue be a long tail of customers requiring deployments to machines which are not running the latest version of the various supported platforms, it is still important that the guidance we provide has some alignment with what the platform vendors themselves suggest. 
 
 ## Platform support schedule
 
-To improve predictability for our customers when it comes to these platform support decisions in future, we will begin announcing and putting into effect these changes on a yearly basis. 
+To improve predictability for our customers when it comes to these platform support decisions in future, we will begin announcing and putting into effect these changes on a yearly basis.
 
 **The first release of each calendar year will be planned to include any relevant updates that result in changes to supported deployment target platforms. This release will also embed warnings in the product for those target platforms being considered for deprecation in the following year.**
 
@@ -38,11 +38,11 @@ To improve predictability for our customers when it comes to these platform supp
  Given the age, technical limitations and customer impact of the Windows 2003 platform, the dropping of it's support will take place in the first planned deprecation release in `2024.1`.
 
 ## What does dropping Target support mean?                                                
-All software has a lifecycle, and the end of support for an Operating System in Octopus Deploy means that we will no longer develop or test for the usage of that platform during standard workloads. This may mean degraded functionality best or it could be a complete inability to run tasks on those platforms. 
+All software has a lifecycle, and the end of support for an Operating System in Octopus Deploy means that we will no longer develop or test for the usage of that platform during standard workloads. This may mean degraded functionality at best or it could be a complete inability to run tasks on those platforms. 
 
-In the case of Windows Server 2003, the deprecation in `2024.1` will likely be coupled with some improvements made to parts of our execution system that render the execution of complex deployments to those servers generally unavailable. 
+In the case of Windows Server 2003, the deprecation in Octopus Server `2024.1` will likely be coupled with some improvements made to parts of our execution system that render the execution of complex deployments to those servers generally unavailable. 
 
- We rely on telemetry from installed Octopus instances and conversations with  customers to help shape these decisions and provide insights on usage. Unsurprisingly in this case, our metrics indicate that only a very small handful of customers still have a Tentacle running Windows Server 2003 and most of those represent a single target.
+We rely on telemetry from installed Octopus instances and conversations with  customers to help shape these decisions and provide insights on usage. Unsurprisingly in this case, our metrics indicate that only a very small handful of customers still have a Tentacle running Windows Server 2003 and most of those represent a single target.
 
 ## Dropping support for Windows Server 2003 
 
@@ -81,9 +81,9 @@ Although our primary recommendation is that customers upgrade to an Operating Sy
 
 There are still options available for these cases which will provide some capabilities, albeit in a limited capacity.
 
-* **Shard Your Octopus Instance** - Octopus licensing allows more than one active instance at a time. Customers who need to run deployments on these older unsupported targets may wish to install a secondary Octopus Server instance with a version prior to `2024.1` where this capability is supported. Our LTS strategy currently allows support for Octopus Instance up to 12 months past their release date so users can expect to continue to receive security patches or major bug fixes through this period. 
+* **Shard Your Octopus Instance** - Octopus licensing allows more than one active instance at a time. Customers who need to run deployments on these older unsupported targets may wish to install a secondary Octopus Server instance with a version prior to `2024.1` where this capability is supported. Our LTS strategy currently allows support for Octopus versions up to 12 months past their release date so users can expect to continue to receive security patches or major bug fixes through this period. 
 
-* **[Raw Scripting](https://octopus.com/docs/deployments/custom-scripts/raw-scripting)** - This option allows for packages to be transferred from the server and very basic scripts to be directly invoked. This operation does not take place though Calamari and so lacks many of the rich deployment tools such as variable replacement or cloud deployments. 
+* **[Raw Scripting](https://octopus.com/docs/deployments/custom-scripts/raw-scripting)** - This option allows for packages to be transferred from the server and very basic scripts to be directly invoked. This operation does not take place though Calamari and so lacks many of the rich deployment capabilities such as variable replacement or cloud deployments. 
 
 * **Don’t Upgrade** - If you have no option but to continue to deploy to platforms which fall out of our support capabilities, remaining on older Octopus Server versions will allow for this requirement. Since the Octopus Server version itself will eventually fall out of support and lack the ability to deliver patches and updates, we would reccomend this option only as a last resort.
 
