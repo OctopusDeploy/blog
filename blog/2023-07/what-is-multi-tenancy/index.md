@@ -35,7 +35,7 @@ For example, your customers would get isolated:
 
 Here, your tenants could be your customers or infrastructure.
 
-![Diagram of multi-tenancy split by customer](IMG_Blog_Split_business_model_2023.png)
+![Diagram of multi-tenancy split by customer](IMG_Blog_Split_by_customer_diagram_2023.png)
 
 ## Split by location or region
 
