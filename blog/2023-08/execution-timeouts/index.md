@@ -50,7 +50,7 @@ You can use Execution Timeouts on all steps except for:
 
 ### How to configure Execution Timeouts
 
-At the time of writing, Execution Timeouts are an early access preview (EAP) feature behind a feature toggle. If you're an Octopus Cloud customer and want to try this feature, please email our [support team](mailto:support@octopus.com). 
+Execution Timeouts are available from Octopus 2023.3 and can be enabled by setting the `ActionExecutionTimeOutFeatureToggle` environment variable to true. If you're an Octopus Cloud customer and want to try this feature, please email our [support team](mailto:support@octopus.com). 
 
 After you enable Execution Timeouts, you can configure them manually through the step UI, or through the Octopus variable: `Octopus.Action[stepName].ExecutionTimeout.Minutes`. 
 
