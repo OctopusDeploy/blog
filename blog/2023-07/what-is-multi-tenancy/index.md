@@ -35,6 +35,8 @@ For example, your customers would get isolated:
 
 Here, your tenants could be your customers or infrastructure.
 
+![Diagram of multi-tenancy split by customer](IMG_Blog_Split_business_model_2023.png)
+
 ## Split by location or region
 
 This is where organizations, like big enterprises, serve customers worldwide.
@@ -48,6 +50,8 @@ Worldwide or regional support usually means accounting for regional differences.
 
 Here, your tenants could be your regional infrastructure.
 
+![Diagram of multi-tenancy split by location or region](IMG_Blog_Split_by_location_diagram_2023.png)
+
 ## Split by business model
 
 Your business model could dictate where your application becomes multi-tenancy. The best example is delivering software to many brick-and-mortar locations, like retail chains, hospitals, hotels, and more.
@@ -58,6 +62,8 @@ In this scenario, you could be:
 - An independent organization delivering software to physical locations for many organizations
 
 Here, your tenants could be each store or a group of stores.
+
+![Diagram of multi-tenancy split by business model](IMG_Blog_Split_by_business_model_2023.png)
 
 ## Split by hosting solution
 
@@ -71,6 +77,8 @@ For example, you may need to deliver your software to your customer's own:
 - Hybrid setups
 
 Here, your tenants could be a deployment target or a group of deployment targets.
+
+![Diagram of multi-tenancy split by hosting solution](IMG_Blog_Split_by_solution_diagram_2023.png)
 
 ## And everything in between
 
