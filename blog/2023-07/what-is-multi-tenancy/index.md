@@ -35,7 +35,7 @@ For example, your customers would get isolated:
 
 Here, your tenants could be your customers or infrastructure.
 
-![Diagram of multi-tenancy split by customer](IMG_Blog_Split_by_customer_diagram_2023.png)
+![Diagram of multi-tenancy split by customer](split-by-customer-diagram-2023.png "width=500")
 
 ## Split by location or region
 
@@ -50,7 +50,7 @@ Worldwide or regional support usually means accounting for regional differences.
 
 Here, your tenants could be your regional infrastructure.
 
-![Diagram of multi-tenancy split by location or region](IMG_Blog_Split_by_location_diagram_2023.png)
+![Diagram of multi-tenancy split by location or region](split-by-location-diagram-2023.png "width=500")
 
 ## Split by business model
 
@@ -63,7 +63,7 @@ In this scenario, you could be:
 
 Here, your tenants could be each store or a group of stores.
 
-![Diagram of multi-tenancy split by business model](IMG_Blog_Split_by_business_model_2023.png)
+![Diagram of multi-tenancy split by business model](split-by-business-model-2023.png "width=500")
 
 ## Split by hosting solution
 
@@ -78,7 +78,7 @@ For example, you may need to deliver your software to your customer's own:
 
 Here, your tenants could be a deployment target or a group of deployment targets.
 
-![Diagram of multi-tenancy split by hosting solution](IMG_Blog_Split_by_solution_diagram_2023.png)
+![Diagram of multi-tenancy split by hosting solution](split-by-solution-diagram-2023.png "width=500")
 
 ## And everything in between
 
