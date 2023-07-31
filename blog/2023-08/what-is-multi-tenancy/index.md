@@ -3,7 +3,7 @@ title: "What is multi-tenancy?"
 description: We explore the various definitions of the term multi-tenancy.
 author: andrew.corrigan@octopus.com
 visibility: public
-published: 2023-07-31-1400
+published: 2023-08-02-1400
 metaImage: blogimage-whatismultitenancy-2023.png
 bannerImage: blogimage-whatismultitenancy-2023.png
 bannerImageAlt: Octopus infinity light cycle leaving Octopus Deploy with large question marks hovering above
