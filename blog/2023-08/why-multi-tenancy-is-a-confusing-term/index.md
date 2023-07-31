@@ -1,9 +1,9 @@
 ---
-title: Why multi-tenancy can be a confusing term and what that means to Octopus
+title: Why multi-tenancy is a confusing term and what it means to Octopus
 description: Andy looks at why multi-tenancy is a tricky thing to define and how that affected Octopus's messaging.
 author: andrew.corrigan@octopus.com
 visibility: public
-published: 2023-08-02-1400
+published: 2023-08-07-1400
 metaImage: blogimage-whatismultitenancy-2023_1.png
 bannerImage: blogimage-whatismultitenancy-2023_1.png
 bannerImageAlt: Octopus infinity light cycle leaving Octopus Deploy with question marks and digital packages hovering above, beside a man looking confused.
@@ -82,7 +82,7 @@ We could explain Octopus's value to multi-tenancy better when we freed ourselves
 
 That's why we're moving our focus from 'multi-tenancy' to the bit we actually help you with; tenanted deployments.
 
-## What's next
+## What next?
 
 See Octopus's [Tenants use-case page](https://octopus.com/use-case/tenanted-deployments) for more information on how Octopus can help you deploy your multi-tenancy applications faster and more reliably.
 
