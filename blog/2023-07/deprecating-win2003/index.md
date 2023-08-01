@@ -61,7 +61,7 @@ There are still options available for these cases which will provide some capabi
 
 * **Don’t Upgrade** - If you have no option but to continue to deploy to platforms which fall out of our support capabilities, remaining on older Octopus Server versions will allow for this requirement. Since the Octopus Server version itself will eventually fall out of support and lack the ability to deliver patches and updates, we would reccomend this option only as a last resort.
 
-#### Other changes in 2024.1
+### Other changes in 2024.1
 As noted in a [previous blog post](https://octopus.com/blog/deprecating-mono), `2024.1` will also deprecate support for Mono. Read the earlier post for further details about this change if you are running Linux targets that use this legacy feature.
 
 Check our [Deprecations page](https://octopus.com/docs/deprecations) for other changes that may be introduced in this release
