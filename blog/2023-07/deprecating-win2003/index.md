@@ -41,7 +41,7 @@ This depreciation will take place in 2 stages.
 ### Pre 2024.1
 From the most recently patched 2023.2 release onwards, health checks and deployments that occur on targets or workers that are detected as running Windows Server 2003 will begin generating warnings. The goal is to ensure customers are aware that they are running machines which could soon be affected by the changing support. 
 
-### Post 2024.1
+### Post 2024.1 (Feb 2024)
 The changes introduced from this release will allow our .NET Full Framework tooling to upgrade from .NET4.0 to .NET4.6.2. These tooling changes will mean that **Windows Server 2003 machines are no longer expected to function** and deployments will likely fail due to the unsupported .NET frameworks involved. 
 
 This change should not affect any non-Windows targets as these generally already use the .NET Core version of Calamari.
