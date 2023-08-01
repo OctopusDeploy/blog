@@ -4,8 +4,8 @@ description: A brief summary of the post, 170 characters max including spaces.
 author: andrew.corrigan@octopus.com
 visibility: private
 published: 3020-01-01-1400
-metaImage: 
-bannerImage: 
+metaImage: blogimage-whataretenanteddeployments-2023.png
+bannerImage: blogimage-whataretenanteddeployments-2023.png
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags: 
