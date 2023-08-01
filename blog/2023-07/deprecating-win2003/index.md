@@ -1,6 +1,6 @@
 ---
-title: Changes to unsupported Deployment Target Operating Systems include removing support for Windows 2003
-description: Octopus Deploy will begin to reasess the way it supports Operating Systems for Deployment Targets. Outdated platforms such as Windows 2003 will be dropped from 2024.1
+title: Dropping support for Windows Server 2003 Machines
+description: Octopus Deploy will drop support for Targets and Workers running Windows Server 2003 from the 2024.1 release
 author: robert.erez@octopus.com
 visibility: private
 published: 2026-06-05-1400
@@ -12,7 +12,9 @@ tags:
 - Product
 ---
 
-Octopus Deploy will drop support for Microsoft Windows 2003 Targets from the `2024.1` release. This change marks the start of a much more structured and hopefully predictable process to the way in which Octopus Deploy announces and executes our platform support policy.
+Supporting outdated operating systems come with a cost that gets more expensive over time. As a result Octopus Deploy will drop support for Microsoft Windows 2003 Targets and Workers from the `2024.1` release. 
+
+This post aims to explain why we have had to make this change, as well as what you can do if this affects you.
 
 ## Why deprecate Windows Server 2003
 Microsoft Windows Server 2003, a twenty year old Operating System, was marked as end of life by Microsoft over eight years ago in 2015. With no further security updates or patches being made available, the recommendation from Microsoft has for a long time been to migrate to a newer supported Operating System. Despite Microsoft themselves dropping support, it may come as a surprise to a lot of our customers that Octopus Deploy currently still officially supports Windows 2003 deployment targets and workers. This requires a complecated architecture and compilation of [Calamari](https://octopus.com/docs/octopus-rest-api/calamari), our remote execution engine. 
@@ -21,7 +23,7 @@ Microsoft Windows Server 2003, a twenty year old Operating System, was marked as
 
 Not only are we doing a disservice to our customers by not encouraging them to upgrade their systems, in doing so we hold back our own codebase which is required in many cases to cater for this lowest common OS denominator.
 
-Although there may continue be a long tail of customers requiring deployments to machines which are not running the latest version of the various supported platforms, it is still important that the guidance we provide has some alignment with what the platform vendors themselves suggest. 
+Running on this platform requires compiling our tooling with .NET4.0 which itself lacks support for some of the more modern deployment scenarios. As a result we have to generate multiple builds of this tooling, requiring a complex multi-project dependency structure. These different artifacts all need to be tested and all packaged and referenced in the Octopus Server installer even though the majority of our customers never relies on it. This setup in the shared tooling introduces risks for all customers and creates a significant development cost to maintain.
 
 Given the age, technical limitations and customer impact of the Windows 2003 platform, the dropping of it's support will take place in the first planned deprecation release in `2024.1`.
 
@@ -37,10 +39,10 @@ We rely on telemetry from installed Octopus instances and conversations with  cu
 This depreciation will take place in 2 stages. 
 
 ### Pre 2024.1
-From the most recently patched 2023.2 release onwards, health checks and deployments that occur on targets detected as running soon-to-be deprecated platforms will begin generating warnings. The goal is to ensure customers are aware that they are running machines which could soon be affected by the changing support. 
+From the most recently patched 2023.2 release onwards, health checks and deployments that occur on targets or workers that are detected as running Windows Server 2003 will begin generating warnings. The goal is to ensure customers are aware that they are running machines which could soon be affected by the changing support. 
 
 ### Post 2024.1
-The change in support for Windows 2003 will allow our .NET Full Framework tooling to upgrade from .NET4.0 to .NET4.6.2. These tooling changes will mean that **Windows Server 2003 machines are no longer expected to function** and deployments will likely fail due to the unsupported .NET frameworks involved. 
+The changes introduced from this release will allow our .NET Full Framework tooling to upgrade from .NET4.0 to .NET4.6.2. These tooling changes will mean that **Windows Server 2003 machines are no longer expected to function** and deployments will likely fail due to the unsupported .NET frameworks involved. 
 
 This change should not affect any non-Windows targets as these generally already use the .NET Core version of Calamari.
 
@@ -60,12 +62,12 @@ Windows Server 2016 onwards has .NET4.6.2 Framework or later [installed by defau
 #### Other changes in 2024.1
 As noted in a [previous blog post](https://octopus.com/blog/deprecating-mono), `2024.1` will also deprecate support for Mono. Read the earlier post for further details about this change if you are running Linux targets that use this legacy feature.
 
-Due to low customer usage and legacy integrations, we are also considering the deprecation of F# scripts in `2024.1`. 
+Check our [Deprecations page](https://octopus.com/docs/deprecations) for other changes that may be introduced in this release
 
 ## Options for Targets that cannot be upgraded
-From `2024.1` Octopus Deploy will consider Windows Server 2003 an unsupported platform for rich deployment pipelines due to its reliance on these tools.
+From `2024.1` Octopus Deploy will consider Windows Server 2003 an unsupported platform for rich deployment pipelines.
 
-Although our primary recommendation is that customers upgrade to an Operating System within the vendor’s support policy, that option might not always be possible. Some customers might not be ready to upgrade their targets to a later Windows Operating System or for technical reasons, unable to move away from that platform. 
+Although our primary recommendation is that customers upgrade to an Operating System within the vendor’s support policy, that option might not always be possible. Some customers might not be ready to upgrade their machines to run a later Windows Operating System or for technical reasons, unable to move away from that platform. 
 
 There are still options available for these cases which will provide some capabilities, albeit in a limited capacity.
 
@@ -75,12 +77,9 @@ There are still options available for these cases which will provide some capabi
 
 * **Don’t Upgrade** - If you have no option but to continue to deploy to platforms which fall out of our support capabilities, remaining on older Octopus Server versions will allow for this requirement. Since the Octopus Server version itself will eventually fall out of support and lack the ability to deliver patches and updates, we would reccomend this option only as a last resort.
 
-## Deprecations In Future
-Octopus is aiming to make the platform support schedule more predictable by announcing and putting into effect target deprecations in the first Octopus Server release of the calendar year. We want to encourage users to keep their targets up to date with vendor supported platforms and are realigning our target policies with this in mind. 
-
-Our goal is to anchor our platform support for Octopus Targets to the support provided by vendors who maintain the Operating System themselves. For example, for Windows targets this would mean a commitment of support for platforms through to their [Extended Support](https://learn.microsoft.com/en-us/lifecycle/policies/fixed#extended-support) date, for Ubuntu distros as [Long Term Support (LTS)](https://ubuntu.com/about/release-cycle) and for Red Hat as the [Extended Life Phase (ELP)](https://access.redhat.com/support/policy/updates/errata)
-
 ## Summary
 Although Microsoft themselves have dropped support for Windows Server 2003 several years ago, Octopus Deploy has continued to invest in ensuring customers who rely on this OS can deploy to it. Unfortunately supporting these outdated platforms has not only a cost for us, but encourages bad practices.
+
+As such from the `2024.1` release onwards Windows Server 2003 will be considered an unsupported platform for deployment targets or workers.
 
 As usual if there is anything in this post which concerns you or you would like further information, please get in touch via support or add a comment below.
