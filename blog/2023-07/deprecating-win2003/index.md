@@ -14,8 +14,8 @@ tags:
 
 Octopus Deploy will drop support for Microsoft Windows 2003 Targets from the `2024.1` release. This change marks the start of a much more structured and hopefully predictable process to the way in which Octopus Deploy announces and executes our platform support policy.
 
-## Why re-evaluate supported platforms?
-Microsoft Windows Server 2003, a twenty year old Operating System, was marked as end of life by Microsoft over eight years ago in 2015. With no further security updates or patches being made available the recommendation from Microsoft has for a long time been to migrate to a newer supported Operating System. Despite Microsoft themselves dropping support, it may come as a surprise to a lot of our customers that Octopus Deploy currently still officially supports Windows 2003 deployment targets. This requires a complecated architecture and compilation of [Calamari](https://octopus.com/docs/octopus-rest-api/calamari), our remote execution engine. 
+## Why deprecate Windows Server 2003
+Microsoft Windows Server 2003, a twenty year old Operating System, was marked as end of life by Microsoft over eight years ago in 2015. With no further security updates or patches being made available, the recommendation from Microsoft has for a long time been to migrate to a newer supported Operating System. Despite Microsoft themselves dropping support, it may come as a surprise to a lot of our customers that Octopus Deploy currently still officially supports Windows 2003 deployment targets and workers. This requires a complecated architecture and compilation of [Calamari](https://octopus.com/docs/octopus-rest-api/calamari), our remote execution engine. 
 
 ![Microsoft Windows 2003 Support Timeline](ms-win-2003-support-timeline.png)
 
@@ -23,26 +23,14 @@ Not only are we doing a disservice to our customers by not encouraging them to u
 
 Although there may continue be a long tail of customers requiring deployments to machines which are not running the latest version of the various supported platforms, it is still important that the guidance we provide has some alignment with what the platform vendors themselves suggest. 
 
-## Platform support schedule
-
-To improve predictability for our customers when it comes to these platform support decisions in future, we will begin announcing and putting into effect these changes on a yearly basis.
-
-**The first release of each calendar year will be planned to include any relevant updates that result in changes to supported deployment target platforms. This release will also embed warnings in the product for those target platforms being considered for deprecation in the following year.**
-
- This yearly period of warnings will provide both us and customers ample time to consider the impacts that a pending deprecation may bring.
-
- Based on current EOL dates from Microsoft, the current planned deprecation schedule for the oldest Windows Server Operating Systems provide several years worth of upgrades to our lowest supported platform. The big disclaimer to this proposal is the commitment to continually evaluate the viability of this schedule based on analysis of user metrics and direct conversations with our customers.
-
- ![Deprecation Timeline](timeline.png)
-
- Given the age, technical limitations and customer impact of the Windows 2003 platform, the dropping of it's support will take place in the first planned deprecation release in `2024.1`.
+Given the age, technical limitations and customer impact of the Windows 2003 platform, the dropping of it's support will take place in the first planned deprecation release in `2024.1`.
 
 ## What does dropping Target support mean?                                                
 All software has a lifecycle, and the end of support for an Operating System in Octopus Deploy means that we will no longer develop or test for the usage of that platform during standard workloads. This may mean degraded functionality at best or it could be a complete inability to run tasks on those platforms. 
 
 In the case of Windows Server 2003, the deprecation in Octopus Server `2024.1` will likely be coupled with some improvements made to parts of our execution system that render the execution of complex deployments to those servers generally unavailable. 
 
-We rely on telemetry from installed Octopus instances and conversations with  customers to help shape these decisions and provide insights on usage. Unsurprisingly in this case, our metrics indicate that only a very small handful of customers still have a Tentacle running Windows Server 2003 and most of those represent a single target.
+We rely on telemetry from installed Octopus instances and conversations with  customers to help shape these decisions and provide insights on usage. Unsurprisingly in this case, our metrics indicate that only a very small handful of customers still have a Tentacle running Windows Server 2003 and most of those represent a single target or worker.
 
 ## Dropping support for Windows Server 2003 
 
@@ -94,7 +82,5 @@ Our goal is to anchor our platform support for Octopus Targets to the support pr
 
 ## Summary
 Although Microsoft themselves have dropped support for Windows Server 2003 several years ago, Octopus Deploy has continued to invest in ensuring customers who rely on this OS can deploy to it. Unfortunately supporting these outdated platforms has not only a cost for us, but encourages bad practices.
-
-We hope that the new yearly deprecation schedule provides some much needed guidance and predictability in anticipating the changes to our support policy when it comes to the deployment targets.
 
 As usual if there is anything in this post which concerns you or you would like further information, please get in touch via support or add a comment below.
