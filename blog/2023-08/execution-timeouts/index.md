@@ -24,7 +24,7 @@ Octopus 2023.3 introduces Execution Timeouts, a feature to configure automatic s
 
 You can enable Execution Timeouts on individual steps found in the **Conditions** section of each step, as shown below:
 
-![Execution Timeouts configuration on a step.](execution-timeout-ui.png)
+![Execution Timeouts configuration on a step.](execution-timeout-ui.png "width=500")
 
 You can configure Execution Timeouts in minutes. An unset value or zero won't timeout. 
 
@@ -38,7 +38,7 @@ It's important to note that Execution Timeouts encompass all processes involved 
 
 We recommend setting a slightly longer timeout than expected. In most cases, an additional minute should account for this.
 
-![Execution Timeouts set up.](img-ani-enablingretries-2023-x1.gif)
+![Execution Timeouts set up.](img-ani-enablingretries-2023-x1.gif "width=500")
 
 ### Steps you can't use Execution Timeouts for
 
