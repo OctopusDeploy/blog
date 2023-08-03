@@ -18,7 +18,7 @@ This post explains why we have to make this change, and what you can do if this 
 
 ## What does dropping target support mean?  
                                               
-All software has a lifecycle, and the end of support for an Operating System in Octopus Deploy means no longer developing or testing that platform's use during standard workloads. At best, this may lead to degraded functionality, at worst, a complete inability to run tasks on those platforms.
+All software has a lifecycle, and the end of support for an operating system in Octopus Deploy means no longer developing or testing that platform's use during standard workloads. At best, this may lead to degraded functionality, at worst, a complete inability to run tasks on those platforms.
 
 For Windows Server 2003, we'll likely couple the deprecation in Octopus Server 2024.1 with improvements to parts of our execution system that render the execution of complex deployments to those servers generally unavailable.
 
@@ -57,7 +57,7 @@ Windows Server 2016 onwards has .NET4.6.2 Framework or later [installed by defau
 
 From 2024.1, Octopus Deploy will consider Windows Server 2003 an unsupported platform for rich deployment pipelines.
 
-Our primary recommendation is that customers upgrade to an Operating System in the vendor’s support policy. However, we know that option might not always be possible. Some customers might not be ready to upgrade their machines to run a later Windows Operating System. Some might be unable to move away from that platform for technical reasons.
+Our primary recommendation is that customers upgrade to an operating system in the vendor’s support policy. However, we know that option might not always be possible. Some customers might not be ready to upgrade their machines to run a later Windows operating system (OS). Some might be unable to move away from that platform for technical reasons.
 
 There are still options available for these cases, which will provide some capabilities, albeit in a limited capacity.
 
@@ -75,7 +75,7 @@ Check our [Deprecations page](https://octopus.com/docs/deprecations) for other c
 
 ## Why deprecate Windows Server 2003?
 
-More than 8 years ago in 2015, Microsoft marked Windows Server 2003, a 20-year-old Operating System, as end of life. With no further security updates or patches available, Microsoft has long recommended migrating to a newer, supported Operating System (OS). 
+More than 8 years ago in 2015, Microsoft marked Windows Server 2003, a 20-year-old operating system, as end of life. With no further security updates or patches available, Microsoft has long recommended migrating to a newer, supported operating system (OS). 
 
 Despite Microsoft themselves dropping support, it may surprise many of our customers that Octopus still officially supports Windows 2003 deployment targets and Workers. This requires a complicated architecture and compilation of [Calamari](https://octopus.com/docs/octopus-rest-api/calamari), our remote execution engine. 
 
