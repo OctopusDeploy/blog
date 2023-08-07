@@ -95,7 +95,7 @@ To configure the deployment step:
 1. Specify the files you want to use for the deployment by providing the path.
 1. Save the process configuration.
 
-![Adding variable to the Git path row](git-manifest-paths.png "width=500")
+![Adding variable to the Git path row](git-manifest-repo.png "width=500")
 
 Now you can create a release and deploy it. Octopus will clone your Git repo, find the files you specified, and deploy them.
 
@@ -103,7 +103,7 @@ Variable replacement, including structured configuration variables, will work as
 
 #### How to configure file paths
 
-You can configure multiple paths. Paths should be separated by `;`.
+You can configure multiple paths. Paths should be separated by new lines.
 
 Each path can point to one or many files.
 
