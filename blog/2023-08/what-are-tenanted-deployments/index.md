@@ -15,7 +15,7 @@ tags:
 
 As we explained in our post, [what is multi-tenancy?](https://octopus.com/blog/what-is-multi-tenancy), multi-tenancy is where software or its infrastructure splits into manageable chunks called 'tenants'. Such splits can save costs, simplify processes, or allow customization per customer or destination.
 
-Delivering multi-tenancy software can get very complex very quickly. A common strategy to manage that complexity is with 'tenanted deployments'.
+Delivering multi-tenancy software can get very complex very quickly. A common strategy to manage that complexity is a tenanted deployment strategy.
 
 Tenanted deployments see you use similar but separate deployment processes to manage tenant differences. This strategy offers benefits for multi-tenancy software but can cause problems in other areas.
 
@@ -27,23 +27,23 @@ In this post, we explore the benefits and problems of tenanted deployments, plus
 
 When developing a multi-tenancy application, your tenants will have differences no matter at what level you define them. For example, your customers might have different compliance needs, branding, or features.
 
-As tenanted deployments mean separate delivery processes for each tenant, deployments are easily customizable.
+As tenanted deployments mean separate delivery processes for each tenant, deployments become easily customizable.
 
 If you sell book-tracking software to libraries, for example, tenanted deployments can help you ensure each client has its own logo and features.
 
 ### Deploy the same app to any infrastructure type or architecture 
 
-Tenanted deployments allow you to deploy the same application anywhere as you can tailor the deployment process for each target.
+Tenanted deployments allow you to deploy the same application anywhere as you can tailor the process for each target type.
 
-Need to send your software to a customer's on-premises data center *and* to another's preferred cloud platform? No problem! Tenanted deployments make that possible.
+Need to send your software to a customer's on-premises data center *and* to another's preferred cloud platform? No problem! The flexibility of tenanted deployments make that possible.
 
 ## Problems with tenanted deployments
 
 ### Process duplication
 
-When doing manual tenanted deployments (or even with other deployment tools), you'd need to duplicate and customize a templated or existing process.
+When doing manual tenanted deployments (or even using other deployment tools), you'd need to duplicate and customize a templated or existing process.
 
-That might be fine if you only need to set up your tenants once. Add new tenants or make changes often, though, and your templates may drift and drastically change over time. That's almost certain to cause you problems later on.
+That might be fine if you only need to set up your tenants once. Add new tenants or make changes often, though, and your templates may drift and change drastically over time. That's almost certain to cause you problems later on.
 
 ### Risk of error iteration
 
