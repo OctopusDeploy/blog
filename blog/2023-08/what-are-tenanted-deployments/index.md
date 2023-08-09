@@ -6,7 +6,7 @@ visibility: public
 published: 2023-08-14-1400
 metaImage: blogimage-whataretenanteddeployments-2023.png
 bannerImage: blogimage-whataretenanteddeployments-2023.png
-bannerImageAlt: Octopus Infinity light cycles speeding out of Octopus Deploy to deliver to thousands of tenants.
+bannerImageAlt: Octopus infinity light cycles speeding out of Octopus Deploy to deliver to thousands of tenants.
 isFeatured: false
 tags: 
   - DevOps
