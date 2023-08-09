@@ -82,4 +82,9 @@ Octopus's Tenants feature lets you:
 
 Check out our [Tenants use-case page](https://octopus.com/use-case/tenanted-deployments) to see how other organizations simplified their tenanted deployments with Octopus.
 
+You can also read our other posts about multi-tenancy:
+
+- [What is multi-tenancy?](https://octopus.com/blog/what-is-multi-tenancy)
+- [Why multi-tenancy is a confusing term and what it means for Octopus](https://octopus.com/blog/why-multi-tenancy-is-a-confusing-term)
+
 Happy deployments!
