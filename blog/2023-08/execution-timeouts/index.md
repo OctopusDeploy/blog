@@ -38,7 +38,7 @@ It's important to note that Execution Timeouts encompass all processes involved 
 
 We recommend setting a slightly longer timeout than expected. In most cases, an additional minute should account for this.
 
-![Execution Timeouts set up.](img-ani-enablingretries-2023-x1.gif "width=500")
+![Execution Timeouts set up.](img-enablingo-retries-2023.gif "width=500")
 
 ### Steps you can't use Execution Timeouts for
 
