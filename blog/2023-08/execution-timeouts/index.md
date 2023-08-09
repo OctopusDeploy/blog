@@ -14,7 +14,7 @@ tags:
 
 We received [feedback](https://roadmap.octopus.com/c/55-timeouts-for-steps) requesting execution timeouts to handle hung deployment processes.
 
-Octopus 2023.3 introduces Execution Timeouts, a feature to configure automatic step cancellations. Some deployment processes, such as Azure FTP connections and CloudFormation updates, include long-running actions. These can last for hours or even hang indefinitely. With Execution Timeouts, you can set a time limit, in minutes, in a step's configuration. When this timeout lapses, the action fails, and the deployment process continues. Paired with [Step Retries](https://octopus.com/blog/step-retries), this increases the likelihood of successful deployments.
+Octopus 2023.3 introduces Execution Timeouts, a feature to configure automatic step cancellations. Some deployment processes, like Azure FTP connections and CloudFormation updates, include long-running actions. These can last for hours or even hang indefinitely. With Execution Timeouts, you can set a time limit, in minutes, in a step's configuration. When this timeout lapses, the action fails, and the deployment process continues. Paired with [Step Retries](https://octopus.com/blog/step-retries), this increases the likelihood of successful deployments.
 
 <!-- Watch the video below to see this new feature in action:
 
