@@ -38,7 +38,7 @@ It's important to note that Execution Timeouts encompass all processes involved 
 
 We recommend setting a slightly longer timeout than expected. In most cases, an additional minute should account for this.
 
-![Execution Timeouts set up.](img-ani-enablingretries-2023-x1.gif "width=500")
+![Execution Timeouts set up.](img-enablingo-retries-2023.gif "width=500")
 
 ### Steps you can't use Execution Timeouts for
 
@@ -58,7 +58,7 @@ After you enable Execution Timeouts, you can configure them manually through the
 
 To avoid warning logs about overriding variables, you need to also set the variable `OctopusSuppressDuplicateVariableWarning` to **true**.
 
-![Execution Timeouts executing](img-ani-timeoutat1min-2023-x1.gif)
+![Execution Timeouts executing](img-ani-timeoutat1min-2023-x2.gif)
 
 ### Can I set Execution Timeouts to a default value for all my steps?
 
