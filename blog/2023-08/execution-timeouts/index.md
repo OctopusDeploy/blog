@@ -3,7 +3,7 @@ title: Introducing Execution Timeouts
 description: Learn about our new Execution Timeouts feature to handle unexpectedly long-running processes.
 author: isaac.calligeros@octopus.com
 visibility: public
-published: 2023-08-14-1200
+published: 2023-08-16-1200
 metaImage: blogimage-executiontimeout-2023.png
 bannerImage: blogimage-executiontimeout-2023.png
 bannerImageAlt: Person sitting cross-legged with a laptop in front of a giant hourglass and alarm clock.
