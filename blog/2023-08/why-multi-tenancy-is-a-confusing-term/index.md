@@ -86,4 +86,9 @@ That's why we're moving our focus from 'multi-tenancy' to the bit we actually he
 
 See Octopus's [Tenants use-case page](https://octopus.com/use-case/tenanted-deployments) for more information on how Octopus can help you deploy your multi-tenancy applications faster and more reliably.
 
+You can also read our other posts about multi-tenancy:
+
+- [What is multi-tenancy?](https://octopus.com/blog/what-is-multi-tenancy)
+- [What are tenanted deployments?](https://octopus.com/blog/what-are-tenanted-deployments)
+
 Happy deployments!
