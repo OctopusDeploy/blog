@@ -58,7 +58,7 @@ After you enable Execution Timeouts, you can configure them manually through the
 
 To avoid warning logs about overriding variables, you need to also set the variable `OctopusSuppressDuplicateVariableWarning` to **true**.
 
-![Execution Timeouts executing](img-ani-timeoutat1min-2023-x1.gif)
+![Execution Timeouts executing](img-ani-timeoutat1min-2023-x2.gif)
 
 ### Can I set Execution Timeouts to a default value for all my steps?
 
