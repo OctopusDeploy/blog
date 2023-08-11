@@ -70,10 +70,10 @@ I was a developer on an application that used this model about ten years ago.  O
  
 ### Database and Table Size
 
-You will likely have huge tables if your application uses a relational database.  Those tables (and attached indexes) will consume a lot of space, further increasing the database size.  Performing routine tasks such as rebuilding indexes or full backups will take progressively longer and longer.  
+You will likely have huge tables if your application uses a relational database.  Those tables (and attached indexes) will consume a lot of space.  That will increase the database size.  Routine maintenance tasks such as rebuilding indexes or full backups will take longer.
 
 ### The risk of cross-talk
-Cross-talk is when one customer’s data is exposed to another.  There are multiple potential ways cross-talk can occur.  Some examples include:
+Cross-talk is when one customer’s data is exposed to another.  There are potential ways cross-talk can occur.  Some examples include:
 
 - A where clause has a hardcoded customer identifier.  Every other customer can see that customer’s data.
 - The authentication/authorization mechanism has a bug; a user gets the wrong customer identifier.  They can view and change that customer’s data.
@@ -82,19 +82,19 @@ Cross-talk is when one customer’s data is exposed to another.  There are multi
 ### Customer sign-off and deployments
 Every customer will be on the same application version.  That is both beneficial and detrimental.  The benefit is there is one version to support.  It’s detrimental because each customer has a different capacity for change.  Any UI changes, security fixes, bug fixes, or system-wide features.
 
-Returning to the soft-drink example, imagine a security flaw within the application that impacted Coca-Cola and PepsiCo.  The fix is intrusive enough that both customers demand sign-off from their security teams before deploying to Production.  PepsiCo’s security team had the capacity and signed off on the fix within a few days.  Coca-Cola’s security team didn’t have the same capacity, and the sign-off couldn’t happen until next month.
+Returning to the soft-drink example, imagine a security flaw that harmed Coca-Cola and PepsiCo.  Both customers demand sign-off from their security teams before deploying to Production.  PepsiCo’s security team had the capacity and signed off on the fix within a few days.  Coca-Cola’s security team didn’t have the same capacity, and the sign-off couldn’t happen until next month.
 
-PepsiCo must now wait for Coca-Cola to sign off.  Meanwhile, that issue still exists.  To help PepsiCo, you can add a feature flag turning off the fix for Coca-Cola.  But that requires additional testing.
+PepsiCo must now wait for Coca-Cola to sign off.  Meanwhile, that issue still exists.  To help PepsiCo, you can add a feature flag turning off the fix for Coca-Cola.  But that requires more testing.
 
 If you have a customer sign-off process, you must reduce deployment frequency or increase application complexity. 
 
 ## Shared application with a database per customer
-The logical step to solve application complexity, cross-talk, and database size issues is leveraging a shared application with a database per customer.  In fact, before working at Octopus Deploy, I remember having conversations as a developer and later architect on this topic.
+The logical step to solve application complexity, cross-talk, and database size issues is leveraging a shared application with a database per customer.  Before working at Octopus Deploy, I had these conversations.
 
 The shared application, database per customer approach, is appealing for many reasons:
 - Single code base WITHOUT needing a where clause containing “where customerId=” for every query.
 - Can make an existing application “multi-tenant” with minimal code changes.
-- The customer’s data is isolated from other customers.  Additional safeguards, such as unique database accounts, help prevent customers from seeing each other’s data.
+- The customer’s data is isolated from other customers.  Unique database accounts help prevent customers from seeing each other’s data.
 - Isolated databases lower the risk of a noisy customer causing issues with other customers.
 - Every customer is on the same version of the application.  Everyone gets bug and security fixes at the same time.
 
@@ -150,9 +150,9 @@ With the shared application and database model, adding a customer was as simple 
 
 Infrastructure as Code and automation is required for the isolated tenant infrastructure to scale.
 
-### More deployments are required
+### More deployments
 
-A single deployment is needed with the shared application and database, and shared application and database models.  A deployment could take a single night.  
+Only a single deployment is needed with the shared application and database, and shared application and database models.  A deployment could take a single night.  
 
 With isolated tenant infrastructure, each customer will require a deployment.  It could take multiple days to deploy a change to all customers. A deployment automation tool is required to manage all these deployments.
 
