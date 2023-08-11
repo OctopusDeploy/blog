@@ -1,3 +1,5 @@
+ 
+
 ---
 title: Benefits of Isolated Tenanted Infrastructure
 description: A brief summary of the post, 170 characters max including spaces.
@@ -12,19 +14,19 @@ tags:
   - tag
 ---
 
-SaaS providers must isolate their customer’s data.  Isolation can be accomplished in code or via isolated infrastructure.  This article will walk you through the pros and cons of each approach and why I recommend isolated infrastructure.
+SaaS providers must isolate their customer’s data.  Isolation is possible in code or via isolated infrastructure.  This article will walk you through the pros and cons of each approach.  You will see why I recommend isolated infrastructure.
 
 ## Isolated Data Requirements
 
-Imagine you provide software to soft-drink manufacturers.  From a legal and business point of view, Coca-Cola wants to ensure Dr. Pepper, PepsiCo, or any other company, cannot access their data.  The same applies to Dr. Pepper, PepsiCo, and every other soft-drink manufacturer.
+Imagine you provide software to soft-drink manufacturers.  Coca-Cola doesn't want Dr. Pepper, or PepsiCo, accessing their data.  
 
-Outside of losing business, the penalties for failing to comply with that requirement have additional monetary impacts.  Generally, for B2B providers, user agreements or contracts enforce that rule.  Failure to comply could result in fines or lawsuits.  
-
+Outside of losing business, failing to have data isolation have monetary impacts.  Generally, for B2B providers, user agreements or contracts enforce that rule.  Failure to comply could result in fines or lawsuits.  
 ## Data Isolation Options
 
-Data segregation, or isolation, can be accomplished in multiple ways:
- - A unique identifier, such as CompanyId, is appended to every database record.
- - A database schema (for relational databases) or container/collection (NoSQL databases) per customer.
+There are three approaches for data isolation:
+
+ - A unique customer identifier on every database record.
+ - A database schema or container/collection (NoSQL databases) per customer.
  - A database per customer.
 
 There are two options for the application layer:
@@ -39,10 +41,10 @@ How you isolate your customer data impacts the application layer.
 |Database Schema Per Customer         |![](red-x.jpg)      |![](green-check.jpg)  |
 |Database Per Customer                |![](red-x.jpg)      |![](green-check.jpg)  |
 
-**Please Note:** All options marked with a red x are possible but impratical and not recommended.
+**Please Note:** All options marked with a red x are possible but impractical and not recommended.
 
 ## Unique customer identifier per record
-A unique customer identifier per record, or the shared application and database model, has many benefits.  
+The shared application and database model has many benefits.  
 
 - A single codebase to manage.
 - All customers get all the new bug fixes and features at once.
@@ -54,18 +56,18 @@ Despite its many benefits, it does have drawbacks.
 
 ### Application Complexity
 
-Adding a unique customer identifier per record is not easy. If the application has existed for years, retrofitting such a change will take 100s, if not 1000s of hours.  It is not just development time; you must include all the time spent testing, writing requirements, analyzing business rules, and more.  
+Adding a unique customer identifier per record is not easy. If the application has existed for years, retrofitting such a change will take 100s, if not 1000s of hours.  It is not development time.  Include all the time spent testing, writing requirements, analyzing business rules, and more.  
 
 **Picking the customer identifier per record will impact your application for the rest of its life.**
 
-Every new feature, table, configuration, test, and requirements doc must include the customer identifier.  Every new where clause must start “Where CustomerId =.”  A robust series of tests ensures one customer cannot access another customer’s data.
+How you develop features will change.  Is the feature global, such as a sign-in flow?  Or is the feature specific to the customer?  Every new where clause must start “Where CustomerId =.”  A robust series of tests ensures one customer cannot access another customer’s data.
 
 ### Noisy customer performance impact
 
-A noisy customer consumes more CPU, RAM, and Database resources than their counterparts.  Going back to the soft-drink example.  Coca-Cola has many brands, while a specialty manufacturer of root beer might have one or two.  When Coca-Cola runs a query to get the sales metrics for all its brands, it will have more data than the specialty manufacturer.  Their query will consume more resources.
+A noisy customer consumes more CPU, RAM, and Database resources than their counterparts.  Going back to the soft-drink example.  Coca-Cola has many brands, while a specialty manufacturer of root beer might have one or two.  Coca-Cola will consume more resources for its queries than the specialty manufacturer.  
 
-About ten years ago, I was a developer on an application that used this model and generated reports for customers.  We didn’t specify a date range for the report.  One customer decided they wanted the last three years of data.  Generating that report consumed so many resources that it prevented everyone else from using the application. 
-
+I was a developer on an application that used this model about ten years ago.  One feature generated reports for customers.  We didn’t specify a date range for the report.  One customer decided they wanted the last three years of data.  That prevented everyone else from using the application.
+ 
 ### Database and Table Size
 
 You will likely have huge tables if your application uses a relational database.  Those tables (and attached indexes) will consume a lot of space, further increasing the database size.  Performing routine tasks such as rebuilding indexes or full backups will take progressively longer and longer.  
@@ -165,7 +167,7 @@ With a shared application and database model, all customers share the same pool 
 
 However, the inverse is true with isolated tenanted infrastructure.  Applications that can only run on Virtual Machines will “bursty” resource use.  A lot of time, the VM will be idle, consuming minimal resources.  As such, they will incur higher cloud bills than those that run on platforms that allow sharing of resources with the required isolation.  For example, container platforms such as ACS, ECS, Kubernetes, PaaS platforms such as Azure Web Apps, Lambdas, and Functions, or Azure’s Elastic database pools. 
 
-That said, the additional cloud bills will likely be significantly cheaper than the people-hours to manage code complexity found in the shared application and database model.
+That said, the cloud bills will likely be cheaper than the people-hours to manage code complexity found in the shared application and database model.
 
 ## Conclusion
 
@@ -174,3 +176,4 @@ Unless there is a compelling business reason, my default recommendation is isola
 Many risks are associated with customers sharing the same application and database.  Almost all those risks can be mitigated by leveraging isolated tenanted infrastructure.  Until recently, that approach was considered too costly and complex to manage at scale.  With today's tools and technologies, isolated tenanted infrastructure at scale is achievable.  
 
 Happy deployments!
+
