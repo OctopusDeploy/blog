@@ -15,12 +15,13 @@ tags:
 
 SaaS providers must isolate their customer’s data.  Isolation is possible in code or via isolated infrastructure.  This article will walk you through the pros and cons of each approach.  You will see why I recommend isolated infrastructure.
 
-## Isolated Data Requirements
+## Isolated data requirements
 
 Imagine you provide software to soft-drink manufacturers.  Coca-Cola doesn't want Dr. Pepper, or PepsiCo, accessing their data.  
 
 Outside of losing business, failing to have data isolation have monetary impacts.  Generally, for B2B providers, user agreements or contracts enforce that rule.  Failure to comply could result in fines or lawsuits.  
-## Data Isolation Options
+
+## Data isolation options
 
 There are three approaches for data isolation:
 
@@ -43,6 +44,7 @@ How you isolate your customer data impacts the application layer.
 **Please Note:** All options marked with a red x are possible but impractical and not recommended.
 
 ## Unique customer identifier per record
+
 The shared application and database model has many benefits.  
 
 - A single codebase to manage.
@@ -53,7 +55,7 @@ The shared application and database model has many benefits.
 
 Despite its many benefits, it does have drawbacks.
 
-### Application Complexity
+### Application complexity
 
 Adding a unique customer identifier per record is not easy. If the application has existed for years, retrofitting such a change will take 100s, if not 1000s of hours.  It is not development time.  Include all the time spent testing, writing requirements, analyzing business rules, and more.  
 
@@ -67,11 +69,12 @@ A noisy customer consumes more CPU, RAM, and Database resources than their count
 
 I was a developer on an application that used this model about ten years ago.  One feature generated reports for customers.  We didn’t specify a date range for the report.  One customer decided they wanted the last three years of data.  That prevented everyone else from using the application.
  
-### Database and Table Size
+### Database and table size
 
 You will likely have huge tables if your application uses a relational database.  Those tables (and attached indexes) will consume a lot of space.  That will increase the database size.  Routine maintenance tasks such as rebuilding indexes or full backups will take longer.
 
 ### The risk of cross-talk
+
 Cross-talk is when one customer’s data is exposed to another.  There are potential ways cross-talk can occur.  Some examples include:
 
 - A where clause has a hardcoded customer identifier.  Every other customer can see that customer’s data.
@@ -79,6 +82,7 @@ Cross-talk is when one customer’s data is exposed to another.  There are poten
 - A malicious user discovers a SQL injection flaw within the application.  They can change their user record to view any customer’s data.
 
 ### Customer sign-off and deployments
+
 Every customer will be on the same application version.  That is both beneficial and detrimental.  The benefit is there is one version to support.  It’s detrimental because each customer has a different capacity for change.  Any UI changes, security fixes, bug fixes, or system-wide features.
 
 Returning to the soft-drink example, imagine a security flaw that harmed Coca-Cola and PepsiCo.  Both customers demand sign-off from their security teams before deploying to Production.  PepsiCo’s security team had the capacity and signed off on the fix within a few days.  Coca-Cola’s security team didn’t have the same capacity, and the sign-off couldn’t happen until next month.
@@ -91,6 +95,7 @@ If you have a customer sign-off process, you must reduce deployment frequency or
 The logical step to solve application complexity, cross-talk, and database size issues is leveraging a shared application with a database per customer.  Before working at Octopus Deploy, I had these conversations.
 
 The shared application, database per customer approach, is appealing for many reasons:
+
 - Single code base WITHOUT needing a where clause containing “where customerId=” for every query.
 - Can make an existing application “multi-tenant” with minimal code changes.
 - The customer’s data is isolated from other customers.  Unique database accounts help prevent customers from seeing each other’s data.
@@ -102,6 +107,7 @@ The shared application, database per customer approach, is appealing for many re
 I’ve spent over five years building multi-tenant applications using this approach.  After seeing the good and the bad, I would avoid it at all costs.
 
 ### Doesn’t solve all the problems
+
 The shared application with an isolated database model does not solve all the problems found in the shared application and database model.
 
 - Noisy customers can still consume a lot of computing resources.
@@ -118,6 +124,7 @@ A shared application with an isolated database model requires a “database mapp
 Managing those connection strings becomes more complex and risky because the application source code requires access to the data store.  
 
 ### Cross-talk still occurs and is more insidious
+
 The connection information is likely tied to a user’s session in server memory for performance reasons.  With the rise of SOA and microservice-based architecture, customer data exists across multiple applications.  When the application needs to invoke a service on behalf of the user, it’ll send the customer identifier to that service which also has a database per customer.  
 
 This architecture assumes the connection lookup will be perfect 100% of the time.  That’s an impossible standard.  Back-end bugs are complicated to identify.  A user will notice if that connection lookup is incorrect on the front end. A backend error might not be noticed for weeks until someone complains about missing or strange-looking data.
@@ -131,6 +138,7 @@ Every customer uses the same application version.  Because of that, the deployme
 Not all data is the same.  Some data is static is common across customers.  For example, a list of states and countries.  I’ve seen applications with a shared database to store that common data to avoid synchronizing to all the customer databases.  Each new feature and bug fix must know which data store to use.
 
 ## Isolated tenant infrastructure
+
 The isolated tenant infrastructure solves all the above problems:
 
 - No risk of cross-talk; a customer’s copy of the application can only communicate with the customer’s database.
@@ -145,6 +153,7 @@ The isolated tenant infrastructure solves all the above problems:
 The isolated tenant infrastructure is not without its faults.
 
 ### It takes more time to add a customer
+
 With the shared application and database model, adding a customer was as simple as adding a row to a table.  With isolated tenant infrastructure, customers must wait minutes or hours for their infrastructure.  
 
 Infrastructure as Code and automation is required for the isolated tenant infrastructure to scale.
@@ -161,7 +170,8 @@ The likelihood of all customers being on the same version is low.  One group of 
 
 The possible versions and feature sets to support will exponentially grow.  That requires robust testing automation, including the ability to spin up new “test customers” or “test environments” to support all the various permutations.  
 
-### Higher Cloud Bills
+### Higher cloud bills
+
 With a shared application and database model, all customers share the same pool of resources.  The chances of all customers needing all the resources at any given time are near zero.
 
 However, the inverse is true with isolated tenanted infrastructure.  Applications that can only run on Virtual Machines will “bursty” resource use.  A lot of time, the VM will be idle, consuming minimal resources.  As such, they will incur higher cloud bills than those that run on platforms that allow sharing of resources with the required isolation.  For example, container platforms such as ACS, ECS, Kubernetes, PaaS platforms such as Azure Web Apps, Lambdas, and Functions, or Azure’s Elastic database pools. 
@@ -175,4 +185,3 @@ Unless there is a compelling business reason, my default recommendation is isola
 Many risks are associated with customers sharing the same application and database.  Almost all those risks can be mitigated by leveraging isolated tenanted infrastructure.  Until recently, that approach was considered too costly and complex to manage at scale.  With today's tools and technologies, isolated tenanted infrastructure at scale is achievable.  
 
 Happy deployments!
-
