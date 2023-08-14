@@ -1,17 +1,16 @@
- 
-
 ---
-title: Benefits of Isolated Tenanted Infrastructure
+title: Benefits of isolated tenanted infrastructure
 description: A brief summary of the post, 170 characters max including spaces.
-author: firstname.surname@octopus.com
+author: bob.walker@octopus.com
 visibility: private
-published: 3020-01-01-1400
+published: 2023-08-23-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags: 
-  - tag
+  - DevOps
+  - Multi-Tenancy
 ---
 
 SaaS providers must isolate their customer’s data.  Isolation is possible in code or via isolated infrastructure.  This article will walk you through the pros and cons of each approach.  You will see why I recommend isolated infrastructure.
