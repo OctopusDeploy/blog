@@ -2,11 +2,11 @@
 title: Dropping support for Windows Server 2003 machines
 description: Octopus Deploy will drop support for targets and Workers running Windows Server 2003 from the 2024.1 release.
 author: robert.erez@octopus.com
-visibility: private
+visibility: public
 published: 2023-08-21-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: img-blog-unsupporteddeploymenttargetincwindows-2023.png
+bannerImage: img-blog-unsupporteddeploymenttargetincwindows-2023.png
+bannerImageAlt: Silhouette of a woman wearing headphones with a mic in an Octopus branded tee holding a tablet and 
 isFeatured: false
 tags: 
 - Product
