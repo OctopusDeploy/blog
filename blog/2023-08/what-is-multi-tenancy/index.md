@@ -92,4 +92,9 @@ That's because software development is only growing more complex and with it, th
 
 See Octopus's [Tenants use-case page](https://octopus.com/use-case/tenanted-deployments) for more information on how Octopus can help you deploy your multi-tenancy applications faster and more reliably.
 
+You can also read our other posts about multi-tenancy:
+
+- [Why multi-tenancy is a confusing term and what it means for Octopus](https://octopus.com/blog/why-multi-tenancy-is-a-confusing-term)
+- [What are tenanted deployments?](https://octopus.com/blog/what-are-tenanted-deployments) 
+
 Happy deployments!
