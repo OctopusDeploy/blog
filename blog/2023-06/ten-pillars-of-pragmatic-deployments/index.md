@@ -392,7 +392,7 @@ Just as repeatable deployments build confidence as you promote a release across 
 
 There are two main aspects to standardizing deployments.
 
-The first aspect is defining the initial deployment process used by the various deployments. This base deployment process can be a shared template that allows you to customize specific settings. Or you can copy and paste the entire process could to bootstrap new projects, allowing teams to customize the process to their needs.
+The first aspect is defining the initial deployment process used by the various deployments. This base deployment process can be a shared template that allows you to customize specific settings. Or you can copy and paste the entire process to bootstrap new projects, allowing teams to customize the process to their needs.
 
 The second aspect is defining who can edit a deployment process. By distinguishing between the ability to view, run, create, and edit a deployment process, teams can guarantee that only individuals responsible for creating or editing deployment processes can do so.
 
