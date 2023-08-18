@@ -366,7 +366,6 @@ Some metrics you can use to track deployments are:
 
 - Deployment frequency: How frequently do you deploy to production?
 - Lead time for changes: How long does it take for a code change to be deployed to production?
-- Lead time for changes: How long does it take for you to deploy a code change to production?
 - Time to recover deployment: How long does it take to recover from a failed deployment?
 - Deployment fail rate: What is the ratio of failed to successful deployments? 
 - Change fail rate: What is the ratio between hotfix and regular deployments? 
