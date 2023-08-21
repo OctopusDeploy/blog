@@ -1,8 +1,8 @@
 ---
 title: Benefits of isolated tenanted infrastructure
-description: A brief summary of the post, 170 characters max including spaces.
+description: Learn the different ways you can isolate your customers' data and why we recommend isolated infrastructure.
 author: bob.walker@octopus.com
-visibility: private
+visibility: public
 published: 2023-08-23-1400
 metaImage: 
 bannerImage: 
@@ -13,13 +13,13 @@ tags:
   - Multi-Tenancy
 ---
 
-Software as a Service (SaaS) providers must isolate their customer’s data. Isolation is possible in code or through isolated infrastructure.  
+Software as a Service (SaaS) providers must isolate their customers' data. Isolation is possible in code or through isolated infrastructure.  
 
 In this post, I walk you through the pros and cons of each approach. You'll see why I recommend isolated infrastructure.
 
 ## Isolated data requirements
 
-Imagine you provide software to soft-drink manufacturers. Coca-Cola doesn't want Dr. Pepper, or PepsiCo, accessing its data.  
+Imagine you provide software to soft drink manufacturers. Coca-Cola doesn't want Dr. Pepper, or PepsiCo, accessing its data.  
 
 Outside of losing business, failing to have data isolation has monetary impacts.  Generally, for B2B providers, user agreements or contracts enforce that rule.  Failure to comply could result in fines or lawsuits.  
 
