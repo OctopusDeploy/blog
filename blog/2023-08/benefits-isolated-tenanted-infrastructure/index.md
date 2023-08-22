@@ -6,7 +6,7 @@ visibility: public
 published: 2023-08-28-1400
 metaImage: blogimage-benefits-isolated-tenanted-infastructure-2023.png
 bannerImage: blogimage-benefits-isolated-tenanted-infastructure-2023.png
-bannerImageAlt: Octopus infinity light cycle leaving Octopus towards a cloud in front of a grid of cubes.
+bannerImageAlt: DevOps infinity symbol leaving an Octopus-branded server, headed towards a cloud in front of a grid of cubes.
 isFeatured: false
 tags: 
   - DevOps
