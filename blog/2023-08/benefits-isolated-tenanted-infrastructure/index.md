@@ -3,10 +3,10 @@ title: Benefits of isolated tenanted infrastructure
 description: Learn the different ways you can isolate your customers' data and why we recommend isolated infrastructure.
 author: bob.walker@octopus.com
 visibility: public
-published: 2023-08-23-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+published: 2023-08-28-1400
+metaImage: blogimage-benefits-isolated-tenanted-infastructure-2023.png
+bannerImage: blogimage-benefits-isolated-tenanted-infastructure-2023.png
+bannerImageAlt: Octopus infinity light cycle leaving Octopus towards a cloud in front of a grid of cubes.
 isFeatured: false
 tags: 
   - DevOps
