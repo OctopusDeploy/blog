@@ -123,9 +123,9 @@ Before working at Octopus Deploy, I worked on 3 enterprise-level applications at
 - Every customer is on the same version of the application.  
 
 :::hint A schema per customer is nearly identical to this approach.  The primary difference is that it doesn’t solve the database size, performance, and maintenance issues.  All the issues discussed in this section apply to that approach.
-
-I spent more than 5 years building multi-tenant applications using this approach.  After seeing the good and the bad, I would avoid it at all costs.
 :::
+
+I spent more than 5 years building multi-tenant applications using the approach of a shared application with a database per customer.  After seeing the good and the bad, I'd avoid it at all costs.
 
 ### Doesn’t solve all the problems
 
