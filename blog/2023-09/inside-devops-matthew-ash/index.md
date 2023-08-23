@@ -23,7 +23,7 @@ Hear from Matthew Ash, Staff DevOps Engineer at a leading HR software platform p
 
 **How did your DevOps journey start?**
 
-*Matthew*: Like many things in the field, it started from a need to solve a problem and add extra capabilities. I wanted to experience the entire DevOps cycle so that I could lead a product development team with a full understanding of the process. And that’s when I fell in love with Octopus! It allowed me to mature my DevOps thinking, with a set of best practices yet flexibility to customize the deployment process to our specific needs.
+*Matthew*:
 
 **Your current role sounds like Platform Engineering to me, where you enable developers to operate their own product, within defined guardrails.**
 
