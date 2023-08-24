@@ -1,6 +1,6 @@
 ---
 title: Connecting a project to multiple tenants as a bulk action
-description: A blog post that introduces a new bulk action for Octopus multi-tenancy users. This new feature will allow users to connect a project to multiple tenants using a UI-based wizard flow. Additionally, we will also be allowing users to add or clone a new tenant straight from the project page itself.
+description: Learn about our new bulk actions for tenanted deployments in Octopus. Connect a project to multiple tenants and add or clone a new tenant straight from the project page.
 author: ian.khor@octopus.com
 visibility: private
 published: 3020-01-01-1400
