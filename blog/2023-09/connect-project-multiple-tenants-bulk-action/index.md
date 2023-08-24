@@ -27,16 +27,16 @@ In this post, I show you how to connect a project to multiple tenants with the n
 
 ## The new Tenants page in the Project view
 
-You can see the new tenants page in the Project view below.
+You can see the new tenants page in the project view below.
 
 ![The new tenants page in the project view]
 
-To access the new Tenants page, go to Projects and then the sidebar menu.This page provides:
+To access the new Tenants page, go to **Projects** and then the sidebar menu. This page provides:
 
 - A full list of all the tenants connected to this project
 - A full list of the environments connected to each of the tenants in this project
 
-You'll find 3 new options in the top right-hand corner of the page. One of them is the bulk action, which you can use by clicking on the green Connect Tenants button.  The other 2 functions let you add a new blank tenant, and clone an existing tenant.
+You'll find 3 new options in the top right-hand corner of the page. One of them is the bulk action, which you can use by clicking on the green **Connect Tenants** button.  The other 2 functions let you add a new blank tenant, and clone an existing tenant.
 
 ![Creating a new tenant from the new tenants page in a project]
 ![Cloning an existing tenant from the new tenants page in a project]
@@ -49,39 +49,51 @@ Although the add and clone functionality exists in the project, any new or clone
 
 ![The wizard style format of attaching tenants to a project]
 
-The method of attaching multiple tenants to a project follows a step by step, wizard style workflow. This takes the user from one important step to the next (e.g. selecting all the tenants, then selecting all of the environments that need to be attached to that tenant) simply and efficiently. This also provides sufficient guardrails and instruction to the user so that not only are they capable and familiar enough with the process to complete it themselves but that, at completion, they can be confident and comfortable that they have followed the process correctly when attaching 1000s of tenants to a project.
+The method of attaching multiple tenants to a project follows a step-by-step, wizard-style workflow. This takes you from one important step to the next. For example, selecting all the tenants, and then selecting all the environments you need to attach to that tenant. 
+
+This provides guardrails and instructions so you become familiar with the process. At completion, you can be confident you followed the process correctly when attaching thousands of tenants to a project.
 
 ## The ability to select some or all of the tenants to be connected to the project
 
 ![Selecting some or all of the tenants to be connected to a project]
 
-This bulk action will give users the ability to either select some of the tenants that they have created in this space to be attached to this project. It will also give users te ability to select all of the tenants in that given space if they want to attached all of them to the single project.
+This bulk action lets you:
 
-This gives users flexibility in terms of maybe selecting only some of the tenants as test tenants, which is important when we consider the next step which is attaching environments to that tenant, or selecting all of them if all of them have the same set of environments, such as all tenants being production tenants for example.
+- Select some of the tenants you created in this space to attach to this project. 
+- Select  all the tenants in that given space if you want to attach all of them to the single project
+
+This gives you the flexibility to select only some of the tenants as test tenants. This is important when considering the next step - attaching environments to the tenant or selecting all, if all have the same set of environments. For example, when all tenants are production tenants.
 
 ## The ability to assign some or all of the environments to the tenants in the project
 
 ![Assigning some or all of the environments to the tenants in the project]
 
-Assigning environments to the tenants happens in bulk as well. The user can either select individual environments that they would like to attach to a tenant, or they also have the option of assigning all of the available environments in the project to all of the tenants that were selected during the previous wizard step.
+You can assign environments to the tenants in bulk too. You can:
 
-This flexibility in environment selection is provided for 2 reasons:
-- Gives the user the ability to create 1 environment to 1 tenant connections if they want to in bulk, especially if they are creating a batch of test or production tenants in 1 go; and
-- Gives the user the ability to connect a whole suite of environments to the tenants in cases where they do not respect the 1 environment to 1 tenant rule (which happens alot!)
+- Select individual environments to attach to a tenant
+- Assign all available environments in the project to all the tenants you selected during the previous wizard step
+
+We provide this flexibility in environment selection for 2 reasons:
+
+- So you can create one environment to 1one tenant connections in bulk, especially if you're creating a batch of test or production tenants in one go
+- So you can connect a whole suite of environments to the tenants in cases where they do not follow one environment to one tenant rule
 
 ## A way to indicate completion of the connection
 
 ![Connection progress bar]
 
-Once all of the tenants are selected and the appropriate environments are connected, the user can hit the ‘Connect’ button. The bulk connection operation will then commence. A progress indicator will appear on the tenant scree, which will not only show how many tenants are being connected to the project, but also how many more are required to be connected before the connection is completed.
+After you select all the tenants and connect the appropriate environments, you can click the **Connect** button. The bulk connection operation then starts.
 
-The progress message will be shown for any user that accesses the tenants page during the connection cycle. Once the connection operation is complete, the message will show success and will be dismissable by any user as well.
+A progress indicator appears on the Tenant screen. This shows how many tenants are being connected to the project, and how many more still need to connect before the process is complete.
+
+Anyone accessing the Tenants page during the connection cycle will see the progress message. After the connection operation is complete, you'll see a success message that anyone can dismiss.
 
 ## Conclusion
-The new bulk action allows you to connect all of your relevant tenants to new or existing projects in a simple, efficient and intuitive manner.
 
-We'd love feedback on this feature while we continue to refine it. If you're an Octopus Cloud customer, it's available now from 2023.3.11654 and above.
+The new bulk action lets you connect tenants to new or existing projects in a simple, efficient, and intuitive way.
+
+We'd love feedback on this feature while we continue to refine it. If you're an Octopus Cloud customer, it's available from versions 2023.3.11654 and above.
 
 <span><a class="btn btn-success" href="https://octopusdeploy.typeform.com/to/iBkrLS52">Share your feedback</a></span>
 
-Happy Deployments!
+Happy deployments!
