@@ -3,7 +3,7 @@ title: Connecting a project to multiple tenants as a bulk action
 description: Learn about our new bulk actions for tenanted deployments in Octopus. Connect a project to multiple tenants and add or clone a new tenant straight from the project page.
 author: ian.khor@octopus.com
 visibility: private
-published: 3020-01-01-1400
+published: 2023-09-20-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
@@ -13,17 +13,17 @@ tags:
   - Multi-Tenancy
 ---
 
-See https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags,
+Tenants in Octopus have become the standard way to create customer-specific deployment pipelines without duplicating project configurations. It's best used to deploy multiple instances of an application for each of your customers. 
 
-Tenants in Octopus have become the standard way for our customers to create customer specific deployment pipelines without duplicating project configurations. It is best used to deploy multiple instances of an application for each of our customers. Customers found it difficult to add or connect a project to multiple tenants, which can happen quite frequently for some of our largest multi-tenancy users. For example, where customers either have a batch of new customers/clients/machines that need to be connected up to an existing project, or there is a new project (which represents a new application, product or microservice) that needs to be attached to 1000s of the appropriate tenants when necessary.
+We had feedback that people found adding or connecting a project to multiple tenants difficult. This happens quite frequently for some of our largest Tenants users. For example, if you have a batch of new customers/clients/machines you need to connect to an existing project. Another example is when you have a new project (which represents a new application, product, or microservice) that you need to attach to thousands of tenants. 
 
-We are pleased to have addressed this by allowing customers to connect a project to multiple tenants as a bulk action in the Octopus UI .
+We addressed this with a new bulk action. You can now connect a project to multiple tenants as a bulk action in the Octopus user interface (UI).
 
-The new bulk action will allow customers to connect some or all of the tenants within a particular space and connect them to a new or existing project. This is facilitated by a wizard style format, where we walk you through the different elements that need to be connected (e.g. tenants and environments) in a guided manner. Once the connection operation commences, customers are also provided with a progress bar/counter, that helps them keep track of how many tenants are being connected up to the project and when the bulk action operation finally ends.
+The new bulk action will let you connect some or all of the tenants in a particular space to a new or existing project. You do this via a wizard-style format, where we guide you through the elements you need to connect (for example, tenants and environments). After the connection operation starts, you'll see a progress bar/counter, to help you track how many tenants are being connected to the project and when the bulk action operation finishes.
 
 ![An overview of the new bulk action]
 
-In this post, I'll show you how the new bulk action of connecting a project to multiple tenants work
+In this post, I show you how to connect a project to multiple tenants with the new bulk action.
 
 ## The new Tenants page in the Project view
 
