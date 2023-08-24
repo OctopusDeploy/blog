@@ -38,7 +38,7 @@ As a SaaS provider, you worry about how to host and update your software so your
 
 To host the software, you have a couple of options. The most likely choice in 2023 is hosting your app with a cloud provider. You would give each customer either:
 
-- A piece of your infrastructure shared - with but isolated from - your other customers
+- A piece of your infrastructure shared with - but isolated from - your other customers
 - Their own cloud infrastructure under your ownership and management
 
 Each customer in this scenario is a 'tenant.'
