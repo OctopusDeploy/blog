@@ -43,7 +43,7 @@ To host the software, you have a couple of options. The most likely choice in 20
 
 Each customer in this scenario is a 'tenant.'
 
-There are countless methods and cloud options to deliver software, including from virtual machines to containers. Your choice must best balance the needs of your application, customers, and company.
+There are countless methods and cloud options to deliver software, from virtual machines to containers. Your choice must best balance the needs of your application, customers, and company.
 
 Another alternative to the cloud includes hosting your application on physical hardware on your premises or at a server farm. Due to hardware costs, the space needed, and the difficulty of scale, that's unlikely these days.
 
