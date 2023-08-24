@@ -27,21 +27,23 @@ In this post, I show you how to connect a project to multiple tenants with the n
 
 ## The new Tenants page in the Project view
 
-The new tenants page in the Project view can be seen below
+You can see the new tenants page in the Project view below.
 
 ![The new tenants page in the project view]
 
-As can be seen in the screenshot above, the new tenants page can be accessed via the sidebar menu after clicking on the top-nav ‘Projects’ page. This page will provide:
+To access the new Tenants page, go to Projects and then the sidebar menu.This page provides:
 
-A full list of all the tenants that are connected to this project; and
-A full list of the environments that are connected to each of the tenants in this project.
+- A full list of all the tenants connected to this project
+- A full list of the environments connected to each of the tenants in this project
 
-The top right hand corner of the page will have three new options. One of them is the bulk action, which can be initiated by clicking on the green “Connect Tenants” button. The other two functions is the ability to add a new blank tenant, as well as the ability to clone an existing tenant.
+You'll find 3 new options in the top right-hand corner of the page. One of them is the bulk action, which you can use by clicking on the green Connect Tenants button.  The other 2 functions let you add a new blank tenant, and clone an existing tenant.
 
-![Creating a new tenant from the new tenants page within a project]
-![Cloning an existing tenant from the new tenants page within a project]
+![Creating a new tenant from the new tenants page in a project]
+![Cloning an existing tenant from the new tenants page in a project]
 
-**NOTE**: Although the add and clone functionality exists within the project, any new or cloned tenants will not automatically be connected to the project from which the tenant was created or cloned from.
+:::hint 
+Although the add and clone functionality exists in the project, any new or cloned tenants *do not* get automatically connected to the project you created or cloned the tenant from.
+:::
 
 ## The wizard style format of attaching tenants to a project
 
