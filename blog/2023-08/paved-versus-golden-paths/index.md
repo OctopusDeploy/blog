@@ -1,6 +1,6 @@
 ---
 title: "Paved versus golden paths"
-description: The terms paved paths and goldens paths are often heard in Platform Engineering circles, but they are different concepts.
+description: Find out the critical difference between paved paths and golden paths in Platform Engineering.
 author: steve.fenton@octopus.com
 visibility: private
 published: 3020-01-01-1400
@@ -12,31 +12,31 @@ tags:
   - DevOps
 ---
 
-If you are following the Platform Engineering trend, you'll have heard people talking about paved paths and golden paths. They are sometimes used as synonyms, but can also be different approaches.
+If you follow the [Platform Engineering](https://octopus.com/devops/platform-engineering/) trend, you'll have heard people talking about paved paths and golden paths. They are sometimes used as synonyms but can also reflect different approaches.
 
 ## Paved paths
 
-If you were a city planner designing a park, you'd need to provide areas for people to stop as well as routes for people to pass through. The perfect park is a public space that you can see, walk through, and use for recreational activities. One of the tricky parts of park design is where to place the paths.
+If you were a city planner designing a park, you'd need to provide areas for people to stop and routes to pass through. The perfect park is a public space you can see, stroll through, and use for recreational activities. One of the tricky parts of park design is where to place the paths.
 
-People who want to take a leisurely walk would prefer a winding scenenic stroll around the park, but people passing through on their way from the coffee shop to the office prefer more direct routes. Most parks offer either winding routes through the park or a series of direct paths that form a large X criss-crossing the park.
+People who want to take a leisurely walk prefer a winding scenic stroll with pleasant views, but people passing through from the coffee shop to their office prefer more direct routes. Most parks offer winding trails through the park or a series of direct paths forming a giant X crisscrossing the park.
 
-As an alternative to planning the routes through the park, you can let people use it for a while. People using the park will wear tracks in the grass that indicate where paths may be most useful. They literally vote with their feet. Building these paths after the demand for a route is visible means you are more likley to put them in the right place, though you can't please everyone.
+As an alternative to planning the routes through the park, you can let people use it for a while. People crossing the park will wear tracks in the grass that indicate where paths may be most helpful. They literally vote with their feet. Building these paths after the demand for a route is visible means you are more likely to put them in the right place, though you can't please everyone.
 
-There are also dangers to this approach, as [Sam Walter Foss warned](https://poets.org/poem/calf-path) in his 1895 about how a playful calf ended up accidentally designing the main street in a large city, as it was build around the path it made through the woods some 300 years earlier.
+This approach is also dangerous, as [Sam Walter Foss warned](https://poets.org/poem/calf-path). His 1895 poem tells how a playful calf influences the design of a large city, whose main road is built around the trail the calf made through the woods some 300 years earlier.
 
 ## Paved paths in software
 
-You can use the paved paths technique in software. You can observe how users currently achieve a goal, and use what you find to generate a design for the software.
+You can use the paved path technique in software. You can observe how users currently achieve a goal and use what you find to generate a design for the software.
 
-Before source control systems were created, a common technique for avoiding collisions with changes made by other developers was the source wall. To create a source wall, you'd write each file name on a sticky note and put it up on a spare wall.
+Before software source control systems were created, the source wall was a common technique for avoiding change collisions. To create a source wall, you'd write each file name on a sticky note and add it to the wall.
 
-If you wanted to edit a file, you'd go to the source wall and fild the file you wanted to change. If the sticky note was on the wall, you could take it back to your desk and make your edit. If you couldn't find the sticky note, you had to wait for it to come back before you made your change.
+If you wanted to edit a file, you'd go to the source wall and find the file you wanted to change. If the sticky note was on the wall, you could take it back to your desk and make your edit. If you couldn't find the sticky note, you had to wait for its return before making your change.
 
-This manual process meant your changes would never clash or overwrite another developer's changes.
+This manual process meant your changes would never clash, and you'd never overwrite another developer's changes.
 
-The first source control system paved this path. You would check out a file and the system would prevent another developer changing it until you checked it back in. This pattern was the paved path equivalent of the source wall.
+The first source control system paved this path. You would check out a file, and the system would prevent another developer from changing it until you checked it back in. This pattern was the paved path equivalent of the source wall.
 
-If you are using a modern source control system, you'll notice that it doesn't work this way. That's because the paved path has been replaced by something better. A golden path.
+If you use a modern source control system, you'll notice it doesn't work this way. That's because the paved path has been replaced by something better: A golden path.
 
 ## Golden paths
 
@@ -44,24 +44,30 @@ Going back to the city park example, if you had a design in mind for the use of 
 
 Instead of optimizing the park for commuters, you want to balance the many different uses. In this case, you'd need to find ways to attract people to your preferred route to avoid them damaging the grass and planting.
 
-In Brisbane, the park in the South Bank area features just such a path. Instead of offering an efficient straight line between common destinations, it has sweeping curves. Along it's entire length, the path has an arbour that provides shelter from the hot sun from light showers.
+In Brisbane, the park in the South Bank area features just such a path. Instead of offering an efficient straight line between common destinations, it has sweeping curves along its entire length. The path has a decorative arbor that provides shelter from the hot sun and light showers.
 
-Instead of attempting to block other routes with fences, people are attracted to the route because they can stay cool and dry. The Brisbane grand arbour walk is 150 metres longer than a straight-line route, but it creates spaces for restaurants, a pond, a rainforest walk, and a lagoon.
+Instead of attempting to block other routes with fences, people are attracted to the path because they can stay cool or dry. The Brisbane Grand Arbor walk is 150 metres longer than a straight-line route, but it creates spaces for restaurants, a pond, a rainforest walk, and a lagoon.
 
 Golden paths are a system-level design technique. They are informed by a deep understanding of the different purposes of the space.
 
-## Golden paths
+## Golden paths in Platform Engineering
 
-In Platform Engineering, golden paths are just like Brisbane's grand arbour. Instead of forcing developers to do things a certain way, interal developer platforms are designed to attract developers in a positive way by bringing benefits.
+In Platform Engineering, golden paths are just like Brisbane's Grand Arbor. Instead of forcing developers to do things a certain way, you design the internal developer platform to attract developers by reducing their burden and removing pain points. It's the optimal space between *anything goes* and *forced standardization*.
 
-In Platform Engineering, the golden paths are a route towards alignment. Say you have five teams all using a different continuous integration tool. As a platform engineer, you'd work out the best way to build, test, and package all the software and provide this as a golden path. It needs to be better than what developers currently do and easy to adopt, as you can't force it on a team. The teams that adopt the golden path have an easy life as far as their continuous integration activities are concerned and this is how you convince the other teams to eventually opt in.
+Golden paths provide a route toward alignment. Say you have five teams, all using different continuous integration tools. As a platform engineer, you'd work out the best way to build, test, and package all the software and provide this as a golden path. It needs to be better than what developers currently do and easy to adopt, as you can't force it on a team. The teams that adopt the golden path have an easy life as far as their continuous integration activities are concerned. Nothing makes a platform more attractive than seeing happy users.
 
+When done well, an internal development platform may *feel* like a paved path to the developers, but it should reduce the overall cognitive load. This often involves both consolidation and standardization.
 
-If you build a platform by encoding the current practice within your internal developer platform, all you do is shift the pain to the platform team.
+You won't solve all developer pain at once. Platform engineers will need to go and see what pain exists and think about how they might design a product that will remove it. When you start this journey, it's worth understanding the [patterns and anti-patterns of Platform Engineering](https://octopus.com/devops/platform-engineering/patterns-anti-patterns/).
 
-The concept for your internal developer platform should start with an understanding of developer pain. Once you know the things getting in their way, you can build a platform that makes their job more satisfying. 
+## Take the high road
 
-Instead of asking where do they currently walk, find out more about where they are going and why.
+World champion weightlifter Jerzy Gregorek once said: "Hard choices. Easy life. Easy choices. Hard life." You'll need to make many hard choices to create a great internal developer platform.
 
+You'll have to decide what problems the platform will solve and which it won't. You'll need to determine when a feature should flex to meet the needs of a development team and when you should let them strike out on their own path.
+
+These hard choices are the difference between a golden path and a paved path.
+
+With a paved path, you can reduce the burden on developers; the pain just moves into your platform team. A golden path will reduce the total cognitive load for everyone by dedicating the platform team to its elimination.
 
 Happy deployments!
