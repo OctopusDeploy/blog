@@ -1,5 +1,5 @@
 ---
-title: Paved versus golden paths
+title: Paved versus golden paths in Platform Engineering
 description: Find out the critical difference between paved paths and golden paths in Platform Engineering.
 author: steve.fenton@octopus.com
 visibility: public
@@ -10,6 +10,7 @@ bannerImageAlt:
 isFeatured: false
 tags: 
   - DevOps
+  - Platform Engineering
 ---
 
 If you follow the [Platform Engineering](https://octopus.com/devops/platform-engineering/) trend, you'll have heard people talking about paved paths and golden paths. They're sometimes used as synonyms but can also reflect different approaches.
