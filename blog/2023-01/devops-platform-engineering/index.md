@@ -1,6 +1,6 @@
 ---
-title: DevOps and platform engineering
-description: Find out where platform engineering fits into a DevOps process and why both DevOps and platform engineering can help your organization attain high performance.
+title: DevOps and Platform Engineering
+description: Find out where Platform Engineering fits into a DevOps process and why both DevOps and Platform Engineering can help your organization attain high performance.
 author: steve.fenton@octopus.com
 visibility: public
 published: 2023-01-11-1400
@@ -10,9 +10,10 @@ bannerImageAlt: Stylized image of DevOps infinity symbol with a car driving on i
 isFeatured: true
 tags: 
   - DevOps
+  - Platform Engineering
 ---
 
-In this post, you discover where platform engineering fits into your broader software delivery process. You see how platform engineering works with a DevOps process and why both DevOps and platform engineering can help your organization attain high performance.
+In this post, you discover where Platform Engineering fits into your broader software delivery process. You see how Platform Engineering works with a DevOps process and why both DevOps and Platform Engineering can help your organization attain high performance.
 
 ## The quick version of DevOps
 
@@ -44,15 +45,15 @@ If you've been around long enough, you might notice that many of the changes tha
 
 Specialist teams were created for a reason, so as we back up and try another path, you should ensure you resolve those original issues without recreating the nasty side effects. The problem of scale and specialization still exists, so how do we overcome them healthily?
 
-Enter the platform engineering team.
+Enter the Platform Engineering team.
 
-## Platform engineering
+## Platform Engineering
 
-Despite many new teams and job titles springing up around DevOps, the platform engineering team is, perhaps, the most aligned to the mindset and objectives of DevOps.
+Despite many new teams and job titles springing up around DevOps, the Platform Engineering team is, perhaps, the most aligned to the mindset and objectives of DevOps.
 
 Platform teams work with development teams to create one or more *golden pathways* representing a supported set of technology choices. These pathways don't prevent teams from using something else. Pathways encourage alignment without enforcing centralized decisions on development teams. Rather than pick up tickets, such as "create a test environment", platform teams create easy-to-use self-service tools for the development teams' use.
 
-A critical part of platform engineering is treating developers as customers, solving their problems and reducing friction while advocating the adoption of aligned technology choices. For example, say your organization has plenty of experience running MySQL databases and has worked out how to solve issues such as:
+A critical part of Platform Engineering is treating developers as customers, solving their problems and reducing friction while advocating the adoption of aligned technology choices. For example, say your organization has plenty of experience running MySQL databases and has worked out how to solve issues such as:
 
 - Scaling
 - Backups
@@ -66,7 +67,7 @@ A team choosing MySQL will get all these for free at the push of a button. Anoth
 
 Choosing a golden pathway accelerates your software delivery, lets you focus on the differentiating work, and gives you a support channel when things go wrong. Your time as a developer is best spent on the features that provide value to your customers, not setting up builds, environments, and other similar activities.
 
-Platform engineering can make many tasks easier:
+Platform Engineering can make many tasks easier:
 
 - Build pipelines
 - Test and production environments
@@ -75,25 +76,25 @@ Platform engineering can make many tasks easier:
 - Logging and monitoring
 - Security features
 
-Platform engineering reduces your operations burden when you scale up your software delivery team. You need fewer of these hard-to-find platform engineers overall, and by working on a platform team, they can make more impact than they could if they were embedded in development.
+Platform Engineering reduces your operations burden when you scale up your software delivery team. You need fewer of these hard-to-find platform engineers overall, and by working on a platform team, they can make more impact than they could if they were embedded in development.
 
-Platform engineering helps your organization scale its software delivery without losing some of the best small-team benefits.
+Platform Engineering helps your organization scale its software delivery without losing some of the best small-team benefits.
 
-## DevOps and platform engineering
+## DevOps and Platform Engineering
 
-As you can see, platform engineering complements, rather than competes, with DevOps. To provide further proof of this positive relationship, the [Puppet State of DevOps report](https://puppet.com/resources/report/2021-state-of-devops-report) found that DevOps high-performers are more likely to have platform engineering teams than low performers.
+As you can see, Platform Engineering complements, rather than competes, with DevOps. To provide further proof of this positive relationship, the [Puppet State of DevOps report](https://puppet.com/resources/report/2021-state-of-devops-report) found that DevOps high-performers are more likely to have Platform Engineering teams than low performers.
 
 ![Chart showing DevOps teams using platform engineering by performance category, table of data follows](devops-platform-engineering-performance.png)
 
-| Category | % with platform engineering |
+| Category | % with Platform Engineering |
 |----------|----------------------------:|
 | Low      | 8%                          |
 | Mid      | 25%                         |
 | High     | 48%                         |
 
-Platform engineering alone doesn't provide a complete organizational view of performance. The DevOps structural equation model shows us capabilities for leadership, management, culture, and product that are outside a platform team's scope. This is why platform engineering belongs in a broader process, such as DevOps, rather than offering a replacement for one.
+Platform Engineering alone doesn't provide a complete organizational view of performance. The DevOps structural equation model shows us capabilities for leadership, management, culture, and product that are outside a platform team's scope. This is why Platform Engineering belongs in a broader process, such as DevOps, rather than offering a replacement for one.
 
-Used together with DevOps, platform engineering is an excellent tool for scaling your software delivery capability.
+Used together with DevOps, Platform Engineering is an excellent tool for scaling your software delivery capability.
 
 DevOps wants you to:
 
@@ -101,7 +102,7 @@ DevOps wants you to:
 - Shorten and amplify feedback loops
 - Create a culture of continuous learning and improvement
 
-Platform engineering wants you to:
+Platform Engineering wants you to:
 
 - Smooth the development experience
 - Create tools and workflows that enable self-service
@@ -109,7 +110,7 @@ Platform engineering wants you to:
 
 ## Conclusion
 
-As you grow your software delivery team, you must carefully manage the complexity of scale. Some organizations limit complexity by limiting a team's autonomy, but platform engineering provides a mechanism that tames complexity while preserving development team autonomy.
+As you grow your software delivery team, you must carefully manage the complexity of scale. Some organizations limit complexity by limiting a team's autonomy, but Platform Engineering provides a mechanism that tames complexity while preserving development team autonomy.
 
 ## Further reading
 
