@@ -4,8 +4,8 @@ description: We explore how difficult global tenanted deployments would be if we
 author: andrew.corrigan@octopus.com
 visibility: private
 published: 3020-01-01-1400
-metaImage: 
-bannerImage: 
+metaImage: img-mtcampaign-globaltenanteddeploumentswithoutautomation-2023.png
+bannerImage: img-mtcampaign-globaltenanteddeploumentswithoutautomation-2023.png
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags: 
