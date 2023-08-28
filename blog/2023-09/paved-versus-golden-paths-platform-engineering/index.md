@@ -39,7 +39,7 @@ This manual process meant your changes would never clash, and you'd never overwr
 
 The first source control system paved this path. You'd check out a file, and the system would prevent another developer from changing it until you checked it back in. This pattern was the paved path equivalent of the source wall.
 
-If you use a modern source control system, you'll notice it doesn't work this way. That's because something better has replaced the paved path: A golden path.
+If you use a modern source control system, you'll notice it doesn't work this way. That's because something better has replaced the paved path - a golden path.
 
 ## Golden paths
 
@@ -57,7 +57,7 @@ Golden paths are a system-level design technique. They're informed by a deep und
 
 In Platform Engineering, golden paths are just like Brisbane's Grand Arbor. Instead of forcing developers to do things a certain way, you design the internal developer platform to attract developers by reducing their burden and removing pain points. It's the optimal space between *anything goes* and *forced standardization*.
 
-Golden paths provide a route toward alignment. Say you have 5 teams, all using different Continuous Integration tools. As a platform engineer, you'd work out the best way to build, test, and package all the software and provide this as a golden path. It needs to be better than what developers currently do and easy to adopt, as you can't force it on a team. The teams that adopt the golden path have an easy life as far as their continuous integration activities are concerned. Nothing makes a platform more attractive than seeing happy users.
+Golden paths provide a route toward alignment. Say you have 5 teams, all using different Continuous Integration tools. As a platform engineer, you'd work out the best way to build, test, and package all the software and provide this as a golden path. It needs to be better than what developers currently do and easy to adopt, as you can't force it on a team. The teams that adopt the golden path have an easy life as far as their Continuous Integration activities are concerned. Nothing makes a platform more attractive than seeing happy users.
 
 When done well, an internal development platform may *feel* like a paved path to the developers, but it should reduce the overall cognitive load. This often involves both consolidation and standardization.
 
