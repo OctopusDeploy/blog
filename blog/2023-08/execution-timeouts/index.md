@@ -70,7 +70,7 @@ No. Execution Timeouts won't trigger during package acquisition.
 
 ## Conclusion
 
-To help improve the success rate and automation of deployments, you can now add Execution Timeouts. This lets you configure unpredictable long-running processes to fail early. Combined with automatic [Step Retries](https://octopus.com/blog/step-retries) this feature can improve deployment success rates.
+To help improve the success rate and automation of deployments, you can now add [Execution Timeouts](https://octopus.com/docs/projects/steps/conditions#retries-and-execution-timeouts). This lets you configure unpredictable long-running processes to fail early. Combined with automatic [Step Retries](https://octopus.com/blog/step-retries) this feature can improve deployment success rates.
 
 ## Feedback
 
