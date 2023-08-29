@@ -69,7 +69,7 @@ Testing the upgrade works also makes that worse, as someone on-site will want to
 
 ### Okay, but what about scripts?
 
-I think scripts would count towards automation in this manual deployment scenario. But they only partially solve the problems, though, so let's unpack using scripts.
+I think scripts would count towards automation in this manual deployment scenario. But they only partially solve the problems, so let's unpack using scripts.
 
 All a script could do for this otherwise manual process is automate the key steps of the deployment. It might transfer your files, install dependencies, and press the big red button. Some scripts might also do some basic testing for you.
 
