@@ -19,7 +19,7 @@ Hear from Matt Ash, Staff DevOps Engineer at a leading HR software platform prov
 
 **How did your DevOps journey start?**
 
-*Matt*: About 10 years ago, I was an Application Development Team Leader, and the company struggled with automated solutions. Our web application build and deployment process was severely lacking. We trialed Octopus and a handful of CI tools, and ultimately decided on TeamCity and Octopus. 
+*Matt*: About 10 years ago, I was an Application Development Team Leader, and the company struggled with automated solutions. Our web application build and deployment process was severely lacking. We trialed Octopus Deploy and a handful of CI tools, and ultimately decided on TeamCity and Octopus. 
 
 Through that effort, I discovered a passion for automation. A few years later, I transitioned from application development to full-time DevOps engineering and haven’t looked back. 
 
@@ -66,11 +66,11 @@ Another tip is to take script engineering seriously. Train not only in the funda
 
 **What DevOps book would you recommend reading?**
 
-*Matt*: Most of my recent reading hasn’t been in the DevOps world, but I’d recommend Accelerate: Building and Scaling High Performing Technology Organizations by Nicole Forsgren, Jez Humble, and Gene Kim.
+*Matt*: Most of my recent reading hasn’t been in the DevOps world, but I’d recommend [Accelerate: Building and Scaling High Performing Technology Organizations](https://octopus.com/devops/reading-list/#accelerate) by Nicole Forsgren PhD, Jez Humble, and Gene Kim.
 
 **What's one thing about you that might surprise us?**
 
-*Matt*:My wife and I love to travel – we’ve been to 6 of the 7 continents and hope to get to Antarctica in the next few years to make it 7 out of 7.
+*Matt*: My wife and I love to travel – we’ve been to 6 of the 7 continents and hope to get to Antarctica in the next few years to make it 7 out of 7.
 
 **Thank you for a very insightful conversation Matt; it’s much appreciated.**
 
