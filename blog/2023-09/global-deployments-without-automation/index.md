@@ -2,8 +2,8 @@
 title: How global tenanted deployments would look without automation
 description: We explore how difficult global tenanted deployments would be if we didn't have automation.
 author: andrew.corrigan@octopus.com
-visibility: private
-published: 3020-01-01-1400
+visibility: public
+published: 2023-09-06-1400
 metaImage: img-mtcampaign-globaltenanteddeploumentswithoutautomation-2023.png
 bannerImage: img-mtcampaign-globaltenanteddeploumentswithoutautomation-2023.png
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
@@ -17,7 +17,7 @@ Continuous Integration and Continuous Delivery's recommendation of deployment au
 
 But what if we didn't have deployment automation? How would tenanted deployments even work?
 
-In this, the first of a trio of posts, we ask what global tenanted deployments look like with manual processes.
+In this, the first of a trio of posts, I ask what global tenanted deployments look like with manual processes.
 
 ## A common global tenanted deployment scenario 
 
@@ -27,11 +27,11 @@ You're based in North America but must deliver regular updates to your customer'
 
 ## How the deployments would work without automation
 
-There a couple of options for delivering software like this without automation.
+There are a couple of options for delivering software like this without automation.
 
 ### Travel to each location regularly
 
-I hope you like flying, as you'd need to tour all 3 regions to help your customers keep their software updated. Traveling and installing the software yourself would be the safest bet to ensure updates happen correctly every time.
+Hopefully you like flying, as you'd need to tour all 3 regions to help your customers keep their software updated. Traveling and installing the software yourself would be the safest bet to ensure updates happen correctly every time.
 
 Jet lag and time away from home aside, you'd have other problems too. There could be language barriers as you arrange access to adjacent systems or find suitable times for downtime or cutover. You could struggle to communicate problems properly if your work has a hitch.
 
@@ -41,41 +41,41 @@ Worst of all, your customers could go weeks and months without updates. That's a
 
 ### Trust someone else to do it
 
-If you want to let your frequent flyer miles go and avoid paying regular airfare, you could let someone local do updates for you. It could be your customer's tech support team or local third-party contractors (if your customers would allow that).
+To avoid paying regular airfares, you could let someone local do updates for you. It could be your customer's tech support team or local third-party contractors (if your customers would allow that).
 
-Many enterprise organizations still take this route, regardless of their deployment strategy. Particularly so if they deal through resellers.
+Many enterprise organizations still take this route, regardless of their deployment strategy. Particularly if they deal through resellers.
 
 If you're not an enterprise company working with a well-trained reseller, however, there are still risks.
 
-You need trust and confidence to let someone else deploy or install your software. Even then, problems that would be easily solvable if you were there could arise. It's not a good look if a third party gets something wrong or you don't clearly communicate your instructions.
+You need trust and confidence to let someone else deploy or install your software. Even then, problems could arise that would be easily solvable if you were there. It's not a good look if a third party gets something wrong or you don't clearly communicate your instructions.
 
-You'd also need to consider how you safely get your software's files to those working on your behalf. That means you could waste time posting physical media or manage ways to transfer files securely.
+You'd also need to consider how you safely get your software's files to those working on your behalf. That means you could waste time posting physical media or managing ways to transfer files securely.
 
-If something goes wrong, problems with time zones and language barriers remain a factor. There could be a problem only your team could solve, and you might need to be up at ridiculous hours to ensure everything runs smoothly.
+If something goes wrong, problems with time zones and language barriers remain a factor. There could be a problem only your team could solve, and you might need to be up through the night to ensure everything runs smoothly.
 
-The probability of issues increases with the number of regions too. Let's remember you're serving 3 regions in this scenario. That means different groups performing updates in each location. You could end up with one successful update in one region but fail in another, and the failure point could be who's performing the update.
+The probability of issues increases with the number of regions, too. Let's remember you're serving 3 regions in this scenario. That means different groups performing updates in each location. You could end up with one successful update in one region but fail in another, and the failure point could be who's performing the update.
 
 ### Remote installation
 
-You might be thinking, '*The internet has been around for a while! We can install our updates remotely!*' Well, that's true, you *could*, technically speaking. Whether you *can* also depends on a bunch of factors.
+You might be thinking, '*The internet has been around for a while! We can install our updates remotely!*' Well, that's true, you *could*, technically. Whether you *can* also depends on several factors.
 
-Like, perhaps your customer's policies won't allow you to remote access or transfer files to their infrastructure?
+Perhaps your customer's policies won't allow you to remote access or transfer files to their infrastructure.
 
-Let's say you *can* transfer your software remotely, though. That does remove things like travel, a need to trust others, and generally makes things easier. It still leaves you with some pretty big problems, some we already mentioned.
+Let's say you *can* transfer your software remotely, though. That does remove things like travel, a need to trust others, and generally makes things easier. It still leaves you with some problems though, including some we already mentioned.
 
-Time zones are still a factor that makes manual tenanted deployments a problem. Your remote upgrades must align with your customer's needs, like when your software gets the least use or the outage window they assign.
+Time zones still make manual tenanted deployments a problem. Your remote upgrades must align with your customer's needs, like when your software gets the least use, or the outage window they assign.
 
 Testing the upgrade works also makes that worse, as someone on-site will want to test everything's working as it should. Someone's losing sleep somewhere, whether it's you or someone else, especially if something goes wrong and you need to roll back.
 
 ### Okay, but what about scripts?
 
-I think scripts would count towards automation in this manual deployment scenario. You know what, though? I'm feeling generous. I'll let you have this one because it only partially solves the problems.
+I think scripts would count towards automation in this manual deployment scenario. But they only partially solve the problems, though, so let's unpack using scripts.
 
 All a script could do for this otherwise manual process is automate the key steps of the deployment. It might transfer your files, install dependencies, and press the big red button. Some scripts might also do some basic testing for you.
 
 However, there's a problem with scripts alone. You have to track how often they change. 
 
-Writing a fresh script from scratch for each region? Better make they follow the same processes and don't have any typos. Copying and editing the script you already used for one region? Better make sure you double-check those regional infrastructure differences.
+If you're writing a fresh script from scratch for each region, you need to make sure they follow the same processes and don't have any typos. Copying and editing the script you already used for one region? You need to make sure you double-check those regional infrastructure differences.
 
 Using scripts this way also leaves you open to drift. What if you miss an important change from one location's script to the next? What if you forget to update your script template if something big changes? What if one has an error that's not critical right now but might be in 3 to 4 upgrades time? That can be hard to unpick when it happens.
 
@@ -90,4 +90,6 @@ And in this scenario, where your customer is a huge enterprise organization, you
 
 Thankfully, deployment automation *does* exist. But not all deployment tools handle tenanted deployments as well as Octopus does.
 
-Why not check out our [tenanted deployments use-case page](https://octopus.com/use-case/tenanted-deployments) to find out why.
+Read our [tenanted deployments use-case page](https://octopus.com/use-case/tenanted-deployments) to find out why.
+
+Happy deployments!
