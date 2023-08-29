@@ -15,7 +15,7 @@ tags:
 
 This post is the next in our [Inside DevOps series](https://octopus.com/blog/tag/Inside%20DevOps), where we share lessons learned from those on the frontlines of DevOps.
   
-Hear from Matt Ash, Staff DevOps Engineer at a leading HR software platform provider.
+Hear from [Matt Ash](https://www.linkedin.com/in/immattash/), Staff DevOps Engineer at a leading HR software platform provider.
 
 **How did your DevOps journey start?**
 
