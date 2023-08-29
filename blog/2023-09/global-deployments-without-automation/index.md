@@ -6,7 +6,7 @@ visibility: public
 published: 2023-09-06-1400
 metaImage: img-mtcampaign-globaltenanteddeploumentswithoutautomation-2023.png
 bannerImage: img-mtcampaign-globaltenanteddeploumentswithoutautomation-2023.png
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+bannerImageAlt: Airplane on an air strip with guidance lights, being loaded with packages, sitting in front of a world map with lines pointing to different countries.
 isFeatured: false
 tags: 
   - DevOps
