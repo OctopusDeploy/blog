@@ -1,12 +1,12 @@
 ---
-title: Inside DevOps with Matthew Ash
-description: A series where we share lessons learned from those on the frontlines of DevOps. This post features Matthew Ash, Staff DevOps Engineer at a leading HR software platform provider.
+title: Inside DevOps with Matt Ash
+description: A series where we share lessons learned from those on the frontlines of DevOps. This post features Matt Ash, Staff DevOps Engineer at a leading HR software platform provider.
 author: joanna.wyganowska@octopus.com
 visibility: public
 published: 2023-09-18-1400
 metaImage: 
 bannerImage: 
-bannerImageAlt: Photo of Matthew Ash
+bannerImageAlt: Photo of Matt Ash
 isFeatured: false
 tags: 
   - DevOps
@@ -15,51 +15,51 @@ tags:
 
 This post is the next in our [Inside DevOps series](https://octopus.com/blog/tag/Inside%20DevOps), where we share lessons learned from those on the frontlines of DevOps.
   
-Hear from Matthew Ash, Staff DevOps Engineer at a leading HR software platform provider.
+Hear from Matt Ash, Staff DevOps Engineer at a leading HR software platform provider.
 
 **How did your DevOps journey start?**
 
-*Matthew*: 
+*Matt*: 
 
 **How did your DevOps journey start?**
 
-*Matthew*:
+*Matt*:
 
 **Your current role sounds like Platform Engineering to me, where you enable developers to operate their own product, within defined guardrails.**
 
-*Matthew*: 
+*Matt*: 
 
 **What is DevOps to you? How do you define it?**
 
-*Matthew*: 
+*Matt*: 
 
 **What’s the most challenging part of DevOps?**
 
-*Matthew*:
+*Matt*:
 
 **What’s the biggest challenge Octopus has helped you with?**
 
-*Matthew*: 
+*Matt*: 
 
 **What’s the most rewarding part of DevOps?**
 
-*Matthew*:
+*Matt*:
 
 **What are some DevOps best practices you/your organization have implemented?**
 
-*Matthew*:
+*Matt*:
 
 **What advice would you give those just starting their DevOps journey?**
 
-*Matthew*:
+*Matt*:
 
 **What DevOps book would you recommend reading?**
 
-*Matthew*:
+*Matt*:
 
 **What is one thing about you that might surprise us?**
 
-*Matthew*:
+*Matt*:
 
 **Thank you for a very insightful conversation Matt; it’s much appreciated.**
 
