@@ -6,7 +6,7 @@ visibility: public
 published: 2023-09-11-1400
 metaImage: img-mtcampaign-saastenanteddeploymentwithoutautomation-2023.png
 bannerImage: img-mtcampaign-saastenanteddeploymentwithoutautomation-2023.png
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+bannerImageAlt: 8 servers sitting together to create a data farm with clouds with dots in the middle connected above the servers.
 isFeatured: false
 tags: 
   - DevOps
