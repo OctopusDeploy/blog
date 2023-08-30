@@ -45,7 +45,6 @@ Manual operations come with more risk and encourage only a few team members to h
 
 Plus the Octopus Runbooks feature has been a fantastic way for us to automate a ton of work quickly, especially when integrated with a GitHub feed. We use Octopus Runbooks to automatically manage our GitHub users. We also use it to expose functionality for managing repositories that our engineers wouldn’t normally have, due to how we configure for security. These are all executed by runbooks that execute scripts pulled from GitHub as a feed source.
 
-
 **What’s the most rewarding part of DevOps?**
 
 *Matt*: Enablement at scale. When a small team can enable a large group of engineers to build and deliver many times each day or week without your intervention, you know you’re doing your job well. A well-engineered DevOps solution should render the team invisible. That includes both the happy path when deployments succeed, and how well you can enable teams to solve their own deployment issues when they fail.
