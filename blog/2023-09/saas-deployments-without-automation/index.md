@@ -49,7 +49,7 @@ An alternative to the cloud is hosting your application on physical hardware on 
 
 Unlikelier still is keeping hardware at your customer's locations, which wasn't unheard of before SaaS as we know it now. In this scenario, you'd need to install a server or computer in every school that signs up for your software.
 
-Given physical hardware options are rare for a modern SaaS model, we won't spend much time on it here. It's safe to say, without automation, physical hosting causes deployment problems most SaaS providers don't even think about. If you use the cloud, you'll never have the same travel headaches we mentioned in the [previous post](https://octopus.com/blog/global-deployments-without-automation), for example.
+Given physical hardware options are rare for a modern SaaS model, we won't spend much time on it here. It's safe to say, without automation, physical hosting causes deployment problems most SaaS providers don't even think about. If you use the cloud, you'll never have the same travel headaches we mentioned in the [previous post about global tenanted deployments](https://octopus.com/blog/global-deployments-without-automation), for example.
 
 But while infrastructure setup isn't strictly part of the deployment, it's important to talk about for SaaS deployments. With the cloud, setting up new customers and deploying your software universally involves creating infrastructure that wouldn't exist otherwise.
 
@@ -75,7 +75,7 @@ With deployment automation, scaling is simpler and costs are easier to control a
 
 ## The result
 
-Though the challenges differ slightly from the [previous post](https://octopus.com/blog/global-deployments-without-automation), the results are largely the same. Without deployment automation, whatever update strategy you pick will result in:
+Though the challenges differ slightly from the [previous post about global tenanted deployments](https://octopus.com/blog/global-deployments-without-automation), the results are largely the same. Without deployment automation, whatever update strategy you pick will result in:
 
 - Much slower software delivery - bad for bug or vulnerability fixing and delivering new features
 - A higher risk of technical problems - bad for customer relations
