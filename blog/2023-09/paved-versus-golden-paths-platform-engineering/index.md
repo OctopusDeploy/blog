@@ -4,9 +4,9 @@ description: Find out the critical difference between paved paths and golden pat
 author: steve.fenton@octopus.com
 visibility: public
 published: 2023-09-04-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: blogimage-pavedvsgoldenpaths-2023.png
+bannerImage: blogimage-pavedvsgoldenpaths-2023.png
+bannerImageAlt: Curved path running between two points on a map.
 isFeatured: false
 tags: 
   - DevOps
