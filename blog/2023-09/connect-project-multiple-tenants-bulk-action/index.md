@@ -4,9 +4,9 @@ description: Learn about our new bulk actions for tenanted deployments in Octopu
 author: ian.khor@octopus.com
 visibility: private
 published: 2023-09-20-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-multitenancy-bulkactions-2023.png
+bannerImage: blogimage-multitenancy-bulkactions-2023.png
+bannerImageAlt: Octopus server containing multiple cube shaped check boxes to represent batch automation. Lines are connected to the server and attached to infinity bikes representing tenants and delivery.
 isFeatured: false
 tags: 
   - Product
