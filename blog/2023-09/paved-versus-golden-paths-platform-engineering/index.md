@@ -4,9 +4,9 @@ description: Find out the critical difference between paved paths and golden pat
 author: steve.fenton@octopus.com
 visibility: public
 published: 2023-09-04-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: img-email-multitancy-etc.png
+bannerImage: img-email-multitancy-etc.png
+bannerImageAlt: A series of inter-connected lines demonstating...
 isFeatured: false
 tags: 
   - DevOps
