@@ -3,9 +3,9 @@ title: Inside DevOps with Matt Ash
 description: A series where we share lessons learned from those on the frontlines of DevOps. This post features Matt Ash, Staff DevOps Engineer at a leading HR software platform provider.
 author: joanna.wyganowska@octopus.com
 visibility: public
-published: 2023-09-18-1400
-metaImage: 
-bannerImage: 
+published: 2023-09-13-1400
+metaImage: blog_insidedevops_mattash_750x400.png
+bannerImage: blog_insidedevops_mattash_750x400.png
 bannerImageAlt: Photo of Matt Ash
 isFeatured: false
 tags: 
