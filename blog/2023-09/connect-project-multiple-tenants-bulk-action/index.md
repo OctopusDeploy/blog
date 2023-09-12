@@ -21,7 +21,7 @@ We addressed this with a new bulk action. You can now connect a project to multi
 
 The new bulk action lets you connect some or all of the tenants in a particular space to a new or existing project. You do this via a wizard-style format, where we guide you through the elements you need to connect (for example, tenants and environments). After the connection operation starts, you see a progress bar/counter, to help you track how many tenants are being connected to the project and when the bulk action operation finishes.
 
-![An overview of the new bulk action]
+![An overview of the new bulk action](blogimage-bulkactionwizardwindow.png)
 
 In this post, I show you how to connect a project to multiple tenants with the new bulk action.
 
@@ -29,7 +29,7 @@ In this post, I show you how to connect a project to multiple tenants with the n
 
 You can see the new tenants page in the project view below.
 
-![The new tenants page in the project view]
+![The new tenants page in the project view](blogimage-newtenantspage.png)
 
 To access the new Tenants page, go to **Projects** and then the sidebar menu. This page provides:
 
@@ -38,9 +38,9 @@ To access the new Tenants page, go to **Projects** and then the sidebar menu. Th
 
 You'll find 3 new options in the top right-hand corner of the page. One of them is the bulk action, which you can use by clicking on the green **Connect Tenants** button.  The other 2 functions let you add a new blank tenant, and clone an existing tenant.
 
-![Creating a new tenant from the new tenants page in a project]
+![Creating a new tenant from the new tenants page in a project](blogimage-tenantcreate.gif)
 
-![Cloning an existing tenant from the new tenants page in a project]
+![Cloning an existing tenant from the new tenants page in a project](blogimage-tenantclone.gif)
 
 :::hint 
 Although the add and clone functionality exists in the project, any new or cloned tenants *do not* get automatically connected to the project you created or cloned the tenant from.
@@ -48,7 +48,7 @@ Although the add and clone functionality exists in the project, any new or clone
 
 ## The wizard-style format of attaching tenants to a project
 
-![The wizard style format of attaching tenants to a project]
+![The wizard style format of attaching tenants to a project](blogimage-tenantconnectwizardoverview.gif)
 
 Attaching multiple tenants to a project follows a step-by-step, wizard-style workflow. This takes you from one important step to the next. For example, selecting all the tenants, and then selecting all the environments you need to attach to that tenant. 
 
@@ -56,7 +56,7 @@ This provides guardrails and instructions so you become familiar with the proces
 
 ## The ability to select some or all of the tenants to be connected to the project
 
-![Selecting some or all of the tenants to be connected to a project]
+![Selecting some or all of the tenants to be connected to a project](blogimage-selecttenantsconnect.gif)
 
 This bulk action lets you:
 
@@ -67,7 +67,7 @@ This gives you the flexibility to select only some of the tenants as test tenant
 
 ## The ability to assign some or all of the environments to the tenants in the project
 
-![Assigning some or all of the environments to the tenants in the project]
+![Assigning some or all of the environments to the tenants in the project](blogimage-selectenvironments.gif)
 
 You can assign environments to the tenants in bulk too. You can:
 
@@ -81,7 +81,7 @@ We provide this flexibility in environment selection for 2 reasons:
 
 ## Completion of the connection
 
-![Connection progress bar]
+![Connection progress bar](blogimage-progressbar.gif)
 
 After you select all the tenants and connect the appropriate environments, you can click the **Connect** button. The bulk connection operation then starts.
 
