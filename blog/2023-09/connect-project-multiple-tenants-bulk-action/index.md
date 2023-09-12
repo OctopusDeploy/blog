@@ -19,7 +19,7 @@ We had feedback that people found it difficult adding or connecting a project to
 
 We addressed this with a new bulk action. You can now connect a project to multiple tenants as a bulk action in the Octopus user interface (UI).
 
-The new bulk action will let you connect some or all of the tenants in a particular space to a new or existing project. You do this via a wizard-style format, where we guide you through the elements you need to connect (for example, tenants and environments). After the connection operation starts, you'll see a progress bar/counter, to help you track how many tenants are being connected to the project and when the bulk action operation finishes.
+The new bulk action lets you connect some or all of the tenants in a particular space to a new or existing project. You do this via a wizard-style format, where we guide you through the elements you need to connect (for example, tenants and environments). After the connection operation starts, you see a progress bar/counter, to help you track how many tenants are being connected to the project and when the bulk action operation finishes.
 
 ![An overview of the new bulk action]
 
@@ -87,7 +87,7 @@ After you select all the tenants and connect the appropriate environments, you c
 
 A progress indicator appears on the Tenant screen. This shows how many tenants are being connected to the project, and how many more still need to connect before the process is complete.
 
-Anyone accessing the Tenants page during the connection cycle will see the progress message. After the connection operation is complete, you'll see a success message that anyone can dismiss.
+Anyone accessing the Tenants page during the connection cycle will see the progress message. After the connection operation is complete, you see a success message that anyone can dismiss.
 
 ## Conclusion
 
