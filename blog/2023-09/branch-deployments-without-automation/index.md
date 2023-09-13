@@ -2,8 +2,8 @@
 title: How deployments to physical branches would look without automation
 description: We explore how difficult tenanted deployments to company branches would be if we didn't have automation.
 author: andrew.corrigan@octopus.com
-visibility: private
-published: 3020-01-01-1400
+visibility: public
+published: 2023-09-18-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
@@ -17,7 +17,7 @@ Continuous Integration and Continuous Delivery's recommendation of deployment au
 
 But what if we didn't have deployment automation? How would tenanted deployments even work?
 
-In this, the third of a trio of posts, we ask what tenanted deployments to physical branches look like with manual processes.
+In this, the third of a trio of posts, we ask what tenanted deployments to physical branches look like using manual processes.
 
 ## A common tenanted deployment scenario for physical locations
 
@@ -31,7 +31,7 @@ There are a couple of options for delivering software like this without automati
 
 ### Travel to each location
 
-As with our [global deployments scenario](https://octopus.com/blog/global-deployments-without-automation), travelling to each branch to do updates is the easiest way to ensure things go smoothly.
+As with our [global deployments scenario](https://octopus.com/blog/global-deployments-without-automation), traveling to each branch to do updates is the easiest way to ensure things go smoothly.
 
 Here, where our fictional company operates only in the UK, you wouldn't need to pay airfare, and your team could drive or take the train to branches instead. Similar organizations in larger countries like the US or Australia wouldn't have that luxury, however. 
 
@@ -43,17 +43,17 @@ For an added wrinkle, if your business went global, you'd end up with the *combi
 
 Again, a bit like our global deployments scenario, but here you'd have a branch staff member run the update for you.
 
-It might sound weird to some to allow an on-site, non-technical colleague run updates, but I've worked at 2 organizations that did this. One of those only a few years ago. And yes, we'd mail out a disc rather than use better, more secure options. 
+It might sound strange to let an on-site, non-technical colleague run updates, but I worked at 2 organizations that did this. One of those only a few years ago. And yes, we'd mail out a disc rather than use better, more secure options. 
 
-The problem is that things can and will go wrong no matter how simple you make the install or how you get files to branches. Updating software like this introduces a bunch of risky variables and room for error. Maybe there's a problem with the update itself? Maybe the instructions aren't clear for the non-technical? Maybe the last manual update missed some important prerequisites for new releases?
+The problem is that things can and will go wrong no matter how simple you make the install or how you get files to branches. Updating software like this introduces a bunch of risky variables and room for error. Maybe there's a problem with the update itself. Maybe the instructions aren't clear for the non-technical. Maybe the last manual update missed some important prerequisites for new releases.
 
-When there are problems, it's not a branch staff member's job to fix them. That means some of the time saved by not travelling may get spent troubleshooting over the phone or, much worse, shifting the time cost to your business's service desk. 
+When there are problems, it's not a branch staff member's job to fix them. That means some of the time saved by not traveling may get spent troubleshooting over the phone or, much worse, moving the time cost to your business's service desk. 
 
-Whichever way you cut it, if there's a problem, someone's time's getting wasted.
+Whichever way you cut it, if there's a problem, someone's time is getting wasted.
 
 ### Remote installation
 
-In this scenario, you're deploying updates to your own company's hardware, so remote access is the easiest and most sensible way to go. However, that might not be an option if delivering software to *another* company's branches instead.
+In this scenario, you're deploying updates to your own organization's hardware, so remote access is the easiest and most sensible way to go. However, that might not be an option if you're delivering software to *another* organization's branches instead.
 
 Remote updates would solve many deployment problems when dealing with brick-and-mortar locations, though. You can oversee the updates to ensure every step happens, that hardware's configured right, and that installs complete successfully. You can even run tests.
 
@@ -63,7 +63,7 @@ We have over 200 branches to serve in the scenario we set at the top. That's a l
 
 ### Okay, but what about scripts?
 
-As with the other posts in this trio, I think scripts count as deployment automation. We'll cover them anyway because there are potential and avoidable risks, even with scripting. 
+As with the other posts in this series, I think scripts count as deployment automation. We'll cover them anyway because there are potential and avoidable risks, even with scripting. 
 
 That's largely because scripts can change depending on a given update and might not behave the same for every target.
 
@@ -82,4 +82,11 @@ And in this scenario, where updates can impact your frontline colleagues and you
 
 Thankfully, deployment automation *does* exist. But not all deployment tools handle tenanted deployments as well as Octopus does.
 
-Why not check out our [tenanted deployments use-case page](https://octopus.com/use-case/tenanted-deployments) to find out why.
+Check out our [tenanted deployments use-case page](https://octopus.com/use-case/tenanted-deployments) to find out why.
+
+You can also read our other 2 posts in this series:
+
+- [How global tenanted deployments would look without automation](https://octopus.com/blog/global-deployments-without-automation)
+- [How SaaS tenanted deployments would look without automation](https://octopus.com/blog/saas-deployments-without-automation)
+
+Happy deployments!
