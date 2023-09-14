@@ -41,7 +41,7 @@ For an added wrinkle, if your business went global, you'd end up with the *combi
 
 ### Have branch staff run the updates
 
-Again, a bit like our global deployments scenario, but here you'd have a branch staff member run the update for you.
+Again, a bit like our [global deployments scenario](https://octopus.com/blog/global-deployments-without-automation), but here you'd have a branch staff member run the update for you.
 
 It might sound strange to let an on-site, non-technical colleague run updates, but I worked at 2 organizations that did this. One of those only a few years ago. And yes, we'd mail out a disc rather than use better, more secure options. 
 
@@ -78,7 +78,7 @@ Without deployment automation, whatever update strategy you pick will result in:
 - Much slower software delivery - bad for bug or vulnerability fixing and delivering new features
 - A higher risk of technical problems - bad for customer relations
 
-And in this scenario, where updates can impact your frontline colleagues and your company's customers, you can't really afford either.
+And in this scenario, where updates can impact your frontline colleagues and your organization's customers, you can't really afford either.
 
 Thankfully, deployment automation *does* exist. But not all deployment tools handle tenanted deployments as well as Octopus does.
 
