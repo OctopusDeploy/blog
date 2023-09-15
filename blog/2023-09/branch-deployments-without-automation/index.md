@@ -4,9 +4,9 @@ description: We explore how difficult tenanted deployments to company branches w
 author: andrew.corrigan@octopus.com
 visibility: public
 published: 2023-09-18-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: img-mtcampaign-physicalbranchwithoutautomation-2023.png
+bannerImage: img-mtcampaign-physicalbranchwithoutautomation-2023.png
+bannerImageAlt: A delivery person on a scooter carrying a disk in an envelope from a laptop to a bank.
 isFeatured: false
 tags: 
   - DevOps
