@@ -2,7 +2,7 @@
 title: Connecting a project to multiple tenants as a bulk action
 description: Learn about our new bulk actions for tenanted deployments in Octopus. Connect a project to multiple tenants and add or clone a new tenant straight from the project page.
 author: ian.khor@octopus.com
-visibility: private
+visibility: public
 published: 2023-09-20-1400
 metaImage: blogimage-multitenancy-bulkactions-2023.png
 bannerImage: blogimage-multitenancy-bulkactions-2023.png
@@ -19,7 +19,7 @@ We had feedback that people found it difficult adding or connecting a project to
 
 We addressed this with a new bulk action. You can now connect a project to multiple tenants as a bulk action in the Octopus user interface (UI).
 
-The new bulk action lets you connect some or all of the tenants in a particular space to a new or existing project. You do this via a wizard-style format, where we guide you through the elements you need to connect (for example, tenants and environments). After the connection operation starts, you see a progress bar/counter, to help you track how many tenants are being connected to the project and when the bulk action operation finishes.
+The new bulk action lets you connect some or all of the tenants in a particular space to a new or existing project. You do this using a wizard-style workflow, where we guide you through the elements you need to connect (for example, tenants and environments). After the connection operation starts, you see a progress bar/counter, to help you track how many tenants are being connected to the project and when the bulk action operation finishes.
 
 ![An overview of the new bulk action](blogimage-bulkactionwizardwindow.png)
 
@@ -85,7 +85,7 @@ We provide this flexibility in environment selection for 2 reasons:
 
 After you select all the tenants and connect the appropriate environments, you can click the **Connect** button. The bulk connection operation then starts.
 
-A progress indicator appears on the Tenant screen. This shows how many tenants are being connected to the project, and how many more still need to connect before the process is complete.
+A progress indicator appears on the Tenants screen. This shows how many tenants are being connected to the project, and how many more still need to connect before the process is complete.
 
 Anyone accessing the Tenants page during the connection cycle will see the progress message. After the connection operation is complete, you see a success message that anyone can dismiss.
 
@@ -93,7 +93,7 @@ Anyone accessing the Tenants page during the connection cycle will see the progr
 
 The new bulk action lets you connect tenants to new or existing projects in a simple, efficient, and intuitive way.
 
-We'd love feedback on this feature while we continue to refine it. If you're an Octopus Cloud customer, it's available from versions 2023.3.11654 and above.
+We'd love feedback on this feature while we continue to refine it. If you're an Octopus Cloud customer, it's available from versions 2023.3.11654 and above. For self-hosted customers, it's available in the latest 2023.3 server version.
 
 <span><a class="btn btn-success" href="https://octopusdeploy.typeform.com/to/iBkrLS52">Share your feedback</a></span>
 
