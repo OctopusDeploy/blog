@@ -38,9 +38,9 @@ To access the new Tenants page, go to **Projects** and then the sidebar menu. Th
 
 You'll find 3 new options in the top right-hand corner of the page. One of them is the bulk action, which you can use by clicking on the green **Connect Tenants** button.  The other 2 functions let you add a new blank tenant, and clone an existing tenant.
 
-![Creating a new tenant from the new tenants page in a project](blogimage-tenantcreate.gif)
+![Creating a new tenant from the new tenants page in a project](blogimage-addtenant2.gif)
 
-![Cloning an existing tenant from the new tenants page in a project](blogimage-tenantclone.gif)
+![Cloning an existing tenant from the new tenants page in a project](blogimage-clonetenant2.gif)
 
 :::hint 
 Although the add and clone functionality exists in the project, any new or cloned tenants *do not* get automatically connected to the project you created or cloned the tenant from.
