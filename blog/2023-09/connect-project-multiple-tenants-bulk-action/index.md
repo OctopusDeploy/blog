@@ -3,7 +3,7 @@ title: Connecting a project to multiple tenants as a bulk action
 description: Learn about our new bulk actions for tenanted deployments in Octopus. Connect a project to multiple tenants and add or clone a new tenant straight from the project page.
 author: ian.khor@octopus.com
 visibility: public
-published: 2023-09-20-1400
+published: 2023-09-25-1400
 metaImage: blogimage-multitenancy-bulkactions-2023.png
 bannerImage: blogimage-multitenancy-bulkactions-2023.png
 bannerImageAlt: Octopus server containing multiple cube shaped check boxes to represent batch automation. Lines are connected to the server and attached to infinity bikes representing tenants and delivery.
@@ -15,7 +15,7 @@ tags:
 
 Tenants in Octopus have become the standard way to create customer-specific deployment pipelines without duplicating project configurations. It's best used to deploy multiple instances of an application for each of your customers. 
 
-We had feedback that people found it difficult adding or connecting a project to multiple tenants. This happens quite frequently for some of our largest Tenants users. For example, if you have a batch of new customers/clients/machines you need to connect to an existing project. Another example is when you have a new project (which represents a new application, product, or microservice) that you need to attach to thousands of tenants. 
+We had feedback that people found it difficult adding or connecting a project to multiple tenants. This happens quite frequently for some of our largest Tenants users. For example, if you have a batch of new customers, clients, or machines you need to connect to an existing project. Another example is when you have a new project (which represents a new application, product, or microservice) that you need to attach to thousands of tenants. 
 
 We addressed this with a new bulk action. You can now connect a project to multiple tenants as a bulk action in the Octopus user interface (UI).
 
@@ -31,10 +31,10 @@ You can see the new tenants page in the project view below.
 
 ![The new tenants page in the project view](blogimage-newtenantspage.png)
 
-To access the new Tenants page, go to **Projects** and then the sidebar menu. This page provides:
+To access the new Tenants page, go to **Projects** and then the sidebar menu. This page provides a full list of:
 
-- A full list of all the tenants connected to this project
-- A full list of the environments connected to each of the tenants in this project
+- All the tenants connected to this project
+- The environments connected to each of the tenants in this project
 
 You'll find 3 new options in the top right-hand corner of the page. One of them is the bulk action, which you can use by clicking on the green **Connect Tenants** button.  The other 2 functions let you add a new blank tenant, and clone an existing tenant.
 
@@ -58,10 +58,10 @@ This provides guardrails and instructions so you become familiar with the proces
 
 ![Selecting some or all of the tenants to be connected to a project](blogimage-selecttenantsconnect.gif)
 
-This bulk action lets you:
+This bulk action lets you select:
 
-- Select some of the tenants you created in this space to attach to this project. 
-- Select  all the tenants in that given space if you want to attach all of them to the single project
+- Some of the tenants you created in this space to attach to this project. 
+- All the tenants in that given space if you want to attach all of them to the single project
 
 This gives you the flexibility to select only some of the tenants as test tenants. This is important when considering the next step - attaching environments to the tenant or selecting all, if all have the same set of environments. For example, when all tenants are production tenants.
 
