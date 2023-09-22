@@ -12,6 +12,10 @@ tags:
  - Product
 ---
 
+:::warning
+This change has shipped as a part of 2023.4, we are aware of customers experiencing issues updating their machines and scripts and are in the process of re-implementing ScriptCS. The option to continue using dotnet-script will be available with, project specific variables and an environment wide feature toggle. A [public issue has been created](https://github.com/OctopusDeploy/Issues/issues/8359).
+:::
+
 We received [customer feedback](https://help.octopus.com/t/consider-use-dotnet-script-vs-scriptcs/22144) and [UserVoice voting](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/31454668-allow-the-use-of-c-script-csx-using-net-core) requesting we update the tooling Octopus uses to run C# scripts, from [scriptcs](https://github.com/scriptcs/scriptcs) to [dotnet-script](https://github.com/filipw/dotnet-script). This would: 
 
 - Unlock newer C# language features in deployment scripts
@@ -28,11 +32,11 @@ This post outlines the potential changes, plus the trade-offs in moving to dotne
 
 This Request for Comments (RFC) proposes removing `scriptcs` in favor of `dotnet-script`.
 
-To deploy software to your server we use [Tentacle](https://github.com/OctopusDeploy/OctopusTentacle), a lightweight service responsible for communicating with Octopus Server, and invoking [Calamari](https://github.com/OctopusDeploy/Calamari). Calamari is a command-line tool that knows how to perform the deployment, and is the host process for all deployment actions including script execution. We currently build Calamari for .NET Framework 4.0.0, 4.5.2, and netcore3.1. Depending on your server OS, architecture and version, Tentacle receives one of these Calamari builds.
+To deploy software to your server we use [Tentacle](https://github.com/OctopusDeploy/OctopusTentacle), a lightweight service responsible for communicating with Octopus Server, and invoking [Calamari](https://github.com/OctopusDeploy/Calamari). Calamari is a command-line tool that knows how to perform the deployment, and is the host process for all deployment actions including script execution. We currently build Calamari for .NET Framework 4.0.0, 4.5.2, and net6.0. Depending on your server OS, architecture and version, Tentacle receives one of these Calamari builds.
 
-Historically, Calamari required Mono to be installed on your Linux targets to execute `scriptcs` as it's built on the full .NET Framework. With the introduction of cross-platform .NET apps with netcore3.1 Linux can now natively run .NET apps removing the complexity and overhead of Mono. Linux targets currently receive the netcore3.1 Calamari by default, with the exception of [Linux SSH targets](https://octopus.com/docs/infrastructure/deployment-targets/linux/ssh-target#add-an-ssh-connection), which can specify to run scripts on Mono.
+Historically, Calamari required Mono to be installed on your Linux targets to execute `scriptcs` as it's built on the full .NET Framework. With the introduction of cross-platform .NET apps with netcore3.1 Linux can now natively run .NET apps removing the complexity and overhead of Mono. Linux targets currently receive the net6.0 Calamari by default, with the exception of [Linux SSH targets](https://octopus.com/docs/infrastructure/deployment-targets/linux/ssh-target#add-an-ssh-connection), which can specify to run scripts on Mono.
 
-`dotnet-script` is a modern implementation of C# scripting, built on .NET. It can run on all targets that support .NET apps (netcore3.1 and newer). If we make this change, it would mean that C# scripts would only be able to be run on targets that support .NET. Windows Server 2012 R2 and earlier only support .NET Framework, so these targets would lose the ability to run C# scripts.
+`dotnet-script` is a modern implementation of C# scripting, built on .NET. It can run on all targets that support .NET apps (net6.0 and newer). If we make this change, it would mean that C# scripts would only be able to be run on targets that support .NET. Windows Server 2012 R2 and earlier only support .NET Framework, so these targets would lose the ability to run C# scripts.
 
 ## Impacts
 
@@ -68,12 +72,12 @@ One trade-off of this change is that C# scripting would no longer be available o
 
 #### Migration
 
-To run C# scripts against your SSH linux targets, you'd need to reconfigure your SSH targets to use the self-contained Calamari which runs via netcore3.1. 
+To run C# scripts against your SSH linux targets, you'd need to reconfigure your SSH targets to use the self-contained Calamari which runs via net6.0. This requires the net6.0 SDK on the machine executing dotnet-script.
 
 To do this, [select the Self-Contained Calamari target runtime on your SSH target](https://octopus.com/docs/infrastructure/deployment-targets/linux/ssh-target#self-contained-calamari). Targets using the Linux tentacle will continue to work as they always have.
 
 ### Windows Server 2012 R2 (and earlier) targets
-The other trade-off with this change is that `dotnet-script` only works with netcore3.1 and above. This would make C# scripting unavailable to deployments against Windows Tentacles installed on versions of Windows earlier than 2012 R2, as these run .NET Framework builds of Calamari. 
+The other trade-off with this change is that `dotnet-script` only works with net6.0 and above. This would make C# scripting unavailable to deployments against Windows Tentacles installed on versions of Windows earlier than 2012 R2, as these run .NET Framework builds of Calamari. 
 
 #### Workaround
 
@@ -86,6 +90,7 @@ We developed a workaround so you can continue using scriptcs on your affected Wi
 Any paramaters used in the C# script need to be passed in through the scriptcs arguments and referenced using the `Env.ScriptArgs[Index]` format inside the ScriptContent. The template below shows an example of how to do this for `Octopus.Deployment.Id`.
 :::
 
+##### Powershell
 ```powershell
 $ScriptContent = @"
 Console.WriteLine(Env.ScriptArgs[0]);
