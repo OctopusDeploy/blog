@@ -109,7 +109,7 @@ Taking the database out of the rollback process makes rollbacks more workable.  
 
 The 10-minute recovery rollback strategy redeploys the previous application version.  But during the redeployment, it skips any database steps.
 
-![](10-minute-rollback-strategy-overview.png)
+![Skipping steps with the 10 minute overview strategy](10-minute-rollback-strategy-overview.png)
 
 ### How it works
 
@@ -132,27 +132,27 @@ Step 1.  Add the Community Library Template [Calculate Deployment Mode](https://
 
 Step 2.  Move that step to the start of the deployment process.
 
-![](10-minute-strategy-calc-deployment-mode.png)
+![Adding the calculate deployment mode step.](10-minute-strategy-calc-deployment-mode.png)
 
 Step 3.  Set the run condition to "variable" for each step to skip during rollback.  Set the value to: `#{unless Octopus.Deployment.Error}#{Octopus.Action[Calculate Deployment Mode].Output.RunOnDeploy}#{/unless}.`  I am skipping steps 2, 3, 4, 5, and 6 for my example application.
 
-![](10-minute-strategy-run-conditions.png)
+![Adding the variable run condition to each database step](10-minute-strategy-run-conditions.png)
 
 Step 4.  Test the changes.  Create a release and deploy it to a test environment.  You'll see the skipped steps run for the deployment.
 
-![](10-minute-strategy-first-release.png)
+![creating the first release to test.](10-minute-strategy-first-release.png)
 
 Step 5. Create another release and deploy it to the same environment.  
 
-![](10-minute-strategy-second-release.png)
+![Creating the second release to test.](10-minute-strategy-second-release.png)
 
 Step 6. Redeploy the first release.  
 
-![](10-minute-strategy-redeploy.png)
+![Redeploying the previous release via the overflow menu.](10-minute-strategy-redeploy.png)
 
 Step 7. In the deployment, you'll see all the database steps skipped.
 
-![](10-minute-strategy-skipped-steps.png)
+![All the database steps are skipped on rollback.](10-minute-strategy-skipped-steps.png)
 
 ### Recovery time explained
 
@@ -192,7 +192,7 @@ This strategy requires minimum effort but has a significant pay-off.
 
 Decouple the database changes from the code changes.  Deploy the database changes hours or days before code changes.  The previous application version will work with the current database changes.  That removes a significant risk when rolling back.
 
-![](3-minute-overview.png)
+![Screenshot of the deployment processes for 3-minute recovery.](3-minute-overview.png)
 
 ### How it works
 
@@ -210,7 +210,7 @@ Automated testing is a must for this strategy.  The only way you know database c
 
 This strategy requires the adoption of the expand and contract pattern.
 
-![](3-minute-expand-and-contract-pattern.png)
+![The expand and contract pattern with deployments](3-minute-expand-and-contract-pattern.png)
 Image Source: https://openpracticelibrary.com/practice/expand-and-contract-pattern/
 
 Unlike the previous rollback strategy, the expand and contract pattern requires four deployments.  Using the example from the diagram, change the colorName column name to colorCode.
@@ -226,15 +226,15 @@ It is an iterative approach to making database changes.  Each deployment makes s
 
 Of the three strategies, this strategy requires the least amount of configuration.  Move the database deployment process into a separate project.  Note: this process does not have the `Calculate Deployment Mode` step.
 
-![](3-minute-database-process.png)
+![The database deployment process in a separate project.](3-minute-database-process.png)
 
 None of the steps in this process have a variable run condition.  They are all set to run when the previous step succeeds.
 
-![](3-minute-run-condition.png)
+![The run condition set to success for all steps.](3-minute-run-condition.png)
 
 Remove any database steps from the application project.
 
-![](3-minute-website-process.png)
+![The web application deployment process in a separate project.](3-minute-website-process.png)
 
 If you need to share variables between projects, leverage the Octopus Deploy [Library Variable Sets](https://octopus.com/docs/projects/variables/library-variable-sets).
 
@@ -266,7 +266,7 @@ All that extra work can be seen as overkill, depending on the application.
 
 This strategy builds on the 3-minute rollback strategy.  It adds blue/green or a staging deployment pattern.  In other words, run two versions of your application in Production.  Use a load balancer or ingress controller to control traffic.  Deploy the code to Production the load balancer is not pointing to.  Then, test it before releasing it to users.
 
-![](immediate-strategy-overview.png)
+![Screenshot of the blue/green overview](immediate-strategy-overview.png)
 
 ### How it works
 
@@ -285,39 +285,39 @@ Like the 3-minute recovery strategy, the database and application are in differe
 
 Step 1.  Create two new environments, Production-Blue and Production-Green.
 
-![](immediate-strategy-environments.png)
+![Production-Blue and Production-Green added as environments.](immediate-strategy-environments.png)
 
 Step 2.  Create a new lifecycle called "Blue/Green Deployments." Create a phase called "Production" and add both environments to it.
 
-![](immediate-strategy-lifecycle.png)
+![The new lifecycle with the production phase including the new environments.](immediate-strategy-lifecycle.png)
 
 Step 3.  In the application's project, update the channel to use the new lifecycle.
 
-![](immediate-strategy-channel.png)
+![Updating the channel to use the new lifecycle](immediate-strategy-channel.png)
 
 Step 4.  In the project variables, review the variable values scoped to Production.  Add scoping for Production-Blue and Production-Green.  Repeat for any library variable sets.
 
-![](immediate-strategy-variables.png)
+![Updating the variable scoping for any production variables.](immediate-strategy-variables.png)
 
 Step 5.  Create new targets for your application for Production-Blue OR Production-Green.  You can re-use existing ones, but you must choose either blue or green for the environment.
 
-![](immediate-strategy-targets.png)
+![Adding new blue/green production deployment targets.](immediate-strategy-targets.png)
 
 Step 6.  In the project, create a runbook to update the load balancer.  
 
-![](immediate-strategy-runbook.png)
+![The new runbook to change the load balancer.](immediate-strategy-runbook.png)
 
 Step 7.  Add the appropriate steps to the runbook process to update your load balancer to Production-Blue or Production-Green.  
 
-![](immediate-strategy-runbook-process.png)
+![The runbook process to change the load balancer.](immediate-strategy-runbook-process.png)
 
 Step 8. **Optional!!!** Add the [Run Octopus Deploy Runbook](https://library.octopus.com/step-templates/0444b0b3-088e-4689-b755-112d1360ffe3/actiontemplate-run-octopus-deploy-runbook) step to your deployment process to invoke that runbook.  This step is optional; you may invoke that runbook manually.
 
-![](immediate-strategy-invoke-runbook.png)
+![Adding the optional run a runbook step in the deployment process.](immediate-strategy-invoke-runbook.png)
 
 **Please note:** The database will not be deployed to Production-Blue or Production-Green.  There is one copy of the database.  That database lives in the Production environment.  Your dashboard will look like the screenshot below.
 
-![](immediate-strategy-database-environment.png)
+![Dashboard comparing the database production environment with the web applications.](immediate-strategy-database-environment.png)
 
 ### Recovery time explained
 
