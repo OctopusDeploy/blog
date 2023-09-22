@@ -21,7 +21,7 @@ This article will go through three modern rollback strategies.  The strategies a
 
 Before getting started, let's define rollbacks.  
 
-**A rollback is reverting to a previous version of the application.  **  
+**A rollback is reverting to a previous version of the application.**  
 
 There is nuance in reverting to an application's previous version.  The reversion could involve redeploying the previous version.  Or, the reversion could update a load balancer.  The strategies presented in this article will show both.
 
@@ -58,7 +58,7 @@ I often talk to prospective customers looking for an "easy" rollback solution.  
 
 _**Such a solution does not exist.**_  
 
-The 15-minute strategy detailed below should take less than a day to configure.  It will cover the majority of rollback scenarios.  Having an automated deployment process removes many of the reasons rollbacks occur.  But, the process only covers some possible rollback scenarios.  
+The 10-minute strategy detailed below should take less than a day to configure.  It will cover the majority of rollback scenarios.  Having an automated deployment process removes many of the reasons rollbacks occur.  But, the process only covers some possible rollback scenarios.  
 
 _**Implementing an immediate rollback strategy for all scenarios requires architectural and process changes.  It goes beyond the deployment tool.**_ 
 
@@ -105,11 +105,11 @@ The risk of data loss or something going wrong is too high.  With enough time an
 
 Taking the database out of the rollback process makes rollbacks more workable.  Don't get me wrong, you will still have challenges.  But they won't be "data has been lost" challenges.
 
-## 15-Minute Recovery Rollback Strategy
+## 10-Minute Recovery Rollback Strategy
 
-The 15-minute recovery rollback strategy redeploys the previous application version.  But during the redeployment, it skips any database steps.
+The 10-minute recovery rollback strategy redeploys the previous application version.  But during the redeployment, it skips any database steps.
 
-[Insert Screenshot Here]
+![](10-minute-rollback-strategy-overview.png)
 
 ### How it works
 
@@ -132,31 +132,31 @@ Step 1.  Add the Community Library Template [Calculate Deployment Mode](https://
 
 Step 2.  Move that step to the start of the deployment process.
 
-[Insert Screenshot Here]
+![](10-minute-strategy-calc-deployment-mode.png)
 
-Step 3.  Set the run condition to "variable" for each step to skip during rollback.  Set the value to: `#{unless Octopus.Deployment.Error}#{Octopus.Action[Calculate Deployment Mode].Output.RunOnDeploy}#{/unless}.`   I am skipping steps 2, 3, 4, 5, and 6 for my example application.
+Step 3.  Set the run condition to "variable" for each step to skip during rollback.  Set the value to: `#{unless Octopus.Deployment.Error}#{Octopus.Action[Calculate Deployment Mode].Output.RunOnDeploy}#{/unless}.`  I am skipping steps 2, 3, 4, 5, and 6 for my example application.
 
-[Insert Screenshot Here]
+![](10-minute-strategy-run-conditions.png)
 
-Step 4.  Test the changes.  Create a release and deploy it to a test environment.  
+Step 4.  Test the changes.  Create a release and deploy it to a test environment.  You'll see the skipped steps run for the deployment.
 
-[Insert Screenshot Here]
+![](10-minute-strategy-first-release.png)
 
-Create another release and deploy it to the same environment.  
+Step 5. Create another release and deploy it to the same environment.  
 
-[Insert Screenshot Here]
+![](10-minute-strategy-second-release.png)
 
-Redeploy the first release.  
+Step 6. Redeploy the first release.  
 
-[Insert Screenshot Here]
+![](10-minute-strategy-redeploy.png)
 
-In the deployment, you'll see all the database steps skipped.
+Step 7. In the deployment, you'll see all the database steps skipped.
 
-[Insert Screenshot Here]
+![](10-minute-strategy-skipped-steps.png)
 
 ### Recovery time explained
 
-The redeployment will take at most 5-10 minutes unless you have a complex process.  That is because database steps can be time-consuming.  Skipping them will speed up the redeployment.  It is common to see a redeployment take 1/3 to 1/2 of the time.
+The redeployment will not take long unless you have a complex process.  That is because you are skipping the most time-consuming steps.  It is common to see a redeployment take 1/3 to 1/2 of the time.
 
 The majority of the recovery time is spent reviewing database migration scripts.  Is it safe to roll back?  Would a rollback introduce too much risk and unknowns?  
 
@@ -188,11 +188,11 @@ Don't dismiss this strategy because of the potential for multi-hour recovery.  T
 
 This strategy requires minimum effort but has a significant pay-off.
 
-## 5-Minute Recovery Strategy
+## 3-Minute Recovery Strategy
 
 Decouple the database changes from the code changes.  Deploy the database changes hours or days before code changes.  The previous application version will work with the current database changes.  That removes a significant risk when rolling back.
 
-[Insert Screenshot Here]
+![](3-minute-overview.png)
 
 ### How it works
 
@@ -210,7 +210,8 @@ Automated testing is a must for this strategy.  The only way you know database c
 
 This strategy requires the adoption of the expand and contract pattern.
 
-[Insert Diagram Here]
+![](3-minute-expand-and-contract-pattern.png)
+Image Source: https://openpracticelibrary.com/practice/expand-and-contract-pattern/
 
 Unlike the previous rollback strategy, the expand and contract pattern requires four deployments.  Using the example from the diagram, change the colorName column name to colorCode.
 
@@ -223,19 +224,23 @@ It is an iterative approach to making database changes.  Each deployment makes s
 
 ### Octopus Deploy Configuration
 
-Of the three strategies, this strategy requires the least amount of configuration.  Move the database deployment process into a separate project.
+Of the three strategies, this strategy requires the least amount of configuration.  Move the database deployment process into a separate project.  Note: this process does not have the `Calculate Deployment Mode` step.
 
-[Insert Screenshot Here]
+![](3-minute-database-process.png)
+
+None of the steps in this process have a variable run condition.  They are all set to run when the previous step succeeds.
+
+![](3-minute-run-condition.png)
 
 Remove any database steps from the application project.
 
-[Insert Screenshot Here]
+![](3-minute-website-process.png)
 
 If you need to share variables between projects, leverage the Octopus Deploy [Library Variable Sets](https://octopus.com/docs/projects/variables/library-variable-sets).
 
 ### Recovery time explained
 
-Like the 15-minute strategy, this strategy involves a redeployment.  Unlike that strategy, this strategy does not need a migration script review.  Because of that, this strategy makes it quicker to recover.
+Like the 10-minute strategy, this strategy involves a redeployment.  Unlike that strategy, this strategy does not need a migration script review.  Because of that, this strategy makes it quicker to recover.
 
 ### Who the strategy is for
 
@@ -244,6 +249,8 @@ This is the strategy for anyone looking to improve their automated deployment pr
 *   Only deploy the application code during the deployment window.
 *   All the database work occurs hours or days before the application deployment.
 *   The database changes are small incremental changes that are backward compatible.
+
+That improvement is not free.  You have to commit to changing how you make your code changes.  
 
 ### Downsides and pitfalls
 
@@ -257,13 +264,13 @@ All that extra work can be seen as overkill, depending on the application.
 
 ## Immediate Rollback Strategy
 
-This strategy builds on the 5-minute rollback strategy.  It adds blue/green or a staging deployment pattern.  In other words, run two versions of your application in Production.  Use a load balancer or ingress controller to control traffic.  Deploy the code to Production the load balancer is not pointing to.  Then, test it before releasing it to users.
+This strategy builds on the 3-minute rollback strategy.  It adds blue/green or a staging deployment pattern.  In other words, run two versions of your application in Production.  Use a load balancer or ingress controller to control traffic.  Deploy the code to Production the load balancer is not pointing to.  Then, test it before releasing it to users.
 
-[Insert Screenshot]
+![](immediate-strategy-overview.png)
 
 ### How it works
 
-This strategy is like the 15-minute rollback strategy.  It has a couple of extra steps.
+This strategy is like the 3-minute rollback strategy.  It has a couple of extra steps.
 
 *   Deploy the database changes hours or days before the code changes.
 *   Deploy the latest version of the application to a "staging" or "blue/green" set of servers in Production.  All users will continue to use the older version of the application.
@@ -274,43 +281,43 @@ This strategy is like the 15-minute rollback strategy.  It has a couple of extra
 
 ### Modeling In Octopus Deploy
 
-Like the 5-minute recovery strategy, the database and application are in different projects.  The critical difference is the application deployment process will deploy to a blue or green environment.
+Like the 3-minute recovery strategy, the database and application are in different projects.  The critical difference is the application deployment process will deploy to a blue or green environment.
 
 Step 1.  Create two new environments, Production-Blue and Production-Green.
 
-[Insert Screenshot]
+![](immediate-strategy-environments.png)
 
 Step 2.  Create a new lifecycle called "Blue/Green Deployments." Create a phase called "Production" and add both environments to it.
 
-[Insert Screenshot]
+![](immediate-strategy-lifecycle.png)
 
 Step 3.  In the application's project, update the channel to use the new lifecycle.
 
-[Insert Screenshot]
+![](immediate-strategy-channel.png)
 
 Step 4.  In the project variables, review the variable values scoped to Production.  Add scoping for Production-Blue and Production-Green.  Repeat for any library variable sets.
 
-[Insert Screenshot]
+![](immediate-strategy-variables.png)
 
-Step 5.  Update all the existing production targets for your application to Production-Blue OR Production-Green.
+Step 5.  Create new targets for your application for Production-Blue OR Production-Green.  You can re-use existing ones, but you must choose either blue or green for the environment.
 
-[Insert Screenshot]
+![](immediate-strategy-targets.png)
 
-Step 6.  Create a runbook to update the load balancer.  
+Step 6.  In the project, create a runbook to update the load balancer.  
 
-[Insert Screenshot]
+![](immediate-strategy-runbook.png)
 
-Step 7.  Add the appropriate steps to update your load balancer.  This runbook will tell the load balancer to direct traffic to Production-Blue or Production-Green.
+Step 7.  Add the appropriate steps to the runbook process to update your load balancer to Production-Blue or Production-Green.  
 
-[Insert Screenshot]
+![](immediate-strategy-runbook-process.png)
 
 Step 8. **Optional!!!** Add the [Run Octopus Deploy Runbook](https://library.octopus.com/step-templates/0444b0b3-088e-4689-b755-112d1360ffe3/actiontemplate-run-octopus-deploy-runbook) step to your deployment process to invoke that runbook.  This step is optional; you may invoke that runbook manually.
 
-[Insert Screenshot]
+![](immediate-strategy-invoke-runbook.png)
 
 **Please note:** The database will not be deployed to Production-Blue or Production-Green.  There is one copy of the database.  That database lives in the Production environment.  Your dashboard will look like the screenshot below.
 
-[Insert Screenshot]
+![](immediate-strategy-database-environment.png)
 
 ### Recovery time explained
 
@@ -320,14 +327,14 @@ Unlike the previous strategies, there are no redeployments.  Two versions of the
 
 This strategy is for anyone who has implemented the expand and contract pattern and wants to take the next step.  This strategy has several benefits.
 
-*   Like the 5-minute strategy, deploy database changes hours or days before the application.
+*   Like the 3-minute strategy, deploy database changes hours or days before the application.
 *   Deployments can occur in the middle of the day.
 *   Take as much time as required to verify the latest application version.  No users are using it.  
 *   Updating the load balancer can occur during off hours via a scheduled task or runbook.
 
 ### Downsides and pitfalls
 
-All the work required by the 5-minute strategy is required for this strategy.  Also, you must figure out how to run two application versions in Production.  That is a challenging task.
+All the work required by the 3-minute strategy is required for this strategy.  Also, you must figure out how to run two application versions in Production.  That is a challenging task.
 
 *   Create or configure additional application hosts.
 *   Verify how data from the old version interacts with data from the new version.  Write more automated tests when fixing issues.
@@ -337,7 +344,7 @@ Of all the rollback strategies, this requires the most time and money.  Dependin
 
 ### Feature Flags
 
-Don't be surprised if you leverage feature flags and tools like LaunchDarkly.  Releasing a new feature to _everyone_ has its own pitfalls.  It is common to see Blue/Green and feature flags used in conjunction.  
+Don't be surprised if you leverage feature flags and tools like LaunchDarkly with the immediate rollback strategy.  Releasing a new feature to _everyone_ has its own pitfalls.  It is common to see Blue/Green and feature flags used in conjunction.  
 
 *   Update the load balancer for users to use the new application version.  
 *   But prevent users from using a new feature.  
@@ -361,16 +368,29 @@ Adding feature flags makes rolling forward more workable.  With feature flags, y
 
 The point is the immediate rollback strategy created several "gates."  Those gates prevent "bad code" from reaching your entire user base.  Fixing an issue impacting a limited number of users is much easier and less stressful.  
 
+## Automatically Rolling Back
+
+Automated rollbacks are possible with the 3-minute and immediate rollback strategies.  Decoupling the database changes from the application changes make automated rollbacks possible.  They are not possible with the 10-minute rollback strategy.
+
+- For the 3-minute rollback strategy, add a step after the application is deployed that looks for specific errors.  If those errors are found, automatically redeploy the previous version of the code.
+- For the immediate rollback strategy, add two scripts.
+    - In the deployment process, add a step that looks for specific errors prior to invoking the change load balancer runbook.  If those errors are found, fail the deployment and don't update the load balancer.
+    - Add a step in the change load balanacer runbook that looks for specific errors.  If those errors are found, undo the load balancer change.  
+
+That said, you need to be careful with an automatic rollback process.  There is a finite amount of time an automatic rollback is feasible.  That window closes after 30 minutes of users using the new application version.  Adding a feature for a couple of days before removing it confuses users.  Limit the automatic rollbacks to check for specific conditions during deployment or runbook processes.  
+
+Evaluate your software delivery pipeline to prevent the necessitation of an automated rollback.  For example, the application does not start up.  If you follow the tenant of "build once, deploy everywhere" what are the chances that happens?  It will be the same exact code and configuration from the lower environments.  Is it an expired password or incorrect credentials?  Is it because you have to update the secret store and Octopus Deploy?  How can Octopus reach out to your secret store for that information instead?
+
 ## Conclusion
 
 Creating a zero-downtime, immediate rollback process is one of the most challenging tasks in DevOps.  It involves many changes.  And not just in the software delivery pipeline.  Many internal processes and development practices need to change.  
 
 Unless you are prepared to make all those changes, I'd push that scenario down the to-do list.  Solve the more significant problems first.  A rollback happens when an unexpected issue occurs.  Typically, humans and manual processes are the cause of those issues.  
 
-The first step to creating a rollback process is to automate the software delivery pipeline.  The software delivery pipeline should deploy all the components, including code and databases.  That will resolve many of those causing rollbacks in the first place.  After doing that, then start with the 15-minute recovery strategy.  You will cover most of the possible rollback scenarios by doing that.
+The first step to creating a rollback process is to automate the software delivery pipeline.  The software delivery pipeline should deploy all the components, including code and databases.  That will resolve many of those causing rollbacks in the first place.  After doing that, then start with the 10-minute recovery strategy.  You will cover most of the possible rollback scenarios by doing that.
 
-After that, implement the expand and contract pattern.  Making small, incremental, backward-compatible changes to the database is always a win.  That will prepare you for the 5-minute and immediate rollback strategies.  
+After that, implement the expand and contract pattern.  Making small, incremental, backward-compatible changes to the database is always a win.  That will prepare you for the 3-minute and immediate rollback strategies.  
 
-Implement the 5-minute and immediate rollback strategies strategically.  They are not needed for every application.  Discuss it with your team, business owner, and product owner, and get a consensus.  
+Implement the 3-minute and immediate rollback strategies strategically.  They are not needed for every application.  Discuss it with your team, business owner, and product owner, and get a consensus.  
 
 Until next time, happy deployments (and rollbacks)!
