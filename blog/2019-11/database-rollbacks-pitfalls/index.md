@@ -10,6 +10,7 @@ bannerImageAlt: Pitfalls with SQL rollbacks and automated database deployments
 tags:
  - Engineering
  - Database Deployments
+ - Rollbacks
 ---
 
 ![Pitfalls with SQL rollbacks and automated database deployments](blogimage-databasedeploymentpitfalls.png)
