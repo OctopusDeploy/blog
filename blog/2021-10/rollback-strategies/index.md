@@ -11,6 +11,7 @@ isFeatured: false
 tags:
  - DevOps
  - Deployment Patterns
+ - Rollbacks
 ---
 
 When discussing rollbacks, the conversation inevitably turns to blue/green, red/black, or canary deployment patterns. Those patterns make rollbacks easier, however, they're time-intensive to implement, and sometimes they're not necessary. Maybe you pushed out an API change to Test, and you want to get back to a known good state.  That's not when you should attempt to implement those patterns for the first time.  
