@@ -11,6 +11,7 @@ isFeatured: false
 tags:
  - DevOps
  - Kubernetes
+ - Rollbacks
 ---
 
 Not every deployment goes as smoothly as we'd like when deploying to Kubernetes.  Bugs, container environment variables, and hardware limitations can dictate whether an application will run after it’s deployed to a Kubernetes cluster.  When a fix isn't easy or the application is unresponsive, you need to go back to the previous version. This process is called a rollback.  
