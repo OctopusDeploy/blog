@@ -10,6 +10,7 @@ bannerImageAlt: A release with the Apache Tomcat logo on it, with a rocket trave
 isFeatured: false
 tags:
  - DevOps
+ - Rollbacks
 ---
 
 The DevOps feedback loop usually has automated processes to capture issues as early in the pipeline as possible.  While these automated processes allow for early detection, bugs can still find their way into production code.  Some bugs are severe enough to warrant backing out of the recently deployed version.  The process of reverting changes is called a rollback.  
