@@ -13,7 +13,7 @@ tags:
 ---
 
 :::warning
-This change was shipped as a part of 2023.4, we are aware of customers experiencing issues updating their machines and scripts and have re-implemented ScriptCS as the default C# scripting engine. The option to continue using dotnet-script is available with a project specific variable `Octopus.Action.Script.CSharp.UseDotnetScript` and an environment wide feature toggle `OCTOPUS__FeatureToggle__UseDotnetScriptCSharpExecutorFeatureToggle`. Please contact support if you are experiencing any issues, or would like dotnet-script enabled. A [public issue has been created](https://github.com/OctopusDeploy/Issues/issues/8359).
+We shipped this change as a part of 2023.4. We're aware some customers are having issues updating their machines and scripts. We've re-implemented scriptcs as the default C# scripting engine. The option to continue using dotnet-script is available with a project-specific variable `Octopus.Action.Script.CSharp.UseDotnetScript` and an environment-wide feature toggle `OCTOPUS__FeatureToggle__UseDotnetScriptCSharpExecutorFeatureToggle`. Please contact [support](mailto:support@octopus.com) if you're experiencing issues or would like dotnet-script enabled. We've created a [public issue](https://github.com/OctopusDeploy/Issues/issues/8359).
 :::
 
 We received [customer feedback](https://help.octopus.com/t/consider-use-dotnet-script-vs-scriptcs/22144) and [UserVoice voting](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/31454668-allow-the-use-of-c-script-csx-using-net-core) requesting we update the tooling Octopus uses to run C# scripts, from [scriptcs](https://github.com/scriptcs/scriptcs) to [dotnet-script](https://github.com/filipw/dotnet-script). This would: 
