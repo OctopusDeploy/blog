@@ -95,25 +95,10 @@ The other use for the clusters is in imagining what is possible. Organizations i
 
 ## Conclusion
 
-After last year's report, there was likely a link between experience and software delivery performance. The presence of respondents with more than 10 years of experience seems linked to the number of higher-performing teams.
+This year's report gives us even more confidence that throughput and stability are partners, not enemies. The work you do to improve throughput also improves stability. Automating your deployment pipeline makes it easier to deploy more often and reduces lead time for changes, but it also significantly improves stability.
 
-The lower performers are increasing their throughput, and there are signs this impacts their stability. This is because they still need to introduce the capabilities that will break the trade-off between the two.
+You can now have more confidence that experienced team members increase software delivery performance. The demographic changes over the past 3 reports demonstrate that the highest performance requires deep expertise.
 
-- Deployment automation is a great way to improve several DORA metrics and also enables more feedback loops to super-charge your other improvement experiments
+You can find more insights in the [2023 State of DevOps Report](https://dora.dev/research/2023/dora-report/).
 
 Happy deployments!
-
-
-
-
-
-
-[specific definitions of lead time](https://octopus.com/blog/definitions-of-lead-time)
-
-[common mistakes in DevOps metrics](https://octopus.com/blog/common-mistakes-devops-metrics)
-
-[DevOps metrics](https://octopus.com/devops/metrics/)
-
-[Workplace cultures](https://octopus.com/devops/culture/workplace-topologies/)
-
-You can read .
