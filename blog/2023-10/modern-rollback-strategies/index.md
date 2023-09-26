@@ -46,11 +46,11 @@ That is not an exhaustive list.  I'm sure you have many more reasons why you've 
 
 Many of the reasons listed above are a result of human error.  That occurs when the software delivery pipeline relies on too much manual intervention.  Manually building code, deploying build artifacts, and verifying changes is a recipe for disaster.  I can't count how often a configuration was the result of human error.  
 
-I recommend you follow the principles in Dave Farley and Jez Humble's book [Continuous Delivery. ](https://continuousdelivery.com/) Doing so will force you to automate many manual tasks. Also, you'll follow the same deployment process for all environments. That will prevent many of the reasons to roll back.
+I recommend you follow the principles in Dave Farley and Jez Humble's book [Continuous Delivery.](https://continuousdelivery.com/) Doing so will force you to automate many manual tasks. Also, you'll follow the same deployment process for all environments. That will prevent many of the reasons to roll back.
 
 ### Rollback risks
 
-No rollback is risk-free.  Part of the rollback process is deciding to roll back.  Often, it's a question of which option is riskier.  Sometimes, a roll forward is less risky than a rollback.  Other times, a rollback is less risky than a roll forward.
+No rollback is risk-free.  Part of the rollback process is deciding to roll back.  Often, it's a question of which option is riskier.  Sometimes, a roll-forward is less risky than a rollback.  Other times, a rollback is less risky than a roll-forward.
 
 Even if your deployment schedule is once a week, each deployment will have a mix of fixes and features.  The fixes could squash a critical bug or close a security vulnerability.  You cannot choose to roll back a specific change when rolling back.  All the changes roll back, or nothing rolls back.  
 
@@ -58,11 +58,11 @@ Even if your deployment schedule is once a week, each deployment will have a mix
 
 I often talk to prospective customers looking for an "easy" rollback solution.  They want a tool or process that will immediately roll back their application.  A process that covers all their rollback scenarios with a minimal amount of work.  
 
-_**Such a solution does not exist.**_  
+*Such a solution does not exist.*  
 
 The 10-minute strategy detailed below should take less than a day to configure.  It covers the majority of rollback scenarios.  Having an automated deployment process removes many of the reasons rollbacks occur.  But, the process only covers some possible rollback scenarios.  
 
-_**Implementing an immediate rollback strategy for all scenarios requires architectural and process changes.  It goes beyond the deployment tool.**_ 
+*Implementing an immediate rollback strategy for all scenarios requires architectural and process changes.  It goes beyond the deployment tool.* 
 
 I'm not referring to deployment process changes.  An immediate rollback strategy changes how you make code and database changes in your application.  It requires a robust automated suite of tests.  That all takes time and money to create.  
 
@@ -70,16 +70,16 @@ I'm not referring to deployment process changes.  An immediate rollback strategy
 
 The database is a critical component of your application.  It stores all your user data.  Unless a catastrophic event happens, data loss is unacceptable.  Data loss has real-world impacts.  Imagine losing a lifesaving prescription from a patient database in a hospital.  Or a loan entry to save a family farm.    
 
-There are 2 ways to roll back a database—both of which will likely result in data loss.
+There are 2 ways to roll back a database—both of which will likely result in data loss:
 
-1.  Run rollback scripts.
-2.  Restore a database backup.
+1.  Run rollback scripts
+2.  Restore a database backup
 
 ### Rollback script pitfalls
 
 Missing or corrupted data impacts your users.   Relational databases are responsible for referential integrity.  The code base handles business rules.
 
-Despite that, we will write rollback scripts to remove or manipulate data.  For example, you add a column to an existing table.  You need to roll back that change.  The rollback script removes that added column.  Simple.  But, that script may not take into account nuances.
+Despite that, we write rollback scripts to remove or manipulate data.  For example, you add a column to an existing table.  You need to roll back that change.  The rollback script removes that added column.  Simple.  But, that script may not take into account nuances.
 
 - Was there any data in that column?  If so, who added it, the users or the migration script?
 - Will users have to re-key the data after that column is re-added?
@@ -101,11 +101,11 @@ Restoring database backups should be a last resort.  It's not the default option
 
 ### Take the database out of the rollback process.
 
-The 3 rollback strategies below rely on never rolling back a database. They reply on every database change being a roll forward. 
+The 3 rollback strategies below rely on never rolling back a database. They rely on every database change being a roll forward. 
 
 The risk of data loss or something going wrong is too high.  With enough time and effort, you can mitigate those risks.  But how often do you plan on rolling back?  It should be an exception, not the norm.  You'll end up spending a tremendous amount of time and money working on a script that will never run.  That time and effort could be better spent on improving the rollout process.
 
-Taking the database out of the rollback process makes rollbacks more workable.  Don't get me wrong, you will still have challenges.  But they won't be "data lost" challenges.
+Taking the database out of the rollback process makes rollbacks more workable. You'll still have challenges, but they won't be "data lost" challenges.
 
 ## 10-minute recovery rollback strategy
 
@@ -185,14 +185,14 @@ Don't dismiss this strategy because of the potential for multi-hour recovery.  T
 - Code is automatically built following the same process.  No steps are accidentally skipped.
 - The same build artifact gets deployed to all environments.  What passed testing, automated or manual, goes to production.
 - The build artifacts are automatically deployed using the same process for all environments.  The process gets tested at least once before production.
-- Most automated deployments take 10-15 minutes to complete.  Pushing a fix through all the required environments can take less than an hour.  
+- Most automated deployments take 10–15 minutes to complete.  Pushing a fix through all the required environments can take less than an hour.  
 - Most failures requiring a rollback will now occur in testing environments, not production. 
 
 This strategy requires minimum effort but has a significant pay-off.
 
 ## 3-minute recovery strategy
 
-Decouple the database changes from the code changes.  Deploy the database changes hours or days before code changes.  The previous application version will work with the current database changes.  That removes a significant risk when rolling back.
+The 3-minute recovery strategy decouples the database changes from the code changes. You need to deploy the database changes hours or days before code changes. The previous application version will work with the current database changes. That removes a significant risk when rolling back.
 
 ![Screenshot of the deployment processes for 3-minute recovery.](3-minute-overview.png)
 
@@ -202,7 +202,7 @@ Decouple the deployment processes for the code and database:
 
 1. Hours or days before deploying the application, deploy the database changes
 2. After a period of time, deploy the code changes
-3. Roll back the code changes upon discovery of a showstopping bug
+3. Roll back the code changes when you discover a showstopping bug
 
 There's no need to check database migration scripts before rolling back.  You already know the previous application version works with the current database.  
 
@@ -215,7 +215,7 @@ This strategy requires the adoption of the expand and contract pattern.
 ![The expand and contract pattern with deployments](3-minute-expand-and-contract-pattern.png)
 Image Source: https://openpracticelibrary.com/practice/expand-and-contract-pattern/
 
-Unlike the previous rollback strategy, the expand and contract pattern requires four deployments.  Using the example from the diagram, change the colorName column name to `colorCode`.
+Unlike the previous rollback strategy, the expand and contract pattern requires 4 deployments.  Using the example from the diagram, change the colorName column name to `colorCode`.
 
 1. The first deployment adds the new column `colorCode` to the database.  That is the expansion.
 2. The second deployment updates the source code to write to both columns.  Also, backfill `colorCode` if possible.
@@ -230,7 +230,7 @@ Of the 3 strategies, this strategy requires the least amount of configuration.  
 
 ![The database deployment process in a separate project.](3-minute-database-process.png)
 
-None of the steps in this process have a variable run condition.  They are all set to run when the previous step succeeds.
+None of the steps in this process have a variable run condition.  They're all set to run when the previous step succeeds.
 
 ![The run condition set to success for all steps.](3-minute-run-condition.png)
 
@@ -238,11 +238,11 @@ Remove any database steps from the application project.
 
 ![The web application deployment process in a separate project.](3-minute-website-process.png)
 
-If you need to share variables between projects, use the Octopus Deploy [Library Variable Sets](https://octopus.com/docs/projects/variables/library-variable-sets).
+If you need to share variables between projects, use the Octopus Deploy [library variable sets](https://octopus.com/docs/projects/variables/library-variable-sets).
 
 ### Recovery time explained
 
-Like the 10-minute strategy, this strategy involves a redeployment.  Unlike that strategy, this strategy does not need a migration script review.  Because of that, this strategy makes it quicker to recover.
+Like the 10-minute strategy, this strategy involves a redeployment.  Unlike the 10-minute strategy, this 3-minute strategy doesn't need a migration script review.  Because of that, this strategy makes it quicker to recover.
 
 ### Who the strategy is for
 
@@ -256,9 +256,9 @@ That improvement is not free.  You have to commit to changing how you make your 
 
 ### Downsides and pitfalls
 
-Decoupling database and code changes is a challenging task.  There's more work outside of implementing the expand and contract pattern.  That includes moving the database schema to a separate git repository and creating a new delivery pipeline.  
+Decoupling database and code changes is a challenging task.  There's more work outside of implementing the expand and contract pattern.  That includes moving the database schema to a separate Git repository and creating a new delivery pipeline.  
 
-There will be a lot more deployments with this strategy.  Everyone has to be on board with the expansion and contract pattern. That includes developers, database developers, QA, DBAs, Web Admins, and support staff.  One person not on board can de-rail the whole process.  
+There'll be a lot more deployments with this strategy.  Everyone has to be on board with the expansion and contract pattern. That includes developers, database developers, QA, DBAs, web admins, and support staff.  One person not on board can de-rail the whole process.  
 
 Building out the testing suite to test database changes will take time.  The application may not support automated testing.  If it does not, it will need extra work to rearchitect the application to support automated testing.  That alone is a monumental effort.  
 
@@ -266,7 +266,7 @@ All that extra work can be overkill, depending on the application.
 
 ## Immediate rollback strategy
 
-This strategy builds on the 3-minute rollback strategy.  It adds blue/green or a staging deployment pattern.  It involves:
+This strategy builds on the 3-minute recovery strategy.  It adds blue/green or a staging deployment pattern.  It involves:
 
 - Running 2 versions of your application in production
 - Using a load balancer or ingress controller to control traffic
@@ -318,7 +318,7 @@ Step 7.  Add the appropriate steps to the runbook process to update your load ba
 
 ![The runbook process to change the load balancer.](immediate-strategy-runbook-process.png)
 
-Step 8. **Optional** Add the **[Run Octopus Deploy Runbook](https://library.octopus.com/step-templates/0444b0b3-088e-4689-b755-112d1360ffe3/actiontemplate-run-octopus-deploy-runbook)** step to your deployment process to invoke that runbook.  This step is optional; you may invoke that runbook manually.
+Step 8. **Optional:** Add the **[Run Octopus Deploy Runbook](https://library.octopus.com/step-templates/0444b0b3-088e-4689-b755-112d1360ffe3/actiontemplate-run-octopus-deploy-runbook)** step to your deployment process to invoke that runbook.  This step is optional; you may invoke that runbook manually.
 
 ![Adding the optional run a runbook step in the deployment process.](immediate-strategy-invoke-runbook.png)
 
@@ -343,7 +343,7 @@ This strategy is for anyone who has implemented the expand and contract pattern 
 
 ### Downsides and pitfalls
 
-You need all the work of the 3-minute strategy for this strategy.  Also, you must figure out how to run 2 application versions in production.  That's a challenging task.
+You need all the work of the 3-minute strategy with this approach.  Also, you must figure out how to run 2 application versions in production.  That's a challenging task.
 
 -  Create or configure additional application hosts.
 -  Verify how data from the old version interacts with data from the new version.  Write more automated tests when fixing issues.
@@ -373,7 +373,7 @@ Ironically, the immediate rollback strategy is the perfect roll-forward scenario
 - Verify the fixes.
 - Assuming verification is successful, redirect the traffic to the new application version.
 
-Adding feature flags makes rolling forward more workable.  With feature flags, you can restrict how many users can access a new feature.  Enable the feature flag for a subset of users.  If you find any new issues, don't enable the feature flag for other users.  Fix the issue, verify it, and then enable the feature flag for other users.
+Adding feature flags makes rolling forward more workable.  With feature flags, you can restrict how many users can access a new feature. You can enable the feature flag for a subset of users.  If you find any new issues, you don't enable the feature flag for other users. You fix the issue, verify it, and then enable the feature flag for other users.
 
 The point is the immediate rollback strategy created several "gates".  Those gates prevent bad code from reaching your entire user base.  Fixing an issue impacting a limited number of users is much easier and less stressful.  
 
@@ -398,9 +398,9 @@ Evaluate your software delivery pipeline to prevent needing an automated rollbac
 
 Creating a zero-downtime, immediate rollback process is one of the most challenging tasks in DevOps.  It involves many changes.  And not just in the software delivery pipeline.  Many internal processes and development practices need to change.  
 
-Unless you are prepared to make all those changes, I'd push that scenario down the to-do list.  Solve the more significant problems first.  A rollback happens when an unexpected issue occurs.  Typically, humans and manual processes are the cause of those issues.  
+Unless you're prepared to make all those changes, I'd push that scenario down your to-do list.  Solve the more significant problems first.  A rollback happens when an unexpected issue occurs.  Typically, humans and manual processes are the cause of those issues.  
 
-The first step to creating a rollback process is to automate the software delivery pipeline.  The software delivery pipeline should deploy all the components, including code and databases.  That will resolve many issues causing rollbacks in the first place.  After doing that, then start with the 10-minute recovery strategy.  You'll cover most of the possible rollback scenarios that way.
+The first step to creating a rollback process is to automate your software delivery pipeline.  The software delivery pipeline should deploy all the components, including code and databases.  That will resolve many issues causing rollbacks in the first place.  Then you can start with the 10-minute recovery strategy.  You'll cover most of the possible rollback scenarios that way.
 
 Next, implement the expand and contract pattern.  Making small, incremental, backward-compatible changes to the database is always a win.  That will prepare you for the 3-minute and immediate rollback strategies.  
 
