@@ -1,6 +1,6 @@
 ---
 title: The 2023 DevOps performance clusters
-description: 
+description: Find out about the latest software delivery performance clusters in the State of DevOps Report.
 author: steve.fenton@octopus.com
 visibility: private
 published: 2023-10-03
@@ -12,61 +12,57 @@ tags:
   - DevOps
 ---
 
-The 2023 Accelerate State of DevOps Report has arrived and we're excited to be sponsors once again. The report establishes the relationship software delivery performance has with organizational goals and provides concrete practices that can improve outcomes.
+The 2023 Accelerate State of DevOps Report has arrived and we're excited to be sponsors once again. This long-running research effort has shown how software delivery performance has a positive impact on organizational goals. Using the insights into concrete practices that drive performance, you can make a real impact on your commercial and non-commercial goals.
 
-You can read the full report on the [DORA website](https://dora.dev/research/2023/dora-report/).
-
-In this article, you'll find more information about software delivery performance and how it has changed since last year's report.
+The full report is available from the [DORA website](https://dora.dev/research/2023/dora-report/), but in this article you'll find an overview of some key changes the survey used to collect data this year. You'll also find out why we are able to welcome back the *elite* performance cluster and why this group can inspire improvements across many industries.
 
 ## Software delivery performance
 
-The traditional view is that there is a trade-off between throughput and stability. If you release changes sooner, and deploy more often, you'd expect to have more failures and lower stability. The evidence provides a counter-intuitive finding. High-performing teams achieve both throughput and stability, while teams who deploy less often have a higher change failure rate and longer restoration times.
+Software delivery performance is measured using metrics that balance throughput and stability. Throughput is based on how quickly you can progress a change to production and how often you deploy. Stability is measured with the rate of failed changes and how long it takes to recover when things go wrong.
 
-Throughput:
+In traditional software development, the developers were responsible for throughput and the operations team handled stability. There was an assumption that throughput and stability were in conflict; if you made a lot of changes, surely you'd break things more often. This led to developers wanting to move faster, and operations pulling on the reigns to slow things down.
 
-- Deployment frequency
-- Lead time for changes
+The research has shown this assumption is wrong. High-performing teams demonstrate that throughput and stability are found together. The DevOps approach of breaking down the silos and sharing the responsibility results in the best performance against all four measures.
 
-Stability:
+Once you know the answer, it's easy to work out why this counter-intuitive approach works. If you are able to deploy many times a day and you discover a fault in the software, you can quickly resolve it without expediting the fix. When you deploy software that has a single change, the deployment has lower risk and fewer unintended interactions than if it has 10 changes.
 
-- Change failure rate
-- Mean time to recovery
+The [DORA metrics](https://octopus.com/devops/metrics/dora-metrics/) are the best known way to measure software delivery performance.
 
-You can find out more information on these metrics in our overview of [DORA metrics](https://octopus.com/devops/metrics/dora-metrics/).
+:::hint
+There are 4 metrics for software delivery performance. There is also a reliability metric that extends the set to cover software delivery *and operational* performance. Operational performance increases the liklihood that software performance will impact organizational goals.
+:::
 
-In the 2022 report, three performance levels emerged from the data:
+In the 2022 report, three performance levels were found:
 
 | 2022 Performance level | Lead time         | Deployment frequency   | Change failure rate | Mean time to resolve |
 |------------------------|-------------------|------------------------|---------------------|----------------------|
 | Low                    | 1-6 months        | Monthly to biannually  | 46-60%              | 1 week - 1 month     |
-| Medium                 | Weekly to monthly | Weekly to monthly      | 16-30%              | 1 day - 1 week       |
-| High                   | 1 day - 1 week    | Multiple times per day | 0-15%               | < 1 day              |
+| Medium                 | 1 week to 1 month | Weekly to monthly      | 16-30%              | 1 day - 1 week       |
+| High                   | 1 day to 1 week   | Multiple times per day | 0-15%               | < 1 day              |
 
-With this table, you can see the strong relationship between low throughput (lead time and deployment frequency) and poor stability (change failure rate and time to resolve).
+Each performance level shows that throughput and stability are linked. When you improve one, you improve the other. This happens because the technical practices required to improve throughput have a positive impact on stability. For example, if you deploy once a month manually, you'll need to automate the deployment to increase your deployment frequency. Automation removes manual errors introduced during the deployment, which reduces the change failure rate.
 
 ## Changes to stability metrics
 
-To dig deeper into stability, the DORA researchers adjusted the questions this year.
+In the 2023 survey, the stability metrics were changed to improve our understanding of software delivery performance. The [DORA Community](https://dora.community/) has been a thriving source of healthy discussions between researchers and practitioners. As a result of these conversations, two changes were made.
 
-In previous years, respondents could choose from 6 ranges of change failure rates, for example "0-15%". This year, the research team allowed free choice of any value between 0% and 100%. This means the change failure rate data has a higher fidelity than ever.
+### Change failure rate
 
-Perhaps more dramatically, mean time to resolve has been replaced. Over the past year we've had many conversations about this within the [DORA Community](https://dora.community/).
+Previously, change failure rate was collected using a number of ranges, such as "0-15%" and "16-30%". This year, respondents could select the exact number that matched their change failure rate, which means the buckets can be replaced with high-fidelity numbers.
 
-[how you'd use time to recover in your team](https://octopus.com/blog/how-to-measure-mean-time-to-resolve)
+Instead of selecting "0-15%", you could enter "5%", for example.
 
-- Change failure rate precision
+### Time to restore
 
-- Deployment failure recovery times replaces MTTR
+There were two problems with the mean time to restore (MTTR) metric. A production fault might be caused by an unsuccessful change, or it could be the result of an infrastructure failure. Representing this full range of incident types made it hard to establish software delivery performance in isolation of massive network faults and natural disasters.
 
+In place of MTTR, the researchers asked people to say how long it took them to recover after a failed deployment. This made the measurement specific to faults introduced with a new software version, or by a deployment that impacted service (for example, because the checklist wasn't followed correctly).
 
+## Software delivery performance changes
 
-New clusters (welcome back Team Elite)
-- Clusters are useful to describe different performance characteristics
+Last year, the performance clusters changed. The *elite* performance group didn't emerge and we wrote about [why we think this happened](https://octopus.com/blog/new-devops-performance-clusters). This year, we welcome back the elite performers. The demographic information certainly hints that elite performance depends on professionals with more than 10 years experience.
 
-- The best comparison is for the same application over time
-
-- Comparisons between apps, teams, and organizations reflects difference for too many variables
-
+The software delivery performance clusters based on the new survey questions are:
 
 | 2022 Performance level | Lead time            | Deployment frequency           | Change failure rate | Failed deployment recovery time |
 |------------------------|----------------------|--------------------------------|---------------------|---------------------------------|
@@ -75,25 +71,23 @@ New clusters (welcome back Team Elite)
 | High                   | 1 day - 1 week       | **Once a day - once a week**   | 10%                 | < 1 day                         |
 | **Elite**              | < 1 day              | On demand                      | 5%                  | < 1 hour                        |
 
-The low performance cluster has shorter lead times and deploys more often, but has a higher change failure rate and longer failed deployment recovery times than last year. 18% of responses.
+The differences from the 2021 clusters are highlighted in bold. Compared to last year, the low performance cluster has higher throughput and lower stability, but the trend of higher-performance clusters improving against both measures is as strong as ever.
 
-The medium performance cluster is similar to last year, but with lower change failure rates. 33% of responses.
-
-The high performance cluster is very similar to last year, but deployes less frequently. 31% of responses.
-
-The elite cluster has returned after a year's break. Lead times under a day, deployment made on demand, low change failure rates and fast recovery times. 18% of responses.
-
-The 2022 survey had fewer responses from people with more than 10 years experience. 50% of respondends to the 2023 report had at least 15 years experience. Performance is increased with experience, which is intuitively what we'd think.
+![Cluster sizes: Low: 18%, Medium: 33%, High: 31%, Elite: 18%](software-delivery-performance-clusters.png)
 
 ## How to use these clusters
 
-With any DevOps metrics, the best comparison you can make is for the same application over time. If you are improving the application's performance against these measures, you're making progress.
+With any software delivery metrics, the best way to compare performance it to focus on a single application over time. Comparing the performance between different teams and application fails to account for many contextual differences, but looking at performance for an application over time demonstrates the vector of change.
 
-There a still some ways these clusters can be used to help with this continuous improvement process.
+For software delivery, metrics should inform improvment activities rather than drive them. You should take an experimental approach to applying these capabilities, introducing or improving a capability and observing its impact on the metrics. This is how you'll find which practices make an impact for your specific application and team.
+
+The clusters can still be useful as a reference for continuous improvement.
+
+### Opportunity identification
 
 If your measurements are similar to one of the clusters, but you are under performing on one metric, you now have a good place to start improving. For example, if you fit the *medium* performance cluster, except for having a higher change failure rate, what could you do to improve this? You can use the [DORA Core Model](https://dora.dev/research/) to find capabilities that can help, such as test automation.
 
-You should take an experimental approach to applying these capabilities, introducing or improving a capability and observing its impact on the metrics. This is how you'll find which practices make an impact for your specific application and team.
+### Aspirational examples
 
 The other key use of the clusters is in imagining what is possible. There are organizations in many industries represeted in the *elite* cluster, including safety-critical and regulated industries. It is possible to achieve this performance level without making things less safe and without taking shortcuts.
 
@@ -101,13 +95,11 @@ The other key use of the clusters is in imagining what is possible. There are or
 
 After last year's report, it seemed likely that there was a link between experience and software delivery performance. The presence of respondents with more than 10 years' experience seems linked to the number of higher-performing teams.
 
-
+The lower performers are increasing their throughput and there are signs this impacts their stability. This is because they don't yet have the set of capabilities that higher-performers have used to break the trade-off between the two.
 
 - Deployment automation is a great way to improve several DORA metrics and also enables more feedback loops to super-charge your other improvement experiments
 
 Happy deployments!
-
-
 
 
 
@@ -122,4 +114,4 @@ Happy deployments!
 
 [Workplace cultures](https://octopus.com/devops/culture/workplace-topologies/)
 
-You can read [why this was different to the 2021 report](https://octopus.com/blog/new-devops-performance-clusters).
+You can read .
