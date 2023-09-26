@@ -4,23 +4,37 @@ description:
 author: steve.fenton@octopus.com
 visibility: private
 published: 2023-10-03
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: blogimage-dorametrics-2023.png
+bannerImage: blogimage-dorametrics-2023.png
+bannerImageAlt: A slightly transparent computer screen with someone analyzing data behind it, with different metrics floating around the person. 
 isFeatured: false
 tags: 
   - DevOps
 ---
 
-The 2023 Accelerate State of DevOps Report has arrived once more and we're excited to be sponsors once again.
+The 2023 Accelerate State of DevOps Report has arrived and we're excited to be sponsors once again. The report establishes the relationship software delivery performance has with organizational goals and provides concrete practices that can improve outcomes.
 
 You can read the full report on the [DORA website](https://dora.dev/research/2023/dora-report/).
 
+In this article, you'll find more information about software delivery performance and how it has changed since last year's report.
 
+## Software delivery performance
 
-Throughput and stability
+The traditional view is that there is a trade-off between throughput and stability. If you release changes sooner, and deploy more often, you'd expect to have more failures and lower stability. The evidence provides a counter-intuitive finding. High-performing teams achieve both throughput and stability, while teams who deploy less often have a higher change failure rate and longer restoration times.
 
-This is how the performance clusters landed in 2022:
+Throughput:
+
+- Deployment frequency
+- Lead time for changes
+
+Stability:
+
+- Change failure rate
+- Mean time to recovery
+
+You can find out more information on these metrics in our overview of [DORA metrics](https://octopus.com/devops/metrics/dora-metrics/).
+
+In the 2022 report, three performance levels emerged from the data:
 
 | 2022 Performance level | Lead time         | Deployment frequency   | Change failure rate | Mean time to resolve |
 |------------------------|-------------------|------------------------|---------------------|----------------------|
@@ -28,18 +42,15 @@ This is how the performance clusters landed in 2022:
 | Medium                 | Weekly to monthly | Weekly to monthly      | 16-30%              | 1 day - 1 week       |
 | High                   | 1 day - 1 week    | Multiple times per day | 0-15%               | < 1 day              |
 
-[last year](https://octopus.com/blog/new-devops-performance-clusters)
-
-
-
+With this table, you can see the strong relationship between low throughput (lead time and deployment frequency) and poor stability (change failure rate and time to resolve).
 
 ## Changes to stability metrics
 
-The stability metrics have been adjusted in the 2023 report.
+To dig deeper into stability, the DORA researchers adjusted the questions this year.
 
 In previous years, respondents could choose from 6 ranges of change failure rates, for example "0-15%". This year, the research team allowed free choice of any value between 0% and 100%. This means the change failure rate data has a higher fidelity than ever.
 
-Perhaps more dramatically, mean time to resolve has been replaced. 
+Perhaps more dramatically, mean time to resolve has been replaced. Over the past year we've had many conversations about this within the [DORA Community](https://dora.community/).
 
 [how you'd use time to recover in your team](https://octopus.com/blog/how-to-measure-mean-time-to-resolve)
 
@@ -74,11 +85,23 @@ The elite cluster has returned after a year's break. Lead times under a day, dep
 
 The 2022 survey had fewer responses from people with more than 10 years experience. 50% of respondends to the 2023 report had at least 15 years experience. Performance is increased with experience, which is intuitively what we'd think.
 
-Conclusion
+## How to use these clusters
 
-- This does point to a link between experience and performance
+With any DevOps metrics, the best comparison you can make is for the same application over time. If you are improving the application's performance against these measures, you're making progress.
 
-- If you are similar to a cluster on several measures, but worse on one, you have a great place to start your continuous delivery efforts
+There a still some ways these clusters can be used to help with this continuous improvement process.
+
+If your measurements are similar to one of the clusters, but you are under performing on one metric, you now have a good place to start improving. For example, if you fit the *medium* performance cluster, except for having a higher change failure rate, what could you do to improve this? You can use the [DORA Core Model](https://dora.dev/research/) to find capabilities that can help, such as test automation.
+
+You should take an experimental approach to applying these capabilities, introducing or improving a capability and observing its impact on the metrics. This is how you'll find which practices make an impact for your specific application and team.
+
+The other key use of the clusters is in imagining what is possible. There are organizations in many industries represeted in the *elite* cluster, including safety-critical and regulated industries. It is possible to achieve this performance level without making things less safe and without taking shortcuts.
+
+## Conclusion
+
+After last year's report, it seemed likely that there was a link between experience and software delivery performance. The presence of respondents with more than 10 years' experience seems linked to the number of higher-performing teams.
+
+
 
 - Deployment automation is a great way to improve several DORA metrics and also enables more feedback loops to super-charge your other improvement experiments
 
@@ -97,6 +120,6 @@ Happy deployments!
 
 [DevOps metrics](https://octopus.com/devops/metrics/)
 
-[DORA metrics](https://octopus.com/devops/metrics/dora-metrics/)
-
 [Workplace cultures](https://octopus.com/devops/culture/workplace-topologies/)
+
+You can read [why this was different to the 2021 report](https://octopus.com/blog/new-devops-performance-clusters).
