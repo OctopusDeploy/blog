@@ -31,14 +31,14 @@ There is nuance in reverting to an application's previous version. The reversion
 
 There are many reasons to roll back.  
 
--   The application won't start
--   Users can't sign in or use the application
--   Incorrect username, password, or token for database authentication
--   Expired credentials
--   Missing or incorrect configuration entries
--   During verification, testers find a "showstopping" bug
--   You need to deploy one or more external services on schedule
--   The database migration scripts failed
+- The application won't start
+- Users can't sign in or use the application
+- Incorrect username, password, or token for database authentication
+- Expired credentials
+- Missing or incorrect configuration entries
+- During verification, testers find a "showstopping" bug
+- You need to deploy one or more external services on schedule
+- The database migration scripts failed
 
 That is not an exhaustive list.  I'm sure you have many more reasons why you've rolled back.  
 
@@ -72,8 +72,8 @@ The database is a critical component of your application.  It stores all your us
 
 There are 2 ways to roll back a database—both of which will likely result in data loss:
 
-1.  Run rollback scripts
-2.  Restore a database backup
+1. Run rollback scripts
+2. Restore a database backup
 
 ### Rollback script pitfalls
 
@@ -286,7 +286,7 @@ This strategy is like the 3-minute rollback strategy, but has a couple of extra 
 - Don't update the load balancer if verification fails.
 - Update the load balancer back to the previous version in the event of a showstopping bug.
 
-### Modeling in Octopus Deploy
+### Modeling In Octopus Deploy
 
 Like the 3-minute recovery strategy, the database and application are in different projects.  The critical difference is the application deployment process will deploy to a blue or green environment.
 
@@ -323,7 +323,7 @@ Step 8. **Optional:** Add the **[Run Octopus Deploy Runbook](https://library.oct
 ![Adding the optional run a runbook step in the deployment process.](immediate-strategy-invoke-runbook.png)
 
 :::warning
-**Please note:** The database won't get deployed to Production-Blue or Production-Green.  There is one copy of the database.  That database lives in the Production environment.  Your dashboard will look like the screenshot below.
+Please note: The database won't get deployed to Production-Blue or Production-Green. There is one copy of the database. That database lives in the Production environment. Your dashboard will look like the screenshot below.
 :::
 
 ![Dashboard comparing the database production environment with the web applications.](immediate-strategy-database-environment.png)
@@ -345,8 +345,8 @@ This strategy is for anyone who has implemented the expand and contract pattern 
 
 You need all the work of the 3-minute strategy with this approach.  Also, you must figure out how to run 2 application versions in production.  That's a challenging task.
 
--  Create or configure additional application hosts.
--  Verify how data from the old version interacts with data from the new version.  Write more automated tests when fixing issues.
+- Create or configure additional application hosts.
+- Verify how data from the old version interacts with data from the new version.  Write more automated tests when fixing issues.
 - Verify how the application behaves after updating the load balancer.  Expect cross-talk between the old UI version and the new API version.  Especially with modern SPA JavaScript applications.
 
 Of all the rollback strategies, this requires the most time and money.  Depending on the application, it can be overkill.  For example, an internal application used by a dozen people doesn't need a blue/green strategy.  
@@ -361,7 +361,7 @@ It's common to use feature flags and tools like LaunchDarkly with the immediate 
 - Continue to release the feature to more users.
 - Stop releasing the feature when encountering an issue. 
 
-## The perfect roll-forward strategy
+## The perfect roll forward strategy
 
 Ironically, the immediate rollback strategy is the perfect roll-forward scenario.  
 
