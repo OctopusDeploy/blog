@@ -286,7 +286,7 @@ This strategy is like the 3-minute rollback strategy, but has a couple of extra 
 - Don't update the load balancer if verification fails.
 - Update the load balancer back to the previous version in the event of a showstopping bug.
 
-### Modeling In Octopus Deploy
+### Modeling in Octopus Deploy
 
 Like the 3-minute recovery strategy, the database and application are in different projects.  The critical difference is the application deployment process will deploy to a blue or green environment.
 
