@@ -1,6 +1,6 @@
 ---
 title: Modern rollback strategies
-description: Bob walks you through 3 modern rollback strategies: the 10-minute recovery, 3-minute recovery, and immediate rollback strategy.
+description: "Bob walks you through 3 modern rollback strategies: the 10-minute recovery, 3-minute recovery, and immediate rollback strategy."
 author: bob.walker@octopus.com
 visibility: public
 published: 2023-10-02-1400
