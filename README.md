@@ -11,7 +11,7 @@ The repo includes [templates](https://github.com/OctopusDeploy/blog/tree/master/
 See the [Octopus style guide](https://www.octopus.design/932c0f1a9/p/26f741-writing) for the following information:
 
 - [Markdown quick reference](https://www.octopus.design/932c0f1a9/p/074e30-markdown-reference)
-- [Writing educational content](https://www.octopus.design/932c0f1a9/p/901d2a-blog-content) 
+- [Writing educational content](https://www.octopus.design/932c0f1a9/p/137b06-educational-content---how-we-write-about-what-we-do)) 
 - [Writing tips for the blog](https://www.octopus.design/932c0f1a9/p/901d2a-blog-content)
 - [The Octopus voice and style](https://www.octopus.design/932c0f1a9/p/13df3a-voice-and-style)
 
