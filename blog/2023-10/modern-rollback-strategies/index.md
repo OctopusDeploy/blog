@@ -361,7 +361,7 @@ It's common to use feature flags and tools like LaunchDarkly with the immediate 
 - Continue to release the feature to more users.
 - Stop releasing the feature when encountering an issue. 
 
-## The perfect roll forward strategy
+## The perfect roll-forward strategy
 
 Ironically, the immediate rollback strategy is the perfect roll-forward scenario.  
 
