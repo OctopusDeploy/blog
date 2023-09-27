@@ -4,9 +4,9 @@ description: Bob walks you through 3 modern rollback strategies: the 10-minute r
 author: bob.walker@octopus.com
 visibility: public
 published: 2023-10-02-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: blogimage-modernrollbackstratgies-2023.png
+bannerImage: blogimage-modernrollbackstratgies-2023.png
+bannerImageAlt: 4 release boxes labelled 1.1 to 1.4, the 3rd with a green tick, 4th on fire with a red cross. A rocket travels back from 1.4 to 1.3.
 isFeatured: false
 tags: 
   - DevOps
