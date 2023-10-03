@@ -47,7 +47,7 @@ With the addition of user-centricity, four team types emerge.
 
 The team types are found by splitting performance using the assessment criteria (software delivery and operational performance, and user-centricity), but they also predict certain outcomes. You can use these team types as personas to work out how to increase the impact of software delivery and improve developer experience.
 
-![](team-type-performance.png)
+![The relative performance of the four team types against the three performance measures](team-type-performance.png)
 
 You won't necessarily fit a single team type and you'll move around as you adjust your process.
 
@@ -57,16 +57,7 @@ Let's look at each type in more detail.
 
 User-centric teams have strong software delivery and operations performance. Their focus on user needs leads to the highest levels of organizational performance. These teams have worked out how to unlock the impact of software on the organization's goals.
 
-Software delivery performance: ~6
-Operational performance: ~7
-User-centricity: ~8.5
-
-Predictions
-
-Organizational performance: ~7
-Team performance: ~8.5
-Burnout: ~4
-Job satisfaction: ~6.5
+![The chart shows user-centric teams have high performance against all measures, but with higher burnout than balanced teams.](user-centric-outcomes.png)
 
 If you are a user-centric team, you need to watch out for burnout and ensure you are taking opportunities to remove toil with automation.
 
@@ -74,16 +65,7 @@ If you are a user-centric team, you need to watch out for burnout and ensure you
 
 Feature-driven teams have incredible software delivery performance, but are disconnected from users. This means the software fails to impact organizational performance. These teams have high levels of burnout and lack job satisfaction.
 
-Software delivery performance: ~6
-Operational performance: ~6
-User-centricity: ~5
-
-Predictions
-
-Organizational performance: ~5
-Team performance: ~6.5
-Burnout: ~5
-Job satisfaction: ~5
+![The chart shows feature driven teams have strong team performance that doesn't convert into organizational performance. There is high burnout and low job satisfaction.](feature-driven-outcomes.png)
 
 If you are feature-driven team, you need to reconnect with users. Delivering features regularly should provide an opportunity for valuable feedback loops, so find ways to bring user feedback into the planning process to increase the value of the features delivered. 
 
@@ -91,16 +73,7 @@ If you are feature-driven team, you need to reconnect with users. Delivering fea
 
 Often found in smaller organizations, developing teams are often building towards one of the other team types. These teams are searching for the features that will make their product attractive to customers while building their skills. Despite high job satisfaction, these teams are the more prone to burnout.
 
-Software delivery performance: ~5
-Operational performance: ~3
-User-centricity: ~8
-
-Predictions
-
-Organizational performance: ~7
-Team performance: ~8
-Burnout: ~5.5
-Job satisfaction: ~6.5
+![The chart shows developing teams have strong outcomes with the highest level of burnout.](developing-outcomes.png)
 
 If you are in a developing team, look for opportunities to replace heavyweight process with automation. This will improve your operational performance and result in a reduction in unplanned work and interruptions.
 
@@ -108,16 +81,7 @@ If you are in a developing team, look for opportunities to replace heavyweight p
 
 Balanced teams have worked out how to achieve strong performance with low burnout. These teams have skills across many technical practices and cultural capabilities.
 
-Software delivery performance: ~7.5
-Operational performance: ~7.5
-User-centricity: ~7.5
-
-Predictions
-
-Organizational performance: ~6
-Team performance: ~8
-Burnout: ~3
-Job satisfaction: ~6.5
+![The chart shows balanced teams achieve good outcomes with the lowest levels of burnout.](balanced-outcomes.png)
 
 If you are in a balanced team, you can increase performance at the organizational level by being more user-centric.
 
@@ -127,7 +91,7 @@ There's no correct team type. A different team type will emerge with different s
 
 After you assess your team type, you can work out your desired state and make adjustments accordingly.
 
-![](team-type-outcomes.png)
+![Relative predicted outcomes for the four team types](team-type-outcomes.png)
 
 TODO: IS THERE A DIAGRAM FOR WHAT TO CHANGE TO MOVE FROM A -> C, etc. Each arrow could have a "kind of thing to change".
 
