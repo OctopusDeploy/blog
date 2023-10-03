@@ -12,9 +12,9 @@ tags:
   - DevOps
 ---
 
-Thanks to the work of the research team at DORA, we have access to a [model of technical and cultural capabilities](https://dora.dev/research/) we can use to direct our continuous improvement activity.
+Thanks to the research team at DORA, we have access to a [model of technical and cultural capabilities](https://dora.dev/research/) we can use to direct our continuous improvement activity.
 
-The goal isn't to adopt every item like a checklist as it's [not a maturity model](/blog/devops-uses-capability-not-maturity). Instead, you can use the model to find practices that will help you improve your current circumstances.
+The goal isn't to adopt every item like a checklist; it's [not a maturity model](/blog/devops-uses-capability-not-maturity). Instead, you can use the model to find practices that will help you improve your current circumstances.
 
 For example, if you find it hard to create automated integration tests because it's difficult to create the right application state, you might need the *test data management* capability.
 
@@ -87,13 +87,15 @@ If you are in a balanced team, you can increase performance at the organizationa
 
 ## The best team type
 
-There's no correct team type. A different team type will emerge with different skill sets and at different stages of product development. Each team type has an adjustment they could make that will optimize one or more outcomes.
+There's no correct team type. A different team type will emerge at different product stages based on available skills. Each team type has an adjustment they could make that will optimize one or more outcomes.
+
+Because each time type has at least one weakness, you can use then to avoid over-optimizing for one measure.
+
+For example, the user-centric team has great performance but it has higher burnout, so it has something to learn from a balanced team. Similarly, the balanced team isn't making as much impact on the organization, so it can learn from developing and user-centric teams.
 
 After you assess your team type, you can work out your desired state and make adjustments accordingly.
 
 ![Relative predicted outcomes for the four team types](team-type-outcomes.png)
-
-TODO: IS THERE A DIAGRAM FOR WHAT TO CHANGE TO MOVE FROM A -> C, etc. Each arrow could have a "kind of thing to change".
 
 ## Flat out speed isn't the goal
 
