@@ -12,13 +12,46 @@ tags:
   - DevOps
 ---
 
-The 2023 State of DevOps Report uses four team types to explore different ways team performance interacts with organizational outcomes.
+Thanks to the work of the research team at DORA, we have access to a [model of technical and cultural capabilities](https://dora.dev/research/) we can use to direct our continuous improvement activity.
 
-You don't fit just one type and it will change over time.
+The goal isn't to adopt every item like a checklist as it's [not a maturity model](/blog/devops-uses-capability-not-maturity). Instead, you can use the model to find practices that will help you improve your current circumstances.
 
-The team types highlight a fundamental difference between feature-driven teams and their preference for speed, and user-centric teams who prefer to test their assumptions with feedback.
+For example, if you find it hard to create automated integration tests because it's difficult to create the right application state, you might need the *test data management* capability.
 
-## User-centric
+The [2023 State of DevOps Report](https://dora.dev/research/2023/) provides another way to examine and improve your performance. Using four team types based on a combination of:
+
+- Software delivery performance
+- Operational performance
+- User-centricity
+
+## Why clusters are useful
+
+The software delivery performance clusters have been a feature of the State of DevOps Report for years. Teams can be divided into groups based on throughput and stability. This usually results in low, medium, high, and elite performance clusters.
+
+Although clustering is a statistical exercise, it provides personas you can use to think about how you delivery your own software. You can assess your own performance and compare yourself to the clusters in the reports. Knowing that there are safety-critical and regulated industries represented in the elite cluster provides inspiration that you can also achieve this level of performance.
+
+In the 2022 report, [descriptive clusters](https://octopus.com/blog/new-devops-performance-clusters#the-sdo-performance-clusters) were introduced. Instead of providing a continuum of performance levels, the descriptive groups provided situational performance based on software delivery and operational performance.
+
+Instead of aiming for elite performance, the descriptive clusters let you assess the needs of the software and match it with an appropriate performance level. For example, a team searching with product/market fit could sacrifice reliability to increase their experimentation.
+
+You can use performance and descriptive clusters as lenses through which you can critique your own practices.
+
+## The new descriptive team types
+
+With the addition of user-centricity, four team types emerge.
+
+- User-centric
+- Feature-driven
+- Developing
+- Balanced
+
+The team types are found by splitting performance using the assessment criteria (software delivery and operational performance, and user-centricity), but they also predict certain outcomes. You can use these team types as personas to work out how to increase the impact of software delivery and improve developer experience.
+
+You won't necessarily fit a single team type and you'll move around as you adjust your process.
+
+Let's look at each type in more detail.
+
+### User-centric
 
 User-centric teams have strong software delivery and operations performance. Their focus on user needs leads to the highest levels of organizational performance. These teams have worked out how to unlock the impact of software on the organization's goals.
 
@@ -35,7 +68,7 @@ Job satisfaction: ~6.5
 
 If you are a user-centric team, you need to watch out for burnout and ensure you are taking opportunities to remove toil with automation.
 
-## Feature-driven
+### Feature-driven
 
 Feature-driven teams have incredible software delivery performance, but are disconnected from users. This means the software fails to impact organizational performance. These teams have high levels of burnout and lack job satisfaction.
 
@@ -52,7 +85,7 @@ Job satisfaction: ~5
 
 If you are feature-driven team, you need to reconnect with users. Delivering features regularly should provide an opportunity for valuable feedback loops, so find ways to bring user feedback into the planning process to increase the value of the features delivered. 
 
-## Developing
+### Developing
 
 Often found in smaller organizations, developing teams are often building towards one of the other team types. These teams are searching for the features that will make their product attractive to customers while building their skills. Despite high job satisfaction, these teams are the more prone to burnout.
 
@@ -69,7 +102,7 @@ Job satisfaction: ~6.5
 
 If you are in a developing team, look for opportunities to replace heavyweight process with automation. This will improve your operational performance and result in a reduction in unplanned work and interruptions.
 
-## Balanced
+### Balanced
 
 Balanced teams have worked out how to achieve strong performance with low burnout. These teams have skills across many technical practices and cultural capabilities.
 
