@@ -47,6 +47,8 @@ With the addition of user-centricity, four team types emerge.
 
 The team types are found by splitting performance using the assessment criteria (software delivery and operational performance, and user-centricity), but they also predict certain outcomes. You can use these team types as personas to work out how to increase the impact of software delivery and improve developer experience.
 
+![](team-type-performance.png)
+
 You won't necessarily fit a single team type and you'll move around as you adjust your process.
 
 Let's look at each type in more detail.
@@ -124,6 +126,8 @@ If you are in a balanced team, you can increase performance at the organizationa
 There's no correct team type. A different team type will emerge with different skill sets and at different stages of product development. Each team type has an adjustment they could make that will optimize one or more outcomes.
 
 After you assess your team type, you can work out your desired state and make adjustments accordingly.
+
+![](team-type-outcomes.png)
 
 TODO: IS THERE A DIAGRAM FOR WHAT TO CHANGE TO MOVE FROM A -> C, etc. Each arrow could have a "kind of thing to change".
 
