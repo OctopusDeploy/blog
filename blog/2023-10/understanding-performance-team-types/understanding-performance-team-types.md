@@ -1,6 +1,6 @@
 ---
 title: Understanding performance through team types
-description: 
+description: Find out how the descriptive team types in the State of Devops report can help you improve.
 author: steve.fenton@octopus.com
 visibility: private
 published: 3020-01-01-1400
