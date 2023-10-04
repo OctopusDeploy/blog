@@ -62,20 +62,10 @@ With good, easy-to-understand data, finding those areas of improvement becomes m
 
 ## Octopus is *really* good at deployment visibility, fyi
 
-Many deployment tools (or CI platforms used as deployment tools) treat reporting as an afterthought.
+Many deployment tools (or CI platforms used as deployment tools) treat reporting as an afterthought. Octopus, however, understands that good deployment reporting saves time for everyone. And for software providers, time saved is money saved.
 
-Octopus, however, understands that good deployment reporting saves time for everyone. And for software providers, time saved is money saved.
+Octopus delivers key information in a few ways:
 
-Octopus's dashboards and reporting features let you:
-
-- See your deployment status at a glance
-- Drill down for as much detail as you need
-- Track tenanted deployments easily with the dedicated Tenants dashboard
-- Give read-only access to interested parties
-- Limit access so people can only see the projects they're working on
-- See who did what using detailed auditing information
-
-Don't just take our word for it, why not take a look at Octopus's dashboards for yourself?
-
-- [Octopus dashboard](https://samples.octopus.app/app#/Spaces-682)
-- [Tenants dashboard](https://samples.octopus.app/app#/Spaces-682/tenants)
+- **Octopus dashboard** - The dashboard is the first thing you see when you log in. You can see your entire deployment strategy at a glance and drill down for as much information as you need. [See our sample dashboard](https://samples.octopus.app/app#/Spaces-682).
+- **Tenants dashboard** - Useful for those using a tenanted deployment strategy. This focused dashboard sorts your deployments by tenant or customer to track deployments to all tenants, no matter how many you have. [See our sample Tenants dashboard](https://samples.octopus.app/app#/Spaces-682/tenants).
+- **Insights dashboard** - If you're an enterprise customer, you can use Octopus's Insights feature to see how your deployments perform against 4 key [DORA metrics](https://octopus.com/devops/metrics/dora-metrics/). This can help you identify areas for improvement in your DevOps adoption. [See our sample Insights dashboard](https://samples.octopus.app/app#/Spaces-682/insights/reports/InsightsReports-1/overview).
