@@ -14,25 +14,29 @@ tags:
 
 Thanks to the research team at DORA, we have access to a [model of technical and cultural capabilities](https://dora.dev/research/) we can use to direct our continuous improvement activity.
 
-The goal isn't to adopt every item like a checklist; it's [not a maturity model](/blog/devops-uses-capability-not-maturity). Instead, you can use the model to find practices that will help you improve your current circumstances.
+The goal isn't to adopt every item like a checklist; it's [not a maturity model](/blog/devops-uses-capability-not-maturity). Instead, you can use it as a map to find practices and techniques that will help you improve based on your current circumstances.
 
-For example, if you find it hard to create automated integration tests because it's difficult to create the right application state, you might need the *test data management* capability.
+For example, if you find it hard to create automated integration tests because the application state causes failures, you might benefit from the *test data management* capability.
 
-The [2023 State of DevOps Report](https://dora.dev/research/2023/) provides another way to examine and improve your performance. Using four team types based on a combination of:
+The [2023 State of DevOps Report](https://dora.dev/research/2023/) provides another way to examine and improve your performance. The report has 4 descriptive team types based on a combination of 3 performance measures:
 
 - Software delivery performance
 - Operational performance
 - User-centricity
 
+These types are useful as they provide a way to identify with different characteristics and understand their strengths and weaknesses.
+
 ## Why clusters are useful
 
-The software delivery performance clusters have been a feature of the State of DevOps Report for years. Teams can be divided into groups based on throughput and stability. This usually results in low, medium, high, and elite performance clusters.
+Clustering has been a feature of the State of DevOps report for a long time. The software delivery performance clusters group teams based on throughput and stability. This usually results in low, medium, high, and elite performance clusters.
 
-Although clustering is a statistical exercise, it provides personas you can use to think about how you delivery your own software. You can assess your own performance and compare yourself to the clusters in the reports. Knowing that there are safety-critical and regulated industries represented in the elite cluster provides inspiration that you can also achieve this level of performance.
+Although clustering is a statistical exercise, it provides personas you can use to think about how you deliver your software. You can assess your performance by comparing your metrics to the clusters in the reports.
 
-In the 2022 report, [descriptive clusters](https://octopus.com/blog/new-devops-performance-clusters#the-sdo-performance-clusters) were introduced. Instead of providing a continuum of performance levels, the descriptive groups provided situational performance based on software delivery and operational performance.
+Knowing that there are safety-critical and regulated industries represented in the elite cluster also provides inspiration that you can also achieve this level of performance. The culture and practices in the DORA model aren't compromises to these concerns; they make you safer and more compliant.
 
-Instead of aiming for elite performance, the descriptive clusters let you assess the needs of the software and match it with an appropriate performance level. For example, a team searching with product/market fit could sacrifice reliability to increase their experimentation.
+In the 2022 report, [descriptive clusters](https://octopus.com/blog/new-devops-performance-clusters#the-sdo-performance-clusters) were introduced. Instead of providing a continuum of performance levels, the descriptive groups provided situational examples based on software delivery and operational performance.
+
+Instead of aiming for elite performance, the descriptive clusters let you assess the needs of the software and match it with an appropriate performance level. For example, a team searching with product/market fit might sacrifice reliability to increase their rate of experimentation.
 
 You can use performance and descriptive clusters as lenses through which you can critique your own practices.
 
@@ -49,91 +53,90 @@ The team types are found by splitting performance using the assessment criteria 
 
 ![The relative performance of the four team types against the three performance measures](team-type-performance.png)
 
-You won't necessarily fit a single team type and you'll move around as you adjust your process.
+You won't match to a single team type and you'll move around as you adjust your process. Just pick the nearest example and see what ideas emerge.
 
-Let's look at each type in more detail.
+Let's look at each of the team types in more detail.
 
 ### User-centric
 
-User-centric teams have strong software delivery and operations performance. Their focus on user needs leads to the highest levels of organizational performance. These teams have worked out how to unlock the impact of software on the organization's goals.
+User-centric teams have strong software delivery and operations performance. Their focus on user needs leads to the highest levels of organizational performance. These teams have worked out how to unlock the impact of software on organizational goals.
 
 ![The chart shows user-centric teams have high performance against all measures, but with higher burnout than balanced teams.](user-centric-outcomes.png)
 
-If you are a user-centric team, you need to watch out for burnout and ensure you are taking opportunities to remove toil with automation.
+If you are a user-centric team, you need to watch out for burnout. It's possible for feature-driven teams to feel intense, even though job satisfaction is high. Taking opportunities to remove toil with automation can reduce burnout. 
 
 ### Feature-driven
 
-Feature-driven teams have incredible software delivery performance, but are disconnected from users. This means the software fails to impact organizational performance. These teams have high levels of burnout and lack job satisfaction.
+Feature-driven teams have incredible software delivery performance, but are disconnected from users. This can happen if there is no mechanism to obtain user feedback, or if this feedback never makes it back to the developers. This means the software has less impact on organizational performance. These teams have high levels of burnout and lack job satisfaction.
 
 ![The chart shows feature driven teams have strong team performance that doesn't convert into organizational performance. There is high burnout and low job satisfaction.](feature-driven-outcomes.png)
 
-If you are feature-driven team, you need to reconnect with users. Delivering features regularly should provide an opportunity for valuable feedback loops, so find ways to bring user feedback into the planning process to increase the value of the features delivered. 
+If you are feature-driven team, you need to reconnect with your users. Delivering features regularly should provide an opportunity for valuable feedback loops, so find ways to bring user feedback into the planning process to increase the value of the features delivered.
 
 ### Developing
 
-Often found in smaller organizations, developing teams are often building towards one of the other team types. These teams are searching for the features that will make their product attractive to customers while building their skills. Despite high job satisfaction, these teams are the more prone to burnout.
+Often found in smaller organizations, developing teams are building towards one of the other team types. These teams are searching for features that will make their product attractive to customers while also building their skills. Despite high job satisfaction, these teams are the most prone to burnout.
 
 ![The chart shows developing teams have strong outcomes with the highest level of burnout.](developing-outcomes.png)
 
-If you are in a developing team, look for opportunities to replace heavyweight process with automation. This will improve your operational performance and result in a reduction in unplanned work and interruptions.
+If you are in a developing team, look for opportunities to replace heavyweight process with automation. This will improve your operational performance and result in a reduction in unplanned work and interruptions. Introducing technical practices will help maintain momentum for the long haul, rather than depending on people to fill gaps.
 
 ### Balanced
 
-Balanced teams have worked out how to achieve strong performance with low burnout. These teams have skills across many technical practices and cultural capabilities.
+Balanced teams have worked out how to achieve strong performance with low burnout. These teams have skills across many technical practices and cultural capabilities. They have a good impact on organizational outcomes, but can still improve.
 
 ![The chart shows balanced teams achieve good outcomes with the lowest levels of burnout.](balanced-outcomes.png)
 
-If you are in a balanced team, you can increase performance at the organizational level by being more user-centric.
+If you are in a balanced team, you can increase performance at the organizational level by being more user-centric. As you look to incorporate feedback loops, you need to make sure you set a sustainable pace to avoid burnout.
 
 ## The best team type
 
-There's no correct team type. A different team type will emerge at different product stages based on available skills. Each team type has an adjustment they could make that will optimize one or more outcomes.
+There's no *best* team type. That's the beauty of descriptive types over performance clusters. You're team type will change over time based on the product's needs and the skills of your team.
 
-Because each time type has at least one weakness, you can use then to avoid over-optimizing for one measure.
+Each team type has at least one adjustment they could make that will optimize one or more outcomes. Because each time type has at least one weakness, you can use then to avoid over-optimizing for a single measurement.
 
-For example, the user-centric team has great performance but it has higher burnout, so it has something to learn from a balanced team. Similarly, the balanced team isn't making as much impact on the organization, so it can learn from developing and user-centric teams.
+For example, the user-centric team has great performance but it has higher burnout, so it has something to learn from a balanced team. Similarly, the balanced team isn't making as much impact on the organization, so it can learn from developing and user-centric team types.
 
 After you assess your team type, you can work out your desired state and make adjustments accordingly.
 
 ![Relative predicted outcomes for the four team types](team-type-outcomes.png)
 
+Watch out for burnout in these visualizations. Unlike the other measures, a lower value is better. The challenge is find out ways to increase the other outcomes while reducing burnout.
+
 ## Flat out speed isn't the goal
 
-There has been a problem with speed in the Agile community. Successful teams don't aim to release as much as possible as fast as they can. Instead, they focus on delivering small experiments sooner. That means slicing up a feature idea into smaller parts that can be used to test the assumption that people want it and will pay for it.
+There has been a problem with *speed* in the Agile community. There may be a useful distinction between the terms *faster* and *sooner*.
 
-When you deliver sooner, you're more likely to see your software delivery performance translate into hitting organizational goals. This happens when feedback is incorporated into the decision-making process. While you might go faster without stopping to listen to feedback, you're more likely to increase the size of your codebase without economic benefit.
+If we work in small batches and release changes to users regularly, we can get feedback sooner. The feedback allows us to change what we do next. If the users are delighted by a feature, we can stop working on it and pivot to a new area. This maximizes the amount of work not done.
 
-For example, imagine two teams writing a document management product for solicitors. The first team creates a small working example and shares it with their customers and potential customers. The second team opts for flat-out speed.
+If you aim instead to deliver faster, you end up ignoring feedback as it slows down your software delivery. This is the problem with flat out speed. This is like refusing to pull over to check a map, because it will slow you down.
 
-After a couple of months, the team focusing on user needs has a smaller codebase with fewer features, but they have validated those features based on feedback. By testing their assumptions, they are able to rule-out many features that aren't useful to users and that might make the software more complex for users and developers.
-
-The second team has more features and all the associated costs, but are still behind the first team when it comes to winning customers. The team is more likely to burn out as they race to keep pace.
-
-DIAGRAM OF SUCCESSFUL FEATURES - TEAM A has minimal wasted feature developments, TEAM B is 33% good, 66% waste... I think this ratio is in Lean Enterprise...
+:::hint
 
 A study of [feature experimentation at Microsoft](https://ai.stanford.edu/~ronnyk/ExPThinkWeek2009Public.pdf) found that without a functioning feedback loop, 60%-90% of your ideas won't improve the metric they were intended to improve.
 
-The distinction between *sooner* and *faster* is highlighted in the team types, where feature-driven teams have good local performance that doesn't translate into better performance for the organization. In other words, feature-driven teams deliver the wrong thing with great speed. They have lower job satisfaction and higher burnout.
+:::
 
-## User focus is crucial
+Successful teams aim to release sooner, not faster. This is the key difference between user-centric and feature-driven teams. The user-centric teams stop and check directions, while feature-driven teams point in a direction and stop for nobody.
 
-The solution to the problem of *fast delivery* of the *wrong thing* is user focus.
+Product development is a process of removing uncertainty through validated learning. You need to assess the impact of the software on its users each time your release a change. You may deliver fewer features, but they'll each be more valuable.
 
-User focus concerns:
+Perhaps the most dangerous aspect of flat-out speed is that the codebase becomes more complex and the user experience is degraded, because the team is rewarded for being fast. The long term prospects for feature-driven teams isn't good as they end up damaging their product and future performance with low-value features.
 
-- How well teams understand the needs of their users. 
-- How well aligned the team is toward meeting 
-user needs.
-- How user feedback is used when prioritizing work.
+The solution to the problem of *fast delivery* of the *wrong thing* is user focus. You can assess your user focus by considering:
 
-## TODO
+- How well do you understand the needs of your users?
+- Are you set up to meet user needs?
+- Do you prioritize user feedback?
 
-Perhaps the greatest missed opportunity in DevOps is creating software teams who are able to deliver rapid change, but that doesn't adapt to feedback from users.
+## Software delivery success
 
-Taking a user-centric approach reduces time wasted on low-value features.
+The DORA metrics of throughput and stability are predictors of organizational success. You might be tempted to trust in this relationship when measuring your software delivery performance.
 
-You need to understand your users and collaborate with them to obtain and use their feedback.
+The presence of the feature-driven trap should convince you to validate that your software delivery is translating into meeting and exceeding goals at the organizational level.
 
+Your greatest missed opportunity would be to create a team who can deliver elite software delivery performance without validating their ideas with user feedback.
 
+The time you invest in establishing strong feedback loops will be reclaimed when you can stop work on a feature that users love, even though you planned to add more to it, and in the features you choose not to add because they won't impact users.
 
 Happy deployments!
