@@ -2,8 +2,8 @@
 title: The 2023 DevOps performance clusters
 description: Find out about the latest software delivery performance clusters in the State of DevOps Report.
 author: steve.fenton@octopus.com
-visibility: private
-published: 2023-10-06-1400
+visibility: public
+published: 2023-10-06
 metaImage: blogimage-dorametrics-2023.png
 bannerImage: blogimage-dorametrics-2023.png
 bannerImageAlt: A slightly transparent computer screen with someone analyzing data behind it, with different metrics floating around the person. 
