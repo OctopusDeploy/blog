@@ -1,6 +1,6 @@
 ---
 title: Understanding performance through team types
-description: Find out how the descriptive team types in the State of Devops report can help you improve.
+description: Find out how the descriptive team types in the State of DevOps report can help you improve.
 author: steve.fenton@octopus.com
 visibility: private
 published: 2023-10-11-1400
@@ -14,7 +14,7 @@ tags:
 
 Thanks to the research team at DORA, we can access a [model of technical and cultural capabilities](https://dora.dev/research/) to direct our continuous improvement activity.
 
-The goal isn't to adopt every item like a checklist; it's [not a maturity model](/blog/devops-uses-capability-not-maturity). Instead, you can use it as a map to find practices and techniques to help you improve based on your current circumstances.
+The goal isn't to adopt every item like a checklist; it's [not a maturity model](https://octopus.com/blog/devops-uses-capability-not-maturity). Instead, you can use it as a map to find practices and techniques to help you improve based on your current circumstances.
 
 For example, if you find it hard to create automated integration tests because the application state causes failures, you might benefit from the *test data management* capability.
 
