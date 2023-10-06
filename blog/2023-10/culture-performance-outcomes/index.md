@@ -4,9 +4,9 @@ description: The right culture can boost organizational outcomes but it's hard t
 author: steve.fenton@octopus.com
 visibility: private
 published: 3020-01-01-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: collaboration-table.png
+bannerImage: collaboration-table.png
+bannerImageAlt: Five people sit working around a circular table.
 isFeatured: false
 tags: 
   - DevOps
