@@ -2,7 +2,7 @@
 title: Practical routes to healthy culture
 description: The right culture can boost organizational outcomes but it's hard to get started without practical techniques.
 author: steve.fenton@octopus.com
-visibility: private
+visibility: public
 published: 2023-10-10-1400
 metaImage: collaboration-table.png
 bannerImage: collaboration-table.png
