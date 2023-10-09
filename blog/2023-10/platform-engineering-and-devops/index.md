@@ -1,6 +1,6 @@
 ---
 title: Platform Engineering should be part of DevOps
-description: 
+description: Find out why Platform Engineering is more likely to succeed with DevOps than without it.
 author: steve.fenton@octopus.com
 visibility: private
 published: 3020-01-01-1400
@@ -10,6 +10,7 @@ bannerImageAlt: Stylized image of DevOps infinity symbol with a car driving on i
 isFeatured: false
 tags: 
   - DevOps
+  - Platform Engineering
 ---
 
 Earlier this year, I wrote about how [Platform Engineering was part of DevOps](https://octopus.com/blog/devops-platform-engineering). More specifically, it *ought* to be part of DevOps, and things often go wrong when it isn't.
