@@ -4,9 +4,9 @@ description:
 author: steve.fenton@octopus.com
 visibility: private
 published: 3020-01-01-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: blogimage-devopsandplatformengineering.png
+bannerImage: blogimage-devopsandplatformengineering.png
+bannerImageAlt: Stylized image of DevOps infinity symbol with a car driving on it and increasing speed over golden arrows.
 isFeatured: false
 tags: 
   - DevOps
