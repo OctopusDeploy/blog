@@ -3,7 +3,7 @@ title: Platform Engineering should be part of DevOps
 description: Find out why Platform Engineering is more likely to succeed with DevOps than without it.
 author: steve.fenton@octopus.com
 visibility: private
-published: 3020-01-01-1400
+published: 2023-10-23-1400
 metaImage: blogimage-devopsandplatformengineering.png
 bannerImage: blogimage-devopsandplatformengineering.png
 bannerImageAlt: Stylized image of DevOps infinity symbol with a car driving on it and increasing speed over golden arrows.
@@ -19,11 +19,11 @@ Earlier this year, I wrote about how [Platform Engineering was part of DevOps](h
 
 The founding intention of DevOps was to break down the silo between the people making software. The most apparent wall to remove was the one separating development and operations, which is where the term *DevOps* came from.
 
-Building and running an internal developer platform without intentional collaboration with users creates a new silo. This is a bad thing.
+If you build and run an internal developer platform without intentionally collaborating with users, you create a new silo. This is a bad thing.
 
-In the decade since DevOps was created, a fruitful [research effort](https://dora.dev) has explored the complex relationships between specific practices and outcomes. The rigorous academic study of software delivery has given us many valuable metrics and approaches that make things better for people, performance, and goal attainment.
+In the decade since the birth of DevOps, a fruitful [research effort by DORA](https://dora.dev). This has explored the complex relationships between specific practices and outcomes. The rigorous academic study of software delivery has given us many valuable metrics and approaches that make things better for people, performance, and goal attainment.
 
-A platform that ignores DevOps capabilities will likely exhibit all the signs of low-performance software delivery.
+A platform that ignores DevOps capabilities will likely exhibit all the signs of low-performance software delivery:
 
 - Large batches of work
 - Delayed and ignored feedback
@@ -41,12 +41,12 @@ You'll use the [MONK metrics](https://octopus.com/devops/metrics/monk-metrics/) 
 
 You'll be more likely to succeed now and in the future with careful and deliberate use of DevOps and [Team Topologies](https://teamtopologies.com/) to ensure you don't fall into the trap of creating a new silo.
 
-Many traps are described in the [patterns and anti-patterns of Platform Engineering](https://octopus.com/devops/platform-engineering/patterns-anti-patterns/).
+You can find many traps described in the [patterns and anti-patterns of Platform Engineering](https://octopus.com/devops/platform-engineering/patterns-anti-patterns/).
 
 ## Moving forward with confidence
 
-Suppose you've decided [you need to adopt Platform Engineering](https://octopus.com/devops/platform-engineering/when-to-adopt-platform-engineering/). In that case, you should maximize your chances of short- and long-term success by wrapping it with everything we've learned from DevOps research.
+Suppose you decided [you need to adopt Platform Engineering](https://octopus.com/devops/platform-engineering/when-to-adopt-platform-engineering/). You should maximize your chances of short- and long-term success by wrapping it with everything we've learned from DevOps research.
 
-The worst outcome from Platform Engineering would be if it took us back to the days before the development/operations boundary was removed and before the State of DevOps research.
+The worst outcome from Platform Engineering would be a return to the days before we removed the development/operations boundary and before the State of DevOps research.
 
 Happy deployments!
