@@ -2,7 +2,7 @@
 title: Platform Engineering should be part of DevOps
 description: Find out why Platform Engineering is more likely to succeed with DevOps than without it.
 author: steve.fenton@octopus.com
-visibility: private
+visibility: public
 published: 2023-10-23-1400
 metaImage: blogimage-devopsandplatformengineering.png
 bannerImage: blogimage-devopsandplatformengineering.png
@@ -23,7 +23,7 @@ If you build and run an internal developer platform without intentionally collab
 
 In the decade since the birth of DevOps, a fruitful [research effort by DORA](https://dora.dev). This has explored the complex relationships between specific practices and outcomes. The rigorous academic study of software delivery has given us many valuable metrics and approaches that make things better for people, performance, and goal attainment.
 
-A platform that ignores DevOps capabilities will likely exhibit all the signs of low-performance software delivery:
+A platform that ignores DevOps capabilities will likely show all the signs of low-performance software delivery:
 
 - Large batches of work
 - Delayed and ignored feedback
