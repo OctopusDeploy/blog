@@ -21,7 +21,7 @@ The founding intention of DevOps was to break down the silo between the people m
 
 If you build and run an internal developer platform without intentionally collaborating with users, you create a new silo. This is a bad thing.
 
-In the decade since the birth of DevOps, a fruitful [research effort by DORA](https://dora.dev). This has explored the complex relationships between specific practices and outcomes. The rigorous academic study of software delivery has given us many valuable metrics and approaches that make things better for people, performance, and goal attainment.
+In the decade since the birth of DevOps, there's been a fruitful [research effort by DORA](https://dora.dev). This has explored the complex relationships between specific practices and outcomes. The rigorous academic study of software delivery has given us many valuable metrics and approaches that make things better for people, performance, and goal attainment.
 
 A platform that ignores DevOps capabilities will likely show all the signs of low-performance software delivery:
 
