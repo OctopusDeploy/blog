@@ -4,9 +4,9 @@ description: We look at the reasons why reporting and visibility are important f
 author: andrew.corrigan@octopus.com
 visibility: public
 published: 2023-10-16-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: img-mtcampaign-whyvisibilityisimportantformoderndeployments-2023.png
+bannerImage: img-mtcampaign-whyvisibilityisimportantformoderndeployments-2023.png
+bannerImageAlt: Woman standing at laptop with Octopus server connected analyzing graphs.
 isFeatured: false
 tags: 
   - DevOps
