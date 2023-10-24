@@ -1,5 +1,5 @@
 ---
-title: Your guide to SHIPPED23
+title: "Your guide to SHIPPED23 - Wednesday, November 15"
 description: SHIPPED23 is an all-day virtual event by Octopus Deploy on November 15, 2023. Join us for discussions about managing complex hybrid deployments at scale.
 author: firstname.surname@octopus.com
 visibility: private
