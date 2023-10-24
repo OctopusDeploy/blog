@@ -1,6 +1,6 @@
 ---
 title: Your guide to SHIPPED23
-description: A brief summary of the post, 170 characters max including spaces.
+description: SHIPPED23 is an all-day virtual event by Octopus Deploy on November 15, 2023. Join us for discussions about managing complex hybrid deployments at scale.
 author: firstname.surname@octopus.com
 visibility: private
 published: 2023-10-30-1400
@@ -12,33 +12,32 @@ tags:
   - Company
 ---
 
-See https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags,
+[SHIPPED23](https://octopus.com/shipped) is our first virtual customer conference. It's coming up on Wednesday, November 15 and it's free to attend. ([You can register here](https://streamyard.com/watch/jpEyzQR8W7qr)!)
 
-Introductory paragraph that tells the reader why they should read on.
+Whether you’re new to Octopus or a seasoned pro, it's a chance to upskill, learn from our DevOps experts, and discuss the challenges of modern deployments. 
 
-## Body
+Here's what's on the agenda at our inaugural event for Octopus Deploy customers worldwide. 
 
-The body of the post is where you share your hypothesis, how-to, or story.
+## Keynote - Accelerating software delivery at scale
 
-If there are any previous posts on the same topic, please link to them to help with our SEO efforts. For example:
-Our post about [DORA metrics](https://octopus.com/blog/dora-metrics-devops-business-outcomes) discusses how agility-based metrics can help improve profitability, market share, and productivity. 
+### Paul Stovell, Founder and CEO 
+9:10am CST / 3:10pm GMT
 
-### Subheadings
+Paul Stovell founded Octopus Deploy in 2012 as a nights-and-weekends hobby project, driven by the belief that deployment time should be a time of joy and celebration that teams are motivated to do more of, rather than a scary time to avoid.
 
-Use three ### to include H3 headings.
+Many years and millions of deployments later, Octopus Deploy has gone deeper into the world of deployments than any other vendor, helping 3,700+ organizations to deliver valuable software faster.
 
-Use **Bold** text for UI labels, use single back-tics for `parameters` and `filepaths`, and three back-tics for code blocks:
+In this session, Paul will revisit the Agile manifesto and retrace why deployment automation is critical to software teams. He’ll explain why it’s core to the 4 DORA metrics that predict successful software teams, and how deployments have changed over the years.
 
-```
-Write-Host "Hello, World!"
-```
+Guided by our value of listening to customers over following market trends, Paul will then discuss Octopus Deploy's outlook on the future of deployments. Learn why we've invested in cloud transformation and Kubernetes, and our vision for enterprise GitOps. Discover how Octopus is making deployments accessible to anyone. And hear how we're supporting the tooling that platform engineering teams need.
 
-Use the following (minus the backtics) to include images:
+## Product - What’s new in Octopus and on our roadmap
 
-```
-![Alt text, a description of the image](/path/to/image.png "width=500")*Optional caption text*
-```
-If including images, please include alt text. Alt text is primarily used to describe images to people unable to see them, and can be 125 characters max including spaces. You can also include an image caption if the reader would benefit from additional information or context.
+### Colin Bowern, SVP, Product 
+9:40am CST / 3:40pm GMT
+
+Join our SVP of Product, Colin Bowern, as he recaps and demos the features we’ve shipped this year. See how they improve your experience and make your deployments more effective so you can get your software out in the wild sooner. He'll also share what's ahead on the Octopus roadmap.
+
 
 ## Conclusion
 
@@ -46,20 +45,11 @@ Close off the post by restating the main points of the post, share any closing t
 
 ## Learn more
 
-- [link](https://www.example.com/resource)
+- [SHIPPED23 event page](https://octopus.com/shipped)
+- [SHIPPED23 schedule](https://octopus.com/shipped/schedule)
 
-## Register for the webinar: {webinar title here}
+## Register for SHIPPED23 
 
-Short webinar description here, for example: A robust rollback strategy is key to any deployment strategy. In this webinar, we’ll cover best practices for IIS deployments, Tomcat, and full stack applications with a database. We’ll also discuss how to get the rollback strategy right for your situation. 
-
-We're running 3 sessions of the webinar, from {webinar dates here, for example: 4 November to 5 November, 2021.}
-
-<span><a class="btn btn-success" href="/events/rollback-strategies-with-octopus-deploy">Register now</a></span>
-
-## Watch the webinar: {webinar title here}
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/F_V7r80aDbo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-We host webinars regularly. See the [webinars page](https://octopus.com/events) for details about upcoming events, and live stream recordings.
+[Register now for SHIPPED23](https://streamyard.com/watch/jpEyzQR8W7qr), Octopus Deploy's first virtual event. Come and be part of the discussions about managing complex hybrid deployments at scale.
 
 Happy deployments!
