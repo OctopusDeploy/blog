@@ -52,4 +52,6 @@ Close off the post by restating the main points of the post, share any closing t
 
 [Register now for SHIPPED23](https://streamyard.com/watch/jpEyzQR8W7qr), Octopus Deploy's first virtual event. Come and be part of the discussions about managing complex hybrid deployments at scale.
 
+<span><a class="btn btn-success" href="https://streamyard.com/watch/jpEyzQR8W7qr">Register now</a></span>
+
 Happy deployments!
