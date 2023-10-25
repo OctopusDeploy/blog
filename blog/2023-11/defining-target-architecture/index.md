@@ -112,7 +112,7 @@ As we dove into individual capabilities, we quickly found that:
 - Spending time writing about things that we marked as high maturity felt low value
 - Fully exploring areas that we'd marked as low maturity took _a lot of time_
 
-The combination of these two insights led to us removing everything marked as _high maturity_ from the document. This let us focus our time and effort on the problems we needed tosolved.
+The combination of these 2 insights led to us removing everything marked as _high maturity_ from the document. This let us focus our time and effort on the problems we needed to solve.
 
 :::hint
 It's worth highlighting the impact of this choice. Instead of the target architecture painting a full picture of the architecture underpinning our product, it focused on the problems that needed to be solved. This was a good tradeoff. By focusing on the problems that needed solving, we could generate a stronger signal and reduce the noise from communicating the detail of capabilities that were already fit for purpose.
