@@ -1,9 +1,9 @@
 ---
-title: Defining a Target Architecture
-description: How to approach defining a target architecture for your software systems
+title: Defining a target architecture
+description: How to approach defining a target architecture for your software systems.
 author: andrew.best@octopus.com
 visibility: private
-published: 3020-01-01-1400
+published: 2023-11-06-1400
 metaImage:
 bannerImage:
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
@@ -30,7 +30,7 @@ A target architecture helps us reason through our current state and plan the shi
 
 It is not _just_ the target state. It is not _just_ the current state. To be a useful tool, it needs to address both.
 
-## Making A Start
+## Making a start
 
 When we started defining our target architecture for Octopus Server, the first thing we met was the common thing you run into when starting any complex endeavor: where do you start?
 
@@ -63,13 +63,13 @@ These happened to emerge naturally for us, but they map neatly to the [4 + 1 arc
 
 For the target architecture not to be anemic, you will need enough expert input to map out your architecture and ensure critical capabilities are not missed. At Octopus, we leveraged the collective knowledge of the Principal Engineers group to ensure we had covered all necessary capabilities.
 
-## Defining Current State
+## Defining current state
 
 With our architectural mudmap populated, the next step was to define our _current state_. We settled on identifying each capabilities current _maturity level_, and color-coded our mud map to suit. Green items were very stable and mature - they were already fit-for-purpose and so did not need additional definition or investment. Red items had significant known problems to solve and work ahead to bring them to a desired target state. They may not even have a well-defined target state yet! We marked these items as low maturity.
 
 At this point, we were not deep-diving into each capability. This was an initial pass over the capabilities, based on expert knowledge, to help us understand and visualize current state, and identify the areas we would likely need to spend the most time within to achieve a good result.
 
-## Exploring Target State
+## Exploring target state
 
 The architectural mud map had now fulfilled its purpose - we had a complete picture of the things that matter within our architecture and an understanding of their current state.
 
@@ -101,7 +101,7 @@ These principles ensured that the problems identified were real and material, an
 
 These principles not only helped contributors by providing a frame for their exploration, but also helped future consumers of the target architecture by providing them with the knowledge of that frame, so that they could empathize with how the opinions we authored were formed.
 
-### Focus What Matters
+### Focus on what matters
 
 As we dove into individual capabilities, we quickly found that:
 
@@ -112,7 +112,7 @@ The combination of these two insights led to us removing everything marked as _h
 
 It is worth highlighting the impact of this choice. Instead of the target architecture painting a full picture of the architecture underpinning our product, it would focus on the problems that needed to be solved. This was a good tradeoff - by focusing on the problems that needed solving, we could generate a stronger signal and reduce the noise that would come from communicating the detail of capabilities that were already fit for purpose.
 
-### Impact And Effort
+### Impact and effort
 
 Once our target state exploration was completed, we had a set of well-defined problems and solution preferences underneath each capability.
 
@@ -158,9 +158,9 @@ It is critical that as you realize your target architecture and solve its proble
 >
 > Once this assumption was disproven, it became apparent that moving to Entity Framework sooner was the better option. We updated the target architecture accordingly, and are now deep into the work of moving ORMs in the core of Octopus.
 
-## Organizational Impacts
+## Organizational impacts
 
-### Scaling Engineering
+### Scaling engineering
 
 The biggest impact we have seen from creating and distributing our target architecture, is that it has effectively democratized it.
 
@@ -174,7 +174,7 @@ The most important aspect of all this is that _the authors do not need to be pre
 
 This is the secret to unlocking scale in engineering. As much as possible, you want to remove any key-role dependencies and enable teams and individuals to reason autonomously, leveraging clearly communicated frames and goals.
 
-### Technical Education
+### Technical education
 
 Beyond technical people being empowered with the knowledge of target architectural state, similar impacts are realised for non-technical stakeholders.
 
@@ -184,7 +184,7 @@ If you work in a company that produces a software product, or your business oper
 
 By aligning the organization with the technical problems that need to be solved and their impact on goals, good decisions can be made when allocating budget and investing in solving those problems.
 
-### Predictable Growth
+### Predictable growth
 
 As your engineering team scales and your software scales, you want the increase in maintenance cost of your software to look logarithmic. This is achievable when your system has uniform building blocks. Adding a new feature or capability built and designed similarly to the system's other features makes the new feature cheap to maintain. Maintaining ten similarly shaped things is much cheaper than maintaining ten snowflakes.
 
@@ -198,3 +198,4 @@ It democratizes the knowledge of the desired target architectural state, removin
 
 It can also align stakeholders across the organization on the highest-impact technical problems that must be solved to achieve business goals, empowering the organization to make good budgeting decisions.
 
+Happy deployments!
