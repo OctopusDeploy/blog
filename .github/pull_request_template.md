@@ -8,7 +8,7 @@ Is this post for a specific release? If so which one?
 
 # Blog image idea
 
-The design team will work on a design for the blog image. Add any ideas you have about the graphic image here.
+The design team will work on a design for the blog image. Add any ideas you have about the graphic image here. (Tegan will request the image from design and add it to the post when it's ready.)
 
 # Prerequisites
 
@@ -18,7 +18,7 @@ The design team will work on a design for the blog image. Add any ideas you have
 - [ ] The PR build passes validation, and if it doesn't, I've checked the [common validations errors](https://www.octopus.design/932c0f1a9/p/901d2a-blog-content/t/817249) and none of those apply.
 - [ ] The images I've included follow the [rules for working with images](https://www.octopus.design/932c0f1a9/p/5061d7-working-with-images).
 - [ ] I've added alt text for all the images I've included (alt text describes an image to people unable to see it, 125 characters max)
-- [ ] I've drafted social media posts for Twitter and LinkedIn and will post them for review in #topic-social-media.
+- [ ] I've drafted social media posts for Twitter and LinkedIn and will post them for review in #topic-social-media after the post has been edited or after the PR has been merged.
 - [ ] I've dropped a note in Slack in #topic-content-marketing to let Tegan Ali know my post is ready for review. (No need to fill out a content brief.)
 
 ## How to review this PR
