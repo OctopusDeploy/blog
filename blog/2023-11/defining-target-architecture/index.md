@@ -18,7 +18,7 @@ Ideally, you should be able to make a clear problem diagnosis, knowing which tec
 
 A common state that many engineering organizations end up in is where each team has its own perspective on what _the biggest problems_ are. Often they're the problems that have an outsized impact on that particular team.
 
-Occasionally, you'll find shared problems that all teams can agree on. This is more likely if teams use shared infrastructure or work in a mono-repo or monolithic application. Even if the teams agree on the problem, they may have different perspectives on its impact. In particular, how much it impacts the business's strategy.
+Occasionally, you'll find shared problems that all teams can agree on. This is more likely if teams use shared infrastructure or work in a monorepo or monolithic application. Even if the teams agree on the problem, they may have different perspectives on its impact. In particular, how much it impacts the business's strategy.
 
 Without a shared understanding of the problems that exist and their impact on the organization's future success, it can be difficult to form the clear diagnosis that is the cornerstone of a [good technical strategy](https://www.andrew-best.com/posts/good-technical-strategy/).
 
