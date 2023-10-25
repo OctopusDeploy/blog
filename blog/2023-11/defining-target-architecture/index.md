@@ -12,23 +12,23 @@ tags:
   - Engineering
 ---
 
-When writing a technical strategy, having a clear picture of the technical problems you are facing in your organization is useful.
+When writing a technical strategy, it's useful to have a clear picture of the technical problems you're facing in your organization.
 
-Ideally, you should be able to make a clear problem diagnosis based on knowing where the problems you are facing are going to impact your organizations business strategy, and at what magnitude.
+Ideally, you should be able to diagnose a problem clearly, knowing how the problems are going to impact your organization's business strategy, and at what magnitude.
 
-A common state that many engineering organizations end up in is where each team in the org has its own perspective on what _the biggest problems_ are. Often they are the problems that have an outsized impact on that particular team.
+A common state that many engineering organizations end up in is where each team has its own perspective on what _the biggest problems_ are. Often they're the problems that have an outsized impact on that particular team.
 
-Occasionally, there are shared problems that all teams can agree on. This is more likely if teams use shared infrastructure or work within a monorepo or monolithic application. Even if the teams agree on the problem, they may have different perspectives on its impact, particularly regarding how much it impacts the business's strategy.
+Occasionally, you'll find shared problems that all teams can agree on. This is more likely if teams use shared infrastructure or work in a mono-repo or monolithic application. Even if the teams agree on the problem, they may have different perspectives on its impact. In particular, how much it impacts the business's strategy.
 
 Without a shared understanding of the problems that exist and their impact on the organization's future success, it can be difficult to form the clear diagnosis that is the cornerstone of a [good technical strategy](https://www.andrew-best.com/posts/good-technical-strategy/).
 
-A Target Architecture is one tool that can help build clarity and consensus on technical problems.
+A target architecture is one tool that can help build clarity and consensus on technical problems.
 
-> Target Architecture: A framework that enables the necessary planning and actions required to reach a desired target state.
+> Target architecture: A framework that enables the necessary planning and actions required to reach a desired target state.
 
 A target architecture helps us reason through our current state and plan the shifts necessary to meet one or more target states.
 
-It is not _just_ the target state. It is not _just_ the current state. To be a useful tool, it needs to address both.
+It's not _just_ the target state. It's not _just_ the current state. To be a useful tool, it needs to address both.
 
 ## Making a start
 
