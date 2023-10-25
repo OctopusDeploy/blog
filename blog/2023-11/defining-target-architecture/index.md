@@ -193,11 +193,11 @@ This is the secret to unlocking scale in engineering. As much as possible, remov
 
 Beyond empowering technical people with the knowledge of target architectural state, non-technical stakeholders realize similar impacts.
 
-Product, sales, support, marketing - people across the organization can understand what technical challenges to solve to achieve business goals.
+Product, sales, support, marketing - people across the organization can understand what technical challenges need to be solved to achieve business goals.
 
 If you work in an organization that produces a software product, or your business operations are largely powered by software, this understanding is critical. Often technical problems are some of the primary impediments to success. They're hard constraints that limit what the business can achieve.
 
-By aligning the organization with the technical problems you need to solve and their impact on goals, everyone can make good decisions when allocating budget and investing in solving those problems.
+By aligning the organization on technical problems and their impacts, decision makers can make informed decisions when allocating budget and investing in solving those problems.
 
 ### Predictable growth
 
