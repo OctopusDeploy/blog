@@ -14,7 +14,7 @@ tags:
 
 When writing a technical strategy, it's useful to have a clear picture of the technical problems you're facing in your organization.
 
-Ideally, you should be able to diagnose a problem clearly, knowing how the problems are going to impact your organization's business strategy, and at what magnitude.
+Ideally, you should be able to make a clear problem diagnosis, knowing which technical problems are going to impact your organization's business strategy, and at what magnitude.
 
 A common state that many engineering organizations end up in is where each team has its own perspective on what _the biggest problems_ are. Often they're the problems that have an outsized impact on that particular team.
 
