@@ -147,70 +147,70 @@ When determining effort, experts reasoned about the relative efforts of particul
 
 ## Execution
 
-As we have executed our technical strategy, informed by our target architecture, some of our opinions have changed as we have dug deeper into the problems at hand.
+As we've executed our technical strategy, informed by our target architecture, some of our opinions have changed as we've dug deeper into the problems at hand.
 
 > Everyone has a plan until they get punched in the mouth.
 >
 > - Mike Tyson
 
-This is normal and expected. The value of the target architecture is not that it is perfect - it provides a well-rounded, thorough exploration of the technical problems that need to be solved to achieve business goals and some initial expert opinions on how we might best solve those problems.
+This is normal and expected. The value of the target architecture is not that it's perfect. It provides a well-rounded, thorough exploration of the technical problems you need to solve to achieve business goals and some initial expert opinions on how to best solve those problems.
 
 These opinions should be _strong opinions, loosely held_.
 
-It is critical that as you realize your target architecture and solve its problems, you adapt to new information discovered along the way, and update the documented opinions as necessary. This is [last responsible moment](https://blog.codinghorror.com/the-last-responsible-moment/) decision-making at its finest - it helps us make high-quality decisions, with the most information at-hand, and helps avoid falling prey to sunk cost fallacy.
+It's critical that as you realize your target architecture and solve its problems, you adapt to new information along the way, and update the documented opinions as necessary. This is [last responsible moment](https://blog.codinghorror.com/the-last-responsible-moment/) decision-making at its finest. It helps us make high-quality decisions, with the most information at hand, and helps avoid falling prey to sunk cost fallacy.
 
-> Adapting to new information
->
-> We are on a journey to better normalize Octopus's database schema. Doing so will unlock the ability to solve many known performance and concurrency issues.
->
-> We had an initially stated opinion that we thought we could achieve a good deal of this normalization using our current ORM, [Nevermore](https://github.com/OctopusDeploy/nevermore/).
->
-> As we dug into the problem with a team, we encountered problems we would need to solve within Nevermore if we wanted to use it as the tool to meet our normalization needs, particularly when it came to loading and querying data across multiple database tables that might back a single logical model.
->
-> The team then evaluated the cost of solving these problems within Nevermore against the cost of migrating to a tool already capable of doing these things like Entity Framework.
->
-> Moving to Entity Framework was already in our plans as we want to use commodity tools for most common things, but we had originally thought we could delay the cost of the migration so that we might achieve our more immediate goals sooner.
->
-> Once this assumption was disproven, it became apparent that moving to Entity Framework sooner was the better option. We updated the target architecture accordingly, and are now deep into the work of moving ORMs in the core of Octopus.
+### Adapting to new information
+
+We're on a journey to better normalize Octopus's database schema. Doing so will unlock the ability to solve many known performance and concurrency issues.
+
+We initially thought we could achieve a good deal of this normalization using our current ORM, [Nevermore](https://github.com/OctopusDeploy/nevermore/).
+
+As we dug into the problem with a team, we found problems we'd need to solve in Nevermore to use it as the tool to meet our normalization needs. This was particularly an issue for loading and querying data across multiple database tables that might back a single logical model.
+
+The team then evaluated the cost of solving these problems in Nevermore against the cost of migrating to a tool that could already do these things, like Entity Framework.
+
+Moving to Entity Framework was already in our plans, as we want to use commodity tools for most common things. However, we originally thought we could delay the cost of the migration to achieve our more immediate goals sooner.
+
+After we disproved this assumption, we realized moving to Entity Framework sooner was the better option. We updated the target architecture accordingly, and we're now deep into the work of moving ORMs in the core of Octopus.
 
 ## Organizational impacts
 
 ### Scaling engineering
 
-The biggest impact we have seen from creating and distributing our target architecture, is that it has effectively democratized it.
+The biggest impact from creating and distributing our target architecture is that it has effectively democratized it.
 
-Teams often cite the target architecture when making key implementation decisions within Octopus Server. Teams are aware of our stated goals and orient their changes in support of those goals.
+Teams often cite the target architecture when making key implementation decisions in Octopus Server. Teams are aware of our stated goals and orient their changes in support of those goals.
 
 I often open the target architecture document and see a collection of user avatars at the top. Engineers and managers use the document as reference material while doing their daily work.
 
-Teams dig deep into the stated intentions within the document, debating their merits and ideating alternatives. This is valuable, as it either galvanizes the stated opinions, or uncovers higher-value alternatives that we can adopt.
+Teams dig deep into the stated intentions in the document. They debate their merits and ideate alternatives. This is valuable, as it either galvanizes the stated opinions or uncovers higher-value alternatives that we can adopt.
 
 The most important aspect of all this is that _the authors do not need to be present for this to happen_.
 
-This is the secret to unlocking scale in engineering. As much as possible, you want to remove any key-role dependencies and enable teams and individuals to reason autonomously, leveraging clearly communicated frames and goals.
+This is the secret to unlocking scale in engineering. As much as possible, remove any key-role dependencies. Let teams and individuals reason autonomously, using clearly communicated frames and goals.
 
 ### Technical education
 
-Beyond technical people being empowered with the knowledge of target architectural state, similar impacts are realised for non-technical stakeholders.
+Beyond empowering technical people with the knowledge of target architectural state, non-technical stakeholders realize similar impacts.
 
-Product, sales, support, marketing - people across the organization now have a way to understand what technical challenges need to be solved to achieve business goals.
+Product, sales, support, marketing - people across the organization can understand what technical challenges to solve to achieve business goals.
 
-If you work in a company that produces a software product, or your business operations are largely powered by software, this understanding is critical. Often technical problems are some of the primary impediments to success - hard constraints that limit what the business can achieve.
+If you work in an organization that produces a software product, or your business operations are largely powered by software, this understanding is critical. Often technical problems are some of the primary impediments to success. They're hard constraints that limit what the business can achieve.
 
-By aligning the organization with the technical problems that need to be solved and their impact on goals, good decisions can be made when allocating budget and investing in solving those problems.
+By aligning the organization with the technical problems you need to solve and their impact on goals, everyone can make good decisions when allocating budget and investing in solving those problems.
 
 ### Predictable growth
 
-As your engineering team scales and your software scales, you want the increase in maintenance cost of your software to look logarithmic. This is achievable when your system has uniform building blocks. Adding a new feature or capability built and designed similarly to the system's other features makes the new feature cheap to maintain. Maintaining ten similarly shaped things is much cheaper than maintaining ten snowflakes.
+As your engineering team and software scales, you want the increase in maintenance cost of your software to look logarithmic. You can achieve this when your system has uniform building blocks. Adding a new feature or capability built and designed similarly to the system's other features makes the new feature cheap to maintain. Maintaining 10 similarly shaped things is much cheaper than maintaining 10 snowflakes.
 
-When teams understand the desired target architectural state and consider it when making decisions in their daily work, their additions will be uniform and similar. Your software will evolve predictably, minimizing technical debt and costly architectural sprawl and keeping the maintenance burden in check.
+When teams understand the desired target architectural state and consider it when making decisions in their daily work, their additions will be uniform and similar. Your software will evolve predictably. This minimizes technical debt and costly architectural sprawl and keeps the maintenance burden in check.
 
 ## Conclusion
 
-A target architecture can assist you in identifying the highest-impact technical problems that need to be solved to support your business goals.
+A target architecture can help you identify the highest-impact technical problems you need to solve to support your business goals.
 
-It democratizes the knowledge of the desired target architectural state, removing a key impediment to scaling engineering teams and software systems.
+It democratizes the knowledge of the desired target architectural state. This removes a key impediment to scaling engineering teams and software systems.
 
-It can also align stakeholders across the organization on the highest-impact technical problems that must be solved to achieve business goals, empowering the organization to make good budgeting decisions.
+It can also align stakeholders on the highest-impact technical problems to solve to achieve business goals, empowering the organization to make good budgeting decisions.
 
 Happy deployments!
