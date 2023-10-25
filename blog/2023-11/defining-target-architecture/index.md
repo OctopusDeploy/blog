@@ -122,7 +122,7 @@ It's worth highlighting the impact of this choice. Instead of the target archite
 
 After we completed our target state exploration, we had a set of well-defined problems and solution preferences underneath each capability.
 
-It became clear that the documented target state was hard to reason about:
+At this point it became clear that the documented target state was hard to reason about:
 
 - The document was huge and took a lot of time to consume if you wanted to get "the full picture"
 - There was no way to understand which problems we might want to solve first
