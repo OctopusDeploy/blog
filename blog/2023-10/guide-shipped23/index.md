@@ -12,11 +12,11 @@ tags:
   - Company
 ---
 
-[SHIPPED23](https://octopus.com/shipped) is our first virtual customer conference. It's coming up on Wednesday, November 15 and it's free to attend. ([You can register here](https://streamyard.com/watch/jpEyzQR8W7qr)!)
+This year, we celebrate our first ever virtual conference, [SHIPPED23](https://octopus.com/shipped). It's coming up on Wednesday, November 15 and it's free to attend. ([You can register here](https://streamyard.com/watch/jpEyzQR8W7qr)!)
 
 Whether you’re new to Octopus or a seasoned pro, it's a chance to upskill, learn from our DevOps experts, and discuss the challenges of modern deployments. 
 
-Here's what's on the agenda at our inaugural event for Octopus Deploy customers worldwide. 
+This is your guide to all the sessions at this years event.
 
 ## Keynote - Accelerating software delivery at scale
 
@@ -78,7 +78,12 @@ Join Ian Khor, Senior Product Manager, and dive into some of the new features an
 ### Steve Fenton, Lead Technical Content Creator
 2:30pm CST / 8:30pm GMT
 
-Find out how deployment automation jump-starts your software delivery performance. You’ll also learn how you can use deployment insights to track your journey.
+In this session, you'll explore the connection between DevOps, DORA, and deployments. Find out how you can use the State of DevOps research to make an impact on the toughest challenge in technology: Culture. This session will discuss:
+
+- Who are DORA and what have they ever done for us?
+- Whether DevOps still means the same thing in 2023
+- How to classify culture and whether you can change it
+- Where to find some useful metrics in Octopus to help continuous improvement
 
 ## Tenanted deployments - Multi-tenancy architecture lessons learned
 
@@ -92,19 +97,16 @@ Architecting multi-tenanted applications involves choosing from common approache
 - Hidden costs to look out for
 - How to use modern tools for better support
 
-## Conclusion
+## Register for SHIPPED23
 
-Close off the post by restating the main points of the post, share any closing thoughts, and invite feedback.
+SHIPPED23 will give you insights from expert practitioners that you can put to use to improve how you deliver software to your users. Check out the [schedule](https://octopus.com/shipped/schedule) and [register today](https://streamyard.com/watch/jpEyzQR8W7qr).
+
+\
+<span><a class="btn btn-success" href="https://streamyard.com/watch/jpEyzQR8W7qr">Register now</a></span>
 
 ## Learn more
 
 - [SHIPPED23 event page](https://octopus.com/shipped)
 - [SHIPPED23 schedule](https://octopus.com/shipped/schedule)
-
-## Register for SHIPPED23 
-
-[Register now for SHIPPED23](https://streamyard.com/watch/jpEyzQR8W7qr), Octopus Deploy's first virtual event. Come and be part of the discussions about managing complex hybrid deployments at scale.
-
-<span><a class="btn btn-success" href="https://streamyard.com/watch/jpEyzQR8W7qr">Register now</a></span>
 
 Happy deployments!
