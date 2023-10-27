@@ -34,7 +34,7 @@ In this session, Paul will revisit the Agile manifesto and retrace why deploymen
 
 9:40am CST / 3:40pm GMT
 
-Join our SVP of Product, Colin Bowern, as he recaps and demos the features we’ve shipped this year. See how they improve your experience and make your deployments more effective so you can get your software out in the wild sooner. He'll also share what's ahead on the Octopus roadmap.
+Join Colin as he recaps and demos the features we’ve shipped this year. See how they improve your experience and make your deployments more effective so you can get your software out in the wild sooner. He'll also share what's ahead on the Octopus roadmap.
 
 ## How we're scaling Octopus Cloud
 
@@ -80,7 +80,7 @@ Octopus Server offers a powerful and expressive language for modeling deployment
 
 1:45pm CST / 7:45pm GMT
 
-Join Ian Khor, Senior Product Manager, and dive into some of the new features and functions we’ve released for tenanted deployments. See how we’re making it easier to view, manage, and administer your tenants at scale in Octopus.
+Join Ian and dive into some of the new features and functions we’ve released for tenanted deployments. See how we’re making it easier to view, manage, and administer your tenants at scale in Octopus.
 
 ## DORA, DevOps, and deployments
 
