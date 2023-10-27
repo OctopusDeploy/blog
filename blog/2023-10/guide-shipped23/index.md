@@ -110,13 +110,8 @@ Architecting multi-tenanted applications involves choosing from common approache
 
 ## Register for SHIPPED23
 
-SHIPPED23 will give you insights from expert practitioners that you can put to use to improve how you deliver software to your customers. Check out the [schedule](https://octopus.com/shipped/schedule) and [register today](https://streamyard.com/watch/jpEyzQR8W7qr).
+[SHIPPED23](https://octopus.com/shipped) will give you insights from expert practitioners that you can put to use to improve how you deliver software to your customers. Check out the [schedule](https://octopus.com/shipped/schedule) and [register today](https://streamyard.com/watch/jpEyzQR8W7qr).
 
 <span><a class="btn btn-success" href="https://streamyard.com/watch/jpEyzQR8W7qr">Register now</a></span>
-
-## Learn more
-
-- [SHIPPED23 event page](https://octopus.com/shipped)
-- [SHIPPED23 schedule](https://octopus.com/shipped/schedule)
 
 Happy deployments!
