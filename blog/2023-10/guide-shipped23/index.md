@@ -12,7 +12,7 @@ tags:
   - Company
 ---
 
-This year, we celebrate our first ever virtual conference, [SHIPPED23](https://octopus.com/shipped). It's coming up on Wednesday, November 15 and it's free to attend. ([You can register here](https://streamyard.com/watch/jpEyzQR8W7qr)!)
+This year, we celebrate our first-ever virtual conference, [SHIPPED23](https://octopus.com/shipped). It's coming up on Wednesday, November 15 and it's free to attend. ([You can register here](https://streamyard.com/watch/jpEyzQR8W7qr)!)
 
 Whether you’re new to Octopus or a seasoned pro, it's a chance to upskill, learn from our DevOps experts, and discuss the challenges of modern deployments. 
 
