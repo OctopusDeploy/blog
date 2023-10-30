@@ -84,7 +84,7 @@ The Octopus Deploy GitHub App will also form the foundation for other opportunit
 
 OpenID Connect and the Octopus Deploy GitHub App will make connecting GitHub and Octopus Deploy easier and more secure, by no longer requiring static credentials be shared between the two products.
 
-OIDC support is rolling out now.  If you have an Octopus Cloud instance and would like early access to this feature, please enter your details, and we'll reach out. 
+OIDC support is rolling out now.  If you have an Octopus Cloud instance and would like early access to this feature, please [enter your details](https://octopusdeploy.typeform.com/to/pgtdtd7P), and we'll enable access. 
 
 The Octopus Deploy GitHub App is currently in development.  We're aiming for release in Q1 2024. 
 
