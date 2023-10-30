@@ -2,11 +2,11 @@
 title: Inside DevOps with Dan Horrocks-Burgess of DDA Software
 description: A series where we share lessons learned from those on the frontlines of DevOps. This post features Dan Horrocks-Burgess of DDA Software.
 author: steve.fenton@octopus.com
-visibility: private
+visibility: public
 published: 2023-11-01-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: blogimage-insidedevops-danhorrocksburgess-2023.png
+bannerImage: blogimage-insidedevops-danhorrocksburgess-2023.png
+bannerImageAlt: Photo of Dan Horrocks-Burgess
 isFeatured: false
 tags: 
   - DevOps
