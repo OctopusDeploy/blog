@@ -1,5 +1,5 @@
 ---
-title: Easier and More Secure GitHub Integration
+title: Easy and Secure GitHub Integration
 description: We are introducing two new features to make connecting GitHub and Octopus Deploy even easier and more secure
 author: michael.richardson@octopus.com 
 visibility: private
@@ -70,7 +70,7 @@ Running the action above will cause the workflow to be authenticated with Octopu
 
 ## Octopus Deploy GitHub App
 
-We are also building an Octopus Deploy app, to be published to the GitHub Marketplace.
+We are building an Octopus Deploy app, to be published to the GitHub Marketplace.
 
 Where OIDC allows connections from GitHub to Octopus without pre-shared credentials, the Octopus Deploy GitHub app will enable Octopus Deploy to connect to GitHub without configuring GitHub credentials in Octopus. 
 
@@ -78,7 +78,7 @@ The immediate benefit of this will be for Octopus projects using [Config as Code
 
 Today, GitHub credentials are configured in Octopus, allowing Octopus to commit changes to the deployment process to the GitHub repository.  With the Octopus Deploy GitHub App installed in your organization, Octopus Deploy will be able to access approved repositories with requiring credentials. 
 
-The Octopus Deploy GitHub App will also form the foundation for other opportunities for features unlocking closer integration between Octopus Deploy and GitHub. 
+The Octopus Deploy GitHub App will also form the foundation for future features unlocking closer integration between Octopus Deploy and GitHub, allowing Octopus to take action based on events in GitHub and see GitHub data such as commits, branches, pull requests, etc. 
 
 ## Summary 
 
