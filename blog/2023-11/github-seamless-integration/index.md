@@ -1,9 +1,13 @@
 ---
-title: Easy and Secure GitHub Integration
-description: We are introducing two new features to make connecting GitHub and Octopus Deploy even easier and more secure
+title: Easy and secure GitHub integration
+description: We're introducing 2 new features to make connecting GitHub and Octopus Deploy even easier and more secure.
 author: michael.richardson@octopus.com 
 visibility: private
-published: 
+published: 2023-11-02-1400
+metaImage: 
+bannerImage: 
+bannerImageAlt: 125 characters max, describes image to people unable to see it.
+isFeatured: false
 tags: 
   - Product
   - GitHub Actions
