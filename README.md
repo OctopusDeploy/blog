@@ -15,6 +15,8 @@ See the [Octopus style guide](https://www.octopus.design/932c0f1a9/p/26f741-writ
 - [Writing tips for the blog](https://www.octopus.design/932c0f1a9/p/901d2a-blog-content)
 - [Markdown quick reference](https://www.octopus.design/932c0f1a9/p/074e30-markdown-reference)
 
+You'll also find some helpful links and information on the [PR template](https://github.com/OctopusDeploy/blog/blob/master/.github/pull_request_template.md#before-you-submit-your-post).
+
 # How to submit a blog post 
 
 Internal authors can create a branch for their work, external authors need to fork the repo.
@@ -23,7 +25,7 @@ Posts are organized in year-month directories (i.e., 2023-01/). Find or create t
 
 If you'd like feedback on a work in progress, create a draft PR and tag @TeganAli with your request.
 
-When you're happy with your post and it's ready to be reviewed, create a PR, assign @TeganAli as reviewer, and drop a note in Slack in #topic-content-marketing. (No need to fill out a content brief.)
+When you're happy with your post and it's ready to be reviewed, please create a PR. Go through the checklist on the PR template, assign @TeganAli as reviewer, and drop a note in Slack in #topic-content-marketing. (No need to fill out a content brief.)
 
 When submitting your post in #topic-content-marketing, you also need to provide copy for a Twitter post **and** LinkedIn post to promote your blog post in **#topic-social-media**. (The marketing team will edit and post these on social media.) 
 
