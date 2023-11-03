@@ -84,6 +84,8 @@ We're building an Octopus Deploy app, that we'll publish to the GitHub Marketpla
 
 Where OIDC allows connections from GitHub to Octopus without pre-shared credentials, the Octopus Deploy GitHub app will enable Octopus Deploy to connect to GitHub without configuring GitHub credentials in Octopus. 
 
+![Add Git Connection](add-git-connection.png "width=300")
+
 The immediate benefit of this will be for Octopus projects using [Config as Code](https://octopus.com/docs/projects/version-control) with repositories hosted by GitHub.
 
 Today, GitHub credentials are configured in Octopus, letting Octopus commit changes to the deployment process to the GitHub repository. With the Octopus Deploy GitHub App installed in your organization, Octopus will be able to access approved repositories without requiring credentials. 
