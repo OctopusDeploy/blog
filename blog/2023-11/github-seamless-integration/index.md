@@ -2,8 +2,8 @@
 title: Easy and secure GitHub integration
 description: We're introducing 2 new features to make connecting GitHub and Octopus Deploy even easier and more secure.
 author: michael.richardson@octopus.com 
-visibility: private
-published: 2023-11-02-1400
+visibility: public
+published: 2023-11-06-1400
 metaImage: blogimage-github-octopus-nocopy-x2.jpg
 bannerImage: blogimage-github-octopus-nocopy-x2.jpg
 bannerImageAlt: Octopus Deploy and GitHub logos connected by arrows.
@@ -38,7 +38,7 @@ The API key would then get copied.
 
 ![The API Key is then copied](create-api-key-2.png "width=300")
 
-The copied API key is then configured in the tool which calls the Octopus API, most commonly a CI Server.  In the GitHub Actions example, the API key is stored in as a secret in the GitHub repository, and the Octopus actions consume the secret API key to authenticate with Octopus. 
+The copied API key is then configured in the tool which calls the Octopus API, most commonly a CI Server.  In the GitHub Actions example, the API key gets stored as a secret in the GitHub repository, and the Octopus actions consume the secret API key to authenticate with Octopus. 
 
 ```yaml
 env:
@@ -60,13 +60,13 @@ Using OIDC, an OIDC identity is configured on the Service Account.
 
 ![An OIDC identity is added to the Service Account](service-account-oidc-section.png "width=300")
 
-The issuer is then selected. As we envisage GitHub Actions being the most common scenario, we built a custom interface for configuring GitHub as the issuer.  Using the `Other Issuer` option, you can configure any tool or product which supports acting as an OIDC Relying Party. 
+The issuer is then selected. As we envisage GitHub Actions being the most common scenario, we built a custom interface for configuring GitHub as the issuer.  Using the **Other Issuer** option, you can configure any tool or product that supports acting as an OIDC Relying Party. 
 
-The OIDC protocol allows trusting not only a token issuer (like GitHub), but specific subjects within the issuer.  In the example shown below, only workflows run from the `main` branch of the `https://github.com/OctopusSamples/OctoPetShop` repository will match and be authenticated.
+The OIDC protocol allows trusting not only a token issuer (like GitHub), but specific subjects within the issuer.  In the example shown below, only workflows that run from the **main** branch of the `https://github.com/OctopusSamples/OctoPetShop` repository will match and get authenticated.
 
 ![The OIDC identity is configured](oidc-identity.png "width=300")
 
-We have introduced an [Octopus Deploy login](https://github.com/OctopusDeploy/login) GitHub Action which can authenticate with Octopus via either OIDC or an API key. Below is an example of the action configured to use OIDC.  You'll notice there are no secrets referenced. The Service Account ID is not a sensitive value, as on its own it cannot be used to authenticate.
+We introduced an [Octopus Deploy login](https://github.com/OctopusDeploy/login) GitHub action which can authenticate with Octopus via OIDC or an API key. Below is an example of the action configured to use OIDC.  You'll notice there are no secrets referenced. The Service Account ID is not a sensitive value, as on its own it can't be used to authenticate.
 
 ```yaml
 - name: Login to Octopus
@@ -86,9 +86,9 @@ Where OIDC allows connections from GitHub to Octopus without pre-shared credenti
 
 ![Add Git Connection](add-git-connection.png "width=300")
 
-The immediate benefit of this will be for Octopus projects using [Config as Code](https://octopus.com/docs/projects/version-control) with repositories hosted by GitHub.
+The immediate benefit will be for Octopus projects using [Config as Code](https://octopus.com/docs/projects/version-control) with repositories hosted by GitHub.
 
-Today, GitHub credentials are configured in Octopus, letting Octopus commit changes to the deployment process to the GitHub repository. With the Octopus Deploy GitHub App installed in your organization, Octopus will be able to access approved repositories without requiring credentials. 
+Today, GitHub credentials are configured in Octopus, letting Octopus commit changes to the deployment process to the GitHub repository. With the Octopus Deploy GitHub App installed in your organization, Octopus will be able to access approved repositories without needing credentials. 
 
 The Octopus Deploy GitHub App will also form the foundation for future features. It will unlock closer integration between Octopus Deploy and GitHub. Octopus will be able to take action based on events in GitHub and see GitHub data like commits, branches, and pull requests. 
 
