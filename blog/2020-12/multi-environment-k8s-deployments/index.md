@@ -16,7 +16,7 @@ tags:
 
 The declarative nature of Kubernetes resources provides a convenient way to describe the desired state of your cluster. However, Kubernetes has no native concept of environments. While namespaces provide a natural mechanism for partitioning your cluster, it is difficult to get a sense of what has been deployed where just by running `kubectl` or looking at traditional Kubernetes dashboards.
 
-By managing Kubernetes deployments through Octopus, applications can be progressed through distinct environments (represented by namespaces and namespace restricted service accounts), and the current environment state is summarized by the Octopus dashboard.
+By [managing Kubernetes deployments](https://octopus.com/use-case/kubernetes) through Octopus, applications can be progressed through distinct environments (represented by namespaces and namespace restricted service accounts), and the current environment state is summarized by the Octopus dashboard.
 
 In this blog post and screencast, we look at how Kubernetes deployments can be progressed through multiple environments. We'll also create a number of runbooks to manage and inspect the cluster, providing a base set of automated tools for anyone tasked with supporting the deployments and cluster in the future.
 
