@@ -99,6 +99,6 @@ OpenID Connect and the Octopus Deploy GitHub app will make connecting GitHub and
 OIDC support is rolling out to Octopus Cloud customers now. If you have an Octopus Cloud instance and would like early access to this feature, please [enter your details](https://octopusdeploy.typeform.com/to/pgtdtd7P) and we'll give you access. 
 We expect OIDC support will be available in the 2023.4 release for self-hosted customers.
 
-The Octopus Deploy GitHub app is currently in development. We're aiming for release in Q1 2024. 
+The Octopus Deploy GitHub app is in development. We're aiming for release in Q1 2024. 
 
 Happy deployments!
