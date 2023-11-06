@@ -18,7 +18,7 @@ Most environments will initially treat their Kubernetes cluster as a tool to orc
 
 When used in this way, developers and operations staff sit outside of the cluster, looking in. The cluster is managed with calls to `kubectl` that are made in an ad-hoc fashion or from a CI/CD pipeline. This means Kubernetes itself is quite naïve; it understands how to reconfigure itself to match the desired state, but it has no understanding of what that state represents.
 
-For example, a common Kubernetes deployment might see three pods created: a front end web application, a backend web service, and a database. The relationship between these pods is well understood by the developers deploying them as a classic three-tier architecture, but Kubernetes literally sees nothing more than three pods to be deployed, monitored, and exposed to network traffic.
+For example, a common [Kubernetes deployment](https://octopus.com/use-case/kubernetes) might see three pods created: a front end web application, a backend web service, and a database. The relationship between these pods is well understood by the developers deploying them as a classic three-tier architecture, but Kubernetes literally sees nothing more than three pods to be deployed, monitored, and exposed to network traffic.
 
 The operator pattern has evolved as a way of encapsulating business knowledge and operational workflows in the Kubernetes cluster itself, allowing a cluster to implement high level, domain-specific concepts with the common, low-level resources like pods, services, and deployments, etc.
 
