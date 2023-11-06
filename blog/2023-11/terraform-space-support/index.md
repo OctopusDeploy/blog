@@ -84,5 +84,5 @@ It is available now in Octopus Deploy Terraform Provider version 0.13 or newer.
 
 ## Conclusion
 
-The evolution of the Octopus Deploy Terraform Provider from Spaces scoped per provider configuration to Spaces scoped per resource marks a significant enhancement in the usability and flexibility of the terraform platform. Before, managing resources in different Spaces was tricky and required creating separate provider configurations for each Space. Now, it's much simpler. You can assign a Space to each resource individually without complex configurations. This change gives you more control and makes the whole process easier.
+The evolution of the Octopus Deploy Terraform Provider from Spaces scoped per provider configuration to Spaces scoped per resource marks a significant enhancement in the usability and flexibility of the Terraform provider. Before, managing resources in different Spaces was tricky and required creating separate provider configurations for each Space. Now, it's much simpler. You can assign a Space to each resource individually without complex configurations. This change gives you more control and makes the whole process easier.
 
