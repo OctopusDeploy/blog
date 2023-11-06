@@ -13,7 +13,7 @@ tags:
 - Kubernetes
 ---
 
-Back in Octopus 2018.9, we introduced a raft of features that delivered core support for Kubernetes in Octopus.
+Back in Octopus 2018.9, we introduced a raft of features that delivered core support for [Kubernetes in Octopus](https://octopus.com/use-case/kubernetes).
 
 In this post, I go through some of the benefits of using Octopus to manage your Kubernetes deployments. After all, Kubernetes already has a rich declarative model for all of its resources, a fully functional command-line tool, and more dashboards than you can poke a stick at.
 
