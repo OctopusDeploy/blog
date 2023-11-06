@@ -3,7 +3,7 @@ title: Defining a target architecture
 description: How to approach defining a target architecture for your software systems.
 author: andrew.best@octopus.com
 visibility: public
-published: 2023-11-06-1400
+published: 2023-11-08-1400
 metaImage: img-blog-definingatargetarchitecture-2023.png
 bannerImage: img-blog-definingatargetarchitecture-2023.png
 bannerImageAlt: Person drawing an architectural plan on a digital device.
