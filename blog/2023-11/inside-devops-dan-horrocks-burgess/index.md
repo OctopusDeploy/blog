@@ -39,7 +39,7 @@ Companies who ask for help getting started with DevOps often want to treat it as
 
 You can't shut the door on a DevOps office, and hope they'll solve this problem. DevOps requires broad changes to the process, technology, team and interactions, and culture. Everyone has a part to play in that.
 
-**What are some DevOps best practices your organization has implemented?**
+**What are some DevOps best practices you see organizations implementing?**
 
 *Dan:* Most teams have achieved a solid foundation with source control and automated builds. However, they often fall short in terms of comprehensive test automation and deployment automation. They fail to connect deployments back to the business need by joining deployments to work items.
 
