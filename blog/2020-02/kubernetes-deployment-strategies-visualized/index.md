@@ -16,7 +16,7 @@ tags:
 
 One of the benefits Kubernetes provides administrators and developers is the ability to intelligently manage deployments of new software or configuration.
 
-Kubernetes includes two built-in deployment strategies called *recreate* and *rolling update*, which are configured directly on the deployment resources. Octopus offers a third Kubernetes deployment strategy called *blue green*, which is managed through the *Deploy Kubernetes containers* step.
+Kubernetes includes two built-in deployment strategies called *recreate* and *rolling update*, which are configured directly on the deployment resources. Octopus offers a third [Kubernetes deployment strategy](https://octopus.com/use-case/kubernetes) called *blue green*, which is managed through the *Deploy Kubernetes containers* step.
 
 But what do these strategies actually do? In this blog post, we’ll visualize these deployment strategies to highlight their differences and note why you would choose one strategy over another.
 

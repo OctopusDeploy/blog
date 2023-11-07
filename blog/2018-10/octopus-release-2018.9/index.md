@@ -14,7 +14,7 @@ tags:
 
 ## Kubernetes Deployments Made Easy
 
-Octopus Deploy is proud to ship our first-class support for [Kubernetes deployments](https://octopus.com/docs/deployment-examples/kubernetes-deployments)!  Our goal was to make Kubernetes easy for teams to adopt and migrate their projects to this popular platform.
+Octopus Deploy is proud to ship our first-class support for [Kubernetes deployments](https://octopus.com/docs/deployment-examples/kubernetes-deployments)!  Our goal was to [make Kubernetes easy for teams](https://octopus.com/use-case/kubernetes) to adopt and migrate their projects to this popular platform.
 
 Kubernetes (or K8s) is a flexible, powerful platform for running applications and services in a reliable and scalable manner. With that power comes great complexity, and it can be overwhelming and difficult to learn the configuration options and deployment YAML.
 

@@ -18,7 +18,7 @@ tags:
   - Kubernetes Training
 ---
 
-This [training series](https://octopus.com/blog/tag/Kubernetes%20Training) provides a step by step walk-through building multi-environment deployments with Octopus and Kubernetes.
+This [training series](https://octopus.com/blog/tag/Kubernetes%20Training) provides a step by step walk-through building multi-environment [deployments with Octopus and Kubernetes](https://octopus.com/use-case/kubernetes).
 
 You can work through the series using the links below.
 

@@ -13,7 +13,7 @@ tags:
   - Kubernetes
 ---
 
-Kubernetes has become the standard for container orchestration. Deploying to a Kubernetes cluster can be tricky, though. After you create Kubernetes objects in your cluster using manifest files, you typically need to run a sequence of `kubectl get` or `kubect describe` commands. You need to do this until you confirm the deployed objects are running.
+Kubernetes has become the standard for container orchestration. [Deploying to a Kubernetes cluster](https://octopus.com/use-case/kubernetes) can be tricky, though. After you create Kubernetes objects in your cluster using manifest files, you typically need to run a sequence of `kubectl get` or `kubect describe` commands. You need to do this until you confirm the deployed objects are running.
 
 We're pleased to have addressed this with our new feature, Kubernetes Object Status.
 
