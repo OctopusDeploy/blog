@@ -1,54 +1,57 @@
 ---
-title: Re-prioritize Task Queue
-description: A blog post detailing a new feature that allows Octopus users to re-prioritize the task queue. This new feature will be available from Octopus version 2023.4 and onwards.
+title: Reprioritize task queue
+description: Learn about our new feature that lets you reprioritize the task queue in Octopus.
 author: ian.khor@octopus.com
 visibility: private
-published: 
+published: 2023-11-22-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags: 
-  - product
-  - tasks
-
+  - Product
 ---
 
-The Octopus task queue operates as a first in, first out (FIFO) system. Additionally, there are many different types of tasks in Octopus, such as deployments, runbacks, system tasks etc. The FIFO task system operates on an overall instance level and requires each task to be completed before the next can begin. The task queue, in combination with the task cap, ensures that users are able to not only view all the tasks that are running through the instance, but to also understand the limit on the number of tasks due to the task cap.
+The Octopus task queue operates on a first in, first out system. 
+There are many types of tasks in Octopus, like deployments, runbacks, and system tasks. The task queue system works overall at the instance level and each task needs to be complete before the next can begin. The task queue and task cap ensure you can view all the tasks running on the instance and know the limit on the number of tasks.
 
-A huge pain point about the FIFO nature of the task queue is the user's inability to re-prioritize certain tasks to take precedence over others that are not as important. Examples of these sorts of tasks include hot fixes, production-level deployments or runbooks that need to run first before anything else can run in the queue.
+We had feedback that the task queue was problematic because you couldn't reprioritize tasks over less important ones. Examples include hotfixes, production deployments, or runbooks that need to start before anything else in the queue.
 
-We addressed this by introducing a new feature that allows users to re-prioritize tasks in both the Task Overview dashboard, as well as the Deployment page for a specific release in a project
+We addressed this with a new feature that lets you reprioritize tasks on the task overview dashboard and the deployment page for a specific release in a project
 
-In this post, I will show you how to re-prioritize your task queue from the space level Task Overview dashboard and the Task page for a particular release.
+In this post, I show you how to reprioritize your task queue at the space level. I explain how to do this on the tasks overview dashboard and the task page for a particular release.
 
-## The ability to move a queued task to the top from the Task Overview dashboard
+## Moving a queued task to the top from the tasks overview dashboard
 [GIF here]
 
-The ability to re-prioritize the task queue can be found on the space-level Task Overview dashboard. Customers are able to move a queued task to run next by:
+You can reprioritize the task queue on the space-level task overview dashboard. 
 
-- Identifying the queued task they would like to run next;
-- Selecting the burger menu on the right hand side of the selected task; and
-- Clicking on ‘Move to Top’
+To move a queued task to run next:
 
-The queued task will then move to the top of the queue and will run next after the task that is currently being executed. This will not do anything to the task that is currently executing and only changes the order of which queued task executes next after the task that is currently being executed.
+1. Find the queued task you'd like to run next
+1. Select the burger menu on the right of the selected task
+1. Click **Move to top**
+
+The task will then move to the top of the queue and will run next after the task that's running. This won't affect a task that's already running. This only changes the order of tasks not yet started.
 
 
-## The ability to move a queued task to the top from the Task page for a particular release
+## Moving a queued task to the top from the tasks page for a particular release
 [GIF here]
 
-Additionally, the ability to re-prioritize the task queue can also be found on the Task page for a particular release. Customers are able to move a queued task to run next by:
+You can also reprioritize the task queue on the tasks page for a specific release. 
 
-- Identifying the tasks in a particular release for a project that you want to run next;
-- Go to Projects on the top navigation bar;
-- Go to Releases on the left hand side navigation bar; and
-- Click on ‘Move to Top’ on the top right hand corner of the screen
+To move a queued task to run next:
 
-The queued task will then move to the top of the queue and will run next after the task that is currently being executed. This will not do anything to the task that is currently executing and only changes the order of which queued task executes next after the task that is currently being executed.
+- Find the task in the release for a project that you want to run next
+- Navigate to Projects in the top navigation bar
+- Go to Releases on the left hand side of the page
+- Click **Move to top** in the top right corner of the screen
+
+The task will then move to the top of the queue and will run next after the task that's running. This won't affect a task that's already running. This only changes the order of tasks not yet started.
 
 ## Conclusion
 
-The new ability to re-prioritize the task queue allows you to move critical and important queued tasks to the run next in a simple, efficient and inquitive way.
+It's now easy to reprioritize the task queue. This gives you flexibility to manage your task queue and run critical tasks first. 
 
 We'd love your feedback on this feature as we continue to refine it. If you're an Octopus Cloud or Server customer, this is available from 2023.4.6612 onwards.
 
