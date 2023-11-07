@@ -1,5 +1,5 @@
 ---
-title: Reprioritize task queue
+title: Reprioritizing the task queue
 description: Learn about our new feature that lets you reprioritize the task queue in Octopus.
 author: ian.khor@octopus.com
 visibility: private
