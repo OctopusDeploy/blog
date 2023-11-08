@@ -1,9 +1,9 @@
 ---
-title: Terraform Spaces per Resources
-description: Spaces Support on Resources for Octopus Deploy Terraform Provider.
+title: Terraform spaces per resource
+description: Learn about our new spaces support on resources for the Octopus Terraform provider.
 author: domenic.simone@octopus.com
 visibility: private
-published: 3020-01-01-1400
+published: 2023-11-20-1400
 metaImage:
 bannerImage:
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
@@ -14,13 +14,15 @@ tags:
   - Configuration as Code
 ---
 
-## Body
+In the past, the Octopus Deploy Terraform provider had spaces scoped per provider configuration. This can cause hurdles when creating resources across multiple spaces. 
 
-In the past, the Octopus Deploy Terraform Provider had Spaces scoped per provider configuration; this can cause all sorts of hurdles when creating resources across multiple spaces. Today, we are thrilled to announce that the Octopus Terraform Provider now supports Spaces scoped per resource.
+We're pleased to announce we addressed this issue. The Octopus Terraform provider now supports spaces scoped per resource.
 
-### The Issue with Spaces per Provider Configuration
+### Issues with spaces per provider configuration
 
-Defining a Space on the provider level is viable, especially when creating many resources within the same Space. However, the issue arises when trying to create resources across multiple Spaces, as a new provider with an alias will need to be created for each Space, as shown in the example below. This approach can be very counterproductive and potentially have significant limitations.
+Defining a space on the provider level does work, especially if you're creating many resources in the same space. 
+
+However, you can face problems when trying to create resources across multiple spaces. This is because a new provider with an alias gets created for each space, as shown in the example below. This can be counterproductive and limiting. 
 
 ```terraform
 provider "octopusdeploy" {
@@ -52,9 +54,11 @@ resource "octopusdeploy_username_password_account" "account2" {
 }
 ```
 
-### The Benefit of Spaces per Resource
+### Benefits of spaces per resource
 
-To significantly improve the experience, we have now introduced the concept of a Space per resource. This approach allows each resource to explicitly specify the Space in which it should be created. If no Space is set on the resource, we will seamlessly revert back to using the Space defined at the provider level. Below is the same example as mentioned earlier, but now we are leveraging the concept of Space per resource for enhanced flexibility and control.
+To improve your experience, we introduced the concept of a space per resource. This lets each resource explicitly specify the space where it should be created. If no space is set on the resource, we'll seamlessly revert back to using the space defined at the provider level. 
+
+Below you can see the same example from above, but now we're using the concept of space per resource for greater flexibility and control.
 
 ```terraform
 provider "octopusdeploy" {
@@ -78,11 +82,14 @@ resource "octopusdeploy_username_password_account" "account2" {
 
 ```
 
-### When will Spaces per Resource be available?
+### When will spaces per resource be available?
 
-It is available now in Octopus Deploy Terraform Provider version 0.13 or newer.
+The spaces per resource feature is available now in Octopus Deploy Terraform provider version 0.13 or newer.
 
 ## Conclusion
 
-The evolution of the Octopus Deploy Terraform Provider from Spaces scoped per provider configuration to Spaces scoped per resource marks a significant enhancement in the usability and flexibility of the Terraform provider. Before, managing resources in different Spaces was tricky and required creating separate provider configurations for each Space. Now, it's much simpler. You can assign a Space to each resource individually without complex configurations. This change gives you more control and makes the whole process easier.
+Updating the Octopus Deploy Terraform provider from spaces scoped per provider configuration to spaces scoped per resource has improved usability and flexibility.
 
+Before, managing resources in different spaces was tricky. You needed to create separate provider configurations for each space. Now, it's much simpler. You can assign a space to each resource individually without complex configurations. This change gives you more control and makes the process easier.
+
+Happy deployments!
