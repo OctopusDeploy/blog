@@ -14,9 +14,11 @@ tags:
   - Configuration as Code
 ---
 
-In the past, the Octopus Deploy Terraform provider had spaces scoped per provider configuration. This can cause hurdles when creating resources across multiple spaces. 
+Until now, the Octopus Deploy Terraform provider had spaces scoped per provider configuration. This caused hurdles when creating resources across multiple spaces. 
 
-We're pleased to announce we addressed this issue. The Octopus Terraform provider now supports spaces scoped per resource.
+We're pleased to announce we've addressed this issue. The Octopus Terraform provider now supports spaces scoped per resource.
+
+In this post, I explain why we made this change and how it makes your process easier.
 
 ### Issues with spaces per provider configuration
 
