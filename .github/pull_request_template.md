@@ -19,7 +19,7 @@ Check everything off this list before you submit your post for review.
 - [ ] The PR build passes validation, and if it doesn't, I've checked the [common validations errors](https://www.octopus.design/932c0f1a9/p/901d2a-blog-content/t/817249) and none of those apply.
 - [ ] The images I've included follow the [rules for working with images](https://www.octopus.design/932c0f1a9/p/5061d7-working-with-images).
 - [ ] I've added alt text for all the images I've included (alt text describes an image to people unable to see it, 125 characters max)
-- [ ] The draft is complete and this post is ready to be reviewed. I've marked the post 'ready for review' at the bottom of this PR.
+- [ ] The draft is complete and this post is ready to be reviewed. (Please mark the post 'ready for review' at the bottom of the PR.)
 - [ ] I've dropped a note in Slack in #topic-content-marketing to let Tegan Ali know my post is ready for review. (No need to fill out a content brief.)
 - [ ] I'll draft social media posts for Twitter and LinkedIn. I'll post them for review in #topic-social-media after the post has been edited or after the PR has been merged.
 
