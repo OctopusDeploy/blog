@@ -58,7 +58,7 @@ resource "octopusdeploy_username_password_account" "account2" {
 
 ### Benefits of spaces per resource
 
-To improve your experience, we introduced the concept of a space per resource. This lets each resource explicitly specify the space where it should be created. If no space is set on the resource, we'll seamlessly revert back to using the space defined at the provider level. 
+To improve your experience, we introduced the concept of a space per resource. This lets each resource explicitly specify the space where it should be created. If no space is set on the resource, we'll seamlessly revert to using the space defined at the provider level. 
 
 Below you can see the same example from above, but now we're using the concept of space per resource for greater flexibility and control.
 
