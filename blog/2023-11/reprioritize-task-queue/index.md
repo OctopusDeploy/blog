@@ -14,11 +14,11 @@ tags:
 
 The Octopus task queue operates on a first in, first out basis. There are many types of tasks in Octopus, like deployments, runbacks, and system tasks. The task queue works at the instance level and each task needs to be complete before the next can begin. The task queue and task cap ensure you can view all the tasks running on the instance and know the limit on the number of tasks.
 
-We had feedback that the task queue was problematic because you couldn't reprioritize critical tasks over less important ones. Examples of critical tasks include hotfixes, production deployments, or runbooks that need to start before anything else in the queue.
+We had feedback that people sometimes need to be able to reprioritize critical tasks over less important ones. Examples of critical tasks include hotfixes, production deployments, or runbooks that need to start before anything else in the queue.
 
 We addressed this with a new feature that lets you reprioritize tasks on the **Tasks** overview dashboard and the **Deployments** page for a specific release in a project.
 
-In this post, I show you how to reprioritize your task queue at the space level. I explain how to do this on the **Tasks** overview dashboard and the task page for a particular release.
+In this post, I show you how to reprioritize your task queue at the space level. I explain how to do this on the **Tasks** overview dashboard and the Tasks page for a particular release.
 
 ## Moving a queued task to the top from the Tasks overview dashboard
 [GIF here]
@@ -31,7 +31,7 @@ To move a queued task to run next:
 1. Select the burger menu on the right of the selected task.
 1. Click **Move to top**.
 
-The task will then move to the top of the queue and will run next after the task that's running. This won't affect a task that's already running. This only changes the order of tasks not yet started.
+The task will then move to the top of the queue and will run next after the task that's running. This won't affect a task that's already in progress. This only changes the order of tasks not yet started.
 
 
 ## Moving a queued task to the top from the Tasks page for a particular release
@@ -46,7 +46,7 @@ To move a queued task to run next:
 - Go to **Releases** on the left hand side of the page.
 - Click **Move to top** in the top right corner of the screen.
 
-The task will then move to the top of the queue and will run next after the task that's running. This won't affect a task that's already running. This only changes the order of tasks not yet started.
+The task will then move to the top of the queue and will run next after the task that's running. This won't affect a task that's already in progress. This only changes the order of tasks not yet started.
 
 ## Conclusion
 
