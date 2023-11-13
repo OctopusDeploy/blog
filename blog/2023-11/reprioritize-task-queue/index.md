@@ -4,9 +4,9 @@ description: Learn about our new feature that lets you reprioritize the task que
 author: ian.khor@octopus.com
 visibility: private
 published: 2023-11-22-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-reprioritizetaskqueue-2022.png
+bannerImage: blogimage-reprioritizetaskqueue-2022.png
+bannerImageAlt: Stylized Octopus task queue with an item being moved to number one position.
 isFeatured: false
 tags: 
   - Product
