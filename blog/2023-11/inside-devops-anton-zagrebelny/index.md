@@ -4,8 +4,8 @@ description: A series where we share lessons learned from those on the frontline
 author: joanna.wyganowska@octopus.com
 visibility: public
 published: 2023-11-27-1400
-metaImage: 
-bannerImage: 
+metaImage: blogimage-insidedevops-antonz-stigg-2023.png
+bannerImage: blogimage-insidedevops-antonz-stigg-2023.png
 bannerImageAlt: Photo of Anton Zagrebelny
 isFeatured: false
 tags: 
