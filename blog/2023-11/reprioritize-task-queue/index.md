@@ -14,7 +14,7 @@ tags:
 
 The Octopus task queue operates on a first in, first out basis. There are many types of tasks in Octopus, like deployments, runbacks, and system tasks. The task queue works at the instance level and each task needs to be complete before the next can begin. The task queue and task cap ensure you can view all the tasks running on the instance and know the limit on the number of tasks.
 
-We had feedback that people sometimes need to be able to reprioritize critical tasks over less important ones. Examples of critical tasks include hotfixes, production deployments, or runbooks that need to start before anything else in the queue.
+We had feedback that people sometimes need to be able to elevate critical tasks over less important ones. Examples of critical tasks include hotfixes, production deployments, or runbooks that need to start before anything else in the queue.
 
 We addressed this with a new feature that lets you reprioritize tasks on the **Tasks** overview dashboard and the **Deployments** page for a specific release in a project.
 
