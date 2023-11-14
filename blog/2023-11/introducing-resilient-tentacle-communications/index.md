@@ -38,7 +38,7 @@ Previously, this missed response would mean that the deployment failed, even tho
 
 There were two main challenges that were critical for this solution to succeed:
 
-1. Ensure RPCs are idempotent
+1. Ensure actions performed by RPCs are idempotent
 2. Ensure backwards compatibility between Octopus Server and Tentacle
 
 ### Idempotent RPCs
@@ -76,7 +76,9 @@ In the cases where the deployment process ultimately succeeds, the extra time ta
 
 ## How can I use this new feature?
 
-Octopus Cloud customers already have Tentacle Communication Resiliency enabled, and on-premise customers will have it enabled by default starting from Octopus Server 2023.4.
+As Tentacle Communication Resiliency affects the communication channel between Octopus Server and Tentacle, both applications must be updated to versions that support this feature in order to gain its benefits.
+
+Octopus Cloud customers already have Tentacle Communication Resiliency enabled, and self-hosted customers will have it enabled by default starting from Octopus Server 2023.4. Tentacles must be updated to v7 or above.
 
 You can configure this new feature via the **Machine Policy** configuration page, found in **Infrastructure -> Machine Policies** from the navigation bar. Each Machine Policy can be configured separately, allowing different kinds of targets to be configured differently.
 
