@@ -18,7 +18,7 @@ Octopus 2023.4 introduces Tentacle Communication Resiliency, a new feature which
 
 Many Octopus setups involve running Tentacle in environments that are on complex or unreliable networks, such as connecting via a corporate firewall, satellite network, or over an intermittent 3G cellular connection. A common scenario is when customers deploy to devices in a physical location using a multi-tenant setup. For example, tablets at retail stores, health devices at clinics/hospitals, physical servers at a branch office, etc.
 
-Today, if Octopus fails to communicate successfully with a Tentacle during a deployment, runbook run, or health check, the entire process will fail. This can be frustrating and time-consuming, as the entire process must be re-attempted due to a relatively minor, and often transient, network error. This problem can account for ~2-3% of failed Tenant-ed deployments for some customers today.
+Today, if Octopus fails to communicate successfully with a Tentacle during a deployment, runbook run, or health check, the entire process will fail. This can be frustrating and time-consuming, as the entire process must be re-attempted due to a relatively minor, and often transient, network error. This problem can account for ~2-3% of failed tenanted deployments for some customers today.
 
 This new feature helps Octopus recover gracefully from such temporary or transient network errors, leading to less failed processes and more happy deployments!
 
@@ -78,7 +78,7 @@ In the cases where the deployment process ultimately succeeds, the extra time ta
 
 Octopus Cloud customers already have Tentacle Communication Resiliency enabled, and on-premise customers will have it enabled by default starting from Octopus Server 2023.4.
 
-You can configure this new feature via the Machine Policy configuration page, found in Infrastructure -> Machine Policies from the navigation bar. Each Machine Policy can be configured separately, allowing different kinds of targets to be configured differently.
+You can configure this new feature via the **Machine Policy** configuration page, found in **Infrastructure -> Machine Policies** from the navigation bar. Each Machine Policy can be configured separately, allowing different kinds of targets to be configured differently.
 
 The duration for which to re-attempt communications with Tentacle can be configured for deployments and runbook runs, as well as health checks. These values include the duration of the initial communication attempt i.e. when using the default value of 2m30s, if the first attempt fails after 15s, Octopus will continue retrying for 2m15s.
 
@@ -88,7 +88,7 @@ The feature can also be disabled, if your setup requires communication attempts 
 
 ## Conclusion
 
-To help improve the success rate and automation of deployments, improved resiliency has been added to communications with Tentacle. This lets Octopus recover automatically from transient communication errors. The result is more successful deployments and fewer manual interventions when transient connectivity issues interrupt your deployments.
+To help improve the success rate and automation of deployments, improved resiliency has been added to communications with Tentacle. This lets Octopus recover automatically from transient communication errors. The result is more successful deployments and fewer manual interventions when transient communication issues interrupt your deployments.
 
 ## Feedback
 
