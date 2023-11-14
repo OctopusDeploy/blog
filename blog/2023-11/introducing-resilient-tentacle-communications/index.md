@@ -34,14 +34,14 @@ Previously, this missed response would mean that the deployment fails, even thou
 
 ![Flow diagram showing how Octopus Server retries failed requests to Tentacle](rpc-retries-flow-diagram.png "width=500")
 
-### Were there any technical challenges to overcome?
+## Were there any technical challenges to overcome?
 
 There were two main challenges which were critical for this solution to succeed:
 
 1. Ensure RPCs are idempotent
 2. Ensure backwards compatibility between Octopus Server and Tentacle
 
-## Idempotent RPCs
+### Idempotent RPCs
 
 Resending a request if there is a communication failure cannot be done safely unless there is a guarantee that the request will not be processed multiple times. Many of the requests being sent to Tentacle will be to run customer scripts, and these scripts often perform operations which must only be run once e.g. run a DB migration, or setup/teardown cloud infrastructure.
 
@@ -49,7 +49,7 @@ Tentacle’s mechanism for running scripts, ScriptService, makes no such guarant
 
 To guarantee idempotency, significant changes had to be made to both Octopus Server and Tentacle to update this process. Octopus Server now generates the script ticket ID itself, and includes it in the request to Tentacle. This allows Tentacle to identify if multiple instances of the same request have been received, and behave accordingly.
 
-## Backwards Compatibility
+### Backwards Compatibility
 
 With significant changes made to both Octopus Server and Tentacle, it was critical that old and new versions of Octopus Server could reliably communicate with both old and new versions of Tentacle. We couldn’t have a new Octopus Server send multiple requests to an old Tentacle that would run the script for each request received. We also couldn’t have an old Octopus Server instance send a request to a new Tentacle that behaved differently and returned different results.
 
@@ -60,13 +60,13 @@ This problem was solved by:
 
 Octopus Server will now query a Tentacle’s CapabilityService before requesting a script to be run. If the Tentacle doesn’t know what the CapabilityService is, then it does not support retries and Octopus Server will fallback to ScriptService v1. If the Tentacle responds successfully to a CapabilityService request, then Octopus Server will know exactly what the Tentacle supports and can choose the most appropriate type of request to send next.
 
-### Could this cause my deployments to run multiple times?
+## Could this cause my deployments to run multiple times?
 
 No. The retries are purely for the communications between Octopus and Tentacle, not for any processes run on Tentacle as part of a deployment, runbook run, or health check.
 
 As part of this new feature, requests made to Tentacle are now idempotent i.e. the request will only be processed once, regardless of how many requests are made.
 
-### My deployment failed for a reason unrelated to communications, can this retry the deployment?
+## My deployment failed for a reason unrelated to communications, can this retry the deployment?
 
 No, this feature is purely for recovering from failed communications, but [Step Retries](https://octopus.com/blog/step-retries) might be able to help here.
 
@@ -74,7 +74,7 @@ When using Step Retries along with Resilient Tentacle Communication, it is worth
 
 In the cases where the deployment process ultimately succeeds, the extra time taken is likely to be worthwhile if it means successful completion of a deployment! On the other hand, some deployments which ultimately fail may take longer to fail due to the retry logic.
 
-### How can I use this new feature?
+## How can I use this new feature?
 
 Octopus Cloud customers already have Tentacle Communication Resiliency enabled, and on-premise customers will have it enabled by default starting from Octopus Server 2023.4.
 
