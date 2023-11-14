@@ -117,7 +117,7 @@ To take control of the bundle URL each tenant references, your new process uploa
 
 ```json
 {
-  "url": "https://bundle-s3.s3.ap-southeast-2.amazonaws.com/release_0.0.112/js/app.69e902e8.js"
+  "url": "https://{s3-bucketname}o{s3-region}ws.com/release_0.0.112/js/app.69e902e8.js"
 }
 ```
 
