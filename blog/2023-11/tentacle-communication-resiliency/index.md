@@ -37,7 +37,7 @@ Previously, this missed response would mean that the deployment failed. This hap
 
 ## Technical challenges
 
-There were 2 main challenges that were critical to overcome, for this solution to succeed:
+There were 2 main challenges that were critical to overcome for this solution to succeed:
 
 1. Ensure actions performed by RPCs are idempotent
 2. Ensure backwards compatibility between Octopus Server and Tentacle
@@ -52,7 +52,7 @@ To guarantee idempotency, we had to make significant changes to both Octopus Ser
 
 ### Backwards compatibility
 
-With significant changes made to both Octopus Server and Tentacle, it was critical that old and new versions of Octopus Server could reliably communicate with both old and new versions of Tentacle. We couldn’t have a new Octopus Server send multiple requests to an old Tentacle that would run the script for each request received. We also couldn’t have an old Octopus Server instance send a request to a new Tentacle that behaved differently and returned different results.
+With significant changes to both Octopus Server and Tentacle, it was critical that old and new versions of Octopus Server could reliably communicate with both old and new versions of Tentacle. We couldn’t have a new Octopus Server send multiple requests to an old Tentacle that would run the script for each request received. We also couldn’t have an old Octopus Server instance send a request to a new Tentacle that behaved differently and returned different results.
 
 We solved this problem by:
 
