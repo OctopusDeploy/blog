@@ -1,6 +1,6 @@
 ---
-title: Introducing Tentacle Communication Resiliency
-description: Learn about our new Tentacle Communication Resiliency feature to recover from transient network issues and improve deployment success rates.
+title: Introducing Resilient Tentacle Communications
+description: Learn about our new Resilient Tentacle Communications feature to recover from transient network issues and improve deployment success rates.
 author: adrian.codrington@octopus.com
 visibility: public
 published: 2023-11-15-1400
@@ -13,7 +13,7 @@ tags:
   - Engineering
 ---
 
-Octopus 2023.4 introduces Tentacle Communication Resiliency. This new feature increases communication resiliency over unreliable networks to Tentacle by automatically recovering from transient network errors. This lets Octopus successfully complete deployments and runbook runs that would have otherwise failed.
+Octopus 2023.4 introduces Resilient Tentacle Communications. This new feature increases communication resiliency over unreliable networks to Tentacle by automatically recovering from transient network errors. This lets Octopus successfully complete deployments and runbook runs that would have otherwise failed.
 
 ## What problem does this solve?
 
@@ -23,7 +23,7 @@ If Octopus fails to communicate successfully with a Tentacle during a deployment
 
 This new feature helps Octopus recover gracefully from these temporary or transient network errors. This leads to fewer failed processes and more happy deployments!
 
-## How Tentacle Communication Resiliency works
+## How the Resilient Tentacle Communications feature works
 
 Octopus Server communicates with Tentacles by making [RPCs (remote procedure calls)](https://en.wikipedia.org/wiki/Remote_procedure_call). Should any RPC fail, the deployment typically fails. The solution to this problem was to retry those RPCs in an [idempotent](https://en.wikipedia.org/wiki/Idempotence) way if they failed due to an intermittent communication error.
 
@@ -31,7 +31,7 @@ The changes are backwards compatible between old and new versions of both Octopu
 
 A common scenario is when Octopus Server has started a deployment process and requested that Tentacle run a script. Tentacle successfully receives the request and begins running the script. But, due to an unreliable network, Octopus Server never receives confirmation that the script has started.
 
-Previously, this missed response would mean that the deployment failed. This happened even though Tentacle was running the script and doing the work without issue. Now with Tentacle Communication Resiliency, Octopus Server can retry sending the request. Tentacle will therefore retry sending the response without restarting the script. Thankfully, in this example, the transient network issue has been resolved when the second attempt is made, so Octopus Server can successfully receive the response and the deployment can continue without error.
+Previously, this missed response would mean that the deployment failed. This happened even though Tentacle was running the script and doing the work without issue. Now with Resilient Tentacle Communications, Octopus Server can retry sending the request. Tentacle will therefore retry sending the response without restarting the script. Thankfully, in this example, the transient network issue has been resolved when the second attempt is made, so Octopus Server can successfully receive the response and the deployment can continue without error.
 
 ![Flow diagram showing how Octopus Server retries failed requests to Tentacle](rpc-retries-flow-diagram.png "width=500")
 
@@ -77,9 +77,9 @@ When the deployment process ultimately succeeds, the extra time taken is likely 
 
 ## How can I use this new feature?
 
-Tentacle Communication Resiliency affects the communication channel between Octopus Server and Tentacle. So, you need to update both applications to versions that support this feature to gain its benefits.
+Resilient Tentacle Communications affects the communication channel between Octopus Server and Tentacle. So, you need to update both applications to versions that support this feature to gain its benefits.
 
-Octopus Cloud customers already have Tentacle Communication Resiliency enabled. Self-hosted customers will have it enabled by default starting from Octopus Server 2023.4. You need to update Tentacles to v7 or above.
+Octopus Cloud customers already have Resilient Tentacle Communications enabled. Self-hosted customers will have it enabled by default starting from Octopus Server 2023.4. You need to update Tentacles to v7 or above.
 
 You can configure this new feature via the **Machine Policy** configuration page. You'll find this in **Infrastructure -> Machine Policies** from the navigation bar. You can configure each Machine Policy separately, so that you can configure different targets differently.
 
@@ -87,7 +87,7 @@ You can set the duration to re-attempt communications with Tentacle for deployme
 
 You can also turn off the feature if your setup requires communication attempts to fail immediately rather than retry.
 
-![Screenshot of the Machine Policy page in Octopus Server, where Tentacle Communication Resiliency can be configured](machine-policy-screenshot.png)
+![Screenshot of the Machine Policy page in Octopus Server, where Resilient Tentacle Communications can be configured](machine-policy-screenshot.png)
 
 ## Conclusion
 
