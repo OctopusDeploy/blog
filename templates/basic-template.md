@@ -23,6 +23,8 @@ The body of the post is where you share your hypothesis, how-to, or story.
 If there are any previous posts on the same topic, please link to them to help with our SEO efforts. For example:
 Our post about [DORA metrics](https://octopus.com/blog/dora-metrics-devops-business-outcomes) discusses how agility-based metrics can help improve profitability, market share, and productivity. 
 
+Please note the advice in our style guide about [adding resources to your post](https://www.octopus.design/932c0f1a9/p/901d2a-blog-content-basics/t/01404d).
+
 ### Subheadings
 
 Use three ### to include H3 headings.
