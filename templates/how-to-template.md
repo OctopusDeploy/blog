@@ -26,6 +26,8 @@ Tell them what the how to demonstrates, and when/why the user might find this us
 
 Tell the reader what tech they need and anything else they **need** to know before you jump into the steps.
 
+Please note the advice in our style guide about [adding resources to your post](https://www.octopus.design/932c0f1a9/p/901d2a-blog-content-basics/t/01404d).
+
 ### Configure X
 
 Break the steps the user needs to take into logical groups:
