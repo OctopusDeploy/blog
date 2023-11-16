@@ -30,6 +30,8 @@ If including images, please include alt text. Alt text is primarily used to desc
 Here's an example of authoring alt text and an image caption:
 ![Alt text](image.png)*Caption text*
 
+Please note the advice in our style guide about [adding resources to your post](https://www.octopus.design/932c0f1a9/p/901d2a-blog-content-basics/t/01404d).
+
 ## Conclusion
 
 Close of the post by stating what the reader should expect next and invite feedback.
