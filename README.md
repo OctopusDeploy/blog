@@ -15,7 +15,10 @@ See the [Octopus style guide](https://www.octopus.design/932c0f1a9/p/26f741-writ
 - [Writing tips for the blog](https://www.octopus.design/932c0f1a9/p/901d2a-blog-content)
 - [Markdown quick reference](https://www.octopus.design/932c0f1a9/p/074e30-markdown-reference)
 
+Please note the advice about [adding resources to your post[(https://www.octopus.design/932c0f1a9/p/901d2a-blog-content-basics/t/01404d).
+
 You'll also find some helpful links and information on the [PR template](https://github.com/OctopusDeploy/blog/blob/master/.github/pull_request_template.md#before-you-submit-your-post).
+
 
 # How to submit a blog post 
 
