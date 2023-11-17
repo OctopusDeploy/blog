@@ -20,7 +20,7 @@ We're pleased to announce we've addressed this issue. The Octopus Terraform prov
 
 In this post, I explain why we made this change and how it makes your process easier.
 
-### Issues with spaces per Terraform provider configuration
+## Issues with spaces per Terraform provider configuration
 
 Defining a space on the provider level does work, especially if you're creating many resources in the same space.
 
@@ -56,7 +56,7 @@ resource "octopusdeploy_username_password_account" "account2" {
 }
 ```
 
-### Benefits of Space ID per Terraform resource
+## Benefits of Space ID per Terraform resource
 
 To improve your experience, we introduced the concept of a Space ID per Terraform resource. This lets each resource specify the space where it should be created. If no space is set on the resource, we'll seamlessly revert to using the space defined at the provider level.
 
@@ -84,7 +84,7 @@ resource "octopusdeploy_username_password_account" "account2" {
 
 ```
 
-### When will Space ID per Terraform resource be available?
+## When will Space ID per Terraform resource be available?
 
 The Space ID per Terraform resource feature is available now in Octopus Deploy Terraform provider version 0.13 or newer.
 
