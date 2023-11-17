@@ -16,7 +16,7 @@ tags:
 
 Until now, the Octopus Deploy Terraform provider had a single space per provider configuration. This caused hurdles when creating resources across multiple spaces. 
 
-We're pleased to announce we've addressed this issue. The Octopus Terraform provider now supports Space IDs per resource.
+We're pleased to announce we've addressed this issue. The Octopus Terraform provider now supports Space IDs per Terraform resource.
 
 In this post, I explain why we made this change and how it makes your process easier.
 
@@ -24,7 +24,7 @@ In this post, I explain why we made this change and how it makes your process ea
 
 Defining a space on the provider level does work, especially if you're creating many resources in the same space. 
 
-However, you can face problems when trying to create resources across multiple spaces. This is because a new provider with an alias gets created for each space, as shown in the example below. This can be counterproductive and limiting. 
+However, you can face problems when trying to create resources across multiple spaces. This is because a new Terraform provider with an alias gets created for each space, as shown in the example below. This can be counterproductive and limiting. 
 
 ```terraform
 provider "octopusdeploy" {
@@ -58,9 +58,9 @@ resource "octopusdeploy_username_password_account" "account2" {
 
 ### Benefits of spaces per resource
 
-To improve your experience, we introduced the concept of a Space ID per resource. This lets each resource explicitly specify the space where it should be created. If no space is set on the resource, we'll seamlessly revert to using the space defined at the provider level. 
+To improve your experience, we introduced the concept of a Space ID per Terraform resource. This lets each resource specify the space where it should be created. If no space is set on the resource, we'll seamlessly revert to using the space defined at the provider level. 
 
-Below you can see the same example from above, but now we're using the concept of Space ID per resource for greater flexibility and control.
+Below you can see the same example from above, but now we're using the concept of Space ID per Terraform resource for greater flexibility and control.
 
 ```terraform
 provider "octopusdeploy" {
@@ -86,11 +86,11 @@ resource "octopusdeploy_username_password_account" "account2" {
 
 ### When will spaces per resource be available?
 
-The spaces per resource feature is available now in Octopus Deploy Terraform provider version 0.13 or newer.
+The Space ID per Terraform resource feature is available now in Octopus Deploy Terraform provider version 0.13 or newer.
 
 ## Conclusion
 
-Updating the Octopus Deploy Terraform provider from a spaces per provider configuration to a Space ID per resource has improved usability and flexibility.
+Updating the Octopus Deploy Terraform provider from a spaces per provider configuration to a Space ID per Terraform resource has improved usability and flexibility.
 
 Before, managing resources in different spaces was tricky. You needed to create separate provider configurations for each space. Now, it's much simpler. You can assign a space to each resource individually without complex configurations. This change gives you more control and makes the process easier.
 
