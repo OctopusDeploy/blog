@@ -1,11 +1,11 @@
 ---
-title: Terraform spaces per resource
+title: Space IDs for Terraform resources
 description: Learn about our new spaces support on resources for the Octopus Terraform provider.
 author: domenic.simone@octopus.com
 visibility: private
 published: 2023-11-20-1400
-metaImage:
-bannerImage:
+metaImage: blogimage-terraformspacesscopedperresource-2023.png
+bannerImage: blogimage-terraformspacesscopedperresource-2023.png
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags:
