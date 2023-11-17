@@ -14,9 +14,9 @@ tags:
   - Configuration as Code
 ---
 
-Until now, the Octopus Deploy Terraform provider had spaces scoped per provider configuration. This caused hurdles when creating resources across multiple spaces. 
+Until now, the Octopus Deploy Terraform provider had a single space per provider configuration. This caused hurdles when creating resources across multiple spaces. 
 
-We're pleased to announce we've addressed this issue. The Octopus Terraform provider now supports spaces scoped per resource.
+We're pleased to announce we've addressed this issue. The Octopus Terraform provider now supports Space IDs per resource.
 
 In this post, I explain why we made this change and how it makes your process easier.
 
@@ -58,9 +58,9 @@ resource "octopusdeploy_username_password_account" "account2" {
 
 ### Benefits of spaces per resource
 
-To improve your experience, we introduced the concept of a space per resource. This lets each resource explicitly specify the space where it should be created. If no space is set on the resource, we'll seamlessly revert to using the space defined at the provider level. 
+To improve your experience, we introduced the concept of a Space ID per resource. This lets each resource explicitly specify the space where it should be created. If no space is set on the resource, we'll seamlessly revert to using the space defined at the provider level. 
 
-Below you can see the same example from above, but now we're using the concept of space per resource for greater flexibility and control.
+Below you can see the same example from above, but now we're using the concept of Space ID per resource for greater flexibility and control.
 
 ```terraform
 provider "octopusdeploy" {
@@ -90,7 +90,7 @@ The spaces per resource feature is available now in Octopus Deploy Terraform pro
 
 ## Conclusion
 
-Updating the Octopus Deploy Terraform provider from spaces scoped per provider configuration to spaces scoped per resource has improved usability and flexibility.
+Updating the Octopus Deploy Terraform provider from a spaces per provider configuration to a Space ID per resource has improved usability and flexibility.
 
 Before, managing resources in different spaces was tricky. You needed to create separate provider configurations for each space. Now, it's much simpler. You can assign a space to each resource individually without complex configurations. This change gives you more control and makes the process easier.
 
