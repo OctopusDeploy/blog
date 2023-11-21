@@ -47,5 +47,9 @@ The reccomended approach by Azure is to migrate to using [Azure Cloud Services E
 
 Read the original [blog post here](https://octopus.com/blog/azure-management-certs) for background on this change.
 
-
 ## F#
+Running scripts with F# was originally added partly due to a large number of customer requests at the time. The reality is that as with F# itself, the hype never converted into adoption. 
+
+The tool through which we invoke our customer's F# scripts is not compatable with the .NET Core framework and since we are moving our tooling towards .NET Core, deprecating F# is the most practical option when considered alongside it's low uptake.
+
+We reccomend migrating any F# scripts to either one of our existing [built-in scripting options](https://octopus.com/docs/deployments/custom-scripts), or bundle and package up your scripts and invoke them directly on the target using something like the [F# interactive tool](https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/fsharp-interactive-options) either embeded as an addtional deployment package or pre-installed on your target. It is important to note that continuing to rely on your own F# scripts will require some changes to the way that they access Octopus variables as none of the [utiity methods](https://octopus.com/docs/deployments/custom-scripts/using-variables-in-scripts) will be automatically available.
