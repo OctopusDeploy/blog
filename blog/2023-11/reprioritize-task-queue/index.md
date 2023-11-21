@@ -2,8 +2,8 @@
 title: Reprioritizing the task queue
 description: Learn about our new feature that lets you reprioritize the task queue in Octopus.
 author: ian.khor@octopus.com
-visibility: private
-published: 2023-11-22-1400
+visibility: public
+published: 2023-11-27-1400
 metaImage: blogimage-reprioritizetaskqueue-2022.png
 bannerImage: blogimage-reprioritizetaskqueue-2022.png
 bannerImageAlt: Stylized Octopus task queue with an item being moved to number one position.
@@ -12,7 +12,7 @@ tags:
   - Product
 ---
 
-The Octopus task queue operates on a first in, first out basis. There are many types of tasks in Octopus, like deployments, runbacks, and system tasks. The task queue works at the instance level and each task needs to be complete before the next can begin. The task queue and task cap ensure you can view all the tasks running on the instance and know the limit on the number of tasks.
+The Octopus task queue operates on a first in, first out basis. There are many types of tasks in Octopus, like deployments, runbooks, and system tasks. The task queue works at the instance level and each task needs to be complete before the next can begin. The task queue and task cap ensure you can view all the tasks running on the instance and know the limit on the number of tasks.
 
 We had feedback that people sometimes need to be able to elevate critical tasks over less important ones. Examples of critical tasks include hotfixes, production deployments, or runbooks that need to start before anything else in the queue.
 
@@ -52,6 +52,8 @@ The task will then move to the top of the queue and will run next after the task
 
 It's now easy to reprioritize the task queue. This gives you flexibility to manage your task queue and run critical tasks first. 
 
-We'd love your feedback on this feature as we continue to refine it. If you're an Octopus Cloud or Server customer, this is available from 2023.4.6612 onwards.
+If you're an Octopus Cloud or Server customer, this feature is available from 2023.4.6612 onwards.
+
+If you have any feedback on this feature as we continue to refine it, please leave your comments below.
 
 Happy deployments!
