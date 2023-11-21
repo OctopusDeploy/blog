@@ -1,6 +1,6 @@
 ---
-title: Azure Cloud Services Deprecation
-description: Azure will shortly be shutting down support for running Azure Cloud Services (Classic) which means it will also no longer be a viable Octopus Target
+title: Deprecations Coming in 2024.1
+description: Octopus Deploy will be using the first release of 2024 to perform some spring cleaning and deprecate some outdated features
 author: robert.erez@octopus.com
 visibility: public
 published: 2026-06-05-1400
@@ -18,7 +18,7 @@ The upcoming Octopus Server `2024.1` release is shaping up to contain a series o
 This post summarizes what changes to expect in future releases of Octopus Server.
 
 ## Windows Server 2003 Targets
-Although the latest version of [Tentacle](https://octopus.com/docs/infrastructure/deployment-targets/tentacle/windows/requirements#windows-server) has a minumum Windows requirement of Server 2012, we suprisingly still support workloads to legacy Tentacle agents running on Windows Server 2003. In order to modernise our execution engine we are starting to realign our supported platforms to those supported by the vendor themselves. 
+Although the latest version of [Tentacle](https://octopus.com/docs/infrastructure/deployment-targets/tentacle/windows/requirements#windows-server) has a minumum Windows requirement of Server 2012, we suprisingly still support workloads to legacy Tentacle agents running on Windows Server 2003. In order to modernise our execution engine we are beginning to realign our supported platforms to those supported by the vendor themselves. 
 
 Our first step in that direction is the dropping of the support for running workloads on Windows Server 2003 Targets and Workers.
 
@@ -53,3 +53,8 @@ Running scripts with F# was originally added partly due to a large number of cus
 The tool through which we invoke our customer's F# scripts is not compatable with the .NET Core framework and since we are moving our tooling towards .NET Core, deprecating F# is the most practical option when considered alongside it's low uptake.
 
 We reccomend migrating any F# scripts to either one of our existing [built-in scripting options](https://octopus.com/docs/deployments/custom-scripts), or bundle and package up your scripts and invoke them directly on the target using something like the [F# interactive tool](https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/fsharp-interactive-options) either embeded as an addtional deployment package or pre-installed on your target. It is important to note that continuing to rely on your own F# scripts will require some changes to the way that they access Octopus variables as none of the [utiity methods](https://octopus.com/docs/deployments/custom-scripts/using-variables-in-scripts) will be automatically available.
+
+## Future Deprecations
+* Windows Server 2008 is in our sights for deprecation in 2025. This year we will begin introducing some early in-app warnings to provid customers ample warning.
+* ScriptCS
+* OctoCLI
