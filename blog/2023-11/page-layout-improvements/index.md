@@ -9,10 +9,8 @@ bannerImage:
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags: 
-  - tag
+  - Product
 ---
-
-See https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags,
 
 We have been working towards improving our user experience at Octopus Deploy. Specifically addressing feedback about our interface looking “messy” and “hard to navigate”.  Addressing these concerns requires a layout that presents information in an easy-to-read structure.
 
