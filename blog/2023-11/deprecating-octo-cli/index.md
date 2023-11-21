@@ -18,7 +18,7 @@ It's now time to retire the Octo CLI. In this post I'll explain why we're deprec
 
 ## What's wrong with the Octopus CLI (octo)
 
-John says it best in his [state of the Octopus CLI](https://octopus.com/blog/building-octopus-cli-vnext) section from his blog post. The bottom line is that it has served it's time and we'll no longer be providing feature or security updates to the Octo CLI.
+John says it best in his [state of the Octopus CLI](https://octopus.com/blog/building-octopus-cli-vnext) section from his blog post. The bottom line is that it's limitations have required us to rebuild a cli for more modern workflows. As such we will no longer be providing feature or security updates to the Octo CLI.
 
 ## What's new in the Octopus CLI
 
