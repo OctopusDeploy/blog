@@ -14,10 +14,10 @@ tags:
 
 See https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags,
 
-We have been working towards improving our user experience at Octopus Deploy, specifically addressing feedback around our interface looking “messy” and “hard to navigate”. To help address these concerns we needed to provide a layout that better articulated the information on the page. 
+We have been working towards improving our user experience at Octopus Deploy. Specifically addressing feedback about our interface looking “messy” and “hard to navigate”.  Addressing these concerns requires a layout that presents information in an easy-to-read format.
 
 ## Page Layouts
-Looking at our project page layout we identified a couple key elements that needed improving. In the image below the highlighted areas is where we placed our focus. These areas contained our page headings and breadcrumbs which help users understand where they are located within the application and how to get back. 
+We began by looking at our project page layouts. Here we identified a couple of key elements that needed improving. In the image below the highlighted areas is where we placed our focus. These areas contained our page headings and breadcrumbs. Page headings and breadcrumbs are important for understanding your location in the app.
 
 image 1 of existing layout goes here
 image 2 of existing layout goes here
