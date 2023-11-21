@@ -32,7 +32,9 @@ We intend to surface deprecation warnings within both the CLI tool and Octopus p
 
 ## Migrating from the Octo CLI
 
-The new Octopus CLI was not designed as a drop in replacement, but most of the functionality provided by the Octo CLI is now supported. We recommend making the swap to the new Octopus CLI as soon as practical to enjoy new improvements as early as possible.
+The new Octopus CLI was not designed as a drop in replacement, but most of the functionality provided by the Octo CLI is now supported.
+
+Our public APIs are unlikely to undergo any large changes, so the Octo CLI will continue to work in your existing workflows for the foreseeable future. We recommend making the swap to the new Octopus CLI as soon as practical to enjoy new improvements as they become available.
 
 If you currently rely on functionality that does not have an equivalent in the new CLI then please create an [issue](https://github.com/OctopusDeploy/cli/issues) on our GitHub repository or reach out in our [community Slack](https://oc.to/CommunitySlack).
 
