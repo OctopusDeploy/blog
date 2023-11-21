@@ -18,7 +18,7 @@ It's now time to retire the Octo CLI. In this post I'll explain why we're deprec
 
 ## What's wrong with the Octopus CLI (octo)
 
-John says it best in his [state of the Octopus CLI](https://octopus.com/blog/building-octopus-cli-vnext) section from his blog post, but the bottom line is that it has served it's time and we'll no longer be providing feature or security updates to the Octo CLI.
+John says it best in his [state of the Octopus CLI](https://octopus.com/blog/building-octopus-cli-vnext) section from his blog post. The bottom line is that it has served it's time and we'll no longer be providing feature or security updates to the Octo CLI.
 
 ## What's new in the Octopus CLI
 
@@ -28,13 +28,13 @@ Since the announcement last year we've been busy adding features to the CLI. Tak
 
 We don't yet have a hard date set to remove the Octo CLI, but rest assured that it will not be a surprise.
 
-We intend to surface deprecation warnings within both the CLI tool and Octopus portal at least 12 months prior to it's removal.
+We intend to surface deprecation warnings within both the CLI tool and Octopus portal at least 12 months before it's removal.
 
 ## Migrating from the Octo CLI
 
-The new Octopus CLI was not designed as a drop in replacement, but most of the functionality provided by the Octo CLI is now supported. We recommend making the swap to the new Octopus CLI as soon as practical to benefit from new improvements as early as possible.
+The new Octopus CLI was not designed as a drop in replacement, but most of the functionality provided by the Octo CLI is now supported. We recommend making the swap to the new Octopus CLI as soon as practical to enjoy new improvements as early as possible.
 
-If you currently rely on functionality that does not have an equivalent in the new CLI then please create an [issue](https://github.com/OctopusDeploy/cli/issues) on our GitHub repository or reach out in our [community Slack](https://oc.to/CommunitySlack) so we can explore options.
+If you currently rely on functionality that does not have an equivalent in the new CLI then please create an [issue](https://github.com/OctopusDeploy/cli/issues) on our GitHub repository or reach out in our [community Slack](https://oc.to/CommunitySlack).
 
 ## Conclusion
 
