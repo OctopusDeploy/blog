@@ -39,11 +39,7 @@ The benefits of this change provides an easier to understand Octopus Deploy UI. 
 Insights landing page using the new layout and illustrations.
 
 ## Continuous Improvement
-We are continuously making improvements to our user experience at Octopus Deploy. If you are interested in giving feedback about our experience or would like a sneak peak of upcoming user experience changes you are most welcome to book a time in us here. [https://calendly.com/emily-pearce-1/octopus-deploy-user-experience-research]. 
-
-## Learn more
-
-- [link](https://www.example.com/resource)
+We are continuously making improvements to our user experience at Octopus Deploy. If you are interested in giving feedback about our experience or would like a sneak peak of upcoming user experience changes you are most welcome to [book in a time](https://calendly.com/emily-pearce-1/octopus-deploy-user-experience-research). 
 
 
 
