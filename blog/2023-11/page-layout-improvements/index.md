@@ -17,8 +17,7 @@ We have been working towards improving our user experience at Octopus Deploy. Sp
 ## Page Layouts
 We began by looking at our project page layouts. Here we identified a couple of key elements that needed improving. In the image below the highlighted areas is where we placed our focus. These areas contained our page headings and breadcrumbs. Page headings and breadcrumbs are important for understanding your location in the app.
 
-image 1 of existing layout goes here
-image 2 of existing layout goes here
+image  of existing layout goes here
 
 Once we arrived at a design that worked well for projects, we then took this layout across the entire app. See new layout below.
 
