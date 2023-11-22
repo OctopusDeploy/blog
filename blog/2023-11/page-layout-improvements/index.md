@@ -24,7 +24,7 @@ Once we arrived at a design that worked well for projects, we then took this lay
 image of new layout goes here
 
 ### Benefits of this change
-The benefits of this change provides an easier-to-understand Octopus Deploy interface. The headings now have an appropriate size and placement relative to the page content. The breadcrumbs now have appropriate visual treatment and their behaviour is applied consistently. By placing the create release button in the top right corner near other page actions is a more intuitive location. Customers were having trouble remembering where the create release button location. 
+The benefits of this change provides an easier-to-understand Octopus Deploy interface. The headings now have an appropriate size and placement relative to the page content. The breadcrumbs now have appropriate visual treatment and their behaviour is applied consistently. By placing the create release button in the top right corner near other page actions is a more intuitive location. Customers were having trouble remembering the location of create release button. 
 
 
 ### A few other notable improvements
