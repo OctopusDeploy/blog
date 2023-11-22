@@ -21,7 +21,8 @@ We addressed this with a new feature that lets you reprioritize tasks on the **T
 In this post, I show you how to reprioritize your task queue at the space level. I explain how to do this on the **Tasks** overview dashboard and the Tasks page for a particular release.
 
 ## Moving a queued task to the top from the Tasks overview dashboard
-[GIF here]
+
+![Moving an important task to the top of the task queue using the 'Move to Top' button](tasks-move-to-top.gif)
 
 You can reprioritize the task queue on the space-level **Tasks** overview dashboard. 
 
@@ -35,7 +36,8 @@ The task will then move to the top of the queue and will run next after the task
 
 
 ## Moving a queued task to the top from the Tasks page for a particular release
-[GIF here]
+
+![Moving an important task to the top of the task queue on the task page for a specific project using the 'Move to Top' button](task-move-to-top.gif)
 
 You can also reprioritize the task queue on the **Tasks** page for a specific release. 
 
