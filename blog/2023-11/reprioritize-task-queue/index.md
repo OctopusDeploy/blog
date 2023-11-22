@@ -29,13 +29,13 @@ You can reprioritize the task queue on the space-level **Tasks** overview dashbo
 To move a queued task to run next:
 
 1. Find the queued task you'd like to run next.
-1. Select the burger menu on the right of the selected task.
-1. Click **Move to top**.
+1. Select the burger menu (3 vertical dots) on the right of the selected task.
+1. Click **Move to Top**.
 
-The task will then move to the top of the queue and will run next after the task that's running. This won't affect a task that's already in progress. This only changes the order of tasks not yet started.
+The task will then move to the top of the queue and run next, after the task that's running. This won't affect a task that's already in progress. This only changes the order of tasks not yet started.
 
 
-## Moving a queued task to the top from the Tasks page for a particular release
+## Moving a queued task to the top from the Tasks page for a release
 
 ![Moving an important task to the top of the task queue on the task page for a specific project using the 'Move to Top' button](task-move-to-top.gif)
 
@@ -46,9 +46,9 @@ To move a queued task to run next:
 - Find the task in the release for a project that you want to run next.
 - Navigate to **Projects** in the top navigation bar.
 - Go to **Releases** on the left hand side of the page.
-- Click **Move to top** in the top right corner of the screen.
+- Click **MOVE TO TOP** in the top right corner.
 
-The task will then move to the top of the queue and will run next after the task that's running. This won't affect a task that's already in progress. This only changes the order of tasks not yet started.
+The task will then move to the top of the queue and run next, after the task that's running. This won't affect a task that's already in progress. This only changes the order of tasks not yet started.
 
 ## Conclusion
 
