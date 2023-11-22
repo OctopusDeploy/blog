@@ -25,7 +25,7 @@ Our first step in that direction is the dropping of the support for running work
 For Windows Machines running Windows Server 2012 and below, this change upgrades the minimum requirement for .NET 462 to be installed. Note that this is not a requirement for later Windows versions or Linux targets as modern platforms instead utilize .NET Core.
 
 ### What to expect
-As we upgrade our tooling to use .NET462, machines running Windows Server 2012 and earlier will be unable to run standard workloads unless they have installed .NET462 or later. Health checks will provide a warning if this scenario is detected. Due to the inability to run .NET462 on Windows Server 2003, these targets will effectively be unable to run any standard Octopus step unless the process happens to be using Raw Scripting.
+As we upgrade our tooling to use .NET462 for targeting legacy Operating Systems, machines running Windows Server 2012 and earlier will be unable to run standard workloads unless they have installed the .NET462 Framework or later. Health checks will provide a warning if this scenario is detected. Due to the inability to run .NET462 on Windows Server 2003, these targets will effectively be unable to run any standard Octopus steps unless the process happens to be using [Raw Scripting](https://octopus.com/docs/deployments/custom-scripts/raw-scripting).
 
 Read the [blog post here](https://octopus.com/blog/deprecating-win2003) for more background on this change.
 
@@ -36,6 +36,9 @@ To simplify our codebase and improve stability, the trade off in supporting both
 
 If you are running mono on your Linux targets today, the migration process is likely to be nothing more involved than updating a radio-box on your SSH Target in Octopus Dpeloy, with some [slight caveats](https://octopus.com/blog/deprecating-mono#impacts) in regards to the platforms that will continue to be supported.
 
+### What to expect
+Attempting to run a step using an SSH Target that has been configured to use the `Calamari on Mono` Target Runtime will fail to execute. The option, while still visible will be read-only and no further targets of this type will be able to be created.
+
 Read the [blog post here](https://octopus.com/blog/deprecating-mono) for more background on this change.
 
 ## Azure Cloud Services
@@ -43,10 +46,13 @@ One of the first cloud products provided that Octopus Deploy provided first clas
 
 Since that time, Azure have introduced dozens of new products and capabilities, many of which Octopus followed up with relevant built-in capabilities. In the meantime however, Azure have announced the sunsetting of the original Cloud Service resource, renamed Cloud Services Classic, with the [final retirement date set as August 31, 2024](https://learn.microsoft.com/en-us/lifecycle/products/azure-cloud-services-classic). In a little over 6 months teams, that are still relying on this cloud service will be unable to deploy to it at all, with Octopus Deploy or otherwise.
 
-In preparation for this, over the next six months we will begin to gradually deprecate our support for Azure Cloud Servie Target, Azure Cloud Service Step or Management Certificate account type in new versions of Octopus Server. These Management Certificates have since bee repleased by Azure by the Resource Service authentication model.
+In preparation for this, over the next six months we will begin to gradually deprecate our support for Azure Cloud Service Target, Azure Cloud Service Step or Management Certificate account type in new versions of Octopus Server. These Management Certificates have since bee repleased by Azure by the Resource Service authentication model.
 
-### Migration
+### Migration options
 The reccomended approach by Azure is to migrate to using [Azure Cloud Services Extended Support](https://learn.microsoft.com/en-us/azure/cloud-services-extended-support/overview). While this will allow you to continue using your existing application code with minimal changes, the changes require to the deployment model and based on the usage and likely temporary nature means that Octopus is unlikely to support it with the same first-class level that it did for the Clasic services. 
+
+### What to expect
+The Azure Cloud Service Target, Azure Cloud Service Step and Management Certificates will no longer be able to be created and will be made read only. Any usage of these will result in in-app warnings.
 
 Read the original [blog post here](https://octopus.com/blog/azure-management-certs) for background on this change.
 
@@ -57,7 +63,18 @@ The tool through which we invoke our customer's F# scripts is not compatable wit
 
 We reccomend migrating any F# scripts to either one of our existing [built-in scripting options](https://octopus.com/docs/deployments/custom-scripts), or bundle and package up your scripts and invoke them directly on the target using something like the [F# interactive tool](https://learn.microsoft.com/en-us/dotnet/fsharp/language-reference/fsharp-interactive-options) either embeded as an addtional deployment package or pre-installed on your target. It is important to note that continuing to rely on your own F# scripts will require some changes to the way that they access Octopus variables as none of the [utiity methods](https://octopus.com/docs/deployments/custom-scripts/using-variables-in-scripts) will be automatically available.
 
+### What to expect
+[Any task](https://octopus.com/docs/deployments/custom-scripts#how-to-use-custom-scripts) that utilizes F#, either as a script step or a pre/post deployment script will result in warnings added to the deployment task and F# will be removed as a scripting option. By `2024.3` these tasks will instead fail immediately.
+
 ## Future Deprecations
+Additional updates are planned in the near term future that may result in breaking changes for some users.
+
+### Windows Server 2008
+For some of the same reasons that we are deprecating support for Windows Server 2003, our plans are to drop support for Windows Server 2008 in the `2025.1` release in 12 months time. 
+
+The extended support for the Windows Server 2008 family (Standard and R2) were flagged as end of life by [Microsoft in January 2020](https://learn.microsoft.com/en-us/troubleshoot/windows-server/windows-server-eos-faq/end-of-support-windows-server-2008-2008r2). Although it is still in use
+
+Over the next 12 months we will begin
 * Windows Server 2008 is in our sights for deprecation in 2025. This year we will begin introducing some early in-app warnings to provid customers ample warning.
 * ScriptCS
 * OctoCLI
