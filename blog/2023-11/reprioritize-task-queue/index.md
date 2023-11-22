@@ -16,7 +16,7 @@ The Octopus task queue operates on a first in, first out basis. There are many t
 
 We had feedback that people sometimes need to be able to elevate critical tasks over less important ones. Examples of critical tasks include hotfixes, production deployments, or runbooks that need to start before anything else in the queue.
 
-We addressed this with a new feature that lets you reprioritize tasks on the **Tasks** overview dashboard and the **Deployments** page for a specific release in a project.
+We addressed this with a new feature that lets you reprioritize tasks on the **Tasks** overview dashboard and the **Releases** page for a specific release in a project.
 
 In this post, I show you how to reprioritize your task queue at the space level. I explain how to do this on the **Tasks** overview dashboard and the Tasks page for a particular release.
 
