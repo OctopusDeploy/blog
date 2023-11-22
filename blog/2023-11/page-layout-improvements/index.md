@@ -28,14 +28,11 @@ The benefits of this change provides an easier-to-understand Octopus Deploy inte
 
 
 ### A few other notable improvements
-*Improved experience for first time users through consistant layouts & illustrations.
-*Loading state animations are now 
+*Loading state animations have been simplified
 *Menu interaction states are clearer
 *Simplified project navigation by removing headings and updating labels
 
-Insights landing page using the new layout and illustrations.
-
-image of before after of the insights landing page
+image of before after of 
 
 ## Continuous Improvement
 We continue to make improvements to our user experience at Octopus Deploy. Keen to share your feedback? Or would like a sneak peek of upcoming user experience changes you are most welcome to [book a time with us](https://calendly.com/emily-pearce-1/octopus-deploy-user-experience-research). 
