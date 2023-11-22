@@ -24,6 +24,9 @@ Our first step in that direction is the dropping of the support for running work
 
 For Windows Machines running Windows Server 2012 and below, this change upgrades the minimum requirement for .NET 462 to be installed. Note that this is not a requirement for later Windows versions or Linux targets as modern platforms instead utilize .NET Core.
 
+### What to expect
+As we upgrade our tooling to use .NET462, machines running Windows Server 2012 and earlier will be unable to run standard workloads unless they have installed .NET462 or later. Health checks will provide a warning if this scenario is detected. Due to the inability to run .NET462 on Windows Server 2003, these targets will effectively be unable to run any standard Octopus step unless the process happens to be using Raw Scripting.
+
 Read the [blog post here](https://octopus.com/blog/deprecating-win2003) for more background on this change.
 
 ## Mono
