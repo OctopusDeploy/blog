@@ -29,7 +29,7 @@ The benefits of this change provides an easier-to-understand Octopus Deploy inte
 
 
 ### A few other notable improvements
-- Loading state animations have been simplified
+- When moving between pages, loading animations have been simplified
 - Menu interaction states are clearer
 - Simplified project navigation by removing headings and updating labels
 
