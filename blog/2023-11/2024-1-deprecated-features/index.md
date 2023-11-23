@@ -59,7 +59,7 @@ The Azure Cloud Service Target, Azure Cloud Service Step and Management Certific
 Read the original [blog post here](https://octopus.com/blog/azure-management-certs) for background on this change.
 
 ### F#
-Running scripts with F# was originally added partly due to a large number of customer requests at the time. The reality is that as with F# itself, the hype never converted into adoption. 
+Running scripts with F# was originally added partly due to many customer requests at the time. The reality is that as with F# itself, the hype never converted into adoption. 
 
 The tool through which we invoke our customer's F# scripts is not compatible with the .NET Core framework and since we are moving our tooling towards .NET Core, deprecating F# is the most practical option when considered alongside it's low uptake.
 
@@ -69,19 +69,19 @@ We recommend migrating any F# scripts to either one of our existing [built-in sc
 [Any task](https://octopus.com/docs/deployments/custom-scripts#how-to-use-custom-scripts) that utilizes F#, either as a script step or a pre/post deployment script will result in warnings added to the deployment task and F# will be removed as a scripting option. By `2024.3` these tasks will instead fail immediately.
 
 ## Future Deprecations
-Additional updates are planned in the near term future that may result in breaking changes for some users.
+Additional updates are planned in the near-term future that may result in breaking changes for some users.
 
 #### Windows Server 2008
 For some of the [same reasons](https://octopus.com/blog/deprecating-win2003) that we are deprecating support for Windows Server 2003, our plans are to drop support for Windows Server 2008 in the `2025.1` release in 12 months time. 
 
-The extended support for the Windows Server 2008 family (Standard and R2) were flagged as End of Life by [Microsoft in January 2020](https://learn.microsoft.com/en-us/troubleshoot/windows-server/windows-server-eos-faq/end-of-support-windows-server-2008-2008r2) and we intend to align our supported platform list with those that are supported by the OS vendors themselves. Remaining on unsupported platforms introduces risks to our customers in terms on unpatched security vulnerabilities and we want to encourage the migration to more modern operating systems.
+The extended support for the Windows Server 2008 family (Standard and R2) were flagged as End of Life by [Microsoft in January 2020](https://learn.microsoft.com/en-us/troubleshoot/windows-server/windows-server-eos-faq/end-of-support-windows-server-2008-2008r2) and we are aiming for our supported platforms to align with those that are supported by the OS vendors themselves. Remaining on unsupported platforms introduces risks to our customers in terms on unpatched security vulnerabilities and we want to encourage the migration to more modern operating systems.
 
 To provide as much lead time as possible for customers, we will start to introduce warnings in Octopus Server `2024.1` when a task is being run against a Windows Server 2008 machine.
 
 Rest assured that before any final removal of support, we will provide more details about this change and any other migration options available.
 
 #### ScriptCS
-As noted [earlier this year](https://octopus.com/blog/rfc-migrate-scriptcs-dotnet-script), we are moving the C# script execution engine from using `ScriptCS` to `dotnet script`. 
+As noted [earlier this year](https://octopus.com/blog/rfc-migrate-scriptcs-dotnet-script), we are moving the C# script execution engine, from using `ScriptCS` to `dotnet script`. 
 
 We are currently midway through this process so temporarily support both mechanisms, controllable via a project variable. The behaviour currently defaults to the existing `ScriptCS` library to provide an opportunity for customers to opt into the modern approach as it may require updates to some scripts as outlined in the blog post. Our goal is to make the swap the default engine used by `2024.3` and then remove ScriptCS entirely by `2025.1`.
 
