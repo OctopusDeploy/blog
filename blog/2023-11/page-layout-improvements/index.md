@@ -4,15 +4,15 @@ description: A walkthrough of the changes we have made to page layout and other 
 author: emily.pearce@octopus.com
 visibility: private
 published: 3020-01-01-1400
-metaImage: 
-bannerImage: 
+metaImage: blog-improved-page-layouts.png
+bannerImage: blog-improved-page-layouts.png
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
 tags: 
   - Product
 ---
 
-We have been working towards improving our user experience at Octopus Deploy. Specifically addressing feedback about our interface looking “messy” and “hard to navigate”.  AAddressing these concerns requires a few approaches. This change focuses on a layout that presents information in an easier-to-read structure.
+We have been working towards improving our user experience at Octopus Deploy. Specifically addressing feedback about our interface looking “messy” and “hard to navigate”.  Addressing these concerns requires a few approaches. This change focuses on a layout that presents information in an easier-to-read structure.
 
 ## Page Layouts
 We began by looking at our project page layouts. Here we identified a couple of key elements that needed improving. In the image below the highlighted areas is where we placed our focus. These areas contained our page headings and breadcrumbs. Page headings and breadcrumbs are important for understanding your location in the app. These elements also set the stage for the page layout.
