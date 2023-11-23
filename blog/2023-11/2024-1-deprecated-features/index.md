@@ -71,7 +71,7 @@ We recommend migrating any F# scripts to either one of our existing [built-in sc
 ## Future Deprecations
 Additional updates are planned in the near future that may result in breaking changes for some users.
 
-#### Windows Server 2008
+### Windows Server 2008
 For some of the [same reasons](https://octopus.com/blog/deprecating-win2003) that we are deprecating support for Windows Server 2003, we plan to drop support for Windows Server 2008 in the `2025.1` release in 12 months. 
 
 The extended support for the Windows Server 2008 family (Standard and R2) were flagged as End of Life by [Microsoft in January 2020](https://learn.microsoft.com/en-us/troubleshoot/windows-server/windows-server-eos-faq/end-of-support-windows-server-2008-2008r2) and we are aiming for our supported platforms to align with those that are supported by the platorm vendors themselves. Remaining on unsupported platforms introduces risks to our customers in terms on unpatched security vulnerabilities and we want to encourage the migration to more modern operating systems.
@@ -80,12 +80,12 @@ To provide as much lead time as possible for customers, we will start to introdu
 
 Rest assured that before any final removal of support, we will provide more details about this change and any other migration options available.
 
-#### ScriptCS
+### ScriptCS
 As noted [earlier this year](https://octopus.com/blog/rfc-migrate-scriptcs-dotnet-script), we are moving the C# script execution engine, from using `ScriptCS` to `dotnet script`. 
 
 We are currently midway through this process so we temporarily support both mechanisms, which are controllable via a project variable. The behaviour currently defaults to the existing `ScriptCS` library to allow customers to opt into the modern approach as it may require updates to some scripts as outlined in the blog post. We aim to make the swap the default engine used by `2024.3` and then remove ScriptCS entirely by `2025.1`.
 
-#### OctoCLI
+### OctoCLI
 While not directly tied to a specific Octopus Server version, we have [redesigned the CLI tool](https://octopus.com/blog/building-octopus-cli-vnext) used to interact with your Octopus Server. This redesigned tool provides a richer and interactive experience that helps users fall into the pit of success. 
 
 Although the legacy cli tool is no longer being updated and will eventually be removed from the download page, we design our API to remain backwards compatible as possible so do not expect any usages of the existing cli tool to run into any problems in the foreseeable future.
