@@ -70,11 +70,29 @@ We reccomend migrating any F# scripts to either one of our existing [built-in sc
 Additional updates are planned in the near term future that may result in breaking changes for some users.
 
 ### Windows Server 2008
-For some of the same reasons that we are deprecating support for Windows Server 2003, our plans are to drop support for Windows Server 2008 in the `2025.1` release in 12 months time. 
+For some of the [same reasons](https://octopus.com/blog/deprecating-win2003) that we are deprecating support for Windows Server 2003, our plans are to drop support for Windows Server 2008 in the `2025.1` release in 12 months time. 
 
-The extended support for the Windows Server 2008 family (Standard and R2) were flagged as end of life by [Microsoft in January 2020](https://learn.microsoft.com/en-us/troubleshoot/windows-server/windows-server-eos-faq/end-of-support-windows-server-2008-2008r2). Although it is still in use
+The extended support for the Windows Server 2008 family (Standard and R2) were flagged as end of life by [Microsoft in January 2020](https://learn.microsoft.com/en-us/troubleshoot/windows-server/windows-server-eos-faq/end-of-support-windows-server-2008-2008r2) and we intend to align our supported platforms with those that are supported by the OS vendors themselves. Remaining on unsupported platforms introduces risks to our customers in terms on unpatched security vulnerabilities and we want to encourage the migration to more modern supported operating systems.
 
-Over the next 12 months we will begin
-* Windows Server 2008 is in our sights for deprecation in 2025. This year we will begin introducing some early in-app warnings to provid customers ample warning.
-* ScriptCS
-* OctoCLI
+To provide as much lead time as possible for customers, we will start to introduce warnings in Octopus Server when a task is being run against a Windows Server 2008 machine.
+
+Rest assured that before any final dropping of support we will provide more details about what this may mean and any other migration options available.
+
+### ScriptCS
+As noted [earlier this year](https://octopus.com/blog/rfc-migrate-scriptcs-dotnet-script), we are moving the C# script execution engine from `ScriptCS` to `dotnet script`. 
+
+We are currently midway through this process and temporarily support both mechanisms, controllable via a project variable. The default is currently set to the existing `ScriptCS` library to provide an opportunity for customers to opt into the modern approach which comes with some minor breaking changes. Our goal is to make the swap the default engine used by `2024.3` and then remove ScriptCS entirely by `2025.1`.
+
+### OctoCLI
+While not directly tied to a specific Octopus Server version, we have [redesigned the CLI tool](https://octopus.com/blog/building-octopus-cli-vnext) used to interact with your Octopus Server. This redesigned tool provides a much richer and interactive experience that helps users fall into the pit of success. 
+
+Although the legacy cli tool is no longer being updated and will eventually be removed from the download page, we design our api to remain backwards compatable as possible and so do not expect any usages of the existing cli tool to run into any problems in the foreseeable future.
+
+## Summary
+As Octopus continues support the modern deployment scenarios that our customers are facing, we must continuously take stock of the features and platforms that we support. Sometimes the usage of a feature does not justify the maintenance burden in continuing to maintain and test it, and other times our hand is dealt for us by changes to third party vendors. 
+
+In all these cases, our goal is to be transparent about the future of our product and provide as much assistance as possible to our users through the relevant migration process.
+
+If any of these changes suprises or concerns you, please get in contact with our helpful support staff for more information.
+
+Happy Deployments!
