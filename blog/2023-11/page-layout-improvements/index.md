@@ -17,11 +17,12 @@ We have been working towards improving our user experience at Octopus Deploy. Sp
 ## Page Layouts
 We began by looking at our project page layouts. Here we identified a couple of key elements that needed improving. In the image below the highlighted areas is where we placed our focus. These areas contained our page headings and breadcrumbs. Page headings and breadcrumbs are important for understanding your location in the app. These elements also set the stage for the page layout.
 
-image  of existing layout goes here
+![Screen shot of Octopus Deploy project layouts before](projectprocesseditold.png)
 
 Once we arrived at a design that worked well for projects, we then took this layout across the entire app. See new layout below.
 
-image of new layout goes here
+![Screen shot of Octopus Deploy project layouts before](projectprocesseditnew.png)
+
 
 ### Benefits of this change
 The benefits of this change provides an easier-to-understand Octopus Deploy interface. The headings now have an appropriate size and placement relative to the page content. The breadcrumbs now have appropriate visual treatment and their behaviour is applied consistently. Customers were having trouble remembering the location of the create release button. By placing the button in the top right corner near other page actions the button is now intuitive to find.. 
