@@ -26,7 +26,7 @@ Since the announcement last year, we've been busy adding features to the new CLI
 
 ## What to expect next
 
-We haven't set a hard date to remove the Octo CLI, but it won't be a surprise. 
+We haven't set a hard date to remove the Octo CLI, but it won't be a surprise.
 
 We intend to surface deprecation warnings in both the CLI tool and the Octopus portal at least 12 months before it's removal.
 
@@ -45,6 +45,6 @@ If you currently rely on functionality that doesn't have an equivalent in the ne
 
 The Octo CLI has served us well for many years, but it's almost time to say goodbye.
 
-We want to continue making a CLI that customers love to use, so we'd be grateful for any feedback or suggestions through any of our channels.
+We want to continue making a CLI that customers love to use, so we'd be grateful for any feedback or suggestions. You can leave a comment below, contact us on [Community Slack](https://oc.to/CommunitySlack), or create an issue in [GitHub](https://github.com/OctopusDeploy/cli/issues).
 
 Happy deployments!
