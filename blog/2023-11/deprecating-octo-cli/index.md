@@ -4,9 +4,9 @@ description: Learn why Octopus is dropping support for the Octo CLI and what's n
 author: eddy.moulton@octopus.com
 visibility: public
 published: 2023-11-29-1400
-metaImage:
-bannerImage:
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-building-octopus-cli-vnext.png
+bannerImage: blogimage-building-octopus-cli-vnext.png
+bannerImageAlt: Desktop screen in the clouds with an Octopus Deploy logo in front of it.
 isFeatured: false
 tags:
   - Product
@@ -16,19 +16,19 @@ Late last year, we announced our new and improved Octopus command-line interface
 
 It's now time to retire the old Octo CLI (octo). In this post I explain why we're deprecating it and what you need to know for your integrations.
 
-## What's wrong with the Octo CLI?
+## Why we're deprecating the Octo CLI
 
 The Octo CLI has a range of limitations that you can read about in [John's blog post](https://octopus.com/blog/building-octopus-cli-vnext#the-state-of-the-octopus-cli-octo). These limitations mean we need to rebuild a CLI for more modern workflows. As such, we'll no longer be providing feature or security updates to the Octo CLI.
 
 ## What's new in the new Octopus CLI?
 
-Since the announcement last year, we've been busy adding features to the new CLI. Take a look at the [GitHub releases](https://github.com/OctopusDeploy/cli/releases) for a timeline of changes or skip straight to the [docs](https://octopus.com/docs/octopus-rest-api/cli) to see everything you can do with the CLI.
+Since the announcement last year, we've been busy adding features to the new CLI. Take a look at the [GitHub releases](https://github.com/OctopusDeploy/cli/releases) for a timeline of changes or skip straight to the [docs](https://octopus.com/docs/octopus-rest-api/cli) to see everything you can do with the new CLI.
 
 ## What to expect next
 
 We haven't set a hard date to remove the Octo CLI, but it won't be a surprise.
 
-We intend to surface deprecation warnings in both the CLI tool and the Octopus portal at least 12 months before it's removal.
+We intend to surface deprecation warnings in both the CLI tool and the Octopus portal at least 12 months before its removal.
 
 ## Migrating from the Octo CLI
 
