@@ -3,7 +3,7 @@ title: Inside DevOps with Anton Zagrebelny from Stigg
 description: A series where we share lessons learned from those on the frontlines of DevOps. This post features Anton Zagrebelny from Stigg.
 author: joanna.wyganowska@octopus.com
 visibility: public
-published: 2023-11-27-1400
+published: 2023-12-06-1400
 metaImage: blogimage-insidedevops-antonz-stigg-2023.png
 bannerImage: blogimage-insidedevops-antonz-stigg-2023.png
 bannerImageAlt: Photo of Anton Zagrebelny
@@ -58,5 +58,3 @@ To give you an example from [Stigg](https://www.stigg.io/), we invested in a Dev
 :::hint
 If you’d like to be featured in our series, [Inside DevOps](https://octopus.com/blog/tag/Inside%20DevOps), please reach out to [Joanna on LinkedIn](https://www.linkedin.com/in/joannawyganowska/) to set up a time for a quick chat.
 :::
-
-Happy deployments!
