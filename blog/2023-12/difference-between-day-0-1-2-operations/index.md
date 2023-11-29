@@ -91,9 +91,9 @@ Fret not - another day 0 is just on the horizon.
 
 ## Conclusion
 
-Weirdly, there's a perception that day 2 is where all an operations team's work takes place. (And if your organization has that perception, [it might be a sign your teams don't collaborate as well as they should](https://octopus.com/devops/culture/).) Operations should be ever-present throughout the entire deployment pipeline.
+Weirdly, there's a perception that day 2 is where all an operations team's work takes place (and if your organization has that perception, [it might be a sign your teams don't collaborate as well as they should](https://octopus.com/devops/culture/)). Operations should be ever-present throughout the entire deployment pipeline.
 
-As we talked about, operations teams can help keep ideas in check. They're important in tool discovery and discovering what developers need to make those ideas real. They're active during the deployment process and, finally, they're vital in the application's ongoing performance.
+As we talked about, operations teams can help keep ideas in check. They're important in tool discovery and finding out what developers need to make those ideas real. They're active during the deployment process and, finally, they're vital in the application's ongoing performance.
 
 Octopus believes good deployment tools should recognize and cater for the roles of operations in the pipeline. [Octopus's built-in Runbooks feature](https://octopus.com/features/runbooks) can help organizations automate many of the tasks we mentioned in this post, routine or otherwise.
 
