@@ -118,7 +118,7 @@ We aim to swap the default engine used by 2024.3 and then remove ScriptCS entire
 
 While not directly tied to a specific Octopus Server version, we've [redesigned the CLI tool](https://octopus.com/blog/building-octopus-cli-vnext) used to interact with your Octopus Server. The new tool provides a richer and more interactive experience that helps you fall into the pit of success. 
 
-Although  we're no longer updating the old CLI, and we'll eventually remove it from our [Downloads page](https://octopus.com/downloads), we designed our API to remain backwards compatible. This means we don't expect the use of the old CLI to cause any problems for the foreseeable future.
+Although  we're [no longer updating the old CLI](https://octopus.com/blog/deprecating-octo-cli), and we'll eventually remove it from our [Downloads page](https://octopus.com/downloads), we designed our API to remain backwards compatible. This means we don't expect the use of the old CLI to cause any problems for the foreseeable future.
 
 ## Summary
 
