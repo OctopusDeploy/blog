@@ -4,10 +4,9 @@ description: Octopus will use the first release of 2024 to do some spring cleani
 author: robert.erez@octopus.com
 visibility: public
 published: 2023-12-04-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
-isFeatured: false
+metaImage: img-blog-unsupporteddeploymenttargetincwindows-2023.png
+bannerImage: img-blog-unsupporteddeploymenttargetincwindows-2023.png
+bannerImageAlt: Silhouette of a woman wearing headphones with a mic in an Octopus branded tee holding a tablet.
 tags: 
 - Product
 - Azure
