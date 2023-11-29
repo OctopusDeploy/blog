@@ -62,7 +62,7 @@ However, Azure has announced the sunsetting of the original Cloud Service resour
 
 Over the next 6 months, we'll gradually remove our support in the new versions of Octopus Server for:
 
-- Azure Cloud Service Target
+- Azure Cloud Service target
 - Azure Cloud Service Step
 - Management Certificate account type
 
