@@ -1,6 +1,6 @@
 ---
 title: Deprecations coming in 2024
-description: Octopus will use the first release of 2024 to do some spring cleaning and deprecate outdated features. Learn which ones and why.
+description: Octopus will do some spring cleaning in 2024 and drop support for outdated features. Learn which ones and why.
 author: robert.erez@octopus.com
 visibility: public
 published: 2023-12-04-1400
@@ -12,11 +12,11 @@ tags:
 - Azure
 ---
 
-In the Octopus Server 2024.1 release, we'll make changes to modernize the feature set by beginning to drop support for some heritage features.
+In 2024, we'll be making changes to modernize the Octopus feature set by dropping support for some heritage features.
 
 This post summarizes changes in future releases of Octopus Server.
 
-## Deprecations and changes in 2024.1
+## Deprecations and changes in 2024
 
 ### Windows Server 2003 targets
 
@@ -121,10 +121,10 @@ Although  we're [no longer updating the old CLI](https://octopus.com/blog/deprec
 
 ## Summary
 
-As Octopus works to make your modern deployment scenarios simple, we must continuously consider the features and platforms we support. Sometimes the use of a feature doesn't justify the time to maintain and test it. Other times, changes by third-party vendors make the decision for us. 
+As Octopus continues to make your modern deployment scenarios simple, we must regularly consider the features and platforms we support. Sometimes the use of a feature doesn't justify the time to maintain and test it. Other times, changes by third-party vendors make the decision for us. 
 
 Our goal is always to be transparent about the future of our product and help you as much as possible with changes and migrations.
 
-If any of the changes mentioned in this post surprise or concern you, please contact our helpful [support team](mailto:support@octopus.com).
+If any of the updates mentioned in this post surprise or concern you, please contact our helpful [support team](mailto:support@octopus.com).
 
 Happy deployments!
