@@ -71,7 +71,7 @@ Over the next 6 months, we'll gradually remove our support in the new versions o
 Azure recommends migrating to [Azure Cloud Services extended support](https://learn.microsoft.com/en-us/azure/cloud-services-extended-support/overview). This will let you continue using your existing application code with minimal changes, but has other implications for Octopus. Because of changes to the deployment model, the use, and likely temporary nature, Octopus is unlikely to support this like it did the Classic services.
 
 #### What to expect
-You'll no longer be able to create the Azure Cloud Service Target, Azure Cloud Service Step, and Management Certificates. They'll be read-only. If you use any of these, you'll see a warning in Octopus.
+You'll no longer be able to create the Azure Cloud Service target, Azure Cloud Service step, and Management Certificates. They'll be read-only. If you use any of these, you'll see a warning in Octopus.
 
 To learn more, read our original post about this change, [What does Microsoft deprecating Azure Service Management APIs mean for Octopus users?](https://octopus.com/blog/azure-management-certs)
 
