@@ -54,7 +54,7 @@ For more information about this change, please read our post, [Deprecating Mono]
 
 ### Azure Cloud Services
 
-In 2018, Octopus provided built-in support for one of the first cloud products, [Azure Cloud Services](https://octopus.com/blog/octopus-azure-deployments). 
+In 2013, Octopus provided built-in support for one of the first cloud products, [Azure Cloud Services](https://octopus.com/blog/octopus-azure-deployments). 
 
 Since then, Azure has introduced dozens of new products and capabilities. And Octopus has often followed up with relevant built-in capabilities. 
 
