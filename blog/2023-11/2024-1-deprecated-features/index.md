@@ -7,6 +7,7 @@ published: 2023-12-04-1400
 metaImage: img-blog-unsupporteddeploymenttargetincwindows-2023.png
 bannerImage: img-blog-unsupporteddeploymenttargetincwindows-2023.png
 bannerImageAlt: Silhouette of a woman wearing headphones with a mic in an Octopus branded tee holding a tablet.
+isFeatured: false
 tags: 
 - Product
 - Azure
