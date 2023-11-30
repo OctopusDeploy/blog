@@ -7,6 +7,7 @@ published: 2024-01-31-1400
 metaImage: blogimage-azure-app-config-step-templates-2023.jpg
 bannerImage: blogimage-azure-app-config-step-templates-2023.jpg
 bannerImageAlt: Using Azure App Configuration with Octopus Deploy
+isFeatured: false
 tags:
  - Product
  - Azure
