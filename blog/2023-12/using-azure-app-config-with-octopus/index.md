@@ -19,7 +19,7 @@ I've written previously about extending the functionality of Octopus to integrat
 
 In this post, I walk through two new [Azure App Configuration step templates](https://library.octopus.com/listing/azure%20app%20config) we introduced:
 
-1. The [Azure AppConfig KV - Retrieve Values](https://library.octopus.com/step-templates/5c4fbed9-dbba-4139-8440-d8e27318772e/actiontemplate-azure-appconfig-kv-retrieve-values) step that is designed to retrieve values from an Azure App Configuration instance that can then be used in your deployments or runbooks.
+1. The [Azure AppConfig KV - Retrieve Values](https://library.octopus.com/step-templates/5c4fbed9-dbba-4139-8440-d8e27318772e/actiontemplate-azure-appconfig-kv-retrieve-values) step is designed to retrieve values from an Azure App Configuration instance that can be used in your deployments or runbooks.
 2. The [Azure Function - Set AppSettings from Azure AppConfig](https://library.octopus.com/step-templates/67fcc93c-509c-4c13-bc24-645eff53c5c2/actiontemplate-azure-function-set-appsettings-from-azure-appconfig) step that is designed to retrieve values from an Azure App Configuration instance and add them to an Azure Function's AppSettings.
 
 
@@ -30,29 +30,29 @@ This post assumes some familiarity with [custom step templates](https://octopus.
 
 In addition, this post doesn't go into great detail about Azure App Configuration concepts or how to set it up. You can learn more by reading the [Azure App Configuration overview](https://learn.microsoft.com/en-us/azure/azure-app-configuration/overview) from Microsoft.
 
-The step templates in this post retrieve values from an [Azure App Configuration instance](https://azure.microsoft.com/en-us/products/app-configuration/) using the [Azure Command Line Interface (CLI)](https://learn.microsoft.com/en-us/cli/azure/) known as `az`. The CLI must be downloaded and installed on the deployment target or worker before the steps can execute successfully. Both step templates have been tested on both Windows and Linux (with `PowerShell Core` installed).
+The step templates in this post retrieve values from an [Azure App Configuration instance](https://azure.microsoft.com/en-us/products/app-configuration/) using the [Azure Command Line Interface (CLI)](https://learn.microsoft.com/en-us/cli/azure/) known as `az`. The CLI must be downloaded and installed on the deployment target or worker before the steps can execute successfully. The step templates have been tested on Windows and Linux (with `PowerShell Core` installed).
 
 ## Authentication {#authentication}
 
-Before you can retrieve values from an Azure App Configuration instance, you must authenticate with Azure. In their [security concepts documentation](https://learn.microsoft.com/en-us/azure/azure-app-configuration/howto-disable-access-key-authentication?tabs=portal), Microsoft note:
+Before you can retrieve values from an Azure App Configuration instance, you must authenticate with Azure. In their [security concepts documentation](https://learn.microsoft.com/en-us/azure/azure-app-configuration/howto-disable-access-key-authentication?tabs=portal), Microsoft notes:
 
 > By default, requests can be authenticated with either Microsoft Entra credentials, or by using an access key. Of these two types of authentication schemes, Microsoft Entra ID provides superior security and ease of use over access keys, and is recommended by Microsoft. 
 
 In Octopus, authentication with an Azure App Configuration instance can be achieved with an [Azure Account](https://octopus.com/docs/infrastructure/accounts/azure), using a service principal. 
 
 :::hint
-In addition to accessing resources in Azure, your service principal may need further permissions configured to access and retrieve values stored in Azure App Configuration. To learn more, read the [Enable access using Microsoft Entra ID guide](https://learn.microsoft.com/en-us/azure/azure-app-configuration/concept-enable-rbac) on how to provide access to an App Configuration instance.
+In addition to accessing resources in Azure, your service principal may need further permissions configured to access and retrieve values stored in Azure App Configuration. To learn more, read the [Enable Access using Microsoft Entra ID guide](https://learn.microsoft.com/en-us/azure/azure-app-configuration/concept-enable-rbac) on providing access to an App Configuration instance.
 :::
 
 ## Retrieving Values {#retrieving-values}
 
 The [Azure AppConfig KV - Retrieve Values](https://library.octopus.com/step-templates/5c4fbed9-dbba-4139-8440-d8e27318772e/actiontemplate-azure-appconfig-kv-retrieve-values) step template retrieves one or more key/values from an Azure App Configuration instance and creates output variables for each one retrieved.
 
-For each key/value, you can optionally choose to provide a custom output variable name.
+For each key/value, you can optionally provide a custom output variable name.
 
 Retrieving a single key/value requires:
 
-- An Azure account with permission to retrieve key/values from the Azure App Config v.
+- An Azure account with permission to retrieve key/values from the Azure App Config instance.
 - The name of the Azure App Config instance to retrieve the key/value from.
 - The name of the key to retrieve.
 
@@ -62,7 +62,7 @@ An advanced feature of the step template offers support for retrieving multiple 
 Note: Combining a wildcard search with custom output variable names is not supported.
 :::
 
-For each key/value retrieved, an [output variable](https://octopus.com/docs/projects/variables/output-variables) is created for use in subsequent steps. By default, only a count of the number of variables created will be shown in the task log. To see the names of the variables in the task log, change the **Print output variable names** parameter to `True`.
+For each key/value retrieved, an [output variable](https://octopus.com/docs/projects/variables/output-variables) is created for subsequent steps. By default, only a count of the number of variables created will be shown in the task log. To see the names of the variables in the task log, change the **Print output variable names** parameter to `True`.
 
 ### Retrieve Values step template parameters {#retrieve-values-parameters}
 
@@ -108,9 +108,9 @@ In subsequent steps, output variables created from matching key/values can be us
 
 ## Set Function Application settings {#set-azurefunction-appsettings}
 
-The [Azure Function - Set AppSettings from Azure AppConfig](https://library.octopus.com/step-templates/67fcc93c-509c-4c13-bc24-645eff53c5c2/actiontemplate-azure-function-set-appsettings-from-azure-appconfig) step template retrieves one or more key/values from an Azure App Configuration instance and adds them to an Azure Function's Application settings for each one retrieved.
+The [Azure Function - Set AppSettings from Azure AppConfig](https://library.octopus.com/step-templates/67fcc93c-509c-4c13-bc24-645eff53c5c2/actiontemplate-azure-function-set-appsettings-from-azure-appconfig) step template retrieves one or more key/values from an Azure App Configuration instance. It then adds them to an Azure Function's Application settings for each one retrieved.
 
-For each key/value, you can optionally choose to provide a custom name to be used in the Function's settings.
+For each key/value, you can optionally provide a custom name to be used in the Function's settings.
 
 Retrieving and setting a single key/value requires:
 
@@ -166,12 +166,12 @@ After you've added the step to your process, fill out the parameters in the step
 
 ![The Set Azure Funtion Application settings step used in a process](azfunction-set-appsettings-from-appconfig-step-in-process.png)
 
-After you've filled in the parameters, you can execute the step in a runbook or deployment process. On successful execution, any matching key/values from the Azure App Config instance will be published to the specified Azure App Function, and details will appear in the task log:
+After you've filled in the parameters, you can execute the step in a runbook or deployment process. On successful execution, any matching key/values from the Azure App Config instance will be published to the Azure App Function, and details will appear in the task log:
 
 ![Task log output for the Set Azure Funtion Application settings step](azfunction-set-appsettings-from-appconfig-step-output.png)
 
 ## Conclusion
 
-The step templates covered in this post demonstrates that it's easy to integrate with Azure App Configuration to retrieve the key/values stored there, either to use in subsequent steps in your Octopus deployments or runbooks, or to publish those values directly as Application settings to an Azure App Function.
+The step templates covered in this post demonstrate that it's easy to integrate with Azure App Configuration to retrieve the key/values stored there, either to use in subsequent steps in your Octopus deployments or runbooks or to publish those values directly as Application settings to an Azure App Function.
 
 Happy deployments!
