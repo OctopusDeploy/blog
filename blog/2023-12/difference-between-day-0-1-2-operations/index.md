@@ -23,7 +23,7 @@ In this post, we explore the 3 core phases of operations in software development
 
 ## Day-0 operations
 
-It's weird to start a numbered list of things with 'zero,' I'll give you that. But, it makes sense given day-0 operations usually start before there's anything to, well, *operate*.
+It's weird to start a numbered list of things with zero, I'll give you that. But, it makes sense given day-0 operations usually start before there's anything to, well, *operate*.
 
 Which is to say, day-0 is all about *planning*.
 
@@ -64,7 +64,7 @@ How deployments happen can differ between organizations, teams, and even project
 
 And hey, big or small, deployments done badly can become a huge cause of anxiety for many in an organization. The reason is that deployments are no longer only a case of running an executable on a server somewhere.
 
-Deployment automation can help remove that anxiety in almost every single case. Best practice methodologies, like DevOps and Continuous Delivery, recommend automating and improving your deployment process as much as possible.
+Deployment automation can help remove that anxiety in almost every case. Best practice methodologies, like DevOps and Continuous Delivery, recommend automating and improving your deployment process as much as possible.
 
 Like day-1 operations, Octopus is also *all* about deployments, but we're specifically about deployment *automation*. We believe deployments should be smooth-going and celebrated rather than feared.
 
@@ -72,9 +72,9 @@ Hold that thought for now - we'll come back to that later.
 
 ## Day-2 operations
 
-Day-2 for operations is the Boxing Day of software development. The fun stuff is over. Celebrations over a 'successful delivery' are behind you. It's time to embrace reality for a while, at least until you start all over again.
+Day-2 operations is the Boxing Day of software development. The fun stuff is over. Celebrations over a 'successful delivery' are behind you. It's time to embrace reality for a while, at least until you start all over again.
 
-If following Continuous Integration and [Continuous Delivery](https://octopus.com/devops/continuous-delivery/) well, however, that will happen way more often than once a year. In fact, it's a process that should happen constantly.
+If you're following Continuous Integration and [Continuous Delivery](https://octopus.com/devops/continuous-delivery/) well, however, that will happen way more often than once a year. In fact, it's a process that should happen constantly.
 
 Yes, day-2 is the stuff that happens *after* deployment.
 
@@ -85,7 +85,7 @@ Day-2 operations tasks include:
 - Performing routine maintenance like backups and restores
 - Restoring service if infrastructure fails, through spinning up new infrastructure or doing rollbacks
 
-You can sum up day-2 operations as operations 'business as usual' tasks. It's the phase that keeps your product ticking over so your customers can enjoy it when they need it.
+You can sum up day-2 operations as 'business as usual' operations tasks. It's the phase that keeps your product ticking over so your customers can enjoy it when they need it.
 
 Fret not - another day-0 is just on the horizon.
 
