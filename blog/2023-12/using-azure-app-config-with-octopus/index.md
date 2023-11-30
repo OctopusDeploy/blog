@@ -33,7 +33,7 @@ Before you can retrieve values from an Azure App Configuration instance, you mus
 
 > By default, requests can be authenticated with either Microsoft Entra credentials, or by using an access key. Of these two types of authentication schemes, Microsoft Entra ID provides superior security and ease of use over access keys, and is recommended by Microsoft. 
 
-In Octopus, authentication with an Azure App Configuration store can be achieved with an [Azure Account](https://octopus.com/docs/infrastructure/accounts/azure), using a service principal. 
+In Octopus, authentication with an Azure App Configuration instance can be achieved with an [Azure Account](https://octopus.com/docs/infrastructure/accounts/azure), using a service principal. 
 
 :::hint
 In addition to accessing resources in Azure, your service principal may need further permissions configured to access and retrieve values stored in Azure App Configuration. To learn more, read the [Enable access using Microsoft Entra ID guide](https://learn.microsoft.com/en-us/azure/azure-app-configuration/concept-enable-rbac) on how to provide access to an App Configuration instance.
@@ -47,8 +47,8 @@ For each key/value, you can optionally choose to provide a custom output variabl
 
 Retrieving a single key/value requires:
 
-- An Azure account with permission to retrieve key/values from the Azure App Config store.
-- The name of the Azure App Config store to retrieve the key/value from.
+- An Azure account with permission to retrieve key/values from the Azure App Config v.
+- The name of the Azure App Config instance to retrieve the key/value from.
 - The name of the key to retrieve.
 
 An advanced feature of the step template offers support for retrieving multiple keys at once. This requires entering each key name on a new line. A wildcard search is also supported using the `*` notation in the **Key Names** parameter. 
@@ -71,10 +71,10 @@ The step template uses the following parameters:
 - `Key Names`: Specify the names of the keys to be returned from Azure App Configuration, in the format: `KeyName | OutputVariableName` where:
 
     - `KeyName` is the key to retrieve. Wildcards are supported by adding `*`` at the end of the key name.
-    - `OutputVariableName` is the _optional_ Octopus output variable name to store the key's value in. *If this value isn't specified, an output name will be generated dynamically*.
+    - `OutputVariableName` is the _optional_ Octopus output variable name to store the key's value in. *If this value isn't specified, an output name will be generated dynamically based on the matching key name*.
 
-    **Note:** Multiple fields can be retrieved by entering each one on a new line.
-- `Labels (optional)`: Labels are an attribute on keys. Provide one or more labels in the format `label1,label2` to retrieve only selected keys that are tagged with those labels.
+    **Note:** Multiple keys can be retrieved by entering each one on a new line.
+- `Labels (optional)`: Labels are an attribute of keys. Provide one or more labels in the format `label1,label2` to retrieve only selected keys that are tagged with those labels.
 
   **Note:** You can include both label values and specify key names.
 - `Save sensitive output variables`: Set the Octopus output variables to sensitive values. Default: `False`.
