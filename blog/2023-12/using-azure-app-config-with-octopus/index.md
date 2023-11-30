@@ -23,8 +23,6 @@ In this post, I walk through two new [Azure App Configuration step templates](ht
 1. The [Azure AppConfig KV - Retrieve Values](https://library.octopus.com/step-templates/5c4fbed9-dbba-4139-8440-d8e27318772e/actiontemplate-azure-appconfig-kv-retrieve-values) step is designed to retrieve values from an Azure App Configuration instance that can be used in your deployments or runbooks.
 2. The [Azure Function - Set AppSettings from Azure AppConfig](https://library.octopus.com/step-templates/67fcc93c-509c-4c13-bc24-645eff53c5c2/actiontemplate-azure-function-set-appsettings-from-azure-appconfig) step that is designed to retrieve values from an Azure App Configuration instance and add them to an Azure Function's AppSettings.
 
-
-
 ## Introduction
 
 This post assumes some familiarity with [custom step templates](https://octopus.com/docs/projects/custom-step-templates) and the Octopus [Community Library](https://octopus.com/docs/projects/community-step-templates). 
