@@ -17,7 +17,12 @@ tags:
 
 I've written previously about extending the functionality of Octopus to integrate with Cloud-based services such as [Azure Key Vault](https://octopus.com/blog/using-azure-key-vault-with-octopus) and [AWS Secrets Manager](https://octopus.com/blog/using-aws-secrets-manager-with-octopus) using step templates. We're committed to providing more ways for our customers to succeed with Octopus, so we're always creating more step templates that integrate with other Cloud-based services.
 
-In this post, I walk through two new [Azure App Configuration step templates](https://library.octopus.com/listing/azure%20app%20config) we introduced that are designed to retrieve values from an Azure App Configuration instance, for use in your deployments or runbooks.
+In this post, I walk through two new [Azure App Configuration step templates](https://library.octopus.com/listing/azure%20app%20config) we introduced:
+
+1. The [Azure AppConfig KV - Retrieve Values](https://library.octopus.com/step-templates/5c4fbed9-dbba-4139-8440-d8e27318772e/actiontemplate-azure-appconfig-kv-retrieve-values) step that is designed to retrieve values from an Azure App Configuration instance that can then be used in your deployments or runbooks.
+2. The [Azure Function - Set AppSettings from Azure AppConfig](https://library.octopus.com/step-templates/67fcc93c-509c-4c13-bc24-645eff53c5c2/actiontemplate-azure-function-set-appsettings-from-azure-appconfig) step that is designed to retrieve values from an Azure App Configuration instance and add them to an Azure Function's AppSettings.
+
+
 
 ## Introduction
 
@@ -67,10 +72,8 @@ The step template uses the following parameters:
 - `Config Store Name`: The name of the Azure App Config instance. Provide this or the **Config Store Endpoint**.
 - `Config Store Endpoint`: The endpoint for the Azure App Config instance. Provide this or the **Config Store Name**.
 - `Retrieval Method`: Choose between retrieving all configuration values or each entry individually. Retrieving all values from the App Config instance is usually more efficient, but could result in a larger payload being returned.
-
 - `Key Names`: Specify the names of the keys to be returned from Azure App Configuration, in the format: `KeyName | OutputVariableName` where:
-
-    - `KeyName` is the key to retrieve. Wildcards are supported by adding `*`` at the end of the key name.
+    - `KeyName` is the key to retrieve. Wildcards are supported by adding `*` at the end of the key name.
     - `OutputVariableName` is the _optional_ Octopus output variable name to store the key's value in. *If this value isn't specified, an output name will be generated dynamically based on the matching key name*.
 
     **Note:** Multiple keys can be retrieved by entering each one on a new line.
@@ -103,8 +106,72 @@ In subsequent steps, output variables created from matching key/values can be us
 **Tip:** Remember to replace `Azure AppConfig KV - Retrieve Values` with the name of your step for any output variable names.
 :::
 
+## Set Function Application settings {#set-azurefunction-appsettings}
+
+The [Azure Function - Set AppSettings from Azure AppConfig](https://library.octopus.com/step-templates/67fcc93c-509c-4c13-bc24-645eff53c5c2/actiontemplate-azure-function-set-appsettings-from-azure-appconfig) step template retrieves one or more key/values from an Azure App Configuration instance and adds them to an Azure Function's Application settings for each one retrieved.
+
+For each key/value, you can optionally choose to provide a custom name to be used in the Function's settings.
+
+Retrieving and setting a single key/value requires:
+
+- An Azure account with permission to both retrieve key/values from the Azure App Config instance and publish the settings to an Azure App Function.
+- The name of the Azure App Config instance to retrieve the key/value from.
+- The name of the key to retrieve.
+- The Azure Function
+  - Name
+  - Resource group name
+
+An advanced feature of the step template offers support for retrieving multiple keys at once. This requires entering each key name on a new line. A wildcard search is also supported using the `*` notation in the **Key Names** parameter. You can also combine retrieved values with additional parameters supplied to the step using the **Additional AppSettings** parameter.
+
+:::warning
+Note: Combining a wildcard search with custom setting names is not supported.
+:::
+
+### Set Function Application settings parameters {#set-azurefunction-appsettings-parameters}
+
+The step template uses the following parameters:
+
+- `Azure Account`: An Azure account with permission to both retrieve values from the Azure App Config instance and publish to the App Function
+- `Config Store Name`: The name of the Azure App Config instance. Provide this or the **Config Store Endpoint**.
+- `Config Store Endpoint`: The endpoint for the Azure App Config instance. Provide this or the **Config Store Name**.
+- `Retrieval Method`: Choose between retrieving all configuration values or each entry individually. Retrieving all values from the App Config instance is usually more efficient, but could result in a larger payload being returned.
+- `Key Names`: Specify the names of the keys to be returned from Azure App Configuration, in the format: `KeyName | CustomSettingName` where:
+
+    - `KeyName` is the key to retrieve. Wildcards are supported by adding `*` at the end of the key name.
+    - `CustomSettingName` is the _optional_ name to set for the AppSetting value in the App Function. *If this value isn't specified, the original key will be used*.
+
+    **Note:** Multiple keys can be retrieved by entering each one on a new line.
+- `Labels (optional)`: Labels are an attribute of keys. Provide one or more labels in the format `label1,label2` to retrieve only selected keys that are tagged with those labels.
+
+  **Note:** You can include both label values and specify key names.
+- `Suppress warnings`: Suppress warnings from being written to the task log. For example, when a supplied key can't be found in the Azure App Config instance. Default: `False`.
+- `Treat Warnings as Errors`: Treats warnings as errors. If enabled, the **Suppress Warnings** parameter is ignored. Default: `True`.
+- `Azure Function App Name`: The name of the Azure App Function.
+- `Resource Group`: The name of the resource group where the Function App is located.
+- `Slot (optional)`: The name of the slot for the Azure App Function. Defaults to the production slot if not specified.
+- `Additional AppSettings`: Specify the name and values of any **additional** settings to be applied to the Azure App Function in the format: `KEY | VALUE` where:
+
+    - `KEY` is the name of the app setting to add.
+    - `VALUE` is the value to be used. [Octopus variables](https://octopus.com/docs/projects/variables) can be used here. 
+
+    **Note:** Note: Multiple settings can be added by entering each one on a new line. As a result, any value for a key that spans multiple lines will result in an error.
+
+![Parameters for the Set Azure Funtion Application settings step](azfunction-set-appsettings-from-appconfig-step-parameters.png)
+
+### Using the Setting Function Application settings step {#using-the-set-azurefunction-appsettings-step}
+
+The **Azure Function - Set AppSettings from Azure AppConfig** step is added to deployment and runbook processes in the [same way as other steps](https://octopus.com/docs/projects/steps#adding-steps-to-your-deployment-processes).
+
+After you've added the step to your process, fill out the parameters in the step:
+
+![The Set Azure Funtion Application settings step used in a process](azfunction-set-appsettings-from-appconfig-step-in-process.png)
+
+After you've filled in the parameters, you can execute the step in a runbook or deployment process. On successful execution, any matching key/values from the Azure App Config instance will be published to the specified Azure App Function, and details will appear in the task log:
+
+![Task log output for the Set Azure Funtion Application settings step](azfunction-set-appsettings-from-appconfig-step-output.png)
+
 ## Conclusion
 
-The step templates covered in this post demonstrates that it's easy to integrate with Azure App Configuration, and make use of the key/values stored there with your Octopus deployments or runbooks.
+The step templates covered in this post demonstrates that it's easy to integrate with Azure App Configuration to retrieve the key/values stored there, either to use in subsequent steps in your Octopus deployments or runbooks, or to publish those values directly as Application settings to an Azure App Function.
 
 Happy deployments!
