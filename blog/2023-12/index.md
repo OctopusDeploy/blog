@@ -1,55 +1,62 @@
 ---
 title: How to bulk update the execution container image
-description: Learn how to use an API script to update the image used for Execution Containers in deployment processes and runbooks.
+description: Learn how to use an API script to update the image used for execution containers in deployment processes and runbooks.
 author: shawn.sesna@octopus.com
 visibility: private
-published: 3020-01-01
+published: 2023-12-13-1400
 metaImage: to-be-added-by-marketing
 bannerImage: to-be-added-by-marketing
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
-tags: <!-- see https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags -->
+tags:
  - DevOps
- - Product
  - Engineering
+ - Containers
+ - PowerShell
 ---
 
 
-The [Execution Containers](https://octopus.com/docs/projects/steps/execution-containers-for-workers) feature in Octopus Deploy makes it easy to ensure you have the necessary tooling when running your steps.  As with all things that use containers, you need to specify either the specific tag for the version you want to use or always accept the latest version.  For various reasons, it may be necessary to update the image and or tag used with Execution containers which can be quite time-consuming if you have a lot of processes or runbooks that make use of them.  In this post, I'll demonstrate how to use PowerShell and the Octopus API to programmatically update the Execution Container Image.
+[Execution containers](https://octopus.com/docs/projects/steps/execution-containers-for-workers) in Octopus Deploy make it easy to ensure you have the necessary tooling when running your steps.  
+
+As with all things that use containers, you need to specify either the specific tag for the version you want to use or always accept the latest version.  For various reasons, you may need to update the image and or tag used with execution containers. This can be time-consuming if you have lots of processes or runbooks that make use of them.  
+
+In this post, I show you how to use PowerShell and the Octopus API to programmatically update the execution container image.
 
 
 ## Body
 
+If you’re familiar with the [Samples](https://samples.octopus.app) instance, you'll know that the projects make heavy use of execution containers. I maintain the Samples, so it's my job to make sure that the examples continue to function and deploy properly. 
 
-If you’re familiar with the [Samples](https://samples.octopus.app) instance, you'll know that the projects make heavy use of the Execution Containers features.  As the maintainer of Samples, it is my job to make sure that the examples continue to function and deploy properly.  Many of the example projects used the [octopusdeploy/worker-tools](https://hub.docker.com/r/octopusdeploy/worker-tools) image as it contains commonly used tooling to perform a multitude of tasks.  However, this image does not make use of the `latest` tag, so the tag version must be specified in every step that makes use of it.  The example projects on Samples were developed when the standard Ubuntu image was version 18.04, which is now deprecated and the `worker-tools` image was tagged thusly.  Going through each project and updating the referenced container one by one was less than appealing, Octopus API to the rescue!
+Many of the example projects used the [octopusdeploy/worker-tools](https://hub.docker.com/r/octopusdeploy/worker-tools) image as it contains commonly used tooling for a multitude of tasks.  However, this image doesn't use the `latest` tag, so you need to specify the tag version in every step that uses it.  
 
+We developed the example projects on Samples when the standard Ubuntu image was version 18.04. This is now deprecated and we tagged the worker-tools image this way.  Going through each project and updating the referenced container one-by-one was less than appealing - Octopus API to the rescue!
 
 ### The script
 
+I knew this would be a continuing issue to deal with, so I wrote a PowerShell script that uses the Octopus API to iterate through all spaces, projects, and runbooks and update them to use the image that I specified. 
 
-Knowing this would be a continuing issue to deal with, I wrote a PowerShell script that uses the Octopus API to iterate through all Spaces, Projects, and Runbooks and update them to use the image that I've specified.  
-
-
-:::Information
-The following script is provided as a demonstration of how to perform bulk operations on Deployment and Runbook steps.  Please review carefully if you intend to run this on your own instance.
+:::hint
+The following script is just an example of how to perform bulk operations on deployment and runbook steps. Please review carefully if you intend to run this on your own instance.
 :::
-
 
 #### Variables
 
-
 The script requires a few variables for execution:
-- `$octopusUrl`: The Url to your Octopus instance.
-- `$octopusAPIKey`: API key with sufficient permissions to update the deployment and runbook processes.
-- `$linuxWorkerToolsImage`: The Linux image to update to (e.g. octopusdeploy/worker-tools:ubuntu.22.04)
-- `$windowsWorkerToolsImage`: The Windows image to update to (e.g. octopusdeploy/worker-tools:windows.ltsc2019)
+
+- `$octopusUrl`: The URL to your Octopus instance
+- `$octopusAPIKey`: API key with sufficient permissions to update the deployment and runbook processes
+- `$linuxWorkerToolsImage`: The Linux image to update to (for example, `octopusdeploy/worker-tools:ubuntu.22.04`)
+- `$windowsWorkerToolsImage`: The Windows image to update to (for example, `octopusdeploy/worker-tools:windows.ltsc2019`)
 
 
 #### The script
-The script below will iterate through all Spaces, Deployment Processes, and Runbook Processes looking for an Execution Container is used.  If found, it will check to see if the name of the image contains `octopusdeploy/worker-tools` and update the image to the one specified in the `$linuxWorkerToolsImage` or `$windowsWorkerToolsImage`.  
+
+The script below iterates through all spaces, deployment processes, and runbook processes looking for where an execution container is used.  If found, it checks to see if the name of the image contains `octopusdeploy/worker-tools` and updates the image to the one specified in the `$linuxWorkerToolsImage` or `$windowsWorkerToolsImage`.  
 
 
-**Note**: Version controlled projects and Runbooks that have never been published are skipped.  I made an assumption that Runbooks that have never been published are that way on purpose.
+:::hint
+Version controlled projects and runbooks that have never been published get skipped. I made an assumption that runbooks that have never been published are that way on purpose.
+:::
 
 
 ```powershell
@@ -324,14 +331,8 @@ foreach ($space in $spaces) {
 }
 ```
 
-
 ## Conclusion
 
-
-Maintaining deployment processes is typically a non-issue and is usually done on an as-needed basis.  Execution Containers is one of the few areas where you might need to update multiple items which would prove tedious if you have to do it manually.  Thankfully, the Octopus API is robust and can be used to make mass updates in an automated fashion.
-
+Maintaining deployment processes is typically a non-issue and is usually done on an as-needs basis.  Execution containers is one of the few areas where you might need to update multiple items, and this would be tedious to do manually. Thankfully, the Octopus API is robust and you can use it to make mass updates in an automated fashion.
 
 Happy deployments!
-
-
-
