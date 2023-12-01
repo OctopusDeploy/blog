@@ -15,7 +15,6 @@ tags:
  - PowerShell
 ---
 
-
 [Execution containers](https://octopus.com/docs/projects/steps/execution-containers-for-workers) in Octopus Deploy make it easy to ensure you have the necessary tooling when running your steps.  
 
 As with all things that use containers, you need to specify either the specific tag for the version you want to use or always accept the latest version.  For various reasons, you may need to update the image and or tag used with execution containers. This can be time-consuming if you have lots of processes or runbooks that make use of them.  
@@ -31,7 +30,7 @@ Many of the example projects used the [octopusdeploy/worker-tools](https://hub.d
 
 We developed the example projects on Samples when the standard Ubuntu image was version 18.04. This is now deprecated and we tagged the worker-tools image this way.  Going through each project and updating the referenced container one-by-one was less than appealing - Octopus API to the rescue!
 
-### The script
+### PowerShell script
 
 I knew this would be a continuing issue to deal with, so I wrote a PowerShell script that uses the Octopus API to iterate through all spaces, projects, and runbooks and update them to use the image that I specified. 
 
