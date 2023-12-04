@@ -2,7 +2,7 @@
 title: Using Azure App Config with Octopus
 description: Introducing new step templates to allow configuration values stored in Azure App Configuration to be used in deployments or runbooks.
 author: mark.harrison@octopus.com
-visibility: private
+visibility: public
 published: 2023-12-18-1400
 metaImage: blogimage-azure-app-config-step-templates-2023.jpg
 bannerImage: blogimage-azure-app-config-step-templates-2023.jpg
@@ -27,7 +27,7 @@ This post assumes you know how to use [custom step templates](https://octopus.co
 
 I also don't go into great detail about Azure App Configuration concepts or how to set it up. You can learn more by reading the [Azure App Configuration overview](https://learn.microsoft.com/en-us/azure/azure-app-configuration/overview) from Microsoft.
 
-The step templates in this post retrieve values from an [Azure App Configuration instance](https://azure.microsoft.com/en-us/products/app-configuration/) using the [Azure Command Line Interface (CLI)](https://learn.microsoft.com/en-us/cli/azure/), known as **az**. You need to download the CLI and install it on the deployment target or Worker before the steps can execute successfully. I tested the step templates on Windows and Linux (with `PowerShell Core` installed).
+The step templates in this post retrieve values from an [Azure App Configuration instance](https://azure.microsoft.com/en-us/products/app-configuration/) using the [Azure Command Line Interface (CLI)](https://learn.microsoft.com/en-us/cli/azure/), known as **az**. You need to download the CLI and install it on the deployment target or Worker before the steps can execute successfully. I tested the step templates on Windows and Linux (with PowerShell Core installed).
 
 ## Authentication {#authentication}
 
@@ -53,7 +53,7 @@ Retrieving a single key/value requires:
 - The name of the Azure App Config instance to retrieve the key/value from
 - The name of the key to retrieve
 
-An advanced feature of the step template offers support for retrieving multiple keys at once. This requires entering each key name on a new line. A wildcard search is also supported using the `*` notation in the **Key Names** parameter. 
+An advanced feature of the step template lets you retrieve multiple keys at once. This requires entering each key name on a new line. A wildcard search is also supported using the `*` notation in the **Key Names** parameter. 
 
 :::warning
 Note: Combining a wildcard search with custom output variable names is not supported.
@@ -111,9 +111,9 @@ For each key/value, you can optionally provide a custom name to use in the Funct
 
 Retrieving and setting a single key/value requires:
 
-- An Azure account with permission to both retrieve keys/values from the Azure App Config instance and publish the settings to an Azure App Function.
-- The name of the Azure App Config instance to retrieve the key/value from.
-- The name of the key to retrieve.
+- An Azure account with permission to both retrieve keys/values from the Azure App Config instance and publish the settings to an Azure App Function
+- The name of the Azure App Config instance to retrieve the key/value from
+- The name of the key to retrieve
 - The Azure Function
   - Name
   - Resource group name
@@ -128,7 +128,7 @@ Note: Combining a wildcard search with custom setting names is not supported.
 
 The step template uses the following parameters:
 
-- **Azure Account**: An Azure account with permission to both retrieve values from the Azure App Config instance and publish to the App Function
+- **Azure Account**: An Azure account with permission to both retrieve values from the Azure App Config instance and publish to the App Function.
 - **Config Store Name**: The name of the Azure App Config instance. Provide this or the **Config Store Endpoint**.
 - **Config Store Endpoint**: The endpoint for the Azure App Config instance. Provide this or the **Config Store Name**.
 - **Retrieval Method**: Choose between retrieving all configuration values or each entry individually. Retrieving all values from the App Config instance is usually more efficient, but could result in the return of a larger payload.
@@ -151,7 +151,7 @@ The step template uses the following parameters:
     - **KEY** is the name of the app setting to add.
     - **VALUE** is the value to be used. [Octopus variables](https://octopus.com/docs/projects/variables) can be used here. 
 
-    **Note:** Note: You can add multiple settings by entering each one on a new line. As a result, any value for a key that spans multiple lines will result in an error.
+    **Note:** You can add multiple settings by entering each one on a new line. As a result, any value for a key that spans multiple lines will result in an error.
 
 ![Parameters for the Set Azure Funtion Application settings step](azfunction-set-appsettings-from-appconfig-step-parameters.png)
 
