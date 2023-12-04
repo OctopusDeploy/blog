@@ -25,15 +25,13 @@ Once we arrived at a design that worked well for projects, we then took this lay
 
 
 ### Benefits of this change
-The benefits of this change provides an easier-to-understand Octopus Deploy interface. The headings now have an appropriate size and placement relative to the page content. The breadcrumbs now have appropriate visual treatment and their behaviour is applied consistently. Customers were having trouble remembering the location of the create release button. By placing the button in the top right corner near other page actions the button is now intuitive to find.. 
+The benefits of this change provides an easier-to-understand Octopus Deploy interface. The headings now have an appropriate size and placement relative to the page content. The breadcrumbs now have appropriate visual treatment and their behaviour is applied consistently. Customers were having trouble remembering the location of the create release button. By placing the button in the top right corner near other page actions the button is now intuitive to find.
 
 
 ### A few other notable improvements
 - When moving between pages, loading animations have been simplified
 - Menu interaction states are clearer
-- Simplified project navigation by removing headings and updating labels
-
-image of before after of 
+- Simplified project navigation by removing headings and updating labels to match the page content
 
 ## Continuous Improvement
 We continue to make improvements to our user experience at Octopus Deploy. Keen to share your feedback? Or would like a sneak peek of upcoming user experience changes you are most welcome to [book a time with us](https://calendly.com/emily-pearce-1/octopus-deploy-user-experience-research). 
