@@ -4,9 +4,9 @@ description: Learn how to use an API script to update the image used for executi
 author: shawn.sesna@octopus.com
 visibility: private
 published: 2023-12-13-1400
-metaImage: to-be-added-by-marketing
-bannerImage: to-be-added-by-marketing
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: executions-api-header-image.png
+bannerImage: executions-api-header-image.png
+bannerImageAlt: Green speedometer with the arrow at maximum speed where a green rocket is launching.
 isFeatured: false
 tags:
  - DevOps
