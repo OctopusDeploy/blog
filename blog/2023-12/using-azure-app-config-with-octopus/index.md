@@ -169,6 +169,6 @@ After you fill in the parameters, you can execute the step in a runbook or deplo
 
 ## Conclusion
 
-The step templates covered in this post show that it's easy to integrate with Azure App Configuration to retrieve the keys/values stored there. You can these use these keys/values in subsequent steps in your Octopus deployments or runbooks or publish those values directly as application settings to an Azure App Function.
+The step templates covered in this post show that it's easy to integrate with Azure App Configuration to retrieve the keys/values stored there. You can use these keys/values in subsequent steps in your Octopus deployments or runbooks or publish those values directly as application settings to an Azure App Function.
 
 Happy deployments!
