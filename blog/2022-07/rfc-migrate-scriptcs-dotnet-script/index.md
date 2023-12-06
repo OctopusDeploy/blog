@@ -13,7 +13,8 @@ tags:
 ---
 
 :::warning
-We shipped this change as a part of 2023.4. We're aware some customers are having issues updating their machines and scripts. We've re-implemented scriptcs as the default C# scripting engine. The option to continue using dotnet-script is available with a project-specific variable `Octopus.Action.Script.CSharp.UseDotnetScript` and an environment-wide feature toggle `OCTOPUS__FeatureToggle__UseDotnetScriptCSharpExecutorFeatureToggle`. Please contact [support](mailto:support@octopus.com) if you're experiencing issues or would like dotnet-script enabled. We've created a [public issue](https://github.com/OctopusDeploy/Issues/issues/8359).
+We shipped this change as a part of 2023.4. ScriptCS is still included as the default C# scripting engine with the option to use dotnet-script available with a project-specific variable `Octopus.Action.Script.CSharp.UseDotnetScript` and an environment-wide feature toggle `OCTOPUS__FeatureToggles__UseDotnetScriptCSharpExecutorFeatureToggle`. Please contact [support](mailto:support@octopus.com) if you're experiencing issues or would like dotnet-script enabled.
+For further details on upgrading to dotnet-script please see the migration section.
 :::
 
 We received [customer feedback](https://help.octopus.com/t/consider-use-dotnet-script-vs-scriptcs/22144) and [UserVoice voting](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/31454668-allow-the-use-of-c-script-csx-using-net-core) requesting we update the tooling Octopus uses to run C# scripts, from [scriptcs](https://github.com/scriptcs/scriptcs) to [dotnet-script](https://github.com/filipw/dotnet-script). This would: 
@@ -71,6 +72,10 @@ Console.WriteLine(response.Content);
 One trade-off of this change is that C# scripting would no longer be available on Linux deployment targets using SSH with Mono.
 
 #### Migration
+
+This migration to dotnet-script introduces a dependency on net6.0, any Workers or deployment targets running C# scripts using dotnet-script will require the net6.0 SDK on path.
+
+The Octopus class has also been removed from C# scripting, this brings behaviour inline with PowerShell scripts. This changes behaviour like setting variables from `Octopus.SetVariable` to `SetVariable`. Parameters have also been changed from `Octopus.Parameters` to `OctopusParameters`. For a full list of these methods see the [bootstrap code](https://github.com/OctopusDeploy/Calamari/blob/master/source/Calamari.Common/Features/Scripting/DotnetScript/Bootstrap.csx). The old bootstrapper is still available by setting the `Octopus.Action.Script.CSharp.UseOctopusClassBootstrapper` variable, however this is only intended for migration purposes and is due for deprecation in the near future.
 
 To run C# scripts against your SSH linux targets, you'd need to reconfigure your SSH targets to use the self-contained Calamari which runs via net6.0. This requires the net6.0 SDK on the machine executing dotnet-script.
 
