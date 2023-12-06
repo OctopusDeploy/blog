@@ -2,7 +2,7 @@
 title: How to bulk update the execution container image
 description: Learn how to use an API script to update the image used for execution containers in deployment processes and runbooks.
 author: shawn.sesna@octopus.com
-visibility: private
+visibility: public
 published: 2023-12-13-1400
 metaImage: executions-api-header-image.png
 bannerImage: executions-api-header-image.png
@@ -15,14 +15,14 @@ tags:
  - PowerShell
 ---
 
-[Execution containers](https://octopus.com/docs/projects/steps/execution-containers-for-workers) in Octopus Deploy make it easy to ensure you have the necessary tooling when running your steps.  
+[Execution containers](https://octopus.com/docs/projects/steps/execution-containers-for-workers) in Octopus Deploy make it easy to ensure you have the tooling you need when running your steps.  
 
 As with all things that use containers, you need to specify either the specific tag for the version you want to use or always accept the latest version.  For various reasons, you may need to update the image and or tag used with execution containers. This can be time-consuming if you have lots of processes or runbooks that make use of them.  
 
 In this post, I show you how to use PowerShell and the Octopus API to programmatically update the execution container image.
 
 
-## The issue using Worker Tools for execution containers
+## The issue using worker-tools for execution containers
 
 If you’re familiar with the [Samples](https://samples.octopus.app) instance, you'll know that the projects make heavy use of execution containers. I maintain the Samples, so it's my job to make sure that the examples continue to function and deploy properly. 
 
@@ -32,7 +32,7 @@ We developed the example projects on Samples when the standard Ubuntu image was 
 
 ### PowerShell script
 
-I knew this would be a continuing issue to deal with, so I wrote a PowerShell script that uses the Octopus API to iterate through all spaces, projects, and runbooks and update them to use the image that I specified. 
+I knew this would be an ongoing issue, so I wrote a PowerShell script that uses the Octopus API to iterate through all spaces, projects, and runbooks and update them to use the image that I specified. 
 
 :::hint
 The following script is just an example of how to perform bulk operations on deployment and runbook steps. Please review carefully if you intend to run this on your own instance.
@@ -332,6 +332,6 @@ foreach ($space in $spaces) {
 
 ## Conclusion
 
-Maintaining deployment processes is typically a non-issue and is usually done on an as-needs basis.  Execution containers is one of the few areas where you might need to update multiple items, and this would be tedious to do manually. Thankfully, the Octopus API is robust and you can use it to make mass updates in an automated fashion.
+Maintaining deployment processes is typically a non-issue, done on an as-needs basis.  Execution containers is one of the few areas where you might need to update multiple items, and this would be tedious to do manually. Thankfully, the Octopus API is robust and you can use it to make mass updates in an automated fashion.
 
 Happy deployments!
