@@ -1,9 +1,9 @@
 ---
-title: Page Layout Improvements
-description: A walkthrough of the changes we have made to page layout and other small UI improvements.
+title: Page layout improvements
+description: Learn about the changes we made to page layout and other small UI improvements.
 author: emily.pearce@octopus.com
-visibility: private
-published: 3020-01-01-1400
+visibility: public
+published: 2023-12-20-1400
 metaImage: blog-improved-page-layouts.png
 bannerImage: blog-improved-page-layouts.png
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
@@ -12,29 +12,42 @@ tags:
   - Product
 ---
 
-We have been working towards improving our user experience at Octopus Deploy. Specifically addressing feedback about our interface looking “messy” and “hard to navigate”.  Addressing these concerns require a couple of changes. This change focuses on a layout that presents information in an easier-to-read structure.
+We're always working on improving the user experience (UX) at Octopus Deploy. Most recently, we've been addressing feedback about our interface looking “messy” and “hard to navigate”. Addressing these concerns required a couple of changes. This focuses on a layout that presents information in an easier-to-read structure.
 
-## Page Layouts
-We began by looking at our project page layouts. Here we identified a couple of key elements that needed improving. In the image below the highlighted areas is where we placed our focus. These areas contained our page headings and breadcrumbs. Page headings and breadcrumbs are important for understanding your location in the app. These elements also set the stage for the page layout.
+In this post, I walk you through the updates we made.
 
-![Screen shot of Octopus Deploy project layouts before](projectprocesseditold4.png)
+## Page layouts
 
-Once we arrived at a design that worked well for projects, we then took this layout across the entire app. See new layout below.
+We began by looking at our project page layouts. Here we identified a couple of key elements that needed improving. 
 
-![Screen shot of Octopus Deploy project layouts before](projectprocesseditnew4.png)
+We focused on our page headings and breadcrumbs. These are important for understanding your location in the app. These elements also set the stage for the page layout.
+
+![Screen shot of Octopus Deploy project layouts before](projectprocesseditold4.png)*This image highlights the areas where we placed our focus*
+
+After we arrived at a design that worked well for projects, we took this layout across the entire app. You can see the new layout below.
+
+![Screen shot of Octopus Deploy project layouts before](projectprocesseditnew4.png)*This image shows the new layout*
 
 
 ### Benefits of this change
-The benefits of this change provides an easier-to-understand Octopus Deploy interface. The headings now have an appropriate size and placement relative to the page content. The breadcrumbs now have appropriate visual treatment and their behaviour is applied consistently. Customers were having trouble remembering the location of the create release button. By placing the button in the top right corner near other page actions the button is now intuitive to find.
+
+These changes make the Octopus Deploy interface easier to understand. The headings are an appropriate size and in a better place relative to the page content. The breadcrumbs now have appropriate visual treatment and we've applied their behavior consistently. 
+
+Customers were having trouble remembering the location of the **CREATE RELEASE** button. By placing the button in the top right corner near other page actions, the button is now easier to find.
 
 
 ### A few other notable improvements
-- When moving between pages, loading animations have been simplified
+
+We made some other notable improvements:
+
+- When moving between pages, we simplified loading animations
 - Menu interaction states are clearer
-- Simplified project navigation by removing headings and updating labels to match the page content
+- We simplified project navigation by removing headings and updating labels to match the page content
 
-## Continuous Improvement
-We continue to make improvements to our user experience at Octopus Deploy. Keen to share your feedback? Or would like a sneak peek of upcoming user experience changes you are most welcome to [book a time with us](https://calendly.com/emily-pearce-1/octopus-deploy-user-experience-research). 
+## Conclusion
 
+We continually work to make improvements to your experience when using Octopus. 
 
+If you're keen to share your feedback or want a sneak peek of upcoming UX changes, please [book a time with us](https://calendly.com/emily-pearce-1/octopus-deploy-user-experience-research). 
 
+Happy deployments!
