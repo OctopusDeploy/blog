@@ -22,7 +22,7 @@ As with all things that use containers, you need to specify either the specific 
 In this post, I show you how to use PowerShell and the Octopus API to programmatically update the execution container image.
 
 
-## Body
+## The issue using Worker Tools for execution containers
 
 If you’re familiar with the [Samples](https://samples.octopus.app) instance, you'll know that the projects make heavy use of execution containers. I maintain the Samples, so it's my job to make sure that the examples continue to function and deploy properly. 
 
