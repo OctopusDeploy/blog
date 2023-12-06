@@ -38,6 +38,6 @@ When submitting your post in #topic-content-marketing, you also need to provide 
 - Please also check the copy using Grammarly (Octopus has a corporate license) and the [Hemingway app](https://hemingwayapp.com/) to remove typos, grammatical errors, and passive voice.
 - Submit your social posts in #topic-social-media.
 
-If you're drafting a post that you'd like to keep private until it's published, use the [internal blog drafts repo](https://github.com/OctopusDeploy/internal-blog-drafts).
+If you're drafting a post that you'd like to keep private until it's ready for review, use the [internal blog drafts repo](https://github.com/OctopusDeploy/internal-blog-drafts). Transfer it to the public repo when it's ready for review.
 
 The editing process takes time and we have a schedule of posts, so giving us at least 2 weeks notice is preferred and appreciated. For time-sensitive posts, we'll do our best to get the post published as soon as possible. Please consider that the design team also needs time to create a blog image.
