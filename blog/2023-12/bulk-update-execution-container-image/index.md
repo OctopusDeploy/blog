@@ -332,6 +332,6 @@ foreach ($space in $spaces) {
 
 ## Conclusion
 
-Maintaining deployment processes is typically a non-issue, done on an as-needs basis.  Execution containers is one of the few areas where you might need to update multiple items, and this would be tedious to do manually. Thankfully, the Octopus API is robust and you can use it to make mass updates in an automated fashion.
+Maintaining deployment processes is typically a non-issue, and done on an as-needs basis.  Execution containers is one of the few areas where you might need to update multiple items, and this would be tedious to do manually. Thankfully, the Octopus API is robust and you can use it to make mass updates in an automated fashion.
 
 Happy deployments!
