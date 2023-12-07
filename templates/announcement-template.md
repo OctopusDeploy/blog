@@ -1,5 +1,5 @@
 ---
-title: Title
+title: Title using sentence case
 description: A brief summary of the announcement, 170 characters max including spaces.
 author: firstname.surname@octopus.com
 visibility: private
@@ -12,7 +12,6 @@ tags:
   - DevOps
   - Company
   - Product
-  - Events and Webinars
   - Engineering
 ---
 
@@ -20,9 +19,7 @@ See https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensi
 
 State the subject of the announcement as plainly and directly as you can.
 
-## Body
-
-Body and Conclusion headings might be unnecessary for short posts.
+## H2 subheading here (please use sentence case for all headings)
 
 If the announcement is likely to be controversial, acknowledge that and explain the reasons that helped inform the decision.
 
@@ -34,7 +31,7 @@ Please note the advice in our style guide about [adding resources to your post](
 
 ## Conclusion
 
-Close of the post by stating what the reader should expect next and invite feedback.
+Close the post by stating what the reader should expect next and invite feedback.
 
 ## Learn more
 
