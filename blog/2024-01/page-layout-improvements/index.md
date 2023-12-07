@@ -3,7 +3,7 @@ title: Page layout improvements
 description: Learn about the changes we made to page layout and other small UI improvements.
 author: emily.pearce@octopus.com
 visibility: public
-published: 2023-12-20-1400
+published: 2024-01-10-1400
 metaImage: blog-improved-page-layouts.png
 bannerImage: blog-improved-page-layouts.png
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
