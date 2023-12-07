@@ -12,7 +12,6 @@ tags: <!-- see https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a 
  - DevOps
  - Company
  - Product
- - Events and Webinars
  - Engineering
 ---
 
@@ -22,7 +21,7 @@ Introductory paragraph that tells the reader why they should read on.
 
 Tell them what the how to demonstrates, and when/why the user might find this useful.
 
-## Body
+## H2 heading here (please use sentence case for all headings)
 
 Tell the reader what tech they need and anything else they **need** to know before you jump into the steps.
 
@@ -36,9 +35,11 @@ Break the steps the user needs to take into logical groups:
 1. Step two.
 1. Step three.
 
-Let the users know they're on the right track by telling them the outcome of the procedure they just completed. Include as many procedures as are necessary for the user to achieve the goal of the post, and try to avoid saying things like Configure X without providing the actual steps the users need to take.
+Let the users know they're on the right track by telling them the outcome of the procedure they just completed. Include as many procedures as necessary for the user to achieve the goal of the post. Try to avoid saying things like Configure X without providing the actual steps the users need to take.
 
-Use screenshots to help orient the user if they're moving between screens/systems and/or if screenshots will provide additionally clarity (or they're cool and you want to show them off). If including screenshots or images, please include alt text. Alt text is primarily used to describe images to people unable to see them, and can be 125 characters max including spaces. You can also include an image caption if the reader would benefit from additional information or context.:
+Use screenshots to help orient the user if they're moving between screens/systems and/or if screenshots will provide additional clarity (or they're cool and you want to show them off). 
+
+If including screenshots or images, please include alt text. Alt text is primarily used to describe images to people unable to see them, and can be 125 characters max including spaces. You can also include an image caption if the reader would benefit from additional information or context.:
 
 ![Alt text, a description of the screenshot][image-name.png]*Optional caption text*
 
