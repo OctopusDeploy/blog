@@ -12,7 +12,7 @@ tags:
   - Product
 ---
 
-We're always working on improving the user experience (UX) at Octopus Deploy. Most recently, we've been addressing feedback about our interface looking “messy” and “hard to navigate”. Addressing these concerns required a couple of changes. This focuses on a layout that presents information in an easier-to-read structure.
+We're always working on improving the user experience (UX) at Octopus Deploy. Most recently, we've been addressing feedback about our interface looking “messy” and “hard to navigate”. Addressing these concerns required a couple of changes. We focused on a layout that presents information in an easier-to-read structure.
 
 In this post, I walk you through the updates we made.
 
@@ -29,7 +29,7 @@ After we arrived at a design that worked well for projects, we took this layout 
 ![Screen shot of Octopus Deploy project layouts before](projectprocesseditnew4.png)*This image shows the new layout*
 
 
-### Benefits of this change
+### Benefits of these changes
 
 These changes make the Octopus Deploy interface easier to understand. The headings are an appropriate size and in a better place relative to the page content. The breadcrumbs now have appropriate visual treatment and we've applied their behavior consistently. 
 
@@ -38,7 +38,7 @@ Customers were having trouble remembering the location of the **CREATE RELEASE**
 
 ### A few other notable improvements
 
-We made some other notable improvements:
+We made some other improvements:
 
 - When moving between pages, we simplified loading animations
 - Menu interaction states are clearer
