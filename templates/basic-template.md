@@ -1,5 +1,5 @@
 ---
-title: Title
+title: Title using sentence case
 description: A brief summary of the post, 170 characters max including spaces.
 author: firstname.surname@octopus.com
 visibility: private
@@ -14,18 +14,18 @@ tags:
 
 See https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags,
 
-Introductory paragraph that tells the reader why they should read on.
+Introductory paragraph that tells the reader why they should read on and what to expect.
 
-## Body
+## H2 subheading here (please use sentence case for all headings)
 
-The body of the post is where you share your hypothesis, how-to, or story.
+This is the body of the post is where you share your hypothesis, how-to, or story.
 
 If there are any previous posts on the same topic, please link to them to help with our SEO efforts. For example:
 Our post about [DORA metrics](https://octopus.com/blog/dora-metrics-devops-business-outcomes) discusses how agility-based metrics can help improve profitability, market share, and productivity. 
 
 Please note the advice in our style guide about [adding resources to your post](https://www.octopus.design/932c0f1a9/p/901d2a-blog-content-basics/t/01404d).
 
-### Subheadings
+### Subheadings (please use sentence case for all headings)
 
 Use three ### to include H3 headings.
 
