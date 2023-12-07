@@ -1,0 +1,313 @@
+---
+title: Set up a local Kubernetes deployment pipeline
+description: We teach you how to set up a local Kubernetes deployment pipeline, so you can experiment without risk
+author: andrew.corrigan@octopus.com
+visibility: private
+published: 3020-01-01-1400
+metaImage: 
+bannerImage: 
+bannerImageAlt: 125 characters max, describes image to people unable to see it.
+isFeatured: false
+tags: 
+  - Kubernetes
+  - GitHub Actions
+  - Docker
+---
+
+Kubernetes (also known as 'K8s') is a container management tool that solves complexity for software teams who might:
+
+- Need to scale their application suddenly or automatically due to an influx of customers
+- Manage different versions of their software for different customers, as with multi-tenancy
+- Want fluidity and flexibility in their infrastructure to react to the ebb and flow of traffic
+- Use a microservices software architecture
+
+Though it solves complexity, Kubernetes is somewhat complex itself. It's known for causing a few headaches for new adopters ([some of which Octopus solves, FYI](https://octopus.com/use-case/kubernetes)).
+
+A great way to start with Kubernetes, however, is to set up a local instance. A local instance allows you to:
+
+- Figure out how things work without pressure
+- Make those early mistakes without real environment consequences
+- Build out the local instance as you get more comfortable
+
+In this post, we guide you through setting up a local Kubernetes deployment pipeline that:
+
+- Builds a simple containerized application using GitHub Actions
+- Pushes application to Docker Hub
+- Deploys the app to your local instance using Octopus Server
+
+## Before you start
+
+This guide uses Octopus Server for Windows. You can use Linux to create a local deployment pipeline, but you'll need to make adjustments for format differences.
+
+We use [Canonical's MicroK8s](https://microk8s.io/) to for the local Kubernetes instance in this guide. We consider it the easiest entry point as it includes everything you need to get started quickly (though not entirely without a few minor quirks, as you'll soon discover).
+
+We reference the MicroK8s commands and steps needed to complete this guide as you need them. If you want to know more about MicroK8s and Kubernetes commands beyond this post, [MicroK8s' documentation](https://microk8s.io/docs) is fantastic. It uses easy-to-understand language and has simpler explanations than most other Kubernetes guides.
+
+MicroK8s needs Microsoft's 'HyperV' and 'Windows Hypervisor Platform' enabled to run clusters as it hosts MicroK8s on an Ubuntu virtual machine. Use Windows search to find the `Turn Windows features on or off` option and tick boxes for both features in the list. If you use VMWare on the same computer, I recommend fully uninstalling it before enabling HyperV, as it might cause you problems later on.
+
+You'll also need [GitHub](https://github.com/) and [Docker Hub](https://hub.docker.com/) accounts.
+
+Lastly, we'll use Octopus Server to deploy our 'underwater app' to your cluster. If you don't already have a license for Octopus Server, don't panic - we explain how to sign-up for a trial in the guide.
+
+## Step 1: Install MicroK8s on Windows
+
+Installing MicroK8s is extremely easy. For Windows, download and run the [MicroK8s installer](https://microk8s.io/).
+
+I recommend adding `MicroK8s` and `Kubectl` to your system path when asked. Leave all other steps as default.
+
+The installer will set up your MicroK8s instance. You can check it's running by using the `microk8s status --wait-ready` command in Windows Terminal.
+
+You can stop and start MicroK8s whenever you need with the following commands. Stopping MicroK8s when not in use will save system resources and battery performance:
+
+- `microk8s start`
+- `microk8s stop`
+
+```Hint
+MicroK8s seems to regularly fail starting the first time, advising of an 'Exit Code 2' error. Just run the command again and it should start fine.
+```
+### Step 2: Configure MicroK8s networking
+
+You can experience problems running MicroK8s on Windows due to the way HyperV allocates IP address. We can solve those problems by adding an address string to MicroK8s' DNS settings that removes reliance on IP addresses. That way, the other tools in our pipeline will always see our clusters.
+
+1. Open a Windows Terminal and connect directly to Ubuntu by running `multipass shell microk8s-vm`.
+1. Run `sudo nano /var/snap/microk8s/current/certs/csr.conf.template`.
+1. Use the arrow keys to move the cursor down to the DNS section and add the following entry to the DNS list: `DNS.6 = microk8s-vm.mshome.net`
+1. Press Ctrl and X to exit. Type 'Y' to confirm the changes. Press **Enter** to confirm the file you're overwriting.
+
+Now run `microk8s config` in a fresh Windows Terminal for cluster information. Make a note of the 'Server' field as you need it later. It'll look something like `https://111.111.111.111:12345`. Specifically, note the numbers after the colon. This is your cluster's networking port number.
+
+1. Enter `microk8s stop` in your Windows Terminal. Wait for it stop.
+1. Open a Windows Explorer and browse to `C:\Users\*your profile*\AppData\Local\MicroK8s` and open the 'config' file. Select **Notepad** if you don't already have a default app.
+1. Find the 'Server' field and replace its address with `https://microk8s-vm.mshome.net:12345` The last five digits should be the port number we noted earlier when running `microk8s config`.
+1. Save the file and close it.
+1. Run `Start microk8s` in Windows Terminal again (and yet again if the start command fails).
+
+We'll also need to run the following command in Windows Terminal to enable Ingress on your local Kubernetes instance: `microk8s enable ingress`.
+
+Ingress is a network routing tool for MicroK8s. It allows you to see your app on your local instance without complex or problematic workarounds, like port forwarding.
+
+## Step 3: Install SQL Server Express
+
+Octopus needs an SQL Server to store information about your projects and deployments.
+
+Technically, you can install SQL Server Express during the Octopus Setup Wizard covered in the next step. However, we'll install it now for instructional clarity - it saves switching between apps during steps.
+
+1. [Download SQL Server Express](https://www.hanselman.com/blog/download-sql-server-express). It's a free download and the basic version be fine.
+1. When downloaded, run the installer from your Downloads folder (or wherever you chose to save it.)
+1. Choose where you'd like to extract the files and click **OK**. It should default to your Downloads folder.
+1. The 'SQL Server Installation Center' will open. Click **New SQL Server stand-alone installation or add features to an existing installation**.
+1. Accept the 'MICROSOFT SOFTWARE LICENSE TERMS' and click **Next**.
+1. You can use all the defaults for the rest of the setup wizard. Just click **Next** to progress, then **Close** when the install completes.
+
+## Step 4: Install and set up Octopus on your computer
+
+Now we can install Octopus Server.
+
+1. Go to the [Octopus downloads page](https://octopus.com/downloads) and click the **Download** button for the latest version.
+1. When downloaded, run the installer MSI from your Downloads folder (or wherever you chose to save it.)
+1. Progress through each stage of the install process by clicking **Next** and click **Finish** at the end. Make sure you:
+   - Accept the 'End-User License Agreement'
+   - Install Octopus where you're comfortable. The default install location is `C:\Program Files` and should be fine in most cases.
+
+Octopus should auto-start after the install completes and take you to the Octopus Setup Wizard. Complete the screens as follows:
+
+1. **License key**: Click the **free trial license key** link and enter your details. Copy the license text from the website code-box into the setup wizard's license-box. Click **Next**.
+1. **Home**: Choose a home directory for Octopus to store settings and related files. The default should be fine in most cases. Click **Next**.
+1. **Service Account**: We're setting up a local pipeline, so select **Use Local System account**.
+1. **Database**: Select **(local)\SQLEXPRESS** from the 'Server name' dropdown (unless you called the SQL Server instance something else) and click **Next**.
+1. Click **OK** on the popups that ask:
+   - If you want to create the 'OctopusDeploy-OctopusServer' database.
+   - If you want to grant access to the 'NT AUTHORITY\SYSTEM' account.
+1. **Web Portal**: The default is fine. Click **Next**.
+1. **Authentication**: Complete the following fields and click **Next**:
+   - **Authentication mode**: Select **Username/passwords stored in Octopus**
+   - **Username**: Enter a username you'll use to log into Octopus
+   - **Email**: Enter your email address
+   - **Password and Retype password**: Enter the password you'll use to login into Octopus
+1. Click **Finish**.
+
+Octopus Manager will now open. Click **Open in browser** to launch the Octopus dashboard and log in with the credentials you just created.
+
+## Step 5: Create a project in Octopus
+
+1. Go to your Octopus dashboard and click **Projects** from the top menu.
+1. Click **Add New Project**.
+1. Give your project a suitable name and click **SAVE**.
+1. Remove all environments but 'Development' and click **SAVE**.
+
+We'll be back to create the deployment process later.
+
+## Step 6: Connect Octopus to your local Kubernetes instance
+
+Run `microk8s kubectl create token default --duration 525600m` in your Windows Terminal to create a security token for your Kubernetes instance. This sets the token to be valid for 10 years. By not stating a duration, the token will only last a few hours. 
+
+To add the token to Octopus:
+
+1. Click **Infrastructure** from Octopus's top menu.
+1. Click **Accounts** from the left menu.
+1. Click **ADD ACCOUNT** and select **Token** from the dropdown.
+1. Complete the following fields and click **SAVE**:
+   - **Name**: Give the account a short name. I opted for `Kubternetes Account`
+   - **Token**: Paste in the token you just generated in Windows Terminal
+   - **Environment**: Select **Development** from the dropdown 
+
+Now we'll create the deployment target:
+
+1. Go to your Octopus dashboard and click **Infrastructure** from the top menu.
+1. Click **Deployment Targets**.
+1. Click **ADD DEPLOYMENT TARGET**.
+1. Click **KUBERNETES CLUSTER** and then **Kubernetes Cluster** from filtered results below.
+1. Complete the following fields and click **SAVE**:
+   - **Display Name**: What you'll call the cluster in Octopus. I called it `Test Cluster`.
+   - **Environments**: Select **Development** from the dropdown menu.
+   - **Target Roles**: Type in a name for the Target Role and click **Add new role**. We use target roles to help direct where deployments go. I called mine `Local Cluster`.
+   - **Authentication** - Select **Token** from the dropdown, then select the credentials we created earlier from the 'Select account'**' dropdown.
+   - **Kubernetes cluster URL** - Use the server address we set in the config file earlier: `https://microk8s-vm.mshome.net:12345` (remember to replace the last 5 digits with the port number we noted earlier)
+   - **Skip TLS verification** - Tick this box.
+
+When saved, click **Connectivity** from the left menu and click **CHECK HEALTH**. Octopus will check it can see your cluster. If you see green, you're good to go. If you see red, go back and check your settings.
+
+## Step 7: Create your GitHub project's repository
+
+Log in to GitHub and create a fork of the [Octopus Underwater App repository](https://github.com/OctopusSamples/octopus-underwater-app) by clicking the **Fork** button.
+
+You should now see a copy of the repository in your list of repositories. Click on it.
+
+## Step 8: Create a Docker repository
+
+1. Log into your [Docker Hub](https://hub.docker.com/) account.
+1. Click **Create repository**.
+1. Complete the following fields and click **Create**:
+   - **Namespace**: Set as your account name.
+   - **Repository Name**: Enter `octopus-underwater-app`.
+   - **Visibility**: Leave as **Public**
+
+You should now see the Docker repository in your list.
+
+## Step 9: Set up a package feed in Octopus
+
+1. Go back to Octopus Server and click on **Library** from the top menu.
+1. Click **External Feeds** from the left menu.
+1. Click **ADD FEED**.
+1. Complete the following settings and click **SAVE**:
+   - **Feed Type**: Select **Docker Container Registry** from the dropdown.
+   - **Name**: Give the feed a name to use in Octopus. I called mine `Docker`.
+   - **URL**: Leave as `https://index.docker.io`.
+   - **Credentials**: Select **Username and Password** and enter your Docker username and password into the 'Feed Username' and 'Feed Password' fields.
+1. Click the **TEST** button and search for your Docker repository name to see if it appears in the results. If it's there, it's working.
+
+## Step 10: Set up a GitHub Action to push the project to Docker Hub
+
+First, we'll add your DockerHub credentials as secrets to your GitHub repository.
+
+1. Click **Settings** from your repository's top menu.
+1. Expand **Secrets and variables** in the left menu and click **Actions**.
+1. Under the 'Repository secrets' heading click **New repository secret**.
+1. Complete the following fields and click **Add secret**:
+   - **Name**: Enter `DOCKERHUB_USERNAME`
+   - **Secret**: Enter your Docker username.
+1. Click **Add secret** again.
+1. Complete the following fields and click **Add secret**:
+   - **Name**: Enter `DOCKERHUB_TOKEN`
+   - **Secret**: Enter your Docker Hub password.
+
+Now we can create the action. For this we'll use the Build and push [Docker images GitHub Action](https://github.com/marketplace/actions/build-and-push-docker-images). Don't worry, we've made it simpler by providing the action's workflow in the steps below.
+
+1. Click **Actions** from your repository's top menu.
+1. Click **New workflow**.
+1. Click **Set up a workflow yourself**.
+1. Call the file `build-push-action.yml` and make sure it lives in a subdirectory called `workflows`. If you don't already have a 'workflows' folder in your repository, you can create it by adding `workflows/` before the Action name.
+1. Copy and paste the following code into the code editing box. Update the final line labelled 'tags' with your own Docker username and repository.
+   
+```
+   name: build-push-action
+
+on:
+  push:
+    branches:
+      - 'main'
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      -
+        name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      -
+        name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      -
+        name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+        name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          tags: user/app:latest
+```
+1. Click **Commit changes...**
+
+The Action should automatically run. You can track its progress by clicking the **Actions button** again.
+
+As long as the action completes with a green tick, you can check Docker for your package.
+
+## Step 11: Create, run, and test your first deployment
+
+Now we can go back and create the deployment process in Octopus.
+
+1. In Octopus, click **Projects** from the top menu, then click on your recently created project.
+1. Click **CREATE PROCESS**.
+1. Click **Kubernetes** and then **Deploy Kubernetes Containers** from the filtered options just below.
+1. Complete the following sections and fields:
+   - **On Behalf Of**: Select the target role we created earlier from the dropdown. Mine was `Local Cluster`.
+   - **Deployment**:
+      - **Deployment Name**: Enter `octopus-underwater-app`
+   - **Container:
+      - Click **ADD CONTAINER**, complete the following fields in the popup and click **OK**:
+         - **Name**: Enter `octopus-underwater-app`
+         - **Package Feed**: Select name of the feed we set earlier. I called mine `Docker`
+         - **Package ID**: Start typing your Docker username and select 'octopus-underwater-app' from the list.
+      - Click the **ADD PORT** button and complete the fields as follows:
+         - **Name**: Enter `http`
+         - **Port**: Enter `80`
+         - **Protocol**: Select **TCP** from the dropdown
+   - **Service:
+      - **Service Name**: Enter `octopus-underwater-service`
+      - **Service Ports**: Click **ADD PORT**, complete the following fields and click **OK**:
+         - **Name**: Enter `http`
+         - **Port**: Enter `80`
+         - **Protocol**: TCP
+   - **Ingress**:
+	- **Ingress Name**: Enter `octopus-underwater-ingress`
+	- **Ingress Host Roles**: Click **ADD HOST RULE**, then **ADD PATH**. Complete the following fields and click **OK**:
+	   - **Path**: Enter `/`
+	   - **Service port**: Select **HTTP** from the dropdown
+	   - **Path Type**: Select **Prefix** from the dropdown
+1. Leave everything else as default and click **SAVE**.
+
+Now we'll create a release and try to deploy it:
+
+1. Click **CREATE RELEASE** from the left menu. Octopus will check it can see everything related to your package.
+1. Click **SAVE**.
+1. Click **DEPLOY TO DEVELOPMENT...** and wait for the deployment to finish.
+
+When the deployment complete successfully, you can test that the application's working by going to the URL we set in DNS earlier: `http://microk8s-vm.mshome.net`. A lovely animated scene should greet you, with some reading suggestions.
+
+## Conclusion
+
+Congratulations, you just deployed an application to your own newly-created local Kubernetes instance!
+
+Now you have a mostly-local Kubernetes deployment pipeline, you can experiment with it consequence free. You could try:
+
+- Adding or swapping tooling in the pipeline
+- Deploying your own project or changing the one we provided
+- Creating new clusters and adding QA and Production environments to see how lifecycles work in Octopus
+
+And lastly, why not read exactly [how Octopus helps with Kubernetes deployments](https://octopus.com/use-case/kubernetes).
+
+Happy deployments!
