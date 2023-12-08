@@ -21,7 +21,7 @@ Kubernetes (also known as 'K8s') is a container management tool that solves comp
 - Want fluidity and flexibility in their infrastructure to react to the ebb and flow of traffic
 - Use a microservices software architecture
 
-Though it solves complexity, Kubernetes is somewhat complex itself. It's known for causing a few headaches for new adopters ([some of which Octopus solves, FYI](https://octopus.com/use-case/kubernetes)).
+Though it solves complexity, Kubernetes is somewhat complex itself. It's known for causing a few headaches for new adopters.
 
 A great way to start with Kubernetes, however, is to set up a local instance. A local instance allows you to:
 
@@ -309,6 +309,8 @@ Now you have a mostly-local Kubernetes deployment pipeline, you can experiment w
 - Deploying your own project or changing the one we provided
 - Creating new clusters and adding QA and Production environments to see how lifecycles work in Octopus
 
-And lastly, why not read exactly [how Octopus helps with Kubernetes deployments](https://octopus.com/use-case/kubernetes).
+Remember, this guide represents Kubernetes as its simplest layer and there's way more to learn from here. Kubernetes is an excellent solution, but it's a complicated one. Its complexity only snowballs the more you scale - something large organizations, enterprises, and those with modern software architecures discover when their software hits certain thresholds.
+
+Octopus is a deployment automation tool that helps solve the complexity that comes with Kubernetes deployments at scale. [Read how we help with Kubernetes deployments](https://octopus.com/use-case/kubernetes) if you find yourself with these problems.
 
 Happy deployments!
