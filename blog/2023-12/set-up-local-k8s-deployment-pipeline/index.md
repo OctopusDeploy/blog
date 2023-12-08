@@ -251,7 +251,7 @@ jobs:
           push: true
           tags: user/app:latest
 ```
-1. Click **Commit changes...**
+6. Click **Commit changes...**
 
 The Action should automatically run. You can track its progress by clicking the **Actions button** again.
 
