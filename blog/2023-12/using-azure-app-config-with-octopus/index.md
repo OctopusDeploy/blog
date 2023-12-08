@@ -4,8 +4,8 @@ description: Introducing new step templates to allow configuration values stored
 author: mark.harrison@octopus.com
 visibility: public
 published: 2023-12-18-1400
-metaImage: blogimage-azure-app-config-step-templates-2023.jpg
-bannerImage: blogimage-azure-app-config-step-templates-2023.jpg
+metaImage: 
+bannerImage: 
 bannerImageAlt: Using Azure App Configuration with Octopus Deploy
 isFeatured: false
 tags:
