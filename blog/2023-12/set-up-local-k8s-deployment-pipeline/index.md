@@ -309,8 +309,8 @@ Now you have a mostly-local Kubernetes deployment pipeline, you can experiment w
 - Deploying your own project or changing the one we provided
 - Creating new clusters and adding QA and Production environments to see how lifecycles work in Octopus
 
-Remember, this guide represents Kubernetes as its simplest layer and there's way more to learn from here. Kubernetes is an excellent solution, but it's a complicated one. Its complexity only snowballs the more you scale - something large organizations, enterprises, and those with modern software architectures discover when their software hits certain thresholds.
+Remember, this guide represents Kubernetes as its simplest layer and there's way more to learn from here. Kubernetes is an excellent solution, but it's a complicated one. Its complexity only snowballs the more you scale - something large organizations, enterprises, and those with modern software architectures often discover.
 
-Octopus is a deployment automation tool that helps solve the complexity that comes with Kubernetes deployments at scale. [Read how we help with Kubernetes deployments](https://octopus.com/use-case/kubernetes) if you find yourself with these problems.
+Octopus is a deployment automation tool that helps solve the complexity of Kubernetes deployments at scale. [Read how Octopus helps with Kubernetes deployments](https://octopus.com/use-case/kubernetes).
 
 Happy deployments!
