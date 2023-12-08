@@ -3,10 +3,10 @@ title: Using Azure App Config with Octopus
 description: Introducing new step templates to allow configuration values stored in Azure App Configuration to be used in deployments or runbooks.
 author: mark.harrison@octopus.com
 visibility: public
-published: 2023-12-18-1400
+published: 2023-12-20-1400
 metaImage: img-blog-usingazureappconfigwithoctopus-2023.png
 bannerImage: img-blog-usingazureappconfigwithoctopus-2023.png
-bannerImageAlt: Laptop screen showing 
+bannerImageAlt: Stylized laptop screen showing Octopus logo connected to cogs in the cloud, with a clipboard to the right.
 isFeatured: false
 tags:
  - Product
@@ -38,7 +38,7 @@ Before you can retrieve values from an Azure App Configuration instance, you mus
 In Octopus, you can achieve authentication with an Azure App Configuration instance with an [Azure account](https://octopus.com/docs/infrastructure/accounts/azure), using a service principal. 
 
 :::hint
-In addition to accessing resources in Azure, your service principal may need further permissions configured to access and retrieve values stored in Azure App Configuration. To learn more, read the [Enable Access using Microsoft Entra ID guide](https://learn.microsoft.com/en-us/azure/azure-app-configuration/concept-enable-rbac) on providing access to an App Configuration instance.
+In addition to accessing resources in Azure, your service principal may need further permissions configured to access and retrieve values stored in Azure App Configuration. To learn more, read the guide [Authorize access to Azure App Configuration using Microsoft Entra ID](https://learn.microsoft.com/en-us/azure/azure-app-configuration/concept-enable-rbac).
 :::
 
 ## Retrieving Values {#retrieving-values}
