@@ -78,7 +78,7 @@ You can experience problems running MicroK8s on Windows due to the way HyperV al
 Now run `microk8s config` in a fresh Windows Terminal for cluster information. Make a note of the 'Server' field as you need it later. It'll look something like `https://111.111.111.111:12345`. Specifically, note the numbers after the colon. This is your cluster's networking port number.
 
 1. Run `microk8s stop` in your Windows Terminal. Wait for it stop.
-1. Open a Windows Explorer and browse to `C:\Users\*your profile*\AppData\Local\MicroK8s` and open the 'config' file. Select **Notepad** if you don't already have a default app.
+1. Open a Windows Explorer and browse to `C:\Users\*your profile*\AppData\Local\MicroK8s` and open the 'config' file. Select **Notepad** if you don't already have a default app. The 'AppData' folder may be hidden by default on Windows. You can make it visible by changing the [view settings for your profile folder](https://support.microsoft.com/en-us/windows/view-hidden-files-and-folders-in-windows-97fbc472-c603-9d90-91d0-1166d1d9f4b5).
 1. Find the 'Server' field and replace its address with `https://microk8s-vm.mshome.net:12345` The last five digits should be the port number we noted earlier when running `microk8s config`.
 1. Save the file and close it.
 1. Run `Start microk8s` in Windows Terminal again (and yet again if the start command fails).
@@ -93,7 +93,9 @@ Octopus needs an SQL Server to store information about your projects and deploym
 
 Technically, you can install SQL Server Express during the Octopus Setup Wizard covered in the next step. However, we'll install it now for instructional clarity - it saves switching between apps during steps.
 
-1. [Download SQL Server Express](https://www.hanselman.com/blog/download-sql-server-express). It's a free download and the basic version be fine.
+As some point during the install, you may see a Windows Firewall warning. You should allow access otherwise you'll experience problems with connections.
+
+1. [Download SQL Server Express](https://www.hanselman.com/blog/download-sql-server-express). I used the Basic SQL Server 2019 Express Edition. It's a free download and the basic version be fine.
 1. When downloaded, run the installer from your Downloads folder (or wherever you chose to save it.)
 1. Choose where you'd like to extract the files and click **OK**. It should default to your Downloads folder.
 1. The 'SQL Server Installation Center' will open. Click **New SQL Server stand-alone installation or add features to an existing installation**.
@@ -148,7 +150,7 @@ To add the token to Octopus:
 1. Click **Accounts** from the left menu.
 1. Click **ADD ACCOUNT** and select **Token** from the dropdown.
 1. Complete the following fields and click **SAVE**:
-   - **Name**: Give the account a short name. I opted for `Kubternetes Account`
+   - **Name**: Give the account a short name. I opted for `Kubernetes Account`
    - **Token**: Paste in the token you just generated in Windows Terminal
    - **Environment**: Select **Development** from the dropdown 
 
