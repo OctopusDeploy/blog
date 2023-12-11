@@ -53,7 +53,7 @@ Lastly, we'll use Octopus Server to deploy our 'underwater app' to your cluster.
 
 Installing MicroK8s is extremely easy. For Windows, download and run the [MicroK8s installer](https://microk8s.io/).
 
-I recommend adding `MicroK8s` and `Kubectl` to your system path when asked. Leave all other steps as default.
+Make sure you select `MicroK8s` and `Kubectl` when asked what commands to add to your system PATH. Leave all other steps as default.
 
 The installer will set up your MicroK8s instance. You can check it's running by using the `microk8s status --wait-ready` command in Windows Terminal.
 
@@ -142,14 +142,14 @@ We'll be back to create the deployment process later.
 
 ## Step 6: Connect Octopus to your local Kubernetes instance
 
-Run `microk8s kubectl create token default --duration 525600m` in your Windows Terminal to create a security token for your Kubernetes instance. This command sets the token to be valid for 10 years. By not stating a duration, the token will only last a few hours. 
+Run `microk8s kubectl create token default --duration 525600m` in your Windows Terminal to create a security token for your Kubernetes instance. This command sets the token to be valid for 10 years. By not stating a duration, the token will only last a few hours.
 
 To add the token to Octopus:
 
 1. Click **Infrastructure** from Octopus's top menu.
 1. Click **Accounts** from the left menu.
 1. Click **ADD ACCOUNT** and select **Token** from the dropdown.
-1. Complete the following fields and click **SAVE**:
+1. Complete the following fields (leave everything else as default) and click **SAVE**:
    - **Name**: Give the account a short name. I opted for `Kubernetes Account`
    - **Token**: Paste in the token you just generated in Windows Terminal
    - **Environment**: Select **Development** from the dropdown 
@@ -160,7 +160,7 @@ Now we'll create the deployment target:
 1. Click **Deployment Targets**.
 1. Click **ADD DEPLOYMENT TARGET**.
 1. Click **KUBERNETES CLUSTER** and then **Kubernetes Cluster** from filtered results below.
-1. Complete the following fields and click **SAVE**:
+1. Complete the following fields (leave everything else as default) and click **SAVE**:
    - **Display Name**: Enter what you'll call the cluster in Octopus. I called it `Test Cluster`.
    - **Environments**: Select **Development** from the dropdown menu.
    - **Target Roles**: Type in a name for the Target Role and click **Add new role**. We use target roles to help direct where deployments go. I called mine `Local Cluster`.
@@ -172,7 +172,7 @@ When saved, click **Connectivity** from the left menu and click **CHECK HEALTH**
 
 ## Step 7: Create your GitHub project's repository
 
-Log in to GitHub and create a fork of the [Octopus Underwater App repository](https://github.com/OctopusSamples/octopus-underwater-app) by clicking the **Fork** button and complete the short form.
+Log in to GitHub and create a fork of the [Octopus Underwater App repository](https://github.com/OctopusSamples/octopus-underwater-app) by clicking the **Fork** button and completing the short form.
 
 You should now see a copy of the repository in your list of repositories.
 
@@ -255,13 +255,13 @@ jobs:
 ```
 6. Click **Commit changes...**
 
-The Action should automatically run. You can track its progress by clicking the **Actions button** again.
+The Action should automatically run. You can track its progress by clicking the **Actions** button again.
 
 As long as the action completes with a green tick, you can check your Docker repository to see if it has an image.
 
 ## Step 11: Create, run, and test your first deployment
 
-Now we can go back and create the deployment process in Octopus.
+Now we can go back and create the deployment process in Octopus. Remember, if we don't mention it, leave it at the default.
 
 1. In Octopus, click **Projects** from the top menu, then click on your recently created project.
 1. Click **CREATE PROCESS**.
