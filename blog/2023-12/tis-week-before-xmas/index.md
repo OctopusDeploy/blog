@@ -17,17 +17,17 @@ Soon not a sprint will start, not even at Microsoft.<br>
 Late updates will commit, last-minute deployments will get done,<br>
 And those who celebrate the holidays will gear up for some fun.<br>
 
-So what better time to reflect and celebrate,\
-To think of the year behind, and how we improved deployment rates.
-2023 has been a raging success,
-So let's look all the things Octopus did that only it does best.
+So what better time to reflect and celebrate,<br>
+To think of the year behind, and how we improved deployment rates.<br>
+2023 has been a raging success,<br>
+So let's look all the things Octopus did that only it does best.<br>
 
 ## How we improved Octopus
 
-*"We like solving problems for software teams,
-And we work hard on new features so you can deploy at great speeds.
-If multi-tenancy, Kubernetes, or operations get you blue,
-In 2023, Octopus might have released the right features for you."*
+*"We like solving problems for software teams,<br>
+And we work hard on new features so you can deploy at great speeds.<br>
+If multi-tenancy, Kubernetes, or operations get you blue,<br>
+In 2023, Octopus might have released the right features for you."*<br>
 
 This year, we invested our time heavily in 3 core areas: Kubernetes, tenanted deployments, and improvements that help you manage and understand scale.
 
@@ -78,10 +78,10 @@ Next year's planned improvements include:
 
 ## We travelled the world to meet you
 
-*"We travelled the world, though slower than Saint Nick,
-To meet you in person at industry gigs.
-We showed off Octopus, talked shop, and heard of your pains,
-We learned lots, made friends, and can't wait to do it again."*
+*"We travelled the world, though slower than Saint Nick,<br>
+To meet you in person at industry gigs.<br>
+We showed off Octopus, talked shop, and heard of your pains,<br>
+We learned lots, made friends, and can't wait to do it again."*<br>
 
 We found so much value in meeting everyone at many of this year's industry events, including:
 
@@ -104,10 +104,10 @@ A heartfelt thanks to anyone who stopped to talk to us or heard what we had to s
 
 ## We launched our own event with SHIPPED23
 
-*"Not just content with our travels, we held an event of our own,
-With SHIPPED23, where we shared what we know.
-We talked software delivery in all the ways we could glean,
-Bringing the smartest of Octopus right to your screen."*
+*"Not just content with our travels, we held an event of our own,<br>
+With SHIPPED23, where we shared what we know.<br>
+We talked software delivery in all the ways we could glean,<br>
+Bringing the smartest of Octopus right to your screen."*<br>
 
 On November 15, we held our own virtual conference in the form of SHIPPED23.
 
@@ -129,10 +129,10 @@ Watch the event via our YouTube playlist:
 
 ## Our website continues to improve
 
-*"Octopus's website is a wonderful tool,
-It's where we give updates and explain our value to you.
-Its development is an ongoing task,
-But we made massive steps in the year that's just passed."*
+*"Octopus's website is a wonderful tool,<br>
+It's where we give updates and explain our value to you.<br>
+Its development is an ongoing task,<br>
+But we made massive steps in the year that's just passed."*<br>
 
 In late 2022, we gave our homepage a new look, but our work didn't stop there.
 
@@ -156,10 +156,10 @@ We also told the Octopus story in new ways:
 
 ## 2023 in stats
 
-*"Like many in tech, we love some good stats,
-So we hit up our experts whose data we track.
-From all of the areas from which we hold dear,
-Here are some factoids from another great year."*
+*"Like many in tech, we love some good stats,<br>
+So we hit up our experts whose data we track.<br>
+From all of the areas from which we hold dear,<br>
+Here are some factoids from another great year."*<br>
 
 To finish, here are some fun stats about Octopus's year (at the time of writing):
 
