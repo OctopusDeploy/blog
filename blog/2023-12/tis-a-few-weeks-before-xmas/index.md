@@ -24,14 +24,12 @@ So let's look all the things Octopus did that only it does best.
 
 ## How we improved Octopus
 
-
 *"We like solving problems for software teams,
 And we work hard on new features so you can deploy at great speed.
 If multi-tenancy, Kubernetes, or operations get you blue,
 In 2023, Octopus might have released the right features for you."*
 
-
-This year we invested our time heavily in 3 core areas: Kubernetes, tenanted deployments, and improvements that help you manage and understand scale.
+This year, we invested our time heavily in 3 core areas: Kubernetes, tenanted deployments, and improvements that help you manage and understand scale.
 
 Here are some of the standout features and changes we made to Octopus in 2023:
 
@@ -43,7 +41,7 @@ Here are some of the standout features and changes we made to Octopus in 2023:
 
 ### Better multi-tenancy deployments
 
-- [Tenants dashboard makeover](https://octopus.com/blog/redesigned-tenant-overview-dashboard) - It's now easier to track projects, environments and tenant tags for all your tenants
+- [Tenants dashboard makeover](https://octopus.com/blog/redesigned-tenant-overview-dashboard) - It's now easier to track projects, environments, and tenant tags for all your tenants
 - [Tenant bulk actions](https://octopus.com/blog/connect-project-multiple-tenants-bulk-action) - Easier tenant management at scale
 
 ### Reduced manual intervention
@@ -59,13 +57,13 @@ Here are some of the standout features and changes we made to Octopus in 2023:
 
 ### Great UI changes:
 
-- Version controlled variables - Manage variables alongside your deployment process code and scope them to environments, roles, targets, and more
+- Version-controlled variables - Manage variables alongside your deployment process code and scope them to environments, roles, targets, and more
 - [Reprioritize tasks](https://octopus.com/blog/reprioritize-task-queue) - Easily shuffle tasks around in runbooks and deployments as priorities changes
 - New onboarding process - Our improved onboarding helps you get to grips with Octopus faster
 
 ### But wait, there's more!
 
-These are just our standout updates. Check out our [What's new?](https://octopus.com/whatsnew) page to see *all* the changes and improvements we made to Octopus this year.
+These are just our standout updates. Check out our [What's new?](https://octopus.com/whatsnew) page to see *all* our changes and improvements to Octopus this year.
 
 We're always working on improving Octopus, however, and next year's planned improvements include:
 
@@ -86,7 +84,7 @@ To meet you in person at industry gigs.
 We showed off Octopus, talked shop, and heard of your pains,
 We learned lots, made friends, and can't wait to do it again."*
 
-We at Octopus found so much value meeting everyone at many of this year's industry events, including:
+We at Octopus found so much value in meeting everyone at many of this year's industry events, including:
 
 - NDC London and Oslo
 - KubeCon Europe and North America in both Amsterdam and Chicago
@@ -103,7 +101,7 @@ We also *loved* talking about Octopus and sharing our experiences at events like
 - SSW .NET Group
 - Cloud Native Summit
 
-A heartfelt thanks to anyone that stopped to talk to us or heard what we had to say. If you're a regular attendee of these events, we look forward to seeing you in-person again next year!
+A heartfelt thanks to anyone who stopped to talk to us or heard what we had to say. If you're a regular attendee of these events, we look forward to seeing you in person again next year!
 
 ## We launched our own event with SHIPPED23
 
@@ -137,9 +135,9 @@ It's where we give updates and explain our value to you.
 Its development is an ongoing task,
 But we made massive steps in the year that's just passed."*
 
-In late 2022, we dropped a new look for our homepage but our work didn't stop there. 
+In late 2022, we gave our homepage a new look, but our work didn't stop there.
 
-We've been redeveloping our website over the entire year so it better explains how Octopus simplifies enterprise, tenanted, and Kubernetes deployments.
+We've been redeveloping our website over the entire year, so it better explains how Octopus simplifies enterprise, tenanted, and Kubernetes deployments.
 
 We have new pages that explain how Octopus helps with specific deployment strategies:
 
@@ -182,6 +180,6 @@ To finish, here are some fun stats about Octopus's year (at the time of writing)
 
 ## Happy deployments to all, and to all a good night!
 
-As you can see, Octopus had a terrific year and we can't wait to keep helping software teams with complex deployments.
+As you can see, Octopus had a terrific year, and we can't wait to keep helping software teams with complex deployments in 2024.
 
 Just a reminder that staff at Octopus take a well-earned rest over the holidays. Fret not, [we'll still be available to support you](https://octopus.com/support) if needed.
