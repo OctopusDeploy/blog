@@ -13,11 +13,11 @@ tags:
 ---
 
 'Tis a few weeks before Christmas, for many in DevOps,<br>
-Soon not a sprint will start, not even at Microsoft.
-Late updates will commit, last-minute deployments will get done,
-And those who celebrate the holidays will gear up for some fun.
+Soon not a sprint will start, not even at Microsoft.<br>
+Late updates will commit, last-minute deployments will get done,<br>
+And those who celebrate the holidays will gear up for some fun.<br>
 
-So what better time to reflect and celebrate,
+So what better time to reflect and celebrate,\
 To think of the year behind, and how we improved deployment rates.
 2023 has been a raging success,
 So let's look all the things Octopus did that only it does best.
