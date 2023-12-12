@@ -25,10 +25,10 @@ So let's look all the things Octopus did that only it does best.
 ## How we improved Octopus
 
 
-"*We like solving problems for software teams,
+*"We like solving problems for software teams,
 And we work hard on new features so you can deploy at great speed.
 If multi-tenancy, Kubernetes, or operations get you blue,
-In 2023, Octopus might have released the right features for you*".
+In 2023, Octopus might have released the right features for you."*
 
 
 This year we invested our time heavily in 3 core areas: Kubernetes, tenanted deployments, and improvements that help you manage and understand scale.
@@ -59,7 +59,7 @@ Here are some of the standout features and changes we made to Octopus in 2023:
 
 ### Great UI changes:
 
-- Scope variables alongside your deployment process code - 
+- Version controlled variables - Manage variables alongside your deployment process code and scope them to environments, roles, targets, and more
 - [Reprioritize tasks](https://octopus.com/blog/reprioritize-task-queue) - Easily shuffle tasks around in runbooks and deployments as priorities changes
 - New onboarding process - Our improved onboarding helps you get to grips with Octopus faster
 
@@ -81,10 +81,10 @@ We're always working on improving Octopus, however, and next year's planned impr
 
 ## We travelled the world to meet you
 
-"*We travelled the world, though slower than Saint Nick,
+*"We travelled the world, though slower than Saint Nick,
 To meet you in person at industry gigs.
 We showed off Octopus, talked shop, and heard of your pains,
-We learned lots, made friends, and can't wait to do it again*".
+We learned lots, made friends, and can't wait to do it again."*
 
 We at Octopus found so much value meeting everyone at many of this year's industry events, including:
 
@@ -107,10 +107,10 @@ A heartfelt thanks to anyone that stopped to talk to us or heard what we had to 
 
 ## We launched our own event with SHIPPED23
 
-"*Not just content with our travels, we held an event of our own,
+*"Not just content with our travels, we held an event of our own,
 With SHIPPED23, where we shared what we know.
 We talked software delivery in all the ways we could glean,
-Bringing the smartest of Octopus right to your screen.*"
+Bringing the smartest of Octopus right to your screen."*
 
 On November 15, we held our own virtual conference in the form of SHIPPED23.
 
@@ -132,10 +132,10 @@ Watch the event via our YouTube playlist:
 
 ## Our website continues to improve
 
-"*Octopus's website is a wonderful tool,
+*"Octopus's website is a wonderful tool,
 It's where we give updates and explain our value to you.
 Its development is an ongoing task,
-But we made massive steps in the year that's just passed.*"
+But we made massive steps in the year that's just passed."*
 
 In late 2022, we dropped a new look for our homepage but our work didn't stop there. 
 
@@ -159,10 +159,10 @@ We also told the Octopus story in brand new ways:
 
 ## 2023 in stats
 
-"*Like many in tech, we love some good stats,
+*"Like many in tech, we love some good stats,
 So we hit up our experts whose data we track.
 From all of the areas from which we hold dear,
-Here are some factoids from another great year.*"
+Here are some factoids from another great year."*
 
 To finish, here are some fun stats about Octopus's year (at the time of writing):
 
