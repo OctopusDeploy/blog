@@ -2,12 +2,11 @@
 title: "'Tis a week before Christmas..."
 description: It's nearly the holidays, so it's a great time to reflect on Octopus's year.
 author: andrew.corrigan@octopus.com
-visibility: private
+visibility: public
 published: 2023-12-18-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
-isFeatured: false
+metaImage: blogimage-anoctopuschirstmas-2023.png
+bannerImage: blogimage-anoctopuschirstmas-2023.png
+bannerImageAlt:  Octopus santa driving sleigh, delivering packages around the world to different houses surrounded by trees and a snowman.
 tags: 
   - Company
 ---
