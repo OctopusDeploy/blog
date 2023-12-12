@@ -12,7 +12,7 @@ tags:
   - Company
 ---
 
-Tis a few weeks before Christmas, for many in DevOps,
+'Tis a few weeks before Christmas, for many in DevOps,
 Soon not a sprint will start, not even at Microsoft.
 Late updates will commit, last-minute deployments will get done,
 And those who celebrate the holidays will gear up for some fun.
