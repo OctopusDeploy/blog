@@ -47,3 +47,16 @@ With these definitions, we can then summarise DEaaS as:
 * How: An IDP providing the interface between DevOps teams and platform teams
 
 ![Diagram showing the relationship between DEaaS and platform teams](pe-diagram.png)
+
+## Defining the mission
+
+One of the most important steps when implementing a DEaaS strategy is to define which architectural decisions provide the most value.
+
+Solutions engineering has a unique set of challenges, but the most glaring is the incredible complexity of the ecosystem we have to work in. Solutions engineers often have to build convincing demos, usually in days or weeks, integrating any number of platforms like CI systems, cloud platforms, operating systems, security requirements, and container orchestration platforms. You only need to look at the simplified diagram from the Octopus home page to understand how many combinations of technologies and given demo could integrate:
+
+![tech stack image](tech-stack.png)
+
+It is simply not feasible to create these demos from scratch every time. We needed a solution to bootstrap a demo environment with the common 80% of requirements to let solutions engineers customize the last 20% for each customer.
+
+It also became increasingly clear that it was not enough to be able to create these demos on our own private Octopus instances: our partners needed the ability to implement and customize these demo environments for customers, and customers themselves wanted the ability to recreate these environments to then iterate on them for their own needs.
+
