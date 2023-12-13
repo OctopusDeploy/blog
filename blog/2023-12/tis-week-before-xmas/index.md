@@ -99,7 +99,9 @@ We also *loved* talking about Octopus and sharing our experiences at events like
 - SSW .NET Group
 - Cloud Native Summit
 
-A heartfelt thanks to anyone who stopped to talk to us or heard what we had to say. If you're a regular attendee of these events, we look forward to seeing you in person again next year!
+A heartfelt thanks to anyone who stopped to talk or heard what we had to say. If you're a regular attendee of these events, we look forward to seeing you in person again next year!
+
+Make sure to keep track of [Octopus events](https://octopus.com/events) and [webinars](https://octopus.com/webinars) to see more of us in the future.
 
 ## We launched our own event with SHIPPED23
 
@@ -126,6 +128,10 @@ Watch the event via our YouTube playlist:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/g4HVEQDoJP0?si=XTO21SqT2_mZYPae" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
+We have plenty of other great videos on the [Octopus Deploy YouTube channel](https://www.youtube.com/@OctopusDeploy) too, including guides, industry talking points, and more.
+
+Our YouTube channel also host our podcasts, [Deploy on Friday](https://www.youtube.com/watch?v=_46blr2aVU4&list=PLAGskdGvlaw27osVwBUbZ6xTKo6T7XNfH) - a weekly show about all things Octopus, hosted by John Bristowe and Jim Pelletier - and [Inside DevOps](https://www.youtube.com/watch?v=gZy2pgSjE5I&list=PLAGskdGvlaw3znIHGhO5b0ANq9z3yHGJH).
+
 ## Our website continues to improve
 
 > Octopus's website is a wonderful tool,<br>
@@ -147,18 +153,26 @@ We have new and updated feature pages:
 
 - [Octopus Tenants](https://octopus.com/features/tenants)
 - [GitHub Actions](https://octopus.com/github)
+- [Octopus and enterprise organizations](https://octopus.com/enterprise)
+- [Trust center](https://octopus.com/company/trust)
+
+We provided tools and specialist content that help you understand more about deployments, DevOps, and our value:
+
+- [Deployment capability assessment](https://octopus.com/deployment-capability-assessment)
+- [Octopus white papers on Continuous Delivery, deployment automation, and DevOps](https://octopus.com/whitepapers)
 
 We also told the Octopus story in new ways:
 
 - [We are Octopus](https://octopus.com/company) - about us and the company's timeline
 - [Octopus customer stories](https://octopus.com/company/customers) - read about how we made the lives of software teams much easier
+- [Octopus Partners](https://octopus.com/partners) - read about our partners helping with DevOps solutions, and apply to become one
 
 ## 2023 in stats
 
 > Like many in tech, we love some good stats,<br>
 So we hit up our experts whose data we track.<br>
 From all of the areas of which we hold dear,<br>
-Here are some factoids from another great year.<br>
+Here are some stats from another great year.<br>
 
 To finish, here are some fun stats about Octopus's year (at the time of writing):
 
@@ -166,12 +180,15 @@ To finish, here are some fun stats about Octopus's year (at the time of writing)
 - Our customers ran over **600,000** Kubernetes steps each month.
 - We archived over **234,621,521** audit events in Octopus Cloud with our new audit log archiving feature.
 - We had **749,452** pageviews on our blog. [Checking Kubernetes pod CPU and memory](https://octopus.com/blog/kubernetes-pod-cpu-memory) was our most popular post, with **34,405** views.
-
-- Octopus Server had the following code changes:
-   - 14,788 files changed
-   - 391,156 lines added
-   - 190,860 lines deleted
-   - 69,065 lines modified
+- We ran over **1.1 million** build and test jobs while working on Octopus Server, which is roughly 48 years of compute time! Octopus Server also had the following code changes:
+   - **14,788** files changed
+   - **391,156** lines added
+   - **190,860** lines deleted
+   - **69,065** lines modified
+- Our support team:
+  - Received **4,984** support requests
+  - Sent **15,267** responses
+  - Averaged a response time of **18 minutes** for tickets for our enterprise customers, and **48 minutes** for everyone else
 
 ## Happy deployments to all, and to all a good night!
 
