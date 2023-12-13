@@ -128,9 +128,9 @@ Watch the event via our YouTube playlist:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/g4HVEQDoJP0?si=XTO21SqT2_mZYPae" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-While we're talking about YouTube, we have plenty of great videos on the [Octopus Deploy YouTube channel](https://www.youtube.com/@OctopusDeploy), including guides, industry talking points, and more.
+We have plenty of other great videos on the [Octopus Deploy YouTube channel](https://www.youtube.com/@OctopusDeploy) too, including guides, industry talking points, and more.
 
-Our YouTube channel also host our podcasts, [Deploy on Friday](https://www.youtube.com/watch?v=_46blr2aVU4&list=PLAGskdGvlaw27osVwBUbZ6xTKo6T7XNfH) - a weekly show about all things Octopus, hosted by John Bristoe and Jim Pelletier - and [Inside DevOps](https://www.youtube.com/watch?v=gZy2pgSjE5I&list=PLAGskdGvlaw3znIHGhO5b0ANq9z3yHGJH).
+Our YouTube channel also host our podcasts, [Deploy on Friday](https://www.youtube.com/watch?v=_46blr2aVU4&list=PLAGskdGvlaw27osVwBUbZ6xTKo6T7XNfH) - a weekly show about all things Octopus, hosted by John Bristowe and Jim Pelletier - and [Inside DevOps](https://www.youtube.com/watch?v=gZy2pgSjE5I&list=PLAGskdGvlaw3znIHGhO5b0ANq9z3yHGJH).
 
 ## Our website continues to improve
 
@@ -156,7 +156,7 @@ We have new and updated feature pages:
 - [Octopus and enterprise organizations](https://octopus.com/enterprise)
 - [Trust center](https://octopus.com/company/trust)
 
-We provided tools and specialist content that helps you understand our value and if you need us:
+We provided tools and specialist content that help you understand more about deployments, DevOps, and our value:
 
 - [Deployment capability assessment](https://octopus.com/deployment-capability-assessment)
 - [Octopus white papers on Continuous Delivery, deployment automation, and DevOps](https://octopus.com/whitepapers)
@@ -165,14 +165,14 @@ We also told the Octopus story in new ways:
 
 - [We are Octopus](https://octopus.com/company) - about us and the company's timeline
 - [Octopus customer stories](https://octopus.com/company/customers) - read about how we made the lives of software teams much easier
-- [Octopus Partners](https://octopus.com/partners) - read about our partners that help organizations with DevOps solutions, and apply to become one
+- [Octopus Partners](https://octopus.com/partners) - read about our partners helping with DevOps solutions, and apply to become one
 
 ## 2023 in stats
 
 > Like many in tech, we love some good stats,<br>
 So we hit up our experts whose data we track.<br>
 From all of the areas of which we hold dear,<br>
-Here are some factoids from another great year.<br>
+Here are some stats from another great year.<br>
 
 To finish, here are some fun stats about Octopus's year (at the time of writing):
 
@@ -186,9 +186,9 @@ To finish, here are some fun stats about Octopus's year (at the time of writing)
    - **190,860** lines deleted
    - **69,065** lines modified
 - Our support team:
-  - Received **4984** support requests
-  - Made **15267** responses
-  - Averaged an response time of **18 minutes** for tickets for our enterprise customers, and **48 minutes** for everyone else
+  - Received **4,984** support requests
+  - Sent **15,267** responses
+  - Averaged a response time of **18 minutes** for tickets for our enterprise customers, and **48 minutes** for everyone else
 
 ## Happy deployments to all, and to all a good night!
 
