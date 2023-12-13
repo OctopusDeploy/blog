@@ -112,7 +112,7 @@ Bringing the smartest of Octopus right to your screen.<br>
 
 On November 15, we held our own virtual conference in the form of SHIPPED23.
 
-SHIPPED23 featured talks covering many aspects of software delivery, from concepts and best practices, to Octopus itself. Our talks included:
+SHIPPED23 featured talks covering many aspects of software delivery, from concepts and best practices to Octopus itself. Our talks included:
 
 - Accelerating software delivery at scale
 - What's new for Octopus and what's on the roadmap
@@ -130,7 +130,7 @@ Watch the event via our YouTube playlist:
 
 We have plenty of other great videos on the [Octopus Deploy YouTube channel](https://www.youtube.com/@OctopusDeploy) too, including guides, industry talking points, and more.
 
-Our YouTube channel also host our podcasts, [Deploy on Friday](https://www.youtube.com/watch?v=_46blr2aVU4&list=PLAGskdGvlaw27osVwBUbZ6xTKo6T7XNfH) - a weekly show about all things Octopus, hosted by John Bristowe and Jim Pelletier - and [Inside DevOps](https://www.youtube.com/watch?v=gZy2pgSjE5I&list=PLAGskdGvlaw3znIHGhO5b0ANq9z3yHGJH).
+Our YouTube channel also hosts our podcasts, [Deploy on Friday](https://www.youtube.com/watch?v=_46blr2aVU4&list=PLAGskdGvlaw27osVwBUbZ6xTKo6T7XNfH) - a weekly show about all things Octopus, hosted by John Bristowe and Jim Pelletier - and [Inside DevOps](https://www.youtube.com/watch?v=gZy2pgSjE5I&list=PLAGskdGvlaw3znIHGhO5b0ANq9z3yHGJH).
 
 ## Our website continues to improve
 
