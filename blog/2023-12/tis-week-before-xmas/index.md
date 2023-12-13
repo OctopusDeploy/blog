@@ -1,17 +1,18 @@
 ---
-title: "'Tis the week before Christmas..."
+title: "'Tis a week before Christmas..."
 description: It's nearly the holidays, so it's a great time to reflect on Octopus's year.
 author: andrew.corrigan@octopus.com
-visibility: public
+visibility: private
 published: 2023-12-18-1400
-metaImage: blogimage-anoctopuschirstmas-2023.png
-bannerImage: blogimage-anoctopuschirstmas-2023.png
-bannerImageAlt:  Octopus santa driving sleigh, delivering packages around the world to different houses surrounded by trees and a snowman.
+metaImage: 
+bannerImage: 
+bannerImageAlt: 125 characters max, describes image to people unable to see it.
+isFeatured: false
 tags: 
   - Company
 ---
 
-'Tis a week before Christmas, for many in DevOps,<br>
+'Tis a few weeks before Christmas, for many in DevOps,<br>
 Soon not a sprint will start, not even at Microsoft.<br>
 Late updates will commit, last-minute deployments will get done,<br>
 And those who celebrate the holidays will gear up for some fun.<br>
@@ -28,7 +29,7 @@ And we work hard on new features so you can deploy at great speeds.<br>
 If multi-tenancy, Kubernetes, or operations get you blue,<br>
 In 2023, Octopus might have released the right features for you.<br>
 
-This year, we invested our time heavily in 3 core areas: Kubernetes, tenanted deployments, and improvements that help you scale.
+This year, we invested our time heavily in 3 core areas: Kubernetes, tenanted deployments, and improvements that help you manage scale.
 
 Here are some of the standout features and changes we made to Octopus in 2023:
 
@@ -61,7 +62,7 @@ Here are some of the standout features and changes we made to Octopus in 2023:
 
 ### But wait, there's more!
 
-These are just our standout updates. Check out our [What's new?](https://octopus.com/whatsnew) page to see more changes and improvements to Octopus this year.
+These are just our standout updates. Check out our [What's new?](https://octopus.com/whatsnew) page to see *all* our changes and improvements to Octopus this year.
 
 Next year's planned improvements include:
 
@@ -101,6 +102,8 @@ We also *loved* talking about Octopus and sharing our experiences at events like
 
 A heartfelt thanks to anyone who stopped to talk to us or heard what we had to say. If you're a regular attendee of these events, we look forward to seeing you in person again next year!
 
+Make sure to keep track of [Octopus events](https://octopus.com/events) and [webinars](https://octopus.com/webinars) to see more of us in the future.
+
 ## We launched our own event with SHIPPED23
 
 > Not just content with our travels, we held an event of our own,<br>
@@ -126,6 +129,10 @@ Watch the event via our YouTube playlist:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/g4HVEQDoJP0?si=XTO21SqT2_mZYPae" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
+While we're talking YouTube, we have plenty of great videos on the [Octopus Deploy YouTube channel](https://www.youtube.com/@OctopusDeploy), including guides, industry talking points, and more.
+
+Our YouTube channel also host our podcasts, [Deploy on Friday](https://www.youtube.com/watch?v=_46blr2aVU4&list=PLAGskdGvlaw27osVwBUbZ6xTKo6T7XNfH) - a weekly show about all things Octopus hosted by John Bristoe and Jim Pelletier - and [Inside DevOps](https://www.youtube.com/watch?v=gZy2pgSjE5I&list=PLAGskdGvlaw3znIHGhO5b0ANq9z3yHGJH).
+
 ## Our website continues to improve
 
 > Octopus's website is a wonderful tool,<br>
@@ -147,11 +154,19 @@ We have new and updated feature pages:
 
 - [Octopus Tenants](https://octopus.com/features/tenants)
 - [GitHub Actions](https://octopus.com/github)
+- [Octopus and enterprise organizations](https://octopus.com/enterprise)
+- [Trust center](https://octopus.com/company/trust)
+
+We provided tools and specialist content that helps you understand our value and if you need us:
+
+- [Deployment capability assessment](https://octopus.com/deployment-capability-assessment)
+- [Octopus white papers on Continuous Delivery, deployment automation, and DevOps](https://octopus.com/whitepapers)
 
 We also told the Octopus story in new ways:
 
 - [We are Octopus](https://octopus.com/company) - about us and the company's timeline
 - [Octopus customer stories](https://octopus.com/company/customers) - read about how we made the lives of software teams much easier
+- [Octopus Partners](https://octopus.com/partners) - read about our partners that help organizations with DevOps solutions, and apply to become one
 
 ## 2023 in stats
 
@@ -166,12 +181,15 @@ To finish, here are some fun stats about Octopus's year (at the time of writing)
 - Our customers ran over **600,000** Kubernetes steps each month.
 - We archived over **234,621,521** audit events in Octopus Cloud with our new audit log archiving feature.
 - We had **749,452** pageviews on our blog. [Checking Kubernetes pod CPU and memory](https://octopus.com/blog/kubernetes-pod-cpu-memory) was our most popular post, with **34,405** views.
-
-- Octopus Server had the following code changes:
-   - 14,788 files changed
-   - 391,156 lines added
-   - 190,860 lines deleted
-   - 69,065 lines modified
+- We ran over **1.1 million** build and test jobs while working on Octopus Server, which is roughly 48 years of compute time! Octopus Server also had the following code changes:
+   - **14,788** files changed
+   - **391,156** lines added
+   - **190,860** lines deleted
+   - **69,065** lines modified
+- Our support team:
+  - Received **4984** support requests
+  - Made **15267** responses
+  - Averaged an response time of **18 minutes** for tickets for our enterprise customers, and **48 minutes** for everyone else
 
 ## Happy deployments to all, and to all a good night!
 
