@@ -1,5 +1,5 @@
 ---
-title: "'Tis a week before Christmas..."
+title: "'Tis the week before Christmas..."
 description: It's nearly the holidays, so it's a great time to reflect on Octopus's year.
 author: andrew.corrigan@octopus.com
 visibility: public
@@ -11,7 +11,7 @@ tags:
   - Company
 ---
 
-'Tis a few weeks before Christmas, for many in DevOps,<br>
+'Tis a week before Christmas, for many in DevOps,<br>
 Soon not a sprint will start, not even at Microsoft.<br>
 Late updates will commit, last-minute deployments will get done,<br>
 And those who celebrate the holidays will gear up for some fun.<br>
@@ -28,7 +28,7 @@ And we work hard on new features so you can deploy at great speeds.<br>
 If multi-tenancy, Kubernetes, or operations get you blue,<br>
 In 2023, Octopus might have released the right features for you.<br>
 
-This year, we invested our time heavily in 3 core areas: Kubernetes, tenanted deployments, and improvements that help you manage scale.
+This year, we invested our time heavily in 3 core areas: Kubernetes, tenanted deployments, and improvements that help you scale.
 
 Here are some of the standout features and changes we made to Octopus in 2023:
 
@@ -61,7 +61,7 @@ Here are some of the standout features and changes we made to Octopus in 2023:
 
 ### But wait, there's more!
 
-These are just our standout updates. Check out our [What's new?](https://octopus.com/whatsnew) page to see *all* our changes and improvements to Octopus this year.
+These are just our standout updates. Check out our [What's new?](https://octopus.com/whatsnew) page to see more changes and improvements to Octopus this year.
 
 Next year's planned improvements include:
 
