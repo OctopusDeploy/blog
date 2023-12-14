@@ -11,7 +11,7 @@ tags:
   - Company
 ---
 
-'Tis a week before Christmas, for many in DevOps,<br>
+'Tis the week before Christmas, for many in DevOps,<br>
 Soon not a sprint will start, not even at Microsoft.<br>
 Late updates will commit, last-minute deployments will get done,<br>
 And those who celebrate the holidays will gear up for some fun.<br>
