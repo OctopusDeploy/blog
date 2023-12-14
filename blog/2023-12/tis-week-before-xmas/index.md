@@ -172,7 +172,7 @@ We also told the Octopus story in new ways:
 > Like many in tech, we love some good stats,<br>
 So we hit up our experts whose data we track.<br>
 From all of the areas of which we hold dear,<br>
-Here are some stats from another great year.<br>
+Here are some facts from another great year.<br>
 
 To finish, here are some fun stats about Octopus's year (at the time of writing):
 
@@ -189,6 +189,10 @@ To finish, here are some fun stats about Octopus's year (at the time of writing)
   - Received **4,984** support requests
   - Sent **15,267** responses
   - Averaged a response time of **18 minutes** for tickets for our enterprise customers, and **48 minutes** for everyone else
+- Our People and Culture team's hiring process saw:
+   - **12,293** applications
+   - **1,101** people interviewed
+   - **40** accepted offers
 
 ## Happy deployments to all, and to all a good night!
 
