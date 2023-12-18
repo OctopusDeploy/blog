@@ -169,7 +169,7 @@ Now we'll create the deployment target:
    - **Kubernetes cluster URL** - Use the server address we set in the config file earlier: `https://microk8s-vm.mshome.net:12345` (remember to replace the last 5 digits with the port number we noted earlier)
    - **Skip TLS verification** - Tick this box.
 
-When saved, click **Connectivity** from the left menu and click **CHECK HEALTH**. Octopus will check it can see your cluster. If you see green, you're good to go. If you see red, go back and check your settings.
+When saved, click **Connectivity** from the left menu and click **CHECK HEALTH**. Octopus will check it can see your cluster. If you see a green tick, you're good to go. If you see a red cross, go back and check your settings.
 
 ## Step 7: Create your GitHub project's repository
 
