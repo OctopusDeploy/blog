@@ -90,18 +90,18 @@ Ingress is a network routing tool for MicroK8s. It lets you see your app on your
 
 ## Step 3: Install kubectl-cli on your computer
 
-Before we install Octopus, we'll install and use a software manager called [Chocolatey](https://chocolatey.org/install) to install the kubectl-cli (command line interface).
+Before we install Octopus, we install and use a software manager called [Chocolatey](https://chocolatey.org/install) to install the kubectl-cli (command-line interface).
 
 The kubectl-cli is what Octopus uses to interact with your local cluster and trigger processes for the deployment. It's different to the kubectl installed during the MicroK8s setup, which is only for your local K8s cluster.
 
 To install Chocolatey and the kubectl-cli:
 
-1. Open a Powershell tab in Windows Terminal as an Administrator.
-1. Run the Chocolately install command: `Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))`
-1. The install will take a few minutes. Close and reopen Windows terminal when finished.
+1. Open a PowerShell tab in Windows Terminal as an Administrator.
+1. Run the Chocolately install command: `Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))`.
+1. The install takes a few minutes. Close and reopen Windows terminal when finished.
 1. Now we can install kubectl. Run `choco install kubernetes-cli` in Windows Terminal, and wait for the process to finish.
 
-If you have any problems, see [Chocolatey's documentation](https://chocolatey.org/install) for more information. Not running Powershell or Windows Terminal as an administrator tends to be the cause of most issues.
+If you have any problems, see [Chocolatey's documentation](https://chocolatey.org/install) for more information. Not running PowerShell or Windows Terminal as an administrator tends to be the cause of most issues.
 
 ## Step 4: Install SQL Server Express
 
