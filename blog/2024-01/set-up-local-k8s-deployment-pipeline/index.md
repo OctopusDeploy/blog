@@ -67,7 +67,7 @@ You can stop and start MicroK8s with the following commands. Stopping MicroK8s w
 MicroK8s seems to regularly fail starting the first time, advising an 'Exit Code 2' error. Just run the command again and it should start.
 :::
 
-### Step 2: Configure MicroK8s networking
+## Step 2: Configure MicroK8s networking
 
 You can experience problems running MicroK8s on Windows due to the way HyperV allocates IP addresses when it starts. We can solve those problems by adding an address string to MicroK8s' DNS settings that removes reliance on IP addresses. That way, the other tools in our pipeline always see our clusters.
 
@@ -96,9 +96,9 @@ The kubectl-cli is what Octopus uses to interact with your local cluster and tri
 
 To install Chocolatey and the kubectl-cli:
 
-1. Open a PowerShell tab in Windows Terminal as an Administrator.
+1. Open a PowerShell tab in Windows Terminal as an administrator.
 1. Run the Chocolately install command: `Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))`.
-1. The install takes a few minutes. Close and reopen Windows terminal when finished.
+1. The install takes a few minutes. Close and reopen Windows Terminal when finished.
 1. Now we can install kubectl. Run `choco install kubernetes-cli` in Windows Terminal, and wait for the process to finish.
 
 If you have any problems, see [Chocolatey's documentation](https://chocolatey.org/install) for more information. Not running PowerShell or Windows Terminal as an administrator tends to be the cause of most issues.
