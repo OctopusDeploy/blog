@@ -279,35 +279,35 @@ If the action completes with a green tick, you can check your Docker repository 
 
 Now we can go back and create the deployment process in Octopus. Remember, if we don't mention something, leave it at the default.
 
-1. In Octopus, click **Projects** from the top menu, then click on your recently created project
-1. Click **CREATE PROCESS**
+1. In Octopus, click **Projects** from the top menu, then click on your recently created project.
+1. Click **CREATE PROCESS**.
 1. Click **Kubernetes** and then **Deploy Kubernetes Containers** from the filtered options below.
 1. Complete the following sections and fields:
-   - **On Behalf Of**: Select the target role we created earlier from the dropdown. Mine was `Local Cluster`
+   - **On Behalf Of**: Select the target role we created earlier from the dropdown. Mine was `Local Cluster`.
    - **Deployment**:
-      - **Deployment Name**: Enter `octopus-underwater-app`
+      - **Deployment Name**: Enter `octopus-underwater-app`.
    - **Container**:
       - Click **ADD CONTAINER**, complete the following fields in the pop-up and click **OK**:
-         - **Name**: Enter `octopus-underwater-app`
-         - **Package Feed**: Select name of the feed we set earlier. I called mine `Docker`
-         - **Package ID**: Start typing your Docker username and select **octopus-underwater-app** from the list
+         - **Name**: Enter `octopus-underwater-app`.
+         - **Package Feed**: Select name of the feed we set earlier. I called mine `Docker`.
+         - **Package ID**: Start typing your Docker username and select **octopus-underwater-app** from the list.
       - Click the **ADD PORT** button and complete the fields as follows:
-         - **Name**: Enter `http`
-         - **Port**: Enter `80`
-         - **Protocol**: Select **TCP** from the dropdown
+         - **Name**: Enter `http`.
+         - **Port**: Enter `80`.
+         - **Protocol**: Select **TCP** from the dropdown.
    - **Service**:
-      - **Service Name**: Enter `octopus-underwater-service`
+      - **Service Name**: Enter `octopus-underwater-service`.
       - **Service Ports**: Click **ADD PORT**, complete the following fields and click **OK**:
-         - **Name**: Enter `http`
-         - **Port**: Enter `80`
-         - **Protocol**: TCP
+         - **Name**: Enter `http`.
+         - **Port**: Enter `80`.
+         - **Protocol**: TCP.
    - **Ingress**:
-	   - **Ingress Name**: Enter `octopus-underwater-ingress`
+	   - **Ingress Name**: Enter `octopus-underwater-ingress`.
 	   - **Ingress Host Roles**: Click **ADD HOST RULE**, then **ADD PATH**. Complete the following fields and click **OK**:
-	      - **Path**: Enter `/`
-	      - **Service port**: Select **HTTP** from the dropdown
-	      - **Path Type**: Select **Prefix** from the dropdown
-1. Leave everything else as default and click **SAVE**
+	      - **Path**: Enter `/`.
+	      - **Service port**: Select **HTTP** from the dropdown.
+	      - **Path Type**: Select **Prefix** from the dropdown.
+1. Leave everything else as default and click **SAVE**.
 
 Now we create a release and try to deploy it:
 
