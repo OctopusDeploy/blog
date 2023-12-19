@@ -88,7 +88,22 @@ We also need to run the following command in Windows Terminal to enable Ingress 
 
 Ingress is a network routing tool for MicroK8s. It lets you see your app on your local instance without complex or problematic workarounds, like port forwarding.
 
-## Step 3: Install SQL Server Express
+## Step 3: Install kubectl-cli on your computer
+
+Before we install Octopus, we'll install and use a software manager called [Chocolatey](https://chocolatey.org/install) to install the kubectl-cli (command line interface).
+
+The kubectl-cli is what Octopus uses to interact with your local cluster and trigger processes for the deployment. It's different to the kubectl installed during the MicroK8s setup, which is only for your local K8s cluster.
+
+To install Chocolatey and the kubectl-cli:
+
+1. Open a Powershell tab in Windows Terminal as an Administrator.
+1. Run the Chocolately install command: `Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))`
+1. The install will take a few minutes. Close and reopen Windows terminal when finished.
+1. Now we can install kubectl. Run `choco install kubernetes-cli` in Windows Terminal, and wait for the process to finish.
+
+If you have any problems, see [Chocolatey's documentation](https://chocolatey.org/install) for more information. Not running Powershell or Windows Terminal as an administrator tends to be the cause of most issues.
+
+## Step 4: Install SQL Server Express
 
 Octopus needs a SQL Server to store information about your projects and deployments.
 
@@ -103,7 +118,7 @@ As some point during the install, you may see a Windows Firewall warning. You sh
 1. Accept the 'MICROSOFT SOFTWARE LICENSE TERMS' and click **Next**.
 1. You can use all the defaults for the rest of the setup wizard. Just click **Next** to progress, then **Close** when the install completes.
 
-## Step 4: Install and set up Octopus on your computer
+## Step 5: Install and set up Octopus on your computer
 
 Now we can install Octopus Server.
 
@@ -132,7 +147,7 @@ Octopus auto-starts after the installation and takes you to the Octopus Setup Wi
 
 Octopus Manager will now open. Click **Open in browser** to launch the Octopus dashboard and log in with the credentials you just created.
 
-## Step 5: Create a project in Octopus
+## Step 6: Create a project in Octopus
 
 1. Go to your Octopus dashboard and click **Projects** from the top menu.
 1. Click **Add New Project**.
@@ -141,7 +156,7 @@ Octopus Manager will now open. Click **Open in browser** to launch the Octopus d
 
 We'll be back to create the deployment process later.
 
-## Step 6: Connect Octopus to your local Kubernetes instance
+## Step 7: Connect Octopus to your local Kubernetes instance
 
 Run `microk8s kubectl create token default --duration 525600m` in your Windows Terminal to create a security token for your Kubernetes instance. This command sets the token to be valid for 10 years. By not stating a duration, the token will only last a few hours.
 
@@ -171,13 +186,13 @@ Now we'll create the deployment target:
 
 When saved, click **Connectivity** from the left menu and click **CHECK HEALTH**. Octopus will check it can see your cluster. If you see a green tick, you're good to go. If you see a red cross, go back and check your settings.
 
-## Step 7: Create your GitHub project's repository
+## Step 8: Create your GitHub project's repository
 
 Log in to GitHub and create a fork of the [Octopus Underwater App repository](https://github.com/OctopusSamples/octopus-underwater-app) by clicking the **Fork** button and completing the short form.
 
 You should now see a copy of the repository in your list of repositories.
 
-## Step 8: Create a Docker repository
+## Step 9: Create a Docker repository
 
 1. Log into your [Docker Hub](https://hub.docker.com/) account.
 1. Click **Create repository**.
@@ -188,7 +203,7 @@ You should now see a copy of the repository in your list of repositories.
 
 You should now see the Docker repository in your list.
 
-## Step 9: Set up a package feed in Octopus
+## Step 10: Set up a package feed in Octopus
 
 1. Go back to Octopus Server and click on **Library** from the top menu.
 1. Click **External Feeds** from the left menu.
@@ -200,7 +215,7 @@ You should now see the Docker repository in your list.
    - **Credentials**: Select **Username and Password** and enter your Docker username and password into the 'Feed Username' and 'Feed Password' fields.
 1. Click the **TEST** button and search for your Docker repository name to see if it appears in the results. If it's there, it's working.
 
-## Step 10: Set up a GitHub Action to push the project to Docker Hub
+## Step 11: Set up a GitHub Action to push the project to Docker Hub
 
 First, we'll add your DockerHub credentials as secrets to your GitHub repository.
 
@@ -260,7 +275,7 @@ The Action should automatically run. You can track its progress by clicking the 
 
 If the action completes with a green tick, you can check your Docker repository to see if it has an image.
 
-## Step 11: Create, run, and test your first deployment
+## Step 12: Create, run, and test your first deployment
 
 Now we can go back and create the deployment process in Octopus. Remember, if we don't mention something, leave it at the default.
 
