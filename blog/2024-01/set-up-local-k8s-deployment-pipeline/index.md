@@ -175,14 +175,14 @@ Now we'll create the deployment target:
 1. Go to your Octopus dashboard and click **Infrastructure** from the top menu.
 1. Click **Deployment Targets**.
 1. Click **ADD DEPLOYMENT TARGET**.
-1. Click **KUBERNETES CLUSTER** and then **Kubernetes Cluster** from filtered results below.
+1. Click **KUBERNETES CLUSTER** and then **Kubernetes Cluster** from the filtered results below.
 1. Complete the following fields (leave everything else as default) and click **SAVE**:
    - **Display Name**: Enter what you'll call the cluster in Octopus. I called it `Test Cluster`.
    - **Environments**: Select **Development** from the dropdown menu.
    - **Target Roles**: Type in a name for the Target Role and click **Add new role**. We use target roles to help direct where deployments go. I called mine `Local Cluster`.
-   - **Authentication** - Select **Token** from the dropdown, then select the credentials we created earlier from the **Select account** dropdown.
-   - **Kubernetes cluster URL** - Use the server address we set in the config file earlier: `https://microk8s-vm.mshome.net:12345` (remember to replace the last 5 digits with the port number we noted earlier)
-   - **Skip TLS verification** - Tick this box.
+   - **Authentication**: Select **Token** from the dropdown, then select the credentials we created earlier from the **Select account** dropdown.
+   - **Kubernetes cluster URL**: Use the server address we set in the config file earlier: `https://microk8s-vm.mshome.net:12345` (remember to replace the last 5 digits with the port number we noted earlier)
+   - **Skip TLS verification**: Tick this box.
 
 When saved, click **Connectivity** from the left menu and click **CHECK HEALTH**. Octopus will check it can see your cluster. If you see a green tick, you're good to go. If you see a red cross, go back and check your settings.
 
@@ -281,7 +281,7 @@ Now we can go back and create the deployment process in Octopus. Remember, if we
 
 1. In Octopus, click **Projects** from the top menu, then click on your recently created project
 1. Click **CREATE PROCESS**
-1. Click **Kubernetes** and then **Deploy Kubernetes Containers** from the filtered options just below
+1. Click **Kubernetes** and then **Deploy Kubernetes Containers** from the filtered options below.
 1. Complete the following sections and fields:
    - **On Behalf Of**: Select the target role we created earlier from the dropdown. Mine was `Local Cluster`
    - **Deployment**:
