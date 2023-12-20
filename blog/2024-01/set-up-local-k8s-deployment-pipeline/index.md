@@ -236,7 +236,8 @@ Now we can create the action. For this, we use the Build and push [Docker images
 1. Click **New workflow**.
 1. Click **Set up a workflow yourself**.
 1. Call the file `build-push-action.yml` and make sure it lives in a subdirectory called `workflows`. If you don't already have a 'workflows' folder in your repository, you can create it by adding `workflows/` when creating the workflow file.
-1. Copy and paste the following code into the code editing box. Update the final line labelled 'tags' with your own Docker username and repository.
+1. Copy and paste the following code into the code editing box.
+1. In the final line labelled 'tags', replace 'dockerusername' and 'dockerrepositoryname' with your own Docker username and repository name. For example, mine reads `andyoctopus/octopus-underwater-app:latest`.
    
 ```
    name: build-push-action
@@ -267,7 +268,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: user/app:latest
+          tags: dockerusername/dockerrepositoryname:latest
 ```
 Next, click **Commit changes...**.
 
