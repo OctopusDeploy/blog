@@ -2,11 +2,11 @@
 title: Set up a local Kubernetes deployment pipeline
 description: We teach you how to set up a local Kubernetes deployment pipeline, so you can experiment without risk.
 author: andrew.corrigan@octopus.com
-visibility: private
+visibility: public
 published: 2024-01-15-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-kubernetes-generic-4-2023.png
+bannerImage: blogimage-kubernetes-generic-4-2023.png
+bannerImageAlt: Kubernetes icon peeking out of package with someone sitting in front of it with a laptop.
 isFeatured: false
 tags: 
   - DevOps
