@@ -6,15 +6,15 @@ visibility: public
 published: 2024-01-10-1400
 metaImage: blog-improved-page-layouts.png
 bannerImage: blog-improved-page-layouts.png
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+bannerImageAlt: Person painting an oversized Octopus UI screen and another looking on with oversized color swatches.
 isFeatured: false
 tags: 
   - Product
 ---
 
-We're always working on improving the user experience (UX) at Octopus Deploy. Most recently, we've been addressing feedback about our interface looking “messy” and “hard to navigate”. Addressing these concerns required a couple of changes. We focused on a layout that presents information in an easier-to-read structure.
+We're always working on improving the user experience (UX) at Octopus Deploy. Most recently, we addressed feedback about our interface looking “messy” and “hard to navigate”. Addressing these concerns required a couple of changes. We focused on a layout that presents information in an easier-to-read structure.
 
-In this post, I walk you through the updates we made.
+In this post, I walk you through our design updates.
 
 ## Page layouts
 
@@ -22,11 +22,11 @@ We began by looking at our project page layouts. Here we identified a couple of 
 
 We focused on our page headings and breadcrumbs. These are important for understanding your location in the app. These elements also set the stage for the page layout.
 
-![Screen shot of Octopus Deploy project layouts before](projectprocesseditold4.png)*This image highlights the areas where we placed our focus*
+![Screen shot of Octopus Deploy project layouts before](projectprocesseditold4.png)*This image highlights the areas where we placed our focus.*
 
 After we arrived at a design that worked well for projects, we took this layout across the entire app. You can see the new layout below.
 
-![Screen shot of Octopus Deploy project layouts before](projectprocesseditnew4.png)*This image shows the new layout*
+![Screen shot of Octopus Deploy project layouts before](projectprocesseditnew4.png)*This image shows the new layout.*
 
 
 ### Benefits of these changes
