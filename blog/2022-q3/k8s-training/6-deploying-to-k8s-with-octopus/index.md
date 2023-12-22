@@ -1,6 +1,6 @@
 ---
 title: Deploying to Kubernetes with Octopus
-description: Learn how to configure a Kubernetes cluster as an Octopus target and deploy applications to it, as part of Kubernetes training series.
+description: Learn how to configure a Kubernetes cluster as an Octopus target and deploy applications to it, as part of our Kubernetes training series.
 author: matthew.casperson@octopus.com
 visibility: public
 published: 2022-01-01-1200
