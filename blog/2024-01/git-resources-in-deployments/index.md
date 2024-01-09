@@ -1,6 +1,6 @@
 ---
 title: Using Git resources directly in deployments
-description: We teach you how to set up a local Kubernetes deployment pipeline, so you can experiment without risk.
+description: Additional support for sourcing dependencies directly from Git without intermediate packaging required
 author: robert.erez@octopus.com
 visibility: public
 published: 2025-01-15-1400
@@ -31,16 +31,15 @@ We have now enabled this functionality across the board to all steps that suppor
 
 In the following example we have a simple bash script committed to our repository
 
-![Simple Script in Git](image-2.png)
+![Simple Script in Git](external-git-bash.png)
 
 We can now reference this script directly, without needing it to be packaged by selecting the new Git Repository option on our Run a Script step in Octopus.
 
-![Run-a-Script Step with external Git resource](image-1.png)
+![Run-a-Script Step with external Git resource](external-git-run-a-script.png)
 
 Providing the default branch on the step itself means that we can easily provide backwards compatibility with tooling that might not yet know that this feature exists. At the time of release creation, the tip of the branch will be automatically used to source the script contents. 
 
-![Release creation with external Git resource](image.png)
-
+![Release creation with external Git resource](external-git-release-creation.png)
 
 The commit selected at the time of release creation will be snapshotted, and at deployment time that specific commit will be checked out and its contents used for the deployment. This does mean that just like with external packages, that commit needs to be available during the deployment. If the repository is deleted for example, then future release referencing it may fail to be executed.
 
