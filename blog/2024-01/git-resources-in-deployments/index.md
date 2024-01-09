@@ -23,7 +23,7 @@ There are two new scenarios that we now support; files that exist in the same gi
 ## External Git references
 The recently available support for [YAML manifests from Git](https://octopus.com/blog/manifests-from-git) on the `Raw YAML` step, provided a sneak peek at a new way of sourcing dependencies for your deployments. In this update we streamlined the way in which entire kubernetes manifests could be brought directly into a deployment without the need for any intermediate packaging or build steps outside Octopus.
 
-We have now enabled this functionality across the board to all steps that support scripts and configuration manifests. This makes sourcing scripts from your git repositories easier than ever and provides a mechanism for the centralization of these shared dependencies across multiple Octopus projects. 
+This functionality has now been enabled across the board (as of [v2023.4.7982](https://github.com/OctopusDeploy/Issues/issues/8442)) to all steps that support scripts and configuration manifests. This makes sourcing scripts from your git repositories easier than ever and provides a mechanism for the centralization of these shared dependencies across multiple Octopus projects. 
 
 ### Externally sourced script example
 
