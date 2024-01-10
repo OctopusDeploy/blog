@@ -4,9 +4,9 @@ description: Additional support for sourcing dependencies directly from Git with
 author: robert.erez@octopus.com
 visibility: public
 published: 2025-01-15-1400
-metaImage: na
-bannerImage: na
-bannerImageAlt: na
+metaImage: 
+bannerImage: 
+bannerImageAlt: 
 isFeatured: false
 tags: 
   - DevOps
