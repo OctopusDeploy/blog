@@ -9,7 +9,10 @@ bannerImage: na
 bannerImageAlt: na
 isFeatured: false
 tags: 
-  - ???
+  - DevOps
+  - Platform Engineering
+  - Kubernetes
+  - Continuous Integration
 ---
 
 Deployment processes often rely on artifacts that don’t require any sort of processing during a continuous integration build. Scripts that can be sourced directly from a repository without some intermediate compilation are the norm. In some systems, this can also include entire declarative configuration files, such as Kubernetes manifests or Terraform templates. 
