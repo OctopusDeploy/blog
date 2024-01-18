@@ -17,7 +17,7 @@ tags:
 
 Deployment processes often rely on artifacts that don’t need processing during a Continuous Integration (CI) build. Scripts you can source directly from a repository without intermediate compilation are the norm. In some systems, this includes entire declarative configuration files, like Kubernetes manifests or Terraform templates. 
 
-Octopus previously required you to bundle these resources into an artifact, like a zip archive. These build outputs existed just so Octopus could reference them later, to extract and use during a deployment. This artificial requirement felt unnatural and added extra steps to what should be a simple process. The file is right there in your repository, why can’t you use it in your deployment directly?
+Octopus previously required you to bundle these resources into an artifact, like a zip archive. These build outputs existed just so Octopus could reference them later, to extract and use during a deployment. This felt unnatural and added extra steps to what should be a simple process. If the file is right there in your repository, why can’t you use it in your deployment directly?
 
 Recent updates to Octopus have made it possible to source these dependencies directly from the Git repository in a deployment process.
 
