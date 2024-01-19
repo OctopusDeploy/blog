@@ -4,9 +4,9 @@ description: Learn why being a jack of all trades is great when you're a solutio
 author: shawn.sesna@octopus.com
 visibility: public
 published: 2024-01-22-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-jackofalltradesisagoodthing-2024.png
+bannerImage: blogimage-jackofalltradesisagoodthing-2024.png
+bannerImageAlt: Octopus-branded jack of diamonds card
 isFeatured: false
 tags: 
   - Engineering
