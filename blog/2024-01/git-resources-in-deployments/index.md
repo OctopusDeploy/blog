@@ -84,7 +84,7 @@ The commit selected during release creation gets recorded. At deployment time, t
 
 ### Config as Code project references
 
-If you're using Config as Code in Octopus, you can now use files stored in the same repository as Octopus's deployment process files. Like the externally sourced scripts above, this lets you write and commit your files directly into a Git repository and use them in your project.
+If you're using Config as Code in Octopus, you will soon be able to use files stored in the same repository as Octopus's deployment process files. Like the externally sourced scripts above, this will let you write and commit your files directly into a Git repository and use them in your project. These changes will be rolling out to cloud instances in the next few weeks, followed by inclusion in the next 2024.1 downloadable installer.
 
 By sourcing the scripts from the same repository as your project configuration, there's much less information to provide to Octopus to source the relevant files. The same repository and commit checked out for the deployment process gets used to source the script itself. 
 
