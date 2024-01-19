@@ -19,7 +19,7 @@ Deployment processes often rely on artifacts that don’t need processing during
 
 Octopus previously required you to bundle these resources into an artifact, like a zip archive. These build outputs existed just so Octopus could reference them later, to extract and use during a deployment. This felt unnatural and added extra steps to what should be a simple process. If the file is right there in your repository, why can’t you use it in your deployment directly?
 
-Recent updates to Octopus have made it possible to source these dependencies directly from the Git repository in a deployment process.
+Recent updates to Octopus will make it possible to source these dependencies directly from the Git repository in a deployment process.
 
 ## The benefits of sourcing from Git
 
@@ -56,7 +56,7 @@ Let’s explore these 2 options and how you might use them.
 
 We recently added support for [YAML manifests from Git](https://octopus.com/blog/manifests-from-git) on the **Deploy raw Kubernetes YAML** step. This provided an early look at a new way of sourcing dependencies for your deployments. We streamlined bringing entire Kubernetes manifests directly into a deployment without any intermediate packaging or build steps outside Octopus.
 
-This functionality is available (as of [v2023.4.7982](https://github.com/OctopusDeploy/Issues/issues/8442)) to all steps that support scripts and configuration manifests. This makes sourcing scripts from your Git repositories easier than ever and can centralize these shared dependencies across multiple Octopus projects. 
+This functionality will soon be available to all steps that support scripts and configuration manifests. This makes sourcing scripts from your Git repositories easier than ever and can centralize these shared dependencies across multiple Octopus projects. 
 
 #### Externally sourced script example
 
@@ -84,7 +84,7 @@ The commit selected during release creation gets recorded. At deployment time, t
 
 ### Config as Code project references
 
-If you're using Config as Code in Octopus, you will soon be able to use files stored in the same repository as Octopus's deployment process files. Like the externally sourced scripts above, this will let you write and commit your files directly into a Git repository and use them in your project. These changes will be rolling out to cloud instances in the next few weeks, followed by inclusion in the next 2024.1 downloadable installer.
+If you're using Config as Code in Octopus, you will soon also be able to use files stored in the same repository as Octopus's deployment process files. Like the externally sourced scripts above, this will let you write and commit your files directly into a Git repository and use them in your project. 
 
 By sourcing the scripts from the same repository as your project configuration, there's much less information to provide to Octopus to source the relevant files. The same repository and commit checked out for the deployment process gets used to source the script itself. 
 
@@ -110,7 +110,7 @@ Note that if your Kubernetes or Helm manifests reference _other_ repositories, t
 
 Although we've offered [GitHub Feeds](https://octopus.com/docs/packaging-applications/package-repositories/github-feeds) for some time, this brought with it CI complexities. It also led to unnecessary overheads in today's world of GitOps.
 
-To open up new options and ways to structure your deployments, you can now source your deployment dependencies from:
+To open up new options and ways to structure your deployments, new capabilities will be rolling out to cloud instances in the next few weeks to allow you to source your deployment dependencies from:
 
 - The Git repository used for your Config as Code project 
 - A separate external repository
