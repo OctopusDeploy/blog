@@ -3,10 +3,10 @@ title: Using Git resources directly in deployments
 description: Additional support for sourcing dependencies directly from Git without intermediate packaging.
 author: robert.erez@octopus.com
 visibility: public
-published: 2024-01-24-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+published: 2024-01-29-1400
+metaImage: blogimage-usinggitresourcesdirectlyindeployment-2024.png
+bannerImage: blogimage-usinggitresourcesdirectlyindeployment-2024.png
+bannerImageAlt: Code packages coming out of a Git machine, moving along a conveyor belt into an Octopus machine, then becoming versioned releases.
 isFeatured: false
 tags: 
   - DevOps
