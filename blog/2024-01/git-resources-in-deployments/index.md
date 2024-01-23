@@ -118,6 +118,6 @@ To open up new ways to structure your deployments, features will roll out to clo
 - The Git repository used for your Config as Code project 
 - A separate external repository
 
-We're excited to see how you use these features. Please let us know what new capabilities this does (or doesn't) open up for your release pipelines.
+We're excited to see how you use these features. Please let us know in the comments section below what new capabilities this does (or doesn't) open up for your release pipelines.
 
 Happy deployments!
