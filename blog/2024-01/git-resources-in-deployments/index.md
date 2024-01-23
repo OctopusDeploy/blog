@@ -9,7 +9,7 @@ bannerImage: blogimage-usinggitresourcesdirectlyindeployment-2024.png
 bannerImageAlt: Code packages coming out of a Git machine, moving along a conveyor belt into an Octopus machine, then becoming versioned releases.
 isFeatured: false
 tags: 
-  - DevOps
+  - Product
   - Platform Engineering
   - Kubernetes
   - Continuous Integration
