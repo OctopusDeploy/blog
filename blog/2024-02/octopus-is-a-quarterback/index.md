@@ -40,7 +40,7 @@ What's more, the quarterback can deliver to the ball to a variety of targets. Th
 
 Lastly, quarterbacks can also act as an on-field coach of sorts. They remind everyone of their roles in the next phase, the shape they should take, and make situational tweaks when needs arise. Likewise, Octopus helps organize the other troops in your pipeline with its Runbooks feature, so you can be sure your other tools are ready to support your software.
 
-## "Blue 32, set, hut!"
+## "V22.35, set, hut!"
 
 So, there you have it, that's how a deployment pipeline is just like an American football team, and how Octopus is its quarterback.
 
