@@ -26,7 +26,7 @@ We focused on our page headings and breadcrumbs. These are important for underst
 
 After we arrived at a design that worked well for projects, we took this layout across the entire app. You can see the new layout below.
 
-![Screen shot of Octopus Deploy project layouts before](projectprocesseditnew4.png)*This image shows the new layout.*
+![Screen shot of Octopus Deploy project layouts before](projectprocesseditnew5.png)*This image shows the new layout.*
 
 
 ### Benefits of these changes
