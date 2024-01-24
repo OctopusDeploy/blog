@@ -36,7 +36,7 @@ For every offensive play in an NFL game, where the goal is to move the ball from
 
 Like the mighty quarterback, Octopus is also a delivery specialist. Octopus takes packages from a build service or package repository and promptly delivers them to the intended target with a predefined, well-practiced deployment process.
 
-What's more, the quarterback can deliver to the ball to a variety of targets. They could throw to running backs as the team tries a classic 'Hail Mary,' or pass short to a closer receiver. Octopus also has variety in its passing game and can deliver software to any type and combo of deployment targets. Octopus has the range, whether it's Kubernetes, Cloud services, physical hardware, or even hybrid environments.
+What's more, the quarterback can deliver to the ball to a variety of targets. They could throw long to running backs as the team tries a classic 'Hail Mary,' or pass short to a closer receiver. Octopus also has variety in its passing game and can deliver software to any type and combo of deployment target. Octopus has the range, whether it's Kubernetes, cloud service, physical hardware, or even hybrid environments.
 
 Lastly, quarterbacks can also act as an on-field coach of sorts. They remind everyone of their roles in the next phase, the shape they should take, and make situational tweaks when needs arise. Likewise, Octopus helps organize the other troops in your pipeline with its Runbooks feature, so you can be sure your other tools are ready to support your software.
 
