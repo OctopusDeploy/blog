@@ -33,7 +33,7 @@ After we arrived at a design that worked well for projects, we took this layout 
 
 These changes make the Octopus Deploy interface easier to understand. The headings are an appropriate size and in a better place relative to the page content. The breadcrumbs now have appropriate visual treatment and we've applied their behavior consistently. 
 
-Customers were having trouble remembering the location of the **CREATE RELEASE** button. By placing the button in the top area corner near other page actions, the button is now easier to find.
+Customers were having trouble remembering the location of the **CREATE RELEASE** button. By placing the button in the top area near other page actions, the button is now easier to find.
 
 
 ### A few other notable improvements
