@@ -53,6 +53,8 @@ Windows Server 2016 onwards has .NET4.6.2 Framework or later [installed by defau
 |Windows 2012 R2|.NET4.5.1|.NET4.8+|
 |Windows 2016|.NET4.6.2|.NET4.8+|
 
+Note that as shown above, you'll need the latest service pack installed on Windows Server 2008 operating systems to allow for the installation of .NET4.6.2.
+
 ## Options for targets that cannot be upgraded
 
 From 2024.1, Octopus Deploy will consider Windows Server 2003 an unsupported platform for rich deployment pipelines.

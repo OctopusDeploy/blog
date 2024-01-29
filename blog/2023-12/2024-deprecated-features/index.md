@@ -19,21 +19,25 @@ This post summarizes changes in future releases of Octopus Server.
 
 ## Deprecations and changes in 2024
 
-### Windows Server 2003 targets
+### Windows Server 2003 and Windows Server 2008 targets
 
 The latest version of [Tentacle](https://octopus.com/docs/infrastructure/deployment-targets/tentacle/windows/requirements#windows-server) has a minimum Windows requirement of Server 2012. But, we still support workloads to older Tentacle agents running on Windows Server 2003. To modernize our execution engine, we're beginning to only support platforms supported by the vendors themselves. 
 
 Our first step is dropping support for running workloads on Windows Server 2003 targets and Workers.
 
-For Windows Machines running Windows Server 2012 and below, this change means the minimum requirement is that you have .NET 462 installed. 
+For Windows Machines running Windows Server 2012 and below, this change means the minimum requirement is that you have .NET4.6.2 installed. 
 
 :::hint
 Please note, this is not a requirement for later Windows versions or Linux targets as modern platforms instead use .NET Core.
 :::
 
+The updated requirement for .NET4.6.2 also has implications for Windows Server 2008 operating systems. 
+Installing .NET4.6.2 on Windows Server 2008 [requires](https://learn.microsoft.com/en-us/dotnet/framework/migration-guide/versions-and-dependencies#net-framework-462) the installation of the latest service pack, which as a result, means that Octopus Server workloads only be possible from Windows Server 2008 SP2 and Windows Server R2 SP1
+
+
 #### What to expect
 
-As we upgrade our tooling to use .NET462 for targeting heritage operating systems, machines running Windows Server 2012 and earlier won't be able to run standard workloads unless they have installed the .NET462 framework or later. Health checks will provide a warning if Octopus detects this scenario. Due to the inability to run .NET462 on Windows Server 2003, these targets won't be able to run any standard Octopus steps unless the process uses [raw scripting](https://octopus.com/docs/deployments/custom-scripts/raw-scripting).
+As we upgrade our tooling to use .NET4.6.2 for targeting heritage operating systems, machines running Windows Server 2012 and earlier won't be able to run standard workloads unless they have installed the .NET4.6.2 framework or later. Health checks will provide a warning if Octopus detects this scenario. Due to the inability to run .NET4.6.2 on Windows Server 2003, these targets won't be able to run any standard Octopus steps unless the process uses [raw scripting](https://octopus.com/docs/deployments/custom-scripts/raw-scripting).
 
 For more background on this change, please read our post, [Dropping support for Windows Server 2003 machines](https://octopus.com/blog/deprecating-win2003).
 
