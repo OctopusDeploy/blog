@@ -26,15 +26,13 @@ Like American football team players, each tool in a deployment pipeline has a sp
 
 I looked at a typical American Football offensive line-up. By considering the ball as software (commentators sometimes even refer to the ball as 'the package', funnily enough), it became easy to make parallels between player positions and deployment pipeline tooling.
 
-### The coach, the playbook, and the center
-
 The coach is the DevOps engineer and their playbook is the deployment process. Both coach and DevOps engineer know how they want things to work during each phase. Both decide how the team should best deliver 'the package'. Both decide on the team's structure and how it'll operate. Both always look for improvements and make changes when needed.
 
 The center is the player that snaps the ball back to the quarterback to start each offensive play. This could be either build service or package repository, depending on the pipeline you're comparing to. After all, both tools hand off packaged software to the deployment tool.
 
 That, naturally, makes the deployment tool the pipeline's quarterback.
 
-### The quarterback
+## Why Octopus is the quarterback
 
 I know, I know. It might seem a little arrogant to relate our tool to the most important position in an American football team (and in an analogy I made up). There are definite similarities, though.
 
