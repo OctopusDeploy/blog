@@ -41,7 +41,7 @@ In my early experiences, I focused on implementing Continuous Integration and de
 
 **What are some DevOps best practices your organization has implemented?**
 
-*Rahul:* Keep the focus on automating the manual tasks, especially the build and release processes. Other DevOps best practices include integration of security tools into CI/CD pipelines, cloud infrastructure set-up, deletion of un-used cloud resources, preparing the project documents, and daily scrum calls. These activities give me a clear picture of things happening in the project.
+*Rahul:* We keep the focus on automating the manual tasks, especially the build and release processes. Other DevOps best practices include integration of security tools into CI/CD pipelines, cloud infrastructure set-up, deletion of un-used cloud resources, preparing the project documents, and daily scrum calls. These activities give me a clear picture of things happening in the project.
 
 **What's the biggest challenge Octopus has helped you with?**
 
