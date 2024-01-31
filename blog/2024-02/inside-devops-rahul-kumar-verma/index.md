@@ -4,8 +4,8 @@ description: A series where we share lessons learned from those on the frontline
 author: joanna.wyganowska@octopus.com
 visibility: public
 published: 2024-02-05-1400
-metaImage: 
-bannerImage: 
+metaImage: blogimage-insidedevops-rahulkumar-2024.png
+bannerImage: blogimage-insidedevops-rahulkumar-2024.png
 bannerImageAlt: Photo of Rahul Kumar Verma
 isFeatured: false
 tags: 
