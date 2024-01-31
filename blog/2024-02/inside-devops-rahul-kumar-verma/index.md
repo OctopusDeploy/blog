@@ -63,7 +63,7 @@ Commit to the journey, be patient with the process, and relish the satisfaction 
 
 **What's one thing about you that might surprise us?**
 
-*Rahul:* One thing that might surprise you is my deep connection to agriculture and farming. Growing up in a farmer family, I developed a profound appreciation for the land and the hard work that goes into cultivating crops. This background has instilled in me a strong work ethic and resilience and shaped my perspective on sustainability and the importance of responsible resource management. 
+*Rahul:* One thing that might surprise you is my deep connection to agriculture and farming. Growing up in a farmer family, I developed a profound appreciation for the land and the hard work that goes into cultivating crops. This background has instilled in me a strong work ethic and resilience. It shaped my perspective on sustainability and the importance of responsible resource management. 
 
 While my professional journey may seem unrelated, the values instilled in me through farming continue to influence my approach to problem-solving, emphasizing long-term thinking and a commitment to positively impacting the environment whenever possible.
 
