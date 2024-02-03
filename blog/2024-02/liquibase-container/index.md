@@ -15,7 +15,7 @@ tags:
   - Engineering
 ---
 
-Up until now, deploying database updates using the [Liquibase](https://liquibase.com) product required either the Liquibase CLI be installed on the machine performing the updates or by ticking the `Download Liquibase?` box on the [Liquibase - Run Command](https://library.octopus.com/step-templates/36df3e84-8501-4f2a-85cc-bd9eb22030d1/actiontemplate-liquibase-run-command) Community step template to dynamically download Liquibase and any dependencies at deploy time.  This post introduces a publicly available container image that can be used with the [Execution Containers](https://octopus.com/docs/projects/steps/execution-containers-for-workers) feature.
+Up until now, deploying database updates using the [Liquibase](https://liquibase.com) product required either the Liquibase CLI be installed on the machine performing the updates or by ticking the `Download Liquibase?` box on the [Liquibase - Run Command](https://library.octopus.com/step-templates/36df3e84-8501-4f2a-85cc-bd9eb22030d1/actiontemplate-liquibase-run-command) Community step template to dynamically download Liquibase and any dependencies at deploy time.  This post introduces a publicly available container image that can be used with the [Execution Containers](https://octopus.com/docs/projects/steps/execution-containers-for-workers) feature to execute Liquibase.
 
 ## Using the Liquibase container image
 
