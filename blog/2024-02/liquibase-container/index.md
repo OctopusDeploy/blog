@@ -23,6 +23,7 @@ The [octopuslabs/liquibase-workertools](https://hub.docker.com/r/octopuslabs/liq
 - Liquibase
 - Java
 - PowerShell
+- AWS CLI (to support AWS IAM authentication)
 
 When selecting a database type that the Liquibase product does not ship with, such as Cassandra or MongoDB, the `Liquibase - Run Command` template will automatically detect if it is being run within a container and download any missing dependencies.
 
