@@ -46,6 +46,8 @@ Lastly, quarterbacks can also act as an on-field coach of sorts. They remind eve
 
 ## "v22.35, set, hut!"
 
-So, there you have it, that's how a deployment pipeline is just like an American football team, and how Octopus is its quarterback.
+So, there you have it! That's how a deployment pipeline is just like an American football team and Octopus its quarterback.
+
+If you're looking to sign a star quarterback to improve results for your team of DevOps tooling, why not [see how we perform in tryouts](https://octopus.com/start?location=nav-bar)?
 
 Happy deployments!
