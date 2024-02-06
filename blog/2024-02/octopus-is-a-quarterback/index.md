@@ -4,8 +4,8 @@ description: With the Super Bowl on the horizon, Andy Corrigan explains how Octo
 author: andrew.corrigan@octopus.com
 visibility: public
 published: 2024-02-07-1400
-metaImage: blog-email-octopusdeploymentpipelines quarterback-750x400-2024.png
-bannerImage: blog-email-octopusdeploymentpipelines quarterback-750x400-2024.png
+metaImage:
+bannerImage:
 bannerImageAlt: Octopus character wearing a gridiron helmet holding a football.
 isFeatured: false
 tags: 
@@ -31,8 +31,6 @@ The coach is the DevOps engineer and their playbook is the deployment process. B
 The center is the player that snaps the ball back to the quarterback to start each offensive play. This could be either build service or package repository, depending on the pipeline you're comparing to. After all, both tools hand off packaged software to the deployment tool.
 
 That, naturally, makes the deployment tool the pipeline's quarterback.
-
-![A gridiron tactics sheet with popular DevOps tooling in player positions](DIA_Blog_Blog_diagram_Octopus_is_your_deployment_pipelines_quarterback_2024-Opt2.png)
 
 ## Why Octopus is the quarterback
 
