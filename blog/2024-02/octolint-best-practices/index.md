@@ -178,8 +178,9 @@ Use retention rules to clean up old resources to improve performance.
 
 ## Good practices
 
-You don't have to remember all these good practices, use Octolint to do the hard work, so you have more time available to implement improvements.
+You don't have to remember all these good practices, use Octolint to do the hard work, so you have more time available to implement improvements. You can watch an [introduction to Octolint on YouTube](https://www.youtube.com/watch?v=hdJ3kbCPVds) to see it in action and you can find the code on [GitHub](https://github.com/OctopusSolutionsEngineering/OctopusRecommendationEngine).
 
 Whether you improve your security by replacing API keys that don't expire or using step templates to convert complex processes into reusable templates, Octolint is a good way to find out what you can improve and make sure things stay in good shape.
 
 Happy deployments!
+
