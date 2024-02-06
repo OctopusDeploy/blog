@@ -32,6 +32,8 @@ The center is the player that snaps the ball back to the quarterback to start ea
 
 That, naturally, makes the deployment tool the pipeline's quarterback.
 
+![A gridiron tactics sheet with popular DevOps tooling in player positions](DIA_Blog_Blog_diagram_Octopus_is_your_deployment_pipelines_quarterback_2024-Opt2.png)
+
 ## Why Octopus is the quarterback
 
 I know, I know. It might seem a little arrogant to relate our tool to the most important position in an American football team (and in an analogy I made up). There are definite similarities, though.
