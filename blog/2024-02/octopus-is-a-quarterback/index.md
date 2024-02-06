@@ -2,11 +2,11 @@
 title: Octopus is your deployment pipeline's quarterback
 description: With the Super Bowl on the horizon, Andy Corrigan explains how Octopus is your deployment pipeline's quarterback
 author: andrew.corrigan@octopus.com
-visibility: private
-published: 2024-02-08-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+visibility: public
+published: 2024-02-07-1400
+metaImage: blog-email-octopusdeploymentpipelines quarterback-750x400-2024.png
+bannerImage: blog-email-octopusdeploymentpipelines quarterback-750x400-2024.png
+bannerImageAlt: Octopus character wearing a gridiron helmet holding a football.
 isFeatured: false
 tags: 
   - DevOps
