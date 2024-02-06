@@ -4,8 +4,8 @@ description: With the Super Bowl on the horizon, Andy Corrigan explains how Octo
 author: andrew.corrigan@octopus.com
 visibility: public
 published: 2024-02-07-1400
-metaImage:
-bannerImage:
+metaImage: blog-email-octopusdeployment-pipelines-quarterback-750x400-2024.png
+bannerImage: blog-email-octopusdeployment-pipelines-quarterback-750x400-2024.png
 bannerImageAlt: Octopus character wearing a gridiron helmet holding a football.
 isFeatured: false
 tags: 
