@@ -2,7 +2,7 @@
 title: Deploying database updates with Octopus and the Liquibase execution container
 description: Learn about the new Liquibase execution container.
 author: shawn.sesna@octopus.com
-visibility: private
+visibility: public
 published: 2024-02-12-1400
 metaImage: to-be-added-by-marketing
 bannerImage: to-be-added-by-marketing
@@ -14,7 +14,7 @@ tags:
   - Docker
 ---
 
-Until now, you had to do one of 2 things to deploy database updates using the [Liquibase](https://liquibase.com) product. The first option was installing the Liquibase CLI on the machine performing the updates. The other option was ticking the box **Download Liquibase?** on the **[Liquibase - Run Command](https://library.octopus.com/step-templates/36df3e84-8501-4f2a-85cc-bd9eb22030d1/actiontemplate-liquibase-run-command)** community step template to dynamically download Liquibase and any dependencies at deploy time.  
+Until now, you had to do one of 2 things to deploy database updates using Octopus and the [Liquibase](https://liquibase.com) product. The first option was installing the Liquibase CLI on the machine performing the updates. The other option was ticking the box **Download Liquibase?** on the **[Liquibase - Run Command](https://library.octopus.com/step-templates/36df3e84-8501-4f2a-85cc-bd9eb22030d1/actiontemplate-liquibase-run-command)** community step template to dynamically download Liquibase and any dependencies at deploy time.  
 
 In this post, I introduce a publicly available container image you can use with the [Execution Containers](https://octopus.com/docs/projects/steps/execution-containers-for-workers) feature to execute Liquibase.
 
@@ -27,7 +27,7 @@ The [octopuslabs/liquibase-workertools](https://hub.docker.com/r/octopuslabs/liq
 - PowerShell
 - AWS CLI (to support AWS IAM authentication)
 
-If you're selecting a database type that the Liquibase product does not ship with, like Cassandra or MongoDB, the **Liquibase - Run Command** template automatically detects if it's running in a container and downloads any missing dependencies.
+If you're selecting a database type that Liquibase doesn't ship with, like Cassandra or MongoDB, the **Liquibase - Run Command** template automatically detects if it's running in a container and downloads any missing dependencies.
 
 ## Updating your process
 
