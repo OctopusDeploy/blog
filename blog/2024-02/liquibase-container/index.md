@@ -4,9 +4,9 @@ description: Learn about the new Liquibase execution container.
 author: shawn.sesna@octopus.com
 visibility: public
 published: 2024-02-12-1400
-metaImage: to-be-added-by-marketing
-bannerImage: to-be-added-by-marketing
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-databaseoctopusliquibaseexecutioncontainer-2024.png
+bannerImage: blogimage-databaseoctopusliquibaseexecutioncontainer-2024.png
+bannerImageAlt: Database connected to Octopus and Liquibase logos
 isFeatured: false
 tags: 
   - DevOps
