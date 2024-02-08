@@ -37,7 +37,7 @@ If you're using the **Liquibase - Run Command**, the only change you need to mak
 2. Specify the image as `octopuslabs\liquibase-workertools`. 
 
 :::hint
-If you don't have an [External Feed](https://octopus.com/docs/packaging-applications/package-repositories/docker-registries) for Docker Hub, you'll need that as well.
+If you don't have an [external feed](https://octopus.com/docs/packaging-applications/package-repositories/docker-registries) for Docker Hub, you'll need that as well.
 :::
 
 ![Select execution container](octopus-liquibase-container.png)
