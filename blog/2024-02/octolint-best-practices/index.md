@@ -4,9 +4,9 @@ description: Learn the best practices Octolint is based on so you can understand
 author: steve.fenton@octopus.com
 visibility: public
 published: 2024-02-14-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-building-octopus-cli-vnext.png
+bannerImage: blogimage-building-octopus-cli-vnext.png
+bannerImageAlt: Desktop screen showing command line sitting in the clouds with an Octopus Deploy logo and settings icon in front of it.
 isFeatured: false
 tags: 
   - Product
