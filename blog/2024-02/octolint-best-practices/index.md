@@ -4,9 +4,9 @@ description: Learn the best practices Octolint is based on so you can understand
 author: steve.fenton@octopus.com
 visibility: public
 published: 2024-02-14-1400
-metaImage: blogimage-building-octopus-cli-vnext.png
-bannerImage: blogimage-building-octopus-cli-vnext.png
-bannerImageAlt: Desktop screen showing command line sitting in the clouds with an Octopus Deploy logo and settings icon in front of it.
+metaImage: blogimage-runbooksbestpractices-2022.png
+bannerImage: blogimage-runbooksbestpractices-2022.png
+bannerImageAlt: A book with legs and arms is wearing a toolbelt and running with a checklist in its hand
 isFeatured: false
 tags: 
   - Product
