@@ -34,7 +34,7 @@ If you're selecting a database type that Liquibase doesn't ship with, like Cassa
 If you're using the **Liquibase - Run Command**, the only change you need to make is updating the **Container Image** section. 
 
 1. Change **Runs directly on a worker** to **Runs inside a container, on a worker**.
-2. Specify the image as `octopuslabs\liquibase-workertools`. 
+2. Specify the image as `octopuslabs/liquibase-workertools`. 
 
 :::hint
 If you don't have an [external feed](https://octopus.com/docs/packaging-applications/package-repositories/docker-registries) for Docker Hub, you'll need that as well.
@@ -44,6 +44,6 @@ If you don't have an [external feed](https://octopus.com/docs/packaging-applicat
 
 ## Conclusion
 
-We strive to make using Octopus Deploy as easy as possible. The `octopuslabs\liquibase-workertools` image makes integrating the Liquibase product into your deployment process much easier, especially when coupled with Octopus Cloud [Dynamic Workers](https://octopus.com/docs/infrastructure/workers/dynamic-worker-pools).
+We strive to make using Octopus Deploy as easy as possible. The `octopuslabs/liquibase-workertools` image makes integrating the Liquibase product into your deployment process much easier, especially when coupled with Octopus Cloud [Dynamic Workers](https://octopus.com/docs/infrastructure/workers/dynamic-worker-pools).
 
 Happy deployments!
