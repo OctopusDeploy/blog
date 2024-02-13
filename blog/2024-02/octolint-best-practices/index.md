@@ -191,6 +191,6 @@ You don't have to remember all these good practices. Use Octolint to do the hard
 
 You can watch an [introduction to Octolint on YouTube](https://www.youtube.com/watch?v=hdJ3kbCPVds) to see it in action and find the code on [GitHub](https://github.com/OctopusSolutionsEngineering/OctopusRecommendationEngine).
 
-Whether you improve your security by replacing API keys that don't expire or using step templates to convert complex processes into reusable templates, Octolint is a good way to find out what you can improve and make sure things stay in good shape.
+Whether you improve your security by replacing API keys that don't expire or use step templates to convert complex processes into reusable templates, Octolint is a good way to find out what you can improve and make sure things stay in good shape.
 
 Happy deployments!
