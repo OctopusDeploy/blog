@@ -52,11 +52,11 @@ Any product embodies the lived experiences of the people who built it. Octopus h
 
 With Codefresh joining Octopus, we are now proud to say we have:
 
-Best-of-breed CD, GitOps, and CI under one roof
-Over 4,000 customers
-Over 270 Octonauts (all Codefreshers will be continuing as employees of Octopus)
-Over $60M USD in revenue
-Been profitable for 10 out of the past 11 years, with 2023 being our best year ever, which fuels our further product investment.
+- Best-of-breed CD, GitOps, and CI under one roof
+- Over 4,000 customers
+- Over 270 Octonauts (all Codefreshers will be continuing as employees of Octopus)
+- Over $60M USD in revenue
+- Been profitable for 10 out of the past 11 years, with 2023 being our best year ever, which fuels our further product investment
 
 That makes us the most complete best-of-breed CD solution in the market today with the most guaranteed future. This makes Octopus very unique. Our size combined with our long history of profitability, means that we are a sustainable and reliable choice in good markets and bad. 
 
