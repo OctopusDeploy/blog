@@ -1,6 +1,6 @@
 ---
 title: Octopus Deploy acquires Codefresh
-description: Paul explains why he's so excited about Codefresh joining Octopus, what we love about the Codefresh team, and why we think this is excellent news for our customers, Codefresh’s customers, and the Argo open-source community. 
+description: Paul explains why he's so excited about Codefresh joining Octopus, what we love about the Codefresh team, and why we think this is excellent news for our customers, Codefresh customers, and the Argo open-source community. 
 author: paul.stovell@octopus.com
 visibility: public
 published: 2024-02-27
