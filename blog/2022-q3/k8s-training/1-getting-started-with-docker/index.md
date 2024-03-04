@@ -24,7 +24,7 @@ First, we show you how to get started with Docker. The video demonstrates how to
 
 [If you don't already have Octopus account, you can start a free trial.](https://oc.to/octopus-k8s-training-trial)
 
-<p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/o14t9soemb?videoFoam=true" title="section1 Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
+<p style="text-align:center"><iframe width="560" height="315" src="https://www.youtube.com/embed/zPi0F33gFiY?si=TgLvABVr_4mMZCE3" title="Getting started with Docker" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></p>
 
 You can work through the series using the links below.
 
