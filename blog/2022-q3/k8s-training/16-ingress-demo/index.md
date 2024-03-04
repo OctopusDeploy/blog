@@ -24,7 +24,7 @@ This video demonstrates how to install an Ingress Controller and expose Services
 
 [If you don't already have Octopus account, you can start a free trial.](https://oc.to/octopus-k8s-training-trial)
 
-<p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/3xssoy8h7y?videoFoam=true" title="16. Ingress and Ingress Controller Demo" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
+<p style="text-align:center"><iframe width="560" height="315" src="https://www.youtube.com/embed/jMLu-OVzpkg?si=it0lbpzTOtvx69mD" title="Ingress and Ingress Controller demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></p>
 
 You can work through the series using the links below.
 
