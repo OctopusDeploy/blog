@@ -15,7 +15,7 @@ tags:
   - Continuous Integration
 ---
 
-Octopus Deploy is adding a new feature to expand our existing GitOps capabilities, by adding pull-based container image and helm chart external feed triggers to our existing ARC triggers, utalising the feeds, images and charts already referenced in your deployment process.
+Octopus Deploy is adding a new feature to expand our existing GitOps capabilities, by adding external feed triggers to our existing ARC triggers, utalising the feeds, container images and Helm charts already referenced in your deployment process.
 
 ## GitOps approach to continous delivery
 
@@ -39,7 +39,13 @@ The details of these container images and helm charts are already known within O
 
 ### Using external feed triggers
 
+As part of this work, we have improved and consolidated trigger type selection into a single pop-up:
+```
+![Improved trigger selection pop-up](add-new-trigger.png "width=500")*The new trigger selection pop-up*
+```
+After selecting "External feed", and the name and description for the the external feed trigger are entered, the next 
 
+External feeds triggers support release creation in channels, using any 
 ```
 ![Channel selection for trigger](add-new-trigger-channel.png "width=500")
 ```
@@ -48,9 +54,6 @@ The details of these container images and helm charts are already known within O
 ![Trigger sources selection](add-new-trigger-sources.png "width=500")
 ```
 
-```
-![Improved trigger selection pop-up](add-new-trigger.png "width=500")*The new trigger selection pop-up*
-```
 
 ## Conclusion
 
