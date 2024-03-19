@@ -15,7 +15,7 @@ tags:
   - Continuous Integration
 ---
 
-Octopus Deploy is adding a new feature to expand our existing GitOps capabilities, by adding external feed triggers to our existing ARC triggers, utalising the feeds, container images and Helm charts already referenced in your deployment process.
+Octopus Deploy is adding external feed triggers to our existing ARC triggers, utalising the feeds, container images and Helm charts already referenced in your deployment process to pull changes to those images into your software system.
 
 ## GitOps approach to continous delivery
 
