@@ -45,24 +45,6 @@ The details of these container images and helm charts are already known within O
 
 It all just works.
 
-### Using external feed triggers
-
-As part of this feature, we have improved and consolidated trigger type selection into a single pop-up:
-```
-![Improved trigger selection pop-up](add-new-trigger.png "width=500")*The new trigger selection pop-up*
-```
-After selecting "External feed", add the name and description for the the external feed trigger, then click next.
-
-External feeds triggers support release creation in channels, using any 
-```
-![Channel selection for trigger](add-new-trigger-channel.png "width=500")
-```
-
-```
-![Trigger sources selection](add-new-trigger-sources.png "width=500")
-```
-
-
 ## Conclusion
 Using the newly available release triggers from Octopus will allow you to cut down the amount of configuration required in your build pipeline by providing a GitOps style pull mechanism. As you are likely making more frequent changes to your application than your infrastructure manifests, having Octopus observe and react to changes in your artifact repositories will reduce the risk that would be otherwise present in updating those manifest repositories directly. In addition, relase triggers will allow to you still benifit from these capabilities, even if you aren't deploying to kubernetes.
 
