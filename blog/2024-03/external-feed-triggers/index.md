@@ -4,9 +4,9 @@ description:
 author: mark.coafield@octopus.com
 visibility: public
 published: 2024-03-25-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: blogimage-releasetriggersforcontainerimagesandhelmcharts-2024-1500x800-v2.png
+bannerImage: blogimage-releasetriggersforcontainerimagesandhelmcharts-2024-1500x800-v2.png
+bannerImageAlt: Docker and Helm logos connected to Octopus logo
 isFeatured: false
 tags: 
   - Product
