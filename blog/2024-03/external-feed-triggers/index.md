@@ -1,6 +1,6 @@
 ---
 title: External feed triggers
-description: 
+description: We're introducing external feed triggers for Kubernetes. This monitors Helm chart repositories and container image registries referenced in your deployment steps. When it detects a new version, Octopus automatically creates a release.
 author: mark.coafield@octopus.com
 visibility: public
 published: 2024-03-25-1400
