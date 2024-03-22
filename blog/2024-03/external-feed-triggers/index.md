@@ -31,7 +31,7 @@ This decoupling creates a release process that more naturally supports a continu
 
 There are a few ways to work with a pull model for containerized applications.
 
-As explained in [this CodeFresh article](https://codefresh.io/learn/gitops/gitops-workflow-vs-traditional-workflow-what-is-the-difference/),  one approach is to configure a deployment automator to find changes to an image repository. This then updates a YAML file in the configuration repository. This change gets identified by a GitOps agent that pulls the change and updates the cluster to match.
+As explained in [this Codefresh article](https://codefresh.io/learn/gitops/gitops-workflow-vs-traditional-workflow-what-is-the-difference/),  one approach is to configure a deployment automator to find changes to an image repository. This then updates a YAML file in the configuration repository. This change gets identified by a GitOps agent that pulls the change and updates the cluster to match.
 
 Or, by using Octopus for your deployments, you can template your manifests so the container image gets injected when a release gets created. Our support for [Kustomize](https://octopus.com/docs/deployments/kubernetes/kustomize) is an example of this pattern. This process puts the control for managing your containers and environment configuration outside your manifest repository. This reduces drift, merge-conflict, and security risks when using Git for environmental progression – something it was never built for.
 
