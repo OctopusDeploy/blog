@@ -24,7 +24,7 @@ This video provides a demo where three separate applications are deployed to a c
 
 [If you don't already have Octopus account, you can start a free trial.](https://oc.to/octopus-k8s-training-trial)
 
-<p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/a8nr9zh2ku?videoFoam=true" title="12. ConfigMap and Secret Demo" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
+<p style="text-align:center"><iframe width="560" height="315" src="https://www.youtube.com/embed/e9cGQVC0Tz0?si=0i9kzWl3tpManS3h" title="ConfigMap and Secret Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></p>
 
 You can work through the series using the links below.
 

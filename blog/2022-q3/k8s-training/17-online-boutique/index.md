@@ -24,7 +24,7 @@ This video demonstrates how to import an existing complex microservice applicati
 
 [If you don't already have Octopus account, you can start a free trial.](https://oc.to/octopus-k8s-training-trial)
 
-<p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/2662pwh511?videoFoam=true" title="17. Deploy Google's Online Boutique Microservice Stack in Octopus" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
+<p style="text-align:center"><iframe width="560" height="315" src="https://www.youtube.com/embed/0VimQmA-E4U?si=KEKBSN9EnkfaP-Ur" title="Deploy Google's Online Boutique Microservice Stack in Octopus" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></p>
 
 You can work through the series using the links below.
 

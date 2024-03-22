@@ -24,7 +24,7 @@ This video introduces Kubernetes and demonstrates how to install a local develop
 
 [If you don't already have Octopus account, you can start a free trial.](https://oc.to/octopus-k8s-training-trial)
 
-<p style="text-align:center"><iframe src="https://fast.wistia.net/embed/iframe/toym6obhxl?videoFoam=true" title="section2 Video" allow="autoplay; fullscreen" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" msallowfullscreen width="640px" height="360px"></iframe></p>
+<p style="text-align:center"><iframe width="560" height="315" src="https://www.youtube.com/embed/JS6dOv6M8xg?si=jjpKhUVesxTyNEuk" title="Installing a development Kubernetes cluster" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></p>
 
 You can work through the series using the links below.
 
