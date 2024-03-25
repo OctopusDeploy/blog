@@ -13,7 +13,7 @@ tags:
 
 Large Language Models (LLMs) have generated a lot of attention for their ability to draw life-like images and videos, write fluent text, and even generate code. They also have a remarkable ability to query structured data with plain English prompts, allowing anyone to extract meaningful information from complex systems without having to learn SQL or write scripts to consume data from APIs.
 
-Traditionally, if you wanted to extract information from Octopus that wasn't directly exposed via the web-based UI, you had to query the Octopus REST API to read and link the desired information. This is certainly achievable, but familiarity with scripting languages and an understanding of the Octopus domain model is required.
+Traditionally, if you wanted to extract information from Octopus that wasn't directly exposed via the web-based UI, you had to query the Octopus REST API to read and link the desired information. This is certainly achievable, but requires familiarity with scripting languages and an understanding of the Octopus domain model.
 
 [Octopus AI](https://chromewebstore.google.com/detail/octopus-ai-experiment/lpeediihgpakkfdiliphohbglloghlmi) is a time-limited experiment to help us understand if exposing the resources that make up an Octopus space to an LLM can be used to solve meaningful problems an extract useful information without resorting to custom scripting.
 
