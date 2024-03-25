@@ -17,7 +17,7 @@ Traditionally, if you wanted to extract information from Octopus that wasn't dir
 
 [Octopus AI](https://chromewebstore.google.com/detail/octopus-ai-experiment/lpeediihgpakkfdiliphohbglloghlmi) is a time limited experiment to help us understand if exposing the resources that make up an Octopus space to a LLM can be used to solve meaningful problems an extract useful information without resorting to custom scripting.
 
-It is a plugin for Chrome that presents an overlay that exposes a prompt for entering plain text queries and a field displaying the answer. If you have ever used a service like ChatGPT, the interface should look familiar.
+It is a plugin for Chrome that displays an overlay exposing a prompt for entering plain text queries and a field displaying the answer. If you have ever used a service like ChatGPT, the interface should look familiar.
 
 The prompt is parsed to identify the various resources that were mentioned, such as a project, feed, account etc. The resources are queried via the API using the credentials of the currently logged-in user. The prompt and the supporting context are then sent to an LLM to answer the question.
 
