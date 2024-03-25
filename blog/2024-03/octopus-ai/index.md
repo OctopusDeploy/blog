@@ -15,7 +15,7 @@ Large Language Models (LLMs) have generated a lot of attention for their ability
 
 Traditionally, if you wanted to extract information from Octopus that wasn't directly exposed via the web based UI, you had to query the Octopus REST API to read and link the desired information. This is certainly achievable, but requires a familiarity with scripting languages and an understanding of the Octopus domain model.
 
-[Octopus AI](https://chromewebstore.google.com/detail/octopus-ai-experiment/lpeediihgpakkfdiliphohbglloghlmi) is an time limited experiment to help us understand if exposing the resources that make up an Octopus space to a LLM can be used to solve meaningful problems an extract useful information without resorting to custom scripting.
+[Octopus AI](https://chromewebstore.google.com/detail/octopus-ai-experiment/lpeediihgpakkfdiliphohbglloghlmi) is a time limited experiment to help us understand if exposing the resources that make up an Octopus space to a LLM can be used to solve meaningful problems an extract useful information without resorting to custom scripting.
 
 It is a plugin for Chrome that presents an overlay that exposes a prompt for entering plain text queries and a field displaying the answer. If you have ever used a service like ChatGPT, the interface should look familiar.
 
