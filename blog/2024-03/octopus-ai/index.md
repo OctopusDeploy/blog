@@ -39,7 +39,7 @@ The results aren't always useful. Here I ask it if the project has any manual in
 
 But there is a good chance queries like this could be made to work by massaging the instructions and context provided to the LLM. And this is where you can help.
 
-By using the plugin we can see the kinds of questions people would like to ask of their Octopus space. This will help us better understand how to optimize the data sent to a LLM to make the responses more useful and accurate.
+By using the plugin we can see the kinds of questions people would like to ask of their Octopus space. This will help us better understand how to optimize the data sent to an LLM to make the responses more useful and accurate.
 
 If you would like to participate, all you need is a cloud hosted instance of Octopus (sorry, on-premises instances won't work), install the [extension](https://chromewebstore.google.com/detail/octopus-ai-experiment/lpeediihgpakkfdiliphohbglloghlmi), click the Octopus icon, and start typing.
 
