@@ -46,3 +46,7 @@ If you would like to participate, all you need is a cloud hosted instance of Oct
 We do collect information from the users of this extension. Sensitive variables (like secret variables, feed passwords, account passwords etc.) are not collected, we don't prompt for an API key, and personally identifiable information or anything that looks like a password is also filtered out. We will, however, collect the query, answer, and context (i.e. the configuration of the space being queried) to help us refine the tool.
 
 The [Octopus AI](https://chromewebstore.google.com/detail/octopus-ai-experiment/lpeediihgpakkfdiliphohbglloghlmi) page has an FAQ providing some additional information about this project, and we'll keep the extension updated for the duration of the experiment, so you can automatically get the latest changes.
+
+The [prompt engineering](https://github.com/OctopusSolutionsEngineering/OctopusCopilot/wiki/Prompt-Engineering-with-Octopus) documentation provides tips on how to write queries for the Octopus AI tool. There are some requirements for formatting a useful query with Octopus AI, so please take a moment to review the documentation.
+
+Happy deployments!
