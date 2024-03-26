@@ -21,9 +21,11 @@ It's a plugin for Chrome that displays an overlay exposing a prompt for entering
 
 ## How the plugin works
 
-The prompt is parsed to identify the various resources that were mentioned, like a project, feed, account, etc. The resources get queried via the API using the credentials of the currently logged-in user. The prompt and the supporting context are then sent to an LLM to answer the question.
+The prompt is parsed to identify the various resources that were mentioned, like a project, feed, account, etc. The resources get queried via the API using the credentials of the logged-in user. The prompt and the supporting context are then sent to an LLM to answer the question.
 
-The nice thing about LLMs is that you can ask them to interpret the supplied context and display the results in a number of useful ways. Here, I've asked the LLM to summarize the vulnerabilities reported in the deployment logs as a table:
+The nice thing about LLMs is that you can ask them to interpret the supplied context and display the results in a number of useful ways. 
+
+Here, I've asked the LLM to summarize the vulnerabilities reported in the deployment logs as a table:
 
 ![Octopus AI screenshot](octopus-ai.png)
 
@@ -47,7 +49,7 @@ By using the plugin, we can see the kinds of questions people would like to ask 
 
 If you'd like to participate, all you need is an Octopus Cloud instance (sorry, on-premises instances won't work), install the [extension](https://chromewebstore.google.com/detail/octopus-ai-experiment/lpeediihgpakkfdiliphohbglloghlmi), click the Octopus icon, and start typing.
 
-We do collect information from the users of this extension. Sensitive variables (like secret variables, feed passwords, account passwords, etc.) are not collected. We don't prompt for an API key, and personally identifiable information or anything that looks like a password is also filtered out. We will, however, collect the query, answer, and context (i.e. the configuration of the space being queried) to help us refine the tool.
+We do collect information from the users of this extension. Sensitive variables (like secret variables, feed passwords, and account passwords) are not collected. We don't prompt for an API key, and personally identifiable information or anything that looks like a password is also filtered out. We will, however, collect the query, answer, and context (i.e., the configuration of the space being queried) to help us refine the tool.
 
 The [Octopus AI](https://chromewebstore.google.com/detail/octopus-ai-experiment/lpeediihgpakkfdiliphohbglloghlmi) page has FAQs with more information about this project. We'll keep the extension updated for the duration of the experiment, so you can automatically get the latest changes.
 
