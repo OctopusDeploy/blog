@@ -12,7 +12,7 @@ tags:
   - Product
 ---
 
-This week we shipped a number of improvements and enhancements to the deployment log. The new task log is rolling out to Octopus Cloud this week, and will be available in the next LTS release of Octopus Server. 
+This week we shipped a number of improvements and enhancements to the deployment log. The changes are rolling out to Octopus Cloud this week, and will be available in the next LTS release of Octopus Server. 
 
 The main features are:
 
