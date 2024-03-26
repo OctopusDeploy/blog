@@ -4,9 +4,9 @@ description: We're testing the idea of allowing an Octopus space to be queried i
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2099-03-25-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: img-blog-usingazureappconfigwithoctopus-2023.png
+bannerImage: img-blog-usingazureappconfigwithoctopus-2023.png
+bannerImageAlt: Stylized laptop screen showing Octopus logo connected to cogs in the cloud, with a clipboard to the right.
 tags:
 - Product
 ---
