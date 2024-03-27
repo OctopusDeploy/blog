@@ -29,7 +29,7 @@ We also made many smaller improvements:
 - Defaulting to showing the task log if a deployment is running
 - Better progress indicators so you know what's happening
 
-# A fresh visual design
+## A fresh visual design
 
 The deployment log gets used as often as any other page in Octopus. People come to the deployment log many times a day, whether it's to try to work out why a deployment failed, or even just to check if it was successful. Yet the look and feel of the log hadn't changed in many years, and it was looking dated. 
 
@@ -39,7 +39,7 @@ Here's a short video showing the new log in action in light and dark modes:
   <source src="quick-tour.mp4" type="video/mp4" />
 </video>
 
-# Performance for big logs
+## Performance for big logs
 
 We don't recommend it, but deployment logs can get *very big*. Octopus runs steps in parallel across many targets, and some deployments are very complex, so sometimes large deployment logs are unavoidable. 
 
@@ -53,7 +53,7 @@ We designed the new log to support *very* large logs, including logs with hundre
   <source src="big-logs.mp4" type="video/mp4" />
 </video>
 
-# Intelligent Log Rendering™️
+## Intelligent Log Rendering™️
 
 To make it easy to navigate even large logs, Octopus uses what we call Intelligent Log Rendering. 
 
@@ -80,7 +80,7 @@ In the video above, a warning appeared halfway through a 100,000-line log file. 
 
 This means you immediately see what the error was and all the context around it, without needing to download and search a big log file. And it keeps the UI snappy and transfers the minimum data needed to the client to help you find and fix the error.
 
-# Smaller improvements
+## Smaller improvements
 
 We took the opportunity to make a number of other improvements. 
 
@@ -112,7 +112,7 @@ Lastly, when a task is running, we also now show a spinning indicator under the 
 
 <img src="pin-log.png" width="500" alt="Pinning a node to auto-scroll" />
 
-# Coming to an Octopus near you
+## Coming to an Octopus near you
 
 With intelligent log rendering, performance for large files, and lots of new usability enhancements, we hope these improvements will make it easier to find and fix deployment problems. 
 
