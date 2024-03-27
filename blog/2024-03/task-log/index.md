@@ -35,7 +35,7 @@ The deployment log gets used as often as any other page in Octopus. People come 
 
 Here's a short video showing the new log in action in light and dark modes:
 
-<video src="https://i.octopus.com/blog/2024-03/task-log/quick-tour.mp4" width="750" height="400" controls></video>
+<video src="https://i.octopus.com/blog/2024-03/task-log/quick-tour.mp4" width="750" height="400" controls autoplay loop muted></video>
 
 ## Performance for big logs
 
@@ -47,7 +47,7 @@ The problem was what happened when you clicked that link to show all. The UI wou
 
 We designed the new log to support *very* large logs, including logs with hundreds of thousands of lines or hundreds of MB or more in log output. We use Intelligent Log Rendering to show you the parts of the log we think you'll be most interested in. Then you can click around to reveal specific sections of the log, which load quickly. 
 
-<video src="https://i.octopus.com/blog/2024-03/task-log/big-logs.mp4" width="750" height="400" controls></video>
+<video src="https://i.octopus.com/blog/2024-03/task-log/big-logs.mp4" width="750" height="400" controls autoplay loop muted></video>
 
 ## Intelligent Log Rendering™️
 
@@ -96,7 +96,7 @@ We spent a lot of time making sure the Copy & Paste behavior works as expected s
 
 Here is how Copy & Paste works when timestamps are not shown. Line numbers are effectively hidden from selection, so they aren't copied, and you get nice, neat log output. 
 
-<video src="https://i.octopus.com/blog/2024-03/task-log/copy-paste.mp4" width="750" height="400" controls></video>
+<video src="https://i.octopus.com/blog/2024-03/task-log/copy-paste.mp4" width="750" height="400" controls autoplay loop muted></video>
 
 During deployments, every minute counts. To help give you a sense of how long different parts of the deployment took, we now show indicators for how long each part of the log took. 
 
