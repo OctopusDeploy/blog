@@ -4,9 +4,9 @@ description: Octopus 2024.2 includes enhancements to the deployment log includin
 author: paul.stovell@octopus.com
 visibility: public
 published: 2024-03-27-1400
-metaImage: blogimage-releasetriggersforcontainerimagesandhelmcharts-2024-1500x800-v2.png
-bannerImage: blogimage-releasetriggersforcontainerimagesandhelmcharts-2024-1500x800-v2.png
-bannerImageAlt: New Octopus Deploy task log
+metaImage: blogimage-runningunittestsingithubactions-2022.png
+bannerImage: blogimage-runningunittestsingithubactions-2022.png
+bannerImageAlt: Open laptop sits behind a screen in dark mode showing a table of rows with green ticks, red crosses, and orange exclamation marks.
 isFeatured: flase
 tags: 
   - Product
