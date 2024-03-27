@@ -35,7 +35,7 @@ The deployment log gets used as often as any other page in Octopus. People come 
 
 Here's a short video showing the new log in action in light and dark modes:
 
-<video autoplay="autoplay" loop="loop" controls="controls" muted="muted" alt="A video showing the new task log viewer in light mode and dark mode" width="500">
+<video autoplay="autoplay" loop="loop" controls="controls" muted="muted" alt="A video showing the new task log viewer in light mode and dark mode" width="750">
   <source src="quick-tour.mp4" type="video/mp4" />
 </video>
 
@@ -49,7 +49,7 @@ The problem was what happened when you clicked that link to show all. The UI wou
 
 We designed the new log to support *very* large logs, including logs with hundreds of thousands of lines or hundreds of MB or more in log output. We use Intelligent Log Rendering to show you the parts of the log we think you'll be most interested in. Then you can click around to reveal specific sections of the log, which load quickly. 
 
-<video autoplay="autoplay" loop="loop" controls="controls" muted="muted" alt="A video showing the new task log viewer with a very large log" width="500">
+<video autoplay="autoplay" loop="loop" controls="controls" muted="muted" alt="A video showing the new task log viewer with a very large log" width="750">
   <source src="big-logs.mp4" type="video/mp4" />
 </video>
 
@@ -100,7 +100,7 @@ We spent a lot of time making sure the Copy & Paste behavior works as expected s
 
 Here is how Copy & Paste works when timestamps are not shown. Line numbers are effectively hidden from selection, so they aren't copied, and you get nice, neat log output. 
 
-<video autoplay="autoplay" loop="loop" controls="controls" muted="muted" alt="A video showing copy and paste behavior in the new task log"  width="500">
+<video autoplay="autoplay" loop="loop" controls="controls" muted="muted" alt="A video showing copy and paste behavior in the new task log"  width="750">
   <source src="copy-paste.mp4" type="video/mp4" />
 </video>
 
@@ -110,7 +110,7 @@ We also changed the default page you see when you click a task. Previously, Octo
 
 Lastly, when a task is running, we also now show a spinning indicator under the active tree node in the log. You can click this to "pin" your browser to that part of the log - as new log messages appear, the browser will automatically scroll and keep the pin visible. 
 
-<img src="pin-log.png" width="500" alt="Pinning a node to auto-scroll" />
+![Pinning a node to auto-scroll.](pin-log.png "width=500")
 
 ## Coming to an Octopus near you
 
