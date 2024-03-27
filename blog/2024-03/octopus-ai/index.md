@@ -2,7 +2,7 @@
 title: Octopus AI experiment
 description: We're testing the idea of allowing an Octopus space to be queried in plain English with an AI integration and would love some feedback.
 author: matthew.casperson@octopus.com
-visibility: private
+visibility: public
 published: 2024-04-03-1400
 metaImage: img-blog-usingazureappconfigwithoctopus-2023.png
 bannerImage: img-blog-usingazureappconfigwithoctopus-2023.png
