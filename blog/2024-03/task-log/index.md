@@ -44,9 +44,9 @@ Here's a short video showing the new log in action in light and dark mode:
 
 We don't recommend it, but deployment logs can get *very big*. Octopus runs steps in parallel across many targets, and some deployments are very complex, so sometimes large deployment logs are unavoidable. 
 
-The old task log would typically start by showing a preview – the most recent 20 lines for each node in the log tree, with a **Show all** link above it. Even for big logs, that was pretty fast. 
+The old task log would typically start by showing a preview – the most recent 20 lines for each node in the log tree. There was a link above it indicating additional lines not shown, that you could click to show all. Even for big logs, that was pretty fast. 
 
-The problem was what happened when you clicked that **Show all** link. The UI would then fetch the entire log and attempt to render it locally. As logs got large – tens of thousands of lines or more – the old UI simply froze and became unusable. 
+The problem was what happened when you clicked that link to show all. The UI would then fetch the entire log and attempt to render it locally. As logs got large – tens of thousands of lines or more – the old UI simply froze and became unusable. 
 
 We designed the new log to support *very* large logs, including logs with hundreds of thousands of lines or hundreds of MB or more in log output. We use Intelligent Log Rendering to show you the parts of the log we think you'll be most interested in. Then you can click around to reveal specific sections of the log, which load quickly. 
 
