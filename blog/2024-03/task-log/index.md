@@ -7,7 +7,7 @@ published: 2024-03-27-1400
 metaImage: blogimage-runningunittestsingithubactions-2022.png
 bannerImage: blogimage-runningunittestsingithubactions-2022.png
 bannerImageAlt: Open laptop sits behind a screen in dark mode showing a table of rows with green ticks, red crosses, and orange exclamation marks.
-isFeatured: flase
+isFeatured: false
 tags: 
   - Product
 ---
@@ -37,7 +37,6 @@ Here's a short video showing the new log in action in light and dark mode:
 
 <video autoplay="autoplay" loop="loop" controls="controls" muted="muted" alt="A video showing the new task log viewer in light mode and dark mode" width="750">
   <source src="quick-tour.mp4" type="video/mp4" />
-  Your browser does not support the video tag.
 </video>
 
 # Performance for big logs
@@ -52,7 +51,6 @@ We designed the new log to support *very* large logs, including logs with hundre
 
 <video autoplay="autoplay" loop="loop" controls="controls" muted="muted" alt="A video showing the new task log viewer with a very large log" width="750">
   <source src="big-logs.mp4" type="video/mp4" />
-  Your browser does not support the video tag.
 </video>
 
 # Intelligent Log Rendering™️
@@ -104,7 +102,6 @@ Here is how Copy & Paste works when timestamps are not shown. Line numbers are e
 
 <video autoplay="autoplay" loop="loop" controls="controls" muted="muted" alt="A video showing copy and paste behavior in the new task log"  width="750">
   <source src="copy-paste.mp4" type="video/mp4" />
-  Your browser does not support the video tag.
 </video>
 
 During deployments, every minute counts. To help give you a sense of how long different parts of the deployment took, we now show indicators for how long each part of the log took. 
