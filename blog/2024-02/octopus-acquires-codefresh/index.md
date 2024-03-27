@@ -7,7 +7,7 @@ published: 2024-02-27
 metaImage: blogimage-octopuscodefresh-750x400-2024.png
 bannerImage: blogimage-octopuscodefresh-750x400-2024.png
 bannerImageAlt: Codefresh and Octopus Deploy logos in a yin and yang symbol.
-isFeatured: false
+isFeatured: true
 tags: 
   - Company
 ---
