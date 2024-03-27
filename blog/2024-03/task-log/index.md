@@ -35,7 +35,7 @@ The deployment log gets used as often as any other page in Octopus. People come 
 
 Here's a short video showing the new log in action in light and dark modes:
 
-![A video showing the new task log viewer in light mode and dark mode](quick-tour.mp4 "width=750")
+<video src="/blog/2024-03/task-log/quick-tour.mp4" width="750" height="400" controls></video>
 
 ## Performance for big logs
 
