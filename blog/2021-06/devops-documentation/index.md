@@ -51,8 +51,6 @@ To achieve this, we needed a solution that could scale up far beyond a tradition
 
 To demonstrate how we created the guides, I’ll create a simple example that documents performing a Google search:
 
-<iframe src="https://fast.wistia.net/embed/iframe/eecl0uod01?videoFoam=true" title="google-example Video" allowtransparency="true" frameborder="0" scrolling="no" class="wistia_embed" name="wistia_embed" allowfullscreen mozallowfullscreen webkitallowfullscreen oallowfullscreen msallowfullscreen width="500px" height="400px"></iframe>
-
 1. Open https://google.com.
 
 2. Enter the search term into the text box and click the Google Search button:
