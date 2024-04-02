@@ -41,6 +41,8 @@ By configuring your Octopus project with container dependencies, you can now cre
 
 Your existing lifecycle will then promote that release through your environments or tenants, just like it does currently. If your lifecycle uses automatic release progression, then you've just set up a Continuous Delivery pipeline without explicitly letting Octopus know about your application changes! 
 
+![Configuring external triggers](external-triggers.gif "width=500")*Configuring external triggers in Octopus*
+
 The details of these container images and Helm charts are already known in Octopus. This means we can use the registry locations, image names, chart names, and credentials to do this monitoring, without adding or maintaining this information anywhere else.
 
 It all just works.
