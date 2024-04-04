@@ -12,8 +12,8 @@ tags:
   - GitHub Actions
 ---
 
-We are excited to announce we are launching an Octopus Deploy App for GitHub, available now for Octopus Cloud customers.
-TODO: add link
+We are excited to announce we are launching an [Octopus Deploy App for GitHub](https://github.com/marketplace/octopus-deploy), available now for Octopus Cloud customers.
+
 
 Many Octopus customers use GitHub and Octopus together, and we are focused on ensuring the integration is seamless.  The Octopus Deploy GitHub App is a major step on this journey.
 
@@ -45,7 +45,7 @@ We are intent on making GitHub and Octopus Deploy the world's most powerful comb
 
 The Octopus Deploy GitHub App is available now, for Octopus Cloud customers. 
 
-A note for our self-hosted Octopus Server customers: we developed this as a cloud-first feature as supporting self-hosted instances introduces additional complexity.  If you are an Octopus Server customer, and you would benefit from the Octopus Deploy GitHub App, please talk to your Account Manager or add your voice to the [roadmap feature card](https://roadmap.octopus.com/c/107-github-app-for-server-customers).  We're listening.  
+_A note for our self-hosted Octopus Server customers: we developed this as a cloud-first feature as supporting self-hosted instances introduces additional complexity.  If you are an Octopus Server customer, and you would benefit from the Octopus Deploy GitHub App, please talk to your Account Manager or add your voice to the [roadmap feature card](https://roadmap.octopus.com/c/107-github-app-for-server-customers).  We're listening._  
 
 
 
