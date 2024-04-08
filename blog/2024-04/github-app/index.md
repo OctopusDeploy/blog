@@ -3,17 +3,17 @@ title: Octopus Deploy in the GitHub Marketplace
 description: 
 author: michael.richardson@octopus.com 
 visibility: private
-published: 
-metaImage: blogimage-github-octopus-nocopy-x2.jpg
-bannerImage: blogimage-github-octopus-nocopy-x2.jpg
+published: 2024-04-22-1400
+metaImage: img-moreseamlessintegrationgithubusingoctopusapp-2024.png
+bannerImage: img-moreseamlessintegrationgithubusingoctopusapp-2024.png
 bannerImageAlt: Octopus Deploy and GitHub logos connected by arrows.
+isFeatured: false
 tags: 
   - Product
   - GitHub Actions
 ---
 
 We are excited to announce we are launching an [Octopus Deploy App for GitHub](https://github.com/marketplace/octopus-deploy), available now for Octopus Cloud customers.
-
 
 Many Octopus customers use GitHub and Octopus together, and we are focused on ensuring the integration is seamless.  The Octopus Deploy GitHub App is a major step on this journey.
 
