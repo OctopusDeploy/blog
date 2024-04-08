@@ -1,6 +1,6 @@
 ---
 title: Octopus Deploy in the GitHub Marketplace 
-description: 
+description: We've launched the Octopus Deploy App for GitHub, available now for Octopus Cloud customers. The app removes the need to manage GitHub credentials in Octopus.
 author: michael.richardson@octopus.com 
 visibility: private
 published: 2024-04-22-1400
@@ -11,43 +11,52 @@ isFeatured: false
 tags: 
   - Product
   - GitHub Actions
+  - Trust and Security
 ---
 
-We are excited to announce we are launching an [Octopus Deploy App for GitHub](https://github.com/marketplace/octopus-deploy), available now for Octopus Cloud customers.
+We've launched an [Octopus Deploy App for GitHub](https://github.com/marketplace/octopus-deploy), available now for Octopus Cloud customers.
 
-Many Octopus customers use GitHub and Octopus together, and we are focused on ensuring the integration is seamless.  The Octopus Deploy GitHub App is a major step on this journey.
+Many Octopus customers use GitHub and Octopus together, and we're focused on ensuring the integration is seamless.  The Octopus Deploy GitHub App is a major step on this journey.
 
-Last year we shipped support for [OpenID Connect between GitHub Actions and Octopus](https://roadmap.octopus.com/c/70-openid-connect-oidc-for-github-actions), removing the need for Octopus credentials to be managed in GitHub. The Octopus Deploy GitHub App is now providing this benefit in the opposite direction, removing the need for GitHub credentials to be managed in Octopus. With the combination of OpenID Connect and the Octopus Deploy GitHub App, there is no longer a need for shared credentials when integrating GitHub and Octopus Deploy. This made our SecOps team very happy, and we hope it does the same for yours.
+Last year,  we shipped support for [OpenID Connect between GitHub Actions and Octopus](https://roadmap.octopus.com/c/70-openid-connect-oidc-for-github-actions). This removed the need to manage Octopus credentials in GitHub. The Octopus Deploy GitHub App offers this benefit in the opposite direction, removing the need to manage GitHub credentials in Octopus. With the combination of OpenID Connect and the Octopus Deploy GitHub App, you no longer need shared credentials when integrating GitHub and Octopus Deploy. This made our SecOps team very happy, and we hope it does the same for yours.
 
 An immediate benefit is for Octopus projects using Config as Code with GitHub as the repository. Creating Octopus projects version-controlled in GitHub is now easier and more secure. 
 
-### Before - Without the Octopus Deploy GitHub App 
-Previously, connecting Octopus to your Config as Code GitHub repository required creating an account in GitHub to represent Octopus Deploy, adding a Personal Access Token, and configuring the access token as credentials in Octopus.
+## Before - Without the Octopus Deploy GitHub App 
 
+Previously, to connect Octopus to your Config as Code GitHub repository required:
+
+- Creating an account in GitHub to represent Octopus Deploy
+- Adding a personal access token
+- Configuring the access token as credentials in Octopus
 
 ![GitHub Personal Access Token](github-pat.png "width=500")
 
 ![GitHub Credentials in Octopus](version-control-password.png "width=500")
 
 
+## After - With the Octopus Deploy GitHub App 
 
-### After - With the Octopus Deploy GitHub App 
-
-Using the Octopus GitHub App, the app is installed into your GitHub organization, and is granted access to selected repositories.
+Using the Octopus GitHub App, the app gets installed in your GitHub organization. Then it's granted access to selected repositories.
 
 ![Granting the Octopus App access to Repositories](octopus-github-app-install.png "width=500")
 
-Octopus is then configured to use the app for GitHub integration.  No credentials required! The Octopus GitHub App can be shared across all Octopus projects, making setup easier, removing the need for management of access tokens, and removing the risk of inadvertently leaking tokens.
+You then configure Octopus to use the app for GitHub integration. No credentials needed! You can share the Octopus GitHub App across all Octopus projects, which means:
+
+- Setup is easier
+- You don't need  to manage access tokens
+- There's no risk of inadvertently leaking tokens
 
 ![Configuring the app in your Octopus Project](octopus-app-project.png "width=500")
 
-We are intent on making GitHub and Octopus Deploy the world's most powerful combination for Continuous Delivery. The Octopus Deploy GitHub App lays the foundation for deeper integration between GitHub and Octopus Deploy.  
+## Conclusion 
 
-The Octopus Deploy GitHub App is available now, for Octopus Cloud customers. 
+We're intent on making GitHub and Octopus Deploy the world's most powerful combination for Continuous Delivery. The Octopus Deploy GitHub App lays the foundation for deeper integration between GitHub and Octopus.  
 
-_A note for our self-hosted Octopus Server customers: we developed this as a cloud-first feature as supporting self-hosted instances introduces additional complexity.  If you are an Octopus Server customer, and you would benefit from the Octopus Deploy GitHub App, please talk to your Account Manager or add your voice to the [roadmap feature card](https://roadmap.octopus.com/c/107-github-app-for-server-customers).  We're listening._  
+The Octopus Deploy GitHub App is available now for Octopus Cloud customers. 
 
+:::hint
+A note for our self-hosted Octopus Server customers: We developed this as a cloud-first feature as supporting self-hosted instances introduces additional complexity.  If you're an Octopus Server customer, and you'd benefit from the Octopus Deploy GitHub App, please talk to your account manager or add your voice to the [roadmap feature card](https://roadmap.octopus.com/c/107-github-app-for-server-customers). We're listening. 
+:::
 
-
-
-
+Happy deployments!
