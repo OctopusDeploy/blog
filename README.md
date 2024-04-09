@@ -26,7 +26,7 @@ Internal authors can create a branch for their work, external authors need to fo
 
 Posts are organized in year-month directories (i.e., 2023-01/). Find or create the directory that is roughly when your post is going out and add your files there. 
 
-If you'd like feedback on a work in progress, create a draft PR and tag @TeganAli with your request.
+If you'd like feedback on a work in progress, create a draft PR and tag @TeganAli with your request, however she'll do a full review and edit when the post is submitted as a PR and she's assigned as a reviewer.
 
 When you're happy with your post and it's ready to be reviewed, please create a PR. Go through the checklist on the PR template, assign @TeganAli as reviewer, and drop a note in Slack in #topic-content-marketing. (No need to fill out a content brief.)
 
