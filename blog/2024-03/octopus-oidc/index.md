@@ -4,8 +4,8 @@ description: Learn how OIDC can improve your security posture
 author: michelle.obrien@octopus.com
 visibility: private
 published: 3020-01-01-1400
-metaImage: 1720063_OIDC-BlogPost-illustration_Illustration3_750x400_090623.png
-bannerImage: 1720063_OIDC-BlogPost-illustration_Illustration3_750x400_090623.png
+metaImage: 1720063_oidc-blogpost-illustration_illustration3_750x400_090623.png
+bannerImage: 1720063_oidc-blogpost-illustration_illustration3_750x400_090623.png
 bannerImageAlt: Padlock pictured within a lightbulb
 isFeatured: false
 tags: Product, Trust and Security
