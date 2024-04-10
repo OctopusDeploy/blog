@@ -27,7 +27,7 @@ Octopus becomes an OIDC provider, allowing clients such as GitHub Actions to aut
 ## Octopus as a Client 
 
 When adding an Azure or AWS Subscription to your Accounts within Octopus Deploy, you now have the option to use OIDC as the Authentication Method for passwordless deployments.  
-![Creating an account with OIDC in Octopus](Azure-Account-OIDC.pngg "width=500")
+![Creating an account with OIDC in Octopus](azure-account-oidc.png "width=500")
 
 The OIDC trust relationship will need to be set up and managed through Microsoft Entra ID or IAM in AWS. Our docs can help guide you through this process if you are unfamiliar with it.  
 [Set up instructions for Azure](https://octopus.com/docs/infrastructure/accounts/azure#create-a-federated-credential-for-an-azure-service-principal)  
