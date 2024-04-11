@@ -20,7 +20,7 @@ We recently implemented OIDC in Octopus in 2 forms:
 1. **Octopus as a Client** – During a deployment, you can authenticate Octopus with Azure and AWS using OIDC.  
 2. **Octopus as a Resource Server**  – Octopus becomes an OIDC provider, letting clients, like GitHub Actions, authenticate with Octopus as trusted providers.
 
-![Diagram showing the different OIDC relationships within Octopus](dia-oidc-2024.png "width=500") 
+![Diagram showing the different OIDC relationships within Octopus](diag-oidc-2024.png "width=500") 
 
 ## Octopus as a Client 
 
