@@ -11,6 +11,9 @@ isFeatured: false
 tags: 
   - Product
   - Trust and Security
+  - AWS
+  - Azure
+  - GitHub Actions
 ---
 
 Octopus Deploy is a critical part of our customers' deployment process. This results in a need to store credentials for other providers in Octopus Deploy. OpenID Connect (OIDC) lets our customers reduce the number of credentials stored in Octopus. It also removes the need to rotate credentials. By moving away from credentials and improving control over the granularity of permissions, OIDC also improves your organization's security posture.
@@ -47,7 +50,7 @@ This is particularly useful if you want to separate your permissions for product
  
 ![OIDC in Azure App Registrations](app-registrations-oidc.png "width=500")*An example of an Azure OIDC account with access to prod deployments only*
 
-### Octopus customer feeback about using OIDC
+### Octopus customer feedback about using OIDC
 
 The below feedback is from a customer using OIDC for both GitHub and Azure. 
 
