@@ -40,4 +40,4 @@ When submitting your post in #topic-content-marketing, you also need to provide 
 
 If you're drafting a post that you'd like to keep private until it's ready for review, use the [internal blog drafts repo](https://github.com/OctopusDeploy/internal-blog-drafts). Transfer it to the public repo when it's ready for review.
 
-The editing process takes time and we have a schedule of posts, so giving us at least 2 weeks notice is preferred and appreciated. For time-sensitive posts, we'll do our best to get the post published as soon as possible. Please consider that the design team also needs time to create a blog image.
+The editing process takes time and we have a schedule of posts, so giving us at least 1 week's notice is preferred and appreciated. For time-sensitive posts, we'll do our best to get the post published as soon as possible. Please consider that the design team also needs time to create a blog image.
