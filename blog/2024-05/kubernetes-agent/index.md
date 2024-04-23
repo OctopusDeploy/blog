@@ -3,7 +3,7 @@ title: Introducing the Kubernetes agent
 description: A new way to deploy to Kubernetes
 author: alastair.pitts@octopus.com
 visibility: private
-published: 1970-01-01
+published: 3024-05-01
 metaImage: 
 bannerImage: 
 bannerImageAlt: 
@@ -29,30 +29,30 @@ Octopus Deploy already has the ability to deploy to Kubernetes clusters via the 
 
 We have heard from customers that there is some limitations with the Kubernetes API target. 
 
-#### Workers required
+### Workers
 
 To execute a deployment to a Kubernetes API target, it requires an Octopus Worker with all the correct tooling. 
 In Octopus Cloud, we provide the Octopus Cloud Dynamic Workers, but when self-hosting Octopus Deploy, it requires either executing work on the Octopus Server machine or creating and managing an Octopus Worker.
 
-#### Tooling
+### Tooling
 
 As the Kubernetes API target uses kubectl to perform its deployments, it requires the correct tooling. This includes authentication plugins for cloud providers and other tools such as Helm. This becomes difficult to manage as versions change or when deploying to different clusters with different versions.
 
-#### Authentication
+### Authentication
 
 The Kubernetes API target requires authentication with the cluster to deploy. This authentication can be very complicated depending on the target cluster or hosting platform. These authentication credentials must be added to Octopus Deploy, making securing and automation difficult.
 
 The Kubernetes agent solves all these limitations in three key ways:
 
-#### Polling communications
+### Polling communications
 
 The Kubernetes agent leverages the same Polling communication protocol used by Octopus Tentacle to allow the agent to connect from the cluster to Octopus Server, solving network access issues.
 
-#### In-cluster application
+### In-cluster application
 
 As the agent is already running inside the target cluster, it no longer needs authentication credentials to the cluster to perform deployments. It can leverage the in-cluster authentication support of Kubernetes to execute deployments using Kubernetes Service Accounts and Kubernetes RBAC local to the cluster.
 
-#### Cluster-aware tooling
+### Cluster-aware tooling
 
 As the agent is running in the cluster, it can retrieve the cluster's version and correctly use tooling that is specific to that version. The tooling required is also drastically reduced as there are no longer any requirements for custom authentication plugins.
 
