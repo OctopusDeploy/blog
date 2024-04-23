@@ -1,8 +1,8 @@
 ---
 title: Octopus Deploy in the GitHub Marketplace 
-description: We've launched the Octopus Deploy App for GitHub, available now for Octopus Cloud customers. The app removes the need to manage GitHub credentials in Octopus.
+description: We launched the Octopus Deploy App for GitHub, available now for Octopus Cloud customers. The app removes the need to manage GitHub credentials in Octopus.
 author: michael.richardson@octopus.com 
-visibility: private
+visibility: public
 published: 2024-04-29-1400
 metaImage: img-moreseamlessintegrationgithubusingoctopusapp-2024.png
 bannerImage: img-moreseamlessintegrationgithubusingoctopusapp-2024.png
@@ -18,7 +18,9 @@ We've launched an [Octopus Deploy App for GitHub](https://github.com/marketplace
 
 Many Octopus customers use GitHub and Octopus together, and we're focused on ensuring the integration is seamless. The Octopus Deploy GitHub App is a major step on this journey.
 
-Last year, we shipped support for [OpenID Connect between GitHub Actions and Octopus](https://roadmap.octopus.com/c/70-openid-connect-oidc-for-github-actions). This removed the need to manage Octopus credentials in GitHub. The Octopus Deploy GitHub App offers this benefit in the opposite direction, removing the need to manage GitHub credentials in Octopus. With the combination of OpenID Connect and the Octopus Deploy GitHub App, you no longer need shared credentials when integrating GitHub and Octopus. This made our SecOps team very happy, and we hope it does the same for yours.
+Last year, we shipped support for [OpenID Connect between GitHub Actions and Octopus](https://roadmap.octopus.com/c/70-openid-connect-oidc-for-github-actions). This removed the need to manage Octopus credentials in GitHub. The Octopus Deploy GitHub App offers this benefit in the opposite direction, removing the need to manage GitHub credentials in Octopus. 
+
+With the combination of OpenID Connect and the Octopus Deploy GitHub App, you no longer need shared credentials when integrating GitHub and Octopus. This made our SecOps team very happy, and we hope it does the same for yours.
 
 An immediate benefit is for Octopus projects using Config as Code with GitHub as the repository. Creating Octopus projects version-controlled in GitHub is now easier and more secure. 
 
