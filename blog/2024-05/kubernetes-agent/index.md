@@ -4,20 +4,20 @@ description: A new way to deploy to Kubernetes
 author: alastair.pitts@octopus.com
 visibility: private
 published: 1970-01-01
-metaImage: 1720063_oidc-blogpost-illustration_illustration3_750x400_090623.png
-bannerImage: 1720063_oidc-blogpost-illustration_illustration3_750x400_090623.png
-bannerImageAlt: Padlock pictured within a lightbulb
+metaImage: 
+bannerImage: 
+bannerImageAlt: 
 isFeatured: false
 tags: 
   - Product
   - Kubernetes
   - AWS
   - Azure
-  - GCP
+  - Google
 ---
-Kubernetes is rapidly becoming the dominant platform for hosting and running applications. At Octopus Deploy, we want to make sure we provide a best-in-class experience for deploying applications to Kubernetes.
+Kubernetes is rapidly becoming the dominant platform for hosting and running applications. At Octopus Deploy, we want to provide a best-in-class experience for deploying applications to Kubernetes.
 
-To make deployments to Kubernetes simpler, faster and safer, we are introducing a new deployment target, the Kubernetes agent.
+To make deployments to Kubernetes simpler, faster and safer, we are introducing a new deployment target the Kubernetes agent.
 
 The Kubernetes agent is a small, lightweight application that you install into your Kubernetes cluster. Once installed, it registers itself with Octopus Server as a new deployment target, allowing you to deploy your applications and manifests into that cluster, without the need for workers, external credentials or custom tooling.
 
@@ -25,22 +25,22 @@ The Kubernetes agent is available in Early Access preview in Octopus Cloud now.
 
 ## Why did we build the agent?
 
-Octopus Deploy already has the ability to deploy to Kubernetes clusters via the Kubernetes API deployment target. This target connects to the target cluster, allowing for authenticated kubectl commands to be executed against the cluster.
+Octopus Deploy already has the ability to deploy to Kubernetes clusters via the Kubernetes API deployment target. This target connects to the target cluster, executing authenticated kubectl commands against the cluster.
 
-While functional, this target comes with a number of limitations:
+We have heard from customers that there is some limitations with the Kubernetes API target. 
 
 #### Workers required
 
-To execute a deployment to a Kubernetes API target, an Octopus Worker is required with all the correct tooling. 
-In Octopus Cloud, this is provided by the Octopus Cloud Dynamic Workers. However, if you were self-hosting, it requires either executing work on the Octopus Server machine or creating and managing an Octopus Worker.
+To execute a deployment to a Kubernetes API target, it requires an Octopus Worker with all the correct tooling. 
+In Octopus Cloud, we provide the Octopus Cloud Dynamic Workers, but when self-hosting Octopus Deploy, it requires either executing work on the Octopus Server machine or creating and managing an Octopus Worker.
 
 #### Tooling
 
-As the Kubernetes API target uses kubectl to perform its deployments, correct tooling is required. This includes authentication plugins for cloud providers and other tools such as Helm. This becomes difficult to manage as versions change or when deploying to different clusters with different versions.
+As the Kubernetes API target uses kubectl to perform its deployments, it requires the correct tooling. This includes authentication plugins for cloud providers and other tools such as Helm. This becomes difficult to manage as versions change or when deploying to different clusters with different versions.
 
 #### Authentication
 
-The Kubernetes API target requires authentication with the cluster to deploy. This authentication can be very complicated depending on the target cluster or hosting platform. This information then needs to be added to Octopus Deploy, making securing and automation difficult.
+The Kubernetes API target requires authentication with the cluster to deploy. This authentication can be very complicated depending on the target cluster or hosting platform. These authentication credentials must be added to Octopus Deploy, making securing and automation difficult.
 
 The Kubernetes agent solves all these limitations in three key ways:
 
@@ -58,7 +58,7 @@ As the agent is running in the cluster, it can retrieve the cluster's version an
 
 ## How does the agent work?
 
-The Kubernetes agent is built on top of Octopus Tentacle, allowing for deployment scripts to be executed from Octopus Server. Where Octopus Tentacle executes scripts in local shells (via powershell or bash), the Kubernetes agent can take advantage of the Kubernetes cluster to execute deployment scripts inside of short-lived Kubernetes pods. This gives the agent the ability to scale its workloads independently of the main agent pod.
+The Kubernetes agent builds on top of Octopus Tentacle, allowing for deployment scripts to be executed from Octopus Server. Where Octopus Tentacle executes scripts in local shells (via powershell or bash), the Kubernetes agent can take advantage of the Kubernetes cluster to execute deployment scripts inside of short-lived Kubernetes pods. This gives the agent the ability to scale its workloads independently of the main agent pod.
 
 ### Installing a new agent
 
@@ -72,7 +72,7 @@ This will launch the Kubernetes agent installation wizard. Here you can name the
 
 ![Kubernetes agent wizard configuration options](kubernetes-agent-wizard-config.png "width=500")*Kubernetes agent configuration options*
 
-The Kubernetes agent requires a shared filesystem, so you have the option of either providing an existing storage class or using a default Network FIle System (NFS) storage pod. The NFS storage pod is an easy, low-configuration storage option that doesn’t require extra volumes or storage classes to be configured in the cluster first. It does require an extra helm chart to be installed.
+The Kubernetes agent requires a shared filesystem, so you have the option of either providing an existing storage class or using a default Network File System (NFS) storage pod. The NFS storage pod is an easy, low-configuration storage option that doesn’t need extra volumes or storage classes to be configured in the cluster first. To use NFS storage, you must install an extra helm chart.
 
 ![Kubernetes agent wizard NFS driver](kubernetes-agent-wizard-nfs.png "width=500")*The NFS driver needs to be installed first*
 
@@ -93,7 +93,7 @@ You can read more detailed information in the [documentation](https://octopus.co
 ## When can I use it?
 The Kubernetes agent is in Early Access preview in Octopus Cloud now and is ready for use.
 
-We would love to hear any and all feedback from you regarding this new way to deploy to Kubernetes. You can leave feedback [here](https://oc.to/f6Vp3d).
+We would love to hear any and all feedback from you on this new way to deploy to Kubernetes. You can leave feedback [here](https://oc.to/f6Vp3d).
 
 Happy Deployments
 
