@@ -58,7 +58,7 @@ As the agent is running in the cluster, it can retrieve the cluster's version an
 
 ## How does the agent work?
 
-The Kubernetes agent builds on top of Octopus Tentacle, allowing for deployment scripts to be executed from Octopus Server. Where Octopus Tentacle executes scripts in local shells (via powershell or bash), the Kubernetes agent can take advantage of the Kubernetes cluster to execute deployment scripts inside of short-lived Kubernetes pods. This gives the agent the ability to scale its workloads independently of the main agent pod.
+The Kubernetes agent builds on top of Octopus Tentacle, allowing for deployment scripts to be executed from Octopus Server. Whereas Octopus Tentacle executes scripts in local shells (via powershell or bash), the Kubernetes agent can take advantage of the Kubernetes cluster to execute deployment scripts inside of short-lived Kubernetes pods. This gives the agent the ability to scale its workloads independently of the main agent pod.
 
 ### Installing a new agent
 
