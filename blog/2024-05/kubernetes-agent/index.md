@@ -80,7 +80,7 @@ At the end of the wizard, Octopus Deploy will generate a Helm command that you c
 
 ![Kubernetes agent helm command](kubernetes-agent-wizard-helm-command.png "width=500")*Executing this helm command will install the agent into your cluster*
 
-Octopus Server will start waiting for the agent to establish a connection and perform a health check. Once successful, the Kubernetes agent target is ready for use!
+If left open, the installation dialog will wait for the agent to establish a connection and perform a health check. Once successful, the Kubernetes agent target is ready for use!
 
 ![Kubernetes agent install success](kubernetes-agent-wizard-success.png "width=500")*Successfully installed and ready for use*
 
