@@ -32,7 +32,7 @@ We have heard from customers that there is some limitations with the Kubernetes 
 ### Workers
 
 To execute a deployment to a Kubernetes API target, it requires an Octopus Worker with all the correct tooling. 
-In Octopus Cloud, we provide the Octopus Cloud Dynamic Workers, but when self-hosting Octopus Deploy, it requires either executing work on the Octopus Server machine or creating and managing an Octopus Worker.
+In Octopus Cloud, we provide the Octopus Cloud Dynamic Workers, but when self-hosting Octopus Deploy, it requires either executing work on the Octopus Server machine or creating and managing an [Octopus Tentacle](https://octopus.com/docs/infrastructure/deployment-targets/tentacle) installation running as an Octopus Worker.
 
 ### Tooling
 
