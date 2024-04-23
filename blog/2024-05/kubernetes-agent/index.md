@@ -27,7 +27,7 @@ The Kubernetes agent is available in Early Access preview in Octopus Cloud now.
 
 Octopus Deploy already has the ability to deploy to Kubernetes clusters via the Kubernetes API deployment target. This target connects to the target cluster, executing authenticated kubectl commands against the cluster.
 
-We have heard from customers that there is some limitations with the Kubernetes API target. 
+We have heard from customers that there are some limitations with the Kubernetes API target. 
 
 ### Workers
 
