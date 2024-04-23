@@ -40,7 +40,7 @@ As the Kubernetes API target uses kubectl to perform its deployments, it require
 
 ### Authentication
 
-The Kubernetes API target requires authentication with the cluster to deploy. This authentication can be very complicated depending on the target cluster or hosting platform. These authentication credentials must be added to Octopus Deploy, making securing and automation difficult.
+The Kubernetes API target requires authentication with the cluster to deploy. This authentication can be very complicated depending on the target cluster or hosting platform. These authentication credentials must be added to Octopus Deploy, making security and automation difficult.
 
 The Kubernetes agent solves all these limitations in three key ways:
 
