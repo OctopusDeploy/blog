@@ -119,7 +119,7 @@ To set up your environment, go to **Infrastructure** and choose the environment 
 
 Repeat this for all environments that apply. 
 
-![Service Now environment configuration](environment-settings.png "width=500")
+![ServiceNow environment configuration](environment-settings.png "width=500")
 
 ### Configuring your project
 
@@ -127,7 +127,7 @@ To set up your project, go to **Settings - General** and under the subheading **
 
 You can also provide a change template name if your organization has templates for their names in their change process. This is optional, and you can leave it blank if it’s not required. If you include the change template name, it's used to automatically create a standard change request on deployment.
 
-![Service Now project configuration](project-settings.png "width=500")
+![ServiceNow project configuration](project-settings.png "width=500")
 
 ## Setting up a prompted variable for reusable change requests
 
