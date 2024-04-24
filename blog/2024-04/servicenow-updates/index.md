@@ -31,7 +31,7 @@ Octopus now supports creating emergency changes. To create an Emergency change r
 
 ## Transition to closed
 
-For a deployment that creates its own CR, a per-project option, Auto Transition, will attempt to move the CR it created to the desired state when the deployment has been completed successfully. This option has now been extended to allow move a CR directly to closed.
+For a deployment that creates its own CR, a project option, Auto Transition, will attempt to move the CR it created to the desired state when the deployment has been completed successfully. This option has now been extended to allow move a CR directly to closed.
 
 ## Populating CR fields through Octopus
 
