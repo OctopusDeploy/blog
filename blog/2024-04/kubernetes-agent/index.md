@@ -11,9 +11,6 @@ isFeatured: false
 tags: 
   - Product
   - Kubernetes
-  - AWS
-  - Azure
-  - Google
 ---
 
 Kubernetes is rapidly becoming the dominant platform for hosting and running applications. At Octopus, we want to provide the best experience for deploying to Kubernetes.
