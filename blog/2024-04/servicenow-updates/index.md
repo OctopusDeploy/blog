@@ -16,17 +16,17 @@ tags:
 
 Octopus added support for IT Service Management (ITSM), integrating with ServiceNow and Jira Service Management in 2022.3. Since then, we've received feedback highlighting points of friction and areas for improvement. We've revisited this feature, adding new functionality and some quality-of-life changes.
 
-## Tasklog
+## Task log
 
 Previously ITSM precondition checks would only show details on the Task Summary tab. We've now added logging to the process that creates the change request (CR). If the creation is successful this surfaces the CR number and a link to it. If unsuccessful, errors relating to the CR creation are now logged. These logging changes enhance visibility and troubleshooting during CR creation, particularly around permission and configuration issues.
 
-![ITSM tasklogs](itsm-tasklog.png "width=500")
+![ITSM task logs](itsm-tasklog.png "width=500")
 
 ## Emergency changes
 
-Octopus now supports creating emergency changes. To create an Emergency change request, you can now Select the `Emergency Change` setting on the deployment creation page. Emergency changes are intended for scenarios such as resolving a major incident or implementing a security patch.
+Octopus now supports creating emergency changes. To create an Emergency change request, you can now select the `Emergency Change` setting on the deployment creation page. Emergency changes are intended for scenarios such as resolving a major incident or implementing a security patch.
 
-![ITSM tasklogs](itsm-deployment-settings.png "width=500")
+![ITSM deployment settings](itsm-deployment-settings.png "width=500")
 
 
 ## Transition to closed
