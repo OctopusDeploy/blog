@@ -17,7 +17,7 @@ tags:
 ---
 Kubernetes is rapidly becoming the dominant platform for hosting and running applications. At Octopus Deploy, we want to provide a best-in-class experience for deploying applications to Kubernetes.
 
-To make deployments to Kubernetes simpler, faster and safer, we are introducing a new deployment target the Kubernetes agent.
+To make your deployments to Kubernetes simpler, faster, and safer, we're introducing a new deployment target called the Kubernetes agent.
 
 The Kubernetes agent is a small, lightweight application that you install into your Kubernetes cluster. Once installed, it registers itself with Octopus Server as a new deployment target, allowing you to deploy your applications and manifests into that cluster, without the need for workers, external credentials or custom tooling.
 
