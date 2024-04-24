@@ -3,10 +3,10 @@ title: Introducing the Kubernetes agent
 description: A new way to deploy to Kubernetes
 author: alastair.pitts@octopus.com
 visibility: private
-published: 3024-05-01
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+published: 2024-04-30-1400
+metaImage: img-blog-octopus-k8-2024.png
+bannerImage: img-blog-octopus-k8-2024.png
+bannerImageAlt: Octopus Deploy logo connected to a Kubernetes-branded box with an Octopus logo in it.
 isFeatured: false
 tags: 
   - Product
