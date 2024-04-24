@@ -97,4 +97,8 @@ The Kubernetes agent is available now as an early access preview in Octopus Clou
 
 We'd love to hear any [feedback on this new way to deploy to Kubernetes](https://oc.to/f6Vp3d).
 
+## Watch the webinar: Introducing the Kubernetes agent
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/JcXTPx_QLh0" title="Introducing the Octopus Kubernetes agent" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 Happy deployments!
