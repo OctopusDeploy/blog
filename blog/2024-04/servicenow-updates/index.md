@@ -31,7 +31,7 @@ Octopus now supports creating emergency changes. To create an Emergency change r
 
 ## Transition to closed
 
-For a deployment that creates its own CR, a per-project option, Auto Transition, will attempt to move the CR it created to the desired state when the deployment has been completed successfully. This option has now been extended to allow move a CR directly to closed.
+For a deployment that creates its own CR, a project option, Auto Transition, will attempt to move the CR it created to the desired state when the deployment has been completed successfully. This option has now been extended to allow move a CR directly to closed.
 
 ## Populating CR fields through Octopus
 
@@ -52,7 +52,7 @@ Setting a `Short Description` will over-ride the auto generated Octopus descript
 The expected ServiceNow value doesn't always align with the displayed value. In the case of `Assigned To` the value displayed is `Beth Anglin` but the expected value is the `User ID` in this case `beth.anglin`.
 :::
 
-For a full list of available fields and values, refer to the [ServiceNow docs](https://developer.servicenow.com/dev.do#!/reference/api/utah/rest/change-management-api).
+For a full list of available [fields](https://docs.servicenow.com/bundle/washingtondc-platform-administration/page/administer/localization/reference/r_FieldLabelTable.html) and values, refer to the [ServiceNow docs](https://developer.servicenow.com/dev.do#!/reference/api/utah/rest/change-management-api).
 
 ## ITSM Providers menu 
 We've also moved the ITSM Providers out of the `Project Settings` into their own seperate menu under the project links.
