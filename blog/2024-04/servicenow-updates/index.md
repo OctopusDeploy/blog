@@ -42,7 +42,7 @@ For example to set the `Assigned To` or `Short Description` fields you can use t
 | Field | Variable | Example Value|
 |--|--|--|
 |Assigned To|Octopus.ServiceNow.Field[assigned_to]|beth.anglin|
-|Short Description|Octopus.ServiceNow.Field[short_description]Custom Short Description with #{SomeVariable} #{Octopus.Deployment.Id}|
+|Short Description|Octopus.ServiceNow.Field[short_description]|Custom Short Description with #{SomeVariable} #{Octopus.Deployment.Id}|
 
 :::hint
 Setting a `Short Description` will over-ride the auto generated Octopus description. Description matching means this will automatically progress the deployment unless the resolved description is unique. This can be done by including variables like the deployment or environment Id.
@@ -61,8 +61,8 @@ We've also moved the ITSM Providers out of the `Project Settings` into their own
 ## Conclusion
 Octopus continues to refine its ITSM capabilities based on ongoing user feedback and evolving needs. If you have any feedback or are interested in enabling ServiceNow or JSM please reach out.
 
-[Register for the ServiceNow](https://octopusdeploy.typeform.com/servicenow-eap).
-[Register for the Jira Service Management](https://octopusdeploy.typeform.com/jsm-eap)
+- [Register for the ServiceNow](https://octopusdeploy.typeform.com/servicenow-eap).
+- [Register for the Jira Service Management](https://octopusdeploy.typeform.com/jsm-eap)
 
 
 ## Learn more
