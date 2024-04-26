@@ -12,7 +12,6 @@ tags:
 - Product
 - DevOps
 - Integrations
-- Jira
 ---
 
 Octopus added support for IT Service Management (ITSM) in 2022.3, integrating with ServiceNow and Jira Service Management. Since then, we received feedback about some points of friction and areas for improvement. We revisited this feature, adding new functionality and some quality-of-life changes.
@@ -65,7 +64,7 @@ We also moved the ITSM providers from **Project Settings** into their own sepera
 
 ## Conclusion
 
-Octopus continues to refine its ITSM capabilities based on your feedback. Please continue to share your thoughts with us – you can so in the comments below. 
+Octopus continues to refine its ITSM capabilities based on your feedback. Please continue to share your thoughts with us – you can do so in the comments below. 
 
 ServiceNow and Jira ITSM integrations are available to all [Enterprise customers](https://octopus.com/pricing/overview). 
 
