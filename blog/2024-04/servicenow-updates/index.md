@@ -14,7 +14,7 @@ tags:
 - Integrations
 ---
 
-Octopus added support for IT Service Management (ITSM) in 2022.3, integrating with ServiceNow and Jira Service Management. Since then, we received feedback about some points of friction and areas for improvement. We revisited this feature, adding new functionality and some quality-of-life changes. These are available from 2024.2.6455 on.
+Octopus added support for IT Service Management (ITSM) in 2022.3, integrating with ServiceNow and Jira Service Management. Since then, we received feedback about some points of friction and areas for improvement. We revisited this feature, adding new functionality and some quality-of-life changes. These changes are available from 2024.2.6455 on.
 
 ## Task log
 
