@@ -4,12 +4,14 @@ description: Octopus 2024.1 added the ability to use an inline Dockerfile or a U
 author: henrik.andersson@octopus.com
 visibility: public
 published: 2024-05-02-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: blogimage-containerdocker.png
+bannerImage: blogimage-containerdocker.png
+bannerImageAlt: Man standing with a laptop in front of a large blue container.
 isFeatured: false
 tags: 
   - Product
+  - Containers
+  - Docker
 ---
 
 With the introduction of Execution Containers for steps we simplified how you deploy applications using Octopus, providing a lightweight and portable solution for bundling dependencies needed in your deployments into Docker containers.
