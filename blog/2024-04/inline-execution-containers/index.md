@@ -4,8 +4,8 @@ description: Octopus 2024.1 added the ability to an inline Dockerfile or a URL t
 author: henrik.andersson@octopus.com
 visibility: public
 published: 2024-04-30-1400
-metaImage: execution-containers.png
-bannerImage: execution-containers.png
+metaImage: execution-workers.png
+bannerImage: execution-workers.png
 bannerImageAlt: Execution Containers for Workers
 isFeatured: false
 tags: 
@@ -14,9 +14,9 @@ tags:
 
 ![Execution Containers for Workers](execution-workers.png)
 
-With the introduction of Execution Containers for steps we have simplified how applications are deployed using Octopus, providing a lightweight and portable solution for bundling dependencies needed in your deployments into Docker containers.
+With the introduction of Execution Containers for steps we have simplified how users deploy applications using Octopus, providing a lightweight and portable solution for bundling dependencies needed in your deployments into Docker containers.
 
-However, if you can't or don't want to use the container images we provide, managing Dockerfiles and CI pipelines to publish the Docker containers and ensuring smooth deployment workflows can still present challenges. 
+But, if you can't or don't want to use the container images we provide, managing Dockerfiles and CI pipelines to publish the Docker containers and ensuring smooth deployment workflows can still present challenges. 
 
 We're excited to announce that we've improved this feature with a couple of new options that aims to simplify this process by offering users the flexibility to choose to use either an inline Dockerfile or a URL to a Git repository to build the Docker container image used for a deployment.
 
@@ -26,7 +26,7 @@ Before jumping into the new options, let's discuss the challenges faced in creat
 
 To create a Docker container image for use as an Execution Container involves writing a Dockerfile, which specifies the steps needed to build the container image with the necessary dependencies, and a CI/CD pipeline to publish the container image to a registry that Octopus can access (such as DockerHub or Azure Container Registry). 
 
-While Dockerfiles are powerful and customizable, managing them across different projects can become cumbersome, especially when dealing with multiple dependencies or complex deployment processes.
+While Dockerfiles are powerful and customizable, managing them across different projects can become cumbersome, especially when dealing with many dependencies or complex deployment processes.
 
 Any friction in this process can lead to delays in delivering updates and features to end-users.
 
@@ -38,17 +38,17 @@ To address these challenges, we've introduced new options to this feature that a
 
 ### Inline Dockerfile
 
-With the inline Dockerfile option, you can define the container's build instructions directly within the step. 
+With the inline Dockerfile option, you can define the container's build instructions within the step. 
 
 ![Execution Container from Inline Dockerfile](execution-container-from-inline-dockerfile.png "width=500")
 
-This approach offers simplicity and immediacy, as you can quickly specify the required dependencies and configuration settings without switching between different files or repositories. 
+This approach offers simplicity and immediacy, as you can specify the required dependencies and configuration settings without switching between different container images or repositories. 
 
-It's particularly useful for smaller projects or scenarios where the Dockerfile is relatively straightforward.
+It's particularly useful for smaller projects or scenarios where the Dockerfile is simple.
 
 ### URL to Git Repository
 
-Alternatively, you can opt to provide a URL to a Git repository containing the Dockerfile and associated resources. 
+This option allows you to provide a URL to a Git repository containing the Dockerfile and associated resources. 
 
 ![Execution Container from Git URL](execution-container-from-git-url.png "width=500")
 
@@ -60,8 +60,8 @@ By referencing a Git repository, teams can ensure consistency across projects, p
 
 In conclusion, the introduction of new options allowing users to choose between an inline Dockerfile or a URL to a Git repository represents a nice improvement in simplifying deployment workflows with Docker. 
 
-By offering flexibility and versatility, users can streamline the container creation process, integrate seamlessly with CI/CD pipelines, and foster collaboration through centralized code repositories. 
+By offering flexibility and versatility, users can streamline the container creation process, integrate with their deployment process quicker, and foster collaboration through centralized code repositories. 
 
-As organizations continue to embrace containerization for deploying applications at scale, features like these play a role in accelerating development cycles and delivering value to end-users efficiently.
+As organizations continue to embrace containerization for deploying applications at scale, features like these play a role in accelerating development cycles and delivering value to end-users.
 
 Happy Deployments!
