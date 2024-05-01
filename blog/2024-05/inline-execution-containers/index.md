@@ -4,9 +4,9 @@ description: Octopus 2024.1 added the ability to use an inline Dockerfile or a U
 author: henrik.andersson@octopus.com
 visibility: public
 published: 2024-05-02-1400
-metaImage: execution-workers.png
-bannerImage: execution-workers.png
-bannerImageAlt: Execution Containers for Workers
+metaImage: 
+bannerImage: 
+bannerImageAlt: 
 isFeatured: false
 tags: 
   - Product
