@@ -12,8 +12,6 @@ tags:
   - Product
 ---
 
-![Execution Containers for Workers](execution-workers.png)
-
 With the introduction of Execution Containers for steps we simplified how you deploy applications using Octopus, providing a lightweight and portable solution for bundling dependencies needed in your deployments into Docker containers.
 
 But, if you can't or don't want to use the container images we provide, managing Dockerfiles and CI pipelines to publish the Docker containers and ensuring smooth deployment workflows can still present challenges. 
