@@ -1,5 +1,5 @@
 ---
-title: Inside DevOps with Fabio Segredo
+title: Inside DevOps with Fabio Segredo from Glintt Global
 description: A series where we share lessons learned from those on the frontlines of DevOps. This post features Fabio Segredo of Glintt Global.
 author: joanna.wyganowska@octopus.com
 visibility: public
