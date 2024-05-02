@@ -4,8 +4,8 @@ description: A series where we share lessons learned from those on the frontline
 author: joanna.wyganowska@octopus.com
 visibility: public
 published: 2024-05-13-1400
-metaImage: 
-bannerImage: 
+metaImage: blogimage-insidedeveops-fabiosegredo-2024.png
+bannerImage: blogimage-insidedeveops-fabiosegredo-2024.png
 bannerImageAlt: Photo of Fabio Segredo
 isFeatured: false
 tags: 
