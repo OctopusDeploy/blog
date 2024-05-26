@@ -16,11 +16,100 @@ tags:
 
 Much attention has been focused on the generative aspect of GPT. It is easy to be impressed by the ability to create eye-catching images and videos or write sensible sounding text from a few simple prompts. It is also easy to understand how AI would augment the workflows of writing or drawing tools.
 
-But how does AI provide any benefit to more traditional business processes? The answer to this is far less exciting than being able to generate a highly detailed drawing of a kitten in a space suit eating rainbows from little more than that very description, but it is these business-as-usual workflows where AI can have the most impact.
+But how does AI provide any benefit to more traditional business processes? The answer to this is perhaps less exciting than being able to generate a highly detailed drawing of a kitten in a space suit eating rainbows from little more than that very description, but it is these business-as-usual workflows where AI can have the most impact.
 
 I had the privilege of exploring this very question in partnership with GitHub to develop the [Octopus Extension for GitHub Copilot](https://octopus.com/docs/administration/copilot). Copilot extensions were [announced by Satya Nadella at this year's Build conference](https://youtu.be/8OviTSFqucI?t=2334) with Octopus being 1 of 16 extensions for the initial launch:
 
 ![Build keynote address](build-keynote.png)
+
+In this post I'll take you behind the scenes of building a Copilot extension.
+
+## The value of a Copilot extension
+
+The sentiment behind the phrase "Code is written once but read many times" holds true for Octopus deployments and runbooks. Once your Octopus space is configured, most of your interaction is by initiating deployments, running runbooks, and viewing the results.
+
+Most DevOps team members won't spend their days in Octopus. For example, developers will spend most of their day in their IDE writing and testing new features. Octopus is a critical component of that workflow as it is responsible for deploying changes to various environments for internal teams and external customers to access. But often developers only need to know where their changes have been deployed or extract some useful entries from the deployment logs.
+
+Here we see the result of the prompt `@octopus-ai-app Show dashboard space "<space name>"`, which is a markdown version of the Octopus dashboard:
+
+![Showing the dashboard in Copilot](show-dashboard.png)
+
+This shows how the Octopus extension keeps you in the flow by removing the need to switch between applications to get the information you need. With a simple prompt you can review the state of your deployments in the same chat window you use as part of your development workflow.
+
+We can dig a little deeper with a prompt like `@octopus-ai-app The status "Success" is represented with the 🟢 character. The status "In Progress" is represented by the 🔵 character. Other statuses are represented with the 🔴 character. Show the release version, release notes, and status of the last 5 deployments for the project "Octopus Copilot Function" in the "Production" environment in the "Octopus Copilot" space in a markdown table.`:
+
+![Showing a deployment history](show-deployments.png)
+
+The cool thing about this prompt is that there is no special logic in the extension for mapping statuses to UTF characters or generating markdown tables. The ability to understand these instructions and generate the required output is inherent to the Large Language Machine (LLM) that backs the Octopus extension.
+
+This prompt also highlights how an AI agent improves on more traditional chatbots. The prompt is written in plain text rather than the fixed and often robotic instructions you have to formulate for a chatbot. This also means the Octopus extension has the ability to generate results far beyond the limited set of interactions that have to be hard coded into a chatbot.
+
+Here is another example leveraging the ability of an LLM to understand instructions. Here I have asked `@octopus-ai-app Print any URLs printed in the the last 100 lines in the deployment logs for the latest deployment for the project "Octopus Copilot Function" in the "Production" environment in the "Octopus Copilot" space for step 1`:
+
+![Extracting URLs from deployment logs](extract-urls.png)
+
+We rely on the ability of an LLM to understand what a URL is, to find URLs in the deployment logs, and to present the result in a useful format. Again, there is no special logic in the extension for extracting URLs. This ability is inherited from the underlying LLM.
+
+The Octopus extension is read-only at the moment. However, Copilot has recently introduced the ability to confirm actions that may alter an external system, such as initiating a deployment or running a runbook. We are exploring how to extend the Octopus extension to allow such interactions to be initiated via a chat window.
+
+So the benefit of the extension is that it brings Octopus to the tools you already use, keeping you in the flow by removing the need to jump between windows. It also allows you to leverage the ability of LLMs to comprehend plain text requests to generate custom reports or extract useful information.
+
+
+## Realtime AI
+
+A challenge with AI systems is that they don't inherently have access to realtime information. LLMs are essentially frozen in time and only know the state of the world at the point when they were trained. For example, GPT 3.5 was trained in 2021, and so knows nothing about the world after that date.
+
+Retrieval Augmented Generation (RAG) is a process that can overcome this limitation. It works by combining custom knowledge with a user's prompt to generate more accurate answers or to answer questions about custom data.
+
+For example, you may combine the contents of a recent news article with your question in the LLM prompt. The context and question is placed in the LLM's context window, which allows the LLM to consider content it was not trained with to provide an answer.
+
+The challenge for an extension interacting with Octopus is that the data we want to inspect is generated in real time. To solve this, the extension must query the Octopus API for the current state of a space to ensure any prompts are answered with live information.
+
+This challenge is two-fold: understanding what is being requested, and serializing the requested information. 
+
+LLM context windows are increasing with each new LLM version, but today you still have to be selective about the information you provide with a query. For example, the GPT 3.5 turbo model provided by Azure AI has a context window of 16K tokens. A token roughly equals 4 characters, although in practice it appears structured data like JSON fits even fewer characters into a token. I found I could budget for 40K characters of context with any query without triggering token length errors. It is not possible to naively dump the configuration of an entire Octopus space into this buffer, so only the relevant information can be included.
+
+To understand what a query is referencing, we make use of the zero-shot capabilities of LLMs to extract entities from a query. For example, in the query `Print any URLs printed in the the last 100 lines in the deployment logs for the latest deployment for the project "Octopus Copilot Function" in the "Production" environment in the "Octopus Copilot" space for step 1`, the LLM will extract the following entities:
+
+* The project - "Octopus Copilot Function"
+* The environment - "Production"
+* The space - "Octopus Copilot"
+* The number of lines - 100
+* The steps - 1
+
+The term "zero-shot" simply means we can ask the LLM to extract these entities without having to provide any examples or specifically train the LLM to identify the entities in the prompt.
+
+The entities are then passed to API requests. In the example above, the latest deployment for the project to the environment in the space are is found, the logs are extracted and filtered to return only the last 100 lines for step 1. 
+
+Extracting entities and calling a function are all handled by Open AI [function calling](https://platform.openai.com/docs/guides/function-calling).
+
+Log files are easy to handle with LLMs because they can be considered a stream of unstructured text and LLMs are good at consuming blobs of text. However, questions about the configuration of a space require us to serialize and present the state of the space in a format that the LLM can reason about.
+
+There are many formats for defining the configuration of a platform like Octopus as text including JSON, XML, YAML, TOML, HCL, OCL (used by Octopus Config-as-Code) and more.
+
+There are some requirements for the selection of a format:
+
+* It must support compound documents. This is important because we want to mix and match the resources that are placed into the context window without having to invent new parent container objects. YAML uses three dashes to separate documents, while HCL and OCL allow resources to be added or removed from documents as needed. JSON, XML, and TOML typically requires all related data to be placed in one structure.
+* It must have an unambiguous method for relating resources. HCL really excels here with its expression syntax allowing one resource to reference a property of another resource, typically linking up IDs.
+* It needs to be able to serialize all resources exposed by an Octopus space. Again, HCL does a good job here as the Octopus Terraform provider already defines structures for Octopus resources. OCL is limited to describing projects and variables, making it unsuitable for this task. JSON is another strong contented here given all Octopus resources have a JSON representation in the API.
+* Ideally LLMs should have been given a chance to train on public examples of these structures. HCL is the clear winner here with dozens of examples in the tests for the Octopus Terraform provider. It is likely that the LLM has seen JSON representations of Octopus resources, although examples tend to be scattered out in the wild.
+
+Given these requirements, it was clear that serializing Octopus spaces to HCL was the best choice. So queries relating to the configuration of an Octopus space work by identifying the entities being requested, converting those entities into HCL, placing the HCL in the context, and having the LLM answer the question based on the context.
+
+This results in a process that:
+
+* Avoids the need for secondary storage and indexing of Octopus data because everything is queried from the Octopus API directly
+* Respects the existing RBAC controls enforced by the Octopus API because all requests include the Octopus API key of the chat user
+* Ensures prompts are answered with live data because all data is obtained as needed
+* Does not require any additional capabilities be built into the main Octopus platform
+
+I suspect this "smart AI, dumb search" approach is something we'll see more of in the coming years. Enterprise tools have not done a great job of implementing search capabilities and there is no reason to think that the situation is going to improve. But having an LLM identify the phrases to search for, interact with an API on your behalf, and then provide an answer based on the search results means existing tools can continue to provide rudimentary search capabilities and LLM based agents can shift through broad search results. Ever expanding LLM context windows only make this approach easier (if potentially less efficient) to implement.
+
+I'd even go so far as to argue this approach rivals solutions like vector databases. At the end of the day, a vector database simply colocates items with similar attributes. For example, pants and socks would be colocated because they are both items of clothing while cars and bikes would be colocated because they are both vehicles. But there is no reason an LLM can't convert the prompt "Find me red clothes" into 5 API calls returning results for t-shorts, jeans, hoodies, sneakers, and jackets, thus relying on the capability of LLMs to generate high quality zero-shot answers to common categorization tasks rather than having to custom build smart search capabilities: 
+
+![ChatGPT response](chat-gpt-results.png)
+
+Overall, this approach has worked well. It resulted in a lean architecture involving two Azure functions (one to receive chat requests and query the Octopus API directly, and one to serialize Octopus resources to HCL) that is easy to manage and scale as needed without the burden of maintaining a custom data source.
 
 * bringing octopus to you
 * move beyond chatbots
