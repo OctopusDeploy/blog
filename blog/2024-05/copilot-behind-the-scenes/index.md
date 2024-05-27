@@ -14,9 +14,9 @@ tags:
 - GitHub Copilot
 ---
 
-Much attention has been focused on the generative aspect of GPT. It is easy to be impressed by the ability to create eye-catching images and videos or write sensible sounding text from a few simple prompts. It is also easy to understand how AI would augment the workflows of writing or drawing tools.
+Much attention has been paid to the generative aspect of GPT. It is easy to be impressed by the ability to create eye-catching images and videos or write sensible sounding text from a few simple prompts. It is also easy to understand how AI would augment the workflows of writing or drawing tools.
 
-But how does AI provide any benefit to more traditional business processes? The answer to this is perhaps less exciting than being able to generate a highly detailed drawing of a kitten in a space suit eating rainbows from little more than that very description, but it is these business-as-usual workflows where AI can have the most impact.
+But how does AI provide any benefit to more traditional business processes? The answer to this is perhaps less exciting than being able to generate a highly detailed drawing of a kitten in a space suit eating rainbows from little more than that very description, but it is these business-as-usual workflows where AI can have a significant impact.
 
 I had the privilege of exploring this very question in partnership with GitHub to develop the [Octopus Extension for GitHub Copilot](https://octopus.com/docs/administration/copilot). Copilot extensions were [announced by Satya Nadella at this year's Build conference](https://youtu.be/8OviTSFqucI?t=2334) with Octopus being 1 of 16 extensions for the initial launch:
 
@@ -26,7 +26,7 @@ In this post I'll take you behind the scenes of building a Copilot extension.
 
 ## The value of a Copilot extension
 
-The sentiment behind the phrase "Code is written once but read many times" holds true for Octopus deployments and runbooks. Once your Octopus space is configured, most of your interaction is by initiating deployments, running runbooks, and viewing the results.
+The sentiment behind the phrase "Code is written once but read many times" holds true for Octopus deployments and runbooks. Once your Octopus space is configured, most of your interaction is through initiating deployments, running runbooks, and viewing the results.
 
 Most DevOps team members won't spend their days in Octopus. For example, developers will spend most of their day in their IDE writing and testing new features. Octopus is a critical component of that workflow as it is responsible for deploying changes to various environments for internal teams and external customers to access. But often developers only need to know where their changes have been deployed or extract some useful entries from the deployment logs.
 
@@ -34,25 +34,23 @@ Here we see the result of the prompt `@octopus-ai-app Show dashboard space "<spa
 
 ![Showing the dashboard in Copilot](show-dashboard.png)
 
-This shows how the Octopus extension keeps you in the flow by removing the need to switch between applications to get the information you need. With a simple prompt you can review the state of your deployments in the same chat window you use as part of your development workflow.
+This shows how the Octopus extension keeps you in the flow by removing the need to switch between applications to access the information you need. With a simple prompt you can review the state of your deployments in the same chat window you use as part of your development workflow.
 
-We can dig a little deeper with a prompt like `@octopus-ai-app The status "Success" is represented with the 🟢 character. The status "In Progress" is represented by the 🔵 character. Other statuses are represented with the 🔴 character. Show the release version, release notes, and status of the last 5 deployments for the project "Octopus Copilot Function" in the "Production" environment in the "Octopus Copilot" space in a markdown table.`:
+We can dig a little deeper with a prompt like `@octopus-ai-app The status "Success" is represented with the 🟢 character. The status "In Progress" is represented by the 🔵 character. Other statuses are represented with the 🔴 character. Show the release version, release notes, and status of the last 5 deployments for the project "<project name>" in the "<environment name>" environment in the "<space name>" space in a markdown table.`:
 
 ![Showing a deployment history](show-deployments.png)
 
 The cool thing about this prompt is that there is no special logic in the extension for mapping statuses to UTF characters or generating markdown tables. The ability to understand these instructions and generate the required output is inherent to the Large Language Machine (LLM) that backs the Octopus extension.
 
-This prompt also highlights how an AI agent improves on more traditional chatbots. The prompt is written in plain text rather than the fixed and often robotic instructions you have to formulate for a chatbot. This also means the Octopus extension has the ability to generate results far beyond the limited set of interactions that have to be hard coded into a chatbot.
+This prompt also highlights how an AI agent improves on more traditional chatbots. The prompt is written in plain text rather than the fixed and often robotic instructions you have to formulate for a chatbot. This also means the Octopus extension has the ability to generate results far beyond the limited set of interactions that have to be hard coded into a traditional chatbot.
 
-Here is another example leveraging the ability of an LLM to understand instructions. Here I have asked `@octopus-ai-app Print any URLs printed in the the last 100 lines in the deployment logs for the latest deployment for the project "Octopus Copilot Function" in the "Production" environment in the "Octopus Copilot" space for step 1`:
+The prompt `@octopus-ai-app Print any URLs printed in the the last 100 lines in the deployment logs for the latest deployment for the project "<project name>" in the "<environment name>" environment in the "<space name>" space for step 1` is another example leveraging the ability of an LLM to understand instructions:
 
 ![Extracting URLs from deployment logs](extract-urls.png)
 
 We rely on the ability of an LLM to understand what a URL is, to find URLs in the deployment logs, and to present the result in a useful format. Again, there is no special logic in the extension for extracting URLs. This ability is inherited from the underlying LLM.
 
-The Octopus extension is read-only at the moment. However, Copilot has recently introduced the ability to confirm actions that may alter an external system, such as initiating a deployment or running a runbook. We are exploring how to extend the Octopus extension to allow such interactions to be initiated via a chat window.
-
-So the benefit of the extension is that it brings Octopus to the tools you already use, keeping you in the flow by removing the need to jump between windows. It also allows you to leverage the ability of LLMs to comprehend plain text requests to generate custom reports or extract useful information.
+The benefit of the extension is that it brings Octopus to the tools you already use, keeping you in the flow by removing the need to jump between windows and tools. It also allows you to leverage the ability of LLMs to comprehend plain text requests to generate custom reports or extract useful information.
 
 
 ## Realtime AI
@@ -113,19 +111,19 @@ Overall, this approach has worked well. It resulted in a lean architecture invol
 
 ## Rethinking testing
 
-Traditional automated testing is all about proving your code works. Test Driven Development may encourage a small number of failing tests, but the expectations is still that work focuses on making them pass. So failing tests are a sign of a bug or unimplemented features.
+Traditional automated testing is all about proving your code works. Test Driven Development may encourage a small number of failing tests, but the expectations is still that future work focuses on making tests pass. So failing tests are a sign of a bug or unimplemented features.
 
-Working with LLMs requires rethinking this approach. LLMs are non-deterministic by design, which means you can not be sure you'll get the same result even with exactly the same inputs. This manifests itself most visibly with LLMs using different phrases to convey the same answer. But the more serious concern for developers is that LLMs will sometimes provide incorrect results even when it used to provide correct results with the same inputs.
+Working with LLMs requires rethinking this approach. LLMs are non-deterministic by design, which means you can not be sure you'll get the same result even with exactly the same inputs. This manifests itself most visibly with LLMs using different phrases to convey the same answer. But the more serious concern for developers is that LLMs will sometimes provide incorrect results even when it previously provided correct results with the same inputs.
 
-This means developers need to rethink the assumption underpinning automated tests that valid input and valid code results in valid output. Even common workaround to intermittent events like retries assume that valid inputs and valid code will eventually produce valid output, with retries used to express the belief that a failure must be due to some uncontrollable external factor.
+This means developers need to rethink the assumption underpinning automated tests that valid input and valid code results in valid output. Even common workarounds to intermittent events like retries assume that valid inputs and valid code will eventually produce valid output, with retries used to express the belief that a failure must be due to some uncontrollable, but detectable, external factor.
 
-Working with LLMs means assuming some of the tests fail all of the time. This is not an intermittent external factor, but instead an inherent property of the system.
+Working with LLMs means assuming some of the tests fail all of the time. This is not an intermittent external factor or a condition that can be easily detected, but instead an inherent property of the system.
 
 In reality, retrying tests is still good enough to work around non-deterministic LLMs for most tests. But it doesn't quite capture the end user's experience, which will inevitably be that some answers are incorrect, even if the LLM would eventually produce the right answer if asked enough times.
 
-In order to use tests to more accurately capture the end users experience, tests need to be run multiple times to generate a useful sample set, with test pass or failure being determined by how often the LLM provided the correct answer. It is a subtle but significant switch in mindset that embraces the reality that LLMs bring uncertainty to any interaction and it is our role as developers to be confident what we mean by uncertain.
+In order to use tests to more accurately capture the end user's experience, tests need to be run multiple times to generate a useful sample set, with the test's pass or failure being determined by how often the LLM provided the correct answer. It is a subtle, but significant, switch in mindset that embraces the reality that LLMs bring uncertainty to any interaction, and it is our role as developers to be confident what we mean by "uncertain".
 
-I couldn't find an out-of-the-box solution for this kind of experimentation, but the [tenacity](https://tenacity.readthedocs.io/en/latest/) library was flexible enough to provide this capability. Tenacity allows a custom function to be called with each retry. This provides a hook to count the success or failure of each test and allow a fixed number of tests to run rather than exiting on the first successful result. [This is an example of such a function](https://github.com/OctopusSolutionsEngineering/OctopusCopilot/blob/v0.1.1195/tests/experiments/static_deployment_experiments.py#L14) that alters the behavior of the retry functionality to run fixed experiments rather than runs tests until the first successful execution.
+I couldn't find an out-of-the-box solution for this kind of experimentation, but the [tenacity](https://tenacity.readthedocs.io/en/latest/) library was flexible enough to be extended to provide this capability. Tenacity allows a custom function to be called with each retry. This provides a hook to count the success or failure of each test and allow a fixed number of tests to run rather than exiting on the first successful result. [This is an example of such a function](https://github.com/OctopusSolutionsEngineering/OctopusCopilot/blob/v0.1.1195/tests/experiments/static_deployment_experiments.py#L14) that alters the behavior of the retry functionality to run a fixed number of experiments rather than runs tests until the first successful execution and then judge the success or failure of the test based on a custom threshold.
 
 This new style of testing means developers can be assured that their example prompts reach a minimum threshold. It also embraces the reality that the threshold can't be 100% and that retying until success is not representative of the end user experience.
 
@@ -146,9 +144,9 @@ The functions in [this file](https://github.com/OctopusSolutionsEngineering/Octo
 
 ## Providing safety
 
-A big requirement for Copilot extensions is to provide a safe environment for your users. Everyone has heard stories now about LLMs providing biased, insulting, or dangerous answers to questions.
+A big requirement for Copilot extensions is to provide a safe environment for your users. Everyone has heard stories now about LLMs providing biased, insulting, silly, or dangerous answers to questions.
 
-The reality is this is an unsolved problem with LLMs generally. The New Scientist article [Why curbing chatbots' worst exploits is a game of whack-a-mole](https://www.newscientist.com/article/mg26234881-200-why-curbing-chatbots-worst-exploits-is-a-game-of-whack-a-mole) highlights some of the limitations:
+This is an unsolved problem with LLMs generally. The New Scientist article [Why curbing chatbots' worst exploits is a game of whack-a-mole](https://www.newscientist.com/article/mg26234881-200-why-curbing-chatbots-worst-exploits-is-a-game-of-whack-a-mole) highlights some of the limitations:
 
 > But these firms aren’t claiming that any model is perfectly safe, because they can’t. In just the past month, we have been told about three major new ways to jailbreak some of the largest chatbot models, including GPT-4 and Claude 3.
 > 
@@ -156,23 +154,28 @@ The reality is this is an unsolved problem with LLMs generally. The New Scientis
 
 That said, our extension still needed to pass testing to ensure it wasn't generating content it obviously shouldn't. As part of the testing to be accepted for the Copilot private beta, the GitHub team prompted our extension with queries that resembled the titles of the least reputable online forums you can think of.
 
-The good news is that building an extension that uses the Open AI function calling feature meant that our extension only responded to a small number of queries that were specifically related to the Octopus platform. When prompted to generate text for unrelated topics, none of our functions matched, and we displayed a generic apology.
-
-This strategy allowed us to pass the testing, and so proved to be an effective way to prevent extensions from being used to generate undesirable content.
+The good news is that building an extension that uses the Open AI function calling feature meant that our extension only responded to a small number of queries that were specifically related to the Octopus platform. When prompted to generate text for unrelated topics, none of our functions matched, and we displayed a generic apology. When combined with the built-in filters provided by the Azure OpenAI platform, this strategy allowed us to pass the saftey testing, and so proved to be an effective way to prevent extensions from being used to generate undesirable content.
 
 ## Practical guidelines
 
-AI is one of those topics that everyone has an opinion on. Like LLMs themselves, a lot of these opinions aren't rooted in experience or reputable sources. In addition, much of the advice you can find online appears to have been written by LLMs in that it repeats ideas without adding much context.
+AI is one of those topics that everyone has an opinion on. Like LLMs themselves, a lot of these opinions aren't rooted in experience or reputable sources. In addition, much of the advice you can find online appears to have been written by LLMs in that they repeat ideas without adding much context.
 
 I did find the paper [Principled Instructions Are All You Need for Questioning LLaMA-1/2, GPT-3.5/4](https://arxiv.org/pdf/2312.16171) useful though. It offers 26 principals for improving the quality of your prompts with evidence of their impact. Some are counterintuitive, like offering an LLM money for finding a better solution. I found others principals, like instructing a LLM that it will be penalized instead of telling it what not to do, providing few-shot examples, and using chain-of-thought prompts, to be very helpful.
 
 The [Open AI best practices](https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api) page also has a number of useful tips. They tend to be high level guidelines, but they are practical and easy to implement.
 
-* bringing octopus to you
-* move beyond chatbots
-* realtime RAG - smart AI, dumb search
-* rethinking testing
-* hallucination
-* permission to say "I don't know"
-* safety
-* interactivity
+## Extending for interactivity
+
+The initial release of our extension provided read-only access to an Octopus instance. The tight deadlines to be part of the initial beta meant we had to focus on a subset of the functionality that users would eventually want. It would be nice to allow releases to be created and deployments to be executed from the extension though.
+
+GitHub Copilot recently provided the ability for extensions to confirm actions, which removes the biggest hurdle performing operations that alter a target system. By presenting the details of the action to be taken and allowing the user to confirm it, any misunderstandings by the extension can be addressed before they lead to permanent changes.
+
+We're currently exploring what the next version of the extension will offer and offering the ability to perform tasks like deploying releases or running runbooks is definitely something we will consider.
+
+## Conclusion
+
+I'm excited for the future of chat based interfaces. Previously, each chatbot forced you to learn an arcane syntax that limited their usefulness. The ability to interact with complex systems through natural language now means DevOps teams can treat their IDE as a single portal to their broader ecosystem. There is still a lot of work to do to ensure the reliability of LLM based extensions and to better understand the kind of questions and actions DevOps teams want their extensions to perform. But natural language chat extensions provide the ability to quickly iterate and adapt to new requirement in a way that is almost impossible to do with traditional web or mobile interfaces.
+
+The source code for our Copilot extension can be found on [GitHub](https://github.com/OctopusSolutionsEngineering/OctopusCopilot).
+
+Happy deployments!
