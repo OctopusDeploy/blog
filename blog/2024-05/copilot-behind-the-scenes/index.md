@@ -77,19 +77,19 @@ To understand what a query is referencing, we make use of the zero-shot capabili
 
 The term "zero-shot" simply means we can ask the LLM to extract these entities without having to provide any examples or specifically train the LLM to identify the entities in the prompt.
 
-The entities are then passed to API requests. In the example above, the latest deployment for the project to the environment in the space are is found, the logs are extracted and filtered to return only the last 100 lines for step 1. 
+The entities are then passed to API requests. In the example above, the latest deployment for the project to the environment in the space are found and the logs are extracted and filtered to return only the last 100 lines for step 1. 
 
 Extracting entities and calling a function are all handled by Open AI [function calling](https://platform.openai.com/docs/guides/function-calling).
 
-Log files are easy to handle with LLMs because they can be considered a stream of unstructured text and LLMs are good at consuming blobs of text. However, questions about the configuration of a space require us to serialize and present the state of the space in a format that the LLM can reason about.
+Log files are easy to handle with LLMs because they can be considered a stream of unstructured text and LLMs are good at consuming such text blobs. However, questions about the configuration of a space require us to serialize and present the state of the space in a format that the LLM can reason about.
 
 There are many formats for defining the configuration of a platform like Octopus as text including JSON, XML, YAML, TOML, HCL, OCL (used by Octopus Config-as-Code) and more.
 
-There are some requirements for the selection of a format:
+There are requirements for the selection of a format:
 
-* It must support compound documents. This is important because we want to mix and match the resources that are placed into the context window without having to invent new parent container objects. YAML uses three dashes to separate documents, while HCL and OCL allow resources to be added or removed from documents as needed. JSON, XML, and TOML typically requires all related data to be placed in one structure.
-* It must have an unambiguous method for relating resources. HCL really excels here with its expression syntax allowing one resource to reference a property of another resource, typically linking up IDs.
-* It needs to be able to serialize all resources exposed by an Octopus space. Again, HCL does a good job here as the Octopus Terraform provider already defines structures for Octopus resources. OCL is limited to describing projects and variables, making it unsuitable for this task. JSON is another strong contented here given all Octopus resources have a JSON representation in the API.
+* It must support compound documents. This is important because we want to mix and match the resources placed into the context window without having to invent new parent container objects. YAML uses three dashes to separate documents, while HCL and OCL allow resources to be added or removed from documents as needed. JSON, XML, and TOML typically require all related data to be placed in one structure.
+* It must have an unambiguous method for relating resources. HCL excels here with its expression syntax allowing one resource to reference a property of another resource, typically linking up IDs.
+* It needs to be able to serialize all resources exposed by an Octopus space. Again, HCL does a good job here as the Octopus Terraform provider already defines structures for Octopus resources. OCL is limited to describing projects and variables, making it unsuitable for this task. JSON is another option here given all Octopus resources have a JSON representation in the API. There are no useful public examples of representing Octopus resources in XML, TOML, or YAML.
 * Ideally LLMs should have been given a chance to train on public examples of these structures. HCL is the clear winner here with dozens of examples in the tests for the Octopus Terraform provider. It is likely that the LLM has seen JSON representations of Octopus resources, although examples tend to be scattered out in the wild.
 
 Given these requirements, it was clear that serializing Octopus spaces to HCL was the best choice. So queries relating to the configuration of an Octopus space work by identifying the entities being requested, converting those entities into HCL, placing the HCL in the context, and having the LLM answer the question based on the context.
@@ -99,11 +99,11 @@ This results in a process that:
 * Avoids the need for secondary storage and indexing of Octopus data because everything is queried from the Octopus API directly
 * Respects the existing RBAC controls enforced by the Octopus API because all requests include the Octopus API key of the chat user
 * Ensures prompts are answered with live data because all data is obtained as needed
-* Does not require any additional capabilities be built into the main Octopus platform
+* Does not require any additional capabilities to be built into the main Octopus platform
 
-I suspect this "smart AI, dumb search" approach is something we'll see more of in the coming years. Enterprise tools have not done a great job of implementing search capabilities and there is no reason to think that the situation is going to improve. But having an LLM identify the phrases to search for, interact with an API on your behalf, and then provide an answer based on the search results means existing tools can continue to provide rudimentary search capabilities and LLM based agents can sift through broad search results. Ever expanding LLM context windows only make this approach easier (if potentially less efficient) to implement.
+I suspect this "smart AI, dumb search" approach is something we'll see more of in the coming years. Enterprise tools have not done a great job of implementing search capabilities and there is no reason to think that the situation is going to improve. But having an LLM identify the phrases or entities to search for, interact with an API on your behalf, and then provide an answer based on the search results means existing tools can continue to provide rudimentary search capabilities and LLM agents can sift through broad search results. Ever expanding LLM context windows only make this approach easier (if potentially less efficient) to implement.
 
-I'd even go so far as to argue this approach rivals solutions like vector databases. At the end of the day, a vector database simply colocates items with similar attributes. For example, pants and socks would be colocated because they are both items of clothing while cars and bikes would be colocated because they are both vehicles. But there is no reason an LLM can't convert the prompt "Find me red clothes" into 5 API calls returning results for t-shorts, jeans, hoodies, sneakers, and jackets, thus relying on the capability of LLMs to generate high quality zero-shot answers to common categorization tasks rather than having to build custom search capabilities: 
+I'd even go so far as to argue this approach rivals solutions like vector databases. At the end of the day, a vector database simply colocates items with similar attributes. For example, pants and socks would be colocated because they are both items of clothing while cars and bikes would be colocated because they are both vehicles. But there is no reason an LLM can't convert the prompt "Find me red clothes" into 5 API calls returning results for t-shirts, jeans, hoodies, sneakers, and jackets, thus relying on the capability of LLMs to generate high quality zero-shot answers to common categorization tasks rather than having to build custom search capabilities: 
 
 ![ChatGPT response](chat-gpt-results.png)
 
