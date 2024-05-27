@@ -129,6 +129,31 @@ I couldn't find an out-of-the-box solution for this kind of experimentation, but
 
 This new style of testing means developers can be assured that their example prompts reach a minimum threshold. It also embraces the reality that the threshold can't be 100% and that retying until success is not representative of the end user experience.
 
+## Dealing with hallucinations
+
+LLMs are eager to please. They will almost always have an answer, but sometimes those answers are not of the highest quality. When LLMs confidently provide incorrect or dubious answers, they are said to be hallucinating.
+
+Hallucinating manifested themselves as weird and unexpected arguments passed to variables from the Open AI function calling feature. Most of the time things work as expected, but you must always assume that some of the functions invocations will have some unexpected or inaccurate arguments passed in. These hallucinations will bite you at every point in your code. 
+
+Python has two styles of development:
+
+* Easier to Ask for Forgiveness than Permission - EAFP
+* Look Before You Leap - LBYL
+
+EAFP is nice as a developer as you can focus on the golden path and offer catch all style error handling. However, I found I had to lean more towards LBYL, where inputs are validated and errors are addressed as early as possible, simply because LLMs were essentially performing a kind fuzz testing where you could not expect sensible values to be passed to your functions.
+
+The functions in [this file](https://github.com/OctopusSolutionsEngineering/OctopusCopilot/blob/v0.1.1195/domain/sanitizers/sanitized_list.py) give you an idea of the kind of weird arguments the LLM would provide. It would offer catch all regexes like `.*`, words like `Any`, `All`, or `None`, or "helpful" placeholders like `My Project`. None of these strings exist in the context or the prompt, meaning the LLM hallucinated them and passed them to the function.
+
+## Providing safety
+
+A big requirement for Copilot extensions is to provide a safe environment for your users. Everyone has heard stories now about LLMs providing biased, insulting, or dangerous answers to questions.
+
+The reality is this is an unsolved problem with LLMs generally. The New Scientist article [Why curbing chatbots' worst exploits is a game of whack-a-mole](https://www.newscientist.com/article/mg26234881-200-why-curbing-chatbots-worst-exploits-is-a-game-of-whack-a-mole) highlights some of the limitations:
+
+> But these firms aren’t claiming that any model is perfectly safe, because they can’t. In just the past month, we have been told about three major new ways to jailbreak some of the largest chatbot models, including GPT-4 and Claude 3.
+> 
+> The constant back and forth between finding new ways to manipulate the models and fixes for them is a bit like a game of whack-a-mole.
+
 
 
 * bringing octopus to you
