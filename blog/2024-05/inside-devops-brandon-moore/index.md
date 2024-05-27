@@ -31,7 +31,7 @@ The end result is an organization that has learned to function without silos and
 
 The next project I took on was integrating an API test into the CI process, and that was a direct result of what I gathered from that conference and seeing the value of ‘shift left’ coming into play.
 
-Obviously, there are faster iterations that come out of that, higher quality build products. And outside of work, I was working on a personal project and only had a limited amount of time to work on it. It got me looking into other areas of automation such as Swagger API specifications, code generation, and containerization. It seemed to me like the universe was converging on the overarching theme of DevOps-centric solutions, and I just leaned into it.
+Obviously, there are faster iterations that come out of that, higher quality build products. And outside of work, I was working on a personal project and only had a limited amount of time to work on it. It got me looking into other areas of automation like Swagger API specifications, code generation, and containerization. It seemed to me like the universe was converging on the overarching theme of DevOps-centric solutions, and I just leaned into it.
 
 **What are some DevOps best practices your organization has implemented?**
 
@@ -51,7 +51,7 @@ The first is getting our environmental sprawl under control. We're a larger team
 
 When Runbooks was introduced several years ago, that provided a way to automate tons of environmental processes, like backups and restores. And that's in addition to deployments. Before that, many things required coordination with other teams, like tickets, manual processes, and waiting. So it really broke down those barriers and let us own the end processes.
 
-The second item was integrating with the ticketing system and the build system to provide automated feedback to Octopus that enabled better visibility into what's going into each deployment. So we avoid having to go to other systems to understand the who, what, and when of deployments.
+The second item was integrating with the ticketing system and the build system to provide automated feedback to Octopus that enabled better visibility into what's going into each deployment. So, we avoid having to go to other systems to understand the who, what, and when of deployments.
 
 At the end of the day, all that centralizing rewards us with a single pane of glass – a living dashboard for all of our application deployments, regardless of what we’ve deployed where. As a result, our team’s quality of life is much higher and we're able to move quicker than ever before.
 
