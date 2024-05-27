@@ -103,13 +103,33 @@ This results in a process that:
 * Ensures prompts are answered with live data because all data is obtained as needed
 * Does not require any additional capabilities be built into the main Octopus platform
 
-I suspect this "smart AI, dumb search" approach is something we'll see more of in the coming years. Enterprise tools have not done a great job of implementing search capabilities and there is no reason to think that the situation is going to improve. But having an LLM identify the phrases to search for, interact with an API on your behalf, and then provide an answer based on the search results means existing tools can continue to provide rudimentary search capabilities and LLM based agents can shift through broad search results. Ever expanding LLM context windows only make this approach easier (if potentially less efficient) to implement.
+I suspect this "smart AI, dumb search" approach is something we'll see more of in the coming years. Enterprise tools have not done a great job of implementing search capabilities and there is no reason to think that the situation is going to improve. But having an LLM identify the phrases to search for, interact with an API on your behalf, and then provide an answer based on the search results means existing tools can continue to provide rudimentary search capabilities and LLM based agents can sift through broad search results. Ever expanding LLM context windows only make this approach easier (if potentially less efficient) to implement.
 
-I'd even go so far as to argue this approach rivals solutions like vector databases. At the end of the day, a vector database simply colocates items with similar attributes. For example, pants and socks would be colocated because they are both items of clothing while cars and bikes would be colocated because they are both vehicles. But there is no reason an LLM can't convert the prompt "Find me red clothes" into 5 API calls returning results for t-shorts, jeans, hoodies, sneakers, and jackets, thus relying on the capability of LLMs to generate high quality zero-shot answers to common categorization tasks rather than having to custom build smart search capabilities: 
+I'd even go so far as to argue this approach rivals solutions like vector databases. At the end of the day, a vector database simply colocates items with similar attributes. For example, pants and socks would be colocated because they are both items of clothing while cars and bikes would be colocated because they are both vehicles. But there is no reason an LLM can't convert the prompt "Find me red clothes" into 5 API calls returning results for t-shorts, jeans, hoodies, sneakers, and jackets, thus relying on the capability of LLMs to generate high quality zero-shot answers to common categorization tasks rather than having to build custom search capabilities: 
 
 ![ChatGPT response](chat-gpt-results.png)
 
 Overall, this approach has worked well. It resulted in a lean architecture involving two Azure functions (one to receive chat requests and query the Octopus API directly, and one to serialize Octopus resources to HCL) that is easy to manage and scale as needed without the burden of maintaining a custom data source.
+
+## Rethinking testing
+
+Traditional automated testing is all about proving your code works. Test Driven Development may encourage a small number of failing tests, but the expectations is still that work focuses on making them pass. So failing tests are a sign of a bug or unimplemented features.
+
+Working with LLMs requires rethinking this approach. LLMs are non-deterministic by design, which means you can not be sure you'll get the same result even with exactly the same inputs. This manifests itself most visibly with LLMs using different phrases to convey the same answer. But the more serious concern for developers is that LLMs will sometimes provide incorrect results even when it used to provide correct results with the same inputs.
+
+This means developers need to rethink the assumption underpinning automated tests that valid input and valid code results in valid output. Even common workaround to intermittent events like retries assume that valid inputs and valid code will eventually produce valid output, with retries used to express the belief that a failure must be due to some uncontrollable external factor.
+
+Working with LLMs means assuming some of the tests fail all of the time. This is not an intermittent external factor, but instead an inherent property of the system.
+
+In reality, retrying tests is still good enough to work around non-deterministic LLMs for most tests. But it doesn't quite capture the end user's experience, which will inevitably be that some answers are incorrect, even if the LLM would eventually produce the right answer if asked enough times.
+
+In order to use tests to more accurately capture the end users experience, tests need to be run multiple times to generate a useful sample set, with test pass or failure being determined by how often the LLM provided the correct answer. It is a subtle but significant switch in mindset that embraces the reality that LLMs bring uncertainty to any interaction and it is our role as developers to be confident what we mean by uncertain.
+
+I couldn't find an out-of-the-box solution for this kind of experimentation, but the [tenacity](https://tenacity.readthedocs.io/en/latest/) library was flexible enough to provide this capability. Tenacity allows a custom function to be called with each retry. This provides a hook to count the success or failure of each test and allow a fixed number of tests to run rather than exiting on the first successful result. [This is an example of such a function](https://github.com/OctopusSolutionsEngineering/OctopusCopilot/blob/v0.1.1195/tests/experiments/static_deployment_experiments.py#L14) that alters the behavior of the retry functionality to run fixed experiments rather than runs tests until the first successful execution.
+
+This new style of testing means developers can be assured that their example prompts reach a minimum threshold. It also embraces the reality that the threshold can't be 100% and that retying until success is not representative of the end user experience.
+
+
 
 * bringing octopus to you
 * move beyond chatbots
