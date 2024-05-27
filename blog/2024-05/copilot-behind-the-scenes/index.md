@@ -53,15 +53,15 @@ We rely on the ability of an LLM to understand what a URL is, to find URLs in th
 The benefit of the extension is that it brings Octopus to the tools you already use, keeping you in the flow by removing the need to jump between windows and tools. It also allows you to leverage the ability of LLMs to comprehend plain text requests to generate custom reports or extract useful information.
 
 
-## Realtime AI
+## Real-time AI
 
-A challenge with AI systems is that they don't inherently have access to realtime information. LLMs are essentially frozen in time and only know the state of the world at the point when they were trained. For example, GPT 3.5 was trained in 2021, and so knows nothing about the world after that date.
+A challenge with AI systems is that they don't inherently have access to real-time information. LLMs are essentially frozen in time and only know the state of the world at the point when they were trained. For example, GPT 3.5 was trained in 2021, and so knows nothing about the world after that date.
 
 Retrieval Augmented Generation (RAG) is a process that can overcome this limitation. It works by combining custom knowledge with a user's prompt to generate more accurate answers or to answer questions about custom data.
 
-For example, you may combine the contents of a recent news article with your question in the LLM prompt. The context and question is placed in the LLM's context window, which allows the LLM to consider content it was not trained with to provide an answer.
+For example, you may combine the contents of a recent news article with your question in the LLM prompt. The context and question is placed in the LLM's context window, which allows the LLM to consider content it was not trained against to provide an answer.
 
-The challenge for an extension interacting with Octopus is that the data we want to inspect is generated in real time. To solve this, the extension must query the Octopus API for the current state of a space to ensure any prompts are answered with live information.
+The challenge for an extension interacting with Octopus is that the data we want to inspect is generated in real-time. To solve this, the extension must query the Octopus API for the current state of a space to ensure any prompts are answered with live information.
 
 This challenge is two-fold: understanding what is being requested, and serializing the requested information. 
 
