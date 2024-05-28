@@ -4,8 +4,8 @@ description: Learn about how we integrated Azure AI and Copilot when making the 
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2024-05-25-1400
-metaImage: 
-bannerImage: 
+metaImage:
+bannerImage:
 bannerImageAlt:
 isFeatured: false
 tags:
@@ -14,27 +14,27 @@ tags:
 - GitHub Copilot
 ---
 
-Much attention has been paid to the generative aspect of GPT. It is easy to be impressed by the ability to create eye-catching images and videos or write sensible sounding text from a few simple prompts. It is also easy to understand how AI would augment the workflows of writing or drawing tools.
+Much attention has been paid to the generative aspect of GPT. It is easy to be impressed by the ability to create eye-catching images and videos or write sensible-sounding text from a few simple prompts. It is also easy to understand how AI would augment the workflows of writing or drawing tools.
 
 But how does AI benefit more traditional business processes? The answer is perhaps less exciting than being able to generate a highly detailed drawing of a kitten in a space suit eating rainbows from little more than that description, but it is in these business-as-usual workflows that AI can have a significant impact.
 
-I had the privilege of exploring this question in partnership with GitHub to develop the [Octopus Extension for GitHub Copilot](https://octopus.com/docs/administration/copilot). Copilot extensions were [announced by Satya Nadella at this year's Build conference](https://youtu.be/8OviTSFqucI?t=2334), with Octopus being 1 of 16 extensions for the initial launch:
+I explored this question in partnership with GitHub to develop the [Octopus Extension for GitHub Copilot](https://octopus.com/docs/administration/copilot). Copilot extensions were [announced by Satya Nadella at this year's Build conference](https://youtu.be/8OviTSFqucI?t=2334), with Octopus being 1 of 16 extensions for the initial launch:
 
 ![Build keynote address](build-keynote.png)
 
-In this post I'll take you behind the scenes in building a Copilot extension.
+In this post, I'll take you behind the scenes in building a Copilot extension.
 
 ## The value of a Copilot extension
 
-The sentiment behind the phrase "Code is written once but read many times" holds true for Octopus deployments and runbooks. Once your Octopus space is configured, most of your interaction is through initiating deployments, running runbooks, and viewing the results.
+The sentiment behind the phrase "Code is written once but read many times" holds for Octopus deployments and runbooks. Once your Octopus space is configured, most of your interaction is through initiating deployments, running runbooks, and viewing the results.
 
-Most DevOps team members won't spend their days in Octopus. For example, developers will spend most of their day writing and testing new features in their IDE. Octopus is a critical component of that workflow as it is responsible for deploying changes to various environments for internal teams and external customers to access. But often, developers only need to know where their changes have been deployed or extract some useful entries from the deployment logs.
+Most DevOps team members will spend their days outside of Octopus. For example, developers will spend most of their day writing and testing new features in their IDE. Octopus is a critical component of that workflow as it is responsible for deploying changes to various environments for internal teams and external customers to access. But often, developers only need to know where their changes have been deployed or extract some useful entries from the deployment logs.
 
 Here we see the result of the prompt `@octopus-ai-app Show dashboard space "<space name>"`, which is a markdown version of the Octopus dashboard:
 
 ![Showing the dashboard in Copilot](show-dashboard.png)
 
-This prompt shows how the Octopus extension keeps you in the flow by removing the need to switch between applications to access the information you need. With a simple prompt you can review the state of your deployments in the same chat window you use as part of your development workflow.
+This prompt shows how the Octopus extension keeps you in the flow by removing the need to switch between applications to access the information you need. With a simple prompt, you can review the state of your deployments in the same chat window you use as part of your development workflow.
 
 We can dig a little deeper with a prompt like `@octopus-ai-app The status "Success" is represented with the 🟢 character. The status "In Progress" is represented by the 🔵 character. Other statuses are represented with the 🔴 character. Show the release version, release notes, and status of the last 5 deployments for the project "<project name>" in the "<environment name>" environment in the "<space name>" space in a markdown table.`:
 
@@ -42,7 +42,7 @@ We can dig a little deeper with a prompt like `@octopus-ai-app The status "Succe
 
 The cool thing about this prompt is that the extension has no special logic for mapping statuses to UTF characters or generating markdown tables. The ability to understand these instructions and generate the required output is inherent to the Large Language Machine (LLM) that backs the Octopus extension.
 
-This prompt also highlights how an AI agent improves on more traditional chatbots. The prompt is written in plain text rather than the fixed and often robotic instructions you have to formulate for a chatbot. This also means the Octopus extension can generate results far beyond the limited set of interactions that have to be hard-coded into a traditional chatbot.
+This prompt also highlights how an AI agent improves on more traditional chatbots. The prompt is written in plain text rather than the fixed and often robotic instructions you have to formulate for a chatbot. The ability to understand complex prompts also means the Octopus extension can generate results far beyond the limited set of interactions that have to be hard-coded into a traditional chatbot.
 
 The prompt `@octopus-ai-app Print any URLs printed in the last 100 lines in the deployment logs for the latest deployment for the project "<project name>" in the "<environment name>" environment in the "<space name>" space for step 1` is another example leveraging the ability of an LLM to understand instructions:
 
@@ -77,7 +77,7 @@ To understand what a query is referencing, we make use of the zero-shot capabili
 
 The term "zero-shot" simply means we can ask the LLM to extract these entities without having to provide any examples or specifically train the LLM to identify the entities in the prompt.
 
-The entities are then passed to API requests. In the example above, the latest deployment for the project to the environment in the space are found and the logs are extracted and filtered to return only the last 100 lines for step 1. 
+The entities are then passed to API requests. In the example above, the latest deployment for the project to the environment in the space are found and the logs are extracted and filtered to return only the last 100 lines for step 1.
 
 Extracting entities and calling a function are all handled by Open AI [function calling](https://platform.openai.com/docs/guides/function-calling).
 
@@ -103,7 +103,7 @@ This results in a process that:
 
 I suspect this "smart AI, dumb search" approach is something we'll see more of in the coming years. Enterprise tools have not done a great job of implementing search capabilities and there is no reason to think that the situation is going to improve. But having an LLM identify the phrases or entities to search for, interact with an API on your behalf, and then provide an answer based on the search results means existing tools can continue to provide rudimentary search capabilities and LLM agents can sift through broad search results. Ever expanding LLM context windows only make this approach easier (if potentially less efficient) to implement.
 
-I'd even go so far as to argue this approach rivals solutions like vector databases. At the end of the day, a vector database simply colocates items with similar attributes. For example, pants and socks would be colocated because they are both items of clothing while cars and bikes would be colocated because they are both vehicles. But there is no reason an LLM can't convert the prompt "Find me red clothes" into 5 API calls returning results for t-shirts, jeans, hoodies, sneakers, and jackets, thus relying on the capability of LLMs to generate high quality zero-shot answers to common categorization tasks rather than having to build custom search capabilities: 
+I'd even go so far as to argue this approach rivals solutions like vector databases. At the end of the day, a vector database simply colocates items with similar attributes. For example, pants and socks would be colocated because they are both items of clothing while cars and bikes would be colocated because they are both vehicles. But there is no reason an LLM can't convert the prompt "Find me red clothes" into 5 API calls returning results for t-shirts, jeans, hoodies, sneakers, and jackets, thus relying on the capability of LLMs to generate high quality zero-shot answers to common categorization tasks rather than having to build custom search capabilities:
 
 ![ChatGPT response](chat-gpt-results.png)
 
@@ -133,7 +133,7 @@ This new style of testing means developers can be assured that their example pro
 
 LLMs are eager to please. They will almost always have an answer, but sometimes those answers are not of the highest quality. When LLMs confidently provide incorrect or dubious answers, they are said to be hallucinating.
 
-Hallucinations manifested themselves as weird and unexpected arguments passed to variables from the Open AI function calling feature. Most of the time things work as expected, but you must always assume that some function invocations will have some unexpected or inaccurate arguments passed in. These hallucinations will bite you at every point in your code. 
+Hallucinations manifested themselves as weird and unexpected arguments passed to variables from the Open AI function calling feature. Most of the time things work as expected, but you must always assume that some function invocations will have some unexpected or inaccurate arguments passed in. These hallucinations will bite you at every point in your code.
 
 Python has two styles of development:
 
@@ -151,7 +151,7 @@ A big requirement for Copilot extensions is to provide a safe environment for yo
 This is an unsolved problem with LLMs generally. The New Scientist article [Why curbing chatbots' worst exploits is a game of whack-a-mole](https://www.newscientist.com/article/mg26234881-200-why-curbing-chatbots-worst-exploits-is-a-game-of-whack-a-mole) highlights some of the limitations:
 
 > But these firms aren’t claiming that any model is perfectly safe, because they can’t. In just the past month, we have been told about three major new ways to jailbreak some of the largest chatbot models, including GPT-4 and Claude 3.
-> 
+>
 > The constant back and forth between finding new ways to manipulate the models and fixes for them is a bit like a game of whack-a-mole.
 
 That said, our extension still needed to pass testing to ensure it wasn't generating content it obviously shouldn't. As part of the testing to be accepted for the Copilot limited beta, the GitHub team prompted our extension with queries that resembled the titles of the least reputable online forums you can think of.
