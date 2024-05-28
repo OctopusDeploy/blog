@@ -3,7 +3,7 @@ title: Inside DevOps with Brandon Moore
 description: A series where we share lessons learned from those on the frontlines of DevOps. This post features  Brandon Moore, Senior Software Developer in the power industry.
 author: tony.kelly@octopus.com
 visibility: public
-published: 2024-05-29-1400
+published: 2024-05-30-1400
 metaImage: 
 bannerImage: 
 bannerImageAlt: Photo of Brandon Moore
