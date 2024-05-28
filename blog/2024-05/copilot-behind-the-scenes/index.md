@@ -16,54 +16,54 @@ tags:
 
 Much attention has been paid to the generative aspect of GPT. It is easy to be impressed by the ability to create eye-catching images and videos or write sensible sounding text from a few simple prompts. It is also easy to understand how AI would augment the workflows of writing or drawing tools.
 
-But how does AI provide any benefit to more traditional business processes? The answer to this is perhaps less exciting than being able to generate a highly detailed drawing of a kitten in a space suit eating rainbows from little more than that very description, but it is these business-as-usual workflows where AI can have a significant impact.
+But how does AI benefit more traditional business processes? The answer is perhaps less exciting than being able to generate a highly detailed drawing of a kitten in a space suit eating rainbows from little more than that description, but it is in these business-as-usual workflows that AI can have a significant impact.
 
-I had the privilege of exploring this very question in partnership with GitHub to develop the [Octopus Extension for GitHub Copilot](https://octopus.com/docs/administration/copilot). Copilot extensions were [announced by Satya Nadella at this year's Build conference](https://youtu.be/8OviTSFqucI?t=2334) with Octopus being 1 of 16 extensions for the initial launch:
+I had the privilege of exploring this question in partnership with GitHub to develop the [Octopus Extension for GitHub Copilot](https://octopus.com/docs/administration/copilot). Copilot extensions were [announced by Satya Nadella at this year's Build conference](https://youtu.be/8OviTSFqucI?t=2334), with Octopus being 1 of 16 extensions for the initial launch:
 
 ![Build keynote address](build-keynote.png)
 
-In this post I'll take you behind the scenes of building a Copilot extension.
+In this post I'll take you behind the scenes in building a Copilot extension.
 
 ## The value of a Copilot extension
 
 The sentiment behind the phrase "Code is written once but read many times" holds true for Octopus deployments and runbooks. Once your Octopus space is configured, most of your interaction is through initiating deployments, running runbooks, and viewing the results.
 
-Most DevOps team members won't spend their days in Octopus. For example, developers will spend most of their day in their IDE writing and testing new features. Octopus is a critical component of that workflow as it is responsible for deploying changes to various environments for internal teams and external customers to access. But often developers only need to know where their changes have been deployed or extract some useful entries from the deployment logs.
+Most DevOps team members won't spend their days in Octopus. For example, developers will spend most of their day writing and testing new features in their IDE. Octopus is a critical component of that workflow as it is responsible for deploying changes to various environments for internal teams and external customers to access. But often, developers only need to know where their changes have been deployed or extract some useful entries from the deployment logs.
 
 Here we see the result of the prompt `@octopus-ai-app Show dashboard space "<space name>"`, which is a markdown version of the Octopus dashboard:
 
 ![Showing the dashboard in Copilot](show-dashboard.png)
 
-This shows how the Octopus extension keeps you in the flow by removing the need to switch between applications to access the information you need. With a simple prompt you can review the state of your deployments in the same chat window you use as part of your development workflow.
+This prompt shows how the Octopus extension keeps you in the flow by removing the need to switch between applications to access the information you need. With a simple prompt you can review the state of your deployments in the same chat window you use as part of your development workflow.
 
 We can dig a little deeper with a prompt like `@octopus-ai-app The status "Success" is represented with the 🟢 character. The status "In Progress" is represented by the 🔵 character. Other statuses are represented with the 🔴 character. Show the release version, release notes, and status of the last 5 deployments for the project "<project name>" in the "<environment name>" environment in the "<space name>" space in a markdown table.`:
 
 ![Showing a deployment history](show-deployments.png)
 
-The cool thing about this prompt is that there is no special logic in the extension for mapping statuses to UTF characters or generating markdown tables. The ability to understand these instructions and generate the required output is inherent to the Large Language Machine (LLM) that backs the Octopus extension.
+The cool thing about this prompt is that the extension has no special logic for mapping statuses to UTF characters or generating markdown tables. The ability to understand these instructions and generate the required output is inherent to the Large Language Machine (LLM) that backs the Octopus extension.
 
-This prompt also highlights how an AI agent improves on more traditional chatbots. The prompt is written in plain text rather than the fixed and often robotic instructions you have to formulate for a chatbot. This also means the Octopus extension has the ability to generate results far beyond the limited set of interactions that have to be hard coded into a traditional chatbot.
+This prompt also highlights how an AI agent improves on more traditional chatbots. The prompt is written in plain text rather than the fixed and often robotic instructions you have to formulate for a chatbot. This also means the Octopus extension can generate results far beyond the limited set of interactions that have to be hard-coded into a traditional chatbot.
 
-The prompt `@octopus-ai-app Print any URLs printed in the the last 100 lines in the deployment logs for the latest deployment for the project "<project name>" in the "<environment name>" environment in the "<space name>" space for step 1` is another example leveraging the ability of an LLM to understand instructions:
+The prompt `@octopus-ai-app Print any URLs printed in the last 100 lines in the deployment logs for the latest deployment for the project "<project name>" in the "<environment name>" environment in the "<space name>" space for step 1` is another example leveraging the ability of an LLM to understand instructions:
 
 ![Extracting URLs from deployment logs](extract-urls.png)
 
-We rely on the ability of an LLM to understand what a URL is, to find URLs in the deployment logs, and to present the result in a useful format. Again, there is no special logic in the extension for extracting URLs. This ability is inherited from the underlying LLM.
+We rely on an LLM's ability to understand a URL, find URLs in the deployment logs, and present the result in a useful format. Again, there is no special logic in the extension for extracting URLs. This ability is inherited from the underlying LLM.
 
-The benefit of the extension is that it brings Octopus to the tools you already use, keeping you in the flow by removing the need to jump between windows and tools. It also allows you to leverage the ability of LLMs to comprehend plain text requests to generate custom reports or extract useful information.
+The extension's benefit is that it brings Octopus to the tools you already use, keeping you in the flow by removing the need to jump between windows and tools. It also allows you to leverage LLMs' ability to comprehend plain text requests to generate custom reports or extract useful information.
 
 
 ## Real-time AI
 
 A challenge with AI systems is that they don't inherently have access to real-time information. LLMs are essentially frozen in time and only know the state of the world at the point when they were trained. For example, GPT 3.5 was trained in 2021, and so knows nothing about the world after that date.
 
-Retrieval Augmented Generation (RAG) is a process that can overcome this limitation. It works by combining custom knowledge with a user's prompt to generate more accurate answers or to answer questions about custom data.
+Retrieval Augmented Generation (RAG) is a process that can overcome this limitation. It combines custom knowledge with a user's prompt to generate more accurate answers or to answer questions about custom data.
 
 For example, you may combine the contents of a recent news article with your question in the LLM prompt. The context and question is placed in the LLM's context window, which allows the LLM to consider content it was not trained against to provide an answer.
 
-The challenge for an extension interacting with Octopus is that the data we want to inspect is generated in real-time. To solve this, the extension must query the Octopus API for the current state of a space to ensure any prompts are answered with live information.
+The challenge for an extension interacting with Octopus is that the data we want to inspect is generated in real-time. To provide this, the extension must query the Octopus API for the current state of a space to ensure any prompts are answered with live information.
 
-This challenge is two-fold: understanding what is being requested, and serializing the requested information. 
+This challenge is two-fold: understanding what is being requested and serializing the requested information.
 
 LLM context windows are increasing with each new LLM version, but today you still have to be selective about the information you provide with a query. For example, the GPT 3.5 turbo model provided by Azure AI has a context window of 16K tokens. A token roughly equals 4 characters, although in practice it appears structured data like JSON fits even fewer characters into a token. I found I could budget for 40K characters of context with any query without triggering token length errors. It is not possible to naively dump the configuration of an entire Octopus space into this buffer, so only the relevant information can be included.
 
