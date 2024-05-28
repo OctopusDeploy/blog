@@ -133,12 +133,12 @@ This new style of testing means developers can be assured that their example pro
 
 LLMs are eager to please. They will almost always have an answer, but sometimes they could be better quality. When LLMs confidently provide incorrect or dubious answers, they are said to be hallucinating.
 
-Hallucinations manifested as weird and unexpected arguments passed to variables from the Open AI function calling feature. Most of the time, things work as expected, but you must always assume that some function invocations will have some unexpected or inaccurate arguments passed on. These hallucinations will bite you at every point in your code.
+Hallucinations manifested as weird and unexpected arguments passed to variables from the Open AI function calling feature. Most of the time, things work as expected, but you must always assume that some function invocations will have unexpected or inaccurate arguments passed on. These hallucinations will bite you at every point in your code.
 
 Python has two styles of development:
 
-* Easier to Ask for Forgiveness than Permission - EAFP
-* Look Before You Leap - LBYL
+* Easier to Ask for Forgiveness than Permission (EAFP)
+* Look Before You Leap (LBYL)
 
 EAFP is nice for developers as you can focus on the happy path and offer catch-all error handling. However, I had to lean more towards LBYL, where inputs are validated and errors are addressed as early as possible, simply because LLMs were essentially performing a kind of fuzz testing, where you could not expect sensible values to be passed to your functions.
 
@@ -156,19 +156,19 @@ This is generally an unsolved problem with LLMs. The New Scientist article [Why 
 
 That said, our extension still needed to pass testing to ensure it wasn't generating content it obviously shouldn't. As part of the testing to be accepted for the Copilot limited beta, the GitHub team prompted our extension with queries that resembled the titles of the least reputable online forums.
 
-The good news is that building an extension that uses the Open AI function calling feature meant that our extension only responded to a small number of queries related explicitly to the Octopus platform. When prompted to generate text for unrelated topics, none of our functions matched, and we displayed a generic apology. Combined with the built-in filters provided by the Azure AI platform, this strategy allowed us to pass the safety testing. It so proved to be an effective way to prevent extensions from being used to generate undesirable content.
+The good news is that building an extension that uses the Open AI function calling feature meant that our extension only responded to a small number of queries related explicitly to the Octopus platform. When prompted to generate text for unrelated topics, none of our functions matched, and we displayed a generic apology. Combined with the built-in filters provided by the Azure AI platform, this strategy allowed us to pass the safety testing. This strategy proved to be an effective way to prevent extensions from being used to generate undesirable content.
 
 ## Practical guidelines
 
 AI is one of those topics on which everyone has an opinion. Like LLMs themselves, many of these opinions aren't rooted in experience or reputable sources. In addition, much of the advice you can find online appears to have been written by LLMs in that they repeat ideas without adding much context.
 
-I found the paper [Principled Instructions Are All You Need for Questioning LLaMA-1/2, GPT-3.5/4](https://arxiv.org/pdf/2312.16171) useful. It offers 26 principles for improving the quality of your prompts with evidence of their impact. Some are counterintuitive, like offering LLM money to find a better solution. I found other principles, like instructing an LLM that it will be penalized instead of telling it what not to do, providing few-shot examples, and using chain-of-thought prompts, to be very helpful.
+I found the paper [Principled Instructions Are All You Need for Questioning LLaMA-1/2, GPT-3.5/4](https://arxiv.org/pdf/2312.16171) useful. It offers 26 principles for improving the quality of your prompts with evidence of their impact. Some are counterintuitive, like offering an LLM money to find a better solution. I found other principles, like instructing an LLM that it will be penalized instead of telling it what not to do, providing few-shot examples, and using chain-of-thought prompts, to be very helpful.
 
 The [Open AI best practices](https://help.openai.com/en/articles/6654000-best-practices-for-prompt-engineering-with-the-openai-api) page also has several valuable tips. They are high-level guidelines, but they are practical and easy to implement.
 
 ## Extending for interactivity
 
-The initial release of our extension provided read-only access to an Octopus instance. The tight deadlines to be part of the initial beta meant we had to focus on a subset of the functionality users would eventually want. It would be nice to allow releases to be created and deployments to be executed from the extension though.
+The initial release of our extension provides read-only access to an Octopus instance. The tight deadlines to be part of the initial beta meant we had to focus on a subset of the functionality users would eventually want. It would be nice to allow releases to be created and deployments to be executed from the extension though.
 
 GitHub Copilot recently allowed extensions to confirm actions, which removes the most significant hurdle in performing operations that alter a target system. By presenting the details of the action to be taken and allowing the user to confirm it, the extension can address any misunderstandings before they lead to permanent changes.
 
