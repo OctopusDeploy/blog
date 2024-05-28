@@ -40,7 +40,7 @@ We can dig a little deeper with a prompt like `@octopus-ai-app The status "Succe
 
 ![Showing a deployment history](show-deployments.png)
 
-The cool thing about this prompt is that the extension has no special logic for mapping statuses to UTF characters or generating markdown tables. The ability to understand these instructions and generate the required output is inherent to the Large Language Machine (LLM) that backs the Octopus extension.
+The cool thing about this prompt is that the extension has no special logic for mapping statuses to UTF characters or generating markdown tables. The ability to understand these instructions and generate the required output is inherent to the Large Language Model (LLM) that backs the Octopus extension.
 
 This prompt also highlights how an AI agent improves on more traditional chatbots. The prompt is written in plain text rather than the fixed and often robotic instructions you have to formulate for a chatbot. The ability to understand complex prompts also means the Octopus extension can generate results far beyond the limited set of interactions that have to be hard-coded into a traditional chatbot.
 
@@ -48,7 +48,7 @@ The prompt `@octopus-ai-app Print any URLs printed in the last 100 lines in the 
 
 ![Extracting URLs from deployment logs](extract-urls.png)
 
-We rely on an LLM's ability to understand a URL, find URLs in the deployment logs, and present the result in a helpful format. Again, there is no special logic in the extension for extracting URLs. This ability is inherited from the underlying LLM.
+We rely on an LLM's ability to understand a what URL is, find URLs in the deployment logs, and present the result in a helpful format. Again, there is no special logic in the extension for extracting URLs. This ability is inherited from the underlying LLM.
 
 The extension's benefit is that it brings Octopus to the tools you already use, keeping you in the flow by removing the need to jump between windows and tools. It also allows you to leverage LLMs' ability to comprehend plain text requests to generate custom reports or extract useful information.
 
@@ -67,7 +67,7 @@ This challenge is two-fold: understanding what is being requested and serializin
 
 LLM context windows are increasing with each new LLM version, but today, you still have to be selective about the information you provide with a query. For example, the GPT 3.5 turbo model provided by Azure AI has a context window of 16K tokens. A token roughly equals four characters, although in practice, it appears structured data like JSON fits even fewer characters into a token. I could budget for 40K characters of context with any query without triggering token length errors. It is impossible to naively dump the configuration of an entire Octopus space into this buffer, so only the relevant information can be included.
 
-To understand what a query is referencing, we use the zero-shot capabilities of LLMs to extract entities from a query. For example, in the query `Print any URLs printed in the last 100 lines in the deployment logs for the latest deployment for the project "Octopus Copilot Function" in the "Production" environment in the "Octopus Copilot" space for step 1`, the LLM will extract the following entities:
+To understand what a query is referencing, we use the zero-shot capabilities of LLMs to extract entities from a query. For example, in the query `Print any URLs printed in the last 100 lines in the deployment logs for the latest deployment of the project "Octopus Copilot Function" in the "Production" environment in the "Octopus Copilot" space for step 1`, the LLM will extract the following entities:
 
 * The project - "Octopus Copilot Function"
 * The environment - "Production"
@@ -83,21 +83,21 @@ Extracting entities and calling a function are all handled by Open AI [function 
 
 Log files are easy to handle with LLMs because they can be considered a stream of unstructured text, and LLMs are good at consuming such text blobs. However, questions about a space's configuration require us to serialize and present the space's state in a format that the LLM can reason about.
 
-There are many formats for defining the configuration of a platform like Octopus as text, including JSON, XML, YAML, TOML, HCL, OCL (used by Octopus Config-as-Code) and more.
+There are many formats for defining the configuration of a platform like Octopus as text, including JSON, XML, YAML, TOML, HCL, [OCL](octopus.com/docs/projects/version-control/ocl-file-format) (used by Octopus Config-as-Code) and more.
 
 There are requirements for the selection of a format:
 
 * It must support compound documents. This is important because we want to mix and match the resources in the context window without inventing new parent container objects. YAML uses three dashes to separate documents, while HCL and OCL allow resources to be added or removed from documents as needed. JSON, XML, and TOML typically require all related data to be placed in one structure.
 * It must have an unambiguous method for relating resources. HCL excels here with its expression syntax, allowing one resource to reference a property of another resource, typically linking up IDs.
-* It needs to be able to serialize all resources an Octopus space exposes. Again, HCL does a good job here as the Octopus Terraform provider already defines structures for Octopus resources. OCL is limited to describing projects and variables, making it unsuitable for this task. JSON is another option here, given all Octopus resources have a JSON representation in the API. There are no practical public examples of representing Octopus resources in XML, TOML, or YAML.
-* Ideally, LLMs should have been given a chance to train on public examples of these structures. HCL is the clear winner here, with dozens of examples in the tests for the Octopus Terraform provider. The LLM has likely seen JSON representations of Octopus resources, although examples tend to be scattered in the wild.
+* It must be able to serialize all resources an Octopus space exposes. Again, HCL does a good job here as the [Octopus Terraform provider](https://registry.terraform.io/providers/OctopusDeployLabs/octopusdeploy/latest/docs) already defines structures for Octopus resources. OCL is limited to describing projects and variables, making it unsuitable for this task. JSON is another option here, given all Octopus resources have a JSON representation in the API. There are no practical public examples of representing Octopus resources in XML, TOML, or YAML.
+* Ideally, LLMs should have been given a chance to train on public examples of these structures. HCL is the clear winner here, with dozens of examples in the tests for the Octopus Terraform provider. The LLM has likely seen JSON representations of Octopus resources as well, although examples tend to be scattered in the wild.
 
 Given these requirements, serializing Octopus spaces to HCL was the best choice. So, queries relating to the configuration of an Octopus space work by identifying the entities being requested, converting those entities into HCL, placing the HCL in the context, and having the LLM answer the question based on the context.
 
 This results in a process that:
 
 * Avoids the need for secondary storage and indexing of Octopus data because everything is queried from the Octopus API directly
-* Respects the existing RBAC controls enforced by the Octopus API because all requests include the Octopus API key of the chat user
+* Respects the existing RBAC controls enforced by the Octopus API because all requests are made with the Octopus API key of the chat user
 * Ensures prompts are answered with live data because all data is obtained as needed
 * Does not require any additional capabilities to be built into the central Octopus platform
 
@@ -115,7 +115,7 @@ Traditional automated testing is all about verifying that your code works. Test-
 
 Working with LLMs requires rethinking this approach. LLMs are non-deterministic by design, which means you can not be sure you'll get the same result even with exactly the same inputs. This manifests most visibly when LLMs respond with different phrases to convey the same answer. However, the more serious concern for developers is that LLMs will sometimes provide incorrect results even when they previously provided correct results with the same inputs.
 
-The non-deterministic nature of LLMs means developers must rethink the assumption underpinning automated tests that valid input and code result in valid output. Even common workarounds to intermittent events like retries assume that valid inputs and valid code will eventually produce valid output, with retries expressing the assumption that a failure must be due to some uncontrollable but detectable external factor that does not render the code being tested invalid. These failures can then be handled with the same retry logic in code or are assumed to be the responsibility of an external system.
+The non-deterministic nature of LLMs means developers must rethink the assumption underpinning automated tests that valid input and code result in valid output. Even common workarounds to intermittent events like retries assume that valid inputs and valid code will eventually produce valid output, with retries expressing the assumption that a failure must be due to some uncontrollable but detectable external factor that does not render the code being tested invalid. These failures can then be handled with the same retry logic in the application code or are assumed to be the responsibility of an external system.
 
 Working with LLMs means assuming some of the tests always fail. This is not an intermittent external factor or a condition that can be easily detected but instead is an inherent property of the system.
 
@@ -123,9 +123,9 @@ Retrying tests is still good enough to work around non-deterministic LLMs for mo
 
 To capture the end user's experience more accurately, tests need to be run multiple times to generate a useful sample set, and the success or failure of the test is determined based on a sufficient ratio of passing results. This is a subtle but significant shift in mindset that embraces the reality that LLMs bring uncertainty to any interaction, and it is our role as developers to be confident about what we mean by "uncertain."
 
-I used the term "experiment" to refer to code that validates application logic based on a passing threshold based on several runs. This term is distinct from a "test" that passes if one run produces the correct result.
+I used the term "experiment" to refer to code that validates application logic based on a passing threshold measured by several runs. This term is distinct from a "test" that passes if one run produces the correct result.
 
-I couldn't find an out-of-the-box solution for this kind of experimentation, but the [tenacity](https://tenacity.readthedocs.io/en/latest/) library was flexible enough to provide this capability. Tenacity allows a custom function to be called with each retry. This provides a hook to count the success or failure of each test and allows a fixed number of tests to run rather than exiting on the first successful result. [This is an example of such a function](https://github.com/OctopusSolutionsEngineering/OctopusCopilot/blob/v0.1.1195/tests/experiments/static_deployment_experiments.py#L14) that can be passed to the tenacity library.
+I couldn't find an out-of-the-box solution for this kind of experimentation, but the [tenacity](https://tenacity.readthedocs.io/en/latest/) library was flexible enough to provide this capability. Tenacity allows a custom function to be called with each retry. These hooks provide the ability to count the success or failure of each test force a fixed number of tests to run rather than exiting on the first successful result. [This is an example of such a function](https://github.com/OctopusSolutionsEngineering/OctopusCopilot/blob/v0.1.1195/tests/experiments/static_deployment_experiments.py#L14) that can be passed to the tenacity library.
 
 This new style of testing means developers can be assured that their example prompts reach a minimum threshold. It also embraces the reality that the threshold must be less than 100% and that retrying until success does not represent the end-user experience.
 
