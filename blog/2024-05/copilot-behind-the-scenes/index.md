@@ -82,7 +82,7 @@ Extracting entities and calling a function are all handled by Open AI [function 
 
 Log files are easy to handle with LLMs because they can be considered a stream of unstructured text, and LLMs are good at consuming such text blobs. However, questions about a space's configuration require us to serialize and present the space's state in a format that the LLM can reason about.
 
-There are many formats for defining the configuration of a platform like Octopus as text, including JSON, XML, YAML, TOML, HCL, [OCL](octopus.com/docs/projects/version-control/ocl-file-format) (used by Octopus Config as Code), and more.
+There are many formats for defining the configuration of a platform like Octopus as text, including JSON, XML, YAML, TOML, HCL, [OCL](https://octopus.com/docs/projects/version-control/ocl-file-format) (used by Octopus Config as Code), and more.
 
 There are requirements for the selection of a format:
 
