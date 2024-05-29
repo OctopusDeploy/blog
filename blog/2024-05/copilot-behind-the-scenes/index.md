@@ -20,7 +20,7 @@ But how does AI benefit more traditional business processes? The answer is perha
 
 I explored this question with GitHub to develop the [Octopus Extension for GitHub Copilot](https://octopus.com/docs/administration/copilot). [Satya Nadella announced Copilot extensions at this year's Build conference](https://youtu.be/8OviTSFqucI?t=2334). Octopus was 1 of 16 extensions for the initial launch:
 
-![Build keynote address](build-keynote.png)
+![Build keynote address](octopus-at-build.jpg)
 
 In this post, I take you behind the scenes in building a Copilot extension.
 
