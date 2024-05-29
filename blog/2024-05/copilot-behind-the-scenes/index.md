@@ -4,9 +4,9 @@ description: Learn about how we integrated Azure AI and Copilot when making the 
 author: matthew.casperson@octopus.com
 visibility: private
 published: 2024-05-25-1400
-metaImage:
-bannerImage: 
-bannerImageAlt: Stylized laptop screen showing Octopus logo connected to cogs in the cloud, with a clipboard to the right.
+metaImage: img-meta-octopus-ghcopilot-2024.png
+bannerImage: img-meta-octopus-ghcopilot-2024.png
+bannerImageAlt: Octopus logo connected to Copilot logo
 isFeatured: false
 tags:
 - Product
