@@ -23,6 +23,7 @@ DORA Metrics
 Enterprise
 Getting Started
 GitHub Actions
+GitHub Copilot
 Google Cloud Platform
 Hackathon
 Incident Reports
