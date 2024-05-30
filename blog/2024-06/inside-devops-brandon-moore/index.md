@@ -4,8 +4,8 @@ description: A series where we share lessons learned from those on the frontline
 author: tony.kelly@octopus.com
 visibility: public
 published: 2024-06-03-1400
-metaImage: 
-bannerImage: 
+metaImage: img-blog-inside-devops-yellowblue-2024.png
+bannerImage: img-blog-inside-devops-yellowblue-2024.png
 bannerImageAlt: Photo of Brandon Moore
 isFeatured: false
 tags: 
