@@ -17,7 +17,7 @@ Unless you are building a genuine monolith, your projects don't exist in isolati
 
 Here at Octopus HQ, we love this trend, because frankly, the more moving parts your release and deployment processes have, the more value Octopus brings to the table. 
 
-As a natural consequence of this, users want to be able to coordinate the release of multiple projects in Octopus. This is one of our top [UserVoice suggestions](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/9811932-allow-project-dependencies-so-deploying-one-proj).
+As a natural consequence of this, users want to be able to coordinate the release of multiple projects in Octopus. This is one of our top UserVoice suggestions.
 
 The two key scenarios are:
 

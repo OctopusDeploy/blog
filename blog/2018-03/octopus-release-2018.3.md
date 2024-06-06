@@ -38,7 +38,7 @@ This release includes two new steps: Apply a Terraform template, and Destroy Ter
 
 Projects now include support to preview the variables values that are supplied during deployment for specific deployment contexts including environment, deployment targets, steps etc.
 
-This is part of a [highly requested feature](https://octopusdeploy.uservoice.com/forums/170787/suggestions/6169634) from the Octopus community and we're very happy to ship it.
+This is part of a highly requested feature from the Octopus community and we're very happy to ship it.
 
 ![Project variables preview](variable-preview.png "width=500")
 

@@ -17,7 +17,7 @@ We shipped this change as a part of 2023.4. ScriptCS is still included as the de
 For further details on upgrading to dotnet-script please see the migration section.
 :::
 
-We received [customer feedback](https://help.octopus.com/t/consider-use-dotnet-script-vs-scriptcs/22144) and [UserVoice voting](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/31454668-allow-the-use-of-c-script-csx-using-net-core) requesting we update the tooling Octopus uses to run C# scripts, from [scriptcs](https://github.com/scriptcs/scriptcs) to [dotnet-script](https://github.com/filipw/dotnet-script). This would: 
+We received [customer feedback](https://help.octopus.com/t/consider-use-dotnet-script-vs-scriptcs/22144) and UserVoice voting requesting we update the tooling Octopus uses to run C# scripts, from [scriptcs](https://github.com/scriptcs/scriptcs) to [dotnet-script](https://github.com/filipw/dotnet-script). This would: 
 
 - Unlock newer C# language features in deployment scripts
 - Allow referencing NuGet packages directly from within scripts

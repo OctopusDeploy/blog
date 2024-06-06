@@ -10,7 +10,7 @@ tags:
  - Product
 ---
 
-Octopus 2018.2 brings a number of exciting new features including the [much requested step to deploy a release](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/9811932-allow-project-dependencies-so-deploying-one-proj), the ability to deploy AWS CloudFormation templates, delete existing CloudFormation stacks, and run scripts with the AWS CLI.
+Octopus 2018.2 brings a number of exciting new features including the much requested **step to deploy a release**, the ability to deploy AWS CloudFormation templates, delete existing CloudFormation stacks, and run scripts with the AWS CLI.
 
 ## In this post
 
@@ -34,7 +34,7 @@ The two other steps allow you to deploy CloudFormation templates and delete exis
 
 ![Deploy Release Step Card](deploy-release-step/deploy-release-card.png)   
 
-One of our most popular [UserVoice suggestions](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/9811932-allow-project-dependencies-so-deploying-one-proj) for a while now has been the ability to coordinate multiple Octopus projects, by having one trigger the deployment of another.
+One of our most popular UserVoice suggestions for a while now has been the ability to coordinate multiple Octopus projects, by having one trigger the deployment of another.
 
 With this release we are proud to introduce the [Deploy a Release step](deploy-release-step/deploy-release-step.md).  
 

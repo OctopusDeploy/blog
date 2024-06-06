@@ -15,13 +15,13 @@ One of the big parts of our [2017 roadmap](https://octopus.com/blog/roadmap-2017
 
 To kick the year off, the project modelling team (with contributions of a few inter-team members) implemented and shipped the following 3 UserVoice items that we hope should make configuring your deployment process a little bit easier:
 
-- [Allow steps to be 'disabled' or 'inactive'](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/6324610-allow-steps-to-be-disabled-or-inactive) 
+- **Allow steps to be 'disabled' or 'inactive'** 
   - **649** votes
   - Shipped in version `3.5.5`
-- [Cloning of steps](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/6470009-cloning-of-steps) 
+- **Cloning of steps** 
   - **282** votes
   - Shipped in version `3.7.16`
-- [Allow the Run Condition of a step to be based on a variable](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/6594872-allow-the-run-condition-of-a-step-to-be-based-on-a) 
+- **Allow the Run Condition of a step to be based on a variable** 
   - **245** votes
   - Shipped in version `3.7.13`
 

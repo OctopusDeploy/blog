@@ -8,7 +8,7 @@ tags:
  - Product
 ---
 
-> The #5 highest voted item in our UserVoice is to be able to [schedule recurring deployments](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/6599104-recurring-scheduled-deployments).
+> The #5 highest voted item in our UserVoice is to be able to **schedule recurring deployments**.
 
 This post is a request-for-comments on our thoughts at this stage.
 

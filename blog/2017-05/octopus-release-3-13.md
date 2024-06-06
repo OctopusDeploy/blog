@@ -52,7 +52,7 @@ We can now send this header on demand, but as there are some potential complexat
 
 ## Optional lifecycle Phases
 
-Knocking off another high ranking [UserVoice suggestion](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/8475958-lifecycle-optional-phase-or-optional-environment) from our backlog, you can now create optional phases in your lifecycle that can be skipped during progression. This feature will help for those cases where you want to have the freedom to deploy your release to a set of environments, without holding up the deployment from continuing. [Channels](https://octopus.com/docs/deployments/patterns/branching) work well when this behaviour is known up-front and is part of a standard release pipeline, for example always pushing a hotfix release straight to UAT, but this approach is too rigid for the more fluid set of rules that optional phases functionality brings.
+Knocking off another high ranking suggestion from our backlog, you can now create optional phases in your lifecycle that can be skipped during progression. This feature will help for those cases where you want to have the freedom to deploy your release to a set of environments, without holding up the deployment from continuing. [Channels](https://octopus.com/docs/deployments/patterns/branching) work well when this behaviour is known up-front and is part of a standard release pipeline, for example always pushing a hotfix release straight to UAT, but this approach is too rigid for the more fluid set of rules that optional phases functionality brings.
 
 Learn more about [optional lifecycle phases](https://octopus.com/docs/releases/lifecycles).
 

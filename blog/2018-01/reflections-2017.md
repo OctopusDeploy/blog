@@ -51,31 +51,31 @@ In the [2017 roadmap](https://octopus.com/blog/roadmap-2017) I called out a numb
 
 I said we'd commit to trying to address all UserVoice suggestions with over 200 votes. Here's how the list stood at the time I wrote the post, and whether we achieved it or not. 
 
- - **714 votes**: [Improve the variables UI](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/7192251-improve-variables-ui)
+ - **714 votes**: **Improve the variables UI**
    *Done. We shipped a big overhaul of this in 4.0 and improved it with 4.1.*
- - **566 votes**: [Composite step templates](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/12948603-composite-step-templates) 
+ - **566 votes**: **Composite step templates** 
    *Not done. We're still trying to work out the best way to go about this.* 
- - **562 votes**: [Update step templates across all projects](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/6072178-when-updating-a-step-template-update-across-all)
+ - **562 votes**: **Update step templates across all projects**
    *Done. This shipped in 3.12 in April.*
- - **460 votes**: [Dry run a deployment](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/6169634--dry-run-deployment)
+ - **460 votes**: **Dry run a deployment**
    *Not done. Dry run a whole deployment isn't practical and doesn't really seem to be what this is about. There are some underlying stories/goals we need to uncover from this. I suspect everyone who voted on this has a different idea of what they actually need.* 
- - **459 votes**: [Support Azure Service Fabric](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/7790970-support-for-azure-service-fabric)
+ - **459 votes**: **Support Azure Service Fabric**
    *Done. We shipped this in 3.13 in May.* 
- - **345 votes**: [Environment and machine conditions should support both "and" and "or" conditions](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/5731857-environment-and-machine-conditions-should-be-inclu)
+ - **345 votes**: **Environment and machine conditions should support both "and" and "or" conditions**
    *Done. This shipped in 3.7.* 
- - **277 votes**: [Permission attributes for variable sets](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/6986441-permission-attributes-for-variable-sets-library-v)
+ - **277 votes**: **Permission attributes for variable sets**
    *Not done. We're planning a permissions overhaul as well as a new feature called Spaces which limits how widely variable sets can be shared - I think these might solve most of these isssues.* 
- - **272 votes**: [Cloning of steps](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/6470009-cloning-of-steps)
+ - **272 votes**: **Cloning of steps**
    *Done. This shipped in March.* 
- - **242 votes**: [Allow step run condition to be based on a variable](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/6594872-allow-the-run-condition-of-a-step-to-be-based-on-a)
+ - **242 votes**: **Allow step run condition to be based on a variable**
    *Done. This also shipped in 3.7.* 
- - **235 votes**: [Version control of Octopus configuration](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/15698781-version-control-configuration)
+ - **235 votes**: **Version control of Octopus configuration**
    *Not done. We're still debating the best way to go about this. Expect an RFC on this this year.* 
- - **213 votes**: [Output variables for offline drops](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/9196032-output-variables-for-offline-drops)
+ - **213 votes**: **Output variables for offline drops**
    *Not done.
- - **210 votes**: [Project dependencies](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/9811932-allow-project-dependencies-so-deploying-one-proj)
+ - **210 votes**: **Project dependencies**
    *Not done. We'll make progress on this in 2018* 
- - **200 votes**: [Allow polling Tentacles to communicate on port 443](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/6703593-allow-polling-tentacles-to-contact-octopus-on-443)
+ - **200 votes**: **Allow polling Tentacles to communicate on port 443**
    *Done. We shipped this in April.* 
 
 

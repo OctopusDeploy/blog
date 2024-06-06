@@ -35,7 +35,7 @@ However this prevented a number of valid scenarios. For example, deploying a com
 
 _Note: this also applies to accounts and certificates, as they can also be scoped to tenants._
 
-You let us know that we got this decision wrong (or at least incomplete). You told us via our support, via [UserVoice](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/16616209-allow-non-tenant-and-multi-tenant-deployments-to-t) and via the [GitHub issue](https://github.com/OctopusDeploy/Issues/issues/2722).
+You let us know that we got this decision wrong (or at least incomplete). You told us via our support, via UserVoice and via the [GitHub issue](https://github.com/OctopusDeploy/Issues/issues/2722).
 
 So, as of Octopus 3.15, how machines, accounts, and certificates participate in tenanted-deployments is explicitly configurable.
 

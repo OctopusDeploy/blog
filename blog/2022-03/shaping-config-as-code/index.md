@@ -30,7 +30,7 @@ Over the past few years, version-controlling Octopus configuration has comfortab
 - **Single source of truth**: Having application code, build scripts, and deployment configuration all living together makes everyone feel warm and fuzzy.
 - **Cloning**: Imagine being able to copy a `.octopus` folder to a new Git repository (maybe change a few variables) and using that as the Octopus project starter.
 
-There are two highly voted UserVoice suggestions ([1](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/15698781-version-control-configuration), [2](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/35362726-allow-variables-to-be-version-controlled)), but even more convincing were the many customer conversations. 
+There are two highly voted UserVoice suggestions, but even more convincing were the many customer conversations. 
 
 And finally, we want this! We use Octopus Deploy to deliver Octopus Deploy, and the first litmus test for a feature is whether we're excited about it. We are.  
 
