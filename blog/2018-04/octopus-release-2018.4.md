@@ -13,7 +13,7 @@ tags:
 
 ![Octopus Deploy 2018.4 release banner](blogimage-shipping-2018-4.png)
 
-This month, our headline feature is _Recurring Scheduled Deployments_ which was one of our [most highly requested features](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/6599104-recurring-scheduled-deployments), and we’re very happy to ship it. We’re also shipping a new first-class AWS S3 step that makes working with Amazon Web Services easier, and we added the ability to set a step as required so it can't be skipped.
+This month, our headline feature is _Recurring Scheduled Deployments_ which was one of our most highly requested features, and we’re very happy to ship it. We’re also shipping a new first-class AWS S3 step that makes working with Amazon Web Services easier, and we added the ability to set a step as required so it can't be skipped.
 
 ## In This Post
 
@@ -46,9 +46,9 @@ With 2018.4 you can [mark a step as required](https://octopus.com/docs/projects/
 
 This resolves the following UserVoice requests:
 
-- [Required Steps](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/5823326-required-steps)
-- [Add permissions to stop deployers from skipping steps](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/6511629-add-permissions-to-stop-deployers-from-skipping-st) 
-- [Allow to mark a deployment step as mandatory (un-skippable)](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/20592493-allow-to-mark-a-deployment-step-as-mandatory-un-s) 
+- **Required Steps**
+- **Add permissions to stop deployers from skipping steps** 
+- **Allow to mark a deployment step as mandatory (un-skippable)** 
 
 ## Breaking Changes
 

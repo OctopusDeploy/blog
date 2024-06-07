@@ -81,16 +81,16 @@ Octopus is becoming the standard deployment tool at more and more companies, and
 - We'll continue to hunt for improvements to performance, quality and user experience. 
 - We'll build [Remote release promotions](https://octopus.com/blog/remote-release-promotions-rfc).
 - We'll continue to address UserVoice suggestions, and we'll ensure we do something about anything that makes it into the top 10 (or, clearly decide we aren't going to do them). Today those are:
-  - **[700 votes](https://octopusdeploy.uservoice.com/forums/170787/suggestions/12948603)** Composite Step Templates
-   - **[570 votes](https://octopusdeploy.uservoice.com/forums/170787/suggestions/6169634)** 'Dry Run' Deployment
-   - **[447 votes](https://octopusdeploy.uservoice.com/forums/170787/suggestions/6599104)** Recurring Scheduled Deployments
-   - **[442 votes](https://octopusdeploy.uservoice.com/forums/170787/suggestions/15698781)** Version control configuration
-   - **[365 votes](https://octopusdeploy.uservoice.com/forums/170787/suggestions/6986441)** Permission attributes for variable sets, library variable sets, or even variable
-   - **[317 votes](https://octopusdeploy.uservoice.com/forums/170787/suggestions/9196032)** Output variables for offline drops
-   - **[310 votes](https://octopusdeploy.uservoice.com/forums/170787/suggestions/9811932)** Allow project dependencies - so deploying one project would automatically deploy all dependent projects
-   - **[288 votes](https://octopusdeploy.uservoice.com/forums/170787/suggestions/5731235)** Environment groups
-   - **[263 votes](https://octopusdeploy.uservoice.com/forums/170787/suggestions/17930755)** Support for Kubernetes
-   - **[257 votes](https://octopusdeploy.uservoice.com/forums/170787/suggestions/6298548)** Allow approval step for scheduled deployment happen before actual deployment
+  - **700 votes** Composite Step Templates
+   - **570 votes** 'Dry Run' Deployment
+   - **447 votes** Recurring Scheduled Deployments
+   - **442 votes** Version control configuration
+   - **365 votes** Permission attributes for variable sets, library variable sets, or even variable
+   - **317 votes** Output variables for offline drops
+   - **310 votes** Allow project dependencies - so deploying one project would automatically deploy all dependent projects
+   - **288 votes** Environment groups
+   - **263 votes** Support for Kubernetes
+   - **257 votes** Allow approval step for scheduled deployment happen before actual deployment
 
 ## Wrapping up
 

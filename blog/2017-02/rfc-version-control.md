@@ -11,7 +11,7 @@ tags:
 Update: Learn about the [deployment process as code pattern](https://octopus.com/docs/deployment-patterns/deployment-process-as-code) where we will continue to provide the best approaches for storing your Octopus configuration in code. We are actively investing in an official [Octopus Terraform Provider](https://github.com/OctopusDeploy/terraform-provider-octopusdeploy) for declarative configuration of Octopus.
 :::
 
-> The #6 highest voted item in our UserVoice is some way to [store Octopus data in source control](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/15698781-version-control-configuration). It's something we think about a lot, and I've lost count of how many times we've drawn solutions for it on the whiteboard over the years. 
+> The #6 highest voted item in our UserVoice is some way to **store Octopus data in source control**. It's something we think about a lot, and I've lost count of how many times we've drawn solutions for it on the whiteboard over the years. 
 
 We said we would do something about this in our [2017 roadmap](https://octopus.com/blog/roadmap-2017), but it's potentially a significant undertaking. Each time we've brainstormed how we could do this, our approaches have fallen into a few categories:
 
@@ -156,11 +156,11 @@ It's not always easy to map our UI to the resources underneath, so we'd need som
 
 If we took this approach, in addition to the original UserVoice suggestion of being able to version control your Octopus configuration, we'd also have a solution that could help to solve a few other issues:
 
-- [Composite step templates](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/12948603-composite-step-templates) - 609 votes
+- **Composite step templates** - 609 votes
   Quite often people just want multiple projects to reuse deployment steps. It would be possible to just reuse the same object in C# code across projects. The only question is whether for these projects, they'd be OK with not being editable in the UI anymore. 
-- [Improve the variables UI](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/7192251-improve-variables-ui) - 834 votes
+- **Improve the variables UI** - 834 votes
   Most of the comments here were focused on dealing with many variables, which are probably defined elsewhere. While we should still do work to improve the UI (we will!), being able to programatically create them or import from a spreadsheet would help many people. 
-- [Inheritable templates](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/6559846-inheritable-templates) - 171 votes
+- **Inheritable templates** - 171 votes
   My example above already showed how this could work. In fact, the "template" project could remain editable within Octopus, and the code would pull it down, and clone it for each instance of it. 
 
 ## What do you think?

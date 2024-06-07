@@ -25,19 +25,19 @@ This month, Octopus 2018.6 includes two UserVoice community requested improvemen
 
 ## UserVoice Community Requested Improvements
 
-First up, we’re introducing a couple of smaller UserVoice community requested improvements from our [UserVoice site](https://octopusdeploy.uservoice.com).
+First up, we’re introducing a couple of smaller UserVoice community requested improvements from our UserVoice site.
 
 ### Prompted Variables Control Types
 
 ![Octopus Variable Editor showing prompted variable options](prompted-var-control-types.png "width=500")
 
-The first [UserVoice suggestion](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/6016396-variable-prompt-templates) is a nice improvement that lets you specify control types for prompted variables. Previously this was not available as the variable could only be a text input, but now you can also use checkboxes or lists.
+The first UserVoice suggestion is a nice improvement that lets you specify control types for prompted variables. Previously this was not available as the variable could only be a text input, but now you can also use checkboxes or lists.
 
 ### Sensitive Output Variables
 
 ![Octopus script setting a sensitive output variable](sensitive-output-var.png "width=500")
 
-Another [UserVoice suggestion](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/30965434-set-octopusvariable-to-support-issensitive-flag) is similarly small yet valuable, you can now set sensitive output variables. This change is an excellent addition to keep your sensitive data secure, and it's handy in dynamic provisioning scenarios when you generate passwords on the fly and then use them throughout your deployment.
+Another UserVoice suggestion is similarly small yet valuable, you can now set sensitive output variables. This change is an excellent addition to keep your sensitive data secure, and it's handy in dynamic provisioning scenarios when you generate passwords on the fly and then use them throughout your deployment.
 
 ## Building the Foundation - Designed to Scale
 

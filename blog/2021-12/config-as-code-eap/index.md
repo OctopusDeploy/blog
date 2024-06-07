@@ -42,7 +42,7 @@ Many modern IT and DevOps systems offer an "as code" implementation. Common exam
 
 These solutions store plain text code/configuration details in a source code repository. This allows you to evolve your system configuration and enjoy the benefits of Git, including branching and history.
 
-Config As Code has been one of the [top](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/15698781-version-control-configuration) [requests](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/32541541-deployment-pipeline-as-code) from our customers on the Octopus [UserVoice site](https://octopusdeploy.uservoice.com/), and at conferences and events. 
+Config As Code has been one of the top requests from our customers on the Octopus UserVoice site, and at conferences and events. 
 
 We used your feedback to guide the build of our Config as Code solution.
 

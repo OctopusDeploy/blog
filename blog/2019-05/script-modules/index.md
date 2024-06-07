@@ -10,7 +10,7 @@ tags:
  - Product
 ---
 
-For a long while now, we've been [hearing requests](https://octopusdeploy.uservoice.com/forums/170787-general/suggestions/9653631-c-script-in-script-modules) for [Script Module](https://octopus.com/docs/deployment-examples/custom-scripts/script-modules) support for languages other than PowerShell. We're happy to share this has just shipped in our latest release - 2019.5.0!
+For a long while now, we've been hearing requests for [Script Module](https://octopus.com/docs/deployment-examples/custom-scripts/script-modules) support for languages other than PowerShell. We're happy to share this has just shipped in our latest release - 2019.5.0!
 
 For some people, this is awesome news.  For others, you're probably asking _"What's a Script Module?"_
 
