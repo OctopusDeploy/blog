@@ -14,9 +14,9 @@ tags:
 
 The find-ability of Octopus Deploy was our biggest UX pain point.  
 
-Insights from our NPS surveys gave us hints about the navigation problem. But many comments were vague “i have trouble finding things” or “I feel lost”. This was a signal that it wasn’t a surface level problem or a quick fix.  
+Insights from our NPS surveys gave us hints about the findability problem. But many comments were vague such as “i have trouble finding things” or “I feel lost”. This was a signal that it wasn’t a surface level problem or a quick fix.  
 
-We came to learn many parts of the experience are connected to this problem. Information structure in the menus? Menu labels? Pages not needed? Page layouts? Is it where a user ends up once they finish a task? For us it was all the above.
+We came to learn many parts of the experience are connected to this problem. Information grouping. Menu labels. Many pages. Page layouts. Workflows.
 
 So how do we tackle a broad and interconnected problem space? I decided to re-envision our navigation was the next best step. We organised a series of activities to help us understand our Navigation North Star.
 
