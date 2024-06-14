@@ -22,10 +22,12 @@ So how do we tackle a broad and interconnected problem space? I decided to re-en
 
 ## Gaining more understanding
 
-_Card Sorting_ 
+_Card Sorting_
+
 We gave existing customers a card sorting activity. This activity helps identify common information groups. Unfortunately, it didn't provide enough clarity. In particular, features for managing your deployments had produced conflicting results.  
 
-_Mapping out mental models _
+_Mapping out mental models_
+
 Next we wanted to see how we could better surface the mental model of Octopus in our navigation. We listed all the features of Octopus, then looked through different lens to group these features. This exercise brought better clarity. System scopes and personas bringing the most clarity.
 
 -> insert image here
@@ -35,9 +37,11 @@ Next we wanted to see how we could better surface the mental model of Octopus in
 
 
 _Behavioural Analytics_
+
 Looking at our analytics we obtained understanding of feature usage. Insights such as variable sets are heavily used. Yet, this feature was buried in our navigation.
 
 _Ideation Workshops_
+
 We brought the outcomes from mental model mapping, behavioural analytics and competitor research to help guide our first ideation workshop. It was clear that there could be a few ways to re-envision the navigation experience. 
 
 ## North Star
