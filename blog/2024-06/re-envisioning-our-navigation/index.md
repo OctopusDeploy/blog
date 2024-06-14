@@ -47,14 +47,11 @@ We brought the outcomes from mental model mapping, behavioural analytics and com
 
 
 Arriving at these rough concepts, we could now start validating our thinking and assumptions.  
-Horizontal vs Vertical
-Vertical tested slightly better than horizontal.
+**Horizontal vs Vertical** Vertical tested slightly better than horizontal.
 
-Menu Group Headings
-Too many made it messy and over opinionated. Too little was overwhelming.  
+**Menu Group Headings** Too many made it messy and over opinionated. Too little was overwhelming.  
 
-Existing Customer vs New Customers
-For DevOps professionals who had never used octopus before are able to find things with ease. Existing customers were very comfortable with receiving this type of UI change. 
+**Existing Customer vs New Customers** For DevOps professionals who had never used octopus before are able to find things with ease. Existing customers were very comfortable with receiving this type of UI change. 
 
 ### Noteworthy Learnings
 + No matter how great your navigation is, a poorly labeled feature will still confuse users. Yes Deployment Targets I am looking at you.
