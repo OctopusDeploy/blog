@@ -16,7 +16,7 @@ The find-ability of Octopus Deploy was our biggest UX pain point.  
 
 Insights from our NPS surveys gave us hints about the findability problem. But many comments were vague such as “i have trouble finding things” or “I feel lost”. This was a signal that it wasn’t a surface level problem or a quick fix.  
 
-We came to learn many parts of the experience are connected to this problem. Information grouping. Menu labels. Many pages. Page layouts. Workflows.
+We came to learn many parts of the experience are connected to this problem. Information groupings. Menu labels. Too many pages. Page layouts. Workflows. 
 
 So how do we tackle a broad and interconnected problem space? I decided to re-envision our navigation was the next best step. We organised a series of activities to help us understand our Navigation North Star.
 
@@ -31,7 +31,7 @@ _Mapping out mental models_
 Next we wanted to see how we could better surface the mental model of Octopus in our navigation. We listed all the features of Octopus, then looked through different lens to group these features. This exercise brought better clarity. System scopes and personas bringing the most clarity.
 
 
-![Groups of system, space and projects aligns with personas](mental-models.png "width=500")
+![Groups of system, space and projects aligns with personas](mental-models.png)*Defined system, space and projects aligns with personas*
 
 
 _Behavioural Analytics_
@@ -43,7 +43,7 @@ _Ideation Workshops_
 We brought the outcomes from mental model mapping, behavioural analytics and competitor research to help guide our first ideation workshop. It was clear that there could be a few ways to re-envision the navigation experience. 
 
 ## North Star
-![Vertical screen shot winning over horizontal](north-star.png "width=500")
+![Vertical screen shot winning over horizontal](north-star.png)*Horizontal vs Vertical Navigation*
 
 
 Arriving at these rough concepts, we could now start validating our thinking and assumptions.  
@@ -66,6 +66,6 @@ Going with a North Star early on helped engineers plan activities to support the
 
 We haven’t resolved all the find-ability problems and tradeoffs were certainly made. We will continue to refine our experience in a way that empowers customers to deploy on a Friday quickly and easily. 
 
-![Our New Navigation UI](newUI.png "width=500")
+![Screen shot of the new vertical navigation](newUI.png)*Our New Navigation UI*
 
 Feel free to jump into the blog comments to share your thoughts. 
