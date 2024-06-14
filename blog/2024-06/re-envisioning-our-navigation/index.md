@@ -64,17 +64,8 @@ For DevOps professionals who had never used octopus before are able to find thin
 ## Delivering
 Going with a North Star early on helped engineers plan activities to support the change. They identified foundational pieces of work that ensured making this change was relatively easily to implement.  We haven’t resolved all the find-ability problems and tradeoffs were certainly made. We will continue to refine our experience in a way that empowers customers to deploy on a Friday quickly and easily. 
 
+![Our New Navigation UI](newUI.png "width=500")
 
 
-## Learn more
-
-- [link](https://www.example.com/resource)
-
-
-## Watch the webinar: {webinar title here}
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/F_V7r80aDbo" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-We host webinars regularly. See the [webinars page](https://octopus.com/events) for details about upcoming events, and live stream recordings.
 
 Happy deployments!
