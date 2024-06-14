@@ -30,10 +30,8 @@ _Mapping out mental models_
 
 Next we wanted to see how we could better surface the mental model of Octopus in our navigation. We listed all the features of Octopus, then looked through different lens to group these features. This exercise brought better clarity. System scopes and personas bringing the most clarity.
 
--> insert image here
-```
-![Alt text, a description of the image](/path/to/image.png "width=500")*Optional caption text*
-```
+
+![Groups of system, space and projects aligns with personas](mental-models.png "width=500")
 
 
 _Behavioural Analytics_
@@ -45,10 +43,8 @@ _Ideation Workshops_
 We brought the outcomes from mental model mapping, behavioural analytics and competitor research to help guide our first ideation workshop. It was clear that there could be a few ways to re-envision the navigation experience. 
 
 ## North Star
--> insert image here
-```
-![Alt text, a description of the image](/path/to/image.png "width=500")*Optional caption text*
-```
+![Vertical screen shot winning over horizontal](north-star.png "width=500")
+
 
 Arriving at these rough concepts, we could now start validating our thinking and assumptions.  
 Horizontal vs Vertical
@@ -68,9 +64,6 @@ For DevOps professionals who had never used octopus before are able to find thin
 ## Delivering
 Going with a North Star early on helped engineers plan activities to support the change. They identified foundational pieces of work that ensured making this change was relatively easily to implement.  We haven’t resolved all the find-ability problems and tradeoffs were certainly made. We will continue to refine our experience in a way that empowers customers to deploy on a Friday quickly and easily. 
 
-```
-![Alt text, a description of the image](/path/to/image.png "width=500")*Optional caption text*
-```
 
 
 ## Learn more
