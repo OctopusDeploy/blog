@@ -4,9 +4,9 @@ description: A look into how we
 author: emily.pearce@octopus.com
 visibility: private
 published: 3020-01-01-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: navigationthinkingblogthumbnail.png
+bannerImage: navigationthinkingblogthumbnail.png
+bannerImageAlt: People getting feedback on current experience and person envision a new experience
 isFeatured: false
 tags: 
   - tag
