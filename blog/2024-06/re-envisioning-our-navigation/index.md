@@ -62,10 +62,10 @@ For DevOps professionals who had never used octopus before are able to find thin
 + A point of comparison helped surface more understanding. Showing existing customers a new design enabled them to articulate what wasn’t working about the current design. 
 
 ## Delivering
-Going with a North Star early on helped engineers plan activities to support the change. They identified foundational pieces of work that ensured making this change was relatively easily to implement.  We haven’t resolved all the find-ability problems and tradeoffs were certainly made. We will continue to refine our experience in a way that empowers customers to deploy on a Friday quickly and easily. 
+Going with a North Star early on helped engineers plan activities to support the change. They identified foundational pieces of work that ensured making this change was relatively easily to implement.  
+
+We haven’t resolved all the find-ability problems and tradeoffs were certainly made. We will continue to refine our experience in a way that empowers customers to deploy on a Friday quickly and easily. 
 
 ![Our New Navigation UI](newUI.png "width=500")
 
-
-
-Happy deployments!
+Feel free to jump into the blog comments to share your thoughts. 
