@@ -277,11 +277,11 @@ I create and merge my pull request.
 
 ![](gh_pull_request.png)
 
-Once the PR is approved and closed, the GH Action triggers the runbook.  
+Once the PR is approved and closed, the GH Action triggers the runbook. 
 
 ![](gh_actions_destroy_infrastructure.png)
 
-The runbook run is successful. 
+The namespace and databases are deleted and now we an move onto the next feature branch!
 
 ## Limitations
 
@@ -298,10 +298,12 @@ There are known limitations and shortcuts used when creating this process.  
 
 ## Conclusion
 
-Using the above mentioned process, we can create and destroy dynamic testing infrastructure for each feature branch. Depending on your usage of Octopus Deploy, it might require only a few modifications to your existing configuration. That is what makes me so excited about it. A lot of what is needed is already in place. You can find this [git repository on GitHub](https://github.com/BobJWalker/Trident). In addition, you can view the process on [my personal cloud instance](https://bobjwalker.octopus.app/) (login as a guest).
+Using the above mentioned process, we can create and destroy dynamic testing infrastructure for each feature branch. Depending on your usage of Octopus Deploy, it might require only a few modifications to your existing configuration. Chances are you already have a lot of this configuration in place for different environments. That is what makes me so excited about it. Some minor modifications to an existing process and you can get it working. Before working on this article, every feature branch was deployed to a static development environment. That means I already had the channels and runbooks configured. The only thing I needed to modify was to add some new variables and tweak my Kustomize overlay file.
 
-Before working on this article, every feature branch was deployed to a static development environment. That means I already had the channels and runbooks configured. The only thing I needed to modify was to add some new variables and tweak my Kustomize overlay file.  
+What is even more exciting is you can apply this pattern to other application types if you can reuse other infrastructure, such as ECS clusters, Windows servers, or Linux servers.
 
-If you implement this process, use this article as a baseline. Take what works for you and modify where appropriate. You’ll likely need to iterate a few times before it works.
+You can find the [git repository on GitHub](https://github.com/BobJWalker/Trident). In addition, you can view the process on [my personal cloud instance](https://bobjwalker.octopus.app/) (login as a guest).
+
+Please do note the limitations with what is proposed in this article.  If you implement this process, use this article as a baseline. Take what works for you and modify where appropriate. You’ll likely need to iterate a few times before it works.
 
 Until next time, Happy Deployments!
