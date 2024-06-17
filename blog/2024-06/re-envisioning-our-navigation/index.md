@@ -1,5 +1,5 @@
 ---
-title: Redesigning our navigation
+title: Redesigning the navigation in Octopus
 description: A look into how we redesigned the navigation in Octopus Deploy.
 author: emily.pearce@octopus.com
 visibility: private
