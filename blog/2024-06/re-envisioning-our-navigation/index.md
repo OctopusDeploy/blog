@@ -65,7 +65,7 @@ Choosing our North Star early helped engineers plan activities to support the ch
 
 We haven’t resolved all the findability problems, and we had to make tradeoffs. We'll continue to refine our experience in a way that empowers customers to deploy on a Friday happily, quickly, and easily. 
 
-![Screen shot of the new vertical navigation](newui3.png)*Our new navigation UI.*
+![Screen shot of the new vertical navigation](newui4.png)*Our new navigation UI.*
 
 ## Share your feedback
 
