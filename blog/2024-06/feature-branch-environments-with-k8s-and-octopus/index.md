@@ -4,9 +4,9 @@ description: Creating dynamic environments inside of Kubernetes for feature bran
 author: bob.walker@octopus.com
 visibility: public
 published: 2024-06-26-1400
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: blogimage-kubernetes-spokes-2024.png
+bannerImage: blogimage-kubernetes-spokes-2024.png
+bannerImageAlt: Kubernetes icon surrounded by connection lines and circles.
 isFeatured: false
 tags: 
   - DevOps
