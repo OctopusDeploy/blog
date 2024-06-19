@@ -2,8 +2,8 @@
 title: Redesigning the navigation in Octopus
 description: A look into how we redesigned the navigation in Octopus Deploy.
 author: emily.pearce@octopus.com
-visibility: private
-published: 2024-06-19-1400
+visibility: public
+published: 2024-06-24-1400
 metaImage: navigationthinkingblogthumbnail.png
 bannerImage: navigationthinkingblogthumbnail.png
 bannerImageAlt: People getting feedback on current experience and person envisioning a new experience.
