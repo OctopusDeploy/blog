@@ -32,7 +32,7 @@ We gave existing customers a card sorting activity. This helps identify common i
 
 Next, we wanted to see how we could better surface the mental model of Octopus in our navigation. We listed all the features of Octopus, then looked through different lenses to group these features. This exercise brought more clarity. System scopes and personas, in particular, delivered the most useful insights.
 
-![Groups of system, space, and projects aligns with personas](mental-models.png)*Defined system, space, and project scopes align with personas.*
+![Groups of system, space, and projects aligns with personas](mental-models2.png)*Defined system, space, and project scopes align with personas.*
 
 ### Behavioral analytics
 
@@ -44,7 +44,7 @@ We brought together the outcomes from mental model mapping, behavioral analytics
 
 ## Our North Star
 
-![Vertical screen shot winning over horizontal](north-star.png)*Horizontal versus vertical navigation.*
+![Vertical screen shot winning over horizontal](north-star2.png)*Horizontal versus vertical navigation.*
 
 Arriving at these rough concepts, we could now start validating our thinking and assumptions.
 
@@ -65,7 +65,7 @@ Choosing our North Star early helped engineers plan activities to support the ch
 
 We haven’t resolved all the findability problems, and we had to make tradeoffs. We'll continue to refine our experience in a way that empowers customers to deploy on a Friday happily, quickly, and easily. 
 
-![Screen shot of the new vertical navigation](newui4.png)*Our new navigation UI.*
+![Screen shot of the new vertical navigation](newui5.png)*Our new navigation UI.*
 
 ## Share your feedback
 
