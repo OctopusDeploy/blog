@@ -30,17 +30,17 @@ To accomplish that, you need to incorporate a branching strategy. Some common br
 
 All these strategies use short-lived feature branches.  
 
-While working on a code change in a feature branch, many developers ask, "Will this work as the business expects?"  The only way to know is to deploy it to a location where you can verify it.
+While working on a code change in a feature branch, many developers ask if it works as the business expects. The only way to know is to deploy it to a location where you can verify it.
 
-One of the default behaviors of Octopus that I’m not a fan of is that it puts all the environments (Dev, Test, Staging, and Production) in a single channel. It helps remove a barrier to the first deployment from an onboarding perspective (which is a good thing). However, that leads to a deployment pipeline that looks similar to this:
+A default behavior of Octopus that I’m not a fan of is putting all the environments (Dev, Test, Staging, and Production) in one channel. It helps remove a barrier to the first deployment from an onboarding perspective, which is a good thing. However, it leads to a deployment pipeline that looks similar to this:
 
 ![Original deployment pipeline with all environments](first_deployment_pipeline.png)
 
-The fundamental problem with that pipeline is that you must merge to the main branch before deploying to development to get feedback. This poses the following problems when you want to get feedback:
+The problem with this pipeline is that you must merge to the main branch before deploying to development to get feedback. This causes the following issues when you want to get feedback:
 
-- Half-finished changes get merged into the main branch to get that feedback.
+- Half-finished changes get merged into the main branch to get feedback.
 - Very rarely does everything work as expected on the first merge, resulting in dozens of deployments.
-- This means the main branch is likely undeployable, violating the core principle that it must always be ready to deploy to production.
+- The main branch is likely undeployable, violating the core principle that it must always be ready to deploy to production.
 
 A good first step to solving this problem is to create 2 channels or pipelines. I already had this process in place before working on this post:
 
@@ -51,7 +51,7 @@ Feature branches get deployed to the default channel. The main branch gets deplo
 
 ![Iterating on deployment pipelines with dev used for feature branches](second_deployment_pipeline.png)
 
-That works when you have one feature branch at a time. However, many applications have multiple active feature or hotfix branches. What you need is the ability to create temporary environments.
+This works when you have one feature branch at a time. However, many applications have multiple active feature or hotfix branches. What you need is the ability to create temporary environments.
 
 ![Pipeline creating temporary environments from feature branches](ideal_deployment_pipeline.png)
 
@@ -61,7 +61,7 @@ The rules for this process are:
 
 1. Feature branches:
    1. Deploy to temporary environments.
-   2. The namespaces and database are temporary, and the Kubernetes cluster and SQL Server are static:
+   2. The namespaces and database are temporary, and the Kubernetes cluster and SQL Server are static.
    3. Every code check-in on a feature branch triggers a new build. 
    4. The built artifact is only deployed to temporary environments. Tag each build artifact with a pre-release tag.
    5. Delete the temporary environment when a pull request gets closed.
@@ -86,14 +86,14 @@ Consider this scenario:
 
 We want the main branch to represent production. After all changes get merged, you must test them together.  
 
-Rebuilding from the main branch after each check-in follows "build once, deploy anywhere." The build artifact from the main branch gets reused for each testing environment and production. The critical difference is that the built artifacts from the feature branches get thrown away after testing. Those are never meant to go to production.
+Rebuilding from the main branch after each check-in follows the "build once, deploy anywhere" principle. The build artifact from the main branch gets reused for each testing environment and production. The critical difference is that the built artifacts from the feature branches get thrown away after testing. Those are never meant to go to production.
 
 ## Configuration
 
-I'm using Kubernetes hosted on Azure (AKS) to host my application and Azure SQL for my database. I re-use the same AKS Cluster and Azure SQL Server for the dynamic infrastructure. I’m using GitHub Actions as my build server.
+I'm using Kubernetes hosted on Azure (AKS) to host my application and Azure SQL for my database. I reuse the same AKS Cluster and Azure SQL Server for the dynamic infrastructure. I’m using GitHub Actions as my build server.
 
 :::warning
-This workflow should work with any application host you can re-use, like ECS clusters, Windows, or Linux. It's much more difficult when you cannot re-use the same app hosts, like Azure Web Apps or other PaaS-hosted applications. 
+This workflow should work with any application host you can re-use, like ECS clusters, Windows, or Linux. It's much more difficult when you can't reuse the same app hosts, like Azure Web Apps or other PaaS-hosted applications. 
 :::  
 
 ### Versioning strategy
@@ -170,12 +170,12 @@ My application has 2 components:
 The infrastructure creates a namespace for the web application in Kubernetes and the databases in Azure SQL.
 
 :::hint
-You’ll notice the **Check Database** and **Run Script** for the databases.  Flyway requires the check database to perform the deployment. The **Run Script" step for the databases ensures I can run a basic "select 1" query on the database. The process of creating infrastructure will likely be different.
+You’ll notice the **Check Database** and **Run Script** for the databases. Flyway requires the check database to perform the deployment. The **Run Script** step for the databases ensures I can run a basic "select 1" query on the database. The process of creating infrastructure will likely differ.
 :::
 
 ![Runbook process to create the backend infrastructure](create_infrastructure_backend.png) 
 
-The destroy infrastructure runbook does the opposite; it deletes the database and the namespace.
+The **Destroy Application Infrastructure** runbook does the opposite; it deletes the database and the namespace.
 
 ![Runbook process to destroy the backend infrastructure](destroy_infrastructure.png)
 
@@ -194,22 +194,23 @@ I’ve highlighted the key variables in my process below.
 
 The variables are:
 
-- **Project.Release.Branch.Name**: This pulls the branch name from Config as Code for the deployment process for Config as Code. The value is: #{Octopus.Release.Git.BranchName}.  
-  - Because my version of Octopus does not have Config as Code for runbooks, I have to use [prompted variable](https://octopus.com/docs/projects/variables/prompted-variables) for my 2 runbooks. The default value for the prompted variable is `main`.
-- **Project.Formatted.Branch.Name**: This variable removes all the invalid characters and formats it for use in other variables. The value is `#{Project.Release.Branch.Name | Replace "/" "-" | ToLower | Replace "refs-heads" ""}`.
-- **Project.K8s.Namespace**: Used by the deploy steps and create namespace step. For the development environment, I included `#{Project.Formatted.Branch.Name}`.
-- **Project.Database.Name**: Used by the database deploy steps and connection strings to determine the application's database name. For the development environment, I included `#{Project.Formatted.Branch.Name}`.
-- **Project.Database.Check.Name**: Used by the Flyway steps for deployments as a temporary database. If you aren’t using Flyway, you won’t need this variable. For the development environment, I included `#{Project.Formatted.Branch.Name}`.
-- **Project.URL.Local**: Specifies the domain for Kubernetes Ingress. I had to modify my Kustomize overlay file in Dev and inject [Octostache](https://octopus.com/docs/projects/variables/variable-substitutions). While I prefer not to do that, this was an appropriate compromise, as it was limited to the dev overlay only.
+- **Project.Release.Branch.Name**: This pulls the branch name from Config as Code for the deployment process for Config as Code. The value is: `#{Octopus.Release.Git.BranchName}`.  
+  - Because my version of Octopus doesn't have Config as Code for runbooks, I have to use a [prompted variable](https://octopus.com/docs/projects/variables/prompted-variables) for my 2 runbooks. The default value for the prompted variable is `main`.
+- **Project.Formatted.Branch.Name**: This variable removes all invalid characters and formats it for use in other variables. The value is `#{Project.Release.Branch.Name | Replace "/" "-" | ToLower | Replace "refs-heads" ""}`.
+- **Project.K8s.Namespace**: Used by the deploy steps and create namespace step. For the Development environment, I included `#{Project.Formatted.Branch.Name}`.
+- **Project.Database.Name**: Used by the database deploy steps and connection strings to determine the application's database name. For the Development environment, I included `#{Project.Formatted.Branch.Name}`.
+- **Project.Database.Check.Name**: Used by the Flyway steps for deployments as a temporary database. If you aren’t using Flyway, you won’t need this variable. For the Development environment, I included `#{Project.Formatted.Branch.Name}`.
+- **Project.URL.Local**: Specifies the domain for Kubernetes Ingress. I had to modify my Kustomize overlay file in Dev and inject [Octostache](https://octopus.com/docs/projects/variables/variable-substitutions). While I prefer not to do that, ts was an appropriate compromise, as it was limited to the Dev overlay only.
 
 
 #### Deployment process
 
-The deployment process calls the create infrastructure runbook and waits for it to complete. I injected the branch name from Config as Code into the prompted variable.
+The deployment process calls the **Create Infrastructure** runbook and waits for it to complete. I injected the branch name from Config as Code into the prompted variable.
 
 ![Passing the branch name to the run a runbook step](run_a_runbook_step_process.png)
 
-**Important:** I call this runbook for every environment because each night, I tear down all my infrastructure in Azure to save costs. In your deployment process, consider configuring this step to run for the development environment only.
+:::hint I call this runbook for every environment because each night, I tear down all my infrastructure in Azure to save costs. In your deployment process, consider configuring this step to run for the Development environment only.
+:::
 
 Any steps that interact with the Kubernetes cluster use the namespace variable.
 
@@ -221,7 +222,7 @@ Any steps interacting with the database use the connection string variable, whic
 
 ### GitHub Actions
 
-I’m using GitHub Actions as my build server. I have 2 GitHub Actions:
+I’m using GitHub Actions as my build server. I have 2 actions:
 
 - Build - builds the artifacts, pushes them to Octopus / Docker Hub, and creates the release.
 - PR Closed - Invokes the destroy runbook in Octopus Deploy when a PR gets closed.
@@ -232,13 +233,13 @@ For my build action, I want to build on meaningful code changes for specific bra
 
 ![The beginning of the GitHub action showing the triggers and environment variables](build_gh_action_start.png)
 
-This build calculates the version number. I’m using [GitTool’s GitVersion action](https://github.com/GitTools/GitVersion) to handle that work. That action creates several output variables you can use in later steps. I primarily use the env.GitVersion\_SemVer output variable.
+This build calculates the version number. I’m using [GitTool’s GitVersion action](https://github.com/GitTools/GitVersion) to handle that work. That action creates several output variables you can use in later steps. I primarily use the `env.GitVersion\_SemVer` output variable.
 
-The next step shows the first use of that output variable. I like to tag the version number on the main branch using the [update tag GitHub action](https://github.com/marketplace/actions/update-tag). That particular step only runs because of the if condition.
+The next step shows the first use of that output variable. I like to tag the version number on the main branch using the [update tag GitHub action](https://github.com/marketplace/actions/update-tag). That particular step only runs because of the `if` condition.
 
 ![Showing the calculate version steps in action](gh_actions_calculate_version.png)
 
-That output variable appears when I create the tag for my docker image.
+That output variable appears when I create the tag for my Docker image.
 
 ![Leveraging the calculate version step output variable when building the docker container](gh_action_create_docker_image.png)
 
@@ -246,22 +247,22 @@ The final step in my action is to create a release in Octopus.
 
 ![Creating the release in the GitHub Action](gh_action_create_release.png)
 
-GitHub’s syntax can be hard to decipher. Here;s what each of those options mean:
+GitHub’s syntax can be hard to decipher. Here's what each of those options mean:
 
-- **Project Name**: The name of the Project in Octopus. Pull from the environment variables defined earlier in the action. `${{ env.OCTOPUS\_PROJECT\_NAME }}`
-- **Channel**: The name of the Channel in that Project. When on the main branch use the release Channel, otherwise use the feature branch Channel. `${{ github.ref == 'refs/heads/main' && env.OCTOPUS\_RELEASE\_CHANNEL || env.OCTOPUS\_FEATURE\_BRANCH\_CHANNEL }}`
+- **Project Name**: The name of the project in Octopus. Pull from the environment variables defined earlier in the action. `${{ env.OCTOPUS\_PROJECT\_NAME }}`
+- **Channel**: The name of the channel in that project. When on the main branch use the release channel, otherwise use the feature branch channel. `${{ github.ref == 'refs/heads/main' && env.OCTOPUS\_RELEASE\_CHANNEL || env.OCTOPUS\_FEATURE\_BRANCH\_CHANNEL }}`
 - **Release Number**: The release number in Octopus. Uses the same GitVersion output variable as before. `"${{ env.GitVersion\_SemVer }}"`
 - **Package Version**: The version of each of the packages for the release. Uses the same GitVersion output variable as before. `"${{ env.GitVersion\_SemVer }}"`
-- **Git\_ref**: This is required for Projects with Config as Code enabled. Specifies the branch. `${{ (github.ref\_type == 'tag' && github.event.repository.default\_branch ) || (github.head\_ref || github.ref) }}`
-- **Git\_commit**: This is required for Projects with Config as Code enabled. The Git commit that triggered this action.   `${{ github.event.after || github.event.pull\_request.head.sha }}`
+- **Git\_ref**: This is required for projects with Config as Code enabled. Specifies the branch. `${{ (github.ref\_type == 'tag' && github.event.repository.default\_branch ) || (github.head\_ref || github.ref) }}`
+- **Git\_commit**: This is required for projects with Config as Code enabled. The Git commit that triggered this action.   `${{ github.event.after || github.event.pull\_request.head.sha }}`
 
 #### Pull Request action
 
-The Pull Request action has a single step: invoke the destroy infrastructure Runbook in Octopus when the PR is closed.
+The Pull Request action has a single step: invoke the **Destroy Application Infrastructure** runbook in Octopus when the PR gets closed.
 
 ![The github action that is invoked to destroy the temporary infrastructure when the pull request is closed](gh_action_pr_closed.png)
 
-The variables parameter is the critical parameter, which tells the runbook which feature branch to destroy. I wanted to invoke this runbook manually for testing, which is why you see ${{ github.head\_ref || github.ref }}. That tells the GitHub action to use the branch that created the PR. It uses the specified branch when manually invoking that action if it's not in a PR.
+The variables parameter is critical as it tells the runbook which feature branch to destroy. I wanted to invoke this runbook manually for testing, which is why you see `${{ github.head\_ref || github.ref }}`. That tells the GitHub action to use the branch that created the PR. It uses the specified branch when manually invoking that action if it's not in a PR.
 
 ### Kustomize overlays
 
@@ -296,7 +297,7 @@ After that's done, I see 2 new databases.
 
 ![Two new databases appear on the server](azure_sql_after_databases.png)
 
-As well as a new namespace.
+And a new namespace.
 
 ![Two new namespaces appear in the cluster](aks_after_namespaces.png)
 
@@ -308,7 +309,7 @@ After the PR gets approved and closed, the GitHub action triggers the runbook. 
 
 ![The github action to destroy the infrastructure](gh_actions_destroy_infrastructure.png)
 
-The namespace and databases get deleted and we can move on to the next feature branch!
+The namespace and databases get deleted and we can move on to the next feature branch.
 
 ## Limitations
 
@@ -325,13 +326,13 @@ There are known limitations and shortcuts when creating this process.  
 
 ## Conclusion
 
-Using the process in this post, you can create and destroy dynamic testing infrastructure for each feature branch. Depending on your use of Octopus, you might need only a few modifications to your existing configuration. Chances are you already have a lot of this configuration in place for different environments. That's what makes me so excited about it. Some minor modifications to an existing process and you can get it working. 
+Using the process in this post, you can create and destroy dynamic testing infrastructure for each feature branch. Depending on your use of Octopus, you might need only a few modifications to your existing configuration. Chances are you already have a lot of this configuration in place for different environments. That's what makes me so excited about it. Some minor changes to an existing process and you can get it working. 
 
 Before working on this post, every feature branch got deployed to a static development environment. That means I already had the channels and runbooks configured. I just needed to add some new variables and tweak my Kustomize overlay file.
 
 What's even more exciting is that you can apply this pattern to other application types if you can reuse other infrastructure, like ECS clusters, Windows servers, or Linux servers.
 
-You can find the [Git repository on GitHub](https://github.com/BobJWalker/Trident). You can also view the process on [my personal Cloud instance](https://bobjwalker.octopus.app/) - just login as a guest.
+You can find the [Git repository on GitHub](https://github.com/BobJWalker/Trident). You can also view the process on [my personal Cloud instance](https://bobjwalker.octopus.app/) – just log in as a guest.
 
 Please do note the limitations with what I proposed in this post.  If you implement this process, use this guide as a baseline. Take what works for you and modify where appropriate. You’ll likely need to iterate a few times before it works.
 
