@@ -1,5 +1,5 @@
 ---
-title: Whats new in Navigation UI
+title: Whats new in our Navigation UI
 description: An overview of the changes brought about by our navigation update.
 author: emily.pearce@octopus.com
 visibility: public
@@ -42,6 +42,6 @@ Our New Navigation UI has a handful of different ways of making it easier to fin
 
 ### The thinking behind the change
 
-Interested in the thinking behind this change. Read Re-envisioning our Navigation     
+Interested in the thinking behind this change. [Read Re-envisioning our Navigation](https://octopus.com/blog/redesigning-octopus-navigation)  
 
 
