@@ -21,7 +21,7 @@ Our New Navigation UI has a handful of different ways of making it easier to fin
 
 → Global Search is positioned more centrally
 
-image here
+![asdf](navigationfeatures.png)*asdf.*
 
 ## Projects Dashboard
 → Faster Loading ⚡️
@@ -30,7 +30,7 @@ image here
 
 → Filters for easier configuration
 
-image here
+![asdf](projectsdashboardfeatures.png)*asdf.*
 
 ## Modern theme 
 → We heard you! Dark mode and light mode stay true to their intended theme. 
@@ -39,7 +39,7 @@ image here
 
 Interested in the thinking behind this change. Read Re-envisioning our Navigation     
 
-
+![asdf](darklighttheme.png)*asdf.*
 
 ## Gaining more understanding
 
