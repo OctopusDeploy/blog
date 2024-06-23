@@ -21,7 +21,7 @@ Our New Navigation UI has a handful of different ways of making it easier to fin
 
 → Global Search is positioned more centrally
 
-![asdf](navigationfeatures.png)*asdf.*
+![Screen shot highlighting global search and favourite project feature on Octopus UI](navigationfeatures.png)
 
 ## Projects Dashboard
 → Faster Loading ⚡️
@@ -30,18 +30,18 @@ Our New Navigation UI has a handful of different ways of making it easier to fin
 
 → Filters for easier configuration
 
-![asdf](projectsdashboardfeatures.png)*asdf.*
+![Screen shot highlighting filters and collapsible columns](projectsdashboardfeatures.png)
 
 ## Modern theme 
 → We heard you! Dark mode and light mode stay true to their intended theme. 
 
 → No more SHOUTY capitalised buttons or tabs 😌  
 
+![Light and dark theme screenshots positioned side by side](darklighttheme.png)* Light vs Dark Theme*
+
+
+### The thinking behind the change
+
 Interested in the thinking behind this change. Read Re-envisioning our Navigation     
 
-![asdf](darklighttheme.png)*asdf.*
-
-## Gaining more understanding
-
-### Card sorting
 
