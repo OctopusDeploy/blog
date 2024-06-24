@@ -19,7 +19,7 @@ In this post, I give you a quick rundown of the navigation UI changes.
 ## Getting around 
 - Vertical navigation exposes the features you use to manage deployment projects
 
-- Favorited projects appears in the navigation, simply by clicking the star ⭐️ 
+- Favorited projects appear in the navigation, simply by clicking the star ⭐️ 
 
 - We've positioned global search more centrally
 
@@ -42,7 +42,7 @@ In this post, I give you a quick rundown of the navigation UI changes.
 
 - No more SHOUTY capitalized buttons or tabs 😌
 
-![Dark and light theme screenshots positioned side by side](darklighttheme.png)* Dark vs light theme*
+![Dark and light theme screenshots positioned side by side](darklighttheme.png)*Dark vs light theme*
 
 ### The thinking behind the changes
 
