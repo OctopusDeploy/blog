@@ -1,5 +1,5 @@
 ---
-title: Whats new in our Navigation UI
+title: "What's new in the Octopus navigation UI"
 description: An overview of the changes brought about by our navigation update.
 author: emily.pearce@octopus.com
 visibility: public
@@ -12,38 +12,46 @@ tags:
   - Product
 ---
 
-Our New Navigation UI has a handful of different ways of making it easier to find what you are looking for. A faster experience for our scale customers. And for everyone, modern dark / light themes that are more considered of accessibility.
+Our [new navigation UI](https://octopus.com/blog/redesigning-octopus-navigation) makes it easier to find what you're looking for in Octopus in a handful of different ways. It's also a faster experience for our scale customers. And for everyone, we've ensured modern dark and light themes that are more considerate of accessibility.
+
+In this post, I give you a quick rundown of the navigation UI changes.  
 
 ## Getting around 
-→ Vertical Navigation exposes features used to manage deploy projects
+- Vertical navigation exposes the features you use to manage deployment projects
 
-→ Favourited projects appears in the navigation, simply clicking the star ⭐️ 
+- Favorited projects appears in the navigation, simply by clicking the star ⭐️ 
 
-→ Global Search is positioned more centrally
+- We've positioned global search more centrally
 
 ![Screen shot highlighting global search and favourite project feature on Octopus UI](navigationfeatures3.png)
 
 
-## Projects Dashboard
-→ Faster Loading ⚡️
+## Projects dashboard
 
-→ Collapsible columns for better status visibility across complex projects
+- Faster loading ⚡️
 
-→ Filters for easier configuration
+- Collapsible columns for better status visibility across complex projects
+
+- Filters for easier configuration
 
 ![Screen shot highlighting filters and collapsible columns](projectsdashboardfeatures2.png)
 
 
 ## Modern theme 
-→ We heard you! Dark mode and light mode stay true to their intended theme. 
+- We heard you – dark mode and light mode stay true to their intended theme. 
 
-→ No more SHOUTY capitalised buttons or tabs 😌  
+- No more SHOUTY capitalized buttons or tabs 😌
 
-![Dark and light theme screenshots positioned side by side](darklighttheme.png)* Dark vs Light Theme*
+![Dark and light theme screenshots positioned side by side](darklighttheme.png)* Dark vs light theme*
 
+### The thinking behind the changes
 
-### The thinking behind the change
+If you're interested in the thinking behind these changes, please read our post about [redesigning the navigation in Octopus](https://octopus.com/blog/redesigning-octopus-navigation).
 
-Interested in the thinking behind this change. [Read Re-envisioning our Navigation](https://octopus.com/blog/redesigning-octopus-navigation)  
+## Conclusion
 
+Changes to the navigation are rolling out to Cloud instances in July.
 
+We're always keen to hear your feedback. Feel free to jump into the blog comments to share your thoughts about the new navigation.
+
+Happy deployments!
