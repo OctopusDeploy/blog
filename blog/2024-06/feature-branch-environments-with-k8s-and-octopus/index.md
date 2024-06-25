@@ -209,7 +209,8 @@ The deployment process calls the **Create Infrastructure** runbook and waits for
 
 ![Passing the branch name to the run a runbook step](run_a_runbook_step_process.png)
 
-:::hint I call this runbook for every environment because each night, I tear down all my infrastructure in Azure to save costs. In your deployment process, consider configuring this step to run for the Development environment only.
+:::hint
+I call this runbook for every environment because each night, I tear down all my infrastructure in Azure to save costs. In your deployment process, consider configuring this step to run for the Development environment only.
 :::
 
 Any steps that interact with the Kubernetes cluster use the namespace variable.
