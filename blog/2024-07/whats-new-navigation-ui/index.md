@@ -50,7 +50,7 @@ If you're interested in the thinking behind these changes, please read our post 
 
 ## Conclusion
 
-Changes to the navigation are rolling out to Cloud instances in July.
+Changes to the navigation are rolling out to Cloud instances in July. For our self-hosted customers, you can expect the update later in the year.
 
 We're always keen to hear your feedback. Feel free to jump into the blog comments to share your thoughts about the new navigation.
 
