@@ -3,12 +3,12 @@ title: Feature branch environments with Kubernetes and Octopus
 description: Creating dynamic environments inside of Kubernetes for feature branches with Octopus.
 author: bob.walker@octopus.com
 visibility: public
-published: 2024-06-26-1400
+published: 2024-07-08-1400
 metaImage: blogimage-kubernetes-spokes-2024.png
 bannerImage: blogimage-kubernetes-spokes-2024.png
 bannerImageAlt: Kubernetes icon surrounded by connection lines and circles.
 isFeatured: false
-tags: 
+tags:
   - DevOps
   - Kubernetes  
   - GitHub Actions
@@ -61,14 +61,14 @@ The rules for this process are:
 
 1. Feature branches:
    1. Deploy to temporary environments.
-   2. The namespaces and database are temporary, and the Kubernetes cluster and SQL Server are static.
+   1. The namespaces and database are temporary, and the Kubernetes cluster and SQL Server are static.
    3. Every code check-in on a feature branch triggers a new build. 
-   4. The built artifact is only deployed to temporary environments. Tag each build artifact with a pre-release tag.
+   3. The built artifact is only deployed to temporary environments. Tag each build artifact with a pre-release tag.
    5. Delete the temporary environment when a pull request gets closed.
 2. Main branch:
    1. The main branch deploys to static environments, at least one test environment, and production.
-   2. A new build occurs for every code check-in on the main branch.  
-   3. The built artifact gets deployed to static testing environments and production.
+   1. A new build occurs for every code check-in on the main branch.  
+   1. The built artifact gets deployed to static testing environments and production.
 
 ## Build from main once, deploy everywhere
 
@@ -145,7 +145,6 @@ I do this because when I create the release for the feature branch, I have acces
 
 Also, if I need to make changes to _how I deploy_ with the feature branch, I can do all the work in the branch and include the code changes, database changes, and deployment process changes in the same pull request.  
 
-
 #### Channels
 
 My project has 2 channels, one for each of the above lifecycles. The channels have version rules to enforce the pre-release tag rule from the versioning strategy section.
@@ -179,14 +178,13 @@ The **Destroy Application Infrastructure** runbook does the opposite; it deletes
 
 ![Runbook process to destroy the backend infrastructure](destroy_infrastructure.png)
 
-
 #### Variables
 
 The variables are the key to this entire process in Octopus. You have to come up with a naming convention that uses the feature branch name for this to work. I'll include a formatted feature branch name for anything specific to the Development environment.
 
 :::warning
 You must format the branch name, as SQL Server and Kubernetes might not like specific characters. 
-::: 
+:::
 
 I've highlighted the key variables in my process below.
 
@@ -201,7 +199,6 @@ The variables are:
 - **Project.Database.Name**: Used by the database deploy steps and connection strings to determine the application's database name. For the Development environment, I included `#{Project.Formatted.Branch.Name}`.
 - **Project.Database.Check.Name**: Used by the Flyway steps for deployments as a temporary database. If you aren't using Flyway, you won't need this variable. For the Development environment, I included `#{Project.Formatted.Branch.Name}`.
 - **Project.URL.Local**: Specifies the domain for Kubernetes Ingress. I had to modify my Kustomize overlay file in Dev and inject [Octostache](https://octopus.com/docs/projects/variables/variable-substitutions). While I prefer not to do that, ts was an appropriate compromise, as it was limited to the Dev overlay only.
-
 
 #### Deployment process
 
@@ -275,7 +272,6 @@ All the other overlays do not have Octostache, as those are static environments.
 
 ![The prod overlay file without Octostache](kustomize_overlays_prod.png)
 
-
 ## See it in action
 
 On my AKS Cluster, I have the following namespaces:
@@ -320,8 +316,8 @@ There are known limitations and shortcuts when creating this process.  
 - This process assumes you have a development / testing Kubernetes cluster where you can create and destroy namespaces with impunity.
 - There are a few environmental configuration items. If you use a configuration or secret store, you need additional configuration.
 - The application has no external dependencies. If your application has external dependencies, your options are:
-  - Point to services running on a static testing environment.
-  - Create all the external dependencies for each feature branch.
+   - Point to services running on a static testing environment.
+   - Create all the external dependencies for each feature branch.
 - The build server (in my case, GitHub Actions) is more tightly coupled with the deployment server. It's aware of different channels and runbooks.
 - The deployment dashboard in the Octopus project only shows the last 3 successful deployments to an environment. If I had many feature branches in flight, I'd need to go to the project's releases page to see the latest deployment for my branch.
 
