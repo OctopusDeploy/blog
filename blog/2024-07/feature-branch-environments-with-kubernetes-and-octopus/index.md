@@ -247,12 +247,12 @@ The final step in my action is to create a release in Octopus.
 
 GitHub's syntax can be hard to decipher. Here's what each of those options mean:
 
-- **Project Name**: The name of the project in Octopus. Pull from the environment variables defined earlier in the action. `${{ env.OCTOPUS\_PROJECT\_NAME }}`
-- **Channel**: The name of the channel in that project. When on the main branch use the release channel, otherwise use the feature branch channel. `${{ github.ref == 'refs/heads/main' && env.OCTOPUS\_RELEASE\_CHANNEL || env.OCTOPUS\_FEATURE\_BRANCH\_CHANNEL }}`
-- **Release Number**: The release number in Octopus. Uses the same GitVersion output variable as before. `"${{ env.GitVersion\_SemVer }}"`
-- **Package Version**: The version of each of the packages for the release. Uses the same GitVersion output variable as before. `"${{ env.GitVersion\_SemVer }}"`
-- **Git\_ref**: This is required for projects with Config as Code enabled. Specifies the branch. `${{ (github.ref\_type == 'tag' && github.event.repository.default\_branch ) || (github.head\_ref || github.ref) }}`
-- **Git\_commit**: This is required for projects with Config as Code enabled. The Git commit that triggered this action.   `${{ github.event.after || github.event.pull\_request.head.sha }}`
+- **name**: The name of the project in Octopus. Pull from the environment variables defined earlier in the action. `${{ env.OCTOPUS\_PROJECT\_NAME }}`
+- **channel**: The name of the channel in that project. When on the main branch use the release channel, otherwise use the feature branch channel. `${{ github.ref == 'refs/heads/main' && env.OCTOPUS\_RELEASE\_CHANNEL || env.OCTOPUS\_FEATURE\_BRANCH\_CHANNEL }}`
+- **release_number**: The release number in Octopus. Uses the same GitVersion output variable as before. `"${{ env.GitVersion\_SemVer }}"`
+- **package_version**: The version of each of the packages for the release. Uses the same GitVersion output variable as before. `"${{ env.GitVersion\_SemVer }}"`
+- **git_ref**: This is required for projects with Config as Code enabled. Specifies the branch. `${{ (github.ref\_type == 'tag' && github.event.repository.default\_branch ) || (github.head\_ref || github.ref) }}`
+- **git_commit**: This is required for projects with Config as Code enabled. The Git commit that triggered this action.   `${{ github.event.after || github.event.pull\_request.head.sha }}`
 
 #### Pull Request action
 
