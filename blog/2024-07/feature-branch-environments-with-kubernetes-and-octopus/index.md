@@ -14,7 +14,7 @@ tags:
   - GitHub Actions
 ---
 
-One of the challenges with short-lived feature branches is testing and getting feedback before merging into the main branch. Creating and deploying to short-lived infrastructure solves this problem. But, it can be challenging to build and eventually destroy that infrastructure. 
+A challenge with short-lived feature branches is testing and getting feedback before merging into the main branch. Creating and deploying to short-lived infrastructure solves this problem. But, it can be challenging to build and eventually destroy that infrastructure. 
 
 In this post, I explain how to create and destroy dynamic testing infrastructure for feature branch environments with Kubernetes and Octopus. 
 
