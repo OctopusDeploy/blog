@@ -62,9 +62,9 @@ The rules for this process are:
 1. Feature branches:
    1. Deploy to temporary environments.
    1. The namespaces and database are temporary, and the Kubernetes cluster and SQL Server are static.
-   3. Every code check-in on a feature branch triggers a new build. 
-   3. The built artifact is only deployed to temporary environments. Tag each build artifact with a pre-release tag.
-   5. Delete the temporary environment when a pull request gets closed.
+   1. Every code check-in on a feature branch triggers a new build. 
+   1. The built artifact is only deployed to temporary environments. Tag each build artifact with a pre-release tag.
+   1. Delete the temporary environment when a pull request gets closed.
 2. Main branch:
    1. The main branch deploys to static environments, at least one test environment, and production.
    1. A new build occurs for every code check-in on the main branch.  
