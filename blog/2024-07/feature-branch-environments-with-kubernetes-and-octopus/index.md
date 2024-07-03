@@ -92,9 +92,11 @@ Rebuilding from the main branch after each check-in follows the "build once, dep
 
 I'm using Kubernetes hosted on Azure (AKS) to host my application and Azure SQL for my database. I reuse the same AKS Cluster and Azure SQL Server for the dynamic infrastructure. I'm using GitHub Actions as my build server.
 
-:::warning
+<div class="alert alert-warning">
+
 This workflow should work with any application host you can re-use, like ECS clusters, Windows, or Linux. It's much more difficult when you can't reuse the same app hosts, like Azure Web Apps or other PaaS-hosted applications. 
-:::  
+
+</div>
 
 ### Versioning strategy
 
@@ -124,9 +126,11 @@ We need to configure 2 lifecycles:
 - One with development only
 - One with the remaining environments
 
-:::hint
+<div class="alert alert-info">
+
 I configure both lifecycles to auto deploy releases for the first environment. This is so I don't have to add a **Deploy release** step in my build servers. As an added bonus, I don't have to click **Deploy** after creating a release via the UI either.
-:::
+
+</div>
 
 ![Creating two lifecycles, one for feature branches, the other for the main branch](lifecycles.png)
 
@@ -168,9 +172,11 @@ My application has 2 components:
 
 The infrastructure creates a namespace for the web application in Kubernetes and the databases in Azure SQL.
 
-:::hint
+<div class="alert alert-info">
+
 You'll notice the **Check Database** and **Run Script** for the databases. Flyway requires the check database to perform the deployment. The **Run Script** step for the databases ensures I can run a basic "select 1" query on the database. The process of creating infrastructure will likely differ.
-:::
+
+</div>
 
 ![Runbook process to create the backend infrastructure](create_infrastructure_backend.png) 
 
@@ -182,9 +188,11 @@ The **Destroy Application Infrastructure** runbook does the opposite; it deletes
 
 The variables are the key to this entire process in Octopus. You have to come up with a naming convention that uses the feature branch name for this to work. I'll include a formatted feature branch name for anything specific to the Development environment.
 
-:::warning
+<div class="alert alert-warning">
+
 You must format the branch name, as SQL Server and Kubernetes might not like specific characters. 
-:::
+
+</div>
 
 I've highlighted the key variables in my process below.
 
@@ -206,9 +214,11 @@ The deployment process calls the **Create Infrastructure** runbook and waits for
 
 ![Passing the branch name to the run a runbook step](run_a_runbook_step_process.png)
 
-:::hint
+<div class="alert alert-info">
+
 I call this runbook for every environment because each night, I tear down all my infrastructure in Azure to save costs. In your deployment process, consider configuring this step to run for the Development environment only.
-:::
+
+</div>
 
 Any steps that interact with the Kubernetes cluster use the namespace variable.
 
