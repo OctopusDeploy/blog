@@ -101,7 +101,7 @@ This workflow should work with any application host you can re-use, like ECS clu
 The versioning strategy of the build artifacts is critical to this workflow.  
 
 - Feature branches: Have a pre-release tag, for example, [4.0.70-demo.2](https://hub.docker.com/layers/bobjwalker99/trident/4.0.70-demo.2/images/sha256-d9ac568c45cfea37a55039371c141f293b703e0cf59e98adf0e6add512b633eb?context=explore). The .2 at the end represents the build number.
-- Main branch: Has no pre-release tag, for example, [4.0.69](https://hub.docker.com/layers/bobjwalker99/trident/4.0.69).
+- Main branch: Has no pre-release tag, for example, [4.0.69](https://hub.docker.com/layers/bobjwalker99/trident/4.0.69/images/sha256-3180984f2a121cc01d7b72e7ba6aec86b629fdbf46caeebfcc8cbf85ca91c17c?context=explore).
 
 The build server is responsible for creating the version number for the build artifacts. I cover that later in the build server configuration.
 
