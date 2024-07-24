@@ -51,7 +51,7 @@ You can read more details in the [documentation](https://octopus.com/docs/infras
 
 ### Custom Octopus Server certificates
 
-Many customers who self-host Octopus Server use a custom SSL certificate or Certificate Authority (CA) chain for their Octopus Server instance. During installation, the Kubernetes agent self-registers with Octopus Server. When a using a custom certificate or CA chain, registration fails.
+Many customers who self-host Octopus Server use a custom SSL certificate or Certificate Authority (CA) chain for their Octopus Server instance. During installation, the Kubernetes agent self-registers with Octopus Server. When using a custom certificate or CA chain, registration fails.
 
 Version 1.7.0 of the Kubernetes agent added support for custom certificate/CA chains via the `agent.serverCertificate` Helm value.
 
@@ -59,7 +59,7 @@ You can read more details in the [documentation](https://octopus.com/docs/infras
 
 ### Image pull secrets
 
-Customers reported they were being rate-limited by Docker Hub when executing deployments. The Helm chart already supported the imagePullSecrets value, but these values weren't used when configuring the pods used for deployments.
+Customers reported they were being rate-limited by Docker Hub when executing deployments. The Helm chart already supported the `imagePullSecrets` value, but these values weren't used when configuring the pods used for deployments.
 
 Version 1.9.0 of the Kubernetes agent fixed this by passing configured `imagePullSecrets` to script pods.
 
