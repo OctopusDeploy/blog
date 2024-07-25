@@ -1,5 +1,5 @@
 ---
-title: Kubernetes agent general availability
+title: Kubernetes agent now generally available
 description: The Kubernetes agent is generally available.
 author: alastair.pitts@octopus.com
 visibility: public
