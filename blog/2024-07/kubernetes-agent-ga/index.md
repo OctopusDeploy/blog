@@ -15,7 +15,7 @@ tags:
 
 We released the Kubernetes agent in Octopus Server 2024.2 as an early access preview (EAP). While we were very confident in the functionality and stability of the agent, we were also aware of the variations in Kubernetes deployments and infrastructure. These variations can impact installation, execution, and stability of the agent.
 
-We had excellent uptake of the agent during the early access period. More than 25 customers used the agent and over half of them used it for production deployments. These customers deployed more than 225,000 times using the agent.
+We had excellent uptake of the agent during the early access period. More than 25 customers regularly deployed with the agent and over half of them used it for production deployments. These customers deployed more than 225,000 times using the agent.
 
 We've released more than 20 updates to the Kubernetes agent since releasing it. These updates have improved the installation process, increased stability, and allowed for more customization of the agent's Kubernetes configuration.
 
