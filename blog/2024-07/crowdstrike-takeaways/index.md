@@ -129,7 +129,7 @@ Once a Rapid Response Content file is made available in Crowdstrike’s Cloud, c
 
 When talking to our director of security, he said his laptop suddenly got a BSOD around 2:30 PM Friday, Australia time.  He rebooted the machine, and it threw another BSOD.  Around that time, our cloud platform engineers noticed our Windows Dynamic Workers crashing.  And then several of our cloud platform engineers starting getting BSOD.  Thankfully, we have a mix of Mac and Windows users (with some Linux sprinkled in between).  
 
-Once Crowdstrike removed the offending file, our Windows Dynamic Workers started working shortly after as they were no longer trying to download that file.  We are fortunate as we automatically destroy and recreate our Windows Dynamic Workers.  But our laptops required booting into safe mode and removing the offending file.
+Once Crowdstrike removed the offending file, and thanks to the quick actions of our Cloud Platform Team incident response, our Windows Dynamic Workers started working.  We are fortunate as we automatically destroy and recreate our Windows Dynamic Workers.  But our laptops required booting into safe mode and removing the offending file.
 
 What’s scary is both servers and workstations started throwing BSOD around the same time.  In our case, some of the people who were trying to fix the Windows Dynamic Workers couldn’t help initially. 
 
@@ -138,8 +138,8 @@ A phased rollout is a requirement for mission-critical applications. Unfortunate
 A phased rollout is not feasible or the best solution for many applications. Three canary-style deployment approaches are available.
 
 1. **Traffic-Based:** Deploy to a subset of servers or a new set of servers and route a percentage of traffic to the new version.  Ideal for transactional-style applications or back-end services.  
-1. **Feature Toggles:** These deploy to all servers and expose new functionality to a subset of users via a feature flag. They are ideal for applications with user interfaces or when users are required to log in.  
-1. **Pilot Customers/Locations:** Deploy the latest code to a subset of locations (such as restaurants, factories, stores, bank branches, etc.)., or to a subset of customers.  It is ideal when the customer/location has dedicated infrastructure.
+2. **Feature Toggles:** These deploy to all servers and expose new functionality to a subset of users via a feature flag. They are ideal for applications with user interfaces or when users are required to log in.  
+3. **Pilot Customers/Locations:** Deploy the latest code to a subset of locations (such as restaurants, factories, stores, bank branches, etc.)., or to a subset of customers.  It is ideal when the customer/location has dedicated infrastructure.
 
 You can combine feature toggles with traffic-based or pilot-based approaches.  For Octopus Cloud, we opt for a combination of feature toggles and pilot customers.  The customers are selected at random for a specific maintenance window timeframe.  But we might put new functionality behind a feature toggle.  Our new user interface already exists on all our cloud customer instances.  But we are slowly rolling that out using feature toggles.
 
