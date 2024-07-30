@@ -39,7 +39,7 @@ Octopus Server can run in High Availability mode, but the initial release of the
 
 Version 1.2.0 of the Kubernetes agent added the ability to specify multiple `agent.serverCommsAddresses` in the Helm values file. This allows the agent to connect to HA clusters.
 
-You can read more details in the [documentation](https://octopus.com/docs/infrastructure/deployment-targets/kubernetes/kubernetes-agent/ha-cluster-support).
+You can read more details in our [documentation about HA cluster support](https://octopus.com/docs/infrastructure/deployment-targets/kubernetes/kubernetes-agent/ha-cluster-support).
 
 ### Tenant support
 
@@ -47,7 +47,7 @@ Octopus Server can scope deployment targets to specific tenants. This means Octo
 
 Version 1.4.0 of the Kubernetes agent added the ability to specify the tenant or tenant tags via Helm values.
 
-You can read more details in the [documentation](https://octopus.com/docs/infrastructure/deployment-targets/kubernetes/kubernetes-agent#configuring-the-agent-with-tenants).
+Learn more in our [docs about configuring the agent with tenants](https://octopus.com/docs/infrastructure/deployment-targets/kubernetes/kubernetes-agent#configuring-the-agent-with-tenants).
 
 ### Custom Octopus Server certificates
 
@@ -55,7 +55,7 @@ Many customers who self-host Octopus Server use a custom SSL certificate or Cert
 
 Version 1.7.0 of the Kubernetes agent added support for custom certificate/CA chains via the `agent.serverCertificate` Helm value.
 
-You can read more details in the [documentation](https://octopus.com/docs/infrastructure/deployment-targets/kubernetes/kubernetes-agent#trusting-custominternal-octopus-server-certificates).
+You can read more in our [documentation about certificates](https://octopus.com/docs/infrastructure/deployment-targets/kubernetes/kubernetes-agent#trusting-custominternal-octopus-server-certificates).
 
 ### Image pull secrets
 
@@ -65,7 +65,7 @@ Version 1.9.0 of the Kubernetes agent fixed this by passing configured `imagePul
 
 ## What’s next?
 
-Now the Kubernetes agent is GA, we're focussing on another use-case for the agent – using it as a generic worker.
+Now the Kubernetes agent is GA, we're focusing on another use-case for the agent – using it as a generic worker.
 
 Many customers told us they'd like to run Octopus Tentacle workers in Kubernetes clusters. They want to take advantage of Kubernetes cluster auto-scaling and simplicity of management.
 
