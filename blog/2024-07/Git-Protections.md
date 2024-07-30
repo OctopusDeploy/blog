@@ -41,6 +41,16 @@ Octopus supports storing the deployment process and variables for a project in a
 Rules for the project repository for version controlled projects allow you to configure which branches and tags can be used as the source of the deployment process and variables when creating a release. This helps ensure that only approved processes and variables are used during deployments to protected environments such as Production.
 <img width="968" alt="project-repository" src="https://github.com/user-attachments/assets/d179bf11-b015-488e-8f26-6dc8a79309f0">
 
+## Conclusion
 
-For more information on Git Protection Rules [please read our documentation](https://octopus.com/docs/releases/channels). 
+The additon of Git Protections is being rolled out to Cloud instances from late July. If you are a self-hosted customer, you can expect this feature later in the year.
+
+We are always happy to hear feedback. Feel free to jump into the blog comments to share your thoughts.
+
+## Learn More
+- [Git Protections documentation](https://octopus.com/docs/releases/channels)
+
+Happy deployments!
+
+
  
