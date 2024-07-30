@@ -4,9 +4,9 @@ description: Lessons and takeaways we can learn from Crowdstrike's outage to app
 author: bob.walker@octopus.com
 visibility: public
 published: 2024-12-31
-metaImage: 
-bannerImage: 
-bannerImageAlt: 
+metaImage: blogimage-bestpracticecicd-2022.png
+bannerImage: blogimage-bestpracticecicd-2022.png
+bannerImageAlt: Person with a checklist stands in front of DevOps infinity symbol.
 isFeatured: false
 tags:
   - DevOps  
