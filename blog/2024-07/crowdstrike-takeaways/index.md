@@ -18,11 +18,11 @@ David Plummer released several videos about the incident:
 
 - [Crowdstrike IT outage explained by a Windows developer](https://www.youtube.com/watch?v=wAzEJxOo1ts)
 - The follow-up [Crowdstrike update: Lessons learned from a Microsoft engineer](https://www.youtube.com/watch?v=ZHrayP-Y71Q)
-- And he read Crowdstrike’s [preliminary post incident review](https://www.crowdstrike.com/blog/falcon-content-update-preliminary-post-incident-report/) (PIR) 
+- And he read Crowdstrike’s [preliminary post-incident review](https://www.crowdstrike.com/blog/falcon-content-update-preliminary-post-incident-report/) (PIR) 
 
 Watching these videos raises a deeper philosophical discussion about third-party kernel drivers. While perfectly valid, I’m neither expert nor qualified to discuss that topic. 
 
-This post isn't  about what Crowdstrike should have done. Instead, I use the video resources to provide context and takeaways we can apply to our teams and organizations. 
+This post isn't about what Crowdstrike should have done. Instead, I use the resources to provide context and takeaways we can apply to our teams and organizations. 
 
 ## Background context
 
