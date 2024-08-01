@@ -22,6 +22,8 @@ You'll also find some helpful links and information on the [PR template](https:/
 
 # How to submit a blog post 
 
+For specific instructions, please see the section on [creating a new branch, pull request, and blog post in Confluence](https://octopushq.atlassian.net/wiki/spaces/MAR/pages/2828959895/Managing+the+blog#Creating-a-new-branch%2C-pull-request%2C-and-blog-post).
+
 Internal authors can create a branch for their work, external authors need to fork the repo.
 
 Posts are organized in year-month directories (i.e., 2023-01/). Find or create the directory that is roughly when your post is going out and add your files there. 
