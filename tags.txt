@@ -37,6 +37,7 @@ Linux
 Microservices
 Multi-Tenancy
 Octopus Cloud
+Performance
 Platform Engineering
 PowerShell
 Reporting
