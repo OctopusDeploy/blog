@@ -10,6 +10,7 @@ bannerImageAlt: People getting feedback on current experience and person envisio
 isFeatured: false
 tags: 
   - Product
+  - Performance
 ---
 
 Our new navigation UI, rolling out to Cloud customers in July, makes it easier to find what you're looking for in Octopus in a handful of different ways. It's also a faster experience for our scale customers. And for everyone, we've ensured modern dark and light themes that are more considerate of accessibility.
