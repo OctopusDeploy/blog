@@ -17,7 +17,7 @@ At Octopus, we're continuously enhancing our tools to better support your Git-ba
 
 In this post, I walk you through our new Git protections.
 
-## Introducting Git protections
+## Why we're adding Git protections
 
 In recent years, Octopus has introduced many features to streamline interaction with Git repositories (repos). This includes Config as Code, and the ability to source files from external Git repos and the project repository used in version-controlled projects. While these features have empowered users to integrate Git resources seamlessly into their deployment processes, they've also highlighted the need for better protections. 
 
