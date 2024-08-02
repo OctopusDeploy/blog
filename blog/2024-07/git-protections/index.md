@@ -4,8 +4,8 @@ description: Git potections add an extra layer of protection when deploying your
 author: harriet.alexander@octopus.com
 visibility: public
 published: 2024-08-05-1400
-metaImage: img-blog-octopus-k8-2024.png
-bannerImage: img-blog-octopus-k8-2024.png
+metaImage: blog-gitprotections-750x400px.png
+bannerImage: blog-gitprotections-750x400px.png
 bannerImageAlt: Git connected to locked channels for deployment.
 isFeatured: false
 tags: 
