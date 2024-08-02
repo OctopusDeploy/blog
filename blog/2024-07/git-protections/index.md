@@ -35,7 +35,7 @@ Octopus supports sourcing files from an external Git repo configured on the step
 
 External repository rules let you configure which branches and tags people can use for these steps when creating a release. This ensures that only approved Git resources get used during a deployment to protected environments such as production.
 
-<img width="968" alt="external-repository-rules" src="https://github.com/user-attachments/assets/eabf2b8b-6620-4bd5-862c-70b9089d9839">
+![External repo rules in Octopus](external-repository-rules.png)
 
 #### Project repository rules 
 
@@ -43,7 +43,7 @@ Octopus supports storing the deployment process and variables for a project in a
 
 Rules for the project repository for version-controlled projects let you configure which branches and tags people can use as the source of the deployment process and variables when creating a release. This helps ensure that only approved processes and variables get used during deployments to protected environments such as production.
 
-<img width="968" alt="project-repository" src="https://github.com/user-attachments/assets/d179bf11-b015-488e-8f26-6dc8a79309f0">
+![Project repo section in Octopus](project-repository.png)
 
 ## Conclusion
 
