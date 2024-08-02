@@ -39,7 +39,7 @@ External repository rules let you configure which branches and tags people can u
 
 #### Project repository rules 
 
-Octopus supports storing the deployment process and variables for a project in a Git repository. This enables you to use the power of Git branches and tags to manage and iterate on the steps within a deployment. 
+Octopus supports storing the deployment process and variables for a project in a Git repo. This enables you to use the power of Git branches and tags to manage and iterate on the steps within a deployment. 
 
 Rules for the project repository for version-controlled projects let you configure which branches and tags people can use as the source of the deployment process and variables when creating a release. This helps ensure that only approved processes and variables get used during deployments to protected environments such as production.
 
@@ -51,8 +51,8 @@ The additon of Git protections is rolling out to Cloud instances from late July 
 
 We're always happy to hear feedback. Feel free to jump in to the blog comments to share your thoughts.
 
-## Learn More
+## Learn more
 
-- [Git protections documentation](https://octopus.com/docs/releases/channels#git-protection-rules)
+- Read about [Git protections in our docs](https://octopus.com/docs/releases/channels#git-protection-rules)
 
 Happy deployments!
