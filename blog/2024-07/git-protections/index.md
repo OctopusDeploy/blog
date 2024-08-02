@@ -1,6 +1,6 @@
 ---
 title: Introducing Git protections
-description: Git potections add an extra layer of protection when deploying your code. They make sure the right resources get deployed to the right environments.
+description: Git protections add an extra layer of protection when deploying your code. They make sure the right resources get deployed to the right environments.
 author: harriet.alexander@octopus.com
 visibility: public
 published: 2024-08-05-1400
@@ -47,7 +47,7 @@ Rules for the project repository for version-controlled projects let you configu
 
 ## Conclusion
 
-The additon of Git protections started rolling out to Cloud instances from late July 2024. Our self-hosted customers can expect this feature later in the year.
+The addition of Git protections started rolling out to Cloud instances in late July 2024. Our self-hosted customers can expect this feature later in the year.
 
 We're always happy to hear feedback. Feel free to jump in to the blog comments to share your thoughts.
 
