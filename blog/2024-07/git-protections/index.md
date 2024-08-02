@@ -47,7 +47,7 @@ Rules for the project repository for version-controlled projects let you configu
 
 ## Conclusion
 
-The additon of Git protections is rolling out to Cloud instances from late July 2024. Our self-hosted customers can expect this feature later in the year.
+The additon of Git protections started rolling out to Cloud instances from late July 2024. Our self-hosted customers can expect this feature later in the year.
 
 We're always happy to hear feedback. Feel free to jump in to the blog comments to share your thoughts.
 
