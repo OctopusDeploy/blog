@@ -1,5 +1,5 @@
 ---
-title: Git protections 
+title: Introducing Git protections
 description: Git potections add an extra layer of protection when deploying your code. They make sure the right resources get deployed to the right environments.
 author: harriet.alexander@octopus.com
 visibility: public
