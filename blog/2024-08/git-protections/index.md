@@ -33,7 +33,7 @@ You may wonder how this helps when you already have version rules in place for y
 
 Octopus supports sourcing files from an external Git repo configured on the step. This enables scenarios like storing scripts or Kubernetes manifests in a repository for use during a deployment.
 
-External repository rules let you configure which branches and tags people can use for these steps when creating a release. This ensures that only approved Git resources get used during a deployment to protected environments such as production.
+External repository rules let you configure which branches and tags people can use for these steps when creating a release. This ensures that only approved Git resources get used during a deployment to protected environments like production.
 
 ![External repo rules in Octopus](external-repository-rules.png)
 
@@ -53,6 +53,6 @@ We're always happy to hear feedback. Feel free to jump in to the blog comments t
 
 ## Learn more
 
-- Read about [Git protections in our docs](https://octopus.com/docs/releases/channels#git-protection-rules)
+Read about [Git protections in our docs](https://octopus.com/docs/releases/channels#git-protection-rules).
 
 Happy deployments!
