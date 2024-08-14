@@ -8,11 +8,10 @@ metaImage: to-be-added-by-marketing
 bannerImage: to-be-added-by-marketing
 bannerImageAlt: 125 characters max, describes image to people unable to see it.
 isFeatured: false
-tags: <!-- see https://github.com/OctopusDeploy/blog/blob/master/tags.txt for a comprehensive list of tags -->
- - DevOps
- - Company
- - Product
- - Engineering
+tags: 
+ - AWS
+ - Kubernetes
+ - Getting Started
 ---
 
 I recently worked with a customer to configure the [Octopus Kubernetes Agent](https://octopus.com/docs/kubernetes/targets/kubernetes-agent) on an AWS Elastic Kubernetes Service (EKS) cluster.  The Octopus Kubernetes Agent requires a [storage class](https://kubernetes.io/docs/concepts/storage/storage-classes/) to provide volumes so it has a file system to work with. The customer wanted to use the Elastic File System (EFS) for the storage class.  I couldn't find a walkthrough which describes the steps necessary to configure EFS to work with EKS and instead had to rely on a combination of AWS documentation and blog posts to get it configured.  This led to a frustrating amount of incremental successes as I went from brick wall to brick wall trying to get the two technologies to work together.  This blog post is covers what is required to connect the two technologies in a single location so you don't have to struggle like I did.
