@@ -4,11 +4,12 @@ description: Learn how to connect EFS storage to an EKS cluster and configure it
 author: shawn.sesna@octopus.com
 visibility: private
 published: 3020-01-01
-metaImage: to-be-added-by-marketing
-bannerImage: to-be-added-by-marketing
-bannerImageAlt: 125 characters max, describes image to people unable to see it.
+metaImage: blogimage-deploymentscreatingaeksclusterinaws-2022.png
+bannerImage: blogimage-deploymentscreatingaeksclusterinaws-2022.png
+bannerImageAlt: EKS hexagons falling into an AWS-styled cube
 isFeatured: false
 tags: 
+ - DevOps
  - AWS
  - Kubernetes
  - Getting Started
