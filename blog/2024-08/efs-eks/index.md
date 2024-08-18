@@ -3,7 +3,7 @@ title: How to connect an EFS storage class to an EKS cluster
 description: Learn how to connect EFS storage to an EKS cluster and configure it as a storage class.
 author: shawn.sesna@octopus.com
 visibility: private
-published: 2024-08-
+published: 2024-08-21-1400
 metaImage: blogimage-deploymentscreatingaeksclusterinaws-2022.png
 bannerImage: blogimage-deploymentscreatingaeksclusterinaws-2022.png
 bannerImageAlt: EKS hexagons falling into an AWS-styled cube
