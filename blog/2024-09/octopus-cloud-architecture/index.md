@@ -59,7 +59,7 @@ At the other end of the spectrum, hundreds of instances can run on a single reef
 
 Finally, we have a few options in between these 2 extremes. For example, a busy Cloud instance will have dedicated resources assigned to its database but more than likely it will share its K8s cluster and storage account with other instances.
  
-The fact that each Cloud instance has its own database and a file share, allows us to use built-in Azure tools for managing backup and restore processes.
+Each Cloud instance has its own database and a file share, which allows us to use built-in Azure tools for managing backup and restore processes.
 
 ### Design for gradual rollouts
 
@@ -69,9 +69,9 @@ The decision to provision a dedicated file share and a database for each Cloud i
 
 ### Scalable by default
 
-This is again where cell-based architecture shines. We can scale the the infrastructure of Octopus Cloud easily by adding new reefs. As a side note, we can also assign individual resources limits to each Cloud instance.
+This is again where cell-based architecture shines. We can scale the infrastructure of Octopus Cloud easily by adding new reefs. As a side note, we can also assign individual resource limits to each Cloud instance.
 
-Fun fact. We had an event a few years ago where Octopus Cloud doubled the number of active Cloud instances within 48-72 hours, and nothing broke. No existing customers were affected and Octopus simply paid a higher hosting bill that month.
+Fun fact. We had an event a few years ago when Octopus Cloud doubled the number of active Cloud instances within 48-72 hours, and nothing broke. No existing customers were affected and Octopus simply paid a higher hosting bill that month.
 
 ### Avoid temporal coupling
 
@@ -85,7 +85,7 @@ In the context of [CAP theorem](https://en.wikipedia.org/wiki/CAP_theorem), Octo
 
 ### Use officially supported APIs only
 
-Octopus Cloud glues together several 3rd party services using their APIs. This might sound like an obvious choice. That said, we’ve extended this approach also to interactions with internal services and Octopus Server itself. For example, if Octopus Cloud needs to provide a configuration value to a Cloud instance for a configuration setting which isn't exposed via an public API, then we will add a new API and won't modify this setting directly in the database.
+Octopus Cloud glues together several 3rd party services using their APIs. This might sound like an obvious choice. That said, we’ve extended this approach also to interactions with internal services and Octopus Server itself. For example, if Octopus Cloud needs to provide a configuration value to a Cloud instance for a configuration setting that isn't exposed via a public API, then we will add a new API and won't modify this setting directly in the database.
 
 Fun fact: After years of using APIs from major service and Cloud providers, we've learnt that very few of them follow [SemVer](https://semver.org/), and changes to runtime characteristics (e.g., a synchronous operation becomes asynchronous and vice versa) happen all the time and without any notice. 
 
@@ -101,12 +101,10 @@ Cell-based architecture requires a considerable effort to be implemented properl
 
 ### Hidden shared parts
 
-In the real world, nothing can be 100% isolated :). In the Octopus Cloud case, DNS plays the role of the connecting tissue.
+If you found yourself thinking that there must be something connecting all these independent  parts then you are right. In the real world, nothing can be 100% isolated :). In Octopus Cloud's case, it's the DNS that plays the role of the connective tissue.
 
 ## Conclusion
 
-Cell-based architecture is the corner stone of the reliability and scalability of Octopus Cloud. 
-
-Has this post left you with some unanswered questions? If so, please ask them in the comments section below.
+Cell-based architecture is the corner stone of the reliability and scalability of Octopus Cloud and this post tries to provide a high-level overview it. If this post left you with some unanswered questions, then please ask them in the comments section below.
 
 Happy deployments!
