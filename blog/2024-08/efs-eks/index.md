@@ -2,8 +2,8 @@
 title: How to connect an EFS storage class to an EKS cluster
 description: Learn how to connect EFS storage to an EKS cluster and configure it as a storage class.
 author: shawn.sesna@octopus.com
-visibility: private
-published: 2024-08-21-1400
+visibility: public
+published: 2024-08-19-1400
 metaImage: blogimage-deploymentscreatingaeksclusterinaws-2022.png
 bannerImage: blogimage-deploymentscreatingaeksclusterinaws-2022.png
 bannerImageAlt: EKS hexagons falling into an AWS-styled cube
@@ -12,14 +12,13 @@ tags:
  - DevOps
  - AWS
  - Kubernetes
- - Getting Started
 ---
 
 I recently worked with a customer to configure the [Octopus Kubernetes agent](https://octopus.com/docs/kubernetes/targets/kubernetes-agent) on an AWS Elastic Kubernetes Service (EKS) cluster.  The Kubernetes agent requires a [storage class](https://kubernetes.io/docs/concepts/storage/storage-classes/) to provide volumes so it has a file system to work with. The customer wanted to use the Elastic File System (EFS) for the storage class. 
 
-I couldn't find a walkthrough that describes the steps to configure EFS to work with EKS. Instead had to rely on a combination of AWS documentation and blog posts. This led to a frustrating amount of incremental successes as I went from brick wall to brick wall trying to get the 2 technologies to work together. 
+I couldn't find a walkthrough that describes the steps to configure EFS to work with EKS. Instead, I had to rely on a combination of AWS documentation and blog posts. This led to a frustrating amount of incremental success as I went from brick wall to brick wall trying to get the 2 technologies to work together. 
 
-So in this post, I cover the steps to connect the 2 technologies in a single location, so you don't have to struggle like I did.
+In this post, I cover the steps to connect the 2 technologies in a single location, so you don't have to struggle like I did.
 
 ## Before you start
 
@@ -49,11 +48,13 @@ You can create an EFS file system in just a few clicks:
 ![Search for the EFS service](aws-services-efs.png)
 
 3. Click EFS, which takes you to the EFS service.
-3. Click the Create file system button
+3. Click the **Create file system** button
 
 ![Create new EFS file system](aws-efs-create.png)
 
-5. Give the EFS file system a name and select the VPC to use.  Note: Make sure you select the correct VPC so the 2 technologies can communicate.
+5. Give the EFS file system a name and select the VPC to use.  
+
+Note: Make sure you select the correct VPC so the 2 technologies can communicate.
 
 ![Enter a name and choose the appropriate VPC](aws-efs-filesystem.png)
 
@@ -67,11 +68,13 @@ The above image selects the VPC created by the eksctl tool.
 
 ![Copy the EFS ID number](aws-efs-myefs-id.png)
 
-8. Click the `Network` tab to view the assigned `Security groups`.  EFS selects the default security groups for the VPC when it gets created.
+8. Click the **Network** tab to view the assigned **Security groups**.  EFS selects the default security groups for the VPC when it gets created.
 
 ![Review the assigned security groups](aws-efs-network.png)
 
-In my case, the eskctl tool created its own security groups, so I needed to update them to the appropriate groups.  To update the groups, click Manage, then update the groups assigned to the EKS nodes.
+In my case, the eskctl tool created its own security groups, so I had to update them to the appropriate groups.  
+
+To update the groups, click **Manage**, then update the groups assigned to the EKS nodes.
 
 ![Assign the correct security groups](aws-efs-security-groups.png)
 
@@ -86,7 +89,7 @@ The documentation describes 2 ways to configure the provider:
 - Using eksctl
 - Using the UI
 
-For this post, we'll use the eksctl method.  The documentation provides a Bash example to programatically create the OIDC provider.  I use a Windows machine, so converted it to PowerShell (the step comments are the step numbers from the documentation).
+For this post, we'll use eksctl. The documentation provides a Bash example to programatically create the OIDC provider. I use a Windows machine, so converted it to PowerShell (the step comments are the step numbers from the documentation).
 
 ```powershell
 # Step 1
@@ -136,10 +139,12 @@ aws iam update-assume-role-policy --role-name $roleName --policy-document file:/
 
 ## Configuring the EKS cluster to use EFS
 
-Now we've created the IAM Service Account, Role, and the EFS file system, we can configure the EKS cluster to use them.  To connect EFS to EKS, you need to do the following:
+After creating the IAM Service Account, Role, and the EFS file system, you can configure the EKS cluster to use them.  
+
+To connect EFS to EKS, you need to do the following:
 
 - Add the Amazon EFS CSI Driver to the cluster
-- Set the IAM Service Account role for the EFS CSI Driver
+- Set the IAM Service Account Role for the EFS CSI Driver
 - Create the Kubernetes 'StorageClass' resource for the EFS CSI Driver
 
 ### Add the Amazon EFS CSI Driver
@@ -168,9 +173,9 @@ The Amazon EFS CSI Driver is an add-on to an EKS cluster. To add the add-on, nav
 
 ## Create a StorageClass resource on your cluster
 
-The final step is to create a StorageClass resource in your EKS cluster to use the EFS file system you created.  
+The final step is creating a StorageClass resource in your EKS cluster to use the EFS file system you created.  
 
-Create a YAML file with the following (you need the file system ID value we copied earlier):
+Create a YAML file with the following (you need the file system ID value you copied earlier):
 
 ```yaml
 kind: StorageClass
@@ -190,10 +195,10 @@ parameters:
   reuseAccessPoint: "false" # optional
 ```
 
-Apply this to your cluster and you're done. Whew!
+Apply this to your cluster and you're done!
 
 ## Conclusion
 
-The information to connect EFS to EKS *is* readily available, but it's spread across multiple AWS documentation pages that don't seem to reference each other. I hope that consolidating the steps in one spot saves you from the frustration of piecing together the steps.
+The information to connect EFS to EKS *is* available, but it's spread across multiple AWS documentation pages that don't seem to reference each other. I hope that consolidating the steps in one spot saves you from the frustration of piecing it all together.
 
 Happy deployments!
